@@ -24,7 +24,7 @@ below. Lower bounds are worst-case over the stated frame family.
 | T-count with sufficient clean workspace | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, $`G=O(NL)`$, when $`a\ge C(n+h)`$ for sufficiently large fixed C | Matching for those same families; the clean reservation is sufficient, not proved necessary; [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md) |
 | Two-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`b\ge L+n+7`$ | Current strongest unbanked bound; [conditional-suffix theorem](CONDITIONAL_SUFFIX_COMPILER.md) |
 | Two-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked proof](CONDITIONAL_SUFFIX_COMPILER.md#8-additional-dirty-banks-give-a-width-tradeoff) |
-| T-depth with additional dirty banks | $`D_T=O(NL/b+L\ell_*(n)+n^4)`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Explicit [schedule](T_DEPTH_COMPILER.md) for real frames; optimizing depth may increase T-count; no matching frontier established |
+| T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 
 Every retained frame construction preserves the prescribed completion used
 by Hopf QBP. Finite-precision substitution has the fixed-parameter bias and
@@ -38,6 +38,50 @@ fallback. Its literal-diagonal and complete one-target U(2) multiplexor
 corollaries retain matching banked frontiers as independent capabilities. Earlier, weaker
 endpoint bounds are superseded as frontiers; exploratory routes are
 recoverable from the [archived research snapshot](../provenance/README.md#earlier-research-snapshot).
+
+## The count and depth gaps are different
+
+The exact ancilla-depth theorem is matching in its elementary-gate model.
+The T-count frontier is also matching under its stated clean reservation.
+The two-clean depth theorem supplies an explicit upper schedule; its lower
+bound is substantially smaller. Complete-frame safety and the QBP error
+contract are already established in all these constructions. The remaining
+questions concern resource scaling.
+
+For the exactly two-clean banked regime, put $`B_0=L+n+7`$ and assume
+$`b\ge2B_0`$. Then $`q=n+2+b=\Theta(b)`$. The
+[inherited depth lower bound](T_DEPTH_COMPILER.md#4-lower-bounds-and-the-remaining-depth-gap)
+simplifies to
+
+```math
+D_T^\star=\Omega(1+NL/b^2).
+```
+
+Indeed, $`L/b=O(1)`$ and $`\sqrt{NL}/b\le1+NL/b^2`$.
+This is an algebraic restatement of the retained count-to-depth reduction,
+not a stronger lower-bound argument. The following are consequences of the
+existing bounds, with $`a=2`$ throughout. Asymptotic allocations in the first
+four rows must satisfy the bank threshold.
+
+| Regime | Depth lower bound | Available depth upper bound | Remaining issue |
+|---|---|---|---|
+| Fixed L, $`b=\Theta(n)`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Factor-n gap |
+| Fixed L, $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\sqrt N)`$ | Width dependence is not matched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ | Useful depth capability, with no matching polynomial lower bound |
+| $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
+| Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
+
+At fixed L and $`b=\Theta(N)`$, worst-case optimal T-count is
+$`\Theta(\sqrt N)`$. The count-oriented compiler attains that order;
+the separate $`O(n^3)`$ depth schedule is only certified with
+$`T=O(N)`$. We have not established both guarantees for one circuit.
+Thus the next depth question includes the **joint count-depth pair**, not
+only the exponent of a loose polynomial overhead.
+
+T-depth permits Clifford circuits of nonzero depth between its T layers.
+It is not total circuit depth or elapsed QBP execution time. Neither the
+exact CNOT light-cone bound nor the source's linear exact T-count minimum
+supplies an additional depth lower bound in this model.
 
 ## The remaining endpoint
 
@@ -216,10 +260,58 @@ an additive lower bound for the full frame.
 
 ## Next research checkpoint
 
-The closest endpoint question is whether the successful residual construction
+### First: audit parallel dirty lookup at a fixed T-count budget
+
+The next bounded task is to examine whether additional dirty workspace can
+parallelize the high-address loader while retaining a count-efficient bank
+allocation. The current depth theorem instead fills larger banks and
+permits $`T=O(NL)`$. An explicit joint count-depth improvement would address
+the original ancilla-depth question more directly than merely reducing
+the conservative $`n^3`$ or $`n^4`$ scheduling allowance.
+
+[Low, Kliuchnikov, and Schaeffer, Appendix C, Theorem 2](https://arxiv.org/html/1812.00954v2)
+provides a concrete parallel dirty-lookup construction to examine. Its
+compatibility with the present literal, complete-input interface must be
+checked before importing a new schedule. This is a proposed next audit,
+not a claimed improvement or a new general lookup primitive.
+
+The local target is an actual phase-correct circuit
+
+```math
+|y,z,w\rangle\longmapsto|y,z\oplus f(y),w\rangle
+```
+
+for arbitrary output and helper contents, including external references.
+It must use no additional clean qubits, restore all dirty work jointly,
+and give exact identity on completed inactive zero rows. Keep the existing
+source, routing, grouping, and count-efficient bank choice fixed. Allocate
+any additional selector work from the remaining dirty budget.
+
+Its resource ledger must state the row count Q, word width m, bank count
+mu, and extra dirty selector width separately. It must charge the indicator
+or selector construction, every copy, routing, actual inverse, T-count,
+T-depth, and both Clifford count and depth. Any faulty-sign Toffoli
+implementation requires a literal-phase audit. A local register-lifetime
+table belongs in this audit.
+
+The pass criterion is a nontrivial depth reduction at a stated T-count
+budget and explicit total dirty width, followed by composition with the
+existing frame error proof. The first useful regime to test is fixed
+accuracy and linear dirty width. Simultaneously obtaining
+$`T=O(\sqrt N)`$ and polynomial-in-n T-depth there is a research target,
+not a current result. A hidden initialized word, uncancelled phase, or
+unreturned dirty helper fails the proposed interface. Such a failure
+would concern that implementation, not every parallel lookup scheme.
+
+This task leaves the high-precision source term untouched. A successful
+loader alone would not close the selected $`O(N)`$ T-count endpoint.
+
+### Second: one bounded joint-block attempt at the linear endpoint
+
+The closest endpoint question remains whether the residual construction
 admits a **joint source and table implementation** that avoids its remaining
-group multiplicity. Before attempting another full-frame theorem, specify one
-candidate interface and account for:
+group multiplicity. Before attempting another full-frame theorem, specify
+one candidate interface and account for:
 
 1. The complete accepted operator and the coherent action on rejected work,
    including any intermediate reuse of flags or addresses.
@@ -253,16 +345,23 @@ separately. A proposed replacement must retain a constant total precision
 charge and control the mixed terms to exponential accuracy; polynomially
 small coarse errors alone do not suffice.
 
-The [T-depth schedule](T_DEPTH_COMPILER.md) now charges source dependencies,
-dirty lookup, coarse interpretation, and reflections explicitly. At fixed
-accuracy and $`b=\Theta(N)`$, two clean qubits suffice for
-$`D_T=O(n^3)`$ with $`T,G=O(N)`$, by choosing the layerwise schedule
-in that regime. This is a depth upper bound and may
-use more T gates than the T-count-oriented compiler. The inherited general
-lower bound is much smaller, so the next depth questions are to reduce the
-conservative polynomial scheduling overhead and find an appropriate depth
-lower-bound invariant. Complete-frame preservation already supplies the
-relevant QBP guarantee.
+A bounded attempt should specify both a three-level full-unitary block and
+its extension to arbitrary height. It must account for coefficient and
+coarse-program queries together. Expanding all ancestor pairs, invoking
+the target frame to generate its own path amplitudes, or retaining a fresh
+precision charge per depth does not meet the endpoint target. Park that
+candidate if its cost or mixed-error recurrence fails; keep the current
+compiler as the fallback.
+
+### Later: stronger lower bounds and practical constants
+
+A matching depth theorem needs a new lower-bound invariant or a further
+upper construction; an improved polynomial allowance alone cannot settle
+the width gap above. A lower-bound attempt should start by naming the
+property that arbitrary Clifford interlayers and returned dirty helpers
+cannot erase. Explicit constants and complete circuit emission are useful
+implementation work, but remain separate from this conceptual gap and the
+linear T-count endpoint.
 
 ## Evidence and remaining implementation work
 
