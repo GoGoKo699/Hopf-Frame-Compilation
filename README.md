@@ -128,11 +128,9 @@ source is prepared and charged. Borrowed qubits are restored jointly with any
 external reference; complete-input approximation includes clean-work leakage.
 There are no measurements, resets, or free supplied catalysts in this model.
 
-**Why precision can be shared.** Binary tables correct a coarse frame using
-one geometric source retained across the correction stream. One final
-amplification gives the single additive $L$ term. The
-[proof](docs/FAULT_TOLERANT_COMPILER.md) charges source preparation, retained
-failure history, and every workspace register.
+**Shared precision.** The [proof](docs/FAULT_TOLERANT_COMPILER.md) corrects a
+coarse frame with one retained source and final amplification, charging
+source preparation, failure history, and all work.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
 With **two clean qubits** and $`b\ge L+n+7`$, the
@@ -147,6 +145,10 @@ Smaller allocations retain the
 The [baseline compiler](docs/OPERATOR_SOURCE_COMPILER.md) gives $`O(N+nL)`$
 for complex magnitude frames with two clean qubits and $`b\ge L+n+8`$.
 The separate leaf-phase derivative stream keeps its own QBP accounting.
+
+At fixed accuracy, [parallel lookup](docs/PARALLEL_DIRTY_LOOKUP.md)
+gives $`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ in one real-frame circuit
+with two clean and sufficiently large $`\Theta(\sqrt N)`$ dirty workspace.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with two clean

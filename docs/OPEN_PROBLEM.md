@@ -25,6 +25,7 @@ below. Lower bounds are worst-case over the stated frame family.
 | Two-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`b\ge L+n+7`$ | Current strongest unbanked bound; [conditional-suffix theorem](CONDITIONAL_SUFFIX_COMPILER.md) |
 | Two-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked proof](CONDITIONAL_SUFFIX_COMPILER.md#8-additional-dirty-banks-give-a-width-tradeoff) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
+| Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
 
 Every retained frame construction preserves the prescribed completion used
 by Hopf QBP. Finite-precision substitution has the fixed-parameter bias and
@@ -60,23 +61,24 @@ D_T^\star=\Omega(1+NL/b^2).
 Indeed, $`L/b=O(1)`$ and $`\sqrt{NL}/b\le1+NL/b^2`$.
 This is an algebraic restatement of the retained count-to-depth reduction,
 not a stronger lower-bound argument. The following are consequences of the
-existing bounds, with $`a=2`$ throughout. Asymptotic allocations in the first
-four rows must satisfy the bank threshold.
+existing bounds, with $`a=2`$ throughout. Allocations must satisfy the
+theorem's sufficient threshold; the square-root row now uses the
+parallel-indicator construction with a sufficiently large fixed prefactor.
 
 | Regime | Depth lower bound | Available depth upper bound | Remaining issue |
 |---|---|---|---|
 | Fixed L, $`b=\Theta(n)`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Factor-n gap |
-| Fixed L, $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\sqrt N)`$ | Width dependence is not matched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ | Useful depth capability, with no matching polynomial lower bound |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ with $`T=O(\sqrt N)`$ | Simultaneous count/depth capability; depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
-At fixed L and $`b=\Theta(N)`$, worst-case optimal T-count is
-$`\Theta(\sqrt N)`$. The count-oriented compiler attains that order;
-the separate $`O(n^3)`$ depth schedule is only certified with
-$`T=O(N)`$. We have not established both guarantees for one circuit.
-Thus the next depth question includes the **joint count-depth pair**, not
-only the exponent of a loose polynomial overhead.
+At fixed L, sufficiently large $`\Theta(\sqrt N)`$ dirty workspace now
+gives worst-case optimal-order $`T=O(\sqrt N)`$ together with
+$`D_T=O(n^3)`$ in one circuit. The parallel lookup audit therefore
+resolves the previous incompatibility between the retained count and depth
+schedules in this regime. It does not settle the depth exponent or the
+tradeoff below the new sufficient-width threshold.
 
 T-depth permits Clifford circuits of nonzero depth between its T layers.
 It is not total circuit depth or elapsed QBP execution time. Neither the
@@ -260,53 +262,31 @@ an additive lower bound for the full frame.
 
 ## Next research checkpoint
 
-### First: audit parallel dirty lookup at a fixed T-count budget
+### Completed: parallel dirty lookup at a fixed T-count budget
 
-The next bounded task is to examine whether additional dirty workspace can
-parallelize the high-address loader while retaining a count-efficient bank
-allocation. The current depth theorem instead fills larger banks and
-permits $`T=O(NL)`$. An explicit joint count-depth improvement would address
-the original ancilla-depth question more directly than merely reducing
-the conservative $`n^3`$ or $`n^4`$ scheduling allowance.
+The [parallel-loader proof](PARALLEL_DIRTY_LOOKUP.md) passes the proposed
+audit. Nested exact bilinear echoes construct an H-output dirty indicator
+using at most $`4H`$ total dirty indicator work, $`O(H)`$ T and Clifford
+gates, and $`O((1+\log H)^2)`$ depth. It uses literal exact Toffolis
+and no initialized selectors. The completed whole-word query preserves
+arbitrary dirty/reference inputs and is identity on inactive zero rows.
 
-[Low, Kliuchnikov, and Schaeffer, Appendix C, Theorem 2](https://arxiv.org/html/1812.00954v2)
-provides a concrete parallel dirty-lookup construction to examine. Its
-compatibility with the present literal, complete-input interface must be
-checked before importing a new schedule. This is a proposed next audit,
-not a claimed improvement or a new general lookup primitive.
+At bank count mu, $`H=Q/\mu`$, the query requires
+$`\mu m+4H`$ extra dirty bits and retains
+$`T=O(H+\mu m)`$. Choosing the count-efficient banks gives the new
+simultaneous full-frame theorem above. The local lifetime ledger charges
+all borrowed work, actual inverses, and linear table maps; those Clifford
+maps still have nonzero depth. The general parallel-lookup idea is
+attributed to Low, Kliuchnikov, and Schaeffer, Appendix C.
 
-The local target is an actual phase-correct circuit
+The first revision target is therefore achieved, already at sufficiently
+large square-root dirty width for fixed accuracy. A further depth project
+could seek a count-preserving interpolation below that width, but it would
+need a separately charged partial-indicator construction. The source's
+high-precision term is unchanged; this result does not close the selected
+$`O(N)`$ T-count endpoint.
 
-```math
-|y,z,w\rangle\longmapsto|y,z\oplus f(y),w\rangle
-```
-
-for arbitrary output and helper contents, including external references.
-It must use no additional clean qubits, restore all dirty work jointly,
-and give exact identity on completed inactive zero rows. Keep the existing
-source, routing, grouping, and count-efficient bank choice fixed. Allocate
-any additional selector work from the remaining dirty budget.
-
-Its resource ledger must state the row count Q, word width m, bank count
-mu, and extra dirty selector width separately. It must charge the indicator
-or selector construction, every copy, routing, actual inverse, T-count,
-T-depth, and both Clifford count and depth. Any faulty-sign Toffoli
-implementation requires a literal-phase audit. A local register-lifetime
-table belongs in this audit.
-
-The pass criterion is a nontrivial depth reduction at a stated T-count
-budget and explicit total dirty width, followed by composition with the
-existing frame error proof. The first useful regime to test is fixed
-accuracy and linear dirty width. Simultaneously obtaining
-$`T=O(\sqrt N)`$ and polynomial-in-n T-depth there is a research target,
-not a current result. A hidden initialized word, uncancelled phase, or
-unreturned dirty helper fails the proposed interface. Such a failure
-would concern that implementation, not every parallel lookup scheme.
-
-This task leaves the high-precision source term untouched. A successful
-loader alone would not close the selected $`O(N)`$ T-count endpoint.
-
-### Second: one bounded joint-block attempt at the linear endpoint
+### Next: one bounded joint-block attempt at the linear endpoint
 
 The closest endpoint question remains whether the residual construction
 admits a **joint source and table implementation** that avoids its remaining

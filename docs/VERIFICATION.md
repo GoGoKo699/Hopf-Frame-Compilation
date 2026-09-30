@@ -62,6 +62,12 @@ The [T-depth schedule](T_DEPTH_COMPILER.md) has
 shared-control Fredkins, disjoint T-layer supports, actual inverses, and
 whole dirty-bank queries. Clifford layers may have substantial depth;
 the fixture does not treat T-depth as total execution depth.
+The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
+audit exact bilinear cancellation, literal native phases, disjoint T layers,
+recursive scratch reuse, and arbitrary-input return using symbolic Boolean
+polynomials. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
+the count bound while reducing T-depth under its sufficient dirty-width
+condition. The linear table maps still have a charged Clifford-depth cost.
 The [tree-residual checks](../tests/test_tree_residual_structure.py)
 reconstruct complete small residuals from classical tree generators,
 including complex coarse words and singular angles.

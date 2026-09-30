@@ -148,6 +148,17 @@ $`D_T=O(NL/b+L\ell_*(n)+n^4)`$ with $`T,G=O(NL)`$ for real frames.
 It can spend more T gates to reduce their sequential depth; no matching
 T-depth frontier or total-depth consequence is inferred.
 
+With a larger sufficient allocation
+$`b\ge C(L+n+7+\sqrt{NL})`$, the
+[parallel dirty-lookup construction](docs/PARALLEL_DIRTY_LOOKUP.md) instead
+retains $`T=O(\sqrt{NL}+L\ell_*(n))`$ while attaining
+$`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$ in the same circuit.
+At fixed accuracy, two clean and sufficiently large
+$`\Theta(\sqrt N)`$ dirty workspace give count-optimal
+$`O(\sqrt N)`$ T gates with $`O(n^3)`$ T-depth.
+The T-depth need not be optimal, and Clifford depth remains charged
+separately.
+
 With two clean qubits, the
 [conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
 implements every prescribed real Hopf frame with

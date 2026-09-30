@@ -9,6 +9,12 @@ workspace tradeoffs. The construction below chooses larger dirty lookup
 banks to reduce T-depth, and can use more T gates than the count-optimized
 compiler.
 
+The [parallel-indicator refinement](PARALLEL_DIRTY_LOOKUP.md) retains
+count-efficient banks and uses extra dirty selectors instead. Under its
+stronger sufficient-width condition, it obtains the best retained T-count
+and low T-depth simultaneously. This chapter supplies the routing primitive
+and the wider-range bank schedule used in that refinement.
+
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$,
 $`0\lt\eta\leq1/64`$, and
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. Put
@@ -275,6 +281,8 @@ bound, since every fixed polynomial in n is $`O(2^n)`$ and $`L\geq6`$.
 This proves the stated simultaneous $`T,G=O(NL)`$ guarantees.
 It does not retain the sharper count-optimized
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ bound on this same schedule.
+That limitation of maximal banking is removed, under a stronger workspace
+condition, by the separate [parallel-loader construction](PARALLEL_DIRTY_LOOKUP.md).
 
 For comparison, applying only the depth-optimized queries to the older
 layer-by-layer compiler gives the explicit upper schedule
@@ -332,6 +340,10 @@ layer schedule with depth-optimized banks gives $`D_T=O(n^3)`$ with two clean qu
 while the worst-case T-count remains at least $`\Omega(\sqrt N)`$.
 This illustrates the difference between count and depth; it does not
 make the polynomial T-depth optimal.
+The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) now achieves
+$`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ together already with sufficiently
+large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. It leaves
+the depth lower-bound gap open.
 
 The same complete-frame norm transfers to the existing Hopf-QBP bias
 and inverse guarantees. It does not by itself determine the observable

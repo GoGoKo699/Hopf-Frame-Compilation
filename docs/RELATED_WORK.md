@@ -255,6 +255,14 @@ not claim dirty lookup or its cancellation identity as a contribution. Its
 dirty bank does not replace the clean output word needed by an instruction-word
 interpreter. Section 5 supplies the finite-width counting method.
 
+Appendix C also separates indicator parallelism from count-efficient bank
+selection. The [parallel lookup proof](PARALLEL_DIRTY_LOOKUP.md) gives a
+literal exact realization using bilinear dirty echoes and constant-cost
+exact Toffolis, with explicit returned selector work. Its role here is to
+compose the inherited lookup idea with complete two-clean real frames,
+retaining their T-count while reducing T-depth. It does not claim a new
+general lookup tradeoff or equally small Clifford depth.
+
 **Bausch.** Equations (4) and (6) of *Fast Black-Box Quantum State Preparation*
 already use a geometric precision register and a bit oracle addressed by the
 data index and precision position. Section 2.3.3 includes a capped geometric
