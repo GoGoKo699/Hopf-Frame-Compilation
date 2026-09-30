@@ -26,6 +26,7 @@ theorem by numerical extrapolation.
 | [`test_approximation_contract.py`](test_approximation_contract.py) | Actual-adjoint bias, complex phase records, reflection sums, finite weights, and conditional means with correlated dirty reuse |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
+| [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Sparse grouped residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_provenance.py`](test_provenance.py) | Are upstream commits, source roles, and local lineage recorded consistently? |
 | [`test_literature_policy.py`](test_literature_policy.py) | Does the active proof use one compiler framework and maintain the declared contribution boundary? |
 | [`test_reviewer_narrative.py`](test_reviewer_narrative.py) | Do the primary reading route, diagrams, links, terminology, and source-version statements remain coherent? |
@@ -45,10 +46,12 @@ The following checks are especially useful when modifying the scientific code:
 6. complete routed cut equals the direct frame;
 7. exact-compiler work registers return to their promised inputs;
 8. one-UCG phase blocks reproduce the complete leaf-phase diagonal;
-9. two-clean operator-source blocks satisfy full-output error bounds, including
+9. baseline two-clean operator-source blocks satisfy full-output error bounds, including
    core return, while lookup banks and suffix controls return exactly;
 10. actual inverse circuits and sequential composition retain their bounds
-    after intermediate leakage.
+    after intermediate leakage;
+11. grouped conditional-suffix blocks preserve every inactive sector and
+    include active suffix and predicate leakage in the complete error.
 
 All exact-frame, resource, QBP, and two-clean compiler checks are retained.
 Earlier exploratory endpoint constructions are preserved in repository

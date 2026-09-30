@@ -135,17 +135,17 @@ amplification gives the single additive $L$ term. The
 failure history, and every workspace register.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
-The [two-clean operator-source construction](docs/OPERATOR_SOURCE_COMPILER.md)
-uses **two clean qubits** and $N+O(\log N)$ dirty qubits to give
-$O(N\log N)$ T gates for arbitrary prescribed real Hopf frames at the same precision.
-The lower bound remains $\Omega(N)$: **a logarithmic gap is still open**.
+The [conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
+uses **two clean qubits**, $`b=N+n+7`$, and $`n\ge3`$ to give
+$`O(N\log(n+2))`$ T gates for prescribed real frames at that precision.
+The lower bound remains $\Omega(N)$: **the linear endpoint is open**.
 The [open-problem statement](docs/OPEN_PROBLEM.md) gives the explicit endpoint
 allocation. Smaller allocations retain the
 [borrowed-workspace bound](docs/BORROWED_WORKSPACE_COMPILER.md).
 
-The operator-source note also gives the same T-count order for the
-phase-dressed complex magnitude frame, using two clean qubits and
-$`b\ge L+n+8`$. It compiles the complete literal phase diagonal; the separate
+The [baseline compiler](docs/OPERATOR_SOURCE_COMPILER.md) gives $`O(N+nL)`$
+for the complex magnitude frame with two clean qubits and
+$`b\ge L+n+8`$. It compiles the literal phase diagonal; the separate
 leaf-phase derivative stream keeps its own QBP accounting.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)

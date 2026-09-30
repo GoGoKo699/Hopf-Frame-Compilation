@@ -60,6 +60,10 @@ free: a circuit with $`K`$ CNOTs has at most $`n+4K`$ relevant one-qubit
 slots after removing inactive clean ancillas. No optimal leading constant is
 claimed. Result B is precision-uniform under its clean reservation;
 Result C is a different construction with a constant clean allocation.
+At $`n\ge3`$, $`L=N`$, and $`b=N+n+7`$, its
+[conditional-suffix refinement](../docs/CONDITIONAL_SUFFIX_COMPILER.md)
+gives $`T=O(N\log(n+2))`$ and $`G=O(N^2)`$ with $`a=2`$.
+This is an endpoint upper bound; the $`\Omega(N)`$ lower bound is unchanged.
 
 Proofs: [A](../docs/COMPILER_THEOREM.md),
 [B](../docs/FAULT_TOLERANT_COMPILER.md),
@@ -90,8 +94,10 @@ separate and has no universal efficiency guarantee for arbitrary input
 evaluators. Literal block phases and complete-input error are preserved.
 
 This is one full addressed operation, not a claim for arbitrary many-qubit
-unitaries. Composing the noncommuting Hopf layers still incurs the stated
-$`nL`$ term with two clean qubits. The [current literature comparison](../docs/RELATED_WORK.md#12-contemporary-comparisons-and-the-broader-compiler-contribution)
+unitaries. Direct composition of the noncommuting Hopf layers incurs the
+baseline $`nL`$ term; conditional-suffix grouping reduces the number of
+precision charges at the selected real-frame endpoint. The
+[current literature comparison](../docs/RELATED_WORK.md#12-contemporary-comparisons-and-the-broader-compiler-contribution)
 distinguishes this clean-workspace guarantee from prior complete multiplexor
 and arbitrary-unitary synthesis.
 
@@ -125,9 +131,12 @@ retained. No measurements, resets, postselection, or free supplied precision
 sources are used.
 
 The sufficient-clean compiler returns its dirty work exactly. In the
-two-clean construction, lookup banks, selectors, and suffix-control work
+baseline two-clean construction, lookup banks, selectors, and suffix-control work
 return exactly, while the operator core returns approximately within the
-displayed norm. The paper must preserve this distinction wherever it states
+displayed norm. In the conditional-suffix refinement, final return of the
+logical suffix scratch and its clean predicate is also approximate within
+that norm; intermediate table and selector subroutines return their work
+exactly. The paper must preserve these distinctions wherever it states
 workspace return.
 
 QBP concerns simultaneous absolute accuracy of the raw coordinate gradient
@@ -142,13 +151,13 @@ gate word nor proves optimality among all gradient algorithms.
 The selected high-precision point is
 
 ```math
-a=2,\qquad b=N+n+7,\qquad L=N,
+a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 \qquad
-\Omega(N)\le T^\star\le O(N\log N).
+\Omega(N)\le T^\star\le O(N\log(n+2)).
 ```
 
 This gap is stated once in the main results and revisited in the discussion.
-The paper does not claim that the repeated $`nL`$ charge is necessary, or
+The paper does not claim that the grouped precision charge is necessary, or
 that every constant clean allocation and every linear dirty allocation has
 the same upper bound. Restrictions on particular source-processing interfaces
 do not supply an additive full-frame lower bound.
@@ -193,11 +202,11 @@ package rather than introducing unsupported research claims during writing.
 | Necessity of the target | [Frame-safe contract](../docs/FRAME_SAFE_COMPILATION.md): universal fixed-decoder means force the full frame at regular points, up to common phase; sharp sensitivity and singular exceptions |
 | Exact resources | [Exact theorem](../docs/COMPILER_THEOREM.md): complete constructions, all clean budgets, total size, CNOT-only count, and depth lower bounds |
 | Precision sharing | [Fault-tolerant proof](../docs/FAULT_TOLERANT_COMPILER.md): sufficient-clean frontier, residual-dictionary sufficient condition, all charged source/history work, and complex extension |
-| Constant-clean capability | [Operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean frame, matched diagonal and multiplexor frontiers, exact source T minima, dirty/reference return, and finite certified preprocessing |
+| Constant-clean capability | [Operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean frame, matched diagonal and multiplexor frontiers, exact source T minima, dirty/reference return, and finite certified preprocessing; [conditional-suffix refinement](../docs/CONDITIONAL_SUFFIX_COMPILER.md) at the real-frame high-precision endpoint |
 | Operational consequence | [Approximation proof](../docs/QBP_APPROXIMATION.md): complete complex gradients, general reflection sums, weight errors, conditional-mean concentration under dirty-bank reuse, and quantum/classical costs |
 | Comparisons and attribution | [Related work](../docs/RELATED_WORK.md) and [source map](../docs/SOURCE_MAP.md): input families, precision, initialized/borrowed work, current general-unitary baselines, and inherited compression |
 | Reproducible evidence | [Verification](../docs/VERIFICATION.md): native finite two-clean circuits, actual inverse and rejected-work composition, source witnesses, gradient fixtures, and exact receipts |
-| Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining logarithmic full-frame gap, the limit of the exact-source lower bound, and the sufficient global-block contract still to be constructed |
+| Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining full-frame gap between $`\Omega(N)`$ and $`O(N\log(n+2))`$, the limit of the exact-source lower bound, and the sufficient global-block contract still to be constructed |
 
 Final writing assembles these established statements and proofs into one
 argument with consistent notation and bibliography. No general elementary

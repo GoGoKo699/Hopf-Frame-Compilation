@@ -345,11 +345,15 @@ lookup banks and selectors return exactly. Literal diagonal compilation
 also gives the phase-dressed magnitude-frame corollary with its own error
 allocation and dirty-width threshold.
 
-The remaining $`nL`$ term matters: at $`L=N`$ the two-clean result is an
-$`O(N\log N)`$ upper bound, not a matched linear bound. The claimed
-contribution is this explicitly charged construction and its stated resource
-regimes, not the invention of loaders, dirty lookup, overlap algebra, or
-amplification.
+The baseline's $`nL`$ term gives $`O(N\log N)`$ at $`L=N`$.
+The [conditional-suffix refinement](CONDITIONAL_SUFFIX_COMPILER.md) reduces
+this to $`O(N\log(n+2))`$ for real frames at $`n\ge3`$, $`a=2`$,
+and $`b=N+n+7`$. It combines sparse grouped residuals with the dirty
+operator source, using logical suffix qubits as clean work only in the
+active sector. The $`\Omega(N)`$ lower bound remains unchanged.
+These are explicitly charged constructions in their stated regimes;
+loaders, dirty lookup, overlap algebra, and amplification retain their
+earlier attribution.
 
 The [source map](SOURCE_MAP.md) gives exact theorem numbers and local consumers.
 The comparisons identify dependencies and specific additional constructions;
@@ -416,7 +420,8 @@ in this range, GKW's diagonal lower bound and LKS-style finite-width counting
 give the stated worst-case match. At $`L=N`$ and $`b=2(N+n+5)`$ this is
 $`\Theta(N)`$ T count with two clean qubits. This diagonal endpoint is
 settled by the retained proof, whereas the corresponding complete-frame
-endpoint still has a logarithmic gap. The broader scientific contribution
+endpoint still has a gap between $`\Omega(N)`$ and
+$`O(N\log(n+2))`$. The broader scientific contribution
 is therefore a precision/workspace compiler for a standard operator family,
 together with the structured complete-frame extensions. It is not a claim
 that the entire two-clean frame frontier is matched.

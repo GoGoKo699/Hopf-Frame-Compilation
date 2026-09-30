@@ -1,6 +1,6 @@
 # Open problem: the two-clean high-precision endpoint
 
-[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md)
+[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Two-clean baseline](OPERATOR_SOURCE_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
 The publication establishes its compiler theorems without resolving this
 endpoint. Let $`N=2^n`$, and let $`T^\star_{F,\mathbb R}`$ be the worst-case
@@ -14,7 +14,8 @@ a=2,\qquad b=N+n+7,\qquad L=N,
 the retained results give
 
 ```math
-\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\log N).
+\Omega(N)\le T^\star_{F,\mathbb R}
+\le O\!\left(N\log(2+\log_2 N)\right).
 ```
 
 Here $`a`$ and $`b`$ count initialized clean and arbitrary dirty qubits, and
@@ -23,10 +24,16 @@ $`0\lt \eta\le1/64`$. Literal phases, clean-work leakage, and dirty/reference
 return error are included in the same operator norm as the
 [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md#1-target-resources-and-theorem).
 
-The [operator-source compiler](OPERATOR_SOURCE_COMPILER.md) has
+The [layer-by-layer operator-source compiler](OPERATOR_SOURCE_COMPILER.md) has
 $`T=O(N+nL)`$ with $`b\ge L+n+7`$. It pays the precision cost at each
 tree depth. Neither its dirty-bank refinement nor its literal-diagonal
-corollary removes that repeated cost for a general real frame.
+corollary removes that repeated cost for a general real frame. The
+[conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) instead
+groups consecutive depths: on its active sector, a known-zero logical
+suffix supplies temporary initialized work for a sparse residual block.
+Exact identity on inactive sectors preserves every logical input. A
+geometric partition needs only $`O(\log(n+2))`$ precision charges,
+giving the displayed improved upper bound at $`L=N`$.
 
 With a sufficiently large $`a=\Theta(n)`$ clean reservation and
 $`b=\Theta(N)`$, the shared-source compiler instead attains
@@ -38,7 +45,8 @@ $`O(N)`$ construction at the explicit allocation above, or whether a stronger
 general lower bound holds. The current upper bound does not establish the
 same cost for fewer clean qubits or every prefactor in $`b=\Theta(N)`$.
 Restrictions proved for particular source-processing interfaces do not
-settle the unrestricted frame problem.
+settle the unrestricted frame problem. The grouped improvement is a
+T-count theorem; it does not establish an optimal T-depth tradeoff.
 
 ## What the current research resolves
 

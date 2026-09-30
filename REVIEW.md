@@ -151,9 +151,11 @@ a=2,\qquad b\ge L+n+7,\qquad
 T=O(N+nL),\qquad G_{\mathrm{Clifford}}=O(NL).
 ```
 
-At $`L=N`$ and $`b=N+n+7`$, this gives $`O(N\log N)`$ T gates
-against the unchanged $`\Omega(N)`$ lower bound. The logarithmic gap remains
-open. The same construction supplies a dirty-bank tradeoff and a literal
+At $`L=N`$ and $`b=N+n+7`$, this baseline gives $`O(N\log N)`$ T gates.
+For $`n\ge3`$, [conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md)
+improves the upper bound to $`O(N\log(n+2))`$ with the same allocation.
+The lower bound remains $`\Omega(N)`$; the linear endpoint is open.
+The baseline construction also supplies a dirty-bank tradeoff and a literal
 phase-dressed complex magnitude corollary, with their separate workspace
 conditions stated in Section 9.5.
 
@@ -1128,12 +1130,15 @@ they do not emit every elementary gate of the asymptotic compiler.
 ### 9.5 Two-clean compilation and the remaining gap
 
 At $L=N$, a sufficiently large $a=\Theta(n)$ clean budget and $b=\Theta(N)$ dirty workspace attain
-$T^\star=\Theta(N)$. A new
+$T^\star=\Theta(N)$. The baseline
 [operator-source compiler](docs/OPERATOR_SOURCE_COMPILER.md)
 gives $T=O(N+nL)$ and $G=O(NL)$ with $a=2$ and $b\ge L+n+7$.
-Thus, at $L=N$, the available upper bound is now $O(N\log N)$,
-against the unchanged $\Omega(N)$ lower bound. This is a sufficient allocation,
-not a claim for every fixed clean count or every prefactor in $b=\Theta(N)$.
+At $`L=N`$, $`n\ge3`$, and exactly $`b=N+n+7`$,
+[conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) improves
+its $`O(N\log N)`$ endpoint to $`O(N\log(n+2))`$ T gates with
+$`O(N^2)`$ Clifford gates. The $`\Omega(N)`$ lower bound is unchanged.
+This is a sufficient allocation, not a claim for every fixed clean count
+or every prefactor in $`b=\Theta(N)`$.
 
 With more dirty capacity, $`b\ge2(L+n+7)`$, its banked lookup gives
 
@@ -1152,9 +1157,14 @@ The construction represents binary weights in a charged Pauli operator on dirty
 work. An anticommutator extracts each scalar coefficient times the identity on
 that entire workspace; two clean flags and coherent amplification produce each
 addressed rotation. It needs no initialized precision state. The precision cost
-is still paid once per tree depth, leaving the logarithmic gap. The
-[two-clean proof](docs/OPERATOR_SOURCE_COMPILER.md) gives the full construction;
-the [open-problem statement](docs/OPEN_PROBLEM.md) records the remaining gap.
+is paid once per tree depth in this baseline. The grouped refinement instead
+uses a logical suffix as initialized work only in its active all-zero sector.
+It groups consecutive depths into $`O(\log(n+2))`$ blocks and charges one
+precision source per group. Every inactive input is treated coherently;
+final suffix-scratch and predicate return errors are included in the same
+complete-input norm. The [two-clean proof](docs/OPERATOR_SOURCE_COMPILER.md)
+retains the general-precision baseline, and the
+[open-problem statement](docs/OPEN_PROBLEM.md) records the remaining gap.
 
 The literal diagonal specialization is independently useful: with two clean
 qubits and $`b\ge2(L+n+5)`$, it attains the worst-case optimum
@@ -1351,7 +1361,8 @@ The finite-precision constructions use two mechanisms: full-frame residual
 composition with one reusable prepared source, and a two-clean compiler that
 extracts coefficients from a charged operator on arbitrary dirty work. Both
 include explicit clean/dirty resource ledgers and complete-output error bounds;
-the latter retains the logarithmic high-precision gap. The
+the latter's grouped refinement leaves a factor $`O(\log(n+2))`$ at the
+high-precision endpoint. The
 [source map](docs/SOURCE_MAP.md) credits the established lookup, digit-weighting,
 Clifford-loader algebra, synthesis, and amplification ingredients. Alternative shadow-based gradient
 algorithms and their classical training problems are outside this compiler

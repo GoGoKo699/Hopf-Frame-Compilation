@@ -1109,9 +1109,12 @@ $`a\geq C(n+h)`$ remains part of Theorem 1; the
 [constant-clean endpoint](OPEN_PROBLEM.md) is not
 settled by removing that hypothesis from the displayed formula. A separate
 [operator-source construction](OPERATOR_SOURCE_COMPILER.md)
-now gives $`T=O(N+nL)`$ and $`G=O(NL)`$ with $`a=2`$ and
-$`b\ge L+n+7`$. At $`L=N`$ its upper bound is $`O(N\log N)`$;
-Theorem 1 and its matching lower bounds are unchanged. The separate note
+gives $`T=O(N+nL)`$ and $`G=O(NL)`$ with $`a=2`$ and
+$`b\ge L+n+7`$. At $`L=N`$, $`n\ge3`$, and $`b=N+n+7`$,
+[conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md) improves
+that baseline to $`O(N\log(n+2))`$ T gates and $`O(N^2)`$
+Clifford gates. The linear endpoint remains open; Theorem 1 and its matching
+lower bounds are unchanged. The operator-source note
 also sharpens this bound to $`O(\sqrt{NL}+nL+NL/b)`$ when
 $`b\ge2(L+n+7)`$, and adds a literal diagonal/complex magnitude corollary.
 Its stated matching subregimes use the existing lower bounds; they do not

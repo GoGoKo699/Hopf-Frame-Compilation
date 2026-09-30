@@ -45,10 +45,12 @@ T=O(N\log N)=o(N^{3/2}),\qquad G=O(N^2).
 \qquad\text{(3)}
 ```
 
-This improves the previously retained upper bound at that explicit
-workspace allocation. It does not establish $`O(N)`$ T count, nor does
-it claim the same result for every constant prefactor in $`b=\Theta(N)`$
-or for fewer than two initialized qubits.
+This is the layer-by-layer baseline. The
+[conditional-suffix grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md)
+improves this endpoint to $`O(N\log(2+\log_2 N))`$ T gates with the
+same workspace and Clifford bound. Neither construction establishes
+$`O(N)`$ T count, the same result for every constant prefactor in
+$`b=\Theta(N)`$, or a bound for fewer than two initialized qubits.
 
 ## 1. The operator source and its exact native circuit
 
@@ -647,7 +649,9 @@ b\leq N/n.
 The first absorbs $`nL`$ into $`\sqrt{NL}`$; the second absorbs it
 into $`NL/b`$. This is a statement at the specified constant clean
 budget, not at a budget with an unrestricted number of clean qubits.
-At $`L=N`$, (34) retains the $`N\log N`$ source cost.
+At $`L=N`$, (34) retains the $`N\log N`$ source cost. The separate
+[grouped endpoint construction](CONDITIONAL_SUFFIX_COMPILER.md) reduces
+the number of precision charges without invoking this bank refinement.
 
 ## 8. Literal diagonal unitaries and phase-dressed frames
 
@@ -921,9 +925,10 @@ dirty XOR lookup, a fixed native geometric specialization, and a
 normalization-two block. Its programmed mask depends on the address and
 implements one address-selected rotation.
 
-The unrestricted $`O(N)`$ endpoint remains open. The established new
-upper bound is $`O(N\log N)`$ at the explicit two-clean,
-$`N+n+7`$-dirty allocation.
+The unrestricted $`O(N)`$ endpoint remains open. At the explicit
+two-clean, $`N+n+7`$-dirty allocation, this chapter's baseline is
+$`O(N\log N)`$; the [grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
+gives $`O(N\log(2+\log_2 N))`$ while preserving the complete frame.
 
 ## 10. Classical table construction
 

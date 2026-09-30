@@ -3,8 +3,9 @@
 [Open endpoint](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Shared-source compiler](FAULT_TOLERANT_COMPILER.md)
 
 The open endpoint remains
-$`a=2`$, $`b=N+n+7`$, $`L=N`$, with
-$`\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\log N)`$.
+$`a=2`$, $`b=N+n+7`$, $`L=N`$, $`n\ge3`$, with
+$`\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\log(n+2))`$
+by [conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md).
 This note gives two restrictions on proposed ways to reuse precision work.
 Neither restriction is a lower bound for an unrestricted Hopf-frame
 compiler, and neither changes the retained resource theorems.
