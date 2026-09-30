@@ -19,14 +19,10 @@ Its inverse resolves a common objective response.
 | Exact state preparation | fix $U\lvert 0^n\rangle$ |
 | Hopf differential-frame compilation | fix $W\lvert x\rangle$ for every system basis state $\lvert x\rangle$ and restore workspace according to its input promise |
 
-This repository asks whether the prescribed Hopf completion can retain the same
-size–depth frontier as arbitrary state preparation, and what implementing the
-same frame costs at finite precision. The exact logical theorem covers every
-clean-workspace budget. The fault-tolerant theorem gives a matched T-count
-frontier in its stated clean/dirty-workspace regime. The
-[publication scope](manuscript/PUBLICATION_SCOPE.md) selects one full-length
-paper around these results and the one-clean construction. Scientific proofs,
-comparisons, and checks are integrated here before final manuscript writing.
+This repository asks whether the prescribed Hopf completion retains the exact
+size–depth frontier of state preparation, and what it costs at finite precision.
+The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the claims;
+final manuscript writing follows their consolidation.
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column, whereas Hopf differential-frame compilation fixes the state and designated frame columns." />
@@ -129,22 +125,25 @@ external reference; complete-input approximation includes clean-work leakage.
 There are no measurements, resets, or free supplied catalysts in this model.
 
 **Shared precision.** The [proof](docs/FAULT_TOLERANT_COMPILER.md) corrects a
-coarse frame with one retained source and final amplification, charging
-source preparation, failure history, and all work.
+coarse frame with one retained source and final amplification; all work is charged.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
 With **one clean qubit** and $`b\ge L+n+7`$, the
 [one-clean compiler](docs/ONE_CLEAN_COMPILER.md) gives
 $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ for real frames, where
 $`\ell_*(n)=1+\log_2^*(n+2)`$. The iterated logarithm counts base-two logs
-until the value is at most one. At $`L=N`$, the
+to at most one. At $`L=N`$, the
 [open endpoint](docs/OPEN_PROBLEM.md) is $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$.
 Smaller allocations retain the
 [borrowed-workspace bound](docs/BORROWED_WORKSPACE_COMPILER.md).
+At $`b\ge L+n+7`$, [zero-clean real-frame synthesis](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+gives $`T=O(N+nL)`$, $`G=O(NL)`$; the grouped improvement still uses one clean qubit.
 
-The [baseline compiler](docs/OPERATOR_SOURCE_COMPILER.md) gives $`O(N+nL)`$
-for complex magnitude frames with two clean qubits and $`b\ge L+n+8`$.
-The separate leaf-phase derivative stream keeps its own QBP accounting.
+Composing with a literal diagonal of separately supplied certified phases extends the
+[one-clean bound](docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) to phase-dressed complex
+magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
+Leaf-phase derivatives retain a separate QBP stream.
 
 At fixed accuracy, [parallel lookup](docs/PARALLEL_DIRTY_LOOKUP.md)
 gives $`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ in one real-frame circuit

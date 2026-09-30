@@ -91,6 +91,8 @@ The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
 paired-Majorana source and general Pauli masks from native gates, audit the
 conjugated scalar word and five-call amplification on all dirty input
 columns, and check addressed relative phases and exact inactive action.
+They also test X symmetry, the full-operator borrowed-signal estimate,
+reference stability, and a scalar-phase counterexample to that extension.
 The fine-precision checks use an independent small Clifford-algebra
 representation, rather than a large precision-core simulation. The
 [one-clean theorem](ONE_CLEAN_COMPILER.md) supplies the analytic error and

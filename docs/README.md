@@ -15,7 +15,7 @@ chapter below.
 | [Compiler boundaries](COMPILER_BOUNDARIES.md) | Concrete distinctions between state, checkpoint, and complete-frame promises |
 | [Exact compiler theorem](COMPILER_THEOREM.md) | All clean-workspace budgets; echo, decoder, router, and matching size/CNOT/depth bounds |
 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | Real and complex sufficient-clean matching T-count; shared-source residual proposition |
-| [One-clean compiler](ONE_CLEAN_COMPILER.md) | Two programmable overlaps, an exact native packed source, five-call amplification, and one-clean frame bounds |
+| [One-clean compiler](ONE_CLEAN_COMPILER.md) | Two programmable overlaps, native packed source, five-call amplification, and real/phase-dressed frame, diagonal, and multiplexor bounds |
 | [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md) | Exact source costs, frame/bank bounds, matched diagonal and general multiplexor frontiers, and certified preprocessing |
 | [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform grouped bounds and their one-clean extension, ancestor-column residuals, and complete-input return |
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |

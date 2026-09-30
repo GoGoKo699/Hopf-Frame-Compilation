@@ -409,13 +409,25 @@ $`a\ge1`$, with the same $`b\ge L+n+7`$ dirty reservation. Their
 banked refinements retain the doubled dirty threshold. A flag-only Pauli
 routing also gives one-clean literal diagonals and, through the retained
 certified Euler decomposition, complete one-target U(2) multiplexors.
-These extensions do not lower the proved full-frame endpoint T count or
-extend the separately proved two-clean T-depth schedules.
+Sequential composition with the literal diagonal also gives the grouped
+phase-dressed complex magnitude-frame corollary, at $`b\ge L+n+8`$ or
+its doubled banked threshold. This is closure under the existing
+complete-isometry contract, with no new phase-gradient columns.
+
+The real-rotation word also commutes with X on its amplification signal.
+The [full-space symmetry argument](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+therefore permits borrowing that signal, giving the zero-clean layerwise
+bound $`T=O(N+nL)`$, $`G=O(NL)`$ at $`b\ge L+n+7`$.
+The scalar-phase word does not share this symmetry, and the grouped proof
+retains its external clean predicate. These corollaries do not lower the
+proved full-frame endpoint T count or extend the separately proved
+two-clean T-depth schedules.
 
 The same primitive prices the
 [weighted forward component](WEIGHTED_TRANSPORT_BLOCK.md) at
-$`O(N+nL)`$ T gates using its occupied signal and one fresh initialized
-flag. The core's approximate return is included in the error. The earlier
+$`O(N+nL)`$ T gates using only borrowed synthesis work alongside its
+logical dilation signal. Approximate return of the core and borrowed
+amplification signal is included in the full-operator error. The earlier
 $`O(L\sqrt N)`$ route remains useful for its exact dirty-work return.
 Neither component bound removes the full-frame endpoint gap.
 

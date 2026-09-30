@@ -413,6 +413,117 @@ class OneCleanCompilerTests(unittest.TestCase):
             maxima.append(max(errors))
         self.assertLess(maxima[1], maxima[0] / 64)
 
+    def test_native_real_rotation_symmetry_extends_to_an_arbitrary_signal_input(self):
+        # The first fixture combines a coherent address with an unchanged
+        # predicate. The second leaves room for a reference qubit while keeping
+        # every matrix at dimension at most 128.
+        for q, address, predicate, flag in ((2, 4, 5, 6), (3, None, None, 5)):
+            core, target, width = q + 1, q + 1, flag + 1
+            angles = (-0.7, 1.8) if address is not None else (0.8,)
+            rows = [_encoded_signs(q, theta) for theta in angles]
+            mask_word = (_mask_table_word(core, [address], None, rows)
+                         if address is not None else _literal_mask(rows[0]))
+            predicates = (predicate,) if predicate is not None else ()
+            word = _expand_toffolis(_sandwich_word(
+                q, mask_word, target, flag, predicate=predicates))
+            unitary = _word_matrix(width, word)
+            amplified = _word_matrix(width, _amplification_word(word, flag))
+            logical_size = 1 << flag
+            flip = np.kron(X, np.eye(logical_size))
+            for circuit in (unitary, amplified):
+                np.testing.assert_allclose(circuit @ flip, flip @ circuit,
+                                           atol=ATOL, rtol=0)
+
+            desired = np.eye(logical_size, dtype=complex)
+            for basis in range(logical_size):
+                if (basis >> target) & 1:
+                    continue
+                if predicate is not None and not (basis >> predicate) & 1:
+                    continue
+                row = (basis >> address) & 1 if address is not None else 0
+                indices = [basis, basis | (1 << target)]
+                desired[np.ix_(indices, indices)] = _rotation(angles[row])
+            error = amplified - np.kron(I2, desired)
+            initialized_error = np.linalg.norm(error[:, :logical_size], ord=2)
+            full_error = np.linalg.norm(error, ord=2)
+            self.assertLessEqual(full_error, np.sqrt(2) * initialized_error + ATOL)
+            np.testing.assert_allclose(error[:logical_size, :logical_size],
+                                       error[logical_size:, logical_size:],
+                                       atol=ATOL, rtol=0)
+            np.testing.assert_allclose(error[:logical_size, logical_size:],
+                                       error[logical_size:, :logical_size],
+                                       atol=ATOL, rtol=0)
+            if predicate is not None:
+                inactive = [basis for basis in range(1 << width)
+                            if not (basis >> predicate) & 1]
+                np.testing.assert_allclose(error[:, inactive], 0, atol=ATOL, rtol=0)
+            else:
+                # This norm covers arbitrary signal/core/reference entanglement,
+                # rather than a selected zero, one, or plus signal input.
+                referenced_error = np.linalg.norm(np.kron(error, I2), ord=2)
+                self.assertAlmostEqual(referenced_error, full_error, delta=ATOL)
+
+        # The scalar-phase routing uses Y_a. Its actual native five-call word
+        # has a nonzero X_a commutator, so the same extension is unavailable.
+        q, flag = 3, 4
+        phase_word = _sandwich_word(
+            q, _literal_mask(_encoded_signs(q, 0.8)), None, flag, phase=True)
+        phase_amplified = _word_matrix(flag + 1, _amplification_word(phase_word, flag))
+        phase_flip = np.kron(X, np.eye(1 << flag))
+        self.assertGreater(np.linalg.norm(
+            phase_amplified @ phase_flip - phase_flip @ phase_amplified, ord=2), 0.1)
+
+    def test_fine_precision_dirty_signal_bound_and_scalar_phase_counterexample(self):
+        for q in (12, 20):
+            weights, fixed = _paired_weights(q)
+            for theta in (0.0, 0.8, np.pi / 2, -np.pi / 3):
+                s, p = _coefficients(weights, fixed, _encoded_signs(q, theta))
+                c, overlap = 1 / 2, s / 2 - p
+                transverse = (overlap - c * s) / np.sqrt(1 - c * c)
+                remainder = np.sqrt(max(0, 1 - s * s - transverse * transverse))
+                for chirality in (-1, 1):
+                    with self.subTest(q=q, theta=theta, chirality=chirality):
+                        nf = c * X + np.sqrt(1 - c * c) * Z
+                        ng = s * X + transverse * Z + chirality * remainder * Y
+                        df, dg = X @ nf - c * I2, X @ ng - s * I2
+                        left = c * np.eye(8) + np.kron(X, np.kron(Z, df))
+                        middle = s * np.eye(8) + np.kron(X, np.kron(X, dg))
+                        unitary = left.conj().T @ middle @ left
+                        reflection = np.kron(-Z, np.eye(4))
+                        amplified = (unitary @ reflection @ unitary.conj().T @ reflection
+                                     @ unitary @ reflection @ unitary.conj().T @ reflection
+                                     @ unitary)
+                        desired = np.kron(I2, np.kron(_rotation(theta), I2))
+                        error = amplified - desired
+                        initialized_error = np.linalg.norm(error[:, :4], ord=2)
+                        full_error = np.linalg.norm(error, ord=2)
+                        self.assertLessEqual(full_error,
+                                             np.sqrt(2) * initialized_error + ATOL)
+                        self.assertLessEqual(full_error, 43 * 2.0 ** (-q))
+                        flip = np.kron(X, np.eye(4))
+                        np.testing.assert_allclose(amplified @ flip, flip @ amplified,
+                                                   atol=ATOL, rtol=0)
+
+                        if theta == 0.8:
+                            phase_left = c * np.eye(4) + np.kron(X, df)
+                            phase_middle = s * np.eye(4) + np.kron(Y, dg)
+                            phase_unitary = phase_left.conj().T @ phase_middle @ phase_left
+                            phase_reflection = np.kron(-Z, I2)
+                            phase_amplified = (
+                                phase_unitary @ phase_reflection @ phase_unitary.conj().T
+                                @ phase_reflection @ phase_unitary @ phase_reflection
+                                @ phase_unitary.conj().T @ phase_reflection @ phase_unitary)
+                            phase_error = phase_amplified - np.exp(-1j * theta) * np.eye(4)
+                            self.assertLessEqual(np.linalg.norm(phase_error[:, :2], ord=2),
+                                                 30 * 2.0 ** (-q))
+                            # The initialized phase is accurate, while borrowing
+                            # this flag still causes a constant full-space error.
+                            self.assertGreater(np.linalg.norm(phase_error, ord=2), 1)
+                            phase_flip = np.kron(X, I2)
+                            self.assertGreater(np.linalg.norm(
+                                phase_amplified @ phase_flip - phase_flip @ phase_amplified,
+                                ord=2), 1)
+
 
 if __name__ == '__main__':
     unittest.main()

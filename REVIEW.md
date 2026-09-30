@@ -173,10 +173,10 @@ Here $`\log_2^*`$ counts repeated base-two logarithms until the value is
 at most one. The bound holds for every $`n\ge1`$ and $`L\ge6`$.
 At $`L=N`$ and $`b=N+n+7`$, it gives $`O(N\ell_*(n))`$ T gates.
 The lower bound remains $`\Omega(N)`$; the linear endpoint is open.
-The [operator-source baseline](docs/OPERATOR_SOURCE_COMPILER.md)
-also supplies a dirty-bank tradeoff and a literal
-phase-dressed complex magnitude corollary, with their separate workspace
-conditions stated in Section 9.5.
+Composing the grouped real frame with the one-clean literal diagonal gives
+the same count bound for phase-dressed complex magnitude frames at
+$`b\ge L+n+8`$. Both constructions have a dirty-bank refinement;
+their separate reservations are stated in Section 9.5.
 
 
 ---
@@ -1158,8 +1158,16 @@ $`O(N\ell_*(n))`$, against the unchanged $`\Omega(N)`$ lower bound.
 This is a sufficient allocation, not a claim for every fixed clean count
 or every prefactor in $`b=\Theta(N)`$.
 
-The [operator-source baseline](docs/OPERATOR_SOURCE_COMPILER.md) gives
-$`O(N+nL)`$ T gates. The grouped compiler also supports banked lookup:
+The real rotation word also admits a
+[zero-clean layerwise implementation](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations):
+$`T=O(N+nL)`$, $`G=O(NL)`$, with $`a=0`$ and the same
+$`b\ge L+n+7`$. Its symmetry under X on the signal extends the
+initialized-input error guarantee to arbitrary signal inputs; that signal
+can therefore be borrowed. Fixed address sectors keep the extra precision
+and dirty-signal wire inside the stated reservation. This does not transfer
+the grouped bound or the literal phase primitive to zero clean qubits.
+The [operator-source baseline](docs/OPERATOR_SOURCE_COMPILER.md) retains its
+earlier two-clean proof. The grouped compiler also supports banked lookup:
 with $`b\ge2(L+n+7)`$ it gives
 
 ```math
@@ -1169,10 +1177,19 @@ T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),\qquad G=O(NL).
 For the fixed clean allocation $`a=1`$, this matches the existing worst-case
 lower bound when $`\ell_*(n)^2L\le N`$, or when the available bank also
 satisfies $`b\le N/\ell_*(n)`$, subject to the bank reservation above.
-A separate two-clean diagonal compiler adds arbitrary literal leaf phases
-to the baseline, giving $`O(N+nL)`$ for $`D_{\rm ph}W_{\mathbb R}`$
-with $`b\ge L+n+8`$, or $`O(\sqrt{NL}+nL+NL/b)`$ with
-$`b\ge2(L+n+8)`$.
+The [one-clean phase-dressed corollary](docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) composes
+the grouped real frame with a literal diagonal $`D_{\rm ph}`$ of separately
+supplied, certified phases. Giving each factor error $`\eta/2`$ changes
+its precision to $`L+1`$. Sequential reuse of the same flag and dirty pool
+therefore gives $`O(N+L\ell_*(n))`$ T gates for
+$`D_{\rm ph}W_{\mathbb R}`$ at $`b\ge L+n+8`$, or
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$,
+with $`G=O(NL)`$ in both cases. The full-isometry error bound includes
+intermediate flag leakage and dirty-core disturbance. This is the prescribed
+complex magnitude frame, not arbitrary complex-unitary synthesis; phase
+derivatives retain their separate measurement stream. The earlier
+[two-clean baseline](docs/OPERATOR_SOURCE_COMPILER.md) remains a proved
+$`O(N+nL)`$ construction at the same base dirty threshold.
 
 The construction represents binary weights in a charged Pauli operator on dirty
 work. An anticommutator extracts each scalar coefficient times the identity on

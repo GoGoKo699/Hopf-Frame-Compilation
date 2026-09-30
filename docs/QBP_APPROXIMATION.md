@@ -7,12 +7,12 @@ prescribed frame controls the actual gradient measurement. Approximate work may
 remain coherent until the final measurement. No derivative of a compiled gate
 word is needed. The [one-clean compiler](ONE_CLEAN_COMPILER.md), including its
 [grouped and banked forms](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit),
-meets this contract for the real frame. The separately proved
-[two-clean operator-source compilers](OPERATOR_SOURCE_COMPILER.md) cover both
-the real frame and its phase-dressed complex magnitude extension under their
-own dirty-workspace budgets. Their different gate counts and clean allocations
-do not change the bias argument below; the one-clean real-frame result alone
-does not supply a one-clean complex-frame bound.
+meets this contract for the real frame. Sequential literal-diagonal
+composition gives the [phase-dressed complex magnitude frame](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames)
+with the same one-clean count bounds at its separate dirty threshold.
+The zero-clean layerwise real-frame corollary and earlier two-clean
+constructions also satisfy the contract under their stated allocations.
+These resource choices do not change the bias argument below.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies
@@ -414,14 +414,14 @@ deterministic bound. The sufficient-clean complex theorem gives
 
 when $`a_F\geq C(n+h)`$, with the frame reservation and $`h`$ defined in
 [Corollary 7](FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and-the-complex-magnitude-frame).
-The two-clean complex compiler with
-$`b_F\geq2(L+n+8)`$ yields
+The grouped one-clean complex compiler with
+$`a_F=1`$, $`b_F\geq2(L+n+8)`$ yields
 
 ```math
 \mathbb E\mathcal T_{\nabla,\mathbb C}
 =O\!\left(\frac{\Lambda^2[1+\log((n+1)/\delta)]}
 {\varepsilon_\infty^2}
-\left[\sqrt{NL}+nL+\frac{NL}{b_F}+\overline t_O\right]\right).
+\left[\sqrt{NL}+L\ell_*(n)+\frac{NL}{b_F}+\overline t_O\right]\right).
 ```
 
 The quantum circuit does not coherently load the term label: each shot

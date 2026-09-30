@@ -121,16 +121,20 @@ These complete the resource picture without becoming separate storylines.
 | Corollary | Statement and placement |
 |---|---|
 | Dirty-bank refinement | With $`a=1`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
+| Zero-clean real-frame baseline | The [signal-symmetry corollary](../docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations) gives $`T=O(N+nL)`$, $`G=O(NL)`$, with $`a=0`$ and $`b\ge L+n+7`$. Its layerwise circuit borrows the signal qubit and includes its return error. This does not extend the grouped or literal-phase constructions to zero clean qubits. |
 | Constructive T-depth bound | The [depth-oriented schedule](../docs/T_DEPTH_COMPILER.md) gives $`D_T=O(NL/b+L\ell_*(n)+n^4)`$ with two clean qubits, $`b\ge2(L+n+7)`$, and $`T,G=O(NL)`$. Retain as an appendix scheduling corollary for real frames; this trades gate count for depth and does not establish optimal T-depth or total circuit depth. |
 | Simultaneous count and depth | With $`b\ge C(L+n+7+\sqrt{NL})`$ for a sufficiently large fixed C, [parallel dirty lookup](../docs/PARALLEL_DIRTY_LOOKUP.md) gives $`T=O(\sqrt{NL}+L\ell_*(n))`$ and $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$ in the same two-clean real-frame circuit, with $`G=O(NL)`$. At fixed accuracy this is optimal-order T-count and polynomial-logarithmic T-depth with sufficiently large square-root dirty workspace; no depth optimality or selected-endpoint closure. |
 | Literal diagonal synthesis | For $`\ell\ge6`$, one clean qubit gives $`O(N+\ell)`$ T gates at error $`2^{-\ell}`$ with $`b\ge\ell+n+7`$. For $`b\ge2(\ell+n+7)`$, the bound $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound. Use as a supporting compiler corollary. |
-| Complex magnitude frame | Compile $`D_\phi W_{\mathbb R}`$ using independently supplied phases and real Hopf angles. In the two-clean model, splitting the error gives $`b\ge L+n+8`$ for $`O(N+nL)`$ T gates, or $`b\ge2(L+n+8)`$ for the banked bound. This is not arbitrary complex-unitary synthesis. |
+| Complex magnitude frame | Compose the one-clean grouped real frame and literal diagonal, with separately supplied certified phases and error $`\eta/2`$ per factor. This gives $`O(N+L\ell_*(n))`$ T gates at $`b\ge L+n+8`$, or $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$, with $`G=O(NL)`$. This compiles $`D_\phi W_{\mathbb R}`$; it is not arbitrary complex-unitary synthesis. |
 | Smaller clean/dirty allocations | For every $`a,b\ge0`$, the real-frame borrowed-workspace compiler gives $`T=O(NL/q+L\sqrt N)`$ and $`G=O(NL)`$. Its matching splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$. Retain as an appendix comparison; it can beat the grouped bound at low precision. |
 | Fixed-parameter QBP robustness | Exact substitution preserves the global record. Magnitude bias is at most $`4\lvert a_j\rvert(\eta+\eta_O)`$; the separate phase-vector bias is at most $`4(\eta+\eta_O)`$. The full complex gradient, reflection-sum observables, rounded classical weights, and correlated dirty-bank reuse have explicit error and cost budgets. |
 
-The exact, sufficient-clean, and two-clean complex extensions have their
-own proofs. Leaf-phase derivatives use a separate measurement stream;
-they are not extra columns of the magnitude frame.
+The exact and sufficient-clean complex extensions have their own proofs.
+The [one-clean corollary](../docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames)
+uses full-isometry composition, including intermediate leakage and dirty-core
+disturbance. The earlier two-clean complex baseline retains its proved
+$`O(N+nL)`$ count at $`b\ge L+n+8`$. Leaf-phase derivatives use a
+separate measurement stream; they are not extra columns of the magnitude frame.
 
 ## The common error contract
 
@@ -230,10 +234,10 @@ package rather than introducing unsupported research claims during writing.
 | Necessity of the target | [Frame-safe contract](../docs/FRAME_SAFE_COMPILATION.md): universal fixed-decoder means force the full frame at regular points, up to common phase; sharp sensitivity and singular exceptions |
 | Exact resources | [Exact theorem](../docs/COMPILER_THEOREM.md): complete constructions, all clean budgets, total size, CNOT-only count, and depth lower bounds |
 | Precision sharing | [Fault-tolerant proof](../docs/FAULT_TOLERANT_COMPILER.md): sufficient-clean frontier, residual-dictionary sufficient condition, all charged source/history work, and complex extension |
-| Constant-clean capability | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md): real-frame primitive and one-clean diagonal and multiplexor frontiers; [conditional-suffix proof, Section 10](../docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit): grouped and banked one-clean real-frame bounds; [operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean baseline, smaller dirty reservations, complex extension, exact source T minima, dirty/reference return, and finite certified preprocessing |
+| Constant-clean capability | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md): real-frame primitive, one-clean diagonal and multiplexor frontiers, and phase-dressed complex-magnitude composition; [conditional-suffix proof, Section 10](../docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit): grouped and banked one-clean real-frame bounds; [operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean baseline, smaller dirty reservations, exact source T minima, dirty/reference return, and finite certified preprocessing |
 | Operational consequence | [Approximation proof](../docs/QBP_APPROXIMATION.md): complete complex gradients, general reflection sums, weight errors, conditional-mean concentration under dirty-bank reuse, and quantum/classical costs |
 | Comparisons and attribution | [Related work](../docs/RELATED_WORK.md) and [source map](../docs/SOURCE_MAP.md): input families, precision, initialized/borrowed work, current general-unitary baselines, and inherited compression |
-| Reproducible evidence | [Verification](../docs/VERIFICATION.md): native finite two-clean circuits, actual inverse and rejected-work composition, source witnesses, gradient fixtures, and exact receipts |
+| Reproducible evidence | [Verification](../docs/VERIFICATION.md): native finite one-clean primitives and two-clean circuits, actual inverse and rejected-work composition, source witnesses, gradient fixtures, and exact receipts; no full grouped elementary emitter |
 | Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining full-frame gap between $`\Omega(N)`$ and $`O(N\ell_*(n))`$, the limit of the exact-source lower bound, and the sufficient global-block contract still to be constructed |
 
 Final writing assembles these established statements and proofs into one

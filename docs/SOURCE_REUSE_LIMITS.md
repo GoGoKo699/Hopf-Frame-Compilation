@@ -449,8 +449,8 @@ jointly charged block for the weighted operator, including its occupied
 flags and literal inverse, rather than classical compression alone.
 The [forward weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md)
 now provides a complete one-signal-flag dilation with native synthesis using
-the second flag as fresh work: $`T=O(N+nL)`$, $`G=O(NL)`$, and
-$`b\ge L+n+7`$, with approximate core return included in the error.
+only borrowed work: $`T=O(N+nL)`$, $`G=O(NL)`$, and
+$`b\ge L+n+7`$, with approximate core and amplification-signal return included in the error.
 Its $`O(N\log N)`$ endpoint T-count still misses the linear target;
 it is a component construction, not a complete frame compiler. The earlier
 $`O(L\sqrt N)`$ route retains exact dirty return at its stated width.

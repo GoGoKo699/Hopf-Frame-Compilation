@@ -44,9 +44,9 @@ in the discussion.
 2. Shared Hopf-frame and complete-input compiler contract.
 3. Exact all-workspace size/depth theorem and its proof mechanisms.
 4. Sufficient-clean matching T theorem, followed by the one-clean real-frame
-   construction and its grouped, banked, diagonal, and general multiplexor
-   corollaries. Retain the separately proved two-clean complex-magnitude and
-   T-depth results with their own resource assumptions.
+   construction and its grouped, banked, diagonal, general multiplexor,
+   and phase-dressed complex-magnitude corollaries. Keep the distinct dirty
+   reservations and the separately proved two-clean T-depth assumptions.
 5. Exact and approximate fixed-parameter QBP consequences, including complete
    complex gradients and the costs of classical preprocessing and output.
 6. The remaining endpoint gap and the limits of the circuit model.

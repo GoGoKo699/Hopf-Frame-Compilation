@@ -347,6 +347,8 @@ main theorem give the opposite order and establish (2).
 
 At $`a=O(1), b=\Theta(N), L=N`$, the hypothesis of (2) fails. Equation (1)
 still gives $`O(N^{3/2})`$, against the retained $`\Omega(N)`$ lower bound.
+At $`b\ge N+n+7`$, the [borrowed-signal corollary](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+improves this to $`O(N\log N)`$ even at $`a=0`$.
 The [grouped one-clean construction](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
 improves this to $`O(N\ell_*(n))`$ at $`a=1`$ and
 $`b\ge N+n+7`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.

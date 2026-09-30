@@ -6,11 +6,12 @@ The forward weighted transport has an explicit constant-normalization
 unitary dilation on one signal flag and the n-qubit logical register.
 A recursive scalar correction makes its marker inputs orthogonal without
 an extra depth register. Its complete rejected-space action is specified.
-With one additional initialized flag, the
-[one-clean rotation compiler](ONE_CLEAN_COMPILER.md) gives this block
+The [borrowed-signal extension](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+of the real-rotation compiler gives this block
 $`T=O(N+nL)`$ and $`G=O(NL)`$, using $`b\ge L+n+7`$ dirty wires.
-Its error includes approximate return of the dirty core; the existing
-signal flag may be occupied throughout the compilation. An alternative
+Its error includes approximate return of the dirty core and borrowed
+amplification signal. No additional initialized flag is needed, and the
+dilation signal may be occupied throughout the compilation. An alternative
 with exact dirty-work return needs no additional initialized flag and has
 $`T=O(L\sqrt N)`$, $`G=O(NL)`$ when
 $`b\ge n+\lceil\sqrt N\rceil+7`$.
@@ -499,39 +500,38 @@ It supplies no lower bound on the cost of this block and no improvement
 to the existing full-frame endpoint bound.
 
 The implementation above leaves the second clean flag unused and returns
-all dirty work exactly. The following implementation uses that fresh flag
-to reduce the T-count, with approximate core return included in its error.
+all dirty work exactly. The following implementation reduces the T-count
+using only borrowed synthesis work, with approximate core and amplification-
+signal return included in its error.
 
 
-## 6. A faster implementation using the remaining clean flag
+## 6. A faster implementation using a borrowed signal
 
-The [one-clean addressed primitive](ONE_CLEAN_COMPILER.md#1-contract-and-addressed-primitive)
-changes the native price of the same complete dilation. With precision
-integer q, k free address bits, and p unchanged predicate bits, it uses
-one initialized flag and
+The [borrowed-signal lemma](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+strengthens the real addressed primitive from an initialized-isometry
+estimate to a full-unitary estimate. Its exact X symmetry lets the
+amplification signal be arbitrary dirty work. With precision q, k free
+address bits, and p unchanged predicate bits, the primitive uses
 
 ```math
-b_{\rm primitive}=q+k+2
+b_{\rm primitive}=q+k+3
 ```
 
-arbitrary dirty qubits. Its full-isometry error is less than
-$`30\,2^{-q}`$, its T-count is $`O(2^k+q+p^2)`$, and its Clifford
-count is $`O(2^kq+q+p^2)`$. The core occupies $`q+1`$ dirty qubits,
-the table uses k dirty selectors, and one dirty helper supports the
-predicate-controlled gates. The selectors and helper return exactly;
-return of the core and initialized flag is included in the error. On an
-inactive predicate the actual circuit is identity on its entire input
-space, including an occupied flag and arbitrary core inputs.
+arbitrary dirty qubits and no initialized work. Its full-operator error
+is less than $`43\,2^{-q}`$, its T-count is $`O(2^k+q+p^2)`$, and its
+Clifford count is $`O(2^kq+q+p^2)`$. The reservation consists of the
+$`q+1`$-qubit core, k selectors, one predicate helper, and one borrowed
+amplification signal. The selectors and helper return exactly; approximate
+return of the core and borrowed signal is included in the operator norm.
+Inactive predicates give exact identity on the complete input space.
 
-Apply this primitive to the fixed Euler templates of Section 5. The
-logical rotation target can be a mode bit or the occupied signal flag.
-Its one initialized flag is the second external clean qubit, not that
-logical target. For each template the unchanged predicate consists of
-the outer zero bits and the other mode bit's selected value. An Rz
-rotation is obtained by fixed Clifford conjugation of the same Ry
-primitive. All earlier packing, gathering, and physical marker
-permutations remain exact and fully charged. No terminal-phase gauge or
-assumption that a rejected signal sector is empty is needed.
+Apply this primitive to the fixed Euler templates of Section 5. A logical
+rotation target may be a mode bit or the occupied dilation signal; it is
+distinct from the borrowed amplification signal. The unchanged predicate
+contains the outer zero bits and the other mode bit's selected value.
+Target-only Clifford conjugation gives Rz with the same X symmetry. All
+packing, gathering, and physical marker permutations remain exact and
+fully charged. No rejected signal sector is assumed empty.
 
 ### A fixed sector split preserves the exact dirty threshold
 
@@ -544,8 +544,8 @@ Choose an absolute constant J bounding the number of rotation templates
 per depth, including root mixing at depth zero. Set
 
 ```math
-C=\left\lceil\log_2(30\cdot512J)\right\rceil,\qquad
-K=C-5,\qquad q_d=L+n-d+C.
+C=\left\lceil\log_2(43\cdot512J)\right\rceil,\qquad
+K=C-4,\qquad q_d=L+n-d+C.
 ```
 
 These are fixed construction constants except for $`q_d`$; take
@@ -556,12 +556,12 @@ in turn, adding the selected literals to the template's logical predicate.
 The dirty requirement in every sector is exactly
 
 ```math
-(q_d+1)+(d-K)+1
-=L+n+C-K+2=L+n+7.
+(q_d+1)+(d-K)+1+1
+=L+n+C-K+3=L+n+7.
 ```
 
-The source, selector, and helper roles therefore fit the stated pool
-without borrowing the occupied signal or another initialized register.
+The core, selector, helper, and borrowed amplification-signal roles fit
+the stated pool without borrowing the logical dilation signal.
 The number of sector literals is constant, and the total predicate
 length remains $`O(n)`$.
 
@@ -569,8 +569,8 @@ These sector errors take a maximum, rather than a sum. To see why, the
 primitive preserves each sector's address bits, and its actual action on
 every other sector is exactly identity on the complete flag/core space.
 On any one invariant address sector, only its own circuit acts, even if
-that circuit leaves small initialized-flag leakage. Consequently the
-product over the sectors has full-isometry error bounded by the largest
+that circuit leaves small borrowed-signal or core disturbance. Consequently the
+product over the sectors has full-operator error bounded by the largest
 sector error. This argument uses the complete inactive action, not merely
 an identity accepted block. It also explains why the sector split needs no
 additional factor $`2^K`$ in precision.
@@ -590,30 +590,25 @@ this split advantageous for small registers.
 For every compiled deep template,
 
 ```math
-30\,2^{-q_d}
+43\,2^{-q_d}
 \le\frac{\eta\,2^{d-n}}{512J}.
 ```
 
-Let $`J_{\rm fresh}`$ initialize only the second external flag, leaving
-the first signal, the logical register, and all dirty wires arbitrary.
-If $`U'`$ is the chosen exact dilation of the algebraic target from
-Section 4, the complete native implementation V satisfies
+Let $`U'`$ be the chosen exact dilation of the algebraic target from
+Section 4. On the entire logical-signal and dirty-work space, the native
+implementation V satisfies
 
 ```math
-\bigl\|VJ_{\rm fresh}
--J_{\rm fresh}(U'\otimes I_b)\bigr\|
-\lt\frac{\eta}{256}.
+\bigl\|V-(U'\otimes I_b)\bigr\|\lt\frac{\eta}{256}.
 ```
 
-Indeed, sum the template errors over depth, using the maximum over address
-sectors within a template. In the full-isometry hybrid, each ideal
-preceding template returns the fresh flag and dirty core; deviations from
-actual preceding templates are propagated by the subsequent actual
-unitaries. This includes core disturbance, signal-one inputs, arbitrary
-references, and initialized-work leakage. It does not assume exact work
-return between approximate stages. All inverse calls are actual unitary
-inverses. Adding the preprocessing error of Section 4 gives accepted-block
-error below $`\eta/128`$ on the two-flag interface.
+Sum the template errors over depth, using their maximum over address
+sectors. The ordinary unitary hybrid includes arbitrary dilation-signal
+inputs, dirty/reference correlations, and approximate return of both the
+core and borrowed amplification signal. It needs no initialized synthesis
+work or intermediate exact work return. Inverses are actual circuit
+inverses. Adding Section 4's preprocessing error gives accepted-block error
+below $`\eta/128`$ when the single dilation signal is initialized to zero.
 
 The fixed number of sectors changes only absolute constants. At each
 deep depth the costs are
@@ -636,15 +631,14 @@ G&=O(NL+n^4)=O(NL).
 Here $`n^4=O(2^n)=O(N)`$. The complete result is therefore
 
 ```math
-b\ge L+n+7,\qquad a=2,\qquad
+b\ge L+n+7,\qquad a=1,\qquad
 T=O(N+nL),\qquad G=O(NL).
 ```
 
-One of these two flags belongs to the logical dilation; the other is the
-fresh work flag used by the native rotation primitive. This statement
-preserves the occupied first flag's complete unitary action up to the
-full-isometry error above. It differs from Section 5's guarantee: the
-native source core is returned approximately, not exactly.
+The one initialized flag is the block's dilation signal. Native synthesis
+uses only arbitrary dirty work and approximates the complete unitary action
+on both signal sectors. Unlike Section 5, return of its source core and
+borrowed amplification signal is approximate within the full-operator norm.
 
 At $`L=N`$, the bound is $`T=O(N\log N)`$, $`G=O(N^2)`$, within
 $`b=N+n+7`$. It improves the native cost of this component while retaining

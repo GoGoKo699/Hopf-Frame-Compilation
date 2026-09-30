@@ -23,8 +23,10 @@ below. Lower bounds are worst-case over the stated frame family.
 | Exact size and depth versus clean workspace | Size $`\Theta(N)`$ and depth $`\Theta(n+N/(n+m))`$ for every $`m\ge0`$; CNOT count $`\Theta(N)`$ for $`n\ge2`$, zero for $`n=1`$ | Matching for the complete real and phase-dressed complex magnitude frames; [exact theorem](COMPILER_THEOREM.md) |
 | T-count with sufficient clean workspace | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, $`G=O(NL)`$, when $`a\ge C(n+h)`$ for sufficiently large fixed C | Matching for those same families; the clean reservation is sufficient, not proved necessary; [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md) |
 | Real-frame T-count at arbitrary workspace budgets | $`T=O(NL/q+L\sqrt N)`$, $`G=O(NL)`$, for every $`a,b\ge0`$ | Splicing with the sufficient-clean theorem gives the matching frontier above for every a when $`h+b\le c\sqrt N`$, for fixed $`c>0`$; [borrowed-workspace proof](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements) |
+| Zero-clean layerwise real-frame T-count | $`T=O(N+nL)`$, $`G=O(NL)`$, at $`a=0`$, $`b\ge L+n+7`$ | Full-operator approximation using a borrowed amplification signal; [signal-symmetry corollary](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations) |
 | Grouped one-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge L+n+7`$ | Precision-uniform grouped bound without additional word banks; [one-clean extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
 | One-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked one-clean proof](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
+| One-clean phase-dressed complex magnitude frame | The same grouped and banked T-counts, at $`b\ge L+n+8`$ and $`b\ge2(L+n+8)`$, respectively | Compose the real compiler and literal phase diagonal in the same workspace; [composition corollary](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
 
@@ -41,10 +43,11 @@ Every retained frame construction preserves the prescribed completion used
 by Hopf QBP. Finite-precision substitution has the fixed-parameter bias and
 dirty-reference guarantees of the [QBP approximation theorem](QBP_APPROXIMATION.md).
 It is not a claim about differentiating the discrete synthesis algorithm.
-The strongest grouped theorem is stated for real frames. The separately
-proved two-clean complex magnitude extension retains $`O(N+nL)`$ at
-$`b\ge L+n+8`$, or $`O(\sqrt{NL}+nL+NL/b)`$ at
-$`b\ge2(L+n+8)`$; it does not inherit the real grouped improvement.
+The phase-dressed complex magnitude frame now inherits the grouped count
+bound by full-isometry composition at its separate dirty threshold. Leaf-phase
+derivatives still use their own measurement stream; they are not additional
+columns of the magnitude frame. The older two-clean complex theorem remains
+a valid baseline.
 
 The layerwise operator-source compiler remains a dependency and a useful
 fallback. Its literal-diagonal and complete one-target U(2) multiplexor
@@ -170,8 +173,9 @@ not proved necessary.
 
 The open question is whether two clean qubits permit a jointly charged
 $`O(N)`$ construction at the explicit allocation above, or whether a stronger
-general lower bound holds. The current upper bound does not establish the
-same cost for fewer clean qubits or every prefactor in $`b=\Theta(N)`$.
+general lower bound holds. The grouped endpoint upper bound does not yet extend to zero clean qubits
+or to every prefactor in $`b=\Theta(N)`$. The zero-clean layerwise
+corollary gives $`O(N\log N)`$ at the stated dirty allocation.
 Restrictions proved for particular source-processing interfaces do not
 settle the unrestricted frame problem. The grouped improvement is a
 T-count theorem; it does not establish an optimal T-depth tradeoff.
@@ -300,153 +304,124 @@ an additive lower bound for the full frame.
 
 ## Revision decision and next bounded pass
 
-The revision retains the theorem frontier above and narrows the next task.
-The parallel lookup work has produced a same-circuit count/depth guarantee.
-The one-clean construction reduces the initialized workspace for the grouped
-T-count theorem and improves the forward weighted component. Tree transport
-has supplied operator identities and norm control. These results leave the
-full-frame linear-T endpoint open.
+The revision distinguishes complete-frame guarantees from ingredients of a
+possible endpoint construction. The exact CNOT/depth theorem and the
+sufficient-clean matching T-count theorem are complete. One-clean grouped
+compilation now covers the real frame and, by sequential composition, the
+phase-dressed complex magnitude frame at their respective dirty thresholds.
+The new real-rotation signal symmetry also gives the zero-clean layerwise
+bound above. None removes the grouped endpoint's iterated logarithm.
 
-| Ingredient | What is available | What it does not supply |
+### Reusable ingredients and their remaining obligations
+
+| Ingredient | Established interface | Remaining obligation for a global endpoint block |
 |---|---|---|
-| Parallel dirty lookup | Exact returned indicators and the simultaneous theorem in [the lookup chapter](PARALLEL_DIRTY_LOOKUP.md) | Optimal T-depth, interpolation below its sufficient width, or the selected endpoint allocation |
-| Residual data | $`O(N)`$ scalar tree generators and exact path products | A charged coherent evaluator for those products |
-| Tree transport | Exact Gram matrix and a complete logical unitary for normalized supported columns, without a depth register | An elementary Clifford+T cost improvement |
-| Forward weighted residual | A complete one-signal-flag block with constant normalization, $`T=O(N+nL)`$, $`G=O(NL)`$, and $`b\ge L+n+7`$; the second clean flag supplies synthesis work and core return is approximate | Linear endpoint T-count; this implementation costs $`O(N\log N)`$ at $`L=N`$ |
-| Coarse circuit | The retained borrowed compiler gives $`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$ at fixed accuracy and the endpoint dirty allocation; both clean flags can remain untouched | The history unitary, weighted transport, or an arbitrary controlled version of C |
-| High-precision residual circuit | The proved grouped compiler and its complete-input error budget | A constant total precision charge for one global weighted block |
+| Coarse frame C | The borrowed compiler gives $`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$ at fixed accuracy in the endpoint dirty pool, with exact helper return and no initialized work | Its actual inverse is available; any new controlled version must still be implemented and charged |
+| Compact residual data | $`O(N)`$ local generators and exact path products represent $`C^\dagger W-I`$ | Classical compression alone is not a coherent evaluator |
+| Weighted forward block F | A complete one-signal-flag dilation with fixed normalization; $`T=O(N+nL)`$, $`G=O(NL)`$, $`b\ge L+n+7`$; native synthesis uses no additional clean flag | This is one term, and still pays precision at every depth |
+| Exact-dirty-return alternative | The same component has $`T=O(L\sqrt N)`$, $`G=O(NL)`$ at $`b\ge n+\lceil\sqrt N\rceil+7`$ | Useful when exact work return or its different width matters; it is not the best endpoint component bound |
+| Reverse weighted term and diagonal | Their operators and height-independent norm bounds are explicit in the [tree identity](ENDPOINT_TREE_TRANSPORT.md) | Supply their actual compatible words, inverses, controls, and workspace schedules |
+| One-clean grouped frame compiler | Complete-frame error including approximate core and suffix-work return | It already gives the best retained endpoint upper bound; its precision charge is not a lower bound |
 
-The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
-gives $`\|D_h\mathcal P_W\|,\|\mathcal P_C^\dagger D_k\|\le2\sqrt\gamma`$,
-where $`\gamma=\max_v(1-|g_v|^2)`$. This removes an intrinsic height
-penalty for those operators. The available history unitary, however,
-realizes column-normalized transport. Undoing its normalization by separate
-input and output filters still carries a possible $`\sqrt n`$ factor.
-The correlations that make the weighted norm small must be used by an actual
-circuit. Also, gamma alone does not control the literal phases in the
-diagonal term D.
+The coarse frame needs no reconstruction. The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
+uses its uniform subtree accuracy to bound both weighted terms independently
+of height. The [forward-block proof](WEIGHTED_TRANSPORT_BLOCK.md) supplies
+orthogonal rejection amplitudes, a complete unitary on both signal sectors,
+and certified preprocessing at zero defects. Its physical marker permutations
+and lookup work are charged.
 
-The scoped exclusions remain useful. Fixed-order coarse transport misses
-mixed terms at exponential precision; a right-spine entry proves this
-without a simulation. The two-bit Pauli routing of rejected components
-removes pair returns but leaves a cubic return. Source minima, transformed
-masks, nilpotent encodings, and these witnesses constrain their specified
-interfaces only. None strengthens the unrestricted frame lower bound.
+The real-rotation word's exact X symmetry is particularly useful here:
+its initialized-signal error lifts to full-operator error, so native synthesis
+can borrow that signal from the dirty pool. Only the forward block's own
+logical dilation signal needs initialization when its accepted block is used.
+The scalar-phase word does not have the same symmetry. The grouped compiler
+also still needs its one external clean predicate; the zero-clean layerwise
+corollary does not remove that requirement.
 
-### Reuse: the coarse-frame prerequisite is already available
+At $`L=N`$, the current forward component costs $`O(N\log N)`$ T gates,
+whereas the complete frame already costs $`O(N\ell_*(n))`$. Thus an
+improvement to that component is useful only as part of a cheaper complete
+assembly. The next pass should establish that assembly interface before
+optimizing its precision cost again.
 
-The revision identifies a useful existing ingredient. At fixed coarse
-accuracy $`0\lt\varepsilon_0\le1/64`$, the borrowed-workspace theorem
-already gives $`T(C)=O(\sqrt N)`$ and $`G(C)=O(N)`$ using the endpoint's
-dirty pool. Its depth-dependent error schedule, native local words, exact
-inactive action, and exact helper return are proved in that chapter.
-No initialized-work assumption is required, so both clean flags can remain
-untouched, even when occupied by an outer computation.
+### Next task: a two-flag assembly lemma
 
-The [reuse argument](ENDPOINT_TREE_TRANSPORT.md#the-retained-borrowed-compiler-already-supplies-a-cheap-coarse-frame)
-checks the needed tree structure and uniform subtree accuracy. It gives
-$`\|D\|\le\varepsilon_0`$ and bounds each weighted term by
-$`2\varepsilon_0`$. Thus a separate coarse-program bottleneck does not
-remain for this representation. The older $`O(nN)`$ estimate belongs to
-the giant uniform-star construction, whose coefficient normalization
-requires much finer coarse words. Its accuracy condition cannot simply be
-replaced inside that proof.
-
-Do not spend the next pass rebuilding this coarse circuit. Its unconditional
-application and actual inverse are priced already. The unresolved gate
-cost is that of the weighted transport itself, including any controlled
-versions needed by a later composition.
-
-### Completed: a forward block with batched native synthesis
-
-The [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) completes the
-operator and workspace parts of the proposed forward-component audit. For
-$`F=\iota D_h\mathcal P_W`$ and fixed $`\alpha=4\varepsilon_0`$, it
-constructs an actual one-signal-flag unitary with accepted block
-$`F/\alpha`$. The unused second clean flag supplies the same two-flag
-interface as the proposed target. Rejected inputs have an explicit unitary
-action; no intermediate flag is reset or assumed zero.
-
-The first stopping proposal failed because its weighted marker columns
-were not orthogonal. A recursive Schur-complement correction adds the
-required rejection amplitudes. The network contains $`O(N)`$ local
-four-mode and two-mode factors on $`2N`$ basis modes, so one signal flag
-suffices. Certified algebraic preprocessing handles zero defects without
-requiring exact zero tests on arbitrary supplied angle evaluators.
-
-Packing disjoint factors by tree level and using the retained borrowed
-reflection interpreter gives, for $`b\ge n+\lceil\sqrt N\rceil+7`$,
+Use the exact residual identity
 
 ```math
-\left\|J_2^\dagger Q_hJ_2-
-\frac{F\otimes I_b}{4\varepsilon_0}\right\|\le\eta/128,
-\qquad T=O(L\sqrt N),\qquad G=O(NL).
+C^\dagger W=A+F+R,\qquad A=I+D,\qquad
+F=\iota D_h\mathcal P_W,\qquad
+R=\mathcal P_C^\dagger D_k\iota^\dagger.
 ```
 
-Each level uses at most 18 fixed addressed rotation templates. Its bank
-count is proportional to the square root of its number of nodes, and the
-precision allowance varies geometrically with depth. Exact packing,
-gathering, and the prescribed physical marker reindex are all charged;
-before absorbing polynomial terms the counts are
-$`T=O(L\sqrt N+n^4)`$ and $`G=O(NL+n^4)`$.
-
-At $`L=N`$, this exact-dirty-return route improves the forward component from $`O(N^2)`$ to
-$`O(N^{3/2})`$ T gates, with $`O(N^2)`$ Clifford gates. The selected
-endpoint allocation $`b=N+n+7`$ satisfies the sufficient width. The signal
-flag is arbitrary data throughout native synthesis; the other clean flag
-is untouched, and all borrowed helpers return exactly. The component meets
-the accepted-block error, workspace, and Clifford requirements, but still
-does not establish linear T-count. Neither implementation upper bound is
-a lower bound for this component or the frame.
-
-The [one-clean synthesis refinement](WEIGHTED_TRANSPORT_BLOCK.md#6-a-faster-implementation-using-the-remaining-clean-flag)
-uses the other flag as fresh synthesis work while the signal remains arbitrary
-data. It gives the same accepted-block guarantee with
+Here A is the diagonal of the unitary $`C^\dagger W`$, so
+$`\|A\|\le1`$. At fixed coarse accuracy
+$`0\lt\varepsilon_0\le1/64`$, the retained estimates give
+$`\|F\|,\|R\|\le2\varepsilon_0`$. The forward dilation uses the
+safe fixed normalization $`\alpha=4\varepsilon_0`$. If compatible
+normalized implementations of all three terms are supplied, their
+linear-combination weight is
 
 ```math
-T=O(N+nL),\qquad G=O(NL),\qquad b\ge L+n+7.
+1+2\alpha\le\frac98\lt2.
 ```
 
-Here the operator core returns approximately, with its disturbance and clean
-leakage included in a full-isometry error bound; lookup and control helpers
-return exactly. Fixed address sectors absorb the constant precision overhead
-without increasing the dirty threshold. At the selected endpoint the forward
-component now costs $`O(N\log N)`$ T gates. The earlier route remains useful
-when exact dirty return or its different width requirement matters.
+This leaves room for normalization-two padding, but it is only scalar
+accounting. A direct four-branch linear-combination circuit would use two
+initialized term-selection bits and a separate initialized block signal:
+three clean qubits. Borrowing the native synthesis signal removes an
+additional work requirement; it does not by itself remove this third
+selector/signal role. This allocation failure concerns that assembly only.
 
-### Remaining: sharing precision across the weighted block
+The bounded next target is an actual word $`Q_E`$ on **two** initialized
+flags and $`b=N+n+7`$ dirty qubits satisfying
 
-The [one-clean conjugated source](ONE_CLEAN_COMPILER.md) resolves the fresh-flag
-obstacle and removes the product of precision and square-root table size.
-Its levelwise use still charges $`O(L)`$ precision work at each of n levels.
-The next target is to share that precision work across the weighted operator.
-The older [direct flag-merging word](SOURCE_REUSE_LIMITS.md) still has an
-accepted-block error of at least $`1/2`$ for exact sine and cosine; the new
-construction uses a different word and does not invalidate that scoped witness.
+```math
+\left\|2J_2^\dagger Q_EJ_2-
+\bigl((C^\dagger W)\otimes I_b\bigr)\right\|\le\eta/4.
+```
 
-The cheap coarse frame remains available and needs no reconstruction.
-The next attempt should synthesize the unnormalized weighted operator
-jointly. It may choose a different unitary completion: the required
-interface is the accepted-block estimate, an actual unitary word and its
-literal inverse, and a charged workspace ledger. Closeness to the selected
-Gram–Schmidt completion is unnecessary. Indeed, a
-[one-level witness](ENDPOINT_TREE_TRANSPORT.md) shows that this completion
-can stay distance two from its zero-defect value even while its accepted
-block tends to zero. No result permits adding costs as a lower bound,
-treating a dirty register as initialized, or invoking a target-frame oracle.
+Seek a construction with a constant number of forward or actual inverse
+component calls and an additive resource reduction
 
-Even a linear-cost forward block would be a component result. Combining
-it with the reverse weighted term, the diagonal, coarse C, and amplification
-must still meet the [global-block contract](#a-sufficient-construction-to-seek).
-Independent accepted blocks cannot be multiplied while ignoring returns
-from rejected spaces; all required controls and flag lifetimes remain charged.
+```math
+T(Q_E)=O(T_F+T_R+N+L),\qquad
+G(Q_E)=O(G_F+G_R+NL).
+```
 
-Optimal T-depth and stronger unrestricted lower bounds remain separate
-projects. A new lower-bound attempt needs an invariant preserved under
-arbitrary Clifford interlayers and returned dirty helpers. Practical
-constants and end-to-end emission also remain separate from this endpoint
-decision. The one-clean full-frame theorem improves the clean requirement;
-this weighted-component refinement does not improve the full-frame T-count.
+These are desired bounds, not established ones. Diagonal programming,
+coefficient preparation, routing, controlled calls, and every helper must
+be included. A full-input hybrid must justify using approximate native
+component words; multiplying their accepted blocks alone is insufficient.
+Appending the already priced actual C and applying normalization-two
+amplification would then connect this lemma to the
+[whole-frame target](#a-sufficient-construction-to-seek).
+
+A successful pass must produce the actual word, its accepted-block algebra,
+a complete two-flag lifetime table, and a charged control schedule. A
+proposal requiring a third initialized selector, resetting an occupied
+flag, or leaving a controlled operation unpriced fails that pass. Such a
+failure is a scoped obstruction, not a general lower bound. Once this
+assembly is available, reducing the weighted precision charge from
+$`nL`$ to $`N+L`$ becomes a concrete route to the linear endpoint.
+
+### Boundaries to carry into that pass
+
+- Rejected components can return coherently; the exact counterexamples in
+  [source-reuse limits](SOURCE_REUSE_LIMITS.md) still apply to their specified
+  words. The successful conjugated source is a different construction.
+- Fixed-order coarse transport misses required mixed terms at exponential
+  accuracy. The cheap coarse frame does not supply free target transport.
+- The chosen forward dilation can remain far from its zero-defect completion
+  even when its accepted block is small. A new assembly may choose another
+  completion, but must specify its unitary action and actual inverse.
+- Source-call minima, transformed-mask costs, and failed merges do not make
+  separate costs additive as a lower bound for unrestricted compilation.
+
+The depth tradeoff, its lower-bound gap, and explicit practical grouping
+constants remain separate tasks. They need not be reopened to test this
+assembly lemma. The publication's established compiler results remain valid
+independently of whether this endpoint route succeeds.
 
 ## Evidence and remaining implementation work
 

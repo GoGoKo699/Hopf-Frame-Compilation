@@ -32,7 +32,7 @@ theorem by numerical extrapolation.
 | [`test_tree_residual_structure.py`](test_tree_residual_structure.py) | Complete residual reconstruction from classical tree generators, complex coarse words, singular angles, and mixed transport errors |
 | [`test_tree_transport.py`](test_tree_transport.py) | Sparse transport and exact Gram identities, complete history-unitary columns, weighted subtree norms, and finite-order correction witnesses |
 | [`test_weighted_transport_block.py`](test_weighted_transport_block.py) | Weighted Gram obstruction, scalar recursion versus Schur solves, complete one-flag dilations and actual inverses, level packing and physical reindexing, and zero-defect behavior |
-| [`test_one_clean_compiler.py`](test_one_clean_compiler.py) | Native paired-Majorana source and masks, conjugated scalar blocks, five-call return bounds, addressed phases, and exact inactive sectors |
+| [`test_one_clean_compiler.py`](test_one_clean_compiler.py) | Native paired-Majorana source and masks, conjugated scalar blocks, five-call return bounds, borrowed-signal X symmetry, the scalar-phase counterexample, addressed phases, and exact inactive sectors |
 | [`test_source_merge.py`](test_source_merge.py) | Native scalar-source parity, direct single-flag merge failure, and two-flag Pauli routing with a surviving cubic return |
 | [`test_provenance.py`](test_provenance.py) | Are upstream commits, source roles, and local lineage recorded consistently? |
 | [`test_literature_policy.py`](test_literature_policy.py) | Does the active proof use one compiler framework and maintain the declared contribution boundary? |
@@ -60,7 +60,8 @@ The following checks are especially useful when modifying the scientific code:
 11. grouped conditional-suffix blocks preserve every inactive sector and
     include active suffix and predicate leakage in the complete error.
 
-All exact-frame, resource, QBP, and two-clean compiler checks are retained.
+All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
+checks are retained.
 Earlier exploratory endpoint constructions are preserved in repository
 history; their finite checks are outside this suite. The focused
 source-reuse checks above accompany the current open-problem note and

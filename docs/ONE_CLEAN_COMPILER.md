@@ -17,9 +17,14 @@ amplify a fixed normalization, with no additional initialized flag.
 For the prescribed real frame, this gives $`T=O(N+nL)`$ and, with
 conditional-suffix grouping, $`T=O(N+L\ell_*(n))`$, both with
 $`G=O(NL)`$, one clean qubit, and $`b\ge L+n+7`$ dirty qubits.
-The grouped banked refinement also extends to one clean qubit. These
-results reduce the sufficient clean allocation; they do not close the
-linear-T endpoint or establish a zero-clean impossibility result.
+The grouped banked refinement also extends to one clean qubit.
+[Section 8](#8-phase-dressed-complex-magnitude-frames) gives the same
+count bounds for the phase-dressed complex magnitude frame, with
+$`b\ge L+n+8`$, by composing with a literal diagonal. These results
+reduce the sufficient clean allocation. [Section 9](#9-a-borrowed-signal-suffices-for-real-rotations)
+uses an exact flag symmetry to obtain the layerwise real-frame bound with
+zero clean qubits. The stronger grouped bound retains one clean qubit;
+the linear-T endpoint remains open.
 
 ## 1. Contract and addressed primitive
 
@@ -565,3 +570,254 @@ Certified Euler preprocessing has no asserted uniform classical
 running-time bound for arbitrary input evaluators. This corollary does
 not assert an optimal T-depth or remove the repeated precision charges
 in a general noncommuting frame product.
+
+## 8. Phase-dressed complex magnitude frames
+
+The [prescribed complex magnitude frame](HOPF_INTERFACE.md#6-phase-dressed-complex-magnitude-frame)
+is
+
+```math
+W_{\mathbb C,\mathrm{mag}}=D_\phi W_{\mathbb R},
+\qquad
+D_\phi=\sum_{x=0}^{N-1}e^{i\phi_x}|x\rangle\langle x|.
+```
+
+The real Hopf angles and leaf phases are supplied independently and admit
+certified classical evaluation. Under the same assumptions on n, N,
+$`\eta`$, and L as Section 6, one clean qubit suffices for
+
+```math
+b\ge L+n+8,
+\qquad T=O\bigl(N+L\ell_*(n)\bigr),\qquad G=O(NL).
+```
+
+If $`b\ge2(L+n+8)`$, the banked bound is
+
+```math
+T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
+\qquad G=O(NL).
+```
+
+Both statements have the complete initialized-isometry contract
+
+```math
+\|VJ_a-J_a(W_{\mathbb C,\mathrm{mag}}\otimes I_b)\|\le\eta,
+\qquad a\ge1.
+```
+
+*Proof.* Allocate error $`\eta/2`$ to each factor. Its precision parameter
+is $`L'=L+1`$. Compile the real frame by Section 6 and the literal
+diagonal by Section 7 with $`k=n`$. Each uses one initialized flag and
+fits in $`L'+n+7=L+n+8`$ dirty wires. Execute the real circuit
+$`V_R`$ followed by the diagonal circuit $`V_D`$, reusing exactly the
+same flag and dirty pool. Extra clean qubits, if available, are untouched.
+
+To justify this reuse despite approximate work return, write
+$`R=W_{\mathbb R}\otimes I_b`$ and $`D=D_\phi\otimes I_b`$.
+The actual circuits are unitaries on the common workspace, so
+
+```math
+V_DV_RJ_a-J_aDR
+=V_D(V_RJ_a-J_aR)+(V_DJ_a-J_aD)R.
+```
+
+Taking norms gives the sum of the two full-isometry errors. In
+particular, the proved real-frame and diagonal estimates give
+
+```math
+\|V_DV_RJ_a-J_aDR\|
+\lt\left(1+\frac{15}{16}\right)2^{-L'}
+=\frac{31}{32}\,2^{-L}\le\eta.
+```
+
+Earlier actual flag leakage and core disturbance are propagated by
+$`V_D`$; the proof uses the zero flag and returned dirty input only in
+the ideal comparison term. No intermediate reset or additional initialized
+work is needed. The estimate remains valid with arbitrary external
+references. The literal diagonal primitive preserves every relative phase
+and any common phase of $`D_\phi`$.
+
+The real and diagonal counts add, while their workspace reservations take
+the maximum. Section 7 contributes $`O(N+L')`$ T gates unbanked, or
+$`O(\sqrt{NL'}+L'+NL'/b)`$ with
+$`b\ge2(L'+n+7)`$. Both contributions are absorbed by the respective
+grouped real-frame bounds, since $`L'=\Theta(L)`$ and
+$`\ell_*(n)\ge1`$. Their Clifford counts sum to $`O(NL)`$. ∎
+
+For fixed $`a=1`$, the banked worst-case bound is matching under the
+same sufficient regimes $`L\ell_*(n)^2\le N`$ or
+$`b\le N/\ell_*(n)`$, subject to its stated bank threshold. Indeed,
+setting all real Hopf angles to zero gives $`W_{\mathbb R}=I`$ and
+leaves the arbitrary diagonal family. The existing diagonal lower bound
+and fixed-width count therefore apply with total width
+$`n+1+b=\Theta(b)`$. In either sufficient regime the extra
+$`L\ell_*(n)`$ term is absorbed by $`\sqrt{NL}`$ or $`NL/b`$;
+the shift from L to $`L+1`$ changes only an absolute constant.
+
+At a fixed parameter tuple, this complete-frame contract supplies the
+[same QBP magnitude-stream guarantee](QBP_APPROXIMATION.md#6-parameter-derivatives-and-complex-coordinates).
+The leaf-phase derivatives still use their separate direct signed one-hot
+stream; they are not additional frame columns. The result concerns the
+specified phase-dressed magnitude frame, not arbitrary complex unitaries.
+It does not extend the separately proved T-depth schedules to one clean
+qubit or close the linear-T endpoint.
+
+## 9. A borrowed signal suffices for real rotations
+
+The real-rotation word has an additional symmetry on its complete flag
+space. This strengthens the initialized-column estimate in Section 4 to
+a full-unitary estimate, so that its amplification flag may itself be an
+arbitrary dirty qubit. The literal phase word does not have the same
+symmetry; its initialized-flag assumption is retained.
+
+**Lemma — extension by flag symmetry.** Let r be a qubit, let
+$`J_0|\psi\rangle=|0\rangle_r|\psi\rangle`$, and let U act on all
+other registers. If an actual unitary V satisfies
+
+```math
+[V,X_r]=0,\qquad
+\|VJ_0-J_0U\|\le\epsilon,
+```
+
+then
+
+```math
+\|V-I_r\otimes U\|\le\sqrt2\,\epsilon.
+```
+
+*Proof.* Put $`\Delta=V-I_r\otimes U`$,
+$`C=\Delta J_0`$, and $`J_1=X_rJ_0`$. Commutation gives
+$`\Delta J_1=X_rC`$. For arbitrary vectors u and v,
+
+```math
+\begin{aligned}
+\|\Delta(J_0u+J_1v)\|
+&=\|Cu+X_rCv\|\\
+&\le\epsilon(\|u\|+\|v\|)
+\le\sqrt2\,\epsilon\sqrt{\|u\|^2+\|v\|^2}.
+\end{aligned}
+```
+
+The orthogonal flag sectors exhaust the input space, proving the claim.
+The same estimate holds after tensoring arbitrary reference systems. ∎
+
+For the real primitive of Section 3, both
+
+```math
+A=cI+X_rZ_tD_f,\qquad
+B_g=sI+X_rX_tD_g
+```
+
+commute with $`X_r`$, and therefore so does $`Q=A^\dagger B_gA`$.
+The amplification reflection is $`-Z_r`$. Conjugating its five-call word
+by $`X_r`$ changes the sign of each of its four reflections, leaving the
+complete word invariant. This is an exact circuit identity, independent
+of coefficient-rounding error.
+
+An unchanged logical predicate preserves the identity: each conditioned
+scalar word is the same scalar-source word on the active sector and
+exact identity on the inactive sector. Address direct sums also preserve
+the symmetry. Thus Section 4 and the lemma give the addressed real
+rotation, with an arbitrary flag r, the full-space guarantee
+
+```math
+\|V-W_{x,h}\otimes I_{\rm dirty}\|
+\lt30\sqrt2\,2^{-q}\lt43\,2^{-q}.
+```
+
+Here the dirty identity includes r, the precision core, the selectors,
+and the predicate helper. The complete dirty reservation is now
+
+```math
+b_{\rm primitive}=(q+1)+k+1+1=q+k+3,
+```
+
+with no initialized qubit. The counts remain
+$`T=O(2^k+q+p^2)`$ and $`G=O(2^kq+q+p^2)`$.
+Core and flag return are approximate in this full-unitary norm; selectors
+and predicate helpers return exactly. On an inactive predicate the
+complete circuit remains exactly identity. Fixed target Clifford
+conjugations give the same result for Rz rotations. Actual inverse
+circuits satisfy the same full-space error bound for the inverse target.
+
+In contrast, the literal phase construction replaces one routed flag
+Pauli by $`Y_r`$. The displayed $`X_r`$ symmetry is then unavailable.
+This lemma does not remove the initialized flag from Sections 7 or 8.
+
+### A zero-clean layerwise real-frame compiler
+
+For the prescribed complete real Hopf frame, the strengthened primitive
+gives
+
+```math
+a=0,\qquad b\ge L+n+7,\qquad
+\|V-W\otimes I_b\|\le\eta,
+\qquad T=O(N+nL),\qquad G=O(NL).
+```
+
+The dirty threshold is preserved by a fixed address split, rather than
+adding the borrowed flag to the earlier reservation. At a tree depth
+$`d\ge2`$, choose
+
+```math
+q_d=L+n-d+6.
+```
+
+Select two of the d address bits as fixed sector literals and use the
+remaining $`k=d-2`$ bits as the free table address. Process the four
+sectors sequentially. Every sector uses exactly
+
+```math
+q_d+k+3=L+n+7
+```
+
+dirty qubits. Its address bits are unchanged, and on each other sector
+its actual action is identity on the entire flag and core space.
+Consequently the error over these four invariant sectors is their
+maximum, even with arbitrary correlated dirty inputs. It is less than
+$`43\,2^{-q_d}`$ for the complete depth layer.
+
+The depths $`d=0,1`$, when present, contain only three addressed rows
+in total. Compile them by the direct native
+[borrowed-sector echo](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector),
+using no initialized work and exactly returned borrowed helpers. Choose
+each row's error at most $`2^{-L}/16`$. Disjoint invariant row sectors
+give that same bound per shallow layer, hence at most $`2^{-L}/8`$
+in total. These finitely many words cost $`O(L+n^2)`$ gates, including
+their logical predicates, and fit the stated dirty pool. This also
+covers $`n=1,2`$ without using a negative address length.
+
+Full-unitary telescoping over all depths gives
+
+```math
+\begin{aligned}
+\|V-W\otimes I_b\|
+&\lt \frac18\,2^{-L}
+ +43\sum_{d=2}^{n-1}2^{-(L+n-d+6)}\\
+&\le\left(\frac18+\frac{43}{64}\right)2^{-L}
+=\frac{51}{64}\,2^{-L}\le\eta,
+\end{aligned}
+```
+
+where an empty sum is zero. The comparison includes disturbance of every
+borrowed wire and arbitrary reference correlations; no intermediate work
+register is assumed freshly initialized. A constant number of sectors
+changes only absolute constants in the resource sum. The deep-layer
+counts are
+
+```math
+T_d=O(2^d+L+n-d+n^2),\qquad
+G_d=O\bigl(2^d(L+n-d)+L+n-d+n^2\bigr).
+```
+
+Summing them and the shallow words yields
+$`T=O(N+nL+n^3)=O(N+nL)`$ and $`G=O(NL)`$, since
+$`n^3=O(2^n)`$ and $`L\ge6`$. The complete prescribed frame is the
+same target throughout, so its existing fixed-parameter QBP guarantee
+continues to apply.
+
+At $`L=N`$ this zero-clean construction has $`T=O(N\log N)`$.
+The stronger grouped count bound remains proved with one clean qubit;
+its initialized active-suffix predicate has not been removed by this
+symmetry argument. No optimality, new lower bound, grouped zero-clean
+extension, or T-depth improvement follows from this corollary.

@@ -16,9 +16,10 @@ the local residual generators, and synthesize their combined operator with
 one precision charge. The analysis identifies the normalized transport
 exactly and tests a proposed finite-order correction around the coarse frame.
 The [weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md) now gives an
-explicit one-signal-flag dilation and native synthesis using the second flag
-as fresh work, with $`T=O(N+nL)`$, $`G=O(NL)`$, and $`b\ge L+n+7`$.
-Its core returns approximately within the full-isometry error. The endpoint
+explicit one-signal-flag dilation and native synthesis using only borrowed
+work, with $`T=O(N+nL)`$, $`G=O(NL)`$, and $`b\ge L+n+7`$.
+Its core and borrowed amplification signal return approximately within the
+full-operator error. The endpoint
 $`O(N\log N)`$ T-count still misses the linear target; an alternative
 $`O(L\sqrt N)`$ route retains exact dirty return at its stated width.
 
@@ -444,8 +445,8 @@ reuses the cheap coarse frame above. The
 [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) supplies a
 forward component with constant normalization, a complete flag action, and
 a native implementation. Its $`O(N\log N)`$ endpoint T-count
-does not replace the grouped compiler. The remaining task is cheaper joint synthesis and a
-valid composition of all residual terms.
+does not replace the grouped compiler. The next task is a two-flag assembly of all residual terms, with actual
+controls and a complete workspace schedule, before cheaper joint synthesis.
 
 ### Small defects do not make the selected completion a small correction
 
