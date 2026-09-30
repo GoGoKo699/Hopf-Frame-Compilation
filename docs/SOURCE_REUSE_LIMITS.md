@@ -447,6 +447,10 @@ precision-bearing stages, and a fixed-order perturbation around coarse
 transport misses necessary mixed terms. Thus the remaining target is a
 jointly charged block for the weighted operator, including its occupied
 flags and literal inverse, rather than classical compression alone.
+The [forward weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md)
+now provides a complete one-signal-flag dilation with a conservative native
+implementation. Its quadratic endpoint T-count still misses the linear
+target; it is a component construction, not a complete frame compiler.
 
 ## 4. Consequence for the research direction
 

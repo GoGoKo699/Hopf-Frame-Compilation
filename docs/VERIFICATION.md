@@ -77,6 +77,13 @@ three-mode unitary columns, and test subtree overlap-defect telescoping,
 weighted norms, and omitted perturbation terms. These support the
 [endpoint candidate analysis](ENDPOINT_TREE_TRANSPORT.md); they do not
 construct a cheaper native joint block.
+The [weighted-block checks](../tests/test_weighted_transport_block.py)
+verify its nonorthogonal-column witness, scalar recursion against independent
+subtree Schur solves, complete one-flag unitary and actual inverse, and
+weighted-map perturbation bounds at zero and near-zero defects. The
+[native fallback bound](WEIGHTED_TRANSPORT_BLOCK.md#5-a-charged-native-implementation-and-its-limitation)
+is proved analytically. These matrices, of dimension at most 32, do not
+emit that elementary circuit or establish the linear T-count target.
 The [source-merge checks](../tests/test_source_merge.py) use native scalar
 sources and noncommuting three-level logical operations to exhibit the
 Pauli-routed cubic return on every dirty input. These support the scoped

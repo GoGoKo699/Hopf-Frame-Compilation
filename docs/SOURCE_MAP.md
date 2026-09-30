@@ -131,6 +131,8 @@ from the exact clean-workspace size–depth theorem.
 | F15 | [Ma–Joven–Liu, arXiv:2609.11153v1](https://arxiv.org/html/2609.11153v1), Theorem 3.1 | clean ancilla compression for block-encoding counting bounds | at most $`n+2T`$ clean ancillas, with possible normalization change; no two-clean unitary conclusion |
 | F16 | [Motlagh–Pocrnic, arXiv:2605.20334v1](https://arxiv.org/html/2605.20334v1), Section II | improved dirty-QROM constants | the displayed output word remains initialized; no asymptotic or constant-factor lookup improvement is claimed here |
 | F17 | [Lai, arXiv:1411.5408v3](https://arxiv.org/pdf/1411.5408v3), Theorems 1.6 and 1.8 | finite-tree Carleson embedding and L2 maximal inequality | the inequalities are inherited; the tree-transport note supplies the local overlap-defect identity and its weighted residual application, not a free block-encoding circuit |
+| F18 | [Boyd–Vandenberghe, Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf), Appendix A.5.5 | quadratic elimination and Schur complements | standard linear algebra; the weighted-block note supplies the scalar tree recursion, local rejection correction, and mode allocation |
+| F19 | [Barenco et al., arXiv:quant-ph/9503016v1](https://arxiv.org/pdf/quant-ph/9503016v1), Lemma 4.1 and Section 8 | Euler factors, two-level unitary decomposition, and Gray-code basis routing | inherited generic synthesis; the local pricing uses the retained borrowed-sector echo and does not claim an optimal native implementation |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -160,6 +162,7 @@ is inherited.
 | R21 | two-clean T-depth upper bound | [schedule](T_DEPTH_COMPILER.md): $`D_T=O(NL/b+L\ell_*(n)+n^4)`$, $`T,G=O(NL)`$, at $`b\ge2(L+n+7)`$; combines inherited F2 routing with the complete-frame source, coarse-program, and conditional-work ledgers; no matching depth claim |
 | R22 | structured residual and scoped endpoint diagnostics | [source-reuse analysis](SOURCE_REUSE_LIMITS.md) and [tree transport](ENDPOINT_TREE_TRANSPORT.md): linear generator representation, explicit normalized transport unitary, weighted norm bounds using F17, finite-order correction witnesses, and Pauli-routed leakage; no new unrestricted frame lower bound or improved endpoint T-count |
 | R23 | simultaneous two-clean count and depth | [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md): exact bilinear echoes instantiate the F2 indicator idea with literal phases and explicit returned dirty work; complete real-frame composition retains count-efficient banks under a sufficient square-root-scale width condition; no new general lookup tradeoff or optimal T-depth claim |
+| R24 | forward weighted transport component | [weighted block](WEIGHTED_TRANSPORT_BLOCK.md): exact weighted Gram witness, scalar recursion using F18, complete one-signal-flag dilation, and certified singular-case preprocessing; F19 and the borrowed echo give a quadratic native endpoint fallback, not an improved full-frame bound |
 
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source

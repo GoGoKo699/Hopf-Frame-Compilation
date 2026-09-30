@@ -287,7 +287,7 @@ completion.
 | Parallel dirty lookup | Exact returned indicators and the simultaneous theorem in [the lookup chapter](PARALLEL_DIRTY_LOOKUP.md) | Optimal T-depth, interpolation below its sufficient width, or the selected endpoint allocation |
 | Residual data | $`O(N)`$ scalar tree generators and exact path products | A charged coherent evaluator for those products |
 | Tree transport | Exact Gram matrix and a complete logical unitary for normalized supported columns, without a depth register | An elementary Clifford+T cost improvement |
-| Weighted residual | Height-independent bounds for the h/k-weighted pieces, including singular charts | A native block with that same normalization |
+| Forward weighted residual | A complete one-signal-flag block with constant normalization and a charged native fallback | Linear T-count; the fallback costs $`O(N^2)`$ at the endpoint |
 | Coarse circuit | The retained borrowed compiler gives $`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$ at fixed accuracy and the endpoint dirty allocation; both clean flags can remain untouched | The history unitary, weighted transport, or an arbitrary controlled version of C |
 | High-precision residual circuit | The proved grouped compiler and its complete-input error budget | A constant total precision charge for one global weighted block |
 
@@ -332,58 +332,67 @@ application and actual inverse are priced already. The unresolved gate
 cost is that of the weighted transport itself, including any controlled
 versions needed by a later composition.
 
-### Next: one native weighted transport block
+### Completed: a forward block with a quadratic native implementation
 
-Fix that actual coarse C before computing the residual coefficients. Test
-one component first: the forward weighted term
-$`F=\iota D_h\mathcal P_W`$. Seek an actual unitary $`Q_h`$ using the
-same two initialized flags and at most $`b=N+n+7`$ dirty qubits such that
+The [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) completes the
+operator and workspace parts of the proposed forward-component audit. For
+$`F=\iota D_h\mathcal P_W`$ and fixed $`\alpha=4\varepsilon_0`$, it
+constructs an actual one-signal-flag unitary with accepted block
+$`F/\alpha`$. The unused second clean flag supplies the same two-flag
+interface as the proposed target. Rejected inputs have an explicit unitary
+action; no intermediate flag is reset or assumed zero.
+
+The first stopping proposal failed because its weighted marker columns
+were not orthogonal. A recursive Schur-complement correction adds the
+required rejection amplitudes. The network contains $`O(N)`$ local
+four-mode and two-mode factors on $`2N`$ basis modes, so one signal flag
+suffices. Certified algebraic preprocessing handles zero defects without
+requiring exact zero tests on arbitrary supplied angle evaluators.
+
+Pricing those factors by the retained borrowed-sector echo and exact basis
+routing gives
 
 ```math
 \left\|J_2^\dagger Q_hJ_2-
-\frac{F\otimes I_b}{4\varepsilon_0}\right\|\le\eta/64,
-\qquad T(Q_h)=O(N),\qquad G(Q_h)=O(N^2).
+\frac{F\otimes I_b}{4\varepsilon_0}\right\|\le\eta/128,
+\qquad T,G=O\!\left(N(L+n^3)\right).
 ```
 
-Here $`\varepsilon_0`$ is fixed and the endpoint has $`L=N`$.
-The weighted norm bound makes this constant-normalization target consistent;
-it supplies neither $`Q_h`$ nor its gates. A concrete candidate should
-use the overlap-defect recurrence during transport, so the coefficient
-weights and path amplitudes are handled together. Separately implementing
-the normalized history unitary and restoring its column norms is the
-already identified route with a possible height penalty.
+At $`L=N`$, the counts are $`O(N^2)`$. The signal flag is treated as
+arbitrary data throughout the native construction, the other clean flag
+is untouched, and its fixed number of borrowed helpers return exactly.
+Thus the candidate meets the accepted-block error, workspace, and Clifford
+requirements. It does not establish the linear T-count requirement.
+The quadratic estimate is an implementation upper bound, not a lower bound
+for this component or for the frame.
 
-Give this component one bounded construction pass. It succeeds only with:
+### Remaining: native precision sharing with an occupied signal flag
 
-1. A complete native unitary and its coherent action on rejected work,
-   including singular cases where overlap defects vanish.
-2. A live-register ledger with at most two initialized qubits, unchanged
-   query addresses where unloading requires them, and no occupied filter
-   flag silently reused as zero.
-3. Charged source programming, coefficient queries, routing, literal phases,
-   and inverse calls within the displayed counts. No target-frame oracle,
-   expanded ancestor table, or fresh precision charge per depth is free.
-4. The displayed accepted-block error on every logical and dirty input,
-   including external references. Finite matrices can check identities;
-   they cannot certify the gate budget.
+This bounded pass stops at that cost gap. Another proof of a transport
+identity or constant operator norm would not improve this candidate.
+The next upper-bound attempt must reduce the native cost of the structured
+unitary while retaining its complete flag-space action. The two-clean
+stage compiler is not a direct substitute: the dilation already occupies
+one signal flag, leaving only one fresh initialized bit. A new substitution
+must prove its action and price its actual work under that allocation.
 
-If the circuit retains a height normalization, needs additional initialized
-work, or still pays a superlinear precision cost, record that limitation
-for this candidate and stop the pass. Another logical transport identity
-alone is not progress toward this gate-level target.
+The cheap coarse frame remains available and needs no reconstruction.
+The new local factors and full rejected-space completion provide a concrete
+object on which to test joint precision synthesis. No result permits
+adding costs as a lower bound, treating a dirty register as initialized,
+or invoking a target-frame oracle.
 
-Even success would be a component result. It would not yet compile W:
-composition with the reverse weighted term, the diagonal, coarse C, and
-amplification must still meet the [global-block contract](#a-sufficient-construction-to-seek).
-In particular, independent accepted blocks cannot be multiplied while
-ignoring returns from rejected spaces. Any required controls and the full
-composition's flag lifetimes must be charged before claiming endpoint closure.
+Even a linear-cost forward block would be a component result. Combining
+it with the reverse weighted term, the diagonal, coarse C, and amplification
+must still meet the [global-block contract](#a-sufficient-construction-to-seek).
+Independent accepted blocks cannot be multiplied while ignoring returns
+from rejected spaces; all required controls and flag lifetimes remain charged.
 
 Optimal T-depth and stronger unrestricted lower bounds remain separate
 projects. A new lower-bound attempt needs an invariant preserved under
 arbitrary Clifford interlayers and returned dirty helpers. Practical
 constants and end-to-end emission also remain separate from this endpoint
-decision. No new resource theorem is claimed by this revision.
+decision. No improved full-frame resource theorem is claimed by this component audit.
 
 ## Evidence and remaining implementation work
 

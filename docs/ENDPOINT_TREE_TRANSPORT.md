@@ -15,6 +15,9 @@ The candidate is to implement the tree transport coherently, multiply by
 the local residual generators, and synthesize their combined operator with
 one precision charge. The analysis identifies the normalized transport
 exactly and tests a proposed finite-order correction around the coarse frame.
+The [weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md) now gives an
+explicit one-signal-flag dilation and a charged quadratic native fallback
+at the endpoint; its linear T-count target remains unmet.
 
 ## 1. Sparse transport contains every path product
 
@@ -434,9 +437,12 @@ general impossibility result. The existing grouped compiler remains
 the proved resource bound while this candidate's precision cost is open.
 
 The [revision decision](OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
-reuses the cheap coarse frame above. The next pass targets the native
-weighted block and its occupied-flag action; a new coarse-frame compiler
-or another proof of the logical transport identity is not needed.
+reuses the cheap coarse frame above. The
+[weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) supplies a
+forward component with constant normalization, a complete flag action, and
+a native implementation. Its quadratic endpoint T-count does not replace
+the grouped compiler. The remaining task is cheaper joint synthesis and a
+valid composition of all residual terms.
 
 The [finite checks](../tests/test_tree_transport.py) compare independent
 path products and shift formulas, complete residual matrices, Gram
