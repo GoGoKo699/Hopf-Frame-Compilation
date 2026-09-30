@@ -13,6 +13,9 @@ and an exact tree factorization of the residual coefficient data. The
 factorization separates classical compression from the still-charged task
 of coherent tree transport. None of these statements is a lower bound for
 an unrestricted Hopf-frame compiler or changes the retained resource bounds.
+The [tree-transport continuation](ENDPOINT_TREE_TRANSPORT.md) gives an
+exact sparse representation, normalized unitary columns, height-independent
+weighted norms, and a scoped obstruction to finite-order coarse corrections.
 
 ## 1. A nilpotent carried source needs initialized dimension
 
@@ -429,6 +432,16 @@ retained estimate is $`O(nN)`$, even if the residual table were compressed.
 An improved joint construction must charge both the coefficient evaluation
 and the coarse circuit. These are limitations of the displayed routes,
 not a lower bound against another compiler.
+
+The [explicit transport construction](ENDPOINT_TREE_TRANSPORT.md) now
+realizes these path columns by local three-mode unitaries without a depth
+register. Their Gram matrix is known exactly. After the h/k weights are
+included, a finite-tree embedding estimate removes the height factor from
+their operator norms. The standalone implementation still retains separate
+precision-bearing stages, and a fixed-order perturbation around coarse
+transport misses necessary mixed terms. Thus the remaining target is a
+jointly charged block for the weighted operator, including its occupied
+flags and literal inverse, rather than classical compression alone.
 
 ## 4. Consequence for the research direction
 

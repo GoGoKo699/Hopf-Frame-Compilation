@@ -286,7 +286,44 @@ need a separately charged partial-indicator construction. The source's
 high-precision term is unchanged; this result does not close the selected
 $`O(N)`$ T-count endpoint.
 
-### Next: one bounded joint-block attempt at the linear endpoint
+### Completed: the operator part of a joint tree block
+
+The [tree-transport audit](ENDPOINT_TREE_TRANSPORT.md) supplies a concrete
+three-level unitary and an all-height construction. A sparse nilpotent tree
+shift and local injection represent every path product as
+$`\mathcal P_A=(I-\mathcal B_A)^{-1}\mathcal G_A`$.
+Its Gram matrix has diagonal n for the root column and
+$`n-1-d(v)`$ for marker v. Local three-mode unitaries realize the
+normalized supported columns; the remaining columns give an explicit
+unitary completion, without an extra depth register.
+
+More importantly for the endpoint, the actual h/k-weighted pieces obey
+
+```math
+\|D_h\mathcal P_W\|,\
+\|\mathcal P_C^\dagger D_k\|\le2\sqrt\gamma,
+\qquad \gamma=\max_v(1-|g_v|^2).
+```
+
+The proof uses exact subtree overlap-defect telescoping and the standard
+finite-tree embedding inequality. The norm has no height factor, including
+at singular charts. This removes a normalization concern at the operator
+level, but is not a free block-encoding construction.
+
+The straightforward transport circuit still synthesizes target-dependent
+stages separately. A coefficient filter also occupies a flag, so it cannot
+be followed by a two-clean compiler that silently treats that flag as zero.
+The joint precision and flag-lifetime requirements remain unmet.
+
+The audit rejects one specified shortcut: truncating coarse transport at
+a fixed perturbation order. A right-spine witness has an omitted entry
+$`(\sin\theta)^{r+2}`$ after order r. At
+$`\theta=n^{-p}`$ for fixed $`p>1`$, any omitted available order
+can exceed $`2^{-N}`$ by an exponential margin. Full mixed transport or
+a different joint construction is needed. This is not an unrestricted
+two-clean lower bound.
+
+### Next: synthesize the weighted transport jointly
 
 The closest endpoint question remains whether the residual construction
 admits a **joint source and table implementation** that avoids its remaining
@@ -319,19 +356,20 @@ and finite tests do not rule out non-Pauli histories or another global block.
 That routing proposal also retains separate source calls and is not a
 half-unitary compiler by itself.
 
-The next endpoint target is a charged implementation of the tree path
-factors, or a full-operator invariant that avoids implementing them
-separately. A proposed replacement must retain a constant total precision
-charge and control the mixed terms to exponential accuracy; polynomially
-small coarse errors alone do not suffice.
+The next endpoint target is a constant-normalization block for the weighted,
+fully resummed transport, with coefficient filters and source programming
+charged together. The new norm bound makes that interface plausible; it
+does not supply its gates. A proposed replacement must retain a constant
+total precision charge and control every mixed term to exponential accuracy.
 
-A bounded attempt should specify both a three-level full-unitary block and
-its extension to arbitrary height. It must account for coefficient and
-coarse-program queries together. Expanding all ancestor pairs, invoking
-the target frame to generate its own path amplitudes, or retaining a fresh
-precision charge per depth does not meet the endpoint target. Park that
-candidate if its cost or mixed-error recurrence fails; keep the current
-compiler as the fallback.
+The logical three-level and all-height unitary are now available. The next
+pass must specify the actual native block and its live flags, including
+rejected components, rather than repeat that algebra. It must charge coarse
+programs as well as residual coefficients. Expanding all ancestor pairs,
+invoking the target frame to generate its own amplitudes, or retaining a
+fresh precision charge per depth does not meet the endpoint target. Keep
+the present separate-transport candidate as a scoped construction; its
+resource bound has not replaced the grouped compiler.
 
 ### Later: stronger lower bounds and practical constants
 

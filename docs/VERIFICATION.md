@@ -71,6 +71,12 @@ condition. The linear table maps still have a charged Clifford-depth cost.
 The [tree-residual checks](../tests/test_tree_residual_structure.py)
 reconstruct complete small residuals from classical tree generators,
 including complex coarse words and singular angles.
+The [tree-transport checks](../tests/test_tree_transport.py) also reconstruct
+the sparse resolvent, verify the exact transport Gram matrix and complete
+three-mode unitary columns, and test subtree overlap-defect telescoping,
+weighted norms, and omitted perturbation terms. These support the
+[endpoint candidate analysis](ENDPOINT_TREE_TRANSPORT.md); they do not
+construct a cheaper native joint block.
 The [source-merge checks](../tests/test_source_merge.py) use native scalar
 sources and noncommuting three-level logical operations to exhibit the
 Pauli-routed cubic return on every dirty input. These support the scoped
