@@ -6,16 +6,18 @@ Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frame
 
 The [publication scope](PUBLICATION_SCOPE.md) fixes the three principal
 results and their corollaries. The exact theorem covers every $m\geq0$
-clean-workspace budget; the two T-count constructions keep their distinct
-clean/dirty reservations and return guarantees.
+clean-workspace budget; the sufficient-clean and one-clean T-count
+constructions keep their distinct clean/dirty reservations and return
+guarantees.
 
 ## Scientific contribution
 
 The paper develops a compiler capability: preserving an entire
 operationally required frame while controlling exact entangling cost,
 fault-tolerant precision cost, and initialized versus borrowed workspace.
-The two-clean diagonal and general one-target multiplexor results also cover
-standard operator families beyond Hopf frames.
+The one-clean diagonal and general one-target multiplexor results also cover
+standard operator families beyond Hopf frames. The earlier two-clean
+constructions remain useful at their slightly smaller dirty reservations.
 
 The principal synthesis comparisons are Yuan–Zhang's
 [exact state-preparation tradeoffs](https://quantum-journal.org/papers/q-2023-03-20-956/)
@@ -41,8 +43,10 @@ in the discussion.
    two-qubit readout example.
 2. Shared Hopf-frame and complete-input compiler contract.
 3. Exact all-workspace size/depth theorem and its proof mechanisms.
-4. Sufficient-clean matching T theorem, followed by the two-clean construction
-   and its bank, diagonal, general multiplexor, and complex-magnitude corollaries.
+4. Sufficient-clean matching T theorem, followed by the one-clean real-frame
+   construction and its grouped, banked, diagonal, and general multiplexor
+   corollaries. Retain the separately proved two-clean complex-magnitude and
+   T-depth results with their own resource assumptions.
 5. Exact and approximate fixed-parameter QBP consequences, including complete
    complex gradients and the costs of classical preprocessing and output.
 6. The remaining endpoint gap and the limits of the circuit model.

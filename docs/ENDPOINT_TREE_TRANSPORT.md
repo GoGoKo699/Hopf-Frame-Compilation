@@ -8,7 +8,7 @@ transport, and a height-independent bound on its weighted pieces. These
 establish the operator identities and normalization bounds for one joint-block candidate.
 Its precision-dependent
 gate cost remains unresolved: the construction below does not improve
-the retained $`O(N\ell_*(n))`$ two-clean bound or close the selected
+the retained $`O(N\ell_*(n))`$ one-clean bound or close the selected
 $`a=2,b=N+n+7,L=N`$ endpoint.
 
 The candidate is to implement the tree transport coherently, multiply by
@@ -16,9 +16,11 @@ the local residual generators, and synthesize their combined operator with
 one precision charge. The analysis identifies the normalized transport
 exactly and tests a proposed finite-order correction around the coarse frame.
 The [weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md) now gives an
-explicit one-signal-flag dilation and level-batched native synthesis with
-$`T=O(L\sqrt N)`$ under its sufficient dirty width. Its endpoint
-$`O(N^{3/2})`$ T-count still misses the linear target.
+explicit one-signal-flag dilation and native synthesis using the second flag
+as fresh work, with $`T=O(N+nL)`$, $`G=O(NL)`$, and $`b\ge L+n+7`$.
+Its core returns approximately within the full-isometry error. The endpoint
+$`O(N\log N)`$ T-count still misses the linear target; an alternative
+$`O(L\sqrt N)`$ route retains exact dirty return at its stated width.
 
 ## 1. Sparse transport contains every path product
 
@@ -441,7 +443,7 @@ The [revision decision](OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
 reuses the cheap coarse frame above. The
 [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) supplies a
 forward component with constant normalization, a complete flag action, and
-a batched native implementation. Its $`O(N^{3/2})`$ endpoint T-count
+a native implementation. Its $`O(N\log N)`$ endpoint T-count
 does not replace the grouped compiler. The remaining task is cheaper joint synthesis and a
 valid composition of all residual terms.
 

@@ -87,6 +87,14 @@ The [batched native bound](WEIGHTED_TRANSPORT_BLOCK.md#5-a-native-implementation
 is proved analytically. These operator matrices have dimension at most 32;
 the separate permutation checks enumerate basis labels without dense matrices.
 They do not emit the elementary circuit or establish the linear T-count target.
+The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
+paired-Majorana source and general Pauli masks from native gates, audit the
+conjugated scalar word and five-call amplification on all dirty input
+columns, and check addressed relative phases and exact inactive action.
+The fine-precision checks use an independent small Clifford-algebra
+representation, rather than a large precision-core simulation. The
+[one-clean theorem](ONE_CLEAN_COMPILER.md) supplies the analytic error and
+workspace proof; these fixtures do not emit its asymptotic grouped circuit.
 The [source-merge checks](../tests/test_source_merge.py) use native scalar
 sources and noncommuting three-level logical operations to exhibit the
 Pauli-routed cubic return on every dirty input. These support the scoped

@@ -15,8 +15,9 @@ chapter below.
 | [Compiler boundaries](COMPILER_BOUNDARIES.md) | Concrete distinctions between state, checkpoint, and complete-frame promises |
 | [Exact compiler theorem](COMPILER_THEOREM.md) | All clean-workspace budgets; echo, decoder, router, and matching size/CNOT/depth bounds |
 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | Real and complex sufficient-clean matching T-count; shared-source residual proposition |
+| [One-clean compiler](ONE_CLEAN_COMPILER.md) | Two programmable overlaps, an exact native packed source, five-call amplification, and one-clean frame bounds |
 | [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md) | Exact source costs, frame/bank bounds, matched diagonal and general multiplexor frontiers, and certified preprocessing |
-| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform two-clean bound, ancestor-column residuals, iterated-logarithm grouping, and complete-input return |
+| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform grouped bounds and their one-clean extension, ancestor-column residuals, and complete-input return |
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md) | Exact returned dirty indicators and simultaneous count-efficient, low-T-depth full-frame compilation |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
@@ -25,7 +26,7 @@ chapter below.
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Full retained frontier, endpoint dependencies, scoped route limits, and the weighted-block native cost gap |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
-| [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and level-batched native synthesis |
+| [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and native synthesis with exact or approximate dirty return |
 
 ## Evidence and sources
 

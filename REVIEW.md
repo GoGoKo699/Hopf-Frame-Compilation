@@ -159,12 +159,12 @@ $`O(\sqrt N)`$ T gates with $`O(n^3)`$ T-depth.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
-With two clean qubits, the
-[conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
+With one clean qubit, the
+[one-clean extension](docs/ONE_CLEAN_COMPILER.md)
 implements every prescribed real Hopf frame with
 
 ```math
-a=2,\qquad b\ge L+n+7,\qquad
+a=1,\qquad b\ge L+n+7,\qquad
 T=O(N+L\ell_*(n)),\qquad G_{\mathrm{Clifford}}=O(NL),
 \qquad \ell_*(n)=1+\log_2^*(n+2).
 ```
@@ -1146,12 +1146,12 @@ normalization, error constants, and the workspace ledger. The
 kernel identities and separate rational budgets. They support the derivation;
 they do not emit every elementary gate of the asymptotic compiler.
 
-### 9.5 Two-clean compilation and the remaining gap
+### 9.5 One-clean compilation and the remaining gap
 
 At $L=N$, a sufficiently large $a=\Theta(n)$ clean budget and $b=\Theta(N)$ dirty workspace attain
 $T^\star=\Theta(N)$.
-[Conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) gives
-$`T=O(N+L\ell_*(n))`$ and $`G=O(NL)`$ with $`a=2`$ and
+[One-clean conditional-suffix grouping](docs/ONE_CLEAN_COMPILER.md) gives
+$`T=O(N+L\ell_*(n))`$ and $`G=O(NL)`$ with $`a=1`$ and
 $`b\ge L+n+7`$, uniformly for $`n\ge1`$ and $`L\ge6`$.
 At $`L=N`$ and exactly $`b=N+n+7`$, its upper bound is
 $`O(N\ell_*(n))`$, against the unchanged $`\Omega(N)`$ lower bound.
@@ -1166,7 +1166,7 @@ with $`b\ge2(L+n+7)`$ it gives
 T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),\qquad G=O(NL).
 ```
 
-For the fixed clean allocation $`a=2`$, this matches the existing worst-case
+For the fixed clean allocation $`a=1`$, this matches the existing worst-case
 lower bound when $`\ell_*(n)^2L\le N`$, or when the available bank also
 satisfies $`b\le N/\ell_*(n)`$, subject to the bank reservation above.
 A separate two-clean diagonal compiler adds arbitrary literal leaf phases
@@ -1176,8 +1176,11 @@ $`b\ge2(L+n+8)`$.
 
 The construction represents binary weights in a charged Pauli operator on dirty
 work. An anticommutator extracts each scalar coefficient times the identity on
-that entire workspace; two clean flags and coherent amplification produce each
-addressed rotation. It needs no initialized precision state. The precision cost
+that entire workspace. The original construction uses two flags; the
+[one-clean construction](docs/ONE_CLEAN_COMPILER.md) encodes two overlaps
+in a conjugated scalar-source word and uses five-call amplification.
+Its two precision streams share paired Majorana generators on the dirty
+core. It needs no initialized precision state. The precision cost
 is paid once per tree depth in this baseline. The grouped compiler organizes
 residuals into rank-one stars and streams coarse programs one symbol at a
 time. Its private work needs only $`O(\log(s+1))`$ qubits for a group
@@ -1189,10 +1192,17 @@ complete-input norm. The [two-clean proof](docs/OPERATOR_SOURCE_COMPILER.md)
 retains the general-precision baseline, and the
 [open-problem statement](docs/OPEN_PROBLEM.md) records the remaining gap.
 
+The [one-clean primitive](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
+also compiles literal diagonals and complete one-target U(2) multiplexors.
+For k address bits, their unbanked dirty thresholds are respectively
+$`L+k+7`$ and $`L+k+9`$; doubling those reservations gives matching
+$`O(\sqrt{2^kL}+L+2^kL/b)`$ T-count. The original two-clean versions
+below retain their slightly smaller dirty thresholds.
+
 The literal diagonal specialization is independently useful: with two clean
 qubits and $`b\ge2(L+n+5)`$, it attains the worst-case optimum
 $`\Theta(\sqrt{NL}+L+NL/b)`$. Its one-stage precision cost avoids the
-repeated depth charge. The underlying exact operator source also has a sharp
+repeated depth charge. The original geometric operator source also has a sharp
 primitive count: $`2m-4`$ T gates uncontrolled and $`2m-2`$ controlled,
 including arbitrary returned helpers. Primitive optimality does not make
 those costs additive across a complete compiler.
@@ -1381,7 +1391,7 @@ are not claimed.
 ---
 
 The finite-precision constructions use two mechanisms: full-frame residual
-composition with one reusable prepared source, and a two-clean compiler that
+composition with one reusable prepared source, and a one-clean compiler that
 extracts coefficients from a charged operator on arbitrary dirty work. Both
 include explicit clean/dirty resource ledgers and complete-output error bounds;
 the latter's grouped refinement leaves a factor $`O(\ell_*(n))`$ at the

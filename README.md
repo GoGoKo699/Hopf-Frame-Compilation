@@ -25,7 +25,7 @@ same frame costs at finite precision. The exact logical theorem covers every
 clean-workspace budget. The fault-tolerant theorem gives a matched T-count
 frontier in its stated clean/dirty-workspace regime. The
 [publication scope](manuscript/PUBLICATION_SCOPE.md) selects one full-length
-paper around these results and the two-clean construction. Scientific proofs,
+paper around these results and the one-clean construction. Scientific proofs,
 comparisons, and checks are integrated here before final manuscript writing.
 
 <p align="center">
@@ -133,8 +133,8 @@ coarse frame with one retained source and final amplification, charging
 source preparation, failure history, and all work.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
-With **two clean qubits** and $`b\ge L+n+7`$, the
-[conditional-suffix compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md) gives
+With **one clean qubit** and $`b\ge L+n+7`$, the
+[one-clean compiler](docs/ONE_CLEAN_COMPILER.md) gives
 $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ for real frames, where
 $`\ell_*(n)=1+\log_2^*(n+2)`$. The iterated logarithm counts base-two logs
 until the value is at most one. At $`L=N`$, the
@@ -151,8 +151,8 @@ gives $`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ in one real-frame circuit
 with two clean and sufficiently large $`\Theta(\sqrt N)`$ dirty workspace.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
-multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with two clean
-qubits, respectively at $`b\ge2(L+n+5)`$ and $`b\ge2(L+n+7)`$.
+multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean
+qubit, respectively at $`b\ge2(L+n+7)`$ and $`b\ge2(L+n+9)`$.
 For the multiplexor, $n$ counts address qubits and $N$ counts its blocks.
 These matched one-stage frontiers do not close the multi-layer frame gap.
 
@@ -181,7 +181,7 @@ finite-size crossover.
 |---:|---|---|
 | 5 minutes | this page | problem, theorem, and construction map |
 | 30–40 minutes | **[complete technical narrative](REVIEW.md)** | shared contract, the two resource models, and the QBP consequence |
-| full audit | **[exact theorem](docs/COMPILER_THEOREM.md)**, **[T-count theorem](docs/FAULT_TOLERANT_COMPILER.md)**, **[two-clean theorem](docs/OPERATOR_SOURCE_COMPILER.md)**, and **[verification map](docs/VERIFICATION.md)** | proofs, register schedules, evidence limits, and source dependencies |
+| full audit | **[exact theorem](docs/COMPILER_THEOREM.md)**, **[T-count theorem](docs/FAULT_TOLERANT_COMPILER.md)**, **[one-clean theorem](docs/ONE_CLEAN_COMPILER.md)**, and **[verification map](docs/VERIFICATION.md)** | proofs, register schedules, evidence limits, and source dependencies |
 
 The [documentation map](docs/README.md) links every proof chapter, application,
 source comparison, and reproduction guide. Direct routes to the

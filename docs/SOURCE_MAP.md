@@ -106,8 +106,8 @@ The [fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) uses a complete
 initialized-isometry approximation, uniformly over logical and dirty inputs
 and their references. In that sufficient-clean construction, dirty workspace
 is restored exactly; initialized logical work may have residual error included
-in the isometry norm. The two-clean operator-source construction below instead
-includes its dirty operator core's return error in that norm, while returning
+in the isometry norm. The operator-source constructions below, including their one-clean
+refinement, instead include the dirty operator core's return error in that norm, while returning
 lookup banks, selectors, and suffix-control work exactly. These are distinct
 return guarantees within the complete-input approximation model, separate
 from the exact clean-workspace size–depth theorem.
@@ -122,7 +122,7 @@ from the exact clean-workspace size–depth theorem.
 | F6 | [Tan, published PRX Quantum article](https://journals.aps.org/prxquantum/pdf/10.1103/pxhd-9s9q), Definition I.2, Theorem I.1, Lemma IV.1 and Remark IV.2 | general-unitary comparison and shared Boolean instruction synthesis | the instruction registers in the displayed construction are initialized; this is not the prescribed small-clean/dirty tradeoff |
 | F7 | [Li–Ou–Wang–Yao–Yuan–Zhang, arXiv:2607.28260v1](https://arxiv.org/html/2607.28260v1), Sections 3–4 | sparse QROM and sparse-state comparison | different input families; no general full-frame conclusion is imported |
 | F8 | Khattar–Gidney, arXiv:2407.17966v2, Sections 3, 4 and 7.4 | conditionally clean and dirty selector context | cancellation and selector reuse are established techniques, not a separate contribution here |
-| F9 | [Kerenidis–Prakash, arXiv:2202.00054v2](https://arxiv.org/html/2202.00054v2), Definitions 4.4/4.6 and Theorem 4.9; [Chee et al., arXiv:2301.07477](https://arxiv.org/pdf/2301.07477), Appendix C | full-space Clifford loaders and their scalar/antisymmetric product decomposition | the Pauli representation and overlap algebra predate this work; the operator-source note supplies a native geometric specialization and dirty-programmed rotation construction |
+| F9 | [Kerenidis–Prakash, arXiv:2202.00054v2](https://arxiv.org/html/2202.00054v2), Definitions 4.4/4.6 and Theorem 4.9; [Chee et al., arXiv:2301.07477](https://arxiv.org/pdf/2301.07477), Appendix C; [Bravyi, arXiv:quant-ph/0404180](https://arxiv.org/pdf/quant-ph/0404180), Section II, Eqs. (2)–(5) | full-space Clifford loaders, scalar/antisymmetric product decomposition, and paired-Majorana rotations | the Pauli representation and overlap algebra predate this work; the operator-source notes supply native geometric specializations and dirty-programmed block words; paired Majoranas and their anticommutation are standard representations |
 | F10 | [Low–Wiebe, arXiv:1805.00675v2](https://arxiv.org/html/1805.00675v2), Lemma 13; [Fang–Lin–Tong, arXiv:2208.06941v2](https://arxiv.org/html/2208.06941v2), Section 2.4, Lemma 3 and Appendix D | coherent product compression with logarithmic failure-history work | failure tracking is inherited; residual factorization, shared-source reuse and the charged frame schedule are the local specialization |
 | F11 | [Berry–Childs–Cleve–Kothari–Somma, arXiv:1412.4687](https://arxiv.org/pdf/1412.4687), Eqs. (11)–(15) | normalization-two oblivious amplification and its cubic accepted block | amplification is inherited; the local proofs explicitly bound the complete initialized isometry, including rejected work retained coherently |
 | F12 | [Yamazaki–Akibue, arXiv:2603.14202v1](https://arxiv.org/html/2603.14202v1), Theorem 1, Section 3 and Theorem 4 | leading precision constants for complete controlled SU(2) synthesis | the dirty-assisted construction retains a precision-length clean instruction register; the ancilla-free construction has different scaling and a typical-target guarantee |
@@ -133,6 +133,7 @@ from the exact clean-workspace size–depth theorem.
 | F17 | [Lai, arXiv:1411.5408v3](https://arxiv.org/pdf/1411.5408v3), Theorems 1.6 and 1.8 | finite-tree Carleson embedding and L2 maximal inequality | the inequalities are inherited; the tree-transport note supplies the local overlap-defect identity and its weighted residual application, not a free block-encoding circuit |
 | F18 | [Boyd–Vandenberghe, Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf), Appendix A.5.5 | quadratic elimination and Schur complements | standard linear algebra; the weighted-block note supplies the scalar tree recursion, local rejection correction, and mode allocation |
 | F19 | [Barenco et al., arXiv:quant-ph/9503016v1](https://arxiv.org/pdf/quant-ph/9503016v1), Lemma 4.1 and Section 8 | Euler factors, two-level unitary decomposition, and Gray-code basis routing | inherited generic synthesis; the local pricing uses the retained borrowed-sector echo and does not claim an optimal native implementation |
+| F20 | [Brassard–Høyer–Mosca–Tapp, arXiv:quant-ph/0005055](https://arxiv.org/pdf/quant-ph/0005055), Section 2, Eqs. (7)–(8) | repeated amplitude amplification and its sine/cosine law | the five-call one-clean amplification is a specialization at amplitude $`\sin(\pi/10)`$; the local proof supplies the oblivious complete-isometry error and literal-phase accounting |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -162,14 +163,15 @@ is inherited.
 | R21 | two-clean T-depth upper bound | [schedule](T_DEPTH_COMPILER.md): $`D_T=O(NL/b+L\ell_*(n)+n^4)`$, $`T,G=O(NL)`$, at $`b\ge2(L+n+7)`$; combines inherited F2 routing with the complete-frame source, coarse-program, and conditional-work ledgers; no matching depth claim |
 | R22 | structured residual and scoped endpoint diagnostics | [source-reuse analysis](SOURCE_REUSE_LIMITS.md) and [tree transport](ENDPOINT_TREE_TRANSPORT.md): linear generator representation, explicit normalized transport unitary, weighted norm bounds using F17, finite-order correction witnesses, and Pauli-routed leakage; no new unrestricted frame lower bound or improved endpoint T-count |
 | R23 | simultaneous two-clean count and depth | [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md): exact bilinear echoes instantiate the F2 indicator idea with literal phases and explicit returned dirty work; complete real-frame composition retains count-efficient banks under a sufficient square-root-scale width condition; no new general lookup tradeoff or optimal T-depth claim |
-| R24 | forward weighted transport component | [weighted block](WEIGHTED_TRANSPORT_BLOCK.md): exact weighted Gram witness, scalar recursion using F18, complete one-signal-flag dilation, and certified singular-case preprocessing; F19 and the borrowed reflection interpreter give level-batched native T-count O(L sqrt(N)) with charged physical reindexing, not an improved full-frame bound |
+| R24 | forward weighted transport component | [weighted block](WEIGHTED_TRANSPORT_BLOCK.md): exact weighted Gram witness, scalar recursion using F18, complete one-signal-flag dilation, and certified singular-case preprocessing; F19 and the borrowed reflection interpreter give $`O(L\sqrt N)`$ native T count with exact dirty return, while the one-clean primitive gives $`O(N+nL)`$ with approximate core return; routing is charged, and neither improves the full-frame endpoint bound |
+| R25 | one-clean operator-source compiler and corollaries | [proof](ONE_CLEAN_COMPILER.md): conjugated scalar-source word and Pauli-routed anticommutator, native head-and-two-tail source, and fixed five-call amplification using F20; real grouped/banked frame bounds extend to $`a=1`$, as do matched literal-diagonal and complete U(2) multiplexor bounds with their own reservations; F2/F9 supply inherited lookup and Clifford-algebra ingredients, and no new T-depth claim is made |
 
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over
 precision. Write $`\ell_*(n)=1+\log_2^*(n+2)`$, where $`\log_2^*`$
 counts base-two logarithms until the value is at most one. Conditional-suffix
-grouping gives the two-clean endpoint upper bound $`O(N\ell_*(n))`$.
+grouping and its one-clean refinement give the constant-clean endpoint upper bound $`O(N\ell_*(n))`$.
 The gap from $`\Omega(N)`$ remains at the
 [selected high-precision endpoint](OPEN_PROBLEM.md).
 At $`b\ge2(L+n+7)`$, the grouped compiler's banked form gives
@@ -190,8 +192,8 @@ supplies precision without an initialized precision register.
 The source audit supports these precise dependencies and comparisons. It does
 not certify priority or infer novelty from a bounded search finding no match.
 The current general-unitary benchmark includes Yuan–Zhang–Zi rather than
-treating Tan as the newest result. The two-clean literal-diagonal theorem
-is separately compared with GKW and Yamazaki–Akibue in
+treating Tan as the newest result. The literal-diagonal theorem and its one-clean refinement
+are separately compared with GKW and Yamazaki–Akibue in
 [related work, Section 12](RELATED_WORK.md#12-contemporary-comparisons-and-the-broader-compiler-contribution).
 
 ## 6. Evidence classification

@@ -4,7 +4,8 @@ This publication appendix proves the arbitrary-budget borrowed-workspace
 upper bound and its restricted matching splice with the
 [sufficient-clean compiler](FAULT_TOLERANT_COMPILER.md). Its dirty lookup
 and predicate-toggle primitives also support the
-[two-clean construction](OPERATOR_SOURCE_COMPILER.md). It concerns the
+[one-clean construction](ONE_CLEAN_COMPILER.md) and its
+[two-clean operator-source baseline](OPERATOR_SOURCE_COMPILER.md). It concerns the
 prescribed complete **real** Hopf frame; no complex-frame or common-phase
 extension is asserted here.
 
@@ -346,6 +347,8 @@ main theorem give the opposite order and establish (2).
 
 At $`a=O(1), b=\Theta(N), L=N`$, the hypothesis of (2) fails. Equation (1)
 still gives $`O(N^{3/2})`$, against the retained $`\Omega(N)`$ lower bound.
-The [two-clean construction](OPERATOR_SOURCE_COMPILER.md) improves this upper
-bound at its stated allocation; the remaining gap is recorded in the
-[open problem](OPEN_PROBLEM.md).
+The [grouped one-clean construction](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
+improves this to $`O(N\ell_*(n))`$ at $`a=1`$ and
+$`b\ge N+n+7`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
+This stronger construction has its own dirty reservation; the remaining
+gap is recorded in the [open problem](OPEN_PROBLEM.md).

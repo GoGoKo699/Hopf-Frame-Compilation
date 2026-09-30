@@ -5,10 +5,14 @@
 At a **fixed parameter tuple**, a full initialized-isometry error bound for the
 prescribed frame controls the actual gradient measurement. Approximate work may
 remain coherent until the final measurement. No derivative of a compiled gate
-word is needed. The [two-clean operator-source compilers](OPERATOR_SOURCE_COMPILER.md)
-now meet this same contract for both the real frame and its phase-dressed
-complex magnitude extension, under their explicit dirty-workspace budgets.
-Their different gate counts do not change the bias argument below.
+word is needed. The [one-clean compiler](ONE_CLEAN_COMPILER.md), including its
+[grouped and banked forms](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit),
+meets this contract for the real frame. The separately proved
+[two-clean operator-source compilers](OPERATOR_SOURCE_COMPILER.md) cover both
+the real frame and its phase-dressed complex magnitude extension under their
+own dirty-workspace budgets. Their different gate counts and clean allocations
+do not change the bias argument below; the one-clean real-frame result alone
+does not supply a one-clean complex-frame bound.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies

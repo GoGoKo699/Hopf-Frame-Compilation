@@ -1,6 +1,6 @@
-# Research status and the open two-clean endpoint
+# Research status and the constant-clean endpoint
 
-[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Two-clean baseline](OPERATOR_SOURCE_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
+[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [One-clean compiler](ONE_CLEAN_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
 This page gathers the retained results, the limits of explored routes, and
 the next construction to test. It is a research checkpoint, not an additional
@@ -23,8 +23,8 @@ below. Lower bounds are worst-case over the stated frame family.
 | Exact size and depth versus clean workspace | Size $`\Theta(N)`$ and depth $`\Theta(n+N/(n+m))`$ for every $`m\ge0`$; CNOT count $`\Theta(N)`$ for $`n\ge2`$, zero for $`n=1`$ | Matching for the complete real and phase-dressed complex magnitude frames; [exact theorem](COMPILER_THEOREM.md) |
 | T-count with sufficient clean workspace | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, $`G=O(NL)`$, when $`a\ge C(n+h)`$ for sufficiently large fixed C | Matching for those same families; the clean reservation is sufficient, not proved necessary; [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md) |
 | Real-frame T-count at arbitrary workspace budgets | $`T=O(NL/q+L\sqrt N)`$, $`G=O(NL)`$, for every $`a,b\ge0`$ | Splicing with the sufficient-clean theorem gives the matching frontier above for every a when $`h+b\le c\sqrt N`$, for fixed $`c>0`$; [borrowed-workspace proof](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements) |
-| Grouped two-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge L+n+7`$ | Precision-uniform grouped bound without additional word banks; [conditional-suffix theorem](CONDITIONAL_SUFFIX_COMPILER.md) |
-| Two-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked proof](CONDITIONAL_SUFFIX_COMPILER.md#8-additional-dirty-banks-give-a-width-tradeoff) |
+| Grouped one-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge L+n+7`$ | Precision-uniform grouped bound without additional word banks; [one-clean extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
+| One-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked one-clean proof](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
 
@@ -32,9 +32,10 @@ The retained frontier is the best applicable bound among these constructions.
 For example, at fixed L, $`a=2`$, and $`b=L+n+7=\Theta(n)`$,
 the arbitrary-budget theorem and its matching splice give
 $`T^\star=\Theta(N/n)`$, sharper than the grouped $`O(N)`$ estimate.
-This does not change the high-precision endpoint below. Two-clean upper
-constructions also work with additional unused clean qubits, but the banked
-matching comparison above is for $`a=2`$.
+This does not change the high-precision endpoint below. The one-clean count
+constructions also work with additional unused clean qubits; the banked
+matching comparison above is for fixed $`a=1`$. The depth schedules retain
+their separately proved two-clean allocations.
 
 Every retained frame construction preserves the prescribed completion used
 by Hopf QBP. Finite-precision substitution has the fixed-parameter bias and
@@ -50,6 +51,24 @@ fallback. Its literal-diagonal and complete one-target U(2) multiplexor
 corollaries retain matching banked frontiers as independent capabilities. Earlier, weaker
 endpoint bounds are superseded as frontiers; exploratory routes are
 recoverable from the [archived research snapshot](../provenance/README.md#earlier-research-snapshot).
+
+## One clean qubit now suffices for the grouped count bound
+
+The [new primitive](ONE_CLEAN_COMPILER.md) conjugates one programmed
+scalar-source block by another, with different Pauli routing on the
+logical target. Its accepted block contains two signed overlaps; their
+unwanted dirty terms cancel by anticommutation. Two independently
+programmable geometric streams fit on paired Majorana generators in one
+precision-sized dirty core. A five-call amplification word returns the
+clean flag and core within the complete-input error bound.
+
+For a tree layer, core, selectors, and one arbitrary helper occupy exactly
+$`L+n+7`$ dirty wires. In the grouped compiler, the sole external clean
+qubit stores the active-suffix predicate. Moving the old scalar flag into
+the known-zero active suffix changes its private reservation by one bit;
+the new primitive compiles the fixed deepest tail. This establishes the
+one-clean grouped and banked bounds above. It is a constructive reduction
+of initialized workspace, not a new lower bound or a T-depth theorem.
 
 ## The count and depth gaps are different
 
@@ -122,8 +141,9 @@ $`0\lt \eta\le1/64`$. Literal phases, clean-work leakage, and dirty/reference
 return error are included in the same operator norm as the
 [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md#1-target-resources-and-theorem).
 
-The [layer-by-layer operator-source compiler](OPERATOR_SOURCE_COMPILER.md) has
-$`T=O(N+nL)`$ with $`b\ge L+n+7`$. It pays the precision cost at each
+The [one-clean layer compiler](ONE_CLEAN_COMPILER.md) has
+$`T=O(N+nL)`$ with $`b\ge L+n+7`$, extending the original
+[two-flag source construction](OPERATOR_SOURCE_COMPILER.md). It pays the precision cost at each
 tree depth. Neither its dirty-bank refinement nor its literal-diagonal
 corollary removes that repeated cost for a general real frame. The
 [conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) instead
@@ -138,6 +158,10 @@ $`O(NL)`$ Clifford gates and $`b\ge L+n+7`$.
 With $`b\ge2(L+n+7)`$, the same grouped construction also gives
 $`O(\sqrt{NL}+L[1+\log_2^*(n+2)]+NL/b)`$ T gates. This banked
 refinement retains the iterated-logarithm precision term at the endpoint.
+
+The same grouped upper bound now holds at $`a=1`$ with the identical
+dirty allocation. This reduces the sufficient clean count without closing
+the selected $`a=2`$ endpoint or proving anything impossible at $`a=0`$.
 
 With a sufficiently large $`a=\Theta(n)`$ clean reservation and
 $`b=\Theta(N)`$, the shared-source compiler instead attains
@@ -277,17 +301,18 @@ an additive lower bound for the full frame.
 ## Revision decision and next bounded pass
 
 The revision retains the theorem frontier above and narrows the next task.
-The parallel lookup work has produced a new same-circuit count/depth
-guarantee. The tree-transport work has produced operator identities and norm
-control, but no improved endpoint compiler. These are different levels of
-completion.
+The parallel lookup work has produced a same-circuit count/depth guarantee.
+The one-clean construction reduces the initialized workspace for the grouped
+T-count theorem and improves the forward weighted component. Tree transport
+has supplied operator identities and norm control. These results leave the
+full-frame linear-T endpoint open.
 
 | Ingredient | What is available | What it does not supply |
 |---|---|---|
 | Parallel dirty lookup | Exact returned indicators and the simultaneous theorem in [the lookup chapter](PARALLEL_DIRTY_LOOKUP.md) | Optimal T-depth, interpolation below its sufficient width, or the selected endpoint allocation |
 | Residual data | $`O(N)`$ scalar tree generators and exact path products | A charged coherent evaluator for those products |
 | Tree transport | Exact Gram matrix and a complete logical unitary for normalized supported columns, without a depth register | An elementary Clifford+T cost improvement |
-| Forward weighted residual | A complete one-signal-flag block with constant normalization and batched native cost $`T=O(L\sqrt N)`$, $`G=O(NL)`$ under its sufficient dirty width | Linear endpoint T-count; this implementation costs $`O(N^{3/2})`$ at $`L=N`$ |
+| Forward weighted residual | A complete one-signal-flag block with constant normalization, $`T=O(N+nL)`$, $`G=O(NL)`$, and $`b\ge L+n+7`$; the second clean flag supplies synthesis work and core return is approximate | Linear endpoint T-count; this implementation costs $`O(N\log N)`$ at $`L=N`$ |
 | Coarse circuit | The retained borrowed compiler gives $`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$ at fixed accuracy and the endpoint dirty allocation; both clean flags can remain untouched | The history unitary, weighted transport, or an arbitrary controlled version of C |
 | High-precision residual circuit | The proved grouped compiler and its complete-input error budget | A constant total precision charge for one global weighted block |
 
@@ -365,7 +390,7 @@ gathering, and the prescribed physical marker reindex are all charged;
 before absorbing polynomial terms the counts are
 $`T=O(L\sqrt N+n^4)`$ and $`G=O(NL+n^4)`$.
 
-At $`L=N`$, this improves the forward component from $`O(N^2)`$ to
+At $`L=N`$, this exact-dirty-return route improves the forward component from $`O(N^2)`$ to
 $`O(N^{3/2})`$ T gates, with $`O(N^2)`$ Clifford gates. The selected
 endpoint allocation $`b=N+n+7`$ satisfies the sufficient width. The signal
 flag is arbitrary data throughout native synthesis; the other clean flag
@@ -374,15 +399,30 @@ the accepted-block error, workspace, and Clifford requirements, but still
 does not establish linear T-count. Neither implementation upper bound is
 a lower bound for this component or the frame.
 
-### Remaining: native precision sharing with an occupied signal flag
+The [one-clean synthesis refinement](WEIGHTED_TRANSPORT_BLOCK.md#6-a-faster-implementation-using-the-remaining-clean-flag)
+uses the other flag as fresh synthesis work while the signal remains arbitrary
+data. It gives the same accepted-block guarantee with
 
-The remaining loss is the product of word precision and square-root table
-size in the borrowed interpreter. Another norm identity would not remove
-that product. The two-clean stage compiler is not a direct substitute:
-the dilation already occupies one signal flag, leaving only one fresh
-initialized bit. The [direct flag-merging word](SOURCE_REUSE_LIMITS.md)
-has an accepted-block error of at least $`1/2`$ for exact sine and cosine.
-That excludes this substitution, not every one-clean construction.
+```math
+T=O(N+nL),\qquad G=O(NL),\qquad b\ge L+n+7.
+```
+
+Here the operator core returns approximately, with its disturbance and clean
+leakage included in a full-isometry error bound; lookup and control helpers
+return exactly. Fixed address sectors absorb the constant precision overhead
+without increasing the dirty threshold. At the selected endpoint the forward
+component now costs $`O(N\log N)`$ T gates. The earlier route remains useful
+when exact dirty return or its different width requirement matters.
+
+### Remaining: sharing precision across the weighted block
+
+The [one-clean conjugated source](ONE_CLEAN_COMPILER.md) resolves the fresh-flag
+obstacle and removes the product of precision and square-root table size.
+Its levelwise use still charges $`O(L)`$ precision work at each of n levels.
+The next target is to share that precision work across the weighted operator.
+The older [direct flag-merging word](SOURCE_REUSE_LIMITS.md) still has an
+accepted-block error of at least $`1/2`$ for exact sine and cosine; the new
+construction uses a different word and does not invalidate that scoped witness.
 
 The cheap coarse frame remains available and needs no reconstruction.
 The next attempt should synthesize the unnormalized weighted operator
@@ -405,7 +445,8 @@ Optimal T-depth and stronger unrestricted lower bounds remain separate
 projects. A new lower-bound attempt needs an invariant preserved under
 arbitrary Clifford interlayers and returned dirty helpers. Practical
 constants and end-to-end emission also remain separate from this endpoint
-decision. No improved full-frame resource theorem is claimed by this component audit.
+decision. The one-clean full-frame theorem improves the clean requirement;
+this weighted-component refinement does not improve the full-frame T-count.
 
 ## Evidence and remaining implementation work
 

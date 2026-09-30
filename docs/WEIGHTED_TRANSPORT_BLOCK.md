@@ -6,16 +6,22 @@ The forward weighted transport has an explicit constant-normalization
 unitary dilation on one signal flag and the n-qubit logical register.
 A recursive scalar correction makes its marker inputs orthogonal without
 an extra depth register. Its complete rejected-space action is specified.
-Batching the local factors by tree depth gives a native implementation with
-$`T=O(L\sqrt N)`$ and $`G=O(NL)`$, using
-$`b\ge n+\lceil\sqrt N\rceil+7`$ arbitrary borrowed wires.
-At $`L=N`$ its T-count is $`O(N^{3/2})`$. It meets the selected endpoint's
-workspace and Clifford budgets, but misses the $`O(N)`$ T-count target.
-The existing full-frame bound is unchanged.
+With one additional initialized flag, the
+[one-clean rotation compiler](ONE_CLEAN_COMPILER.md) gives this block
+$`T=O(N+nL)`$ and $`G=O(NL)`$, using $`b\ge L+n+7`$ dirty wires.
+Its error includes approximate return of the dirty core; the existing
+signal flag may be occupied throughout the compilation. An alternative
+with exact dirty-work return needs no additional initialized flag and has
+$`T=O(L\sqrt N)`$, $`G=O(NL)`$ when
+$`b\ge n+\lceil\sqrt N\rceil+7`$.
+At $`L=N`$ the first implementation costs $`O(N\log N)`$ T gates.
+The linear-T target and the existing full-frame endpoint bound remain
+unchanged.
 
 This is a block for one weighted residual term, not a complete frame
-compiler. Its native pricing includes the physical marker permutations,
-exact dirty-work return, and the action on both signal-flag sectors.
+compiler. Both native bounds include the physical marker permutations
+and the action on both signal-flag sectors, with their respective
+dirty-work return guarantees stated explicitly.
 The finite matrix checks have dimension at most 32; the native resource
 bound is analytic, not an end-to-end circuit fixture.
 
@@ -492,10 +498,158 @@ $`T,G=O(N(L+n^3))`$ by sharing the native word tables across each depth.
 It supplies no lower bound on the cost of this block and no improvement
 to the existing full-frame endpoint bound.
 
-The existing two-clean stage compiler still cannot simply replace this
-pricing: the signal contains accepted and rejected amplitudes, leaving
-only one fresh initialized flag. The next improvement must exploit more
-structure than this depth batching, or use a different joint construction.
-Combining the forward block with the reverse weighted term, diagonal,
-coarse C, and amplification still requires a full composition proof within
-the same two-clean allocation.
+The implementation above leaves the second clean flag unused and returns
+all dirty work exactly. The following implementation uses that fresh flag
+to reduce the T-count, with approximate core return included in its error.
+
+
+## 6. A faster implementation using the remaining clean flag
+
+The [one-clean addressed primitive](ONE_CLEAN_COMPILER.md#1-contract-and-addressed-primitive)
+changes the native price of the same complete dilation. With precision
+integer q, k free address bits, and p unchanged predicate bits, it uses
+one initialized flag and
+
+```math
+b_{\rm primitive}=q+k+2
+```
+
+arbitrary dirty qubits. Its full-isometry error is less than
+$`30\,2^{-q}`$, its T-count is $`O(2^k+q+p^2)`$, and its Clifford
+count is $`O(2^kq+q+p^2)`$. The core occupies $`q+1`$ dirty qubits,
+the table uses k dirty selectors, and one dirty helper supports the
+predicate-controlled gates. The selectors and helper return exactly;
+return of the core and initialized flag is included in the error. On an
+inactive predicate the actual circuit is identity on its entire input
+space, including an occupied flag and arbitrary core inputs.
+
+Apply this primitive to the fixed Euler templates of Section 5. The
+logical rotation target can be a mode bit or the occupied signal flag.
+Its one initialized flag is the second external clean qubit, not that
+logical target. For each template the unchanged predicate consists of
+the outer zero bits and the other mode bit's selected value. An Rz
+rotation is obtained by fixed Clifford conjugation of the same Ry
+primitive. All earlier packing, gathering, and physical marker
+permutations remain exact and fully charged. No terminal-phase gauge or
+assumption that a rejected signal sector is empty is needed.
+
+### A fixed sector split preserves the exact dirty threshold
+
+The constant number of templates requires a constant precision allowance.
+Increasing the core alone would exceed the specified
+$`b=L+n+7`$ threshold. A fixed sector split supplies the needed room
+without losing accuracy.
+
+Choose an absolute constant J bounding the number of rotation templates
+per depth, including root mixing at depth zero. Set
+
+```math
+C=\left\lceil\log_2(30\cdot512J)\right\rceil,\qquad
+K=C-5,\qquad q_d=L+n-d+C.
+```
+
+These are fixed construction constants except for $`q_d`$; take
+$`J\ge19`$, so $`K\ge0`$. For a depth $`d\ge K`$, select K of its
+address bits as sector literals and use the other
+$`k=d-K`$ bits as the free table address. Process the $`2^K`$ sectors
+in turn, adding the selected literals to the template's logical predicate.
+The dirty requirement in every sector is exactly
+
+```math
+(q_d+1)+(d-K)+1
+=L+n+C-K+2=L+n+7.
+```
+
+The source, selector, and helper roles therefore fit the stated pool
+without borrowing the occupied signal or another initialized register.
+The number of sector literals is constant, and the total predicate
+length remains $`O(n)`$.
+
+These sector errors take a maximum, rather than a sum. To see why, the
+primitive preserves each sector's address bits, and its actual action on
+every other sector is exactly identity on the complete flag/core space.
+On any one invariant address sector, only its own circuit acts, even if
+that circuit leaves small initialized-flag leakage. Consequently the
+product over the sectors has full-isometry error bounded by the largest
+sector error. This argument uses the complete inactive action, not merely
+an identity accepted block. It also explains why the sector split needs no
+additional factor $`2^K`$ in precision.
+
+For $`d\lt K`$, use the direct native borrowed-sector echo from Section 5
+on each row, to error at most
+$`\eta 2^{d-n}/(512J)`$ per template. There are fewer than $`2^K`$
+rows in all such shallow layers, an absolute constant. Their native word
+length is $`O(L+n)`$, their predicate cost is $`O(n^2)`$, and only a
+fixed number of exactly returned borrowed helpers are needed. Root mixing
+is included in this direct implementation. This handles all small n as
+well, without weakening the dirty threshold. The constants need not make
+this split advantageous for small registers.
+
+### Full-input error and total cost
+
+For every compiled deep template,
+
+```math
+30\,2^{-q_d}
+\le\frac{\eta\,2^{d-n}}{512J}.
+```
+
+Let $`J_{\rm fresh}`$ initialize only the second external flag, leaving
+the first signal, the logical register, and all dirty wires arbitrary.
+If $`U'`$ is the chosen exact dilation of the algebraic target from
+Section 4, the complete native implementation V satisfies
+
+```math
+\bigl\|VJ_{\rm fresh}
+-J_{\rm fresh}(U'\otimes I_b)\bigr\|
+\lt\frac{\eta}{256}.
+```
+
+Indeed, sum the template errors over depth, using the maximum over address
+sectors within a template. In the full-isometry hybrid, each ideal
+preceding template returns the fresh flag and dirty core; deviations from
+actual preceding templates are propagated by the subsequent actual
+unitaries. This includes core disturbance, signal-one inputs, arbitrary
+references, and initialized-work leakage. It does not assume exact work
+return between approximate stages. All inverse calls are actual unitary
+inverses. Adding the preprocessing error of Section 4 gives accepted-block
+error below $`\eta/128`$ on the two-flag interface.
+
+The fixed number of sectors changes only absolute constants. At each
+deep depth the costs are
+
+```math
+T_d=O(2^d+L+n-d+n^2),\qquad
+G_d=O\!\left(2^d(L+n-d)+L+n-d+n^2\right).
+```
+
+Including shallow direct synthesis, root mixing, exact packing, and the
+$`O(n^4)`$ physical reindexings yields
+
+```math
+\begin{aligned}
+T&=O(N+nL+n^4)=O(N+nL),\\
+G&=O(NL+n^4)=O(NL).
+\end{aligned}
+```
+
+Here $`n^4=O(2^n)=O(N)`$. The complete result is therefore
+
+```math
+b\ge L+n+7,\qquad a=2,\qquad
+T=O(N+nL),\qquad G=O(NL).
+```
+
+One of these two flags belongs to the logical dilation; the other is the
+fresh work flag used by the native rotation primitive. This statement
+preserves the occupied first flag's complete unitary action up to the
+full-isometry error above. It differs from Section 5's guarantee: the
+native source core is returned approximately, not exactly.
+
+At $`L=N`$, the bound is $`T=O(N\log N)`$, $`G=O(N^2)`$, within
+$`b=N+n+7`$. It improves the native cost of this component while retaining
+a separate precision charge at each depth. It does not improve the
+existing $`O(N\log^*N)`$ full-frame bound or close the $`O(N)`$
+endpoint. Combining the forward block with the reverse weighted term,
+diagonal, coarse C, and amplification still requires a full composition
+proof within the same two-clean allocation.

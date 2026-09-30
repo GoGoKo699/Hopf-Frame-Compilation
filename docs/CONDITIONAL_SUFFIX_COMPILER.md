@@ -2,6 +2,10 @@
 
 [Open endpoint](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Grouped residuals](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
 
+[Section 10](#10-the-grouped-bounds-need-only-one-external-clean-qubit) extends
+both count bounds to one external clean qubit. Sections 1–9 retain the
+original two-clean construction and supply the group proof it reuses.
+
 The logical suffix of a Hopf group is zero on the sector where that group
 acts. It can supply temporary initialized workspace when every actual
 subroutine is identity on the inactive sector. A decomposition of the
@@ -680,3 +684,154 @@ iterated-logarithmic multiplicity on the precision charge. The unrestricted
 matching two-clean frontier, including whether the selected endpoint
 admits $`O(N)`$ T gates, remains open. No optimal T-depth, optimal
 Clifford-count, or literature-priority claim is established by this note.
+
+## 10. The grouped bounds need only one external clean qubit
+
+The [one-clean rotation primitive](ONE_CLEAN_COMPILER.md) removes the
+second external clean qubit from the grouped construction. Under the same
+complete-frame and certified-input assumptions, put $`B_0=L+n+7`$.
+For every $`a\geq1`$ and $`b\geq B_0`$, there is a compiler with
+
+```math
+\|VJ_a-J_a(W\otimes I_b)\|\leq\eta,
+\qquad
+T=O\bigl(N+L\ell_*(n)\bigr),\qquad G=O(NL).
+```
+
+For $`b\geq2B_0`$, the same one-clean construction gives
+
+```math
+T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
+\qquad G=O(NL).
+```
+
+Only one external clean qubit is used; further clean qubits may be left
+untouched. The changes are a private-work relocation and a different
+compiler for the fixed deepest tail. The column forests, complex coarse
+words, four phase components, and shared scalar blocks of Sections 2–5
+remain unchanged.
+
+### Group workspace and conditioning
+
+Keep the sole external clean qubit as $`h=[\mathrm{suffix}=0]`$.
+Move the scalar flag that Section 4 placed on the second external qubit
+into the active suffix, alongside the distinct atom flag, mode, label,
+and temporary work. The private initialized reservation is now
+
+```math
+w_g\leq A\log_2(s+2)+B+1.
+```
+
+Choose the same fixed $`C_1`$ sufficiently large and increase the fixed
+multiple-of-four threshold $`r_0`$ until $`w_g\leq r`$ for every
+group. This consumes one additional suffix bit, not an additional external
+qubit. On $`h=1`$ every private bit is initialized; on $`h=0`$ the complete
+conditioned subroutines remain exactly identity on arbitrary suffix and
+dirty inputs. The scalar and atom flags remain distinct, so the accepted
+product and actual reverse words in Section 4 are still valid.
+
+The active reflection in Section 5 now tests the entire private suffix,
+including its scalar flag. It still costs $`O(r^2)`$ Toffolis using a
+returned borrowed local bit. The external $`Z_h`$ supplies the same literal
+amplification sign. Applying the actual coarse circuit and reversing the
+predicate computation gives the same group error $`10\,2^{-m_g}`$.
+The argument includes suffix leakage and arbitrary dirty references.
+
+The dirty core and query address are unchanged:
+
+```math
+m_g=L+\lfloor r/4\rfloor+8,
+\qquad
+k_g=n-r+\log_2K+O(1),
+\qquad
+m_g+k_g+O(1)\leq B_0.
+```
+
+The last inequality follows from the same
+$`L+n-3r/4+r/C_1+O(1)`$ estimate after increasing $`r_0`$.
+No suffix bit counted as private clean work is reused as a dirty core,
+selector, or helper. The source controls have bounded size as before;
+relocating their scalar control does not introduce a depth-dependent
+source multiplicity. The coefficient tables still have $`O(s2^e)`$
+rows and $`m_g`$ output bits. The coarse interpreter reuses returned
+private work and the same dirty selector pool.
+
+### The one-clean tail fits the exact dirty reservation
+
+For a reserved layer at depth d, let $`r=n-d-1`$ and use the new
+primitive with precision parameter and source-core width
+
+```math
+q_d=L+n-d+5=L+r+6,
+\qquad m_d=q_d+1.
+```
+
+Its one clean signal flag is the sole external clean qubit. It uses d
+dirty table selectors and one dedicated arbitrary helper, so its complete
+dirty reservation is exactly
+
+```math
+m_d+d+1=L+n+7=B_0.
+```
+
+The suffix remains logical data in these tail stages. Conditional source
+centers and the actual inverse words give exact inactive action; no suffix
+bit is assumed initialized. Each stage has complete-isometry error
+strictly below $`30\,2^{-q_d}`$. Consequently all reserved tail layers
+contribute less than
+
+```math
+30\sum_{r\geq0}2^{-L-r-6}
+=\frac{15}{16}\,2^{-L}.
+```
+
+If $`n\leq r_0`$, compile all layers this way, so no group or extra
+private-work assumption is needed. Otherwise the group errors still sum
+to at most
+
+```math
+\frac{80}{256}\,2^{-L-r_0/4}
+\lt\frac1{16}\,2^{-L}
+```
+
+when the chosen threshold also satisfies $`r_0\geq12`$. Thus the total
+error is strictly below $`2^{-L}\leq\eta`$. Full-isometry telescoping
+uses the prescribed shallow-to-deep execution order. It propagates earlier
+leakage by actual unitaries and does not assume an intermediate reset of
+the external flag, private suffix, or dirty core.
+
+### Resource sums and additional dirty banks
+
+The group counts of Sections 7–8 are unchanged. The one-clean primitive
+uses a constant number of source and coefficient-query calls per tail
+stage. For the fixed number of reserved depths, its unbanked counts sum
+to $`O(N+L)`$ T gates and $`O(NL)`$ Clifford gates, including the
+charged suffix predicates. The finitely bounded case $`n\leq r_0`$
+obeys the same estimates with constants depending only on $`r_0`$.
+
+When $`b\geq2B_0`$, reserve the same disjoint base pool of $`B_0`$
+dirty wires and use the remaining $`b-B_0\geq b/2`$ for word banks.
+Both $`m_g`$ and $`m_d`$ fit in the base reservation and hence in the
+additional bank pool. A tail table has $`S_d=2^d`$ rows; applying the
+existing exact banked query to each of its constantly many scalar tables
+costs
+
+```math
+O\!\left(\sqrt{S_dm_d}+m_d+\frac{S_dm_d}{b}\right)
+```
+
+T gates and $`O(S_dm_d)`$ Clifford gates. Banks and selectors return
+exactly on arbitrary inputs. The two Pauli-mask tables are queried
+sequentially and reuse those returned banks; their output is the dirty
+core itself, not a fresh initialized program word. Actual inverse calls
+use the same reservation. The fixed tail therefore contributes
+$`O(\sqrt{NL}+L+NL/b)`$ T gates and $`O(NL)`$ Clifford gates.
+Combining it with the unchanged group sums proves both displayed bounds.
+
+For the fixed one-clean budget $`a=1`$, total width is
+$`n+1+b=\Theta(b)`$ in the banked regime. The existing unrestricted
+lower bound therefore makes the banked upper bound matching under the
+same sufficient conditions $`L\ell_*(n)^2\leq N`$ or
+$`b\leq N/\ell_*(n)`$. This extends the clean-workspace range; it
+does not remove the iterated logarithm at $`L=N`$ or establish an optimal
+T-depth bound.

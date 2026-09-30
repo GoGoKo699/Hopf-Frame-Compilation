@@ -331,7 +331,7 @@ At a fixed parameter value, a full-isometry error can bound the bias of the
 This does not differentiate the compiled Clifford+T word as a function of the
 parameters and does not prove optimal gradient-query complexity.
 
-## 11. What the two-clean construction adds
+## 11. Operator sources and the one-clean refinement
 
 The [operator-source compiler](OPERATOR_SOURCE_COMPILER.md)
 uses two initialized flags and an arbitrary dirty bank. Full-space
@@ -379,6 +379,46 @@ charged streaming lookup. The contribution is this complete-workspace
 realization for the prescribed residual structure, not a new generic LCU
 principle or an assumed QRAM interface.
 
+### One initialized flag
+
+The [one-clean compiler](ONE_CLEAN_COMPILER.md) retains the established
+Clifford-loader and dirty-lookup ingredients. Its additional construction
+conjugates one scalar-source block by another, routing their rejected
+components through different logical Pauli operators. The Clifford
+anticommutator reduces the accepted block to a real rotation with two
+programmable scalar coefficients. A head coefficient and two geometric
+tails supply those coefficients. The standard paired-Majorana algebra and
+its rotations are recalled in
+[Bravyi, Section II, Eqs. (2)–(5)](https://arxiv.org/pdf/quant-ph/0404180).
+The local source packs both tails into essentially one dirty qubit per
+accuracy bit. The
+contribution is this native source and conjugated block word, with its
+complete-input error and workspace accounting, not Majorana operators,
+Clifford-algebra overlap identities, or source conjugation in general.
+
+At the fixed amplitude $`\beta=\sin(\pi/10)`$, two amplification
+iterations use five forward or inverse block calls. The amplification
+mechanism is inherited from
+[Brassard–Høyer–Mosca–Tapp, Section 2, Eqs. (7)–(8)](https://arxiv.org/pdf/quant-ph/0005055)
+and the oblivious block setting above. The local proof verifies its literal
+phase and complete-isometry error for the programmed source, including dirty
+core return; it does not claim a new amplitude-amplification principle.
+
+The real-frame baseline and grouped bounds therefore require only
+$`a\ge1`$, with the same $`b\ge L+n+7`$ dirty reservation. Their
+banked refinements retain the doubled dirty threshold. A flag-only Pauli
+routing also gives one-clean literal diagonals and, through the retained
+certified Euler decomposition, complete one-target U(2) multiplexors.
+These extensions do not lower the proved full-frame endpoint T count or
+extend the separately proved two-clean T-depth schedules.
+
+The same primitive prices the
+[weighted forward component](WEIGHTED_TRANSPORT_BLOCK.md) at
+$`O(N+nL)`$ T gates using its occupied signal and one fresh initialized
+flag. The core's approximate return is included in the error. The earlier
+$`O(L\sqrt N)`$ route remains useful for its exact dirty-work return.
+Neither component bound removes the full-frame endpoint gap.
+
 The [source map](SOURCE_MAP.md) gives exact theorem numbers and local consumers.
 The comparisons identify dependencies and specific additional constructions;
 they do not certify priority.
@@ -419,47 +459,48 @@ remaining ancillas can be dirty. Theorem 4 removes ancillas with a cost
 of order $`NL+Nn`$, under its stated typical-target guarantee. These are
 channel-distance results with additional restrictions in the matching
 leading-constant lower bound. They do not establish a literal-phase,
-two-clean implementation for every supplied table.
+constant-clean implementation for every supplied table.
 
 GKW's diagonal proof likewise computes a precision-length instruction word
 into an initialized register, then applies that word and uncomputes it. LKS
 can replace its lookup scratch with dirty banks, but an arbitrary dirty
-output word is not a known instruction word. The two-clean construction
-avoids that instruction register by using a full-space operator identity on
-the dirty core.
+output word is not a known instruction word. The operator-source constructions
+avoid that instruction register by using full-space operator identities on
+the dirty core; the one-clean refinement changes the scalar-block word.
 
 This distinction already gives a result beyond the Hopf family. For **every
 literal diagonal** on $`n`$ qubits, the
-[operator-source proof](OPERATOR_SOURCE_COMPILER.md) establishes
+[one-clean proof](ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors) establishes
 
 ```math
-a=2,\quad b\ge2(L+n+5),\qquad
+a=1,\quad b\ge2(L+n+7),\qquad
 T=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
 \qquad G=O(NL).
 ```
 
 The upper bound includes approximate joint return of the dirty operator
-core; lookup banks and selectors return exactly. Since $`n+2+b=\Theta(b)`$
+core; lookup banks and selectors return exactly. Since $`n+1+b=\Theta(b)`$
 in this range, GKW's diagonal lower bound and LKS-style finite-width counting
-give the stated worst-case match. At $`L=N`$ and $`b=2(N+n+5)`$ this is
-$`\Theta(N)`$ T count with two clean qubits. This diagonal endpoint is
+give the stated worst-case match. At $`L=N`$ and $`b=2(N+n+7)`$ this is
+$`\Theta(N)`$ T count with one clean qubit. This diagonal endpoint is
 settled by the retained proof, whereas the corresponding complete-frame
 endpoint still has a gap between $`\Omega(N)`$ and
 $`O(N\ell_*(n))`$. The broader scientific contribution
 is therefore a precision/workspace compiler for a standard operator family,
 together with the structured complete-frame extensions. It is not a claim
-that the entire two-clean frame frontier is matched.
+that the entire constant-clean frame frontier is matched.
 
-The same proof now covers **arbitrary complete one-target U(2)
-multiplexors**, with $`N=2^n`$ blocks, two initialized flags, and
-$`b\ge2(L+n+7)`$ dirty qubits, at
-$`\Theta(\sqrt{NL}+L+NL/(n+3+b))`$ T gates. Four addressed Euler
-factors suffice; their implementation reuses the flags and dirty core with
-all return error included. The [multiplexor corollary](OPERATOR_SOURCE_COMPILER.md#81-general-one-qubit-multiplexors-with-two-clean-qubits)
-handles certified matrix-entry input through finite approximate Euler search,
+The same refinement covers **arbitrary complete one-target U(2)
+multiplexors**, with $`N=2^n`$ blocks, one initialized flag, and
+$`b\ge2(L+n+9)`$ dirty qubits, at
+$`\Theta(\sqrt{NL}+L+NL/b)`$ T gates. Four addressed Euler
+factors suffice; their implementation reuses the flag and dirty core with
+all return error included. The [one-clean corollary](ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
+uses the retained certified matrix-entry procedure through finite approximate
+Euler search,
 so no nonsingular-chart or exact-zero promise is introduced. This directly
 addresses the complete multiplexor task in the GKW and Yamazaki–Akibue
-comparisons, while supplying the distinct two-clean guarantee. It does not
+comparisons, while supplying the one-clean guarantee. It does not
 improve their leading constants, and its general classical coordinate search
 is not claimed efficient. It also does not combine all Hopf tree depths into
 one jointly charged precision source.
@@ -468,7 +509,8 @@ one jointly charged precision source.
 [Vasconcelos–Gilyén, arXiv:2507.07900v2](https://arxiv.org/html/2507.07900v2)
 give an ancilla-uncomputation procedure that still queries the original
 block encoding on its initialized work. Thus it reduces retained work
-between calls, not the initial peak-clean requirement to two qubits. Their
+between calls, not the initial peak-clean requirement to a constant number
+of qubits. Their
 exact-product logarithmic ancilla lower bound is for the specified multiple
 coherent measurement circuit class. Their approximate compression theorem
 requires near-identity supplied dilations, not merely near-identity accepted
@@ -483,7 +525,7 @@ bounds; it is not a constant-clean unitary implementation theorem.
 improve dirty-QROM constants using SelectCopy and shared work across bit
 packets. The output instruction register remains initialized in their
 construction. These improvements preserve the asymptotic lookup tradeoff
-used here and do not supply the two-clean diagonal compiler. We claim no
+used here and do not supply the one-clean diagonal compiler. We claim no
 improvement to their constant factors.
 
 ## References highlighted here
@@ -515,6 +557,9 @@ improvement to their constant factors.
 - G. H. Low, V. Kliuchnikov, and L. Schaeffer,
   [“Trading T gates for dirty qubits in state preparation and unitary synthesis”](https://arxiv.org/html/1812.00954v2),
   *Quantum* **8**, 1375 (2024).
+- G. Brassard, P. Høyer, M. Mosca, and A. Tapp,
+  [“Quantum Amplitude Amplification and Estimation”](https://arxiv.org/pdf/quant-ph/0005055),
+  arXiv:quant-ph/0005055, Section 2, Eqs. (7)–(8).
 - D. W. Berry, A. M. Childs, R. Cleve, R. Kothari, and R. D. Somma,
   [“Simulating Hamiltonian dynamics with a truncated Taylor series”](https://arxiv.org/pdf/1412.4687),
   *Physical Review Letters* **114**, 090502 (2015), Eqs. (11)–(15).

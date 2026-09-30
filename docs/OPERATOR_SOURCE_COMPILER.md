@@ -1,5 +1,9 @@
 # A compiler from an operator source on dirty qubits
 
+The [one-clean extension](ONE_CLEAN_COMPILER.md) now gives the real-frame
+baseline and grouped bounds with one initialized qubit. This chapter retains
+the original two-flag construction and its independently priced corollaries.
+
 Two initialized qubits and a precision-sized bank of arbitrary dirty
 qubits suffice for the following full-frame upper bound. The construction
 uses a linear combination of anticommuting Pauli operators to encode
@@ -52,7 +56,7 @@ bound, where $`\ell_*(n)=1+\log_2^*(n+2)`$ and the iterated logarithm
 counts repeated base-two logarithms until the value is at most one.
 At $`L=N`$ this is $`O(N\log_2^*N)`$. Neither construction establishes
 $`O(N)`$ T count, the same result for every constant prefactor in
-$`b=\Theta(N)`$, or a bound for fewer than two initialized qubits.
+$`b=\Theta(N)`$, or, by themselves, a bound for fewer than two initialized qubits.
 
 ## 1. The operator source and its exact native circuit
 

@@ -448,10 +448,12 @@ transport misses necessary mixed terms. Thus the remaining target is a
 jointly charged block for the weighted operator, including its occupied
 flags and literal inverse, rather than classical compression alone.
 The [forward weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md)
-now provides a complete one-signal-flag dilation with level-batched native
-synthesis: $`T=O(L\sqrt N)`$ and $`G=O(NL)`$ under its sufficient
-dirty width. Its $`O(N^{3/2})`$ endpoint T-count still misses the linear
-target; it is a component construction, not a complete frame compiler.
+now provides a complete one-signal-flag dilation with native synthesis using
+the second flag as fresh work: $`T=O(N+nL)`$, $`G=O(NL)`$, and
+$`b\ge L+n+7`$, with approximate core return included in the error.
+Its $`O(N\log N)`$ endpoint T-count still misses the linear target;
+it is a component construction, not a complete frame compiler. The earlier
+$`O(L\sqrt N)`$ route retains exact dirty return at its stated width.
 
 ## 4. Consequence for the research direction
 
@@ -521,9 +523,11 @@ $`B_{\rm merge}=(I-JD_s)/2`$. Its amplified accepted block is
 
 which is not identity.
 
-This calculation excludes only this direct merged-flag word. It is not a
-lower bound for arbitrary one-clean-qubit rotation compilers, nor does it
-exclude a different unitary construction using the occupied signal flag.
+This calculation excludes only this direct merged-flag word. The
+[one-clean compiler](ONE_CLEAN_COMPILER.md) uses a different conjugated
+scalar-source word and cancels the dirty terms through a second overlap.
+Thus the diagnostic is not a one-clean lower bound; the constructive
+replacement is now explicit.
 
 ### A scoped diagnostic for Pauli routing of rejected components
 
