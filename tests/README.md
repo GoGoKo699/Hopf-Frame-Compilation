@@ -25,6 +25,7 @@ theorem by numerical extrapolation.
 | [`test_decoders.py`](test_decoders.py) | Do direct parity, histogram, Walsh–Hadamard, and direct phase-record decoders agree? |
 | [`test_approximation_contract.py`](test_approximation_contract.py) | Actual-adjoint bias, complex phase records, reflection sums, finite weights, and conditional means with correlated dirty reuse |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
+| [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_provenance.py`](test_provenance.py) | Are upstream commits, source roles, and local lineage recorded consistently? |
 | [`test_literature_policy.py`](test_literature_policy.py) | Does the active proof use one compiler framework and maintain the declared contribution boundary? |
 | [`test_reviewer_narrative.py`](test_reviewer_narrative.py) | Do the primary reading route, diagrams, links, terminology, and source-version statements remain coherent? |
@@ -50,8 +51,10 @@ The following checks are especially useful when modifying the scientific code:
     after intermediate leakage.
 
 All exact-frame, resource, QBP, and two-clean compiler checks are retained.
-Exploratory endpoint investigations are preserved in repository history;
-finite checks for those excluded constructions are outside this suite.
+Earlier exploratory endpoint constructions are preserved in repository
+history; their finite checks are outside this suite. The focused
+source-reuse checks above accompany the current open-problem note and
+preserve its explicit interface restrictions.
 
 ## Run the suite
 

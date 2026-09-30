@@ -38,6 +38,13 @@ theorem's asymptotic accuracy. Separate fixtures verify general U(2)
 multiplexor Euler order, address-dependent phases, and four-stage composition,
 as well as the optimal exact source words and Pauli-transfer witnesses.
 
+The [source-reuse limits](SOURCE_REUSE_LIMITS.md) have
+[separate finite checks](../tests/test_source_reuse_limits.py) for nilpotent
+contractions, arbitrary encoding bases, dirty-dimension independence, and
+transformed-mask operator identities. Counterexamples test why nilpotence
+and complete-output accuracy cannot be omitted. These support the scoped
+analytic restrictions; they do not establish a full-frame impossibility.
+
 ## 2. What is represented locally
 
 | Component | Local representation | Principal executable check | Imported ingredient |

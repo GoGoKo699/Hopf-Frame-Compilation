@@ -67,6 +67,24 @@ cannot be concatenated as unamplified blocks and treated as a product of their
 accepted actions. Extra initialized history would also change the two-clean
 budget. This observation rules out that inference, not every global design.
 
+## Limits of two source-reuse shortcuts
+
+The [source-reuse limits](SOURCE_REUSE_LIMITS.md) give two more precise
+restrictions on natural proposals for removing the repeated precision cost:
+
+- A nilpotent carried contraction cannot act as an exponentially accurate
+  scalar on an encoding of every arbitrary dirty input using only two
+  initialized qubits. The required initialized width is at least
+  $`\log_2 L-O(1)`$ for that interface, regardless of dirty width.
+- Pulling the common operator-source basis change outside the stream
+  transforms the programmed masks. An allowed one-bit transformed mask
+  already has linear exact and fine-accuracy T cost.
+
+Both statements concern specified intermediate interfaces. They neither
+make separate source costs additive nor strengthen the unrestricted
+$`\Omega(N)`$ full-frame lower bound. A jointly synthesized global
+block can avoid those interfaces.
+
 ## A sufficient construction to seek
 
 At the stated endpoint, it would suffice to construct one actual unitary $`Q`$
