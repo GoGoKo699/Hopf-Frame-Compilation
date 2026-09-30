@@ -1,4 +1,4 @@
-"""Bounded diagnostics for Pauli-routed scalar-source leakage.
+"""Bounded diagnostics for scalar-source flag merging and routed leakage.
 
 These are scalar coefficient filters, not a whole-frame half-unitary
 construction. Every routed stage retains its own charged source calls.
@@ -68,6 +68,80 @@ def _routed_stage(pauli, logical_rotation, projector, coefficient, odd):
 
 
 class SourceMergeTests(unittest.TestCase):
+    def test_direct_merged_flag_native_word_all_dirty_inputs(self):
+        """One flag cannot directly supply both coefficient selection roles."""
+        width, target, flag = 3, 3, 4
+        source, _, amplitudes = _operator_source(width)
+        source_word = _source_word(width)
+        controlled = _adjoint(source_word) + [('CX', flag, 0)] + source_word
+        negative = [('X', flag)] + controlled + [('X', flag)]
+        phase_y = X @ Z
+        identity_core = np.eye(8)
+        identity_data = np.eye(16)
+        # Chronological CZ then CX gives the literal controlled XZ.
+        controlled_phase_y = [('H', target), ('CX', flag, target),
+                              ('H', target), ('CX', flag, target)]
+        identity_case = None
+        for cosine_bits, sine_bits in itertools.product(
+                itertools.product((0, 1), repeat=width), repeat=2):
+            with self.subTest(cosine_bits=cosine_bits, sine_bits=sine_bits):
+                masks = [[('Z', j) for j, bit in enumerate(bits) if bit]
+                         for bits in (cosine_bits, sine_bits)]
+                # Flag 0: N_c then M. Flag 1: M then N_s, then target XZ.
+                # Each controlled source is an actual Clifford+T word;
+                # surrounding each one by its mask controls the masked source.
+                word = ([('H', flag)]
+                        + masks[0] + negative + masks[0] + negative
+                        + controlled + masks[1] + controlled + masks[1]
+                        + controlled_phase_y + [('H', flag)])
+                circuit = _word_matrix(5, word)
+                np.testing.assert_allclose(circuit.conj().T @ circuit,
+                                           np.eye(32), atol=ATOL, rtol=0)
+                accepted = circuit[:16, :16]
+                coefficients = [1 - 2 * np.dot(amplitudes ** 2, bits)
+                                for bits in (cosine_bits, sine_bits)]
+                masked = [_word_matrix(width, mask) @ source
+                          @ _word_matrix(width, mask) for mask in masks]
+                odd_c, odd_s = [(source @ item - item @ source) / 2
+                                for item in masked]
+                cosine, sine = coefficients
+                intended = np.kron((cosine * np.eye(2) + sine * phase_y) / 2,
+                                   identity_core)
+                unwanted = (np.kron(np.eye(2), odd_c)
+                            - np.kron(phase_y, odd_s)) / 2
+                np.testing.assert_allclose(accepted, intended + unwanted,
+                                           atol=ATOL, rtol=0)
+                error = accepted - intended
+                squared = error.conj().T @ error
+                target_trace = np.trace(squared.reshape(2, 8, 2, 8),
+                                        axis1=0, axis2=2) / 2
+                bound_squared = max(0, (2 - cosine ** 2 - sine ** 2) / 4)
+                np.testing.assert_allclose(target_trace,
+                                           bound_squared * identity_core,
+                                           atol=ATOL, rtol=0)
+                self.assertGreaterEqual(np.linalg.norm(error, 2) + ATOL,
+                                        np.sqrt(bound_squared))
+                if abs(cosine ** 2 + sine ** 2 - 1) < ATOL:
+                    self.assertGreaterEqual(np.linalg.norm(error, 2) + ATOL, .5)
+                if cosine_bits == (0, 0, 0) and sine_bits == (1, 0, 0):
+                    identity_case = circuit, accepted
+
+        self.assertIsNotNone(identity_case)
+        circuit, accepted = identity_case
+        np.testing.assert_allclose(accepted.conj().T, accepted,
+                                   atol=ATOL, rtol=0)
+        np.testing.assert_allclose(accepted @ accepted, accepted,
+                                   atol=ATOL, rtol=0)
+        self.assertAlmostEqual(np.trace(accepted).real, 8, delta=ATOL)
+        reflection = np.diag([-1] * 16 + [1] * 16)
+        amplified = -circuit @ reflection @ circuit.conj().T @ reflection @ circuit
+        np.testing.assert_allclose(amplified.conj().T @ amplified,
+                                   np.eye(32), atol=ATOL, rtol=0)
+        np.testing.assert_allclose(amplified[:16, :16], -accepted,
+                                   atol=ATOL, rtol=0)
+        self.assertAlmostEqual(np.linalg.norm(amplified[:16, :16] - identity_data, 2),
+                               2, delta=ATOL)
+
     def test_native_scalar_word_and_source_parity(self):
         source, _, _ = _operator_source(3)
         for signs in itertools.product((0, 1), repeat=3):

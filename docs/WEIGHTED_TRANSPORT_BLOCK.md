@@ -6,15 +6,18 @@ The forward weighted transport has an explicit constant-normalization
 unitary dilation on one signal flag and the n-qubit logical register.
 A recursive scalar correction makes its marker inputs orthogonal without
 an extra depth register. Its complete rejected-space action is specified.
-A conservative native implementation costs
-$`T,G=O(N(L+n^3))`$, hence $`O(N^2)`$ at $`L=N`$.
-It meets the endpoint's workspace and Clifford budgets, but misses the
-$`O(N)`$ T-count target. The existing full-frame bound is unchanged.
+Batching the local factors by tree depth gives a native implementation with
+$`T=O(L\sqrt N)`$ and $`G=O(NL)`$, using
+$`b\ge n+\lceil\sqrt N\rceil+7`$ arbitrary borrowed wires.
+At $`L=N`$ its T-count is $`O(N^{3/2})`$. It meets the selected endpoint's
+workspace and Clifford budgets, but misses the $`O(N)`$ T-count target.
+The existing full-frame bound is unchanged.
 
-This chapter completes one bounded candidate audit. It does not claim that
-quadratic cost is necessary, nor that a block for one residual term already
-compiles the frame. The finite checks use matrices of dimension at most 32;
-the native resource bound is analytic, not an end-to-end circuit fixture.
+This is a block for one weighted residual term, not a complete frame
+compiler. Its native pricing includes the physical marker permutations,
+exact dirty-work return, and the action on both signal-flag sectors.
+The finite matrix checks have dimension at most 32; the native resource
+bound is analytic, not an end-to-end circuit fixture.
 
 ## 1. Why defect-weighted stopping needs a rejection correction
 
@@ -247,56 +250,252 @@ may change discontinuously at a zero; its accepted block has the uniform
 error estimate just proved. The native circuit approximates the selected
 complete algebraic unitary.
 
-## 5. A charged native implementation, and its limitation
+## 5. A native implementation by depth batching
 
-The following is a conservative implementation, not a T-count lower bound.
-Decompose each determinant-one local factor into a constant number of
-two-level SU(2) matrices and then Euler rotations. The pair decomposition
-and basis routing are standard; see
-[Barenco et al., Lemma 4.1 and Section 8](https://arxiv.org/pdf/quant-ph/9503016v1).
-There are $`K=O(N)`$ rotation factors overall. Approximating each to
-$`\eta/(256K)`$ takes $`O(L+n)`$ native word length with the retained
-phase-calibrated one-qubit synthesis primitive.
-
-An arbitrary pair of $`(n+1)`$-bit mode labels can be routed to adjacent
-labels by a Gray path and routed back. It uses $`O(n)`$ multiply-controlled
-X gates, each charged at $`O(n^2)`$ exact Toffolis using an arbitrary
-borrowed helper. For the adjacent pair, use the
-[borrowed-sector echo](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector)
-to implement the conditional rotation. Its actual word
-$`C_x=XQ_x^\dagger XQ_x`$ has the exact cancellation symmetry;
-inactive inputs and borrowed work return exactly. The same construction
-handles an Rz factor by Clifford conjugation. The total per pair is
-$`O(L+n^3)`$ T and Clifford gates. The final output permutation needs at
-most $`2N`$ transpositions, charged by the same routing method.
-
-Hence this native realization has
+**Proposition.** With the preprocessing and constant normalization above,
+suppose $`b\ge n+\lceil\sqrt N\rceil+7`$. There is a coherent
+Clifford+T implementation of this weighted block with
 
 ```math
-T,G=O\!\left(N(L+n^3)\right).
+T=O(L\sqrt N),\qquad G=O(NL).
 ```
 
-The signal flag is part of the data being transformed; it is never assumed
-zero inside a subroutine. The second clean flag remains untouched. Routing
-uses a fixed number of arbitrary borrowed helpers, well within the selected
-dirty allocation, and returns them exactly even with references. The small
-cases with fewer controls use fixed-size controlled circuits directly.
+Its accepted-block error is at most $`\eta/128`$. The signal flag is part
+of the data, with a specified complete unitary action; every borrowed wire
+returns exactly, jointly with arbitrary references. The second clean flag
+is untouched. The proof below first compiles a particular complete unitary
+for the algebraic target chosen in Section 4, then uses that section's
+accepted-block perturbation bound. It does not assume that completions
+vary continuously with the target.
 
-Unitary telescoping bounds the error on the entire signal-flag input space
-by $`\eta/256`$. Adding preprocessing error bounds the accepted-block
-error by $`\eta/128`$, below the proposed $`\eta/64`$ allowance.
-Appending the unused second flag gives the requested two-flag interface.
-At $`L=N`$, $`n^3=O(N)`$, so both counts are $`O(N^2)`$.
-The Clifford target is met; the linear T target is not established.
+### An allocation that can be packed uniformly
 
-The existing two-clean stage compiler cannot simply replace this pricing:
-the signal flag already contains accepted and rejected amplitudes, leaving
-only one fresh initialized flag. That is a limitation of this proposed
-substitution, not a general one-clean impossibility theorem. No claim of
-additive source costs or optimality of the quadratic implementation follows.
+For now use heap logical labels $`0,1,\ldots,N-1`$, with 0 the root input,
+and write a mode as $`(F,v)`$, where F is the signal bit. Physical marker
+reindexing is charged separately below. Choose the continuation slots
 
-The next endpoint improvement must synthesize this structured unitary more
-cheaply, or use a different joint construction. Normalization and a complete
-flag action are now explicit for this component. Combining it with the reverse
-weighted term, diagonal, coarse C, and amplification still requires a full
-composition proof within the same two-clean allocation.
+```math
+c_1=(0,0),\qquad c_v=(1,v)\quad(v>1).
+```
+
+The root rotation acts on $`(0,0),(1,0)`$. At each nonterminal v, order
+its four physical slots as
+
+```math
+c_v,\quad(0,v),\quad(1,2v),\quad(1,2v+1).
+```
+
+The last two slots have not been used before this node. Keep the stop in
+$`c_v`$, put the rejection in $`(0,v)`$, and send the two child
+continuations to $`(1,2v),(1,2v+1)`$. In this physical slot order, use
+the Section 2 completion with output rows reordered as $`(0,3,1,2)`$.
+This is an even three-cycle of the last three rows, so the local factor
+still has determinant one. Its first two columns give exactly the same
+stop, child, and rejection amplitudes as before. Terminal factors use
+$`c_v,(0,v)`$, with stop and rejection in that order. Thus the induction
+of Section 3 applies unchanged. The unused padding mode is $`(1,1)`$.
+
+At a nonterminal depth $`1\le d\le n-2`$, write each node
+$`v=2^d+x`$, with x a d-bit string. Separate the register into signal F,
+$`n-d-2`$ leading logical bits, two bits A and B, and a d-bit suffix.
+The active parent slots have logical form $`0^{n-d-2}01x`$, whereas
+the child slots have $`0^{n-d-2}1xb`$, with signal one. Apply an
+A-controlled right cyclic shift to the last $`d+1`$ logical bits. It
+uses d Fredkins and sends the child suffix $`xb`$ to $`bx`$, while
+leaving parent suffixes unchanged. The four slots now have common suffix
+x and three-bit labels
+
+```math
+(F,A,B)=101,\quad001,\quad110,\quad111.
+```
+
+Apply the fixed three-bit permutation
+$`\pi=(0\ 4\ 7\ 3\ 6\ 2\ 5)`$, fixing label 1. Its images of
+these four labels are $`000,001,010,011`$, respectively. This constant
+permutation has an exact constant-size Toffoli realization: decompose its
+seven-cycle into transpositions and route each pair along a three-bit
+Gray path. Consequently each node is now one two-mode-bit block, addressed
+by x, with all outer bits zero. Pack, apply the block table, and undo the
+packing. The complete packing circuit is a permutation on every input;
+its action outside the selected blocks need not be interpreted as fresh
+workspace. At depth zero, the active labels already are
+$`000,001,110,111`$, so CNOT from A to F suffices. The total packing and
+unpacking cost over all depths is $`O(n^2)`$ exact gates.
+
+### Fixed determinant-one rotation templates
+
+There is a common constant-length two-level decomposition for every local
+SU(4) factor, including singular choices of the prescribed columns. Perform
+QR elimination in the fixed pair order
+
+```math
+(2,3),\ (1,2),\ (0,1),\ (2,3),\ (1,2),\ (2,3).
+```
+
+For a column pair $`(a,b)^{\mathsf T}`$ with
+$`r=\sqrt{|a|^2+|b|^2}>0`$, the determinant-one matrix
+
+```math
+\frac1r\begin{pmatrix}\overline a&\overline b\\-b&a\end{pmatrix}
+```
+
+sends it to $`(r,0)^{\mathsf T}`$. Use identity for a zero pair.
+This eliminates the lower triangle with positive first three diagonal
+pivots. A triangular unitary is diagonal; the final diagonal entry is also
+one because the determinant is one. Reversing the six eliminations
+therefore reconstructs the entire factor, including its phase. Express
+each two-level SU(2) matrix as three Euler rotations
+$`R_zR_yR_z`$, with $`R_z(\theta)=e^{-i\theta Z}`$. This gives at most
+18 fixed rotation templates, whose angles depend on the address x.
+Zero angles pad missing operations. This is the standard two-level/Euler
+construction; see
+[Barenco et al., Lemma 4.1 and Section 8](https://arxiv.org/pdf/quant-ph/9503016v1).
+Here the determinant-one choice removes any separate address-dependent
+scalar-phase gate.
+
+For each template, a fixed permutation of the two mode bits maps its
+selected pair to adjacent binary labels. Such a two-bit permutation is
+Clifford: the affine permutations on two bits are all 24 permutations.
+One mode bit becomes the rotation target, the other the sector control
+$`\beta`$; the d address bits remain unchanged. The outer fixed bits
+form the predicate for the
+[borrowed-sector echo](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector).
+For a requested $`R_y(\theta_x)`$ or $`R_z(\theta_x)`$, synthesize
+$`Q_x`$ for the corresponding quarter-angle rotation up to scalar phase
+and use the actual native word
+
+```math
+C_x=XQ_x^\dagger XQ_x,\qquad
+\det C_x=1,\qquad XC_xX=C_x^\dagger.
+```
+
+Conjugation by X reverses either requested rotation. Thus the same echo
+implements $`C_x^2`$ on the selected sector and exact identity on the
+others. Scalar phases of $`Q_x`$ cancel. The reflection-table interpreter
+applies these determinant-one words with exact dirty-work return; it does
+not use the signal as an initialized helper. The fixed mode permutations
+are undone after each template.
+
+The terminal depth has $`2^{n-1}`$ factors. For $`n\ge2`$, they are
+$`R_z`$ rotations on the signal, addressed by the lower $`n-1`$ logical
+bits and selected by the top logical bit being one. The same echo handles
+this layer; its outer predicate is empty. Root mixing is one selected
+$`R_y`$ rotation. For $`n=1`$, the constant-size two-qubit network can be
+decomposed directly by the same two-level and echo construction, with
+$`O(L)`$ T and Clifford gates.
+
+### Gathering and physical marker reindexing
+
+After the tree, the stop slots are $`(0,0)`$ for node 1 and $`(1,v)`$
+for the other nodes; the padding slot is $`(1,1)`$. Flip F whenever
+$`v\ge2`$, and on the two remaining logical values apply the cycle
+
+```math
+(0,0)\longmapsto(0,1)\longmapsto(1,1)\longmapsto(0,0).
+```
+
+This puts every stop at $`(0,v)`$, padding at $`(0,0)`$, and every
+rejection in the signal-one half. The first operation is an unconditional
+X on F followed by its inverse conditioned on the upper $`n-1`$ logical
+bits being zero. The three-cycle, conditioned on that same zero prefix,
+is CNOT from the low logical bit to F, then X on the low bit controlled
+on F being zero. Each conditional toggle uses the retained
+$`O(n^2)`$ exact-Toffoli construction with an arbitrary borrowed helper.
+Thus gathering costs $`O(n^2)`$ and specifies the entire output
+permutation, including rejected inputs.
+
+The heap labels are not the prescribed physical marker labels. A node
+with binary form $`v=0^r1x`$, where $`|x|=d`$ and $`r=n-d-1`$, has
+physical marker
+
+```math
+\kappa(v)=x10^r,\qquad\kappa(0)=0.
+```
+
+This permutation also has an explicit circuit without initialized work.
+For every d, reverse its d suffix bits conditioned on the prefix being
+$`0^r1`$. These conditions select disjoint invariant subspaces: none of
+the swaps changes the first nonzero bit. Then reverse all n bits
+unconditionally. The result is
+$`0^r1x\mapsto0^r1\mathrm{rev}(x)\mapsto x10^r`$; zero stays zero.
+A prefix-controlled swap of suffix bits a and b is CNOT from a to b,
+then X on a controlled by the prefix and b, then the same CNOT. The
+middle gate costs $`O(n^2)`$ exact Toffolis with one borrowed helper.
+There are $`O(n^2)`$ such swaps, so the reindexing costs $`O(n^4)`$
+T and Clifford gates. Apply its inverse before the heap circuit and its
+forward version after it, independently of the signal. Both permutations
+are therefore charged on the full signal space, not silently absorbed
+into the definition of the block.
+
+### Error, workspace, and resource sums
+
+Let J be an absolute upper bound on the number of rotation templates in
+one depth layer, also allowing for root mixing. For each rotation template
+at depth d choose full selected-sector error at most
+
+```math
+\xi_d=\frac{\eta\,2^{d-n}}{512J},\qquad
+w_d=O(L+n-d).
+```
+
+The retained one-qubit synthesis and exact echo give this error with native
+word length $`w_d`$. Within a template, addresses have orthogonal invariant
+supports, so the table error is the maximum of its row errors. All packing,
+mode routing, and gathering operations are exact. Unitary telescoping over
+the constant number of templates per depth and all depths consequently
+gives a full-unitary error below $`\eta/256`$, on both signal input
+sectors. Together with Section 4's $`\eta/256`$ accepted-block change,
+this is below $`\eta/128`$. No correctness claim depends on the rejected
+sector being unoccupied inside a subroutine.
+
+For a table with $`S=2^d`$ rows, choose a power-of-two number of dirty
+banks within a factor two of $`\sqrt S`$. The exact reflection-table
+interpreter costs
+
+```math
+T_d=O\!\left((L+n-d)2^{d/2}+n^2\right),\qquad
+G_d=O\!\left((L+n-d)2^d+n^2\right).
+```
+
+The additive terms charge the sector predicate toggles. The interpreter
+uses at most d dirty selectors and $`\lceil\sqrt S\rceil`$ dirty
+banks; routing and predicate helpers can be reused after each operation
+returns them. The stated $`n+\lceil\sqrt N\rceil+7`$ dirty allocation
+therefore suffices throughout. The signal and all logical bits are data;
+the second clean flag is never used. Each complete reflection-table interpreter and sector echo returns its
+borrowed wires as an exact identity factor; predicate helpers are restored
+before the next operation. The guarantee therefore extends to inputs
+entangled with external references.
+
+Including the two physical reindexings and all exact routing gives
+
+```math
+\begin{aligned}
+T&=O\!\left(\sum_{d=0}^{n-1}(L+n-d)2^{d/2}+n^4\right)
+  =O(L\sqrt N+n^4)=O(L\sqrt N),\\
+G&=O\!\left(\sum_{d=0}^{n-1}(L+n-d)2^d+n^4\right)
+  =O(NL+n^4)=O(NL).
+\end{aligned}
+```
+
+The sums follow after substituting $`j=n-d`$ and summing the convergent
+geometric series with coefficients $`L+j`$. The last equalities use
+$`N=2^n`$, $`L\ge6`$, and the finite supremum of
+$`n^4/2^{n/2}`$; they do not discard an uncharged permutation. All
+classical table construction and angle evaluation remain separate
+preprocessing, as in Section 4. ∎
+
+At the selected endpoint $`L=N`$, $`b=N+n+7`$, the sufficient dirty
+allocation holds and this block has $`T=O(N^{3/2})`$, $`G=O(N^2)`$.
+This improves the earlier separate-factor implementation
+$`T,G=O(N(L+n^3))`$ by sharing the native word tables across each depth.
+It supplies no lower bound on the cost of this block and no improvement
+to the existing full-frame endpoint bound.
+
+The existing two-clean stage compiler still cannot simply replace this
+pricing: the signal contains accepted and rejected amplitudes, leaving
+only one fresh initialized flag. The next improvement must exploit more
+structure than this depth batching, or use a different joint construction.
+Combining the forward block with the reverse weighted term, diagonal,
+coarse C, and amplification still requires a full composition proof within
+the same two-clean allocation.

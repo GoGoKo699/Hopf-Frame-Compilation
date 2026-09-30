@@ -25,7 +25,7 @@ chapter below.
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Full retained frontier, endpoint dependencies, scoped route limits, and the weighted-block native cost gap |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
-| [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and a quadratic native fallback |
+| [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and level-batched native synthesis |
 
 ## Evidence and sources
 

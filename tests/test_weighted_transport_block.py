@@ -1,9 +1,10 @@
 """Small checks of weighted transport and candidate block completions.
 
 Weighted operators have dimension at most 16 and complete dilations at most
-32. These checks distinguish a bounded operator norm from orthogonal stopping
-columns, and verify a logical one-flag dilation. They do not provide an
-elementary Clifford+T implementation or an asymptotic gate bound.
+32; permutation checks enumerate at most 512 labels. These checks distinguish
+a bounded operator norm from orthogonal stopping columns, and verify logical
+one-flag dilations and their level packing. They do not provide an elementary
+Clifford+T implementation or an asymptotic gate bound.
 """
 from __future__ import annotations
 
@@ -125,6 +126,153 @@ def _dilation_fixtures(height):
     identity = {node: np.eye(2, dtype=complex) for node in range(1, 1 << height)}
     return ((native, generic), (native, singular), (singular, native),
             (generic, generic), (identity, identity))
+
+
+def _swap_bits(value, first, second):
+    if ((value >> first) ^ (value >> second)) & 1:
+        value ^= (1 << first) | (1 << second)
+    return value
+
+
+def _heap_marker_program(height):
+    """Literal guarded suffix reversals, followed by global index reversal."""
+    size = 1 << height
+    result = []
+    for original in range(2 * size):
+        value = original
+        for leading_zeroes in range(height):
+            leading_one = height - leading_zeroes - 1
+            # The signal bit is excluded from the guard. Each guarded suffix
+            # reversal preserves every leading-one prefix, including its own.
+            if (value & (size - 1)) >> leading_one == 1:
+                for low in range(leading_one // 2):
+                    value = _swap_bits(value, low, leading_one - low - 1)
+        for low in range(height // 2):
+            value = _swap_bits(value, low, height - low - 1)
+        result.append(value)
+    return np.array(result)
+
+
+def _level_packing_program(height, depth):
+    """Execute the controlled cyclic shift and a fixed three-bit permutation."""
+    size = 1 << height
+    result = []
+    # Continuation, marker, left child, right child codes become 00, 01, 10, 11.
+    # The unused codes complete the same literal permutation for every level.
+    three_bit_permutation = (4, 1, 5, 6, 7, 0, 2, 3)
+    for original in range(2 * size):
+        value = original
+        if depth == 0:
+            if value & 2:
+                value ^= size
+        else:
+            # A=1 selects the child slots. Move the last child bit b to the
+            # front of x,b, giving b,x and leaving the parent slots untouched.
+            if value & (1 << (depth + 1)):
+                for low in range(depth):
+                    value = _swap_bits(value, low, low + 1)
+            positions = (height, depth + 1, depth)
+            code = sum(((value >> position) & 1) << (2 - index)
+                       for index, position in enumerate(positions))
+            replacement = three_bit_permutation[code]
+            for index, position in enumerate(positions):
+                value &= ~(1 << position)
+                value |= ((replacement >> (2 - index)) & 1) << position
+        result.append(value)
+    return np.array(result)
+
+
+def _heap_gather_program(height):
+    """Gather stop modes using a predicate flag flip and one three-cycle."""
+    size = 1 << height
+    result = []
+    for original in range(2 * size):
+        value = original
+        if (value & (size - 1)) >= 2:
+            value ^= size
+        if (value & (size - 1)) >> 1 == 0:
+            if value & 1:
+                value ^= size
+            if not value & size:
+                value ^= 1
+        result.append(value)
+    return np.array(result)
+
+
+def _batched_riccati_network(height, target, data):
+    """Use packed disjoint level blocks and explicit physical permutations."""
+    weights, _, _, alpha, rho, beta, cross = data
+    size = 1 << height
+    steps, local_gates = [], []
+
+    def append_permutation(mapping):
+        steps.append(np.eye(2 * size, dtype=complex)[np.argsort(mapping)])
+
+    def append_gate(rows, gate):
+        step = np.eye(2 * size, dtype=complex)
+        step[np.ix_(rows, rows)] = gate
+        steps.append(step)
+        local_gates.append(gate)
+
+    physical_map = _heap_marker_program(height)
+    append_permutation(np.argsort(physical_map))
+    accepted = np.sqrt(rho[1]) / alpha
+    rejected = np.sqrt(1 - accepted ** 2)
+    append_gate([0, size], np.array([
+        [accepted, -rejected], [rejected, accepted],
+    ], dtype=complex))
+    for depth in range(height - 1):
+        packing = _level_packing_program(height, depth)
+        append_permutation(packing)
+        for node in range(1 << depth, 1 << (depth + 1)):
+            word = target[node]
+            children = np.sqrt([rho[2 * node], rho[2 * node + 1]])
+            if rho[node] == 0:
+                first = np.array([1, 0, 0, 0], dtype=complex)
+            else:
+                first = np.r_[weights[node], children * word[:, 0],
+                              -cross[node].conjugate() / np.sqrt(beta[node])]
+                first /= np.sqrt(rho[node])
+            second = np.r_[0, children * word[:, 1], np.sqrt(beta[node])] / alpha
+            gate = _complete_special_unitary(first, second)[[0, 3, 1, 2]]
+            carrier = 0 if node == 1 else size + node
+            rows = packing[[carrier, node, size + 2 * node, size + 2 * node + 1]]
+            append_gate(rows, gate)
+        append_permutation(np.argsort(packing))
+    for node in range(size // 2, size):
+        carrier = 0 if node == 1 else size + node
+        phase = weights[node] / abs(weights[node]) if weights[node] != 0 else 1
+        append_gate([carrier, node], np.diag([phase, phase.conjugate()]))
+    append_permutation(_heap_gather_program(height))
+    append_permutation(physical_map)
+
+    network = np.eye(2 * size, dtype=complex)
+    for step in steps:
+        network = step @ network
+    inverse = np.eye(2 * size, dtype=complex)
+    for step in reversed(steps):
+        inverse = step.conj().T @ inverse
+    return network, inverse, local_gates
+
+
+def _six_givens_elimination(unitary):
+    """Fixed QR schedule with determinant-one two-level factors, including zeros."""
+    reduced = unitary.copy()
+    factors = []
+    for column, first, second in ((0, 2, 3), (0, 1, 2), (0, 0, 1),
+                                  (1, 2, 3), (1, 1, 2), (2, 2, 3)):
+        a, b = reduced[first, column], reduced[second, column]
+        norm = np.hypot(abs(a), abs(b))
+        if norm == 0:
+            gate = np.eye(2, dtype=complex)
+        else:
+            gate = np.array([[a.conjugate(), b.conjugate()], [-b, a]]) / norm
+        rows = [first, second]
+        reduced[rows] = gate @ reduced[rows]
+        factor = np.eye(4, dtype=complex)
+        factor[np.ix_(rows, rows)] = gate
+        factors.append(factor)
+    return reduced, factors
 
 
 class WeightedTransportBlockTests(unittest.TestCase):
@@ -345,6 +493,108 @@ class WeightedTransportBlockTests(unittest.TestCase):
                         if fixture == 3:
                             np.testing.assert_array_equal(maps[0], 0)
                             self.assertGreater(actual, 0)
+
+    def test_literal_packing_gather_and_physical_marker_permutations(self):
+        for height in range(1, 9):
+            size = 1 << height
+            with self.subTest(height=height):
+                physical = _heap_marker_program(height)
+                expected = np.array([0] + [_marker(node, height)
+                                           for node in range(1, size)])
+                np.testing.assert_array_equal(physical, np.r_[expected, size + expected])
+                np.testing.assert_array_equal(np.sort(physical), np.arange(2 * size))
+                gather = _heap_gather_program(height)
+                np.testing.assert_array_equal(np.sort(gather), np.arange(2 * size))
+                self.assertEqual(gather[size + 1], 0)
+                self.assertEqual(gather[0], 1)
+                for node in range(2, size):
+                    self.assertEqual(gather[size + node], node)
+                    self.assertEqual(gather[node], size + node)
+                for depth in range(height - 1):
+                    packing = _level_packing_program(height, depth)
+                    np.testing.assert_array_equal(np.sort(packing), np.arange(2 * size))
+                    packed_rows = []
+                    for address in range(1 << depth):
+                        node = (1 << depth) + address
+                        carrier = 0 if node == 1 else size + node
+                        rows = [carrier, node, size + 2 * node, size + 2 * node + 1]
+                        expected_rows = ([0, 1, 2, 3] if depth == 0 else
+                                         [slot * (1 << depth) + address
+                                          for slot in range(4)])
+                        np.testing.assert_array_equal(packing[rows], expected_rows)
+                        packed_rows.extend(packing[rows])
+                    self.assertEqual(len(packed_rows), len(set(packed_rows)))
+
+    def test_batched_one_flag_network_preserves_the_accepted_block_and_actual_inverse(self):
+        for height in (1, 2, 3, 4):
+            size = 1 << height
+            for fixture, (coarse, target) in enumerate(_dilation_fixtures(height)):
+                with self.subTest(height=height, fixture=fixture):
+                    data = _riccati_data(height, coarse, target)
+                    weights, _, _, alpha, _, _, _ = data
+                    network, inverse, gates = _batched_riccati_network(height, target, data)
+                    weighted = np.array([weights[node] for node in range(1, size)])
+                    weighted = weighted[:, None] * _path_matrix(height, target)
+                    np.testing.assert_allclose(
+                        network[:size, :size], _embed_rows(height, weighted) / alpha,
+                        atol=ATOL, rtol=0)
+                    for product in (network.conj().T @ network, inverse @ network,
+                                    network @ inverse):
+                        np.testing.assert_allclose(product, np.eye(2 * size),
+                                                   atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(inverse, network.conj().T,
+                                               atol=ATOL, rtol=0)
+                    for gate in gates:
+                        np.testing.assert_allclose(gate.conj().T @ gate,
+                                                   np.eye(len(gate)), atol=ATOL, rtol=0)
+                        np.testing.assert_allclose(np.linalg.det(gate), 1,
+                                                   atol=ATOL, rtol=0)
+
+    def test_six_fixed_givens_factors_reconstruct_special_unitary_level_blocks(self):
+        fixtures = [np.eye(4, dtype=complex), np.eye(4, dtype=complex)[[1, 2, 0, 3]],
+                    np.diag([1j, -1j, -1, -1])]
+        for height in (2, 3, 4):
+            for coarse, target in _dilation_fixtures(height):
+                data = _riccati_data(height, coarse, target)
+                _, _, gates = _batched_riccati_network(height, target, data)
+                fixtures.extend(gate for gate in gates if len(gate) == 4)
+        for fixture, unitary in enumerate(fixtures):
+            with self.subTest(fixture=fixture):
+                reduced, factors = _six_givens_elimination(unitary)
+                np.testing.assert_allclose(reduced, np.eye(4), atol=ATOL, rtol=0)
+                reconstructed = np.eye(4, dtype=complex)
+                for factor in factors:
+                    np.testing.assert_allclose(np.linalg.det(factor), 1, atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(factor.conj().T @ factor, np.eye(4),
+                                               atol=ATOL, rtol=0)
+                    reconstructed = reconstructed @ factor.conj().T
+                np.testing.assert_allclose(reconstructed, unitary, atol=ATOL, rtol=0)
+
+    def test_selected_completion_can_stay_far_while_accepted_block_tends_to_zero(self):
+        # This concerns these particular completion conventions. It is not a
+        # lower bound on compilers free to choose a different rejected block.
+        alpha = 1 / 16
+        coarse = {1: np.eye(2, dtype=complex)}
+
+        def fixed_alpha_data(target):
+            data = _riccati_data(1, coarse, target)
+            weight = data[0][1]
+            return (data[0], data[1], data[2], alpha,
+                    {1: abs(weight) ** 2, 2: 0.0, 3: 0.0},
+                    {1: alpha ** 2}, {1: 0j})
+
+        for builder in (_riccati_network, _batched_riccati_network):
+            zero, _, _ = builder(1, coarse, fixed_alpha_data(coarse))
+            for angle in (-1e-3, -1e-5):
+                with self.subTest(builder=builder.__name__, angle=angle):
+                    target = {1: _rotation(angle)}
+                    network, _, _ = builder(1, target, fixed_alpha_data(target))
+                    difference = network - zero
+                    np.testing.assert_allclose(np.linalg.norm(difference, ord=2), 2,
+                                               atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(
+                        np.linalg.norm(difference[:2, :2], ord=2),
+                        abs(np.sin(angle)) / alpha, atol=ATOL, rtol=0)
 
 
 if __name__ == "__main__":

@@ -287,7 +287,7 @@ completion.
 | Parallel dirty lookup | Exact returned indicators and the simultaneous theorem in [the lookup chapter](PARALLEL_DIRTY_LOOKUP.md) | Optimal T-depth, interpolation below its sufficient width, or the selected endpoint allocation |
 | Residual data | $`O(N)`$ scalar tree generators and exact path products | A charged coherent evaluator for those products |
 | Tree transport | Exact Gram matrix and a complete logical unitary for normalized supported columns, without a depth register | An elementary Clifford+T cost improvement |
-| Forward weighted residual | A complete one-signal-flag block with constant normalization and a charged native fallback | Linear T-count; the fallback costs $`O(N^2)`$ at the endpoint |
+| Forward weighted residual | A complete one-signal-flag block with constant normalization and batched native cost $`T=O(L\sqrt N)`$, $`G=O(NL)`$ under its sufficient dirty width | Linear endpoint T-count; this implementation costs $`O(N^{3/2})`$ at $`L=N`$ |
 | Coarse circuit | The retained borrowed compiler gives $`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$ at fixed accuracy and the endpoint dirty allocation; both clean flags can remain untouched | The history unitary, weighted transport, or an arbitrary controlled version of C |
 | High-precision residual circuit | The proved grouped compiler and its complete-input error budget | A constant total precision charge for one global weighted block |
 
@@ -332,7 +332,7 @@ application and actual inverse are priced already. The unresolved gate
 cost is that of the weighted transport itself, including any controlled
 versions needed by a later composition.
 
-### Completed: a forward block with a quadratic native implementation
+### Completed: a forward block with batched native synthesis
 
 The [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) completes the
 operator and workspace parts of the proposed forward-component audit. For
@@ -349,38 +349,51 @@ four-mode and two-mode factors on $`2N`$ basis modes, so one signal flag
 suffices. Certified algebraic preprocessing handles zero defects without
 requiring exact zero tests on arbitrary supplied angle evaluators.
 
-Pricing those factors by the retained borrowed-sector echo and exact basis
-routing gives
+Packing disjoint factors by tree level and using the retained borrowed
+reflection interpreter gives, for $`b\ge n+\lceil\sqrt N\rceil+7`$,
 
 ```math
 \left\|J_2^\dagger Q_hJ_2-
 \frac{F\otimes I_b}{4\varepsilon_0}\right\|\le\eta/128,
-\qquad T,G=O\!\left(N(L+n^3)\right).
+\qquad T=O(L\sqrt N),\qquad G=O(NL).
 ```
 
-At $`L=N`$, the counts are $`O(N^2)`$. The signal flag is treated as
-arbitrary data throughout the native construction, the other clean flag
-is untouched, and its fixed number of borrowed helpers return exactly.
-Thus the candidate meets the accepted-block error, workspace, and Clifford
-requirements. It does not establish the linear T-count requirement.
-The quadratic estimate is an implementation upper bound, not a lower bound
-for this component or for the frame.
+Each level uses at most 18 fixed addressed rotation templates. Its bank
+count is proportional to the square root of its number of nodes, and the
+precision allowance varies geometrically with depth. Exact packing,
+gathering, and the prescribed physical marker reindex are all charged;
+before absorbing polynomial terms the counts are
+$`T=O(L\sqrt N+n^4)`$ and $`G=O(NL+n^4)`$.
+
+At $`L=N`$, this improves the forward component from $`O(N^2)`$ to
+$`O(N^{3/2})`$ T gates, with $`O(N^2)`$ Clifford gates. The selected
+endpoint allocation $`b=N+n+7`$ satisfies the sufficient width. The signal
+flag is arbitrary data throughout native synthesis; the other clean flag
+is untouched, and all borrowed helpers return exactly. The component meets
+the accepted-block error, workspace, and Clifford requirements, but still
+does not establish linear T-count. Neither implementation upper bound is
+a lower bound for this component or the frame.
 
 ### Remaining: native precision sharing with an occupied signal flag
 
-This bounded pass stops at that cost gap. Another proof of a transport
-identity or constant operator norm would not improve this candidate.
-The next upper-bound attempt must reduce the native cost of the structured
-unitary while retaining its complete flag-space action. The two-clean
-stage compiler is not a direct substitute: the dilation already occupies
-one signal flag, leaving only one fresh initialized bit. A new substitution
-must prove its action and price its actual work under that allocation.
+The remaining loss is the product of word precision and square-root table
+size in the borrowed interpreter. Another norm identity would not remove
+that product. The two-clean stage compiler is not a direct substitute:
+the dilation already occupies one signal flag, leaving only one fresh
+initialized bit. The [direct flag-merging word](SOURCE_REUSE_LIMITS.md)
+has an accepted-block error of at least $`1/2`$ for exact sine and cosine.
+That excludes this substitution, not every one-clean construction.
 
 The cheap coarse frame remains available and needs no reconstruction.
-The new local factors and full rejected-space completion provide a concrete
-object on which to test joint precision synthesis. No result permits
-adding costs as a lower bound, treating a dirty register as initialized,
-or invoking a target-frame oracle.
+The next attempt should synthesize the unnormalized weighted operator
+jointly. It may choose a different unitary completion: the required
+interface is the accepted-block estimate, an actual unitary word and its
+literal inverse, and a charged workspace ledger. Closeness to the selected
+Gram–Schmidt completion is unnecessary. Indeed, a
+[one-level witness](ENDPOINT_TREE_TRANSPORT.md) shows that this completion
+can stay distance two from its zero-defect value even while its accepted
+block tends to zero. No result permits adding costs as a lower bound,
+treating a dirty register as initialized, or invoking a target-frame oracle.
 
 Even a linear-cost forward block would be a component result. Combining
 it with the reverse weighted term, the diagonal, coarse C, and amplification

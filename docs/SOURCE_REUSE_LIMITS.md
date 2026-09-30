@@ -448,8 +448,9 @@ transport misses necessary mixed terms. Thus the remaining target is a
 jointly charged block for the weighted operator, including its occupied
 flags and literal inverse, rather than classical compression alone.
 The [forward weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md)
-now provides a complete one-signal-flag dilation with a conservative native
-implementation. Its quadratic endpoint T-count still misses the linear
+now provides a complete one-signal-flag dilation with level-batched native
+synthesis: $`T=O(L\sqrt N)`$ and $`G=O(NL)`$ under its sufficient
+dirty width. Its $`O(N^{3/2})`$ endpoint T-count still misses the linear
 target; it is a component construction, not a complete frame compiler.
 
 ## 4. Consequence for the research direction
@@ -469,6 +470,60 @@ The tree factorization above provides a compact classical starting point
 for another construction, while keeping its coherent implementation as an
 explicit unresolved task. A linear generator count is not yet a linear
 T-count.
+
+### Directly merging the scalar and rotation flags fails
+
+The [two-flag rotation block](OPERATOR_SOURCE_COMPILER.md#4-two-flags-encode-a-suffix-controlled-rotation)
+uses separate flags for scalar symmetrization and cosine/sine selection.
+Consider identifying these flags in the direct two-branch word. Fix one
+address row, put $`J=XZ=-iY`$ on the logical target, and let the dirty
+programmed sources $`N_c,N_s`$ encode the real coefficients $`c,s`$.
+Define
+
+```math
+D_c=\frac{MN_c-N_cM}{2},\qquad
+D_s=\frac{MN_s-N_sM}{2}.
+```
+
+The source identities give $`D_r^\dagger=-D_r`$ and
+$`D_r^\dagger D_r=(1-r^2)I`$ for $`r=c,s`$. The merged word is a
+Hadamard on the single flag, followed by branch actions $`MN_c`$ and
+$`JN_sM`$, followed by a Hadamard. Its accepted block is therefore
+
+```math
+B_{\rm merge}
+=\frac{MN_c+JN_sM}{2}
+=\frac{cI+sJ+D_c-JD_s}{2}.
+```
+
+The unwanted dirty operators do not cancel. With
+$`E=B_{\rm merge}-(cI+sJ)/2`$, tracing over the target eliminates the
+cross terms because $`\mathrm{Tr}(J)=0`$:
+
+```math
+\frac12\mathrm{Tr}_{\rm target}(E^\dagger E)
+=\frac{2-c^2-s^2}{4}I,
+\qquad
+\|E\|\ge\frac12\sqrt{2-c^2-s^2}.
+```
+
+The inequality follows because normalized partial trace is a unital
+positive map. For true cosine and sine coefficients it gives
+$`\|E\|\ge1/2`$; increasingly accurate digit tables retain this
+constant defect. Even the exact identity-angle row fails under the usual
+cubic amplification: $`c=1,s=0`$ gives the projector
+$`B_{\rm merge}=(I-JD_s)/2`$. Its amplified accepted block is
+
+```math
+3B_{\rm merge}-4B_{\rm merge}B_{\rm merge}^\dagger B_{\rm merge}
+=-B_{\rm merge},
+```
+
+which is not identity.
+
+This calculation excludes only this direct merged-flag word. It is not a
+lower bound for arbitrary one-clean-qubit rotation compilers, nor does it
+exclude a different unitary construction using the occupied signal flag.
 
 ### A scoped diagnostic for Pauli routing of rejected components
 

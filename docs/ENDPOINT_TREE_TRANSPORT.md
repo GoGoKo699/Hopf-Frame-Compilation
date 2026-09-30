@@ -16,8 +16,9 @@ the local residual generators, and synthesize their combined operator with
 one precision charge. The analysis identifies the normalized transport
 exactly and tests a proposed finite-order correction around the coarse frame.
 The [weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md) now gives an
-explicit one-signal-flag dilation and a charged quadratic native fallback
-at the endpoint; its linear T-count target remains unmet.
+explicit one-signal-flag dilation and level-batched native synthesis with
+$`T=O(L\sqrt N)`$ under its sufficient dirty width. Its endpoint
+$`O(N^{3/2})`$ T-count still misses the linear target.
 
 ## 1. Sparse transport contains every path product
 
@@ -440,9 +441,55 @@ The [revision decision](OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
 reuses the cheap coarse frame above. The
 [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) supplies a
 forward component with constant normalization, a complete flag action, and
-a native implementation. Its quadratic endpoint T-count does not replace
-the grouped compiler. The remaining task is cheaper joint synthesis and a
+a batched native implementation. Its $`O(N^{3/2})`$ endpoint T-count
+does not replace the grouped compiler. The remaining task is cheaper joint synthesis and a
 valid composition of all residual terms.
+
+### Small defects do not make the selected completion a small correction
+
+The weighted block is stable as an operator, but the particular completion
+selected in the [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md)
+need not approach its zero-defect completion. For an exact witness, fix
+$`\alpha=4\varepsilon_0`$, take $`n=1`$, $`C=I`$, and
+$`W(t)=R_y(t)`$, with $`-\varepsilon_0/2\lt t\lt0`$. Then
+
+```math
+h_1=\sin t,\qquad \rho_1=\sin^2t,\qquad
+A(t)=\frac{\sin t}{\alpha}|1\rangle\langle0|.
+```
+
+Here A is the accepted block of the selected complete unitary $`U(t)`$.
+Its terminal phase is $`\omega_1=-1`$ for negative t, whereas the
+zero-defect convention chooses $`\omega_1=1`$ at zero. The root mixing
+leaves the logical marker input untouched; the terminal factor therefore
+sends that input to opposite signs of the same rejection output. Hence
+
+```math
+\|U(t)-U(0)\|=2,
+\qquad
+\|A(t)-A(0)\|=\frac{|\sin t|}{\alpha}\longrightarrow0.
+```
+
+Thus small original-frame defects do not justify a small full-unitary
+correction around this zero-defect completion. This is a property of the
+selected completion, not a lower bound or an obstruction to other
+completions.
+
+A native replacement may choose a different rejected-space action. For
+$`F=\iota D_h\mathcal P_W`$, its component interface can require an
+explicit unitary Q, its literal inverse, and
+
+```math
+\left\|J^\dagger QJ-(F/\alpha)\otimes I_b\right\|\le\delta,
+```
+
+where J initializes the allocated signal flags. It need not approximate
+the selected $`U(t)`$ on rejected inputs. The retained
+[amplification lemma](OPERATOR_SOURCE_COMPILER.md#5-amplification-includes-rejected-space-error)
+uses an accepted-block estimate and the actual inverse, rather than
+proximity to a prescribed completion. For this nonunitary component,
+the charged workspace, required controlled calls, and later full-frame
+composition still need their own proofs.
 
 The [finite checks](../tests/test_tree_transport.py) compare independent
 path products and shift formulas, complete residual matrices, Gram

@@ -79,16 +79,22 @@ weighted norms, and omitted perturbation terms. These support the
 construct a cheaper native joint block.
 The [weighted-block checks](../tests/test_weighted_transport_block.py)
 verify its nonorthogonal-column witness, scalar recursion against independent
-subtree Schur solves, complete one-flag unitary and actual inverse, and
-weighted-map perturbation bounds at zero and near-zero defects. The
-[native fallback bound](WEIGHTED_TRANSPORT_BLOCK.md#5-a-charged-native-implementation-and-its-limitation)
-is proved analytically. These matrices, of dimension at most 32, do not
-emit that elementary circuit or establish the linear T-count target.
+subtree Schur solves, complete one-flag unitaries and actual inverses, and
+weighted-map perturbation bounds at zero and near-zero defects. They also
+check the batched allocation, literal level packing and gathering, the
+physical marker permutation, and the selected completion's discontinuity.
+The [batched native bound](WEIGHTED_TRANSPORT_BLOCK.md#5-a-native-implementation-by-depth-batching)
+is proved analytically. These operator matrices have dimension at most 32;
+the separate permutation checks enumerate basis labels without dense matrices.
+They do not emit the elementary circuit or establish the linear T-count target.
 The [source-merge checks](../tests/test_source_merge.py) use native scalar
 sources and noncommuting three-level logical operations to exhibit the
 Pauli-routed cubic return on every dirty input. These support the scoped
 claims in [source-reuse limits](SOURCE_REUSE_LIMITS.md); neither classical
 compression nor a failed merge fixture settles the linear frame endpoint.
+The direct single-flag merge is also checked against its actual native
+branch word, including its constant error and identity-angle amplification
+failure.
 
 ## 2. What is represented locally
 

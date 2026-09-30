@@ -31,8 +31,8 @@ theorem by numerical extrapolation.
 | [`test_parallel_dirty_lookup.py`](test_parallel_dirty_lookup.py) | Exact bilinear dirty echoes, native phases, symbolic indicator return, reusable scratch, and disjoint parallel T layers |
 | [`test_tree_residual_structure.py`](test_tree_residual_structure.py) | Complete residual reconstruction from classical tree generators, complex coarse words, singular angles, and mixed transport errors |
 | [`test_tree_transport.py`](test_tree_transport.py) | Sparse transport and exact Gram identities, complete history-unitary columns, weighted subtree norms, and finite-order correction witnesses |
-| [`test_weighted_transport_block.py`](test_weighted_transport_block.py) | Weighted Gram obstruction, scalar recursion versus Schur solves, complete one-flag dilation and actual inverse, and perturbation control near zero defects |
-| [`test_source_merge.py`](test_source_merge.py) | Native scalar-source parity, two-flag Pauli routing, and the surviving cubic return on a noncommuting three-level witness |
+| [`test_weighted_transport_block.py`](test_weighted_transport_block.py) | Weighted Gram obstruction, scalar recursion versus Schur solves, complete one-flag dilations and actual inverses, level packing and physical reindexing, and zero-defect behavior |
+| [`test_source_merge.py`](test_source_merge.py) | Native scalar-source parity, direct single-flag merge failure, and two-flag Pauli routing with a surviving cubic return |
 | [`test_provenance.py`](test_provenance.py) | Are upstream commits, source roles, and local lineage recorded consistently? |
 | [`test_literature_policy.py`](test_literature_policy.py) | Does the active proof use one compiler framework and maintain the declared contribution boundary? |
 | [`test_reviewer_narrative.py`](test_reviewer_narrative.py) | Do the primary reading route, diagrams, links, terminology, and source-version statements remain coherent? |
