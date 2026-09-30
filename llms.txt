@@ -37,7 +37,7 @@ The links below point to plain-text sources on main. For reproducible use, recor
 - [Conditional-suffix compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/CONDITIONAL_SUFFIX_COMPILER.md): General-precision two-clean real-frame upper bound from star residuals and logical suffix work that is clean only in the active sector; includes inactive-input identity and complete return error.
 - [Borrowed-workspace compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/BORROWED_WORKSPACE_COMPILER.md): Smaller clean/dirty allocations and the restrictions on its matching comparison.
 - [QBP approximation](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/QBP_APPROXIMATION.md): Fixed-parameter bias, complete complex gradients, reflection-sum observables, rounded weights, and correlated dirty-bank reuse.
-- [Open problem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): The unresolved constant-clean full-frame endpoint and why the existing results do not close it.
+- [Research status and open endpoint](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): Consolidated frontier, scoped route limits, the coupled precision-source and table-size bottleneck, evidence boundaries, and next research checkpoint; separates T-count from T-depth.
 
 ## Evidence and attribution
 

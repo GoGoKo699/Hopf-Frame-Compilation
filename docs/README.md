@@ -20,7 +20,7 @@ chapter below.
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |
-| [Open problem](OPEN_PROBLEM.md) | The precise unresolved two-clean high-precision endpoint |
+| [Research status and open endpoint](OPEN_PROBLEM.md) | Established frontier, scoped route limits, coupled source/table bottleneck, and next research checkpoint |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Restrictions on nilpotent dirty encodings and separately compiled source-conjugated masks; the full-frame gap stays open |
 
 ## Evidence and sources
