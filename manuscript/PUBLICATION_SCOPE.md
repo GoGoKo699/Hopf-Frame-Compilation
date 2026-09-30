@@ -115,7 +115,7 @@ These complete the resource picture without becoming separate storylines.
 | Simultaneous count and depth | With $`b\ge C(L+n+7+\sqrt{NL})`$ for a sufficiently large fixed C, [parallel dirty lookup](../docs/PARALLEL_DIRTY_LOOKUP.md) gives $`T=O(\sqrt{NL}+L\ell_*(n))`$ and $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$ in the same two-clean real-frame circuit, with $`G=O(NL)`$. At fixed accuracy this is optimal-order T-count and polynomial-logarithmic T-depth with sufficiently large square-root dirty workspace; no depth optimality or selected-endpoint closure. |
 | Literal diagonal synthesis | For $`\ell\ge6`$, two clean qubits give $`O(N+\ell)`$ T gates at error $`2^{-\ell}`$ with $`b\ge\ell+n+5`$. For $`b\ge2(\ell+n+5)`$, the bound $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound. Use as a supporting compiler corollary. |
 | Complex magnitude frame | Compile $`D_\phi W_{\mathbb R}`$ using independently supplied phases and real Hopf angles. In the two-clean model, splitting the error gives $`b\ge L+n+8`$ for $`O(N+nL)`$ T gates, or $`b\ge2(L+n+8)`$ for the banked bound. This is not arbitrary complex-unitary synthesis. |
-| Smaller clean/dirty allocations | Retain the borrowed-workspace upper bound and its restricted all-clean-budget matching splice as an appendix comparison. The splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$; it is not an unrestricted constant-clean theorem. |
+| Smaller clean/dirty allocations | For every $`a,b\ge0`$, the real-frame borrowed-workspace compiler gives $`T=O(NL/q+L\sqrt N)`$ and $`G=O(NL)`$. Its matching splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$. Retain as an appendix comparison; it can beat the grouped bound at low precision. |
 | Fixed-parameter QBP robustness | Exact substitution preserves the global record. Magnitude bias is at most $`4\lvert a_j\rvert(\eta+\eta_O)`$; the separate phase-vector bias is at most $`4(\eta+\eta_O)`$. The full complex gradient, reflection-sum observables, rounded classical weights, and correlated dirty-bank reuse have explicit error and cost budgets. |
 
 The exact, sufficient-clean, and two-clean complex extensions have their
@@ -166,6 +166,12 @@ The paper does not claim that the grouped precision charge is necessary, or
 that every constant clean allocation and every linear dirty allocation has
 the same upper bound. Restrictions on particular source-processing interfaces
 do not supply an additive full-frame lower bound.
+
+The tree-generator and weighted-transport studies refine this open question.
+Their operator identities and norm estimates do not add a fourth compiler
+theorem or change Results A–C. The current bounded construction task is
+specified in the [research revision](../docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass);
+its proposed gate budget is not part of the established publication claims.
 
 ## Main text and appendices
 

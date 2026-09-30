@@ -429,9 +429,14 @@ it does not supply a charged coherent evaluator for it. In particular:
 A giant group also retains a separate charged task: the current streamed
 coarse interpreter uses $`w=O(n)`$ symbols at its addressed rows. Its
 retained estimate is $`O(nN)`$, even if the residual table were compressed.
-An improved joint construction must charge both the coefficient evaluation
-and the coarse circuit. These are limitations of the displayed routes,
-not a lower bound against another compiler.
+This estimate uses the uniform-star representation's fine coarse accuracy.
+For the weighted representation, the
+[retained borrowed compiler already supplies a cheap coarse frame](ENDPOINT_TREE_TRANSPORT.md#the-retained-borrowed-compiler-already-supplies-a-cheap-coarse-frame):
+at constant coarse accuracy and the endpoint dirty allocation it gives
+$`T(C)=O(\sqrt N)`$, $`G(C)=O(N)`$, with exactly returned helpers.
+This prices C, not the weighted transport or its filters. An improved joint
+construction must still charge every component. These are limitations of
+the displayed routes, not a lower bound against another compiler.
 
 The [explicit transport construction](ENDPOINT_TREE_TRANSPORT.md) now
 realizes these path columns by local three-mode unitaries without a depth

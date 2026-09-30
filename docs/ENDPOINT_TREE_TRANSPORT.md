@@ -5,7 +5,7 @@
 The residual's linear-size classical description admits an exact sparse
 transport formula, a complete logical-unitary realization of its normalized
 transport, and a height-independent bound on its weighted pieces. These
-resolve the operator and normalization parts of one joint-block candidate.
+establish the operator identities and normalization bounds for one joint-block candidate.
 Its precision-dependent
 gate cost remains unresolved: the construction below does not improve
 the retained $`O(N\ell_*(n))`$ two-clean bound or close the selected
@@ -191,6 +191,65 @@ Those inequalities are inherited. Their application here uses the exact
 overlap-defect identities of the two prescribed frames. A bounded norm
 does not construct a block encoding or price its gates.
 
+### The retained borrowed compiler already supplies a cheap coarse frame
+
+The coarse frame needed for this weighted representation does not require
+a new synthesis theorem. Fix $`0\lt\varepsilon_0\le1/64`$, independently
+of n, and put $`L_c=\max\{6,\lceil\log_2(1/\varepsilon_0)\rceil\}`$.
+Apply the [borrowed-workspace compiler](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements)
+at accuracy $`\varepsilon_0`$, using the endpoint's $`b=N+n+7`$ dirty
+qubits and leaving both initialized flags untouched. It gives an actual
+native frame C with
+
+```math
+T(C)=O\!\left(\frac{NL_c}{n+b}+L_c\sqrt N\right)=O(\sqrt N),
+\qquad G(C)=O(NL_c)=O(N).
+```
+
+Every external helper is returned exactly on arbitrary inputs, including
+reference correlations. Thus the circuit implements $`C\otimes I_b`$
+exactly, with C close to W; the helper-return statement is not approximate.
+The actual inverse has the same resource bounds.
+
+The tree structure follows from that compiler's construction, not just its
+global error theorem. Its local words are $`U_v^C=C_x^2`$, where
+$`C_x=XQ_x^\dagger XQ_x`$. Scalar phases cancel literally,
+$`\det C_x=1`$, and $`XC_xX=C_x^\dagger`$ makes the inactive-sector
+action exactly identity. These complex native words therefore retain the
+same addressed tree and prescribed local complement columns used above.
+
+The existing per-depth allowance in its Section 3 is
+
+```math
+\epsilon_d=\varepsilon_0 2^{d-n},\qquad
+\sum_{j=d}^{n-1}\epsilon_j\lt\varepsilon_0.
+```
+
+Telescoping the addressed layers within any subtree bounds that subtree's
+complete-frame discrepancy by $`\varepsilon_0`$. In particular, both its
+root-state and root-complement vectors differ by at most that amount.
+Their overlap definitions give $`|g_v-1|,|d_v-1|\le\varepsilon_0`$,
+and normalized-state overlap gives $`1-|g_v|^2\le\varepsilon_0^2`$.
+Consequently
+
+```math
+\|D\|\le\varepsilon_0,\qquad
+\|D_h\mathcal P_W\|,\|\mathcal P_C^\dagger D_k\|
+\le2\varepsilon_0.
+```
+
+The three pieces thus have a constant total norm budget at most
+$`5\varepsilon_0`$. The diagonal estimate uses literal-phase closeness;
+gamma alone would not provide it. This is a reuse of the existing compiler
+and the weighted norm lemma, not a new endpoint gate bound.
+
+The unconditional C and its inverse are safe even when the two flags are
+occupied, because those flags can remain untouched and the dirty helpers
+are returned on their full input space. This does not price the history
+unitary $`V_C`$, either weighted transport block, or an arbitrary controlled
+version of C. In particular, it does not replace the target transport by
+coarse transport or resolve the coefficient-filter flags.
+
 ## 3. An explicit complete unitary for normalized transport
 
 The normalized columns can be realized without an added depth register.
@@ -260,7 +319,13 @@ There is no inference of an additive T-count lower bound from these
 separately scheduled calls.
 
 Nor is $`V_A`$ itself the required half-unitary block for W. Its accepted
-columns realize normalized transport. A proposed full residual compiler
+columns realize normalized transport. The column norms to restore are
+$`\sqrt n`$ and $`\sqrt{n-1-d(v)}`$. Simply sandwiching this unitary
+between separate diagonal filters therefore retains a possible
+$`\sqrt n`$ normalization factor, even though the fully weighted operator
+has bounded norm. Exploiting the correlation between the transport and its
+weights is a circuit-construction problem that the norm inequality does not
+solve. A proposed full residual compiler
 must still combine its h/k filters, diagonal term, and coarse frame with
 literal phases, the two-clean lifetime ledger, and a final amplification
 error proof. This bounded candidate passes the complete logical-operator
@@ -367,6 +432,11 @@ high-precision endpoint. Expanding all ancestor entries retains the
 old $`\Theta(nN)`$ table representation. Neither observation is a
 general impossibility result. The existing grouped compiler remains
 the proved resource bound while this candidate's precision cost is open.
+
+The [revision decision](OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
+reuses the cheap coarse frame above. The next pass targets the native
+weighted block and its occupied-flag action; a new coarse-frame compiler
+or another proof of the logical transport identity is not needed.
 
 The [finite checks](../tests/test_tree_transport.py) compare independent
 path products and shift formulas, complete residual matrices, Gram
