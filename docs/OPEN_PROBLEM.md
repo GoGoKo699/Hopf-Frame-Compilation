@@ -24,7 +24,7 @@ below. Lower bounds are worst-case over the stated frame family.
 | T-count with sufficient clean workspace | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, $`G=O(NL)`$, when $`a\ge C(n+h)`$ for sufficiently large fixed C | Matching for those same families; the clean reservation is sufficient, not proved necessary; [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md) |
 | Two-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`b\ge L+n+7`$ | Current strongest unbanked bound; [conditional-suffix theorem](CONDITIONAL_SUFFIX_COMPILER.md) |
 | Two-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked proof](CONDITIONAL_SUFFIX_COMPILER.md#8-additional-dirty-banks-give-a-width-tradeoff) |
-| T-depth versus clean and dirty workspace | No matching tradeoff established | A separate open scheduling and lower-bound question; the T-count rows do not answer it |
+| T-depth with additional dirty banks | $`D_T=O(NL/b+L\ell_*(n)+n^4)`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Explicit [schedule](T_DEPTH_COMPILER.md) for real frames; optimizing depth may increase T-count; no matching frontier established |
 
 Every retained frame construction preserves the prescribed completion used
 by Hopf QBP. Finite-precision substitution has the fixed-parameter bias and
@@ -191,10 +191,13 @@ bound also becomes $`O(s2^e)=O(nN)`$ for that giant group. Thus a successful rep
 control **both** the repeated precision cost and the expanded table cost;
 it must also charge coarse symbol queries and their interpreter. Constant
 private width alone does not settle either resource theorem.
-The residual entries are functions of the original tree angles; treating
-every permitted ancestor pair as an independently programmed coefficient
-forgets that structure. Exploiting those dependencies is a candidate route,
-not a demonstrated cheaper query implementation.
+The residual entries are functions of the original tree angles. The
+[tree-generator factorization](SOURCE_REUSE_LIMITS.md#3-tree-generators-compress-the-residual-classically)
+now represents them using $`O(N)`$ classical coefficients and path products.
+The downward factors still use target-frame transport. Applying that
+transport by calling the target frame would be circular; replacing it by
+coarse transport leaves mixed errors. Classical compression therefore does
+not yet supply a cheaper coherent query implementation.
 
 The following distinctions keep the next search from repeating shortcuts:
 
@@ -235,25 +238,31 @@ candidate should produce a restriction with its exact interface stated,
 while preserving the current compiler as a fallback. A general stronger
 frame lower bound remains a separate route and requires a new invariant.
 
-For a carried-source merge proposal, a bounded first diagnostic is the move
-from two to three noncommuting tree levels, with independent parent and child
-angles. Seek a full-operator invariant using a constant number of total source
-appearances and tables indexed by the original tree nodes, rather than all
-ancestor pairs. Expand the mixed parent/child terms and rejected-space
-returns symbolically. An uncancelled quadratic term in a polynomially small
-coarse error is too large for $`\eta=2^{-N}`$. If the invariant already
-fails at this merge, record the failure for that proposal before extending
-it. Passing this diagnostic would justify a general proof attempt, not
-establish the asymptotic theorem by itself.
+The two-to-three-level diagnostic has resolved two limited questions.
+Tree-node data compresses the residual classically, but substituting coarse
+transport leaves nonzero mixed terms. Separately, routing scalar-source
+rejections into the three nonzero two-bit Pauli labels removes pair returns
+but leaves a cubic coherent return. The [scoped proofs](SOURCE_REUSE_LIMITS.md)
+and finite tests do not rule out non-Pauli histories or another global block.
+That routing proposal also retains separate source calls and is not a
+half-unitary compiler by itself.
 
-The T-depth question should retain its own resource ledger: charge the
-sequential dependencies of the native source, dirty traversal or bank
-routing, coarse interpreter, and reflections, then state which operations
-can run on disjoint wires. Dividing a T-count by the total width is not an
-achievable schedule. A useful next depth result would give an explicit
-schedule and a lower bound in the same model, with any remaining gap stated.
-This schedule audit can proceed independently of the endpoint attempt;
-complete-frame preservation already supplies the relevant QBP guarantee.
+The next endpoint target is a charged implementation of the tree path
+factors, or a full-operator invariant that avoids implementing them
+separately. A proposed replacement must retain a constant total precision
+charge and control the mixed terms to exponential accuracy; polynomially
+small coarse errors alone do not suffice.
+
+The [T-depth schedule](T_DEPTH_COMPILER.md) now charges source dependencies,
+dirty lookup, coarse interpretation, and reflections explicitly. At fixed
+accuracy and $`b=\Theta(N)`$, two clean qubits suffice for
+$`D_T=O(n^3)`$ with $`T,G=O(N)`$, by choosing the layerwise schedule
+in that regime. This is a depth upper bound and may
+use more T gates than the T-count-oriented compiler. The inherited general
+lower bound is much smaller, so the next depth questions are to reduce the
+conservative polynomial scheduling overhead and find an appropriate depth
+lower-bound invariant. Complete-frame preservation already supplies the
+relevant QBP guarantee.
 
 ## Evidence and remaining implementation work
 

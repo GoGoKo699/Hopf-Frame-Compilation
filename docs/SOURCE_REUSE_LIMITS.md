@@ -1,4 +1,4 @@
-# Limits of two source-reuse routes
+# Source reuse and structured residuals
 
 [Open endpoint](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Shared-source compiler](FAULT_TOLERANT_COMPILER.md)
 
@@ -8,9 +8,11 @@ $`\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\ell_*(n))`$
 by [conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md).
 Here $`\ell_*(n)=1+\log_2^*(n+2)`$, and $`\log_2^*`$ counts
 base-two logarithms until the value is at most one.
-This note gives two restrictions on proposed ways to reuse precision work.
-Neither restriction is a lower bound for an unrestricted Hopf-frame
-compiler, and neither changes the retained resource theorems.
+This note gives scoped restrictions on proposed ways to reuse precision work
+and an exact tree factorization of the residual coefficient data. The
+factorization separates classical compression from the still-charged task
+of coherent tree transport. None of these statements is a lower bound for
+an unrestricted Hopf-frame compiler or changes the retained resource bounds.
 
 ## 1. A nilpotent carried source needs initialized dimension
 
@@ -267,7 +269,168 @@ It is not permissible to add these primitive costs and infer a
 whole-frame lower bound. Joint synthesis could avoid treating the masks
 as independent operations.
 
-## 3. Consequence for the research direction
+## 3. Tree generators compress the residual classically
+
+The column-forest block stores coefficients indexed by a marker and an
+ancestor depth. A single s-level group has $`\Theta(s2^s)`$ permitted
+entries, although its two underlying frames have only $`O(2^s)`$ local
+words. The extra entries are not independent classical parameters. The
+following factorization records their exact dependence without dividing by
+a subtree amplitude.
+
+### Node overlaps and path products
+
+Index a binary tree by heap labels: its root is 1, the children of v are
+$`2v,2v+1`$, and its N leaves are $`N,\ldots,2N-1`$. For a frame
+$`A\in\{C,W\}`$, let $`U_v^A`$ be the local two-by-two unitary. The
+target words $`U_v^W`$ are real rotations; the actual coarse words
+$`U_v^C`$ may be complex Clifford+T unitaries. Define the normalized
+subtree vector and its prescribed complement by
+
+```math
+\begin{pmatrix}|q_v^A\rangle&|e_v^A\rangle\end{pmatrix}
+=\begin{pmatrix}|q_{2v}^A\rangle&|q_{2v+1}^A\rangle\end{pmatrix}U_v^A.
+```
+
+The leaf vectors are the corresponding computational basis vectors.
+The complete frame has first column $`q_1^A`$ and the complement
+$`e_v^A`$ in its prescribed marker column. Below, the symbol $`\ast`$
+denotes the first column and a node label v denotes that marker column;
+this is only a common reindexing of the two frames.
+
+**Lemma 3 — tree generators for the residual.** Set $`g_v=1`$ at every
+leaf. At every internal node compute the two-by-two matrix
+
+```math
+K_v=(U_v^C)^\dagger
+\begin{pmatrix}g_{2v}&0\\0&g_{2v+1}\end{pmatrix}U_v^W
+=\begin{pmatrix}g_v&k_v\\h_v&d_v\end{pmatrix}.
+```
+
+These $`N-1`$ fixed-size matrices, together with the local words, determine
+every entry of $`E=C^\dagger W-I`$.
+
+For internal nodes v and u, let the path from v to its strict descendant u have edge
+bits $`b_0,\ldots,b_{t-1}`$ and nodes
+$`v_0=v,\ldots,v_t=u`$. Define
+
+```math
+\beta_A(v,u)=(U_{v_0}^A)_{b_0,1}
+\prod_{j=1}^{t-1}(U_{v_j}^A)_{b_j,0}.
+```
+
+Let $`a_A(u)`$ be the product of first-column edge coefficients along
+the root-to-u path, with $`a_A(1)=1`$. Then
+
+```math
+\begin{aligned}
+E_{\ast,\ast}&=g_1-1,& E_{u,u}&=d_u-1,\\
+E_{u,\ast}&=a_W(u)h_u,&
+E_{\ast,u}&=\overline{a_C(u)}\,k_u,\\
+E_{u,v}&=\beta_W(v,u)h_u,&
+E_{v,u}&=\overline{\beta_C(v,u)}\,k_u
+\quad(u\text{ strictly below }v).
+\end{aligned}
+```
+
+Entries between incomparable internal nodes are zero.
+
+*Proof.* The two child subtrees have disjoint supports. Their overlap
+matrix in the pairs $`(q_{2v},q_{2v+1})`$ is therefore
+$`\mathrm{diag}(g_{2v},g_{2v+1})`$. Applying the two local words gives
+the displayed recurrence, with
+$`g_v=\langle q_v^C|q_v^W\rangle`$,
+$`h_v=\langle e_v^C|q_v^W\rangle`$,
+$`k_v=\langle q_v^C|e_v^W\rangle`$, and
+$`d_v=\langle e_v^C|e_v^W\rangle`$.
+The restriction of an ancestor complement $`e_v^A`$ to u's subtree is
+exactly $`\beta_A(v,u)q_u^A`$; the restriction of the root state is
+$`a_A(u)q_u^A`$. Taking the corresponding inner products proves every
+listed entry. Incomparable supports are disjoint. ∎
+
+This is an $`O(N)`$-scalar description and an $`O(N)`$ count of fixed-size
+classical recurrence operations. It is not an $`O(N)`$ bit-complexity
+claim at precision L. An individual path product still has up to n
+factors. All formulas remain valid when a branch amplitude is zero, so
+the factorization retains the prescribed marker columns at singular
+charts rather than reconstructing a frame from its first column alone.
+
+### Two and three levels expose the target transport
+
+For two levels, use the actual marker order $`0,1,2,3`$. Let the target
+and coarse root angles be $`\alpha`$ and $`\gamma`$, respectively, and
+let the left child have target-minus-coarse angle $`\delta`$. Other
+child angles are arbitrary. For real coarse rotations, the four entries
+are exactly
+
+```math
+\begin{aligned}
+E_{1,0}&=\sin\delta\cos\alpha,&
+E_{1,2}&=-\sin\delta\sin\alpha,\\
+E_{0,1}&=-\cos\gamma\sin\delta,&
+E_{2,1}&=\sin\gamma\sin\delta.
+\end{aligned}
+```
+
+Replacing target transport by coarse transport in the first row pair
+changes that two-entry vector by Euclidean norm
+
+```math
+2\left|\sin\delta\,
+\sin\!\left(\frac{\alpha-\gamma}{2}\right)\right|.
+```
+
+The error can be second order in small coarse discrepancies, but it is
+not identically zero. The real coarse specialization isolates the
+algebra; the lemma itself allows actual complex native words.
+
+Continuing the real-coarse specialization at three levels, let target root and left-child angles be
+$`\alpha_0,\alpha_1`$, their coarse counterparts
+$`\gamma_0,\gamma_1`$, and let the left-left internal node have angle
+discrepancy $`\delta`$. Its marker is 1; the left-child and root markers
+are 2 and 4. Regardless of the other local words,
+
+```math
+\begin{aligned}
+E_{1,0}&=\sin\delta\cos\alpha_0\cos\alpha_1,\\
+E_{1,2}&=-\sin\delta\sin\alpha_1,\\
+E_{1,4}&=-\sin\delta\sin\alpha_0\cos\alpha_1,\\
+E_{0,1}&=-\sin\delta\cos\gamma_0\cos\gamma_1,\\
+E_{2,1}&=\sin\delta\sin\gamma_1,\\
+E_{4,1}&=\sin\delta\sin\gamma_0\cos\gamma_1.
+\end{aligned}
+```
+
+Thus the same local residual coefficient multiplies different target
+path products in the downward entries and coarse path products in the
+reverse entries. Deeper trees extend these products.
+
+### What classical compression does and does not supply
+
+The generator description identifies a concrete representation to exploit;
+it does not supply a charged coherent evaluator for it. In particular:
+
+- Loading all already-expanded ancestor coefficients through the existing
+  table primitive still has $`\Theta(nN)`$ permitted rows for one full
+  n-level group. The $`O(N)`$ generator count alone does not change that
+  query circuit.
+- Evaluating a product from loaded local generators requires coherent
+  arithmetic or another explicit block construction, including its work,
+  precision, inverse, and dirty-return costs. Classical preprocessing
+  cannot stand in for this quantum operation.
+- Preparing the downward path amplitudes by invoking the target subtree
+  frame would call part of the frame that is being compiled. The target
+  factors cannot simply be replaced by the coarse ones; the two-level
+  witness displays the omitted term.
+
+A giant group also retains a separate charged task: the current streamed
+coarse interpreter uses $`w=O(n)`$ symbols at its addressed rows. Its
+retained estimate is $`O(nN)`$, even if the residual table were compressed.
+An improved joint construction must charge both the coefficient evaluation
+and the coarse circuit. These are limitations of the displayed routes,
+not a lower bound against another compiler.
+
+## 4. Consequence for the research direction
 
 These results rule out two particular shortcuts: replacing the
 initialized nilpotent geometric source by a constant-clean dirty
@@ -280,12 +443,93 @@ source return, may use a different carried operator, or may synthesize
 the interleaved source and programming operations jointly.
 The bounds for unrestricted complete-frame compilation remain unchanged.
 
-## 4. Finite checks and evidence limits
+The tree factorization above provides a compact classical starting point
+for another construction, while keeping its coherent implementation as an
+explicit unresolved task. A linear generator count is not yet a linear
+T-count.
+
+### A scoped diagnostic for Pauli routing of rejected components
+
+A separate proposed shortcut routes successive scalar-filter rejections
+through the four states of two flags. For the common operator source M,
+the [scalar block](OPERATOR_SOURCE_COMPILER.md#3-dirty-programming-and-a-one-flag-scalar-block)
+has the form
+
+```math
+\mathcal S_f=c_f I+X_{\rm flag}\otimes A_f,
+\qquad A_f=\frac{MN_f-N_fM}{2}.
+```
+
+The source identities imply
+
+```math
+A_f^\dagger=-A_f,\qquad
+A_f^\dagger A_f=(1-c_f^2)I,\qquad MA_fM=-A_f.
+```
+
+Suppose each rejection X is replaced by a Hermitian two-flag Pauli
+$`P_j`$. Its flip vector records which flag bits it changes. To prevent
+each one-step return to $`00`$, every flip vector must be nonzero; to
+prevent every two-step return, they must be distinct. Three such vectors
+exhaust the nonzero vectors in $`\mathbb F_2^2`$. Their sum is zero,
+so
+
+```math
+\xi=\langle00|P_3P_2P_1|00\rangle,
+\qquad |\xi|=1.
+```
+
+Pauli signs or diagonal Pauli phases do not remove this three-step return.
+For an explicit coherent witness on three logical qubits, let
+$`\Pi_j`$ project onto the respective ordered basis pairs
+$`(0,4),(4,6),(6,7)`$, and let $`F_j`$ apply the literal
+$`R_y(\pi/2)`$ on that pair and identity elsewhere. The actual unitaries
+
+```math
+Q_j=I_{\rm flags}\otimes B_j\otimes I_{\rm dirty}
++P_j\otimes F_j\Pi_j\otimes A_j,
+\qquad B_j=F_j(I-\Pi_j+c_j\Pi_j)
+```
+
+are a rotation after a conditional scalar filter. The two-stage accepted
+block is $`B_2B_1\otimes I`$, but the three-stage block is
+
+```math
+B_3B_2B_1\otimes I
++\xi\,(F_3\Pi_3F_2\Pi_2F_1\Pi_1)\otimes A_3A_2A_1.
+```
+
+The logical mixed factor equals $`|111\rangle\langle000|`$. Its dirty
+factor is odd under conjugation by M, whereas every logical operator
+tensored with the dirty identity is even. The odd projection
+$`X\mapsto(X-(I\otimes M)X(I\otimes M))/2`$ is norm-contractive.
+Consequently the three-stage block has distance at least
+
+```math
+\prod_{j=1}^3\sqrt{1-c_j^2}
+```
+
+from **every** operator of the form $`B\otimes I_{\rm dirty}`$.
+For any source width $`m\geq3`$, the valid single-bit mask $`f=e_1`$
+gives $`c_j=1/2`$ and the defect is at least $`3\sqrt3/8`$.
+Increasing precision does not shrink this particular defect.
+
+This diagnostic concerns Pauli routing of these scalar coefficient
+filters. It is not a lower bound for arbitrary use of two clean flags,
+and these filters are not the complete amplified half-unitary frame
+blocks. More general history couplings can avoid this three-stage return;
+doing so alone would still not combine the separately charged source
+calls. The [native routing fixtures](../tests/test_source_merge.py)
+check the explicit word and the stated class boundary.
+
+## 5. Finite checks and evidence limits
 
 Run:
 
 ```bash
 python -m unittest discover -s tests -p 'test_source_reuse_limits.py'
+python -m unittest discover -s tests -p 'test_tree_residual_structure.py'
+python -m unittest discover -s tests -p 'test_source_merge.py'
 ```
 
 The tests exercise the dimension inequality on small nilpotent
@@ -295,3 +539,11 @@ These finite checks support indexing and assumption boundaries.
 The dimension and T-count statements rest on the analytic proofs above;
 the tests do not establish an unrestricted impossibility theorem or
 literature priority.
+
+The [tree-residual fixtures](../tests/test_tree_residual_structure.py)
+independently compare addressed circuits, recursive subtree vectors, and
+the scalar-generator reconstruction for two- and three-level frames.
+They include actual complex native words, general complex SU(2) words,
+singular target angles, and the explicit path-product witnesses. These
+small checks validate the identities and marker conventions; they do not
+construct a lower-cost coherent coefficient evaluator.

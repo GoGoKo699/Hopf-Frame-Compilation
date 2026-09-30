@@ -17,11 +17,12 @@ chapter below.
 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | Real and complex sufficient-clean matching T-count; shared-source residual proposition |
 | [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md) | Exact source costs, frame/bank bounds, matched diagonal and general multiplexor frontiers, and certified preprocessing |
 | [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform two-clean bound, ancestor-column residuals, iterated-logarithm grouping, and complete-input return |
+| [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Established frontier, scoped route limits, coupled source/table bottleneck, and next research checkpoint |
-| [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Restrictions on nilpotent dirty encodings and separately compiled source-conjugated masks; the full-frame gap stays open |
+| [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 
 ## Evidence and sources
 

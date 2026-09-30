@@ -142,6 +142,12 @@ complex extension follows from an addressed SU(2) diagonal compiler and
 sequential reuse of the same clean pool. A finite-precision QBP consequence follows by controlling
 bounded-score bias, not by differentiating a compiled word.
 
+A separate [T-depth schedule](docs/T_DEPTH_COMPILER.md) uses two clean qubits
+and $`b\ge2(L+n+7)`$ dirty qubits to obtain
+$`D_T=O(NL/b+L\ell_*(n)+n^4)`$ with $`T,G=O(NL)`$ for real frames.
+It can spend more T gates to reduce their sequential depth; no matching
+T-depth frontier or total-depth consequence is inferred.
+
 With two clean qubits, the
 [conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
 implements every prescribed real Hopf frame with

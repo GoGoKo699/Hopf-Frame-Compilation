@@ -1,0 +1,354 @@
+# A dirty-workspace upper bound for T-depth
+
+[Two-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md) · [Operator source](OPERATOR_SOURCE_COMPILER.md) · [QBP error contract](QBP_APPROXIMATION.md)
+
+T-count measures how many non-Clifford gates are used. T-depth measures
+how many sequential layers of those gates remain when arbitrary Clifford
+circuits may be placed between them. The two resources have different
+workspace tradeoffs. The construction below chooses larger dirty lookup
+banks to reduce T-depth, and can use more T gates than the count-optimized
+compiler.
+
+**Theorem.** Let $`n\geq1`$, $`N=2^n`$,
+$`0\lt\eta\leq1/64`$, and
+$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. Put
+
+```math
+B_0=L+n+7,\qquad
+\ell_*(n)=1+\log_2^*(n+2).
+```
+
+For every $`a\geq2`$ and $`b\geq2B_0`$, the prescribed complete real
+Hopf frame has a coherent Clifford+T compiler with
+
+```math
+\|VJ_a-J_a(W\otimes I_b)\|\leq\eta,
+```
+
+```math
+D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^4\right),
+\qquad T=O(NL),\qquad G=O(NL).
+```
+
+Only two external clean qubits are used; unused clean and dirty qubits
+remain untouched. The same full-input norm includes initialized leakage,
+arbitrary dirty inputs, and their reference correlations. All inverses
+are actual circuit inverses. No measurements, resets, supplied magic
+states, catalysts, or uncharged quantum oracles are introduced.
+
+This is an upper bound, not an optimal T-depth theorem. It also is not a
+claim about total elementary-gate depth: Clifford circuits between the T
+layers still have nonzero depth. The high-precision allocation
+$`a=2,b=N+n+7,L=N`$ does not satisfy the larger-bank hypothesis here.
+
+## 1. Model and the routing primitive
+
+A T layer applies T or T-dagger on distinct physical qubits. An arbitrary
+Clifford circuit may occur before, after, or between these layers. We
+assume the same all-to-all logical connectivity as the other compiler
+chapters. Clifford gates are counted in G, even though they do not
+contribute to $`D_T`$.
+
+The lookup-depth mechanism is established by Low, Kliuchnikov, and
+Schaeffer, *Trading T gates for dirty qubits in state preparation and
+unitary synthesis*, [arXiv:1812.00954v2](https://arxiv.org/html/1812.00954v2),
+Table 2 and Appendix B. Their dirty SelectSwap construction has T-depth
+$`O(Q/\mu+\log\mu)`$. We give an explicit routing schedule and then
+apply it to the complete-frame compiler's dirty-selector queries.
+The primitive is not a new lookup result.
+
+### A shared-control Fredkin batch has at most four T layers
+
+Consider R controlled swaps, all controlled by c, with disjoint target
+pairs $`(u_i,v_i)`$. Each Fredkin is two CNOTs surrounding a Toffoli.
+Hadamards on the Toffoli targets reduce the middle batch to
+$`\prod_i\mathrm{CCZ}(c,u_i,v_i)`$. These changes are Clifford and
+require no ancillary qubits.
+
+For bits, the exact phase-polynomial identity is
+
+```math
+4cuv=c+u+v-(c\oplus u)-(c\oplus v)
+-(u\oplus v)+(c\oplus u\oplus v)\pmod8.
+```
+
+Summing over the disjoint pairs produces $`Rc`$ and the remaining local
+terms. Each parity can be placed on one of its existing target wires by
+CNOTs and then uncomputed. The phases can be scheduled in four layers:
+
+| T layer | Parities receiving a T or T-dagger phase |
+|---|---|
+| 1 | $`u_i,v_i`$ for every i, together with $`T^R`$ on c |
+| 2 | $`c\oplus u_i,c\oplus v_i`$, with negative signs |
+| 3 | $`u_i\oplus v_i`$, with negative signs |
+| 4 | $`c\oplus u_i\oplus v_i`$ |
+
+Within each row, the phase targets are distinct. The common c wire is
+only a control of the parity-computing CNOTs in rows 2 and 4; its value
+is never copied into a clean ancilla. The $`T^R`$ in row 1 contributes
+at most one T gate after removing its Clifford power. The literal batch
+therefore has
+
+```math
+D_T\leq4,\qquad T=6R+(R\bmod2),\qquad G=O(R).
+```
+
+The phase identity is exact, including the common phase. Applying the
+surrounding Clifford changes gives the same bounds for the Fredkins.
+The parity CNOT circuits can have substantial elementary depth; this
+argument does not count them as constant-depth circuits.
+
+### A bank router
+
+Let $`\mu`$ be a power of two. A binary router moves one addressed
+m-bit bank into position zero. In its first level, it conditionally
+swaps neighboring pairs of banks; the next level conditionally swaps
+the selected representatives of neighboring groups; subsequent levels
+continue to the root. Every level uses one low-address bit as its
+common control and disjoint target pairs.
+
+There are $`\log_2\mu`$ levels and $`\mu-1`$ word swaps in total.
+The preceding schedule gives
+
+```math
+D_T(\mathcal R)\leq4\log_2\mu,
+\qquad T(\mathcal R),G(\mathcal R)=O(\mu m).
+```
+
+This is an exact permutation of arbitrary bank states. Its actual inverse
+has the same resources. No clean copies of the address are required.
+
+## 2. Exact lookup with depth-optimized banks
+
+Consider a Q-row, m-bit XOR table. Reserve $`\mu m`$ dirty bank bits,
+separate from its m-bit output and dirty selectors, where
+$`1\leq\mu\leq Q`$ is a power of two. The high-address loader
+$`\mathcal L`$ writes the $`\mu`$ words for each high address into
+these banks. The existing two-pass dirty traversal uses
+$`O(Q/\mu)`$ Toffolis, and hence $`O(Q/\mu)`$ T-depth by any fixed
+exact Toffoli decomposition. Its many leaf CNOTs are Clifford.
+
+Let C copy the routed bank into the arbitrary output word by CNOTs.
+Use the chronological sequence
+
+```math
+\mathcal L,\ \mathcal R,\ C,\ \mathcal R^\dagger,\
+\mathcal L^\dagger,\ \mathcal R,\ C,\ \mathcal R^\dagger.
+```
+
+If the initially selected bank contains z, the two output contributions
+are $`z\oplus f(x)`$ and z. Every bank and selector returns exactly.
+The basis identity extends to arbitrary entangled inputs and references.
+The loader inverse is applied after reversing routing, and its targets
+exclude the output word. The resources are
+
+```math
+D_{T,\mathrm{query}}=O(Q/\mu+\log\mu),
+\qquad T_{\mathrm{query}}=O(Q/\mu+\mu m),
+\qquad G_{\mathrm{query}}=O(Qm).
+```
+
+If a table is inactive for some h or mode address, assign that row the
+zero output word. The completed query is exactly identity on that sector.
+Its internal routing need not be identity there. Thus the construction
+does not add a control to every routing or leaf gate.
+
+Reserve $`B_0`$ dirty wires for the existing source, selectors, and
+returned helpers. The remaining pool has
+
+```math
+K=b-B_0\geq b/2\geq B_0.
+```
+
+Every source width m in the grouped or reserved-tail construction is at
+most $`B_0`$. Choose the largest power of two satisfying
+
+```math
+\mu\leq\min\{Q,K/m\}.
+```
+
+This fits the disjoint banks and differs from the T-count-optimized
+choice, which may stop near $`\sqrt{Q/m}`$. Since rounding loses at
+most a factor of two,
+
+```math
+D_{T,\mathrm{query}}
+=O\!\left(1+\frac{Qm}{b}+\log Q\right),
+\qquad T_{\mathrm{query}},G_{\mathrm{query}}=O(Qm).
+```
+
+The same reasoning applies to the constant-size streamed coarse symbols.
+Their bank pool can be reused between queries.
+
+## 3. Composition with the grouped full-frame compiler
+
+Use exactly the partition, coefficient tables, coarse circuits, and
+precision choices of the [conditional-suffix construction](CONDITIONAL_SUFFIX_COMPILER.md).
+For a group of height s and ending depth e, set $`r=n-e`$. Its
+coefficient table has
+
+```math
+Q_g=O(s2^e),\qquad
+m_g=L+\lfloor r/4\rfloor+8,
+\qquad s\leq2^{r/C_1},\qquad C_1>2.
+```
+
+There are $`R=O(\ell_*(n))`$ groups. The r values are distinct, and
+the group heights partition at most n logical depths. The construction
+uses only a constant number of scalar-source calls per group, including
+both orientations and the actual inverses in amplification. Schedule
+each existing source word serially; it has T-depth $`O(m_g)`$.
+No parallel source construction is assumed.
+
+The coefficient queries contribute
+
+```math
+O\!\left(\frac{Q_gm_g}{b}+n+1\right)
+```
+
+per group. Their logarithmic routing term is $`O(n+1)`$, because
+$`Q_g=O(s2^e)`$ and $`s,e\leq n`$.
+
+The coarse interpreter streams $`O(s)`$ symbols at each of its s local
+depths. At absolute depth d the table has $`O(2^d)`$ rows and constant
+output width. Summing its query-depth terms within one group gives
+
+```math
+O\!\left(\frac{s2^e}{b}+s^2(n+1)\right).
+```
+
+For an explicit conservative bound on the remaining schedule, unroll
+every selected marker predicate and Hadamard sweep. Borrowed multiple
+controls on at most $`O(n)`$ wires have the existing $`O(n^2)`$
+Toffoli construction. Allowing $`O(n^3)`$ sequential elementary
+non-Clifford work for each of the $`O(s)`$ atom types costs
+$`O(sn^3)`$ per group. This allowance also covers the controlled
+Clifford sweeps and their label decoding. Even charging an
+$`O(n^2)`$ predicate allowance separately for each of the
+$`O(s^2)`$ streamed coarse symbols costs $`O(s^2n^2)`$.
+These intentionally loose schedules require only the existing returned
+dirty helpers and private flags; they introduce no parallel clean work.
+
+The suffix tests and amplification reflections each cost $`O(n^2)`$
+T-depth by their already specified exact circuits. Since
+
+```math
+\sum_gs_g\leq n,\qquad
+\sum_gs_g^2\leq n^2,\qquad R\leq n,
+```
+
+all the conservative scheduling overhead above is $`O(n^4)`$ in
+total. A smaller polynomial may be possible; none is required here.
+
+The weighted table sum proved in the grouped compiler is
+
+```math
+\sum_g Q_gm_g
+\leq O(N)\sum_{r\geq r_0}
+2^{-(1-1/C_1)r}(L+r+8)=O(NL).
+```
+
+Also $`\sum_gs_g2^{e_g}=O(N)`$ and
+$`\sum_gm_g=O(L\ell_*(n)+nR)`$. Thus the grouped part has
+
+```math
+D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^4\right).
+```
+
+The fixed number of deepest reserved layers uses the old operator-source
+blocks with the same depth-optimized banks. Their contribution is
+$`O(NL/b+L+n^3)`$. When n is below the fixed grouping threshold,
+using that original compiler for every layer has the asserted form,
+with constants depending only on the fixed threshold.
+
+Changing an exact lookup implementation does not change its unitary,
+accepted coefficient, source precision, or inactive-sector behavior.
+Consequently the original amplification proof, error budget, and
+complete-input telescoping remain valid without alteration. In
+particular, the approximate returned-work guarantee is not being
+replaced by an assumption that intermediate work is reset.
+
+The depth-selected query T-count is at most $`O(Q_gm_g)`$, and its
+Clifford count has the same bound. Their sums are $`O(NL)`$.
+Coarse tables and the fixed-degree scheduling overheads also fit this
+bound, since every fixed polynomial in n is $`O(2^n)`$ and $`L\geq6`$.
+This proves the stated simultaneous $`T,G=O(NL)`$ guarantees.
+It does not retain the sharper count-optimized
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ bound on this same schedule.
+
+For comparison, applying only the depth-optimized queries to the older
+layer-by-layer compiler gives the explicit upper schedule
+
+```math
+D_T=O\!\left(\frac{NL}{b}+nL+n^3\right),
+\qquad T,G=O(NL),\qquad b\geq2B_0.
+```
+
+Here the source is paid at all n depths. Either schedule may be used;
+the displayed polynomial allowances are not optimal leading constants.
+Choosing the better one gives the immediate scheduling corollary
+
+```math
+D_T=O\!\left(\frac{NL}{b}
++\min\{nL+n^3,\;L\ell_*(n)+n^4\}\right),
+\qquad T,G=O(NL),\qquad b\geq2B_0.
+```
+
+## 4. Lower bounds and the remaining depth gap
+
+Let $`q=n+a+b`$ be the allowed physical width. A T-depth-d circuit has
+at most q T or T-dagger gates in each layer, hence at most $`qd`$ in
+total. Applying the existing worst-case T-count lower bound therefore
+gives
+
+```math
+D_T^\star
+=\Omega\!\left(
+\frac{\sqrt{NL}}q+\frac Lq+\frac{NL}{q^2}\right).
+```
+
+This transfers a count lower bound; it is not a new additive lower bound
+for individual source calls. There is also a constant worst-case lower
+bound of one T layer. Set all angles except one to zero and choose that
+rotation to produce
+$`(\cos(\pi/8)|0\rangle+\sin(\pi/8)|1\rangle)\otimes|0\cdots0\rangle`$
+on the all-zero input, including the permitted all-zero dirty input.
+A Clifford output is a stabilizer state. Projecting all but the displayed
+qubit to zero leaves either zero or a subnormalized stabilizer state,
+whose overlap with the displayed qubit is at most $`\cos(\pi/8)`$.
+The full-output distance is therefore at least
+$`\sqrt{2-2\cos(\pi/8)}`$, larger than $`1/64`$, independently of
+helper width. One may write the combined lower bound with a maximum of
+one and the displayed expression.
+
+These bounds leave a substantial gap. At $`L=N`$ and width
+$`q=\Theta(N)`$, they supply only $`\Omega(1)`$ T-depth. The exact
+linear T-count of the operator-source primitive does not prove a linear
+T-depth lower bound. Its serial schedule is an upper bound for one
+implementation.
+
+At fixed accuracy, with $`L=O(1)`$ and $`b=\Theta(N)`$, the older
+layer schedule with depth-optimized banks gives $`D_T=O(n^3)`$ with two clean qubits,
+while the worst-case T-count remains at least $`\Omega(\sqrt N)`$.
+This illustrates the difference between count and depth; it does not
+make the polynomial T-depth optimal.
+
+The same complete-frame norm transfers to the existing Hopf-QBP bias
+and inverse guarantees. It does not by itself determine the observable
+oracle's depth or the total elapsed depth of a complete QBP execution.
+
+## 5. Checks and attribution boundaries
+
+The [focused tests](../tests/test_t_depth.py) check the literal phase
+polynomial and inverse of shared-control Fredkin batches, the four
+layers' disjoint T targets, and exact dirty-query return on small full
+input spaces. They do not establish optimal T-depth or replace the
+asymptotic scheduling argument.
+
+The shared-control routing and SelectSwap depth mechanism have primary
+precedent in Low, Kliuchnikov, and Schaeffer, cited above. This chapter
+supplies an explicit schedule for that mechanism and its composition
+with the repository's complete real-frame compiler, including the
+two-clean workspace and dirty/reference return contracts. No claim of
+a new general lookup primitive, optimal T-depth, or optimal total
+elementary depth is made.

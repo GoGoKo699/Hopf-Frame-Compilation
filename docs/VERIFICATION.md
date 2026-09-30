@@ -57,6 +57,20 @@ grouping constants do not certify the unspecified fixed constants of the
 coarse synthesis primitive. These are finite interface checks, not a native
 elementary circuit emitter for the whole asymptotic grouped compiler.
 
+The [T-depth schedule](T_DEPTH_COMPILER.md) has
+[native routing checks](../tests/test_t_depth.py) for literal four-layer
+shared-control Fredkins, disjoint T-layer supports, actual inverses, and
+whole dirty-bank queries. Clifford layers may have substantial depth;
+the fixture does not treat T-depth as total execution depth.
+The [tree-residual checks](../tests/test_tree_residual_structure.py)
+reconstruct complete small residuals from classical tree generators,
+including complex coarse words and singular angles.
+The [source-merge checks](../tests/test_source_merge.py) use native scalar
+sources and noncommuting three-level logical operations to exhibit the
+Pauli-routed cubic return on every dirty input. These support the scoped
+claims in [source-reuse limits](SOURCE_REUSE_LIMITS.md); neither classical
+compression nor a failed merge fixture settles the linear frame endpoint.
+
 ## 2. What is represented locally
 
 | Component | Local representation | Principal executable check | Imported ingredient |
