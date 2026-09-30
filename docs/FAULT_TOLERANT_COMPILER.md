@@ -1110,14 +1110,19 @@ $`a\geq C(n+h)`$ remains part of Theorem 1; the
 settled by removing that hypothesis from the displayed formula. A separate
 [operator-source construction](OPERATOR_SOURCE_COMPILER.md)
 gives $`T=O(N+nL)`$ and $`G=O(NL)`$ with $`a=2`$ and
-$`b\ge L+n+7`$. At $`L=N`$, $`n\ge3`$, and $`b=N+n+7`$,
-[conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md) improves
-that baseline to $`O(N\log(n+2))`$ T gates and $`O(N^2)`$
-Clifford gates. The linear endpoint remains open; Theorem 1 and its matching
-lower bounds are unchanged. The operator-source note
-also sharpens this bound to $`O(\sqrt{NL}+nL+NL/b)`$ when
-$`b\ge2(L+n+7)`$, and adds a literal diagonal/complex magnitude corollary.
-Its stated matching subregimes use the existing lower bounds; they do not
+$`b\ge L+n+7`$.
+[Conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md) gives
+$`O(N+L\ell_*(n))`$ T gates and $`O(NL)`$ Clifford gates with that
+allocation, for every $`n\ge1`$ and $`L\ge6`$. Here
+$`\ell_*(n)=1+\log_2^*(n+2)`$; the iterated logarithm counts base-two
+logs until the value is at most one. At $`L=N`$, the upper bound is
+$`O(N\ell_*(n))`$. The linear endpoint remains open; Theorem 1 and its
+matching lower bounds are unchanged. The grouped compiler also has
+the banked bound $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ when
+$`b\ge2(L+n+7)`$.
+The operator-source baseline retains its literal diagonal and complex
+magnitude corollaries with their separate bounds and reservations.
+The grouped matching subregimes use the existing lower bounds; they do not
 remove Theorem 1's sufficient-clean hypothesis by substitution.
 
 ### Primary references

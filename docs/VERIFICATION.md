@@ -48,10 +48,11 @@ analytic restrictions; they do not establish a full-frame impossibility.
 The [conditional-suffix proof](CONDITIONAL_SUFFIX_COMPILER.md) has
 [focused grouped-block checks](../tests/test_conditional_suffix_compiler.py).
 They combine a native small operator source with separate scalar and
-matrix-unit flags, retain every dirty input column through amplification,
-and check literal phases, sparse residual support, inactive suffix sectors,
-and predicate uncomputation after leakage. A separate integer ledger tests
-the geometric partition and dirty-width/error inequalities. Its sample
+atom flags, retain every dirty input column through amplification,
+and check literal phases, the disjoint ancestor-column support partition,
+forward and reverse column blocks, inactive suffix sectors, and predicate
+uncomputation after leakage. A separate integer ledger tests exponentially
+growing groups and the dirty-width/error inequalities. Its sample
 grouping constants do not certify the unspecified fixed constants of the
 coarse synthesis primitive. These are finite interface checks, not a native
 elementary circuit emitter for the whole asymptotic grouped compiler.

@@ -135,18 +135,18 @@ amplification gives the single additive $L$ term. The
 failure history, and every workspace register.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
-The [conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
-uses **two clean qubits**, $`b=N+n+7`$, and $`n\ge3`$ to give
-$`O(N\log(n+2))`$ T gates for prescribed real frames at that precision.
-The lower bound remains $\Omega(N)$: **the linear endpoint is open**.
-The [open-problem statement](docs/OPEN_PROBLEM.md) gives the explicit endpoint
-allocation. Smaller allocations retain the
+With **two clean qubits** and $`b\ge L+n+7`$, the
+[conditional-suffix compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md) gives
+$`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ for real frames, where
+$`\ell_*(n)=1+\log_2^*(n+2)`$. The iterated logarithm counts base-two logs
+until the value is at most one. At $`L=N`$, the
+[open endpoint](docs/OPEN_PROBLEM.md) is $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$.
+Smaller allocations retain the
 [borrowed-workspace bound](docs/BORROWED_WORKSPACE_COMPILER.md).
 
 The [baseline compiler](docs/OPERATOR_SOURCE_COMPILER.md) gives $`O(N+nL)`$
-for the complex magnitude frame with two clean qubits and
-$`b\ge L+n+8`$. It compiles the literal phase diagonal; the separate
-leaf-phase derivative stream keeps its own QBP accounting.
+for complex magnitude frames with two clean qubits and $`b\ge L+n+8`$.
+The separate leaf-phase derivative stream keeps its own QBP accounting.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with two clean

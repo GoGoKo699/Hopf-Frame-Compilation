@@ -155,25 +155,30 @@ is inherited.
 | R17 | two-clean operator-source compiler and corollaries | [proof](OPERATOR_SOURCE_COMPILER.md): full-frame $O(N+nL)$ bound and dirty-bank refinement; matched literal diagonal and general one-target U(2) multiplexor frontiers; all have separate explicit reservations and include operator-core return error |
 | R18 | exact geometric operator-source costs | [source proof](OPERATOR_SOURCE_COMPILER.md#exact-source-costs-including-returned-helpers): $2m-4$ uncontrolled and $2m-2$ controlled T gates, even with returned helpers; native words and transfer witnesses checked for small $m$ |
 | R19 | sufficient-clean complex-frame extension | [Corollary 7](FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and-the-complex-magnitude-frame): literal diagonal SU(2) embedding, same-pool composition, and diagonal-subfamily lower bounds |
-| R20 | conditional-suffix high-precision refinement | [proof](CONDITIONAL_SUFFIX_COMPILER.md): $`O(N\log(n+2))`$ T gates and $`O(N^2)`$ Clifford gates at $`n\ge3`$, $`L=N`$, $`a=2`$, $`b=N+n+7`$; combines sparse local residuals with the dirty operator source and explicitly controlled use of the active logical suffix |
+| R20 | conditional-suffix compiler | [proof](CONDITIONAL_SUFFIX_COMPILER.md): $`O(N+L\ell_*(n))`$ T gates and $`O(NL)`$ Clifford gates for $`n\ge1`$, $`L\ge6`$, $`a=2`$, $`b\ge L+n+7`$; star residuals and streamed coarse programs use $`O(\log(s+1))`$ private clean work per group of $`s`$ depths |
 
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over
-precision. Conditional-suffix grouping reduces the two-clean endpoint upper
-bound to $`O(N\log(n+2))`$. The gap from $`\Omega(N)`$ remains at the
+precision. Write $`\ell_*(n)=1+\log_2^*(n+2)`$, where $`\log_2^*`$
+counts base-two logarithms until the value is at most one. Conditional-suffix
+grouping gives the two-clean endpoint upper bound $`O(N\ell_*(n))`$.
+The gap from $`\Omega(N)`$ remains at the
 [selected high-precision endpoint](OPEN_PROBLEM.md).
+At $`b\ge2(L+n+7)`$, the grouped compiler's banked form gives
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates and $`O(NL)`$ Clifford gates.
 
 The two-clean proof uses the
 [two-pass dirty lookup](BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter)
 and [borrowed predicate toggle](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector)
 proved in the borrowed-workspace appendix, together with amplification and
 the lower bounds stated in the fault-tolerant chapter.
-The conditional-suffix refinement also uses the sparse grouped-residual
-support lemma from the sufficient-clean proof. Its local dictionary and
-program work are initialized only in an explicitly selected logical sector;
-the dirty operator source supplies precision without an initialized
-precision register. This is a separate workspace construction.
+The conditional-suffix refinement resolves the sparse grouped-residual
+support into forward and reverse rank-one stars and a diagonal. Depth labels,
+marker predicates, and variable suffix Hadamards replace full endpoint words;
+coarse programs stream one symbol at a time. Its private work is initialized
+only in an explicitly selected logical sector. The dirty operator source
+supplies precision without an initialized precision register.
 
 The source audit supports these precise dependencies and comparisons. It does
 not certify priority or infer novelty from a bounded search finding no match.

@@ -16,7 +16,7 @@ chapter below.
 | [Exact compiler theorem](COMPILER_THEOREM.md) | All clean-workspace budgets; echo, decoder, router, and matching size/CNOT/depth bounds |
 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | Real and complex sufficient-clean matching T-count; shared-source residual proposition |
 | [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md) | Exact source costs, frame/bank bounds, matched diagonal and general multiplexor frontiers, and certified preprocessing |
-| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Grouped two-clean high-precision bound, coherent use of zero suffixes, and complete-input return |
+| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform two-clean bound, ancestor-column residuals, iterated-logarithm grouping, and complete-input return |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |

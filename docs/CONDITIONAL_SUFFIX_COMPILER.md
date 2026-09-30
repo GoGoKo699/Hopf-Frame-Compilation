@@ -1,38 +1,52 @@
-# Conditional suffix workspace improves the two-clean endpoint
+# Conditional suffix workspace and star residuals
 
 [Open endpoint](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Grouped residuals](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
 
 The logical suffix of a Hopf group is zero on the sector where that group
-acts. It can therefore supply temporary initialized workspace, provided the
-actual circuit is identity on every inactive sector. This observation permits
-several consecutive layers to share one operator-source precision charge.
+acts. It can supply temporary initialized workspace when every actual
+subroutine is identity on the inactive sector. A decomposition of the
+residual into columns indexed by ancestor depth makes the required private
+work logarithmic in the group height. Several layers then share one
+precision charge, and successive group heights can grow exponentially.
 
-**Theorem.** Let $`n\geq3`$, $`N=2^n`$, and let the accuracy parameter satisfy
-$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}=N`$. At the allocation
+**Theorem.** Let $`n\geq1`$, $`N=2^n`$, $`0\lt\eta\leq1/64`$, and
+$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. Define
 
 ```math
-a=2,\qquad b=N+n+7,
+\ell_*(n)=1+\log_2^*(n+2),
 ```
 
-every prescribed complete real Hopf frame has a coherent Clifford+T compiler
-satisfying
+where $`\log_2^*x`$ is the number of successive base-two logarithms
+needed to obtain a value at most one. At every allocation
 
 ```math
-\|VJ_2-J_2(W\otimes I_b)\|\leq\eta,
+a\geq2,\qquad b\geq L+n+7,
+```
+
+every prescribed complete real Hopf frame has a coherent Clifford+T
+compiler satisfying
+
+```math
+\|VJ_a-J_a(W\otimes I_b)\|\leq\eta,
 \qquad
-T=O\bigl(N\log(n+2)\bigr),\qquad G=O(N^2).
+T=O\bigl(N+L\ell_*(n)\bigr),\qquad G=O(NL).
 ```
 
-The error includes both initialized-work leakage and the return of arbitrary
-dirty inputs, together with any references. The construction uses no
-measurements, resets, supplied resource states, or uncharged quantum oracles.
-It is an asymptotic improvement from $`O(N\log N)`$ to
-$`O(N\log\log N)`$ at this endpoint; it does not prove $`O(N)`$.
-The fixed thresholds in the proof need not produce a practical saving for
-small systems. Classical coefficient evaluation and table construction remain
-separate preprocessing costs, as in the other compiler theorems. Angles must
-be effectively specified so that the sine, cosine, and finite residual-matrix
-entries used below admit certified rational evaluation.
+Only two of the available clean qubits are used. At the selected endpoint
+$`L=N`$, $`a=2`$, $`b=N+n+7`$, this gives
+$`O(N\ell_*(n))=O(N\log_2^*N)`$ T gates, improving the preceding
+$`O(N\log(n+2))`$ grouping bound. It does not prove $`O(N)`$ T count
+or an optimal T-depth tradeoff.
+
+The error includes initialized-work leakage and the return of arbitrary
+dirty inputs, together with any references. There are no measurements,
+resets, supplied resource states, or uncharged quantum oracles. The fixed
+thresholds below need not give a practical saving for small systems.
+Certified coefficient evaluation and table construction are separate
+classical preprocessing costs. Angles must be effectively specified so
+that the finite residual entries admit certified rational evaluation.
+The theorem here concerns the prescribed real frame; no additional
+complex-frame theorem is inferred from the use of complex coarse words.
 
 ## 1. An active suffix supplies workspace conditionally
 
@@ -107,303 +121,562 @@ The same conditioning method applies to fixed coarse program words.
 It applies to complete subroutines; their individual native gates need not
 be identity on the inactive sector.
 
-## 2. A coarse group and its local residual dictionary
+## 2. The residual support is a union of column forests
 
-Put
+Consider an active group of s consecutive layers. Its local dimension is
+$`M=2^s`$, and the unchanged external prefix is x. Its target $`W_g`$
+is a direct sum of complete s-level frames. Let C be a coarse, exactly
+unitary Clifford+T group with the same addressed layer structure and
+exactly returned work. Its one-qubit words may be complex. The
+[grouped-support lemma](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
+still applies, because the column supports depend on the addressed tree
+structure rather than on real-valued entries.
+
+For a nonzero local marker
 
 ```math
-D_s=(2s-1)2^s+2,\qquad
-K=2^{\lceil\log_2(4D_s)\rceil}.
+v=z\,1\,0^{s-j-1},\qquad 0\leq j\lt s,
 ```
 
-The [sparse grouped-residual lemma](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
-gives a permitted support of $`D_s`$ ordered column pairs for a local
-$`s`$-level residual. This remains true for complex coarse Clifford+T
-words: their marker columns have the same nested dyadic subtree supports.
-There is no assumption that a coarse word is a real rotation exactly.
-
-Choose phase-calibrated actual Clifford+T words for every group angle with
-one-qubit error at most
+its column is supported inside the aligned interval with prefix z and length
+$`D_j=2^{s-j}`$. Two permitted marker intervals overlap exactly when their tree
+nodes are comparable. Column zero has the whole local register as its
+permitted support. Special angle choices may introduce additional zeros.
+Therefore every
+permitted entry of
 
 ```math
-\delta=\frac{1}{4sK}.
+E_x=C_x^\dagger W_{g,x}-I
 ```
 
-Their lengths are $`w=O(\log(1/\delta))=O(s)`$. Execute them in the
-prescribed addressed order, with exact identity on the inactive local
-suffix sectors. Denote this actual coarse group by $`C`$, its target by
-$`W_g`$, and its active residual by
+is diagonal, connects zero with another marker, or connects a nonzero
+marker with one of its strict descendants.
+
+The local indices in the interval of v are not all descendants of v.
+The first index $`z0^{s-j}`$ is zero or an ancestor marker, and v itself
+is the midpoint. Exclude both from the downward entries assigned to v.
+All other indices in that interval are its strict descendants. Assign
+zero-to-nonzero entries to a separate column type, and assign all
+diagonal entries separately.
+
+This is a disjoint partition. The number of strict downward pairs is
 
 ```math
-E=C^\dagger W_g-I,\qquad \|E\|\leq s\delta\leq\frac{1}{4K}.
+(M-1)+\sum_{j=0}^{s-1}2^j(2^{s-j}-2)
+=(s-1)M+1.
 ```
 
-The clean program and predicate work returns exactly after C. The words
-are fixed classical choices before computing the residual tables. The
-definition of E calls no quantum implementation of $`W_g`$.
+Including both orientations and the M diagonal entries gives
+$`(2s-1)2^s+2`$, exactly the permitted-pair count of the grouped-support
+lemma.
 
-For each logical prefix $`x`$, split the real and imaginary parts of every
-permitted entry into nonnegative coefficients and phases from
-$`\{1,-1,i,-i\}`$. Pad to K terms:
+### Uniform column maps without endpoint registers
+
+There are $`s+1`$ column types, indexed by
+$`\nu\in\{\ast,0,\ldots,s-1\}`$. Define
 
 ```math
-E_x=\sum_{\ell=0}^{K-1}a_{x\ell}A_\ell,
+\Pi_\ast=|0^s\rangle\langle0^s|,
+\qquad U_\ast=H^{\otimes s},\qquad D_\ast=2^s,
+```
+
+and, for $`0\leq j\lt s`$,
+
+```math
+\Pi_j=\sum_{z\in\{0,1\}^j}
+|z1\,0^{s-j-1}\rangle\langle z1\,0^{s-j-1}|,
 \qquad
-A_\ell=\omega_\ell|u_\ell\rangle\langle v_\ell|,
-\qquad 0\leq a_{x\ell}\leq\frac{1}{4K}.
+U_j=(I_{2^j}\otimes H^{\otimes(s-j)})X_j,
+\qquad D_j=2^{s-j}.
 ```
 
-The endpoints are local s-bit words. Their permitted values and their
-phase labels depend only on $`\ell`$; the numerical coefficient can
-depend on x. Set $`c_{x\ell}=K a_{x\ell}\in[0,1/4]`$. Coefficients are
-obtained by certified rational enclosures and the operator-source dyadic
-rounding rule. Clipping intervals at zero supplies positive and negative
-parts without an undecidable exact sign test. Structural zero entries
-and padding receive literal zero encodings.
+The marker-bit X acts before the Hadamards. Thus $`U_j\Pi_j`$ maps each
+selected marker to the **positive** uniform superposition over its
+interval, of amplitude $`1/\sqrt{D_j}`$. It preserves the interval's
+prefix. The special type does the same for column zero on the whole
+local register.
 
-The addressed coarse interpreter uses an $`O(s)`$-bit program word and
-$`O(s)`$ predicate work. At each of the s local depths its table is
-addressed by the unchanged logical prefix and the preceding local bits.
-Its total table-query T-count is $`O(2^e)`$; word interpretation and exact
-predicates contribute a polynomial in s. Whole-word table Clifford cost
-is $`O(s2^e)`$. All operations are conditioned on h as above. These are
-upper bounds for a literal interpreter, with every actual word and inverse
-charged, rather than a use of the coarse target as an oracle.
+A diagonal filter following $`U_j\Pi_j`$ can independently assign every
+entry in these columns. Its table is zero at the interval's first index
+and at v, so it retains only strict descendants. The special filter is
+zero at output zero. No quantum register stores an endpoint word: the
+input predicate and the output's existing local bits specify the two
+endpoints together with the depth label.
 
-## 3. One scalar source encodes the entire group residual
+## 3. A small coefficient table and a streamed coarse circuit
 
-Use the second external clean qubit as a scalar flag. Inside the active
-suffix reserve an identity/correction mode f, a $`\log_2 K`$-bit label,
-two s-bit endpoint words, a separate matrix-unit flag, and predicate work.
-The coarse program word can reuse this workspace before or after the
-residual block. There is a fixed constant $`C_0`$ for which all private
-initialized work other than the two external qubits occupies at most
-$`C_0s`$ wires, including $`s=1`$.
-
-The operator-source scalar unitary $`\mathcal S_c`$ has, on its own
-zero flag, the accepted action
+Use four nonnegative phase components with
+$`\omega\in\{1,-1,i,-i\}`$. There are four diagonal types, four
+forward types for each $`\nu`$, and four reverse types for each
+$`\nu`$. Pad their total to
 
 ```math
-\widehat c_{x\ell} I_{\rm dirty},\qquad
-|\widehat c_{x\ell}-c_{x\ell}|
-\leq\frac54\,2^{1-m}.
+K=2^{\lceil\log_2(8s+12)\rceil}=O(s).
 ```
 
-Its dirty core has m bits. The whole-word coefficient query uses x and
-$`\ell`$ as its address; its output is the arbitrary core itself. No
-initialized m-bit coefficient word is used.
+For a forward type, $`a_{x,u,\ell}`$ is the nonnegative component of
+$`(E_x)_{u,v}`$ with phase $`\omega_\ell`$. For a reverse type, it is
+the corresponding component of $`(E_x)_{v,u}`$. The endpoint v is
+zero for the special type and the midpoint of u's aligned interval for
+a depth-j type. The structural exclusions above receive literal zero
+coefficients. Diagonal types use the components of $`(E_x)_{u,u}`$.
 
-The matrix-unit unitary first toggles its separate flag by
-$`[z\ne v_\ell]`$, then XORs $`u_\ell\oplus v_\ell`$ into the local
-logical word z, and supplies the literal phase $`\omega_\ell`$. Its
-zero-flag block is exactly $`A_\ell`$. Equality scratch is erased before
-changing z. The endpoints and label are unchanged and hence unload
-exactly, including on rejected branches.
-
-Prepare f and the label uniformly with Hadamards, load the endpoints,
-and use the following SELECT:
-
-| Mode | Actual selected unitary |
-|---|---|
-| $`f=0`$ | Identity |
-| $`f=1`$ | Scalar unitary $`\mathcal S_c`$, followed by the matrix-unit unitary |
-
-Then unload metadata and undo the Hadamards. Call this actual unitary Q
-on the active sector. Condition its complete implementation on h.
-The source and matrix-unit flags are distinct. The scalar unitary leaves
-the local logical word unchanged; the matrix-unit operation leaves the
-prefix and label unchanged. Thus projecting both flags factors their
-accepted actions exactly, with no assumed removal of a rejected branch.
-
-Let J initialize the private suffix work and the scalar flag, leaving
-the logical prefix, local system, and every dirty input arbitrary. On
-$`h=1`$ the accepted block is
+Choose the actual coarse words with one-qubit error at most
 
 ```math
-B=J^\dagger QJ
-=\frac12\left(I+\frac1K\sum_\ell
-\widehat c_{x\ell}A_\ell\right)\otimes I_{\rm dirty}.
+\delta_c=\frac{1}{4sK\,2^{s/2}}.
 ```
 
-Consequently
+Unitary telescoping over the s local layers gives
+
+```math
+\|E_x\|\leq s\delta_c
+\leq\frac{1}{4K\,2^{s/2}}.
+```
+
+Each nonnegative split coefficient is bounded by the same quantity.
+Define the real scalar-source tables by
+
+```math
+c_{x,u,\ell}=
+\begin{cases}
+K a_{x,u,\ell},&\text{diagonal type},\\
+K\sqrt{D_\nu}\,a_{x,u,\ell},&\text{column or reverse type}.
+\end{cases}
+```
+
+Every coefficient lies in $`[0,1/4]`$. Certified enclosures and clipping
+at zero produce the phase components without an exact sign test.
+Multiplication by $`\sqrt{D_\nu}`$ is classical coefficient evaluation,
+not a supplied quantum amplitude. The rounded table uses the same
+operator-source rule as the other compiler, including exact encodings
+for structural zeros.
+
+The phase-calibrated coarse words have length
+$`w=O(\log(1/\delta_c))=O(s)`$. Storing such a whole word would defeat
+the new clean-space bound. Instead, fix a common constant-alphabet
+schedule and stream one symbol at a time. At each schedule position,
+query its constant number of bits into a reusable constant-size clean
+buffer, interpret the symbol, and erase those bits by the actual query
+inverse. The query address consists of the unchanged logical prefix and
+preceding local bits. The target bit is not part of that address, so
+interpretation does not obstruct unloading. A reusable predicate flag
+restricts the word to the appropriate local zero suffix; this flag is
+computed and erased exactly. Identity padding uses an empty symbol.
+
+Whole-word dirty lookup on a constant-size output costs $`O(2^d)`$
+T gates at absolute depth d. Summing over word positions and depths in
+the group gives
+
+```math
+T(C)=O(s2^e+\mathrm{poly}(n)),
+\qquad G(C)=O(s2^e+\mathrm{poly}(n)).
+```
+
+The polynomial has a fixed degree; it accounts for literal controlled
+word gates, suffix predicates, and returned scratch. The constant-size
+buffer and predicate flag can reuse the residual block's private work.
+Every coarse word is an actual native circuit with exactly returned
+work, not an approximate-return operator-source implementation.
+Its precise circuit is fixed before its residual is evaluated.
+
+## 4. A common source implements all column types
+
+Use the second external clean qubit as the scalar flag. Inside the active
+suffix reserve a mode f, a $`\log_2K`$-bit term label, a distinct atom
+rejection flag, and a constant number of temporary bits. The streamed
+coarse interpreter reuses these temporary bits. There are fixed
+constants A and B such that all initialized private work inside the
+suffix occupies at most
+
+```math
+A\log_2(s+2)+B
+```
+
+wires. Endpoint registers and an s-bit program register are absent.
+
+For every column type, construct an actual unitary $`\mathcal D_\nu`$ whose
+zero-atom-flag block is $`U_\nu\Pi_\nu`$: toggle that flag by the
+negation of the marker predicate, then apply $`U_\nu`$. Erase predicate
+scratch before changing the local word. A depth selected by the term
+label needs only reversible comparisons, marker predicates, and
+conditionally applied Hadamards and X gates. They can be unrolled with
+a polynomial number of gates in s and returned dirty helpers. This
+unrolling does not call the precision source once per depth. Even the
+all-zero local predicate can borrow a core or selector wire; it does not
+require an additional logical bit outside its controls. The
+predicates with many controls are charged as such; they are not treated
+as bounded-control gates of constant cost.
+
+Let $`\mathcal S_c`$ be the scalar-source unitary with its distinct
+zero flag and m dirty core bits. Its accepted coefficient satisfies
+
+```math
+\widehat c_{x,u,\ell}I_{\rm dirty},
+\qquad
+|\widehat c_{x,u,\ell}-c_{x,u,\ell}|
+\leq\epsilon_m:=\frac54\,2^{1-m}.
+```
+
+The query is addressed by the external prefix x, the **current local
+logical word** u, and the term label. Its output is the arbitrary dirty
+core itself. No initialized m-bit output word is present.
+
+For a forward column type, define the real-base unitary
+
+```math
+T_\nu(c)=\mathcal S_c\mathcal D_\nu.
+```
+
+The scalar operation leaves the local word unchanged and acts on a
+different rejection flag. With J initializing these two flags,
+
+```math
+J^\dagger T_\nu(c)J
+=\mathrm{diag}(\widehat c_{x,u,\ell})U_\nu\Pi_\nu.
+```
+
+A reverse type uses the **actual inverse** $`T_\nu(c)^\dagger`$,
+with the independently specified reverse coefficient table. Its block
+is the adjoint of the displayed real-base block. The desired literal
+phase $`\omega_\ell`$ is applied outside the forward or inverse base
+word; it is not inadvertently conjugated for a reverse type. Diagonal
+types use only $`\mathcal S_c`$ and their phase. Padding has a zero
+coefficient and an identity base map.
+
+The term label is preserved. Its direction, diagonal/column class, and
+phase can be decoded into a fixed number of temporary bits by reversible
+comparisons and erased afterward; the depth remains part of the label.
+This allows the padded K-label encoding above without requiring separate
+full-size label fields. In a common SELECT circuit, apply the selected $`\mathcal D_\nu`$ before the scalar operation on
+forward branches, and the selected $`\mathcal D_\nu^\dagger`$ after the inverse
+scalar operation on reverse branches. Diagonal branches need no atom
+operation. **Two shared scalar blocks suffice**, one forward and one
+inverse, independently of the number of depth labels. Their additional
+source controls involve only h, f, the direction, and the scalar flag.
+The large coefficient tables include the term label in their addresses;
+no depth-controlled copy of each native source gate is introduced.
+
+Every coefficient query and its inverse finishes before a local logical
+word is changed by a subsequent atom operation. In the reverse word the
+scalar query and its inverse occur first, followed by $`\mathcal D_\nu^\dagger`$.
+Thus the actual inverse does not assume that a changed address still
+contains its old value. Dirty selectors return after each complete query.
+
+Let $`A_{x\ell}`$ denote the unrounded accepted atom, including its phase.
+The scaling in Section 3 and the disjoint support partition give
+
+```math
+\frac1K\sum_{\ell=0}^{K-1}A_{x\ell}=E_x.
+```
+
+For a forward type, rounding changes its atom by at most
+
+```math
+\left\|\mathrm{diag}(\widehat c-c)
+U_\nu\Pi_\nu\right\|\leq\epsilon_m.
+```
+
+The same bound holds for reverse types by taking adjoints, and for
+diagonal types directly. In particular, neither the column size nor
+the factor $`\sqrt{D_\nu}`$ amplifies the rounding error.
+
+Prepare f and the term label uniformly, use identity for $`f=0`$ and
+this SELECT for $`f=1`$, then undo the uniform preparations. All actual
+subroutines are h-conditioned as in Section 1. Projecting the private
+work and scalar flag to zero gives the exact accepted block
+
+```math
+B=\frac12\left(I+\frac1K\sum_\ell\widehat A_{x\ell}\right)
+\otimes I_{\rm dirty}.
+```
+
+Therefore, uniformly over the coherent prefix direct sum,
 
 ```math
 \|2B-(C^\dagger W_g\otimes I_{\rm dirty})\|
 \leq\frac1K\sum_\ell
-|\widehat c_{x\ell}-c_{x\ell}|\,\|A_\ell\|
-\leq\frac54\,2^{1-m}.
+\|\widehat A_{x\ell}-A_{x\ell}\|\leq\epsilon_m.
 ```
 
-The estimate holds uniformly across the coherent prefix direct sum.
-The factor K in the coefficient definition cancels the uniform-label
-average; it does not amplify the rounding error.
+The distinct scalar and atom flags justify their projected product.
+No intermediate rejected component has been discarded.
 
-## 4. Amplification, inactive phases, and the complete group contract
+## 5. Amplification and the complete group contract
 
-Let $`R_h`$ be identity for $`h=0`$ and, for $`h=1`$, the reflection
-$`I-2JJ^\dagger`$. It may test the entire r-bit suffix together with
-the external scalar flag; unused active suffix bits remain zero. This
-conditional reflection costs $`O(r^2)`$ Toffolis using a returned borrowed
-local bit. Define
+Let $`R_h`$ be identity on $`h=0`$ and, on $`h=1`$, the reflection
+$`I-2JJ^\dagger`$, with J now initializing the entire private suffix
+and the external scalar flag. Testing unused active suffix bits is
+harmless because they remain zero. The reflection costs $`O(r^2)`$
+Toffolis with a returned borrowed local bit. Set
 
 ```math
-\mathcal A_h=Z_h Q R_h Q^\dagger R_h Q.
+\mathcal A_h=Z_h Q R_h Q^\dagger R_h Q,
 ```
 
-Here Q and its inverse are their h-conditioned actual circuits. When
-$`h=0`$, every factor is identity. When $`h=1`$, $`Z_h=-1`$ supplies
-the literal leading minus sign of normalization-two oblivious amplitude
-amplification. In particular, no spurious minus sign is applied to the
-inactive logical sector.
-
-The [full-isometry amplification estimate](OPERATOR_SOURCE_COMPILER.md#5-amplification-includes-rejected-space-error)
-gives, including every rejected component,
+where Q is the actual half-block circuit of Section 4. On $`h=0`$ all
+factors are identity. On $`h=1`$, $`Z_h=-1`$ supplies the literal
+leading minus sign required by normalization-two amplification.
+The [complete-isometry amplification bound](OPERATOR_SOURCE_COMPILER.md#5-amplification-includes-rejected-space-error)
+gives an error at most
 
 ```math
-\|\mathcal A_hJ-J(C^\dagger W_g\otimes I_{\rm dirty})\|
-\leq 5\,2^{1-m}=10\,2^{-m}
-\qquad(h=1).
+4\epsilon_m=10\,2^{-m}
 ```
 
-Now append the actual conditioned coarse circuit C, with its exact
-clean-work return, and erase h as in Section 1. Unitary propagation of
-the above error proves the group contract for $`W_g`$, with the same
-bound $`10\,2^{-m}`$. This argument applies C after completed amplification;
-it does not multiply accepted blocks while ignoring coherent rejected
-components. It also permits arbitrary joint states of the dirty core and
-all query selectors at the start of each group.
+relative to $`C^\dagger W_g`$, including every rejected component and
+all dirty references. Apply the actual coarse C afterward, then reverse
+the original computation of h. On ideal private-zero columns C returns
+its work exactly. Earlier leakage is propagated by actual unitaries,
+so neither this application nor the predicate uncomputation increases
+the group error. The result approximates the intended group on every
+logical input and is exactly identity on the original inactive sector.
 
-## 5. Workspace and costs of one group
+This argument permits the same two external clean qubits and dirty pool
+to be reused between groups. It does not assume that actual intermediate
+work has been reset or exactly returned.
 
-Choose a fixed grouping constant $`C_1\geq2C_0`$, enlarging it if needed
-to cover all fixed workspace conventions. A group with
-$`1\leq s\leq r/C_1`$ fits its private initialized work into the r-bit
-active suffix. Take
+## 6. Exponentially growing groups and the explicit workspace ledger
+
+Choose fixed constants $`C_1\geq4`$ and $`r_0`$ sufficiently large for
+the clean and dirty ledgers below. If $`n\leq r_0`$, use the existing
+operator-source compiler for all layers. Otherwise reserve the deepest
+$`r_0`$ layers for that compiler, and form the remaining groups backward
+from the deep end. With r already reserved suffix wires, take
 
 ```math
-m=N+\lfloor r/4\rfloor+8.
+s=\min\{n-r,\;2^{\lfloor r/C_1\rfloor}\},
+\qquad e=n-r,
+\qquad m=L+\lfloor r/4\rfloor+8,
 ```
 
-The coefficient query has at most
+then replace r by $`r+s`$. This specifies a partition, not the physical
+execution order. Execute the groups in the prescribed shallow-to-deep
+order, followed by the deepest reserved layers.
+
+Choose $`C_1`$ large enough relative to the constants A and B in the
+private-work bound. Since $`\log_2(s+2)\leq r/C_1+2`$, increasing the
+fixed $`r_0`$ if necessary ensures that the active suffix contains all
+private clean work.
+
+A coefficient query has at most
 
 ```math
-k=p+\log_2 K+2=n-r+O(\log(s+1))
+k=e+\log_2K+O(1)=n-r+O(\log(s+2))
 ```
 
-address bits, including h and f. Its dirty selectors, the m-bit core,
-and a fixed number of separate returned helpers therefore require
+address bits, including the identity/correction mode and h. The exact
+dirty traversal needs k selectors. Other bounded dirty helpers contribute
+a fixed number of wires. Increasing $`C_1`$ and $`r_0`$ once gives
 
 ```math
-m+k+O(1)
-=N+n-\frac34r+O(\log(r+1))+O(1)
-\leq N+n+7
+m+k+O(1)\leq L+n+7.
 ```
 
-for all $`r\geq r_0`$, where $`r_0`$ is a sufficiently large fixed
-constant. Shorter metadata queries reuse the same selector pool. The
-clean label and endpoint registers are part of the logical suffix, not
-an extra external clean allocation. Every temporary dirty helper is
-returned before another use that assumes it is available.
+Indeed the left side is at most
+$`L+n-3r/4+r/C_1+O(1)`$. The fixed additive eight in m and the
+helper reservation are absorbed by the growing unused part of r.
+No active private suffix bit is also counted as an arbitrary dirty
+core or selector bit. Other queries and the streamed coarse interpreter
+can reuse the same returned selector/helper pool. Larger dirty budgets
+may be left unused.
 
-Writing $`Q_g=2^pK=O(s2^{n-r})`$, a constant number of source and query
-calls, three amplification calls, the exact coarse interpreter, and all
-predicates give
+Until the final capped group, r grows at least exponentially in r after
+a fixed initial threshold. More explicitly, for sufficiently large r,
+two uncapped updates dominate $`r\mapsto2^r`$: after the first update
+$`r'\geq2^{r/C_1-1}`$, and then
+$`2^{r'/C_1-1}\geq2^r`$. Consequently the number R of groups is
 
 ```math
-T_g=O(Q_g+m+\mathrm{poly}(n)),\qquad
-G_g=O(Q_gm+s2^{n-r}+m+\mathrm{poly}(n)).
+R=O(1+\log_2^*(n+2))=O(\ell_*(n)).
 ```
 
-There are only a fixed number of control literals in the gates other
-than predicates and whole-word queries. Hence conditioning does not
-replace the $`Q_gm`$ Clifford term by a T-count of that size.
+### Error budget, including the reserved layers
 
-## 6. Partition, error budget, and summation
-
-Choose the fixed $`r_0`$ large enough for the workspace conditions,
-$`r_0\geq2C_1`$, and the error inequality below. If $`n\leq r_0`$,
-use the original two-clean operator-source compiler; its bounds already
-have the asserted asymptotic form because $`r_0`$ is constant.
-
-Otherwise reserve the deepest $`r_0`$ individual layers and set
-$`r=r_0`$. Until all depths are assigned, form a group ending at
-$`e=n-r`$ with
+For a deepest layer with r lower logical wires, use the old source width
+$`m=L+r+5`$. Its explicit error bound, before conservative rounding,
+is $`10\sqrt2\,2^{-m}`$. All reserved layers together therefore
+contribute less than
 
 ```math
-s=\min\{n-r,\lfloor r/C_1\rfloor\},\qquad r\leftarrow r+s.
+\frac{5\sqrt2}{8}\,2^{-L}.
 ```
 
-This discovers groups from deep to shallow. Execute them in reverse
-discovery order, followed by the reserved individual layers in their
-original shallow-to-deep order. The complete circuit therefore has
-exactly the prescribed Hopf layer order. Every group contract is on the
-entire logical space, so suffix workspace is recomputed at each group;
-it is not assumed to stay zero between different groups.
-
-For a reserved layer at depth $`d=n-j`$, $`1\leq j\leq r_0`$, use its
-original allocation $`m_d=N+j+4`$. The sharper bound proved before the
-rounding to $`2^{4-m_d}`$ in the operator-source chapter is
+A new group's error is at most
+$`10\,2^{-L-\lfloor r/4\rfloor-8}`$. Distinct groups have distinct
+integer r values. Choosing $`r_0`$ to be a sufficiently large multiple
+of four gives
 
 ```math
-5\sqrt2\,2^{1-m_d}
-=\frac{5\sqrt2}{8}\,2^{-N-j}.
+\sum_{\rm groups}10\,2^{-L-\lfloor r/4\rfloor-8}
+\leq\frac{80}{256}\,2^{-L-r_0/4}
+\lt\left(1-\frac{5\sqrt2}{8}\right)2^{-L}.
 ```
 
-Their sum is strictly below $`(5\sqrt2/8)2^{-N}`$. No extra source wire
-or uncharged precision bit is introduced in this estimate.
+The sum follows by grouping all integers $`r\geq r_0`$ into blocks of
+four. Full-isometry telescoping, in the physical prescribed order, now
+gives total error less than $`2^{-L}\leq\eta`$. Ideal preceding
+circuits return their work; actual earlier errors are propagated
+unitarily. This controls all initialized leakage and dirty/reference
+return jointly.
 
-For the grouped stages, r is distinct at each stage, so even summing over
-all integers $`r\geq r_0`$ gives
+## 7. T and Clifford counts
+
+The common coefficient table has $`O(K2^e)=O(s2^e)`$ rows and m
+output bits. Each SELECT uses only a constant number of scalar-source
+calls. The inverse calls and three amplification appearances change
+only constants. Including coarse streaming, predicates, and reflections,
+a group satisfies
+
+```math
+T_g=O(s2^e+m+\mathrm{poly}(n)),
+\qquad
+G_g=O(s2^e m+m+\mathrm{poly}(n)).
+```
+
+The polynomials have fixed degrees. They include unrolling all selected
+marker predicates and variable Hadamards, so no depth-selection work is
+omitted.
+
+Since $`s\leq2^{r/C_1}`$, $`e=n-r`$, and the r values are distinct,
+
+```math
+\sum_gs2^e
+\leq N\sum_{r\geq r_0}2^{-(1-1/C_1)r}=O(N).
+```
+
+Also $`\sum_gm=O(LR+nR)=O(L\ell_*(n)+N)`$. All polynomial
+routing and predicate overheads, even summed over at most n groups, are
+$`O(N)`$ because any fixed polynomial in n is $`O(2^n)`$.
+The reserved tail contributes $`O(N+L)`$, with constants depending on
+the fixed $`r_0`$. These estimates establish
+$`T=O(N+L\ell_*(n))`$ uniformly for every $`L\geq6`$.
+
+For Clifford gates, the weighted table sum is essential:
 
 ```math
 \begin{aligned}
-\sum_g10\,2^{-m_g}
-&\leq10\,2^{-N-8}
-\sum_{r=r_0}^{\infty}2^{-\lfloor r/4\rfloor}\\
-&\leq80\,2^{-N-8-\lfloor r_0/4\rfloor}.
+\sum_g s2^e m
+&\leq N\sum_{r\geq r_0}
+2^{-(1-1/C_1)r}(L+r/4+8)\\
+&=O(NL).
 \end{aligned}
 ```
 
-Choose $`r_0`$ such that
+The remaining source costs $`O(L\ell_*(n)+N)`$ are also $`O(NL)`$;
+the streamed coarse tables, polynomial overheads, and reserved tail obey
+the same bound. Thus $`G=O(NL)`$ without assuming $`L\geq n`$.
+
+## 8. Additional dirty banks give a width tradeoff
+
+Put $`B_0=L+n+7`$. If $`b\geq2B_0`$, the same construction gives
 
 ```math
-\frac{5\sqrt2}{8}
-+80\,2^{-8-\lfloor r_0/4\rfloor}\lt1.
+T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
+\qquad G=O(NL),\qquad a\geq2.
 ```
 
-The complete-isometry hybrid then gives total error below
-$`2^{-N}\leq\eta`$. Earlier actual leakage is propagated unitarily;
-only ideal comparison stages are required to return their work exactly.
+The proof still uses only two clean qubits. Reserve $`B_0`$ dirty wires
+for the core, selectors, and returned helpers proved sufficient above.
+The disjoint additional pool has size
+$`K_{\rm bank}=b-B_0\geq b/2`$. In particular, every core word of
+length $`m\leq B_0`$ fits in that bank pool.
 
-Except possibly at the last group, r grows by a fixed factor greater
-than one. Therefore the number of groups is $`O(\log(n+2))`$ and
-$`\sum_g r=O(n)`$. Moreover,
+For a coefficient table with $`Q_g=\Theta(s2^e)`$ padded rows and an
+m-bit word, choose a power-of-two bank count $`\mu`$ within a constant
+factor below
 
 ```math
-\sum_g Q_g
-\leq O(N)\sum_{r\geq r_0}r2^{-r}=O(N),
+\max\left\{1,\min\left(Q_g,\sqrt{Q_g/m},K_{\rm bank}/m\right)\right\}.
+```
+
+The [exact whole-word dirty SelectSwap query](OPERATOR_SOURCE_COMPILER.md#7-trading-additional-dirty-banks-for-lookup-cost)
+then costs
+
+```math
+T_{\rm query}=O\!\left(\sqrt{Q_gm}+m+\frac{Q_gm}{b}\right),
+\qquad G_{\rm query}=O(Q_gm).
+```
+
+Its $`\mu m`$ bank bits are disjoint from the core and selectors. The
+query restores all banks and selectors exactly on arbitrary inputs.
+The complete inactive table has zero rows, so the complete query is
+identity there even though its individual loader and routing operations
+need not be. This retains the inactive-sector contract without controlling
+every leaf CNOT. The selected forward and inverse scalar blocks still
+call only a constant number of coefficient queries per group.
+
+The constant-size coarse symbol buffers also admit this banked query.
+For a symbol table with $`S_j=\Theta(2^{p+j})`$ rows, its cost is
+$`O(\sqrt{S_j}+S_j/b+1)`$ T gates. Streaming $`O(s)`$ positions at
+each of the s local depths therefore costs
+
+```math
+T_{\rm coarse,g}
+=O\!\left(s2^{e/2}+\frac{s2^e}{b}+\mathrm{poly}(n)\right),
 \qquad
-\sum_gm_g=O\bigl(N\log(n+2)+n\bigr).
+G_{\rm coarse,g}=O(s2^e+\mathrm{poly}(n)).
 ```
 
-All fixed-degree polynomial overheads in n, including the group count,
-are $`O(N)`$. The fixed number of reserved layers costs $`O(N)`$ T
-gates and $`O(N^2)`$ Clifford gates. Since $`m_g=O(N)`$ and
-$`\sum_gQ_g=O(N)`$, the grouped Clifford cost is $`O(N^2)`$ as well.
-This proves the theorem.
+The same base selectors and returned helpers suffice. Banks can be reused
+between a coarse symbol query and a coefficient query.
 
-The construction uses initialized dimension supplied by a verified active
-logical sector and acts as identity on its complement. It does not supply
-a precision-sized initialized source on every arbitrary logical input,
-and therefore does not contradict the nilpotent carried-source restriction
-in [the source-reuse note](SOURCE_REUSE_LIMITS.md). The remaining endpoint
-gap is between $`\Omega(N)`$ and $`O(N\log\log N)`$.
+For $`C_1>2`$, the distinct-r weighted sums obey
 
-The [focused finite checks](../tests/test_conditional_suffix_compiler.py)
-exercise the native dirty phase echo, distinct scalar and matrix-unit
-flags, literal complex phases, full dirty-input amplification and leakage,
-coherent inactive suffixes and predicate erasure, and the sparse support
-for small exact complex coarse frames. Illustrative integer ledgers check
-the allocation formulas. These fixtures do not certify a numerical value
-for the coarse-synthesis workspace constant or replace the asymptotic
-construction and error proof above.
+```math
+\begin{aligned}
+\sum_g\sqrt{Q_gm_g}
+&=O\!\left(\sqrt N\sum_{r\geq r_0}
+2^{-(1-1/C_1)r/2}\sqrt{L+r+8}\right)
+=O(\sqrt{NL}),\\
+\sum_g Q_gm_g&=O(NL),\\
+\sum_g s2^{e/2}
+&\leq\sqrt N\sum_{r\geq r_0}2^{-(1/2-1/C_1)r}
+=O(\sqrt N),\\
+\sum_g s2^e&=O(N).
+\end{aligned}
+```
+
+After the fixed initial threshold, uncapped suffix lengths at least double;
+hence $`\sum_g r=O(n)`$ and
+$`\sum_gm_g=O(L\ell_*(n)+n)`$. The fixed-degree polynomial overheads
+are $`O(\sqrt N)`$ after summation and are absorbed by
+$`O(\sqrt{NL})`$. The fixed number of reserved deepest layers use the
+existing banked operator-source compiler, contributing
+$`O(\sqrt{NL}+L+NL/b)`$ T gates and $`O(NL)`$ Clifford gates.
+Combining these costs proves the banked bound.
+
+In the **two-clean budget** $`a=2`$, total width
+$`q=n+2+b=\Theta(b)`$ in this regime. The [retained worst-case lower
+bound](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage) is $`\Omega(\sqrt{NL}+L+NL/b)`$. Consequently the new upper
+bound is matching whenever either
+
+```math
+L\ell_*(n)^2\leq N
+\qquad\text{or}\qquad
+b\leq N/\ell_*(n),
+```
+
+because $`L\ell_*(n)`$ is then absorbed by $`\sqrt{NL}`$ or
+$`NL/b`$, respectively. These are sufficient matching regimes, not a
+claim that they exhaust the possibilities. In particular, they do not
+close the selected high-precision constant-clean endpoint.
+
+## 9. Verification and scope
+
+The [conditional-suffix tests](../tests/test_conditional_suffix_compiler.py)
+exercise the support partition, native scalar-source blocks, separate
+atom flags, actual inverse words, literal complex phases, amplification,
+and the complete dirty-input contract in small instances. Finite checks
+support the indexing and circuit identities. The asymptotic result rests
+on the dimension-independent construction and resource ledger above;
+small numerical matrices do not prove it by themselves.
+
+This construction uses the existing operator source, dirty queries, and
+normalization-two amplification. Its changes are the ancestor-column
+residual representation, the streamed constant-size coarse-program
+buffer, and the conditional suffix allocation. They leave only an
+iterated-logarithmic multiplicity on the precision charge. The unrestricted
+matching two-clean frontier, including whether the selected endpoint
+admits $`O(N)`$ T gates, remains open. No optimal T-depth, optimal
+Clifford-count, or literature-priority claim is established by this note.

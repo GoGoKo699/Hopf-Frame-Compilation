@@ -53,21 +53,24 @@ the quantum gate counts.
 |---|---|---|
 | **A. Exact complete-frame compilation** | Total elementary size $`\Theta(N)`$, CNOT count $`\Theta(N)`$ for $`n\ge2`$, and depth $`\Theta(n+N/(n+m))`$ | Every integer $`m\ge0`$; real and phase-dressed complex magnitude frames; workspace returned exactly; CNOT count is zero for $`n=1`$ |
 | **B. Matching fault-tolerant frontier** | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, with $`O(NL)`$ Clifford cost for the upper construction | Real frame and, by Corollary 7, the phase-dressed complex magnitude frame; sufficient clean reservation $`a\ge C(n+h)`$ for a sufficiently large fixed $`C`$; literal-phase, complete-input error |
-| **C. Two-clean compilation** | $`T=O(N+nL)`$, $`G=O(NL)`$ | Real Hopf frame; $`a=2`$, $`b\ge L+n+7`$; complete-input error including operator-core return |
+| **C. Two-clean compilation** | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ | Real Hopf frame; $`n\ge1`$, $`L\ge6`$, $`a=2`$, $`b\ge L+n+7`$; complete-input error including workspace return |
 
 Result A includes a separate CNOT lower bound with arbitrary one-qubit gates
 free: a circuit with $`K`$ CNOTs has at most $`n+4K`$ relevant one-qubit
 slots after removing inactive clean ancillas. No optimal leading constant is
 claimed. Result B is precision-uniform under its clean reservation;
-Result C is a different construction with a constant clean allocation.
-At $`n\ge3`$, $`L=N`$, and $`b=N+n+7`$, its
-[conditional-suffix refinement](../docs/CONDITIONAL_SUFFIX_COMPILER.md)
-gives $`T=O(N\log(n+2))`$ and $`G=O(N^2)`$ with $`a=2`$.
-This is an endpoint upper bound; the $`\Omega(N)`$ lower bound is unchanged.
+Result C uses a constant clean allocation. Here
+$`\ell_*(n)=1+\log_2^*(n+2)`$, where $`\log_2^*`$ counts repeated
+base-two logarithms until the value is at most one. At $`L=N`$ and
+$`b=N+n+7`$, it gives $`T=O(N\ell_*(n))`$ and $`G=O(N^2)`$.
+The endpoint's $`\Omega(N)`$ lower bound is unchanged.
 
 Proofs: [A](../docs/COMPILER_THEOREM.md),
 [B](../docs/FAULT_TOLERANT_COMPILER.md),
-[C](../docs/OPERATOR_SOURCE_COMPILER.md).
+[C](../docs/CONDITIONAL_SUFFIX_COMPILER.md). The
+[operator-source baseline](../docs/OPERATOR_SOURCE_COMPILER.md) gives
+$`O(N+nL)`$ and supplies the dirty-lookup mechanism and the diagonal
+and multiplexor corollaries below.
 
 ## A compiler capability beyond Hopf frames
 
@@ -96,7 +99,7 @@ evaluators. Literal block phases and complete-input error are preserved.
 This is one full addressed operation, not a claim for arbitrary many-qubit
 unitaries. Direct composition of the noncommuting Hopf layers incurs the
 baseline $`nL`$ term; conditional-suffix grouping reduces the number of
-precision charges at the selected real-frame endpoint. The
+precision charges uniformly over real-frame accuracy. The
 [current literature comparison](../docs/RELATED_WORK.md#12-contemporary-comparisons-and-the-broader-compiler-contribution)
 distinguishes this clean-workspace guarantee from prior complete multiplexor
 and arbitrary-unitary synthesis.
@@ -107,7 +110,7 @@ These complete the resource picture without becoming separate storylines.
 
 | Corollary | Statement and placement |
 |---|---|
-| Dirty-bank refinement | With $`a=2`$, $`b\ge2(L+n+7)`$, Result C sharpens to $`T=O(\sqrt{NL}+nL+NL/b)`$. It matches the existing lower bound if $`n^2L\le N`$ or $`b\le N/n`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
+| Dirty-bank refinement | With $`a=2`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
 | Literal diagonal synthesis | For $`\ell\ge6`$, two clean qubits give $`O(N+\ell)`$ T gates at error $`2^{-\ell}`$ with $`b\ge\ell+n+5`$. For $`b\ge2(\ell+n+5)`$, the bound $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound. Use as a supporting compiler corollary. |
 | Complex magnitude frame | Compile $`D_\phi W_{\mathbb R}`$ using independently supplied phases and real Hopf angles. In the two-clean model, splitting the error gives $`b\ge L+n+8`$ for $`O(N+nL)`$ T gates, or $`b\ge2(L+n+8)`$ for the banked bound. This is not arbitrary complex-unitary synthesis. |
 | Smaller clean/dirty allocations | Retain the borrowed-workspace upper bound and its restricted all-clean-budget matching splice as an appendix comparison. The splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$; it is not an unrestricted constant-clean theorem. |
@@ -153,7 +156,7 @@ The selected high-precision point is
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 \qquad
-\Omega(N)\le T^\star\le O(N\log(n+2)).
+\Omega(N)\le T^\star\le O(N\ell_*(n)).
 ```
 
 This gap is stated once in the main results and revisited in the discussion.
@@ -202,11 +205,11 @@ package rather than introducing unsupported research claims during writing.
 | Necessity of the target | [Frame-safe contract](../docs/FRAME_SAFE_COMPILATION.md): universal fixed-decoder means force the full frame at regular points, up to common phase; sharp sensitivity and singular exceptions |
 | Exact resources | [Exact theorem](../docs/COMPILER_THEOREM.md): complete constructions, all clean budgets, total size, CNOT-only count, and depth lower bounds |
 | Precision sharing | [Fault-tolerant proof](../docs/FAULT_TOLERANT_COMPILER.md): sufficient-clean frontier, residual-dictionary sufficient condition, all charged source/history work, and complex extension |
-| Constant-clean capability | [Operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean frame, matched diagonal and multiplexor frontiers, exact source T minima, dirty/reference return, and finite certified preprocessing; [conditional-suffix refinement](../docs/CONDITIONAL_SUFFIX_COMPILER.md) at the real-frame high-precision endpoint |
+| Constant-clean capability | [Conditional-suffix proof](../docs/CONDITIONAL_SUFFIX_COMPILER.md): general-precision two-clean real-frame bound; [operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): baseline, matched diagonal and multiplexor frontiers, exact source T minima, dirty/reference return, and finite certified preprocessing |
 | Operational consequence | [Approximation proof](../docs/QBP_APPROXIMATION.md): complete complex gradients, general reflection sums, weight errors, conditional-mean concentration under dirty-bank reuse, and quantum/classical costs |
 | Comparisons and attribution | [Related work](../docs/RELATED_WORK.md) and [source map](../docs/SOURCE_MAP.md): input families, precision, initialized/borrowed work, current general-unitary baselines, and inherited compression |
 | Reproducible evidence | [Verification](../docs/VERIFICATION.md): native finite two-clean circuits, actual inverse and rejected-work composition, source witnesses, gradient fixtures, and exact receipts |
-| Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining full-frame gap between $`\Omega(N)`$ and $`O(N\log(n+2))`$, the limit of the exact-source lower bound, and the sufficient global-block contract still to be constructed |
+| Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining full-frame gap between $`\Omega(N)`$ and $`O(N\ell_*(n))`$, the limit of the exact-source lower bound, and the sufficient global-block contract still to be constructed |
 
 Final writing assembles these established statements and proofs into one
 argument with consistent notation and bibliography. No general elementary

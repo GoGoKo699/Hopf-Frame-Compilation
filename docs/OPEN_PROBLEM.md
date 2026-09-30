@@ -8,17 +8,19 @@ minimum T-count for the prescribed real Hopf frame under the complete-input
 error contract. At
 
 ```math
-a=2,\qquad b=N+n+7,\qquad L=N,
+a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\geq3,
 ```
 
 the retained results give
 
 ```math
 \Omega(N)\le T^\star_{F,\mathbb R}
-\le O\!\left(N\log(2+\log_2 N)\right).
+\le O(N\log_2^*N).
 ```
 
-Here $`a`$ and $`b`$ count initialized clean and arbitrary dirty qubits, and
+Here $`\log_2^*`$ counts repeated base-two logarithms until the value is
+at most one. The quantities $`a`$ and $`b`$ count initialized clean and
+arbitrary dirty qubits, and
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ for
 $`0\lt \eta\le1/64`$. Literal phases, clean-work leakage, and dirty/reference
 return error are included in the same operator norm as the
@@ -29,11 +31,17 @@ $`T=O(N+nL)`$ with $`b\ge L+n+7`$. It pays the precision cost at each
 tree depth. Neither its dirty-bank refinement nor its literal-diagonal
 corollary removes that repeated cost for a general real frame. The
 [conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) instead
-groups consecutive depths: on its active sector, a known-zero logical
-suffix supplies temporary initialized work for a sparse residual block.
-Exact identity on inactive sectors preserves every logical input. A
-geometric partition needs only $`O(\log(n+2))`$ precision charges,
-giving the displayed improved upper bound at $`L=N`$.
+groups consecutive depths. Its residual is a sum of ancestor-column maps,
+their adjoints, and a diagonal; the logical register supplies the table
+address. Only $`O(\log(s+2))`$ temporary initialized bits are needed for
+a group of $`s`$ levels. A known-zero logical suffix supplies those bits
+on the active sector, while every inactive input is preserved exactly.
+Exponentially growing groups need only $`O(1+\log_2^*(n+2))`$ precision
+charges. The general bound is $`O(N+L[1+\log_2^*(n+2)])`$ T gates with
+$`O(NL)`$ Clifford gates and $`b\ge L+n+7`$.
+With $`b\ge2(L+n+7)`$, the same grouped construction also gives
+$`O(\sqrt{NL}+L[1+\log_2^*(n+2)]+NL/b)`$ T gates. This banked
+refinement retains the iterated-logarithm precision term at the endpoint.
 
 With a sufficiently large $`a=\Theta(n)`$ clean reservation and
 $`b=\Theta(N)`$, the shared-source compiler instead attains

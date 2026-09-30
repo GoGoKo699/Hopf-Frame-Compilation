@@ -345,15 +345,31 @@ lookup banks and selectors return exactly. Literal diagonal compilation
 also gives the phase-dressed magnitude-frame corollary with its own error
 allocation and dirty-width threshold.
 
-The baseline's $`nL`$ term gives $`O(N\log N)`$ at $`L=N`$.
-The [conditional-suffix refinement](CONDITIONAL_SUFFIX_COMPILER.md) reduces
-this to $`O(N\log(n+2))`$ for real frames at $`n\ge3`$, $`a=2`$,
-and $`b=N+n+7`$. It combines sparse grouped residuals with the dirty
-operator source, using logical suffix qubits as clean work only in the
-active sector. The $`\Omega(N)`$ lower bound remains unchanged.
+The [conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) gives
+$`O(N+L\ell_*(n))`$ T gates and $`O(NL)`$ Clifford gates for real
+frames at $`n\ge1`$, $`L\ge6`$, $`a=2`$, and $`b\ge L+n+7`$.
+Here $`\ell_*(n)=1+\log_2^*(n+2)`$, with repeated base-two logarithms
+stopping at a value at most one. Star residuals and streamed coarse programs
+use logical suffix qubits as clean work only in the active sector. At
+$`L=N`$, the upper bound is $`O(N\ell_*(n))`$; the $`\Omega(N)`$
+lower bound remains unchanged.
+With $`b\ge2(L+n+7)`$, the grouped banked bound is
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, still with $`O(NL)`$ Clifford gates.
 These are explicitly charged constructions in their stated regimes;
 loaders, dirty lookup, overlap algebra, and amplification retain their
 earlier attribution.
+
+Hierarchical block organization and in-place index updates are also
+established. [Nguyen–Kiani–Lloyd](https://arxiv.org/pdf/2201.11329),
+Section 4.1 and Appendix C.1, use a separate initialized local-vector
+register; their low-rank construction in Section 4.3 uses factor-state
+oracles. [Setty](https://arxiv.org/pdf/2508.21667), Theorem 1 and Section 2,
+includes in-place logical shift/delete operations while retaining initialized
+data-label/PREP work. The local ancestor blocks instead use the logical word
+as the coefficient address, a dirty scalar precision source, and explicitly
+charged streaming lookup. The contribution is this complete-workspace
+realization for the prescribed residual structure, not a new generic LCU
+principle or an assumed QRAM interface.
 
 The [source map](SOURCE_MAP.md) gives exact theorem numbers and local consumers.
 The comparisons identify dependencies and specific additional constructions;
@@ -421,7 +437,7 @@ give the stated worst-case match. At $`L=N`$ and $`b=2(N+n+5)`$ this is
 $`\Theta(N)`$ T count with two clean qubits. This diagonal endpoint is
 settled by the retained proof, whereas the corresponding complete-frame
 endpoint still has a gap between $`\Omega(N)`$ and
-$`O(N\log(n+2))`$. The broader scientific contribution
+$`O(N\ell_*(n))`$. The broader scientific contribution
 is therefore a precision/workspace compiler for a standard operator family,
 together with the structured complete-frame extensions. It is not a claim
 that the entire two-clean frame frontier is matched.

@@ -47,8 +47,10 @@ T=O(N\log N)=o(N^{3/2}),\qquad G=O(N^2).
 
 This is the layer-by-layer baseline. The
 [conditional-suffix grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md)
-improves this endpoint to $`O(N\log(2+\log_2 N))`$ T gates with the
-same workspace and Clifford bound. Neither construction establishes
+gives $`T=O(N+L\ell_*(n))`$ with the same workspace and Clifford
+bound, where $`\ell_*(n)=1+\log_2^*(n+2)`$ and the iterated logarithm
+counts repeated base-two logarithms until the value is at most one.
+At $`L=N`$ this is $`O(N\log_2^*N)`$. Neither construction establishes
 $`O(N)`$ T count, the same result for every constant prefactor in
 $`b=\Theta(N)`$, or a bound for fewer than two initialized qubits.
 
@@ -649,9 +651,10 @@ b\leq N/n.
 The first absorbs $`nL`$ into $`\sqrt{NL}`$; the second absorbs it
 into $`NL/b`$. This is a statement at the specified constant clean
 budget, not at a budget with an unrestricted number of clean qubits.
-At $`L=N`$, (34) retains the $`N\log N`$ source cost. The separate
-[grouped endpoint construction](CONDITIONAL_SUFFIX_COMPILER.md) reduces
-the number of precision charges without invoking this bank refinement.
+These are baseline bounds. The [grouped construction](CONDITIONAL_SUFFIX_COMPILER.md)
+uses the same dirty-bank query and improves (34) to
+$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at the same bank threshold.
+Its sufficient matching regimes replace n in (35) by $`\ell_*(n)`$.
 
 ## 8. Literal diagonal unitaries and phase-dressed frames
 
@@ -928,7 +931,7 @@ implements one address-selected rotation.
 The unrestricted $`O(N)`$ endpoint remains open. At the explicit
 two-clean, $`N+n+7`$-dirty allocation, this chapter's baseline is
 $`O(N\log N)`$; the [grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
-gives $`O(N\log(2+\log_2 N))`$ while preserving the complete frame.
+gives $`O(N\log_2^*N)`$ while preserving the complete frame.
 
 ## 10. Classical table construction
 

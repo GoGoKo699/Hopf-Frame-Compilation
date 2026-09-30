@@ -142,20 +142,22 @@ complex extension follows from an addressed SU(2) diagonal compiler and
 sequential reuse of the same clean pool. A finite-precision QBP consequence follows by controlling
 bounded-score bias, not by differentiating a compiled word.
 
-With two clean qubits, the separate
-[operator-source construction](docs/OPERATOR_SOURCE_COMPILER.md)
+With two clean qubits, the
+[conditional-suffix construction](docs/CONDITIONAL_SUFFIX_COMPILER.md)
 implements every prescribed real Hopf frame with
 
 ```math
 a=2,\qquad b\ge L+n+7,\qquad
-T=O(N+nL),\qquad G_{\mathrm{Clifford}}=O(NL).
+T=O(N+L\ell_*(n)),\qquad G_{\mathrm{Clifford}}=O(NL),
+\qquad \ell_*(n)=1+\log_2^*(n+2).
 ```
 
-At $`L=N`$ and $`b=N+n+7`$, this baseline gives $`O(N\log N)`$ T gates.
-For $`n\ge3`$, [conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md)
-improves the upper bound to $`O(N\log(n+2))`$ with the same allocation.
+Here $`\log_2^*`$ counts repeated base-two logarithms until the value is
+at most one. The bound holds for every $`n\ge1`$ and $`L\ge6`$.
+At $`L=N`$ and $`b=N+n+7`$, it gives $`O(N\ell_*(n))`$ T gates.
 The lower bound remains $`\Omega(N)`$; the linear endpoint is open.
-The baseline construction also supplies a dirty-bank tradeoff and a literal
+The [operator-source baseline](docs/OPERATOR_SOURCE_COMPILER.md)
+also supplies a dirty-bank tradeoff and a literal
 phase-dressed complex magnitude corollary, with their separate workspace
 conditions stated in Section 9.5.
 
@@ -1130,36 +1132,40 @@ they do not emit every elementary gate of the asymptotic compiler.
 ### 9.5 Two-clean compilation and the remaining gap
 
 At $L=N$, a sufficiently large $a=\Theta(n)$ clean budget and $b=\Theta(N)$ dirty workspace attain
-$T^\star=\Theta(N)$. The baseline
-[operator-source compiler](docs/OPERATOR_SOURCE_COMPILER.md)
-gives $T=O(N+nL)$ and $G=O(NL)$ with $a=2$ and $b\ge L+n+7$.
-At $`L=N`$, $`n\ge3`$, and exactly $`b=N+n+7`$,
-[conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) improves
-its $`O(N\log N)`$ endpoint to $`O(N\log(n+2))`$ T gates with
-$`O(N^2)`$ Clifford gates. The $`\Omega(N)`$ lower bound is unchanged.
+$T^\star=\Theta(N)$.
+[Conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) gives
+$`T=O(N+L\ell_*(n))`$ and $`G=O(NL)`$ with $`a=2`$ and
+$`b\ge L+n+7`$, uniformly for $`n\ge1`$ and $`L\ge6`$.
+At $`L=N`$ and exactly $`b=N+n+7`$, its upper bound is
+$`O(N\ell_*(n))`$, against the unchanged $`\Omega(N)`$ lower bound.
 This is a sufficient allocation, not a claim for every fixed clean count
 or every prefactor in $`b=\Theta(N)`$.
 
-With more dirty capacity, $`b\ge2(L+n+7)`$, its banked lookup gives
+The [operator-source baseline](docs/OPERATOR_SOURCE_COMPILER.md) gives
+$`O(N+nL)`$ T gates. The grouped compiler also supports banked lookup:
+with $`b\ge2(L+n+7)`$ it gives
 
 ```math
-T=O\!\left(\sqrt{NL}+nL+\frac{NL}{b}\right),\qquad G=O(NL).
+T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),\qquad G=O(NL).
 ```
 
 For the fixed clean allocation $`a=2`$, this matches the existing worst-case
-lower bound when $`n^2L\le N`$, or when the available bank also satisfies
-$`b\le N/n`$. Neither condition removes the endpoint's repeated precision
-charge. A separate two-clean diagonal compiler adds arbitrary literal leaf
-phases, giving the same order for $`D_{\rm ph}W_{\mathbb R}`$ with
-$`b\ge L+n+8`$ (or $`2(L+n+8)`$ for the banked bound).
+lower bound when $`\ell_*(n)^2L\le N`$, or when the available bank also
+satisfies $`b\le N/\ell_*(n)`$, subject to the bank reservation above.
+A separate two-clean diagonal compiler adds arbitrary literal leaf phases
+to the baseline, giving $`O(N+nL)`$ for $`D_{\rm ph}W_{\mathbb R}`$
+with $`b\ge L+n+8`$, or $`O(\sqrt{NL}+nL+NL/b)`$ with
+$`b\ge2(L+n+8)`$.
 
 The construction represents binary weights in a charged Pauli operator on dirty
 work. An anticommutator extracts each scalar coefficient times the identity on
 that entire workspace; two clean flags and coherent amplification produce each
 addressed rotation. It needs no initialized precision state. The precision cost
-is paid once per tree depth in this baseline. The grouped refinement instead
-uses a logical suffix as initialized work only in its active all-zero sector.
-It groups consecutive depths into $`O(\log(n+2))`$ blocks and charges one
+is paid once per tree depth in this baseline. The grouped compiler organizes
+residuals into rank-one stars and streams coarse programs one symbol at a
+time. Its private work needs only $`O(\log(s+1))`$ qubits for a group
+of $`s`$ depths. Conditional suffix work therefore permits
+$`O(\ell_*(n))`$ blocks, charging one
 precision source per group. Every inactive input is treated coherently;
 final suffix-scratch and predicate return errors are included in the same
 complete-input norm. The [two-clean proof](docs/OPERATOR_SOURCE_COMPILER.md)
@@ -1361,7 +1367,7 @@ The finite-precision constructions use two mechanisms: full-frame residual
 composition with one reusable prepared source, and a two-clean compiler that
 extracts coefficients from a charged operator on arbitrary dirty work. Both
 include explicit clean/dirty resource ledgers and complete-output error bounds;
-the latter's grouped refinement leaves a factor $`O(\log(n+2))`$ at the
+the latter's grouped refinement leaves a factor $`O(\ell_*(n))`$ at the
 high-precision endpoint. The
 [source map](docs/SOURCE_MAP.md) credits the established lookup, digit-weighting,
 Clifford-loader algebra, synthesis, and amplification ingredients. Alternative shadow-based gradient

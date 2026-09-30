@@ -4,8 +4,10 @@
 
 The open endpoint remains
 $`a=2`$, $`b=N+n+7`$, $`L=N`$, $`n\ge3`$, with
-$`\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\log(n+2))`$
+$`\Omega(N)\le T^\star_{F,\mathbb R}\le O(N\ell_*(n))`$
 by [conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md).
+Here $`\ell_*(n)=1+\log_2^*(n+2)`$, and $`\log_2^*`$ counts
+base-two logarithms until the value is at most one.
 This note gives two restrictions on proposed ways to reuse precision work.
 Neither restriction is a lower bound for an unrestricted Hopf-frame
 compiler, and neither changes the retained resource theorems.

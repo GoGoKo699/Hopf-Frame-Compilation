@@ -291,7 +291,7 @@ class ReviewerNarrativeTests(unittest.TestCase):
         self.assertIn("not arbitrary complex-unitary synthesis", normalized)
         self.assertIn("do not prove universal statements", normalized)
         self.assertIn("open problem", normalized)
-        self.assertIn(r"\Omega(N)\le T^\star\le O(N\log(n+2))", scope)
+        self.assertIn(r"\Omega(N)\le T^\star\le O(N\ell_*(n))", scope)
 
     def test_all_markdown_local_links_resolve(self) -> None:
         for page in markdown_pages():
