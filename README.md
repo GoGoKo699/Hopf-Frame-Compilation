@@ -303,7 +303,7 @@ Two initialized compiler flags and $`b\ge P+n+7`$ dirty wires give
 $`T=O(N+P)`$, $`G=O(NP)`$ per execution apart from the observable;
 the protocol branch is separate. A charged actual coarse inverse and
 classical correction retain the original order of simultaneous-gradient
-shots. It includes banked bounds and certified bounded-input cost comparisons.
+shots. [Depth schedules](docs/STATE_QBP_DEPTH.md) and bounded-input costs are explicit.
 The general fine native emitter remains unimplemented; the constant-clean
 full-frame endpoint remains open. No end-to-end speedup is claimed.
 

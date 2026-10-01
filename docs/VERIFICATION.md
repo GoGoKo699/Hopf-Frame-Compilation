@@ -68,6 +68,13 @@ recursive scratch reuse, and arbitrary-input return using symbolic Boolean
 polynomials. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
 the count bound while reducing T-depth under its sufficient dirty-width
 condition. The linear table maps still have a charged Clifford-depth cost.
+The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
+queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
+Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)
+support those primitives. The composition preserves literal phases and
+work-return contracts; its simultaneous count/depth ledger is analytic.
+No new circuit fixture or general emitter is claimed, and T-depth remains
+distinct from total elementary depth.
 The [tree-residual checks](../tests/test_tree_residual_structure.py)
 reconstruct complete small residuals from classical tree generators,
 including complex coarse words and singular angles.

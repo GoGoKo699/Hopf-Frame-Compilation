@@ -784,78 +784,49 @@ native examples verify full-input phases, dirty return, and gradient means
 on their special targets. Their original-frame comparators are cheaper;
 the fixtures establish integration, not a general advantage.
 
-The selected next research pass is the state-based depth audit below.
-The full fine-precision native emitter remains a deferred implementation
-task; completing it would strengthen executable evidence without changing
-the proved resource bounds by itself. No end-to-end advantage example is
+The selected state-based depth pass is also complete, as recorded below.
+The full fine-precision native emitter remains an implementation task;
+completing it would strengthen executable evidence without changing the
+proved resource bounds by itself. No end-to-end advantage example is
 selected. Such a claim requires a concrete observable-access model and a
 classical comparator; another special exact fixture would not supply it.
 
 #### Selected state-based depth audit
 
-The remaining resource question closest to the ancilla–depth motivation
-is the T-depth of the **complete state-based gradient circuit**. The
-[depth-optimized banks](T_DEPTH_COMPILER.md#2-exact-lookup-with-depth-optimized-banks)
-and [parallel dirty indicators](PARALLEL_DIRTY_LOOKUP.md#3-count-efficient-whole-word-queries)
-already provide literal exact query schedules. Their general lookup
-mechanism is inherited from
-[Low–Kliuchnikov–Schaeffer, Table 2 and Appendices B–C](https://arxiv.org/html/1812.00954v2).
-The missing step is their composition with the fine residual table and
-the exact-return real/complex coarse interpreter, under the task's actual
-workspace allocation. This revision selects that audit; it asserts no new
-depth theorem.
+The [state-based depth theorem](STATE_QBP_DEPTH.md) closes this audit for
+both real and consistently gauged complex charts. With
+$`P=\max(n,K)`$, $`B_0=P+n+7`$, and two compiler flags, it gives:
 
-Keep the theorem's accuracy bits K, state precision $`P=\max(n,K)`$,
-and base dirty reservation $`B_0=P+n+7`$. A first conservative target is
+| Sufficient dirty width | Compiler T-depth | Compiler T-count |
+|---|---|---|
+| $`b\ge2B_0`$ | $`O(NP/b+P+n^3)`$ | $`O(NP)`$ |
+| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^4)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ |
 
-```math
-b\ge2B_0,\qquad
-D_T=O\!\left(\frac{NP}{b}+P+n^4\right),\qquad
-T,G=O(NP),
-```
+Both schedules have $`G=O(NP)`$, with count and depth holding on the
+same circuit. Exact query replacement preserves the borrowed-signal and
+amplification contracts. The actual coarse reflection interpreter is
+charged separately; its predicates surround whole row words, yielding
+the first schedule's $`n^3`$ overhead. Coarse work returns exactly,
+while fine state work retains its full initialized-isometry error.
+The proof includes the coherent common reference, complex prefix phases,
+literal live-register inequalities, and the separate small-system source.
 
-for the preparation and magnitude-readout compiler work in one execution.
-This is a **research target**, not an available bound. Filling the dirty
-pool with word banks can lower depth while increasing T-count; it must
-not be advertised as retaining the count-optimized state theorem.
+The [complete task comparison](QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison)
+adds the actual coarse inverse, observable depth at K, and all S or
+$`2S`$ executions. Existing original real-depth schedules and eligible
+complex count-based alternatives remain charged at common physical work.
+The count-preserving real upper expressions can differ even when their
+T-count orders agree. This is not a lower bound for the old protocol or
+a total-runtime advantage; the retained Clifford and classical work,
+including explicit Pauli baselines, still matters.
 
-If the first ledger closes, test a count-preserving schedule with a
-stronger sufficient reservation $`b\ge c(B_0+\sqrt{NP})`$, where c is
-a fixed constant justified by the live registers. The target is the same
-circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$,
-$`G=O(NP)`$, and $`D_T=O(P+n^4)`$. Its precision-independent
-polynomial overhead may be sharpened only after the full schedule is
-priced. No claim about optimal depth or total elementary-gate depth follows.
-
-Require all of the following before accepting either corollary:
-
-1. Replace each mask query by exactly the old whole-space query tensor
-   identity on its extra work. Audit the unchanged-address sectors,
-   borrowed signal, source chain, occupied flags, and actual inverses.
-2. Price the exact coarse reflection interpreter, including complex phase
-   rows, every streamed symbol, and predicate toggle. Its inverse in
-   magnitude readout is an additional call. Approximate dirty return in
-   fine state preparation cannot replace this logical coarse contract.
-3. Give literal live-register inequalities. For $`n\ge6`$ and a Q-row,
-   m-bit fine query, the count-preserving indicator schedule requires
-   $`B_0+\mu m+4Q/\mu\le b`$; banks, core, and indicators are disjoint.
-   For $`n\le5`$, the existing zero-free-address source instead uses
-   $`P+13\le2B_0`$ dirty wires and no query banks. Reuse work only after
-   its return; do not identify that small-system reservation with $`B_0`$.
-4. Extend the schedule to coherent reference/target preparation, and list
-   both real and complex execution depths with the observable at precision
-   K. Retain S magnitude executions and the extra S phase executions.
-   Parallel shots would require extra systems and work; they are not free.
-5. Compare only schedules valid at the same physical allocation. Separate
-   T-depth, T-count, Clifford count, classical preprocessing, and total
-   serial execution cost. Existing full-frame depth bounds have their own
-   real-target and workspace hypotheses.
-
-The deliverable is a concise proved composition corollary or an identified
-failed scheduling obligation. Use a small exact circuit check only to
-resolve a concrete phase, concurrency, or return issue in that proof.
-Stop after this decision; do not expand the pass into a new source
-parallelization problem, a depth lower bound, or general circuit emission.
+The pass uses the already proved exact dirty routing and indicator
+identities, whose general lookup mechanism is inherited from
+[Low–Kliuchnikov–Schaeffer](https://arxiv.org/html/1812.00954v2).
+No new source-parallelization or lookup primitive was required. The
+selected stopping condition is met. Matching T-depth, elementary-depth
+improvements, the fine native emitter, and an end-to-end advantage model
+are separate questions; none is automatically selected by this result.
 
 #### Separate complete-frame question
 

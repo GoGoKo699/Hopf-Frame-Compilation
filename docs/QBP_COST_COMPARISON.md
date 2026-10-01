@@ -517,3 +517,125 @@ not an end-to-end gradient speedup. A new advantage claim needs its own
 observable-access and execution model; another special native fixture
 alone would not supply it. The fine complete-frame endpoint remains a
 separate problem.
+
+The [state-based depth composition](STATE_QBP_DEPTH.md) adds a separate
+workspace-versus-T-depth result. Section 7 compares its complete execution
+ledger with eligible original schedules, without identifying T-depth with
+total circuit depth or elapsed runtime.
+
+## 7. State-based T-depth comparison
+
+Keep Section 1's K, $`P=\max(n,K)`$, S, physical allocation, and observable
+access. Put $`B_0=P+n+7`$ and $`\ell=1+\log_2^*(n+2)`$.
+For a chosen literal circuit let d denote its T-depth, and write
+$`\overline d_O=\sum_r|c_r|d_{O_r}(K)/\Lambda`$. Each observable uses
+precision K, not P. Serial composition gives the following expected
+T-depth upper schedules; replacing the oracle average by its maximum
+gives deterministic upper schedules.
+
+| Protocol | Serial gradient T-depth upper schedule |
+|---|---|
+| Original real chart | $`S(2d_{F,\mathbb R}(K)+\overline d_O)`$ |
+| State-based real chart | $`S(d_{\rm pair}(P)+d_C+\overline d_O)`$ |
+| Original complex chart | $`S(3d_{F,\mathbb C}(K)+2\overline d_O)`$ |
+| State-based complex chart | $`S(d_{\rm pair}(P)+d_{\rm single}(P)+d_C+2\overline d_O)`$ |
+
+The pair and single-state depths include their forward coarse word.
+Magnitude readout adds its actual inverse, of depth $`d_C`$; the direct
+phase stream does not. Branch and system readout are Clifford and add
+zero T-depth, but their elementary depth is not zero. Both choices retain
+the same S magnitude executions and, for complex charts, S phase
+executions. Parallel shots require additional systems, branches, compiler
+flags, and work; the ledger does not grant them for free.
+
+The [new composition theorem](STATE_QBP_DEPTH.md) supplies two schedules
+for the state-based compiler work, including magnitude readout:
+
+| Schedule and dirty reservation | T-depth | T-count | Clifford count |
+|---|---|---|---|
+| A: $`b\ge2B_0`$ | $`O(NP/b+P+n^3)`$ | $`O(NP)`$ | $`O(NP)`$ |
+| B: $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^4)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(NP)`$ |
+
+These bounds apply to real and gauge-fixed complex charts. The observable
+is added by the preceding ledger. Each row's count and depth hold for the
+same circuit. In particular, filling the pool with banks in schedule A
+does not retain schedule B's smaller T-count.
+
+The original **real-frame** schedules remain eligible competitors at
+their own precision K. The [depth-optimized construction](T_DEPTH_COMPILER.md)
+gives, when $`b\ge2(K+n+7)`$,
+
+```math
+D_{A,\rm old}=O\!\left(\frac{NK}{b}
+ +\min\{nK+n^3,\ K\ell+n^4\}\right),\qquad T,G=O(NK).
+```
+
+The [count-preserving construction](PARALLEL_DIRTY_LOOKUP.md) has a fixed
+sufficient constant $`c_{\rm old}`$ and, at
+$`b\ge c_{\rm old}(K+n+7+\sqrt{NK})`$, gives
+
+```math
+D_{B,\rm old}=O\!\left(\min\{nK+n^3,\ K\ell+n^4\}\right),
+\qquad T=O(\sqrt{NK}+K\ell),\qquad G=O(NK).
+```
+
+The common A pool satisfies the old A threshold. For a common B comparison,
+require literally
+
+```math
+c_* =\max\{16,c_{\rm old}\},\qquad
+b\ge c_*(B_0+\sqrt{NP}).
+```
+
+Since $`P\ge K`$, this allocation supplies both B schedules. Every eligible
+original count construction also gives $`D_T\le T`$, so keep the smaller
+such upper expression if useful. For complex original frames this includes
+the gauge-fixed borrowed baseline in Section 2 and the eligible literal
+grouped/banked constructions in Section 3. The real depth-composition
+theorems above are not themselves complex-frame depth theorems. In
+particular, at $`P=K,b=2(P+n+7)`$, the old literal complex bank reservation
+is still one wire short after borrowing the spare clean flag; it requires
+$`b+1\ge2(K+n+8)`$. Its unbanked and gauged borrowed choices remain valid.
+
+For a comparison of the two count-preserving **real** depth expressions,
+define
+
+```math
+Q_D=P+n^4,\qquad R_D=\min\{nK+n^3,\ K\ell+n^4\}.
+```
+
+Along $`n\to\infty`$, a diverging ratio $`R_D/Q_D`$ occurs precisely
+when $`K\ell\gg n^4`$. In that regime $`P=K`$ and the grouped old
+expression is selected, so
+
+```math
+\frac{R_D}{Q_D}=\frac{K\ell+n^4}{K+n^4}
+ =1+\frac{\ell-1}{1+n^4/K}.
+```
+
+If $`K\ell=O(n^4)`$, $`R_D\le K\ell+n^4=O(n^4)\le O(Q_D)`$,
+so no divergent gain is implied. At fixed accuracy the original B
+expression is $`\Theta(n^3)`$, while the new B expression is
+$`\Theta(n^4)`$. These are comparisons of displayed upper expressions,
+not lower bounds, optimal schedules, or a minimum over all new choices:
+with additional banks schedule A can improve depth at its separate
+T-count cost.
+
+For example, take $`K=n^4`$ and the common B pool. Then $`P=K`$,
+the new depth expression is $`\Theta(n^4)`$, and the original one is
+$`\Theta(n^4\ell)`$. Both simultaneous T-count expressions have
+leading order $`\sqrt{NK}=n^2\sqrt N`$, with Clifford bound
+$`O(Nn^4)`$. Thus the available depth expression can improve even when
+the T-count orders coincide. Independent hidden constants prevent this
+asymptotic comparison from locating a finite crossover.
+
+In the improving regime, the ratio survives the serial oracle ledger if
+$`\overline d_O=O(Q_D)`$; if $`\overline d_O=\Omega(R_D)`$, those total
+depth expressions have the same order. S still has the exponential-in-K
+dependence in Section 4.
+Clifford depth, measurement and classical latency, preprocessing, and
+gradient reconstruction remain additional costs. Arbitrary Clifford
+circuits between T layers can have substantial depth. This comparison
+therefore establishes neither total-runtime advantage nor optimal
+gradient-query complexity, and it does not remove the explicit Pauli
+classical baselines in the bounded-input audit.
