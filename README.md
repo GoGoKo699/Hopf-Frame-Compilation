@@ -19,25 +19,22 @@ Its inverse resolves a common objective response.
 | Exact state preparation | fix $U\lvert 0^n\rangle$ |
 | Hopf differential-frame compilation | fix $W\lvert x\rangle$ for every system basis state $\lvert x\rangle$ and restore workspace according to its input promise |
 
-This repository asks whether the prescribed Hopf completion retains the exact
-size–depth frontier of state preparation, and what it costs at finite precision.
+This repository asks whether the prescribed Hopf completion retains the
+state-preparation size–depth frontier, and what finite precision costs.
 The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the claims;
-final manuscript writing follows their consolidation.
+manuscript writing follows their consolidation.
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column, whereas Hopf differential-frame compilation fixes the state and designated frame columns." />
 </p>
 
-For questions about complete-frame synthesis, ancilla–depth or
-T-count–precision tradeoffs, and Hopf QBP robustness, the
-[LLM reading guide](llms.txt) maps the relevant proofs, assumptions, and
-open problems.
+The [LLM reading guide](llms.txt) maps proofs and assumptions for complete-frame
+synthesis, ancilla–depth and T-count–precision tradeoffs, and Hopf QBP robustness.
 
 ## Two resource models
 
-The mathematical target is the complete frame in both models. Their resource
-bounds describe different compiler constructions; they do not assert one
-circuit that simultaneously minimizes every cost.
+Both models target the complete frame. Their bounds use different
+constructions, without simultaneous optimality of every cost.
 
 | Model | Resource question | Scope of the matching theorem |
 |---|---|---|
@@ -155,12 +152,23 @@ qubit, respectively at $`b\ge2(L+n+7)`$ and $`b\ge2(L+n+9)`$.
 For the multiplexor, $n$ counts address qubits and $N$ counts its blocks.
 These matched one-stage frontiers do not close the multi-layer frame gap.
 
-For [antichain-only changes](docs/ANTICHAIN_COMPILER.md),
-$`T=O(N+L)`$, $`G=O(NL)`$ with zero clean qubits and
-$`b\ge L+n+7`$. The target equals a supplied baseline outside nonnested
-nodes; baseline local words are native, determinant one, and length
-$`O(n-d+1)`$ at depth d. Generic rounding does not supply this promise.
-The linear bound at $`L=N`$ is restricted to this class.
+Two promised update classes attain $`T=O(N+L)`$, $`G=O(NL)`$ at
+$`b\ge L+n+7`$. Both require literal agreement with a supplied baseline
+outside the changed nodes; its native determinant-one local words have
+length $`O(n-d+1)`$ at depth d.
+
+- [Antichain changes](docs/ANTICHAIN_COMPILER.md) use **zero clean qubits**;
+  no changed node is an ancestor of another.
+- [Sparse nested changes](docs/SPARSE_UPDATE_COMPILER.md) use **one clean qubit**.
+  If S is the ancestor closure of the changed nodes, a sufficient condition is
+
+```math
+n\ge 2\lceil\log_2(|S|+1)\rceil+32.
+```
+
+The sparse result includes arbitrary changes along one root-to-leaf path,
+for all n using a finite small-n fallback. Their real Hopf specializations preserve the complete frame and QBP interface. Generic rounding
+supplies neither promise; the unrestricted linear endpoint remains open.
 
 ## Exact construction at a glance
 
@@ -174,8 +182,7 @@ all-zero predicate.  Three schedules exploit this structure.
 | $1\leq m\lt 4n$ | direct flagged UCG | one reusable clean flag stores the suffix-zero predicate |
 | larger $m$ | routed parallel subframes | a tree cut turns the tail into a direct sum; the suffix is routed coherently and the subtree frames run in parallel |
 
-The threshold $4n$ is a convenient uniform proof threshold, not an optimized
-finite-size crossover.
+The threshold $4n$ is sufficient; its constant is not optimized.
 
 <p align="center">
   <img src="assets/literature-lineage.svg" width="940" alt="The all-workspace state-preparation line and the Hopf differential-frame line meet in the optimal complete-frame compiler." />
@@ -189,15 +196,12 @@ finite-size crossover.
 | 30–40 minutes | **[complete technical narrative](REVIEW.md)** | shared contract, the two resource models, and the QBP consequence |
 | full audit | **[exact theorem](docs/COMPILER_THEOREM.md)**, **[T-count theorem](docs/FAULT_TOLERANT_COMPILER.md)**, **[one-clean theorem](docs/ONE_CLEAN_COMPILER.md)**, and **[verification map](docs/VERIFICATION.md)** | proofs, register schedules, evidence limits, and source dependencies |
 
-The [documentation map](docs/README.md) links every proof chapter, application,
-source comparison, and reproduction guide. Direct routes to the
-[QBP consequence](docs/QBP_CONSEQUENCE.md) and
-[related-work comparison](docs/RELATED_WORK.md) complete the overview.
+The [documentation map](docs/README.md) links the remaining chapters, including
+the [QBP consequence](docs/QBP_CONSEQUENCE.md) and [related work](docs/RELATED_WORK.md).
 
-A reader needs quantum circuits, operator norms, and basic asymptotic notation.
-The [minimal Hopf interface](docs/HOPF_INTERFACE.md) supplies the geometry;
-knowledge of the earlier Hopf papers is useful but not required. Begin with the
-two-qubit example in the narrative before reading the compiler machinery.
+Prerequisites are quantum circuits, operator norms, and asymptotic notation.
+The [Hopf interface](docs/HOPF_INTERFACE.md) supplies the geometry. Begin with
+the narrative’s two-qubit example.
 
 ## Why the completion matters
 
@@ -343,16 +347,13 @@ python scripts/strict_zero_echo_ledger.py --n 12
 | [`Hopf-QBP`](https://github.com/GoGoKo699/Hopf-QBP) | global, direct-phase, and checkpoint gradient records, including the earlier Möttönen-style robustness result |
 | **This repository** | complete-frame contracts, exact and fault-tolerant compilation, and their scoped QBP consequences |
 
-The exact fact-level dependencies are listed in
-[the source map](docs/SOURCE_MAP.md).
-
 ## Status and license
 
 The [manuscript guide](manuscript/README.md) outlines the paper, and the
 [scientific package](manuscript/PUBLICATION_SCOPE.md#scientific-ingredients-before-final-writing)
 lists the proofs and evidence that precede final writing.
 
-The [verification map](docs/VERIFICATION.md) records analytic and finite
-evidence; the [source map](docs/SOURCE_MAP.md) separates inherited tools and
-local constructions. Neither certifies external review or exhaustive novelty.
+The [verification map](docs/VERIFICATION.md) records the evidence; the
+[source map](docs/SOURCE_MAP.md) records dependencies. Neither certifies
+external review or exhaustive novelty.
 The repository uses the [MIT license](LICENSE).

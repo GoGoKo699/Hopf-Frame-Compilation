@@ -1253,6 +1253,32 @@ antichain is an actual input promise; generic rounding does not supply it.
 The $`L=N`$ bound is linear for this class, without closing the general
 frame endpoint or adding a new QBP sampling theorem.
 
+The [sparse-update theorem](docs/SPARSE_UPDATE_COMPILER.md) also permits
+nested changes. Retain the same native-baseline promise, let S be the
+ancestor closure of the changed nodes, and write
+
+```math
+m=|S|+1,\qquad s=\lceil\log_2 m\rceil.
+```
+
+If $`n\ge2s+32`$, one clean qubit and $`b\ge L+n+7`$ suffice
+for $`T=O(N+L)`$, $`G=O(NL)`$. An exact off-S forest factors out,
+leaving an operator supported on m basis modes. Charged exact packing
+places these in s logical qubits; the remaining logical qubits are zero
+only on the active sector. One shared dense column-residual dictionary,
+scalar source, and half-block amplification then supply a single precision
+charge. The complete initialized-isometry error includes approximate work
+return and arbitrary dirty/reference inputs.
+
+In particular, arbitrary changes along one root-to-leaf path satisfy the
+same bound for every n, using a finite small-n fallback. A real example
+fixes the baseline angles to $`\pi/4`$ and varies angles only within S;
+the complete Hopf QBP interface is preserved. Nesting alone therefore does
+not force repeated precision cost. Dense branching remains outside this
+promise: a general target can have $`|S|=N-1`$, leaving no large active
+zero sector. The sparse and antichain theorems are distinct; an antichain
+can be wide, and its compiler requires no clean qubit.
+
 ---
 
 ## 10. Consequence for quantum backpropagation

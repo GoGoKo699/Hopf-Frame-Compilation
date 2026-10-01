@@ -121,6 +121,16 @@ forest is omitted. Matrices have dimension at most 64. The
 [antichain compiler](ANTICHAIN_COMPILER.md) proves the native resource and
 full-operator error bounds analytically; these fixtures neither emit its
 fine-precision synthesis circuit nor establish the unrestricted endpoint.
+The [sparse-update checks](../tests/test_sparse_update_compiler.py) verify
+ancestor-closed support, exact off-support forest factorization, affine
+basis-state transpositions, and the packed operator's identity complement.
+They reconstruct the dense column dictionary and detect reversed atom/filter
+order and an incorrectly shared rejection flag. Small component matrices
+and batched input columns test actual inverses, complete amplification,
+inactive-sector identity, and dirty-core perturbations including rejection.
+The [sparse-update proof](SPARSE_UPDATE_COMPILER.md) supplies the native
+resource and conditional-workspace bounds. These checks are finite interface
+tests, not an elementary emitter for the precision-dependent compiler.
 The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
 paired-Majorana source and general Pauli masks from native gates, audit the
 conjugated scalar word and five-call amplification on all dirty input
