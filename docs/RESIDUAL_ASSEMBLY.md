@@ -1101,7 +1101,7 @@ its moving subspace. For exact unitaries A and B,
 ```
 
 Here $`\|U-I\|=\|A-I\|/2`$ and
-$`\|R_B-I\|=\|B-I\|$; expand the commutator using
+$`\|R_B-I\|=\|B-I\|`$; expand the commutator using
 $`[R_B,U]=[R_B-I,U-I]`$. For unitary approximations
 $`\widehat A,\widehat B`$, a useful asymmetric stability bound is
 
