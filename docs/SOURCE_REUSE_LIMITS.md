@@ -1301,7 +1301,123 @@ renews this full syndrome pays another length-L cost. A more general
 boundary may avoid renewal, correlate the source with logical data, or
 defer individual group action; none is excluded by these identities.
 
-## 8. Finite checks and evidence limits
+## 8. Small products: compress before synthesis
+
+Small examples can identify an interface before a general construction is
+available. Begin with a positive case, then change its address or logical
+support. These checks distinguish an actual product identity from a
+cancellation that exists only for separately accepted blocks.
+
+### A positive small example: multiply first within one two-mode space
+
+Write a determinant-one one-qubit unitary as
+
+```math
+U(q)=wI-i(xX+yY+zZ),\qquad q=(w,\mathbf v),\qquad
+w^2+\|\mathbf v\|^2=1.
+```
+
+The complete product stays in these same four real coordinates:
+
+```math
+q_2\star q_1=
+(w_2w_1-\mathbf v_2\cdot\mathbf v_1,
+ w_2\mathbf v_1+w_1\mathbf v_2+\mathbf v_2\times\mathbf v_1).
+```
+
+For example, let $`R_j(\theta)=e^{-i\theta\sigma_j}`$ and abbreviate
+$`c_\alpha=\cos\alpha`$, $`s_\alpha=\sin\alpha`$. Two noncommuting
+rotations give
+
+```math
+R_x(\alpha)R_y(\beta)
+=c_\alpha c_\beta I-i(s_\alpha c_\beta X
+ +c_\alpha s_\beta Y+s_\alpha s_\beta Z).
+```
+
+Left-multiplying by $`R_z(\gamma)`$ gives the quaternion
+
+```math
+\begin{pmatrix}
+c_\gamma c_\alpha c_\beta-s_\gamma s_\alpha s_\beta\\
+c_\gamma s_\alpha c_\beta-s_\gamma c_\alpha s_\beta\\
+c_\gamma c_\alpha s_\beta+s_\gamma s_\alpha c_\beta\\
+c_\gamma s_\alpha s_\beta+s_\gamma c_\alpha c_\beta
+\end{pmatrix}.
+```
+
+Any further factor updates these four numbers; it does not enlarge the
+logical support. These are exact matrix identities with the literal phase
+retained. This is why noncommutation alone need not cause repeated precision
+cost.
+
+If every factor has the same unchanged k-bit address, classically compute
+the complete product at each of its $`S=2^k`$ rows. The retained certified
+Euler procedure then approximates each entire product by three rotations.
+The [one-target compiler](ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
+already supplies $`T=O(S+L)`$ and
+$`G=O(SL)`$ with its stated sufficient allocation
+$`a=1,b\ge L+k+9`$. Its complete-isometry estimate includes all logical
+inputs, dirty return, and references. This is a corollary of that compiler,
+not a new workspace theorem. The source core is reused through a constant
+number of calls, independent of the original word length; this does not
+prove a single literal preparation and unpreparation.
+
+Certified preprocessing must approximate the whole product to the required
+matrix tolerance before allocating the fixed number of synthesis errors.
+Its work and working precision may grow with the original word length.
+No quantum-controlled unknown angles or free coherent evaluator are assumed.
+
+### A changed address invalidates rowwise multiplication
+
+Let $`A_j=\sum_x|x\rangle\langle x|\otimes U_{j,x}`$ and let C
+change the address. The complete action is
+
+```math
+A_2(C\otimes I)A_1
+=\sum_{x,y}C_{yx}|y\rangle\langle x|\otimes U_{2,y}U_{1,x}.
+```
+
+Multiplying only $`U_{2,x}U_{1,x}`$ at each old row loses the terms
+with different x and y. A single address Hadamard already exposes this
+failure. Classical product compression remains valid on the full joint
+logical space, but its program is then no longer the original unchanged address table. This is the next condition to test when extending the
+positive example.
+
+### The first change of logical support
+
+On three modes, two overlapping pair rotations instead give
+
+```math
+R_{bc}(\beta)R_{ab}(\alpha)=
+\begin{pmatrix}
+c_\alpha&-s_\alpha&0\\
+c_\beta s_\alpha&c_\beta c_\alpha&-s_\beta\\
+s_\beta s_\alpha&s_\beta c_\alpha&c_\beta
+\end{pmatrix}.
+```
+
+The mixed path amplitude $`s_\beta s_\alpha`$ is already present. With
+$`A_{ij}=|i\rangle\langle j|-|j\rangle\langle i|`$,
+$`[A_{ab},A_{bc}]=A_{ac}`$: the two edges generate the three-dimensional
+Lie algebra of SO(3). A fixed three-mode space still has constant-size
+Euler coordinates, but adding a connected fourth mode gives SO(4), of
+dimension six. Repeated path commutators on the connected N-mode Hopf tree
+generate every $`A_{ij}`$, giving the Lie algebra of SO(N).
+
+This last statement concerns arbitrary repeated products. The prescribed
+once-per-edge Hopf frame still has only $`N-1`$ parameters and its retained
+linear generator description. It is not a gate lower bound. The lesson for
+the next small example is precise: a useful compression must retain a
+bounded-cost program as the active modes grow, not only as more rotations
+are multiplied on one fixed target.
+
+The [small tree Cayley construction](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
+continues this product-first experiment on four and eight logical modes.
+It preserves the complete residual in a coupled recursive representation;
+its native source-and-program implementation remains unproved.
+
+## 9. Finite checks and evidence limits
 
 Run:
 
@@ -1312,6 +1428,7 @@ python -m unittest discover -s tests -p 'test_source_merge.py'
 python -m unittest tests.test_shared_conjugator_merge
 python -m unittest tests.test_precision_carry
 python -m unittest tests.test_correlated_precision_carry
+python -m unittest tests.test_small_product_compilation
 ```
 
 The tests exercise the dimension inequality on small nilpotent
@@ -1329,7 +1446,11 @@ implementation of the transformed group bodies. The flag-correlated
 fixtures check literal chain phases, three unequal widths, arbitrary
 released tails, a realizable scalar query, and full syndrome extraction
 with the actual inverse and nonzero approximation leakage. They do not
-implement a complete group in the proposed code.
+implement a complete group in the proposed code. The small-product checks
+compare quaternion multiplication with complete addressed matrices, retain
+noncommuting factors and mixed path amplitudes, and reject rowwise
+compression after an address change. They are examples of the existing
+fixed-address compiler, not a new general precision-sharing theorem.
 The dimension and T-count statements rest on the analytic proofs above;
 the tests do not establish an unrestricted impossibility theorem or
 literature priority.

@@ -272,6 +272,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Full-port hierarchy | [Fusion audit](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths): recursively closed complete unitary, linear classical generators; faster native synthesis unproved |
 | Coupled completion | [Whole-residual boundary](RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost): one-signal normalization-two recursion; a commutator implements the complete rank-at-most-four repair without normalizing transported differences; its child calls cancel to the original target wrappers, whose precision remains charged |
 | Grouped frame | Best general endpoint bound, with conditional suffix and core return in the complete error |
+| Product-first residual coordinates | [Small examples and Cayley recursion](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation): four/eight-mode checks extend to a complete complex-coarse residual with constant-size local generators and stable inverse conversion; coherent implementation is unpriced |
 | Source-width transport | [Reverse-order loader](SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): total boundary T-count $`2(m_{\max}-1)`$ with linear native loaders; transformed group bodies remain charged |
 
 The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
@@ -491,21 +492,59 @@ tail with its existing $`O(N+L)`$ compiler. Retaining $`G=O(NL)`$
 requires separately charging all interior Clifford gates; the new loader
 and bridge costs themselves fit that budget.
 
+### Small examples now guide the next construction
+
+Start with complete small matrices, using them to find a candidate before
+requiring a general native recurrence. The
+[fixed-address example](SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis)
+is positive: arbitrarily many noncommuting one-qubit rotations at the same
+unchanged address can be multiplied into four quaternion coordinates and
+compiled once by the retained multiplexor construction. Its cost is
+$`O(S+L)`$ under that construction's stated allocation. A quantum address
+change invalidates that rowwise multiplication, and overlapping pairs
+increase the active logical space. Thus noncommutation alone is not the
+obstacle; preserving a cheap program while the support changes is the
+relevant next test.
+
+Four- and eight-mode branching examples suggested a
+[Cayley representation](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
+of the full residual $`\mathcal R=C^\dagger W`$:
+
+```math
+K=(\mathcal R-I)(\mathcal R+I)^{-1},\qquad
+\mathcal R=(I+K)(I-K)^{-1}.
+```
+
+At each subtree its exact update is a coarse conjugation of
+$`A+ZHZ^\dagger`$, where A contains the two child generators and H is
+two by two. The formula handles actual complex native coarse words and
+vanishing defects; the existing uniform coarse approximation keeps its
+small inverses well-conditioned. It has $`O(N)`$ classical recursive
+data and preserves the coupled complete residual. This is a different
+representation to test, not a cheaper coherent evaluator or another
+compiler theorem. Inverse Cayley is stable in operator norm, but its
+circuit cost remains unproved.
+
 ### Next bounded task and stopping rule
 
-The next task is to propose a changed **source-and-program word**, or a
-logical-dependent encoded boundary, for two unequal existing groups. It
-must explain how programming and logical address changes act on the
-carried boundary, and give a recurrence that remains closed through a
-third group and arbitrarily many more. Individual group action may be
-deferred. Do not require the next representation to expose each old mask
-or to renew the full source syndrome.
+The next experiment is a **joint native program for the small Cayley
+residual**, beginning with four logical modes and then eight. Compare its
+actual action and precision-source ledger with the ordinary separate
+rotation words. Include a complex native baseline, a zero local defect,
+and nonzero changes in both branches. Try to load and use the combined
+recursive data without synthesizing every local Cayley update separately.
+The source/program and logical-dependent-boundary approaches remain
+available; individual group action may be deferred.
 
-Derive the complete accepted/rejected action and the native cost recurrence
-before adding more matrix fixtures. Specify where the single internal
-precision charge occurs and why it does not recur once per group. An
-outer-loader telescope, a list of low-rank coefficients, or an accepted
-block calculation alone is no longer a sufficient deliverable.
+Small examples may precede a general construction. A successful pattern
+must eventually supply complete accepted/rejected action, live workspace,
+and a precision-dependent recurrence as the tree or number of existing
+groups grows. A fixed four- or eight-mode synthesis already costs
+$`O(L)`$ by ordinary methods, so that fact alone is not the desired gain.
+Classical matrix compression and a bounded inverse condition number do
+not supply free coherent access or a constant number of precision-bearing
+queries. Do not count a routine call to the target frame or an uncharged
+resolvent as an implementation.
 
 The live-wire contract remains $`b=L+n+7`$ arbitrary dirty wires and
 at most two external clean flags. Holding $`m_{\max}`$ throughout
@@ -526,22 +565,21 @@ separately synthesized mask per group, requires full syndrome renewal per
 query, expands the total table/coarse-program work beyond $`O(N)`$, or
 uses an unproved clean-work or return assumption. These stop conditions
 apply to this sufficient route; they are not general lower bounds. Record
-failure in the existing proof home and change the representation. Do not
+failure in the existing proof home and change the native candidate. Do not
 repeat the completed width, mode-closure, or commutator-repair audits.
 
-Once there is a new parametric word, test unequal widths, a changed logical
+As the native pattern develops, test unequal widths, a changed logical
 address, a third group, and actual inverse behavior on every dirty and
-flag input, including a real target over a complex native baseline.
-Small fixtures falsify a proposed recurrence; they cannot prove its
-asymptotic cost. No target-frame oracle, free evaluator, reset, initialized
+flag input. Small fixtures can suggest or falsify a recurrence; they cannot
+prove its asymptotic cost. No target-frame oracle, free evaluator, reset, initialized
 history, or supplied catalyst is available.
 
 Separately improving the affine and reverse blocks remains sufficient,
 and a linear-T endpoint circuit with larger fully charged Clifford cost
 would still settle the T-only question. No successful joint interior or
-logical-dependent boundary has yet been constructed. The current pass
-supplies usable width transport and sharper stop conditions; it does not
-show that the generic gap is close to resolution.
+logical-dependent boundary has yet been constructed. The latest small examples
+supply a concrete representation to try and a positive fixed-support
+comparison; they do not show that the generic gap is close to resolution.
 
 Optimal depth, practical constants, and a full elementary emitter are
 separate tasks. The established publication scope is unchanged; manuscript

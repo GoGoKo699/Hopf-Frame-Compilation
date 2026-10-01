@@ -505,3 +505,226 @@ identities, the three-mode unitary completion, and perturbation witnesses.
 They use small independent matrix checks, including singular charts;
 they do not certify an elementary joint-block compiler or a new lower
 bound for unrestricted frame synthesis.
+
+## 6. Small products suggest a Cayley representation
+
+The small complete-frame examples admit a compact skew-Hermitian
+representation. It extends to an actual complex native coarse frame and
+does not normalize vanishing residual vectors. This is an operator
+representation, not a native source program or an improved compiler bound.
+The Cayley transform and its connection with low-rank unitary/Hermitian
+structure are standard; see Del Corso, Poloni, Robol, and Vandebril,
+[Section 7](https://arxiv.org/abs/1811.05854). The recursion below specializes
+that elementary matrix tool to the present complete tree residual, without
+a priority claim for the transform or low-rank update method.
+
+### The two-level real example
+
+Let a, b, c be the half-angle tangents at the root, left child, and right
+child. In logical order 0, 1, 2, 3, the frame applies the root rotation
+on the pair (0, 2), followed by the rotations on (0, 1) and (2, 3).
+Assume the three half-angle tangents are finite. Its Cayley transform is exactly
+
+```math
+K=(W-I)(W+I)^{-1}
+=\begin{pmatrix}
+0&-b&-a&-ac\\
+b&0&-ab&-abc\\
+a&ab&0&-c\\
+ac&abc&c&0
+\end{pmatrix}.
+```
+
+The sibling off-diagonal block is the rank-one matrix
+$`-a(1,b)^{\mathsf T}(1,c)`$. The full matrix is generally dense and
+full rank. Thus the useful feature is a recursive description, not a
+small global rank. A three-level example can have all 28 upper-triangular entries nonzero
+while retaining these recursive rank-one sibling couplings.
+
+For a real frame with identity coarse frame, write
+$`p_v=(I+K_v)e_0`$. If t is the root half-angle tangent, then
+
+```math
+K_v=\begin{pmatrix}
+K_L&-t p_Lp_R^{\mathsf T}\\
+t p_Rp_L^{\mathsf T}&K_R
+\end{pmatrix},\qquad
+p_v=\begin{pmatrix}p_L\\t p_R\end{pmatrix}.
+```
+
+Products of half-angle tangents therefore describe the coupling columns.
+Using the full target W in this transform is not a uniformly small-norm
+construction: W may approach an eigenvalue minus one. The residual below
+uses the established coarse approximation instead.
+
+### The actual complex-coarse residual
+
+Let $`\mathcal R_v=\mathcal C_v^\dagger\mathcal W_v`$ be the
+complete subtree residual. Denote its local coarse and target two-mode
+words by C and U. The coarse C is the actual phase-calibrated native
+word; it need not be real. Let E inject the two existing child-root
+modes and put $`\mathsf C=I+E(C-I_2)E^\dagger`$. Then
+
+```math
+\begin{aligned}
+D&=\mathcal R_L\oplus\mathcal R_R,& F_2&=UC^\dagger,\\
+F&=I+E(F_2-I_2)E^\dagger,&
+\mathcal R_v&=\mathsf C^\dagger DF\mathsf C.
+\end{aligned}
+```
+
+Define Cayley transforms where their denominators are invertible:
+
+```math
+\begin{aligned}
+K_v&=(\mathcal R_v-I)(\mathcal R_v+I)^{-1},\\
+A&=K_L\oplus K_R,\qquad
+\tau=(F_2-I_2)(F_2+I_2)^{-1}.
+\end{aligned}
+```
+
+All these generators are skew-Hermitian. Put
+
+```math
+B=E^\dagger AE=\mathrm{diag}(\beta_L,\beta_R),\qquad
+\beta_j=e_0^\dagger K_je_0,\qquad Z=(I+A)E,
+```
+
+```math
+H=\tau(I_2+B\tau)^{-1}.
+```
+
+The exact recursion is
+
+```math
+K_v=\mathsf C^\dagger\bigl(A+ZHZ^\dagger\bigr)\mathsf C.
+```
+
+To prove it, set $`T=E\tau E^\dagger`$. Factoring DF plus and minus
+identity gives
+
+```math
+\mathrm{Cayley}(DF)
+=A+(I+A)T(I+AT)^{-1}(I-A).
+```
+
+The identity $`T(I+AT)^{-1}=EH E^\dagger`$ reduces the inverse to
+two dimensions, and $`I-A=(I+A)^\dagger`$ gives the displayed result.
+The push-through identity also yields
+$`H^\dagger=-(I+\tau B)^{-1}\tau=-H`$, including singular tau.
+No inverse of tau or of a boundary difference is used.
+
+For real rotation words C and U and real child residuals, B is zero. The correction
+then uses $`H=\tau=t\begin{pmatrix}0&-1\\1&0\end{pmatrix}`$,
+where t is the half-angle tangent of the local target-minus-coarse
+rotation. The complex case requires the small two-by-two inverse above;
+setting B to zero there would discard genuine imaginary root entries.
+
+### Uniform conditioning and constant local data
+
+Use the [retained coarse approximation](#the-retained-borrowed-compiler-already-supplies-a-cheap-coarse-frame)
+with a uniform subtree bound
+$`\|\mathcal R_v-I\|\le\epsilon_0\lt1`$ at every subtree, as well
+as $`\|F_2-I\|\le\epsilon_0`$ for the local discrepancies. Write
+$`\kappa=\epsilon_0/(2-\epsilon_0)\lt1`$. Then
+
+```math
+\|K_v\|\le\kappa,\qquad \|B\|,\|\tau\|\le\kappa,
+\qquad \|(I+B\tau)^{-1}\|\le\frac1{1-\kappa^2},
+```
+
+```math
+\|H\|\le\frac{\kappa}{1-\kappa^2},\qquad
+I_2\preceq Z^\dagger Z\preceq(1+\kappa^2)I_2.
+```
+
+The subtree hypothesis matters: separate child and local error bounds
+of $`\epsilon_0`$ alone give at most twice that bound for their parent.
+Use the actual uniform subtree promise, not that invalid implication.
+
+Only constant-size local data are needed. If $`u=Ce_0`$, then
+
+```math
+\beta_v
+=u^\dagger\bigl[B+(I+B)H(I-B)\bigr]u.
+```
+
+Thus the beta summaries and H matrices are computed bottom-up with a
+constant number of scalar operations per node. For the coupling column,
+
+```math
+g=\bigl[I_2+H(I_2-B)\bigr]u,\qquad
+p_v=\mathsf C^\dagger
+\begin{pmatrix}g_0p_L\\g_1p_R\end{pmatrix}.
+```
+
+Leaves have beta zero and p equal to one. Keep these columns recursively
+specified rather than expanding one dense vector at every node. The
+tree therefore uses $`O(N)`$ scalar/matrix generators, with their
+precision and certified classical evaluation separately charged.
+After the root coarse conjugation, the sibling off-diagonal block of
+each recursively defined $`K_v`$ lies in the column and row spans of
+$`\{e_0,p_L\}`$ and $`\{e_0,p_R\}`$, respectively, so its rank is
+at most two. These redundant bases also nest. Put
+
+```math
+\mathcal B_v=[e_0,p_v],\qquad h=(C^\dagger-I_2)(I_2+B)g.
+```
+
+The root-only coarse action gives
+$`p_v|_L=h_0e_0+g_0p_L`$ and
+$`p_v|_R=h_1e_0+g_1p_R`$. Consequently
+
+```math
+\mathcal B_v=
+\begin{pmatrix}\mathcal B_L&0\\0&\mathcal B_R\end{pmatrix}
+\begin{pmatrix}
+1&h_0\\0&g_0\\0&h_1\\0&g_1
+\end{pmatrix}.
+```
+
+The local difference $`K_v-A`$ is supported in these two child spans:
+$`Z`$ has columns $`p_L,p_R`$, while conjugating A by the root
+coarse word adds only root vectors and $`Ae_0`$. The nested identity
+keeps every ancestor correction in the same spans upon restriction.
+Thus every sibling off-diagonal block of the final root matrix has rank
+at most two as well. This is a compact classical representation. Its
+bases may lose rank at zero defects; no formula orthonormalizes or
+inverts them, and no free quantum state preparation is implied.
+
+For skew-Hermitian K and an approximation $`\widehat K`$ that is
+also skew-Hermitian, inverse Cayley conversion has the stable bound
+
+```math
+\left\|(I+\widehat K)(I-\widehat K)^{-1}
+ -(I+K)(I-K)^{-1}\right\|
+\le2\|\widehat K-K\|.
+```
+
+Indeed the inverse transform is $`2(I-K)^{-1}-I`$, and both
+resolvents have norm at most one. This is an operator perturbation
+bound, not a gate-count estimate for implementing a resolvent.
+
+### What remains to make this a compiler
+
+The representation contains no target-frame oracle and no additional
+logical modes. Its coefficients are classical data. It does not supply
+the coherent loading, routing, or transport of p as free operations.
+Nor does a rank-two update give a two-qubit gate: its support vectors
+are generally spread over the complete child subspaces.
+
+A useful native word must implement the jointly represented generator
+and inverse Cayley action with charged controls, queries, and actual
+inverses, within the declared clean/dirty allocation. A power-series
+or generic block-encoding conversion must charge every use of the
+generator; constant residual norm does not make fine-precision
+conversion a constant-query operation. Linear classical storage alone
+does not prove linear table work or one global precision charge.
+The generic compiler frontier is unchanged.
+
+The [Cayley fixtures](../tests/test_tree_cayley.py) start with the displayed
+four-mode product and extend to eight modes. They compare direct complete
+matrices with the recursive data, including actual complex native coarse
+words, zero defects, chart boundaries, conditioning, and inverse conversion.
+They do not emit a Clifford+T implementation of the Cayley generator or
+its inverse.

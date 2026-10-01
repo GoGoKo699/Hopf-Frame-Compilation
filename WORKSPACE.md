@@ -4,11 +4,10 @@ This is the entry point for resuming work when a previous conversation or
 execution workspace is unavailable. The proofs and research decisions live
 in the repository; a conversation summary is only a retrieval aid.
 
-The 2026-10-01 source-carry pass continues from main commit
-`e6e9cd5d993d78e7c78198169e82b257500d4968`. Check the current branch and
-later commits before continuing. New source-width constructions and scoped
-cost obstructions refine the research decision; the compiler frontier is
-unchanged.
+The 2026-10-01 small-product pass continues from main commit
+`efb56deda5660f6726f8d93c8f551c272c1b1567`. Check the current branch and
+later commits before continuing. Small complete examples now guide the
+next construction; the compiler frontier is unchanged.
 
 ## Mandate and reading order
 
@@ -22,8 +21,9 @@ writing and release work outside the current research pass.
    [publication scope](manuscript/PUBLICATION_SCOPE.md) for established claims.
 3. For the active pass, read [conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md),
    especially its complete group contract and resource sums, followed by
-   [source-reuse limits](docs/SOURCE_REUSE_LIMITS.md) and
-   [the completed repair audit](docs/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis).
+   [small products](docs/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis),
+   [the Cayley residual](docs/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation),
+   and [the completed repair audit](docs/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis).
 4. Consult the [verification map](docs/VERIFICATION.md),
    [source map](docs/SOURCE_MAP.md), and [related work](docs/RELATED_WORK.md)
    before extending a claim or changing its attribution.
@@ -70,55 +70,59 @@ generic gap or established that its resolution is close.
 
 ## Latest result and next bounded pass
 
-The [source-carry audit](docs/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation)
-solves the width-only part of the previous task. Reordering the source
-loader preserves its certified coefficient grid and gives literal native
-bridges whose T costs telescope. Initial/final loaders and all monotone
-width changes cost exactly $`2(m_{\max}-1)`$ T gates, with Clifford
-cost within $`O(NL)`$. This is a complete-space identity, including
-occupied flags and arbitrary dirty correlations.
+Start from small complete examples and let them suggest a construction.
+The positive [fixed-address example](docs/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis)
+shows that arbitrarily many noncommuting rotations on one target can be
+multiplied into four quaternion coordinates and compiled once. This uses
+the existing multiplexor theorem and its stated workspace allocation.
+Changing the address or adding overlapping target pairs breaks that
+fixed two-mode description; noncommutation alone is not the obstruction.
 
-The interior programs remain charged. A coefficient arising from a legal
-group gives a transformed mask requiring
-$`T\ge m-2\log_2s-9`$ at its stated fine accuracy when synthesized
-separately. A second, flag-correlated source code also has cheap width
-changes, but a legal scalar query leaves its code by constant norm.
-Renewing the complete source syndrome costs $`\Omega(L)`$ at compilation
-accuracy. These are scoped interface bounds, not additive frame lower
-bounds. Neither candidate yet provides a cheap complete group program.
+Four- and eight-mode branching examples led to a
+[Cayley representation](docs/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
+of the complete residual $`\mathcal R=C^\dagger W`$. Its
+skew-Hermitian generator $`K=(\mathcal R-I)(\mathcal R+I)^{-1}`$
+has an exact tree recursion with two-dimensional local corrections. It
+handles actual complex native coarse words, has $`O(N)`$ classical
+recursive data, and avoids division by vanishing defects. The retained
+uniform coarse approximation bounds its small inverses. Inverse Cayley
+is stable in operator norm, but has no established cheap native circuit.
 
-Keep the existing groups: their total table/coarse-program work is already
-$`O(N)`$. The next bounded task is a **changed source-and-program word
-or a logical-dependent encoded boundary** for two unequal groups, with a
-recurrence closed through a third and arbitrarily many more. A successful
-joint interior may spend $`O(L)`$ once; its total target is
-$`O(\sum_gQ_g+L+\mathrm{poly}(n))`$. Dirty-only outer loaders do
-not supply precision to otherwise precision-free independent group bodies.
-Individual group action may be deferred instead of renewing each source
-or exposing each transformed mask separately.
+The earlier source-width result remains useful: outer loaders and monotone
+bridges cost $`2(m_{\max}-1)`$ T gates. Separately exposed transformed
+masks and repeated complete syndrome renewal still cost precision. That
+pass solved transport, not the joint program. The new Cayley coordinates
+also do not yet improve the generic T-count.
 
-1. Derive the complete boundary action and native cost recurrence first.
-   Explain where the internal precision charge occurs and why it is paid
-   only once. No successful joint interior has yet been constructed.
-2. Retain at most two clean flags and $`b=L+n+7`$ arbitrary dirty wires.
-   Source tails can become selectors, never initialized work. Include
-   changing suffix predicates, actual query unloading, literal inverses,
-   and complete dirty/reference return. Keep the fixed deepest-layer tail
-   with its existing $`O(N+L)`$ compiler.
-3. Only after deriving a changed parametric word, test unequal widths,
-   changed logical addresses, a third group, occupied ports, and a real
-   target over a complex native baseline. These finite checks falsify a
-   recurrence; its asymptotic bound needs a proof.
+The next experiment is a **joint native program for the small Cayley
+residual**, first on four logical modes and then eight. Include a complex
+native baseline, zero defects, and nonzero changes in both branches. Try
+to use the combined recursive data without synthesizing every local
+update separately. A generic resolvent or polynomial conversion must count
+every generator call; its bounded condition number is not a free circuit.
+
+1. Small examples may come before a general recurrence. Compare complete
+   matrices and actual source counts, including all rejected flag ports,
+   dirty inputs, and literal inverses. A fixed-size $`O(L)`$ synthesis is
+   already available and alone does not establish a scalable gain.
+2. If a pattern survives, derive its recurrence as the tree or number of
+   existing groups grows. The target remains $`O(N+L)`$ T gates with
+   the current linear table/coarse-program work; allow one internal
+   $`O(L)`$ precision charge and deferred individual group action.
+3. Keep at most two clean flags and $`b=L+n+7`$ arbitrary dirty wires.
+   Track actual unloading, changing suffix predicates, released source
+   tails, and full dirty/reference return. Keep the fixed deepest-layer
+   tail with its existing compiler. No reset, free catalyst, target-frame
+   oracle, or newly initialized logical sector is supplied.
 
 The [research decision](docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
-gives the full ledger and stop conditions. Stop a candidate that recharges
-precision per group, requires full syndrome renewal per query, expands the linear
-table work, or assumes unproved clean work or return. Change representation
-instead of repeating the now-completed width, mode-closure, or commutator
-repair audits. No reset, free catalyst, or target oracle is supplied.
-Other fully charged constructions remain allowed, including a linear-T
-endpoint circuit with larger Clifford cost. The generic gap has not
-narrowed, and these results do not establish that its resolution is close.
+gives the ledger and stop conditions. Stop a native candidate that merely
+returns to fine local target wrappers, renews precision per group, expands
+the linear table work, or assumes free transport/inversion. Retain useful
+operator identities, then change the native candidate. Other fully charged
+constructions remain allowed, including a linear-T endpoint circuit with
+larger Clifford cost. These examples give a specific next experiment;
+they do not establish that the generic gap is close to resolution.
 
 ## Restore and verify
 
@@ -133,17 +137,16 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The baseline before this pass had 251 tests and passed Python 3.11/3.13
-CI, all four fault-tolerant receipt suites, and rendered presentation.
-The source-carry pass adds 12 focused checks for native phases, width
-bridges, complete scalar words, legal grouped coefficients, correlated
-codes, and syndrome extraction. All 263 tests passed locally on Python
-3.12, as did the reviewer walkthrough, offline synchronization check, and
-protected-math rendering handoff. CI on the merged change records the
-Python 3.11/3.13, exact-receipt, and full rendered-presentation results.
-Its proof sections received separate internal mathematical checks; this
-is not external peer review. Finite fixtures check identities and failure
-controls; native resource bounds remain analytic arguments.
+The source-carry baseline has 263 tests and passed Python 3.11/3.13 CI,
+all four exact-receipt suites, and rendered presentation. The small-product
+pass adds focused checks for fixed-address product compression and the
+complete Cayley residual; matrices have at most sixteen logical modes.
+All 273 tests passed locally, including ten new small-example checks.
+The reviewer walkthrough, offline synchronization, and documentation
+checks also passed. CI on the merged change records the Python 3.11/3.13,
+exact-receipt, and rendered-presentation results. Separate internal reviews
+checked the algebra and conditioning; this is not external peer review.
+Finite fixtures do not establish native asymptotic resource bounds.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)

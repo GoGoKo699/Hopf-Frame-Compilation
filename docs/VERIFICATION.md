@@ -151,6 +151,18 @@ its error bound when approximate extraction leaves flag leakage. The
 charges initialization and decoding and restricts that complete
 renewal interface. It does not apply the same lower bound to an accepted-only
 block or establish an unrestricted carried-source impossibility.
+The [small-product checks](../tests/test_small_product_compilation.py)
+compare quaternion products with complete addressed matrices, including
+literal phases and variable word lengths. A changed-address control rejects
+invalid rowwise preprocessing; overlapping Hopf pairs retain their mixed
+path amplitude. The positive compilation statement reuses the existing
+one-target theorem with its stated allocation.
+The [Cayley checks](../tests/test_tree_cayley.py) start with four modes and
+extend to eight. They compare direct complete residuals with the recursive
+skew-Hermitian generator, including actual complex native coarse words,
+zero defects, chart boundaries, small-inverse conditioning, and inverse
+Cayley stability. This verifies the new operator representation, not a
+Clifford+T emitter or a reduced precision-source count.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
