@@ -193,6 +193,11 @@ actual inverses. It supports the endpoint research without changing Results
 A–C or adding a fourth principal result. The remaining joint precision task
 is specified in the [research revision](../docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass);
 its proposed linear gate budget is not an established publication claim.
+The cross-depth fusion audit retains an exact hierarchy with linear classical
+storage and identifies limits of specified repacking, local-transport, and
+source-extraction shortcuts. It does not improve the compiler bound or
+establish a new unrestricted lower bound; these diagnostics support the
+discussion of the open endpoint.
 
 ## Main text and appendices
 

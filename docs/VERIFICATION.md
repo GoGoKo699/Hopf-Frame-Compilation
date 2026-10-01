@@ -99,6 +99,18 @@ The [native assembly and resource bound](RESIDUAL_ASSEMBLY.md) are proved
 analytically. These operator fixtures use matrices of dimension at most 64;
 they do not emit the native compiler or demonstrate an improved endpoint
 T-count.
+The [affine-tree fusion checks](../tests/test_affine_tree_fusion.py) compare
+the ten-mode and recursive full-input merges with literal local products,
+actual inverses, and independent path maps. They test continuation ranks,
+growing column support, eager entry counts, and a bottom-only perturbation
+whose internal transport is undamped despite a strict external norm margin.
+Native paired-source fixtures separately check transformed-mask correlations,
+changed-address uncomputation, and rejected-space return when a scalar signal
+is reused. Matrices have dimension at most 64. These support the
+[fusion audit](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths)
+and [scoped source-reuse arguments](SOURCE_REUSE_LIMITS.md); the mask
+T-count bound is analytic, and neither the fixtures nor the representation
+witnesses establish a general gate lower bound or a cheaper native compiler.
 The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
 paired-Majorana source and general Pauli masks from native gates, audit the
 conjugated scalar word and five-call amplification on all dirty input

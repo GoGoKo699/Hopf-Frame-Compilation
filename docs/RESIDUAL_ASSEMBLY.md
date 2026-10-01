@@ -501,3 +501,270 @@ An endpoint improvement now requires an improved implementation of these
 structured selected branches with accepted-block error controlled on all
 logical and dirty inputs. The linear-T endpoint and optimal T-depth remain
 open.
+
+## 7. A bounded audit of fusion across tree depths
+
+The affine and reverse-adjoint branches share an injection-and-stopping
+tree interface. This section tests whether merging adjacent depths removes
+their repeated precision charge. The complete local unitaries do close under
+merging, including arbitrary inputs in the modes used for rejection and
+continuation. The resulting hierarchy retains linear classical storage.
+Those facts do not yet supply a cheaper Clifford+T implementation.
+
+### A parent and its two children give an exact ten-mode word
+
+Use the physical row order stop, rejection, left continuation, right
+continuation for a nonterminal local unitary. Write its first two rows as
+$`H_v`$ and its continuation rows as $`\ell_0,\ell_1`$, so
+
+```math
+U_v=\begin{pmatrix}H_v\\ \ell_0\\ \ell_1\end{pmatrix},
+\qquad H_v\in\mathbb C^{2\times4}.
+```
+
+Its four input modes are incoming continuation, marker, and the two modes
+allocated to its children. For each child b, write its complete four-mode
+unitary as $`U_b=[\tau_b\ \ Z_b]`$, separating the incoming
+continuation column from its three other input columns. Applying the parent
+and then both children gives the exact matrix
+
+```math
+\mathcal M_v=
+\begin{pmatrix}
+H_v&0&0\\
+\tau_0\ell_0&Z_0&0\\
+\tau_1\ell_1&0&Z_1
+\end{pmatrix}.
+```
+
+The column groups have sizes 4, 3, 3; the row groups have sizes 2, 4, 4.
+Thus this is a ten-mode unitary, with all ten input amplitudes arbitrary.
+It is the actual product of the three local factors, with fixed input and
+output orderings. No rejected sector has been projected out. In particular,
+the $`Z_b`$ columns cannot be omitted when this word occurs inside
+selection or amplification. The modes here are basis states of the existing
+signal/logical register, not ten initialized qubits.
+The displayed input and output orderings differ, so its determinant need
+not be one even when all three physical local factors have determinant one.
+Restoring the common physical basis includes the corresponding permutation;
+no scalar phase is discarded.
+
+### The hierarchy closes with one coupling column per edge
+
+For a closed subtree containing $`m_v`$ internal nodes, the same
+invariant is
+
+```math
+V_v=[\tau_v\ \ Z_v]\in U(2m_v).
+```
+
+Its first input is the incoming continuation; the other
+$`2m_v-1`$ inputs are arbitrary. Its outputs are all stops and
+rejections in that subtree. A terminal subtree uses its two-mode factor.
+For a nonterminal node, substitute the complete child matrices
+$`V_b=[\tau_b\ \ Z_b]`$ into the displayed merge formula.
+The result has dimension $`2(1+m_0+m_1)=2m_v`$; its first column
+is the new $`\tau_v`$.
+
+To check unitarity directly, each child satisfies
+$`\tau_b^\dagger\tau_b=1`$,
+$`\tau_b^\dagger Z_b=0`$, and $`Z_b^\dagger Z_b=I`$.
+The parent block therefore contributes $`U_v^\dagger U_v=I_4`$
+to the four parent-input columns, while cross terms with child-private
+columns vanish. This proves the invariant on the whole input space.
+Root mixing and final gathering remain the explicit outer operations
+already charged above.
+
+Each child coupling $`\tau_b\ell_b`$ has rank at most one.
+Keeping the constant-size local matrices and child pointers therefore
+uses $`O(N)`$ classical generators. There is no need to materialize
+every expanding $`\tau_v,Z_v`$ array. Rank one on an individual
+tree edge does not mean rank one across a whole depth cut. On initialized
+accepted inputs, the continuations at depth d have matrix
+
+```math
+\mathcal C_d
+=\mathrm{diag}\!\left(\frac{\sqrt{\rho_v}}{\sigma}\right)
+ W_d,\qquad v\text{ at depth }d,
+```
+
+where $`\sigma=s`$ or alpha and $`W_d`$ is the complete
+$`2^d`$-dimensional truncated propagation frame on the root and
+strictly higher marker inputs. Its rank equals the number of positive
+$`\rho_v`$, generically $`2^d`$. On arbitrary full input modes,
+the frontier rows are rows of a unitary and have rank $`2^d`$.
+All of these modes already fit in the existing register. This rank count
+does not require extra clean qubits and is not a circuit lower bound.
+
+For comparison, eagerly expanding a generic h-level affine accepted map
+into entries gives
+
+```math
+1+\sum_{j=0}^{h-1}(j+2)2^j=h2^h+1
+```
+
+nonzero entries. A depth-j marker row contains its root contribution, its
+j strict ancestors, and its own diagonal. With zero root and diagonal,
+as in the reverse-adjoint map, the count is
+$`(h-1)2^h+1`$. This diagnoses the extra factor of h in an eager
+entrywise representation. It does not apply to the linear-size hierarchy
+just proved or establish how many coherently queried rows another compiler
+must use.
+The counts are attained within both branch families: take all coarse words
+to be $`R_y(\pi/4)`$ and all target words to be
+$`R_y(\pi/4+\vartheta)`$ for a sufficiently small positive perturbation
+whose rotation matrix has algebraic entries. Identical child subtrees give nonzero h, k, and d, and both
+propagation columns have nonzero entries. Choosing
+$`\vartheta\le\varepsilon_0 2^{-n-4}`$ also meets the retained
+per-depth coarse allowances.
+
+### Fixed permutations do not make the completed band an unchanged-address table
+
+An open band of g nonterminal levels has
+
+```math
+D_g=2(2^g-1)+2^g=3\cdot2^g-2
+```
+
+output modes: two stops/rejections per processed node and a continuation
+for every frontier node. This count agrees with the ten-mode case at
+$`g=2`$. There are legal affine inputs for which the band's incoming
+continuation column is nonzero on all $`D_g`$ outputs.
+
+For example, choose native $`C=I`$ and the same positive real algebraic
+rotation $`R_y(\theta)`$ at every target node, with
+$`\theta\le\varepsilon_0 2^{-n-4}`$. Positive rational
+stereographic coordinates supply such rotations. This choice meets even
+the retained per-depth coarse error allowances. Equal child subtrees give
+equal child rho values and $`C_v=u_0^\dagger R_vu_1=0`$ in the
+scalar recurrence. Here $`h_v,d_v,E_v`$ are positive, so each
+nonterminal incoming continuation column has four nonzero entries.
+Every path through the open band consequently contributes a nonzero
+amplitude to its own output, without competing paths to cancel it.
+
+The bipartite support graph of the full band matrix is therefore connected:
+this one column meets every output row, and unitarity makes every other
+input column meet some row. Independent input and output permutations
+preserve connected components. They cannot turn this fixed completed word
+into a direct sum of smaller blocks. In particular, for fixed r mode bits,
+permutation-only repacking cannot represent all band heights as one
+unchanged-address table with blocks of size at most $`2^r`$.
+
+This statement concerns exact permutation-only repacking of the specified
+complete word. It supplies no approximation lower bound, excludes no
+nonpermutation change of basis, and does not constrain a different unitary
+completion with the same accepted block.
+
+### A strict external norm margin does not damp the internal continuation
+
+There is also a concrete obstruction to replacing this tree transport by
+a bounded-depth local polynomial merely because its accepted map is a
+strict contraction. Fix a rational $`0\lt z\le\varepsilon_0/8`$,
+independently of n, and set
+
+```math
+\theta=2\arctan z,\qquad
+c=\frac{1-z^2}{1+z^2},\qquad
+t=\frac{2z}{1+z^2}.
+```
+
+Take every coarse local word to be $`R_y(\pi/4)`$. Let target
+$`W'`$ use the same words except at terminal internal nodes, where
+the word is $`R_y(\pi/4+\theta)`$. The coarse frame is an actual
+native circuit: $`R_y(\pi/4)=HZ`$, so each depth uses selected H and
+Z gates. The retained exact identity $`H=VZV^\dagger`$ with
+$`V=SHTHS^\dagger`$ reduces each selected H to a selected Z; the
+borrowed multi-controlled-X construction supplies these selected Z gates
+with $`O(n^2)`$ gates per depth. The total is $`O(n^3)`$ native
+gates. No claim that this entire coarse frame is Clifford is needed.
+The target is algebraic, and it can itself be the requested W. Moreover,
+
+```math
+W'=(I\otimes R_y(\theta))C,\qquad
+\|W'-C\|=2\sin(\theta/2)\le\theta\le\varepsilon_0/4.
+```
+
+The same bound holds for every subtree. Terminal overlaps have
+$`g_v=d_v=c`$, $`h_v=t`$, and $`k_v=-t`$.
+At all higher nodes the overlap matrix is $`cI`$, so
+$`g_v=d_v=c`$ and $`h_v=k_v=0`$.
+
+Let H be the bottom-depth row block of
+$`\mathcal P_C=\mathcal P_{W'}`$, and let
+$`T=\iota_{\rm bottom}H`$. This is a partial isometry from the
+root and strictly higher marker inputs to the bottom marker outputs.
+Its initial and final projections partition the logical space, and
+$`T^2=0`$. The residual pieces are
+
+```math
+F=tT,\qquad R=-tT^\dagger,\qquad S=cI+tT,
+\qquad C^\dagger W'=cI+t(T-T^\dagger).
+```
+
+In this family $`J=T-T^\dagger`$ satisfies $`J^\dagger=-J`$ and
+$`J^2=-I`$, so the complete residual is $`e^{\theta J}`$. This
+special relation uses both forward and reverse pieces.
+
+Thus $`\|S/s\|\lt0.54`$ and
+$`\|R^\dagger/\alpha\|=t/\alpha\le1/16`$: both external
+norm margins are independent of height. Nevertheless, the affine recursion
+has the same positive message at every internal node,
+
+```math
+\rho_v=\frac{t^2s^2}{s^2-c^2}.
+```
+
+At the bottom this is the terminal formula. Above it, equal child messages,
+orthogonal local columns, and zero h give $`A_v=B_v=\rho_v`$
+and $`C_v=E_v=0`$, proving the claim inductively.
+The reverse-adjoint weighted recursion likewise has $`\rho_v=t^2`$
+at every node. In either case, the nonterminal incoming continuation column,
+in semantic stop/left/right/rejection order, is exactly
+
+```math
+p_v=(0,u_0[0],u_0[1],0)^{\mathsf T}.
+```
+
+There is no stop or rejection attenuation before the bottom. In the
+transport notation of the earlier chapter, the rescaled internal shift is
+
+```math
+\mathcal B_\rho
+=D_{\sqrt\rho}\mathcal B D_{\sqrt\rho}^{-1}
+=\mathcal B,\qquad
+\|\mathcal B^{n-1}|1\rangle\|=1.
+```
+
+For $`n\ge2`$ it has norm one and nilpotency index n. Nilpotence
+does not give a height-independent geometric decay of its successive
+powers.
+
+Consequently a replacement of the precise form
+
+```math
+\iota D_h\,p_D(\mathcal B_\rho)\mathcal G,
+\qquad \deg p_D=D\lt n-1,
+```
+
+has zero root-to-bottom output, whereas the true forward term sends that
+input to a bottom vector of norm t. Its normalized error is at least
+$`t/s`$ for the affine branch and $`t/\alpha`$ for the
+reverse-adjoint branch. Adding the affine diagonal cannot restore this
+missing bottom component. The same support argument applies to sums of
+words containing at most D factors from
+$`\mathcal B_\rho,\mathcal B_\rho^\dagger`$, interleaved only
+with operators block diagonal in tree depth: each shift factor changes
+depth by at most one.
+
+This is a restriction on the stated local-depth word class. Global logical
+gates, tree shortcuts, another completion, or a jointly synthesized native
+word are outside it. Indeed, the witness itself has the simple global
+one-angle formula through C displayed above. It is not a hard endpoint
+instance and proves no additive $`nL`$ T-count lower bound.
+
+The bounded audit therefore retains the closed linear-size hierarchy and
+rejects two specific shortcuts: exact permutation-only compression to a
+fixed-size unchanged-address block, and constant-degree local truncation
+justified only by the external norm margin. Keeping the original scatterers
+still gives $`T=O(N+nL)`$, $`G=O(NL)`$. No T-count bound has
+improved in this audit; the linear-T endpoint remains open.

@@ -435,7 +435,7 @@ logical and dirty inputs, their controlled actions and literal inverses are
 implemented, and the two-flag allocation is respected. Amplification then
 controls the complete output, including rejected-space returns.
 
-### Decision: audit a common affine tree interface before further synthesis
+### Completed: cross-depth representation audit
 
 Both selected branches can be sought through one injection-and-stopping
 map. Let $`K(g,d,h;U)`$ propagate incoming amplitudes and emit marker
@@ -473,44 +473,71 @@ descendant coherently. Coarse accuracy remains a fixed constant, both
 branches use the same W', and coarse local words may be complex even when
 the requested frame is real.
 
-The next bounded pass is a **cross-depth representation audit** for these
-two input families. Start with a genuinely branching pair of adjacent
-depth bands, symbolic precision, and nonzero diagonal and complex
-coefficients. Derive the action on occupied rejection modes as well as the
-accepted inputs. Then test whether the representation closes under further
-merges. A useful invariant must keep all of the following:
+The [full-port fusion audit](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths)
+now supplies an exact recursively closed representation. A parent and its
+two nonterminal children form a ten-mode unitary, including every rejected
+input column. A closed subtree with m internal nodes uses a complete
+$`2m`$-mode unitary. Its coupling to each child is rank one, and storing
+the original constant-size scatterers preserves $`O(N)`$ classical
+generators. These modes are existing basis states, not additional clean
+qubits.
 
-1. One dilation signal and one selector, with no fresh initialized
-   predicate or uncharged history. The selected word must preserve the
-   selector and be exact identity on its entire inactive sector. The
-   scalar-phase primitive cannot automatically borrow its flag, and the
-   grouped compiler's clean suffix is not supplied merely by packing a layer.
-2. $`O(N)`$ coherently queried rows for the complete tree. Queries unload
-   before their addresses change, and masks, inverses, literal phases, and
-   physical permutations are charged. Expanding ancestor contributions
-   recreates the old table cost.
-3. A paid precision cost that does not add with band height: a bounded
-   number of uncancelled length-L charges, or a jointly synthesized native
-   word with the desired ledger. Counting symbolic source calls before
-   possible cancellations is not itself a gate lower bound.
-4. All-input accepted-block accuracy and an actual inverse within
-   $`b=L+n+7`$. An error growing with height needs an explicit precision
-   allocation that still fits this pool. The complete rejected action must
-   be specified for the merge, but need not match today's completion.
+The audit separates that positive representation result from three
+unsuccessful shortcuts:
 
-Within one depth, invariant address sectors justify taking the maximum of
-their errors. Different depths move carrier modes and logical addresses;
-they are not one unchanged-address multiplexor. Neither the existing sector
-argument nor the one-clean grouped theorem proves the proposed merge.
+| Proposal | What the audit establishes | Scope |
+|---|---|---|
+| Pack a merged band as one fixed-size addressed block | An admissible completed band has a connected support graph whose size grows with its height; input/output permutations cannot split it into bounded-size blocks | Exact repacking of the chosen completion; another completion or a nonpermutation change of basis is not excluded |
+| Replace the whole frontier by one scalar message | A generic depth-d continuation cut has rank $`2^d`$, although each individual tree edge has rank one | The existing register already supplies those modes; this is not an ancilla or T-count lower bound |
+| Truncate local transport because the accepted map has a norm margin | A balanced tree with defects only at the bottom has constant Riccati messages and undamped flow through every depth; a bounded-degree local-depth word misses a fixed bottom component | The witness itself has a cheap global one-angle implementation, so this does not obstruct global compilation |
 
-The pass succeeds only with an actual selected word, a merge invariant,
-and a summed resource ledger. A two-level identity or a fixed-height
-big-O bound alone is a diagnostic. If the representation instead needs
-extra clean history, expands to $`\Theta(nN)`$ queried rows, or retains
-uncancelled $`nL`$ precision cost, record that cost and stop iterating
-the restricted route. Reconsider direct-Q synthesis if a concrete cross-term
-identity emerges; the current assembly does not supply one. These outcomes
-would guide the next choice, not establish an unrestricted lower bound.
+Eager entrywise expansion of an h-level affine map has
+$`h2^h+1`$ generic nonzero entries, while the unexpanded hierarchy
+stays linear. Thus neither scalar Schur data alone nor an expanded
+ancestor table provides the desired native merge. Retaining the existing
+scatterers still gives $`O(N+nL)`$ T gates. This pass improves the
+description of what must be synthesized, not the endpoint bound.
+
+The [source audit](SOURCE_REUSE_LIMITS.md#the-current-paired-source-also-has-expensive-transformed-masks)
+also treats the actual paired source used by the current compiler. A valid
+programmed transformed mask can require $`T\ge q/2-6`$ when separately
+approximated to $`2^{-q}`$ with full helper return. Hoisting a source
+basis change therefore does not make its transformed masks free. Moving a
+live query across an address change and multiplying accepted scalar blocks
+while ignoring their rejected returns each have explicit counterexamples.
+None makes separate mask costs additive for a jointly synthesized circuit.
+
+### Decision after the fusion audit
+
+Stop pursuing the fixed-size repacking and norm-margin truncation routes
+above. Preserve the full-port hierarchy; its linear classical size remains
+useful. The next bounded algebraic test should use the **coupled whole
+residual**, rather than treat the affine and reverse data as independent
+contractions. Their local generators satisfy the inherited overlap relation
+
+```math
+\begin{pmatrix}g_v&k_v\\h_v&d_v\end{pmatrix}
+=(U_v^C)^\dagger
+  \mathrm{diag}(g_{2v},g_{2v+1})U_v^{W'}.
+```
+
+Together these relations make $`S+R=C^\dagger W'`$ unitary. In the
+bottom-defect witness they give a global rotation generated by an operator
+whose square is minus identity, even though local continuation is undamped.
+That special simplification is a reason to test the coupled relations;
+it is not a formula for a general frame.
+
+For a general branching two-level instance, seek an actual word whose
+rejected terms cancel using those relations, then check whether its form
+survives one further level. The target remains a charged two-flag block,
+with all dirty inputs and literal inverses included. A matrix dilation
+alone, a norm identity, or another invocation of the existing high-precision
+branch circuits is not a native precision improvement. A construction must
+keep the query addresses valid, the same dirty allocation, and a summed
+precision and table ledger; it may choose different rejected completions.
+If the proposed cancellation requires expanded ancestor data or merely
+reintroduces one length-L circuit per depth, stop that particular word.
+No general lower-bound conclusion follows from such a failure.
 
 ### Boundaries to carry into that pass
 

@@ -272,6 +272,88 @@ It is not permissible to add these primitive costs and infer a
 whole-frame lower bound. Joint synthesis could avoid treating the masks
 as independent operations.
 
+### The current paired source also has expensive transformed masks
+
+Moving a dirty-only basis change entirely outside a word does not
+improve its accepted-block accuracy. Write
+$`Q=(I\otimes U)K(I\otimes U^\dagger)`$, let J initialize only
+the signal flags, and put $`B=J^\dagger KJ`$. For a desired
+logical operator E,
+
+```math
+\bigl\|J^\dagger QJ-E\otimes I_{\rm dirty}\bigr\|
+=\bigl\|B-E\otimes I_{\rm dirty}\bigr\|.
+```
+
+This is unitary invariance, since E acts on different wires from U;
+the full-isometry error is unchanged as well. If the interior K were
+independently cheap, the outer basis changes could be omitted. In the
+present source extraction, the precision dependence moves into K's
+transformed masks.
+
+The [one-clean compiler](ONE_CLEAN_COMPILER.md#2-an-exact-two-tail-source-and-its-dirty-masks)
+uses a different, paired source. Its programmed masks have the same
+limitation; no transfer of the preceding one-tail formula is assumed.
+Let q be its precision parameter, $`m=q+1`$, and write its actual
+loader as $`U_q`$, so $`M=U_qX_0U_q^\dagger`$. Choose any mask
+$`P_g`$ supplied by its certified programming rule for
+$`\theta=\pi/3`$, and set
+
+```math
+D_g=U_q^\dagger P_gU_q,\qquad
+r=\frac{\beta}{2}=\frac{\sqrt5-1}{8},
+\qquad \beta=\sin(\pi/10).
+```
+
+**Corollary.** For $`q\ge5`$, a native circuit approximating
+$`D_g`$ with full-isometry error at most $`2^{-q}`$, including
+return of arbitrary dirty and initialized stabilizer helpers, requires
+
+```math
+t\ge\max\{0,q/2-6\}
+```
+
+T or T-dagger gates.
+
+*Proof.* The exact normalized Pauli correlation is
+
+```math
+2^{-m}\operatorname{Tr}(X_0D_g^\dagger X_0D_g)
+=2^{-m}\operatorname{Tr}(MP_g^\dagger MP_g)=s_g.
+```
+
+The paired-source coefficient bounds give
+$`|s_g-r|\le(15/8)2^{-q}`$. Use the same returned-helper
+Pauli-transfer argument as above, now with probe $`X_0`$. The
+approximating circuit's correlation c and its Galois conjugate obey
+
+```math
+c\in(\sqrt2)^{-t}\mathbb Z[\sqrt2],\qquad
+c,c'\in[-1,1],\qquad
+|c-r|\le\frac{31}{8}2^{-q}.
+```
+
+Put $`f(x)=16x^2+4x-1`$. Its two roots are outside
+$`\mathbb Q(\sqrt2)`$, so $`f(c)\ne0`$. Since
+$`f(c)\in2^{-t}\mathbb Z[\sqrt2]`$, its nonzero algebraic norm
+has absolute value at least $`2^{-2t}`$. Meanwhile $`f(r)=0`$,
+$`|f'|\le36`$ on $`[-1,1]`$, and $`|f(c')|\le21`$.
+Consequently
+
+```math
+2^{-2t}\le|f(c)f(c')|
+\lt140\cdot21\,2^{-q}\lt2^{12-q},
+```
+
+which proves the claim. The conjugate circuit is unitary regardless of
+whether it returns its helpers. ∎
+
+Factoring a common $`U_q`$ outside successive words therefore does
+not make the intervening transformed masks free or constant-cost
+Cliffords. This corollary prices one separately implemented mask.
+Its costs cannot be added to obtain a depth-dependent compiler lower
+bound; a jointly synthesized source/program word remains open.
+
 ## 3. Tree generators compress the residual classically
 
 The column-forest block stores coefficients indexed by a marker and an
@@ -533,6 +615,38 @@ This calculation excludes only this direct merged-flag word. The
 scalar-source word and cancels the dirty terms through a second overlap.
 Thus the diagnostic is not a one-clean lower bound; the constructive
 replacement is now explicit.
+
+### Moving a query past its address change is not cancellation
+
+Let x be an address bit and z a dirty core bit. The valid addressed
+Pauli mask $`P=\mathrm{CZ}_{x,z}`$ satisfies
+
+```math
+P R_y(\theta)_xP^\dagger
+=\exp(-i\theta Y_xZ_z).
+```
+
+On dirty input $`|1\rangle_z`$ this applies
+$`R_y(-\theta)`$, with error $`2|\sin\theta|`$ from the intended
+$`R_y(\theta)`$. The dirty bit itself is returned. Thus delaying a
+mask's inverse past a gate that changes its address can leave a logical
+error even with exact dirty return. A fused word must unload before that
+change or explicitly account for the conjugated operation.
+
+Likewise, sharing a signal does not make accepted scalar blocks multiply.
+For the current paired source's fixed mask,
+
+```math
+\mathcal S_f=\frac12 I+X_{\rm flag}D_f,\qquad
+D_f^2=-\frac34I,\qquad
+\langle0|\mathcal S_f^2|0\rangle=-\frac12I.
+```
+
+The product of its two accepted coefficients would instead be
+$`I/4`$. This exact $`3/4`$ discrepancy is independent of q.
+It excludes concatenation of these scalar words as a substitute for a
+new fusion identity; it does not exclude the complete affine assembly
+or another choice of rejected-space action.
 
 ### A scoped diagnostic for Pauli routing of rejected components
 
