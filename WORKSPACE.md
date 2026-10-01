@@ -3,10 +3,10 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-01 consolidation starts from verified main
-`6f739588030b2204bd7be4f2cda98b3eae74b9c2`. Check the current branch and
-later commits before continuing. The selected state-based Hopf QBP
-construction and its bounded-input audit are complete; the
+The 2026-10-01 direction review starts from verified main
+`204a78ee40adc8eedc07939f0a9b7082d750a6a2`, which merged the consolidated
+theorem. Check the current branch and later commits before continuing.
+The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
 raw coordinates, singular angles, and both complex-gradient streams.
@@ -63,6 +63,32 @@ improve. Explicit Pauli inputs also admit deterministic classical gradients
 and term-only classical sampling. These results establish a task-specific
 compiler improvement, not a general end-to-end gradient speedup.
 
+## Selected next pass: depth of the state-based gradient circuit
+
+The mathematical Hopf QBP task is established. The next bounded question
+is whether its two-flag state construction admits an explicit dirty-workspace
+versus T-depth schedule for the complete gradient execution. This follows
+the original ancilla–depth motivation and has a concrete starting point in
+the existing [routing](docs/T_DEPTH_COMPILER.md) and
+[parallel dirty lookup](docs/PARALLEL_DIRTY_LOOKUP.md) lemmas.
+Those chapters currently compose schedules for complete real frames;
+they do not already prove the corresponding state-based real/complex result.
+
+The [selected audit and stopping rule](docs/OPEN_PROBLEM.md#selected-state-based-depth-audit)
+requires the actual coarse C and its inverse, the fine residual table,
+occupied flags, predicates, all returned work, both gradient streams, and
+the observable's depth to be charged. A T-count improvement alone does
+not establish a depth improvement. Depth-optimized and count-preserving
+schedules must have separate resource ledgers, with all simultaneous
+claims applying to the same circuit.
+
+This is a bounded composition audit, not a new general lookup or
+state-preparation program. Its success condition is a proved task-level
+upper bound and a fair comparison with eligible original schedules. If
+a required operation cannot be scheduled with the declared work, record
+the precise obstruction and stop that route. Matching depth lower bounds,
+source parallelization, and a general native emitter are outside this pass.
+
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
@@ -71,10 +97,17 @@ these are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | The full gate-emission package is not implemented. The certified residual helper outputs coefficient intervals, and bounded native examples use special finite-size targets. Any implementation pass must name the missing emitted primitive and its complete error/workspace contract |
+| State-based T-depth | Selected next: audit the existing schedules on the complete real/complex state-based gradient circuit; no new depth bound is claimed by this revision |
+| General fine-precision native emitter | The full gate-emission package is not implemented. The certified residual helper outputs coefficient intervals, and bounded native examples use special finite-size targets. Deferred while the depth audit runs; a later implementation pass must name the missing emitted primitive and its complete error/workspace contract |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| T-depth and practical constants | Their separate unresolved statements remain in the proof chapters; optimal T-count does not imply optimal depth or a practical crossover |
+| Depth optimality and practical constants | Remain separate from the selected upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
+
+If native emission is resumed, the first missing bridge is certified
+cosine/sine intervals to exact paired-source sign masks and then a literal
+borrowed-signal Ry/Rz word. Begin with one unaddressed residual U(z) row.
+The present test helpers use floating-point rounding and some dense
+matrices; they are not a certified, scalable implementation of that bridge.
 
 For the selected complete real-frame endpoint,
 
