@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-01 native two-row table pass starts from verified main
-`365ee59538f4baa065501008afc977e3ca07217b`, after the unaddressed
-residual-row implementation. Check later commits before continuing.
+The 2026-10-01 native residual state pass starts from verified main
+`887bf113a8cb4d060815623e035cfbebac2bdbf8`, after the enabled
+two-row table implementation. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -29,6 +29,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
    documents the classical interval helper; the
    [native rows and tables](docs/NATIVE_RESIDUAL_ROTATION.md) connect it to
    exact masks, borrowed-signal rotations, and one enabled two-row table.
+   The [bounded state integration](docs/NATIVE_RESIDUAL_STATE.md) composes
+   two tables and amplification with the actual inverse.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -49,7 +51,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
-| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, and [certified residual rows and two-row tables](docs/NATIVE_RESIDUAL_ROTATION.md); [verification map](docs/VERIFICATION.md) |
+| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, [certified residual rows and two-row tables](docs/NATIVE_RESIDUAL_ROTATION.md), and [bounded residual state amplification](docs/NATIVE_RESIDUAL_STATE.md); [verification map](docs/VERIFICATION.md) |
 
 The theorem's original accuracy bits K and state precision
 $`P=\max(n,K)`$ must remain distinct. The observable needs accuracy K,
@@ -114,6 +116,17 @@ control sectors and retain their relative phases. These components
 implement existing identities; they do not change the asymptotic
 theorem or emit its complete state-preparation schedule.
 
+The [one-system-qubit residual state emitter](docs/NATIVE_RESIDUAL_STATE.md)
+now composes two enabled tables, an exact controlled Hadamard, and one
+state-amplification step with the actual reversed word. Its full
+initialized-isometry bound is below 390 times 2 to the power minus q,
+including both returned flags and arbitrary borrowed/reference input.
+The unsimplified count is 3240q+3793 T/TDG gates, with q+2 dirty wires.
+At q=L+10 this bounded emitter exceeds the minimum n=1 dirty reservation
+by four wires; it fits the banked pool and does not replace the
+minimum-budget fallback. Exact reflections and the literal leading
+minus sign are included. No coarse C or QBP branch is emitted here.
+
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
@@ -122,12 +135,13 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | A certified row and an enabled two-row table are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded integration is a small residual state-preparation word with two declared clean compiler flags and the actual inverse in amplification |
+| General fine-precision native emitter | Certified rows, enabled two-row tables, and one-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded step adds one unchanged address bit with a charged lookup/predicate and exact inactive-sector identity |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
-Do not repeat the completed coefficient-to-row or two-row table checks.
+Do not repeat the completed coefficient-to-row, two-row table, or bounded
+state-amplification passes.
 For the next component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.

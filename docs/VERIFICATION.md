@@ -336,8 +336,20 @@ blocks to identity. This covers the full ten-wire operator through four
 256-dimensional blocks, including coherent address phases and the
 active-zero convention. High-precision checks use rational certificates
 and literal counts of 540q+630 T/TDG gates per residual table. This
-control arity needs no extra helper; general dirty lookup, larger
-predicates, and complete state amplification are not emitted by it.
+control arity needs no extra helper; general dirty lookup and larger
+predicates are not emitted by it.
+
+The [bounded state tests](../tests/test_native_residual_state.py) compose
+two certified tables into a one-system-qubit preparation with two clean
+flags. Exact normalized coefficient fixtures cover complex amplitudes
+and boundary cases. The small native blocks feed a complete 128-column
+dirty-input isometry at q=5, retaining leakage through both reflections
+and the actual inverse. Independent elementary propagation checks the
+flattened word without phase alignment. Exact high-precision certificates
+and the unsimplified 3240q+3793 T/TDG ledger are checked without growing
+statevectors. The [scope and proof](NATIVE_RESIDUAL_STATE.md) retain the
+external coefficient promises and the larger-than-minimum small-system
+dirty allocation. This is not a general emitter or an advantage claim.
 
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,

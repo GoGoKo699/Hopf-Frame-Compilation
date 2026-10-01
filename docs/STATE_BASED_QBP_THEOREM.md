@@ -232,7 +232,10 @@ their descriptions, generation, and execution are still charged.
 
 The implemented [residual coefficient helper](RESIDUAL_TABLE_PREPROCESSING.md)
 and [native bridge](NATIVE_RESIDUAL_ROTATION.md) certify and emit an
-unaddressed completion or an enabled two-row residual table. Complete native [real](NATIVE_COARSE_QBP.md)
+unaddressed completion or an enabled two-row residual table. A bounded
+[one-qubit residual preparation](NATIVE_RESIDUAL_STATE.md) composes these
+with two clean flags and the actual inverse in amplification; it uses
+more dirty work than the minimum-budget small-system fallback. Complete native [real](NATIVE_COARSE_QBP.md)
 and [complex](NATIVE_COMPLEX_COARSE_QBP.md) examples verify special two-qubit
 targets. The general fine-precision native emitter is not implemented;
 the construction bound above is analytic.

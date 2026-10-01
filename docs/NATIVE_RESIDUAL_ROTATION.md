@@ -253,7 +253,8 @@ a 1024-dimensional dense simulation. It also tests coherent relative
 phases, active-zero selection, actual inverses, shared outer tables,
 input contracts, and exact rational high-precision resource certificates.
 
-The next bounded integration is a small residual state-preparation word
-with two explicitly initialized compiler flags and the actual inverse
-used in amplification. General table sizing and the full count/depth
-schedules remain distinct implementation tasks.
+The [bounded residual state emitter](NATIVE_RESIDUAL_STATE.md) now composes
+two such tables into a one-system-qubit preparation, with two explicitly
+initialized compiler flags and the actual inverse used in amplification.
+General table sizing and the full count/depth schedules remain distinct
+implementation tasks.

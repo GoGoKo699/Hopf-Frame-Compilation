@@ -65,6 +65,7 @@ from the all-workspace state-preparation framework.
 | [`rotation_programming.py`](rotation_programming.py) | exact interval-to-sign programming, geometric-tail rounding, and rational accepted-block/native error certificates |
 | [`native_residual_rotation.py`](native_residual_rotation.py) | literal borrowed-signal Ry/Rz and one unaddressed residual U(z) row; arbitrary work inputs, actual inverses, and linear gate storage |
 | [`native_residual_table.py`](native_residual_table.py) | two residual rows selected by one address bit and one enable literal; exact inactive identity and no extra predicate helper at this arity |
+| [`native_residual_state.py`](native_residual_state.py) | bounded one-system-qubit preparation from two certified tables, exact reflections, two clean flags, and actual-inverse amplification |
 | [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
@@ -73,7 +74,9 @@ execution. The native fixtures use exact finite-size state preparation;
 they do not emit the general fine residual table. The
 [certified residual bridge](../docs/NATIVE_RESIDUAL_ROTATION.md) emits one
 unaddressed row or an enabled two-row table from the helper's coefficients.
-General tables and a complete native state compiler remain unimplemented.
+The [bounded state emitter](../docs/NATIVE_RESIDUAL_STATE.md) composes two
+tables and one state-amplification step. General tables and the full
+fine state compiler remain unimplemented.
 See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
 and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
 
