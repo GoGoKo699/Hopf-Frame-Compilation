@@ -492,9 +492,12 @@ where J initializes the allocated signal flags. It need not approximate
 the selected $`U(t)`$ on rejected inputs. The retained
 [amplification lemma](OPERATOR_SOURCE_COMPILER.md#5-amplification-includes-rejected-space-error)
 uses an accepted-block estimate and the actual inverse, rather than
-proximity to a prescribed completion. For this nonunitary component,
-the charged workspace, required controlled calls, and later full-frame
-composition still need their own proofs.
+proximity to a prescribed completion. For an arbitrary replacement of this
+F-only component, controlled calls and charged workspace still need proof;
+it does not automatically implement the affine $`S=A+F`$ branch. The
+[residual assembly](RESIDUAL_ASSEMBLY.md) already proves complete-frame
+composition for its specified S/R interfaces. A replacement meeting those
+interfaces can reuse that theorem with its own native resource ledger.
 
 The [finite checks](../tests/test_tree_transport.py) compare independent
 path products and shift formulas, complete residual matrices, Gram

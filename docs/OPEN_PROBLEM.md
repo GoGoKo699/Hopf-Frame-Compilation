@@ -118,6 +118,34 @@ It is not total circuit depth or elapsed QBP execution time. Neither the
 exact CNOT light-cone bound nor the source's linear exact T-count minimum
 supplies an additional depth lower bound in this model.
 
+### What this already gives Hopf QBP
+
+The endpoint below is a high-precision compiler question, separate from the
+precision needed for a fixed raw-gradient accuracy. For a reflection-sum
+observable with coefficient one-norm Lambda, the existing
+[QBP error allocation](QBP_APPROXIMATION.md#10-reflection-sums-and-finite-classical-weights)
+permits
+
+```math
+L=\max\{6,\lceil\log_2(32\Lambda/\varepsilon_\infty)\rceil\}.
+```
+
+Thus fixed observable scale and coordinate accuracy give fixed L. In this
+regime, the arbitrary-budget real-frame compiler already attains
+worst-case optimal-order $`T=\Theta(\sqrt N)`$ with zero compiler clean
+qubits and $`b=\Theta(\sqrt N)`$. The separate parallel schedule gives
+this count together with $`D_T=O(n^3)`$ using two compiler clean qubits
+and a sufficiently large square-root dirty allocation. Both preserve the
+prescribed frame used by QBP; their clean allocations cannot be interchanged.
+
+The protocol reserves one additional clean interference qubit and the
+controlled observable's work, beyond the initialized system and compiler
+reservation. Its fixed-accuracy, fixed-confidence execution count is
+$`O(1+\log n)`$; observable costs and classical gradient output remain
+separately charged. The unresolved $`L=N`$ endpoint does not prevent
+these existing QBP guarantees. Optimal T-depth and end-to-end gradient
+optimality remain open.
+
 ## The remaining endpoint
 
 The publication establishes its compiler theorems without resolving this
@@ -240,9 +268,11 @@ budgets. The accepted action must hold on every logical and dirty input,
 including reference correlations; no return condition is assumed on rejected
 branches. The normalization-two amplification lemma then gives the desired
 complete-isometry compiler with three charged calls, using the same two flags.
-No such jointly charged block is currently established. A proof of this
-sufficient interface, or a different full-frame construction, would close the
-upper-bound side of the endpoint without requiring intermediate source return.
+The [two-flag assembly](RESIDUAL_ASSEMBLY.md) establishes the same operator
+interface at $`O(N+nL)`$ T cost, after appending the coarse frame. What
+remains unproved here is its linear endpoint cost. A proof at the displayed
+budget, or a different full-frame construction, would close the upper-bound
+side without requiring intermediate source return.
 
 ## What still costs more than linear
 
@@ -347,52 +377,28 @@ task is a smaller joint precision charge for its two compatible terms.
 
 ### Completed: two flags assemble the whole residual
 
-Use the exact identity
+The [assembly proof](RESIDUAL_ASSEMBLY.md) groups the exact residual identity
+into two terms:
 
 ```math
-C^\dagger W=A+F+R,\qquad A=I+D,\qquad
-F=\iota D_h\mathcal P_W,\qquad
-R=\mathcal P_C^\dagger D_k\iota^\dagger.
+C^\dagger W'=S+R,\qquad S=A+F,\qquad
+\alpha=4\varepsilon_0,\qquad s=2-\alpha.
 ```
 
-A separate selector branch for each of A, F, and R would require a third
-initialized selector/signal role. The [new construction](RESIDUAL_ASSEMBLY.md)
-first incorporates the diagonal into the forward tree:
+One selector and one signal implement an accepted block $`C^\dagger W'/2`$
+for the common algebraic target approximation W'. The proof charges
+root and terminal completions, branch-specific physical gathering, native
+controls, actual inverses, and final amplification. Appending coarse C gives
+the complete-frame contract at $`a=2`$, $`b\ge L+n+7`$,
+$`T=O(N+nL)`$, and $`G=O(NL)`$.
 
-```math
-S=A+F,\qquad \alpha=4\varepsilon_0,\qquad s=2-\alpha,
-\qquad \|S\|\le1+2\varepsilon_0\lt s.
-```
-
-The scalar Schur recursion now includes the marker's diagonal contribution
-in its stop output. Root mixing and the terminal rejection phase are adjusted
-so that one logical signal still supplies a complete unitary dilation.
-This gives an actual block $`S/s`$. A swapped-pair construction followed by
-its actual inverse gives $`R/\alpha`$.
-
-Prepare the selector with probabilities $`s/2`$ and $`\alpha/2`$,
-select between these two one-signal blocks, and undo that preparation.
-Because $`s+\alpha=2`$, its two-flag accepted block is
-
-```math
-\frac{s}{2}\frac{S}{s}
-+\frac{\alpha}{2}\frac{R}{\alpha}
-=\frac{C^\dagger W}{2}.
-```
-
-The implementation uses one common algebraic target approximation for both
-terms. Controlled templates are exactly inactive on the other selector
-sector, including all dirty inputs. Final gathering is explicitly controlled;
-no T gate is silently promoted to a controlled T. The proof gives the
-complete flag-lifetime table and includes coefficient preparation, physical
-routing, actual inverses, and normalization-two amplification. Appending the
-already priced coarse C yields the prescribed frame.
-
-At $`a=2`$ and $`b\ge L+n+7`$, the resulting complete circuit has
-$`T=O(N+nL)`$ and $`G=O(NL)`$. This is an explicit assembly route;
-it is weaker than the retained grouped endpoint upper bound. In particular,
-the proof does not turn an opaque existing F block into an S block with a
-constant number of calls: it recompiles the affine tree's local data.
+The faster within-depth synthesis already applies to both S and R. Their
+determinant-one templates and occupied signal inputs are handled; these
+are no longer missing compatibility lemmas. The remaining $`nL`$ term
+comes from precision charges across depths. The result is a reusable
+assembly interface, while the one-clean grouped compiler remains the better
+endpoint bound. No constant-query conversion of an opaque F-only block to S
+has been proved.
 
 ### Next task: share precision in the affine and reverse blocks
 
@@ -411,18 +417,16 @@ $`L=N`$ and $`b=N+n+7`$, it therefore suffices to achieve
 T_S+T_R=O(N),\qquad G_S+G_R=O(N^2)
 ```
 
-within that same dirty pool. A precision-uniform sufficient target is
+within that same dirty pool. A stronger, precision-uniform sufficient target is
 $`T_S+T_R=O(N+L)`$, $`G_S+G_R=O(NL)`$. These improved component
 costs remain unproved. The current templates pay $`O(L)`$ precision work
 at each of n depths.
 
-The next bounded pass should synthesize the **affine** transport
-$`S=A+F`$ together with the reverse term's compatible interface. A cheaper
-F-only routine does not automatically price S. The local coefficients and
-scalar storage recursion contain only $`O(N)`$ classical data; their
-coherent implementation, masks, routing, and precision work must all be
-charged. Replacing the repeated native source calls by a shared word is a
-construction task, not a consequence of that classical data count.
+Closing the selected endpoint does not require proving the stronger uniform
+bound first. Also, separately accurate S and R branches are a sufficient
+route, not a necessary form of every solution. A directly synthesized Q
+may exploit another decomposition or cancellations between terms, provided
+it satisfies the whole-frame accepted-block contract above.
 
 The assembly does not require the future blocks to approximate the particular
 Gram–Schmidt completions used in the current proof. They may choose other
@@ -431,11 +435,82 @@ logical and dirty inputs, their controlled actions and literal inverses are
 implemented, and the two-flag allocation is respected. Amplification then
 controls the complete output, including rejected-space returns.
 
-A successful pass must give an actual native circuit and summed resource
-ledger improving the repeated precision term. A new norm identity, a free
-coherent evaluator, or a bound for the forward accepted block alone would
-leave that task incomplete. Any obstruction must remain scoped to the
-specific source or assembly interface it analyzes.
+### Decision: audit a common affine tree interface before further synthesis
+
+Both selected branches can be sought through one injection-and-stopping
+map. Let $`K(g,d,h;U)`$ propagate incoming amplitudes and emit marker
+outputs by
+
+```math
+\begin{aligned}
+a_1&=x_\ast,\qquad
+a_{2v+b}=u_0[b]a_v+u_1[b]x_v,\\
+y_\ast&=g x_\ast,\qquad y_v=h_va_v+d_vx_v.
+\end{aligned}
+```
+
+The columns $`u_0,u_1`$ are those of the local word $`U_v`$. This
+notation gathers existing operator identities; it is not a new fast
+compiler theorem.
+
+| Use | Propagation U | Stop weights | Diagonal and root | Normalization |
+|---|---|---|---|---|
+| Affine S | Common target $`W'`$ | $`h_v`$ | $`d_v,g_1`$ | $`s`$ |
+| Reverse adjoint $`R^\dagger`$ | Actual coarse C | $`\overline{k_v}`$ | Both zero | $`\alpha`$ |
+
+For the retained fixed $`0\lt\varepsilon_0\le1/64`$, both normalized
+maps are strict contractions with an absolute margin:
+
+```math
+\|S/s\|\le\frac{1+2\varepsilon_0}{2-4\varepsilon_0}\lt0.54,
+\qquad \|R^\dagger/\alpha\|\le\frac12.
+```
+
+An implementation of the second is used through its actual inverse. The
+current scalar Schur recursion supplies a completion for each map; scalar
+messages alone do not describe how every injected marker reaches every
+descendant coherently. Coarse accuracy remains a fixed constant, both
+branches use the same W', and coarse local words may be complex even when
+the requested frame is real.
+
+The next bounded pass is a **cross-depth representation audit** for these
+two input families. Start with a genuinely branching pair of adjacent
+depth bands, symbolic precision, and nonzero diagonal and complex
+coefficients. Derive the action on occupied rejection modes as well as the
+accepted inputs. Then test whether the representation closes under further
+merges. A useful invariant must keep all of the following:
+
+1. One dilation signal and one selector, with no fresh initialized
+   predicate or uncharged history. The selected word must preserve the
+   selector and be exact identity on its entire inactive sector. The
+   scalar-phase primitive cannot automatically borrow its flag, and the
+   grouped compiler's clean suffix is not supplied merely by packing a layer.
+2. $`O(N)`$ coherently queried rows for the complete tree. Queries unload
+   before their addresses change, and masks, inverses, literal phases, and
+   physical permutations are charged. Expanding ancestor contributions
+   recreates the old table cost.
+3. A paid precision cost that does not add with band height: a bounded
+   number of uncancelled length-L charges, or a jointly synthesized native
+   word with the desired ledger. Counting symbolic source calls before
+   possible cancellations is not itself a gate lower bound.
+4. All-input accepted-block accuracy and an actual inverse within
+   $`b=L+n+7`$. An error growing with height needs an explicit precision
+   allocation that still fits this pool. The complete rejected action must
+   be specified for the merge, but need not match today's completion.
+
+Within one depth, invariant address sectors justify taking the maximum of
+their errors. Different depths move carrier modes and logical addresses;
+they are not one unchanged-address multiplexor. Neither the existing sector
+argument nor the one-clean grouped theorem proves the proposed merge.
+
+The pass succeeds only with an actual selected word, a merge invariant,
+and a summed resource ledger. A two-level identity or a fixed-height
+big-O bound alone is a diagnostic. If the representation instead needs
+extra clean history, expands to $`\Theta(nN)`$ queried rows, or retains
+uncancelled $`nL`$ precision cost, record that cost and stop iterating
+the restricted route. Reconsider direct-Q synthesis if a concrete cross-term
+identity emerges; the current assembly does not supply one. These outcomes
+would guide the next choice, not establish an unrestricted lower bound.
 
 ### Boundaries to carry into that pass
 

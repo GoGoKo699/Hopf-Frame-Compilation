@@ -144,7 +144,13 @@ bounded-score bias, not by differentiating a compiled word.
 
 A separate [T-depth schedule](docs/T_DEPTH_COMPILER.md) uses two clean qubits
 and $`b\ge2(L+n+7)`$ dirty qubits to obtain
-$`D_T=O(NL/b+L\ell_*(n)+n^4)`$ with $`T,G=O(NL)`$ for real frames.
+the better of its layerwise and grouped bounds,
+
+```math
+D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\}),
+```
+
+with $`T,G=O(NL)`$ for real frames.
 It can spend more T gates to reduce their sequential depth; no matching
 T-depth frontier or total-depth consequence is inferred.
 

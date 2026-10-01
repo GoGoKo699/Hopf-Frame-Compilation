@@ -444,9 +444,10 @@ register. Their Gram matrix is known exactly. After the h/k weights are
 included, a finite-tree embedding estimate removes the height factor from
 their operator norms. The standalone implementation still retains separate
 precision-bearing stages, and a fixed-order perturbation around coarse
-transport misses necessary mixed terms. Thus the remaining target is a
-jointly charged block for the weighted operator, including its occupied
-flags and literal inverse, rather than classical compression alone.
+transport misses necessary mixed terms. Thus improving the endpoint requires
+reducing the precision charge of an actual weighted-operator circuit,
+including occupied flags and its literal inverse; classical compression
+alone does not do this.
 The [forward weighted-block continuation](WEIGHTED_TRANSPORT_BLOCK.md)
 now provides a complete one-signal-flag dilation with native synthesis using
 only borrowed work: $`T=O(N+nL)`$, $`G=O(NL)`$, and
