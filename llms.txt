@@ -36,6 +36,7 @@ The links below point to plain-text sources on main. For reproducible use, recor
 
 ## Start here
 
+- [Continuing workspace](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md): Entry point for resuming research; current checkpoint, repository scope, reading order, verification commands, and the precise unfinished native branching-merge task.
 - [README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/README.md): Overview, principal results, assumptions, and reproduction commands.
 - [Technical narrative](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): A connected 30–40 minute route through the target, constructions, and QBP consequence.
 - [Scientific scope](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md): Selected results, resource regimes, retained corollaries, and explicit exclusions.
