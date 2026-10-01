@@ -4,12 +4,13 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 revision starts from main commit
-`7856bfa8bf907dcb12d7e856387784bf6af6f27e`. Check the current branch
-and later commits before continuing. The recent small-example pass is
-complete. It supplied useful native identities but did not narrow the
-generic endpoint gap. The next task is a specific compatibility test at
-the best grouped compiler's interface, not further generic mask search.
+The 2026-10-01 canonical-group pass starts from main commit
+`da0980a5ca10f8f9c47af18ba39a13418741f36b`. Check the current branch
+and later commits before continuing. The canonical scalar substitution
+now fits the actual grouped compiler, with a complete error/workspace
+ledger. Its precision cost still grows with the group count, so this
+candidate is closed for endpoint amortization. No next construction is
+selected; mechanism selection is the remaining research action.
 
 ## Mandate and reading order
 
@@ -22,8 +23,10 @@ QRAM, resets, supplied catalysts, or hidden initialized work.
 1. Read the [current assessment](docs/OPEN_PROBLEM.md#current-assessment-what-the-results-establish)
    and [revised next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 2. Read [conditional-suffix Sections 3--7](docs/CONDITIONAL_SUFFIX_COMPILER.md#3-a-small-coefficient-table-and-a-streamed-coarse-circuit)
-   and its one-clean extension. These give the actual best compiler's
-   scalar/atom interface, private work, error budget, and group sums.
+   and its one-clean extension, followed by the completed
+   [canonical group audit](docs/CONDITIONAL_SUFFIX_COMPILER.md#11-a-canonical-scalar-fits-the-group-interface-but-retains-its-precision-charge).
+   These give the actual scalar/atom interface, private work, error budget,
+   and group sums.
 3. Read the [shared source body](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
    and [source-width analysis](docs/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation).
    Their different source families and scope must remain explicit.
@@ -68,37 +71,43 @@ work. Its precision charge still grows with the number of stages.
 This matters strategically: the best compiler already replaces n ordinary
 layers by $`R=O(\ell_*(n))`$ unequal groups while keeping total table
 work linear. A better constant in a layerwise word does not remove that
-remaining group factor. The paired-source real-Y circuit has not yet
-been transferred to the grouped forward/reverse scalar SELECT, its
-complex phases, distinct rejection flags, and private-suffix reflection.
+remaining group factor. The canonical audit now transfers the paired-source
+real-Y circuit to that grouped interface, including complex phases, distinct rejection
+flags, and the private-suffix reflection. Its common-width precision term
+is still $`(120R+4)q`$, before separately charged queries and controls.
 
-## Next bounded task
+## Completed compatibility test and next decision
 
-First audit a concrete canonical scalar completion in the actual grouped
-interface. For each retained coefficient $`c\in[0,1/4]`$, propose
-$`R_c=\exp[-i\arccos(c)Y_\sigma]`$ on the existing scalar rejection
-flag sigma. Its accepted entry is c. Keep the atom flag separate, retain
-literal phases, and use actual inverses for reverse atoms.
+The canonical coefficient rotation uses the existing scalar flag sigma,
+with the native synthesis signal borrowed outside the initialized-work
+reflection. Direction-controlled Z gates select its actual inverse, so a
+single coefficient program handles forward and reverse atoms. The old
+one-tail source has the same symmetry; this consolidation improves both
+baselines equally.
 
-Use the allowed two-clean layout with external h and sigma. A new native
-rotation signal would be borrowed from the dirty pool and excluded from
-the initialized-work reflection. Keep sigma out of temporary buffers.
-The first deliverable is a symbolic forward/inverse atom and a register-
-lifetime table that audits every intervening SELECT, atom, coarse, and
-reflection word against $`Z_\sigma`$. This is a compatibility question,
-not a certified replacement theorem or an elementary compiler project.
+Three inner rotation appearances implement one amplified group. The new
+full-operator estimate fits its existing error budget at
+$`q_g=m_g+4`$. The core and borrowed signal add six dirty slots before
+fixed helpers, absorbed by the established group slack; the external
+clean budget stays two. Source/core return is approximate within the
+complete error, while query selectors and helper subroutines return
+exactly. A zero coefficient remains a nonidentity canonical rotation.
 
-Use fully amplified inner rotations and derive a fresh full-operator
-error budget, with the constant width increase $`q_g=m_g+O(1)`$
-charged. A zero coefficient still gives a nonidentity rotation.
-Name the actual paired source: cheap bridges for the retained one-tail
-loader do not automatically transfer. The detailed
-[decision](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule)
-records these checks and the live-work contract.
+The resulting word still pays for thirty programmable-mask appearances
+per group, compared with six in the consolidated old scalar route.
+Common-source cancellation does not remove that precision term. Keep the
+proved compatibility result and its finite fixture, and **stop optimizing
+this canonical word as an endpoint mechanism**.
 
-Compatibility alone is not an endpoint gain. Before proceeding to two
-unequal groups, specify an actual fusion rule and its variable-R cost
-hypothesis. For the retained sufficient route, seek
+No variable-group fusion rule has qualified. The next task is to select a
+materially different native mechanism for the coupled residual or retained
+precision. A focused primary-source comparison may help, but any imported
+result must be checked for its initialization, complete-unitary error,
+and arbitrary dirty-work return before adaptation.
+
+Require an explicit operation or encoding rule and a symbolic precision
+recurrence before starting another construction pass. For the retained
+grouped route, a sufficient target is
 
 ```math
 T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right),
@@ -106,16 +115,16 @@ T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right),
 
 with $`c_R`$ bounded independently of R and P a fixed polynomial
 independent of L. Table and coarse-program sizes must combine additively.
-If a proposed rule closes for two groups, test that same rule on a third
-and derive the recurrence. Intermediate group action may be deferred,
-but final decoding, changed predicates, released dirty tails, literal
-inverses, and all rejected/reference action remain charged.
+Other whole-frame constructions remain allowed. An unpriced resolvent,
+Hamiltonian, coordinate transform, or target-dependent decoder is not a
+native construction.
 
-If the expanded word still renews precision per group, close that
-candidate. Do not continue with larger mask sweeps or another fixed-size
-cancellation. Other complete representations remain allowed; this budget
-is sufficient, not a lower bound or compulsory architecture. A focused
-literature check should address a concrete alternative mechanism.
+Use small examples only after a concrete rule is specified. For a grouped
+proposal, test unequal groups and require the same rule to survive a
+third. If no mechanism meets that selection standard, record that no lead
+is selected rather than returning to generic mask sweeps or the completed
+boundary audits. The [research decision](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule)
+retains the live-work contract and stopping conditions.
 
 ## Restore and verify
 
@@ -130,14 +139,15 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The merged native checkpoint has 285 passing tests, Python 3.11/3.13 CI,
-all four exact-receipt suites, and rendered presentation. Its newest
-complete matrices have dimensions 128 and 256 at deliberately coarse
-q=2 precision. They check actual gate words, complete dirty/signal ports,
-helper return, and fair simplified counts; they do not certify asymptotic
-costs. Internal algebra and resource reviews are not external peer review.
+The baseline has 285 passing tests, Python 3.11/3.13 CI, all four
+exact-receipt suites, and rendered presentation. This pass adds three
+canonical-group tests, making 288. The new q=2 native table has dimension
+256; the outer group propagates 64 logical/borrowed input columns through
+its 2048-dimensional space without a dense group matrix. These are finite
+interface diagnostics, not fine-precision or asymptotic certification.
+Internal algebra and resource reviews are not external peer review.
 
-This revision changes the research decision and navigation, not the
-proofs or executable construction. Keep detailed conclusions in
+The canonical pass adds the group compatibility proof and its focused
+finite checks. Keep detailed conclusions in
 [OPEN_PROBLEM.md](docs/OPEN_PROBLEM.md) and proofs in their existing
 chapters so continuation does not depend on an old chat.

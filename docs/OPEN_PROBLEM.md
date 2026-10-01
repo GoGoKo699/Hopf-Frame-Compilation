@@ -545,8 +545,9 @@ four complex phases, selected column maps, a private term label, and a
 reflection on the initialized active suffix. Its source width and suffix
 predicate change between groups. Even the one-clean extension retains
 this scalar/atom separation; it relocates a flag and changes the deepest
-tail compiler. A transfer from the small-example word to these grouped
-interfaces has not been proved.
+tail compiler. That transfer was the unresolved compatibility question at the revision.
+The canonical audit below now supplies it, without improving the precision
+recurrence.
 
 Keep the recent proofs and fixtures; do not add another fixed-size
 optimization as an endpoint advance. Cheap width transport is available,
@@ -554,99 +555,82 @@ fixed-mask simplification is accounted for, and the remaining general
 lower bound is still only the retained one. A failure of a selected
 architecture would not make the grouped factor necessary.
 
+### The canonical group test is complete
+
+The [canonical scalar audit](CONDITIONAL_SUFFIX_COMPILER.md#11-a-canonical-scalar-fits-the-group-interface-but-retains-its-precision-charge)
+transfers the small native rotation to the actual grouped interface. It
+uses $`R_c=\exp[-i\arccos(c)Y_\sigma]`$ on the existing scalar
+flag, with a separate atom flag and an arbitrary borrowed synthesis
+signal outside the initialized-work reflection. The canonical accepted
+entry is c, including structural zero. Forward and reverse atoms keep
+their literal phases and query order.
+
+Direction-controlled $`Z_\sigma`$ gates select the actual native
+inverse of a single positive-angle program, even after rounding. The old
+one-tail scalar has the same inverse symmetry, so this one-program SELECT
+is available to both baselines. The canonical substitution is not uniquely
+responsible for that constant improvement.
+
+The new full-operator error ledger gives one inner program per half-block
+and three per outer amplification. With $`q_g=m_g+4`$, the group error
+is below $`(45/8)2^{-m_g}`$, inside its retained budget. The paired core
+and borrowed signal add six dirty slots before the fixed helper constants;
+the existing group slack absorbs this by increasing its fixed thresholds.
+No additional external clean qubit is needed. Final h and private-work
+return remain part of the complete approximation error.
+
+The exact common-source identity also passes through the non-scalar
+group operations. But its cost fails the endpoint test: at a legal common
+q, the paired comparison words have the same leading precision term
+$`(120R+4)q`$. The old scalar uses six programmable mask appearances
+per group, and the canonical replacement uses thirty. Unequal widths do
+not acquire a free bridge. The proved totals remain
+$`T=O(N+L\ell_*(n))`$ and $`G=O(NL)`$.
+
+**Close this canonical-completion candidate for precision amortization.**
+It supplies a correct group interface, exact inverse routing, and a
+complete error/workspace ledger. It does not supply a variable-group
+fusion rule or evidence that the endpoint is close. Further mask sweeps,
+larger instances, and constant cancellation in this word are not the
+next task. This is a conclusion about the displayed construction, not
+an unrestricted lower bound.
+
 ### Next bounded task and stopping rule
 
-The next pass is **construction selection at the actual group interface**.
-Before another numerical mask search, specify one native identity or
-changing encoded boundary that could remove repeated precision from the
-grouped forward/reverse SELECT. State its cost hypothesis for a variable
-number R of groups, not only two ordinary layers. For the sufficient
-route already defined above, the target is
+No new endpoint construction is selected. The next research action is
+mechanism selection, using the completed group audit as the comparison.
+Examine a materially different way to implement the coupled whole
+residual, or a genuinely different way to retain precision between groups.
+A focused primary-source comparison may supply such a mechanism; neither
+a new coordinate name nor an unpriced matrix transform is a candidate.
+
+Before committing to another construction pass, require an explicit
+native operation or encoding rule and a symbolic cost hypothesis. For
+the retained grouped route, a sufficient target remains
 
 ```math
-T_{\rm joint}=O\!\left(\sum_gQ_g+L+RP(n)\right),
+T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right),
 ```
 
-with P a fixed polynomial independent of L. Equivalently, a proposed
-ledger of the form
+where $`c_R`$ is bounded independently of R and P is a fixed polynomial
+independent of L. Table and coarse-program work must combine additively.
+A different complete construction may bypass the groups and is judged
+against the actual endpoint; the displayed form is not compulsory.
 
-```math
-T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right)
-```
+The selection check must identify where the precision-dependent native
+work is paid, how its count scales, what is initialized, and what returns
+on arbitrary dirty/reference inputs. Imported channel or state-preparation
+results must first be checked against this complete-unitary contract.
+Classical compactness and a bounded inverse condition number do not
+supply a free coherent evaluator.
 
-must bound $`c_R`$ independently of R for this sufficient route. This
-is a proposed budget, not an attained bound. A smaller constant multiplying
-LR does not meet it. Table and coarse-program work must combine additively,
-not through a Cartesian product of the group addresses. Other complete
-constructions may use a different representation and are judged against
-the same endpoint, rather than required to adopt SELECT.
-
-The first specific compatibility test uses the retained nonnegative
-coefficients $`c\in[0,1/4]`$. On the existing scalar rejection flag sigma,
-consider the ideal completion
-
-```math
-R_c=\exp[-i\arccos(c)Y_\sigma]
-=\begin{pmatrix}c&-\sqrt{1-c^2}\\\sqrt{1-c^2}&c\end{pmatrix}.
-```
-
-Its accepted entry is c. Replace the scalar factor in one forward atom
-$`\mathcal S_c\mathcal D_\nu`$ by this rotation, and use the actual
-inverse for the reverse atom. Keep the distinct atom flag and external
-phase components. This is a proposed native substitution, not a free
-rotation oracle or a proved grouped improvement.
-
-Use a fully amplified native approximation to $`R_c`$, not its
-unamplified scaled block. Derive a fresh full-operator perturbation ledger
-against the ideal canonical group word; the previous exact rounded-scalar
-identity is not inherited. An inner error of order $`2^{-m_g}`$ would
-require a sufficient constant shift $`q_g=m_g+O(1)`$, which must be
-included in the workspace audit. A structural zero coefficient means
-$`R_0=\exp(-i\pi Y_\sigma/2)`$, not identity. Only the inactive
-suffix sector is required to have exact identity action.
-
-Use the permitted two-clean grouped layout: h and sigma are external;
-the new rotation-synthesis signal would be in the arbitrary dirty pool,
-outside the initialized-work reflection. Protect sigma from the coarse
-interpreter's temporary buffers. Audit whether every remaining
-atom, phase, SELECT, reflection, and coarse subroutine commutes with
-$`Z_\sigma`$ as a complete returned-work word. If so, the shared-body
-parity argument has a specific route to this interface. Specify certified
-coefficient preprocessing separately, as in the retained compiler. Charge
-every emitted rotation program and the extra borrowed signal/helper
-reservation; any constant increase must fit the group slack. Do not assume
-that dirty helpers preserve this commutation gate by gate.
-
-Name the source family and table representation explicitly. The cheap
-reverse-order one-tail width bridges do not automatically apply to the
-paired-source replacement. Record private suffix work, both rejection
-flags, term label, dirty core, selectors, query unloading, and reflection
-in a register-lifetime table. Explain what can persist when the next
-suffix predicate is computed. This focused symbolic derivation does not
-require a full compiler implementation or large matrices.
-
-Even a successful compatibility test still pays for the programmed
-rotations. Continue to two unequal groups only after specifying a fusion
-rule that could change $`c_R`$. Track their widths symbolically; small
-finite analogues and illustrative group constants do not certify the
-asymptotic allocation thresholds.
-
-A proposed carried boundary may correlate with the logical data and need
-not expose an accurate standalone output after every group. It must give
-a complete transition rule and a charged final decoding. Merely defining
-that boundary using the target frame or its partial products is circular
-unless their native implementation is supplied. If the rule closes for
-two unequal groups, apply that same rule to a third and derive its
-variable-R recurrence before adding a new resource claim. Retain actual
-complex coarse words, zero defects, independent branch angles, and every
-signal/dirty port in the small checks.
-
-If no such identity or boundary can be specified, report that result and
-change the mechanism. Do not replace it with another generic mask sweep,
-fixed-depth synthesis, or repeated audit of a known failed interface. A
-focused primary-literature check is useful once a concrete alternative
-has identifiable assumptions; an untargeted expansion of the literature
-chapter is not the next deliverable.
+Only after a concrete rule passes this check should small examples test
+it. For a grouped proposal use unequal groups, retained complex coarse
+words, and actual inverses; require the same rule to close on a third
+group before treating its recurrence as plausible. Intermediate group
+action may be deferred, but final decoding and all rejected action must
+be charged. If no rule qualifies, record that there is no selected lead
+rather than assigning another generic mask or boundary audit.
 
 The live-wire contract remains $`b=L+n+7`$ arbitrary dirty wires and
 at most two external clean flags. Holding $`m_{\max}`$ throughout
@@ -678,9 +662,9 @@ condition number does not make its quantum implementation free.
 Separately improving the affine and reverse blocks remains sufficient,
 and a linear-T endpoint circuit with larger fully charged Clifford cost
 would still settle the T-only question. No joint interior with one global
-precision charge has yet been constructed. The latest examples supply an
-exact native word and a fair simplified baseline; they do not show that
-the generic gap is close to resolution.
+precision charge has yet been constructed. The completed examples and
+group audit supply native interfaces and fair comparison costs; they do
+not show that the generic gap is close to resolution.
 
 Optimal depth, practical constants, and a full elementary emitter are
 separate tasks. The established publication scope is unchanged; manuscript
@@ -698,6 +682,7 @@ not establish asymptotic theorems, optimality, or literature priority.
 The strongest grouped construction has no end-to-end elementary Clifford+T
 emitter. Its table fixture uses the table action directly, grouping tests
 use illustrative constants, and some workspace constants and crossover
-thresholds remain existential. Selected-atom pseudocode and a register-lifetime
-table would improve auditability before practical resource estimates.
+thresholds remain existential. The canonical audit adds a local register
+table and explicit scalar/atom ordering; it does not supply the complete
+emitter or practical crossover estimates.
 Proof chapters retain the arguments; this checkpoint records the next decision.
