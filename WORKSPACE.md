@@ -50,29 +50,36 @@ The upper bound also works with one clean qubit. The two promised update
 classes have not narrowed this generic gap. Optimal T-depth remains a
 separate open question.
 
-The branching pass has established a complete one-signal coupled boundary
-and a full repair supported on at most four transported modes. Its direct
-wrappers still reintroduce the target program. A separate native
-common-conjugator word fails even after retuning its masks. These are
-operator results and scoped diagnostics; the generic resource gap is unchanged.
+The branching passes have established a complete one-signal coupled boundary
+and an explicit commutator repair supported on at most four transported
+modes. It needs no division by a vanishing boundary norm. Its two child
+calls cancel with the anchored merge, leaving one child call and the
+original fine-precision local target wrappers. This cancellation survives
+matched actual inverse substitutions on the whole dirty space. The small
+repair norm does not discount the complete merge's local precision error.
+A separate native common-conjugator word fails even after retuning its
+masks. The generic resource gap is unchanged.
 
-The next deliverable is **native synthesis of that four-mode repair with
-a recursively justified precision ledger**. Read
+The next deliverable is **joint precision synthesis across two adjacent
+depths, with an explicit native source-sharing word and recursive ledger**. Read
 [the coupled completion and repair](docs/RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost)
 and [the stopped source-sharing ansatz](docs/SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork).
-The four modes are transported vectors, not free initialized qubits.
-Rechecking matrix closure or low rank alone does not advance the T-count bound.
+The four modes can now be accessed by the compiled child and its actual
+inverse. Rechecking low rank, basis access, or this child cancellation
+does not advance the remaining precision ledger.
 
 ## First research pass
 
-1. Specify actual circuits for the child residual's forward and adjoint
-   action on the two parent-root vectors and for the full four-mode repair.
-   Charge every child call and basis change. Give the complete boundary
-   action on accepted/rejected ports and arbitrary dirty/reference inputs,
-   with at most two external clean flags and explicit return promises.
-2. Audit the native repair on a nonzero parent and two nonzero children, using an
-   actual complex native coarse frame even when the target is real. If the
-   contract survives, apply the same word at height three. Do not introduce
+1. Give a changed native word that shares precision work through two adjacent
+   depths. Either jointly compile the reduced ordered target wrappers or
+   supply another complete rejected action with a proved sharing identity.
+   The stopped common-conjugator word needs a changed construction. Specify
+   actual source calls and unloading after logical-mode changes, on arbitrary
+   dirty/reference inputs with at most two external clean flags.
+2. Audit independently changed parent and children using an actual complex
+   native coarse frame even when the target is real. If the contract
+   survives, apply the same word at height three and state the band invariant.
+   Check native sharing, not only dense matrix closure. Do not introduce
    a larger logical register that silently supplies initialized work.
 3. Prove an induction for the expanded word, including any multiplicative
    growth in recursive child calls, and charging native programs,
@@ -124,7 +131,14 @@ establish asymptotic bounds.
 The subsequent branching pass added 15 focused tests; all 243 local tests,
 the reviewer walkthrough, and the offline synchronization check passed.
 The new proof sections also received separate internal mathematical checks.
-The complete native repair and its recursive precision ledger remain open.
+The subsequent repair pass supplies basis-free mode access, exact recursive
+child cancellation, and a complete-word precision audit. The independent
+local-wrapper emission still pays precision per depth; a jointly synthesized
+precision ledger remains open.
+This pass adds eight focused checks. The local full validation, final
+repair suite, reviewer walkthrough, and offline synchronization check passed.
+The fixtures check the operator identities and failure controls; the
+native resource accounting remains an analytic argument.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)
