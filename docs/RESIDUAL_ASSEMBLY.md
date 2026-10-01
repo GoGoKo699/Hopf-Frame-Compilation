@@ -962,8 +962,8 @@ must make both A and its adjoint's boundary vectors accessible with a
 charged circuit and maintain their return promises. It must also prove
 that recursive child calls and precision work do not multiply at every
 parent. The rank bound alone supplies neither operation nor resource
-bound. This full four-mode repair, rather than an accepted-only rank-two
-correction, is the next concrete merge interface to test.
+bound. The next section tests this full four-mode repair, including its
+rejected-space action and its recursive call ledger.
 
 The [coupled-merge checks](../tests/test_coupled_residual_merge.py)
 audit the same recursion at a fork and height three, using real targets
@@ -973,3 +973,214 @@ term and the stability estimate. These are bounded operator checks, not
 an elementary endpoint emitter. The
 [shared-source fork audit](SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork)
 separately tests a fully native source-cancellation candidate.
+
+## 9. A repair word without an ill-conditioned transported basis
+
+The four-mode repair has an explicit commutator implementation using
+the whole child word and two conditional parent words. It does not need
+to orthonormalize small difference vectors or invert an overlap gap.
+Its actual inverse calls cancel against the anchored word. After that
+cancellation, however, the circuit is exactly the fine-precision parent
+wrapper construction above. This resolves the access and call-count
+questions for this particular repair, without improving the endpoint bound.
+
+### Whole-port commutator and support
+
+Retain the parent unitaries A and B from Section 8, and define
+
+```math
+\begin{aligned}
+J&=\mathcal D(I),& U&=\mathcal D(A)J^\dagger,\\
+R_B&=\mathrm{diag}(I,B^\dagger),& S_B&=\mathrm{diag}(B,I).
+\end{aligned}
+```
+
+The local completion satisfies $`\mathcal D(B)=R_BJS_B`$.
+Consequently the exact left repair is the complete unitary word
+
+```math
+\begin{aligned}
+\mathcal K&=R_BU R_B^\dagger U^\dagger\\
+&=R_B\mathcal D(A)J^\dagger R_B^\dagger J\mathcal D(A)^\dagger.
+\end{aligned}
+```
+
+Indeed, for the anchored word $`F=U\mathcal D(B)`$,
+
+```math
+\begin{aligned}
+\mathcal KF
+&=R_BU R_B^\dagger U^\dagger U R_BJS_B\\
+&=R_B\mathcal D(A)S_B
+=\mathcal D(AB).
+\end{aligned}
+```
+
+All cancellations are between complete unitaries and their actual
+inverses; they hold on occupied rejected ports as well as accepted ones.
+The repair uses the existing signal f and the same logical register.
+It introduces no initialized modes, measurements, or resets.
+
+Let P project onto the two lower-signal parent-root modes. The unitary
+$`R_B`$ acts as identity outside P. The commutator therefore acts as
+identity outside
+
+```math
+\mathcal M=\mathrm{range}(P)+U\,\mathrm{range}(P),
+\qquad \dim\mathcal M\le4.
+```
+
+Both P and its transported image have orthonormal root frames. With
+$`c=1/2`$ and $`t=\sqrt3/2`$, direct multiplication gives
+
+```math
+U|1,r_b\rangle
+=|1,r_b\rangle+
+c\begin{pmatrix}
+t(A-I)|r_b\rangle\\
+c(A^\dagger-I)|r_b\rangle
+\end{pmatrix}.
+```
+
+Thus this support is exactly the span used in Section 8, after redundant
+vectors are removed. The two frames can coincide or intersect; the word
+requires no lower bound on their angle and no division by a small
+singular value. If A or B is identity, the repair word is identity.
+Tensoring every operation with dirty identity preserves this argument
+for arbitrary borrowed inputs and reference correlations.
+
+### Exact cancellation also applies to actual approximate words
+
+Suppose $`\widehat V`$ is an actual child word and
+$`\widehat J`$ is an actual connector word, on the same physical
+registers. The child need not have an exactly canonical block matrix.
+Let $`\widehat R,\widehat S`$ be actual local wrapper words, and
+**construct** the local completion as
+
+```math
+\widehat D_B=\widehat R\widehat J\widehat S,
+\qquad
+\widehat U=\widehat V\widehat J^\dagger.
+```
+
+Using literal inverses in
+$`\widehat K=\widehat R\widehat U\widehat R^\dagger\widehat U^\dagger`$
+and $`\widehat F=\widehat U\widehat D_B`$ gives the exact identity
+
+```math
+\widehat K\widehat F
+=\widehat R\widehat V\widehat S.
+```
+
+It holds on the full physical space, including arbitrary dirty inputs
+and any work leakage, without assuming that a helper has been freshly
+returned between the displayed factors. The identity does not apply to
+an independently compiled local completion merely because it has the
+same accepted block. Its complete word must have the matched construction
+above. Approximation and return errors of the surviving three factors
+still require their usual complete-input estimates.
+
+Emitting the repair and anchored word independently would use the
+child word three times: twice forward and once inverse. Expanding and
+cancelling the actual words leaves exactly one child call, with no
+child inverse. It also removes all occurrences of the connector at that
+parent. Applying the same cancellation at every node leaves one copy of
+each child program. The identical connector at all leaves is a direct
+sum on one shared signal, hence one global signal rotation. This is a
+valid call-count reduction; it is not a reduction in the precision cost
+of the surviving local wrappers.
+
+### Repair sensitivity does not relax the parent precision
+
+The commutator provides quantitative bounds without choosing a basis for
+its moving subspace. For exact unitaries A and B,
+
+```math
+\|\mathcal K(A,B)-I\|
+\le\|A-I\|\,\|B-I\|.
+```
+
+Here $`\|U-I\|=\|A-I\|/2`$ and
+$`\|R_B-I\|=\|B-I\|`$; expand the commutator using
+$`[R_B,U]=[R_B-I,U-I]`$. For unitary approximations
+$`\widehat A,\widehat B`$, a useful asymmetric stability bound is
+
+```math
+\begin{aligned}
+\|\mathcal K(A,B)-\mathcal K(\widehat A,\widehat B)\|
+\le{}&\|B-I\|\,\|A-\widehat A\|\\
+&+\|\widehat A-I\|\,\|B-\widehat B\|.
+\end{aligned}
+```
+
+For the first change, subtract the two conjugations of $`R_B^\dagger-I`$
+by U, costing $`2\|R_B-I\|\|U-\widehat U\|`$.
+For the second, subtract the two conjugations of
+$`\widehat U-I`$ by the parent wrappers, costing
+$`2\|\widehat U-I\|\|R_B-R_{\widehat B}\|`$.
+The factor-one-half completion identity gives the displayed constants.
+
+This attenuation concerns the repair alone. The complete repaired word
+with the parent replaced consistently by $`\widehat B`$ is
+$`\mathcal D(A\widehat B)`$. In particular,
+
+```math
+\|\mathcal D(A\widehat B)-\mathcal D(AB)\|
+=\frac12\|\widehat B-B\|.
+```
+
+There is no small factor $`\|A-I\|`$ in this final error. With
+arbitrary whole child-word error delta, the matched-inverse argument
+still gives $`\delta+\|\widehat B-B\|/2`$. Independently
+approximating unmatched wrapper circuits gives only the separately
+charged error estimates. The small norm of the repair therefore does
+not justify using coarse precision for the parent in the complete word.
+
+### Native implementation and the remaining ledger
+
+At a tree parent, $`B=(U_v^C)^\dagger U_v^W`$ acts on the two
+existing child-root modes. Its positive word applies the requested real
+$`U_v^W`$ first and the actual native $`(U_v^C)^\dagger`$ second;
+its inverse reverses those actual words. The surviving wrappers select
+this pair on $`f=0`$ and its inverse on $`f=1`$. The occupied signal
+is an unchanged predicate, not an initialized synthesis helper.
+
+The [native controlled templates](#4-native-synthesis-including-external-controls)
+implement the real local rotations using a separate borrowed synthesis
+signal and the same dirty pool. Literal native coarse words, their
+controls, pair routing, predicates, and actual inverses are all charged.
+The coarse controls use the retained
+[determinant-one reflection interpreter](BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter),
+not an assumption that arbitrary controlled T gates are native.
+At a fixed depth the local pairs are disjoint addressed SU(2) blocks;
+the two signal values require a constant number of selected templates.
+This uses the existing full-operator inactive-sector contract, rather
+than assuming a controlled isometry is available at its uncontrolled
+cost. No extra clean qubit is supplied by the two-mode root support.
+
+The retained layerwise allocation consequently implements the reduced
+word with
+
+```math
+\begin{aligned}
+T&=O\!\left(L+\sum_{d=0}^{n-1}(2^d+L+n-d+n^2)+n^4\right)
+  =O(N+nL),\\
+G&=O(NL),\qquad b\ge L+n+7,
+\end{aligned}
+```
+
+within the stated two-clean budget. The connector is synthesized once;
+the fine-precision local tables still occur at every depth. Their complete
+word errors include dirty return and reference correlations, and the
+actual inverse of a compiled local word is used wherever required.
+At $`L=N`$ this construction gives $`O(N\log N)`$, weaker than
+the retained grouped bound. Its improvement over a literal uncancelled
+repair recursion only removes redundant calls; it reproduces the direct
+wrapper construction's resource bottleneck.
+
+The tested route therefore stops here: the commutator supplies a
+degeneracy-safe repair and exact inverse cancellation, but no new way
+to share the surviving parent precision. A further endpoint advance
+requires a different native word or a separate global precision ledger
+for those wrappers. This conclusion concerns the displayed construction,
+not all low-rank repairs or all complete-frame compilers.

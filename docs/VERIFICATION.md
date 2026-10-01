@@ -118,6 +118,13 @@ targets. They retain every signal port, actual inverse, and correlated
 spectator input; they test the stability estimate, anchored mixed term,
 and the complete rank-four repair. These small operator fixtures do not
 price the transported repair modes or emit a faster native compiler.
+The [transported-repair checks](../tests/test_transported_repair.py) test
+the subsequent commutator circuit using only the supplied child and local
+parent words. They cover intersecting and vanishing transported modes,
+the weighted repair-error bound, exact cancellation with noncanonical
+actual words on shared dirty work, and the failure of an unmatched ideal
+inverse. The repaired full merge retains the local half-error bound;
+these tests do not establish shared precision or a better T-count.
 The [shared-conjugator checks](../tests/test_shared_conjugator_merge.py)
 use literal Clifford+T source and routing words on all 128 core/logical/signal
 columns. They test valid outer cancellation, the surviving two fork returns,
