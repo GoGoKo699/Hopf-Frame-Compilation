@@ -148,7 +148,11 @@ E_v=\overline{h_v}d_v+C_v,\qquad
 
 Indeed, eliminate all descendant marker inputs in the variational
 definition. The remaining marker amplitude z contributes
-$`|h_v+d_vz|^2+\sum_b\rho_{2v+b}|u_0[b]+u_1[b]z|^2-s^2|z|^2`$.
+
+```math
+|h_v+d_vz|^2+\sum_b\rho_{2v+b}|u_0[b]+u_1[b]z|^2-s^2|z|^2.
+```
+
 Maximizing this scalar quadratic gives the displayed recurrence. Uniformly,
 
 ```math
