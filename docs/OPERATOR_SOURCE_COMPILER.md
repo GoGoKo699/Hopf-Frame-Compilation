@@ -1002,3 +1002,9 @@ $`O(NL+(L+n)^2)`$ bits, including all output tables; individual entries
 can be evaluated sequentially. This construction does not supply a
 classical running-time bound for the separate sufficient-clean
 compiler's coarse Clifford+T word-synthesis primitive.
+
+The later [bounded-input QBP audit](BOUNDED_INPUT_QBP.md) separately
+prices coarse-word enumeration for the grouped and state constructions,
+while retaining the exponential-search caveat for direct fine borrowed
+synthesis. Its [algebraic residual procedure](RESIDUAL_TABLE_PREPROCESSING.md)
+also avoids Euler search for the state's particular SU(2) completion.

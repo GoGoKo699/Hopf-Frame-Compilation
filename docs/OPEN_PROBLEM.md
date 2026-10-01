@@ -12,6 +12,10 @@ The [task-cost comparison](QBP_COST_COMPARISON.md) now identifies the
 high-precision regimes where additional dirty banks improve the available
 state-only bound, while retaining the original fixed-accuracy advantage
 and charging the unchanged sampling and classical obligations.
+The [bounded-input audit](BOUNDED_INPUT_QBP.md) now prices constructive
+preprocessing and includes deterministic and sampled classical Pauli
+baselines. It supports a compiler-resource result, not an end-to-end
+speedup claim for that explicit access model.
 This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
@@ -914,13 +918,29 @@ regular, signed, and singular tuples. The same-observable original protocol
 is cheaper on this exact finite-size target; no advantage follows from the
 fixture. The general fine residual-table emitter remains separate.
 
-The quantum, sampling, and decoder comparison is now complete. The next
-bounded pass should fix an explicit bounded-input and observable-access
-model, then price classical preprocessing for the constructions actually
-being compared. Retain evaluation, range reduction, native-word synthesis,
-table certification, and output bit costs. A digit bound alone is not a
-runtime bound. Another special exact fixture cannot establish a general
-advantage; further native emission should test a specific missing claim.
+The [bounded-input pass](BOUNDED_INPUT_QBP.md) is now complete. Direct
+algebraic rotation coefficients replace the residual Euler search. Only
+coarse native words require enumeration in the grouped/state alternatives,
+giving a conservative polynomial classical construction with explicit
+instruction output costs. The banked reservation also permits a direct
+source implementation for small systems, avoiding their fine-word search.
+Direct fine borrowed compilation and the minimum-workspace small-system
+fallback keep their separately priced synthesis limitations. Arbitrary
+computable evaluators do not inherit this bounded-input runtime guarantee.
+
+An explicit Pauli list permits deterministic all-gradient contraction and
+classical term-only sampling, including singular angles. Duplicate terms
+can be merged by either protocol, with a common updated coefficient scale.
+The high-precision T-bound improvement does not establish a speedup over
+these classical algorithms; the retained Clifford bounds also give the
+same high-precision all-gate upper order under uniform logical-gate costs.
+
+The next revision should consolidate the task-specific theorem and its
+computational and access assumptions with the retained frame results.
+No new end-to-end advantage example is selected. Such a claim requires
+a concrete observable-access model and its classical comparator. Another
+special exact fixture cannot supply it; the full fine-precision native
+emitter remains a separate implementation task.
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual

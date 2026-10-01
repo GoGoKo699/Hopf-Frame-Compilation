@@ -488,6 +488,16 @@ applicable preprocessing. Large supplied phase windings and certified
 range reduction are not free. Neither a free amplitude oracle nor QRAM
 is assumed.
 
+The subsequent [bounded-input audit](BOUNDED_INPUT_QBP.md) makes these
+costs constructive for explicit dyadic angles/phases and Pauli lists. Its
+[algebraic residual procedure](RESIDUAL_TABLE_PREPROCESSING.md) removes
+the Euler search for this particular U(z). Grouped/state construction then
+uses only coarse native-word searches, giving a conservative polynomial
+preprocessing bound with the stated small-register qualifications. A
+direct fine borrowed-frame search retains its different runtime. These
+are bounded-input results; arbitrary effective evaluators still have no
+uniform running-time guarantee.
+
 ## 6. Research conclusion and the next boundary
 
 The task-specific route removes the repeated grouped precision term for
@@ -497,9 +507,13 @@ flags, in the high-precision regimes identified above. Fixed-accuracy
 gradients retain a better original frame construction. Clifford order,
 oracle query count, and classical decoding order do not improve here.
 
-The next question is a narrower algorithmic one: under an explicit bounded
-input and observable-access model, can preprocessing be priced well enough
-to make an end-to-end comparison? Until that work is supplied, the result
-is a quantum T-resource improvement in stated regimes, not an end-to-end
-gradient speedup. A larger native fixture alone would not answer this
-question. The fine complete-frame endpoint remains a separate problem.
+The bounded-input question is now answered in its
+[own chapter](BOUNDED_INPUT_QBP.md). Explicit Pauli access admits a
+deterministic division-free classical gradient calculation, as well as
+term-only classical sampling. Under uniform elementary-gate costs, the
+retained Clifford upper expressions also remove the quantum T separation.
+The result remains a quantum T-resource improvement in stated regimes,
+not an end-to-end gradient speedup. A new advantage claim needs its own
+observable-access and execution model; another special native fixture
+alone would not supply it. The fine complete-frame endpoint remains a
+separate problem.

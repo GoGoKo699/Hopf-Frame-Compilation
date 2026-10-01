@@ -199,6 +199,13 @@ and any required extra classical digits is separate preprocessing. No
 uniform bit-complexity claim is made for arbitrary supplied computable
 angles or phases.
 
+Under bounded dyadic inputs, the
+[computational audit](BOUNDED_INPUT_QBP.md) prices coarse-word enumeration,
+coefficient evaluation, and complete program output. The
+[algebraic residual procedure](RESIDUAL_TABLE_PREPROCESSING.md) replaces
+Euler search for the completion below. This bounded-input guarantee does
+not extend to arbitrary computable evaluators.
+
 ## 6. Two-flag complex state and common-reference preparation
 
 Define the exact residual $`\phi=C^\dagger\psi'`$. It is normalized and
@@ -383,6 +390,14 @@ actual-inverse state amplification keep the same final error
 $`390\,2^{-q}\lt\eta`$. For $`n\le5`$, the direct bounded-control
 Euler construction in Section 6 costs $`O(L)`$ and fits this stronger
 reservation without requiring a source or a negative address length.
+
+For a polynomial bounded-input construction at this banked reservation,
+the [small-system source alternative](RESIDUAL_TABLE_PREPROCESSING.md#6-small-systems-at-the-banked-reservation)
+uses zero free address bits and fixes all addresses into at most 128
+sectors. Its $`L+13`$-wire core/helper/signal reservation fits, and its
+one-row masks are known Pauli words. It has the same $`O(L)`$ count
+without a fine native-word search. The minimum unbanked fallback remains
+a separate construction.
 
 ### The exact coarse circuit remains charged
 

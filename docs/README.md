@@ -31,6 +31,8 @@ chapter below.
 | [Complex coarse-frame QBP](COMPLEX_COARSE_QBP.md) | Complete magnitude and leaf-phase gradients, actual native phase-row reconstruction, and the two-stream cost ledger |
 | [Native complex QBP example](NATIVE_COMPLEX_COARSE_QBP.md) | Both elementary native gradient streams, full-input dirty echoes, an exact coarse certificate, and a same-observable cost comparison |
 | [Hopf QBP cost comparison](QBP_COST_COMPARISON.md) | Common accuracy and workspace, the fine gauged borrowed baseline, banked state bounds, and separate quantum, sampling, and classical costs |
+| [Bounded-input QBP costs](BOUNDED_INPUT_QBP.md) | Constructive preprocessing, explicit program output, deterministic and sampled classical Pauli baselines, and the end-to-end comparison boundary |
+| [Residual-table preprocessing](RESIDUAL_TABLE_PREPROCESSING.md) | Certified algebraic rotation coefficients without Euler search, unchanged error constants, and the small-system banked construction |
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Reconciled hierarchy of bounds, promised update families, and supporting components; current task-specific protocol and separate complete-frame questions |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
