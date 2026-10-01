@@ -26,6 +26,11 @@ The [complex coarse-frame extension](COMPLEX_COARSE_QBP.md) includes both
 magnitude and leaf-phase gradients with the same two compiler flags and
 dirty threshold. It fixes a common state phase and uses the actual native
 prefix phase tables in its classical correction.
+The [complete task-cost comparison](QBP_COST_COMPARISON.md) keeps original
+accuracy bits separate from the state compiler's dimension floor. It also
+proves a zero-clean borrowed bound for the consistently gauged complex
+frame used by both original streams. That task-specific corollary does not
+compile the literal common phase of the prescribed complex frame.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies

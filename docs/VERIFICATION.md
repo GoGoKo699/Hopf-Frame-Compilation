@@ -282,6 +282,15 @@ gate counts include the same observable in the original protocol. The
 without Monte Carlo. This finite-size fallback leaves both compiler flags
 unused and does not emit the general fine residual table; see its
 [scope and word ledger](NATIVE_COMPLEX_COARSE_QBP.md).
+The [task-cost arithmetic certificates](../tests/test_qbp_cost_comparison.py)
+check the exact weighted phase-word sum, disjoint core/selector/helper/signal
+and bank reservations, a conservative integer query-cost inequality, and
+the one-wire complex-bank eligibility gap when the state and original
+precisions coincide. They use bounded integer grids without statevectors.
+The [comparison chapter](QBP_COST_COMPARISON.md) and
+[banked state proof](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
+supply the analytic resource bounds and precision regimes; these finite
+checks do not prove asymptotics or an end-to-end gradient advantage.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

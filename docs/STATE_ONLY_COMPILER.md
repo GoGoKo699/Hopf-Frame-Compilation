@@ -56,6 +56,15 @@ construction with the same two flags and dirty threshold. It includes a
 separate complex finite-size fallback and keeps common-reference phases
 literal; the real-only assumptions below are not silently generalized.
 
+The [banked corollary](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
+also applies to this real construction and its common-coarse version.
+At $`b\ge2(L+n+7)`$ it gives
+$`T=O(\sqrt{NL}+L+NL/b+n\sqrt N)`$, with the same two flags and
+complete error contract. The last term charges the exact-return coarse
+circuit; it is absorbed for $`L\ge n^2`$. The
+[task-cost comparison](QBP_COST_COMPARISON.md) retains the dimension floor
+when comparing this route with original QBP.
+
 ## 2. A native coarse circuit makes the tail small
 
 Use the [borrowed-workspace theorem](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements)

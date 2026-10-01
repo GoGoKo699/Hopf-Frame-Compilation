@@ -397,7 +397,16 @@ $`S(3t_F+2\overline t_O)`$ at its applicable confidence and precision
 allocation. The new result replaces that compilation task and decoder;
 it does not establish uniform dominance, optimal gradient cost, or a
 fine-frame endpoint. Its sufficient sampling constant also differs from
-the original bound. Source attribution for Hadamard interference,
+the original bound. With $`b\ge2(L'+n+7)`$, the
+[banked preparation corollary](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
+improves its per-execution T bound to
+$`O(\sqrt{NL'}+L'+NL'/b+n\sqrt N)`$ apart from the observable.
+The [complete task comparison](QBP_COST_COMPARISON.md) keeps the original
+precision $`K=\max\{6,\lceil\log_2(80\Lambda/\varepsilon_\infty)\rceil\}`$
+distinct from $`L'=\max(n,K)`$: the observable only needs precision K.
+It identifies the high-precision improvement and the fixed-accuracy
+limitation without claiming an end-to-end speedup.
+Source attribution for Hadamard interference,
 histogram differentiation, and dirty-input martingale concentration is
 retained in the [real decoder](COARSE_FRAME_QBP.md),
 [reference-state discussion](REFERENCE_STATE_QBP.md), and

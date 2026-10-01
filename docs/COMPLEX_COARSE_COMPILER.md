@@ -293,3 +293,125 @@ derivative records. This does not differentiate the discrete native
 synthesis word. Observable compilation and sampling remain separately
 charged. Preparing the unrotated psi in only one interference branch would
 change that branch's relative phase and is not licensed by this argument.
+
+## 8. Additional dirty banks improve fine state preparation
+
+The real and gauge-fixed complex state constructions, including their
+coherent common-reference versions, admit a banked refinement. Retain
+$`L\ge n`$, two initialized compiler flags, and the preceding complete
+state-isometry error eta. If
+
+```math
+B_0=L+n+7,\qquad b\ge2B_0,
+```
+
+then
+
+```math
+T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}+n\sqrt N\right),
+\qquad G=O(NL).
+```
+
+The protocol branch is still separately counted. This refines preparation
+of the requested state on the initialized system; it is not a new bound
+for fine compilation of its prescribed complete frame.
+
+### Disjoint banks and the full borrowed-signal contract
+
+For $`n\ge6`$, use the same $`q=L+10`$, core width $`m=q+1=L+11`$,
+and $`k=n-6`$ free address bits as in Section 6. Eight fixed address
+literals give 256 invariant sectors for the coherent two-state table.
+The core, k selectors, predicate helper, and arbitrary synthesis signal
+occupy exactly $`B_0`$ dirty wires. In particular $`m\le B_0`$.
+Reserve the disjoint additional pool
+
+```math
+B_{\rm bank}=b-B_0\ge b/2\ge m.
+```
+
+For an S-row, m-bit programmable mask table, select a power-of-two number
+of m-bit banks by
+
+```math
+\lambda=2^{\left\lfloor\log_2
+ \max\{1,\min(S,\sqrt{S/m},B_{\rm bank}/m)\}\right\rfloor}.
+```
+
+Thus $`1\le\lambda\le S`$ and $`\lambda m\le B_{\rm bank}`$.
+Apply the [exact whole-word dirty-bank query](OPERATOR_SOURCE_COMPILER.md#7-trading-additional-dirty-banks-for-lookup-cost).
+Its high-address traversal, low-address bank router, and matched XOR echo
+implement precisely the original query on the arbitrary operator core,
+tensored with identity on all added banks. The base selector reservation
+covers the remaining address; no extra selector register is hidden in
+the bank pool. The query costs
+
+```math
+T_{\rm query}=O(S/\lambda+\lambda m)
+ =O\!\left(\sqrt{Sm}+m+\frac{Sm}{b}\right),
+\qquad G_{\rm query}=O(Sm).
+```
+
+All banks and selectors return exactly after the query. The X- and Z-mask
+queries run sequentially and reuse that returned bank pool. Their output
+is the separate occupied dirty core. The core, signal, and predicate helper
+are not counted again as available banks while the primitive is active.
+
+This substitution does not assume a clean amplification signal. On the
+complete input space it replaces a query by exactly the same query tensor
+identity on the new banks. Hence the actual real-rotation word retains its
+exact commutation with the signal's X, including its five-call amplification
+and inactive-predicate action. The
+[borrowed-signal extension](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+therefore retains the full-operator error $`43\,2^{-q}`$ with that signal
+arbitrary and the added banks included in the dirty identity. Fixed target
+Cliffords give the same conclusion for Rz. The literal scalar-phase word
+is not used: the residual completion U(z) has determinant one and needs
+only these three Euler rotations.
+
+There are a constant number of masks and sources per rotation; the source
+words still cost $`O(q)`$. Three Euler factors, three Q appearances, and
+a fixed number of sectors consequently give fine preparation cost
+
+```math
+T_{\rm fine}=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G_{\rm fine}=O(NL).
+```
+
+Every inactive sector remains exactly identity on the entire enlarged
+work space, so sector errors take a maximum. Euler certification and
+actual-inverse state amplification keep the same final error
+$`390\,2^{-q}\lt\eta`$. For $`n\le5`$, the direct bounded-control
+Euler construction in Section 6 costs $`O(L)`$ and fits this stronger
+reservation without requiring a source or a negative address length.
+
+### The exact coarse circuit remains charged
+
+The fine banked primitive returns its core and signal approximately. It
+cannot replace the exact-return logical coarse C used to define residual
+coefficients and the measurement basis. The retained real borrowed
+construction and Sections 3–4 for the complex phase factors give, in the
+present workspace regime,
+
+```math
+T_C=O\!\left(\frac{Nn}{n+b}+n\sqrt N\right),
+\qquad G_C=O(Nn).
+```
+
+For the complex phase factors, $`b-n+1=\Theta(n+b)`$ here, so their
+earlier denominator gives the same bound. All recorded coarse factors
+still implement their exact logical action tensor identity on dirty work.
+Since $`L\ge n`$, their first term is absorbed by $`NL/b`$.
+The exact state reflections cost $`O(n^2)`$, absorbed by $`n\sqrt N`$.
+Adding these charges proves the displayed banked state bound.
+
+In particular, for $`L\ge n^2`$ the coarse term is absorbed by
+$`\sqrt{NL}`$, yielding
+
+```math
+T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
+```
+
+For smaller L, the $`n\sqrt N`$ contribution must be retained unless
+another displayed term absorbs it. The result compares constructive upper
+bounds under the declared workspace; it is not a lower bound or a claim
+of optimal gradient cost.
