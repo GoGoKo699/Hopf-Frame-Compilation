@@ -4,8 +4,8 @@ This is the entry point for resuming work when a previous conversation or
 execution workspace is unavailable. The proofs and research decisions live
 in the repository; a conversation summary is only a retrieval aid.
 
-The 2026-10-01 small-product pass continues from main commit
-`efb56deda5660f6726f8d93c8f551c272c1b1567`. Check the current branch and
+The 2026-10-01 native small-example pass continues from main commit
+`8a738e6d843cd2c6108e67fc08d1ad155dfaea35`. Check the current branch and
 later commits before continuing. Small complete examples now guide the
 next construction; the compiler frontier is unchanged.
 
@@ -86,7 +86,26 @@ has an exact tree recursion with two-dimensional local corrections. It
 handles actual complex native coarse words, has $`O(N)`$ classical
 recursive data, and avoids division by vanishing defects. The retained
 uniform coarse approximation bounds its small inverses. Inverse Cayley
-is stable in operator norm, but has no established cheap native circuit.
+is stable in operator norm; a general cheap native conversion remains open.
+
+The [four-mode native benchmark](docs/ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
+uses the standard magic basis to reduce a real four-mode target to two
+one-qubit factors. At an unchanged k-bit address, the existing one-target
+compiler gives $`T=O(2^k+L)`$ and $`G=O(2^kL)`$ with one clean flag
+and $`b=L+n+7`$, where $`n=k+2`$. Each stage borrows the idle logical
+target as its extra dirty helper; complete-isometry errors telescope
+without resetting the flag. Both fixed basis changes cost fourteen
+Clifford gates in the displayed word. A complex native coarse baseline
+requires its separately charged actual inverse.
+
+At eight modes the root becomes a controlled Bell-projector rotation.
+It has four commuting Pauli factors, but it cannot be absorbed into
+independent prefix and child factors: the exact product-gate distance is
+$`2\sin(\theta/4)`$ for $`0\le\theta\le\pi/2`$. This restricts the
+simple magic-basis extension, not joint controlled synthesis. Direct
+Woodbury inversion of the recursive Cayley update reconstructs the
+original fine target wrapper, so that implementation does not remove
+the repeated precision charge.
 
 The earlier source-width result remains useful: outer loaders and monotone
 bridges cost $`2(m_{\max}-1)`$ T gates. Separately exposed transformed
@@ -94,12 +113,14 @@ masks and repeated complete syndrome renewal still cost precision. That
 pass solved transport, not the joint program. The new Cayley coordinates
 also do not yet improve the generic T-count.
 
-The next experiment is a **joint native program for the small Cayley
-residual**, first on four logical modes and then eight. Include a complex
-native baseline, zero defects, and nonzero changes in both branches. Try
-to use the combined recursive data without synthesizing every local
-update separately. A generic resolvent or polynomial conversion must count
-every generator call; its bounded condition number is not a free circuit.
+The next experiment is a **joint native program retaining the eight-mode
+controlled coupling** together with its two child factors. Count actual
+source appearances after expanding matched inverses. Test whether that
+program can reuse precision when another branching level is added;
+independent synthesis of the displayed factors is the comparison cost.
+Include a complex native baseline, zero defects, and changes in both
+branches. A generic resolvent or polynomial conversion must count every
+generator call; its bounded condition number is not a free circuit.
 
 1. Small examples may come before a general recurrence. Compare complete
    matrices and actual source counts, including all rejected flag ports,
@@ -137,16 +158,23 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The source-carry baseline has 263 tests and passed Python 3.11/3.13 CI,
-all four exact-receipt suites, and rendered presentation. The small-product
-pass adds focused checks for fixed-address product compression and the
-complete Cayley residual; matrices have at most sixteen logical modes.
-All 273 tests passed locally, including ten new small-example checks.
-The reviewer walkthrough, offline synchronization, and documentation
-checks also passed. CI on the merged change records the Python 3.11/3.13,
-exact-receipt, and rendered-presentation results. Separate internal reviews
-checked the algebra and conditioning; this is not external peer review.
-Finite fixtures do not establish native asymptotic resource bounds.
+The small-product baseline has 273 tests and passed Python 3.11/3.13 CI,
+all four exact-receipt suites, and rendered presentation. This pass adds
+nine focused checks for four-mode factors, actual native spectator
+borrowing, eight-mode coupling, and complete inverse/scattering action.
+The native spectator fixture has dimension 128 and deliberately coarse
+source precision; it checks exact interfaces and sign-sensitive encoded
+blocks, not a fine-precision theorem. Its literal ledger counts 180
+source calls and 5,220 T/T-dagger gates before cancellation. Other new
+matrices have at most eight logical modes, with separately included
+signal/dirty ports.
+
+All 282 tests pass locally. The reviewer walkthrough, offline
+synchronization, and documentation checks also pass. CI on the merged change records the Python 3.11/3.13,
+exact-receipt, and rendered-presentation results. Separate internal
+reviews checked the algebra, conditioning, and workspace ledger; this
+is not external peer review. Finite fixtures do not establish native
+asymptotic resource bounds.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)

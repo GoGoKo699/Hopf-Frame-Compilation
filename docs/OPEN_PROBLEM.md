@@ -272,7 +272,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Full-port hierarchy | [Fusion audit](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths): recursively closed complete unitary, linear classical generators; faster native synthesis unproved |
 | Coupled completion | [Whole-residual boundary](RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost): one-signal normalization-two recursion; a commutator implements the complete rank-at-most-four repair without normalizing transported differences; its child calls cancel to the original target wrappers, whose precision remains charged |
 | Grouped frame | Best general endpoint bound, with conditional suffix and core return in the complete error |
-| Product-first residual coordinates | [Small examples and Cayley recursion](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation): four/eight-mode checks extend to a complete complex-coarse residual with constant-size local generators and stable inverse conversion; coherent implementation is unpriced |
+| Product-first residual coordinates | [Cayley recursion](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) gives constant-size local data for the complex-coarse residual; the [four-mode native benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark) uses two one-target programs, while the eight-mode controlled coupling and general coherent conversion remain charged |
 | Source-width transport | [Reverse-order loader](SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): total boundary T-count $`2(m_{\max}-1)`$ with linear native loaders; transformed group bodies remain charged |
 
 The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
@@ -525,16 +525,40 @@ representation to test, not a cheaper coherent evaluator or another
 compiler theorem. Inverse Cayley is stable in operator norm, but its
 circuit cost remains unproved.
 
+The native small-example pass supplies a four-mode benchmark. The
+[standard magic-basis reduction](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
+turns a real four-mode target into two SU(2) factors. The displayed Cayley
+formulas are regular at zero defects and preserve literal phases. At an
+unchanged k-bit address, the retained one-target theorem compiles these
+two factors with $`T=O(2^k+L)`$, $`G=O(2^kL)`$, one clean flag, and
+$`b\ge L+n+7`$ for $`n=k+2`$. The idle logical target supplies the
+extra dirty helper at each stage. This is a corollary of the inherited
+magic basis and the existing compiler, with a complete return/error
+ledger; it does not narrow the generic endpoint gap. Complex coarse
+residuals use the separately charged actual coarse inverse.
+
+At eight modes, the same basis change leaves an explicit root coupling
+$`\exp(-i\theta Y\otimes|\Phi^+\rangle\langle\Phi^+|)`$.
+Four commuting Pauli rotations implement it, but independent prefix/child
+factors have exact distance $`2\sin(\theta/4)`$ on
+$`0\le\theta\le\pi/2`$. Thus independent factorization is insufficient;
+controlled joint programming remains possible. The Woodbury audit also
+shows that direct recursive inverse Cayley reconstructs the original
+fine target wrapper, with no local precision attenuation. A resolvent
+completion defined using controlled target action is not a cheaper way
+to construct that target.
+
 ### Next bounded task and stopping rule
 
-The next experiment is a **joint native program for the small Cayley
-residual**, beginning with four logical modes and then eight. Compare its
-actual action and precision-source ledger with the ordinary separate
-rotation words. Include a complex native baseline, a zero local defect,
-and nonzero changes in both branches. Try to load and use the combined
-recursive data without synthesizing every local Cayley update separately.
-The source/program and logical-dependent-boundary approaches remain
-available; individual group action may be deferred.
+The next experiment is a **joint native program for the eight-mode
+controlled root coupling and its child factors**. Use the explicit four
+Pauli factors as a charged comparison, and count source appearances
+after expanding actual inverses. Test whether a joint program keeps that
+charge from multiplying when another branching level is added. Include
+a complex native baseline, a zero local defect, and changes in both
+branches. Independent synthesis of a fixed number of factors is already
+available. The source/program and logical-dependent-boundary approaches
+remain available; individual group action may be deferred.
 
 Small examples may precede a general construction. A successful pattern
 must eventually supply complete accepted/rejected action, live workspace,

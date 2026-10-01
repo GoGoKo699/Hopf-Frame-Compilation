@@ -1415,7 +1415,11 @@ are multiplied on one fixed target.
 The [small tree Cayley construction](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
 continues this product-first experiment on four and eight logical modes.
 It preserves the complete residual in a coupled recursive representation;
-its native source-and-program implementation remains unproved.
+its generic native source-and-program implementation remains unproved.
+The [four-mode benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
+now prices a real four-mode row with two retained one-target programs and
+a borrowed logical spectator. The eight-mode extension retains a
+controlled root coupling; independent factorization does not remove it.
 
 ## 9. Finite checks and evidence limits
 

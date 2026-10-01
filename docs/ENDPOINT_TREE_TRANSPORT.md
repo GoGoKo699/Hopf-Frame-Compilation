@@ -728,3 +728,362 @@ matrices with the recursive data, including actual complex native coarse
 words, zero defects, chart boundaries, conditioning, and inverse conversion.
 They do not emit a Clifford+T implementation of the Cayley generator or
 its inverse.
+
+## 7. A native four-mode benchmark
+
+Four real modes admit the standard magic-basis reduction to two SU(2)
+factors; see [Vatan and Williams, Section III, Theorem 1](https://arxiv.org/abs/quant-ph/0308006).
+The reduction is inherited. The formulas below fix its literal Clifford
+convention, apply it to the Cayley data, and charge the retained native
+compiler. This is a fixed-size benchmark, not a generic endpoint gain.
+
+### An exact Clifford basis change
+
+Use computational order 00, 01, 10, 11, with qubit 0 the first tensor
+factor. Products are in matrix order. Define
+
+```math
+M=\mathrm{CNOT}_{0\to1}H_0S_0S_1\mathrm{CZ}_{01}
+ =\mathrm{CNOT}_{0\to1}H_0S_0S_1H_1\mathrm{CNOT}_{0\to1}H_1.
+```
+
+Its columns are $`(\Phi^+,i\Psi^+,i\Phi^-,\Psi^-)`$, where
+$`\Phi^\pm=(|00\rangle\pm|11\rangle)/\sqrt2`$ and
+$`\Psi^\pm=(|01\rangle\pm|10\rangle)/\sqrt2`$. This is an
+exact matrix equality, including the scalar phase. The displayed word
+uses seven Clifford gates; M and its actual inverse cost fourteen in
+total, with no T gates or workspace. The magic-basis identity is
+
+```math
+M\,\mathrm{SO}(4)\,M^\dagger
+=\{A\otimes B:A,B\in\mathrm{SU}(2)\}.
+```
+
+The pair of factors is determined up to simultaneously changing both
+signs, which preserves its literal product. The Cayley formulas below
+choose the pair continuously from the identity.
+
+### Regular factors directly from the Cayley generator
+
+Let K be real skew-symmetric, with $`k_{ij}=K_{ij}`$ for i less
+than j. Write $`\boldsymbol\sigma=(X,Y,Z)`$ and define
+
+```math
+\mathbf a=\tfrac12(-k_{01}-k_{23},-k_{03}-k_{12},-k_{02}+k_{13}),
+\qquad
+\mathbf b=\tfrac12(-k_{01}+k_{23},k_{03}-k_{12},-k_{02}-k_{13}).
+```
+
+Direct Clifford conjugation gives
+
+```math
+MKM^\dagger
+=i\bigl[(\mathbf a\cdot\boldsymbol\sigma)\otimes I
+ +I\otimes(\mathbf b\cdot\boldsymbol\sigma)\bigr].
+```
+
+Put $`r=\|\mathbf a\|`$, $`s=\|\mathbf b\|`$, and use the
+positive normalization
+
+```math
+d=\sqrt{(1+(r+s)^2)(1+(r-s)^2)}\ge1.
+```
+
+Then
+
+```math
+(I+K)(I-K)^{-1}=M^\dagger(A\otimes B)M,
+```
+
+```math
+A=\frac{(1-r^2+s^2)I+2i\mathbf a\cdot\boldsymbol\sigma}{d},
+\qquad
+B=\frac{(1+r^2-s^2)I+2i\mathbf b\cdot\boldsymbol\sigma}{d}.
+```
+
+For example, $`(1-r^2+s^2)^2+4r^2=d^2`$, so A is unitary
+with determinant one; the same holds for B. On simultaneous eigenvectors
+of the two commuting Pauli factors their product equals
+$`(1+i(er+fs))/(1-i(er+fs))`$, for $`e,f\in\{1,-1\}`$.
+This proves the inverse Cayley identity. Neither factor divides by r or
+s, so zero defects and rank changes introduce no singular direction
+normalization. At K zero both factors are exactly identity.
+
+For the four-mode example in Section 6, rename the root, left, and right
+half-angle tangents x, y, z. The formulas simplify to
+
+```math
+2\mathbf a=(y+z,x(y+z),x(1-yz)),\qquad
+2\mathbf b=(y-z,x(y-z),x(1+yz)),
+```
+
+```math
+r^2-s^2=yz,\qquad d=\sqrt{(1+x^2)(1+y^2)(1+z^2)}.
+```
+
+These recover the complete four-mode matrix, including its complement
+columns. Outside this Cayley chart, an explicitly specified real plane
+rotation word can instead be factored one rotation at a time and its two
+SU(2) products evaluated classically. For instance,
+$`|1\rangle\langle0|-|0\rangle\langle1|`$ maps to
+$`i(X\otimes I+I\otimes X)/2`$. The linear conjugation formula
+gives the other five plane generators. This does not assume a global
+Cayley chart or discard a sign when an eigenvalue crosses minus one.
+
+### An addressed primitive with a borrowed logical spectator
+
+Let k address bits remain unchanged, put $`S=2^k`$ and $`n=k+2`$,
+and supply factor coordinates admitting certified classical evaluation
+for each real four-mode row
+$`MW_xM^\dagger=A_x\otimes B_x`$. The Cayley formulas supply
+such factors from finite real skew-symmetric K tables; they do not
+cover a row W with an eigenvalue minus one. The complete target
+is M conjugating two one-target multiplexors with that same address.
+
+Apply the retained [one-target compiler](ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
+to each factor at $`L'=L+1`$. Its sufficient dirty reservation is
+$`L'+k+9=L+k+10`$. External work of size
+$`b=L+n+7=L+k+9`$, together with the other logical target,
+meets this reservation: while compiling A use target 1 as the additional
+dirty helper, and while compiling B use target 0. The helper returns
+exactly. Arbitrary logical and reference correlations are allowed by the
+primitive's dirty-input contract. Both factors reuse one initialized
+flag and the external core; the endpoint's second clean flag can remain
+untouched.
+
+Let $`\mathcal A,\mathcal B`$ denote the ideal addressed factors,
+and J the common initialized-flag embedding. Although the helper
+assignment changes, each circuit has the same complete-isometry promise.
+Therefore
+
+```math
+\begin{aligned}
+\|V_BV_AJ-J\mathcal B\mathcal A\|
+&\le\|V_AJ-J\mathcal A\|
+  +\|V_BJ-J\mathcal B\|\\
+&\le2\cdot2^{-(L+1)}=2^{-L}.
+\end{aligned}
+```
+
+This norm includes every logical and dirty input, references, and actual
+flag leakage; no intermediate reset is used. The exact M boundaries
+preserve the bound. For $`L\ge6`$ the resulting addressed primitive has
+
+```math
+a=1,\qquad b\ge L+n+7,\qquad
+T=O(S+L),\qquad G=O(SL),
+```
+
+plus the fourteen displayed Clifford boundary gates. Certified Euler
+preprocessing evaluates the exact computable factor functions to its
+own allocated tolerance. If K is instead rounded separately, its
+inverse Cayley error of at most $`2\|\widehat K-K\|`$ must also
+be allocated; the displayed budget does not include that extra error
+for free. Classical preprocessing cost is not asserted to be uniform.
+The source-call count is constant, not a single literal preparation and
+unpreparation.
+
+### Real residuals and the complex-coarse boundary
+
+For real coarse $`C\in\mathrm{SO}(4)`$, the residual
+$`C^\dagger W`$ remains in this family. The actual native coarse
+word may instead be complex, so its residual generally does not admit
+this real Cayley split. A valid fallback is the literal word
+
+```math
+C^\dagger M^\dagger V_BV_AM
+```
+
+approximating the residual $`C^\dagger W`$ of the real target W.
+Charge $`T(C)`$ and $`G(C)`$ in addition
+to the displayed synthesis cost. The retained unconditional coarse
+frame returns its dirty helpers exactly on their full input space, so
+its actual inverse preserves the error even on leaked inputs. At fixed
+coarse accuracy in the selected endpoint pool $`b=N+n+7`$, its
+separately proved costs are $`O(\sqrt N)`$ T
+gates and $`O(N)`$ Clifford gates. This does not price a controlled
+coarse word or give SO(4) closure for the complex residual itself.
+
+The fixed-four-mode result is a corollary of the standard magic basis
+and the retained compiler. Extending it to two four-mode children and
+their root coupling still requires a native composition rule and a
+source-call recurrence. Fixed-size $`O(L)`$ synthesis alone gives no
+improvement to the generic $`O(N\ell_*(n))`$ bound.
+
+## 8. The eight-mode root retains a controlled coupling
+
+Use the Clifford M with columns
+$`[\Phi^+,i\Psi^+,i\Phi^-,\Psi^-]`$, equivalently
+$`M=\mathrm{CNOT}_{0\to1}H_0(S_0S_1\mathrm{CZ}_{01})`$.
+The four-mode factorizing direction is $`MWM^\dagger`$.
+Applying the same M to both children of an eight-mode frame therefore
+uses $`I\otimes M`$. The root rotates the existing pair (0, 4), so
+its transformed complete word is
+
+```math
+U_\theta=\exp(-i\theta Y\otimes P),\qquad
+P=M|00\rangle\langle00|M^\dagger
+=|\Phi^+\rangle\langle\Phi^+|
+=\frac{II+XX-YY+ZZ}{4}.
+```
+
+Consequently it has the exact decomposition
+
+```math
+U_\theta
+=e^{-i\theta YII/4}e^{-i\theta YXX/4}
+ e^{+i\theta YYY/4}e^{-i\theta YZZ/4}.
+```
+
+The four Pauli strings commute. Each factor is a Clifford conjugate of
+a single-qubit rotation, whose precision must be synthesized and charged.
+This supplies a constant-size construction, not a proof that four
+separate calls are necessary. At the special angle $`\theta=\pi/2`$,
+three T words and one T-dagger word suffice, together with Clifford gates:
+their scalar $`e^{i\pi/4}`$ is removed by
+$`(S^\dagger H)^3=e^{-i\pi/4}I`$. The finite native fixture retains
+that correction and every logical input column.
+
+The root cannot instead be absorbed into independent prefix/child
+factors. For $`0\le\theta\le\pi/2`$, its exact distance is
+
+```math
+\inf_{A\in U(2),\,B\in U(4)}
+\|U_\theta-A\otimes B\|=2\sin(\theta/4).
+```
+
+For the lower bound, choose a unit vector chi orthogonal to Phi plus and
+apply the word to the product input
+
+```math
+|0\rangle\otimes
+\frac{|\Phi^+\rangle+|\chi\rangle}{\sqrt2}.
+```
+
+Use $`R_y(t)=e^{-itY}`$. The output is the equally weighted sum of
+$`R_y(\theta)|0\rangle\otimes|\Phi^+\rangle`$ and
+$`|0\rangle\otimes|\chi\rangle`$. Its Schmidt coefficients across
+the prefix/child cut are $`\cos(\theta/2)`$ and
+$`\sin(\theta/2)`$. Every product-gate output on this input is a
+normalized product vector, so its distance is at least
+$`\sqrt{2-2\cos(\theta/2)}=2\sin(\theta/4)`$.
+For attainment, take $`A=R_y(\theta/2)`$ and $`B=I_4`$.
+On both the P and its orthogonal sector the difference is a half-angle
+rotation, with precisely that operator norm.
+
+The transformed root and child families also do not commute. The
+left-child root generator, originally the pair (0, 2), becomes
+
+```math
+H_L=-\frac14(I+Z)\otimes(ZI+IZ),\qquad
+\|[Y\otimes P,H_L]\|=1.
+```
+
+Before Clifford conjugation their commutator is minus i times the
+Hermitian generator of the pair (2, 4), which proves the norm identity.
+Thus independent four-mode factorizations do not make the eight-mode
+ordered word a product of globally commuting families.
+
+These are restrictions on this particular fixed product-factor extension.
+Controlled factors, a jointly programmed word, and other source boundaries
+remain allowed. An eight-mode instance still has an $`O(L)`$ synthesis;
+neither noncommutation nor the displayed distance makes precision costs
+additive across a variable number of groups.
+
+The [eight-mode checks](../tests/test_eight_mode_coupling.py) verify these
+complete matrices, the distance witness, and the literal four-T special
+case. General angles remain charged synthesis targets.
+
+## 9. Inverse Cayley recovers the original local scattering word
+
+The fixed-size Cayley update has a well-conditioned inverse, but applying
+Woodbury does not remove the local target word. Keep the notation of
+Section 6 and write
+
+```math
+\overline K=A+ZHZ^\dagger,\qquad Q=(I-A)^{-1},\qquad
+D=(I+A)(I-A)^{-1}.
+```
+
+Since $`QZ=DE`$ and $`Z^\dagger Q=E^\dagger`$, the Woodbury
+identity, in a form that never inverts H, gives
+
+```math
+(I-\overline K)^{-1}
+=Q+DE\,H[I_2-(I_2+B)H]^{-1}E^\dagger.
+```
+
+The remaining two-dimensional inverse cancels explicitly:
+
+```math
+\begin{aligned}
+I_2-(I_2+B)H&=(I_2-\tau)(I_2+B\tau)^{-1},\\
+H[I_2-(I_2+B)H]^{-1}
+&=\tau(I_2-\tau)^{-1}=\frac{F_2-I_2}{2}.
+\end{aligned}
+```
+
+Moreover
+$`\|[I_2-(I_2+B)H]^{-1}\|\le1+\kappa^2`$, because
+$`\|(I_2-\tau)^{-1}\|\le1`$. Thus inverse Cayley returns
+
+```math
+2(I-\overline K)^{-1}-I
+=D[I+E(F_2-I_2)E^\dagger]=DF.
+```
+
+Including the coarse conjugation gives exactly
+$`\mathcal R_v=\mathsf C^\dagger D\mathsf U`$, where
+$`\mathsf U=I+E(U-I_2)E^\dagger`$. The implementation uses one
+coherent child-residual call, the local target word, and the coarse inverse.
+It does not introduce a new cheap implementation of that target word.
+
+There is also a complete one-signal scattering boundary. For any unitary R
+whose Cayley chart exists, put $`S=(I-K)^{-1}=(I+R)/2`$. Then
+
+```math
+\Phi(R)=
+\begin{pmatrix}S&S-I\\S-I&S\end{pmatrix}
+=(H_f\otimes I)\mathrm{diag}(R,I)(H_f\otimes I).
+```
+
+This specifies both occupied signal sectors and is unitary on the whole
+space. It obeys $`\Phi(R_1)\Phi(R_2)=\Phi(R_1R_2)`$, hence
+
+```math
+\Phi(\mathcal R_v)
+=\Phi(\mathsf C^\dagger)\Phi(D)\Phi(\mathsf U).
+```
+
+The common signal therefore composes through arbitrarily many levels with
+literal inverse words. However, the displayed completion already contains
+controlled R. It is not a circuit for the resolvent supplied independently
+of R. Compiling its conditional local target and coarse words with the
+retained layerwise primitives reproduces $`O(N+nL)`$ T count and
+$`O(NL)`$ Clifford count; no joint precision program follows from this
+completion alone.
+
+Approximation must retain the full dirty-space contract. If actual unitary
+child and local circuits approximate $`D\otimes I_b`$ and
+$`\mathsf U\otimes I_b`$ with errors $`\delta_D,\delta_U`$,
+their composed word has error at most $`\delta_D+\delta_U`$,
+including dirty disturbance and reference correlations. With the child and
+coarse factors exact, the error from the local word is exactly
+$`\delta_U`$. Neither a small Cayley generator nor a small rank-two
+correction attenuates that error.
+
+The fixed two-by-two matrices describe the exact logical generators. A
+physical approximate child circuit that disturbs dirty work can have
+operator-valued dirty entries in its Cayley compression. One must not
+substitute independently rounded scalar H data and claim that the exact
+Woodbury identity still holds for that arbitrary approximate completion.
+The actual composed unitary word and its norm bound remain valid without
+such a claim.
+
+The [Cayley checks](../tests/test_tree_cayley.py) verify Woodbury cancellation
+and all scattering ports on four/eight-mode complex-coarse fixtures,
+including a native child that disturbs borrowed work. The
+[four-mode native checks](../tests/test_native_cayley.py) separately test
+the magic-basis factors and the borrowed-spectator schedule. These small
+fixtures check identities and interfaces; the resource bounds rely on
+the proofs and retained compiler contracts.

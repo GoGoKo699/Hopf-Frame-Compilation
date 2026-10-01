@@ -162,7 +162,25 @@ extend to eight. They compare direct complete residuals with the recursive
 skew-Hermitian generator, including actual complex native coarse words,
 zero defects, chart boundaries, small-inverse conditioning, and inverse
 Cayley stability. This verifies the new operator representation, not a
-Clifford+T emitter or a reduced precision-source count.
+Clifford+T emitter or a reduced precision-source count. The inverse audit
+also checks Woodbury cancellation, complete scattering ports, and an
+actual native child with non-scalar dirty compression.
+The [four-mode native checks](../tests/test_native_cayley.py) retain the
+magic Clifford's literal phase and orientation, recover regular Cayley
+factors at zero and nonzero defects, and test an addressed native word
+that borrows each idle logical target as an active predicate helper.
+Every dirty column and both occupied flag sectors enter the helper-return
+check; the initialized-flag composition includes nonzero leakage without
+a reset. Its q=2 source is a small interface diagnostic, not a certified
+fine-precision instance or a full SO(4) circuit emitter. Its explicit
+source and T-gate counts include actual inverse appearances.
+The [eight-mode checks](../tests/test_eight_mode_coupling.py) verify the
+controlled root's four commuting Pauli factors, the product-distance
+witness and attaining product, and the root/child commutator. A special
+angle has a literal four-T word with its scalar correction. These tests
+check scoped constructions and obstructions, not a generic precision
+lower bound. Matrices in the native spectator check have dimension at
+most 128; the eight-mode matrices have dimension eight.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
