@@ -256,6 +256,18 @@ integer cancellations beyond fixed-width and floating-point precision.
 Final contractions remain NumPy arithmetic. The [native example note](NATIVE_COARSE_QBP.md)
 separates these finite checks from the general residual-table construction
 and its analytic cost proof.
+The [complex coarse-frame checks](../tests/test_complex_coarse_qbp.py)
+verify arithmetic-mean gauge factorization with winding phases, actual
+native one-qubit rows repeated across every suffix, and the bounded
+complex residual amplification. Independent analytic derivatives check
+X/Y magnitude means, executable integer-histogram reconstruction, and the
+direct phase-Y stream, including signed and singular trees. Wrong-gauge
+and omitted-phase corrections give explicit bias witnesses. The
+[complex utility](../compiler_robust_hopf/complex_coarse_decoder.py) uses
+floating-point final coefficients; neither these checks nor the utility
+emit the complete native prefix selection or fine residual-table circuit.
+Their general resource contracts are proved in the
+[compiler](COMPLEX_COARSE_COMPILER.md) and [decoder](COMPLEX_COARSE_QBP.md).
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

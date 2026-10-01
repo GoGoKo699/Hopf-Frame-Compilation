@@ -50,6 +50,12 @@ separate preprocessing. No efficient bound on their bit complexity is
 asserted, and no exact-zero test for arbitrary computable amplitudes is
 assumed.
 
+The [complex-state extension](COMPLEX_COARSE_COMPILER.md) supplies an
+exact-return gauge-fixed phase-dressed coarse C and applies this residual
+construction with the same two flags and dirty threshold. It includes a
+separate complex finite-size fallback and keeps common-reference phases
+literal; the real-only assumptions below are not silently generalized.
+
 ## 2. A native coarse circuit makes the tail small
 
 Use the [borrowed-workspace theorem](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements)

@@ -22,6 +22,10 @@ logarithmic depth-block sampling order at every real angle tuple, with
 $`O(N+L')`$ native T-count per execution apart from the observable. It
 combines a fine state preparation, a charged coarse inverse, and scores
 computed from that actual coarse word; it has its own workspace contract.
+The [complex coarse-frame extension](COMPLEX_COARSE_QBP.md) includes both
+magnitude and leaf-phase gradients with the same two compiler flags and
+dirty threshold. It fixes a common state phase and uses the actual native
+prefix phase tables in its classical correction.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies

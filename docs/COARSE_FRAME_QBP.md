@@ -18,6 +18,11 @@ With the stated two-clean state compiler, one execution costs
 $`O(N+L')+t_O`$ T gates. This is a different decoder and measurement
 distribution, not a fine compilation of the prescribed full frame.
 
+The [complex extension](COMPLEX_COARSE_QBP.md) supplies the same magnitude
+bound for phase-dressed states and adds the direct leaf-phase stream. Its
+[compiler proof](COMPLEX_COARSE_COMPILER.md) fixes a consistent common
+phase and records actual native prefix rows with exact dirty return.
+
 The interference and change-of-basis identities use the standard ingredients
 attributed in [the reference-state decoder](REFERENCE_STATE_QBP.md).
 The statements below price their Hopf-specific combination. No priority claim

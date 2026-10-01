@@ -4,9 +4,10 @@
 
 This page gathers the retained results, the limits of explored routes, and
 the next research decision. State-only preparation with a coarse-frame
-decoder now supplies a raw-gradient protocol at all real angle tuples
-without an angle-dependent sampling factor; the complete-frame endpoint
-remains open.
+decoder supplies a raw-gradient protocol at all real angle tuples without
+an angle-dependent sampling factor. Its gauge-fixed complex extension now
+includes both magnitude and leaf-phase gradients with the same two-flag
+allocation; the complete-frame endpoint remains open.
 This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
@@ -824,8 +825,37 @@ reused dirty banks.
 This removes the extra K from the leaf-only reference route without a
 branch-probability promise. It does not give uniform dominance over the
 retained fixed-accuracy square-root frame compiler, establish total
-gradient optimality, or compile a fine complete frame. The phase-gradient
-stream for complex states also remains outside this new result.
+gradient optimality, or compile a fine complete frame. The complex extension
+below adds the separate phase-gradient stream.
+
+### The complex coarse interface closes after fixing a common phase
+
+The [complex compiler](COMPLEX_COARSE_COMPILER.md) fixes the arithmetic mean
+mu of supplied real leaf phases and compiles
+$`W'=e^{-i\mu}D_\varphi W_{\mathbb R}`$. Standard prefix phase rotations
+telescope to this determinant-one diagonal. Their actual native row words
+use the retained dirty reflection interpreter, with unchanged addresses and
+external selectors/banks. This gives an exact logical $`C\otimes I_b`$,
+$`\|C-W'\|\le\min\{1/64,1/(4\sqrt N)\}`$, $`T(C)=O(N)`$, and
+$`G(C)=O(Nn)`$. The real coarse frame and prefix phase rows are recorded;
+the approximate rows need not stay diagonal and act on all suffixes.
+
+The same two-flag residual table and one-step amplification prepare the
+gauged target, including coherent selection with the actual coarse
+reference. The [complete complex protocol](COMPLEX_COARSE_QBP.md) retains
+the depth-record bound of five for magnitude coordinates. Leaf weights
+now include the inverse ideal gauge before the real Hopf reverse traversal.
+The direct Y/leaf stream gives the phase coordinates with norm-two records.
+Subtracting the mean phase adds only a global-phase derivative, which has
+zero Hermitian-energy derivative. All physical raw gradients are unchanged.
+
+With $`L'=\max\{n,6,\lceil\log_2(80\Lambda/\varepsilon_\infty)\rceil\}`$,
+two flags and $`b\ge L'+n+7`$ suffice. Use the previous shot order with
+$`\log((n+1)/\delta)`$ for the n magnitude blocks and one phase block.
+Both streams together cost $`O(S(N+L'))+2S\overline t_O`$ expected T gates,
+plus $`O(S+Nn)`$ histogram arithmetic and charged coefficient/bit work.
+This is a gauge-fixed state result; no literal common phase of the original
+complete frame is compiled and no total-gradient optimum is claimed.
 
 ### Next bounded task and stopping rule
 
@@ -838,18 +868,20 @@ tables. The original protocol is cheaper on this specially exact example;
 the fixture verifies integration and does not establish an advantage or
 emit the general residual-table construction.
 
-The next scientific question is the phase-dressed complex-state interface.
-Can an actual logical native C approximate $`D_\varphi W_{\mathbb R}`$
-to $`O(N^{-1/2})`$ with $`O(N)`$ T-count, the declared workspace, and
-exact dirty return? The real-state correction proof uses precisely such a
-logical C and its recorded coefficients. The existing approximate
-phase-diagonal isometry may leave work leakage and cannot silently replace
-it. Establish this interface and its classical coefficient representation
-before claiming the complex magnitude extension. The established direct
-phase-gradient stream remains an available separate component; no new
-combined measurement circuit is required without a demonstrated benefit.
-If the native interface fails, record the specific missing lemma rather
-than extending the finite fixture without a new question.
+The complex-state interface is proved in the gauge above. Its new bounded
+checks use actual native one-qubit phase rows, full-suffix matrix assembly,
+residual-state amplification, and independent analytic gradients. The
+executable complex histogram utility preserves exact integer Walsh counts
+before floating-point reconstruction. These checks do not yet emit the
+complete controlled phase-prefix circuit or general fine residual table.
+
+The next bounded task is a complete elementary complex extension of the
+existing small native fixture: both magnitude and phase streams, the actual
+prefix-table inverse, arbitrary dirty-input score operators, literal branch
+phases, and full gate counts against the same-observable original protocol.
+Use the finite-size fallback and a small winding-phase example. This tests
+the new native interface; it need not become a general synthesis package or
+an advantage claim. The fine residual-table emitter remains separate.
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual
