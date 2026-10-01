@@ -212,6 +212,18 @@ supplies that specialization and the L-bit error/workspace ledger.
 The executed program count is three inner rotations per amplified group.
 Literal source counts 135 versus 87 are structural word comparisons,
 not a leading precision improvement or a claim of optimality.
+The [Hopf scattering checks](../tests/test_hopf_scattering.py) reconstruct
+all columns of four- and eight-mode real frames from explicit tree ports,
+including singular and negative-angle cases. They distinguish the
+nilpotent physical internal block from its two minus-identity dummy ports.
+The input permutation is emitted as X/CNOT/Toffoli gates with each Toffoli
+expanded to its phase-correct native word; complete matrices of dimension
+16 and 32 verify arbitrary helper return. The output permutation is a
+literal X. A deterministic Fourier grid checks the analytically known
+right-path coefficient. Coin rotations remain ideal in these fixtures;
+the [proof](ENDPOINT_TREE_TRANSPORT.md#11-a-packed-hopf-scattering-step-and-its-boundary-transfer)
+prices one native step and proves the query restriction. Neither the
+small checks nor that step ledger supplies a feedback compiler.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
