@@ -132,6 +132,25 @@ a direct half-unitary target failure, and the precision-independent
 coefficient-ellipse obstruction to retuning the same word. A second flag
 is an untouched spectator. The literal source ledger concerns that emitted
 word; it is not a general gate lower bound.
+The [precision-carry checks](../tests/test_precision_carry.py) compare literal
+native chain and reversed-star loaders, retain their scalar phases, and
+check the orientation and gate counts of unequal-width bridges. They verify
+three-width full-operator composition after logical address changes,
+reversed coefficient grids, and a transformed-mask correlation arising from
+a legal grouped coefficient. The
+[width-boundary proof](SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation)
+supplies the analytic bridge and mask bounds. Cheap outer basis changes do
+not price the transformed group bodies or improve the endpoint frontier.
+The [correlated-carry checks](../tests/test_correlated_precision_carry.py)
+test a flag/source code on every dirty input, unequal-width physical code
+transport, arbitrary reference correlations, and the reuse of released tail
+wires as dirty work. A realizable grouped mask exposes code leakage; full
+two-syndrome extraction and its actual inverse test source recovery and
+its error bound when approximate extraction leaves flag leakage. The
+[correlated-boundary proof](SOURCE_REUSE_LIMITS.md#7-a-flag-correlated-source-boundary-and-its-query-cost)
+charges initialization and decoding and restricts that complete
+renewal interface. It does not apply the same lower bound to an accepted-only
+block or establish an unrestricted carried-source impossibility.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

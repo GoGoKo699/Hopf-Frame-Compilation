@@ -875,7 +875,433 @@ emission. Disjoint nodes may be batched by depth; that emission retains
 a precision charge per depth. This is a cost of the displayed word, not
 an additive lower bound under every possible circuit rewrite.
 
-## 6. Finite checks and evidence limits
+## 6. Changing source width without renewing its preparation
+
+The grouped compiler uses unequal source widths. Factoring a source out of
+each complete group therefore introduces a change of basis between groups,
+even when its basis changes cancel at a fixed width. This section prices
+that change and gives a different loader whose width transitions are cheap.
+It resolves the source-boundary ledger for that loader, not the native cost
+of the transformed group programs.
+
+### The original loader has a costly bridge in the required direction
+
+Retain $`U_m=R_{m-2}\cdots R_0`$ from Section 2, extending every
+operator by identity to a common dirty pool. For $`M\geq m`$,
+
+```math
+U_MU_m^\dagger=R_{M-2}\cdots R_{m-1}
+```
+
+uses only the added rotations. But if a complete group has been written
+$`G_m=U_mK_mU_m^\dagger`$, the bridge when width decreases from
+M to m is $`U_m^\dagger U_M`$. These are different operators.
+For $`m\geq2`$, already a one-bit decrease requires
+
+```math
+U_m^\dagger U_{m+1}=U_m^\dagger R_{m-1}U_m.
+```
+
+Use actual native loaders in the emitted word. In the one-T realization,
+$`\widehat R_j=e^{-i\pi/8}R_j`$ and
+$`\widehat U_m=e^{-i(m-1)\pi/8}U_m`$; hence the literal bridge
+is $`e^{-i\pi/8}U_m^\dagger R_{m-1}U_m`$. Its scalar is retained,
+and its displayed implementation has $`2m-1`$ T gates. This count is
+optimal for this complete bridge, even allowing returned stabilizer and
+arbitrary dirty helpers.
+
+For the lower bound, write
+
+```math
+\begin{aligned}
+U_m^\dagger(Y_{m-1}X_m)U_m
+&=\sum_{k=0}^{m-1}a_kY_kZ_{k+1}\cdots Z_{m-1}X_m,\\
+a_0^2=a_1^2&=2^{-(m-1)},\qquad
+a_k^2=2^{-(m-k)}\ (k\geq1).
+\end{aligned}
+```
+
+The normalized Pauli correlation of the bridge with probe $`Z_k`$ is
+$`1-(1-1/\sqrt2)a_k^2`$. At k zero it is
+
+```math
+1-(1-1/\sqrt2)2^{-(m-1)}
+=\frac{1+(2^{m-1}-1)\sqrt2}{(\sqrt2)^{2m-1}}.
+```
+
+Its numerator is not divisible by $`\sqrt2`$ in
+$`\mathbb Z[\sqrt2]`$, so the returned-helper Pauli-transfer
+argument of Section 2 gives the exact lower bound $`2m-1`$.
+
+The obstruction also holds at the group's requested precision, without
+requiring error smaller than the source's last coefficient. Suppose a
+native circuit approximates this bridge with full-isometry error at most
+$`2^{-L}`$, where $`L\geq6`$ and $`m\geq L-3`$. Choose
+$`k=m-L+4`$, which lies between 1 and $`m-1`$. The target correlation
+has gap $`16(1-1/\sqrt2)2^{-L}`$ below one. The actual correlation c
+differs by at most $`2^{1-L}`$, so
+
+```math
+0\lt1-c\lt8\,2^{-L}.
+```
+
+For a circuit with t T gates, its Galois conjugate correlation lies in
+$`[-1,1]`$ and the same algebraic-norm argument gives
+$`1-c\geq2^{-t-1}`$. Therefore $`t\geq L-3`$. This prices one
+specified bridge; it is not a compiler lower bound or a license to add
+bridge costs after arbitrary circuit rewrites.
+
+### A reverse-order star loader has the same coefficient grid
+
+Keep the Majoranas $`\Gamma_j=Z_0\cdots Z_{j-1}X_j`$ and define
+actual native rotations, for $`j\geq1`$, by
+
+```math
+q_j=e^{-i\pi/8}\exp(i\pi Y_0X_j/8),\qquad
+F_j=\prod_{k=1}^{j}\mathrm{CNOT}_{k\to0},\qquad F_0=I,
+```
+
+```math
+\begin{aligned}
+p_j&=F_{j-1}q_jF_{j-1}^\dagger
+=e^{-i\pi/8}\exp(i\pi Y_0Z_1\cdots Z_{j-1}X_j/8),\\
+V_m&=p_1p_2\cdots p_{m-1}.
+\end{aligned}
+```
+
+Products here are matrix products, with the rightmost factor acting first.
+The phase in each q is literal: if
+$`C_j=(S_0H_0)H_j`$, then
+
+```math
+q_j=C_j\mathrm{CNOT}_{0\to j}T_j^\dagger
+\mathrm{CNOT}_{0\to j}C_j^\dagger.
+```
+
+This uses one T-dagger and eight Clifford gates. No controlled T gate or
+initialized helper is hidden in the definition.
+
+Conjugation successively splits the coefficient of $`\Gamma_0`$,
+in the reverse index order. Thus
+
+```math
+\begin{aligned}
+M_m^\star&=V_mX_0V_m^\dagger
+=\sum_{j=0}^{m-1}\sqrt{w_j}\,\Gamma_j,\\
+w_0&=2^{1-m},\qquad w_j=2^{j-m}\ (1\leq j\lt m).
+\end{aligned}
+```
+
+These are the original geometric weights in reverse order. Reversing the
+entire certified sign word, including the literal endpoint cases, preserves
+the signed coefficient grid and its error bound. The programmed masks
+remain $`P_f=\prod_jZ_j^{f_j}`$, implemented by the same addressed
+dirty queries before the source basis is extracted. Coefficient tables
+retain their row counts. Scalars in V cancel in every source and
+controlled-source conjugation.
+
+The long Pauli strings do not force a quadratic Clifford loader cost.
+The CNOTs in the F words commute and square to identity, giving
+
+```math
+V_m=q_1\mathrm{CNOT}_{1\to0}q_2\mathrm{CNOT}_{2\to0}
+\cdots\mathrm{CNOT}_{m-2\to0}q_{m-1}F_{m-2}^\dagger.
+```
+
+This literal word has $`m-1`$ T gates and $`10m-12`$ Clifford gates.
+For a decrease $`M\gt m`$, the required bridge is now
+
+```math
+\begin{aligned}
+V_m^\dagger V_M&=p_mp_{m+1}\cdots p_{M-1}\\
+&=F_{m-1}q_m\mathrm{CNOT}_{m\to0}q_{m+1}\cdots
+\mathrm{CNOT}_{M-2\to0}q_{M-1}F_{M-2}^\dagger.
+\end{aligned}
+```
+
+It has $`M-m`$ T gates and $`8(M-m)+2M-4`$ Clifford gates in this
+emission. An equal-width bridge is omitted. All these identities are on
+the entire dirty space, including correlations with any other registers.
+
+### Three groups and the general boundary ledger
+
+Let $`G_g`$ denote the complete actual word for group g, with source
+$`M_{m_g}^\star`$, and define $`K_g=V_{m_g}^\dagger G_gV_{m_g}`$.
+For three groups executed in order, with $`m_1\geq m_2\geq m_3`$,
+
+```math
+G_3G_2G_1
+=V_{m_3}K_3(V_{m_3}^\dagger V_{m_2})K_2
+ (V_{m_2}^\dagger V_{m_1})K_1V_{m_1}^\dagger.
+```
+
+The same identity holds for any number of groups and for all occupied
+flag and dirty inputs. The bridges use actual inverse words. There is no
+projection, reset, or multiplication of accepted blocks in this equation.
+For the retained monotone group widths, the total T count of the initial
+loader, final loader, and bridges in the displayed emission is exactly
+
+```math
+(m_{\max}-1)+(m_{\min}-1)
+ +\sum_g(m_g-m_{g+1})=2(m_{\max}-1)=O(L+n).
+```
+
+Their Clifford count is $`O(Rm_{\max})`$, where $`R\leq n`$ is
+the number of groups. Since $`m_{\max}=L+O(n)`$ and $`L\geq6`$,
+this is $`O((L+n)n)=O(NL)`$. The fixed deepest-layer tail remains
+separate. These counts exclude the interior programs $`K_g`$.
+
+Every basis change uses the existing dirty pool. At width m the source
+acts on its first m wires; the other wires are available as arbitrary
+dirty selectors under the existing per-group allocation. A bridge may
+couple wires that change roles, and they may remain correlated. Exact
+dirty-query contracts already permit such inputs. No wire is declared
+clean by a change of role, and the whole-word error must still include
+all final dirty return and reference correlations.
+
+Within a group, logical maps and flag operations commute with V when their
+complete action is identity on the dirty pool. If they borrow a source
+wire, this commutation is justified only for their completed exact-return
+primitive words, not for their individual physical gates. The actual
+coarse word has that exact-return contract. This observation does not
+make the coefficient queries commute with V: their masks become
+
+```math
+\widetilde P_f=V_m^\dagger P_fV_m.
+```
+
+Those transformed words must be implemented and charged. Assigning them
+the old Pauli-query cost merely because the classical sign tables are
+unchanged would omit the unresolved native work.
+
+### A legal grouped coefficient still gives an expensive transformed mask
+
+The issue is present for a table arising from the actual grouped residual,
+not only for an arbitrary sign mask. Take a group of height $`s\geq1`$,
+local dimension $`M=2^s`$, and padded term count
+$`K=2^{\lceil\log_2(8s+12)\rceil}`$. Let its native coarse frame be
+C equal to identity. Set every target local word to identity except the
+root rotation $`R_y(\delta)`$, where
+
+```math
+\sin\delta=\frac{1}{9sK\sqrt M}.
+```
+
+The small positive choice obeys
+$`\delta\leq2/(9sK\sqrt M)\lt1/(4sK\sqrt M)`$, so it meets
+the grouped coarse-word allowance. The forward root-column entry at row
+$`M/2`$ is $`\sin\delta`$. Its actual normalized scalar table entry is
+
+```math
+c_\ast=K\sqrt M\sin\delta=\frac1{9s}.
+```
+
+Let f be its certified source sign word after reversal. Its exact moment
+$`c_f`$ satisfies $`|c_f-c_\ast|\leq(5/2)2^{-m}`$. For
+$`D=V_m^\dagger P_fV_m`$, the normalized Pauli correlation with
+$`X_0`$ is exactly $`c_f`$.
+
+Suppose a native circuit approximates this D within full-isometry error
+$`2^{-m}`$, including returned dirty and initialized stabilizer helpers.
+Its correlation c then satisfies
+
+```math
+|c-c_\ast|\leq(9/2)2^{-m},\qquad
+c\in(\sqrt2)^{-t}\mathbb Z[\sqrt2],\qquad c,c'\in[-1,1],
+```
+
+where $`c'`$ is its Galois conjugate. The number $`9sc-1`$ is nonzero:
+a rational in this dyadic quadratic ring cannot have the odd denominator
+of $`1/(9s)`$. Its nonzero algebraic norm therefore gives
+
+```math
+\begin{aligned}
+2^{-t}&\leq|(9sc-1)(9sc'-1)|\\
+&\leq\frac{81s}{2}(9s+1)2^{-m}
+\leq405s^2 2^{-m}\lt512s^2 2^{-m}.
+\end{aligned}
+```
+
+Consequently
+
+```math
+t\geq\max\{0,\ m-2\log_2s-9\}.
+```
+
+This bounds one separately implemented transformed mask at the stated
+accuracy. The target witness itself is a simple one-rotation frame; it is
+not a hard instance for all compilers. No sum of these mask bounds is an
+unrestricted frame lower bound. A jointly synthesized interior program
+could avoid exposing these masks as separate subroutines.
+
+The reverse-order loader therefore supplies the proposed cheap source
+boundaries and preserves the coefficient encoding, live width, and
+Clifford budget. It does not yet supply cheap transformed group bodies.
+The next native construction must address those bodies jointly or change
+their interface; the generic endpoint frontier is unchanged.
+
+## 7. A flag-correlated source boundary and its query cost
+
+A correlated flag can carry a nontrivial source code even when the dirty
+input is arbitrary. The following candidate has cheap changes of source
+width, but its simplest query-and-renewal interface does not remove the
+precision charge. This is a test of that interface, not a restriction on
+all flag- or logical-correlated boundaries.
+
+Use the **original chain source**, rather than the star-source eigenbasis
+of Section 6. Let $`L_m=\widehat R_{m-2}\cdots\widehat R_0`$ be
+its literal native loader, retaining the scalar phases of its actual
+Pauli T words, and put $`M_m=L_mX_0L_m^\dagger`$. Embed every width
+in the same maximum-width dirty register. Define
+
+```math
+\begin{aligned}
+J_X|\psi\rangle
+&=\frac{|0\rangle_f|\psi\rangle+|1\rangle_fX_0|\psi\rangle}{\sqrt2},\\
+E_m&=(I_f\otimes L_m)J_X.
+\end{aligned}
+```
+
+Preparing this isometry from a zero flag costs $`m-1`$ T gates for
+the literal loader, plus Clifford operations; final decoding uses its
+charged actual inverse. Only f is initialized. All dirty amplitudes and
+reference correlations are retained. Its projector and encoded source action are
+
+```math
+\Pi_m=E_mE_m^\dagger=\frac{I+X_f\otimes M_m}{2},
+\qquad
+(I_f\otimes M_m)E_m=(X_f\otimes I)E_m.
+```
+
+Thus M can be replaced by a flag X **while the input is in this code**.
+That qualification is essential.
+
+### Width changes are cheap on this correlated boundary
+
+For $`k\lt m`$, the actual loader words give
+
+```math
+L_kL_m^\dagger
+=\widehat R_{k-1}^\dagger\cdots\widehat R_{m-2}^\dagger,
+\qquad
+(I_f\otimes L_kL_m^\dagger)E_m=E_k.
+```
+
+The transition costs $`m-k`$ T gates and $`O(m-k)`$ Clifford gates;
+its actual inverse handles growth. The equalities retain every literal
+loader phase. This is the physical code transition $`L_kL_m^\dagger`$,
+not the oppositely oriented eigenbasis bridge considered in Section 6.
+
+After shrinking to k, the projector is identity on the released tail.
+In fact any operator Z supported on that tail obeys
+$`(I_f\otimes Z)E_k=E_kZ`$. Those wires are again arbitrary dirty
+inputs, not initialized bits: they may remain entangled with the retained
+core or an external reference. The identity permits a tail to be reassigned
+as returned dirty workspace, but does not prove compatibility with a
+particular group program.
+
+### A valid scalar mask changes the code
+
+For a Pauli mask P, let $`N=PM_mP^\dagger`$. Applying P to the dirty
+register changes the code projector to
+$`(I+X_f\otimes N)/2`$. If $`\{M_m,N\}=2cI`$, direct multiplication
+gives the full-input leakage identity
+
+```math
+\left[(I-\Pi_m)(I_f\otimes P)E_m\right]^\dagger
+\left[(I-\Pi_m)(I_f\otimes P)E_m\right]
+=\frac{1-c}{2}I.
+```
+
+For every $`m\ge5`$, the allowed mask $`P=Z_1Z_2Z_3`$ programs
+$`c=1/8`$: it flips source weights $`1/4,1/8,1/16`$, with the final
+mask bit zero. This row is realized by a one-level grouped dictionary:
+take native C equal to identity and a real root angle satisfying
+$`\sin\theta=1/(8K\sqrt2)`$. Its coarse error is at most
+$`2\sin\theta=\delta_c`$, while the special forward coefficient is
+$`K\sqrt2\sin\theta=1/8`$. The mask's leakage norm is exactly
+$`\sqrt7/4`$, independently of precision. In particular,
+
+```math
+\left\|\bigl(I_f\otimes M_m-X_f\otimes I\bigr)
+       (I_f\otimes P)E_m\right\|=\sqrt7/2.
+```
+
+The previously cheap flag substitution therefore fails after the query.
+One may instead carry the changed code, but subsequent operations must
+then respect that different boundary. Cheap width transport alone does
+not supply this program-dependent closure.
+
+### Full syndrome renewal recharges precision
+
+A natural proposed repair uses the second clean flag b to coherently
+extract the syndrome of $`S_m=X_f\otimes M_m`$. Write
+$`\Pi_\pm=(I\pm S_m)/2`$. The complete-input extraction target is
+
+```math
+\mathcal E|\psi\rangle
+=|0\rangle_b\Pi_+|\psi\rangle
+ +|1\rangle_b\Pi_-|\psi\rangle,
+```
+
+where psi is arbitrary on the carried flag and dirty register. An actual
+extractor V with $`VJ_b=\mathcal E`$ obeys
+
+```math
+V^\dagger Z_bVJ_b=J_bS_m.
+```
+
+Stripping the free $`X_f`$ thus implements $`M_m`$ and returns the
+extraction flag. The source's exact returned-helper minimum
+$`T(M_m)=2m-4`$ implies
+
+```math
+T(V)\ge m-2.
+```
+
+A concrete extractor is $`H_bC_b(S_m)H_b`$; the controlled M inside
+it has its explicitly charged native source implementation. The inequality
+concerns the full-syndrome interface, not every possible way to carry or
+change the code.
+
+The obstruction also applies at the compilation accuracy. If
+$`\|VJ_b-\mathcal E\|\le\epsilon`$, then, using the **actual** inverse,
+
+```math
+\|V^\dagger Z_bVJ_b-J_bS_m\|\le2\epsilon.
+```
+
+This follows by $`Z_b\mathcal E=\mathcal E S_m`$ and two applications
+of the extraction error. For $`L\ge6`$, $`m\ge L+2`$, and
+$`\epsilon\le2^{-L}`$, it gives
+
+```math
+T(V)\ge\frac{L-4}{2}.
+```
+
+For completeness, put $`j=L-3`$ and probe the implemented M with
+$`Z_j`$. The exact source correlation is $`1-2^{-j}`$. The doubled
+extractor error changes that correlation by at most $`4\epsilon`$,
+which is at most $`2^{-j-1}`$. Hence the native correlation q satisfies
+
+```math
+2^{-j-1}\le1-q\le3\,2^{-j-1}.
+```
+
+If the resulting source circuit has t T gates, its Pauli-transfer
+coefficient lies in $`(\sqrt2)^{-t}\mathbb Z[\sqrt2]`$. Its Galois
+conjugate is another unitary-channel correlation in $`[-1,1]`$, including
+initialized and arbitrary dirty helpers. The nonzero algebraic norm gives
+$`1-q\ge2^{-t-1}`$, so $`t\ge j-1=L-4`$. The circuit uses V and
+its actual inverse, proving the bound above.
+
+This candidate consequently resolves source-width transport but not
+source reuse through a scalar program. A transition that explicitly
+renews this full syndrome pays another length-L cost. A more general
+boundary may avoid renewal, correlate the source with logical data, or
+defer individual group action; none is excluded by these identities.
+
+## 8. Finite checks and evidence limits
 
 Run:
 
@@ -884,6 +1310,8 @@ python -m unittest discover -s tests -p 'test_source_reuse_limits.py'
 python -m unittest discover -s tests -p 'test_tree_residual_structure.py'
 python -m unittest discover -s tests -p 'test_source_merge.py'
 python -m unittest tests.test_shared_conjugator_merge
+python -m unittest tests.test_precision_carry
+python -m unittest tests.test_correlated_precision_carry
 ```
 
 The tests exercise the dimension inequality on small nilpotent
@@ -894,6 +1322,14 @@ The common-conjugator fixture additionally checks every dirty and occupied
 signal column of the literal native fork, its target-half-block failure,
 and its source counts. Small mask sweeps check the ellipse and row
 constraints; the precision-independent retuning bound is proved above.
+The width-transition fixtures check actual native loader phases, bridge
+orientation and gate counts, complete multi-group identities, and the
+legal grouped coefficient witness. They do not establish a cheaper
+implementation of the transformed group bodies. The flag-correlated
+fixtures check literal chain phases, three unequal widths, arbitrary
+released tails, a realizable scalar query, and full syndrome extraction
+with the actual inverse and nonzero approximation leakage. They do not
+implement a complete group in the proposed code.
 The dimension and T-count statements rest on the analytic proofs above;
 the tests do not establish an unrestricted impossibility theorem or
 literature priority.
