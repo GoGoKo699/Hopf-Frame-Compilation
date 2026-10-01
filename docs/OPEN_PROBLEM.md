@@ -274,6 +274,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Grouped frame | Best general endpoint bound, with conditional suffix and core return in the complete error |
 | Product-first residual coordinates | [Cayley recursion](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) gives constant-size local data for the complex-coarse residual; the [four-mode native benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark) uses two one-target programs, while the eight-mode controlled coupling and general coherent conversion remain charged |
 | Source-width transport | [Reverse-order loader](SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): total boundary T-count $`2(m_{\max}-1)`$ with linear native loaders; transformed group bodies remain charged |
+| Joint source body | [Changing-target word](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets) shares one fixed scalar conjugator and returns a borrowed signal through two parity boundaries; the eight-/sixteen-mode words are priced, but fair fixed-mask simplification leaves the same leading precision cost in both comparisons |
 
 The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
 avoids a height penalty via uniform coarse subtree accuracy. The
@@ -412,7 +413,7 @@ $`O(N+nL)`$. The separate native shared-conjugator fork fails even
 after arbitrary mask retuning. Another proof of these boundaries or
 cancellations would not improve the resource frontier.
 
-The latest pass has now tested **precision reuse between adjacent existing
+The source-carry pass tested **precision reuse between adjacent existing
 groups of the best grouped compiler**. It resolves the width-only part of
 the proposed transition, while exposing the missing program cost. A fixed
 fork or a fixed number of fused groups still changes only constants; the
@@ -548,17 +549,48 @@ fine target wrapper, with no local precision attenuation. A resolvent
 completion defined using controlled target action is not a cheaper way
 to construct that target.
 
+### The joint small-example word and its fair comparison
+
+The [shared-source construction](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
+works directly in the original real tree basis. Its fixed scalar A acts
+only on the source core and signal, so changing the logical target,
+address, or suffix predicate does not change A. Exact full-word
+amplification identities give a common outer conjugation and a body of
+five programmed B words and four A words per stage. The declared source
+count decreases from $`45g`$ to $`27g+6`$: 135 to 87 at eight modes,
+and 180 to 114 at sixteen.
+
+The SU(2) signal sectors lift the initialized-column error to the same
+full-operator bound. Two controlled-parity boundaries return the borrowed
+signal for the complete ordered real tree. For local depth three or four,
+an unchanged k-bit prefix, and $`n=k+r`$, the reservation fits
+$`a=2,b=L+n+7`$, with $`T=O(2^k+L)`$ and $`G=O(2^kL)`$.
+The signal and helper need no initialized values. Actual complex coarse
+inverses remain separately charged. The source-width margin grows with
+variable depth, so this fixed-depth allocation is not a uniform theorem.
+
+The source-appearance reduction is not a leading precision improvement.
+After common-loader hoisting, the fixed mask commutes with every tail
+rotation and only a two-T seed remains in its transform. Each fixed-A
+interior then costs at most eight T gates, independently of q. Both
+expanded and shared words retain five B words, or ten programmed mask
+appearances, per stage. Their leading loader and variable-mask term is
+the same $`(40g+4)q`$; the fixed-A remainder changes from 80g to
+$`8(4g+2)`$ before further optimization. Query and predicate costs
+remain charged. These are declared-word upper bounds, not minima or
+additive lower bounds. The generic endpoint gap is unchanged.
+
 ### Next bounded task and stopping rule
 
-The next experiment is a **joint native program for the eight-mode
-controlled root coupling and its child factors**. Use the explicit four
-Pauli factors as a charged comparison, and count source appearances
-after expanding actual inverses. Test whether a joint program keeps that
-charge from multiplying when another branching level is added. Include
-a complex native baseline, a zero local defect, and changes in both
-branches. Independent synthesis of a fixed number of factors is already
-available. The source/program and logical-dependent-boundary approaches
-remain available; individual group action may be deferred.
+The next experiment is **joint synthesis of the programmable mask
+interiors** in this explicit changing-target word. Begin with two stages,
+expand actual inverses, and use the already simplified two-T fixed-mask
+baseline. A candidate must change the precision recurrence as the number
+of stages grows; another outer-loader or fixed-mask cancellation does not
+do that. Keep independent branch angles, a zero local defect, a complex
+native coarse inverse, and every signal/dirty port in the finite checks.
+The source/program and logical-dependent-boundary approaches remain
+available, with individual group action allowed to be deferred.
 
 Small examples may precede a general construction. A successful pattern
 must eventually supply complete accepted/rejected action, live workspace,
@@ -600,10 +632,10 @@ history, or supplied catalyst is available.
 
 Separately improving the affine and reverse blocks remains sufficient,
 and a linear-T endpoint circuit with larger fully charged Clifford cost
-would still settle the T-only question. No successful joint interior or
-logical-dependent boundary has yet been constructed. The latest small examples
-supply a concrete representation to try and a positive fixed-support
-comparison; they do not show that the generic gap is close to resolution.
+would still settle the T-only question. No joint interior with one global
+precision charge has yet been constructed. The latest examples supply an
+exact native word and a fair simplified baseline; they do not show that
+the generic gap is close to resolution.
 
 Optimal depth, practical constants, and a full elementary emitter are
 separate tasks. The established publication scope is unchanged; manuscript
