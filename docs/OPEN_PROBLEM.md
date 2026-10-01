@@ -263,6 +263,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Exact-return alternative | Same component with $`T=O(L\sqrt N)`$, $`G=O(NL)`$ at $`b\ge n+\lceil\sqrt N\rceil+7`$; different width/return point, not the best endpoint count |
 | Affine/reverse assembly | [Two-flag proof](RESIDUAL_ASSEMBLY.md): diagonal-plus-forward and inverse-based reverse blocks give normalization two, with controls/inverses charged; cost still contains $`nL`$ |
 | Full-port hierarchy | [Fusion audit](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths): recursively closed complete unitary, linear classical generators; faster native synthesis unproved |
+| Coupled completion | [Whole-residual boundary](RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost): one-signal normalization-two recursion with continuous zero-defect limit; target wrappers remain charged; an anchored merge has a complete rank-at-most-four repair whose transported modes are not free |
 | Grouped frame | Best general endpoint bound, with conditional suffix and core return in the complete error |
 
 The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
@@ -353,6 +354,8 @@ a jointly synthesized circuit or settles the unrestricted endpoint.
 | Make the same exact source sublinear | Minimum exact T-count on $`m\ge2`$ dirty wires is $`2m-4`$, or $`2m-2`$ when controlled, allowing returned helpers; [primitive bound only](OPERATOR_SOURCE_COMPILER.md#1-the-operator-source-and-its-exact-native-circuit) |
 | Hoist the source basis and use cheap masks | Valid transformed masks have linear exact/fine-accuracy cost; the actual paired source has a mask requiring $`T\ge q/2-6`$ at error $`2^{-q}`$ with full return; [separate-mask bound only](SOURCE_REUSE_LIMITS.md#the-current-paired-source-also-has-expensive-transformed-masks) |
 | Multiply accepted blocks sharing flags | Rejected components return coherently; [full word required](SOURCE_REUSE_LIMITS.md) |
+| Telescope one global conjugator through a fork | Cancellation is valid, but the remaining native word has rejected returns; a coefficient-ellipse bound excludes even arbitrary mask retuning of that word at fine precision; [fork audit](SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork) |
+| Connect coupled blocks through their zero-defect word | The accepted error is exactly $`-3(A-I)(B-I)/8`$; unitarity alone does not remove it; [complete repair](RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost) has rank at most four at a parent, but its mode transport still needs synthesis |
 | Unload a query after changing its address | The inverse can leave dirty-dependent action; [query-scheduling counterexample](SOURCE_REUSE_LIMITS.md) |
 | Replace initialized nilpotent source by dirty encoding | The specified full-output scalar relation needs $`\log_2L-O(1)`$ initialized width, regardless of dirty width; [that interface only](SOURCE_REUSE_LIMITS.md) |
 | Compress a whole frontier to one scalar | Generic depth-d cut rank is $`2^d`$, although each edge has rank one; existing logical modes carry it, so this is [not an ancilla lower bound](RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths) |
@@ -385,27 +388,40 @@ supplies the missing native synthesis by itself.
 
 ## Revision decision and next bounded pass
 
-Prioritize a **recursively composable whole-residual branching merge with
-one globally charged precision cost**. The positive update families motivate
-this test but do not justify generic extrapolation. Further special-family
-theorems are not the next priority without a proved constant-number
+The first coupled-merge pass now supplies a complete boundary contract and
+two scoped failure decisions. The native common-conjugator word fails at
+the first fork, even after arbitrary mask retuning, so that ansatz stops.
+The coupled completion $`\mathcal D(V)`$ closes at a fork and height
+three on every signal/logical input, including a real target with a close
+complex native coarse frame. However, its direct recursive wrappers
+reintroduce the full target program. Neither result improves the generic
+endpoint.
+
+The next bounded task is **native synthesis of the complete four-mode
+repair for an anchored coupled merge**. Its exact unitary repair differs
+from identity on at most four transported modes. Those modes contain both
+the child residual's forward and adjoint action on the two parent-root
+vectors. A rank-two accepted-only correction misses part of the rejected
+action. The [factorization and support](RESIDUAL_ASSEMBLY.md#the-full-missing-repair-acts-on-at-most-four-modes)
+specify the interface; their existence is not a free evaluator or basis
+change.
+
+First give actual circuits for accessing those vectors and applying the
+repair, with a full-input contract and a register-lifetime ledger. A call
+to the desired whole residual is circular. A call to an already compiled
+child must be counted each time; constant overhead at every recursive
+level can still produce a non-linear total. Handle vanishing or dependent
+boundary vectors with certified completion choices, without assuming a
+lower bound on their norms. Preserve the two external
+clean flags, arbitrary dirty/reference inputs, normalization two, and
+actual inverse words. There is no intermediate reset or initialized history.
+
+Test the native repair first on independently changed parent and children
+with an actual complex native coarse frame, then at height three using the
+same word. Use the existing logical mode spaces without padding that
+supplies hidden zeros. The positive update families remain useful tests,
+but another special-family theorem is not the priority without a proved
 reduction for arbitrary updates.
-
-First propose a parametric native word and boundary contract. Specify its
-action on every logical input and accepted/rejected port, the roles of two
-external clean flags, and the arbitrary dirty core with references. State
-what each child leaves live, what returns exactly, and where approximate
-return enters the final norm. No intermediate reset or initialized history
-is available. For this selected route, keep the global accepted-block
-normalization two.
-
-Then audit an independently nonzero parent and two independently nonzero
-children, with an **actual complex native coarse frame** even when the
-target is real. If the contract survives, test height three with the same
-word. Use those logical mode spaces and two external clean flags; no
-padding with a larger logical register that supplies hidden zeros. Include
-arbitrary dirty inputs and occupied rejected ports, not merely the product
-of accepted blocks.
 
 A fixed small fork trivially admits $`O(L)`$ synthesis. Success therefore
 requires an induction for the actual expanded recursive word, targeting
@@ -445,11 +461,10 @@ word and contract, not all compilers; record them in their existing proof
 home.
 
 Separately improving the affine and reverse blocks remains a sufficient
-alternative. This revision selects the coupled merge because the unitary
-relations carry information absent from independent contraction norms,
-without presuming that information removes precision cost. No generic
-improvement is established until both the recursive T ledger and the
-complete-input contract hold.
+alternative. The coupled merge now localizes the complete missing repair;
+it does not make the transported repair modes or their precision free.
+No generic improvement is established until both the recursive T ledger
+and the complete-input contract hold.
 
 Optimal depth, practical constants, and a full elementary emitter are
 separate tasks. The established publication scope is unchanged; manuscript

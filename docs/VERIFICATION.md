@@ -111,6 +111,20 @@ is reused. Matrices have dimension at most 64. These support the
 and [scoped source-reuse arguments](SOURCE_REUSE_LIMITS.md); the mask
 T-count bound is analytic, and neither the fixtures nor the representation
 witnesses establish a general gate lower bound or a cheaper native compiler.
+The [coupled-merge checks](../tests/test_coupled_residual_merge.py) compare
+the complete normalization-two recursion and its unfolded target wrappers
+at a fork and height three, with close complex native coarse words and real
+targets. They retain every signal port, actual inverse, and correlated
+spectator input; they test the stability estimate, anchored mixed term,
+and the complete rank-four repair. These small operator fixtures do not
+price the transported repair modes or emit a faster native compiler.
+The [shared-conjugator checks](../tests/test_shared_conjugator_merge.py)
+use literal Clifford+T source and routing words on all 128 core/logical/signal
+columns. They test valid outer cancellation, the surviving two fork returns,
+a direct half-unitary target failure, and the precision-independent
+coefficient-ellipse obstruction to retuning the same word. A second flag
+is an untouched spectator. The literal source ledger concerns that emitted
+word; it is not a general gate lower bound.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
