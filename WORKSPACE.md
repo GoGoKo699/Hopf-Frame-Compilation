@@ -4,10 +4,10 @@ This is the entry point for resuming work when a previous conversation or
 execution workspace is unavailable. The proofs and research decisions live
 in the repository; a conversation summary is only a retrieval aid.
 
-The recovery on 2026-10-01 started from main commit
-`9baa1e1a1b3cf8c650e4b9febf90ec6b0b51dda8`, “Consolidate the endpoint research
-checkpoint and next test.” Check the current branch and later commits before
-continuing. This handoff adds no compiler theorem.
+The 2026-10-01 revision reviewed main commit
+`b0eab2af22287c9fa8384df3d811afaed21cda3b`, including the complete
+transported-repair audit. Check the current branch and later commits before
+continuing. This revision changes the research decision, not the theorems.
 
 ## Mandate and reading order
 
@@ -19,10 +19,10 @@ writing and release work outside the current research pass.
    This is the primary home for the current frontier and research decision.
 2. Read the [overview](README.md), [technical narrative](REVIEW.md), and
    [publication scope](manuscript/PUBLICATION_SCOPE.md) for established claims.
-3. For the active pass, read [residual assembly](docs/RESIDUAL_ASSEMBLY.md),
-   [weighted transport](docs/WEIGHTED_TRANSPORT_BLOCK.md),
-   [tree transport](docs/ENDPOINT_TREE_TRANSPORT.md), and
-   [source-reuse limits](docs/SOURCE_REUSE_LIMITS.md).
+3. For the active pass, read [conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md),
+   especially its complete group contract and resource sums, followed by
+   [source-reuse limits](docs/SOURCE_REUSE_LIMITS.md) and
+   [the completed repair audit](docs/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis).
 4. Consult the [verification map](docs/VERIFICATION.md),
    [source map](docs/SOURCE_MAP.md), and [related work](docs/RELATED_WORK.md)
    before extending a claim or changing its attribution.
@@ -60,51 +60,52 @@ repair norm does not discount the complete merge's local precision error.
 A separate native common-conjugator word fails even after retuning its
 masks. The generic resource gap is unchanged.
 
-The next deliverable is **joint precision synthesis across two adjacent
-depths, with an explicit native source-sharing word and recursive ledger**. Read
-[the coupled completion and repair](docs/RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost)
-and [the stopped source-sharing ansatz](docs/SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork).
-The four modes can now be accessed by the compiled child and its actual
-inverse. Rechecking low rank, basis access, or this child cancellation
-does not advance the remaining precision ledger.
+The revision replaces the previous two-depth task: a fixed fork already
+costs $`O(L)`$, and the best compiler already shares precision across
+much larger groups. Rechecking low rank, basis access, or child cancellation
+does not target its remaining $`\ell_*(n)`$ factor. Keep those results
+as completed infrastructure. The recent passes have not narrowed the
+generic gap or established that its resolution is close.
 
-## First research pass
+## Next bounded pass: reuse precision across existing groups
 
-1. Give a changed native word that shares precision work through two adjacent
-   depths. Either jointly compile the reduced ordered target wrappers or
-   supply another complete rejected action with a proved sharing identity.
-   The stopped common-conjugator word needs a changed construction. Specify
-   actual source calls and unloading after logical-mode changes, on arbitrary
-   dirty/reference inputs with at most two external clean flags.
-2. Audit independently changed parent and children using an actual complex
-   native coarse frame even when the target is real. If the contract
-   survives, apply the same word at height three and state the band invariant.
-   Check native sharing, not only dense matrix closure. Do not introduce
-   a larger logical register that silently supplies initialized work.
-3. Prove an induction for the expanded word, including any multiplicative
-   growth in recursive child calls, and charging native programs,
-   source preparation, masks, queries and unloading, literal controls,
-   actual inverses, routing, amplification, and complete-word error.
-   Normalization two and the declared workspace must survive composition.
+Keep the current groups and their linear total table/coarse-program work.
+Seek a complete circuit interface that composes across arbitrarily many
+adjacent groups, rather than another fixed-height improvement. The source
+widths are $`m_g=L+\lfloor r_g/4\rfloor+8`$ and vary monotonically
+in physical execution order. One sufficient, **unproved** mechanism would
+pay $`O(\max_g m_g)`$ initially and finally, and only
+$`O(|m_{g+1}-m_g|+\mathrm{poly}(n))`$ between groups. The widths'
+total variation is $`O(n)`$. Together with the retained linear table
+work this would give $`T=O(N+L)`$. Leave the fixed deepest-layer tail
+with its existing $`O(N+L)`$ compiler.
 
-The desired uniform ledger is
+1. First specify the shared boundary and a changed native transition word.
+   Show its complete accepted/rejected action and why its output satisfies
+   the same interface for the next, unequal-size group. State the actual
+   precision-charge recurrence before adding more numerical fixtures.
+2. Give the live-wire schedule at every transition. The source tail may need
+   to become selector workspace; holding the largest source throughout is
+   not automatically compatible with $`b=L+n+7`$. Include actual unloading,
+   literal inverses, changing suffix predicates, arbitrary dirty/reference
+   inputs, and at most two external clean flags. No reset, free catalyst,
+   target oracle, or newly initialized logical sector is available.
+3. Test the proposed native word on two unequal groups and then a third,
+   with nonzero changes and a real target over a complex native baseline.
+   These are falsification checks for the stated unbounded composition
+   rule, not evidence of an asymptotic bound by themselves.
 
-```math
-T=O\!\left(\sum_v p_v+L\right),\qquad
-\sum_v p_v=O(N),\qquad G=O(NL).
-```
-
-Here each local cost $p_v$ includes its native program and routing. A valid
-linear-T circuit at the selected endpoint also settles the T-count question
-with a larger, fully charged Clifford count. Constant global source uses
-and linear tables are sufficient route invariants, not necessary properties
-of every solution.
-
-Stop a proposed word if its claimed induction hides repeated precision
-charges, changed-address query unloading, rejected returns, or unavailable
-clean work. Record a scoped failure in its existing proof home; it is not
-a lower bound on all compilers. Further special-family results are not the
-priority without a proved reduction for arbitrary updates.
+The detailed sufficient ledger and stop conditions are in
+[the research decision](docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass).
+Stop this mechanism if it charges another length-L preparation at each
+boundary, shifts that cost into separately synthesized masks, expands the
+linear tables, or assumes unavailable clean work or intermediate return.
+If no closed interface can be specified, record that absence and change
+the representation; do not repeat the completed canonical repair analysis.
+This is a chosen sufficient route, not a lower bound or a necessity theorem.
+A linear-T endpoint construction with larger fully charged Clifford cost
+would also settle the T-count question. Other promised-family results are
+not the priority without a reduction covering arbitrary updates.
 
 ## Restore and verify
 
@@ -119,26 +120,14 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The recovered checkpoint has 228 tests. Its GitHub checks passed for
-Python 3.11, Python 3.13, and rendered presentation. The 2026-10-01 recovery
-also reproduced all 228 tests locally on Python 3.12.14 / NumPy 2.3.5,
-the reviewer walkthrough, all four fault-tolerant receipt suites, and the
-offline synchronization check. The handoff edit passed 38 documentation
-and narrative checks. Record fresh results when resuming; these results
-do not certify later edits. Finite tests support the proofs and do not
-establish asymptotic bounds.
-
-The subsequent branching pass added 15 focused tests; all 243 local tests,
-the reviewer walkthrough, and the offline synchronization check passed.
-The new proof sections also received separate internal mathematical checks.
-The subsequent repair pass supplies basis-free mode access, exact recursive
-child cancellation, and a complete-word precision audit. The independent
-local-wrapper emission still pays precision per depth; a jointly synthesized
-precision ledger remains open.
-This pass adds eight focused checks. The local full validation, final
-repair suite, reviewer walkthrough, and offline synchronization check passed.
-The fixtures check the operator identities and failure controls; the
-native resource accounting remains an analytic argument.
+The reviewed baseline has 251 tests. Both Python 3.11 and 3.13 CI jobs,
+all four fault-tolerant receipt suites, and rendered presentation passed.
+Local validation, the reviewer walkthrough, final repair tests, and the
+offline synchronization check also passed during the repair pass. The
+proof sections received separate internal mathematical checks; this is
+not external peer review. Record fresh results after changes. Finite
+fixtures check identities and failure controls; native resource bounds
+remain analytic arguments.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)

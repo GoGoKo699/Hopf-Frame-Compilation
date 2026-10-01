@@ -146,17 +146,19 @@ Closing this count endpoint would still leave the T-depth question open.
 
 ## Current assessment: what the results establish
 
-The two latest advances prove linear bounds for promised families.
-**They have not narrowed the generic upper/lower gap.** Wide independent
-changes and deep sparse nesting each admit one precision charge: neither
-breadth alone nor nesting alone explains the remaining cost.
+The antichain and sparse-update results prove linear bounds for promised
+families. The subsequent merge passes establish complete boundary actions,
+an explicit repair, and scoped failures of proposed source sharing.
+**None has narrowed the generic upper/lower gap.** Wide independent changes
+and deep sparse nesting each admit one precision charge; the remaining
+question concerns precision reuse for unrestricted comparable updates.
 
 | Level | Established scope |
 |---|---|
 | General theorems | Exact matching resources, sufficient-clean matching T-count, and one-clean grouped bound; constant-clean endpoint and optimal T-depth remain open |
 | Incomparable promised families | Antichain and sparse ancestor-closed updates have $`T=O(N+L)`$, $`G=O(NL)`$; generic rounding satisfies neither promise |
-| Reusable blocks | Cheap coarse frame, linear classical residual data, complete weighted dilations, and two-flag assembly; no linear endpoint synthesis follows from their existence |
-| Scoped diagnostics | Specified source, query, repacking, and truncation failures; no additive full-frame lower bound follows |
+| Reusable blocks | Cheap coarse frame, linear residual data, complete weighted dilations, two-flag assembly, and a coupled repair with exact child-call cancellation; the surviving target precision remains charged |
+| Scoped diagnostics | Specified source, query, repacking, truncation, and shared-conjugator failures; no additive full-frame lower bound follows |
 
 ### A promised antichain class has a linear endpoint bound
 
@@ -226,6 +228,10 @@ Parameter count and support dimension diagnose why this proof does not
 apply. They are not hardness results. The unresolved structure is
 widespread changes across comparable tree nodes, with no proved reduction
 to a constant number of the two solved families.
+Simply applying their theorems in sequence is not such a reduction:
+each requires literal agreement with a short native baseline outside its
+own marked set, a promise not automatically preserved after a nonnative
+update.
 
 ## A sufficient construction to seek
 
@@ -330,7 +336,9 @@ A single group spanning all but a constant suffix has
 $`\Theta(nN)`$ current table rows and an $`O(nN^2)`$ lookup
 Clifford estimate at $`L=N`$. Its current streamed coarse-program
 estimate also grows to $`O(nN)`$ under that representation's uniform
-star-normalization condition. Removing only its depth label or private
+star-normalization condition. Its current term label needs
+$`\Theta(\log(n+2))`$ private initialized bits, which a constant
+suffix cannot supply. Removing only its depth label or private
 workspace does not establish a linear-T theorem. The expanded Clifford
 estimate separately misses the stronger joint goal; it is not a T lower bound.
 These are costs of the current representation, not gate lower bounds.
@@ -388,87 +396,137 @@ supplies the missing native synthesis by itself.
 
 ## Revision decision and next bounded pass
 
-The coupled-merge passes now give a complete boundary and an explicit
-repair circuit. Put $`U=\mathcal D(A)\mathcal D(I)^\dagger`$ and
-$`R_B=\mathrm{diag}(I,B^\dagger)`$. The repair is the commutator
-$`R_BU R_B^\dagger U^\dagger`$. It uses the original rejected root
-pair and its image under U, so vanishing or dependent boundary differences
-need no normalization or singular-value promise. Both signal sectors and
-arbitrary dirty/reference inputs remain covered.
+The coupled-merge passes have completed their structural task. The
+[commutator repair](RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis)
+works on every signal port without normalizing transported differences.
+Its actual inverse calls cancel even for a noncanonical approximate child
+word. The reduced circuit retains one child call and the original local
+target wrappers. The complete merge has parent error
+$`\|\widehat B-B\|/2`$, with no small residual factor, so the repair
+does not discount their precision. Its layerwise emission remains
+$`O(N+nL)`$. The separate native shared-conjugator fork fails even
+after arbitrary mask retuning. Another proof of these boundaries or
+cancellations would not improve the resource frontier.
 
-The repair's two child calls cancel with the anchored merge, leaving one
-child call and exactly the original local target wrappers. Matched actual
-inverse words preserve this cancellation even for a noncanonical noisy
-child circuit. The repair itself has error sensitivity proportional to
-the other residual's size, but the complete merged word still has local
-error $`\|\widehat B-B\|/2`$. It therefore supplies no discounted
-precision budget for independently synthesizing every wrapper. Existing
-depth batching gives $`O(N+nL)`$; the stronger grouped bound remains
-the generic frontier. The separate native common-conjugator fork still
-fails even after arbitrary mask retuning.
+The next bounded task is **precision reuse between adjacent existing
+groups of the best grouped compiler**. A fixed two-depth fork already
+admits $`O(L)`$ synthesis. Saving a constant number of precision charges
+there, or fusing a fixed number of existing groups, would only improve
+constants. The needed gain must survive a variable number of groups of
+unequal, growing heights.
 
-The next bounded task is **joint precision synthesis across two adjacent
-depths**, starting from an explicit native word. The repaired canonical
-word is a useful exact reference, but another derivation of its low rank,
-transported basis, or child cancellation is no longer the missing step.
-Either compile its ordered local wrappers jointly, or specify a different
-complete rejected action with a proved source-reuse identity. The stopped
-common-conjugator word is not a candidate without a changed construction.
+### A sufficient transition lemma to seek
 
-Begin with independently changed parent and children and a real target
-with a close complex native coarse frame. Show how precision work is
-shared while the logical mode changes, including the actual unloading
-word. Then apply the same construction at height three and state the
-general band invariant. The existing repair checks already cover these
-small operator cases; new tests must check the proposed native sharing,
-not merely compare dense residual matrices. Preserve two external clean
-flags, arbitrary dirty/reference inputs, normalization two, and literal
-inverses. No target-frame oracle, intermediate reset, initialized history,
-or padded zero sector is available. Another special-family theorem is not
-the priority without a proved reduction for arbitrary updates.
-
-A fixed small fork trivially admits $`O(L)`$ synthesis. Success therefore
-requires an induction for the actual expanded recursive word, targeting
+Use the groups and precision allocation of
+[conditional-suffix Sections 6--7](CONDITIONAL_SUFFIX_COMPILER.md#6-exponentially-growing-groups-and-the-explicit-workspace-ledger).
+For $`n\leq r_0`$, the existing fixed-depth fallback already costs
+$`O(N+L)`$. Otherwise there is at least one group.
+For group g of height $`s_g`$ above $`r_g`$ suffix bits, put
 
 ```math
-T=O\!\left(\sum_vp_v+L\right),\qquad
-\sum_vp_v=O(N),\qquad G=O(NL),
+\begin{aligned}
+Q_g&=\Theta(s_g2^{n-r_g}),& m_g&=L+\lfloor r_g/4\rfloor+8,\\
+w_g&=O(\log(s_g+2)),& k_g&=n-r_g+O(\log(s_g+2)).
+\end{aligned}
 ```
 
-where $`p_v`$ charges native programs and routing. Proving only the
-endpoint $`T=O(N)`$, $`G=O(N^2)`$ also suffices. A constant global
-number of source preparations/unpreparations and linear total table work
-are sufficient invariants for this route. Another explicit ledger may
-replace them. Opaque child-compiler calls followed by an assumption that
-precision preparations cancel do not establish the induction.
+Here Q counts padded coefficient-table rows and the same order of native
+coarse-program work; m is source width, w is private initialized work
+inside the active suffix, and k counts dirty query selectors. The retained
+construction has $`\sum_gQ_g=O(N)`$ and
+$`R=O(\ell_*(n))`$ groups, with $`R\leq n`$. Its excess precision cost is
+$`\sum_gm_g=O(L\ell_*(n)+N)`$.
 
-The ledger must include:
+The proposed lemma would give these groups a common, explicitly defined
+boundary action and a literal native transition between adjacent groups.
+It must retain their $`O(Q_g)`$ table and coarse-program costs and their
+private-work budgets, while charging initial and final source work only
+$`O(m_{\max})`$ in total and each transition only
 
-- At most two external clean flags and $`b=L+n+7`$ arbitrary dirty
-  wires; growing logical frontiers are allowed and are not new ancillas.
-- Valid query unloading at unchanged addresses, or a proved replacement
-  identity on the whole dirty space.
-- Literal controls/phases, actual inverses, coarse programs, sources,
-  routing, and amplification. No target-frame oracle or free evaluator.
-- Compatible normalization and complete rejected-space action. Alternative
-  rejected completions are allowed.
-- Complete-word error allocation, without assuming a reused core or
-  signal has been freshly returned after approximate stages.
+```math
+O\!\left(|m_{g+1}-m_g|+P(n)\right)
+```
 
-Stop this ansatz if it pays a new length-L charge per merge, loses its
-normalization or workspace contract, expands tables beyond its T budget,
-or fails query uncomputation or rejected-return identities. Excess Clifford
-cost alone misses the stronger joint goal; it does **not** refute a valid
-linear-T endpoint construction. Likewise, a different source-call ledger
-can succeed if its total T cost is proved. Failures concern the specific
-word and contract, not all compilers; record them in their existing proof
-home.
+T gates. P is a fixed polynomial, independent of L and group height; it
+may cover predicates and routing at a boundary. All other non-source
+group work must remain $`O(Q_g+P(n))`$. This is an **unproved sufficient
+mechanism**, not a new compiler theorem or a necessary form of every
+solution.
 
-Separately improving the affine and reverse blocks remains a sufficient
-alternative. The coupled merge now supplies a degeneracy-safe repair and
-an exact child-call cancellation; it does not share target precision.
-No generic improvement is established until both the recursive T ledger
-and the complete-input contract hold.
+The intended accounting is concrete. In the prescribed shallow-to-deep
+execution order the $`r_g`$, and hence the $`m_g`$, are monotone.
+Therefore
+
+```math
+m_{\max}=L+O(n),\qquad
+\sum_{g=1}^{R-1}|m_{g+1}-m_g|=O(n).
+```
+
+If the transition lemma holds for the actual expanded words, their cost is
+
+```math
+\begin{aligned}
+T&=O\!\left(\sum_gQ_g+m_{\max}
+ +\sum_{g=1}^{R-1}|m_{g+1}-m_g|+RP(n)\right)\\
+ &=O(N+L).
+\end{aligned}
+```
+
+The last step uses $`R\leq n`$ and the fixed degree of P. Leave the
+fixed $`r_0`$ deepest layers with their existing $`O(N+L)`$ compiler;
+their different source need not be fused into this interface. The retained
+table sum $`\sum_gQ_gm_g=O(NL)`$ already prices its Clifford work.
+Additional transition and source Clifford gates must also be charged;
+$`G=O(NL)`$ remains the stronger joint goal, not a consequence of the
+T-count transition estimate alone.
+
+### The boundary must include the actual live workspace
+
+Simply keeping a maximum-width source live through every group is not a
+valid general allocation. The deepest grouped band has fixed suffix
+length $`r_0`$ and needs $`n-r_0+O(1)`$ selectors. Combining these
+with $`m_{\max}=L+\lfloor r_{\max}/4\rfloor+8`$ exceeds
+$`b=L+n+7`$ as $`r_{\max}`$ grows. The transition must explicitly
+release or reassign source-tail wires as selector demand grows. Such
+reassignment may carry arbitrary correlations; it cannot assume that a
+source tail or a reused core has been reset or returned independently.
+The conditional suffix is available only under its existing active-sector
+promise, with its existing $`w_g`$ reservation.
+
+The first deliverable is the full shared boundary contract, a parametric
+native transition for two unequal groups, and the resulting symbolic
+ledger. Establish closure under a third group and arbitrary further
+merges **before adding new small matrix tests**. State every live register,
+actual inverse, query address and unloading operation, and how the complete
+word controls dirty return and reference correlations. At most two external
+clean flags and $`L+n+7`$ arbitrary dirty wires are available. A fused
+accepted-block interface must retain normalization two and include its
+rejected action in the amplification argument; alternatively prove the
+complete-frame isometry contract directly. The final error must include
+any transition approximations, not only the old per-group digit errors.
+
+The existing source-hoisting and changed-address restrictions still apply.
+Moving a loader outside the word does not make its transformed masks cheap,
+and a changed logical address does not unload a prior query. The stopped
+shared-conjugator word requires a changed construction. No target-frame
+oracle, free evaluator, intermediate reset, initialized history, or padded
+zero sector is supplied. Subsequent finite checks should test the new
+native transition and its inverse on complete dirty inputs, including a
+real target with a close complex native coarse frame; checking the already
+proved dense merge identities again would not test precision reuse.
+
+Stop the proposed transition if its expanded circuit recharges a length-L
+source per group or merge, expands the total table/program work beyond
+$`O(N)`$, or loses its normalization, error, unloading, or live-workspace
+contract. Record that failure in the existing proof home. These are
+go/no-go criteria for this sufficient mechanism, not lower bounds against
+other compilers. A different proved ledger may still succeed, and a valid
+$`O(N)`$-T endpoint circuit with a larger fully charged Clifford count
+would still close the T-only question.
+
+Separately improving the affine and reverse blocks remains sufficient.
+The current generic gap has not narrowed; resolving it still requires a
+precision-amortization identity, not another structural completion.
 
 Optimal depth, practical constants, and a full elementary emitter are
 separate tasks. The established publication scope is unchanged; manuscript
