@@ -775,8 +775,10 @@ shared duplicate aggregation and coefficient scale. The
 [algebraic residual helper](RESIDUAL_TABLE_PREPROCESSING.md) outputs
 certified classical coefficients. The
 [native residual bridge](NATIVE_RESIDUAL_ROTATION.md) now converts them
-to one elementary unaddressed U(z) row, with arbitrary borrowed inputs
-and the retained full-operator error. It implements existing identities.
+to an elementary unaddressed U(z) row or an enabled two-row table, with
+arbitrary borrowed inputs and the retained full-operator error. The
+table preserves address and enable exactly and is identity when disabled.
+These components implement existing identities.
 
 ### Next bounded task and stopping rule
 
@@ -788,9 +790,10 @@ on their special targets. Their original-frame comparators are cheaper;
 the fixtures establish integration, not a general advantage.
 
 The selected state-based depth pass is also complete, as recorded below.
-The unaddressed residual-row implementation pass is complete. A next
-bounded component is a small addressed two-row table, with exact inactive
-sectors, literal phases, and charged arbitrary predicate work. The full
+The unaddressed row and enabled two-row table implementation passes are
+complete. A next bounded integration is a small residual state-preparation
+word with two declared clean flags, literal amplification phases, its
+actual inverse, and a full dirty-input isometry bound. The full
 fine-precision native emitter remains an implementation task;
 completing it would strengthen executable evidence without changing the
 proved resource bounds by itself. No end-to-end advantage example is

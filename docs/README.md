@@ -43,7 +43,7 @@ topic has one primary chapter below.
 | [Hopf QBP cost comparison](QBP_COST_COMPARISON.md) | Common accuracy and workspace, the fine gauged borrowed baseline, banked state bounds, and separate quantum, sampling, and classical costs |
 | [Bounded-input QBP costs](BOUNDED_INPUT_QBP.md) | Constructive preprocessing, explicit program output, deterministic and sampled classical Pauli baselines, and the end-to-end comparison boundary |
 | [Residual-table preprocessing](RESIDUAL_TABLE_PREPROCESSING.md) | Certified algebraic rotation coefficients without Euler search, unchanged error constants, and the small-system banked construction |
-| [Native residual rotation](NATIVE_RESIDUAL_ROTATION.md) | Exact coefficient-to-mask programming and one elementary unaddressed residual row with arbitrary borrowed inputs |
+| [Native residual rows and tables](NATIVE_RESIDUAL_ROTATION.md) | Exact coefficient-to-mask programming, elementary residual rows, and an enabled two-row table with arbitrary borrowed inputs |
 
 ### Research boundaries and related constructions
 

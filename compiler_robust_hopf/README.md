@@ -64,6 +64,7 @@ from the all-workspace state-preparation framework.
 | [`residual_table_preprocessing.py`](residual_table_preprocessing.py) | rational rotation-coefficient enclosures from a caller-certified dyadic residual approximation; no Euler search or quantum gate emission |
 | [`rotation_programming.py`](rotation_programming.py) | exact interval-to-sign programming, geometric-tail rounding, and rational accepted-block/native error certificates |
 | [`native_residual_rotation.py`](native_residual_rotation.py) | literal borrowed-signal Ry/Rz and one unaddressed residual U(z) row; arbitrary work inputs, actual inverses, and linear gate storage |
+| [`native_residual_table.py`](native_residual_table.py) | two residual rows selected by one address bit and one enable literal; exact inactive identity and no extra predicate helper at this arity |
 | [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
@@ -71,8 +72,9 @@ The decoder modules keep classical reconstruction separate from quantum
 execution. The native fixtures use exact finite-size state preparation;
 they do not emit the general fine residual table. The
 [certified residual bridge](../docs/NATIVE_RESIDUAL_ROTATION.md) emits one
-unaddressed row from the helper's coefficients. Addressed tables and a
-complete native state compiler remain unimplemented. See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
+unaddressed row or an enabled two-row table from the helper's coefficients.
+General tables and a complete native state compiler remain unimplemented.
+See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
 and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
 
 ## 6. Public entry points

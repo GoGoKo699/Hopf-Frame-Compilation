@@ -105,10 +105,28 @@ def _mask(signs: tuple[int, ...]) -> Word:
     return tuple(xs + zs)
 
 
-def _scalar(loader: Word, mask: Word, signal: int) -> Word:
+def _toffoli(left: int, right: int, target: int) -> Word:
+    """Literal seven-T Toffoli, with no relative-phase substitution."""
+    if len({left, right, target}) != 3:
+        raise ValueError("Toffoli wires must be distinct.")
+    return (
+        _gate("H", target), _gate("CX", right, target), _gate("TDG", target),
+        _gate("CX", left, target), _gate("T", target), _gate("CX", right, target),
+        _gate("TDG", target), _gate("CX", left, target), _gate("T", right),
+        _gate("T", target), _gate("H", target), _gate("CX", left, right),
+        _gate("T", left), _gate("TDG", right), _gate("CX", left, right),
+    )
+
+
+def _scalar(loader: Word, mask: Word, signal: int, enable: int | None = None) -> Word:
     inverse = _inverse(loader)
-    center = (_gate("CX", signal, 0),)
-    source = inverse + (_gate("X", 0),) + loader
+    # Only the source centers gain the enable condition. In particular no
+    # source-loader T gate, mask, or outer signal Hadamard is controlled.
+    center = ((_gate("CX", signal, 0),) if enable is None
+              else _toffoli(enable, signal, 0))
+    source_center = ((_gate("X", 0),) if enable is None
+                     else (_gate("CX", enable, 0),))
+    source = inverse + source_center + loader
     control_one = inverse + center + loader
     control_zero = (inverse + (_gate("X", signal),) + center
                     + (_gate("X", signal),) + loader)
@@ -116,29 +134,23 @@ def _scalar(loader: Word, mask: Word, signal: int) -> Word:
             + mask + control_zero + (_gate("H", signal),))
 
 
-def emit_rotation(program: RotationProgram, axis: str = "y") -> NativeRotationWord:
-    """Emit the certified unaddressed rotation, on all work input states.
-
-    Axes are ``'y'`` and ``'z'``, with R_axis = cos(theta) I minus
-    i sin(theta) Pauli_axis.  ``program`` must come from
-    ``program_rotation``; its certified unit-circle input promise applies.
-    The layout is core 0..q, signal q+1, target q+2.  Its q+2 dirty wires
-    exclude the target, which may itself be occupied compiler work.
-    """
+def _validate_program(program: RotationProgram) -> None:
     if not isinstance(program, RotationProgram):
         raise TypeError("program must be a RotationProgram.")
-    if axis not in ("y", "z"):
-        raise ValueError("axis must be 'y' or 'z'.")
     certified = program_rotation(program.cosine, program.sine, program.q)
     if program != certified:
         raise ValueError("program must match its certified coefficient encoding.")
-    q = program.q
-    core, signal, target = tuple(range(q + 1)), q + 1, q + 2
+
+
+def _rotation_gates(q: int, mask: Word, axis: str, *, enable: int | None = None) -> Word:
+    if axis not in ("y", "z"):
+        raise ValueError("axis must be 'y' or 'z'.")
+    signal, target = q + 1, q + 2
     loader = _loader(q)
     fixed = tuple(int(2 <= index <= 2 * q and index % 2 == 0)
                   for index in range(2 * (q + 1)))
-    scalar_fixed = _scalar(loader, _mask(fixed), signal)
-    scalar_program = _scalar(loader, _mask(program.signs), signal)
+    scalar_fixed = _scalar(loader, _mask(fixed), signal, enable)
+    scalar_program = _scalar(loader, mask, signal, enable)
     cz = (_gate("H", target), _gate("CX", signal, target), _gate("H", target))
     cx = (_gate("CX", signal, target),)
     left, middle = cz + scalar_fixed + cz, cx + scalar_program + cx
@@ -150,6 +162,22 @@ def emit_rotation(program: RotationProgram, axis: str = "y") -> NativeRotationWo
         # B=H S-dagger maps Y to Z. Emit B-dagger, Ry, B chronologically.
         gates = ((_gate("H", target), _gate("S", target)) + gates
                  + (_gate("SDG", target), _gate("H", target)))
+    return gates
+
+
+def emit_rotation(program: RotationProgram, axis: str = "y") -> NativeRotationWord:
+    """Emit the certified unaddressed rotation, on all work input states.
+
+    Axes are ``'y'`` and ``'z'``, with R_axis = cos(theta) I minus
+    i sin(theta) Pauli_axis.  ``program`` must come from
+    ``program_rotation``; its certified unit-circle input promise applies.
+    The layout is core 0..q, signal q+1, target q+2.  Its q+2 dirty wires
+    exclude the target, which may itself be occupied compiler work.
+    """
+    _validate_program(program)
+    q = program.q
+    core, signal, target = tuple(range(q + 1)), q + 1, q + 2
+    gates = _rotation_gates(q, _mask(program.signs), axis)
     return NativeRotationWord(q, core, signal, target, gates, program)
 
 

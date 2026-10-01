@@ -262,6 +262,6 @@ small-radius and unit-circle boundaries, both sides of the half-phase
 cut, and the stated finite error and workspace inequalities. These are
 classical arithmetic certificates. The separate
 [native residual bridge](NATIVE_RESIDUAL_ROTATION.md) now consumes these
-intervals to emit one unaddressed row with a full-operator certificate.
-The addressed table and complete state compiler remain implementation
+intervals to emit an unaddressed row or an enabled two-row table with a
+full-operator certificate. General tables and the state compiler remain implementation
 work; neither check proves arbitrary native-word synthesis complexity.

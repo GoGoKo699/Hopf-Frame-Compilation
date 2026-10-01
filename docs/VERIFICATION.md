@@ -326,6 +326,19 @@ This implements one unaddressed row, with no general table or complete
 state compiler claim. The full-operator bound rests on the existing
 source and amplification proofs, not numerical extrapolation.
 
+The [two-row table checks](../tests/test_native_residual_table.py) extend
+this path to one address bit and one enable literal. They check the exact
+Toffoli and Clifford mask tables, then propagate all target/core/signal
+inputs in each fixed address/enable sector at q=5. The sector evaluator
+retains all phases on fixed controls, verifies their exact return, and
+compares active blocks to the independent Majorana algebra and inactive
+blocks to identity. This covers the full ten-wire operator through four
+256-dimensional blocks, including coherent address phases and the
+active-zero convention. High-precision checks use rational certificates
+and literal counts of 540q+630 T/TDG gates per residual table. This
+control arity needs no extra helper; general dirty lookup, larger
+predicates, and complete state amplification are not emitted by it.
+
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
