@@ -1,44 +1,49 @@
 # Continuing research workspace
 
-This is the entry point for resuming work when a previous conversation or
-execution workspace is unavailable. The proofs and research decisions live
-in the repository; a conversation summary is only a retrieval aid.
+This is the entry point when a previous conversation or execution
+workspace is unavailable. Proofs and research decisions live in the
+repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 joint-source pass continues from main commit
-`d5b0d19245d7949913ecfa5cf65f472794655003`. Check the current branch and
-later commits before continuing. Complete eight- and sixteen-mode native
-words now share a source body, but their fair precision-cost comparison
-leaves the compiler frontier unchanged.
+The 2026-10-01 revision starts from main commit
+`7856bfa8bf907dcb12d7e856387784bf6af6f27e`. Check the current branch
+and later commits before continuing. The recent small-example pass is
+complete. It supplied useful native identities but did not narrow the
+generic endpoint gap. The next task is a specific compatibility test at
+the best grouped compiler's interface, not further generic mask search.
 
 ## Mandate and reading order
 
-Continue the theorem-led research in **GoGoKo699/Hopf-Frame-Compilation**.
-Repository write permission is limited to this repository. Keep manuscript
-writing and release work outside the current research pass.
+Continue theorem-led research in **GoGoKo699/Hopf-Frame-Compilation**.
+Repository modification and merge are authorized for this repository.
+Keep manuscript writing and release work outside this research pass.
+Use small analytic examples and finite checks; no large simulations,
+QRAM, resets, supplied catalysts, or hidden initialized work.
 
-1. Read [research status and the next bounded pass](docs/OPEN_PROBLEM.md).
-   This is the primary home for the current frontier and research decision.
-2. Read the [overview](README.md), [technical narrative](REVIEW.md), and
-   [publication scope](manuscript/PUBLICATION_SCOPE.md) for established claims.
-3. For the active pass, read [conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md),
-   especially its complete group contract and resource sums, followed by
-   [small products](docs/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis),
-   [the Cayley residual](docs/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation),
-   [the shared source body](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets),
-   and [the completed repair audit](docs/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis).
-4. Consult the [verification map](docs/VERIFICATION.md),
-   [source map](docs/SOURCE_MAP.md), and [related work](docs/RELATED_WORK.md)
-   before extending a claim or changing its attribution.
+1. Read the [current assessment](docs/OPEN_PROBLEM.md#current-assessment-what-the-results-establish)
+   and [revised next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
+2. Read [conditional-suffix Sections 3--7](docs/CONDITIONAL_SUFFIX_COMPILER.md#3-a-small-coefficient-table-and-a-streamed-coarse-circuit)
+   and its one-clean extension. These give the actual best compiler's
+   scalar/atom interface, private work, error budget, and group sums.
+3. Read the [shared source body](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
+   and [source-width analysis](docs/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation).
+   Their different source families and scope must remain explicit.
+4. Use [verification](docs/VERIFICATION.md), [attribution](docs/SOURCE_MAP.md),
+   and [related work](docs/RELATED_WORK.md) before extending a claim.
+   The [overview](README.md), [technical narrative](REVIEW.md), and
+   [publication scope](manuscript/PUBLICATION_SCOPE.md) retain the main story.
 
-## Exact point of continuation
+## What is established
 
-The exact all-workspace size/depth theorem and the sufficient-clean
-fault-tolerant T-count theorem are established. The latest antichain and
-sparse nested-update results give linear precision cost for their stated
-native-baseline promises. Generic rounding need not satisfy either promise.
-The complete-frame and fixed-parameter QBP guarantees already stand.
+| Result | Capability and boundary |
+|---|---|
+| Exact compilation | Matching size and CNOT/depth tradeoffs for the prescribed complete frame, for every clean-work budget |
+| Fault-tolerant frontier | Matching T-count under the stated sufficient-clean reservation; complete-frame and fixed-parameter QBP guarantees stand |
+| Constant-clean compiler | One clean qubit gives $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ at $`b\ge L+n+7`$; T-depth is a separate open problem |
+| Promised updates | Antichain and sparse ancestor-closed changes have $`O(N+L)`$ T-count under their distinct assumptions; generic rounding supplies neither promise |
+| Compact residuals and transport | Linear classical Cayley/weighted data, complete coupled boundaries, and cheap source-width transitions; generic coherent conversion and interior programming remain charged |
+| Small native programs | Fixed-address quaternion compression, four-mode magic-basis factors, and eight-/sixteen-mode changing-target words with full borrowed-signal return; fixed-size cost savings do not improve the generic bound |
 
-For the prescribed complete real frame, the selected unresolved endpoint is
+For the selected complete real-frame endpoint,
 
 ```math
 N=2^n,\qquad a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
@@ -49,125 +54,72 @@ N=2^n,\qquad a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 \qquad \ell_*(n)=1+\log_2^*(n+2).
 ```
 
-The upper bound also works with one clean qubit. The two promised update
-classes have not narrowed this generic gap. Optimal T-depth remains a
-separate open question.
+The upper bound also uses only one clean qubit. Recent passes have not
+narrowed this gap or established that its resolution is close. The
+established publication results do not depend on closing it.
 
-The branching passes have established a complete one-signal coupled boundary
-and an explicit commutator repair supported on at most four transported
-modes. It needs no division by a vanishing boundary norm. Its two child
-calls cancel with the anchored merge, leaving one child call and the
-original fine-precision local target wrappers. This cancellation survives
-matched actual inverse substitutions on the whole dirty space. The small
-repair norm does not discount the complete merge's local precision error.
-A separate native common-conjugator word fails even after retuning its
-masks. The generic resource gap is unchanged.
+The latest shared word reduces declared source appearances from 135 to
+87 at eight modes and from 180 to 114 at sixteen. Hoisting the loader
+and commuting the fixed mask through its tail leaves both comparison
+words the same leading precision term $`(40g+4)q`$, for g ordinary
+stages at source width q. The remaining savings concern fixed scalar
+work. Its precision charge still grows with the number of stages.
 
-The revision replaces the previous two-depth task: a fixed fork already
-costs $`O(L)`$, and the best compiler already shares precision across
-much larger groups. Rechecking low rank, basis access, or child cancellation
-does not target its remaining $`\ell_*(n)`$ factor. Keep those results
-as completed infrastructure. The recent passes have not narrowed the
-generic gap or established that its resolution is close.
+This matters strategically: the best compiler already replaces n ordinary
+layers by $`R=O(\ell_*(n))`$ unequal groups while keeping total table
+work linear. A better constant in a layerwise word does not remove that
+remaining group factor. The paired-source real-Y circuit has not yet
+been transferred to the grouped forward/reverse scalar SELECT, its
+complex phases, distinct rejection flags, and private-suffix reflection.
 
-## Latest result and next bounded pass
+## Next bounded task
 
-Start from small complete examples and let them suggest a construction.
-The positive [fixed-address example](docs/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis)
-shows that arbitrarily many noncommuting rotations on one target can be
-multiplied into four quaternion coordinates and compiled once. This uses
-the existing multiplexor theorem and its stated workspace allocation.
-Changing the address or adding overlapping target pairs breaks that
-fixed two-mode description; noncommutation alone is not the obstruction.
+First audit a concrete canonical scalar completion in the actual grouped
+interface. For each retained coefficient $`c\in[0,1/4]`$, propose
+$`R_c=\exp[-i\arccos(c)Y_\sigma]`$ on the existing scalar rejection
+flag sigma. Its accepted entry is c. Keep the atom flag separate, retain
+literal phases, and use actual inverses for reverse atoms.
 
-Four- and eight-mode branching examples led to a
-[Cayley representation](docs/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
-of the complete residual $`\mathcal R=C^\dagger W`$. Its
-skew-Hermitian generator $`K=(\mathcal R-I)(\mathcal R+I)^{-1}`$
-has an exact tree recursion with two-dimensional local corrections. It
-handles actual complex native coarse words, has $`O(N)`$ classical
-recursive data, and avoids division by vanishing defects. The retained
-uniform coarse approximation bounds its small inverses. Inverse Cayley
-is stable in operator norm; a general cheap native conversion remains open.
+Use the allowed two-clean layout with external h and sigma. A new native
+rotation signal would be borrowed from the dirty pool and excluded from
+the initialized-work reflection. Keep sigma out of temporary buffers.
+The first deliverable is a symbolic forward/inverse atom and a register-
+lifetime table that audits every intervening SELECT, atom, coarse, and
+reflection word against $`Z_\sigma`$. This is a compatibility question,
+not a certified replacement theorem or an elementary compiler project.
 
-The [four-mode native benchmark](docs/ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
-uses the standard magic basis to reduce a real four-mode target to two
-one-qubit factors. At an unchanged k-bit address, the existing one-target
-compiler gives $`T=O(2^k+L)`$ and $`G=O(2^kL)`$ with one clean flag
-and $`b=L+n+7`$, where $`n=k+2`$. Each stage borrows the idle logical
-target as its extra dirty helper; complete-isometry errors telescope
-without resetting the flag. Both fixed basis changes cost fourteen
-Clifford gates in the displayed word. A complex native coarse baseline
-requires its separately charged actual inverse.
+Use fully amplified inner rotations and derive a fresh full-operator
+error budget, with the constant width increase $`q_g=m_g+O(1)`$
+charged. A zero coefficient still gives a nonidentity rotation.
+Name the actual paired source: cheap bridges for the retained one-tail
+loader do not automatically transfer. The detailed
+[decision](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule)
+records these checks and the live-work contract.
 
-At eight modes the root becomes a controlled Bell-projector rotation.
-It has four commuting Pauli factors, but it cannot be absorbed into
-independent prefix and child factors: the exact product-gate distance is
-$`2\sin(\theta/4)`$ for $`0\le\theta\le\pi/2`$. This restricts the
-simple magic-basis extension, not joint controlled synthesis. Direct
-Woodbury inversion of the recursive Cayley update reconstructs the
-original fine target wrapper, so that implementation does not remove
-the repeated precision charge.
+Compatibility alone is not an endpoint gain. Before proceeding to two
+unequal groups, specify an actual fusion rule and its variable-R cost
+hypothesis. For the retained sufficient route, seek
 
-The earlier source-width result remains useful: outer loaders and monotone
-bridges cost $`2(m_{\max}-1)`$ T gates. Separately exposed transformed
-masks and repeated complete syndrome renewal still cost precision. That
-pass solved transport, not the joint program. The new Cayley coordinates
-also do not yet improve the generic T-count.
+```math
+T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right),
+```
 
-The [joint native word](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
-uses the original tree basis. A fixed scalar conjugator independent of
-the logical target permits exact cancellation across changing targets and
-predicates. Two parity boundaries return an arbitrary borrowed signal,
-with no intermediate reset. The declared source counts fall from 135 to
-87 at eight modes and from 180 to 114 at sixteen. These are structural
-word comparisons, not leading precision savings: after hoisting the
-common loader, the fixed mask commutes with its tail, leaving only a
-two-T seed. Both comparison words then have the same leading loader and
-variable-mask term $`(40g+4)q`$ for g stages at source width q.
+with $`c_R`$ bounded independently of R and P a fixed polynomial
+independent of L. Table and coarse-program sizes must combine additively.
+If a proposed rule closes for two groups, test that same rule on a third
+and derive the recurrence. Intermediate group action may be deferred,
+but final decoding, changed predicates, released dirty tails, literal
+inverses, and all rejected/reference action remain charged.
 
-For local depth three or four and an unchanged k-bit prefix, the complete
-ledger gives $`T=O(2^k+L)`$, $`G=O(2^kL)`$ at the selected two-clean
-allocation. The clean wires are used only as borrowed signal and helper.
-This fixed-depth construction is not a scalable gain: its ten programmed
-mask appearances per layer still renew precision, and its constant-width
-reservation does not extend to arbitrary depth without adjustment.
-
-The next bounded experiment is **joint synthesis of the programmable
-mask interiors**, starting with two changing-target stages of this
-explicit word. Expand actual inverses and compare against the already
-simplified two-T fixed-mask baseline. Seek a native identity or encoding
-that changes the precision recurrence as more stages are added. Further
-outer-loader or fixed-mask cancellation alone does not address that task.
-Keep zero defects, independent branch angles, a complex native coarse
-inverse, and complete signal/dirty ports in the small examples.
-
-1. Small examples may come before a general recurrence. Compare complete
-   matrices and actual source counts, including all rejected flag ports,
-   dirty inputs, and literal inverses. A fixed-size $`O(L)`$ synthesis is
-   already available and alone does not establish a scalable gain.
-2. If a pattern survives, derive its recurrence as the tree or number of
-   existing groups grows. The target remains $`O(N+L)`$ T gates with
-   the current linear table/coarse-program work; allow one internal
-   $`O(L)`$ precision charge and deferred individual group action.
-3. Keep at most two clean flags and $`b=L+n+7`$ arbitrary dirty wires.
-   Track actual unloading, changing suffix predicates, released source
-   tails, and full dirty/reference return. Keep the fixed deepest-layer
-   tail with its existing compiler. No reset, free catalyst, target-frame
-   oracle, or newly initialized logical sector is supplied.
-
-The [research decision](docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
-gives the ledger and stop conditions. Stop a native candidate that merely
-returns to fine local target wrappers, renews precision per group, expands
-the linear table work, or assumes free transport/inversion. Retain useful
-operator identities, then change the native candidate. Other fully charged
-constructions remain allowed, including a linear-T endpoint circuit with
-larger Clifford cost. These examples give a specific next experiment;
-they do not establish that the generic gap is close to resolution.
+If the expanded word still renews precision per group, close that
+candidate. Do not continue with larger mask sweeps or another fixed-size
+cancellation. Other complete representations remain allowed; this budget
+is sufficient, not a lower bound or compulsory architecture. A focused
+literature check should address a concrete alternative mechanism.
 
 ## Restore and verify
 
-Run from the repository root with the dependencies in `requirements.txt`:
+Run from the repository root with `requirements.txt` installed:
 
 ```bash
 git status --short --branch
@@ -178,24 +130,14 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The native small-example baseline has 282 tests and passed Python
-3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
-This pass adds three joint-source checks. Their complete matrices have
-dimensions 128 and 256, with deliberately coarse q=2 source precision.
-They verify actual gate words, literal phases, changed predicates and
-targets, occupied signal ports, helper return, and a complex coarse
-inverse. Fully simplified emitted words enforce the same leading
-precision charge in both comparisons. Fixed-mask cancellation is also
-checked at q=2, 3, and 5.
+The merged native checkpoint has 285 passing tests, Python 3.11/3.13 CI,
+all four exact-receipt suites, and rendered presentation. Its newest
+complete matrices have dimensions 128 and 256 at deliberately coarse
+q=2 precision. They check actual gate words, complete dirty/signal ports,
+helper return, and fair simplified counts; they do not certify asymptotic
+costs. Internal algebra and resource reviews are not external peer review.
 
-Run the commands above for the current 285-test suite and the latest
-verification result. CI records Python 3.11/3.13, exact-receipt, and
-rendered-presentation results on the corresponding commit. Separate
-internal reviews checked the algebra and workspace ledger; this is not
-external peer review. Finite fixtures do not establish native asymptotic
-resource bounds.
-
-Update this entry point when the task changes, while keeping detailed
-research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)
-and proofs in their existing chapters. Keep the frontier and the unresolved
-step explicit so continuation does not depend on access to an old chat.
+This revision changes the research decision and navigation, not the
+proofs or executable construction. Keep detailed conclusions in
+[OPEN_PROBLEM.md](docs/OPEN_PROBLEM.md) and proofs in their existing
+chapters so continuation does not depend on an old chat.

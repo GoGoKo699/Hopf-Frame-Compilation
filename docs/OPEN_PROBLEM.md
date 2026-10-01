@@ -147,9 +147,11 @@ Closing this count endpoint would still leave the T-depth question open.
 ## Current assessment: what the results establish
 
 The antichain and sparse-update results prove linear bounds for promised
-families. The subsequent merge passes establish complete boundary actions,
-an explicit repair, cheap source-width transitions, and scoped failures
-of proposed source sharing.
+families. The subsequent passes establish complete boundary actions, an
+explicit repair, cheap source-width transitions, compact Cayley data, and
+native four-, eight-, and sixteen-mode benchmarks. The latest joint word
+has fewer declared source calls, but the comparison words have the same
+leading precision cost after fixed-mask simplification.
 **None has narrowed the generic upper/lower gap.** Wide independent changes
 and deep sparse nesting each admit one precision charge; the remaining
 question concerns precision reuse for unrestricted comparable updates.
@@ -159,6 +161,7 @@ question concerns precision reuse for unrestricted comparable updates.
 | General theorems | Exact matching resources, sufficient-clean matching T-count, and one-clean grouped bound; constant-clean endpoint and optimal T-depth remain open |
 | Incomparable promised families | Antichain and sparse ancestor-closed updates have $`T=O(N+L)`$, $`G=O(NL)`$; generic rounding satisfies neither promise |
 | Reusable blocks | Cheap coarse frame, linear residual data, complete weighted dilations, two-flag assembly, and a coupled repair with exact child-call cancellation; the surviving target precision remains charged |
+| Completed small-example pass | Fixed-address product compression, four-mode native factors, and a full-port changing-target word with borrowed-signal return; no precision recurrence independent of growing support or group count |
 | Scoped diagnostics | Specified source, query, repacking, truncation, and shared-conjugator failures; no additive full-frame lower bound follows |
 
 ### A promised antichain class has a linear endpoint bound
@@ -493,114 +496,157 @@ tail with its existing $`O(N+L)`$ compiler. Retaining $`G=O(NL)`$
 requires separately charging all interior Clifford gates; the new loader
 and bridge costs themselves fit that budget.
 
-### Small examples now guide the next construction
+### Small examples: completed results and remaining cost
 
-Start with complete small matrices, using them to find a candidate before
-requiring a general native recurrence. The
-[fixed-address example](SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis)
-is positive: arbitrarily many noncommuting one-qubit rotations at the same
-unchanged address can be multiplied into four quaternion coordinates and
-compiled once by the retained multiplexor construction. Its cost is
-$`O(S+L)`$ under that construction's stated allocation. A quantum address
-change invalidates that rowwise multiplication, and overlapping pairs
-increase the active logical space. Thus noncommutation alone is not the
-obstacle; preserving a cheap program while the support changes is the
-relevant next test.
+The small-example pass supplied the following reusable results. Their
+linked chapters retain the derivations and native ledgers.
 
-Four- and eight-mode branching examples suggested a
-[Cayley representation](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation)
-of the full residual $`\mathcal R=C^\dagger W`$:
+| Result | Established capability | Remaining cost or limitation |
+|---|---|---|
+| [Fixed-address products](SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis) | Arbitrarily many noncommuting one-qubit factors compress into four quaternion coordinates and compile once | Changing the quantum address or growing logical support invalidates that fixed two-mode table |
+| [Cayley residual](ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) | Complete complex-coarse residual, linear classical data, two-dimensional local updates, stable inverse conversion | Generic coherent evaluation is unpriced; direct Woodbury emission returns to the fine target wrappers |
+| [Four-mode native benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark) | Two magic-basis factors give $`T=O(2^k+L)`$ and $`G=O(2^kL)`$ at an unchanged prefix, with one clean flag and the stated borrowed spectator | A fixed-support corollary; the separately charged complex coarse inverse remains necessary |
+| [Eight-mode coupling](ENDPOINT_TREE_TRANSPORT.md#8-the-eight-mode-root-retains-a-controlled-coupling) | Explicit controlled Bell-projector rotation and a four-Pauli comparison | Independent prefix/child factors cannot absorb the root; this does not exclude joint synthesis |
+| [Shared changing-target word](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets) | Exact common scalar conjugation, full SU(2) signal error, and two parity boundaries returning an arbitrary borrowed signal | Fixed-mask simplification gives the comparison words the same leading precision cost; variable-depth allocation and joint programming remain unproved |
 
-```math
-K=(\mathcal R-I)(\mathcal R+I)^{-1},\qquad
-\mathcal R=(I+K)(I-K)^{-1}.
-```
+The last construction reduces declared source counts from $`45g`$ to
+$`27g+6`$: 135 to 87 at eight modes and 180 to 114 at sixteen. Its
+fixed mask commutes with the loader tail, leaving a two-T seed; each
+hoisted fixed-A interior then costs at most eight T gates. Both words
+retain five programmed B words per stage and the same leading term
+$`(40g+4)q`$. The fixed-A remainder changes from 80g to
+$`8(4g+2)`$ before further optimization, with queries and controls
+separately charged. These are declared-word bounds, not minima.
 
-At each subtree its exact update is a coarse conjugation of
-$`A+ZHZ^\dagger`$, where A contains the two child generators and H is
-two by two. The formula handles actual complex native coarse words and
-vanishing defects; the existing uniform coarse approximation keeps its
-small inverses well-conditioned. It has $`O(N)`$ classical recursive
-data and preserves the coupled complete residual. This is a different
-representation to test, not a cheaper coherent evaluator or another
-compiler theorem. Inverse Cayley is stable in operator norm, but its
-circuit cost remains unproved.
+For local depth three or four, its stated allocation fits
+$`a=2,b=L+n+7`$ and gives $`T=O(2^k+L)`$ at a k-bit unchanged
+prefix. The source-width margin grows with variable depth. Neither the
+fixed-depth cost nor its full borrowed-signal return narrows the generic
+endpoint gap. The source-appearance reduction is not a leading precision
+improvement or an additive lower-bound argument.
 
-The native small-example pass supplies a four-mode benchmark. The
-[standard magic-basis reduction](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
-turns a real four-mode target into two SU(2) factors. The displayed Cayley
-formulas are regular at zero defects and preserve literal phases. At an
-unchanged k-bit address, the retained one-target theorem compiles these
-two factors with $`T=O(2^k+L)`$, $`G=O(2^kL)`$, one clean flag, and
-$`b\ge L+n+7`$ for $`n=k+2`$. The idle logical target supplies the
-extra dirty helper at each stage. This is a corollary of the inherited
-magic basis and the existing compiler, with a complete return/error
-ledger; it does not narrow the generic endpoint gap. Complex coarse
-residuals use the separately charged actual coarse inverse.
+### Revision after the joint native audit
 
-At eight modes, the same basis change leaves an explicit root coupling
-$`\exp(-i\theta Y\otimes|\Phi^+\rangle\langle\Phi^+|)`$.
-Four commuting Pauli rotations implement it, but independent prefix/child
-factors have exact distance $`2\sin(\theta/4)`$ on
-$`0\le\theta\le\pi/2`$. Thus independent factorization is insufficient;
-controlled joint programming remains possible. The Woodbury audit also
-shows that direct recursive inverse Cayley reconstructs the original
-fine target wrapper, with no local precision attenuation. A resolvent
-completion defined using controlled target action is not a cheaper way
-to construct that target.
+The small-example pass is complete as structural infrastructure. The
+phrase "joint synthesis of the programmable masks" identifies a missing
+result, not yet a construction. Continuing to simplify two ordinary
+layers without specifying how the saving scales risks another constant
+improvement to a weaker baseline.
 
-### The joint small-example word and its fair comparison
+| Comparison | What is already available | What would constitute progress |
+|---|---|---|
+| Fixed logical support | A fixed number of modes costs $`O(L)`$; one unchanged-address two-mode product compiles once | A representation whose charged program remains controlled as the support grows |
+| Ordinary layers | The retained baseline costs $`O(N+nL)`$; the shared body changes its displayed constants | A precision recurrence that improves the best grouped construction, or a separate complete construction beating it |
+| Existing unequal groups | $`T=O(N+LR)`$, $`R=O(\ell_*(n))`$, with linear total table work | A jointly emitted program with one global precision charge and a valid allocation throughout |
 
-The [shared-source construction](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
-works directly in the original real tree basis. Its fixed scalar A acts
-only on the source core and signal, so changing the logical target,
-address, or suffix predicate does not change A. Exact full-word
-amplification identities give a common outer conjugation and a body of
-five programmed B words and four A words per stage. The declared source
-count decreases from $`45g`$ to $`27g+6`$: 135 to 87 at eight modes,
-and 180 to 114 at sixteen.
+The paired-source real-Y word is not a replacement for a grouped scalar
+SELECT. The latter keeps forward and actual-inverse scalar branches,
+four complex phases, selected column maps, a private term label, and a
+reflection on the initialized active suffix. Its source width and suffix
+predicate change between groups. Even the one-clean extension retains
+this scalar/atom separation; it relocates a flag and changes the deepest
+tail compiler. A transfer from the small-example word to these grouped
+interfaces has not been proved.
 
-The SU(2) signal sectors lift the initialized-column error to the same
-full-operator bound. Two controlled-parity boundaries return the borrowed
-signal for the complete ordered real tree. For local depth three or four,
-an unchanged k-bit prefix, and $`n=k+r`$, the reservation fits
-$`a=2,b=L+n+7`$, with $`T=O(2^k+L)`$ and $`G=O(2^kL)`$.
-The signal and helper need no initialized values. Actual complex coarse
-inverses remain separately charged. The source-width margin grows with
-variable depth, so this fixed-depth allocation is not a uniform theorem.
-
-The source-appearance reduction is not a leading precision improvement.
-After common-loader hoisting, the fixed mask commutes with every tail
-rotation and only a two-T seed remains in its transform. Each fixed-A
-interior then costs at most eight T gates, independently of q. Both
-expanded and shared words retain five B words, or ten programmed mask
-appearances, per stage. Their leading loader and variable-mask term is
-the same $`(40g+4)q`$; the fixed-A remainder changes from 80g to
-$`8(4g+2)`$ before further optimization. Query and predicate costs
-remain charged. These are declared-word upper bounds, not minima or
-additive lower bounds. The generic endpoint gap is unchanged.
+Keep the recent proofs and fixtures; do not add another fixed-size
+optimization as an endpoint advance. Cheap width transport is available,
+fixed-mask simplification is accounted for, and the remaining general
+lower bound is still only the retained one. A failure of a selected
+architecture would not make the grouped factor necessary.
 
 ### Next bounded task and stopping rule
 
-The next experiment is **joint synthesis of the programmable mask
-interiors** in this explicit changing-target word. Begin with two stages,
-expand actual inverses, and use the already simplified two-T fixed-mask
-baseline. A candidate must change the precision recurrence as the number
-of stages grows; another outer-loader or fixed-mask cancellation does not
-do that. Keep independent branch angles, a zero local defect, a complex
-native coarse inverse, and every signal/dirty port in the finite checks.
-The source/program and logical-dependent-boundary approaches remain
-available, with individual group action allowed to be deferred.
+The next pass is **construction selection at the actual group interface**.
+Before another numerical mask search, specify one native identity or
+changing encoded boundary that could remove repeated precision from the
+grouped forward/reverse SELECT. State its cost hypothesis for a variable
+number R of groups, not only two ordinary layers. For the sufficient
+route already defined above, the target is
 
-Small examples may precede a general construction. A successful pattern
-must eventually supply complete accepted/rejected action, live workspace,
-and a precision-dependent recurrence as the tree or number of existing
-groups grows. A fixed four- or eight-mode synthesis already costs
-$`O(L)`$ by ordinary methods, so that fact alone is not the desired gain.
-Classical matrix compression and a bounded inverse condition number do
-not supply free coherent access or a constant number of precision-bearing
-queries. Do not count a routine call to the target frame or an uncharged
-resolvent as an implementation.
+```math
+T_{\rm joint}=O\!\left(\sum_gQ_g+L+RP(n)\right),
+```
+
+with P a fixed polynomial independent of L. Equivalently, a proposed
+ledger of the form
+
+```math
+T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right)
+```
+
+must bound $`c_R`$ independently of R for this sufficient route. This
+is a proposed budget, not an attained bound. A smaller constant multiplying
+LR does not meet it. Table and coarse-program work must combine additively,
+not through a Cartesian product of the group addresses. Other complete
+constructions may use a different representation and are judged against
+the same endpoint, rather than required to adopt SELECT.
+
+The first specific compatibility test uses the retained nonnegative
+coefficients $`c\in[0,1/4]`$. On the existing scalar rejection flag sigma,
+consider the ideal completion
+
+```math
+R_c=\exp[-i\arccos(c)Y_\sigma]
+=\begin{pmatrix}c&-\sqrt{1-c^2}\\\sqrt{1-c^2}&c\end{pmatrix}.
+```
+
+Its accepted entry is c. Replace the scalar factor in one forward atom
+$`\mathcal S_c\mathcal D_\nu`$ by this rotation, and use the actual
+inverse for the reverse atom. Keep the distinct atom flag and external
+phase components. This is a proposed native substitution, not a free
+rotation oracle or a proved grouped improvement.
+
+Use a fully amplified native approximation to $`R_c`$, not its
+unamplified scaled block. Derive a fresh full-operator perturbation ledger
+against the ideal canonical group word; the previous exact rounded-scalar
+identity is not inherited. An inner error of order $`2^{-m_g}`$ would
+require a sufficient constant shift $`q_g=m_g+O(1)`$, which must be
+included in the workspace audit. A structural zero coefficient means
+$`R_0=\exp(-i\pi Y_\sigma/2)`$, not identity. Only the inactive
+suffix sector is required to have exact identity action.
+
+Use the permitted two-clean grouped layout: h and sigma are external;
+the new rotation-synthesis signal would be in the arbitrary dirty pool,
+outside the initialized-work reflection. Protect sigma from the coarse
+interpreter's temporary buffers. Audit whether every remaining
+atom, phase, SELECT, reflection, and coarse subroutine commutes with
+$`Z_\sigma`$ as a complete returned-work word. If so, the shared-body
+parity argument has a specific route to this interface. Specify certified
+coefficient preprocessing separately, as in the retained compiler. Charge
+every emitted rotation program and the extra borrowed signal/helper
+reservation; any constant increase must fit the group slack. Do not assume
+that dirty helpers preserve this commutation gate by gate.
+
+Name the source family and table representation explicitly. The cheap
+reverse-order one-tail width bridges do not automatically apply to the
+paired-source replacement. Record private suffix work, both rejection
+flags, term label, dirty core, selectors, query unloading, and reflection
+in a register-lifetime table. Explain what can persist when the next
+suffix predicate is computed. This focused symbolic derivation does not
+require a full compiler implementation or large matrices.
+
+Even a successful compatibility test still pays for the programmed
+rotations. Continue to two unequal groups only after specifying a fusion
+rule that could change $`c_R`$. Track their widths symbolically; small
+finite analogues and illustrative group constants do not certify the
+asymptotic allocation thresholds.
+
+A proposed carried boundary may correlate with the logical data and need
+not expose an accurate standalone output after every group. It must give
+a complete transition rule and a charged final decoding. Merely defining
+that boundary using the target frame or its partial products is circular
+unless their native implementation is supplied. If the rule closes for
+two unequal groups, apply that same rule to a third and derive its
+variable-R recurrence before adding a new resource claim. Retain actual
+complex coarse words, zero defects, independent branch angles, and every
+signal/dirty port in the small checks.
+
+If no such identity or boundary can be specified, report that result and
+change the mechanism. Do not replace it with another generic mask sweep,
+fixed-depth synthesis, or repeated audit of a known failed interface. A
+focused primary-literature check is useful once a concrete alternative
+has identifiable assumptions; an untargeted expansion of the literature
+chapter is not the next deliverable.
 
 The live-wire contract remains $`b=L+n+7`$ arbitrary dirty wires and
 at most two external clean flags. Holding $`m_{\max}`$ throughout
@@ -624,11 +670,10 @@ apply to this sufficient route; they are not general lower bounds. Record
 failure in the existing proof home and change the native candidate. Do not
 repeat the completed width, mode-closure, or commutator-repair audits.
 
-As the native pattern develops, test unequal widths, a changed logical
-address, a third group, and actual inverse behavior on every dirty and
-flag input. Small fixtures can suggest or falsify a recurrence; they cannot
-prove its asymptotic cost. No target-frame oracle, free evaluator, reset, initialized
-history, or supplied catalyst is available.
+Small fixtures can suggest or falsify a recurrence; they cannot prove its
+asymptotic cost. No target-frame oracle, free evaluator, reset, initialized
+history, or supplied catalyst is available. A bounded classical inverse
+condition number does not make its quantum implementation free.
 
 Separately improving the affine and reverse blocks remains sufficient,
 and a linear-T endpoint circuit with larger fully charged Clifford cost
