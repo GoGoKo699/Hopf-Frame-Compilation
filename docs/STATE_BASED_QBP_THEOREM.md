@@ -196,6 +196,24 @@ final rounding, rather than simply P fractional bits. Input
 evaluation, arithmetic bit costs, term sampling, and output bits remain
 charged; ordinary floating-point utilities are not accuracy certificates.
 
+### Depth schedules for the same task
+
+The [state-based depth proof](STATE_QBP_DEPTH.md) gives two schedules,
+with $`B_0=P+n+7`$. Each row describes one circuit, including forward
+coarse preparation and the additional inverse in magnitude readout:
+
+| Sufficient dirty work | Compiler T-count | Compiler T-depth |
+|---|---|---|
+| $`b\ge2B_0`$ | $`O(NP)`$ | $`O(NP/b+P+n^3)`$ |
+| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(P+n^4)`$ |
+
+Both have $`G=O(NP)`$, two compiler flags, and the unchanged state/error
+contract. The first row deliberately permits a higher T-count. Oracle
+depth at precision K and all S or $`2S`$ executions remain charged in the
+[serial task ledger](QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison).
+These are T-depth upper bounds; Clifford and total elementary depth are
+separate, and no matching depth lower bound is asserted.
+
 ## 5. Construction, proof dependencies, and scope
 
 For bounded dyadic angles/phases in $`[-8,8]`$ with at most B fractional
@@ -224,6 +242,7 @@ the construction bound above is analytic.
 | Complex gauge, exact coarse return, and additional banks | [Complex compiler §§1–8](COMPLEX_COARSE_COMPILER.md) |
 | Magnitude means, depth bound, and real histogram | [Real QBP §§1–5](COARSE_FRAME_QBP.md) |
 | Original complex phase gradients, confidence, and certified decoder | [Complex QBP §§1–6](COMPLEX_COARSE_QBP.md) |
+| Complete compiler T-depth schedules | [State-based depth proof](STATE_QBP_DEPTH.md) |
 | Reused dirty-work concentration and observable access | [QBP approximation §10](QBP_APPROXIMATION.md#10-reflection-sums-and-finite-classical-weights) |
 | Algebraic residual tables and polynomial construction qualifiers | [Residual preprocessing](RESIDUAL_TABLE_PREPROCESSING.md) and [bounded-input §§3–4](BOUNDED_INPUT_QBP.md#3-which-native-searches-are-polynomial-in-the-input-parameters) |
 

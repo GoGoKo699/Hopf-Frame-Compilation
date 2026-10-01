@@ -30,6 +30,7 @@ topic has one primary chapter below.
 | Chapter | Role |
 |---|---|
 | [State-based QBP theorem](STATE_BASED_QBP_THEOREM.md) | Task-level statement, precision and workspace contract, implementation scope, and complete-cost boundary |
+| [State-based QBP T-depth](STATE_QBP_DEPTH.md) | Whole real/complex gradient schedules, live dirty workspace, and simultaneous T-count/T-depth upper bounds |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |
 | [State-only compiler](STATE_ONLY_COMPILER.md) | Two clean flags and one precision charge for a known real Hopf state, including coherent reference selection |
