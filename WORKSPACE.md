@@ -4,8 +4,8 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 complex-state pass starts from verified main
-`5a3669ec21ccbd13a53aa69a960c6d66aef90a79`. Check the current branch
+The 2026-10-01 native complex integration pass starts from verified main
+`11cb1f0a0c21566cba59d1a78a2dad130dce4337`. Check the current branch
 and later commits before continuing. The state-only compiler prepares the
 real Hopf state with two clean flags and one precision charge. A new
 coarse-frame measurement and corrected classical decoder remove the
@@ -15,6 +15,9 @@ protocol with an active arbitrary dirty helper and complex observables.
 The complex extension fixes a common state phase, compiles its coarse
 prefix phase tables with exact dirty return, and estimates both magnitude
 and leaf-phase gradients with the same two-flag allocation.
+A complete small complex example now emits both gradient streams, including
+all-suffix phase selection and the actual coarse inverse, with a rational
+certificate for its coarse error and arbitrary dirty-input checks.
 The complete-frame endpoint remains open; the task-specific result does
 not require its resolution.
 
@@ -43,6 +46,8 @@ The complex coarse-frame extension includes the separate leaf-phase stream.
    option under its explicit sampling tradeoff.
    The [native integration example](docs/NATIVE_COARSE_QBP.md) specifies
    what is implemented and what remains an analytic general construction.
+   Its [complex extension](docs/NATIVE_COMPLEX_COARSE_QBP.md) emits both
+   streams and compares their complete costs with the original protocol.
 2. Read the [task-specific assessment](docs/OPEN_PROBLEM.md#a-state-only-route-for-raw-hopf-gradients)
    and [next bounded question](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 3. For the separate complete-frame question, read the
@@ -186,14 +191,22 @@ reference. The corrected magnitude decoder removes the gauge at its leaf
 weights, and the established direct phase-Y stream supplies the other N
 coordinates. The physical energy gradients do not depend on the gauge.
 
-The next bounded implementation task is to join these complex phase tables
-to the existing small elementary native fixture and verify both streams
-against arbitrary dirty input with literal branch phases. The present new
-checks already use native one-qubit row words, but the complex prefix
-selection and fine residual table are still analytic constructions.
-Require complete gate counts and same-observable comparison before claiming
-an implemented complex protocol. The general fine-precision emitter and
-the fine complete-frame endpoint remain separate.
+The bounded complex native integration is complete. The exact target has
+a supplied winding-phase representation; its actual coarse phase rows
+are nondiagonal. Both gradient streams, full-input prefix selection, and
+coherent preparation are emitted in elementary gates. The error certificate
+uses exact rational arithmetic for the commutator trace. Dirty-input score
+operators reproduce the analytic gradients, including nonzero magnitude
+and phase signals at a singular tuple. Complete word counts favor the
+original exact-frame protocol on this specially exact fixture.
+
+The next pass should consolidate the task-specific result and compare its
+complete costs with the original route across precision and workspace
+regimes, including the classical preprocessing obligations. Further native
+emission should answer a concrete remaining claim; another special exact
+fixture alone would not establish a general advantage. The general
+fine-precision residual-table emitter and fine complete-frame endpoint
+remain separate.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -213,6 +226,7 @@ git status --short --branch
 git rev-parse HEAD
 python scripts/reviewer_walkthrough.py
 python scripts/coarse_frame_native_example.py
+python scripts/complex_coarse_native_example.py
 python validate.py --quiet
 python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
@@ -230,9 +244,9 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass supplies the complex task-specific proof and its histogram
-implementation. Complete native integration currently covers the real
-target fixture; the frame endpoint is unchanged.
+This pass supplies complete bounded native integration for both complex
+gradient streams. The general fine-precision compiler remains analytic,
+and the frame endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

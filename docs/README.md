@@ -29,6 +29,7 @@ chapter below.
 | [Native coarse-frame example](NATIVE_COARSE_QBP.md) | Complete elementary two-qubit integration, an active dirty helper, complex observables, and a comparison with the original protocol |
 | [Complex coarse compiler](COMPLEX_COARSE_COMPILER.md) | Gauge-fixed phase tables with exact dirty return and the same two-flag state-preparation budget |
 | [Complex coarse-frame QBP](COMPLEX_COARSE_QBP.md) | Complete magnitude and leaf-phase gradients, actual native phase-row reconstruction, and the two-stream cost ledger |
+| [Native complex QBP example](NATIVE_COMPLEX_COARSE_QBP.md) | Both elementary native gradient streams, full-input dirty echoes, an exact coarse certificate, and a same-observable cost comparison |
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Reconciled hierarchy of bounds, promised update families, and supporting components; current task-specific protocol and separate complete-frame questions |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
