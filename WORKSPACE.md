@@ -4,14 +4,16 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 coarse-frame QBP pass starts from verified main
-`15ec75989939bd51d8ce55b6fd172e3558646999`. Check the current branch
+The 2026-10-01 native integration pass starts from verified main
+`bfcca665126c1ae9b7331c558a4f588a6e5a72e6`. Check the current branch
 and later commits before continuing. The state-only compiler prepares the
 real Hopf state with two clean flags and one precision charge. A new
 coarse-frame measurement and corrected classical decoder remove the
 leaf-reference protocol's angle-dependent shot penalty, including at
-singular angles. The complete-frame endpoint remains open; the new result
-does not require its resolution.
+singular angles. A complete small native example now verifies the changed
+protocol with an active arbitrary dirty helper and complex observables.
+The complete-frame endpoint remains open; the task-specific result does
+not require its resolution.
 
 ## Mandate and reading order
 
@@ -34,6 +36,8 @@ The coarse-frame extension retains that task scope with a uniform bound.
    common-coarse reference corollary. The earlier
    [leaf-reference protocol](docs/REFERENCE_STATE_QBP.md) remains a separate
    option under its explicit sampling tradeoff.
+   The [native integration example](docs/NATIVE_COARSE_QBP.md) specifies
+   what is implemented and what remains an analytic general construction.
 2. Read the [task-specific assessment](docs/OPEN_PROBLEM.md#a-state-only-route-for-raw-hopf-gradients)
    and [next bounded question](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 3. For the separate complete-frame question, read the
@@ -155,13 +159,25 @@ does not become bias. A signed histogram and adjoint traversal avoid a
 dense Jacobian. The new proof supplies the complete precision, reused-dirty,
 shot, quantum-work, and classical-output ledger.
 
-The next implementation task is a bounded native fixture joining the
-common-coarse preparation, one concrete allowed controlled observable,
-and the decoder, with all workspace explicit. Current small checks use
-ideal logical matrices and do not emit the complete native protocol.
-Compare against the original protocol at the same accuracy and workspace;
-fixed-accuracy square-root frame synthesis can still be cheaper.
-The fine complete-frame endpoint remains separate.
+The bounded native integration is complete. Its two-qubit exact target uses
+the state compiler's finite-size fallback, and its per-reflection echoes
+actively borrow one arbitrary helper. Complete initialized isometries and
+dirty-input score operators verify phases and gradient means. A reusable
+integer-histogram decoder applies the actual logical tree blocks and a
+reverse traversal, with explicitly floating-point final contractions.
+The supplied words cost more than the original exact-frame protocol on this
+fixture; they do not demonstrate a practical advantage. The general
+fine-precision residual-table emitter remains outside this implementation.
+
+The next scientific task is to audit the phase-dressed complex-state
+coarse interface: actual logical native $`C\approx D_\varphi W_{\mathbb R}`$
+with $`O(N^{-1/2})`$ error, $`O(N)`$ T-count, exact dirty return, and
+recorded classical coefficients. An approximate phase-diagonal isometry
+with work leakage is not automatically that interface. Keep the established
+direct phase-gradient stream separate unless a proved replacement improves
+its complete cost. Stop with a specific missing lemma if the coarse
+interface does not fit; do not return to general full-frame synthesis by
+default. The fine complete-frame endpoint remains separate.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -180,14 +196,15 @@ Run from the repository root with `requirements.txt` installed:
 git status --short --branch
 git rev-parse HEAD
 python scripts/reviewer_walkthrough.py
+python scripts/coarse_frame_native_example.py
 python validate.py --quiet
 python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The local suite passes all 300 tests, including four new coarse-frame decoder
-checks and four retained reference-decoder and state-amplification checks.
-Merge gates include Python
+The local suite passes all 308 tests, including the new elementary native
+integration and executable histogram checks alongside the retained ideal
+decoder and state-amplification checks. Merge gates include Python
 3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
 The retained scattering checks cover complete small frames and literal port
 permutations on matrices of dimension 16 and 32; their coins remain ideal.
@@ -197,7 +214,7 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass removes the angle-dependent sampling factor from the selected
+This pass supplies a complete bounded native integration of the selected
 real raw-gradient route. The frame endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an

@@ -59,6 +59,8 @@ from the all-workspace state-preparation framework.
 | Module | Role |
 |---|---|
 | [`decoders.py`](decoders.py) | direct parity records, signed histograms, fast Walsh–Hadamard decoding, and direct phase-stream records |
+| [`coarse_frame_decoder.py`](coarse_frame_decoder.py) | exact integer X/Y histogram transforms, actual coarse-tree blocks, and linear-storage reverse reconstruction; floating-point contractions |
+| [`native_coarse_fixture.py`](native_coarse_fixture.py) | bounded two-qubit Clifford+T integration fixture, explicit controls and dirty-helper return; not a general native compiler |
 
 The decoder module concerns the output of the logical QBP circuit.  It is
 separate from the frame compiler so that quantum execution count, circuit depth,

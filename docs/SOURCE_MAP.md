@@ -182,6 +182,12 @@ is inherited.
 | R37 | raw gradients from reference-state interference | [decoder proof](REFERENCE_STATE_QBP.md) specializes F23 to all real Hopf derivatives and all allowed observables, gives a division-free derivative-envelope recurrence and a bounded-branch corollary, and charges R36 plus the observable; generic sampling overhead can grow as n, and no complete-frame or total-gradient optimality follows |
 | R38 | all-angle coarse-frame gradient decoding | [coarse-frame proof](COARSE_FRAME_QBP.md) combines R36's common-coarse reference preparation, F23's X/Y interference, and Walsh spreading with exact classical correction from the actual native C; the depth-record norm is at most five, with $`O(N+L')`$ T-count per execution apart from the observable and $`O(S+Nn)`$ classical arithmetic after preprocessing; no fine full-frame or total-gradient optimality claim |
 
+The [native coarse-frame example](NATIVE_COARSE_QBP.md) is finite implementation
+evidence for R38 and R36's small-register fallback. Its commutator distance
+certificate, per-reflection dirty echo, and literal gate ledger are stated
+explicitly. It does not add a new asymptotic compiler theorem or replace
+the existing analytic proof with numerical scaling evidence.
+
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over

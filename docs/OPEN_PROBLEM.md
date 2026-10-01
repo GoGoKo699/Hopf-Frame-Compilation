@@ -830,14 +830,26 @@ stream for complex states also remains outside this new result.
 ### Next bounded task and stopping rule
 
 The coarse-frame construction settles the selected all-real-angle sampling
-question. The next task-specific implementation step is a bounded native
-fixture joining its common-coarse reference preparation, a concrete allowed
-controlled observable, and its histogram decoder. Keep compiler clean
-flags, the protocol branch, and observable work explicit; distinguish
-actual native gates from ideal logical test matrices. Compare complete
-costs against the original protocol at the same accuracy and workspace.
-The current finite tests verify algebra and the analytic resource proof
-composes retained primitives; they are not a complete native emitter.
+question. Its [bounded native integration](NATIVE_COARSE_QBP.md) now joins
+exact finite-size preparation, complex controlled observables, actual
+coarse inverses, and X/Y reconstruction. An actively used arbitrary helper
+returns coherently. A reusable histogram utility avoids dense derivative
+tables. The original protocol is cheaper on this specially exact example;
+the fixture verifies integration and does not establish an advantage or
+emit the general residual-table construction.
+
+The next scientific question is the phase-dressed complex-state interface.
+Can an actual logical native C approximate $`D_\varphi W_{\mathbb R}`$
+to $`O(N^{-1/2})`$ with $`O(N)`$ T-count, the declared workspace, and
+exact dirty return? The real-state correction proof uses precisely such a
+logical C and its recorded coefficients. The existing approximate
+phase-diagonal isometry may leave work leakage and cannot silently replace
+it. Establish this interface and its classical coefficient representation
+before claiming the complex magnitude extension. The established direct
+phase-gradient stream remains an available separate component; no new
+combined measurement circuit is required without a demonstrated benefit.
+If the native interface fails, record the specific missing lemma rather
+than extending the finite fixture without a new question.
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual

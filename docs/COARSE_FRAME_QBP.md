@@ -366,3 +366,11 @@ A concrete phase fixture shows that dropping Y or using ideal Walsh scores
 can create a nonzero decoded gradient when the true gradient is zero.
 These tests are finite algebraic diagnostics, not a native emitter or a
 large-instance performance claim.
+
+The subsequent [native integration example](NATIVE_COARSE_QBP.md) emits
+the complete two-qubit protocol through the state compiler's exact
+finite-size fallback. It checks an actively used arbitrary dirty helper,
+literal branch phase, complex controlled observables, actual adjoints,
+and corrected readout. Its finite gate counts are compared with the
+original protocol on the same exact target; it does not emit the general
+fine-precision residual table.
