@@ -111,6 +111,16 @@ is reused. Matrices have dimension at most 64. These support the
 and [scoped source-reuse arguments](SOURCE_REUSE_LIMITS.md); the mask
 T-count bound is analytic, and neither the fixtures nor the representation
 witnesses establish a general gate lower bound or a cheaper native compiler.
+The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
+strict-descendant forest factorization with complete complex tree words,
+pack mixed-depth disjoint updates into one last-bit multiplexor, and check
+native dirty-Fredkin echoes on every input, including inactive sectors.
+They also test reflection-by-reflection predicate echoes and detect the
+failure of the stated factorization when updates are comparable or the
+forest is omitted. Matrices have dimension at most 64. The
+[antichain compiler](ANTICHAIN_COMPILER.md) proves the native resource and
+full-operator error bounds analytically; these fixtures neither emit its
+fine-precision synthesis circuit nor establish the unrestricted endpoint.
 The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
 paired-Majorana source and general Pauli masks from native gates, audit the
 conjugated scalar word and five-call amplification on all dirty input

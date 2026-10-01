@@ -155,6 +155,13 @@ qubit, respectively at $`b\ge2(L+n+7)`$ and $`b\ge2(L+n+9)`$.
 For the multiplexor, $n$ counts address qubits and $N$ counts its blocks.
 These matched one-stage frontiers do not close the multi-layer frame gap.
 
+For [antichain-only changes](docs/ANTICHAIN_COMPILER.md),
+$`T=O(N+L)`$, $`G=O(NL)`$ with zero clean qubits and
+$`b\ge L+n+7`$. The target equals a supplied baseline outside nonnested
+nodes; baseline local words are native, determinant one, and length
+$`O(n-d+1)`$ at depth d. Generic rounding does not supply this promise.
+The linear bound at $`L=N`$ is restricted to this class.
+
 ## Exact construction at a glance
 
 The Hopf frame is a product of addressed tree layers.  At depth $d$, the prefix
@@ -252,10 +259,9 @@ framework.
 | all-workspace UCG synthesis | prefix-selected rotations, subtree frames, and the phase diagonal |
 | coherent CNOT copy–uncopy | control fanout for the decoder and router |
 
-Once the Hopf frame is written as addressed complete-operator layers, these
-primitives can be adapted without surrendering the designated marker columns.
-The Hopf-specific work is the operator factorization and the three workspace
-schedules, not a replacement for the underlying state-preparation toolkit.
+The Hopf-specific contributions are the complete-operator factorization and
+three workspace schedules, which adapt these primitives while preserving
+marker columns.
 
 The normative compiler citation is:
 
@@ -301,10 +307,9 @@ The repository supplies:
 - exact integer or rational resource ledgers;
 - parity, histogram, and fast Walsh–Hadamard gradient decoders.
 
-The elementary UCG and multi-controlled-X decompositions are imported from the
-state-preparation framework rather than regenerated locally.  Finite checks are
-used to expose indexing, phase, order, cleanup, and resource errors; the
-asymptotic theorem rests on the dimension-independent proof.
+UCG and multi-controlled-X decompositions are imported. Finite checks expose
+indexing, phase, order, cleanup, and resource errors; the asymptotic claims
+rest on proofs.
 
 The fault-tolerant evidence adds exact finite source/kernel identities and
 rational resource checks. It does not yet provide a general elementary emitter
@@ -347,9 +352,7 @@ The [manuscript guide](manuscript/README.md) outlines the paper, and the
 [scientific package](manuscript/PUBLICATION_SCOPE.md#scientific-ingredients-before-final-writing)
 lists the proofs and evidence that precede final writing.
 
-The exact compiler and fault-tolerant construction have the analytical and
-finite evidence identified in the [verification map](docs/VERIFICATION.md).
-The [source map](docs/SOURCE_MAP.md) distinguishes inherited ingredients from
-local constructions. These records are internal research evidence; no external
-review or exhaustive novelty certification is claimed.  The repository is
-licensed under MIT; see [`LICENSE`](LICENSE).
+The [verification map](docs/VERIFICATION.md) records analytic and finite
+evidence; the [source map](docs/SOURCE_MAP.md) separates inherited tools and
+local constructions. Neither certifies external review or exhaustive novelty.
+The repository uses the [MIT license](LICENSE).

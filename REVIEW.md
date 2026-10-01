@@ -1240,6 +1240,19 @@ sequential reuse through flag leakage. This is a general complete-operator
 application of the mechanism; it does not eliminate the repeated precision
 charge across the Hopf frame's layers.
 
+There is a stronger [antichain correction theorem](docs/ANTICHAIN_COMPILER.md)
+for a promised class. Supply a baseline C with determinant-one native local
+words of length $`O(n-d+1)`$ at depth d, and let W differ from C only
+at nodes in a prefix-free antichain. Then $`a=0`$ and
+$`b\ge L+n+7`$ suffice for $`T=O(N+L)`$ and $`G=O(NL)`$,
+including arbitrary dirty-input error. Exact descendant-forest conjugation
+and dirty prefix swaps expose one addressed SU(2) correction table, so the
+precision charge occurs a constant number of times. For real Hopf targets,
+literal agreement with the potentially complex native C outside the
+antichain is an actual input promise; generic rounding does not supply it.
+The $`L=N`$ bound is linear for this class, without closing the general
+frame endpoint or adding a new QBP sampling theorem.
+
 ---
 
 ## 10. Consequence for quantum backpropagation

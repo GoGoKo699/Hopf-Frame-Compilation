@@ -28,6 +28,7 @@ chapter below.
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
 | [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and native synthesis with exact or approximate dirty return |
 | [Complete residual assembly](RESIDUAL_ASSEMBLY.md) | Affine forward dilation, actual reverse branch, two-clean selection and amplification, and a complete-frame bound that retains the per-depth precision charge |
+| [Antichain correction compiler](ANTICHAIN_COMPILER.md) | Zero-clean $`O(N+L)`$ T-count for targets differing from the specified native baseline only on a prefix-free node set; the general frame endpoint remains open |
 
 ## Evidence and sources
 
