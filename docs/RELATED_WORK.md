@@ -664,3 +664,34 @@ Neither the standard phase cascade nor global-phase invariance is a new
 claim. The result does not compile the prescribed literal common phase of
 the complete frame, prove universal gradient-cost improvement, or emit a
 general native complex state-preparation package.
+
+## 15. Bounded-input construction and the classical comparator
+
+The [residual-table procedure](RESIDUAL_TABLE_PREPROCESSING.md) uses
+ordinary half-angle algebra and the standard three-rotation SU(2)
+factorization. Its local statement is a certified coefficient construction
+for the particular residual completion: one shared half-phase preserves
+the literal branch phase, finite rational decisions cover zero and boundary
+cases, and direct sine/cosine programming retains the existing native error
+and workspace contracts. No new general Euler decomposition is claimed.
+
+The [bounded-input audit](BOUNDED_INPUT_QBP.md) uses GKW Lemma 2.3 only for
+short-word existence. Exhaustive search at coarse precision gives a
+conservative polynomial-in-N construction. This must be distinguished
+from efficient fine synthesis: [Ross–Selinger](https://arxiv.org/abs/1403.2975v3)
+give optimal synthesis with a factoring oracle and prove the efficient
+expected runtime without that oracle under a number-theoretic hypothesis.
+Neither is assumed in the bounded-input construction. Its residual fine
+precision instead comes from explicit source masks.
+
+For explicit Pauli inputs, applying signed permutations and propagating
+derivatives backward are standard classical operations. Reverse
+differentiation has a much broader established theory; see
+[Baur–Strassen, *The complexity of partial derivatives*](https://www.sciencedirect.com/science/article/pii/030439758390110X),
+*Theoretical Computer Science* **22**(3), 317–330 (1983).
+The local audit provides the division-free Hopf recurrence, certified
+dyadic rounding, duplicate-term accounting, and a term-sampling comparator.
+These baselines limit the interpretation of the quantum T-count result;
+they are not a claim to have invented reverse differentiation or classical
+importance sampling. Unknown controlled observables retain their distinct
+access model.

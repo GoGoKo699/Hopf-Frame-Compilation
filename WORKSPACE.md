@@ -4,8 +4,8 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 task-cost comparison pass starts from verified main
-`32a802f85406197f3bfe30770fe191671cb8539e`. Check the current branch
+The 2026-10-01 bounded-input preprocessing pass starts from verified main
+`949b545509f2f5805ef4c22a6c93e91c1b39ef46`. Check the current branch
 and later commits before continuing. The state-only compiler prepares the
 real Hopf state with two clean flags and one precision charge. A new
 coarse-frame measurement and corrected classical decoder remove the
@@ -22,6 +22,11 @@ The cost audit now compares both routes at the same accuracy and workspace.
 Additional dirty banks improve the state-only T bound at high precision;
 the original route retains the better fixed-accuracy bound. Oracle,
 sampling, Clifford, and classical costs prevent a general speedup claim.
+The bounded-input audit now supplies algebraic residual-table generation
+and a polynomial classical construction of the grouped and banked programs.
+Explicit Pauli observables also admit a deterministic classical all-gradient
+baseline; they do not turn the high-precision T improvement into a sampling
+advantage.
 The complete-frame endpoint remains open; the task-specific result does
 not require its resolution.
 
@@ -41,7 +46,9 @@ route explicitly changes the decoder while retaining all allowed observables
 and real raw gradient coordinates, with its own sample and precision bounds.
 The complex coarse-frame extension includes the separate leaf-phase stream.
 
-1. Start with the [complete task-cost comparison](docs/QBP_COST_COMPARISON.md),
+1. Start with the [bounded-input audit](docs/BOUNDED_INPUT_QBP.md) and
+   [algebraic residual-table procedure](docs/RESIDUAL_TABLE_PREPROCESSING.md),
+   then the [complete task-cost comparison](docs/QBP_COST_COMPARISON.md),
    including its precision floor, bank reservations, and preprocessing boundary.
    Read the [complex coarse compiler](docs/COMPLEX_COARSE_COMPILER.md) and
    [complete complex gradient protocol](docs/COMPLEX_COARSE_QBP.md), then
@@ -82,6 +89,8 @@ The complex coarse-frame extension includes the separate leaf-phase stream.
 | Complex state-based Hopf QBP | Gauge-fixed prefix phase tables supply an exact-return logical coarse C with $`O(N)`$ T gates; the same two flags and dirty threshold give magnitude and phase streams, $`O(N+L')`$ T per execution, and $`O(S+Nn)`$ histogram arithmetic |
 | Banked state preparation | Two flags and $`b\ge2(L+n+7)`$ give $`T=O(\sqrt{NL}+L+NL/b+n\sqrt N)`$, $`G=O(NL)`$; the coarse term is absorbed when $`L\ge n^2`$ |
 | Fair task comparison | Use original accuracy K and state precision $`P=\max(n,K)`$, keeping oracle precision K; the fine gauged complex borrowed baseline now has the same count as the real baseline. High-precision improvements concern available upper bounds, not optimal gradients or total runtime |
+| Bounded-input preprocessing | Direct algebraic sine/cosine coefficients replace residual Euler search; only coarse native words need enumeration for the grouped/state routes. Their classical construction is polynomial in the explicit input and precision, with the small-register state extension using the banked reservation |
+| Explicit Pauli baseline | One amplitude pass, signed Pauli permutations, and a division-free reverse pass give all gradients deterministically; duplicate labels leave at most $`N^2`$ distinct Paulis. Term-only classical sampling is another charged comparator |
 
 For the selected complete real-frame endpoint,
 
@@ -216,15 +225,33 @@ $`b\gg N/\ell_*(n)`$. Fixed accuracy favors the original route, and
 the common shot allocation still grows as $`4^K`$ up to its confidence
 factor. Neither Clifford order nor classical decoding order improves.
 
-The next bounded question is to price compiler preprocessing under an
-explicit bounded-input and observable-access model. Certified coefficient
-precision is bounded, but arbitrary supplied evaluators, native-word
-synthesis, and table certification do not yet have a matched runtime
-ledger across all best constructions. Keep those obligations explicit
-before claiming an end-to-end advantage. Further native emission should
-answer a concrete missing claim; another special exact fixture alone
-would not answer this question. The general fine-precision residual-table
-emitter and fine complete-frame endpoint remain separate.
+The [bounded-input audit](docs/BOUNDED_INPUT_QBP.md) now closes the
+computability question for the selected constructions. Bounded dyadic
+angles and phases have certified elementary evaluation. The residual
+completion uses a stable paired half-phase factorization programmed
+directly from sine/cosine coefficients, without an Euler-angle search.
+Exhaustive enumeration is only at coarse precision for the grouped/state
+routes, so it gives a conservative polynomial-in-N construction. Fine
+borrowed-frame synthesis and the minimal-workspace small-register state
+fallback retain their separately stated search costs. No efficient
+optimal-synthesis oracle is assumed.
+
+Explicit Pauli access also gives a deterministic classical all-gradient
+algorithm and a classical term-sampling comparator. Under uniform gate
+costs, the retained Clifford bounds erase the separation between the
+quantum T expressions. The high-precision improvement remains a compiler
+resource result; these inputs do not establish an end-to-end sampling
+advantage. Arbitrary computable evaluators and unknown quantum observables
+remain outside the bounded-input runtime statement.
+
+The selected task-specific analytic construction and its bounded-input
+audit are complete. The next revision should consolidate its theorem,
+computational assumptions, and scope with the established frame results.
+A new advantage claim would require a concrete observable-access model
+and comparison beyond the explicit Pauli case; none is selected here.
+Another special exact fixture would not supply that argument. The general
+fine-precision native emitter and fine complete-frame endpoint remain
+separate implementation and research questions.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -262,10 +289,10 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass supplies a banked state corollary and a complete task-resource
-comparison, with finite arithmetic checks of its workspace and weighted
-sum ledgers. The general fine-precision compiler remains analytic, and
-the frame endpoint is unchanged.
+This pass supplies bounded-input preprocessing and classical comparison
+proofs, with exact rational interval checks of the residual coefficients.
+The general fine-precision quantum emitter remains analytic, and the frame
+endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

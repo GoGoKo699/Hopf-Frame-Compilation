@@ -50,6 +50,13 @@ separate preprocessing. No efficient bound on their bit complexity is
 asserted, and no exact-zero test for arbitrary computable amplitudes is
 assumed.
 
+For bounded dyadic inputs, the later
+[computational audit](BOUNDED_INPUT_QBP.md) supplies a conservative
+polynomial construction at its stated size/workspace conditions. The
+[residual coefficient procedure](RESIDUAL_TABLE_PREPROCESSING.md) programs
+the three rotations directly from algebraic sine/cosine pairs, replacing
+the generic Euler search below without changing its error constants.
+
 The [complex-state extension](COMPLEX_COARSE_COMPILER.md) supplies an
 exact-return gauge-fixed phase-dressed coarse C and applies this residual
 construction with the same two flags and dirty threshold. It includes a

@@ -291,6 +291,17 @@ The [comparison chapter](QBP_COST_COMPARISON.md) and
 [banked state proof](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
 supply the analytic resource bounds and precision regimes; these finite
 checks do not prove asymptotics or an end-to-end gradient advantage.
+The [residual preprocessing certificates](../tests/test_residual_table_preprocessing.py)
+use exact rational arithmetic to check square-root enclosures, the paired
+half-phase identities, tiny and unit-circle boundary cases, both sides of
+the phase cut, and the small-system banked allocation. The
+[helper](../compiler_robust_hopf/residual_table_preprocessing.py) emits
+coefficient intervals, not quantum gates. The
+[preprocessing proof](RESIDUAL_TABLE_PREPROCESSING.md) supplies the uniform
+error and bit bounds, and the [bounded-input audit](BOUNDED_INPUT_QBP.md)
+separately prices native-word searches and the classical gradient baseline.
+These checks do not implement a general native emitter or certify a
+polynomial-time optimal one-qubit synthesizer.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
