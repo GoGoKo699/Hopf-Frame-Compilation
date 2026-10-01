@@ -872,16 +872,21 @@ The complex-state interface is proved in the gauge above. Its new bounded
 checks use actual native one-qubit phase rows, full-suffix matrix assembly,
 residual-state amplification, and independent analytic gradients. The
 executable complex histogram utility preserves exact integer Walsh counts
-before floating-point reconstruction. These checks do not yet emit the
-complete controlled phase-prefix circuit or general fine residual table.
+before floating-point reconstruction. A subsequent
+[complete native complex fixture](NATIVE_COMPLEX_COARSE_QBP.md) now emits
+both streams, controlled all-suffix phase-prefix tables, and the actual
+coarse inverse. Every borrowed helper is returned and literal branch phases
+are retained. Exact rational-coefficient arithmetic certifies the small coarse
+error. Full-input operators and dirty-input gradient observables verify
+regular, signed, and singular tuples. The same-observable original protocol
+is cheaper on this exact finite-size target; no advantage follows from the
+fixture. The general fine residual-table emitter remains separate.
 
-The next bounded task is a complete elementary complex extension of the
-existing small native fixture: both magnitude and phase streams, the actual
-prefix-table inverse, arbitrary dirty-input score operators, literal branch
-phases, and full gate counts against the same-observable original protocol.
-Use the finite-size fallback and a small winding-phase example. This tests
-the new native interface; it need not become a general synthesis package or
-an advantage claim. The fine residual-table emitter remains separate.
+The next bounded pass should consolidate the task-specific results and
+compare the complete quantum/classical cost with the original route across
+precision and workspace regimes. State the input-access and preprocessing
+costs explicitly. Another special exact fixture cannot establish a general
+advantage; further native emission should test a specific missing claim.
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual

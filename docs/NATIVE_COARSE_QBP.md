@@ -13,6 +13,10 @@ its addressed residual table and amplification construction. The general
 fine-precision resource theorem remains analytic. This example is an
 integration and phase check, not evidence of a small-instance advantage.
 
+The [complex native extension](NATIVE_COMPLEX_COARSE_QBP.md) adds explicit
+all-suffix phase tables, a gauge-fixed complex target, and the separate
+phase-gradient stream on this same six-wire register.
+
 ## 1. An explicit complex coarse word
 
 Take the two-qubit Hopf tuple with all three angles equal to $`\pi/4`$.

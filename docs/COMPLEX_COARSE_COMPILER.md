@@ -13,6 +13,11 @@ This is a gauge-fixed state and coarse-frame result. It does not approximate
 the originally prescribed complete frame with its literal common phase,
 and it does not resolve fine complete-frame compilation.
 
+The [bounded native example](NATIVE_COMPLEX_COARSE_QBP.md) emits these
+phase-prefix selections and both gradient streams for an exact two-qubit
+target. It checks literal phases and arbitrary dirty inputs; the general
+fine residual-table construction below remains analytic.
+
 ## 1. Target gauge and workspace
 
 Let $`N=2^n`$, $`n\ge1`$, and let $`W_{\mathbb R}`$ be the real Hopf

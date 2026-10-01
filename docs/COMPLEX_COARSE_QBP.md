@@ -14,7 +14,9 @@ $`O(N+L')+t_O`$ T gates. The classical reconstruction uses signed integer
 histograms, the recorded coarse circuit, and a real Hopf reverse traversal.
 This is a state-preparation and measurement result. It does not compile the
 fine prescribed complete frame, establish a universal advantage, or supply
-an end-to-end native emitter for this complex protocol.
+a general native emitter for this complex protocol. The separate
+[bounded native example](NATIVE_COMPLEX_COARSE_QBP.md) now emits both
+streams completely for a special exact two-qubit target.
 
 ## 1. Supplied phases, the fixed gauge, and the actual native interface
 

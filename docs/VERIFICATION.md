@@ -268,6 +268,20 @@ floating-point final coefficients; neither these checks nor the utility
 emit the complete native prefix selection or fine residual-table circuit.
 Their general resource contracts are proved in the
 [compiler](COMPLEX_COARSE_COMPILER.md) and [decoder](COMPLEX_COARSE_QBP.md).
+The subsequent [native complex checks](../tests/test_native_complex_coarse_qbp.py)
+emit the complete two-qubit phase-prefix tables, coherent preparation,
+actual inverse, and both gradient streams. Independent analytic four-mode
+oracles check every active system/branch/helper input in 64-by-four batches;
+two-by-two dirty score operators check magnitude and phase means, including
+nonzero signals at a singular tuple. The
+[exact certificate](../tests/test_complex_coarse_certificate.py) uses
+rational arithmetic in the basis $`(1,\sqrt2,i,i\sqrt2)`$ to verify the
+commutator trace and coarse bound $`3/200\lt1/64`$. Complete elementary
+gate counts include the same observable in the original protocol. The
+[report](../scripts/complex_coarse_native_example.py) reproduces both streams
+without Monte Carlo. This finite-size fallback leaves both compiler flags
+unused and does not emit the general fine residual table; see its
+[scope and word ledger](NATIVE_COMPLEX_COARSE_QBP.md).
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

@@ -190,6 +190,13 @@ certificate, per-reflection dirty echo, and literal gate ledger are stated
 explicitly. It does not add a new asymptotic compiler theorem or replace
 the existing analytic proof with numerical scaling evidence.
 
+The [native complex extension](NATIVE_COMPLEX_COARSE_QBP.md) supplies finite
+implementation evidence for R39: elementary all-suffix phase selection,
+complete coherent preparation, both gradient streams, and a literal cost
+comparison. Its sharper K2 trace and rational K3 certificate specialize
+the same elementary commutator algebra. They do not change the asymptotic
+compiler frontier or establish a general native residual-table emitter.
+
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over
