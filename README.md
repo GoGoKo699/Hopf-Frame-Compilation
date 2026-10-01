@@ -30,6 +30,7 @@ manuscript writing follows their consolidation.
 
 The [LLM reading guide](llms.txt) maps proofs and assumptions for complete-frame
 synthesis, ancilla–depth and T-count–precision tradeoffs, and Hopf QBP robustness.
+Resume research from the [workspace checkpoint](WORKSPACE.md).
 
 ## Two resource models
 
