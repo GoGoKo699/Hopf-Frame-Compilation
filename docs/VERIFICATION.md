@@ -196,6 +196,22 @@ q=2, 3, and 5. The q=2 complete words are interface diagnostics, not
 fine-precision certification. The [analytic allocation](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
 is restricted to local depth three or four; no generic endpoint gain or
 optimality of the displayed counts is asserted.
+The [canonical group checks](../tests/test_grouped_scalar_completion.py)
+test the real scalar completion, zero coefficients, and direction-controlled
+Z selection of the actual inverse. The retained one-tail scalar is checked
+against the same symmetry, so the comparison receives that consolidation
+too. Native q=2 table words have dimension 256; complete SELECT columns
+have dimension 512. The outer group is applied to 64 input columns in a
+2048-dimensional space, keeping every logical, borrowed-signal, and core
+input with the other work initialized. This avoids forming a large dense
+group matrix. Its four-label coefficient table checks half-block algebra,
+amplification perturbations, inactive sectors, and common-source/parity
+identities; it is not a supplied Hopf residual with an exactly unitary
+unrounded target. The [group proof](CONDITIONAL_SUFFIX_COMPILER.md#11-a-canonical-scalar-fits-the-group-interface-but-retains-its-precision-charge)
+supplies that specialization and the L-bit error/workspace ledger.
+The executed program count is three inner rotations per amplified group.
+Literal source counts 135 versus 87 are structural word comparisons,
+not a leading precision improvement or a claim of optimality.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
