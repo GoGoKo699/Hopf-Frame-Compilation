@@ -4,15 +4,15 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 Hopf-scattering pass starts from the verified main checkpoint
-`5bff4239a3547e555824c8cf31dfda11c97a008d`. Check the current branch
-and later commits before continuing. The complete Hopf frame now has an
-explicit tree-scattering identity with one cheaply compiled local-rotation
-table. Turning that table into its boundary action remains necessary;
-a constant number of unchanged-table queries cannot do so uniformly at
-fine precision. This is a query-model restriction, not a T-count lower
-bound. No endpoint construction is selected. The next selection question
-is a native program with coefficients that already combine tree levels.
+The 2026-10-01 state-only QBP pass starts from verified main
+`8a6f2546de8130261c4819a4335d8a686402d57b`. Check the current branch
+and later commits before continuing. A concrete task-specific construction
+now prepares the real Hopf state with two clean flags and one precision
+charge. A different leaf-interference decoder recovers its raw gradients
+without an inverse frame. Its shot penalty is bounded by n+1 in general
+and by a constant when local branch probabilities stay away from zero.
+The complete-frame endpoint remains open; no new factorization for it
+has been selected.
 
 ## Mandate and reading order
 
@@ -22,27 +22,26 @@ Keep manuscript writing and release work outside this research pass.
 Use small analytic examples and finite checks; no large simulations,
 QRAM, resets, supplied catalysts, or hidden initialized work.
 
-The user has emphasized the Hopf QBP task. The target is its prescribed
-tree frame, not arbitrary unitary synthesis. General theorems are only
-comparisons. Supporting all allowed observables with the existing decoder
-still requires the designated marker directions; a restricted observable
-or a different decoder must be identified as a different task.
+The user has emphasized the Hopf QBP task. The retained frame problem
+concerns its prescribed tree completion; arbitrary unitary synthesis is
+only a comparison. Supporting all allowed observables with the existing decoder
+still requires the designated marker directions. The new reference-state
+route explicitly changes the decoder while retaining all allowed observables
+and real raw gradient coordinates, with its own sample and precision bounds.
 
-1. Read the [current assessment](docs/OPEN_PROBLEM.md#current-assessment-what-the-results-establish)
-   and [Hopf-specific scattering audit](docs/OPEN_PROBLEM.md#the-hopf-specific-scattering-test),
-   then its [next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
-2. Read [conditional-suffix Sections 3--7](docs/CONDITIONAL_SUFFIX_COMPILER.md#3-a-small-coefficient-table-and-a-streamed-coarse-circuit)
-   and its one-clean extension, followed by the completed
-   [canonical group audit](docs/CONDITIONAL_SUFFIX_COMPILER.md#11-a-canonical-scalar-fits-the-group-interface-but-retains-its-precision-charge).
-   These give the actual scalar/atom interface, private work, error budget,
-   and group sums.
-3. Read the [shared source body](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
-   and [source-width analysis](docs/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation).
-   Their different source families and scope must remain explicit.
+1. Read the [state-only construction](docs/STATE_ONLY_COMPILER.md) and
+   [reference-state gradient protocol](docs/REFERENCE_STATE_QBP.md), including
+   the branch-probability promise and the worst-case sampling penalty.
+2. Read the [task-specific assessment](docs/OPEN_PROBLEM.md#a-state-only-route-for-raw-hopf-gradients)
+   and [next bounded question](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
+3. For the separate complete-frame question, read the
+   [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), its completed
+   canonical audit, and the
+   [scattering restriction](docs/ENDPOINT_TREE_TRANSPORT.md#11-a-packed-hopf-scattering-step-and-its-boundary-transfer).
 4. Use [verification](docs/VERIFICATION.md), [attribution](docs/SOURCE_MAP.md),
    and [related work](docs/RELATED_WORK.md) before extending a claim.
    The [overview](README.md), [technical narrative](REVIEW.md), and
-   [publication scope](manuscript/PUBLICATION_SCOPE.md) retain the main story.
+   [publication scope](manuscript/PUBLICATION_SCOPE.md) retain the frame story.
 
 ## What is established
 
@@ -56,6 +55,7 @@ or a different decoder must be identified as a different task.
 | Compact residuals and transport | Linear classical Cayley/weighted data, complete coupled boundaries, and cheap source-width transitions; generic coherent conversion and interior programming remain charged |
 | Small native programs | Fixed-address quaternion compression, four-mode magic-basis factors, and eight-/sixteen-mode changing-target words with full borrowed-signal return; fixed-size cost savings do not improve the generic bound |
 | Hopf scattering | One packed local-rotation step has $`T=O(N+L)`$, $`G=O(NL)`$ and explicit port permutations; its feedback boundary equals the complete frame, but that feedback is not supplied by the step compiler |
+| State-only Hopf QBP | At $`L\ge\max\{6,n\}`$, two compiler flags and $`b\ge L+n+7`$ give $`T=O(N+L)`$, $`G=O(NL)`$ for preparation; the separate reference decoder trades its sampling factor against inverse-frame synthesis |
 
 For the selected complete real-frame endpoint,
 
@@ -128,56 +128,35 @@ construction and changes no retained frontier.
 
 ## Next bounded decision
 
-The [scattering test](docs/OPEN_PROBLEM.md#the-hopf-specific-scattering-test)
-implements the original node rotations as one addressed table. Its exact
-feedback identity is a concrete Hopf representation, not a free inverse.
-The path amplitude shows that a bounded-query conversion of this unchanged
-table is insufficient even with arbitrary fixed interleaving operations.
-Do not schedule another walk-power, fixed-routing, or feedback-query test
-with that same table as the proposed endpoint mechanism.
+The selected state-only route has an explicit program: use an actual native
+coarse C, classically compute $`C^\dagger\psi`$, load its bounded off-root
+coefficients into one addressed SU(2) table, and amplify the normalized
+accepted state. The two flags and initialized system define the initial
+reflection; every dirty wire is excluded from that reflection and returned
+within the joint error. This does not implement the other frame columns.
 
-Seek instead an explicit whole-frame or whole-residual factorization whose
-programmed coefficients already combine levels, with additive table size
-$`O(N)`$ and every change of basis charged. A bounded number of complete
-diagonal or multiplexor primitives remains one sufficient representation;
-an expanded native word with many calls but one precision charge is also
-allowed. The query restriction does not price that word. No such identity
-is currently known here; compact classical data or a small matrix norm is
-not that identity.
+For local branch probabilities in $`[p_0,1-p_0]`$ with fixed positive
+$`p_0`$, the target state itself is a valid reference with uniformly bounded
+scores. Arbitrary angles instead use the positive derivative-envelope
+reference and a sufficient shot factor $`Z+1\le n+1`$. Singular examples
+attain $`Z=n`$; do not treat the factor as constant without a promise.
+The protocol reserves its separate interference qubit and observable work.
 
-The next deliverable is one actual algebraic template with its symbolic
-cost, or a concise no-candidate finding. Do not schedule more fixtures
-without that template. A new complete rule for carrying precision also
-remains eligible. A stronger unrestricted lower-bound approach remains
-open, but needs an invariant beyond the current interface restrictions.
+The next bounded task is to determine whether this score penalty can be
+reduced beyond the stated promise with an explicit reference or measurement
+rule. Price total shots, controlled-observable calls, native gates, and
+classical output. A per-state T-count improvement alone is insufficient.
+Do not substitute this state-only circuit into the original inverse-frame
+protocol or claim its complete-frame endpoint is solved.
 
-Require an explicit operation or encoding rule and a symbolic precision
-recurrence before starting another construction pass. For the retained
-grouped route, a sufficient target is
-
-```math
-T_{\rm joint}\le c_RL+O\!\left(\sum_gQ_g+RP(n)\right),
-```
-
-with $`c_R`$ bounded independently of R and P a fixed polynomial
-independent of L. Table and coarse-program sizes must combine additively.
-Other whole-frame constructions remain allowed. An unpriced resolvent,
-Hamiltonian, coordinate transform, or target-dependent decoder is not a
-native construction.
-
-Count every source, native control, reflection, and inverse. Allocate the
-full error before checking the exact $`b=N+n+7`$ workspace threshold;
-constant extra accuracy bits are not automatically free dirty space.
-Final clean return, arbitrary dirty/reference inputs, and literal phase
-must satisfy the retained complete-isometry contract. The T-only endpoint
-allows a larger fully charged Clifford count than the stronger joint goal.
-
-Use small examples only after a concrete rule is specified. For a grouped
-proposal, test unequal groups and require the same rule to survive a
-third. If no mechanism meets that selection standard, record that no lead
-is selected rather than returning to generic mask sweeps or the completed
-boundary audits. The [research decision](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule)
-retains the live-work contract and stopping conditions.
+For the separate frame problem, globally combined coefficients with additive
+O(N) tables and fully charged basis changes remain eligible. The unchanged
+scattering coin and canonical shared-source word are closed as the stated
+amortization candidates. Require a new algebraic template and symbolic
+precision recurrence before further fixtures. Preserve literal phases,
+the exact dirty allocation, arbitrary dirty/reference return, and the
+complete prescribed frame. See the
+[retained stopping rule](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 
 ## Restore and verify
 
@@ -192,9 +171,10 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The local suite passes all 292 tests. Merge gates also include Python
+The local suite passes all 296 tests, including four reference-decoder and
+state-amplification checks. Merge gates also include Python
 3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
-Four new scattering checks cover complete small frames and literal port
+The retained scattering checks cover complete small frames and literal port
 permutations on matrices of dimension 16 and 32; their coins remain ideal.
 The retained q=2 native table has dimension 256; its outer group propagates
 64 logical/borrowed input columns through its 2048-dimensional space without
@@ -202,9 +182,9 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass adds a Hopf-specific scattering identity, a one-step native ledger,
-and a scoped query restriction, not a new endpoint bound. No human action is
-required to continue. Focused feedback from a fault-tolerant synthesis
+This pass adds a state-preparation bound and a different raw-gradient
+protocol with an explicit shot tradeoff. The frame endpoint is unchanged.
+No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in
 [OPEN_PROBLEM.md](docs/OPEN_PROBLEM.md) and proofs in their existing

@@ -34,6 +34,12 @@ prefix circuit.
 The three promises support different reverse protocols and should not be
 interchanged.
 
+The [reference-state decoder](REFERENCE_STATE_QBP.md) is a separate
+protocol with leaf-dependent scores. It can use the
+[state-only compiler](STATE_ONLY_COMPILER.md) because it never invokes its
+inverse on an observable response. Its sampling tradeoff does not weaken
+the frame contract for the designated inverse-frame decoder below.
+
 ## 2. State-column equality leaves a free completion
 
 Suppose
