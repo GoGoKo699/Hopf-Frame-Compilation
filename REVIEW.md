@@ -1274,10 +1274,11 @@ In particular, arbitrary changes along one root-to-leaf path satisfy the
 same bound for every n, using a finite small-n fallback. A real example
 fixes the baseline angles to $`\pi/4`$ and varies angles only within S;
 the complete Hopf QBP interface is preserved. Nesting alone therefore does
-not force repeated precision cost. Dense branching remains outside this
-promise: a general target can have $`|S|=N-1`$, leaving no large active
-zero sector. The sparse and antichain theorems are distinct; an antichain
-can be wide, and its compiler requires no clean qubit.
+not force repeated precision cost. General changes across comparable
+branching levels can have $`|S|=N-1`$, leaving no large active zero
+sector for this proof. The sparse and antichain theorems are distinct:
+an antichain can be wide, and its compiler requires no clean qubit.
+Neither supplies a shared-precision merge for the unrestricted frame.
 
 ---
 

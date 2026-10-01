@@ -199,6 +199,14 @@ source-extraction shortcuts. It does not improve the compiler bound or
 establish a new unrestricted lower bound; these diagnostics support the
 discussion of the open endpoint.
 
+The [antichain](../docs/ANTICHAIN_COMPILER.md) and
+[sparse-update](../docs/SPARSE_UPDATE_COMPILER.md) compilers give
+$`O(N+L)`$ T-count for separate literal native-baseline promises, using
+zero and one clean qubit respectively. They support the endpoint research:
+wide nonnested changes and a full nested path can each share precision.
+They do not settle general changes across comparable branching levels,
+change Results A–C, or add a fourth principal manuscript result.
+
 ## Main text and appendices
 
 | Location | Contents |
