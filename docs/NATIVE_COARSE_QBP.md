@@ -157,7 +157,7 @@ For the balanced tuple and $`O_+`$, the emitted counts are:
 |---|---:|---:|
 | W | 6 | 50 |
 | C | 774 | 3,794 |
-| Coherent preparation, before branch initialization | 5,126 | 12,659 |
+| Coherent preparation, before branch initialization | 5,126 | 12,658 |
 | Controlled observable | 14 | 101 |
 | Complete corrected X execution | 5,914 | 16,557 |
 | Complete corrected Y execution | 5,914 | 16,558 |
