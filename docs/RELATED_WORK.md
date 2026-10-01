@@ -632,3 +632,14 @@ branch probabilities yields constant score overhead; arbitrary angles can
 require an n-dependent factor in this sufficient sampling bound. This is a
 specific alternative for raw gradients, not a generic training speedup or a
 priority claim over all importance-sampling protocols.
+
+The subsequent [coarse-frame decoder](COARSE_FRAME_QBP.md) combines the
+same standard X/Y interference identity with a coarse full-frame word and
+the original Walsh spreading step. Its local contribution is the
+constant depth-record bound from coarse marker agreement, the coherent
+reference matched to the actual native word, and the charged quantum and
+classical reconstruction. Exact correction in the decoder removes coarse
+bias without synthesizing a fine inverse frame. No claim of priority for
+basis-dependent overlap estimation or classical adjoint accumulation is
+made. The result covers all real angle tuples, including singular ones;
+the complex phase-gradient stream remains separate.

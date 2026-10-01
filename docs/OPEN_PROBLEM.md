@@ -3,8 +3,10 @@
 [Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [One-clean compiler](ONE_CLEAN_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
 This page gathers the retained results, the limits of explored routes, and
-the next research decision. A state-only route now supplies a separate
-raw-gradient protocol; the complete-frame endpoint remains open.
+the next research decision. State-only preparation with a coarse-frame
+decoder now supplies a raw-gradient protocol at all real angle tuples
+without an angle-dependent sampling factor; the complete-frame endpoint
+remains open.
 This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
@@ -782,14 +784,60 @@ output are also charged separately. No general training speedup or
 end-to-end optimality follows. The complete-frame endpoint and its
 original inverse-frame protocol remain distinct, valid questions.
 
+### A coarse inverse removes the angle-dependent shot penalty
+
+The [coarse-frame protocol](COARSE_FRAME_QBP.md) resolves the next sampling
+question for every real angle tuple. Take the actual native coarse circuit
+C with $`\|C-W\|\le1/(4\sqrt N)`$, exact dirty return, and $`O(N)`$
+T-count. Prepare the reference $`C|0\rangle`$ coherently with the target
+psi, apply the controlled observable, then apply the actual
+$`H^{\otimes n}C^\dagger`$ to both branches. The reference becomes uniform.
+Random X/Y branch measurements decode the complex coefficients
+$`f_j=H^{\otimes n}C^\dagger\partial_j\psi`$.
+
+At each depth, the incoming Hopf amplitudes have squared sum one.
+Consequently every depth's record has norm at most five, uniformly in n
+and all real angles, including singular endpoints. The actual C is used
+in the classical coefficients, so its coarse discrepancy creates no
+bias. This is a different decoder from the original fine-frame protocol.
+
+For reflection sums of coefficient norm Lambda, sufficient resources are
+
+```math
+S=O\!\left(\frac{\Lambda^2[1+\log(n/\delta)]}
+{\varepsilon_\infty^2}\right),\qquad
+L'=\max\{n,6,\lceil\log_2(80\Lambda/\varepsilon_\infty)\rceil\},
+```
+
+```math
+a_F=2,\qquad b_F\ge L'+n+7,\qquad
+\mathbb E\mathcal T_\nabla=O(S[N+L'+\overline t_O]).
+```
+
+The protocol branch and observable work remain separate. A complex signed
+histogram, Walsh transform, recorded C tree, and Hopf reverse traversal
+produce all coordinates in $`O(S+Nn)`$ classical arithmetic operations,
+plus charged coefficient preprocessing and bit costs. No dense Jacobian
+is needed. The finite-precision proof includes complete work return and
+reused dirty banks.
+
+This removes the extra K from the leaf-only reference route without a
+branch-probability promise. It does not give uniform dominance over the
+retained fixed-accuracy square-root frame compiler, establish total
+gradient optimality, or compile a fine complete frame. The phase-gradient
+stream for complex states also remains outside this new result.
+
 ### Next bounded task and stopping rule
 
-The state-only construction and reference decoder are selected for the
-Hopf task under their explicit sampling tradeoff. The next bounded question
-is whether the reference score penalty can be reduced beyond the stated
-branch-probability promise while retaining its charged state-only circuit.
-Compare total shots, observable calls, and native gates before selecting a
-variant; a smaller preparation T-count alone is insufficient.
+The coarse-frame construction settles the selected all-real-angle sampling
+question. The next task-specific implementation step is a bounded native
+fixture joining its common-coarse reference preparation, a concrete allowed
+controlled observable, and its histogram decoder. Keep compiler clean
+flags, the protocol branch, and observable work explicit; distinguish
+actual native gates from ideal logical test matrices. Compare complete
+costs against the original protocol at the same accuracy and workspace.
+The current finite tests verify algebra and the analytic resource proof
+composes retained primitives; they are not a complete native emitter.
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual

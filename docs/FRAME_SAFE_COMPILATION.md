@@ -40,6 +40,13 @@ protocol with leaf-dependent scores. It can use the
 inverse on an observable response. Its sampling tradeoff does not weaken
 the frame contract for the designated inverse-frame decoder below.
 
+The [coarse-frame decoder](COARSE_FRAME_QBP.md) instead applies the actual
+inverse of a cheap coarse frame and corrects its scores classically. Its
+constant depth-record bound holds at all real angles. It requires coarse
+agreement on the marker columns, while the fine-precision circuit only
+prepares the state. This separately proved protocol also leaves the fixed
+decoder's necessity statement intact.
+
 ## 2. State-column equality leaves a free completion
 
 Suppose

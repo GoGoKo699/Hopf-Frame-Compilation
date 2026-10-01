@@ -17,6 +17,11 @@ A separate [reference-state protocol](REFERENCE_STATE_QBP.md) estimates
 the same real raw gradients using state preparation and leaf interference.
 It has its own precision and shot ledger; it is not a substitution into
 the inverse-frame circuit analyzed here.
+The subsequent [coarse-frame protocol](COARSE_FRAME_QBP.md) retains the
+logarithmic depth-block sampling order at every real angle tuple, with
+$`O(N+L')`$ native T-count per execution apart from the observable. It
+combines a fine state preparation, a charged coarse inverse, and scores
+computed from that actual coarse word; it has its own workspace contract.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies

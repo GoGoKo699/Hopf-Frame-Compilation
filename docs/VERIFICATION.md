@@ -236,6 +236,14 @@ checks; the SU(2) coins and coarse matrices in these fixtures are ideal.
 The [native cost proof](STATE_ONLY_COMPILER.md) reuses separately verified
 primitives; no new full elementary emitter or complete-frame endpoint is
 claimed by these tests.
+The [coarse-frame QBP checks](../tests/test_coarse_frame_qbp.py) verify
+X/Y interference against analytic gradients for complex observables and
+regular, signed, and singular real charts. They check the uniform depth
+bound and the histogram/adjoint reconstruction. A concrete phase fixture
+detects the bias caused by dropping Y measurements or replacing actual-C
+scores with ideal Walsh scores. Their coarse words are small ideal
+unitaries; the native resource and complete-work claims are analytic in
+the [decoder proof](COARSE_FRAME_QBP.md) and its preparation dependency.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
