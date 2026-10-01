@@ -643,3 +643,24 @@ bias without synthesizing a fine inverse frame. No claim of priority for
 basis-dependent overlap estimation or classical adjoint accumulation is
 made. The result covers all real angle tuples, including singular ones;
 the complex phase-gradient stream remains separate.
+
+## 14. Gauge-fixed complex state and gradient extension
+
+The prefix phase cascade and its residual arithmetic-mean global phase
+are inherited from [Möttönen–Vartiainen–Bergholm–Salomaa, Section III,
+Eqs. (4), (5), and (7)](https://arxiv.org/pdf/quant-ph/0407010v1).
+The [complex coarse compiler](COMPLEX_COARSE_COMPILER.md) fixes the sign
+and half-angle convention, cancels the common phase for a state-based
+task, and applies the retained literal reflection interpreter to each
+determinant-one table. Its local result is the actual logical coarse C
+with exact dirty return, linear T count, recorded possibly nondiagonal
+rows, and the unchanged two-flag fine state-preparation reservation.
+
+The [two-stream decoder](COMPLEX_COARSE_QBP.md) combines that interface
+with the existing X/Y coarse-frame reconstruction and direct leaf-phase
+records. It supplies the consistent gauge correction, arbitrary-angle
+gradient identities, and complete quantum/classical precision ledger.
+Neither the standard phase cascade nor global-phase invariance is a new
+claim. The result does not compile the prescribed literal common phase of
+the complete frame, prove universal gradient-cost improvement, or emit a
+general native complex state-preparation package.

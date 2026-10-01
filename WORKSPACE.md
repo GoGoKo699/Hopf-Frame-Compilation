@@ -4,14 +4,17 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 native integration pass starts from verified main
-`bfcca665126c1ae9b7331c558a4f588a6e5a72e6`. Check the current branch
+The 2026-10-01 complex-state pass starts from verified main
+`5a3669ec21ccbd13a53aa69a960c6d66aef90a79`. Check the current branch
 and later commits before continuing. The state-only compiler prepares the
 real Hopf state with two clean flags and one precision charge. A new
 coarse-frame measurement and corrected classical decoder remove the
 leaf-reference protocol's angle-dependent shot penalty, including at
 singular angles. A complete small native example now verifies the changed
 protocol with an active arbitrary dirty helper and complex observables.
+The complex extension fixes a common state phase, compiles its coarse
+prefix phase tables with exact dirty return, and estimates both magnitude
+and leaf-phase gradients with the same two-flag allocation.
 The complete-frame endpoint remains open; the task-specific result does
 not require its resolution.
 
@@ -29,9 +32,11 @@ only a comparison. Supporting all allowed observables with the existing decoder
 still requires the designated marker directions. The new reference-state
 route explicitly changes the decoder while retaining all allowed observables
 and real raw gradient coordinates, with its own sample and precision bounds.
-The coarse-frame extension retains that task scope with a uniform bound.
+The complex coarse-frame extension includes the separate leaf-phase stream.
 
-1. Read the [coarse-frame gradient protocol](docs/COARSE_FRAME_QBP.md) and
+1. Read the [complex coarse compiler](docs/COMPLEX_COARSE_COMPILER.md) and
+   [complete complex gradient protocol](docs/COMPLEX_COARSE_QBP.md), then
+   the [real coarse-frame protocol](docs/COARSE_FRAME_QBP.md) and
    the [state-only construction](docs/STATE_ONLY_COMPILER.md), including its
    common-coarse reference corollary. The earlier
    [leaf-reference protocol](docs/REFERENCE_STATE_QBP.md) remains a separate
@@ -63,6 +68,7 @@ The coarse-frame extension retains that task scope with a uniform bound.
 | Hopf scattering | One packed local-rotation step has $`T=O(N+L)`$, $`G=O(NL)`$ and explicit port permutations; its feedback boundary equals the complete frame, but that feedback is not supplied by the step compiler |
 | State-only Hopf QBP | At $`L\ge\max\{6,n\}`$, two compiler flags and $`b\ge L+n+7`$ give $`T=O(N+L)`$, $`G=O(NL)`$ for preparation; a common-coarse reference preserves relative branch phase |
 | Coarse-frame Hopf QBP | All real angles admit depth-record norm at most five, the original logarithmic depth-block shot order, and $`O(N+L')`$ T-count per execution apart from the observable; histogram reconstruction costs $`O(S+Nn)`$ arithmetic plus preprocessing and bit costs |
+| Complex state-based Hopf QBP | Gauge-fixed prefix phase tables supply an exact-return logical coarse C with $`O(N)`$ T gates; the same two flags and dirty threshold give magnitude and phase streams, $`O(N+L')`$ T per execution, and $`O(S+Nn)`$ histogram arithmetic |
 
 For the selected complete real-frame endpoint,
 
@@ -169,15 +175,25 @@ The supplied words cost more than the original exact-frame protocol on this
 fixture; they do not demonstrate a practical advantage. The general
 fine-precision residual-table emitter remains outside this implementation.
 
-The next scientific task is to audit the phase-dressed complex-state
-coarse interface: actual logical native $`C\approx D_\varphi W_{\mathbb R}`$
-with $`O(N^{-1/2})`$ error, $`O(N)`$ T-count, exact dirty return, and
-recorded classical coefficients. An approximate phase-diagonal isometry
-with work leakage is not automatically that interface. Keep the established
-direct phase-gradient stream separate unless a proved replacement improves
-its complete cost. Stop with a specific missing lemma if the coarse
-interface does not fit; do not return to general full-frame synthesis by
-default. The fine complete-frame endpoint remains separate.
+The complex coarse-interface audit is complete. For supplied real leaf
+phases, subtract their arithmetic mean mu. The standard prefix phase
+cascade is determinant one and the borrowed reflection interpreter compiles
+an actual logical $`C\approx e^{-i\mu}D_\varphi W_{\mathbb R}`$ with
+exact dirty return and $`O(N)`$ T gates. Its actual phase rows can be
+nondiagonal and act on every suffix; classical application costs $`O(Nn)`$.
+The same residual table prepares the gauged target or its common coarse
+reference. The corrected magnitude decoder removes the gauge at its leaf
+weights, and the established direct phase-Y stream supplies the other N
+coordinates. The physical energy gradients do not depend on the gauge.
+
+The next bounded implementation task is to join these complex phase tables
+to the existing small elementary native fixture and verify both streams
+against arbitrary dirty input with literal branch phases. The present new
+checks already use native one-qubit row words, but the complex prefix
+selection and fine residual table are still analytic constructions.
+Require complete gate counts and same-observable comparison before claiming
+an implemented complex protocol. The general fine-precision emitter and
+the fine complete-frame endpoint remain separate.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -202,9 +218,9 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The local suite passes all 308 tests, including the new elementary native
-integration and executable histogram checks alongside the retained ideal
-decoder and state-amplification checks. Merge gates include Python
+The local suite includes elementary native integration, executable integer
+histogram checks, and bounded complex gauge/gradient checks alongside the
+retained ideal decoder and state-amplification checks. Merge gates include Python
 3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
 The retained scattering checks cover complete small frames and literal port
 permutations on matrices of dimension 16 and 32; their coins remain ideal.
@@ -214,8 +230,9 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass supplies a complete bounded native integration of the selected
-real raw-gradient route. The frame endpoint is unchanged.
+This pass supplies the complex task-specific proof and its histogram
+implementation. Complete native integration currently covers the real
+target fixture; the frame endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

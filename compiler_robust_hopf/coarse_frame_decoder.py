@@ -48,6 +48,99 @@ def _integer_walsh(values: list[int]) -> list[int]:
     return out
 
 
+def _real_tree_angles(theta: object) -> tuple[np.ndarray, int, int]:
+    """Validate the shared real Hopf geometry without changing its inputs."""
+    try:
+        raw_angles = np.asarray(theta)
+        if np.iscomplexobj(raw_angles) or any(np.iscomplexobj(value) for value in raw_angles.flat):
+            raise ValueError("theta must contain real angles.")
+        angles = np.asarray(theta, dtype=float)
+    except (TypeError, ValueError, OverflowError) as exc:
+        raise ValueError("theta must be a finite one-dimensional real angle array.") from exc
+    if angles.ndim != 1 or not np.all(np.isfinite(angles)):
+        raise ValueError("theta must be a finite one-dimensional real angle array.")
+    size = angles.size + 1
+    if size < 2 or size & (size - 1):
+        raise ValueError("theta must contain 2**n - 1 angles for n >= 1.")
+    return angles, size, size.bit_length() - 1
+
+
+def _coarse_blocks(values: object, size: int, name: str = "coarse_blocks") -> np.ndarray:
+    """Validate recorded logical blocks, without certifying their unitarity."""
+    try:
+        blocks = np.asarray(values, dtype=complex)
+    except (TypeError, ValueError, OverflowError) as exc:
+        raise ValueError(f"{name} must contain finite complex 2-by-2 blocks.") from exc
+    if blocks.shape != (size - 1, 2, 2) or not np.all(np.isfinite(blocks)):
+        raise ValueError(f"{name} must have finite entries and shape (N-1, 2, 2).")
+    return blocks
+
+
+def _histogram_vector(
+    hist_x: object,
+    hist_y: object,
+    shots: int,
+    coefficient_scale: float,
+    size: int,
+) -> tuple[np.ndarray, float]:
+    """Return F_N(A+iB)/shots using integer Walsh butterflies."""
+    try:
+        count = operator.index(shots)
+    except TypeError as exc:
+        raise ValueError("shots must be a positive integer.") from exc
+    if isinstance(shots, (bool, np.bool_)) or count <= 0:
+        raise ValueError("shots must be a positive integer.")
+    try:
+        raw_scale = np.asarray(coefficient_scale)
+        if raw_scale.ndim != 0 or np.iscomplexobj(raw_scale) or np.iscomplexobj(raw_scale.item()):
+            raise ValueError("coefficient_scale must be a real scalar.")
+        scale = float(coefficient_scale)
+    except (TypeError, ValueError, OverflowError) as exc:
+        raise ValueError("coefficient_scale must be positive and finite.") from exc
+    if not np.isfinite(scale) or scale <= 0:
+        raise ValueError("coefficient_scale must be positive and finite.")
+
+    hx = _integer_histogram(hist_x, size, "hist_x")
+    hy = _integer_histogram(hist_y, size, "hist_y")
+    if sum(abs(value) for value in hx) + sum(abs(value) for value in hy) > count:
+        raise ValueError("The total absolute histogram count cannot exceed shots.")
+    wx, wy = _integer_walsh(hx), _integer_walsh(hy)
+    # Divide arbitrary-size integers before converting to complex floating
+    # point.  The validated count bound makes both quotients lie in [-1,1].
+    vector = np.array([complex(x / count, y / count)
+                       for x, y in zip(wx, wy, strict=True)])
+    return vector, scale
+
+
+def _apply_tree_blocks(vector: np.ndarray, blocks: np.ndarray, height: int) -> np.ndarray:
+    """Apply the recorded Hopf two-mode words to a new logical vector."""
+    vector = vector.copy()
+    for node, block in enumerate(blocks, start=1):
+        indices = [anchor_label(node, height), marker_label(node, height)]
+        vector[indices] = block @ vector[indices]
+    return vector
+
+
+def _real_tree_pullback(angles: np.ndarray, leaf_weights: np.ndarray) -> np.ndarray:
+    """Contract the real Hopf Jacobian with fixed real leaf weights."""
+    size = angles.size + 1
+    cosine, sine = np.cos(angles), np.sin(angles)
+    incoming = np.zeros(2 * size)
+    incoming[1] = 1
+    for node in range(1, size):
+        incoming[2 * node] = incoming[node] * cosine[node - 1]
+        incoming[2 * node + 1] = incoming[node] * sine[node - 1]
+    adjoints = np.zeros(2 * size)
+    adjoints[size:] = leaf_weights
+    gradient = np.zeros(size - 1)
+    for node in range(size - 1, 0, -1):
+        c, s = cosine[node - 1], sine[node - 1]
+        left, right = adjoints[2 * node], adjoints[2 * node + 1]
+        gradient[node - 1] = incoming[node] * (-s * left + c * right)
+        adjoints[node] = c * left + s * right
+    return gradient
+
+
 def decode_coarse_frame_histograms(
     theta: object,
     coarse_blocks: object,
@@ -79,67 +172,8 @@ def decode_coarse_frame_histograms(
     Inputs are not mutated.  This routine neither emits a native circuit nor
     certifies block unitarity, closeness to the target frame, or sampling error.
     """
-    try:
-        raw_angles = np.asarray(theta)
-        if np.iscomplexobj(raw_angles) or any(np.iscomplexobj(value) for value in raw_angles.flat):
-            raise ValueError("theta must contain real angles.")
-        angles = np.asarray(theta, dtype=float)
-    except (TypeError, ValueError, OverflowError) as exc:
-        raise ValueError("theta must be a finite one-dimensional real angle array.") from exc
-    if angles.ndim != 1 or not np.all(np.isfinite(angles)):
-        raise ValueError("theta must be a finite one-dimensional real angle array.")
-    size = angles.size + 1
-    if size < 2 or size & (size - 1):
-        raise ValueError("theta must contain 2**n - 1 angles for n >= 1.")
-    height = size.bit_length() - 1
-
-    try:
-        blocks = np.asarray(coarse_blocks, dtype=complex)
-    except (TypeError, ValueError, OverflowError) as exc:
-        raise ValueError("coarse_blocks must contain finite complex 2-by-2 blocks.") from exc
-    if blocks.shape != (size - 1, 2, 2) or not np.all(np.isfinite(blocks)):
-        raise ValueError("coarse_blocks must have finite entries and shape (N-1, 2, 2).")
-    try:
-        count = operator.index(shots)
-    except TypeError as exc:
-        raise ValueError("shots must be a positive integer.") from exc
-    if isinstance(shots, (bool, np.bool_)) or count <= 0:
-        raise ValueError("shots must be a positive integer.")
-    try:
-        raw_scale = np.asarray(coefficient_scale)
-        if raw_scale.ndim != 0 or np.iscomplexobj(raw_scale) or np.iscomplexobj(raw_scale.item()):
-            raise ValueError("coefficient_scale must be a real scalar.")
-        scale = float(coefficient_scale)
-    except (TypeError, ValueError, OverflowError) as exc:
-        raise ValueError("coefficient_scale must be positive and finite.") from exc
-    if not np.isfinite(scale) or scale <= 0:
-        raise ValueError("coefficient_scale must be positive and finite.")
-
-    hx = _integer_histogram(hist_x, size, "hist_x")
-    hy = _integer_histogram(hist_y, size, "hist_y")
-    if sum(abs(value) for value in hx) + sum(abs(value) for value in hy) > count:
-        raise ValueError("The total absolute histogram count cannot exceed shots.")
-    wx, wy = _integer_walsh(hx), _integer_walsh(hy)
-    # Divide arbitrary-size integers before converting to complex floating
-    # point.  The validated count bound makes both quotients lie in [-1,1].
-    vector = np.array([complex(x / count, y / count)
-                       for x, y in zip(wx, wy, strict=True)])
-    for node, block in enumerate(blocks, start=1):
-        indices = [anchor_label(node, height), marker_label(node, height)]
-        vector[indices] = block @ vector[indices]
-
-    cosine, sine = np.cos(angles), np.sin(angles)
-    incoming = np.zeros(2 * size)
-    incoming[1] = 1
-    for node in range(1, size):
-        incoming[2 * node] = incoming[node] * cosine[node - 1]
-        incoming[2 * node + 1] = incoming[node] * sine[node - 1]
-    adjoints = np.zeros(2 * size)
-    adjoints[size:] = vector.real
-    gradient = np.zeros(size - 1)
-    for node in range(size - 1, 0, -1):
-        c, s = cosine[node - 1], sine[node - 1]
-        left, right = adjoints[2 * node], adjoints[2 * node + 1]
-        gradient[node - 1] = incoming[node] * (-s * left + c * right)
-        adjoints[node] = c * left + s * right
-    return 4 * scale * gradient
+    angles, size, height = _real_tree_angles(theta)
+    blocks = _coarse_blocks(coarse_blocks, size)
+    vector, scale = _histogram_vector(hist_x, hist_y, shots, coefficient_scale, size)
+    vector = _apply_tree_blocks(vector, blocks, height)
+    return 4 * scale * _real_tree_pullback(angles, vector.real)
