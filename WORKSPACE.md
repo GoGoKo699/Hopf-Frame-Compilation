@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-01 native residual-row pass starts from verified main
-`6ff8da4db3946fe7716affbe0c867d8bad78e69f`, after the state-based depth
-audit. Check the current branch and later commits before continuing.
+The 2026-10-01 native two-row table pass starts from verified main
+`365ee59538f4baa065501008afc977e3ca07217b`, after the unaddressed
+residual-row implementation. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -27,8 +27,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
    classical construction, and explicit Pauli baselines. The
    [residual coefficient proof](docs/RESIDUAL_TABLE_PREPROCESSING.md)
    documents the classical interval helper; the
-   [native residual row](docs/NATIVE_RESIDUAL_ROTATION.md) connects it to
-   exact paired-source masks and elementary borrowed-signal rotations.
+   [native rows and tables](docs/NATIVE_RESIDUAL_ROTATION.md) connect it to
+   exact masks, borrowed-signal rotations, and one enabled two-row table.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -49,7 +49,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
-| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, and a [certified unaddressed residual row](docs/NATIVE_RESIDUAL_ROTATION.md); [verification map](docs/VERIFICATION.md) |
+| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, and [certified residual rows and two-row tables](docs/NATIVE_RESIDUAL_ROTATION.md); [verification map](docs/VERIFICATION.md) |
 
 The theorem's original accuracy bits K and state precision
 $`P=\max(n,K)`$ must remain distinct. The observable needs accuracy K,
@@ -93,7 +93,7 @@ These are upper schedules, not matching T-depth tradeoffs or total-runtime
 claims. The source programs still run serially. Source parallelization
 and depth lower bounds remain separate questions.
 
-## Completed native residual-row pass
+## Completed native residual components
 
 The [native bridge](docs/NATIVE_RESIDUAL_ROTATION.md) now programs exact
 paired-source signs from rational cosine/sine intervals, emits literal
@@ -103,8 +103,16 @@ core, signal, and reference inputs. It uses q+2 borrowed wires excluding
 the target, no clean work, and O(q) gate storage. The unsimplified row has
 540q T/TDG gates. Exact rational programming and small all-input native
 checks replace the previous floating-point-only programming evidence.
-This implements existing identities; it does not change the asymptotic
-theorem or emit its complete addressed state-preparation schedule.
+The two-row extension adds one address bit and one enable literal. It
+preserves both logical wires exactly and is exactly identity when
+disabled. Source-center CNOT/Toffoli gates implement the predicate with
+no extra helper at this control arity. Its full-operator row bound remains
+below $`130\,2^{-q}`$, taking the maximum over addresses; it has q+5
+total wires and the same q+2 borrowed work wires. The unsimplified table
+has 540q+630 T/TDG gates. Complete small-input checks use four fixed
+control sectors and retain their relative phases. These components
+implement existing identities; they do not change the asymptotic
+theorem or emit its complete state-preparation schedule.
 
 ## Remaining work and continuation criteria
 
@@ -114,15 +122,15 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | One certified unaddressed residual row is implemented. Addressed tables, dirty lookup/predicate schedules, and complete fine state preparation remain. The next bounded component is a small addressed two-row table with exact inactive-sector behavior and a complete error/workspace contract |
+| General fine-precision native emitter | A certified row and an enabled two-row table are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded integration is a small residual state-preparation word with two declared clean compiler flags and the actual inverse in amplification |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
-Do not repeat the completed coefficient-to-native-row bridge. For the
-next component, keep literal phases and actual inverses, charge its
-address predicate and arbitrary helper, and verify inactive sectors
-before composing a general table or state compiler.
+Do not repeat the completed coefficient-to-row or two-row table checks.
+For the next component, keep literal phases and actual inverses, declare
+all initialized inputs, include borrowed-work return in its isometry
+error, and charge each reflection before composing a larger state compiler.
 
 For the selected complete real-frame endpoint,
 
