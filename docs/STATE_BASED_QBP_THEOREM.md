@@ -231,7 +231,8 @@ Explicit controlled Pauli terms use $`O(n)`$ Clifford gates each;
 their descriptions, generation, and execution are still charged.
 
 The implemented [residual coefficient helper](RESIDUAL_TABLE_PREPROCESSING.md)
-certifies classical rotation data. Complete native [real](NATIVE_COARSE_QBP.md)
+and [native row bridge](NATIVE_RESIDUAL_ROTATION.md) certify and emit one
+unaddressed residual completion. Complete native [real](NATIVE_COARSE_QBP.md)
 and [complex](NATIVE_COMPLEX_COARSE_QBP.md) examples verify special two-qubit
 targets. The general fine-precision native emitter is not implemented;
 the construction bound above is analytic.

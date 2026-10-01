@@ -32,6 +32,8 @@ theorem by numerical extrapolation.
 | [`test_complex_coarse_certificate.py`](test_complex_coarse_certificate.py) | Exact small-field commutator trace and rational certificate for the complex fixture's coarse error |
 | [`test_native_complex_coarse_qbp.py`](test_native_complex_coarse_qbp.py) | Complete elementary prefix selections, coherent preparation, both gradient streams on arbitrary dirty input, literal gate counts, and wrong-gauge/branch-phase witnesses |
 | [`test_residual_table_preprocessing.py`](test_residual_table_preprocessing.py) | Rational square-root and shared half-phase enclosures, tiny-radius/unit-boundary cases, input contracts, and finite error/workspace certificates; no quantum circuit simulation |
+| [`test_rotation_programming.py`](test_rotation_programming.py) | Exact geometric-tail moments, interval certificates beyond floating-point precision, rounding/head boundaries, and invalid-input rejection |
+| [`test_native_residual_rotation.py`](test_native_residual_rotation.py) | Literal emitted Ry/Rz and residual words on all small-register input columns, actual adjoints, signal symmetry, fine algebraic checks, and linear gate counts |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
@@ -76,13 +78,16 @@ The following checks are especially useful when modifying the scientific code:
 12. corrected magnitude and direct phase streams reproduce analytic gradients
     as complete dirty-input score operators, including singular tuples;
 13. rational residual coefficients retain their certified error and consistent
-    half-phase branch at zero, tiny radius, and the unit-circle boundary.
+    half-phase branch at zero, tiny radius, and the unit-circle boundary;
+14. exact paired-source programs and elementary unaddressed residual rows
+    preserve literal phases, borrowed-signal symmetry, and full-input bounds.
 
 The real and complex elementary integration fixtures use two logical
 qubits and exact finite-size preparation. Their bounded propagated columns
 do not implement the general fine residual-table emitter. Classical
 coefficient certificates and floating histogram reconstruction have their
-separate scopes above.
+separate scopes above. The unaddressed native row is a further implemented
+component; general address selection and state amplification remain separate.
 
 All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
 checks are retained.

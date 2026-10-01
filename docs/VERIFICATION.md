@@ -309,6 +309,23 @@ error and bit bounds, and the [bounded-input audit](BOUNDED_INPUT_QBP.md)
 separately prices native-word searches and the classical gradient baseline.
 These checks do not implement a general native emitter or certify a
 polynomial-time optimal one-qubit synthesizer.
+
+The [certified residual-row bridge](NATIVE_RESIDUAL_ROTATION.md) adds a
+production path from these intervals to elementary gates. Its
+[exact programming tests](../tests/test_rotation_programming.py) recover
+source moments independently, certify beta and block errors through
+2048-bit precision, and cover head, grid, phase-cut, and input boundaries.
+The [native tests](../tests/test_native_residual_rotation.py) compare
+literal emitted words against independent Majorana algebra on every input
+column of eight wires at q=5; they check phases, amplified moments,
+borrowed-signal symmetry, Rz orientation, and residual composition.
+Fine-precision error checks use both small Clifford-algebra representations,
+while output ledgers verify linear gate storage and 540q T/TDG gates per
+row. Certificates and signs altered after programming are rejected.
+This implements one unaddressed row, with no general table or complete
+state compiler claim. The full-operator bound rests on the existing
+source and amplification proofs, not numerical extrapolation.
+
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

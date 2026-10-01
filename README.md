@@ -304,8 +304,9 @@ $`T=O(N+P)`$, $`G=O(NP)`$ per execution apart from the observable;
 the protocol branch is separate. A charged actual coarse inverse and
 classical correction retain the original order of simultaneous-gradient
 shots. [Depth schedules](docs/STATE_QBP_DEPTH.md) and bounded-input costs are explicit.
-The general fine native emitter remains unimplemented; the constant-clean
-full-frame endpoint remains open. No end-to-end speedup is claimed.
+A [native residual row](docs/NATIVE_RESIDUAL_ROTATION.md) is implemented;
+the full emitter and constant-clean frame endpoint remain open.
+No end-to-end speedup is claimed.
 
 ## Verification boundary
 
