@@ -1,6 +1,6 @@
 # Validation suite
 
-[← Repository landing page](../README.md) · [Verification map](../docs/VERIFICATION.md) · [Implementation map](../compiler_robust_hopf/README.md)
+[← Repository landing page](../README.md) · [State-based QBP theorem](../docs/STATE_BASED_QBP_THEOREM.md) · [Verification map](../docs/VERIFICATION.md) · [Implementation map](../compiler_robust_hopf/README.md)
 
 The tests are organized around the proof interfaces rather than around one
 particular circuit library.  They are designed to expose convention, operator,
@@ -28,6 +28,10 @@ theorem by numerical extrapolation.
 | [`test_coarse_frame_qbp.py`](test_coarse_frame_qbp.py) | Corrected X/Y means, uniform depth-record bounds, histogram/adjoint reconstruction, and bias witnesses for omitted quadratures or coarse corrections; ideal four/eight-mode matrices |
 | [`test_coarse_frame_decoder.py`](test_coarse_frame_decoder.py) | Executable histogram reconstruction, large exact counters, canceled records, and input contracts without a dense derivative table |
 | [`test_native_coarse_qbp.py`](test_native_coarse_qbp.py) | Expanded elementary circuits, complete preparation isometries, coherent dirty-input score operators, literal phases, and comparison with the original protocol |
+| [`test_complex_coarse_qbp.py`](test_complex_coarse_qbp.py) | Phase-gauge factorization, actual local native rows on every suffix, executable histogram reconstruction, and both gradient means; residual amplification uses small ideal matrices |
+| [`test_complex_coarse_certificate.py`](test_complex_coarse_certificate.py) | Exact small-field commutator trace and rational certificate for the complex fixture's coarse error |
+| [`test_native_complex_coarse_qbp.py`](test_native_complex_coarse_qbp.py) | Complete elementary prefix selections, coherent preparation, both gradient streams on arbitrary dirty input, literal gate counts, and wrong-gauge/branch-phase witnesses |
+| [`test_residual_table_preprocessing.py`](test_residual_table_preprocessing.py) | Rational square-root and shared half-phase enclosures, tiny-radius/unit-boundary cases, input contracts, and finite error/workspace certificates; no quantum circuit simulation |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
@@ -68,7 +72,17 @@ The following checks are especially useful when modifying the scientific code:
 10. actual inverse circuits and sequential composition retain their bounds
     after intermediate leakage;
 11. grouped conditional-suffix blocks preserve every inactive sector and
-    include active suffix and predicate leakage in the complete error.
+    include active suffix and predicate leakage in the complete error;
+12. corrected magnitude and direct phase streams reproduce analytic gradients
+    as complete dirty-input score operators, including singular tuples;
+13. rational residual coefficients retain their certified error and consistent
+    half-phase branch at zero, tiny radius, and the unit-circle boundary.
+
+The real and complex elementary integration fixtures use two logical
+qubits and exact finite-size preparation. Their bounded propagated columns
+do not implement the general fine residual-table emitter. Classical
+coefficient certificates and floating histogram reconstruction have their
+separate scopes above.
 
 All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
 checks are retained.

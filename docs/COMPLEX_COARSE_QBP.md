@@ -1,6 +1,6 @@
 # Complex Hopf gradients with an actual coarse measurement frame
 
-[Complex coarse compiler](COMPLEX_COARSE_COMPILER.md) · [Real coarse-frame decoder](COARSE_FRAME_QBP.md) · [Original complex-gradient contract](QBP_APPROXIMATION.md#9-the-complete-complex-gradient)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [Complex coarse compiler](COMPLEX_COARSE_COMPILER.md) · [Real coarse-frame decoder](COARSE_FRAME_QBP.md) · [Original complex-gradient contract](QBP_APPROXIMATION.md#9-the-complete-complex-gradient)
 
 The actual gauge-fixed complex coarse circuit supplies the same bounded
 magnitude records as the real construction. A separate computational-basis
@@ -351,9 +351,11 @@ Likewise charge certified evaluation of the actual native row coefficients,
 term-distribution preprocessing, all arithmetic bit costs, and output
 representation. A finite row word can be evaluated with guard precision
 for its recorded length; none of these coefficients are a free supplied
-quantum oracle. Fine residual-table, square-root, and Euler preprocessing
-retain the separate compiler's certification obligations. The histogram
-bound is not a bit-complexity theorem for that preprocessing.
+quantum oracle. The [algebraic residual procedure](RESIDUAL_TABLE_PREPROCESSING.md)
+programs the fine table directly from certified sine/cosine pairs, without
+Euler search. Its square-root and coefficient bounds, and the
+[bounded-input construction](BOUNDED_INPUT_QBP.md), separately price that
+preprocessing. The histogram arithmetic count alone is not its bit bound.
 
 ## 7. Complete quantum ledger and the comparison boundary
 

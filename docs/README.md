@@ -2,11 +2,14 @@
 
 [Landing page](../README.md) · [Read the argument](../REVIEW.md) · [Publication scope](../manuscript/PUBLICATION_SCOPE.md)
 
-Start with the landing page for the question and results, then read
-`REVIEW.md` for the continuous argument. Each formal topic has one primary
-chapter below.
+For the gradient task, start with the
+[state-based QBP theorem](STATE_BASED_QBP_THEOREM.md). For the complete-frame
+compiler argument, start with the landing page and `REVIEW.md`. Each formal
+topic has one primary chapter below.
 
 ## Proof chapters
+
+### Frame interfaces and compiler proofs
 
 | Chapter | Role |
 |---|---|
@@ -21,6 +24,12 @@ chapter below.
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md) | Exact returned dirty indicators and simultaneous count-efficient, low-T-depth full-frame compilation |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
+
+### Gradient protocols and task costs
+
+| Chapter | Role |
+|---|---|
+| [State-based QBP theorem](STATE_BASED_QBP_THEOREM.md) | Task-level statement, precision and workspace contract, implementation scope, and complete-cost boundary |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |
 | [State-only compiler](STATE_ONLY_COMPILER.md) | Two clean flags and one precision charge for a known real Hopf state, including coherent reference selection |
@@ -33,6 +42,11 @@ chapter below.
 | [Hopf QBP cost comparison](QBP_COST_COMPARISON.md) | Common accuracy and workspace, the fine gauged borrowed baseline, banked state bounds, and separate quantum, sampling, and classical costs |
 | [Bounded-input QBP costs](BOUNDED_INPUT_QBP.md) | Constructive preprocessing, explicit program output, deterministic and sampled classical Pauli baselines, and the end-to-end comparison boundary |
 | [Residual-table preprocessing](RESIDUAL_TABLE_PREPROCESSING.md) | Certified algebraic rotation coefficients without Euler search, unchanged error constants, and the small-system banked construction |
+
+### Research boundaries and related constructions
+
+| Chapter | Role |
+|---|---|
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Reconciled hierarchy of bounds, promised update families, and supporting components; current task-specific protocol and separate complete-frame questions |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |

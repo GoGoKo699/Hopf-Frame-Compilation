@@ -1,6 +1,6 @@
 # Bounded-input costs for Hopf gradients
 
-[Task-cost comparison](QBP_COST_COMPARISON.md) · [Complex gradient protocol](COMPLEX_COARSE_QBP.md) · [Classical source tables](OPERATOR_SOURCE_COMPILER.md#10-classical-table-construction)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [Task-cost comparison](QBP_COST_COMPARISON.md) · [Complex gradient protocol](COMPLEX_COARSE_QBP.md) · [Classical source tables](OPERATOR_SOURCE_COMPILER.md#10-classical-table-construction)
 
 This note fixes an explicit classical input and execution model. In this
 model the observable is a supplied Pauli list, so a classical algorithm
@@ -629,8 +629,9 @@ T improvement is a compiler result with a precise precision/workspace
 range. The explicit Pauli case supplies useful classical comparators,
 not an end-to-end speedup example.
 
-The next revision should consolidate these contracts with the established
-frame results. A new algorithmic advantage claim needs a concrete
+The [consolidated state-based theorem](STATE_BASED_QBP_THEOREM.md) states
+these contracts alongside their complete-frame boundary. A new algorithmic
+advantage claim needs a concrete
 observable-access model and an appropriate classical comparator; none is
 selected by this audit. A full elementary fine-precision emitter remains
 an implementation task. The separate constant-clean complete-frame

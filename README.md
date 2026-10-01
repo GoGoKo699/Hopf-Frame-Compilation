@@ -1,7 +1,5 @@
 # Exact and Fault-Tolerant Compilation of Hopf Differential Frames
 
-### One prescribed frame, exact logical and fault-tolerant compilation
-
 Exact state preparation normally specifies one initialized input:
 
 ```math
@@ -10,7 +8,7 @@ Exact state preparation normally specifies one initialized input:
 |\psi\rangle|0^m\rangle.
 ```
 
-Hopf backpropagation uses a prescribed unitary completion: the state in its
+The original inverse-frame Hopf decoder uses a prescribed unitary completion: the state in its
 first column and coordinate-frame directions in designated other columns.
 Its inverse resolves a common objective response.
 
@@ -21,8 +19,7 @@ Its inverse resolves a common objective response.
 
 This repository asks whether the prescribed Hopf completion retains the
 state-preparation size–depth frontier, and what finite precision costs.
-The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the claims;
-manuscript writing follows their consolidation.
+The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the full-frame claims.
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column, whereas Hopf differential-frame compilation fixes the state and designated frame columns." />
@@ -183,8 +180,6 @@ all-zero predicate.  Three schedules exploit this structure.
 | $1\leq m\lt 4n$ | direct flagged UCG | one reusable clean flag stores the suffix-zero predicate |
 | larger $m$ | routed parallel subframes | a tree cut turns the tail into a direct sum; the suffix is routed coherently and the subtree frames run in parallel |
 
-The threshold $4n$ is sufficient; its constant is not optimized.
-
 <p align="center">
   <img src="assets/literature-lineage.svg" width="940" alt="The all-workspace state-preparation line and the Hopf differential-frame line meet in the optimal complete-frame compiler." />
 </p>
@@ -197,12 +192,9 @@ The threshold $4n$ is sufficient; its constant is not optimized.
 | 30–40 minutes | **[complete technical narrative](REVIEW.md)** | shared contract, the two resource models, and the QBP consequence |
 | full audit | **[exact theorem](docs/COMPILER_THEOREM.md)**, **[T-count theorem](docs/FAULT_TOLERANT_COMPILER.md)**, **[one-clean theorem](docs/ONE_CLEAN_COMPILER.md)**, and **[verification map](docs/VERIFICATION.md)** | proofs, register schedules, evidence limits, and source dependencies |
 
-The [documentation map](docs/README.md) links the remaining chapters, including
-the [QBP consequence](docs/QBP_CONSEQUENCE.md) and [related work](docs/RELATED_WORK.md).
-
-Prerequisites are quantum circuits, operator norms, and asymptotic notation.
-The [Hopf interface](docs/HOPF_INTERFACE.md) supplies the geometry. Begin with
-the narrative’s two-qubit example.
+The [documentation map](docs/README.md) includes the
+[QBP consequence](docs/QBP_CONSEQUENCE.md), [related work](docs/RELATED_WORK.md),
+and [Hopf geometry](docs/HOPF_INTERFACE.md).
 
 ## Why the completion matters
 
@@ -239,7 +231,7 @@ but the decoded gradient changes from
 (0,\sqrt2,0).
 ```
 
-The relevant compiler contract is therefore
+For this fixed decoder, the relevant compiler contract is
 
 ```math
 \widetilde W
@@ -302,15 +294,23 @@ The same proof now covers the complete complex gradient, reflection-sum
 observables, rounded classical weights, and correlated dirty-bank reuse
 between executions with fresh declared clean inputs.
 
+The separate [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md)
+changes the decoder and avoids compiling the fine complete frame.
+For real and phase-dressed complex Hopf states, observable coefficient norm $`\Lambda`$,
+and error $`\epsilon`$, put
+$`K=\max\{6,\lceil\log_2(80\Lambda/\epsilon)\rceil\}`$ and $`P=\max\{n,K\}`$.
+Two initialized compiler flags and $`b\ge P+n+7`$ dirty wires give
+$`T=O(N+P)`$, $`G=O(NP)`$ per execution apart from the observable;
+the protocol branch is separate. A charged actual coarse inverse and
+classical correction retain the original order of simultaneous-gradient
+shots. It includes banked bounds and certified bounded-input cost comparisons.
+The general fine native emitter remains unimplemented; the constant-clean
+full-frame endpoint remains open. No end-to-end speedup is claimed.
+
 ## Verification boundary
 
-The repository supplies:
-
-- complete logical matrices for the frame identities and strict-zero echo;
-- explicit reversible X/CNOT/Toffoli layers for the binary–one-hot decoder;
-- explicit CNOT/Fredkin routing layers and arbitrary-entangled-input tests;
-- exact integer or rational resource ledgers;
-- parity, histogram, and fast Walsh–Hadamard gradient decoders.
+Checks cover complete logical identities, explicit decoder/router gates,
+arbitrary-entangled inputs, exact resource ledgers, and gradient decoders.
 
 UCG and multi-controlled-X decompositions are imported. Finite checks expose
 indexing, phase, order, cleanup, and resource errors; the asymptotic claims
@@ -350,11 +350,5 @@ python scripts/strict_zero_echo_ledger.py --n 12
 
 ## Status and license
 
-The [manuscript guide](manuscript/README.md) outlines the paper, and the
-[scientific package](manuscript/PUBLICATION_SCOPE.md#scientific-ingredients-before-final-writing)
-lists the proofs and evidence that precede final writing.
-
-The [verification map](docs/VERIFICATION.md) records the evidence; the
-[source map](docs/SOURCE_MAP.md) records dependencies. Neither certifies
-external review or exhaustive novelty.
+[Evidence](docs/VERIFICATION.md) and [sources](docs/SOURCE_MAP.md) delimit the claims.
 The repository uses the [MIT license](LICENSE).

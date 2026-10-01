@@ -2,23 +2,16 @@
 
 [Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [One-clean compiler](ONE_CLEAN_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
-This page gathers the retained results, the limits of explored routes, and
-the next research decision. State-only preparation with a coarse-frame
-decoder supplies a raw-gradient protocol at all real angle tuples without
-an angle-dependent sampling factor. Its gauge-fixed complex extension now
-includes both magnitude and leaf-phase gradients with the same two-flag
-allocation; the complete-frame endpoint remains open.
-The [task-cost comparison](QBP_COST_COMPARISON.md) now identifies the
-high-precision regimes where additional dirty banks improve the available
-state-only bound, while retaining the original fixed-accuracy advantage
-and charging the unchanged sampling and classical obligations.
-The [bounded-input audit](BOUNDED_INPUT_QBP.md) now prices constructive
-preprocessing and includes deterministic and sampled classical Pauli
-baselines. It supports a compiler-resource result, not an end-to-end
-speedup claim for that explicit access model.
-This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
-gives the selected publication results and the [verification map](VERIFICATION.md)
-separates analytic proofs from finite checks.
+This page records the complete-frame frontier and the limits of explored
+routes. The separate [state-based QBP theorem](STATE_BASED_QBP_THEOREM.md)
+consolidates the completed changed-decoder result, its real/complex
+contracts, resource bounds, computational assumptions, and proof map.
+Its two-flag state preparation does not resolve the prescribed
+complete-frame endpoint.
+
+The [publication scope](../manuscript/PUBLICATION_SCOPE.md) retains the
+established frame results. The [verification map](VERIFICATION.md)
+distinguishes analytic proofs from implemented and finite evidence.
 
 ## Established frontier
 
@@ -732,215 +725,72 @@ representation is useful, but it has not narrowed the endpoint gap.
 
 ### A state-only route for raw Hopf gradients
 
-A different measurement protocol now gives a concrete task-specific result.
-The [state-only compiler](STATE_ONLY_COMPILER.md) prepares the real Hopf
-state, or coherently selects between it and a known reference state, with
+The completed [state-based theorem](STATE_BASED_QBP_THEOREM.md) is the
+current task-specific statement. It uses two compiler flags to prepare a
+real or gauge-fixed complex Hopf state, or coherently select it with the
+actual coarse reference. Its initialized-isometry error includes flags,
+arbitrary dirty work, and external references. The prescribed other frame
+columns are not compiled.
 
-```math
-L\ge\max\{6,n\},\qquad a=2,\qquad b\ge L+n+7,
-\qquad T=O(N+L),\qquad G=O(NL).
-```
-
-Its contract initializes the system and returns all work within the stated
-joint error, including arbitrary dirty/reference inputs. It does not
-prescribe the other system columns. An actual cheap coarse circuit C makes
-$`C^\dagger\psi`$ close enough to the zero basis state that one table
-can encode its complete correction. Two flags give accepted amplitude
-one half, and one standard amplification step completes the preparation.
-The coefficients already contain all tree levels; no inverse frame is
-called in the [reference-state decoder](REFERENCE_STATE_QBP.md).
-
-The new decoder preserves every real raw-coordinate gradient mean for
-every allowed Hermitian-unitary observable, including complex observables.
-Its distribution and record bounds differ from those of inverse-frame QBP.
-Let $`d_{v,x}=\partial_{\theta_v}\psi_x`$ and
-
-```math
-Z=\sum_x\max_v |d_{v,x}|^2,\qquad 1\le Z\le n.
-```
-
-An O(N)-arithmetic tree recurrence computes the envelope without forming
-the full Jacobian. A positive floor gives a reference whose depth-wise
-record norm is at most $`2\sqrt{Z+1}`$. Thus, for reflection-sum
-coefficient norm Lambda, the sufficient shot bound is
-
-```math
-S=O\!\left(\frac{\Lambda^2 K}{\varepsilon_\infty^2}
-              [1+\log(n/\delta)]\right),
-\qquad K=Z+1\le n+1.
-```
-
-The preparation precision and classical coefficient rounding are allocated
-in the decoder proof. At unrestricted angles the extra K can outweigh the
-per-execution synthesis saving; this is not a uniformly better gradient
-algorithm.
-
-There is a useful explicit promise. If every local branch probability
-lies in $`[p_0,1-p_0]`$ for a fixed $`0\lt p_0\le1/2`$,
-take the reference to be the same real state. Each nonzero score ratio is
-$`-\tan\theta_v`$ or $`\cot\theta_v`$, and one may use
-$`K=(1-p_0)/p_0=O(1)`$. Only one state preparation, the controlled
-observable, and leaf/branch measurement are then needed. This retains the
-logarithmic depth-block shot bound while removing the iterated-logarithm
-precision factor from the available state-preparation bound. The branch
-probability promise is additional; a balanced tree topology alone does
-not imply it.
-
-The total T-count is $`O(S(N+L+t_O))`$ in the stated fine-precision
-regime, with the controlled-observable cost, its workspace, and the
-protocol's interference qubit charged separately. Classical tables and
-output are also charged separately. No general training speedup or
-end-to-end optimality follows. The complete-frame endpoint and its
-original inverse-frame protocol remain distinct, valid questions.
+The earlier [leaf-reference protocol](REFERENCE_STATE_QBP.md) retains its
+own tradeoff: its derivative-envelope factor can grow to $`n+1`$, and a
+fixed local branch-probability promise makes that factor constant. This is
+an optional predecessor, not a restriction on the current theorem.
 
 ### A coarse inverse removes the angle-dependent shot penalty
 
-The [coarse-frame protocol](COARSE_FRAME_QBP.md) resolves the next sampling
-question for every real angle tuple. Take the actual native coarse circuit
-C with $`\|C-W\|\le1/(4\sqrt N)`$, exact dirty return, and $`O(N)`$
-T-count. Prepare the reference $`C|0\rangle`$ coherently with the target
-psi, apply the controlled observable, then apply the actual
-$`H^{\otimes n}C^\dagger`$ to both branches. The reference becomes uniform.
-Random X/Y branch measurements decode the complex coefficients
-$`f_j=H^{\otimes n}C^\dagger\partial_j\psi`$.
-
-At each depth, the incoming Hopf amplitudes have squared sum one.
-Consequently every depth's record has norm at most five, uniformly in n
-and all real angles, including singular endpoints. The actual C is used
-in the classical coefficients, so its coarse discrepancy creates no
-bias. This is a different decoder from the original fine-frame protocol.
-
-For reflection sums of coefficient norm Lambda, sufficient resources are
-
-```math
-S=O\!\left(\frac{\Lambda^2[1+\log(n/\delta)]}
-{\varepsilon_\infty^2}\right),\qquad
-L'=\max\{n,6,\lceil\log_2(80\Lambda/\varepsilon_\infty)\rceil\},
-```
-
-```math
-a_F=2,\qquad b_F\ge L'+n+7,\qquad
-\mathbb E\mathcal T_\nabla=O(S[N+L'+\overline t_O]).
-```
-
-The protocol branch and observable work remain separate. A complex signed
-histogram, Walsh transform, recorded C tree, and Hopf reverse traversal
-produce all coordinates in $`O(S+Nn)`$ classical arithmetic operations,
-plus charged coefficient preprocessing and bit costs. No dense Jacobian
-is needed. The finite-precision proof includes complete work return and
-reused dirty banks.
-
-This removes the extra K from the leaf-only reference route without a
-branch-probability promise. It does not give uniform dominance over the
-retained fixed-accuracy square-root frame compiler, establish total
-gradient optimality, or compile a fine complete frame. The complex extension
-below adds the separate phase-gradient stream.
+The [coarse-frame proof](COARSE_FRAME_QBP.md) uses the actual native
+reference $`C|0\rangle`$, a charged $`C^\dagger`$ in magnitude readout,
+and randomized X/Y measurements. Classical scores use that same recorded
+C, so its coarse discrepancy does not become gradient bias. Each magnitude
+depth block has record norm at most five, including singular tuples.
+The theorem retains the logarithmic depth-block shot order and
+$`O(S+Nn)`$ histogram arithmetic, with coefficient and bit costs charged.
 
 ### The complex coarse interface closes after fixing a common phase
 
-The [complex compiler](COMPLEX_COARSE_COMPILER.md) fixes the arithmetic mean
-mu of supplied real leaf phases and compiles
-$`W'=e^{-i\mu}D_\varphi W_{\mathbb R}`$. Standard prefix phase rotations
-telescope to this determinant-one diagonal. Their actual native row words
-use the retained dirty reflection interpreter, with unchanged addresses and
-external selectors/banks. This gives an exact logical $`C\otimes I_b`$,
-$`\|C-W'\|\le\min\{1/64,1/(4\sqrt N)\}`$, $`T(C)=O(N)`$, and
-$`G(C)=O(Nn)`$. The real coarse frame and prefix phase rows are recorded;
-the approximate rows need not stay diagonal and act on all suffixes.
-
-The same two-flag residual table and one-step amplification prepare the
-gauged target, including coherent selection with the actual coarse
-reference. The [complete complex protocol](COMPLEX_COARSE_QBP.md) retains
-the depth-record bound of five for magnitude coordinates. Leaf weights
-now include the inverse ideal gauge before the real Hopf reverse traversal.
-The direct Y/leaf stream gives the phase coordinates with norm-two records.
-Subtracting the mean phase adds only a global-phase derivative, which has
-zero Hermitian-energy derivative. All physical raw gradients are unchanged.
-
-With $`L'=\max\{n,6,\lceil\log_2(80\Lambda/\varepsilon_\infty)\rceil\}`$,
-two flags and $`b\ge L'+n+7`$ suffice. Use the previous shot order with
-$`\log((n+1)/\delta)`$ for the n magnitude blocks and one phase block.
-Both streams together cost $`O(S(N+L'))+2S\overline t_O`$ expected T gates,
-plus $`O(S+Nn)`$ histogram arithmetic and charged coefficient/bit work.
-This is a gauge-fixed state result; no literal common phase of the original
-complete frame is compiled and no total-gradient optimum is claimed.
+The [complex coarse construction](COMPLEX_COARSE_COMPILER.md) fixes the
+arithmetic-mean phase gauge and implements its actual logical C with exact
+dirty return. The [complex decoder](COMPLEX_COARSE_QBP.md) estimates both
+magnitude and leaf-phase coordinates with the same two compiler flags.
+All coherent branches and classical coefficients use the same gauge;
+physical energy gradients are unchanged. The consolidated theorem keeps
+this phase convention separate from literal complete-frame synthesis.
 
 ### What the complete task-cost comparison establishes
 
-Let K denote original gradient accuracy bits and $`P=\max(n,K)`$ the
-state compiler's precision. The [comparison proof](QBP_COST_COMPARISON.md)
-uses the same two compiler flags, observable precision K, and physical
-dirty pool. A new fine gauged complex borrowed-frame corollary gives
-$`O(NK/(n+b)+K\sqrt N)`$ T gates with exact dirty return and no
-initialized compiler work. It supplies the complex baseline without
-asserting literal synthesis of the removed common frame phase.
+The [comparison](QBP_COST_COMPARISON.md) uses original accuracy bits K,
+state precision $`P=\max(n,K)`$, and observable precision K. Its fine
+gauged complex borrowed baseline and literal bank reservations prevent an
+unfairly expensive original comparator. Extra dirty banks improve the
+available state T bound only in its stated precision/workspace regimes.
+Fixed accuracy favors the original bound; no gradient optimality or
+end-to-end speedup follows.
 
-The [banked state corollary](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
-uses disjoint extra banks and retains the full borrowed-signal proof. At
-$`b\ge2(P+n+7)`$ it gives
-$`O(\sqrt{NP}+P+NP/b+n\sqrt N)`$ T gates, including the exact-return
-coarse circuit. For $`K\ge n^2`$ and the common literal bank reservation,
-the state/original upper expressions differ only by K versus
-$`K\ell_*(n)`$. Their ratio diverges exactly when
-$`K\gg N/\ell_*(n)^2`$ and $`b\gg N/\ell_*(n)`$, along
-$`\ell_*(n)\to\infty`$. These are improvements between constructive
-upper bounds, not a gradient lower bound or a closed frame frontier.
-
-At fixed accuracy the original bound is better. Both protocols retain
-the common sufficient shot scale $`4^K[1+\log((n+1)/\delta)]`$;
-oracle calls, Clifford order, and classical decoding order do not improve.
-The original decoder also admits exact integer Walsh histograms. Certified
-preprocessing digits are bounded, but a matched runtime for arbitrary
-input evaluators and all native compiler choices is not supplied.
+The [bounded-input audit](BOUNDED_INPUT_QBP.md) supplies polynomial
+construction for the listed grouped/state alternatives and preserves the
+separate fine native-search caveats. Its explicit Pauli model also has
+deterministic all-gradient and classical term-sampling baselines, with
+shared duplicate aggregation and coefficient scale. The
+[algebraic residual helper](RESIDUAL_TABLE_PREPROCESSING.md) outputs
+certified classical coefficients; it is not a general quantum emitter.
 
 ### Next bounded task and stopping rule
 
-The coarse-frame construction settles the selected all-real-angle sampling
-question. Its [bounded native integration](NATIVE_COARSE_QBP.md) now joins
-exact finite-size preparation, complex controlled observables, actual
-coarse inverses, and X/Y reconstruction. An actively used arbitrary helper
-returns coherently. A reusable histogram utility avoids dense derivative
-tables. The original protocol is cheaper on this specially exact example;
-the fixture verifies integration and does not establish an advantage or
-emit the general residual-table construction.
+The task-specific theorem, quantum/classical cost comparison, and
+bounded-input construction are complete and consolidated. The bounded
+[real](NATIVE_COARSE_QBP.md) and [complex](NATIVE_COMPLEX_COARSE_QBP.md)
+native examples verify full-input phases, dirty return, and gradient means
+on their special targets. Their original-frame comparators are cheaper;
+the fixtures establish integration, not a general advantage.
 
-The complex-state interface is proved in the gauge above. Its new bounded
-checks use actual native one-qubit phase rows, full-suffix matrix assembly,
-residual-state amplification, and independent analytic gradients. The
-executable complex histogram utility preserves exact integer Walsh counts
-before floating-point reconstruction. A subsequent
-[complete native complex fixture](NATIVE_COMPLEX_COARSE_QBP.md) now emits
-both streams, controlled all-suffix phase-prefix tables, and the actual
-coarse inverse. Every borrowed helper is returned and literal branch phases
-are retained. Exact rational-coefficient arithmetic certifies the small coarse
-error. Full-input operators and dirty-input gradient observables verify
-regular, signed, and singular tuples. The same-observable original protocol
-is cheaper on this exact finite-size target; no advantage follows from the
-fixture. The general fine residual-table emitter remains separate.
+The full fine-precision native emitter remains an implementation task.
+Any continuation there should identify a missing emitted primitive and
+its complete contract. No end-to-end advantage example is selected; that
+claim requires a concrete observable-access model and a classical
+comparator. Another special exact fixture would not supply it.
 
-The [bounded-input pass](BOUNDED_INPUT_QBP.md) is now complete. Direct
-algebraic rotation coefficients replace the residual Euler search. Only
-coarse native words require enumeration in the grouped/state alternatives,
-giving a conservative polynomial classical construction with explicit
-instruction output costs. The banked reservation also permits a direct
-source implementation for small systems, avoiding their fine-word search.
-Direct fine borrowed compilation and the minimum-workspace small-system
-fallback keep their separately priced synthesis limitations. Arbitrary
-computable evaluators do not inherit this bounded-input runtime guarantee.
-
-An explicit Pauli list permits deterministic all-gradient contraction and
-classical term-only sampling, including singular angles. Duplicate terms
-can be merged by either protocol, with a common updated coefficient scale.
-The high-precision T-bound improvement does not establish a speedup over
-these classical algorithms; the retained Clifford bounds also give the
-same high-precision all-gate upper order under uniform logical-gate costs.
-
-The next revision should consolidate the task-specific theorem and its
-computational and access assumptions with the retained frame results.
-No new end-to-end advantage example is selected. Such a claim requires
-a concrete observable-access model and its classical comparator. Another
-special exact fixture cannot supply it; the full fine-precision native
-emitter remains a separate implementation task.
+#### Separate complete-frame question
 
 No new complete-frame endpoint construction is selected. For that separate
 question, the remaining selection target is a tree-specific whole-residual
