@@ -1,6 +1,6 @@
 # A gauge-fixed complex coarse circuit and state preparation
 
-[Borrowed native compiler](BORROWED_WORKSPACE_COMPILER.md) · [State-only construction](STATE_ONLY_COMPILER.md) · [Coarse-frame decoder](COARSE_FRAME_QBP.md)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [Borrowed native compiler](BORROWED_WORKSPACE_COMPILER.md) · [State-only construction](STATE_ONLY_COMPILER.md) · [Coarse-frame decoder](COARSE_FRAME_QBP.md)
 
 The phase-dressed Hopf family admits an actual logical native coarse circuit
 with linear T-count and exact dirty return. Fixing the common phase removes
@@ -17,6 +17,8 @@ The [bounded native example](NATIVE_COMPLEX_COARSE_QBP.md) emits these
 phase-prefix selections and both gradient streams for an exact two-qubit
 target. It checks literal phases and arbitrary dirty inputs; the general
 fine residual-table construction below remains analytic.
+The implemented [classical coefficient helper](RESIDUAL_TABLE_PREPROCESSING.md)
+certifies its rotation data; it does not emit that general quantum word.
 
 ## 1. Target gauge and workspace
 

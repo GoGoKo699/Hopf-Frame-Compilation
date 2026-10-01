@@ -1,6 +1,6 @@
 # Comparing complete Hopf-gradient costs
 
-[Original QBP ledger](QBP_APPROXIMATION.md) · [Real coarse decoder](COARSE_FRAME_QBP.md) · [Complex coarse decoder](COMPLEX_COARSE_QBP.md) · [Research status](OPEN_PROBLEM.md)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [Original QBP ledger](QBP_APPROXIMATION.md) · [Real coarse decoder](COARSE_FRAME_QBP.md) · [Complex coarse decoder](COMPLEX_COARSE_QBP.md) · [Research status](OPEN_PROBLEM.md)
 
 The state-only construction and the original frame protocol solve the same
 raw-gradient task with different quantum programs and classical decoders.

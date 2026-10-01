@@ -1,6 +1,6 @@
 # Implementation map
 
-[← Repository landing page](../README.md) · [Complete technical narrative](../REVIEW.md) · [Verification map](../docs/VERIFICATION.md)
+[← Repository landing page](../README.md) · [State-based QBP theorem](../docs/STATE_BASED_QBP_THEOREM.md) · [Complete technical narrative](../REVIEW.md) · [Verification map](../docs/VERIFICATION.md)
 
 The Python package follows the same order as the proof.  It contains reference
 operators, explicit reversible schedules, resource ledgers, and decoder checks.
@@ -54,21 +54,29 @@ The decoder and router are supplied as explicit reversible layers.  The
 underlying elementary UCG and multi-controlled-X synthesis theorems are imported
 from the all-workspace state-preparation framework.
 
-## 5. Gradient records
+## 5. State-based gradients and finite native evidence
 
 | Module | Role |
 |---|---|
 | [`decoders.py`](decoders.py) | direct parity records, signed histograms, fast Walsh–Hadamard decoding, and direct phase-stream records |
 | [`coarse_frame_decoder.py`](coarse_frame_decoder.py) | exact integer X/Y histogram transforms, actual coarse-tree blocks, and linear-storage reverse reconstruction; floating-point contractions |
-| [`native_coarse_fixture.py`](native_coarse_fixture.py) | bounded two-qubit Clifford+T integration fixture, explicit controls and dirty-helper return; not a general native compiler |
+| [`complex_coarse_decoder.py`](complex_coarse_decoder.py) | supplied phase gauge, actual prefix rows on every suffix, and complex-state magnitude reconstruction; exact integer Walsh counts followed by floating-point arithmetic |
+| [`residual_table_preprocessing.py`](residual_table_preprocessing.py) | rational rotation-coefficient enclosures from a caller-certified dyadic residual approximation; no Euler search or quantum gate emission |
+| [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
+| [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
-The decoder module concerns the output of the logical QBP circuit.  It is
-separate from the frame compiler so that quantum execution count, circuit depth,
-and classical materialization remain distinct.
+The decoder modules keep classical reconstruction separate from quantum
+execution. The native fixtures use exact finite-size state preparation;
+they do not emit the general fine residual table. The preprocessing helper
+certifies one residual completion's classical coefficients, not a complete
+native state compiler. See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
+and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
 
 ## 6. Public entry points
 
-The package root re-exports the principal reference objects and resource rows.
+The package root re-exports the principal frame reference objects and resource rows.
+State-based decoder and preprocessing functions are imported from their
+modules in Section 5.
 For a first inspection, the most useful functions are:
 
 ```python
@@ -95,9 +103,12 @@ Resource dataclasses expose transparent integer proxies for the terms used in
 the asymptotic proof.  They are not claimed to be optimized finite elementary-
 gate counts.
 
-The declared logical model is exact, all-to-all, and based on arbitrary
+The exact schedule modules use an all-to-all model based on arbitrary
 one-qubit gates plus CNOTs.  Toffoli, Fredkin, controlled one-qubit gates, and
 fixed-width controlled Givens rotations are readable constant-width primitives.
+The bounded native fixtures instead expand the elementary Clifford+T
+alphabet and report literal finite gate counts. Neither kind of resource
+row is a general hardware timing model.
 
 ## 8. Run the checks
 

@@ -1,6 +1,6 @@
 # Raw Hopf gradients in a coarse-frame measurement basis
 
-[State-only compiler](STATE_ONLY_COMPILER.md) · [Reference-state decoder](REFERENCE_STATE_QBP.md) · [Original approximation contract](QBP_APPROXIMATION.md)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [State-only compiler](STATE_ONLY_COMPILER.md) · [Reference-state decoder](REFERENCE_STATE_QBP.md) · [Original approximation contract](QBP_APPROXIMATION.md)
 
 A coarse approximation to the complete Hopf frame supplies a measurement
 basis with uniformly bounded raw-gradient records. Fine precision is needed

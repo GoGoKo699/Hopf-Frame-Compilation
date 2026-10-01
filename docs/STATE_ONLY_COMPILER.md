@@ -1,6 +1,6 @@
 # State preparation with one precision charge and two clean flags
 
-[Research status](OPEN_PROBLEM.md) · [Borrowed compiler](BORROWED_WORKSPACE_COMPILER.md) · [Full-operator rotation primitive](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+[Task theorem](STATE_BASED_QBP_THEOREM.md) · [Research status](OPEN_PROBLEM.md) · [Borrowed compiler](BORROWED_WORKSPACE_COMPILER.md) · [Full-operator rotation primitive](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
 
 A cheap native coarse circuit makes a known Hopf state close to the
 computational root. Its remaining amplitudes can then be loaded by one
