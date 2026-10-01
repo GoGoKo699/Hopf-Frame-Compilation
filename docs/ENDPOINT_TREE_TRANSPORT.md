@@ -1087,3 +1087,258 @@ including a native child that disturbs borrowed work. The
 the magic-basis factors and the borrowed-spectator schedule. These small
 fixtures check identities and interfaces; the resource bounds rely on
 the proofs and retained compiler contracts.
+
+## 10. A shared source body for changing targets
+
+The original tree basis admits a joint native word for root and child
+layers at one common source width, with one final parity correction for
+arbitrary borrowed signal inputs. Its declared source-call count decreases,
+but simplifying fixed masks gives the comparison words the same leading
+precision cost. That cost still grows with the number of layers.
+
+### Keep the fixed scalar word independent of the logical route
+
+Use the [paired source and scalar words](ONE_CLEAN_COMPILER.md#2-an-exact-two-tail-source-and-its-dirty-masks)
+at one fixed q. With f the fixed mask, define
+
+```math
+A=\mathcal S_f=\tfrac12I+X_aD_f,\qquad
+D_f^\dagger=-D_f,\qquad D_f^2=-\tfrac34I.
+```
+
+A is unconditional and acts only on the signal a and precision core.
+Consequently $`A^3=-I`$ and $`Z_aAZ_a=A^\dagger`$ exactly.
+For an unchanged predicate h and prefix-programmed mask mu, let
+$`\mathcal S_{\mu,h}`$ be the retained conditioned scalar word.
+It is exactly identity on h false, including occupied signal inputs.
+For a Hermitian logical Pauli P disjoint from the address, predicate,
+signal, and core, set
+
+```math
+B=C_a(P)S_a\mathcal S_{\mu,h}S_a^\dagger C_a(P),\qquad
+Q=A^\dagger BA,
+```
+
+where $`S_a=\mathrm{diag}(1,i)`$ and $`C_a(P)`$ is the literal
+Clifford controlled Pauli. For a tree layer choose $`P=Y_t`$ on
+its current target. That target is not added to the coefficient-table
+address. Query selectors and the predicate helper return exactly before
+the surrounding routing gates resume.
+
+On an active address row the scalar moments satisfy
+$`\{D_f,D_\mu\}=2pI`$, with $`p=s/2-\tau`$. Expansion gives
+
+```math
+B=sI+Y_aPD_\mu,\qquad K=D_\mu+2pD_f,
+```
+
+```math
+Q=sI-ipZ_aP+Y_aPK,\qquad
+K^\dagger=-K,\qquad K^\dagger K=(1-s^2-p^2)I.
+```
+
+For the last identity use $`D_\mu^2=-(1-s^2)I`$ and
+$`D_f^2=-3I/4`$. In particular,
+$`\langle0|Q|0\rangle=sI-ipP`$. On h false, B and Q are
+both exactly identity; A need not be conditioned. The existing digit
+rule programs $`s\approx\beta\cos\theta`$ and
+$`p\approx\beta\sin\theta`$, with
+$`\beta=\sin(\pi/10)`$. The same coefficient-error and
+five-call amplification proof gives initialized-column error below
+$`30\,2^{-q}`$ for $`e^{-i\theta P}`$.
+
+### The full signal error has the same bound
+
+Fix an active address row and diagonalize P and K, with eigenvalues
+$`\rho\in\{1,-1\}`$ and $`i\lambda`$, respectively. Each
+signal block is
+
+```math
+Q_{\rho,\lambda}=sI+i\rho(-pZ+\lambda Y)\in\mathrm{SU}(2).
+```
+
+The five-call amplified block remains in SU(2): its four literal Z
+reflections contribute determinant one in total. Its comparison block
+$`e^{-i\rho\theta Z}`$ also lies in SU(2). For any two SU(2)
+matrices U and V,
+
+```math
+(U-V)^\dagger(U-V)=[2-\mathrm{Tr}(U^\dagger V)]I.
+```
+
+Thus the full block norm equals its signal-zero-column norm. Taking the
+maximum over all sectors proves the complete-operator estimate
+
+```math
+\left\|\mathrm{Amp}(Q)
+ -\exp(-i\Pi_h\theta_x Z_aP)\otimes I_{\rm dirty}\right\|
+\lt30\,2^{-q}.
+```
+
+Here $`\Pi_h`$ is the predicate projector and $`\theta_x`$ the
+addressed angle. The inactive sector has zero error. The diagonalization
+is only a proof device, with no emitted basis preparation. The bound
+includes arbitrary signal, dirty, and reference inputs. Its signal-one
+target has the opposite angle; it is not the same scalar action on both
+signal sectors.
+
+### Expand and cancel the actual amplification words
+
+Write $`Z=Z_a`$. The middle word obeys $`ZBZ=B^\dagger`$ on
+the complete space. The physical amplification word is
+
+```math
+\mathrm{Amp}(Q)=QZQ^\dagger ZQZQ^\dagger ZQ.
+```
+
+Since $`AZA^\dagger=-A^\dagger Z`$, substitution gives
+
+```math
+\mathrm{Amp}(A^\dagger BA)=A^\dagger F_A(B)A,\qquad
+F_A(B)=(BA^\dagger BA)^2B
+=BA^\dagger BAB A^\dagger BAB.
+```
+
+The four minus signs cancel literally. The body contains five B words,
+two A words, and two actual A inverses. For g ordered stages,
+
+```math
+\mathrm{Amp}(Q_g)\cdots\mathrm{Amp}(Q_1)
+=A^\dagger F_A(B_g)\cdots F_A(B_1)A.
+```
+
+This is a full-unitary identity, not multiplication of accepted blocks.
+Targets, prefix addresses, and suffix predicates may change because A
+does not depend on them. Logical-only Clifford gates also commute through
+A in this identity. The common q and fixed source are essential; a
+change of width instead requires an explicitly charged bridge.
+
+Each scalar A or B has three source calls. Before any further native
+cancellation, the displayed source ledger is
+
+```math
+45g\quad\longrightarrow\quad27g+6.
+```
+
+This source-call ledger is not an optimized T count. Let U be the paired
+loader, with $`2q`$ T gates. Each routed scalar is $`UR_jU^\dagger`$:
+its exterior flag/logical Cliffords commute with U, while its two mask
+transforms retain their internal loader pairs. Canceling adjacent exterior
+pairs across the $`9g+2`$ scalar calls reduces the loader T count to
+$`(72g+20)q`$, versus $`(120g+4)q`$ for the expanded baseline's
+15g scalar calls. These give $`236q`$ and $`308q`$ at three and four
+stages before simplifying the fixed mask.
+
+That simplification matters for a fair comparison. Factor
+$`U=G_{\rm tail}U_{\rm seed}`$, where the seed has two T gates.
+The fixed $`P_f`$ commutes with every tail plane: its signs are
+constant on each of the odd and even tails. Hence
+
+```math
+U^\dagger P_fU=U_{\rm seed}^\dagger P_fU_{\rm seed}.
+```
+
+Each such transform needs at most four T gates, so a hoisted fixed-A
+interior needs at most eight, independently of q. The five programmable
+B words per stage still retain $`8q`$ loader T gates apiece. This gives
+
+```math
+T_{\rm loader+fixed}\le
+\begin{cases}
+(40g+4)q+8(4g+2),&\text{shared body},\\
+(40g+4)q+80g,&\text{expanded baseline}.
+\end{cases}
+```
+
+Both therefore have the same leading precision coefficient. These are
+declared-word bounds, not minima. Each programmable mask still appears
+ten times per stage, including its actual inverses; its native queries,
+source-center predicate controls, and returned helpers remain separately
+charged. Fixed-mask Clifford gates are charged as well.
+
+### Return the borrowed signal with two parity boundaries
+
+For the original r-level real tree, let $`\Pi=\prod_{j=0}^{r-1}Z_{t_j}`$
+on its r local logical bits, excluding any unchanged external prefix.
+It commutes with every address and suffix predicate and reverses each
+$`Y_{t_j}`$. If W is the ordered ideal tree word, its complete
+signal-controlled product is
+
+```math
+|0\rangle\langle0|_a\otimes W
++|1\rangle\langle1|_a\otimes\Pi W\Pi.
+```
+
+The opposite-angle factors keep their original chronological order;
+this branch is generally neither $`W^\dagger`$ nor $`W^*=W`$.
+Put $`R=C_a(\Pi)`$, a product of r CZ gates. Then the complete
+native word
+
+```math
+V=RA^\dagger F_A(B_r)\cdots F_A(B_1)AR
+```
+
+satisfies
+
+```math
+\|V-W\otimes I_{\rm work}\|\lt30r\,2^{-q}.
+```
+
+The signal is part of the arbitrary returned work. All logical and dirty
+reference correlations are included; no intermediate reset is used.
+Selectors and the predicate helper return exactly. The two parity
+boundaries cost $`2r`$ Clifford CZ gates. This return proof applies
+to the original tree layers. Extra interleaved logical gates would also
+need to commute with Pi for this same proof; arbitrary logical Clifford
+interleaving only preserves the common-A identity above. In particular,
+signal-dependent lifts of complex magic-basis gates cannot be inserted
+with an unchanged source ledger without their own proof and charges.
+
+### Explicit eight- and sixteen-mode allocation
+
+Take $`r\in\{3,4\}`$, k unchanged external prefix bits,
+$`S=2^k`$, and $`n=k+r`$ total logical bits. There are g=r depth
+layers. At local depth d, the table has k+d address bits and the suffix
+predicate has $`r-d-1\le3`$ literals. Choose the common
+$`q=L+7`$, with $`L\ge6`$. Then
+
+```math
+30r\,2^{-q}=\frac{30r}{128}\,2^{-L}\le\eta.
+```
+
+The maximum simultaneous borrowed reservation is
+
+```math
+(q+1)_{\rm core}+(k+r-1)_{\rm selectors}
++1_{\rm helper}+1_{\rm signal}=L+n+9.
+```
+
+At $`a=2,b=L+n+7`$, put the core and selectors in the b arbitrary
+dirty wires and use the two available clean wires as signal and helper.
+Their initial values are not used. The retained
+[predicate construction](ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger)
+returns one separate arbitrary helper exactly, including when a source
+center has the additional signal control. Its bounded predicates cost
+$`O(p^2+1)`$ Toffolis. Controlled Y and the signal S conjugations
+are Clifford and require no helper. This reservation borrows no logical
+target.
+
+The table sizes sum to $`S(2^r-1)=O(S)`$ at these fixed depths.
+Thus $`T=O(S+L)`$ and $`G=O(SL)`$, with declared source counts
+87 instead of 135 for eight modes, and 114 instead of 180 for sixteen.
+These are source-appearance comparisons; the fixed-mask refinement above
+aligns their leading precision cost. No generic endpoint gain follows.
+
+For variable r, the same error sum asks for
+$`q=L+\lceil\log_2(30r)\rceil`$. The unmodified reservation
+then exceeds $`b+2`$ by $`\lceil\log_2(30r)\rceil-7`$ when
+positive. This diagnoses this schedule, not a workspace lower bound.
+Its source recurrence also remains $`27r+6`$, giving
+$`O(r(L+\log r))`$ loader cost even with enough work. A joint program
+with one global precision charge remains unproved.
+
+The [joint native checks](../tests/test_joint_source_body.py) verify
+literal phases, changing-target composition, occupied signal ports, and
+borrowed work in small complete matrices. Their $`q=2`$ words are
+finite diagnostics; their deliberately coarse approximation errors do
+not certify the stated L-bit resource allocation.

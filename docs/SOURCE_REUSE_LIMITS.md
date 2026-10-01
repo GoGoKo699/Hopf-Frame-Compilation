@@ -1420,6 +1420,13 @@ The [four-mode benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchm
 now prices a real four-mode row with two retained one-target programs and
 a borrowed logical spectator. The eight-mode extension retains a
 controlled root coupling; independent factorization does not remove it.
+The [joint changing-target word](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
+works in the original tree basis and shares one fixed scalar conjugator.
+Its eight-/sixteen-mode source-appearance reduction survives complete
+signal and dirty inputs, with two final parity boundaries. Hoisting the
+loader and simplifying the fixed mask exposes the same leading precision
+cost in the comparison word: the remaining programmable masks still
+carry a precision charge per layer.
 
 ## 9. Finite checks and evidence limits
 

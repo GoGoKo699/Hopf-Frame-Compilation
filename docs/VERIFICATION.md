@@ -181,6 +181,21 @@ angle has a literal four-T word with its scalar correction. These tests
 check scoped constructions and obstructions, not a generic precision
 lower bound. Matrices in the native spectator check have dimension at
 most 128; the eight-mode matrices have dimension eight.
+The [joint-source checks](../tests/test_joint_source_body.py) emit complete
+eight-mode words and verify their sixteen-mode recurrence on matrices of
+dimension 128 and 256. They compare the retained primitive with its new
+controlled-Y route on every signal and dirty input, including inactive
+predicates and exact return of a used logical helper. Independent encoded
+blocks fix the intended angle sign. Tests check literal amplification
+cancellation, full signal error, the final parity boundaries, and a
+separately charged complex coarse inverse. Source counts are 135 versus
+87 and 180 versus 114 before further native simplification. Emitted
+loader/seed-simplified eight-mode words have the same leading precision
+term in both comparisons; fixed-mask tail cancellation is checked at
+q=2, 3, and 5. The q=2 complete words are interface diagnostics, not
+fine-precision certification. The [analytic allocation](ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
+is restricted to local depth three or four; no generic endpoint gain or
+optimality of the displayed counts is asserted.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

@@ -4,10 +4,11 @@ This is the entry point for resuming work when a previous conversation or
 execution workspace is unavailable. The proofs and research decisions live
 in the repository; a conversation summary is only a retrieval aid.
 
-The 2026-10-01 native small-example pass continues from main commit
-`8a738e6d843cd2c6108e67fc08d1ad155dfaea35`. Check the current branch and
-later commits before continuing. Small complete examples now guide the
-next construction; the compiler frontier is unchanged.
+The 2026-10-01 joint-source pass continues from main commit
+`d5b0d19245d7949913ecfa5cf65f472794655003`. Check the current branch and
+later commits before continuing. Complete eight- and sixteen-mode native
+words now share a source body, but their fair precision-cost comparison
+leaves the compiler frontier unchanged.
 
 ## Mandate and reading order
 
@@ -23,6 +24,7 @@ writing and release work outside the current research pass.
    especially its complete group contract and resource sums, followed by
    [small products](docs/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis),
    [the Cayley residual](docs/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation),
+   [the shared source body](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets),
    and [the completed repair audit](docs/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis).
 4. Consult the [verification map](docs/VERIFICATION.md),
    [source map](docs/SOURCE_MAP.md), and [related work](docs/RELATED_WORK.md)
@@ -113,14 +115,32 @@ masks and repeated complete syndrome renewal still cost precision. That
 pass solved transport, not the joint program. The new Cayley coordinates
 also do not yet improve the generic T-count.
 
-The next experiment is a **joint native program retaining the eight-mode
-controlled coupling** together with its two child factors. Count actual
-source appearances after expanding matched inverses. Test whether that
-program can reuse precision when another branching level is added;
-independent synthesis of the displayed factors is the comparison cost.
-Include a complex native baseline, zero defects, and changes in both
-branches. A generic resolvent or polynomial conversion must count every
-generator call; its bounded condition number is not a free circuit.
+The [joint native word](docs/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets)
+uses the original tree basis. A fixed scalar conjugator independent of
+the logical target permits exact cancellation across changing targets and
+predicates. Two parity boundaries return an arbitrary borrowed signal,
+with no intermediate reset. The declared source counts fall from 135 to
+87 at eight modes and from 180 to 114 at sixteen. These are structural
+word comparisons, not leading precision savings: after hoisting the
+common loader, the fixed mask commutes with its tail, leaving only a
+two-T seed. Both comparison words then have the same leading loader and
+variable-mask term $`(40g+4)q`$ for g stages at source width q.
+
+For local depth three or four and an unchanged k-bit prefix, the complete
+ledger gives $`T=O(2^k+L)`$, $`G=O(2^kL)`$ at the selected two-clean
+allocation. The clean wires are used only as borrowed signal and helper.
+This fixed-depth construction is not a scalable gain: its ten programmed
+mask appearances per layer still renew precision, and its constant-width
+reservation does not extend to arbitrary depth without adjustment.
+
+The next bounded experiment is **joint synthesis of the programmable
+mask interiors**, starting with two changing-target stages of this
+explicit word. Expand actual inverses and compare against the already
+simplified two-T fixed-mask baseline. Seek a native identity or encoding
+that changes the precision recurrence as more stages are added. Further
+outer-loader or fixed-mask cancellation alone does not address that task.
+Keep zero defects, independent branch angles, a complex native coarse
+inverse, and complete signal/dirty ports in the small examples.
 
 1. Small examples may come before a general recurrence. Compare complete
    matrices and actual source counts, including all rejected flag ports,
@@ -158,23 +178,22 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The small-product baseline has 273 tests and passed Python 3.11/3.13 CI,
-all four exact-receipt suites, and rendered presentation. This pass adds
-nine focused checks for four-mode factors, actual native spectator
-borrowing, eight-mode coupling, and complete inverse/scattering action.
-The native spectator fixture has dimension 128 and deliberately coarse
-source precision; it checks exact interfaces and sign-sensitive encoded
-blocks, not a fine-precision theorem. Its literal ledger counts 180
-source calls and 5,220 T/T-dagger gates before cancellation. Other new
-matrices have at most eight logical modes, with separately included
-signal/dirty ports.
+The native small-example baseline has 282 tests and passed Python
+3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
+This pass adds three joint-source checks. Their complete matrices have
+dimensions 128 and 256, with deliberately coarse q=2 source precision.
+They verify actual gate words, literal phases, changed predicates and
+targets, occupied signal ports, helper return, and a complex coarse
+inverse. Fully simplified emitted words enforce the same leading
+precision charge in both comparisons. Fixed-mask cancellation is also
+checked at q=2, 3, and 5.
 
-All 282 tests pass locally. The reviewer walkthrough, offline
-synchronization, and documentation checks also pass. CI on the merged change records the Python 3.11/3.13,
-exact-receipt, and rendered-presentation results. Separate internal
-reviews checked the algebra, conditioning, and workspace ledger; this
-is not external peer review. Finite fixtures do not establish native
-asymptotic resource bounds.
+Run the commands above for the current 285-test suite and the latest
+verification result. CI records Python 3.11/3.13, exact-receipt, and
+rendered-presentation results on the corresponding commit. Separate
+internal reviews checked the algebra and workspace ledger; this is not
+external peer review. Finite fixtures do not establish native asymptotic
+resource bounds.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)
