@@ -208,6 +208,13 @@ comparison. Its sharper K2 trace and rational K3 certificate specialize
 the same elementary commutator algebra. They do not change the asymptotic
 compiler frontier or establish a general native residual-table emitter.
 
+The [certified native residual row](NATIVE_RESIDUAL_ROTATION.md) implements
+R25's paired-source rotations and borrowed-signal identity with R41's
+algebraic coefficient intervals. Exact rational programming, literal
+elementary words, and full-input finite checks close one implementation
+bridge. They add no asymptotic theorem: addressed tables and the complete
+fine state compiler remain implementation work.
+
 For polynomial accuracy-bit budgets, the direct sampler can already attain the
 matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over

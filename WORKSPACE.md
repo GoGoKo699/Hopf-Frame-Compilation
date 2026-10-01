@@ -3,8 +3,8 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-01 state-based depth pass starts from verified main
-`335f066d197f60b0db2fc7f3914e953bc6a980fb`, which selected this bounded
+The 2026-10-01 native residual-row pass starts from verified main
+`6ff8da4db3946fe7716affbe0c867d8bad78e69f`, after the state-based depth
 audit. Check the current branch and later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -26,7 +26,9 @@ compiler execution, supplied catalysts, or hidden initialized work.
    [bounded-input audit](docs/BOUNDED_INPUT_QBP.md) for precision regimes,
    classical construction, and explicit Pauli baselines. The
    [residual coefficient proof](docs/RESIDUAL_TABLE_PREPROCESSING.md)
-   documents the implemented classical interval helper.
+   documents the classical interval helper; the
+   [native residual row](docs/NATIVE_RESIDUAL_ROTATION.md) connects it to
+   exact paired-source masks and elementary borrowed-signal rotations.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -47,7 +49,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
-| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, and certified classical residual coefficients; [verification map](docs/VERIFICATION.md) |
+| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, and a [certified unaddressed residual row](docs/NATIVE_RESIDUAL_ROTATION.md); [verification map](docs/VERIFICATION.md) |
 
 The theorem's original accuracy bits K and state precision
 $`P=\max(n,K)`$ must remain distinct. The observable needs accuracy K,
@@ -88,9 +90,21 @@ in that comparison.
 This completes the bounded pass using existing exact lookup and source
 identities; no new circuit primitive or large simulation was needed.
 These are upper schedules, not matching T-depth tradeoffs or total-runtime
-claims. The source programs still run serially. Stop this pass here;
-source parallelization, depth lower bounds, and general circuit emission
-require separate selection.
+claims. The source programs still run serially. Source parallelization
+and depth lower bounds remain separate questions.
+
+## Completed native residual-row pass
+
+The [native bridge](docs/NATIVE_RESIDUAL_ROTATION.md) now programs exact
+paired-source signs from rational cosine/sine intervals, emits literal
+borrowed-signal Ry/Rz words, and composes one unaddressed residual U(z)
+row. Its full-operator error is below $`130\,2^{-q}`$ on arbitrary target,
+core, signal, and reference inputs. It uses q+2 borrowed wires excluding
+the target, no clean work, and O(q) gate storage. The unsimplified row has
+540q T/TDG gates. Exact rational programming and small all-input native
+checks replace the previous floating-point-only programming evidence.
+This implements existing identities; it does not change the asymptotic
+theorem or emit its complete addressed state-preparation schedule.
 
 ## Remaining work and continuation criteria
 
@@ -100,16 +114,15 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | The full gate-emission package is not implemented. The certified residual helper outputs coefficient intervals, and bounded native examples use special finite-size targets. A later implementation pass must name the missing emitted primitive and its complete error/workspace contract |
+| General fine-precision native emitter | One certified unaddressed residual row is implemented. Addressed tables, dirty lookup/predicate schedules, and complete fine state preparation remain. The next bounded component is a small addressed two-row table with exact inactive-sector behavior and a complete error/workspace contract |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
-If native emission is resumed, the first missing bridge is certified
-cosine/sine intervals to exact paired-source sign masks and then a literal
-borrowed-signal Ry/Rz word. Begin with one unaddressed residual U(z) row.
-The present test helpers use floating-point rounding and some dense
-matrices; they are not a certified, scalable implementation of that bridge.
+Do not repeat the completed coefficient-to-native-row bridge. For the
+next component, keep literal phases and actual inverses, charge its
+address predicate and arbitrary helper, and verify inactive sectors
+before composing a general table or state compiler.
 
 For the selected complete real-frame endpoint,
 
