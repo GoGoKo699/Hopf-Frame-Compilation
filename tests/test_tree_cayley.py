@@ -13,9 +13,10 @@ import unittest
 import numpy as np
 
 from tests.test_coupled_residual_merge import (
-    _close_real_fixture, _direct_sum, _root_word, _subtree_residual,
+    _close_real_fixture, _direct_sum, _native_small_word, _root_word,
+    _subtree_residual,
 )
-from tests.test_operator_source_compiler import H, X, Z, _rotation
+from tests.test_operator_source_compiler import H, X, Z, _rotation, _word_matrix
 
 
 ATOL = 6e-11
@@ -221,6 +222,90 @@ class TreeCayleyTests(unittest.TestCase):
             np.testing.assert_allclose(_cayley(ideal), k, atol=ATOL, rtol=0)
             self.assertLessEqual(np.linalg.norm(actual - ideal, 2),
                                  2 * np.linalg.norm(perturbation, 2) + ATOL)
+
+    def test_woodbury_inverse_cancels_to_the_complete_target_wrapper(self):
+        for height in (2, 3):
+            coarse, target = _complex_fixture(height)
+            records = _recursive_generators(height, coarse, target)
+            for node, record in records.items():
+                size = len(record['k'])
+                identity, local_identity = np.eye(size), np.eye(2)
+                roots = identity[:, [0, size // 2]]
+                children = [records[child]['k'] if child in records
+                            else np.zeros((1, 1))
+                            for child in (2 * node, 2 * node + 1)]
+                a = _direct_sum(*children)
+                d = _inverse_cayley(a)
+                q = np.linalg.inv(identity - a)
+                tau = _cayley(target[node] @ coarse[node].conj().T)
+                inner = local_identity - (local_identity + record['b']) @ record['h']
+                correction = _right_solve(record['h'], inner)
+                np.testing.assert_allclose(
+                    correction, (target[node] @ coarse[node].conj().T - local_identity) / 2,
+                    atol=ATOL, rtol=0)
+                kappa = max(np.linalg.norm(a, 2), np.linalg.norm(tau, 2))
+                self.assertLessEqual(np.linalg.norm(np.linalg.inv(inner), 2),
+                                     1 + kappa * kappa + ATOL)
+                woodbury = q + d @ roots @ correction @ roots.conj().T
+                raw_generator = a + record['z'] @ record['h'] @ record['z'].conj().T
+                np.testing.assert_allclose(woodbury, np.linalg.inv(identity - raw_generator),
+                                           atol=ATOL, rtol=0)
+                c = _root_word(coarse[node], size)
+                u = _root_word(target[node], size)
+                residual = _subtree_residual(record['remaining'], coarse, target, node)
+                np.testing.assert_allclose(c.conj().T @ (2 * woodbury - identity) @ c,
+                                           residual, atol=ATOL, rtol=0)
+                np.testing.assert_allclose(c.conj().T @ d @ u, residual, atol=ATOL, rtol=0)
+                # Replacing the target by the actual native coarse word
+                # has its full local error, even at a very small residual.
+                self.assertAlmostEqual(np.linalg.norm(c.conj().T @ d @ c - residual, 2),
+                                       np.linalg.norm(c - u, 2), delta=ATOL)
+
+    def test_resolvent_scattering_composes_all_ports_with_dirty_disturbance(self):
+        def scattering(unitary):
+            identity = np.eye(len(unitary))
+            resolvent = (identity + unitary) / 2
+            return np.block([[resolvent, resolvent - identity],
+                             [resolvent - identity, resolvent]])
+
+        for height in (2, 3):
+            coarse, target = _complex_fixture(height)
+            size = 1 << height
+            identity = np.eye(size)
+            c, u = _root_word(coarse[1], size), _root_word(target[1], size)
+            d = _direct_sum(*[_subtree_residual(height - 1, coarse, target, node)
+                              for node in (2, 3)])
+            residual = c.conj().T @ d @ u
+            s = np.linalg.inv(identity - _cayley(residual))
+            complete = np.block([[s, s - identity], [s - identity, s]])
+            np.testing.assert_allclose(scattering(c.conj().T) @ scattering(d) @ scattering(u),
+                                       complete, atol=ATOL, rtol=0)
+            signal_basis = np.kron(H, identity)
+            np.testing.assert_allclose(signal_basis @ complete @ signal_basis,
+                                       _direct_sum(residual, identity), atol=ATOL, rtol=0)
+
+            # This is a literal native CNOT-conjugated commutator, close
+            # to the identity but disturbing an arbitrary dirty input.
+            route = _word_matrix(height + 1, [('CX', height, 0)])
+            actual_child = route @ np.kron(identity, _native_small_word()) @ route.conj().T
+            c_dirty, u_dirty, d_dirty = [np.kron(word, np.eye(2)) for word in (c, u, d)]
+            actual = c_dirty.conj().T @ actual_child @ c_dirty
+            actual_ports = (scattering(c_dirty.conj().T) @ scattering(actual_child)
+                            @ scattering(c_dirty))
+            np.testing.assert_allclose(actual_ports, scattering(actual), atol=ATOL, rtol=0)
+            np.testing.assert_allclose(actual_ports.conj().T @ actual_ports,
+                                       np.eye(4 * size), atol=ATOL, rtol=0)
+            self.assertLess(np.linalg.norm(actual_child - d_dirty, 2), .01)
+            self.assertLessEqual(np.linalg.norm(actual - np.kron(residual, np.eye(2)), 2),
+                                 np.linalg.norm(actual_child - d_dirty, 2)
+                                 + np.linalg.norm(c_dirty - u_dirty, 2) + ATOL)
+
+            # The physical root compression contains dirty operators;
+            # it cannot be replaced by two-by-two scalar summaries.
+            roots = np.kron(identity[:, [0, size // 2]], np.eye(2))
+            physical_b = roots.conj().T @ _cayley(actual_child) @ roots
+            scalar_b = np.trace(physical_b.reshape(2, 2, 2, 2), axis1=1, axis2=3) / 2
+            self.assertGreater(np.linalg.norm(physical_b - np.kron(scalar_b, np.eye(2)), 2), 1e-6)
 
 
 if __name__ == '__main__':
