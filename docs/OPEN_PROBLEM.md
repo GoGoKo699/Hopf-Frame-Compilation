@@ -8,6 +8,10 @@ decoder supplies a raw-gradient protocol at all real angle tuples without
 an angle-dependent sampling factor. Its gauge-fixed complex extension now
 includes both magnitude and leaf-phase gradients with the same two-flag
 allocation; the complete-frame endpoint remains open.
+The [task-cost comparison](QBP_COST_COMPARISON.md) now identifies the
+high-precision regimes where additional dirty banks improve the available
+state-only bound, while retaining the original fixed-accuracy advantage
+and charging the unchanged sampling and classical obligations.
 This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
@@ -857,6 +861,34 @@ plus $`O(S+Nn)`$ histogram arithmetic and charged coefficient/bit work.
 This is a gauge-fixed state result; no literal common phase of the original
 complete frame is compiled and no total-gradient optimum is claimed.
 
+### What the complete task-cost comparison establishes
+
+Let K denote original gradient accuracy bits and $`P=\max(n,K)`$ the
+state compiler's precision. The [comparison proof](QBP_COST_COMPARISON.md)
+uses the same two compiler flags, observable precision K, and physical
+dirty pool. A new fine gauged complex borrowed-frame corollary gives
+$`O(NK/(n+b)+K\sqrt N)`$ T gates with exact dirty return and no
+initialized compiler work. It supplies the complex baseline without
+asserting literal synthesis of the removed common frame phase.
+
+The [banked state corollary](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
+uses disjoint extra banks and retains the full borrowed-signal proof. At
+$`b\ge2(P+n+7)`$ it gives
+$`O(\sqrt{NP}+P+NP/b+n\sqrt N)`$ T gates, including the exact-return
+coarse circuit. For $`K\ge n^2`$ and the common literal bank reservation,
+the state/original upper expressions differ only by K versus
+$`K\ell_*(n)`$. Their ratio diverges exactly when
+$`K\gg N/\ell_*(n)^2`$ and $`b\gg N/\ell_*(n)`$, along
+$`\ell_*(n)\to\infty`$. These are improvements between constructive
+upper bounds, not a gradient lower bound or a closed frame frontier.
+
+At fixed accuracy the original bound is better. Both protocols retain
+the common sufficient shot scale $`4^K[1+\log((n+1)/\delta)]`$;
+oracle calls, Clifford order, and classical decoding order do not improve.
+The original decoder also admits exact integer Walsh histograms. Certified
+preprocessing digits are bounded, but a matched runtime for arbitrary
+input evaluators and all native compiler choices is not supplied.
+
 ### Next bounded task and stopping rule
 
 The coarse-frame construction settles the selected all-real-angle sampling
@@ -882,10 +914,12 @@ regular, signed, and singular tuples. The same-observable original protocol
 is cheaper on this exact finite-size target; no advantage follows from the
 fixture. The general fine residual-table emitter remains separate.
 
-The next bounded pass should consolidate the task-specific results and
-compare the complete quantum/classical cost with the original route across
-precision and workspace regimes. State the input-access and preprocessing
-costs explicitly. Another special exact fixture cannot establish a general
+The quantum, sampling, and decoder comparison is now complete. The next
+bounded pass should fix an explicit bounded-input and observable-access
+model, then price classical preprocessing for the constructions actually
+being compared. Retain evaluation, range reduction, native-word synthesis,
+table certification, and output bit costs. A digit bound alone is not a
+runtime bound. Another special exact fixture cannot establish a general
 advantage; further native emission should test a specific missing claim.
 
 No new complete-frame endpoint construction is selected. For that separate

@@ -4,8 +4,8 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 native complex integration pass starts from verified main
-`11cb1f0a0c21566cba59d1a78a2dad130dce4337`. Check the current branch
+The 2026-10-01 task-cost comparison pass starts from verified main
+`32a802f85406197f3bfe30770fe191671cb8539e`. Check the current branch
 and later commits before continuing. The state-only compiler prepares the
 real Hopf state with two clean flags and one precision charge. A new
 coarse-frame measurement and corrected classical decoder remove the
@@ -18,6 +18,10 @@ and leaf-phase gradients with the same two-flag allocation.
 A complete small complex example now emits both gradient streams, including
 all-suffix phase selection and the actual coarse inverse, with a rational
 certificate for its coarse error and arbitrary dirty-input checks.
+The cost audit now compares both routes at the same accuracy and workspace.
+Additional dirty banks improve the state-only T bound at high precision;
+the original route retains the better fixed-accuracy bound. Oracle,
+sampling, Clifford, and classical costs prevent a general speedup claim.
 The complete-frame endpoint remains open; the task-specific result does
 not require its resolution.
 
@@ -37,7 +41,9 @@ route explicitly changes the decoder while retaining all allowed observables
 and real raw gradient coordinates, with its own sample and precision bounds.
 The complex coarse-frame extension includes the separate leaf-phase stream.
 
-1. Read the [complex coarse compiler](docs/COMPLEX_COARSE_COMPILER.md) and
+1. Start with the [complete task-cost comparison](docs/QBP_COST_COMPARISON.md),
+   including its precision floor, bank reservations, and preprocessing boundary.
+   Read the [complex coarse compiler](docs/COMPLEX_COARSE_COMPILER.md) and
    [complete complex gradient protocol](docs/COMPLEX_COARSE_QBP.md), then
    the [real coarse-frame protocol](docs/COARSE_FRAME_QBP.md) and
    the [state-only construction](docs/STATE_ONLY_COMPILER.md), including its
@@ -74,6 +80,8 @@ The complex coarse-frame extension includes the separate leaf-phase stream.
 | State-only Hopf QBP | At $`L\ge\max\{6,n\}`$, two compiler flags and $`b\ge L+n+7`$ give $`T=O(N+L)`$, $`G=O(NL)`$ for preparation; a common-coarse reference preserves relative branch phase |
 | Coarse-frame Hopf QBP | All real angles admit depth-record norm at most five, the original logarithmic depth-block shot order, and $`O(N+L')`$ T-count per execution apart from the observable; histogram reconstruction costs $`O(S+Nn)`$ arithmetic plus preprocessing and bit costs |
 | Complex state-based Hopf QBP | Gauge-fixed prefix phase tables supply an exact-return logical coarse C with $`O(N)`$ T gates; the same two flags and dirty threshold give magnitude and phase streams, $`O(N+L')`$ T per execution, and $`O(S+Nn)`$ histogram arithmetic |
+| Banked state preparation | Two flags and $`b\ge2(L+n+7)`$ give $`T=O(\sqrt{NL}+L+NL/b+n\sqrt N)`$, $`G=O(NL)`$; the coarse term is absorbed when $`L\ge n^2`$ |
+| Fair task comparison | Use original accuracy K and state precision $`P=\max(n,K)`$, keeping oracle precision K; the fine gauged complex borrowed baseline now has the same count as the real baseline. High-precision improvements concern available upper bounds, not optimal gradients or total runtime |
 
 For the selected complete real-frame endpoint,
 
@@ -200,13 +208,23 @@ operators reproduce the analytic gradients, including nonzero magnitude
 and phase signals at a singular tuple. Complete word counts favor the
 original exact-frame protocol on this specially exact fixture.
 
-The next pass should consolidate the task-specific result and compare its
-complete costs with the original route across precision and workspace
-regimes, including the classical preprocessing obligations. Further native
-emission should answer a concrete remaining claim; another special exact
-fixture alone would not establish a general advantage. The general
-fine-precision residual-table emitter and fine complete-frame endpoint
-remain separate.
+The [task-cost audit](docs/QBP_COST_COMPARISON.md) is complete. At common
+banked workspace and $`K\ge n^2`$, the state and original upper expressions
+are $`\sqrt{NK}+K+NK/b`$ and $`\sqrt{NK}+K\ell_*(n)+NK/b`$.
+A diverging ratio requires $`K\gg N/\ell_*(n)^2`$ and
+$`b\gg N/\ell_*(n)`$. Fixed accuracy favors the original route, and
+the common shot allocation still grows as $`4^K`$ up to its confidence
+factor. Neither Clifford order nor classical decoding order improves.
+
+The next bounded question is to price compiler preprocessing under an
+explicit bounded-input and observable-access model. Certified coefficient
+precision is bounded, but arbitrary supplied evaluators, native-word
+synthesis, and table certification do not yet have a matched runtime
+ledger across all best constructions. Keep those obligations explicit
+before claiming an end-to-end advantage. Further native emission should
+answer a concrete missing claim; another special exact fixture alone
+would not answer this question. The general fine-precision residual-table
+emitter and fine complete-frame endpoint remain separate.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -244,9 +262,10 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass supplies complete bounded native integration for both complex
-gradient streams. The general fine-precision compiler remains analytic,
-and the frame endpoint is unchanged.
+This pass supplies a banked state corollary and a complete task-resource
+comparison, with finite arithmetic checks of its workspace and weighted
+sum ledgers. The general fine-precision compiler remains analytic, and
+the frame endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

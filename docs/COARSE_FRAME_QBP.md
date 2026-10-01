@@ -362,6 +362,14 @@ $`\Theta(\sqrt N)`$ T-count can still be preferable. Reading a dense angle
 tuple, compiling its tables, implementing the observable, and writing all
 gradient coordinates remain part of any meaningful advantage comparison.
 
+The [banked state refinement](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation)
+also applies here: $`b\ge2(L'+n+7)`$ gives per-execution T-count
+$`O(\sqrt{NL'}+L'+NL'/b+n\sqrt N)`$ apart from the observable,
+including the charged coarse inverse. The
+[task-cost comparison](QBP_COST_COMPARISON.md) uses common accuracy,
+workspace, and oracle access, and includes the original histogram decoder
+and both routes' preprocessing obligations.
+
 ## 7. Finite evidence
 
 [Coarse-frame decoder tests](../tests/test_coarse_frame_qbp.py) check randomized
