@@ -26,6 +26,7 @@ chapter below.
 | [State-only compiler](STATE_ONLY_COMPILER.md) | Two clean flags and one precision charge for a known real Hopf state, including coherent reference selection |
 | [Reference-state QBP](REFERENCE_STATE_QBP.md) | Leaf-only interference with explicit reference and sampling tradeoffs |
 | [Coarse-frame QBP](COARSE_FRAME_QBP.md) | All real angles, bounded depth records, a charged coarse inverse, and exact classical correction without a fine inverse frame |
+| [Native coarse-frame example](NATIVE_COARSE_QBP.md) | Complete elementary two-qubit integration, an active dirty helper, complex observables, and a comparison with the original protocol |
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Reconciled hierarchy of bounds, promised update families, and supporting components; current task-specific protocol and separate complete-frame questions |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |

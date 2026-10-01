@@ -383,3 +383,8 @@ $`H^{\otimes n}`$ preserve the preparation error, including leaked
 flag components. Their extra counts are respectively $`O(N)`$ T and
 $`O(Nn)`$ Clifford gates, and n Clifford gates. Observable implementation
 and sampling remain separate protocol costs.
+
+The [bounded native integration](NATIVE_COARSE_QBP.md) emits this finite-size
+fallback for an exact two-qubit target and a complex native reference.
+It checks literal branch phase and an actively used arbitrary dirty helper.
+It does not emit the general addressed residual-table construction.

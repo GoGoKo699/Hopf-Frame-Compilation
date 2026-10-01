@@ -26,6 +26,8 @@ theorem by numerical extrapolation.
 | [`test_approximation_contract.py`](test_approximation_contract.py) | Actual-adjoint bias, complex phase records, reflection sums, finite weights, and conditional means with correlated dirty reuse |
 | [`test_reference_state_qbp.py`](test_reference_state_qbp.py) | Leaf-interference gradients, derivative envelopes, singular angles, and the two-flag state-amplification identity; ideal small matrices |
 | [`test_coarse_frame_qbp.py`](test_coarse_frame_qbp.py) | Corrected X/Y means, uniform depth-record bounds, histogram/adjoint reconstruction, and bias witnesses for omitted quadratures or coarse corrections; ideal four/eight-mode matrices |
+| [`test_coarse_frame_decoder.py`](test_coarse_frame_decoder.py) | Executable histogram reconstruction, large exact counters, canceled records, and input contracts without a dense derivative table |
+| [`test_native_coarse_qbp.py`](test_native_coarse_qbp.py) | Expanded elementary circuits, complete preparation isometries, coherent dirty-input score operators, literal phases, and comparison with the original protocol |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |

@@ -44,6 +44,19 @@ python scripts/strict_zero_echo_ledger.py --n 12
 This displays the per-depth borrowed-suffix UCG widths, predicate terms, and the
 complete strict-zero size/depth proxies.
 
+## Native coarse-frame example
+
+```bash
+python scripts/coarse_frame_native_example.py
+python scripts/coarse_frame_native_example.py --case singular --format json
+```
+
+This bounded two-qubit example emits elementary Clifford+T words, checks
+complete preparation and coherent dirty-input gradient means, and reports
+literal counts against the original protocol with the same observable.
+Its exact finite-size target is not a generic fine-precision compiler or an
+advantage experiment. See the [scope and word proof](../docs/NATIVE_COARSE_QBP.md).
+
 ## Upstream synchronization
 
 ```bash

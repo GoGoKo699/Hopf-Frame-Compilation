@@ -244,6 +244,18 @@ detects the bias caused by dropping Y measurements or replacing actual-C
 scores with ideal Walsh scores. Their coarse words are small ideal
 unitaries; the native resource and complete-work claims are analytic in
 the [decoder proof](COARSE_FRAME_QBP.md) and its preparation dependency.
+The [native coarse-frame integration checks](../tests/test_native_coarse_qbp.py)
+now emit the finite-size two-qubit fallback completely in elementary gates.
+They compare full preparation isometries and two-by-two decoded score
+operators on arbitrary dirty input, preserving literal phase and retaining
+all output rows. The helper is used and returned; the two reserved compiler
+flags are untouched. The same controlled observable is priced in the
+original protocol. The [executable histogram checks](../tests/test_coarse_frame_decoder.py)
+compare reconstruction with independent small Jacobians and preserve
+integer cancellations beyond fixed-width and floating-point precision.
+Final contractions remain NumPy arithmetic. The [native example note](NATIVE_COARSE_QBP.md)
+separates these finite checks from the general residual-table construction
+and its analytic cost proof.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check
