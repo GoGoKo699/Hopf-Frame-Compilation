@@ -466,7 +466,11 @@ The sufficient [whole-frame half-unitary block](OPEN_PROBLEM.md#a-sufficient-con
 remains a valid target. A successful construction may avoid intermediate
 source return, may use a different carried operator, or may synthesize
 the interleaved source and programming operations jointly.
-The bounds for unrestricted complete-frame compilation remain unchanged.
+The best retained complete-frame bound remains unchanged. The
+[affine residual assembly](RESIDUAL_ASSEMBLY.md) supplies an actual two-flag
+word at $`O(N+nL)`$ T cost by merging the diagonal with the forward term.
+This resolves its composition and flag-allocation step; reducing its repeated
+precision cost remains a separate construction task.
 
 The tree factorization above provides a compact classical starting point
 for another construction, while keeping its coherent implementation as an

@@ -293,7 +293,7 @@ The following distinctions keep the next search from repeating shortcuts:
 |---|---|---|
 | Better synthesis of the same source | One exact controlled source already has linear cost in its width | Joint synthesis across uses, or a different source |
 | Move the source basis change outside all programming | Individually transformed masks can also have linear T cost | A jointly synthesized source/program word |
-| Reuse flags and amplify only once | Rejected branches can return coherently to the accepted subspace | A designed global block with a proved rejection-space action |
+| Reuse flags and amplify only once | Rejected branches can return coherently; the new [affine assembly](RESIDUAL_ASSEMBLY.md) explicitly handles them | Lowering the assembled block's repeated precision cost |
 | Replace an initialized nilpotent source by dirty encoding | The specified full-output relation needs growing initialized dimension | Nonnilpotent kernels, conditional sectors, or another block representation |
 | Transfer the old precision-state compiler into a conditional sector | That earlier construction had a source-fit limitation | The present operator-source construction already bypasses that limitation; conditional suffix work is not ruled out |
 
@@ -320,7 +320,8 @@ bound above. None removes the grouped endpoint's iterated logarithm.
 | Compact residual data | $`O(N)`$ local generators and exact path products represent $`C^\dagger W-I`$ | Classical compression alone is not a coherent evaluator |
 | Weighted forward block F | A complete one-signal-flag dilation with fixed normalization; $`T=O(N+nL)`$, $`G=O(NL)`$, $`b\ge L+n+7`$; native synthesis uses no additional clean flag | This is one term, and still pays precision at every depth |
 | Exact-dirty-return alternative | The same component has $`T=O(L\sqrt N)`$, $`G=O(NL)`$ at $`b\ge n+\lceil\sqrt N\rceil+7`$ | Useful when exact work return or its different width matters; it is not the best endpoint component bound |
-| Reverse weighted term and diagonal | Their operators and height-independent norm bounds are explicit in the [tree identity](ENDPOINT_TREE_TRANSPORT.md) | Supply their actual compatible words, inverses, controls, and workspace schedules |
+| Affine forward and reverse blocks | The [assembly proof](RESIDUAL_ASSEMBLY.md) combines the diagonal with forward transport into one signal block, and constructs the reverse block by a swapped-pair actual inverse | Their current native T-count still contains $`nL`$ |
+| Two-flag global assembly | A selector and a shared signal combine those two blocks with exact normalization two; native controls, inverses, and workspace are charged | This closes the composition step, not the linear-precision synthesis step |
 | One-clean grouped frame compiler | Complete-frame error including approximate core and suffix-work return | It already gives the best retained endpoint upper bound; its precision charge is not a lower bound |
 
 The coarse frame needs no reconstruction. The [weighted norm proof](ENDPOINT_TREE_TRANSPORT.md#the-actual-weighted-pieces-have-no-height-penalty)
@@ -341,12 +342,12 @@ corollary does not remove that requirement.
 At $`L=N`$, the current forward component costs $`O(N\log N)`$ T gates,
 whereas the complete frame already costs $`O(N\ell_*(n))`$. Thus an
 improvement to that component is useful only as part of a cheaper complete
-assembly. The next pass should establish that assembly interface before
-optimizing its precision cost again.
+assembly. The assembly interface is now established. The remaining construction
+task is a smaller joint precision charge for its two compatible terms.
 
-### Next task: a two-flag assembly lemma
+### Completed: two flags assemble the whole residual
 
-Use the exact residual identity
+Use the exact identity
 
 ```math
 C^\dagger W=A+F+R,\qquad A=I+D,\qquad
@@ -354,56 +355,87 @@ F=\iota D_h\mathcal P_W,\qquad
 R=\mathcal P_C^\dagger D_k\iota^\dagger.
 ```
 
-Here A is the diagonal of the unitary $`C^\dagger W`$, so
-$`\|A\|\le1`$. At fixed coarse accuracy
-$`0\lt\varepsilon_0\le1/64`$, the retained estimates give
-$`\|F\|,\|R\|\le2\varepsilon_0`$. The forward dilation uses the
-safe fixed normalization $`\alpha=4\varepsilon_0`$. If compatible
-normalized implementations of all three terms are supplied, their
-linear-combination weight is
+A separate selector branch for each of A, F, and R would require a third
+initialized selector/signal role. The [new construction](RESIDUAL_ASSEMBLY.md)
+first incorporates the diagonal into the forward tree:
 
 ```math
-1+2\alpha\le\frac98\lt2.
+S=A+F,\qquad \alpha=4\varepsilon_0,\qquad s=2-\alpha,
+\qquad \|S\|\le1+2\varepsilon_0\lt s.
 ```
 
-This leaves room for normalization-two padding, but it is only scalar
-accounting. A direct four-branch linear-combination circuit would use two
-initialized term-selection bits and a separate initialized block signal:
-three clean qubits. Borrowing the native synthesis signal removes an
-additional work requirement; it does not by itself remove this third
-selector/signal role. This allocation failure concerns that assembly only.
+The scalar Schur recursion now includes the marker's diagonal contribution
+in its stop output. Root mixing and the terminal rejection phase are adjusted
+so that one logical signal still supplies a complete unitary dilation.
+This gives an actual block $`S/s`$. A swapped-pair construction followed by
+its actual inverse gives $`R/\alpha`$.
 
-The bounded next target is an actual word $`Q_E`$ on **two** initialized
-flags and $`b=N+n+7`$ dirty qubits satisfying
+Prepare the selector with probabilities $`s/2`$ and $`\alpha/2`$,
+select between these two one-signal blocks, and undo that preparation.
+Because $`s+\alpha=2`$, its two-flag accepted block is
 
 ```math
-\left\|2J_2^\dagger Q_EJ_2-
-\bigl((C^\dagger W)\otimes I_b\bigr)\right\|\le\eta/4.
+\frac{s}{2}\frac{S}{s}
++\frac{\alpha}{2}\frac{R}{\alpha}
+=\frac{C^\dagger W}{2}.
 ```
 
-Seek a construction with a constant number of forward or actual inverse
-component calls and an additive resource reduction
+The implementation uses one common algebraic target approximation for both
+terms. Controlled templates are exactly inactive on the other selector
+sector, including all dirty inputs. Final gathering is explicitly controlled;
+no T gate is silently promoted to a controlled T. The proof gives the
+complete flag-lifetime table and includes coefficient preparation, physical
+routing, actual inverses, and normalization-two amplification. Appending the
+already priced coarse C yields the prescribed frame.
+
+At $`a=2`$ and $`b\ge L+n+7`$, the resulting complete circuit has
+$`T=O(N+nL)`$ and $`G=O(NL)`$. This is an explicit assembly route;
+it is weaker than the retained grouped endpoint upper bound. In particular,
+the proof does not turn an opaque existing F block into an S block with a
+constant number of calls: it recompiles the affine tree's local data.
+
+### Next task: share precision in the affine and reverse blocks
+
+The assembly now supplies a charged reduction. For compatible actual
+component circuits with the stated accepted blocks and their implemented
+selector controls, its T-count is bounded by
 
 ```math
-T(Q_E)=O(T_F+T_R+N+L),\qquad
-G(Q_E)=O(G_F+G_R+NL).
+O(T_S+T_R+N+L),
 ```
 
-These are desired bounds, not established ones. Diagonal programming,
-coefficient preparation, routing, controlled calls, and every helper must
-be included. A full-input hybrid must justify using approximate native
-component words; multiplying their accepted blocks alone is insufficient.
-Appending the already priced actual C and applying normalization-two
-amplification would then connect this lemma to the
-[whole-frame target](#a-sufficient-construction-to-seek).
+and its Clifford count by $`O(G_S+G_R+NL)`$. At the selected endpoint,
+$`L=N`$ and $`b=N+n+7`$, it therefore suffices to achieve
 
-A successful pass must produce the actual word, its accepted-block algebra,
-a complete two-flag lifetime table, and a charged control schedule. A
-proposal requiring a third initialized selector, resetting an occupied
-flag, or leaving a controlled operation unpriced fails that pass. Such a
-failure is a scoped obstruction, not a general lower bound. Once this
-assembly is available, reducing the weighted precision charge from
-$`nL`$ to $`N+L`$ becomes a concrete route to the linear endpoint.
+```math
+T_S+T_R=O(N),\qquad G_S+G_R=O(N^2)
+```
+
+within that same dirty pool. A precision-uniform sufficient target is
+$`T_S+T_R=O(N+L)`$, $`G_S+G_R=O(NL)`$. These improved component
+costs remain unproved. The current templates pay $`O(L)`$ precision work
+at each of n depths.
+
+The next bounded pass should synthesize the **affine** transport
+$`S=A+F`$ together with the reverse term's compatible interface. A cheaper
+F-only routine does not automatically price S. The local coefficients and
+scalar storage recursion contain only $`O(N)`$ classical data; their
+coherent implementation, masks, routing, and precision work must all be
+charged. Replacing the repeated native source calls by a shared word is a
+construction task, not a consequence of that classical data count.
+
+The assembly does not require the future blocks to approximate the particular
+Gram–Schmidt completions used in the current proof. They may choose other
+unitary completions, provided their accepted-block estimates hold on all
+logical and dirty inputs, their controlled actions and literal inverses are
+implemented, and the two-flag allocation is respected. Amplification then
+controls the complete output, including rejected-space returns.
+
+A successful pass must give an actual native circuit and summed resource
+ledger improving the repeated precision term. A new norm identity, a free
+coherent evaluator, or a bound for the forward accepted block alone would
+leave that task incomplete. Any obstruction must remain scoped to the
+specific source or assembly interface it analyzes.
 
 ### Boundaries to carry into that pass
 
@@ -420,7 +452,7 @@ $`nL`$ to $`N+L`$ becomes a concrete route to the linear endpoint.
 
 The depth tradeoff, its lower-bound gap, and explicit practical grouping
 constants remain separate tasks. They need not be reopened to test this
-assembly lemma. The publication's established compiler results remain valid
+joint precision construction. The publication's established compiler results remain valid
 independently of whether this endpoint route succeeds.
 
 ## Evidence and remaining implementation work

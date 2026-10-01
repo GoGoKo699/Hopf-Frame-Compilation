@@ -445,8 +445,10 @@ reuses the cheap coarse frame above. The
 [weighted-block construction](WEIGHTED_TRANSPORT_BLOCK.md) supplies a
 forward component with constant normalization, a complete flag action, and
 a native implementation. Its $`O(N\log N)`$ endpoint T-count
-does not replace the grouped compiler. The next task is a two-flag assembly of all residual terms, with actual
-controls and a complete workspace schedule, before cheaper joint synthesis.
+does not replace the grouped compiler. The [two-flag assembly](RESIDUAL_ASSEMBLY.md) now incorporates the diagonal
+into an affine forward block and combines it with the reverse term, including
+actual controls and the complete workspace schedule. The remaining task is
+cheaper joint precision synthesis for those compatible selected branches.
 
 ### Small defects do not make the selected completion a small correction
 

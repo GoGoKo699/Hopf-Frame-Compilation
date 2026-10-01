@@ -187,10 +187,12 @@ the same upper bound. Restrictions on particular source-processing interfaces
 do not supply an additive full-frame lower bound.
 
 The tree-generator and weighted-transport studies refine this open question.
-Their operator identities and norm estimates do not add a fourth compiler
-theorem or change Results A–C. The current bounded construction task is
-specified in the [research revision](../docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass);
-its proposed gate budget is not part of the established publication claims.
+Their [two-flag residual assembly](../docs/RESIDUAL_ASSEMBLY.md) is an explicit
+complete-frame route at $`O(N+nL)`$ T cost, including native controls and
+actual inverses. It supports the endpoint research without changing Results
+A–C or adding a fourth principal result. The remaining joint precision task
+is specified in the [research revision](../docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass);
+its proposed linear gate budget is not an established publication claim.
 
 ## Main text and appendices
 

@@ -644,6 +644,8 @@ At $`L=N`$, the bound is $`T=O(N\log N)`$, $`G=O(N^2)`$, within
 $`b=N+n+7`$. It improves the native cost of this component while retaining
 a separate precision charge at each depth. It does not improve the
 existing $`O(N\log^*N)`$ full-frame bound or close the $`O(N)`$
-endpoint. Combining the forward block with the reverse weighted term,
-diagonal, coarse C, and amplification still requires a full composition
-proof within the same two-clean allocation.
+endpoint. The [two-flag assembly](RESIDUAL_ASSEMBLY.md) now supplies a
+complete composition: incorporate the diagonal into a new affine forward
+dilation, select it against the reverse block, and amplify before applying
+the actual coarse C. Its cost remains $`O(N+nL)`$. A cheaper isolated
+forward block would not automatically price that affine component.

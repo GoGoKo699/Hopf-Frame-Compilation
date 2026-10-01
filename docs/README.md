@@ -23,10 +23,11 @@ chapter below.
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 | [QBP consequence](QBP_CONSEQUENCE.md) | Exact substitution, raw-coordinate accuracy, and matched-program accounting |
 | [Approximate QBP](QBP_APPROXIMATION.md) | Complete complex gradient, observable sums, rounded weights, correlated dirty reuse, and quantum/classical budgets |
-| [Research status and open endpoint](OPEN_PROBLEM.md) | Full retained frontier, endpoint dependencies, scoped route limits, and the weighted-block native cost gap |
+| [Research status and open endpoint](OPEN_PROBLEM.md) | Full retained frontier, endpoint dependencies, scoped route limits, and the remaining native precision cost |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
 | [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and native synthesis with exact or approximate dirty return |
+| [Complete residual assembly](RESIDUAL_ASSEMBLY.md) | Affine forward dilation, actual reverse branch, two-clean selection and amplification, and a complete-frame bound that retains the per-depth precision charge |
 
 ## Evidence and sources
 

@@ -87,6 +87,18 @@ The [batched native bound](WEIGHTED_TRANSPORT_BLOCK.md#5-a-native-implementation
 is proved analytically. These operator matrices have dimension at most 32;
 the separate permutation checks enumerate basis labels without dense matrices.
 They do not emit the elementary circuit or establish the linear T-count target.
+The [residual-assembly checks](../tests/test_residual_assembly.py) compare the
+affine forward recursion with independent subtree Schur solves, reconstruct
+the complete affine and reverse dilations, and assemble and amplify their
+two-flag selection on every logical input column. They check literal mode
+packing and gathering, singular and zero-defect cases, actual inverses,
+and perturbations that retain rejected-flag leakage and arbitrary dirty
+inputs. Negative controls detect the wrong reverse branch, a changed
+relative root phase, and replacement of an actual inverse by a forward call.
+The [native assembly and resource bound](RESIDUAL_ASSEMBLY.md) are proved
+analytically. These operator fixtures use matrices of dimension at most 64;
+they do not emit the native compiler or demonstrate an improved endpoint
+T-count.
 The [one-clean checks](../tests/test_one_clean_compiler.py) reconstruct the
 paired-Majorana source and general Pauli masks from native gates, audit the
 conjugated scalar word and five-call amplification on all dirty input

@@ -431,6 +431,22 @@ amplification signal is included in the full-operator error. The earlier
 $`O(L\sqrt N)`$ route remains useful for its exact dirty-work return.
 Neither component bound removes the full-frame endpoint gap.
 
+The [complete residual assembly](RESIDUAL_ASSEMBLY.md) incorporates the
+diagonal and forward term into one affine tree map, then selects it or the
+reverse dilation using two clean flags. The scalar elimination uses
+standard Schur complements (F18 in the source map); the local contribution is the affine
+recursion, complete tree-mode allocation, and native controlled-branch
+accounting. The prepared two-term linear combination and normalization-two
+amplification are inherited from
+[Berry et al., Eqs. (7)–(15)](https://arxiv.org/pdf/1412.4687).
+Borrowed synthesis work and full-operator error estimates make the selected
+branches usable while both flags are occupied. This gives
+$`T=O(N+nL)`$ and $`G=O(NL)`$ at $`a=2`$,
+$`b\ge L+n+7`$; it is not a new generic LCU method or an improvement
+over the grouped frame bound. The constant-call reduction applies to the
+new affine and reverse dilations, not to an uncontrolled opaque forward
+block alone.
+
 The [source map](SOURCE_MAP.md) gives exact theorem numbers and local consumers.
 The comparisons identify dependencies and specific additional constructions;
 they do not certify priority.
