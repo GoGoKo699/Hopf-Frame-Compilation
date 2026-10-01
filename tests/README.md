@@ -35,6 +35,7 @@ theorem by numerical extrapolation.
 | [`test_rotation_programming.py`](test_rotation_programming.py) | Exact geometric-tail moments, interval certificates beyond floating-point precision, rounding/head boundaries, and invalid-input rejection |
 | [`test_native_residual_rotation.py`](test_native_residual_rotation.py) | Literal emitted Ry/Rz and residual words on all small-register input columns, actual adjoints, signal symmetry, fine algebraic checks, and linear gate counts |
 | [`test_native_residual_table.py`](test_native_residual_table.py) | Literal two-row masks and enable controls, exact inactive identity, active row phases on every control sector, and high-precision table certificates/counts |
+| [`test_native_residual_state.py`](test_native_residual_state.py) | Two-flag native preparation, actual inverse and reflections, complete dirty-input isometry, literal phase, and rational precision/resource certificates |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
@@ -83,15 +84,19 @@ The following checks are especially useful when modifying the scientific code:
 14. exact paired-source programs and elementary unaddressed residual rows
     preserve literal phases, borrowed-signal symmetry, and full-input bounds;
 15. enabled two-row tables preserve the address/enable data and every
-    inactive input exactly, with coherent relative phases retained.
+    inactive input exactly, with coherent relative phases retained;
+16. the bounded residual state word uses both clean flags, includes all
+    dirty input columns and intermediate leakage, and amplifies with its
+    actual inverse and literal sign.
 
 The real and complex elementary integration fixtures use two logical
 qubits and exact finite-size preparation. Their bounded propagated columns
 do not implement the general fine residual-table emitter. Classical
 coefficient certificates and floating histogram reconstruction have their
 separate scopes above. The unaddressed native row is a further implemented
-component, now extended to one addressed two-row table; general lookup
-and state amplification remain separate.
+component, extended to one addressed two-row table and then bounded
+one-system-qubit state amplification. General lookup and the full
+fine state schedule remain separate.
 
 All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
 checks are retained.
