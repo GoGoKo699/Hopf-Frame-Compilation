@@ -1378,3 +1378,206 @@ literal phases, changing-target composition, occupied signal ports, and
 borrowed work in small complete matrices. Their $`q=2`$ words are
 finite diagnostics; their deliberately coarse approximation errors do
 not certify the stated L-bit resource allocation.
+
+## 11. A packed Hopf scattering step and its boundary transfer
+
+All local Hopf rotations fit into one addressed real-rotation table on
+one additional mode qubit. Fixed, charged port permutations turn that
+table into a unitary scattering step. The complete prescribed frame is
+its boundary transfer matrix, however, rather than the step itself.
+The exact identity below identifies that distinction and tests the
+unchanged-coin route without assuming a target-dependent eigenbasis.
+
+### Physical ports and the exact transfer identity
+
+Use $`N=2^n`$ and physical labels $`(a,x)`$, with one mode bit a
+and the original n-bit logical label x. The external ports $`a=0`$
+keep the prescribed root/marker inputs: x zero is the root, and
+
+```math
+v=2^d+r,\qquad \lambda(v)=(2r+1)2^{n-d-1}
+```
+
+is node v's marker. Internal ports are $`(1,v)`$ for
+$`2\le v\lt N`$: incoming continuation amplitudes at nonroot internal
+nodes. The two remaining ports $`(1,0),(1,1)`$ are dummies.
+Coin coordinates are $`(v,p)`$, with n node bits followed by one
+local port bit. Define the forward input permutation P by
+
+| Physical input | Coin input |
+| --- | --- |
+| $`(0,0)`$ | $`(1,0)`$ |
+| $`(0,\lambda(v))`$, $`1\le v\lt N`$ | $`(v,1)`$ |
+| $`(1,v)`$, $`2\le v\lt N`$ | $`(v,0)`$ |
+| $`(1,0),(1,1)`$ | $`(0,0),(0,1)`$, respectively |
+
+These are bijections of all $`2N`$ modes. Let
+
+```math
+\mathscr M=(-I_2)\oplus\bigoplus_{v=1}^{N-1}R_y(\theta_v).
+```
+
+The output permutation O sends a coin output $`(v,p)`$ to
+
+```math
+\left(1-\left\lfloor\frac{2v}{N}\right\rfloor,
+                    (2v+p)\bmod N\right).
+```
+
+It is simply X on the highest bit of the coin word: children below N
+are internal continuations, and children at least N are external leaves.
+In the external/internal physical decomposition, write
+
+```math
+\mathscr S=O\mathscr M P
+=\begin{pmatrix}D&C_{\rm out}\\ B&A\end{pmatrix}.
+```
+
+On genuine internal ports, $`A_0`$ advances one tree level, so
+$`A_0^{n-1}=0`$ for $`n\ge2`$. Padding gives
+$`A=(-I_2)\oplus A_0`$, with B and $`C_{\rm out}`$ zero on
+the dummy coordinates. Thus A itself is not nilpotent, but $`I-A`$
+is invertible, including its dummy block $`2I_2`$. Exactly,
+
+```math
+W=D+C_{\rm out}(I-A)^{-1}B
+ =D+C_{\rm out}\left(\sum_{j=0}^{n-2}A_0^j\right)B,
+```
+
+where the last expression suppresses the uncoupled dummy coordinates.
+For $`n=1`$, the genuine internal space is empty and $`W=D`$.
+
+To prove the identity, feed the internal output back to its identically
+labelled input. For external input x, its unique continuation vector is
+$`u=Au+Bx`$, and its external output is $`y=Dx+C_{\rm out}u`$.
+At node v these equations are precisely the prescribed local rotation of
+the incoming amplitude and marker amplitude into its two children.
+Solving downward therefore gives every column of W, with its literal
+phase and marker convention. This algebraic feedback relation is not a
+physical circuit instruction or an accepted-block implementation of W.
+The elimination is standard block linear algebra; the local statement is
+the prescribed Hopf port assignment and its charged step implementation.
+
+### The step has a charged native implementation
+
+The input permutation also has a short structured implementation. First
+cyclically move a to the last position and flip it, giving $`(x,1-a)`$.
+On port one apply the n-bit permutation
+
+```math
+H(0)=0,\qquad H(p\,1\,0^t)=0^t\,1\,p.
+```
+
+Then swap the two coin basis states $`(0,1)`$ and $`(1,0)`$.
+To implement H, reverse all n bits, then reverse the suffix below the
+highest one. Unroll the latter operation over its n possible highest-one
+positions. Each sector has fixed prefix controls and at most n swaps;
+its controls are disjoint from the swapped bits. The retained
+[borrowed multi-control construction](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector)
+implements each controlled swap with $`O(n^2)`$ native gates and one
+returned arbitrary helper. The final two-state swap has the same
+$`O(n^2)`$ bound by affine conjugation of a multi-controlled X.
+Thus P costs $`O(n^4)=O(N)`$ T and Clifford gates; O is Clifford.
+The helper can reuse a core wire before or after the complete coin call.
+
+For one coin call at error $`2^{-L}`$, use the
+[full-operator real-table primitive](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
+For $`n\ge2`$, take source width $`q=L+6`$ and split two of the
+n unchanged address bits into four invariant sectors. There are
+$`k=n-2`$ free address bits and two predicate literals, so each sector
+uses
+
+```math
+(q+1)_{\rm core}+k_{\rm selectors}
+ +1_{\rm helper}+1_{\rm signal}=L+n+7
+```
+
+arbitrary dirty wires. The sector errors take a maximum, below
+$`43\,2^{-q}=(43/64)2^{-L}`$. Their tables and source costs sum to
+$`O(N+L)`$ T gates and $`O(NL)`$ Clifford gates. The fixed-size
+$`n=1`$ case uses the retained direct borrowed-sector native words.
+All port permutations are exact. Consequently one scattering step has
+the full-operator guarantee and costs
+
+```math
+\|\widehat{\mathscr S}-\mathscr S\otimes I_b\|\le2^{-L},
+\qquad T=O(N+L),\qquad G=O(NL),\qquad b\ge L+n+7.
+```
+
+The coin synthesis needs no initialized work. The extra mode qubit may
+be initialized to select external inputs, using only one of the two
+available clean wires; the bound also covers its occupied internal port.
+Core and signal return are included in the approximation, and query
+helpers return exactly. This prices one step, not feedback or a sequence
+of finer-accuracy calls within the same reservation.
+
+### A fixed number of unchanged-coin calls does not give the frame
+
+Consider a coherent word making k calls to the ideal
+$`\mathscr S(\theta)`$, its adjoint, or their controlled versions,
+interleaved with arbitrary parameter-independent unitaries. Fixed dense
+basis changes and additional initialized or dirty work are allowed.
+Set all angles on the all-right path $`v=1,3,\ldots,N-1`$ to
+one variable theta and every other angle to zero. The target entry is
+
+```math
+\langle N-1|W(\theta)|0\rangle=\sin^n\theta.
+```
+
+Each oracle entry has Laurent degree at most one in
+$`z=e^{i\theta}`$. Therefore any selected complete output amplitude
+$`p_k(\theta)`$ has Laurent degree at most k. For $`k\lt n`$, it
+cannot equal the target on any open angle interval. Uniformly over a
+full period, its error is at least $`2^{-n}`$, the magnitude of the
+missing frequency-n coefficient.
+
+This is the elementary degree-growth argument underlying the
+[quantum query polynomial method](https://homepages.cwi.nl/~rdewolf/publ/qc/polynomials.pdf),
+Lemma 4.1, applied here to Laurent entries rather than Boolean variables.
+The local content is the Hopf path amplitude and the specified coin model.
+
+The conclusion also holds at sufficiently fine accuracy on the canonical
+interval $`[0,\pi/2]`$. Put $`d=2n`$. The polynomial
+
+```math
+P(z)=z^n\bigl(\sin^n\theta-p_k(\theta)\bigr)
+```
+
+has degree d and leading coefficient of magnitude $`2^{-n}`$.
+If its modulus is at most epsilon on that arc, interpolate at
+$`z_j=e^{i\pi j/(2d)}`$, $`0\le j\le d`$. Since
+$`|z_j-z_l|\ge|j-l|/d`$, the leading coefficient is bounded by
+
+```math
+\varepsilon d^d\sum_{j=0}^d\frac1{j!(d-j)!}
+=\varepsilon\frac{(2d)^d}{d!}.
+```
+
+The elementary estimate $`d!\ge(d/e)^d`$ follows by integrating
+log x below its increasing sum. Hence
+
+```math
+\varepsilon\ge2^{-n}\frac{d!}{(2d)^d}
+\ge(8e^2)^{-n}>2^{-6n}.
+```
+
+At the selected $`L=N`$ endpoint this excludes $`k\lt n`$ for
+$`n\ge5`$. A complete-isometry error bound controls this amplitude
+by choosing one logical input and one fixed borrowed input, so extra
+work and reference correlations do not evade the conclusion. Replacing
+each ideal query by a full-operator delta-approximation changes the word
+by at most $`k\delta`$; the corresponding diagnostic is
+$`\varepsilon_{\rm out}+k\delta\ge(8e^2)^{-n}`$.
+
+This is a query restriction on the unchanged local-angle coin and fixed
+interleaves. It does not apply to tables reprogrammed with global angle
+functions, target-dependent basis changes, or other joint synthesis.
+Nor does it prove additive T-counts for oracle calls. In particular,
+compact tree scattering is a valid representation, but a proposed pair
+of involutions must still supply the boundary transfer, rather than
+silently identify the packed step with the prescribed frame.
+
+The [Hopf scattering checks](../tests/test_hopf_scattering.py) verify the
+complete transfer matrices, port permutations, padded dummy convention,
+and right-path Fourier coefficient at small dimensions. They test the
+algebraic interface, not fine-precision native synthesis of feedback.

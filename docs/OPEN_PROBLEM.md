@@ -82,6 +82,13 @@ supplies an additional depth lower bound in this model.
 
 ### What this already gives Hopf QBP
 
+The synthesis target throughout is the prescribed Hopf tree frame; an
+arbitrary-unitary compiler is not required. The existing decoder's
+universal observable guarantee still uses its marker directions, as the
+[frame-safety necessity argument](FRAME_SAFE_COMPILATION.md#necessity-for-all-observable-dependent-gradient-means)
+shows. A narrower observable class or a changed decoder would define a
+separate task and require its own resource comparison.
+
 The endpoint below is a high-precision compiler question, separate from the
 precision needed for a fixed raw-gradient accuracy. For a reflection-sum
 observable with coefficient one-norm Lambda, the existing
@@ -671,17 +678,62 @@ preserving the tree structure in the native program, rather than merely
 making the residual small, preparing its state column, or renaming clean
 work as borrowed work.
 
+### The Hopf-specific scattering test
+
+The [packed scattering construction](ENDPOINT_TREE_TRANSPORT.md#11-a-packed-hopf-scattering-step-and-its-boundary-transfer)
+uses the actual Hopf tree. One n-bit address selects its node rotation;
+one additional mode qubit accommodates all internal continuation ports.
+Explicit port permutations produce a unitary step
+
+```math
+\mathscr S=\begin{pmatrix}D&C_{\rm out}\\ B&A\end{pmatrix},
+\qquad W=D+C_{\rm out}(I-A)^{-1}B.
+```
+
+The second identity gives every prescribed real-frame column, including
+singular angles. The genuine internal block is nilpotent; two decoupled
+dummy ports are padded by minus identity, so the padded A is not nilpotent.
+The inverse in this algebraic identity is not a free circuit operation.
+
+One step is nevertheless fully priced: the returned-work port permutations
+cost $`O(n^4)=O(N)`$, and the retained real-rotation compiler, with four
+invariant address sectors, gives $`T=O(N+L)`$, $`G=O(NL)`$, at
+$`b=L+n+7`$. Its synthesis uses no initialized work; one available clean
+qubit selects external ports. This is a full-operator approximation to the
+step, not a compiler for its feedback boundary.
+
+The conversion cannot use only a fixed number of queries to that unchanged
+local-angle step. On the all-right path, set all n angles to theta. The
+frame entry is $`\sin^n\theta`$, while any k-query word in the step and
+its actual inverse, with parameter-independent interleaves, has amplitude
+degree at most k. For $`k\lt n`$, uniform error on the canonical interval
+$`[0,\pi/2]`$ is at least $`(8e^2)^{-n}>2^{-6n}`$.
+Thus the fine endpoint rules out this constant-query conversion for
+$`n\ge5`$, even with arbitrary fixed basis changes and extra work.
+The small [scattering checks](../tests/test_hopf_scattering.py) test the
+complete transfer, dummy handling, port routing, and the path coefficient.
+
+This closes the unchanged-coin conversion as a bounded-call candidate.
+It does not establish a native T-count lower bound: global coefficient
+preprocessing, target-dependent interleaves, and shared native synthesis
+of many calls remain outside the query argument. The Hopf-specific
+representation is useful, but it has not narrowed the endpoint gap.
+
 ### Next bounded task and stopping rule
 
 No new endpoint construction is selected. The next research action is
 an algebraic selection audit for a tree-specific whole-residual
-factorization, using the completed group audit as the comparison.
-The first question is whether growing support can be expressed through a
-bounded number of complete native primitives already priced here, such as
-diagonals or one-target multiplexors, with every change of basis charged.
+factorization whose programmed coefficients already combine tree levels.
+The unchanged-node scattering table has now been tested; another walk-power
+or fixed-routing conversion of that same table is not the next candidate.
+The question is whether globally preprocessed coefficients give a bounded
+number of complete native primitives already priced here, such as diagonals
+or one-target multiplexors, with every change of basis charged.
 This is a sufficient representation to investigate, not an available
 factorization or a claim that it exists. A packed higher-rank reflection
 would likewise need its own complete native implementation.
+An expanded native program with many calls but one precision charge also
+remains eligible; the scattering query restriction does not price it.
 
 The next deliverable is one explicit candidate identity and its symbolic
 cost, or a concise explanation that none was found. Do not begin another

@@ -4,14 +4,15 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 revision starts from the verified main checkpoint
-`34a5accb593c7ec0247c631ba9ec9ec56eeaae5a`. Check the current branch
-and later commits before continuing. The canonical group candidate is
-closed for endpoint amortization. This revision gathers the evidence,
-checks three alternative mechanisms, and records a cheap Frobenius-small
-coarse residual. None supplies the missing fine-precision native circuit.
-No next construction is selected; the next bounded task is an algebraic
-selection audit for a tree-specific whole-residual factorization.
+The 2026-10-01 Hopf-scattering pass starts from the verified main checkpoint
+`5bff4239a3547e555824c8cf31dfda11c97a008d`. Check the current branch
+and later commits before continuing. The complete Hopf frame now has an
+explicit tree-scattering identity with one cheaply compiled local-rotation
+table. Turning that table into its boundary action remains necessary;
+a constant number of unchanged-table queries cannot do so uniformly at
+fine precision. This is a query-model restriction, not a T-count lower
+bound. No endpoint construction is selected. The next selection question
+is a native program with coefficients that already combine tree levels.
 
 ## Mandate and reading order
 
@@ -21,8 +22,14 @@ Keep manuscript writing and release work outside this research pass.
 Use small analytic examples and finite checks; no large simulations,
 QRAM, resets, supplied catalysts, or hidden initialized work.
 
+The user has emphasized the Hopf QBP task. The target is its prescribed
+tree frame, not arbitrary unitary synthesis. General theorems are only
+comparisons. Supporting all allowed observables with the existing decoder
+still requires the designated marker directions; a restricted observable
+or a different decoder must be identified as a different task.
+
 1. Read the [current assessment](docs/OPEN_PROBLEM.md#current-assessment-what-the-results-establish)
-   and [post-canonical selection audit](docs/OPEN_PROBLEM.md#selection-audit-after-canonical-completion),
+   and [Hopf-specific scattering audit](docs/OPEN_PROBLEM.md#the-hopf-specific-scattering-test),
    then its [next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 2. Read [conditional-suffix Sections 3--7](docs/CONDITIONAL_SUFFIX_COMPILER.md#3-a-small-coefficient-table-and-a-streamed-coarse-circuit)
    and its one-clean extension, followed by the completed
@@ -48,6 +55,7 @@ QRAM, resets, supplied catalysts, or hidden initialized work.
 | Promised updates | Antichain and sparse ancestor-closed changes have $`O(N+L)`$ T-count under their distinct assumptions; generic rounding supplies neither promise |
 | Compact residuals and transport | Linear classical Cayley/weighted data, complete coupled boundaries, and cheap source-width transitions; generic coherent conversion and interior programming remain charged |
 | Small native programs | Fixed-address quaternion compression, four-mode magic-basis factors, and eight-/sixteen-mode changing-target words with full borrowed-signal return; fixed-size cost savings do not improve the generic bound |
+| Hopf scattering | One packed local-rotation step has $`T=O(N+L)`$, $`G=O(NL)`$ and explicit port permutations; its feedback boundary equals the complete frame, but that feedback is not supplied by the step compiler |
 
 For the selected complete real-frame endpoint,
 
@@ -63,6 +71,14 @@ N=2^n,\qquad a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 The upper bound also uses only one clean qubit. Recent passes have not
 narrowed this gap or established that its resolution is close. The
 established publication results do not depend on closing it.
+
+Ordinary fixed-accuracy QBP does not require $`L=N`$. For fixed observable
+coefficient scale and raw-gradient accuracy, the
+[per-execution choices](docs/QBP_APPROXIMATION.md#8-per-execution-and-complete-gradient-t-costs)
+already give optimal-order $`\Theta(\sqrt N)`$ per-frame T-count with
+zero compiler clean qubits and $`\Theta(\sqrt N)`$ dirty work. The
+protocol still reserves its interference qubit and observable work, and
+its total gradient cost is not claimed optimal.
 
 The best compiler already replaces n ordinary
 layers by $`R=O(\ell_*(n))`$ unequal groups while keeping total table
@@ -112,13 +128,22 @@ construction and changes no retained frontier.
 
 ## Next bounded decision
 
-First seek an explicit whole-frame or whole-residual factorization into
-a number of complete native primitives bounded independently of n, with
-additive table size $`O(N)`$ and fixed or fully charged changes of basis.
-The existing diagonal and multiplexor compilers make this a concrete
-sufficient representation question. A packed higher-rank reflector would
-need its own native implementation. No such identity is currently known
-here; compact classical data or a small matrix norm is not that identity.
+The [scattering test](docs/OPEN_PROBLEM.md#the-hopf-specific-scattering-test)
+implements the original node rotations as one addressed table. Its exact
+feedback identity is a concrete Hopf representation, not a free inverse.
+The path amplitude shows that a bounded-query conversion of this unchanged
+table is insufficient even with arbitrary fixed interleaving operations.
+Do not schedule another walk-power, fixed-routing, or feedback-query test
+with that same table as the proposed endpoint mechanism.
+
+Seek instead an explicit whole-frame or whole-residual factorization whose
+programmed coefficients already combine levels, with additive table size
+$`O(N)`$ and every change of basis charged. A bounded number of complete
+diagonal or multiplexor primitives remains one sufficient representation;
+an expanded native word with many calls but one precision charge is also
+allowed. The query restriction does not price that word. No such identity
+is currently known here; compact classical data or a small matrix norm is
+not that identity.
 
 The next deliverable is one actual algebraic template with its symbolic
 cost, or a concise no-candidate finding. Do not schedule more fixtures
@@ -167,15 +192,18 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The verified checkpoint has 288 passing tests, Python 3.11/3.13 CI, all four
-exact-receipt suites, and rendered presentation. The q=2 native table has dimension
-256; the outer group propagates 64 logical/borrowed input columns through
-its 2048-dimensional space without a dense group matrix. These are finite
-interface diagnostics, not fine-precision or asymptotic certification.
+The local suite passes all 292 tests. Merge gates also include Python
+3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
+Four new scattering checks cover complete small frames and literal port
+permutations on matrices of dimension 16 and 32; their coins remain ideal.
+The retained q=2 native table has dimension 256; its outer group propagates
+64 logical/borrowed input columns through its 2048-dimensional space without
+a dense group matrix. These are finite interface diagnostics, not
+fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This revision adds a direct coarse-precision specialization and a mechanism
-comparison, not a new endpoint bound or simulation suite. No human action is
+This pass adds a Hopf-specific scattering identity, a one-step native ledger,
+and a scoped query restriction, not a new endpoint bound. No human action is
 required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

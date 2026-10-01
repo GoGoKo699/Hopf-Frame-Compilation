@@ -263,37 +263,39 @@ are analytic proofs.
 
 ## 8. Per-execution and complete-gradient T costs
 
-For the real magnitude protocol, let $`t_F`$ be the T-count of the chosen actual
-frame circuit $`V`$ at error $`\eta`$, and let $`t_O`$ be that of the calibrated
-controlled observable at error $`\eta_O`$. The same $`V`$ prepares the state and
-its actual adjoint resolves the response. Clifford interference and readout
-add no T gates. Thus
+For the real magnitude protocol, the chosen frame circuit V and its actual
+adjoint cost $`2t_F`$ per execution. A phase-calibrated controlled observable
+costs $`t_O`$; Clifford interference and readout add no T gates. Thus
 
 ```math
 \mathcal T_{\nabla}\leq S(2t_F+t_O).
 ```
 
-Let $`a_F`$ and $`b_F`$ be the clean and dirty budgets assigned to the frame
-compiler. Reserve one additional clean interference qubit and any separately
-needed observable work before assigning $`a_F`$. With $`q_F=n+a_F+b_F`$ and the
-hypotheses of the [fault-tolerant theorem](FAULT_TOLERANT_COMPILER.md),
+Assign clean and dirty frame budgets $`a_F,b_F`$ after reserving the protocol's
+one additional clean interference qubit and any separately needed observable
+work. These choices are corollaries of established compilers, not new bounds:
 
-```math
-\mathcal T_{\nabla}
-=O\left(
-\frac{1+\log(n/\delta)}{\varepsilon_\infty^2}
-\left[\sqrt{NL}+L+\frac{NL}{q_F}+t_O\right]
-\right).
-```
+| Frame allocation | Available $`t_F`$ bound |
+| --- | --- |
+| [Zero clean](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements), arbitrary $`b_F\geq0`$ | $`O(NL/(n+b_F)+L\sqrt N)`$ |
+| [One clean](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit), $`b_F\geq L+n+7`$ | $`O(N+L\ell_*(n))`$ |
+| [Sufficient clean](FAULT_TOLERANT_COMPILER.md#1-target-resources-and-theorem), $`a_F\geq C(n+h)`$ | $`O(\sqrt{NL}+L+NL/(n+a_F+b_F))`$ |
 
-Here $`L`$ is chosen by the precision allocation above, and the sufficient frame
-reservation is $`a_F\geq C(n+h)`$. The companion Clifford upper bound is
-$`O(S(NL+g_O+n))`$, where $`g_O`$ is the controlled-observable Clifford count.
-Classical weight preparation, decoding, and materializing the full gradient
-remain separately charged. This is an upper bound for the specified real
-inverse-frame protocol. Its frame-synthesis optimality is not a lower bound on
-all possible gradient algorithms. The complete complex-gradient cost follows
-from adding the direct phase stream below.
+Here $`h=1+\lceil\log_2(L+n+2)\rceil`$ and
+$`\ell_*(n)=1+\log_2^*(n+2)`$. Each choice has $`G_F=O(NL)`$.
+
+For fixed observable coefficient norm $`\Lambda`$ and fixed raw-gradient
+accuracy, [Section 10](#10-reflection-sums-and-finite-classical-weights)
+chooses constant L. Then $`a_F=0`$, $`b_F=\Theta(\sqrt N)`$ already give
+worst-case optimal-order per-frame $`T=\Theta(\sqrt N)`$, as summarized in
+[the QBP assessment](OPEN_PROBLEM.md#what-this-already-gives-hopf-qbp).
+The high-precision $`L=N`$ endpoint is not required for that guarantee.
+
+With $`g_O`$ controlled-observable Clifford gates, the complete-gradient
+Clifford-count bound is $`O(S(NL+g_O+n))`$. Classical
+preprocessing, decoding, and output remain separately charged. Frame-synthesis
+optimality does not establish optimal total gradient cost. The complex protocol
+adds the direct phase stream below.
 
 
 ## 9. The complete complex gradient
