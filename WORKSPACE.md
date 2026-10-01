@@ -4,10 +4,11 @@ This is the entry point for resuming work when a previous conversation or
 execution workspace is unavailable. The proofs and research decisions live
 in the repository; a conversation summary is only a retrieval aid.
 
-The 2026-10-01 revision reviewed main commit
-`b0eab2af22287c9fa8384df3d811afaed21cda3b`, including the complete
-transported-repair audit. Check the current branch and later commits before
-continuing. This revision changes the research decision, not the theorems.
+The 2026-10-01 source-carry pass continues from main commit
+`e6e9cd5d993d78e7c78198169e82b257500d4968`. Check the current branch and
+later commits before continuing. New source-width constructions and scoped
+cost obstructions refine the research decision; the compiler frontier is
+unchanged.
 
 ## Mandate and reading order
 
@@ -67,45 +68,57 @@ does not target its remaining $`\ell_*(n)`$ factor. Keep those results
 as completed infrastructure. The recent passes have not narrowed the
 generic gap or established that its resolution is close.
 
-## Next bounded pass: reuse precision across existing groups
+## Latest result and next bounded pass
 
-Keep the current groups and their linear total table/coarse-program work.
-Seek a complete circuit interface that composes across arbitrarily many
-adjacent groups, rather than another fixed-height improvement. The source
-widths are $`m_g=L+\lfloor r_g/4\rfloor+8`$ and vary monotonically
-in physical execution order. One sufficient, **unproved** mechanism would
-pay $`O(\max_g m_g)`$ initially and finally, and only
-$`O(|m_{g+1}-m_g|+\mathrm{poly}(n))`$ between groups. The widths'
-total variation is $`O(n)`$. Together with the retained linear table
-work this would give $`T=O(N+L)`$. Leave the fixed deepest-layer tail
-with its existing $`O(N+L)`$ compiler.
+The [source-carry audit](docs/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation)
+solves the width-only part of the previous task. Reordering the source
+loader preserves its certified coefficient grid and gives literal native
+bridges whose T costs telescope. Initial/final loaders and all monotone
+width changes cost exactly $`2(m_{\max}-1)`$ T gates, with Clifford
+cost within $`O(NL)`$. This is a complete-space identity, including
+occupied flags and arbitrary dirty correlations.
 
-1. First specify the shared boundary and a changed native transition word.
-   Show its complete accepted/rejected action and why its output satisfies
-   the same interface for the next, unequal-size group. State the actual
-   precision-charge recurrence before adding more numerical fixtures.
-2. Give the live-wire schedule at every transition. The source tail may need
-   to become selector workspace; holding the largest source throughout is
-   not automatically compatible with $`b=L+n+7`$. Include actual unloading,
-   literal inverses, changing suffix predicates, arbitrary dirty/reference
-   inputs, and at most two external clean flags. No reset, free catalyst,
-   target oracle, or newly initialized logical sector is available.
-3. Test the proposed native word on two unequal groups and then a third,
-   with nonzero changes and a real target over a complex native baseline.
-   These are falsification checks for the stated unbounded composition
-   rule, not evidence of an asymptotic bound by themselves.
+The interior programs remain charged. A coefficient arising from a legal
+group gives a transformed mask requiring
+$`T\ge m-2\log_2s-9`$ at its stated fine accuracy when synthesized
+separately. A second, flag-correlated source code also has cheap width
+changes, but a legal scalar query leaves its code by constant norm.
+Renewing the complete source syndrome costs $`\Omega(L)`$ at compilation
+accuracy. These are scoped interface bounds, not additive frame lower
+bounds. Neither candidate yet provides a cheap complete group program.
 
-The detailed sufficient ledger and stop conditions are in
-[the research decision](docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass).
-Stop this mechanism if it charges another length-L preparation at each
-boundary, shifts that cost into separately synthesized masks, expands the
-linear tables, or assumes unavailable clean work or intermediate return.
-If no closed interface can be specified, record that absence and change
-the representation; do not repeat the completed canonical repair analysis.
-This is a chosen sufficient route, not a lower bound or a necessity theorem.
-A linear-T endpoint construction with larger fully charged Clifford cost
-would also settle the T-count question. Other promised-family results are
-not the priority without a reduction covering arbitrary updates.
+Keep the existing groups: their total table/coarse-program work is already
+$`O(N)`$. The next bounded task is a **changed source-and-program word
+or a logical-dependent encoded boundary** for two unequal groups, with a
+recurrence closed through a third and arbitrarily many more. A successful
+joint interior may spend $`O(L)`$ once; its total target is
+$`O(\sum_gQ_g+L+\mathrm{poly}(n))`$. Dirty-only outer loaders do
+not supply precision to otherwise precision-free independent group bodies.
+Individual group action may be deferred instead of renewing each source
+or exposing each transformed mask separately.
+
+1. Derive the complete boundary action and native cost recurrence first.
+   Explain where the internal precision charge occurs and why it is paid
+   only once. No successful joint interior has yet been constructed.
+2. Retain at most two clean flags and $`b=L+n+7`$ arbitrary dirty wires.
+   Source tails can become selectors, never initialized work. Include
+   changing suffix predicates, actual query unloading, literal inverses,
+   and complete dirty/reference return. Keep the fixed deepest-layer tail
+   with its existing $`O(N+L)`$ compiler.
+3. Only after deriving a changed parametric word, test unequal widths,
+   changed logical addresses, a third group, occupied ports, and a real
+   target over a complex native baseline. These finite checks falsify a
+   recurrence; its asymptotic bound needs a proof.
+
+The [research decision](docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass)
+gives the full ledger and stop conditions. Stop a candidate that recharges
+precision per group, requires full syndrome renewal per query, expands the linear
+table work, or assumes unproved clean work or return. Change representation
+instead of repeating the now-completed width, mode-closure, or commutator
+repair audits. No reset, free catalyst, or target oracle is supplied.
+Other fully charged constructions remain allowed, including a linear-T
+endpoint circuit with larger Clifford cost. The generic gap has not
+narrowed, and these results do not establish that its resolution is close.
 
 ## Restore and verify
 
@@ -120,14 +133,17 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The reviewed baseline has 251 tests. Both Python 3.11 and 3.13 CI jobs,
-all four fault-tolerant receipt suites, and rendered presentation passed.
-Local validation, the reviewer walkthrough, final repair tests, and the
-offline synchronization check also passed during the repair pass. The
-proof sections received separate internal mathematical checks; this is
-not external peer review. Record fresh results after changes. Finite
-fixtures check identities and failure controls; native resource bounds
-remain analytic arguments.
+The baseline before this pass had 251 tests and passed Python 3.11/3.13
+CI, all four fault-tolerant receipt suites, and rendered presentation.
+The source-carry pass adds 12 focused checks for native phases, width
+bridges, complete scalar words, legal grouped coefficients, correlated
+codes, and syndrome extraction. All 263 tests passed locally on Python
+3.12, as did the reviewer walkthrough, offline synchronization check, and
+protected-math rendering handoff. CI on the merged change records the
+Python 3.11/3.13, exact-receipt, and full rendered-presentation results.
+Its proof sections received separate internal mathematical checks; this
+is not external peer review. Finite fixtures check identities and failure
+controls; native resource bounds remain analytic arguments.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)
