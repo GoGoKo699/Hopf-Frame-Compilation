@@ -4,15 +4,14 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 state-only QBP pass starts from verified main
-`8a6f2546de8130261c4819a4335d8a686402d57b`. Check the current branch
-and later commits before continuing. A concrete task-specific construction
-now prepares the real Hopf state with two clean flags and one precision
-charge. A different leaf-interference decoder recovers its raw gradients
-without an inverse frame. Its shot penalty is bounded by n+1 in general
-and by a constant when local branch probabilities stay away from zero.
-The complete-frame endpoint remains open; no new factorization for it
-has been selected.
+The 2026-10-01 coarse-frame QBP pass starts from verified main
+`15ec75989939bd51d8ce55b6fd172e3558646999`. Check the current branch
+and later commits before continuing. The state-only compiler prepares the
+real Hopf state with two clean flags and one precision charge. A new
+coarse-frame measurement and corrected classical decoder remove the
+leaf-reference protocol's angle-dependent shot penalty, including at
+singular angles. The complete-frame endpoint remains open; the new result
+does not require its resolution.
 
 ## Mandate and reading order
 
@@ -28,10 +27,13 @@ only a comparison. Supporting all allowed observables with the existing decoder
 still requires the designated marker directions. The new reference-state
 route explicitly changes the decoder while retaining all allowed observables
 and real raw gradient coordinates, with its own sample and precision bounds.
+The coarse-frame extension retains that task scope with a uniform bound.
 
-1. Read the [state-only construction](docs/STATE_ONLY_COMPILER.md) and
-   [reference-state gradient protocol](docs/REFERENCE_STATE_QBP.md), including
-   the branch-probability promise and the worst-case sampling penalty.
+1. Read the [coarse-frame gradient protocol](docs/COARSE_FRAME_QBP.md) and
+   the [state-only construction](docs/STATE_ONLY_COMPILER.md), including its
+   common-coarse reference corollary. The earlier
+   [leaf-reference protocol](docs/REFERENCE_STATE_QBP.md) remains a separate
+   option under its explicit sampling tradeoff.
 2. Read the [task-specific assessment](docs/OPEN_PROBLEM.md#a-state-only-route-for-raw-hopf-gradients)
    and [next bounded question](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 3. For the separate complete-frame question, read the
@@ -55,7 +57,8 @@ and real raw gradient coordinates, with its own sample and precision bounds.
 | Compact residuals and transport | Linear classical Cayley/weighted data, complete coupled boundaries, and cheap source-width transitions; generic coherent conversion and interior programming remain charged |
 | Small native programs | Fixed-address quaternion compression, four-mode magic-basis factors, and eight-/sixteen-mode changing-target words with full borrowed-signal return; fixed-size cost savings do not improve the generic bound |
 | Hopf scattering | One packed local-rotation step has $`T=O(N+L)`$, $`G=O(NL)`$ and explicit port permutations; its feedback boundary equals the complete frame, but that feedback is not supplied by the step compiler |
-| State-only Hopf QBP | At $`L\ge\max\{6,n\}`$, two compiler flags and $`b\ge L+n+7`$ give $`T=O(N+L)`$, $`G=O(NL)`$ for preparation; the separate reference decoder trades its sampling factor against inverse-frame synthesis |
+| State-only Hopf QBP | At $`L\ge\max\{6,n\}`$, two compiler flags and $`b\ge L+n+7`$ give $`T=O(N+L)`$, $`G=O(NL)`$ for preparation; a common-coarse reference preserves relative branch phase |
+| Coarse-frame Hopf QBP | All real angles admit depth-record norm at most five, the original logarithmic depth-block shot order, and $`O(N+L')`$ T-count per execution apart from the observable; histogram reconstruction costs $`O(S+Nn)`$ arithmetic plus preprocessing and bit costs |
 
 For the selected complete real-frame endpoint,
 
@@ -142,12 +145,23 @@ reference and a sufficient shot factor $`Z+1\le n+1`$. Singular examples
 attain $`Z=n`$; do not treat the factor as constant without a promise.
 The protocol reserves its separate interference qubit and observable work.
 
-The next bounded task is to determine whether this score penalty can be
-reduced beyond the stated promise with an explicit reference or measurement
-rule. Price total shots, controlled-observable calls, native gates, and
-classical output. A per-state T-count improvement alone is insufficient.
-Do not substitute this state-only circuit into the original inverse-frame
-protocol or claim its complete-frame endpoint is solved.
+The new coarse-frame decoder settles this sampling question. Prepare the
+actual native $`C|0\rangle`$ as reference, use the charged coarse inverse
+after the controlled observable, and spread with Hadamards. Scores from
+$`H^{\otimes n}C^\dagger\partial_j\psi`$ have uniformly bounded depth
+norm; randomized X/Y measurements handle their complex entries. The
+classical coefficients include the actual C, so its coarse discrepancy
+does not become bias. A signed histogram and adjoint traversal avoid a
+dense Jacobian. The new proof supplies the complete precision, reused-dirty,
+shot, quantum-work, and classical-output ledger.
+
+The next implementation task is a bounded native fixture joining the
+common-coarse preparation, one concrete allowed controlled observable,
+and the decoder, with all workspace explicit. Current small checks use
+ideal logical matrices and do not emit the complete native protocol.
+Compare against the original protocol at the same accuracy and workspace;
+fixed-accuracy square-root frame synthesis can still be cheaper.
+The fine complete-frame endpoint remains separate.
 
 For the separate frame problem, globally combined coefficients with additive
 O(N) tables and fully charged basis changes remain eligible. The unchanged
@@ -171,8 +185,9 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The local suite passes all 296 tests, including four reference-decoder and
-state-amplification checks. Merge gates also include Python
+The local suite passes all 300 tests, including four new coarse-frame decoder
+checks and four retained reference-decoder and state-amplification checks.
+Merge gates include Python
 3.11/3.13 CI, all four exact-receipt suites, and rendered presentation.
 The retained scattering checks cover complete small frames and literal port
 permutations on matrices of dimension 16 and 32; their coins remain ideal.
@@ -182,8 +197,8 @@ a dense group matrix. These are finite interface diagnostics, not
 fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-This pass adds a state-preparation bound and a different raw-gradient
-protocol with an explicit shot tradeoff. The frame endpoint is unchanged.
+This pass removes the angle-dependent sampling factor from the selected
+real raw-gradient route. The frame endpoint is unchanged.
 No human action is required to continue. Focused feedback from a fault-tolerant synthesis
 specialist could help assess an explicit new factorization; it is not an
 unstated dependency or a claim of external validation. Keep conclusions in

@@ -43,6 +43,8 @@ state preparation, not a new complete-frame frontier.
 The construction also prepares either of two supplied real Hopf states
 coherently under an unchanged protocol branch, with the same compiler
 allocation and asymptotic counts; Section 6 specifies that contract.
+Section 7 gives the separate common-coarse corollary when one reference
+state is the generally complex output of the actual native coarse word.
 Classical coefficient evaluation and certified table generation are
 separate preprocessing. No efficient bound on their bit complexity is
 asserted, and no exact-zero test for arbitrary computable amplitudes is
@@ -289,3 +291,95 @@ the ideal half-amplitude word, complex and zero residuals, the literal
 one-step amplification sign, and coherent branch preparation. They are
 small algebraic diagnostics, not an elementary native compiler or a
 verification of the asymptotic resource proof.
+
+## 7. A complex native reference from the same coarse word
+
+Keep the real Hopf target psi and the actual native C from Section 2.
+The reference $`C|0^n\rangle`$ need not be real. There is nevertheless
+a preparation V, with the same two compiler flags, dirty allocation,
+and counts, satisfying
+
+```math
+\left\|VJ_d-
+ \left(|0\rangle\langle0|_d\otimes C|0^n\rangle
+      +|1\rangle\langle1|_d\otimes|\psi\rangle\right)
+ \otimes|00\rangle_{s,t}\otimes I_b\right\|\le\eta.
+```
+
+Here $`J_d`$ appends the zero system and two zero compiler flags to
+arbitrary branch-and-dirty input. In particular, input $`|+\rangle_d`$
+prepares
+
+```math
+\frac{|0\rangle_d C|0^n\rangle+|1\rangle_d|\psi\rangle}{\sqrt2}
+ \otimes|00\rangle_{s,t}
+```
+
+within eta, with the literal relative plus sign and all dirty/reference
+correlations covered. The protocol branch is separately counted; it is
+not a third initialized compiler flag. This corollary does not apply the
+two-real-state statement to the complex reference.
+
+Use a **common** coarse word and residuals
+
+```math
+\phi_0=|0^n\rangle,\qquad \phi_1=C^\dagger|\psi\rangle,
+\qquad \phi_j=a_j|0^n\rangle+v_j,\quad (v_j)_0=0.
+```
+
+Both residuals satisfy the small-tail promise, with $`a_0=1`$ and
+$`v_0=0`$ exactly. On unchanged address $`(s,d,x)`$, replace the
+table in Section 3 by
+
+```math
+z_{0,j,x}=a_j,\qquad z_{1,j,0}=0,\qquad
+z_{1,j,x}=\sqrt N\,(v_j)_x\quad(x\ne0).
+```
+
+The accepted amplitude is exactly $`\phi_j/2`$ in each branch.
+The initial reflection excludes d, so the one-step amplification proves
+the coherent residual-state identity with identical literal phase.
+Applying the same C afterward sends the two residuals to
+$`C|0^n\rangle`$ and psi. No control of an arbitrary compiled C is
+used in this construction.
+
+For $`n\ge6`$, the eight fixed address literals and 256 sectors of
+Section 6 leave $`k=n-6`$ free selectors. With $`q=L+10`$,
+the dirty reservation is still
+
+```math
+(q+1)+k+1+1=L+n+7,
+\qquad \|VJ_d-G_d\|\le390\,2^{-q}\lt2^{-L}\le\eta,
+```
+
+where $`G_d`$ is the displayed target isometry. The Euler certification
+also covers $`a_0=1`$ and zero tail entries. Thus
+$`T(V)=O(N+L)`$ and $`G(V)=O(NL)`$, with no condition
+$`L\ge n+1`$. The coarse approximation creates no additional final
+error because the second residual is defined using the actual C.
+
+For $`n\le5`$, re-emit C's recorded logical two-mode words conditioned
+on $`d=0`$, and a fine borrowed-native approximation to the real frame
+conditioned on $`d=1`$. There are only a bounded number of logical
+rows. Each determinant-one word has the
+[literal reflection rewrite](BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter).
+Its alphabet is $`\{T^jHT^{-j}:0\le j\lt8\}\cup\{Z\}`$.
+Since $`B=SHTHS^\dagger`$ obeys $`BZB^\dagger=H`$, a
+predicate-controlled $`T^jHT^{-j}`$ is the same predicate-controlled
+Z conjugated on its target by $`T^jB`$. Adding d to the bounded
+address predicate therefore costs a constant number of exact native
+gates per reflection, using one returned arbitrary helper for
+controlled Z. No controlled-T gate is assumed. The coarse word length
+is $`O(1)`$ here and the
+fine word length is $`O(L)`$. This selects the actual logical C,
+including its phase, rather than controlling its dirty implementation
+gate by gate. Both compiler flags may remain unused. The resulting
+coherent error is at most eta and all borrowed helpers return exactly.
+
+The actual coarse circuit and its actual inverse implement
+$`C\otimes I_b`$ and $`C^\dagger\otimes I_b`$ exactly on all inputs.
+Consequently later common applications of $`C^\dagger`$ and
+$`H^{\otimes n}`$ preserve the preparation error, including leaked
+flag components. Their extra counts are respectively $`O(N)`$ T and
+$`O(Nn)`$ Clifford gates, and n Clifford gates. Observable implementation
+and sampling remain separate protocol costs.

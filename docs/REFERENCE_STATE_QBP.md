@@ -10,6 +10,11 @@ reference state extends the construction to arbitrary real angles, including
 singular chart endpoints, with at most an additional factor of $`n+1`$ in the
 sufficient sample count.
 
+The subsequent [coarse-frame decoder](COARSE_FRAME_QBP.md) removes that
+angle-dependent sampling factor by adding a charged coarse inverse and
+using corrected complex scores. The leaf-only construction below remains
+a simpler option under its bounded-branch promise.
+
 This is a different measurement protocol with the same ideal gradient means.
 It does not preserve the original Walsh-record distribution or compile the
 prescribed frame. The universal-observable necessity result in
