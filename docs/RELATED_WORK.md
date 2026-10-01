@@ -603,3 +603,32 @@ improvement to their constant factors.
 ---
 
 [← Source map](SOURCE_MAP.md) · [Complete narrative](../REVIEW.md) · [Landing page →](../README.md)
+
+
+## 13. State-only preparation and a separate gradient decoder
+
+The [state-only construction](STATE_ONLY_COMPILER.md) uses the retained
+borrowed compiler for a coarse circuit, the full-operator rotation primitive
+for a single correction table, and standard amplitude amplification.
+[Brassard–Høyer–Mosca–Tapp, Section 2, Eq. (8)](https://arxiv.org/pdf/quant-ph/0005055)
+gives the one-step success law at accepted amplitude one half. The local
+proof supplies the actual coarse residual, two-flag word, coherent branch
+extension, and literal dirty-space and error ledgers. At $`L=N`$ its linear
+state-preparation T count agrees with the order of
+[GKW's unrestricted-ancilla benchmark, Theorem 1.1](https://quantum-journal.org/papers/q-2026-07-22-2168/pdf/);
+the additional local statement is the two-clean allocation and arbitrary
+dirty/reference return. No complete-frame conclusion follows.
+
+The [reference-state QBP protocol](REFERENCE_STATE_QBP.md) changes the
+measurement and classical scores. Logarithmic wave-function derivatives
+already appear in variational Monte Carlo, for example
+[Toulouse–Umrigar, Eq. (45)](https://arxiv.org/pdf/physics/0701039).
+Hadamard-test interference is also standard; see
+[Mitarai–Fujii, Fig. 1](https://arxiv.org/pdf/1901.00015).
+The general overlap identity is not a novelty claim. The local analysis
+combines Hopf's one-node-per-depth leaf support with a positive derivative
+envelope and the charged state-only compiler. A fixed lower bound on local
+branch probabilities yields constant score overhead; arbitrary angles can
+require an n-dependent factor in this sufficient sampling bound. This is a
+specific alternative for raw gradients, not a generic training speedup or a
+priority claim over all importance-sampling protocols.

@@ -3,9 +3,9 @@
 [Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [One-clean compiler](ONE_CLEAN_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
 This page gathers the retained results, the limits of explored routes, and
-the next research decision. No endpoint construction is currently selected.
-It is a research checkpoint, not an additional
-compiler theorem. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
+the next research decision. A state-only route now supplies a separate
+raw-gradient protocol; the complete-frame endpoint remains open.
+This page is a research checkpoint; the new proofs have their own chapters. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
 
@@ -719,10 +719,80 @@ preprocessing, target-dependent interleaves, and shared native synthesis
 of many calls remain outside the query argument. The Hopf-specific
 representation is useful, but it has not narrowed the endpoint gap.
 
+### A state-only route for raw Hopf gradients
+
+A different measurement protocol now gives a concrete task-specific result.
+The [state-only compiler](STATE_ONLY_COMPILER.md) prepares the real Hopf
+state, or coherently selects between it and a known reference state, with
+
+```math
+L\ge\max\{6,n\},\qquad a=2,\qquad b\ge L+n+7,
+\qquad T=O(N+L),\qquad G=O(NL).
+```
+
+Its contract initializes the system and returns all work within the stated
+joint error, including arbitrary dirty/reference inputs. It does not
+prescribe the other system columns. An actual cheap coarse circuit C makes
+$`C^\dagger\psi`$ close enough to the zero basis state that one table
+can encode its complete correction. Two flags give accepted amplitude
+one half, and one standard amplification step completes the preparation.
+The coefficients already contain all tree levels; no inverse frame is
+called in the [reference-state decoder](REFERENCE_STATE_QBP.md).
+
+The new decoder preserves every real raw-coordinate gradient mean for
+every allowed Hermitian-unitary observable, including complex observables.
+Its distribution and record bounds differ from those of inverse-frame QBP.
+Let $`d_{v,x}=\partial_{\theta_v}\psi_x`$ and
+
+```math
+Z=\sum_x\max_v |d_{v,x}|^2,\qquad 1\le Z\le n.
+```
+
+An O(N)-arithmetic tree recurrence computes the envelope without forming
+the full Jacobian. A positive floor gives a reference whose depth-wise
+record norm is at most $`2\sqrt{Z+1}`$. Thus, for reflection-sum
+coefficient norm Lambda, the sufficient shot bound is
+
+```math
+S=O\!\left(\frac{\Lambda^2 K}{\varepsilon_\infty^2}
+              [1+\log(n/\delta)]\right),
+\qquad K=Z+1\le n+1.
+```
+
+The preparation precision and classical coefficient rounding are allocated
+in the decoder proof. At unrestricted angles the extra K can outweigh the
+per-execution synthesis saving; this is not a uniformly better gradient
+algorithm.
+
+There is a useful explicit promise. If every local branch probability
+lies in $`[p_0,1-p_0]`$ for a fixed $`0\lt p_0\le1/2`$,
+take the reference to be the same real state. Each nonzero score ratio is
+$`-\tan\theta_v`$ or $`\cot\theta_v`$, and one may use
+$`K=(1-p_0)/p_0=O(1)`$. Only one state preparation, the controlled
+observable, and leaf/branch measurement are then needed. This retains the
+logarithmic depth-block shot bound while removing the iterated-logarithm
+precision factor from the available state-preparation bound. The branch
+probability promise is additional; a balanced tree topology alone does
+not imply it.
+
+The total T-count is $`O(S(N+L+t_O))`$ in the stated fine-precision
+regime, with the controlled-observable cost, its workspace, and the
+protocol's interference qubit charged separately. Classical tables and
+output are also charged separately. No general training speedup or
+end-to-end optimality follows. The complete-frame endpoint and its
+original inverse-frame protocol remain distinct, valid questions.
+
 ### Next bounded task and stopping rule
 
-No new endpoint construction is selected. The next research action is
-an algebraic selection audit for a tree-specific whole-residual
+The state-only construction and reference decoder are selected for the
+Hopf task under their explicit sampling tradeoff. The next bounded question
+is whether the reference score penalty can be reduced beyond the stated
+branch-probability promise while retaining its charged state-only circuit.
+Compare total shots, observable calls, and native gates before selecting a
+variant; a smaller preparation T-count alone is insufficient.
+
+No new complete-frame endpoint construction is selected. For that separate
+question, the remaining selection target is a tree-specific whole-residual
 factorization whose programmed coefficients already combine tree levels.
 The unchanged-node scattering table has now been tested; another walk-power
 or fixed-routing conversion of that same table is not the next candidate.

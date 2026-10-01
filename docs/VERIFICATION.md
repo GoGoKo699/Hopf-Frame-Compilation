@@ -224,6 +224,18 @@ right-path coefficient. Coin rotations remain ideal in these fixtures;
 the [proof](ENDPOINT_TREE_TRANSPORT.md#11-a-packed-hopf-scattering-step-and-its-boundary-transfer)
 prices one native step and proves the query restriction. Neither the
 small checks nor that step ledger supplies a feedback compiler.
+The [reference-state QBP checks](../tests/test_reference_state_qbp.py)
+compare every decoded real raw derivative against the analytic Jacobian for
+small regular, signed, and singular trees with complex Hermitian-unitary
+observables. They test the linear envelope recurrence and its sharp Z=1
+and Z=n examples. Ideal small matrices verify the complex residual's
+half-amplitude block, the literal sign of one amplification step, the
+actual-inverse perturbation estimate, and coherent two-branch preparation
+with arbitrary spectator input. These are state-isometry and decoder
+checks; the SU(2) coins and coarse matrices in these fixtures are ideal.
+The [native cost proof](STATE_ONLY_COMPILER.md) reuses separately verified
+primitives; no new full elementary emitter or complete-frame endpoint is
+claimed by these tests.
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

@@ -13,6 +13,10 @@ with the same one-clean count bounds at its separate dirty threshold.
 The zero-clean layerwise real-frame corollary and earlier two-clean
 constructions also satisfy the contract under their stated allocations.
 These resource choices do not change the bias argument below.
+A separate [reference-state protocol](REFERENCE_STATE_QBP.md) estimates
+the same real raw gradients using state preparation and leaf interference.
+It has its own precision and shot ledger; it is not a substitution into
+the inverse-frame circuit analyzed here.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies
