@@ -257,6 +257,42 @@ unitary $`V_C`$, either weighted transport block, or an arbitrary controlled
 version of C. In particular, it does not replace the target transport by
 coarse transport or resolve the coefficient-filter flags.
 
+### Frobenius-small residuals also fit the endpoint budget
+
+At the endpoint pool $`b=N+n+7`$, fix
+$`0\lt\varepsilon_0\le1/64`$ and instead use the same borrowed
+compiler with
+
+```math
+\eta_c=\frac{\varepsilon_0}{\sqrt N},\qquad
+L_c=\max\{6,\lceil\log_2(\sqrt N/\varepsilon_0)\rceil\}=O(n).
+```
+
+It needs no initialized work ($`a=0`$), leaving both available clean
+flags untouched. Its physical circuit is exactly $`C\otimes I_b`$,
+with literal-phase error $`\|C-W\|\le\eta_c`$ and exact dirty
+return on arbitrary reference-entangled inputs. The retained estimates
+give
+
+```math
+T(C)=O(n\sqrt N)=O(N),\qquad G(C)=O(Nn),
+```
+
+and unitary invariance and the dimension bound give
+
+```math
+\|C^\dagger W-I\|_F=\|W-C\|_F
+\le\sqrt N\,\|W-C\|\le\varepsilon_0.
+```
+
+This is a specialization of the existing compiler, not a new frontier
+bound. Its local-word estimate is $`O(L_c+n-d)`$, so it does not
+automatically supply the original $`O(n-d+1)`$ baseline-word promise
+or the grouped representation's linear table budget. Nor does a small
+Frobenius norm provide a cheap coherent evaluator for the residual, its
+logarithm, or its inverse Cayley transform. Those native operations and
+their precision and clean-work costs remain to be supplied.
+
 ## 3. An explicit complete unitary for normalized transport
 
 The normalized columns can be realized without an added depth register.

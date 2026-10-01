@@ -3,7 +3,8 @@
 [Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [One-clean compiler](ONE_CLEAN_COMPILER.md) · [Grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
 
 This page gathers the retained results, the limits of explored routes, and
-the next construction to test. It is a research checkpoint, not an additional
+the next research decision. No endpoint construction is currently selected.
+It is a research checkpoint, not an additional
 compiler theorem. The [publication scope](../manuscript/PUBLICATION_SCOPE.md)
 gives the selected publication results and the [verification map](VERIFICATION.md)
 separates analytic proofs from finite checks.
@@ -539,8 +540,8 @@ improvement to a weaker baseline.
 | Ordinary layers | The retained baseline costs $`O(N+nL)`$; the shared body changes its displayed constants | A precision recurrence that improves the best grouped construction, or a separate complete construction beating it |
 | Existing unequal groups | $`T=O(N+LR)`$, $`R=O(\ell_*(n))`$, with linear total table work | A jointly emitted program with one global precision charge and a valid allocation throughout |
 
-The paired-source real-Y word is not a replacement for a grouped scalar
-SELECT. The latter keeps forward and actual-inverse scalar branches,
+The unmodified paired-source real-Y word did not supply a grouped scalar
+SELECT. That interface keeps forward and actual-inverse scalar branches,
 four complex phases, selected column maps, a private term label, and a
 reflection on the initialized active suffix. Its source width and suffix
 predicate change between groups. Even the one-clean extension retains
@@ -595,14 +596,100 @@ larger instances, and constant cancellation in this word are not the
 next task. This is a conclusion about the displayed construction, not
 an unrestricted lower bound.
 
+### Selection audit after canonical completion
+
+The 2026-10-01 revision checks three alternatives before selecting another
+construction. The comparison is at the actual endpoint, where the accuracy
+bit count is $`L=N`$; factors polynomial in L cannot be hidden in a
+soft-O estimate.
+
+| Mechanism | What it supplies | Why it is not yet an endpoint construction |
+|---|---|---|
+| Whole-residual Hamiltonian synthesis | A generic route from a Frobenius-small residual to a complete unitary channel | The explicit bound below still charges precision polynomially and uses initialized work; a tree-specific adaptation is missing |
+| State preparation followed by Householder reflections | A prepared state determines its rank-one reflection, irrespective of the preparer's other columns | The prescribed frame needs more than its first column; neither constant reflection count nor a two-clean implementation follows |
+| Reduce the shared-source proof's clean work | The sufficient-clean construction already charges precision once globally | Its source column, private SELECT labels/flags, and failure history each use initialization; dirty-safe lookup banks do not replace those roles |
+
+**Small residual norm is already affordable.** The
+[Frobenius-coarse specialization](ENDPOINT_TREE_TRANSPORT.md#frobenius-small-residuals-also-fit-the-endpoint-budget)
+uses no clean qubits and returns the dirty pool exactly, with
+$`T(C)=O(n\sqrt N)=O(N)`$ and $`G(C)=O(Nn)`$, while making
+$`\|C^\dagger W-I\|_F\le\varepsilon_0`$ for fixed
+$`0\lt\varepsilon_0\le1/64`$. This is a specialization of the
+existing borrowed compiler, not a new frame bound. It does not price a
+coherent logarithm or matrix-function evaluator.
+
+[Fang–Heunen–Wang, Corollary 3.9](https://arxiv.org/html/2607.12907v1)
+give, for bounded Frobenius distance to the Clifford group and accuracy
+$`\varepsilon`$,
+
+```math
+\begin{aligned}
+T&=O\!\left((N+\log\log(1/\varepsilon))
+             (n+\log(1/\varepsilon))^2\right),\\
+a&=O\!\left(N(n+\log(1/\varepsilon))\right).
+\end{aligned}
+```
+
+At $`\log(1/\varepsilon)=\Theta(N)`$, these displayed bounds are
+$`O(N^3)`$ T gates and $`O(N^2)`$ initialized ancillas. Definition 1.1
+traces out that initialized environment; it does not certify literal phase
+and arbitrary dirty-work return. This screens out direct substitution of
+that theorem, not a structure-sensitive adaptation or an optimality claim.
+
+[Gosset–Kothari–Wu, Theorem 1.1 and Section 1.1](https://quantum-journal.org/papers/q-2026-07-22-2168/pdf/)
+give optimal state preparation with initialized ancillas and the
+Householder-based K-column upper bound
+
+```math
+T=O\!\left(K\sqrt{N\log(K/\varepsilon)}
+             +K\log(K/\varepsilon)\right).
+```
+
+Its direct complete-column specialization $`K=N,L=N`$ is $`O(N^2)`$,
+before any clean-work adaptation. There is also a simple structural check
+on the proposed constant-reflection shortcut: set every upper-tree angle
+to zero and all bottom pair angles to one small nonzero value. Then
+$`\mathrm{rank}(W-I)=N`$, whereas a product of k rank-one
+reflections differs from identity by rank at most k. For accuracy below
+the smallest singular value of $`W-I`$, the same witness excludes such
+a k<N approximation. This elementary rank argument concerns that literal
+reflection product; packed higher-rank reflections and fully charged
+changes of basis remain allowed. The witness itself is an antichain and
+already has a linear compiler.
+
+The clean-work audit is likewise specific. In
+[shared-source Sections 7–9](FAULT_TOLERANT_COMPILER.md#7-a-reusable-source-and-the-local-correction-kernel),
+the prepared source supplies the full-output relation, the private labels
+and separate zero flags define the selected contraction, and a known-zero
+counter prevents rejected paths from returning to the accepted block.
+Changing the counter alone leaves the other initialized roles intact.
+The existing nilpotent-source restriction remains scoped to its stated
+interface; it is not a full-kernel or compiler lower bound.
+
+These checks select no construction. They focus the next question on
+preserving the tree structure in the native program, rather than merely
+making the residual small, preparing its state column, or renaming clean
+work as borrowed work.
+
 ### Next bounded task and stopping rule
 
 No new endpoint construction is selected. The next research action is
-mechanism selection, using the completed group audit as the comparison.
-Examine a materially different way to implement the coupled whole
-residual, or a genuinely different way to retain precision between groups.
-A focused primary-source comparison may supply such a mechanism; neither
-a new coordinate name nor an unpriced matrix transform is a candidate.
+an algebraic selection audit for a tree-specific whole-residual
+factorization, using the completed group audit as the comparison.
+The first question is whether growing support can be expressed through a
+bounded number of complete native primitives already priced here, such as
+diagonals or one-target multiplexors, with every change of basis charged.
+This is a sufficient representation to investigate, not an available
+factorization or a claim that it exists. A packed higher-rank reflection
+would likewise need its own complete native implementation.
+
+The next deliverable is one explicit candidate identity and its symbolic
+cost, or a concise explanation that none was found. Do not begin another
+fixture pass merely because a matrix representation is compact. A different
+way to retain precision between groups remains eligible if it supplies
+a new complete transition rule. A stronger full-frame lower bound is also
+a valid resolution, but would need an invariant that applies to arbitrary
+circuits; the existing interface restrictions do not provide one.
 
 Before committing to another construction pass, require an explicit
 native operation or encoding rule and a symbolic cost hypothesis. For
@@ -616,6 +703,14 @@ where $`c_R`$ is bounded independently of R and P is a fixed polynomial
 independent of L. Table and coarse-program work must combine additively.
 A different complete construction may bypass the groups and is judged
 against the actual endpoint; the displayed form is not compulsory.
+
+For a proposed bounded factorization, count the total table entries, basis
+changes, and native controls, and allocate each factor's error before
+claiming a resource gain. Constant shifts in precision can consume the
+fixed dirty margin; $`b=N+n+7`$ must hold literally, not only as
+$`b=\Theta(N)`$. A precision-dependent number of separately synthesized
+factors does not pass the selection check merely because each factor uses
+the existing optimal one-target compiler.
 
 The selection check must identify where the precision-dependent native
 work is paid, how its count scales, what is initialized, and what returns

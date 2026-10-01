@@ -4,13 +4,14 @@ This is the entry point when a previous conversation or execution
 workspace is unavailable. Proofs and research decisions live in the
 repository; conversation summaries are retrieval aids.
 
-The 2026-10-01 canonical-group pass starts from main commit
-`da0980a5ca10f8f9c47af18ba39a13418741f36b`. Check the current branch
-and later commits before continuing. The canonical scalar substitution
-now fits the actual grouped compiler, with a complete error/workspace
-ledger. Its precision cost still grows with the group count, so this
-candidate is closed for endpoint amortization. No next construction is
-selected; mechanism selection is the remaining research action.
+The 2026-10-01 revision starts from the verified main checkpoint
+`34a5accb593c7ec0247c631ba9ec9ec56eeaae5a`. Check the current branch
+and later commits before continuing. The canonical group candidate is
+closed for endpoint amortization. This revision gathers the evidence,
+checks three alternative mechanisms, and records a cheap Frobenius-small
+coarse residual. None supplies the missing fine-precision native circuit.
+No next construction is selected; the next bounded task is an algebraic
+selection audit for a tree-specific whole-residual factorization.
 
 ## Mandate and reading order
 
@@ -21,7 +22,8 @@ Use small analytic examples and finite checks; no large simulations,
 QRAM, resets, supplied catalysts, or hidden initialized work.
 
 1. Read the [current assessment](docs/OPEN_PROBLEM.md#current-assessment-what-the-results-establish)
-   and [revised next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
+   and [post-canonical selection audit](docs/OPEN_PROBLEM.md#selection-audit-after-canonical-completion),
+   then its [next task](docs/OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule).
 2. Read [conditional-suffix Sections 3--7](docs/CONDITIONAL_SUFFIX_COMPILER.md#3-a-small-coefficient-table-and-a-streamed-coarse-circuit)
    and its one-clean extension, followed by the completed
    [canonical group audit](docs/CONDITIONAL_SUFFIX_COMPILER.md#11-a-canonical-scalar-fits-the-group-interface-but-retains-its-precision-charge).
@@ -42,6 +44,7 @@ QRAM, resets, supplied catalysts, or hidden initialized work.
 | Exact compilation | Matching size and CNOT/depth tradeoffs for the prescribed complete frame, for every clean-work budget |
 | Fault-tolerant frontier | Matching T-count under the stated sufficient-clean reservation; complete-frame and fixed-parameter QBP guarantees stand |
 | Constant-clean compiler | One clean qubit gives $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ at $`b\ge L+n+7`$; T-depth is a separate open problem |
+| Standard operator families | Literal diagonals and complete one-target U(2) multiplexors have matched one-clean banked T-counts at their separate dirty thresholds; their use in a growing product still needs a precision ledger |
 | Promised updates | Antichain and sparse ancestor-closed changes have $`O(N+L)`$ T-count under their distinct assumptions; generic rounding supplies neither promise |
 | Compact residuals and transport | Linear classical Cayley/weighted data, complete coupled boundaries, and cheap source-width transitions; generic coherent conversion and interior programming remain charged |
 | Small native programs | Fixed-address quaternion compression, four-mode magic-basis factors, and eight-/sixteen-mode changing-target words with full borrowed-signal return; fixed-size cost savings do not improve the generic bound |
@@ -61,14 +64,7 @@ The upper bound also uses only one clean qubit. Recent passes have not
 narrowed this gap or established that its resolution is close. The
 established publication results do not depend on closing it.
 
-The latest shared word reduces declared source appearances from 135 to
-87 at eight modes and from 180 to 114 at sixteen. Hoisting the loader
-and commuting the fixed mask through its tail leaves both comparison
-words the same leading precision term $`(40g+4)q`$, for g ordinary
-stages at source width q. The remaining savings concern fixed scalar
-work. Its precision charge still grows with the number of stages.
-
-This matters strategically: the best compiler already replaces n ordinary
+The best compiler already replaces n ordinary
 layers by $`R=O(\ell_*(n))`$ unequal groups while keeping total table
 work linear. A better constant in a layerwise word does not remove that
 remaining group factor. The canonical audit now transfers the paired-source
@@ -76,7 +72,7 @@ real-Y circuit to that grouped interface, including complex phases, distinct rej
 flags, and the private-suffix reflection. Its common-width precision term
 is still $`(120R+4)q`$, before separately charged queries and controls.
 
-## Completed compatibility test and next decision
+## What the completed attempts settle
 
 The canonical coefficient rotation uses the existing scalar flag sigma,
 with the native synthesis signal borrowed outside the initialized-work
@@ -99,11 +95,36 @@ Common-source cancellation does not remove that precision term. Keep the
 proved compatibility result and its finite fixture, and **stop optimizing
 this canonical word as an endpoint mechanism**.
 
-No variable-group fusion rule has qualified. The next task is to select a
-materially different native mechanism for the coupled residual or retained
-precision. A focused primary-source comparison may help, but any imported
-result must be checked for its initialization, complete-unitary error,
-and arbitrary dirty-work return before adaptation.
+The width-only source transition, rejected-branch repair, shared native
+word, and canonical group interface have each been audited. None gives a
+variable-group precision saving. Their scoped restrictions do not make
+the group factor necessary for arbitrary circuits.
+
+The new [Frobenius-coarse specialization](docs/ENDPOINT_TREE_TRANSPORT.md#frobenius-small-residuals-also-fit-the-endpoint-budget)
+also rules out lack of small residual norm as the next missing ingredient:
+an $`O(N)`$-T coarse frame with exact dirty return can make
+$`\|C^\dagger W-I\|_F`$ a fixed small constant. Generic near-identity
+synthesis, state preparation plus ordinary Householder reflections, and
+counter-only clean-work reduction do not meet the endpoint as supplied.
+The [selection audit](docs/OPEN_PROBLEM.md#selection-audit-after-canonical-completion)
+records their precise costs and contracts. This comparison selects no
+construction and changes no retained frontier.
+
+## Next bounded decision
+
+First seek an explicit whole-frame or whole-residual factorization into
+a number of complete native primitives bounded independently of n, with
+additive table size $`O(N)`$ and fixed or fully charged changes of basis.
+The existing diagonal and multiplexor compilers make this a concrete
+sufficient representation question. A packed higher-rank reflector would
+need its own native implementation. No such identity is currently known
+here; compact classical data or a small matrix norm is not that identity.
+
+The next deliverable is one actual algebraic template with its symbolic
+cost, or a concise no-candidate finding. Do not schedule more fixtures
+without that template. A new complete rule for carrying precision also
+remains eligible. A stronger unrestricted lower-bound approach remains
+open, but needs an invariant beyond the current interface restrictions.
 
 Require an explicit operation or encoding rule and a symbolic precision
 recurrence before starting another construction pass. For the retained
@@ -118,6 +139,13 @@ independent of L. Table and coarse-program sizes must combine additively.
 Other whole-frame constructions remain allowed. An unpriced resolvent,
 Hamiltonian, coordinate transform, or target-dependent decoder is not a
 native construction.
+
+Count every source, native control, reflection, and inverse. Allocate the
+full error before checking the exact $`b=N+n+7`$ workspace threshold;
+constant extra accuracy bits are not automatically free dirty space.
+Final clean return, arbitrary dirty/reference inputs, and literal phase
+must satisfy the retained complete-isometry contract. The T-only endpoint
+allows a larger fully charged Clifford count than the stronger joint goal.
 
 Use small examples only after a concrete rule is specified. For a grouped
 proposal, test unequal groups and require the same rule to survive a
@@ -139,15 +167,17 @@ python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
 ```
 
-The baseline has 285 passing tests, Python 3.11/3.13 CI, all four
-exact-receipt suites, and rendered presentation. This pass adds three
-canonical-group tests, making 288. The new q=2 native table has dimension
+The verified checkpoint has 288 passing tests, Python 3.11/3.13 CI, all four
+exact-receipt suites, and rendered presentation. The q=2 native table has dimension
 256; the outer group propagates 64 logical/borrowed input columns through
 its 2048-dimensional space without a dense group matrix. These are finite
 interface diagnostics, not fine-precision or asymptotic certification.
 Internal algebra and resource reviews are not external peer review.
 
-The canonical pass adds the group compatibility proof and its focused
-finite checks. Keep detailed conclusions in
+This revision adds a direct coarse-precision specialization and a mechanism
+comparison, not a new endpoint bound or simulation suite. No human action is
+required to continue. Focused feedback from a fault-tolerant synthesis
+specialist could help assess an explicit new factorization; it is not an
+unstated dependency or a claim of external validation. Keep conclusions in
 [OPEN_PROBLEM.md](docs/OPEN_PROBLEM.md) and proofs in their existing
 chapters so continuation does not depend on an old chat.
