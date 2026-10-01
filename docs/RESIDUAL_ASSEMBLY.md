@@ -768,3 +768,208 @@ fixed-size unchanged-address block, and constant-degree local truncation
 justified only by the external norm margin. Keeping the original scatterers
 still gives $`T=O(N+nL)`$, $`G=O(NL)`$. No T-count bound has
 improved in this audit; the linear-T endpoint remains open.
+
+## 8. A coupled completion and its native cost
+
+The coupled unitary residual admits a simpler complete boundary contract
+than separate forward and reverse contractions. This elementary completion
+is useful for testing a recursive word: it has one signal flag, constant
+normalization, and a continuous zero-defect limit. It does not by itself
+give a cheaper native compiler.
+
+For any unitary V, define
+
+```math
+\mathcal D(V)=
+\begin{pmatrix}
+V/2&-\sqrt3 I/2\\
+\sqrt3 I/2&V^\dagger/2
+\end{pmatrix}.
+```
+
+Direct multiplication proves unitarity on both signal sectors. Its
+accepted block is V/2, and for any two unitaries V and U,
+
+```math
+\|\mathcal D(V)-\mathcal D(U)\|=\frac12\|V-U\|.
+```
+
+In particular the complete word, including its rejected columns, approaches
+the fixed $`\mathcal D(I)`$ as the residual approaches identity. Tensor
+every block with dirty identity to include arbitrary borrowed inputs and
+references. No clean history or additional logical padding is required.
+
+### Exact branching on the whole input space
+
+Let $`\mathcal R_v=C_v^\dagger W_v`$ be the complete residual of
+a subtree. Embed its local root words $`U_v^C,U_v^W`$ on the two
+child-root modes, acting as identity on all other subtree modes. In this
+common basis the complete-frame recursion is
+
+```math
+K_v=\mathcal R_{2v}\oplus\mathcal R_{2v+1},\qquad
+\mathcal R_v=(U_v^C)^\dagger K_vU_v^W.
+```
+
+This uses all child columns, not only their root overlaps. Put
+$`E_v=(U_v^C)^\dagger U_v^W`$. Then the exact signal/logical word is
+
+```math
+\begin{aligned}
+\mathcal D(\mathcal R_v)
+={}&\mathrm{diag}(I,E_v^\dagger)
+ (I_f\otimes(U_v^C)^\dagger)\,
+ \mathcal D(K_v)\\
+&\quad\cdot (I_f\otimes U_v^C)
+ \mathrm{diag}(E_v,I).
+\end{aligned}
+```
+
+Here $`\mathcal D(K_v)`$ is the coherent direct sum of the two
+complete child words on the same signal f. To verify the equation, write
+$`A_v=(U_v^C)^\dagger K_vU_v^C`$. The four resulting blocks are
+$`A_vE_v/2`$, $`-\sqrt3 I/2`$, $`\sqrt3 E_v^\dagger E_v/2`$,
+and $`E_v^\dagger A_v^\dagger/2`$. Thus every occupied rejected
+input is included and the normalization remains two at every height.
+Leaf residuals are identity.
+
+There is also a stable approximate boundary. Suppose the actual whole
+child words have errors at most $`\delta_0,\delta_1`$, and replace
+$`E_v`$ by an actual unitary $`\widehat E_v`$, using its actual
+inverse in the other wrapper. With the coarse wrappers exact, the merged
+whole-word error is at most
+
+```math
+\max\{\delta_0,\delta_1\}
++\frac12\|\widehat E_v-E_v\|.
+```
+
+First replace the children by their exact direct sum, which costs the
+maximum child error under unitary wrappers. The remaining word is exactly
+$`\mathcal D(A_v\widehat E_v)`$; apply the norm identity above.
+Independent unrelated approximations to the two wrappers do not enjoy
+this identity. The same argument applies on a common arbitrary dirty
+space if each error includes return of that space.
+
+### One signal preparation does not remove target precision
+
+Unfolding this recursion gives the exact word
+
+```math
+\mathcal D(C^\dagger W)
+=\mathrm{diag}(C^\dagger,W^\dagger)
+ \mathcal D(I_N)
+ \mathrm{diag}(W,C).
+```
+
+The middle factor is one signal rotation. Approximating it once to error
+$`\epsilon`$ changes the whole word by at most $`\epsilon`$.
+However, both W and its actual inverse still appear in the wrappers.
+They cannot be supplied as target-frame oracles. At the local level the
+same cost is the fine-precision $`E_v`$ in every parent wrapper.
+Native substitution preserves the algebraic contract, but each emitted
+target program, its controls, and its inverse must be charged. Using the
+existing layerwise primitives retains their repeated precision cost.
+Invoking the grouped compiler does not establish an improvement over its
+known bound; a conditional invocation still needs a valid work allocation
+and explicit literal-control accounting. Counting only the one middle
+rotation proves no new T-count estimate.
+
+This answers the boundary part of the branching question. The missing
+part is a native implementation that avoids reintroducing the complete
+target program, not an additional proof of normalization or mode closure.
+
+### Anchoring at the zero-defect completion leaves a mixed term
+
+A more economical proposed word would reuse $`\mathcal D(I)`$ as
+a fixed connector between independently encoded child and parent
+residuals. For arbitrary unitaries A and B, its accepted block obeys
+
+```math
+\left[\mathcal D(A)\mathcal D(I)^\dagger\mathcal D(B)\right]_{00}
+-\frac{AB}{2}
+=-\frac38(A-I)(B-I).
+```
+
+This follows by multiplying the three complete two-by-two block matrices;
+no rejected block is discarded. In the tree merge take
+$`A=(U_v^C)^\dagger K_vU_v^C`$ and $`B=E_v`$. Their product is
+exactly the coupled residual $`\mathcal R_v`$, so the coupled
+unitarity relations do not in general cancel the displayed mixed term.
+For a fixed nonzero parent and independently changed children its norm
+can stay positive as synthesis precision increases.
+
+If A and B change disjoint invariant subspaces, the mixed term vanishes
+and the full anchored word equals $`\mathcal D(AB)`$. This special
+case does not cover generic comparable tree updates. Small coarse-frame
+error can make the mixed term small, but a fixed coarse tolerance does
+not make it arbitrarily accurate. The identity concerns this anchored
+word; it is not a lower bound on all choices of completion or fusion.
+
+### The full missing repair acts on at most four modes
+
+The mixed term also gives a bounded next target. In a parent merge B
+acts only on the two parent-root modes. Put $`X=A-I`$, $`Y=B-I`$,
+$`c=1/2`$, $`t=\sqrt3/2`$, and
+$`F=\mathcal D(A)\mathcal D(I)^\dagger\mathcal D(B)`$.
+The complete error, including rejected ports, factors as
+
+```math
+F-\mathcal D(AB)
+=c\begin{pmatrix}tX\\cX^\dagger\end{pmatrix}
+  \begin{pmatrix}-tY&cY^\dagger\end{pmatrix}
+-c\begin{pmatrix}0&0\\0&Y^\dagger X^\dagger\end{pmatrix}.
+```
+
+Because B is unitary, Y is normal and
+$`\mathrm{range}(Y)=\mathrm{range}(Y^\dagger)`$.
+If $`r=\mathrm{rank}(B-I)`$, the first summand has rank at
+most r and the second at most r. Consequently the accepted error has
+rank at most two and the complete error has rank at most four at a
+tree parent. No signal sector has been discarded in the latter bound.
+These ranks are on signal/logical space. After tensoring with dirty
+identity, the Hilbert-space rank multiplies by the dirty dimension;
+the repair acts trivially on that factor.
+
+The exact left repair
+
+```math
+\mathcal K=\mathcal D(AB)F^\dagger
+```
+
+is unitary and satisfies $`\mathrm{rank}(\mathcal K-I)\le4`$.
+A unitary minus identity is normal, so the repair is identity on the
+orthogonal complement of its at-most-four-dimensional moving subspace.
+Moreover, $`\det\mathcal D(V)=1`$: factor it as
+$`\mathrm{diag}(V,I)\mathcal D(I)\mathrm{diag}(I,V^\dagger)`$.
+Thus F and the repair also have determinant one. The restriction to its
+moving subspace is special unitary, with no discarded scalar phase.
+If $`|r_0\rangle,|r_1\rangle`$ are the two parent-root basis modes,
+that moving subspace is contained in the span of
+
+```math
+\begin{pmatrix}t(A-I)|r_b\rangle\\c(A^\dagger-I)|r_b\rangle\end{pmatrix},
+\qquad
+\begin{pmatrix}0\\|r_b\rangle\end{pmatrix},
+\qquad b\in\{0,1\}.
+```
+
+These are four generally transported vectors, not four computational
+basis labels or four free clean qubits. The definition of the repair is
+an existence identity; implementing $`\mathcal D(AB)`$ by its target
+wrappers would repeat the unresolved problem. A useful native repair
+must make both A and its adjoint's boundary vectors accessible with a
+charged circuit and maintain their return promises. It must also prove
+that recursive child calls and precision work do not multiply at every
+parent. The rank bound alone supplies neither operation nor resource
+bound. This full four-mode repair, rather than an accepted-only rank-two
+correction, is the next concrete merge interface to test.
+
+The [coupled-merge checks](../tests/test_coupled_residual_merge.py)
+audit the same recursion at a fork and height three, using real targets
+and actual complex native coarse words, all four signal blocks, actual
+inverses, and reference-correlated spectators. They also test the mixed
+term and the stability estimate. These are bounded operator checks, not
+an elementary endpoint emitter. The
+[shared-source fork audit](SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork)
+separately tests a fully native source-cancellation candidate.

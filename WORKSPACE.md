@@ -50,23 +50,32 @@ The upper bound also works with one clean qubit. The two promised update
 classes have not narrowed this generic gap. Optimal T-depth remains a
 separate open question.
 
-The next deliverable is an **explicit native whole-residual branching
-merge with a recursively justified precision ledger**. The full ten-mode
-parent/children matrix and a complete recursive subtree hierarchy are
-already proved in residual assembly. Rechecking those matrices or their
-linear classical storage alone does not advance the native T-count bound.
+The branching pass has established a complete one-signal coupled boundary
+and a full repair supported on at most four transported modes. Its direct
+wrappers still reintroduce the target program. A separate native
+common-conjugator word fails even after retuning its masks. These are
+operator results and scoped diagnostics; the generic resource gap is unchanged.
+
+The next deliverable is **native synthesis of that four-mode repair with
+a recursively justified precision ledger**. Read
+[the coupled completion and repair](docs/RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost)
+and [the stopped source-sharing ansatz](docs/SOURCE_REUSE_LIMITS.md#5-a-shared-conjugator-does-not-close-a-branching-fork).
+The four modes are transported vectors, not free initialized qubits.
+Rechecking matrix closure or low rank alone does not advance the T-count bound.
 
 ## First research pass
 
-1. Specify a parametric Clifford+T word and its complete boundary action:
-   every logical input, accepted and rejected ports, two external clean
-   flags, and arbitrary dirty inputs correlated with a reference. Identify
-   every live register and exact or approximate return promise.
-2. Audit a nonzero parent and two independently nonzero children, using an
+1. Specify actual circuits for the child residual's forward and adjoint
+   action on the two parent-root vectors and for the full four-mode repair.
+   Charge every child call and basis change. Give the complete boundary
+   action on accepted/rejected ports and arbitrary dirty/reference inputs,
+   with at most two external clean flags and explicit return promises.
+2. Audit the native repair on a nonzero parent and two nonzero children, using an
    actual complex native coarse frame even when the target is real. If the
    contract survives, apply the same word at height three. Do not introduce
    a larger logical register that silently supplies initialized work.
-3. Prove an induction for the expanded word, charging native programs,
+3. Prove an induction for the expanded word, including any multiplicative
+   growth in recursive child calls, and charging native programs,
    source preparation, masks, queries and unloading, literal controls,
    actual inverses, routing, amplification, and complete-word error.
    Normalization two and the declared workspace must survive composition.
@@ -111,6 +120,11 @@ offline synchronization check. The handoff edit passed 38 documentation
 and narrative checks. Record fresh results when resuming; these results
 do not certify later edits. Finite tests support the proofs and do not
 establish asymptotic bounds.
+
+The subsequent branching pass added 15 focused tests; all 243 local tests,
+the reviewer walkthrough, and the offline synchronization check passed.
+The new proof sections also received separate internal mathematical checks.
+The complete native repair and its recursive precision ledger remain open.
 
 Update this entry point when the task changes, while keeping detailed
 research conclusions in [the existing checkpoint](docs/OPEN_PROBLEM.md)

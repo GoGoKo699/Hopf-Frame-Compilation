@@ -722,7 +722,160 @@ doing so alone would still not combine the separately charged source
 calls. The [native routing fixtures](../tests/test_source_merge.py)
 check the explicit word and the stated class boundary.
 
-## 5. Finite checks and evidence limits
+## 5. A shared conjugator does not close a branching fork
+
+There is a native source-cancellation proposal for which the outer
+conjugators really do cancel. Its failure is therefore more specific than
+an invalid cancellation rule: the remaining full word has unwanted
+rejected returns, and even arbitrary retuning of its masks cannot give a
+generic normalized fork.
+
+Use the paired source and scalar words of the
+[one-clean construction](ONE_CLEAN_COMPILER.md#3-conjugating-scalar-blocks-produces-a-rotation).
+Its fixed mask has moment $`c=1/2`$. Write the corresponding
+anti-Hermitian dirty operators as $`D_f,D_g`$, and put
+
+```math
+s=\langle M,N_g\rangle,\qquad
+\tau=\langle N_f,N_g\rangle,\qquad r=s/2-\tau.
+```
+
+The brackets are real coefficient-vector inner products in the Majorana
+basis. Thus $`\{D_f,D_g\}=2rI`$ and $`D_f^2=-3I/4`$.
+Let Z be parity on the logical register. Each physical Hopf pair e differs
+in one bit. Its symmetric pair swap $`X_e`$, extended by zero off that
+pair, anticommutes with Z and obeys $`X_e^2=\Pi_e`$.
+
+Define one common full-unitary conjugator and edge words by
+
+```math
+\begin{aligned}
+A&=\frac12I+X_f ZD_f,\\
+B_e&=I-\Pi_e+s_e\Pi_e+X_fX_eD_{g_e},\\
+Q_e&=A^\dagger B_eA.
+\end{aligned}
+```
+
+Here f denotes the signal bit when it appears in $`X_f`$, and the fixed
+mask label when it appears in $`D_f`$. Dirty and logical identities are
+implicit. A is the fixed native scalar word conjugated by flag-controlled
+logical parity. Each B is a predicate-conditioned native scalar word with
+the original flag-to-target CNOT routing; it is identity off its pair.
+Queries are unloaded inside their scalar word before a later operation
+changes the address. Thus the whole-space cancellation
+
+```math
+Q_k\cdots Q_1=A^\dagger B_k\cdots B_1A
+```
+
+is valid, including arbitrary dirty states and occupied signal ports.
+
+Expanding one complete word gives
+
+```math
+Q_e=E_e+X_fX_eK_e,\qquad
+E_e=I-\Pi_e+s_e\Pi_e+r_eX_eZ,
+```
+
+```math
+K_e=D_{g_e}+2r_eD_f,\qquad
+K_e^\dagger=-K_e,\qquad
+K_e^\dagger K_e=(1-s_e^2-r_e^2)I.
+```
+
+Consider the physical two-level fork with basis labels
+$`a=00,b=10,c=01,d=11`$: root pair $`(a,b)`$, left child
+$`(a,c)`$, and right child $`(b,d)`$. Keeping every rejected return,
+
+```math
+\begin{aligned}
+\langle0|Q_RQ_LQ_0|0\rangle
+={}&E_RE_LE_0\otimes I\\
+&+|c\rangle\langle b|\otimes K_LK_0
++|d\rangle\langle a|\otimes K_RK_0.
+\end{aligned}
+```
+
+Indeed $`X_RX_L=0`$, $`X_LX_0=|c\rangle\langle b|`$,
+and $`X_RE_LX_0=|d\rangle\langle a|`$. If
+$`\kappa_e=\sqrt{1-s_e^2-r_e^2}`$, the difference from
+$`E_RE_LE_0\otimes I`$ has norm exactly
+$`\max\{\kappa_L\kappa_0,\kappa_R\kappa_0\}`$, because
+its two input/output supports are orthogonal and each dirty product has
+constant singular value. Under the original angle programming this tends
+to $`1-\beta^2`$, where $`\beta=\sin(\pi/10)`$.
+
+This norm is not automatically a distance from every logical operator:
+the dirty products can contain scalar parts. Independently, the product
+of ideal local accepted blocks has singular values
+$`\beta,\beta,\beta^2,\beta^2`$; inactive local modes were identity.
+It is not one uniformly normalized frame.
+
+### Retuning the masks does not repair this word
+
+The same word has a precision-independent obstruction even if its local
+masks are chosen jointly rather than by the original angle rule.
+The Clifford vectors
+$`F=N_f-M/2`$ and $`G=N_g-sM`$ have squared lengths
+$`3/4`$ and $`1-s^2`$, with inner product $`-r`$.
+Cauchy--Schwarz therefore gives the feasible ellipse
+
+```math
+s^2+\frac43r^2\le1.
+```
+
+Let $`V=R_R(\theta_R)R_L(\theta_L)R_0(\theta_0)`$ be the real
+target fork, with the conventional orientation on each ordered pair.
+The right pair's parity reverses its encoded sine sign, which does not
+change the ellipse. For any $`\gamma>0`$, define
+
+```math
+\epsilon=
+\left\|\langle0|Q_RQ_LQ_0|0\rangle
+-\gamma V\otimes I_{\rm dirty}\right\|.
+```
+
+Then every choice of the three masks satisfies
+
+```math
+\epsilon\ge
+\frac{\gamma|\cos\theta_L|}{2}
+\left(1-\sqrt{1-\frac{\sin^2\theta_0}{4}}\right).
+```
+
+To prove this, set $`t=\gamma\cos\theta_L`$,
+$`v=(s_0,r_0)`$, and $`u=(\cos\theta_0,\sin\theta_0)`$.
+The spectator entry $`(c,c)`$ and the row a restricted to columns a,b
+contain no rejected-return term. They give, respectively,
+
+```math
+|s_L-t|\le\epsilon,\qquad
+\|s_Lv-tu\|_2\le\epsilon.
+```
+
+Since $`\|v\|_2\le1`$, these imply
+$`|t|\|v-u\|_2\le2\epsilon`$. The support function of the
+feasible ellipse in the unit direction u is
+$`\sqrt{1-\sin^2\theta_0/4}`$. Hence
+$`\|v-u\|_2\ge1-\sqrt{1-\sin^2\theta_0/4}`$, as claimed.
+The bound is trivial when t is zero and requires no division by it.
+
+For $`\gamma=1/2`$ and $`\theta_0=\theta_L=\pi/4`$, the
+lower bound exceeds 0.011, regardless of source precision; the right
+angle can independently be nonzero. Multiplying the actual and intended
+accepted blocks by the same native $`C^\dagger`$ preserves this error,
+including when C is complex. This supplies no hardness result: even an
+easy target can expose a bad word. It excludes this unamplified
+shared-conjugator ansatz, not other jointly programmed words, completions,
+or compilers.
+
+Finally, outer cancellation alone does not give a global precision ledger.
+Each remaining B still contains three source calls in the stated native
+emission. Disjoint nodes may be batched by depth; that emission retains
+a precision charge per depth. This is a cost of the displayed word, not
+an additive lower bound under every possible circuit rewrite.
+
+## 6. Finite checks and evidence limits
 
 Run:
 
@@ -730,12 +883,17 @@ Run:
 python -m unittest discover -s tests -p 'test_source_reuse_limits.py'
 python -m unittest discover -s tests -p 'test_tree_residual_structure.py'
 python -m unittest discover -s tests -p 'test_source_merge.py'
+python -m unittest tests.test_shared_conjugator_merge
 ```
 
 The tests exercise the dimension inequality on small nilpotent
 contractions and encoded subspaces, the explicit geometric construction,
 the need for nilpotence, and the transformed-mask correlations.
 These finite checks support indexing and assumption boundaries.
+The common-conjugator fixture additionally checks every dirty and occupied
+signal column of the literal native fork, its target-half-block failure,
+and its source counts. Small mask sweeps check the ellipse and row
+constraints; the precision-independent retuning bound is proved above.
 The dimension and T-count statements rest on the analytic proofs above;
 the tests do not establish an unrestricted impossibility theorem or
 literature priority.
