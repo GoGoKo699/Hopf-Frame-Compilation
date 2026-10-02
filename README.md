@@ -301,11 +301,12 @@ and error $`\epsilon`$, put
 $`K=\max\{6,\lceil\log_2(80\Lambda/\epsilon)\rceil\}`$ and $`P=\max\{n,K\}`$.
 Two initialized compiler flags and $`b\ge P+n+7`$ dirty wires give
 $`T=O(N+P)`$, $`G=O(NP)`$ per execution apart from the observable;
-the protocol branch is separate. A charged actual coarse inverse and
-classical correction retain the original order of simultaneous-gradient
-shots. [Depth schedules](docs/STATE_QBP_DEPTH.md) and bounded-input costs are explicit.
-A [native residual preparation](docs/NATIVE_RESIDUAL_STATE.md) uses two flags.
-The general emitter and constant-clean frame endpoint remain open.
+the protocol branch is separate. The actual coarse inverse and classical
+correction retain the shot scaling. [Depth schedules](docs/STATE_QBP_DEPTH.md)
+and bounded-input costs are explicit.
+[Bounded residual QBP](docs/NATIVE_RESIDUAL_QBP.md) implements both streams.
+[General software](docs/VERIFICATION.md#state-based-qbp-coverage) remains
+optional; the complete-frame endpoint is open.
 No end-to-end speedup is claimed.
 
 ## Verification boundary

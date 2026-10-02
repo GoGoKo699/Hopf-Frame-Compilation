@@ -810,12 +810,23 @@ The [native residual QBP integration](NATIVE_RESIDUAL_QBP.md) now connects
 this selector to an actual coarse circuit, controlled observable, actual
 inverse magnitude readout, direct phase readout, and exact histogram
 decoders for a fixed complex one-qubit target. Its coefficient and full
-coarse-distance promises have rational certificates. The next pass
-consolidates the proof-to-code map and identifies any remaining
-claim-relevant implementation gap before selecting more components.
-The full fine-precision native emitter remains an implementation task;
-completing it would strengthen executable evidence without changing the
-proved resource bounds by itself. No end-to-end advantage example is
+coarse-distance promises have rational certificates. The
+[coverage audit](VERIFICATION.md#state-based-qbp-coverage) now pairs the
+stated claims with their analytic proofs and bounded implementations.
+It separates three optional software deliverables: a certified front end
+for the admitted bounded Hopf inputs, a variable-size or banked native
+schedule, and general guarded decoder arithmetic. Their absence limits
+executable coverage without leaving a prerequisite of the stated theorem
+unresolved. The small-system search and workspace exceptions remain.
+
+The selected Hopf-QBP construction and bounded native integration are
+complete. No further fixture expansion or general software API is selected.
+A new implementation pass should specify its Hopf-QBP input/output
+contract and the missing interface it will supply. A new scientific pass
+should identify a claim beyond the established bounds and its proof
+obligation before producing another fixture. The complete-frame endpoint
+and depth optimality remain separate research questions; neither is
+needed for this state-based task. No end-to-end advantage example is
 selected. Such a claim requires a concrete observable-access model and a
 classical comparator; another special exact fixture would not supply it.
 

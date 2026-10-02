@@ -245,7 +245,10 @@ targets through exact finite-size preparation. The
 fine residual emitter inside both complete streams for a certified complex
 one-qubit target, including actual coarse and observable costs and exact
 histogram decoders. The general fine-precision native emitter is not implemented;
-the construction bound above is analytic.
+the construction bound above is analytic. The
+[coverage map](VERIFICATION.md#state-based-qbp-coverage) pairs each claim
+with its proof and executable evidence, and records the remaining
+optional software deliverables.
 
 | Ingredient | Canonical proof |
 |---|---|

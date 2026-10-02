@@ -234,6 +234,7 @@ python scripts/residual_qbp_native_example.py --q 16 --format json
 ```
 
 The selected bounded residual-to-readout integration is complete. The
-next pass consolidates the proof-to-code map and identifies any remaining
-claim-relevant gap before choosing another component; larger fixed
-examples are not an automatic next step.
+[coverage audit](VERIFICATION.md#state-based-qbp-coverage) records its
+proof dependencies and the separate general software boundaries.
+No larger fixed example is selected; a further implementation pass needs
+a concrete Hopf-QBP use requirement identifying a missing interface.
