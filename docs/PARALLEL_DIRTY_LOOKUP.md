@@ -370,8 +370,12 @@ on early frame layers even though it need not preserve the optimal
 standalone lookup count.
 
 To see this, fix L and use the
-[capped layer precisions](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
-$`m_d\le M_n=L+4+\lceil\log_2(8n)\rceil=O(\log(n+1))`$.
+[capped layer precisions](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision):
+
+```math
+m_d\le M_n=L+4+\lceil\log_2(8n)\rceil=O(\log(n+1)).
+```
+
 Put $`k=n-d`$, so
 $`Q_d=4N2^{-k}`$ and $`r_d=d+2\le n+1`$. Let
 $`A_n=M_n+P(n+2)`$ and choose
