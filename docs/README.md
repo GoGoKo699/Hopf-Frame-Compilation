@@ -25,6 +25,8 @@ topic has one primary chapter below.
 | [Exact source depth](SOURCE_T_DEPTH.md) | Parallel paired tails and matching exact source depths within a specified Majorana-linear circuit class; no unrestricted optimality claim |
 | [Two-layer source obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) | Width-independent approximation gaps for full-input sources with arbitrary Clifford interlayers and returned dirty helpers |
 | [Conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md) | Logarithmic precision depth using the active logical suffix as temporary clean work; lookup and suffix-predicate costs remain separate |
+| [Grouped program reuse](GROUPED_PROGRAM_PREFETCH.md) | Complete real-frame depth O(n log log n) at fixed accuracy and sufficient square-root dirty width, retaining optimal-order T-count |
+| [Chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) | A tunable exact dirty-tree indicator and a summable late-query budget that removes the late routing bottleneck |
 | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md) | Sharp ideal-angle stability, finite relative spectra, and coherent leakage in the actual shared-flag sources; scoped precision boundaries |
 | [Flag-echo audit](HOPF_FLAG_ECHO.md) | Exact errors of four diagonal Pauli echoes, their generic linear leakage, and an exact equal-mask exception |
 | [Radial source filter](HOPF_RADIAL_FILTER.md) | Phase-calibrated fixed-point filtering, quadratic radial error, charged native phases, and a smaller complete-frame precision cap |

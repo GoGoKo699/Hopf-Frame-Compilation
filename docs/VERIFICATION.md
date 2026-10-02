@@ -136,6 +136,22 @@ prefix preparation, native controlled-H phases, actual inverse, scalar
 programming, inactive sectors, and amplification with work return.
 Its shallow prefix schedule and uniform resource bounds are proved
 analytically; the fixtures do not emit the whole variable-size frame.
+The [grouped-prefetch proof](GROUPED_PROGRAM_PREFETCH.md) has
+[nine bounded checks](../tests/test_grouped_program_prefetch.py) for
+literal phase-mask words, native AND and source preparation, inactive
+dirty scratch, coherent program erasure through source leakage, and the
+internal-enable amplification sign. Exact integer ledgers check the
+adaptive group reservations and unchanged precision caps. The reduced
+group fixtures use direct diagonal masks and reflections; they are not
+a complete native query, reflection, or full-frame emitter.
+The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
+[three bounded checks](../tests/test_chunked_dirty_indicator.py) for
+native shared-control phases, actual inverses, arbitrary dirty-tree
+return, and the selected-path conjugation order. Exact arithmetic checks
+the late-layer resource sums. The small row macros do not establish
+the imported asymptotic counter depth. Together these fixtures support
+the fragile interfaces of the fixed-accuracy complete-frame theorem;
+its count, width, and depth bounds are proved analytically.
 The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
 audit routed-indicator cancellation, literal native phases, disjoint T
 layers, scratch-free width, and arbitrary-input return using symbolic

@@ -67,9 +67,8 @@ D_{\mathbb R}(n,m)
 }
 ```
 
-The upper bounds hold for every parameter tuple; lower bounds hold in the
-worst case over the Hopf-frame family, uniformly in the clean-workspace budget.
-Individual frames may cost less.
+The upper bounds hold for every parameter tuple; lower bounds hold in the worst case
+over the Hopf-frame family, uniformly in the clean-workspace budget.
 
 The worst-case **CNOT count alone is $\Theta(N)$ for $n\ge2$**,
 with free one-qubit gates and arbitrary clean workspace; it is zero for $n=1$.
@@ -86,9 +85,8 @@ W_{\mathbb C,\mathrm{mag}}
 The leaf-phase derivatives form a separate direct measurement stream; they are
 not additional columns of the same $N$-dimensional unitary.
 
-The construction uses at most the requested $m$ clean ancillary qubits and
-returns them exactly to zero.  Thus a prescribed Hopf completion reaches the
-optimal arbitrary-state-preparation frontier for every clean-workspace budget.
+The construction restores at most $m$ clean ancillas exactly, reaching the
+optimal state-preparation frontier at every clean-workspace budget.
 
 ### Fault-tolerant theorem
 
@@ -116,9 +114,6 @@ The upper construction uses $O(NL)$ Clifford gates. Every supplied precision
 source is prepared and charged. Borrowed qubits are restored jointly with any
 external reference; complete-input approximation includes clean-work leakage.
 There are no measurements, resets, or free supplied catalysts in this model.
-
-**Shared precision.** The [proof](docs/FAULT_TOLERANT_COMPILER.md) corrects a
-coarse frame with one retained source and final amplification; all work is charged.
 
 At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
 With **one clean qubit** and $`b\ge L+n+7`$, the
@@ -149,15 +144,28 @@ For $`L=\Theta(n)`$, sufficient
 $`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$ and
 $`D_T=\Theta(N/n)`$ in one complete real-frame circuit.
 
+At fixed accuracy, [grouped programs](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+and chunked queries give, with two clean flags and sufficient
+$`b=\Theta(\sqrt N)`$, one complete real-frame circuit with
+
+```math
+T=O(\sqrt N),\qquad G=O(N),\qquad
+D_T=O\!\left(n\log\log(n+2)\right).
+```
+
+T-count is optimal in worst-case order. Depth optimality and the
+high-precision endpoint remain open; the
+[variable-precision theorem](docs/OPEN_PROBLEM.md) is unchanged.
+
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean
 qubit, respectively at $`b\ge2(L+n+7)`$ and $`b\ge2(L+n+9)`$.
 For the multiplexor, $n$ counts address qubits and $N$ counts its blocks.
 These matched one-stage frontiers do not close the multi-layer frame gap.
 
-Two promised update classes attain $`T=O(N+L)`$, $`G=O(NL)`$ at
-$`b\ge L+n+7`$. Both require literal agreement with a supplied baseline
-outside the changed nodes; its native determinant-one local words have
+Two update classes attain $`T=O(N+L)`$, $`G=O(NL)`$ at
+$`b\ge L+n+7`$, requiring literal agreement outside changed nodes
+with a native baseline whose determinant-one local words have
 length $`O(n-d+1)`$ at depth d.
 
 - [Antichain changes](docs/ANTICHAIN_COMPILER.md) use **zero clean qubits**;
@@ -169,9 +177,9 @@ length $`O(n-d+1)`$ at depth d.
 n\ge 2\lceil\log_2(|S|+1)\rceil+32.
 ```
 
-The sparse result includes arbitrary changes along one root-to-leaf path,
-for all n using a finite small-n fallback. Their real Hopf specializations preserve the complete frame and QBP interface. Generic rounding
-supplies neither promise; the unrestricted linear endpoint remains open.
+The sparse result includes a full root-to-leaf path for every n.
+Both preserve the complete frame and QBP interface. Generic rounding
+supplies neither promise.
 
 ## Exact construction at a glance
 
@@ -251,8 +259,7 @@ also forces this contract up to common phase; see the
 
 ## Relation to the all-workspace state-preparation framework
 
-The proof uses four exact results from the all-workspace state-preparation
-framework.
+Four imported exact tools supply the construction:
 
 | Imported result | Role here |
 |---|---|

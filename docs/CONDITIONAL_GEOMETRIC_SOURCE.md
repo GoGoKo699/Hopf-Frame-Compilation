@@ -295,9 +295,12 @@ This ledger excludes addressed queries and the outer suffix predicate.
 The current query schedule alone can still contribute
 $`O(n\log(n+2))`$, and recomputing the outer predicate for each
 eligible layer has that same depth upper bound. The complete-frame
-count/depth frontier therefore remains unchanged. Sharing those costs
-across a group would require a separate full-input circuit proof, with
-its live program and workspace reservations charged.
+count/depth frontier does not improve from this source alone. The
+[grouped-program theorem](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+now supplies that separate composition: conditional program reuse and
+chunked late queries give $`O(n\log\log(n+2))`$ full-frame T-depth
+at fixed accuracy and sufficient square-root-scale dirty width, with
+optimal-order count and all live reservations charged.
 
 ## 6. Evidence boundary
 

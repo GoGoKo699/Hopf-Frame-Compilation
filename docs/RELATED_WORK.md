@@ -805,7 +805,8 @@ inverse, inactive-sector identity, and return error are charged locally.
 This is an explicit construction from standard reversible and
 block-encoding ingredients; it does not import a catalyst or claim
 generic fast rotation synthesis with arbitrary dirty helpers. The
-complete-frame query and suffix-predicate bottlenecks remain.
+complete-frame query and suffix-predicate bottlenecks require a separate
+composition, supplied in Section 18 below.
 
 ## 17. Fixed-point filtering and literal phase (2 October 2026)
 
@@ -832,3 +833,26 @@ The [short-echo audit](HOPF_FLAG_ECHO.md) is separate: its exact error
 formulas rule out uniform radial cancellation for four specific Pauli
 interpositions, and include a full-space equal-mask exception. They are
 not a no-go theorem for fixed-point amplification or general composites.
+
+## 18. Grouped programs and chunked dirty queries (2 October 2026)
+
+The [grouped-program theorem](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+combines the conditional source with exact prefetch into an active zero
+suffix. The program stays read-only through source leakage, allowing its
+actual inverse to erase it exactly. Private predicate trees and literal
+enable-dependent amplification phases complete the local interface.
+The [chunked indicator](CHUNKED_DIRTY_INDICATOR.md) interpolates between
+the existing routed and read-only counter constructions. A dirty linear
+tree conjugates a root flip into a selected-path translation, and the
+outer echo removes every unknown dirty offset.
+
+Conditional workspace, reversible conjunctions, linear conjugation,
+bilinear lookup, and block-encoding amplification are established tools.
+The local contribution is their charged complete-frame composition:
+an adaptive early prefetch schedule and a distinct late chunk allocation
+give fixed-accuracy $`O(n\log\log(n+2))`$ T-depth with optimal-order
+$`O(\sqrt N)`$ T-count, $`O(N)`$ Clifford count, two external clean
+flags, and sufficient $`C_\eta\sqrt N`$ dirty workspace. No generic
+priority claim is inferred. The variable-precision theorem keeps its
+previous bounds, and unrestricted large-width depth optimality and the
+constant-clean high-precision endpoint remain open.

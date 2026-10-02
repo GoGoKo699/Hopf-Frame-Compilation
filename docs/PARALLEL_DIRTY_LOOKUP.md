@@ -63,6 +63,13 @@ elementary depth. The selected allocation $`L=N,b=N+n+7`$ is not covered
 by the new sufficient-width hypothesis; its linear T-count endpoint remains
 open.
 
+At fixed accuracy, [grouped conditional program reuse](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+and [chunked dirty indicators](CHUNKED_DIRTY_INDICATOR.md) further give
+$`D_T=O(n\log\log(n+2))`$ with the same optimal-order count at
+sufficient square-root-scale dirty width. Their global proof charges
+wide prefetches and the entire late-query segment. The uniform hybrid
+theorem and matching range above remain valid separately.
+
 ## 1. An exact dirty indicator by conjugated routing
 
 All sequences in this chapter are chronological. For a k-bit address x,
