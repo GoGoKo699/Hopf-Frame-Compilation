@@ -165,18 +165,19 @@ $`O(\sqrt N)`$ T gates with $`O(n^2)`$ T-depth.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
-At fixed L, the [batched extension](docs/BATCHED_DIRTY_LOOKUP.md) also
+At fixed L, the [amortized extension](docs/AMORTIZED_DIRTY_LOOKUP.md) also
 covers $`b\ge17(L+n+7)`$ with two clean qubits:
 
 ```math
 T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
-D_T=O\!\left(\frac{N\log(b+2)}{b^2}+n^2\right).
+D_T=O\!\left(\frac{N}{b^2}+n^2\right).
 ```
 
 All three bounds hold for one complete real-frame circuit. For
-$`b=\Theta(n)`$ above this sufficient threshold, count is optimal in
-order and the depth gap is a factor of $`O(\log n)`$. The additive
-$`n^2`$ term prevents the same conclusion at square-root-scale width.
+$`17(L+n+7)\le b\le\sqrt N/n`$, both count and depth are optimal
+in order: $`D_T^\star=\Theta(N/b^2)`$. This includes sufficiently
+large $`b=\Theta(n)`$. The additive $`n^2`$ term leaves
+square-root-scale workspace depth unresolved.
 
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)

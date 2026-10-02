@@ -64,9 +64,11 @@ The bounded implementation pass stops here. No larger fixed fixture or
 general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The prescribed complete-frame
-endpoint and matching T-depth bounds remain
+endpoint and general T-depth frontier remain
 [active research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
-the existing state-based result does not require their resolution.
+fixed-accuracy modest-width depth is now matching by the
+[amortized construction](AMORTIZED_DIRTY_LOOKUP.md). The existing
+state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
 existing resource comparisons and classical baselines remain documented.
 
@@ -134,6 +136,13 @@ complete native query with literal phases, disjoint T layers, and the
 allocation ledger. The [fixed-accuracy frame theorem](BATCHED_DIRTY_LOOKUP.md)
 is an analytic composition; these finite checks do not implement the
 general two-dirty-helper MCX or a variable-size full-frame emitter.
+The [amortized lookup checks](../tests/test_amortized_dirty_lookup.py)
+audit controlled rectangular linear maps, two-pass dirty traversal,
+literal complete-query phases and inverses, all dirty-register return,
+and the emitted resource schedule. Their [analytic composition](AMORTIZED_DIRTY_LOOKUP.md)
+closes the fixed-accuracy modest-width depth gap while preserving
+optimal-order count. The full-frame theorem remains an analytic result;
+the fixture emits only its small lookup components.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)

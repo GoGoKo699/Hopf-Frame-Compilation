@@ -282,6 +282,24 @@ outputs and do not state the simultaneous $`B^{-2}`$ T-depth dependence
 audited here. The batch guards reserve F8's two dirty helpers during
 the live query, separately from its occupied banks and indicators.
 
+The [amortized refinement](AMORTIZED_DIRTY_LOOKUP.md) combines the same
+dirty echo with a multiplexed family of linear shears. The dirty tree
+traversal and cancellation are established techniques; see
+[Khattar–Gidney, arXiv:2407.17966v2, Sections 4, 7.1 and 7.4](https://arxiv.org/html/2407.17966v2).
+[Boyd, arXiv:2312.00696v2, Section III and Appendix A](https://arxiv.org/html/2312.00696v2)
+already groups commuting SELECT/QROM operators and changes Clifford
+bases to expose parallel action, using clean address-fanout registers.
+[Kim–Laakkonen, arXiv:2512.24982v1, Theorems 3 and 5](https://arxiv.org/pdf/2512.24982v1)
+give constant-depth control of CNOT and Clifford circuits without
+ancillas or measurements. The local rank-reduction lemma specializes
+that established possibility with explicit rank-sensitive T-count and
+Clifford-count bounds. The new composition moves the low-address
+indicator outside the high-address traversal and supplies its all-dirty
+return identity and complete Hopf resource ledger. It removes the batch
+logarithm and proves matching fixed-accuracy T-depth at modest width.
+No priority is claimed for dirty iteration, commuting-operator grouping,
+or constant-depth controlled Clifford circuits.
+
 **Bausch.** Equations (4) and (6) of *Fast Black-Box Quantum State Preparation*
 already use a geometric precision register and a bit oracle addressed by the
 data index and precision position. Section 2.3.3 includes a capped geometric

@@ -7,6 +7,13 @@ Processing bounded groups of selectors gives a depth tradeoff below the
 workspace threshold of the full-indicator construction, while retaining
 the available optimal-order T-count on the same circuit.
 
+The [amortized refinement](AMORTIZED_DIRTY_LOOKUP.md) strengthens the
+fixed-accuracy depth below to $`O(N/b^2+n^2)`$ under the same sufficient
+reservation. It moves the indicator outside a multiplexed linear-map
+echo and replaces separate chunk guards by one dirty traversal. This
+chapter retains the guarded-indicator identity and allocation argument
+used by that refinement.
+
 **Fixed-accuracy theorem.** Let $`n\ge1`$, $`N=2^n`$, and fix
 $`0\lt\eta\le1/64`$ independently of n. Put
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and $`B_0=L+n+7`$.

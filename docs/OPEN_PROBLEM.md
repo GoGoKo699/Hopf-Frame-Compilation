@@ -34,7 +34,7 @@ below. Lower bounds are worst-case over the stated frame family.
 | One-clean phase-dressed complex magnitude frame | The same grouped and banked T-counts, at $`b\ge L+n+8`$ and $`b\ge2(L+n+8)`$, respectively | Compose the real compiler and literal phase diagonal in the same workspace; [composition corollary](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
-| Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N\log(b+2)/b^2+n^2)`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; optimal-order count and logarithmic depth gap at $`b=\Theta(n)`$ above the threshold; [batched dirty lookup](BATCHED_DIRTY_LOOKUP.md) |
+| Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n^2)`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching for $`b\le\sqrt N/n`$; [amortized dirty lookup](AMORTIZED_DIRTY_LOOKUP.md) |
 
 Take the best applicable construction. For fixed L, $`a=2`$ and
 $`b=L+n+7=\Theta(n)`$, the arbitrary-budget matching splice gives
@@ -53,7 +53,8 @@ are dependencies or fallbacks, not the current frontier.
 
 The exact ancilla-depth theorem is matching in its elementary-gate model;
 T-count is matching under its stated clean reservation. The two-clean
-T-depth schedule has no matching lower bound. Complete-frame safety and
+fixed-accuracy T-depth tradeoff is now matching at modest width; its
+large-width and general-precision regimes remain open. Complete-frame safety and
 QBP substitution are already established; the gaps concern resources.
 
 For the exactly two-clean banked regime, put $`B_0=L+n+7`$ and assume
@@ -71,16 +72,17 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 
 | Regime | Depth lower bound | Available depth upper bound | Remaining issue |
 |---|---|---|---|
-| Fixed L, $`b=\Theta(n)`$ and $`b\ge17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N\log n/n^2)`$ with $`T=\Theta(N/n)`$ | Factor-$`\log n`$ gap; [batched schedule](BATCHED_DIRTY_LOOKUP.md) |
+| Fixed L, $`b=\Theta(n)`$ and $`b\ge17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n^2)`$ with $`T=\Theta(N/n)`$ | Matching count and depth in one circuit; [amortized schedule](AMORTIZED_DIRTY_LOOKUP.md) |
+| Fixed L, $`17B_0\le b\le\sqrt N/n`$ | $`\Omega(N/b^2)`$ | $`O(N/b^2)`$ with optimal-order count | Matching throughout this interval when nonempty |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
 | Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Simultaneous count/depth capability; depth lower bound remains unmatched |
 | Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
-The batched schedule also stays within a factor $`O(\log(b+2))`$ of the
-depth lower bound when $`17B_0\le b\le\sqrt N/n`$. Its additive
-$`n^2`$ term leaves the square-root-width depth exponent unresolved.
+The amortized schedule removes the earlier per-batch logarithm from
+both indicator routing and chunk selection. Its additive $`n^2`$ term
+leaves the square-root-width depth exponent unresolved.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
 
@@ -186,7 +188,7 @@ question concerns precision reuse for unrestricted comparable updates.
 
 | Level | Established scope |
 |---|---|
-| General theorems | Exact matching resources, sufficient-clean matching T-count, and one-clean grouped bound; constant-clean endpoint and optimal T-depth remain open |
+| General theorems | Exact matching resources, sufficient-clean matching T-count, one-clean grouped bound, and fixed-accuracy modest-width matching T-depth; constant-clean endpoint and general T-depth remain open |
 | Incomparable promised families | Antichain and sparse ancestor-closed updates have $`T=O(N+L)`$, $`G=O(NL)`$; generic rounding satisfies neither promise |
 | Reusable blocks | Cheap coarse frame, linear residual data, complete weighted dilations, two-flag assembly, and a coupled repair with exact child-call cancellation; the surviving target precision remains charged |
 | Completed small-example pass | Fixed-address product compression, four-mode native factors, and a full-port changing-target word with borrowed-signal return; no precision recurrence independent of growing support or group count |

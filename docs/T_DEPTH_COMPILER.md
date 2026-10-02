@@ -15,11 +15,12 @@ stronger sufficient-width condition, it obtains the best retained T-count
 and low T-depth simultaneously. This chapter supplies the routing primitive
 and the wider-range bank schedule used in that refinement.
 
-The [batched extension](BATCHED_DIRTY_LOOKUP.md) reuses a smaller indicator
-pool. At fixed L, two clean qubits and $`b\ge17(L+n+7)`$ give
+The [amortized extension](AMORTIZED_DIRTY_LOOKUP.md) reuses a smaller indicator
+pool and shares dirty traversal across the chunk addresses. At fixed L, two clean qubits
+and $`b\ge17(L+n+7)`$ give
 $`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
-$`D_T=O(N\log(b+2)/b^2+n^2)`$ in the same complete real-frame
-circuit. It reduces the modest-width depth gap to a logarithmic factor;
+$`D_T=O(N/b^2+n^2)`$ in the same complete real-frame circuit.
+Depth is optimal in order for $`b\le\sqrt N/n`$ above the threshold;
 the general-precision schedules below remain available.
 
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$,
@@ -409,6 +410,12 @@ The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) now achieves
 $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ together already with sufficiently
 large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. It leaves
 the depth lower-bound gap open.
+
+At smaller eligible widths, the [amortized loader](AMORTIZED_DIRTY_LOOKUP.md)
+instead closes the gap: for fixed L and
+$`17B_0\le b\le\sqrt N/n`$, it gives
+$`D_T^\star=\Theta(N/b^2)`$ while retaining optimal-order count.
+The large-width and variable-precision cases above remain unresolved.
 
 The same complete-frame norm transfers to the existing Hopf-QBP bias
 and inverse guarantees. It does not by itself determine the observable
