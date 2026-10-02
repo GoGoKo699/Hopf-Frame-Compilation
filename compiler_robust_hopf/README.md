@@ -74,7 +74,7 @@ from the all-workspace state-preparation framework.
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
 The decoder modules keep classical reconstruction separate from quantum
-execution. The native fixtures use exact finite-size state preparation;
+execution. The earlier real and complex coarse fixtures use exact finite-size state preparation;
 they do not emit the general fine residual table. The
 [certified residual bridge](../docs/NATIVE_RESIDUAL_ROTATION.md) emits one
 unaddressed row or an enabled two- or four-row table from the helper's coefficients.
@@ -88,7 +88,12 @@ The [native residual QBP fixture](../docs/NATIVE_RESIDUAL_QBP.md) connects
 it to both charged gradient streams with certified coefficients for a
 fixed complex target. It does not emit the variable-size fine compiler.
 See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
-and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
+and [claim-to-proof coverage](../docs/VERIFICATION.md#state-based-qbp-coverage)
+for these evidence boundaries. The selected bounded native integration is
+complete. A certified bounded-input/coarse front end, variable-size native
+schedule, and general guarded decoder are optional software extensions;
+they are not prerequisites for the analytic theorem. No further fixed
+fixture expansion is selected.
 
 ## 6. Public entry points
 

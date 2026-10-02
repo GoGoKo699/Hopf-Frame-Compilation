@@ -19,6 +19,57 @@ peaks.  The asymptotic theorem itself is established analytically.
 These levels are kept distinct.  A matrix test does not prove an asymptotic
 bound, and an asymptotic bound does not certify an implementation's bit order.
 
+### State-based QBP coverage
+
+The [task theorem](STATE_BASED_QBP_THEOREM.md) and the bounded native
+residual-to-gradient integration are complete within their stated scopes.
+The following map separates each analytic claim from its executable
+coverage. The detailed finite checks below retain their individual
+input, precision, and workspace boundaries.
+
+| Claim | Proof home | Executable coverage | Software boundary |
+|---|---|---|---|
+| Common coarse reference with literal phase and exact dirty return | [Complex coarse compiler §§1–6](COMPLEX_COARSE_COMPILER.md) | [Real](NATIVE_COARSE_QBP.md), [complex](NATIVE_COMPLEX_COARSE_QBP.md), and [residual QBP](NATIVE_RESIDUAL_QBP.md) fixtures record actual coarse words | No integrated coarse synthesizer for all admitted inputs |
+| Fine single-state and coherent-pair isometries, including returned work | [State compiler §§1–7](STATE_ONLY_COMPILER.md) and [banked extension](COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) | Certified rows, two- and four-row tables, one- and two-qubit preparations, and a coherent one-qubit selector | No variable-size or banked native state emitter |
+| Original raw gradient means, confidence, and reconstruction accuracy | [Real decoder](COARSE_FRAME_QBP.md) and [complex decoder §§2–6](COMPLEX_COARSE_QBP.md) | General histogram utilities test the identities; [the residual fixture](NATIVE_RESIDUAL_QBP.md) has exact rational decoders | General coefficient contractions still use floating point; the guarded decoder is proved, not implemented |
+| Compiler T-count and simultaneous T-depth upper schedules | [Task ledger](STATE_BASED_QBP_THEOREM.md#4-quantum-and-classical-resource-ledger) and [depth proof](STATE_QBP_DEPTH.md) | Exact resource ledgers, native dirty-lookup checks, and bounded literal gate inventories | No full native program realizing the variable-size banked depth schedule |
+| Polynomial construction and explicit program-output bound under the input restriction | [Bounded-input audit §§3–4](BOUNDED_INPUT_QBP.md#3-which-native-searches-are-polynomial-in-the-input-parameters) | [Residual intervals](RESIDUAL_TABLE_PREPROCESSING.md), exact sign programming, and bounded emitted words | No integrated certified front end from the admitted bounded Hopf inputs to the full program |
+| Fine residual preparation inside both complete gradient streams | [Bounded residual QBP integration](NATIVE_RESIDUAL_QBP.md) | [Native words and rational decoders](../compiler_robust_hopf/native_residual_qbp.py), checked by [independent oracles](../tests/test_native_residual_qbp.py) | Fixed complex one-qubit target; no same-accuracy native fine-frame benchmark or sampled-accuracy experiment |
+
+The polynomial construction statement applies at the basic reservation
+for $`n\ge6`$, or at the banked reservation for every $`n\ge1`$.
+The basic-budget $`n\le5`$ fallback retains its sufficient
+$`2^{O(P)}`$ search bound. No polynomial evaluation bound is inferred
+for arbitrary computable inputs. The bounded one- and two-qubit native
+preparations also retain their extra-four and extra-three dirty-wire
+allocations; they do not implement those minimum-budget fallbacks.
+
+The remaining software can be grouped into three optional deliverables:
+
+1. A certified front end for the admitted bounded Hopf inputs, including
+   the recorded coarse word and certified residual data.
+2. A variable-size native emitter with general tables, predicates,
+   reflections, bank lifetimes, and the claimed count/depth schedule.
+3. General guarded decoder arithmetic with the stated output-error
+   certificate; exact integer histograms alone do not certify the later
+   coefficient contractions.
+
+The corresponding construction and error arguments are supplied by the
+linked proofs. These software gaps limit executable coverage; none is an
+unfinished prerequisite for the theorem as stated. The fixed rational
+fixture discharges its own coefficient promises and does not certify an
+arbitrary caller's data.
+
+The bounded implementation pass stops here. No larger fixed fixture or
+general software API is selected. Further implementation should begin
+with a concrete Hopf-QBP use requirement and an input/output contract
+identifying the missing interface. The prescribed complete-frame
+endpoint, matching T-depth bounds, and end-to-end advantage remain
+[separate research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
+the existing state-based result does not require their resolution.
+
+### Detailed finite checks
+
 The [operator-source proof](OPERATOR_SOURCE_COMPILER.md) is accompanied by
 [finite circuit checks](../tests/test_operator_source_compiler.py).
 These test the native geometric operator, its programmable scalar block,

@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 native residual QBP pass starts from verified main
-`ad312be7b4247f6534a810074263eb7d7e8fd27d`, after coherent residual
-branch selection. Check later commits before continuing.
+The 2026-10-02 coverage-consolidation pass starts from verified main
+`736c25500dbb01fc0b449aec1cf1fa0105837817`, after native residual
+QBP integration. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -37,6 +37,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
    The [native residual QBP integration](docs/NATIVE_RESIDUAL_QBP.md)
    connects that selector to the actual coarse circuit, controlled
    observable, and both raw gradient decoders for a fixed complex target.
+   The [coverage map](docs/VERIFICATION.md#state-based-qbp-coverage) is the
+   current entry point for what is proved, implemented, and optional.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -57,7 +59,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
-| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, [certified residual rows and bounded tables](docs/NATIVE_RESIDUAL_ROTATION.md), and [bounded residual state amplification](docs/NATIVE_RESIDUAL_STATE.md); [verification map](docs/VERIFICATION.md) |
+| Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
 The theorem's original accuracy bits K and state precision
 $`P=\max(n,K)`$ must remain distinct. The observable needs accuracy K,
@@ -103,104 +105,57 @@ and depth lower bounds remain separate questions.
 
 ## Completed native residual components
 
-The [native bridge](docs/NATIVE_RESIDUAL_ROTATION.md) now programs exact
-paired-source signs from rational cosine/sine intervals, emits literal
-borrowed-signal Ry/Rz words, and composes one unaddressed residual U(z)
-row. Its full-operator error is below $`130\,2^{-q}`$ on arbitrary target,
-core, signal, and reference inputs. It uses q+2 borrowed wires excluding
-the target, no clean work, and O(q) gate storage. The unsimplified row has
-540q T/TDG gates. Exact rational programming and small all-input native
-checks replace the previous floating-point-only programming evidence.
-The two-row extension adds one address bit and one enable literal. It
-preserves both logical wires exactly and is exactly identity when
-disabled. Source-center CNOT/Toffoli gates implement the predicate with
-no extra helper at this control arity. Its full-operator row bound remains
-below $`130\,2^{-q}`$, taking the maximum over addresses; it has q+5
-total wires and the same q+2 borrowed work wires. The unsimplified table
-has 540q+630 T/TDG gates. Complete small-input checks use four fixed
-control sectors and retain their relative phases. These components
-implement existing identities; they do not change the asymptotic
-theorem or emit its complete state-preparation schedule.
+The bounded implementation sequence is complete. Detailed identities,
+literal gate counts, certificates, and test scopes remain in their
+canonical chapters; the handoff does not duplicate those ledgers.
 
-The [one-system-qubit residual state emitter](docs/NATIVE_RESIDUAL_STATE.md)
-now composes two enabled tables, an exact controlled Hadamard, and one
-state-amplification step with the actual reversed word. Its full
-initialized-isometry bound is below 390 times 2 to the power minus q,
-including both returned flags and arbitrary borrowed/reference input.
-The unsimplified count is 3240q+3793 T/TDG gates, with q+2 dirty wires.
-At q=L+10 this bounded emitter exceeds the minimum n=1 dirty reservation
-by four wires; it fits the banked pool and does not replace the
-minimum-budget fallback. Exact reflections and the literal leading
-minus sign are included. No coarse C or QBP branch is emitted here.
+| Component | Canonical implementation and scope |
+|---|---|
+| Certified coefficient programming and borrowed-signal rotations | [Native residual rows](docs/NATIVE_RESIDUAL_ROTATION.md): rational intervals to literal native words with full-operator error |
+| Enabled two- and four-row tables | [Native table proof](docs/NATIVE_RESIDUAL_ROTATION.md): exact inactive identity, literal address phases, and no extra helper at these arities |
+| One- and two-system-qubit preparation | [State integration](docs/NATIVE_RESIDUAL_STATE.md): two flags, actual-inverse amplification, all dirty-input return error, and the charged 28-T enlarged reflection |
+| Coherent reference/target selection | [Branch integration](docs/NATIVE_RESIDUAL_BRANCH.md): arbitrary branch, preserved relative phase, and branch-independent initial reflection |
+| Both complete gradient streams | [Residual QBP integration](docs/NATIVE_RESIDUAL_QBP.md): certified complex one-qubit target, actual coarse/inverse and controlled observable, all-outcome readout, and exact rational histogram decoders |
 
-The [four-row lookup](docs/NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
-adds a second address bit without any extra helper. Constant and linear
-mask terms are Clifford; each nonempty same-axis quadratic support is
-a Clifford conjugate of one exact seven-T Toffoli. The literal residual
-count is 540q+630+70(2k_z+k_y), at most 540q+1050, with q+2 dirty
-wires and q+6 total wires. Its full-operator error remains below
-130 times 2 to the power minus q. Complete native words return both
-addresses and enable exactly, including their phases; temporary
-address changes inside native Toffolis are explicitly tracked in tests.
-The disabled action remains exactly identity. This is a fixed four-row
-component, not a general lookup or larger state-preparation schedule.
+The small native preparations use q+2 arbitrary dirty wires. At q=L+10,
+this exceeds the basic n=1 allocation by four wires and the basic n=2
+allocation by three; these emitters fit the banked pool and do not replace
+the minimum-budget fallbacks. All initialized system, compiler-flag, and
+protocol-branch inputs stay separately counted. No intermediate reset,
+postselection, or ideal-inverse substitution is allowed.
 
-The [two-system-qubit state emitter](docs/NATIVE_RESIDUAL_STATE.md#5-two-system-qubit-preparation-and-a-returned-core-helper)
-composes four-row tables and two controlled Hadamards. Its enlarged
-initial reflection reuses core wire zero as an arbitrary helper, returns
-it exactly on every input, and charges four seven-T Toffolis. The
-complete word uses two clean flags and q+2 dirty wires, with error below
-390 times 2 to the power minus q. Its literal count is
-3240q+3820+210(2k_z+k_y), at most 3240q+5080. At q=L+10 the dirty
-pool exceeds the minimum n=2 allocation by three wires and fits the
-banked pool. The actual inverse retains all leakage; no reset or supplied
-coarse C is used. General tables remain a separate integration task.
-
-The [coherent residual selector](docs/NATIVE_RESIDUAL_BRANCH.md) now uses
-the second address bit as an arbitrary protocol branch for one system
-qubit. Its seven-T initial reflection excludes that branch; literal
-relative phase and the actual inverse are retained. Both coefficient
-normalizations are checked separately. The complete branch-and-dirty
-isometry has error below 390 times 2 to the power minus q and count
-3240q+3793+210(2k_z+k_y), at most 3240q+5053. It uses q+2 dirty
-wires, one initialized system, two clean flags, and the separate arbitrary
-branch. At q=L+10 the pool exceeds the basic n=1 allocation by four wires
-and fits the banked pool. The common-coarse reference specialization uses
-root one and tail zero on branch zero; no coarse C or observable is
-emitted by this component.
-
-The [native residual QBP fixture](docs/NATIVE_RESIDUAL_QBP.md) completes
-that bounded integration. An exact rational coarse-distance certificate
-places its complex one-qubit target inside 1/64. Certified square-root
-intervals program its residual coefficients without floating angles.
-Magnitude readout charges the coherent residual word, common C, the
-controlled Hadamard observable, and actual C inverse; phase readout uses
-the unbranched residual word, common C, and the same observable. Both
-retain all flag/dirty leakage and have exact rational histogram decoders.
-The extra T charges are six and four respectively, so S executions of
-each stream cost S times (T_pair+T_one+10). The dirty allocation retains
-the banked n=1 caveat. This is finite native evidence for the existing
-theorem, without a general emitter or a same-accuracy fine-frame benchmark.
+The [coverage audit](docs/VERIFICATION.md#state-based-qbp-coverage)
+separates uniform proofs from the numerical and exact finite evidence.
+In particular, exact rational decoders for a fixed fixture do not turn
+the general floating-point contraction utilities into certified decoders.
+The existing bounded integration supplies neither a same-accuracy native
+fine-frame benchmark nor an end-to-end advantage claim.
 
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
-bounded-input construction, and the selected depth composition are
-established. These are not pending research tasks.
+bounded-input construction, selected depth composition, and coverage
+consolidation are complete. These are not pending research tasks. The
+software extensions below are not prerequisites for the stated theorem.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | Certified rows, bounded tables and preparations, coherent residual selection, and a one-system-qubit native residual QBP integration with both decoders are implemented. General table sizing, larger predicates, and full variable-size fine emission remain separate. The next pass consolidates the proof-to-code map and checks which remaining implementation gaps affect any stated claim before selecting another component |
+| Certified bounded-input front end | Optional software: admitted Hopf inputs to an actual coarse word and certified residual data. The bounded-input proof already supplies construction and output bounds with its explicit small-system exception |
+| Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
+| General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
-The selected bounded residual-to-QBP integration is also complete. Do not
-automatically enlarge its dimension or add more fixtures: first identify
-a distinct interface or scientific claim that the next check would resolve.
-For the next component, keep literal phases and actual inverses, declare
+The selected bounded residual-to-QBP integration is also complete. No
+further fixture expansion or general software API is selected. Begin a
+future pass at the coverage map: specify either a concrete Hopf-QBP
+input/output requirement and its missing interface, or a new scientific
+claim and its proof obligation. A general compiler is not required to
+close this selected Hopf-QBP task.
+For any new component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.
 
@@ -254,6 +209,7 @@ git rev-parse HEAD
 python scripts/reviewer_walkthrough.py
 python scripts/coarse_frame_native_example.py
 python scripts/complex_coarse_native_example.py
+python scripts/residual_qbp_native_example.py --q 16
 python validate.py --quiet
 python scripts/verify_fault_tolerant.py
 python scripts/check_upstream_sync.py --offline
