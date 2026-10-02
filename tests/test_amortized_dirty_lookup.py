@@ -9,6 +9,7 @@ fixtures; the asymptotic result is proved separately.
 """
 from __future__ import annotations
 
+from fractions import Fraction
 import unittest
 
 import numpy as np
@@ -311,6 +312,71 @@ class AmortizedDirtyLookupTests(unittest.TestCase):
         self.assertEqual(_basis_action(basis, word), basis)
         self.assertEqual(_basis_action(basis, first_only), basis ^ (1 << 2))
         self.assertEqual(_basis_action(basis, list(reversed(word))), basis)
+
+    def test_capped_precision_exact_error_width_and_weighted_budgets(self):
+        # k=n-d runs from one to n. Test the first active cap (n=7),
+        # and both sides of ceil-log jumps, using closed finite sums only.
+        boundaries = sorted(set(range(1, 10)) | {
+            (1 << exponent) + offset
+            for exponent in (4, 5, 8, 10) for offset in (-1, 0, 1)})
+        self.assertLess(2 * Fraction(45, 64) ** 2, 1)
+        for n in boundaries:
+            h = (8 * n - 1).bit_length()  # ceil(log2(8*n)), without floats.
+            self.assertLess(1 << (h - 1), 8 * n)
+            self.assertLessEqual(8 * n, 1 << h)
+            retained = min(n, h)
+            geometric_sum = 1 + Fraction(n - retained - 1, 1 << retained)
+            # Local error is 10*sqrt(2)*2^(-m), m=L+min(k,h)+4.
+            # Remove the common sqrt(2)*2^(-L) to keep the test rational.
+            error_coefficient = Fraction(5, 8) * geometric_sum
+            self.assertLess(error_coefficient, Fraction(45, 64))
+            self.assertLess(2 * error_coefficient ** 2, 1)
+            if n in (6, 7):
+                self.assertEqual(h, 6)
+                self.assertEqual(n - retained, n - 6)
+            for precision in (6, 11, 64):
+                baseline = precision + n + 7
+                # Existing source + d+2 selectors + suffix bit still fits
+                # B0, so b=17*B0 leaves the sufficient 16*B0 lookup pool.
+                for k in {1, retained, min(n, retained + 1), n}:
+                    depth = n - k
+                    width = precision + min(k, h) + 4
+                    old_width = precision + k + 4
+                    local_base = width + (depth + 2) + 1
+                    self.assertLessEqual(width, old_width)
+                    self.assertEqual(old_width + depth + 3, baseline)
+                    self.assertLessEqual(local_base, baseline)
+                    self.assertGreaterEqual(17 * baseline - baseline, 16 * local_base)
+                widths = (n * (precision + 4) + retained * (retained + 1) // 2
+                          + (n - retained) * retained)
+                old_widths = n * (precision + 4) + n * (n + 1) // 2
+                self.assertLessEqual(widths, n * (precision + h + 4))
+                # One controlled-source call at each level costs 2*(m-1).
+                self.assertEqual((2 * old_widths - 2 * n) - (2 * widths - 2 * n),
+                                 (n - retained) * (n - retained + 1))
+
+                tail = Fraction(1, 1 << n)
+                # Q_d=2^(d+2). This is sum(Q_d*m_d)/N, exactly.
+                weighted = 4 * ((precision + 4) * (1 - tail)
+                                + 2 - Fraction(2, 1 << retained) - retained * tail)
+                old_weighted = 4 * ((precision + 4) * (1 - tail)
+                                    + 2 - (n + 2) * tail)
+                self.assertLessEqual(weighted, old_weighted)
+                self.assertLess(weighted, 4 * (precision + 6))
+                self.assertLess(weighted, 8 * precision)
+
+                # Pair k=2j-1,2j and use m_k<=L+k+4. Cauchy gives
+                # (sum(sqrt(Q_d*m_d)))^2/N <=4*(3+2sqrt(2))*S*M.
+                # Replacing its factor by 24 gives a rational certificate
+                # of the uniform upper bound 8*sqrt(N*L).
+                pairs = (n + 1) // 2
+                pair_tail = Fraction(1, 1 << pairs)
+                mass = 1 - pair_tail
+                moment = ((precision + 4) * mass
+                          + 2 * (2 - (pairs + 2) * pair_tail))
+                self.assertLess(24 * mass * moment, 24 * (precision + 8))
+                self.assertLessEqual(24 * (precision + 8), 56 * precision)
+                self.assertLess(24 * mass * moment, 64 * precision)
 
 
 if __name__ == '__main__':

@@ -22,6 +22,9 @@ $`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
 $`D_T=O(N/b^2+n^2)`$ in the same complete real-frame circuit.
 Depth is optimal in order for $`b\le\sqrt N/n`$ above the threshold;
 the general-precision schedules below remain available.
+Its [capped source allocation](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+reduces source depth to $`O(nL+n\log(n+1))`$; the remaining per-layer
+routing keeps the fixed-accuracy total at $`O(N/b^2+n^2)`$.
 
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$,
 $`0\lt\eta\leq1/64`$, and

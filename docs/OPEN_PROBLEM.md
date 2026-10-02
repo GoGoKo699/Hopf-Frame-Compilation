@@ -83,6 +83,10 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 The amortized schedule removes the earlier per-batch logarithm from
 both indicator routing and chunk selection. Its additive $`n^2`$ term
 leaves the square-root-width depth exponent unresolved.
+The [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+reduces source depth to $`O(n\log(n+1))`$ at fixed L without changing
+the count or workspace orders. The quadratic contribution remaining in
+this schedule comes from query routing; it is not an unavoidable source cost.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
 

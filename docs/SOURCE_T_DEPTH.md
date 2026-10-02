@@ -7,6 +7,10 @@ Majorana-linear circuit class**. The paired source also admits a parallel
 tail schedule with no additional work qubits. These results concern exact
 source primitives; they neither establish unrestricted Clifford+T depth
 optimality nor change the retained Hopf asymptotic bounds.
+The separate [precision-allocation refinement](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+reduces the sum of source widths in the frame compiler without resynthesizing
+any exact source. It changes the precision assigned to layers and is
+compatible with every restricted primitive bound below.
 
 ## 1. Gate class and inherited denominator bound
 

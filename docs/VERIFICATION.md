@@ -143,6 +143,10 @@ and the emitted resource schedule. Their [analytic composition](AMORTIZED_DIRTY_
 closes the fixed-accuracy modest-width depth gap while preserving
 optimal-order count. The full-frame theorem remains an analytic result;
 the fixture emits only its small lookup components.
+An exact-rational budget check covers the capped source precisions,
+including ceiling boundaries, the complete-error margin, unchanged dirty
+reservation, source-count savings, and weighted query sums. It adds no
+new native fixture and does not certify a smaller total depth.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)

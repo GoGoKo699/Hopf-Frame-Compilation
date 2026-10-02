@@ -177,7 +177,11 @@ All three bounds hold for one complete real-frame circuit. For
 $`17(L+n+7)\le b\le\sqrt N/n`$, both count and depth are optimal
 in order: $`D_T^\star=\Theta(N/b^2)`$. This includes sufficiently
 large $`b=\Theta(n)`$. The additive $`n^2`$ term leaves
-square-root-scale workspace depth unresolved.
+square-root-scale workspace depth unresolved. A
+[precision cap](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+reduces accumulated source depth to $`O(n\log(n+1))`$ at fixed L
+within the same reservation and error budget; query routing still
+contributes the quadratic term.
 
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)

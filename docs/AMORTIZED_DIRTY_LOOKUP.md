@@ -39,7 +39,10 @@ optimal worst-case order for
 17B_0\le b\le\frac{\sqrt N}{n}.
 ```
 
-The $`n^2`$ term leaves the large-workspace depth question open. This
+The $`n^2`$ term leaves the large-workspace depth question open. The
+[capped precision allocation](#capping-the-source-precision) below reduces
+the accumulated source depth to $`O(n\log(n+1))`$ at fixed accuracy;
+the retained query routing still contributes $`O(n^2)`$. This
 is a fixed-accuracy complete-frame theorem, and does not resolve the
 high-precision constant-clean endpoint. T-depth permits arbitrary
 Clifford circuits between T layers; their elementary depth is not
@@ -366,7 +369,9 @@ The established geometric sums are
 \sum_dm_d=O(nL+n^2).
 ```
 
-At fixed L, the sources contribute $`O(n^2)`$ count and serial depth.
+With this original precision allocation, the sources contribute
+$`O(n^2)`$ count and serial depth at fixed L. The cap below reduces
+this contribution while preserving all the displayed total bounds.
 Suffix predicates have $`O(n^2)`$ total count and
 $`O(n\log(n+1))`$ depth; the two-flag reflections have constant cost
 per use. These counts are absorbed into $`O(\sqrt N)`$ T gates and
@@ -415,6 +420,94 @@ $`O(n^2)`$ and the available lower bound is only constant. The
 restricted Majorana source certificate is not promoted to an
 unrestricted lower bound here. Variable-precision endpoint questions
 also remain separate.
+
+### Capping the source precision
+
+The quadratic sum of source widths is not required by the complete-frame
+error contract. It can be reduced by changing only the precision assigned
+to each existing layer. Put $`k=n-d`$ and define
+
+```math
+h=\lceil\log_2(8n)\rceil,\qquad
+\widetilde m_d=L+4+\min\{k,h\}.
+```
+
+Use the same certified coefficient encoding, native source, suffix echo,
+and actual-inverse amplification at this smaller width. Equation (24) of
+the [operator-source proof](OPERATOR_SOURCE_COMPILER.md#5-amplification-includes-rejected-space-error)
+gives the full initialized-isometry error of one layer as
+
+```math
+\epsilon_d\le10\sqrt2\,2^{-\widetilde m_d}.
+```
+
+This is the error including rejected flags, dirty-core disturbance, and
+reference correlations. No square-root conversion or projection onto a
+successful branch is used. Separating the uncapped geometric terms from
+the capped tail gives
+
+```math
+\begin{aligned}
+\sum_{d=0}^{n-1}\epsilon_d
+&\le\frac{5\sqrt2}{8}\,2^{-L}
+  \sum_{k=1}^{n}2^{-\min\{k,h\}}\\
+&\lt\frac{5\sqrt2}{8}\,2^{-L}(1+n2^{-h})\\
+&\le\frac{45\sqrt2}{64}\,2^{-L}\lt2^{-L}\le\eta.
+\end{aligned}
+```
+
+The last strict inequality follows from $`4050\lt4096`$. Complete-input
+telescoping therefore proves the same frame approximation and QBP
+substitution guarantees. Intermediate work is never assumed to have reset.
+
+Every new source width is at most the old $`L+n-d+4`$. In particular,
+$`\widetilde m_d+r_d+1\le B_0`$. Keep the entire reserved base of
+$`B_0=L+n+7`$ dirty qubits and the two separate clean flags; unused base
+wires remain untouched. The extra-pool allocation, its sufficient threshold
+$`b\ge17B_0`$, and each query's exact return consequently remain valid.
+The old weighted bounds also hold pointwise:
+
+```math
+\sum_dQ_d\widetilde m_d=O(NL),\qquad
+\sum_d\sqrt{Q_d\widetilde m_d}=O(\sqrt{NL}).
+```
+
+Writing $`s=\min\{n,h\}`$, the unweighted sum is now exactly
+
+```math
+\sum_d\widetilde m_d
+=n(L+4)+ns-\frac{s(s-1)}2
+=O\!\left(nL+n\log(n+1)\right).
+```
+
+Thus the retained serial source words use
+$`O(nL+n\log(n+1))`$ T gates and T-depth. This precision lemma holds
+for all $`L\ge6`$; the complete count-and-depth theorem at the start of
+the chapter remains restricted to fixed L. At fixed L the source count
+is still absorbed into $`O(\sqrt N)`$. The cap does not change the
+headline bound $`D_T=O(N/b^2+n^2)`$: the retained routers still pay
+$`O(\log Q_d)`$ at each layer. For $`b=\Theta(\sqrt N)`$, their
+unoptimized routing ledger has order $`n^2`$, while the sources and
+suffix predicates now contribute only $`O(n\log(n+1))`$ each.
+This identifies the remaining quadratic contribution in this construction;
+it is not a lower bound for another lookup or frame circuit.
+
+The allocation is also near-optimal for its particular additive error
+certificate. If arbitrary assigned precisions $`m_1,\ldots,m_n`$
+satisfy $`\sum_k10\sqrt2\,2^{-m_k}\le2^{-L}`$, convexity gives
+
+```math
+\frac1n\sum_km_k
+\ge L+\log_2 n+\log_2(10\sqrt2).
+```
+
+The cap above has average precision at most $`L+\log_2 n+8`$ and
+obeys every original layerwise width cap. Its total assigned precision
+is therefore within $`5n`$ bits of the best allocation certified by this
+inequality, including under those width caps. This is a budgeting result,
+not a lower bound on the actual accumulated error, joint source synthesis,
+or unrestricted T-depth. Changing the error analysis or circuit remains
+eligible to improve the full-frame bound.
 
 ## 6. Attribution and proof scope
 
