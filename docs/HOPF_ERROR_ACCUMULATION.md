@@ -65,7 +65,12 @@ D_d=\mathrm{diag}(\Delta\theta_{d,p}).
 
 Thus $`\|B_d\|=e_d`$. Applying the Rayleigh bound to the
 Hermitian matrix $`iK_{d+1}`$ reduces its norm to the largest
-eigenvalue of $`\begin{pmatrix}\|K_d\|&e_d\\e_d&0\end{pmatrix}`$.
+eigenvalue of
+
+```math
+\begin{pmatrix}\|K_d\|&e_d\\e_d&0\end{pmatrix}.
+```
+
 This proves $`\|K_{d+1}\|\le\Lambda_{d+1}`$.
 The recurrence also gives
 $`\Lambda_{d+1}^2\le\Lambda_d^2+2e_d^2`$, and
@@ -77,7 +82,11 @@ $`\|\dot W(t)\|=\|K_n(t)\|`$ proves the finite bound.
 If all angle differences at depth d have common magnitude e_d, then
 $`B_d^\dagger B_d=e_d^2I`$. A unitary change of basis on the new
 subspace turns $`iK_{d+1}`$ into
-$`\begin{pmatrix}iK_d&e_d I\\e_d I&0\end{pmatrix}`$.
+
+```math
+\begin{pmatrix}iK_d&e_d I\\e_d I&0\end{pmatrix}.
+```
+
 Each old eigenvalue lambda gives the two new eigenvalues
 $`(\lambda\pm\sqrt{\lambda^2+4e_d^2})/2`$.
 The real skew-symmetric generators have symmetric Hermitian spectra, so
@@ -120,7 +129,12 @@ E_{d+1}=
 ```
 
 The matrix F is unitary. Conjugating by $`\mathrm{diag}(I,F^\dagger)`$
-gives $`\begin{pmatrix}cE_d&-sI\\sE_d&cI\end{pmatrix}`$.
+gives
+
+```math
+\begin{pmatrix}cE_d&-sI\\sE_d&cI\end{pmatrix}.
+```
+
 Diagonalize the old unitary E_d. For each old eigenvalue z, the two new
 eigenvalues are exactly the roots of
 
