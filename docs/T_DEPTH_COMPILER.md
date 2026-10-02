@@ -411,10 +411,12 @@ layer schedule with depth-optimized banks gives $`D_T=O(n^2)`$ with two clean qu
 while the worst-case T-count remains at least $`\Omega(\sqrt N)`$.
 This illustrates the difference between count and depth; it does not
 make the polynomial T-depth optimal.
-The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) now achieves
+The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) achieves
 $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ together already with sufficiently
-large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. It leaves
-the depth lower-bound gap open.
+large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. The
+[dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+improves that depth to $`O(n\log^2(n+2))`$ with the same count and
+workspace orders. The depth lower-bound gap remains open.
 
 At smaller eligible widths, the [amortized loader](AMORTIZED_DIRTY_LOOKUP.md)
 instead closes the gap: for fixed L and

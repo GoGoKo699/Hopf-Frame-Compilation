@@ -145,6 +145,8 @@ from the exact clean-workspace size–depth theorem.
 | F28 | [Vasconcelos, arXiv:2609.34659v1](https://arxiv.org/html/2609.34659v1#S3.SS4.SSS1), Theorem 8; [Kim, arXiv:2506.15147v3](https://arxiv.org/pdf/2506.15147v3), Section 3 | current precision-depth comparisons | the former uses precision-sized clean work, the latter a prepared catalyst and leaves the clean/dirty-only constant-T-depth question open; neither is used as a theorem premise for the Hopf schedules |
 | F29 | [Kim–Laakkonen, arXiv:2512.24982v1](https://arxiv.org/pdf/2512.24982v1), Theorems 3 and 5 | constant non-Clifford-depth control of CNOT and Clifford circuits without ancillas | the local controlled-shear lemma is a rank-sensitive specialization with a literal four-T-layer word and explicit Clifford ledger; constant-depth control is inherited |
 | F30 | [Boyd, arXiv:2312.00696v2](https://arxiv.org/html/2312.00696v2), Section III and Appendix A | commuting SELECT/QROM groups and Clifford changes of basis for parallel action | its address copies use initialized registers; the local all-dirty shear echo and workspace allocation are proved separately |
+| F31 | [Selinger, arXiv:1210.0974v2](https://arxiv.org/html/1210.0974v2), Proposition 5.1, Eqs. (17)–(21) | one-T-layer Pauli-conjugation normal form | the local rational-transfer specialization excludes T-depth one for full-input nonaffine classical permutations with arbitrary returned dirty helpers; initialized-clean-subspace implementations are outside that claim |
+| F32 | [Takahashi–Tani–Kunihiro, arXiv:0910.2530v1](https://arxiv.org/pdf/0910.2530v1), Sections 2.1–2.3 | linear-size, linear-depth exact ripple-carry addition without initialized work | deleting the two gates targeting the arbitrary carry-output wire gives the modular adder used in the dirty-counter sum tree; its literal CNOT/Toffoli word is emitted in the bounded checks; later clean-work/fanout constructions are not used |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -214,10 +216,19 @@ The [bilinear query reduction](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduc
 specializes F2's indicator and bilinear-lookup framework. Binary rank
 reduction and the existing exact shared-control CCZ schedule implement its
 bilinear map; a four-corner echo returns both arbitrary dirty indicators.
-The resulting query removes the word-bank router from a proposed shallow
-schedule. Its conditional Hopf composition still requires a new indicator
-construction; no improved unconditional depth or generic lookup priority
-is claimed.
+The resulting query removes the word-bank router from the shallow
+schedule. Its hybrid Hopf composition absorbs polynomial indicator
+overhead on early layers. The
+[dirty-counter construction](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+supplies that indicator using F32's modular adder in exact sum and cyclic-rotation echoes,
+with an explicit read-only-address schedule and all-input return proof.
+It gives fixed-accuracy $`D_T=O(n\log^2(n+2))`$ with optimal-order
+$`T=O(\sqrt N)`$ and $`G=O(N)`$ at sufficient
+$`b=\Theta(\sqrt N)`$. Reversible addition, phase polynomials,
+permutation routing, and echo cancellation are established ingredients;
+no generic synthesis priority or matching depth lower bound is claimed.
+The separate two-bit indicator certificate uses F31 for its depth lower
+bound and proves a literal eight-T, two-layer implementation locally.
 
 The [exact source-depth certificate](SOURCE_T_DEPTH.md) specializes F27
 to the existing geometric and paired sources, with a parallel paired-tail

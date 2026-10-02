@@ -135,8 +135,18 @@ the separate [two-indicator reduction](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-que
 rectangular binary basis changes, literal shared-target Toffoli phases,
 the four-corner echo, actual inverses, and arbitrary dirty-input return.
 These bounded fixtures use the existing routed indicators. They do not
-supply the shallow indicator assumed by the conditional depth consequence,
-or improve the unconditional complete-frame depth bound.
+supply the shallow indicator themselves.
+The [dirty-counter checks](../tests/test_counter_dirty_indicator.py)
+audit emitted read-only ladders, modular arithmetic, cyclic routing,
+the nested full-input echoes, actual inverses, and parallel native layers.
+The [analytic counter proof](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+and hybrid composition give the improved complete-frame depth bound;
+the finite checks do not emit a variable-size complete frame.
+The [two-bit depth checks](../tests/test_dirty_indicator_depth.py) separately
+verify the eight-parity CCZ phase identity, both invertible CNOT bases,
+all dirty-helper inputs, actual inverses, and the complete six-wire
+indicator in exactly two T layers. The matching depth lower bound is
+analytic and concerns full-input implementations without initialized work.
 The [batched lookup checks](../tests/test_batched_dirty_lookup.py) cover
 guarded partial indicators, symbolic arbitrary-input query return, a
 complete native query with literal phases, disjoint T layers, and the

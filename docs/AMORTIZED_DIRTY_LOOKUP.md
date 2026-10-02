@@ -44,7 +44,11 @@ retains $`T=O(\sqrt N+N/b)`$ throughout $`b\ge17B_0`$ and matching
 depth on the original literal interval $`b\le\sqrt N/n`$. The
 [capped precision allocation](#capping-the-source-precision) gives
 accumulated source depth $`O(nL+n\log(n+1))`$; the retained query
-routing contributes $`O(n^2)`$. Large-workspace optimal depth and the
+routing contributes $`O(n^2)`$. The separate
+[dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+improves fixed-accuracy depth to $`O(n\log^2(n+2))`$ at sufficient
+$`b=\Theta(\sqrt N)`$, retaining optimal-order T-count.
+Large-workspace optimal depth and the
 high-precision constant-clean endpoint remain open. T-depth permits arbitrary
 Clifford circuits between T layers; their elementary depth is not
 bounded by this theorem, and their gate count remains included in G.
