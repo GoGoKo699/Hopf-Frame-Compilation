@@ -84,8 +84,8 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 | Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n\chi(n))}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
 | $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ | $`\Omega(N/n)`$ | $`O(N/n)`$ with $`T=\Theta(N)`$ | Matching at inverse-polynomial error in N for sufficiently large n |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
-| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\chi(n)\})`$ with $`T=O(\sqrt N)`$ | [Dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters); depth lower bound remains unmatched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\chi(n)\})`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n\log\log(n+2))`$ with $`T=O(\sqrt N)`$ | [Grouped program reuse](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy); depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n\log\log(n+2))`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
@@ -99,9 +99,12 @@ the count or workspace orders. The quadratic contribution remaining in
 this schedule comes from query routing; it is not an unavoidable source cost.
 The exact dirty-counter indicator, [masked-sum refinement](DIRTY_SUM_COMPRESSION.md),
 and bilinear-query hybrid now improve
-the square-root-width upper bound to $`O(n\chi(n))`$ while
-returning all work and retaining the same optimal-order T-count. The
-lower bound is still constant in this regime; depth optimality is open.
+the square-root-width upper bound to $`O(n\chi(n))`$. The
+[grouped-program refinement](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+now gives $`O(n\log\log(n+2))`$ at fixed accuracy, with returned
+work and the same optimal-order T-count. It combines cached conditional
+programs with a summable chunked-indicator budget for the late layers.
+The lower bound is still constant in this regime; depth optimality is open.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
 For varying L outside the matching interval, the new count bound retains
@@ -148,10 +151,12 @@ suffix can reserve 7m temporary clean bits for source width m.
 It uses the same two external flags and an enlarged, charged reflection.
 With the unfiltered additive cap, source/reflection depth at fixed
 accuracy becomes $`O(n\log\log(n+2)+\log^2(n+2))`$ after the late
-fallback. Lookup and suffix-predicate depths remain
-$`O(n\log(n+2))`$, so no improved complete-frame depth theorem follows.
-The next target is reuse of query/predicate work across a small group,
-with changed internal addresses and arbitrary dirty offsets accounted for.
+fallback. The [grouped-program theorem](GROUPED_PROGRAM_PREFETCH.md)
+now supplies the missing query/predicate composition: exact cached-program
+erasure survives source leakage and changing internal addresses; chunked
+dirty indicators avoid the late routing bottleneck. The full depth is
+$`O(n\log\log(n+2))`$ with optimal-order count at sufficient
+square-root-scale dirty width and fixed accuracy.
 
 The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
 allows unrestricted Clifford interlayers: the original source at width

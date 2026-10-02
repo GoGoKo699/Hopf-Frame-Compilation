@@ -62,6 +62,12 @@ error. Large-workspace optimal depth and the high-precision constant-clean
 endpoint remain open. T-depth permits arbitrary Clifford circuits between
 T layers; their elementary depth is not bounded by these theorems, while
 their gate count remains included in G.
+The separate [grouped-program theorem](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+improves the fixed-accuracy upper depth to $`O(n\log\log(n+2))`$
+at sufficient $`\Theta(\sqrt N)`$ dirty width, retaining optimal-order
+T-count. It uses the same additive precision cap below, conditional
+program storage, and a different late-query schedule; it does not extend
+this chapter's all-width matching range.
 
 ## 1. A controlled linear shear has constant T-depth
 

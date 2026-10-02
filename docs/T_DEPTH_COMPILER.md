@@ -419,6 +419,13 @@ improves that depth to $`O(n\log(n+2))`$ with the same
 count and workspace orders. Its variable-width extension also enlarges
 the matching range at every precision; see the
 [hybrid theorem](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision). The depth lower-bound gap remains open.
+The [grouped-program refinement](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+further gives $`D_T=O(n\log\log(n+2))`$, $`T=O(\sqrt N)`$,
+and $`G=O(N)`$ at fixed accuracy with two clean flags and sufficient
+$`\Theta(\sqrt N)`$ dirty width. Conditional program reuse handles
+early layers; chunked indicators control the late-query sum. The
+available depth lower bound is still $`\Omega(1)`$ at that width.
+This does not strengthen the general-precision matching interval.
 
 At smaller eligible widths, the [amortized loader](AMORTIZED_DIRTY_LOOKUP.md)
 instead closes the gap: for fixed L and

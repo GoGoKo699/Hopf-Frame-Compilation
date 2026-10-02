@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 conditional-source-depth pass starts from verified main
-`39f74b3063c67bd7b2486932f6c030d011a5e2ea`, after the flag-echo and
-radial-filter audit. Check later commits before
+The 2026-10-02 grouped-program-depth pass starts from verified main
+`57fffa5ccc95a9c8071ba35e7fe5d65d5011d6f7`, after the conditional
+source and robust two-layer obstruction. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -25,6 +25,8 @@ and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
 1. Begin active depth work with the
+   [grouped complete-frame theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy),
+   [chunked dirty indicator](docs/CHUNKED_DIRTY_INDICATOR.md),
    [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md),
    [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md),
    [radial filter](docs/HOPF_RADIAL_FILTER.md),
@@ -76,6 +78,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
+| Fixed-accuracy large-width depth | Two external flags, sufficient square-root-scale dirty width, optimal-order square-root T-count, and O(n log log n) depth; [grouped program theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy) |
 | Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
 | Filtered complete-frame source | Quadratic radial error on the same two flags, charged native selective phases, and a smaller source-precision cap; [filter proof](docs/HOPF_RADIAL_FILTER.md) |
 | Conditional precision depth | Logarithmic source/reflection depth using an active zero suffix and two external flags; [conditional source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md). Query/predicate depth remains charged |
@@ -149,6 +152,21 @@ The original routed schedule retains an additive $`n^2`$ term. The
 [dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
 improves fixed-accuracy large-workspace depth to
 $`O(n\chi(n))`$ while retaining optimal-order T-count.
+The [grouped-program theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+now improves this fixed-accuracy, sufficient-square-root-width bound to
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(n\log\log(n+2)\right),
+\qquad b\ge C_\eta\sqrt N.
+```
+
+These are simultaneous bounds on one complete real-frame circuit using
+two external clean flags. Early groups store their programs in conditional
+logical zeros; chunked dirty indicators control the late-query depth.
+The worst-case count is optimal in order, but the available depth lower
+bound remains only Omega(1). Fixed accuracy is essential to this theorem;
+the general-precision matching interval and endpoint remain unchanged.
 The older general-precision schedules below remain useful where their
 source or workspace costs are sharper. The separate state-based and
 complex-frame schedules retain their existing contracts and bounds.
@@ -262,7 +280,7 @@ composition is complete; do not repeat either task.
 The next bounded depth target is fixed accuracy at sufficiently large
 $`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
 Its available depth bounds are now $`\Omega(1)`$ and
-$`O(\min\{n^2,n\chi(n)\})`$.
+$`O(n\log\log(n+2))`$ by the grouped-program schedule.
 The capped precision allocation has removed the accumulated source widths
 as a quadratic contribution: sources and suffix predicates now cost
 $`O(n\log(n+1))`$ depth at fixed L. The retained per-layer routing
@@ -399,8 +417,9 @@ complete the full-isometry contract, including final predicate uncomputation.
 Use the original unfiltered additive precision cap for this schedule.
 At fixed accuracy, its source/reflection depth totals
 O(n log log(n+2)+log²(n+2)), including the late serial fallback.
-Queries and suffix predicates still contribute O(n log(n+2)); the
-complete-frame frontier and high-precision endpoint remain unchanged.
+Queries and suffix predicates remain O(n log(n+2)) in that source-only
+schedule. The grouped composition below now improves the full fixed-L
+depth frontier; the high-precision endpoint is unchanged.
 
 The [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md) also
 extends beyond Majorana-preserving Clifford stages. A full-space
@@ -410,25 +429,46 @@ for m≥5, and for controlled sources at m≥4, at every returned dirty
 width. This is a constant bound for an isolated full-input primitive;
 initialized-clean source interfaces and frame circuits are excluded.
 
-The next bounded target is the remaining query/predicate depth. The
-concrete candidate is to prefetch a whole small group's program into a
-separate part of its conditionally zero outer suffix. A height-g group
-needs about 2m(2^g−1) program bits; choose g so these and all source/selector
-helpers fit, and keep the external high-prefix address fixed. Internal
-operations must preserve every program bit, allowing one actual unquery
-even through source leakage. Price the proposed parallel single-bit
-prefetch queries with private dirty indicators, the smaller internal
-selectors, and all simultaneous banks. Begin with a complete two-layer
-group identity and live-work ledger before a larger fixture. This route
-has no established full-frame depth theorem yet. Merely loading the
-same program into arbitrary dirty storage would not justify cancellation
-through noncommuting group rotations. Grouping suffix predicates alone
-cannot improve the frontier while per-layer dirty-counter lookups retain
-logarithmic address depth.
-The hybrid can absorb polynomial early-layer overhead. Retain late-layer
-fallbacks and optimal-order count. Do not repeat the completed carry
-pipeline, four short echoes, or conditional source preparation; do not
-apply ideal-angle stability to unfiltered source leakage.
+The [grouped program construction](docs/GROUPED_PROGRAM_PREFETCH.md)
+is now complete. A height-g group reserves at most 16m2^g conditional
+suffix bits, including 2m(2^g−1) program bits, source, selectors, and
+private phase-mask work. Every program bit is read-only through actual
+source leakage, so the final query inverse erases it exactly. The inner
+enable depends only on the remaining local group bits. Its amplification
+minus is CZ(h,u), not Z_h. Prefetch bits use private dirty indicator pools
+in parallel, charging both the polynomial T/width cost and Qw Cliffords.
+
+The old late fallback would have retained n log n depth. The new
+[chunked indicator](docs/CHUNKED_DIRTY_INDICATOR.md) avoids that trap:
+a dirty tree at chunk boundaries propagates a root flip by F X F†,
+implemented chronologically by F†, X, F. A leaf-readout echo returns
+every dirty node. Chunk length ell gives O(2^r(ell+2)^3) count/work
+and O(ceil(r/ell) log(ell+2)) T-depth. For a layer k steps from the
+leaves, use ell=min(address-half length,2^floor(k/12)). Its count is
+summable within O(sqrt N), while all final O(log n) queries have O(n)
+total depth. No unknown dirty program is treated as an initialized cache.
+
+The global theorem uses the unchanged unfiltered additive precision:
+m=L+4+ceil log2(8n), cutoff R=min(n,256m), and early height
+g=floor log2(k/(64m)). These groups fit the literal suffix reservation,
+have O(n/log n) prefetches, and cost O(n log log n) depth internally.
+Late source/predicate costs are O(log²n). Repeated early source
+preparation, reflection, and internal selector/enable computation retain
+the log log n factor in the current schedule.
+
+The next bounded target is whether source/reflection calls and internal
+selector/enable maintenance can be amortized inside a cached group,
+aiming at O(n) fixed-accuracy depth
+without sacrificing optimal-order T-count. Begin with a two-layer group
+identity or a scoped obstruction, not a larger numerical fixture.
+Do not assume that moving a preparation through a programmed phase mask
+is free; price the conjugated mask and every changed low-address
+dependency. The new program cache removes the external-prefix lookup
+cost, not these operator dependencies. Keep the high-precision endpoint
+as a separate question. Do not repeat the completed carry pipeline,
+short echoes, conditional preparation, grouped program identity, or
+chunked-query proof; do not apply ideal-angle stability to unfiltered
+source leakage.
 A matching unrestricted large-width frame-depth lower bound remains
 separate.
 The completed modest-width

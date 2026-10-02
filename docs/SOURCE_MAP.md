@@ -278,9 +278,24 @@ combines F35's standard facts with exact geometric-source coefficients.
 The [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
 instead supplies an explicit reversible prefix preparation and its
 active-suffix block-encoding contract, using the existing exact lookup,
-native controlled-H, reflection, and amplification ingredients. It changes
-the precision component only; no all-dirty source resynthesis or improved
-overall frame-depth theorem is inferred.
+native controlled-H, reflection, and amplification ingredients. By itself
+it changes the precision component only; it is not all-dirty source
+resynthesis.
+
+The [grouped program construction](GROUPED_PROGRAM_PREFETCH.md) combines
+that source with exact conditional prefetch, read-only program copies,
+private conjunction trees, and an internal-enable phase correction.
+The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) uses the existing
+read-only dirty counter in a top-down reversible tree, then conjugates
+a root flip to obtain an exact selected-path translation. Its late-layer
+chunk allocation and the adaptive early grouping prove, at fixed accuracy
+and sufficient square-root-scale dirty width, simultaneous
+$`T=O(\sqrt N)`$, $`G=O(N)`$, and
+$`D_T=O(n\log\log(n+2))`$ for one complete real-frame circuit with two
+external clean flags. These are local compositions of the attributed
+counter, bilinear query, conditional-work, and amplification interfaces;
+they require no new external premise. Neither a matching large-width
+depth bound nor the high-precision endpoint follows.
 
 The [consolidated state-based QBP theorem](STATE_BASED_QBP_THEOREM.md)
 collects R36 and R38–R42 under one input, precision, workspace, and

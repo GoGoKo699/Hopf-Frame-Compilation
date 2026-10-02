@@ -162,9 +162,11 @@ $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same circuit.
 At fixed accuracy, two clean and sufficiently large
 $`\Theta(\sqrt N)`$ dirty workspace give count-optimal
 $`O(\sqrt N)`$ T gates with
-$`O(n\chi(n))`$ T-depth, using the
-[pipelined dirty-counter hybrid](docs/DIRTY_SUM_COMPRESSION.md)
-for the new bound, where
+$`O(n\log\log(n+2))`$ T-depth, using the
+[grouped-program schedule](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy).
+It combines conditional program reuse with chunked late-query indicators.
+The earlier [dirty-counter hybrid](docs/DIRTY_SUM_COMPRESSION.md)
+retains its variable-precision and variable-width scope below, where
 
 ```math
 \chi(t)=\log_2(t+2).
@@ -213,7 +215,12 @@ The [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md)
 now reduces the precision component to logarithmic depth wherever the
 active logical suffix supplies enough temporary clean work. Only the
 same two external clean flags are used. Its lookup and suffix-predicate
-costs remain charged, so the complete-frame depth frontier is unchanged.
+costs remain charged in that source-only interface. The
+[grouped composition](docs/GROUPED_PROGRAM_PREFETCH.md)
+now shares early prefetch and predicate costs, while the
+[chunked indicator](docs/CHUNKED_DIRTY_INDICATOR.md) bounds the entire
+late-query depth by $`O(n)`$ at fixed accuracy. Together they yield
+the improved complete-frame depth stated above.
 Separately, the [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md)
 excludes arbitrarily accurate full-input replacement of the original
 source by two T layers, even with unrestricted Clifford interlayers and
