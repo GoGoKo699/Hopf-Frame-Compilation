@@ -244,6 +244,9 @@ $`D_T=O(N\log(b+2)/b^2+n^2)`$ for complete real frames with two
 clean qubits and $`b\ge17(L+n+7)`$. Two additional dirty helpers are
 reserved during each live batch guard; they are not borrowed from its
 occupied bank or indicator storage.
+The [amortized construction](AMORTIZED_DIRTY_LOOKUP.md) further reduces
+that fixed-accuracy depth to $`O(N/b^2+n^2)`$ at the same threshold,
+using returned dirty traversal selectors and one outer indicator echo.
 
 Parallel dirty indicators and the separation of selector parallelism from
 word-bank count have primary precedent in Low, Kliuchnikov, and Schaeffer,

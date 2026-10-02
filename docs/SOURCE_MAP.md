@@ -143,6 +143,8 @@ from the exact clean-workspace size–depth theorem.
 | F26 | [Baur–Strassen, *Theoretical Computer Science* 22(3), 317–330 (1983)](https://www.sciencedirect.com/science/article/pii/030439758390110X) | classical reverse differentiation background | the explicit Pauli baseline derives its Hopf reverse recurrence and dyadic error bound directly; reverse differentiation is not claimed as a new algorithmic principle |
 | F27 | [Casas et al., arXiv:2602.05425v1](https://arxiv.org/html/2602.05425v1#S3.SS2.SSS2), Section III.2.2, Eq. (29) | exact denominator-exponent depth bound for Clifford-matchgate plus T layers | the [source-depth proof](SOURCE_T_DEPTH.md) applies this existing method to two particular sources, permitting signed-permutation Clifford stages including the parity-odd extension; no unrestricted depth lower bound follows |
 | F28 | [Vasconcelos, arXiv:2609.34659v1](https://arxiv.org/html/2609.34659v1#S3.SS4.SSS1), Theorem 8; [Kim, arXiv:2506.15147v3](https://arxiv.org/pdf/2506.15147v3), Section 3 | current precision-depth comparisons | the former uses precision-sized clean work, the latter a prepared catalyst and leaves the clean/dirty-only constant-T-depth question open; neither is used as a theorem premise for the Hopf schedules |
+| F29 | [Kim–Laakkonen, arXiv:2512.24982v1](https://arxiv.org/pdf/2512.24982v1), Theorems 3 and 5 | constant non-Clifford-depth control of CNOT and Clifford circuits without ancillas | the local controlled-shear lemma is a rank-sensitive specialization with a literal four-T-layer word and explicit Clifford ledger; constant-depth control is inherited |
+| F30 | [Boyd, arXiv:2312.00696v2](https://arxiv.org/html/2312.00696v2), Section III and Appendix A | commuting SELECT/QROM groups and Clifford changes of basis for parallel action | its address copies use initialized registers; the local all-dirty shear echo and workspace allocation are proved separately |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -192,13 +194,17 @@ is inherited.
 | R41 | bounded-input construction and classical comparison | [algebraic residual coefficients](RESIDUAL_TABLE_PREPROCESSING.md) use standard half-phase identities with one shared root, certified rational intervals, and a finite-radius cutoff to preserve R36/R39's error constants without Euler search; [bounded-input audit](BOUNDED_INPUT_QBP.md) combines F5 existence with coarse enumeration, explicit masks and instruction output to prove polynomial construction for the listed grouped/state alternatives; the banked small-system source uses $`P+13`$ dirty wires. Deterministic and term-sampled classical Pauli baselines are charged; no unconditional efficient fine-word search, generic Euler-runtime theorem, or end-to-end quantum advantage is claimed |
 | R42 | state-based QBP T-depth composition | [depth proof](STATE_QBP_DEPTH.md) composes R21/R23's exact schedules, inherited from F2, with R36/R39's constant number of residual rotations and the actual exact-return coarse interpreter; with $`B_0=P+n+7`$, $`b\ge2B_0`$ gives $`D_T=O(NP/b+P+n^3)`$, $`T,G=O(NP)`$, while $`b\ge16(B_0+\sqrt{NP})`$ gives one circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$, $`G=O(NP)`$, and $`D_T=O(P+n^3)`$; both real/complex task streams and oracle depth are charged; no new lookup primitive, depth optimality, total-runtime gain, or general emitter is claimed |
 
-The [batched dirty-lookup theorem](BATCHED_DIRTY_LOOKUP.md) reuses F2/F8
-with an explicit partial-indicator allocation. For fixed L, two clean
+The [amortized dirty-lookup theorem](AMORTIZED_DIRTY_LOOKUP.md) combines
+F2/F8's dirty traversal and echo with the controlled-linear and commuting
+operator techniques represented by F29/F30. Its explicit multiplexed-shear
+identity moves the low-address indicator outside the chunk loop.
+For fixed L, two clean
 qubits and $`b\ge17(L+n+7)`$ give one complete real-frame circuit with
 $`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
-$`D_T=O(N\log(b+2)/b^2+n^2)`$. Count is optimal in order; depth is
-within a logarithmic factor at $`b=\Theta(n)`$ above the threshold.
-No unrestricted depth optimum or generic lookup priority is claimed.
+$`D_T=O(N/b^2+n^2)`$. Count is optimal in order; depth is matching
+for $`17(L+n+7)\le b\le\sqrt N/n`$. Large-width depth and generic
+lookup priority are not claimed. The [earlier batched proof](BATCHED_DIRTY_LOOKUP.md)
+supplies the allocation argument and a separately guarded fallback.
 
 The [exact source-depth certificate](SOURCE_T_DEPTH.md) specializes F27
 to the existing geometric and paired sources, with a parallel paired-tail

@@ -140,9 +140,9 @@ magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
-At fixed accuracy, [batched lookup](docs/BATCHED_DIRTY_LOOKUP.md) gives
+At fixed accuracy, [amortized lookup](docs/AMORTIZED_DIRTY_LOOKUP.md) gives
 $`T=O(\sqrt N+N/b)`$ and
-$`D_T=O(N\log(b+2)/b^2+n^2)`$ in one real-frame circuit with two
+$`D_T=O(N/b^2+n^2)`$ in one real-frame circuit with two
 clean qubits and $`b\ge17(L+n+7)`$ dirty qubits.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
