@@ -195,10 +195,11 @@ the system bit in the initial reflection, and the active-zero table row
 are essential to the ideal identity.
 
 This completes the selected one-system-qubit amplification integration.
-General table sizing and dirty lookup remain unimplemented. The next
-bounded step is an additional unchanged address bit: emit and verify its
-lookup and predicate with every occupied flag and borrowed helper
-charged before composing a larger state compiler. The coherent QBP
+A [four-row lookup](NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
+now supplies the additional address bit with no extra helper. General
+table sizing and dirty lookup remain unimplemented. The next bounded
+composition uses two system qubits, charging the enlarged initial
+reflection and preserving every occupied flag and returned work input. The coherent QBP
 reference/target branch and the full fine state-preparation schedule
 remain separate integration tasks. The complete-frame endpoint and
 claims of end-to-end advantage are unchanged.

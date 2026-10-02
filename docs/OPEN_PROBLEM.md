@@ -790,15 +790,18 @@ on their special targets. Their original-frame comparators are cheaper;
 the fixtures establish integration, not a general advantage.
 
 The selected state-based depth pass is also complete, as recorded below.
-The unaddressed row, enabled two-row table, and bounded
+The unaddressed row, enabled two- and four-row tables, and bounded
 [one-qubit residual preparation](NATIVE_RESIDUAL_STATE.md) implementation
 passes are complete. The latter uses two declared clean flags, literal
 amplification phases, the actual inverse, and a full dirty-input isometry
 bound. Its dirty allocation exceeds the basic n=1 theorem reservation;
-it is not a replacement for the minimum-budget fallback. The next
-bounded task adds one unchanged address bit with an explicit charged
-lookup/predicate and full inactive-sector identity before larger state
-composition. The full fine-precision native emitter remains an implementation task;
+it is not a replacement for the minimum-budget fallback. The
+[four-row lookup](NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
+adds the second address without any extra helper, using exact Clifford
+conjugation of quadratic-mask Toffolis. Both addresses and enable return
+exactly and the inactive sector is identity. The next bounded composition
+prepares a residual state on two system qubits and charges the enlarged
+initial reflection, with two clean flags and the actual inverse. The full fine-precision native emitter remains an implementation task;
 completing it would strengthen executable evidence without changing the
 proved resource bounds by itself. No end-to-end advantage example is
 selected. Such a claim requires a concrete observable-access model and a

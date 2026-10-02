@@ -339,6 +339,19 @@ and literal counts of 540q+630 T/TDG gates per residual table. This
 control arity needs no extra helper; general dirty lookup and larger
 predicates are not emitted by it.
 
+The [four-row lookup tests](../tests/test_native_residual_lookup.py) add
+a second address bit without another helper. Small complete native mask
+matrices verify constant, linear, and grouped quadratic terms, including
+odd X/Z overlap and literal axis order. The q=5 residual table is checked
+on all eight address/enable sectors, retaining all 256 target/signal/core
+columns per sector. Fixed-to-fixed CNOTs inside the native Toffoli are
+tracked as temporary classical address changes with literal phases;
+quantum mixing and unrestored controls are rejected. Active words are
+compared with independent Majorana algebra and disabled words with
+identity. Fine-q certificates and native counts verify the conditional
+ledger at most 540q+1050 T/TDG gates. These are bounded component checks,
+not a general table or a new asymptotic result.
+
 The [bounded state tests](../tests/test_native_residual_state.py) compose
 two certified tables into a one-system-qubit preparation with two clean
 flags. Exact normalized coefficient fixtures cover complex amplitudes

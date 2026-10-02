@@ -3,8 +3,8 @@
 [State-based QBP theorem](STATE_BASED_QBP_THEOREM.md) · [Residual coefficients](RESIDUAL_TABLE_PREPROCESSING.md) · [Verification](VERIFICATION.md)
 
 The production modules connect certified residual coefficients to literal
-Clifford+T completions: one unaddressed row and a two-row table selected by
-one address bit and one enable literal. They implement the paired-source
+Clifford+T completions: one unaddressed row and tables of two or four rows
+selected by one or two address bits and one enable literal. They implement the paired-source
 identities of [the one-clean compiler](ONE_CLEAN_COMPILER.md), including its
 borrowed-signal extension, and the algebraic preprocessing of
 [the residual table](RESIDUAL_TABLE_PREPROCESSING.md). This adds executable
@@ -148,8 +148,8 @@ composition. Fine-precision amplification is also checked in the small
 Clifford-algebra representation; that check does not simulate a large
 precision register.
 
-The unaddressed row and Section 5's bounded two-row extension are
-implemented. General addressed tables, larger dirty lookup/predicate
+The unaddressed row and Sections 5–6's bounded two- and four-row extensions
+are implemented. General addressed tables, larger dirty lookup/predicate
 schedules, and the complete fine state compiler remain implementation
 work. These components do not establish the full theorem's count or
 depth schedules by themselves.
@@ -258,3 +258,135 @@ two such tables into a one-system-qubit preparation, with two explicitly
 initialized compiler flags and the actual inverse used in amplification.
 General table sizing and the full count/depth schedules remain distinct
 implementation tasks.
+
+## 6. Four rows with two address bits and no additional helper
+
+[`native_residual_lookup.py`](../compiler_robust_hopf/native_residual_lookup.py)
+adds `emit_four_row_rotation_table` and `emit_four_row_residual_table`.
+Their input promises, elementary gate alphabet, active-zero convention,
+and full-operator error contract are those of Section 5. The row index is
+$`x=x_0+2x_1`$, with the low address bit listed first. Existing two-row
+and one-qubit state APIs are unchanged.
+
+```python
+from fractions import Fraction
+from compiler_robust_hopf.native_residual_lookup import emit_four_row_residual_table
+
+table = emit_four_row_residual_table(
+    ((0, 0), (1, 0), (0, 1), (Fraction(-3, 4), Fraction(1, 2))), q=80)
+assert table.rotations[0] is table.rotations[2]
+assert table.operator_error_bound < Fraction(130, 1 << 80)
+```
+
+| Wires | Role | Return contract |
+|---|---|---|
+| 0 through q | Precision core | Approximate identity, included in the error |
+| q+1 | Synthesis signal | Approximate identity, included in the error |
+| q+2 | Rotation target | Selected residual action |
+| q+3, q+4 | Address x0, x1 | Preserved exactly by the complete word |
+| q+5 | Enable | Preserved exactly by the complete word |
+
+The total is q+6 wires, with the same q+2 borrowed work wires. No clean
+input, lookup bank, or extra borrowed helper is required. Target and
+controls may be occupied and arbitrarily entangled with the work or a
+reference. The ideal action is the direct sum in Section 5 with four
+active rows instead of two.
+
+### Exact quadratic mask selection
+
+For each core wire and each axis X or Z, let $`f_j`$ be that axis's
+mask bit in row j. Its Boolean polynomial is
+
+```math
+f(x_0,x_1)=f_0\oplus(f_0\oplus f_1)x_0
+\oplus(f_0\oplus f_2)x_1
+\oplus(f_0\oplus f_1\oplus f_2\oplus f_3)x_0x_1.
+```
+
+The constant and linear terms use the same Pauli and controlled-Pauli
+gates as Section 5. For a fixed axis, collect all wires whose quadratic
+coefficient is one into a support S. All terms on that axis commute.
+If S is nonempty, choose its smallest core wire p as a pivot and put
+
+```math
+C_X=\prod_{j\in S\setminus\{p\}}\operatorname{CX}_{p\to j},
+\qquad
+C_Z=\prod_{j\in S\setminus\{p\}}\operatorname{CX}_{j\to p}.
+```
+
+Each fanout or fanin is its own inverse and obeys
+
+```math
+C_X X_p C_X=\prod_{j\in S}X_j,\qquad
+C_Z Z_p C_Z=\prod_{j\in S}Z_j.
+```
+
+Conjugating a single literal seven-T Toffoli on controls x0,x1 and
+target p by $`C_X`$ therefore selects the entire X support. For Z,
+conjugate the Toffoli target by H to obtain CCZ, then use $`C_Z`$.
+This costs seven T/TDG gates per nonempty axis support, irrespective of
+its size; all remaining fanout/fanin gates are charged Cliffords.
+The pivot is existing arbitrary core data, not a new initialized wire.
+
+Emit every X factor before every Z factor. This matches the chronological
+order of `_mask` in each row, including any Pauli-product scalar phase.
+Swapping the two axis blocks is not phase-neutral when their supports
+overlap oddly. Each inverse reverses the actual emitted word.
+
+The native seven-T Toffoli temporarily changes its second address control
+through a CNOT between controls. Address preservation is an identity of
+the complete Toffoli, mask, and table; it is not a claim that every
+elementary gate leaves both address bits untouched. The mask is exactly
+the required core Pauli in each complete address sector, with identity
+on target and signal. It can therefore replace the two-row mask inside
+the existing scalar source and amplified rotation without changing
+their proofs.
+
+Enable still conditions only the source centers. Inactive centers make
+the literal loader and mask inverse pairs cancel on all inputs, including
+all the quadratic gates. Hence every inactive sector is exactly identity;
+active zero coefficients still implement U(0). The extra address bit
+does not enlarge the enable predicate or require a hidden clean flag.
+
+### Exact ledger and evidence boundary
+
+Let k be the number of nonempty quadratic supports among X and Z in a
+rotation's four-row mask. Then $`k\in\{0,1,2\}`$, and the mask uses
+7k T/TDG gates. It or its actual inverse appears ten times in that
+rotation word, so
+
+```math
+T_{\rm rotation}=180q+210+70k.
+```
+
+For a residual completion, let $`k_z`$ and $`k_y`$ refer to its outer
+and middle rotation tables. The identical outer object is used twice:
+
+```math
+T_{\rm residual}=540q+630+70(2k_z+k_y)\le540q+1050.
+```
+
+All gates, including mask selection and source-center controls, are
+counted. Storage and total gate count are $`O(q)`$ for this fixed table
+size. These are literal unsimplified counts, not optimality claims.
+The exact lookup adds no approximation error. Address direct sums still
+take maximum row errors, followed by the three Euler-factor error sum,
+giving full-operator error below $`130\,2^{-q}`$ on arbitrary work and
+reference inputs.
+
+The [lookup tests](../tests/test_native_residual_lookup.py) compare small
+native masks with independently specified literal Pauli rows and verify
+all eight address/enable sectors at q=5. Each sector retains all 256
+target/signal/core input columns. The sector evaluator tracks temporary
+classical address changes and their diagonal phases; it rejects mixing
+with free quantum inputs or failing to restore the controls. Independent
+Majorana matrices check the active rotation words, and inactive words
+are compared with identity without phase alignment. Fine-precision
+certificates and emitted resource counts require no large statevector.
+
+This completes the second-address lookup component. General table sizes,
+larger predicates, and the complete fine state-preparation schedule
+remain implementation work. The next bounded composition is a residual
+state on two system qubits, keeping two clean compiler flags and charging
+the enlarged initial reflection before amplification with the actual
+inverse. No complete-frame endpoint or end-to-end advantage follows.

@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-01 native residual state pass starts from verified main
-`887bf113a8cb4d060815623e035cfbebac2bdbf8`, after the enabled
-two-row table implementation. Check later commits before continuing.
+The 2026-10-02 four-row residual lookup pass starts from verified main
+`3fe17a351a8e40fef82f4a3d3a7f0b9a243095b3`, after the bounded
+one-qubit residual state implementation. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -28,7 +28,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
    [residual coefficient proof](docs/RESIDUAL_TABLE_PREPROCESSING.md)
    documents the classical interval helper; the
    [native rows and tables](docs/NATIVE_RESIDUAL_ROTATION.md) connect it to
-   exact masks, borrowed-signal rotations, and one enabled two-row table.
+   exact masks, borrowed-signal rotations, and enabled two- and four-row tables.
    The [bounded state integration](docs/NATIVE_RESIDUAL_STATE.md) composes
    two tables and amplification with the actual inverse.
 3. For the separate frame question, read the
@@ -51,7 +51,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
-| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, [certified residual rows and two-row tables](docs/NATIVE_RESIDUAL_ROTATION.md), and [bounded residual state amplification](docs/NATIVE_RESIDUAL_STATE.md); [verification map](docs/VERIFICATION.md) |
+| Implemented evidence | Complete bounded [real](docs/NATIVE_COARSE_QBP.md) and [complex](docs/NATIVE_COMPLEX_COARSE_QBP.md) native examples, histogram decoders, [certified residual rows and bounded tables](docs/NATIVE_RESIDUAL_ROTATION.md), and [bounded residual state amplification](docs/NATIVE_RESIDUAL_STATE.md); [verification map](docs/VERIFICATION.md) |
 
 The theorem's original accuracy bits K and state precision
 $`P=\max(n,K)`$ must remain distinct. The observable needs accuracy K,
@@ -127,6 +127,18 @@ by four wires; it fits the banked pool and does not replace the
 minimum-budget fallback. Exact reflections and the literal leading
 minus sign are included. No coarse C or QBP branch is emitted here.
 
+The [four-row lookup](docs/NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
+adds a second address bit without any extra helper. Constant and linear
+mask terms are Clifford; each nonempty same-axis quadratic support is
+a Clifford conjugate of one exact seven-T Toffoli. The literal residual
+count is 540q+630+70(2k_z+k_y), at most 540q+1050, with q+2 dirty
+wires and q+6 total wires. Its full-operator error remains below
+130 times 2 to the power minus q. Complete native words return both
+addresses and enable exactly, including their phases; temporary
+address changes inside native Toffolis are explicitly tracked in tests.
+The disabled action remains exactly identity. This is a fixed four-row
+component, not a general lookup or larger state-preparation schedule.
+
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
@@ -135,13 +147,13 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | Certified rows, enabled two-row tables, and one-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded step adds one unchanged address bit with a charged lookup/predicate and exact inactive-sector identity |
+| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, and one-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded composition uses two system qubits, charges the enlarged initial reflection, and retains both clean flags, the actual inverse, and complete work-return error |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
-Do not repeat the completed coefficient-to-row, two-row table, or bounded
-state-amplification passes.
+Do not repeat the completed coefficient-to-row, two- and four-row lookup,
+or one-system-qubit state-amplification passes.
 For the next component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.

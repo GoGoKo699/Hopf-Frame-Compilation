@@ -45,9 +45,9 @@ def _inverse(gates):
 def _restrict_sector(gates, width, fixed):
     """Restrict only wires that are demonstrably fixed throughout each gate.
 
-    X on a fixed wire changes its tracked value. Its later diagonal gates
-    contribute a literal scalar; no phase alignment is performed. H or a
-    CNOT targeting such a wire is rejected, rather than silently ignored.
+    X and fixed-to-fixed CNOT update tracked computational values. Later
+    diagonal gates contribute literal scalars; no phase alignment is
+    performed. H or free-to-fixed CNOT is rejected rather than ignored.
     """
     current = dict(fixed)
     free = [wire for wire in range(width) if wire not in fixed]
@@ -60,8 +60,10 @@ def _restrict_sector(gates, width, fixed):
         if name == "CX":
             control, target = wires
             if target in fixed:
-                raise AssertionError("A purported sector control is targeted by CNOT.")
-            if control in fixed:
+                if control not in fixed:
+                    raise AssertionError("A purported sector control is targeted by an unfixed CNOT.")
+                current[target] ^= current[control]
+            elif control in fixed:
                 if current[control]:
                     reduced.append(("X", (relabel[target],)))
             else:
@@ -192,6 +194,19 @@ class NativeResidualTableTests(unittest.TestCase):
         for bad in ((("H", (1,)),), (("CX", (0, 1)),), (("X", (1,)),)):
             with self.assertRaises(AssertionError):
                 _restrict_sector(bad, 2, {1: 0})
+
+        # Native Toffolis can temporarily modify another address control.
+        # Its intervening phase and action on free work use the new value.
+        word = (("CX", (1, 2)), ("T", (2,)), ("CX", (2, 0)),
+                ("CX", (1, 2)), ("TDG", (2,)), ("CX", (2, 0)))
+        for left in (0, 1):
+            for right in (0, 1):
+                phase = ((1 + 1j) / np.sqrt(2)) ** ((left ^ right) - right)
+                expected = phase * (np.array([[0, 1], [1, 0]]) if left else np.eye(2))
+                np.testing.assert_allclose(_sector_matrix(word, 3, {1: left, 2: right}),
+                                           expected, atol=3e-15, rtol=0)
+        with self.assertRaises(AssertionError):
+            _restrict_sector((("CX", (1, 2)),), 3, {1: 1, 2: 0})
 
     def test_high_precision_certificates_layout_and_linear_native_ledger(self):
         for q in (5, 16, 80, 129):
