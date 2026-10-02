@@ -11,6 +11,13 @@ The separate [precision-allocation refinement](AMORTIZED_DIRTY_LOOKUP.md#capping
 reduces the sum of source widths in the frame compiler without resynthesizing
 any exact source. It changes the precision assigned to layers and is
 compatible with every restricted primitive bound below.
+The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
+allows arbitrary Clifford interlayers and approximate full-input source
+replacement, but supplies only a constant lower bound. The
+[conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md) changes
+the source interface: an active zero suffix supplies temporary clean work
+for logarithmic precision depth. It does not resynthesize the full-input
+operator considered here.
 
 ## 1. Gate class and inherited denominator bound
 

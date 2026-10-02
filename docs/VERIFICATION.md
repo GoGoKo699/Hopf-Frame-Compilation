@@ -123,6 +123,19 @@ literal native phases, and exact denominator witnesses. The matching lower
 bounds apply only to the defined Majorana-layer architecture and exact
 targets, including its arbitrary returned dirty extensions. They are not
 general Hopf or controlled-source depth lower bounds.
+The [unrestricted two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md)
+has [bounded checks](../tests/test_shallow_source_obstruction.py) of the
+full transfer alphabet for native words with unrestricted Clifford
+interlayers, exact rational subset grids, optimized witness gaps, and
+native source/controlled-source witnesses with arbitrary dirty extensions.
+Its robust constant lower bounds are analytic, not inferred from sampling
+the finite circuits. Initialized-clean isometries remain outside its scope.
+The [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
+has [separate checks](../tests/test_conditional_geometric_source.py) for
+prefix preparation, native controlled-H phases, actual inverse, scalar
+programming, inactive sectors, and amplification with work return.
+Its shallow prefix schedule and uniform resource bounds are proved
+analytically; the fixtures do not emit the whole variable-size frame.
 The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
 audit routed-indicator cancellation, literal native phases, disjoint T
 layers, scratch-free width, and arbitrary-input return using symbolic

@@ -45,6 +45,8 @@ theorem by numerical extrapolation.
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_t_depth.py`](test_t_depth.py) | Literal shared-control Fredkin batches, four disjoint T layers, and native dirty-bank queries with exact return |
 | [`test_source_t_depth.py`](test_source_t_depth.py) | Exact geometric and paired-source depth certificates within the Majorana-layer architecture, paired native T layers, literal phases, and denominator witnesses |
+| [`test_shallow_source_obstruction.py`](test_shallow_source_obstruction.py) | Full-input two-layer transfer alphabet, exact dyadic subset grids, optimized robust gaps, and native source witnesses with dirty extensions |
+| [`test_conditional_geometric_source.py`](test_conditional_geometric_source.py) | Conditional geometric preparation, prefix cleanup, native controlled-H phases, scalar masks, actual inverse, inactive sectors, and amplification with work return |
 | [`test_hopf_error_accumulation.py`](test_hopf_error_accumulation.py) | Small ideal-frame relative spectra and coherent shared-flag leakage, using one common reduced source algebra and actual inverses; not an emitted native source word |
 | [`test_flag_echo.py`](test_flag_echo.py) | Literal-source square and Pauli-echo errors, generic leakage, exact equal-mask cancellation, and actual inverses in bounded reduced source algebra |
 | [`test_radial_filter.py`](test_radial_filter.py) | Fixed-point source filtering with literal phase, full polar error, phase-approximation budgets, actual inverse, and smaller precision allocation; native phase-word costs are analytic |

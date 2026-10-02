@@ -782,6 +782,31 @@ complete-frame depth bound in this pass, and no matching lower bound.
 The exact source restriction must therefore remain separate from both
 optimal approximate Hopf T-depth and the constant-clean T-count endpoint.
 
+The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) uses a
+different, full-input argument. [Aaronson–Gottesman,
+arXiv:quant-ph/0406196v5, Section III](https://arxiv.org/pdf/quant-ph/0406196v5)
+gives the discrete magnitudes of stabilizer overlaps.
+[Zhang–Zhang, arXiv:2409.13809v2, Theorem III.1,
+Eqs. (10)–(11)](https://arxiv.org/html/2409.13809v2#S3.SS1)
+explicitly uses the fact that a T layer conjugates Paulis to Hermitian
+Cliffords. Splitting a two-layer transfer coefficient at the middle
+Clifford reduces it to a normalized Clifford trace. The local proof
+then derives a transfer alphabet and constant approximation gaps for
+the geometric sources with any dirty width. These standard ingredients
+are attributed; no growing unrestricted depth lower bound is inferred.
+
+The [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
+supplies a different positive interface. It prepares the geometric
+one-hot state using reversible prefix ORs and native controlled
+Hadamards, clears noninvariant tree scratch before that batch, and
+uses conditional suffix workspace rather than an externally initialized
+precision register. Its preparation, selective reflection, actual
+inverse, inactive-sector identity, and return error are charged locally.
+This is an explicit construction from standard reversible and
+block-encoding ingredients; it does not import a catalyst or claim
+generic fast rotation synthesis with arbitrary dirty helpers. The
+complete-frame query and suffix-predicate bottlenecks remain.
+
 ## 17. Fixed-point filtering and literal phase (2 October 2026)
 
 [Grover, *Fixed-point quantum search*, PRL **95**, 150501 (2005)](https://arxiv.org/abs/quant-ph/0503205),

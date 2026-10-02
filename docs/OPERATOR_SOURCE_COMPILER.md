@@ -144,6 +144,14 @@ the related product decomposition is also recorded in
 
 ### Exact source costs, including returned helpers
 
+The following count minima are distinct from the
+[robust two-layer depth obstruction](SHALLOW_SOURCE_OBSTRUCTION.md),
+which allows arbitrary Clifford interlayers but requires a full-input
+contract. An eligible active suffix also supports a
+[different geometric block encoding](CONDITIONAL_GEOMETRIC_SOURCE.md)
+with logarithmic precision depth; it uses conditional initialization
+and is not an implementation of this dirty-space source.
+
 The displayed source word is convenient, but its uncontrolled version can
 save two T gates. In fact, for $`m\ge2`$,
 

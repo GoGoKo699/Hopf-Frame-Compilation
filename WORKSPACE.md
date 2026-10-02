@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 flag-echo and radial-filter pass starts from verified main
-`e473b98b4744121f9861c8df1df62d03bff8115a`, after the error-accumulation
-audit. Check later commits before
+The 2026-10-02 conditional-source-depth pass starts from verified main
+`39f74b3063c67bd7b2486932f6c030d011a5e2ea`, after the flag-echo and
+radial-filter audit. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -24,7 +24,10 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Begin active depth work with the [radial filter](docs/HOPF_RADIAL_FILTER.md),
+1. Begin active depth work with the
+   [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md),
+   [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md),
+   [radial filter](docs/HOPF_RADIAL_FILTER.md),
    [short-echo audit](docs/HOPF_FLAG_ECHO.md), and
    [error geometry](docs/HOPF_ERROR_ACCUMULATION.md),
    [masked dirty sums](docs/DIRTY_SUM_COMPRESSION.md)
@@ -75,6 +78,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
 | Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
 | Filtered complete-frame source | Quadratic radial error on the same two flags, charged native selective phases, and a smaller source-precision cap; [filter proof](docs/HOPF_RADIAL_FILTER.md) |
+| Conditional precision depth | Logarithmic source/reflection depth using an active zero suffix and two external flags; [conditional source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md). Query/predicate depth remains charged |
+| Unrestricted two-layer source obstruction | Robust constant error floor with arbitrary Clifford interlayers and dirty helpers; [transfer proof](docs/SHALLOW_SOURCE_OBSTRUCTION.md). No initialized-clean frame lower bound |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
 | Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
@@ -381,17 +386,49 @@ matching interval remain valid, and both large scientific gaps remain
 open. Native phase-word existence is proved; the bounded fixtures do
 not emit a variable-size filter or assert efficient fine-word search.
 
-The next bounded depth target should change the source implementation
-or jointly schedule actual source layers. Specify a candidate with
-sublinear precision T-depth, polynomial extra dirty width, and a full
-operator error contract before expanding fixtures. The hybrid can
-absorb fixed polynomial local overhead on early layers, but all native
-phases, programmed masks, and changed-address dependencies must be
-charged. Repeating a fixed number of radial filters leaves the encoded
-polar rotation angles unchanged and, by itself, does not improve the
-remaining source-depth order. Do not repeat the completed
-carry pipeline or the four short echoes, or apply the ideal-angle
-theorem to unfiltered source leakage.
+The [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md)
+now supplies a sublinear precision-depth replacement on eligible layers.
+A source of width m reserves at most 7m zero suffix bits on the active
+sector. A reversible prefix-OR preparation has O(m) native count and
+O(log(m+2)) T-depth; its tree scratch is erased before the controlled-H
+batch, and its prefix outputs are then invariant. Exact inactive
+cancellation permits arbitrary suffix inputs outside the active sector.
+The same two external flags hold the suffix predicate and branch. A
+charged enlarged reflection and literal conditional amplification phase
+complete the full-isometry contract, including final predicate uncomputation.
+Use the original unfiltered additive precision cap for this schedule.
+At fixed accuracy, its source/reflection depth totals
+O(n log log(n+2)+log²(n+2)), including the late serial fallback.
+Queries and suffix predicates still contribute O(n log(n+2)); the
+complete-frame frontier and high-precision endpoint remain unchanged.
+
+The [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md) also
+extends beyond Majorana-preserving Clifford stages. A full-space
+two-T-layer transfer entry is zero or a signed inverse power of sqrt(2).
+Geometric-source witnesses therefore force operator error at least 1/16
+for m≥5, and for controlled sources at m≥4, at every returned dirty
+width. This is a constant bound for an isolated full-input primitive;
+initialized-clean source interfaces and frame circuits are excluded.
+
+The next bounded target is the remaining query/predicate depth. The
+concrete candidate is to prefetch a whole small group's program into a
+separate part of its conditionally zero outer suffix. A height-g group
+needs about 2m(2^g−1) program bits; choose g so these and all source/selector
+helpers fit, and keep the external high-prefix address fixed. Internal
+operations must preserve every program bit, allowing one actual unquery
+even through source leakage. Price the proposed parallel single-bit
+prefetch queries with private dirty indicators, the smaller internal
+selectors, and all simultaneous banks. Begin with a complete two-layer
+group identity and live-work ledger before a larger fixture. This route
+has no established full-frame depth theorem yet. Merely loading the
+same program into arbitrary dirty storage would not justify cancellation
+through noncommuting group rotations. Grouping suffix predicates alone
+cannot improve the frontier while per-layer dirty-counter lookups retain
+logarithmic address depth.
+The hybrid can absorb polynomial early-layer overhead. Retain late-layer
+fallbacks and optimal-order count. Do not repeat the completed carry
+pipeline, four short echoes, or conditional source preparation; do not
+apply ideal-angle stability to unfiltered source leakage.
 A matching unrestricted large-width frame-depth lower bound remains
 separate.
 The completed modest-width
