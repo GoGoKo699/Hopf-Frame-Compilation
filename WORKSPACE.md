@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 amortized-depth pass starts from verified main
-`6341e0e9d4bda60bc3935e4dc7baec8bab06095f`, after the batched lookup
-milestone. Check later commits before
+The 2026-10-02 source-precision pass starts from verified main
+`018b22f8e95162a273f4da0510550a1373a00241`, after the matching
+modest-width depth theorem. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -108,8 +108,14 @@ family of linear shears. A two-pass dirty traversal and rank-reduced
 controlled shears amortize both former per-batch logarithms.
 Dirty selector stacks remain separate from live banks and indicators;
 all lookup work returns exactly. Full-frame error and QBP substitution
-are inherited unchanged. Large-workspace depth still has the additive
-$`n^2`$ floor. The following general-precision and state schedules retain
+are inherited unchanged. A [capped precision allocation](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+now reduces accumulated source depth to $`O(nL+n\log(n+1))`$ without
+increasing any layer's width or the weighted lookup costs. It retains
+the full error guarantee using the sharper local isometry constant.
+The total assigned precision is within $`5n`$ bits of the optimum under
+that additive error certificate; this is not a frame-depth lower bound.
+Large-workspace depth still has the additive $`n^2`$ routing contribution.
+The following general-precision and state schedules retain
 their separate contracts; this pass does not extend the new bound to them.
 
 The [state-based depth theorem](docs/STATE_QBP_DEPTH.md) closes the selected
@@ -219,9 +225,25 @@ The guarded-batch logarithm is now amortized; do not repeat that task.
 The next bounded depth target is fixed accuracy at sufficiently large
 $`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
 Its available depth bounds are still $`\Omega(1)`$ and $`O(n^2)`$.
-Both the accumulated source widths and the remaining per-layer routing
-depth contribute $`O(n^2)`$ in the retained schedule. Improving only one
-does not establish a better full-frame depth order.
+The capped precision allocation has removed the accumulated source widths
+as a quadratic contribution: sources and suffix predicates now cost
+$`O(n\log(n+1))`$ depth at fixed L. The retained per-layer routing
+still sums to $`O(n^2)`$. An improvement must price the complete queries,
+not only their rank-reduced shears or a single routed batch.
+
+Two attempted shortcuts do not yet supply such a circuit. Keeping an
+address-controlled router open conjugates an intervening table matrix A
+to $`AP_x`$ or $`P_xA`$; this is another address-dependent operation
+that must be implemented. Running independent equality tests in parallel
+requires read-only shared address controls and exactly returned private
+dirty work. The audited Khattar–Gidney logarithmic-depth dirty MCX circuit temporarily
+borrows its controls, so its row instances cannot simply overlap them.
+Dirty CNOT copies also carry unknown masks. These are gaps in the proposed
+schedules, not unrestricted impossibility results. A concrete next route
+is a shallow exact dirty-indicator batch with a full live-width ledger.
+Polynomial overhead could be affordable on early layers, whose table sizes
+decay geometrically, while retaining the existing queries near the leaves;
+that hybrid remains conditional on the missing batch construction.
 Before another native fixture pass, require either a complete all-input
 construction with its count/depth/live-width ledger, or a lower bound
 in the unrestricted T-depth model. Rescheduling the certified exact source
