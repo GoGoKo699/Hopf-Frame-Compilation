@@ -364,6 +364,20 @@ statevectors. The [scope and proof](NATIVE_RESIDUAL_STATE.md) retain the
 external coefficient promises and the larger-than-minimum small-system
 dirty allocation. This is not a general emitter or an advantage claim.
 
+The [two-system-qubit tests](../tests/test_native_two_qubit_residual_state.py)
+extend preparation to four-row tables and a larger initial reflection.
+Every logical/helper input of the 28-T reflection is checked, including
+helper-one and reference-entangled inputs. The complete 2048-by-128
+initialized isometry at q=5 retains all dirty-input columns and leakage
+through the actual inverse and reflections. Native sector blocks and an
+independent source-algebra oracle are compared, with direct flattened
+propagation on coherent inputs. An exact complex coefficient fixture has
+three nonzero tails and satisfies the actual 1/64 residual neighborhood; no
+coarse circuit is inferred from that fixture. Fine-q certificates and
+counts are checked without a large statevector. The enlarged reflection
+borrows an existing arbitrary core wire and returns it exactly; it does
+not introduce a third clean compiler flag or a reset.
+
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

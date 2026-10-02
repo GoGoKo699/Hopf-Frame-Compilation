@@ -309,8 +309,8 @@ Hopf frame. Any replacement for the frame-based QBP decoder must have
 its own observable, sampling, and classical reconstruction analysis.
 
 The [bounded native residual integration](NATIVE_RESIDUAL_STATE.md) emits
-the half-amplitude word and actual-inverse amplification for one system
-qubit. Its explicit dirty allocation is larger than the small-system
+the half-amplitude word and actual-inverse amplification for one or two
+system qubits, including the enlarged initial reflection. Its explicit dirty allocation is larger than the small-system
 minimum in Section 1; it does not replace that fallback or emit the
 general table schedule.
 

@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 four-row residual lookup pass starts from verified main
-`3fe17a351a8e40fef82f4a3d3a7f0b9a243095b3`, after the bounded
-one-qubit residual state implementation. Check later commits before continuing.
+The 2026-10-02 two-system-qubit residual state pass starts from verified main
+`fa65885fe8f05cdbd5928072183bffb7f98f650a`, after the four-row
+lookup implementation. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -30,7 +30,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
    [native rows and tables](docs/NATIVE_RESIDUAL_ROTATION.md) connect it to
    exact masks, borrowed-signal rotations, and enabled two- and four-row tables.
    The [bounded state integration](docs/NATIVE_RESIDUAL_STATE.md) composes
-   two tables and amplification with the actual inverse.
+   two tables and amplification with the actual inverse for one or two
+   system qubits, including the enlarged initial reflection.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -139,6 +140,18 @@ address changes inside native Toffolis are explicitly tracked in tests.
 The disabled action remains exactly identity. This is a fixed four-row
 component, not a general lookup or larger state-preparation schedule.
 
+The [two-system-qubit state emitter](docs/NATIVE_RESIDUAL_STATE.md#5-two-system-qubit-preparation-and-a-returned-core-helper)
+composes four-row tables and two controlled Hadamards. Its enlarged
+initial reflection reuses core wire zero as an arbitrary helper, returns
+it exactly on every input, and charges four seven-T Toffolis. The
+complete word uses two clean flags and q+2 dirty wires, with error below
+390 times 2 to the power minus q. Its literal count is
+3240q+3820+210(2k_z+k_y), at most 3240q+5080. At q=L+10 the dirty
+pool exceeds the minimum n=2 allocation by three wires and fits the
+banked pool. The actual inverse retains all leakage; no reset or supplied
+coarse C is used. General tables and coherent QBP branch selection remain
+separate integration tasks.
+
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
@@ -147,13 +160,13 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, and one-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded composition uses two system qubits, charges the enlarged initial reflection, and retains both clean flags, the actual inverse, and complete work-return error |
+| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, and one- and two-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded task adds coherent reference/target selection under a separate protocol branch, retaining relative phase and excluding that arbitrary branch from the initial reflection |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
-or one-system-qubit state-amplification passes.
+or one- and two-system-qubit state-amplification passes.
 For the next component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.
