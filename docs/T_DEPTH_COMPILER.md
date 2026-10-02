@@ -15,6 +15,13 @@ stronger sufficient-width condition, it obtains the best retained T-count
 and low T-depth simultaneously. This chapter supplies the routing primitive
 and the wider-range bank schedule used in that refinement.
 
+The [batched extension](BATCHED_DIRTY_LOOKUP.md) reuses a smaller indicator
+pool. At fixed L, two clean qubits and $`b\ge17(L+n+7)`$ give
+$`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
+$`D_T=O(N\log(b+2)/b^2+n^2)`$ in the same complete real-frame
+circuit. It reduces the modest-width depth gap to a logarithmic factor;
+the general-precision schedules below remain available.
+
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$,
 $`0\lt\eta\leq1/64`$, and
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. Put

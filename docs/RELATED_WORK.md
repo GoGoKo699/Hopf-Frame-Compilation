@@ -266,6 +266,22 @@ compose the inherited lookup idea with complete two-clean real frames,
 retaining their T-count while reducing T-depth. It does not claim a new
 general lookup tradeoff or equally small Clifford depth.
 
+The [partial-batch schedule](BATCHED_DIRTY_LOOKUP.md) reuses these
+indicator and linear-echo mechanisms with a smaller simultaneous pool.
+LKS Appendix C, Theorem 2 states a count-efficient tradeoff with
+$`O(\lambda\sqrt{Qm})`$ dirty workspace, $`\lambda\ge1`$, so its
+displayed range begins at square-root-scale width. Partial batches
+retain the count-efficient bank choice below that scale and supply the
+intermediate-workspace T-depth ledger and full return contract for Hopf
+composition. The underlying lookup mechanism is inherited; no priority
+claim over general lookup tradeoffs is made. Motlagh–Pocrnic,
+[arXiv:2605.20334v1, Sections II.2–II.4](https://arxiv.org/html/2605.20334v1),
+improve Toffoli-count prefactors through SelectCopy and sequential
+output-bit packets. Their displayed constructions retain initialized
+outputs and do not state the simultaneous $`B^{-2}`$ T-depth dependence
+audited here. The batch guards reserve F8's two dirty helpers during
+the live query, separately from its occupied banks and indicators.
+
 **Bausch.** Equations (4) and (6) of *Fast Black-Box Quantum State Preparation*
 already use a geometric precision register and a bit oracle addressed by the
 data index and precision position. Section 2.3.3 includes a capped geometric
