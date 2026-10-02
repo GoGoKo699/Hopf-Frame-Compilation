@@ -491,6 +491,14 @@ $`\Delta\le(256n)^{-2}`$. A dimension-independent square-sum
 replacement for the full local errors is therefore invalid. This is
 not a lower bound on fixed-accuracy depth or a different source circuit.
 
+A [phase-calibrated radial filter](HOPF_RADIAL_FILTER.md) supplies such
+a circuit modification. Three amplified-stage calls and six native phase
+words reduce full error relative to each encoded polar rotation to
+$`O(2^{-2m})`$. Its additional $`O(m)`$ phase cost and actual inverses
+are charged, with the same two flags and dirty reservation. Angular
+programming error remains first order. The modified frame admits a
+smaller source-precision cap without an asymptotic count/depth improvement.
+
 ## 6. Precision, workspace, and full-frame composition
 
 At depth $`d=0,\ldots,n-1`$, choose

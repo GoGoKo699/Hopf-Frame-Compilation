@@ -24,6 +24,8 @@ topic has one primary chapter below.
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Exact source depth](SOURCE_T_DEPTH.md) | Parallel paired tails and matching exact source depths within a specified Majorana-linear circuit class; no unrestricted optimality claim |
 | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md) | Sharp ideal-angle stability, finite relative spectra, and coherent leakage in the actual shared-flag sources; scoped precision boundaries |
+| [Flag-echo audit](HOPF_FLAG_ECHO.md) | Exact errors of four diagonal Pauli echoes, their generic linear leakage, and an exact equal-mask exception |
+| [Radial source filter](HOPF_RADIAL_FILTER.md) | Phase-calibrated fixed-point filtering, quadratic radial error, charged native phases, and a smaller complete-frame precision cap |
 | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md) | Exact returned dirty indicators and simultaneous count-efficient, low-T-depth full-frame compilation |
 | [Masked dirty-sum compression](DIRTY_SUM_COMPRESSION.md) | Deferred parity forests and overlapping carry blocks give logarithmic-depth dirty indicators and a sharper complete-frame bound |
 | [Batched dirty lookup](BATCHED_DIRTY_LOOKUP.md) | Partial indicator batches give optimal-order fixed-accuracy frame count and a logarithmic depth gap at modest dirty width |

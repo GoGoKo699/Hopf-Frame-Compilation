@@ -202,6 +202,16 @@ reduction evaluated in floating point; they are not emitted native words.
 Their dense matrices have dimension at most 64, and the larger small-n
 witnesses propagate one state through 32-dimensional blocks. The uniform
 stability and leakage bounds are proved in the [error chapter](HOPF_ERROR_ACCUMULATION.md).
+The [flag-echo checks](../tests/test_flag_echo.py) verify the exact square
+and Pauli-echo errors, the near-zero improvement, and the full-space
+equal-mask exception in one common source representation. The
+[radial-filter checks](../tests/test_radial_filter.py) verify the
+fixed-point word with the literal global phase, complex accepted scalar,
+full polar error, actual inverse, and six-occurrence phase-error budget.
+Their source/filter matrices have dimension 16. Continuous phase
+perturbations check the norm budget; they are not emitted native
+approximants. The phase-word resource bound and full-frame composition
+are analytic. Exact arithmetic checks cover the smaller precision cap.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)

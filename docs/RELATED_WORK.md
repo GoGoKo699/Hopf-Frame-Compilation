@@ -781,3 +781,29 @@ conditions. They yield no asymptotic improvement to the unrestricted
 complete-frame depth bound in this pass, and no matching lower bound.
 The exact source restriction must therefore remain separate from both
 optimal approximate Hopf T-depth and the constant-clean T-count endpoint.
+
+## 17. Fixed-point filtering and literal phase (2 October 2026)
+
+[Grover, *Fixed-point quantum search*, PRL **95**, 150501 (2005)](https://arxiv.org/abs/quant-ph/0503205),
+Eq. (1) and Section 3, gives the three-call pi-over-three phase sequence
+that cubes the failure probability. The
+[radial-filter chapter](HOPF_RADIAL_FILTER.md) applies this established
+sequence to the actual amplified Hopf source. It retains the complex
+accepted scalar: cubic suppression of rejected amplitude leaves a
+quadratic full operator error because an accepted phase remains.
+
+The selective phase is not a free exact Clifford+T gate. Its
+determinant-one representative factors into three one-qubit Pauli-Z
+rotations on the existing two flags, and a literal Clifford global
+correction calibrates the complete word. The standard phase-sensitive
+one-qubit approximation theorem, [GKW Lemma 2.3](https://arxiv.org/html/2411.04790v3#S2),
+supplies the six ancilla-free native phase words at their charged
+precision. The source-width cap can then use a half-logarithmic
+coefficient, while the added calls and phase words leave the established
+asymptotic T-count and T-depth unchanged. The fine-word search distinction
+discussed above still applies.
+
+The [short-echo audit](HOPF_FLAG_ECHO.md) is separate: its exact error
+formulas rule out uniform radial cancellation for four specific Pauli
+interpositions, and include a full-space equal-mask exception. They are
+not a no-go theorem for fixed-point amplification or general composites.

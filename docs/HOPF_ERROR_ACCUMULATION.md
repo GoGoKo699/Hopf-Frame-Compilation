@@ -401,13 +401,15 @@ half-logarithmic order necessary for nearest uniform angular grids only.
 Neither statement transfers that necessity to the current dyadic
 cosine/sine implementation or to unrestricted T-depth.
 
-A bounded next circuit question is whether a flag-reflection composite
-can suppress the actual rejected component uniformly in the target
-angle. A two-half-angle echo must control both its accepted product and
-the rejected-block commutator; cancellation only near zero is insufficient.
-Literal phases, actual inverses, work return, and every extra call remain
-part of that proof obligation. No saving from such a modification is
-claimed here.
+The [flag-echo audit](HOPF_FLAG_ECHO.md) now supplies exact errors for the
+two-half-angle square and the three other diagonal Pauli flag echoes.
+They retain first-order radial error at generic angles; the two-flag-Z
+echo has an exact same-mask exception. A separate
+[phase-calibrated fixed-point filter](HOPF_RADIAL_FILTER.md) does suppress
+the full radial error quadratically. Its charged phase words use the
+same two flags, allowing the modified physical frame to combine angular
+square-sum stability with an additive quadratic remainder. Its smaller
+source-precision cap leaves the asymptotic count/depth frontier unchanged.
 
 The [bounded checks](../tests/test_hopf_error_accumulation.py) cover small
 ideal frames and a compressed representation of the exact source algebra.
