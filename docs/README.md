@@ -22,6 +22,7 @@ topic has one primary chapter below.
 | [Two-clean compiler](OPERATOR_SOURCE_COMPILER.md) | Exact source costs, frame/bank bounds, matched diagonal and general multiplexor frontiers, and certified preprocessing |
 | [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform grouped bounds and their one-clean extension, ancestor-column residuals, and complete-input return |
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
+| [Exact source depth](SOURCE_T_DEPTH.md) | Parallel paired tails and matching exact source depths within a specified Majorana-linear circuit class; no unrestricted optimality claim |
 | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md) | Exact returned dirty indicators and simultaneous count-efficient, low-T-depth full-frame compilation |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 

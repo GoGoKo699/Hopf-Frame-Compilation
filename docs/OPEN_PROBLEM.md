@@ -84,6 +84,17 @@ It is not total circuit depth or elapsed QBP execution time. Neither the
 exact CNOT light-cone bound nor the source's linear exact T-count minimum
 supplies an additional depth lower bound in this model.
 
+The [source-depth certificate](SOURCE_T_DEPTH.md) now settles the exact
+geometric and paired sources within the specified Majorana-layer architecture.
+The paired-tail schedule improves constants only. This rules out obtaining
+sublinear precision depth merely by rescheduling those exact sources inside
+that class; arbitrary Clifford interlayers and different approximate sources
+remain eligible. Recent shallow rotation synthesis requires either growing
+clean workspace or a prepared catalyst in the constructions audited
+[here](RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026).
+We therefore have useful ingredients, but no complete argument closing
+either the general T-depth gap or the constant-clean frame endpoint.
+
 ### What this already gives Hopf QBP
 
 The synthesis target throughout is the prescribed Hopf tree frame; an
