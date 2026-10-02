@@ -257,8 +257,11 @@ interpreter. Section 5 supplies the finite-width counting method.
 
 Appendix C also separates indicator parallelism from count-efficient bank
 selection. The [parallel lookup proof](PARALLEL_DIRTY_LOOKUP.md) gives a
-literal exact realization using bilinear dirty echoes and constant-cost
-exact Toffolis, with explicit returned selector work. Its role here is to
+literal exact realization by conjugating one X with the inherited bank
+router, with scratch-free indicator work and linear address T-depth.
+The predicate schedule uses Khattar–Gidney
+[Section 5.4](https://arxiv.org/html/2407.17966v1#S5.SS4), allocating its two
+dirty helpers only between completed queries. Its role here is to
 compose the inherited lookup idea with complete two-clean real frames,
 retaining their T-count while reducing T-depth. It does not claim a new
 general lookup tradeoff or equally small Clifford depth.

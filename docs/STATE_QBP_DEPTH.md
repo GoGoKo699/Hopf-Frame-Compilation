@@ -32,7 +32,7 @@ row, with arbitrary dirty input and external references:
 | Schedule | Sufficient dirty width | T-count | Clifford count | T-depth |
 |---|---|---|---|---|
 | A: depth-optimized banks | $`b\ge2B_0`$ | $`O(NP)`$ | $`O(NP)`$ | $`O(NP/b+P+n^3)`$ |
-| B: count-efficient banks and parallel indicators | $`b\ge16(B_0+\sqrt{NP})`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(NP)`$ | $`O(P+n^4)`$ |
+| B: count-efficient banks and parallel indicators | $`b\ge16(B_0+\sqrt{NP})`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(NP)`$ | $`O(P+n^3)`$ |
 
 Appending the actual coarse inverse and $`H^{\otimes n}`$, as in
 magnitude readout, preserves these orders. A fixed number of preparation
@@ -77,28 +77,29 @@ phases, arbitrary output contents, and entangled references.
 
 Alternatively, [the parallel indicator](PARALLEL_DIRTY_LOOKUP.md#3-count-efficient-whole-word-queries)
 replaces the high-address loader by an exactly equal loader. It uses
-$`Q/\mu`$ dirty indicator outputs and at most $`3Q/\mu`$ dirty
-scratch, disjoint from the banks and output, and gives
+$`Q/\mu`$ dirty indicator outputs, disjoint from the banks and
+output, and no additional scratch. It gives
 
 ```math
-D_{T,\rm query}=O\!\left((1+\log(Q/\mu))^2+\log\mu\right)
+D_{T,\rm query}=O\!\left(1+\log(Q/\mu)+\log\mu\right)=O(1+\log Q)
 ```
 
 with the same T- and Clifford-count bounds. Thus, for a base of size
 $`B_0`$, its literal live-width condition is
 
 ```math
-B_0+\mu m+4Q/\mu\le b.
+B_0+\mu m+Q/\mu\le b.
 ```
 
 Choose mu as the largest power of two at most $`\sqrt{Q/m}`$ when
 $`Q\ge m`$, and choose $`\mu=1`$ otherwise. The added width is
-at most $`9\sqrt{Qm}`$ in the former case and $`5m`$ in the latter.
+at most $`3\sqrt{Qm}`$ in the former case and $`2m`$ in the latter.
 The count is $`O(\sqrt{Qm}+m)`$. These extra pools are reused
 between completed queries; their widths are not summed over calls.
 
-No initialized indicator is assumed. Its dirty bilinear echoes and
-shared-control routing are those proved in the linked chapters. The
+No initialized indicator is assumed. Conjugating a single X by the exact
+dirty-bank router produces its one-hot XOR without initializing any work,
+as proved in the linked chapter. The
 indicator's classical-matrix CNOT layers can have substantial elementary
 depth, which is not removed by this T-depth accounting.
 
@@ -168,8 +169,8 @@ T_{\rm fine},G_{\rm fine}=O(NP).
 
 For schedule B use the count-efficient choice in Section 2. Since
 $`Qm\le NP`$ and $`m\le B_0`$, its live width is bounded by
-$`B_0+9\sqrt{NP}`$ or $`6B_0`$, each below
-$`16(B_0+\sqrt{NP})`$. Every query has depth $`O(n^2)`$, giving
+$`B_0+3\sqrt{NP}`$ or $`3B_0`$, each below
+$`16(B_0+\sqrt{NP})`$. Every query has depth $`O(n+1)`$, giving
 
 ```math
 D_{T,\rm fine}=O(P+n^2),\qquad
@@ -276,10 +277,10 @@ elementary absorption $`n^3=O(Nn)`$. Real and complex coarse words
 obey these bounds; composing their two factors changes only constants.
 
 For schedule B, each one-bit table uses mu as the largest power of two
-at most $`\sqrt Q`$. Its extra width is at most $`9\sqrt Q`$;
+at most $`\sqrt Q`$. Its extra width is at most $`3\sqrt Q`$;
 $`Q\le N/2`$ and the common reservation covers it. Each symbol has
 T-count $`O(\sqrt Q)`$, Clifford count $`O(Q)`$, and depth
-$`O((d+1)^2)`$. Consequently
+$`O(d+1)`$. Consequently
 
 ```math
 T(C)=O\!\left(\sum_d w_d2^{d/2}+n^3\right)
@@ -287,7 +288,7 @@ T(C)=O\!\left(\sum_d w_d2^{d/2}+n^3\right)
 ```
 
 ```math
-D_T(C)=O\!\left(\sum_d w_d(d+1)^2+n^3\right)=O(n^4).
+D_T(C)=O\!\left(\sum_d w_d(d+1)+n^3\right)=O(n^3).
 ```
 
 Here $`n^3=O(n\sqrt N)`$ absorbs the predicate count with an

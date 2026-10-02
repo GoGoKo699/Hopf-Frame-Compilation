@@ -141,7 +141,7 @@ $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
 At fixed accuracy, [parallel lookup](docs/PARALLEL_DIRTY_LOOKUP.md)
-gives $`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ in one real-frame circuit
+gives $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ in one real-frame circuit
 with two clean and sufficiently large $`\Theta(\sqrt N)`$ dirty workspace.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)

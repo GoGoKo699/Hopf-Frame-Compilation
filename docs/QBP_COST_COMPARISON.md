@@ -554,7 +554,7 @@ for the state-based compiler work, including magnitude readout:
 | Schedule and dirty reservation | T-depth | T-count | Clifford count |
 |---|---|---|---|
 | A: $`b\ge2B_0`$ | $`O(NP/b+P+n^3)`$ | $`O(NP)`$ | $`O(NP)`$ |
-| B: $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^4)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(NP)`$ |
+| B: $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^3)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(NP)`$ |
 
 These bounds apply to real and gauge-fixed complex charts. The observable
 is added by the preceding ledger. Each row's count and depth hold for the
@@ -567,7 +567,7 @@ gives, when $`b\ge2(K+n+7)`$,
 
 ```math
 D_{A,\rm old}=O\!\left(\frac{NK}{b}
- +\min\{nK+n^3,\ K\ell+n^4\}\right),\qquad T,G=O(NK).
+ +\min\{nK+n^2,\ K\ell+n^3\}\right),\qquad T,G=O(NK).
 ```
 
 The [count-preserving construction](PARALLEL_DIRTY_LOOKUP.md) has a fixed
@@ -575,7 +575,7 @@ sufficient constant $`c_{\rm old}`$ and, at
 $`b\ge c_{\rm old}(K+n+7+\sqrt{NK})`$, gives
 
 ```math
-D_{B,\rm old}=O\!\left(\min\{nK+n^3,\ K\ell+n^4\}\right),
+D_{B,\rm old}=O\!\left(\min\{nK+n^2,\ K\ell+n^3\}\right),
 \qquad T=O(\sqrt{NK}+K\ell),\qquad G=O(NK).
 ```
 
@@ -601,31 +601,31 @@ For a comparison of the two count-preserving **real** depth expressions,
 define
 
 ```math
-Q_D=P+n^4,\qquad R_D=\min\{nK+n^3,\ K\ell+n^4\}.
+Q_D=P+n^3,\qquad R_D=\min\{nK+n^2,\ K\ell+n^3\}.
 ```
 
 Along $`n\to\infty`$, a diverging ratio $`R_D/Q_D`$ occurs precisely
-when $`K\ell\gg n^4`$. In that regime $`P=K`$ and the grouped old
+when $`K\ell\gg n^3`$. In that regime $`P=K`$ and the grouped old
 expression is selected, so
 
 ```math
-\frac{R_D}{Q_D}=\frac{K\ell+n^4}{K+n^4}
- =1+\frac{\ell-1}{1+n^4/K}.
+\frac{R_D}{Q_D}=\frac{K\ell+n^3}{K+n^3}
+ =1+\frac{\ell-1}{1+n^3/K}.
 ```
 
-If $`K\ell=O(n^4)`$, $`R_D\le K\ell+n^4=O(n^4)\le O(Q_D)`$,
+If $`K\ell=O(n^3)`$, $`R_D\le K\ell+n^3=O(n^3)\le O(Q_D)`$,
 so no divergent gain is implied. At fixed accuracy the original B
-expression is $`\Theta(n^3)`$, while the new B expression is
-$`\Theta(n^4)`$. These are comparisons of displayed upper expressions,
+expression is $`\Theta(n^2)`$, while the new B expression is
+$`\Theta(n^3)`$. These are comparisons of displayed upper expressions,
 not lower bounds, optimal schedules, or a minimum over all new choices:
 with additional banks schedule A can improve depth at its separate
 T-count cost.
 
-For example, take $`K=n^4`$ and the common B pool. Then $`P=K`$,
-the new depth expression is $`\Theta(n^4)`$, and the original one is
-$`\Theta(n^4\ell)`$. Both simultaneous T-count expressions have
-leading order $`\sqrt{NK}=n^2\sqrt N`$, with Clifford bound
-$`O(Nn^4)`$. Thus the available depth expression can improve even when
+For example, take $`K=n^3`$ and the common B pool. Then $`P=K`$,
+the new depth expression is $`\Theta(n^3)`$, and the original one is
+$`\Theta(n^3\ell)`$. Both simultaneous T-count expressions have
+leading order $`\sqrt{NK}=n^{3/2}\sqrt N`$, with Clifford bound
+$`O(Nn^3)`$. Thus the available depth expression can improve even when
 the T-count orders coincide. Independent hidden constants prevent this
 asymptotic comparison from locating a finite crossover.
 

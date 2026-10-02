@@ -44,7 +44,7 @@ theorem by numerical extrapolation.
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_t_depth.py`](test_t_depth.py) | Literal shared-control Fredkin batches, four disjoint T layers, and native dirty-bank queries with exact return |
-| [`test_parallel_dirty_lookup.py`](test_parallel_dirty_lookup.py) | Exact bilinear dirty echoes, native phases, symbolic indicator return, reusable scratch, and disjoint parallel T layers |
+| [`test_parallel_dirty_lookup.py`](test_parallel_dirty_lookup.py) | Scratch-free routed indicators, actual-inverse orientation, literal phases, symbolic all-input return, complete native queries, and disjoint T layers |
 | [`test_tree_residual_structure.py`](test_tree_residual_structure.py) | Complete residual reconstruction from classical tree generators, complex coarse words, singular angles, and mixed transport errors |
 | [`test_tree_transport.py`](test_tree_transport.py) | Sparse transport and exact Gram identities, complete history-unitary columns, weighted subtree norms, and finite-order correction witnesses |
 | [`test_weighted_transport_block.py`](test_weighted_transport_block.py) | Weighted Gram obstruction, scalar recursion versus Schur solves, complete one-flag dilations and actual inverses, level packing and physical reindexing, and zero-defect behavior |

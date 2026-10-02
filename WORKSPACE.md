@@ -3,14 +3,18 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 coverage-consolidation pass starts from verified main
-`736c25500dbb01fc0b449aec1cf1fa0105837817`, after native residual
-QBP integration. Check later commits before continuing.
+The 2026-10-02 routed-indicator depth pass starts from verified main
+`1133cfa9cc66b082ef3f6c2cd42dfea47a68faf5`, after native residual
+QBP integration and coverage consolidation. Check later commits before
+continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
 raw coordinates, singular angles, and both complex-gradient streams.
-The prescribed complete-frame endpoint remains a separate open problem.
+The active scientific targets are the constant-clean complete-frame
+endpoint and optimal T-depth. Application-level advantage is outside the
+current research scope by the author's decision; retain the existing cost
+comparisons and classical baselines as boundaries, not a pending task.
 
 ## Mandate and reading order
 
@@ -20,8 +24,10 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Read the [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md) for
-   the current task, exact assumptions, resource table, proof map, and limits.
+1. Begin active depth work with the [depth proof](docs/T_DEPTH_COMPILER.md)
+   and [routed indicator](docs/PARALLEL_DIRTY_LOOKUP.md). The completed
+   [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md) supplies its
+   separate task contract, resource table, proof map, and limits.
 2. Use the [cost comparison](docs/QBP_COST_COMPARISON.md) and
    [bounded-input audit](docs/BOUNDED_INPUT_QBP.md) for precision regimes,
    classical construction, and explicit Pauli baselines. The
@@ -76,7 +82,7 @@ improve. Explicit Pauli inputs also admit deterministic classical gradients
 and term-only classical sampling. These results establish a task-specific
 compiler improvement, not a general end-to-end gradient speedup.
 
-## Completed state-based depth pass
+## Current depth frontier
 
 The [state-based depth theorem](docs/STATE_QBP_DEPTH.md) closes the selected
 composition audit for both real and gauge-fixed complex Hopf QBP. Put
@@ -85,7 +91,7 @@ $`B_0=P+n+7`$. With the same two compiler flags, its schedules give:
 | Dirty reservation | Compiler T-depth | Compiler T-count |
 |---|---|---|
 | $`b\ge2B_0`$ | $`O(NP/b+P+n^3)`$ | $`O(NP)`$ |
-| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^4)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ |
+| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^3)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ |
 
 Both have $`G=O(NP)`$ and charge the actual coarse C, its inverse in
 magnitude readout, the fine residual table, occupied flags, predicates,
@@ -97,11 +103,31 @@ upper expression even where the original and state T-count orders agree.
 The original real schedules and eligible complex alternatives remain
 in that comparison.
 
-This completes the bounded pass using existing exact lookup and source
-identities; no new circuit primitive or large simulation was needed.
-These are upper schedules, not matching T-depth tradeoffs or total-runtime
-claims. The source programs still run serially. Source parallelization
-and depth lower bounds remain separate questions.
+The routed-indicator refinement conjugates a single X by the existing
+exact bank router. Its one-hot XOR uses no extra scratch and has linear,
+rather than quadratic, address T-depth. This improves the state B bound
+from $`O(P+n^4)`$ to $`O(P+n^3)`$ at the same sufficient reservation.
+The complete real-frame schedules also use the established two-dirty-helper
+MCX construction while query storage is idle. They now give
+
+```math
+D_T=O\!\left(\frac{NL}{b}
++\min\{nL+n^2,L\ell_*(n)+n^3\}\right),\qquad T,G=O(NL),
+```
+
+at $`b\ge2(L+n+7)`$. With the stronger sufficient pool
+$`b\ge C(L+n+7+\sqrt{NL})`$, the same minimum depth expression
+holds without the $`NL/b`$ term and with the sharper count
+$`T=O(\sqrt{NL}+L\ell_*(n))`$. At fixed L this is
+$`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ in one circuit, improving the
+previous cubic depth bound. Literal routed-indicator/query checks include
+arbitrary dirty inputs, exact phases, and the actual inverse orientation.
+
+These remain upper schedules. No source parallelization or matching
+T-depth lower bound follows, and the selected $`b=N+n+7,L=N`$
+complete-frame endpoint is unchanged. Future depth work should target
+one remaining source/scheduling term or a lower-bound mechanism before
+expanding finite fixtures.
 
 ## Completed native residual components
 
@@ -143,9 +169,8 @@ software extensions below are not prerequisites for the stated theorem.
 | Certified bounded-input front end | Optional software: admitted Hopf inputs to an actual coarse word and certified residual data. The bounded-input proof already supplies construction and output bounds with its explicit small-system exception |
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
-| End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
+| Optimal T-depth | Remains open after the routed-indicator improvement; serial source depth and weak lower bounds are the main unresolved directions |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.

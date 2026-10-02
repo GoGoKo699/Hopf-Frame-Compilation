@@ -147,7 +147,7 @@ and $`b\ge2(L+n+7)`$ dirty qubits to obtain
 the better of its layerwise and grouped bounds,
 
 ```math
-D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\}),
+D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\}),
 ```
 
 with $`T,G=O(NL)`$ for real frames.
@@ -158,10 +158,10 @@ With a larger sufficient allocation
 $`b\ge C(L+n+7+\sqrt{NL})`$, the
 [parallel dirty-lookup construction](docs/PARALLEL_DIRTY_LOOKUP.md) instead
 retains $`T=O(\sqrt{NL}+L\ell_*(n))`$ while attaining
-$`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$ in the same circuit.
+$`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same circuit.
 At fixed accuracy, two clean and sufficiently large
 $`\Theta(\sqrt N)`$ dirty workspace give count-optimal
-$`O(\sqrt N)`$ T gates with $`O(n^3)`$ T-depth.
+$`O(\sqrt N)`$ T gates with $`O(n^2)`$ T-depth.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 

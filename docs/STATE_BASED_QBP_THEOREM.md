@@ -205,7 +205,7 @@ coarse preparation and the additional inverse in magnitude readout:
 | Sufficient dirty work | Compiler T-count | Compiler T-depth |
 |---|---|---|
 | $`b\ge2B_0`$ | $`O(NP)`$ | $`O(NP/b+P+n^3)`$ |
-| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(P+n^4)`$ |
+| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ | $`O(P+n^3)`$ |
 
 Both have $`G=O(NP)`$, two compiler flags, and the unchanged state/error
 contract. The first row deliberately permits a higher T-count. Oracle

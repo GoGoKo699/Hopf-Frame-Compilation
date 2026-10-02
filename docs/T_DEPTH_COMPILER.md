@@ -32,7 +32,7 @@ Hopf frame has a coherent Clifford+T compiler with
 ```
 
 ```math
-D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^4\right),
+D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^3\right),
 \qquad T=O(NL),\qquad G=O(NL).
 ```
 
@@ -188,6 +188,32 @@ Their bank pool can be reused between queries.
 
 ## 3. Composition with the grouped full-frame compiler
 
+### Returned helpers for logarithmic-depth predicates
+
+Khattar and Gidney, *Rise of conditionally clean ancillae for optimizing
+quantum circuits*, [arXiv:2407.17966v1, Section 5.4](https://arxiv.org/html/2407.17966v1#S5.SS4),
+give an exact k-controlled X with two arbitrary dirty helpers,
+$`O(k)`$ Toffolis, and $`O(\log(k+1))`$ Toffoli depth.
+Use literal exact Clifford+T decompositions of its Toffolis, including
+their actual inverses. This gives the same asymptotic T-count, Clifford
+count, and T-depth without measurements or relative-phase substitutions.
+Negative controls add only X gates; an exact multiple-controlled Z is
+obtained by conjugating one target with Hadamards.
+
+The two helpers come from the extra dirty pool $`b-B_0\geq B_0`$,
+not from either initialized compiler flag. Predicates, reflections, and
+selected local-word operations occur between completed queries. At
+these times the word banks and any indicator registers have returned
+exactly and are idle. Two distinct pool wires are therefore available,
+disjoint from all logical, label, flag, and suffix controls and from the
+predicate target. Every such predicate returns both helpers before the
+next query, source, or local-word operation. No pool wire is borrowed
+while it holds a live query value. The equality is on arbitrary helper
+inputs, so previous approximation leakage and reference correlations
+do not invalidate this reuse.
+
+### Group schedule
+
 Use exactly the partition, coefficient tables, coarse circuits, and
 precision choices of the [conditional-suffix construction](CONDITIONAL_SUFFIX_COMPILER.md).
 For a group of height s and ending depth e, set $`r=n-e`$. Its
@@ -223,28 +249,41 @@ output width. Summing its query-depth terms within one group gives
 O\!\left(\frac{s2^e}{b}+s^2(n+1)\right).
 ```
 
-For an explicit conservative bound on the remaining schedule, unroll
-every selected marker predicate and Hadamard sweep. Borrowed multiple
-controls on at most $`O(n)`$ wires have the existing $`O(n^2)`$
-Toffoli construction. Allowing $`O(n^3)`$ sequential elementary
-non-Clifford work for each of the $`O(s)`$ atom types costs
-$`O(sn^3)`$ per group. This allowance also covers the controlled
-Clifford sweeps and their label decoding. Even charging an
-$`O(n^2)`$ predicate allowance separately for each of the
-$`O(s^2)`$ streamed coarse symbols costs $`O(s^2n^2)`$.
-These intentionally loose schedules require only the existing returned
-dirty helpers and private flags; they introduce no parallel clean work.
+For the selected atoms, unroll the $`O(s)`$ possible column types.
+A fixed type is selected by equality tests on the unchanged term label,
+together with its mode and direction. Its marker condition is either an
+all-zero local word or one specified local bit followed by a zero suffix.
+The corresponding atom-flag toggle needs a constant number of conjunction
+tests on $`O(n)`$ wires. For a negated marker, toggle on the selected
+type and then on the selected type together with the positive marker.
+The new predicate circuit gives $`O(\log(n+1))`$ T-depth for these
+tests. Decode a type into an existing private temporary bit, apply its
+at most s controlled Hadamards and one controlled X serially, and erase
+the type bit. The decoding address is unchanged. Retain the existing
+h/mode controls on every consumed operation, so the completed word is
+exactly identity on inactive sectors. Each native Hadamard has only a
+fixed number of these controls and therefore constant native cost by
+the conditional-suffix construction's bounded-control lemma.
+This gives $`O(s^2+s\log(n+1))`$ atom T-depth per group, including
+reverse atoms through their actual inverses. No additional clean bit or
+parallel controlled-Clifford theorem is required.
 
-The suffix tests and amplification reflections each cost $`O(n^2)`$
-T-depth by their already specified exact circuits. Since
+The streamed coarse alphabet has constant size. Its interpretation has
+bounded controls, and its selected suffix tests use the same two returned
+helpers. Even charging one fresh conjunction test and its inverse for
+each of the $`O(s^2)`$ symbols costs only
+$`O(s^2\log(n+1))`$ T-depth. Suffix tests and amplification reflections
+outside these streams cost $`O(\log(n+1))`$ each. Since
 
 ```math
 \sum_gs_g\leq n,\qquad
 \sum_gs_g^2\leq n^2,\qquad R\leq n,
 ```
 
-all the conservative scheduling overhead above is $`O(n^4)`$ in
-total. A smaller polynomial may be possible; none is required here.
+the atom work is $`O(n^2)`$ in total, and the streamed predicate work
+is $`O(n^2\log(n+1))`$. Both fit $`O(n^3)`$. The
+$`O(s^2(n+1))`$ coarse-query routing allowance also sums to
+$`O(n^3)`$, and is retained explicitly rather than claimed optimal.
 
 The weighted table sum proved in the grouped compiler is
 
@@ -258,12 +297,14 @@ Also $`\sum_gs_g2^{e_g}=O(N)`$ and
 $`\sum_gm_g=O(L\ell_*(n)+nR)`$. Thus the grouped part has
 
 ```math
-D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^4\right).
+D_T=O\!\left(\frac{NL}{b}+L\ell_*(n)+n^3\right).
 ```
 
 The fixed number of deepest reserved layers uses the old operator-source
 blocks with the same depth-optimized banks. Their contribution is
-$`O(NL/b+L+n^3)`$. When n is below the fixed grouping threshold,
+$`O(NL/b+L+n)`$. Each such layer has a constant number of queries
+and predicates, source width $`O(L+1)`$, and logarithmic routing at
+most $`O(n)`$. When n is below the fixed grouping threshold,
 using that original compiler for every layer has the asserted form,
 with constants depending only on the fixed threshold.
 
@@ -288,17 +329,22 @@ For comparison, applying only the depth-optimized queries to the older
 layer-by-layer compiler gives the explicit upper schedule
 
 ```math
-D_T=O\!\left(\frac{NL}{b}+nL+n^3\right),
+D_T=O\!\left(\frac{NL}{b}+nL+n^2\right),
 \qquad T,G=O(NL),\qquad b\geq2B_0.
 ```
 
-Here the source is paid at all n depths. Either schedule may be used;
-the displayed polynomial allowances are not optimal leading constants.
+Here the source is paid at all n depths: the widths
+$`m_d=L+n-d+4`$ sum to $`O(nL+n^2)`$. The constant number of
+queries per depth contributes $`O(NL/b+n^2)`$, and the constant
+number of suffix tests contributes $`O(n\log(n+1))`$ using the
+same idle-pool helper allocation. The two initialized-flag reflections
+have constant depth. Either schedule may be used; these are upper
+schedules, not optimal leading constants.
 Choosing the better one gives the immediate scheduling corollary
 
 ```math
 D_T=O\!\left(\frac{NL}{b}
-+\min\{nL+n^3,\;L\ell_*(n)+n^4\}\right),
++\min\{nL+n^2,\;L\ell_*(n)+n^3\}\right),
 \qquad T,G=O(NL),\qquad b\geq2B_0.
 ```
 
@@ -336,12 +382,12 @@ T-depth lower bound. Its serial schedule is an upper bound for one
 implementation.
 
 At fixed accuracy, with $`L=O(1)`$ and $`b=\Theta(N)`$, the older
-layer schedule with depth-optimized banks gives $`D_T=O(n^3)`$ with two clean qubits,
+layer schedule with depth-optimized banks gives $`D_T=O(n^2)`$ with two clean qubits,
 while the worst-case T-count remains at least $`\Omega(\sqrt N)`$.
 This illustrates the difference between count and depth; it does not
 make the polynomial T-depth optimal.
 The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) now achieves
-$`T=O(\sqrt N)`$ and $`D_T=O(n^3)`$ together already with sufficiently
+$`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ together already with sufficiently
 large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. It leaves
 the depth lower-bound gap open.
 
@@ -361,6 +407,8 @@ The shared-control routing and SelectSwap depth mechanism have primary
 precedent in Low, Kliuchnikov, and Schaeffer, cited above. This chapter
 supplies an explicit schedule for that mechanism and its composition
 with the repository's complete real-frame compiler, including the
-two-clean workspace and dirty/reference return contracts. No claim of
+two-clean workspace and dirty/reference return contracts. The sharper
+predicate schedule uses Khattar and Gidney's existing two-dirty-helper
+construction, with the query-pool lifetime checked above. No claim of
 a new general lookup primitive, optimal T-depth, or optimal total
 elementary depth is made.
