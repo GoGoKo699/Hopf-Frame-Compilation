@@ -111,7 +111,7 @@ $`q_j(t)=\lfloor h_j(t)/3\rfloor`$. Every lower-column compressor
 introduces one bit at column j, giving the exact recurrence
 
 ```math
-h_j(t+1)=h_j(t)-2q_j(t)+\sum_{i<j}q_i(t),\qquad h_j(0)=k.
+h_j(t+1)=h_j(t)-2q_j(t)+\sum_{i\lt j}q_i(t),\qquad h_j(0)=k.
 ```
 
 The schedule and all fresh reservations depend only on these integer
@@ -120,7 +120,7 @@ Then $`q_j\le e_j`$ and
 $`\max\{h_j-2q_j-2,0\}\le e_j/3`$, so
 
 ```math
-e_j(t+1)\le\frac{e_j(t)}3+\sum_{i<j}q_i(t).
+e_j(t+1)\le\frac{e_j(t)}3+\sum_{i\lt j}q_i(t).
 ```
 
 For $`\Phi(t)=\sum_{j=0}^{m-1}4^{-j}e_j(t)`$, summing the
@@ -128,7 +128,7 @@ geometric tails gives
 
 ```math
 \Phi(t+1)\le\frac{\Phi(t)}3+
-\sum_i q_i(t)\sum_{j>i}4^{-j}
+\sum_i q_i(t)\sum_{j\gt i}4^{-j}
 \le\frac23\Phi(t).
 ```
 
@@ -141,7 +141,7 @@ For the total count, let C_j be the number of compressors ever applied
 at column j. Nonnegative final heights imply
 
 ```math
-2C_j\le k+\sum_{i<j}C_i,\qquad
+2C_j\le k+\sum_{i\lt j}C_i,\qquad
 C_j\le\frac{k}{2}(3/2)^j.
 ```
 
