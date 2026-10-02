@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 source-precision pass starts from verified main
-`018b22f8e95162a273f4da0510550a1373a00241`, after the matching
-modest-width depth theorem. Check later commits before
+The 2026-10-02 variable-accuracy pass starts from verified main
+`9f615567fd1799aa7ddeaff7569a61b75f78c02e`, after the capped
+source-precision refinement. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -67,7 +67,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | State-based real and complex QBP | Two compiler flags, fine state preparation, an exact-return coarse word, and corrected magnitude/phase decoders; [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) |
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
-| Fixed-accuracy complete-frame T-depth | Matching count and depth in the same circuit at modest dirty width; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
+| Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
 | Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
@@ -90,16 +90,29 @@ compiler improvement, not a general end-to-end gradient speedup.
 
 The selected next-step recommendations were accepted: retain optimal-order
 T-count in the same circuit, and treat a logarithmic depth gap as a useful
-bounded milestone. The [amortized indicator proof](docs/AMORTIZED_DIRTY_LOOKUP.md)
-now closes that gap for prescribed complete real frames at fixed L. With two
-clean flags and $`b\ge17(L+n+7)`$, one circuit has
+bounded milestone. The subsequent revision selected the variable-accuracy
+extension before another large-workspace routing attempt. That extension
+is now complete. The [amortized indicator proof](docs/AMORTIZED_DIRTY_LOOKUP.md)
+gives, for every $`L\ge6`$, two clean flags, and
+$`b\ge17(L+n+7)`$, one prescribed complete real-frame circuit with
 
 ```math
-T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
-D_T=O\!\left(N/b^2+n^2\right).
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
 ```
 
-At $`b=\Theta(n)`$ above that threshold, one circuit has optimal-order
+When nonempty, the range
+$`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$ has simultaneous
+optimal-order $`T^\star=\Theta(NL/b)`$ and
+$`D_T^\star=\Theta(NL/b^2)`$. For $`L=\Theta(n)`$, or
+inverse-polynomial error in N, sufficiently large $`b=\Theta(n)`$
+gives $`T^\star=\Theta(N)`$ and $`D_T^\star=\Theta(N/n)`$.
+Outside the matching range, retain the $`nL`$ term and compare the
+older grouped schedules before claiming count optimality.
+
+At fixed L, the previous $`T=O(\sqrt N+N/b)`$ and
+$`D_T=O(N/b^2+n^2)`$ bounds remain. For sufficiently large
+$`b=\Theta(n)`$ above the threshold, one circuit has optimal-order
 $`T=\Theta(N/n)`$ and $`D_T=\Theta(N/n^2)`$.
 The matching depth tradeoff $`D_T^\star=\Theta(N/b^2)`$ holds throughout
 $`17(L+n+7)\le b\le\sqrt N/n`$ when this interval is nonempty.
@@ -115,8 +128,9 @@ the full error guarantee using the sharper local isometry constant.
 The total assigned precision is within $`5n`$ bits of the optimum under
 that additive error certificate; this is not a frame-depth lower bound.
 Large-workspace depth still has the additive $`n^2`$ routing contribution.
-The following general-precision and state schedules retain
-their separate contracts; this pass does not extend the new bound to them.
+The older general-precision schedules below remain useful where their
+source or workspace costs are sharper. The separate state-based and
+complex-frame schedules retain their existing contracts and bounds.
 
 The [state-based depth theorem](docs/STATE_QBP_DEPTH.md) closes the selected
 composition audit for both real and gauge-fixed complex Hopf QBP. Put
@@ -164,8 +178,9 @@ not the asymptotic Hopf bounds. It is not a lower bound for arbitrary
 Clifford interlayers, controlled sources, or approximate replacement sources.
 The [current literature audit](docs/RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
 records why shallow clean-workspace synthesis and supplied catalysts do not
-directly replace the dirty source. Large-width and general-precision T-depth
-optimality and the selected $`b=N+n+7,L=N`$ complete-frame endpoint remain open. Obtaining sublinear
+directly replace the dirty source. Large-width depth, precision regimes
+outside the proved matching window, and the selected $`b=N+n+7,L=N`$
+complete-frame endpoint remain open. Obtaining sublinear
 depth for these exact uncontrolled sources requires leaving the certified
 architecture or changing the target. Do not repeat tail rescheduling or
 denominator checks as an unrestricted lower bound.
@@ -211,7 +226,7 @@ software extensions below are not prerequisites for the stated theorem.
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Optimal T-depth | Fixed-accuracy depth is matching for $`17(L+n+7)\le b\le\sqrt N/n`$; the large-width $`n^2`$ upper floor and general precision remain unresolved |
+| Optimal T-depth | Count and depth match for $`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$, plus the retained fixed-L interval $`b\le\sqrt N/n`$; large-width depth and precision outside these ranges remain unresolved |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
@@ -221,7 +236,8 @@ future pass at the coverage map: specify either a concrete Hopf-QBP
 input/output requirement and its missing interface, or a new scientific
 claim and its proof obligation. A general compiler is not required to
 close this selected Hopf-QBP task.
-The guarded-batch logarithm is now amortized; do not repeat that task.
+The guarded-batch logarithm is now amortized, and the variable-accuracy
+composition is complete; do not repeat either task.
 The next bounded depth target is fixed accuracy at sufficiently large
 $`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
 Its available depth bounds are still $`\Omega(1)`$ and $`O(n^2)`$.

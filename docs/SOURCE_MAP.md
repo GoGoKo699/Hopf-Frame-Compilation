@@ -198,12 +198,16 @@ The [amortized dirty-lookup theorem](AMORTIZED_DIRTY_LOOKUP.md) combines
 F2/F8's dirty traversal and echo with the controlled-linear and commuting
 operator techniques represented by F29/F30. Its explicit multiplexed-shear
 identity moves the low-address indicator outside the chunk loop.
-For fixed L, two clean
-qubits and $`b\ge17(L+n+7)`$ give one complete real-frame circuit with
-$`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
-$`D_T=O(N/b^2+n^2)`$. Count is optimal in order; depth is matching
-for $`17(L+n+7)\le b\le\sqrt N/n`$. Large-width depth and generic
-lookup priority are not claimed. The [earlier batched proof](BATCHED_DIRTY_LOOKUP.md)
+For every $`L\ge6`$, two clean qubits and $`b\ge17(L+n+7)`$ give
+one complete real-frame circuit with $`T=O(\sqrt{NL}+NL/b+nL)`$,
+$`G=O(NL)`$, and $`D_T=O(NL/b^2+nL+n^2)`$. Both count and depth
+are matching when $`b\le\sqrt{NL/(nL+n^2)}`$ above that threshold.
+This includes inverse-polynomial error in N at sufficient
+$`b=\Theta(n)`$; the earlier fixed-L interval $`b\le\sqrt N/n`$
+is retained. The accuracy extension composes the existing arbitrary-width
+query lemma and layer error bounds; it introduces no new native primitive.
+Large-width depth and generic lookup priority are not claimed.
+The [earlier batched proof](BATCHED_DIRTY_LOOKUP.md)
 supplies the allocation argument and a separately guarded fallback.
 
 The [exact source-depth certificate](SOURCE_T_DEPTH.md) specializes F27

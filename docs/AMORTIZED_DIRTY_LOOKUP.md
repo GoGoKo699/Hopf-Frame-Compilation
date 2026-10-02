@@ -1,4 +1,4 @@
-# Amortized dirty lookup and a matching fixed-accuracy depth range
+# Amortized dirty lookup and matching T-depth ranges
 
 [Batched construction](BATCHED_DIRTY_LOOKUP.md) · [Depth model and routing](T_DEPTH_COMPILER.md) · [Complete-frame source](OPERATOR_SOURCE_COMPILER.md)
 
@@ -9,8 +9,8 @@ The existing two-pass dirty traversal selects that map with constant
 T-depth per chunk. This removes both logarithms that were previously
 paid for every guarded batch.
 
-**Fixed-accuracy theorem.** Let $`n\ge1`$, $`N=2^n`$, and fix
-$`0\lt\eta\le1/64`$ independently of n. Set
+**Variable-accuracy theorem.** Let $`n\ge1`$, $`N=2^n`$, and
+$`0\lt\eta\le1/64`$. Set
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and $`B_0=L+n+7`$.
 For every $`b\ge17B_0`$, the prescribed complete real Hopf frame has
 a coherent Clifford+T implementation using two initialized compiler
@@ -21,8 +21,8 @@ flags and at most b arbitrary dirty qubits, satisfying
 ```
 
 ```math
-T=O\!\left(\sqrt N+\frac Nb\right),\qquad G=O(N),\qquad
-D_T=O\!\left(\frac N{b^2}+n^2\right).
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
 ```
 
 These bounds hold on the same circuit. The norm includes initialized
@@ -31,20 +31,21 @@ Every coherent query and actual inverse is implemented and charged.
 There are no measurements, resets, initialized indicators, supplied
 catalysts, or quantum memory oracles.
 
-The T-count has the optimal worst-case order throughout this sufficient
-width range. When the interval is nonempty, the T-depth also has the
-optimal worst-case order for
+When the following interval is nonempty, the count and depth both have
+the optimal worst-case order:
 
 ```math
-17B_0\le b\le\frac{\sqrt N}{n}.
+17B_0\le b\le\sqrt{\frac{NL}{nL+n^2}},\qquad
+T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
 ```
 
-The $`n^2`$ term leaves the large-workspace depth question open. The
-[capped precision allocation](#capping-the-source-precision) below reduces
-the accumulated source depth to $`O(n\log(n+1))`$ at fixed accuracy;
-the retained query routing still contributes $`O(n^2)`$. This
-is a fixed-accuracy complete-frame theorem, and does not resolve the
-high-precision constant-clean endpoint. T-depth permits arbitrary
+At fixed L, the separate [fixed-accuracy corollary](#fixed-accuracy-corollary)
+retains $`T=O(\sqrt N+N/b)`$ throughout $`b\ge17B_0`$ and matching
+depth on the original literal interval $`b\le\sqrt N/n`$. The
+[capped precision allocation](#capping-the-source-precision) gives
+accumulated source depth $`O(nL+n\log(n+1))`$; the retained query
+routing contributes $`O(n^2)`$. Large-workspace optimal depth and the
+high-precision constant-clean endpoint remain open. T-depth permits arbitrary
 Clifford circuits between T layers; their elementary depth is not
 bounded by this theorem, and their gate count remains included in G.
 The earlier batched construction remains a valid separate proof.
@@ -327,99 +328,17 @@ D_{T,\rm query}=O\!\left(\log_2(Q+1)+\frac{Qm}{B^2}\right).
 
 When Q=1, the sole row may instead be emitted directly as an X word,
 with zero T-count and T-depth, $`O(m)`$ Clifford gates, and no work.
-The query lemma allows arbitrary m. Its complete-frame application
-below is restricted to fixed accuracy.
+The query lemma allows arbitrary m. The complete-frame application below
+uses that freedom for a precision-dependent output word.
 
 ## 5. Complete-frame composition and the matching range
 
-Retain the layerwise two-flag compiler's source words, coefficient
-tables, suffix echo, amplification, and error allocation. At depth
-$`d=0,\ldots,n-1`$, its fixed number of whole-word queries have
-
-```math
-Q_d=2^{d+2},\qquad r_d=d+2,\qquad m_d=L+n-d+4.
-```
-
-The old source core, dirty selectors, and separate dirty suffix control
-occupy $`B_0=m_d+r_d+1=L+n+7`$ wires. Reserve this entire base,
-even where the new query leaves some old selectors unused. The two
-initialized flags are separate. Since
-
-```math
-B=b-B_0\ge16B_0=16(m_d+r_d+1),
-```
-
-all new banks, indicators, and traversal selectors fit outside the
-occupied base. The same extra pool is reused after each completed query.
-Between queries, two returned extra-pool wires supply the
-[logarithmic-depth suffix predicates](T_DEPTH_COMPILER.md#returned-helpers-for-logarithmic-depth-predicates).
-No source or predicate borrows a live register from an incomplete query.
-
-Every query replacement has exactly the same all-input unitary. Hence
-the complete-input approximation proof, actual-inverse amplification,
-and full dirty-work return are unchanged. The original layer errors
-telescope to less than $`2^{-L}\le\eta`$; no intermediate good-block
-projection, reset, or initialized history is introduced.
-
-The established geometric sums are
-
-```math
-\sum_dQ_dm_d=O(NL),\qquad
-\sum_d\sqrt{Q_dm_d}=O(\sqrt{NL}),\qquad
-\sum_dm_d=O(nL+n^2).
-```
-
-With this original precision allocation, the sources contribute
-$`O(n^2)`$ count and serial depth at fixed L. The cap below reduces
-this contribution while preserving all the displayed total bounds.
-Suffix predicates have $`O(n^2)`$ total count and
-$`O(n\log(n+1))`$ depth; the two-flag reflections have constant cost
-per use. These counts are absorbed into $`O(\sqrt N)`$ T gates and
-$`O(N)`$ Clifford gates. Since $`B=\Theta(b)`$, the query lemma gives
-
-```math
-T=O\!\left(\sqrt N+\frac Nb\right),\qquad G=O(N),
-```
-
-```math
-\begin{aligned}
-D_T
-&=O\!\left(\sum_d\log_2(Q_d+1)
-+\frac1{B^2}\sum_dQ_dm_d+n^2\right)\\
-&=O\!\left(n^2+\frac N{b^2}\right).
-\end{aligned}
-```
-
-The bank cap prevents excess available workspace from worsening the
-T-count. There is no upper restriction on b for these upper bounds.
-
-For the lower-bound comparison, physical width $`q=n+2+b`$ is
-$`\Theta(b)`$. The retained worst-case complete-frame count bound is
-$`T^\star=\Omega(\sqrt N+N/b)`$. Every T layer uses at most q
-T gates, so in the unrestricted T-depth model it implies
-
-```math
-D_T^\star=\Omega\!\left(\frac{\sqrt N}{b}+\frac N{b^2}\right).
-```
-
-If $`17B_0\le b\le\sqrt N/n`$, then $`n^2\le N/b^2`$ and
-$`\sqrt N/b\le N/b^2`$. The upper and lower bounds consequently
-match:
-
-```math
-T^\star=\Theta\!\left(\sqrt N+\frac Nb\right),\qquad
-D_T^\star=\Theta(N/b^2)
-\quad\text{in this range}.
-```
-
-The upper count and depth are achieved together. In particular,
-$`b=\Theta(n)`$ with a sufficiently large constant gives
-$`T^\star=\Theta(N/n)`$ and $`D_T^\star=\Theta(N/n^2)`$.
-For $`b=\Theta(\sqrt N)`$, the retained upper depth is
-$`O(n^2)`$ and the available lower bound is only constant. The
-restricted Majorana source certificate is not promoted to an
-unrestricted lower bound here. Variable-precision endpoint questions
-also remain separate.
+Use the layerwise two-flag compiler's certified coefficient encoding,
+native source, suffix echo, and actual-inverse amplification, with the
+capped precisions proved below. At depth $`d=0,\ldots,n-1`$, its
+fixed number of whole-word queries have $`Q_d=2^{d+2}`$ rows and
+address width $`r_d=d+2`$. All bounds in this section hold uniformly
+for $`L\ge6`$.
 
 ### Capping the source precision
 
@@ -481,16 +400,11 @@ Writing $`s=\min\{n,h\}`$, the unweighted sum is now exactly
 ```
 
 Thus the retained serial source words use
-$`O(nL+n\log(n+1))`$ T gates and T-depth. This precision lemma holds
-for all $`L\ge6`$; the complete count-and-depth theorem at the start of
-the chapter remains restricted to fixed L. At fixed L the source count
-is still absorbed into $`O(\sqrt N)`$. The cap does not change the
-headline bound $`D_T=O(N/b^2+n^2)`$: the retained routers still pay
-$`O(\log Q_d)`$ at each layer. For $`b=\Theta(\sqrt N)`$, their
-unoptimized routing ledger has order $`n^2`$, while the sources and
-suffix predicates now contribute only $`O(n\log(n+1))`$ each.
-This identifies the remaining quadratic contribution in this construction;
-it is not a lower bound for another lookup or frame circuit.
+$`O(nL+n\log(n+1))`$ T gates and T-depth. At fixed L, their depth
+is $`O(n\log(n+1))`$; the retained routers still pay
+$`O(\log Q_d)`$ at each layer, totaling $`O(n^2)`$. This identifies
+the remaining quadratic contribution in this construction; it is not a
+lower bound for another lookup or frame circuit.
 
 The allocation is also near-optimal for its particular additive error
 certificate. If arbitrary assigned precisions $`m_1,\ldots,m_n`$
@@ -508,6 +422,143 @@ inequality, including under those width caps. This is a budgeting result,
 not a lower bound on the actual accumulated error, joint source synthesis,
 or unrestricted T-depth. Changing the error analysis or circuit remains
 eligible to improve the full-frame bound.
+
+### Workspace and the simultaneous resource ledger
+
+Reserve the entire old base $`B_0=L+n+7`$, including the source core,
+old selectors, and separate dirty suffix control, even when some of its
+wires are unused. The two initialized flags are separate. The extra pool
+has size
+
+```math
+B=b-B_0\ge16B_0\ge16(\widetilde m_d+r_d+1).
+```
+
+Thus Section 4 supplies every query's banks, indicators, and traversal
+selectors outside the occupied base. Reuse the pool only after the
+completed query or its actual inverse. Between queries, two returned
+extra-pool wires supply the
+[logarithmic-depth suffix predicates](T_DEPTH_COMPILER.md#returned-helpers-for-logarithmic-depth-predicates).
+No source or predicate borrows a live register from an incomplete query.
+Each query implements the exact table unitary at its assigned precision
+on arbitrary inputs, so replacing its implementation changes neither
+the amplification identity nor the error estimate above.
+
+The weighted sums proved above and $`B=\Theta(b)`$ give total query
+T-count
+
+```math
+O\!\left(\sum_d\sqrt{Q_d\widetilde m_d}
++\sum_d\widetilde m_d
++\frac1B\sum_dQ_d\widetilde m_d\right)
+=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL+n\log(n+1)\right).
+```
+
+The sources have the same unweighted precision charge. Suffix predicates
+have $`O(n^2)`$ T-count and $`O(n\log(n+1))`$ T-depth; the two-flag
+reflections have constant cost per use. Since $`n^2=O(\sqrt N)`$ and
+$`L\ge6`$, all of these count terms except $`nL`$ are absorbed into
+$`O(\sqrt{NL})`$. The query Clifford count is
+$`O(\sum_dQ_d\widetilde m_d)=O(NL)`$; source, predicate, and reflection
+Cliffords also fit that bound. Consequently the same circuit has
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL).
+```
+
+For depth, Section 4 and the source and predicate schedules give
+
+```math
+\begin{aligned}
+D_T
+&=O\!\left(\sum_d\log_2(Q_d+1)
++\frac1{B^2}\sum_dQ_d\widetilde m_d
++nL+n\log(n+1)\right)\\
+&=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
+\end{aligned}
+```
+
+The bank cap prevents excess available workspace from worsening the
+T-count. There is no upper restriction on b for these upper bounds.
+The additive $`nL`$ is retained: count optimality is not asserted for
+every variable-precision allocation covered by the upper theorem.
+
+### Matching variable-precision window
+
+The [complete real-frame lower bound](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+is $`\Omega(\sqrt{NL}+L+NL/q)`$ for all $`L\ge6`$ and physical
+widths $`q=n+2+b`$. Its fixed-width packing proof first obtains the
+$`NL/q`$ term when $`q^2\le c_0NL`$; outside that range the inherited
+$`\sqrt{NL}`$ lower bound already dominates $`NL/q`$. Thus the
+combined bound has no additional precision or width restriction.
+Here $`q=\Theta(b)`$, and every T layer uses at most q T gates, so
+
+```math
+T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad
+D_T^\star=\Omega\!\left(\frac{\sqrt{NL}}b+\frac Lb
++\frac{NL}{b^2}\right).
+```
+
+These are worst-case bounds over the prescribed complete real frames;
+the depth lower bound permits arbitrary Clifford interlayers. Suppose
+
+```math
+17B_0\le b\le\sqrt{\frac{NL}{nL+n^2}}.
+```
+
+Then $`nL+n^2\le NL/b^2`$. Also $`b\le\sqrt{NL}`$, so
+$`\sqrt{NL}\le NL/b`$, and $`nL\le NL/b^2\le NL/b`$.
+The upper and lower bounds therefore give
+
+```math
+T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
+```
+
+The displayed upper count and depth are achieved together. There is no
+separate restriction $`L\le N/n^2`$ in this matching window: its depth
+condition already absorbs the extra source count. The window is a
+sufficient range and may be empty for a given n and L.
+
+### Fixed-accuracy corollary
+
+For fixed L, $`nL=O(\sqrt N)`$, and the same circuit has
+
+```math
+T=O\!\left(\sqrt N+\frac Nb\right),\qquad G=O(N),\qquad
+D_T=O\!\left(\frac N{b^2}+n^2\right)
+\quad(b\ge17B_0).
+```
+
+Its count has optimal worst-case order throughout that width range.
+Retain the original literal matching-depth interval separately:
+$`17B_0\le b\le\sqrt N/n`$ implies $`n^2\le N/b^2`$ and
+$`\sqrt N\le N/b`$. Hence the simultaneous worst-case orders there are
+$`T^\star=\Theta(N/b)`$ and $`D_T^\star=\Theta(N/b^2)`$.
+This corollary does not require inclusion in the displayed
+variable-precision window with its particular constants.
+
+### Inverse-polynomial accuracy at linear dirty width
+
+Fix $`\alpha\gt0`$ and take $`\eta=N^{-\alpha}`$ for sufficiently
+large n, so $`L=\Theta(n)`$. Choose $`b=\Theta(n)`$ with a sufficiently
+large constant to satisfy $`b\ge17B_0`$. Exponential growth of N then
+places this allocation in the matching window. The same complete-frame
+circuit has the simultaneous worst-case orders
+
+```math
+T^\star=\Theta(N),\qquad D_T^\star=\Theta(N/n),\qquad G=O(Nn).
+```
+
+More generally, for fixed c and $`6\le L\le cn`$, sufficiently large
+n and eligible $`b=\Theta(n)`$ give
+$`T^\star=\Theta(NL/n)`$ and $`D_T^\star=\Theta(NL/n^2)`$.
+These are prescribed complete real-frame results, with the same QBP
+substitution contract; no new state-only or complex-frame theorem is
+asserted. At large workspace the depth gap remains. In particular,
+the allocation $`L=N,b=L+n+7`$ does not meet this theorem's bank
+threshold, and the variable-accuracy extension does not resolve the
+high-precision constant-clean endpoint. The restricted Majorana source
+certificate is not promoted to an unrestricted depth lower bound.
 
 ## 6. Attribution and proof scope
 

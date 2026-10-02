@@ -66,7 +66,7 @@ with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The prescribed complete-frame
 endpoint and general T-depth frontier remain
 [active research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
-fixed-accuracy modest-width depth is now matching by the
+count and depth now match in explicit accuracy/workspace ranges by the
 [amortized construction](AMORTIZED_DIRTY_LOOKUP.md). The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
@@ -140,13 +140,19 @@ The [amortized lookup checks](../tests/test_amortized_dirty_lookup.py)
 audit controlled rectangular linear maps, two-pass dirty traversal,
 literal complete-query phases and inverses, all dirty-register return,
 and the emitted resource schedule. Their [analytic composition](AMORTIZED_DIRTY_LOOKUP.md)
-closes the fixed-accuracy modest-width depth gap while preserving
-optimal-order count. The full-frame theorem remains an analytic result;
+gives same-circuit bounds at every accuracy and matching count and depth
+in its stated workspace range, including inverse-polynomial error in N.
+The full-frame theorem remains an analytic result;
 the fixture emits only its small lookup components.
 An exact-rational budget check covers the capped source precisions,
 including ceiling boundaries, the complete-error margin, unchanged dirty
 reservation, source-count savings, and weighted query sums. It adds no
 new native fixture and does not certify a smaller total depth.
+The variable-accuracy resource check applies the literal power-of-two
+bank and indicator allocations, worst-rank native query ledgers, and
+full-frame sums, including high precision and the empty/nonempty matching
+window boundary. These are finite arithmetic checks of the analytic
+composition, not an emitted variable-size frame circuit.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)

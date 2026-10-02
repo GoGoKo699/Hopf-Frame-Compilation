@@ -247,6 +247,10 @@ occupied bank or indicator storage.
 The [amortized construction](AMORTIZED_DIRTY_LOOKUP.md) further reduces
 that fixed-accuracy depth to $`O(N/b^2+n^2)`$ at the same threshold,
 using returned dirty traversal selectors and one outer indicator echo.
+Its variable-accuracy composition gives
+$`D_T=O(NL/b^2+nL+n^2)`$ with
+$`T=O(\sqrt{NL}+NL/b+nL)`$ at that threshold; both resources match
+their lower bounds for $`b\le\sqrt{NL/(nL+n^2)}`$ when eligible.
 
 Parallel dirty indicators and the separation of selector parallelism from
 word-bank count have primary precedent in Low, Kliuchnikov, and Schaeffer,
