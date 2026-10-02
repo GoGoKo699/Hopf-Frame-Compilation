@@ -124,6 +124,18 @@ clean workspace or a prepared catalyst in the constructions audited
 We therefore have useful ingredients, but no complete argument closing
 either the general T-depth gap or the constant-clean frame endpoint.
 
+The [error-accumulation audit](HOPF_ERROR_ACCUMULATION.md) now rules out
+one proposed shortcut. Ideal angle perturbations obey a sharp square-sum
+bound, and their finite relative spectrum is independent of the base
+angles when each layer's error magnitudes agree. Independent nearest-grid
+rounding still requires a logarithmic precision budget. The literal
+shared-flag source stages instead admit a coherent linear-leakage family,
+so their full isometry errors cannot receive the same square-sum guarantee.
+These are restrictions of the specified error models, not a depth lower
+bound. A next circuit audit may test a flag-reflection composite, but it
+must control rejected-space evolution uniformly in the angle; a local
+near-zero cancellation would not improve the stated frontier.
+
 ### What this already gives Hopf QBP
 
 The synthesis target throughout is the prescribed Hopf tree frame; an

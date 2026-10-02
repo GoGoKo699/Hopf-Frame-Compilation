@@ -483,6 +483,14 @@ including dirty-work return. The pre-amplification word Q may have a
 rejected component. There is no source-state preparation or fresh
 initialization between calls.
 
+The [shared-flag error audit](HOPF_ERROR_ACCUMULATION.md#3-actual-source-layers-can-accumulate-leakage-linearly)
+shows why the accepted rotation alone does not determine composition
+error. A family of these literal amplified stages has local error at
+most $`4\Delta`$ and global error at least $`n\Delta/8`$, for
+$`\Delta\le(256n)^{-2}`$. A dimension-independent square-sum
+replacement for the full local errors is therefore invalid. This is
+not a lower bound on fixed-accuracy depth or a different source circuit.
+
 ## 6. Precision, workspace, and full-frame composition
 
 At depth $`d=0,\ldots,n-1`$, choose

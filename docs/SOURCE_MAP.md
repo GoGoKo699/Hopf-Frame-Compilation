@@ -198,6 +198,16 @@ is inherited.
 | R41 | bounded-input construction and classical comparison | [algebraic residual coefficients](RESIDUAL_TABLE_PREPROCESSING.md) use standard half-phase identities with one shared root, certified rational intervals, and a finite-radius cutoff to preserve R36/R39's error constants without Euler search; [bounded-input audit](BOUNDED_INPUT_QBP.md) combines F5 existence with coarse enumeration, explicit masks and instruction output to prove polynomial construction for the listed grouped/state alternatives; the banked small-system source uses $`P+13`$ dirty wires. Deterministic and term-sampled classical Pauli baselines are charged; no unconditional efficient fine-word search, generic Euler-runtime theorem, or end-to-end quantum advantage is claimed |
 | R42 | state-based QBP T-depth composition | [depth proof](STATE_QBP_DEPTH.md) composes R21/R23's exact schedules, inherited from F2, with R36/R39's constant number of residual rotations and the actual exact-return coarse interpreter; with $`B_0=P+n+7`$, $`b\ge2B_0`$ gives $`D_T=O(NP/b+P+n^3)`$, $`T,G=O(NP)`$, while $`b\ge16(B_0+\sqrt{NP})`$ gives one circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$, $`G=O(NP)`$, and $`D_T=O(P+n^3)`$; both real/complex task streams and oracle depth are charged; no new lookup primitive, depth optimality, total-runtime gain, or general emitter is claimed |
 
+The [Hopf error audit](HOPF_ERROR_ACCUMULATION.md) derives a sharp ideal-angle
+stability recurrence and an exact finite relative-spectrum recursion from
+the inherited nested frame supports H8, using standard block-matrix
+spectral algebra. A midpoint-grid corollary is restricted to independent
+nearest angular rounding. The audit also applies the existing scalar
+source and amplification identities to an explicit family with coherent
+linear leakage on reused flags. It does not import a general composition
+lower bound or claim an unrestricted frame-depth obstruction. Its finite
+fixtures use one common reduced source algebra, not a new native compiler.
+
 The [amortized dirty-lookup theorem](AMORTIZED_DIRTY_LOOKUP.md) combines
 F2/F8's dirty traversal and echo with F29/F30's controlled-linear and
 commuting-operator techniques. Its query interface is retained by the

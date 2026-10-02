@@ -436,6 +436,14 @@ not a lower bound on the actual accumulated error, joint source synthesis,
 or unrestricted T-depth. Changing the error analysis or circuit remains
 eligible to improve the full-frame bound.
 
+The [error-accumulation audit](HOPF_ERROR_ACCUMULATION.md) separates two
+possible changes. Exact Hopf angle errors have a sharp square-sum bound,
+but the present shared-flag source stages can accumulate actual leakage
+linearly. Their additive certificate has no uniform square-sum replacement.
+Independent nearest-grid angle rounding also retains a logarithmic
+precision requirement. Neither statement is a lower bound for this
+capped allocation or for unrestricted frame depth.
+
 ### Workspace and the simultaneous resource ledger
 
 Reserve the entire old base $`B_0=L+n+7`$, including the source core,

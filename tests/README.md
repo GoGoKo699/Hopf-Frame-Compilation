@@ -45,6 +45,7 @@ theorem by numerical extrapolation.
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_t_depth.py`](test_t_depth.py) | Literal shared-control Fredkin batches, four disjoint T layers, and native dirty-bank queries with exact return |
 | [`test_source_t_depth.py`](test_source_t_depth.py) | Exact geometric and paired-source depth certificates within the Majorana-layer architecture, paired native T layers, literal phases, and denominator witnesses |
+| [`test_hopf_error_accumulation.py`](test_hopf_error_accumulation.py) | Small ideal-frame relative spectra and coherent shared-flag leakage, using one common reduced source algebra and actual inverses; not an emitted native source word |
 | [`test_parallel_dirty_lookup.py`](test_parallel_dirty_lookup.py) | Scratch-free routed indicators, actual-inverse orientation, literal phases, symbolic all-input return, complete native queries, and disjoint T layers |
 | [`test_bilinear_dirty_lookup.py`](test_bilinear_dirty_lookup.py) | Rectangular bilinear basis changes, shared-target native phases, the two-indicator query echo, actual inverses, and arbitrary dirty-input return; uses existing routed indicators |
 | [`test_dirty_indicator_depth.py`](test_dirty_indicator_depth.py) | Exact emitted parity phases, two-layer dirty-helper Toffoli, complete six-wire indicator, actual inverses, and no extra helper |
