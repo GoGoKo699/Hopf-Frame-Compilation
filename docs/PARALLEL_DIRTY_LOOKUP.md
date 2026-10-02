@@ -235,7 +235,200 @@ The amplification, inverse, inactive-sector, and complete-input error
 proofs therefore carry over unchanged. The QBP bias and dirty-reference
 guarantees follow from the existing approximation theorem.
 
-## 5. Attribution and evidence
+## 5. A bilinear query reduction
+
+The following exact query removes the word-bank router by using two dirty
+indicators. Its depth remains conditional on the indicator implementation;
+the shallow indicator hypothesis stated below is **not established** by
+this chapter. The unconditional headline theorem is unchanged.
+
+### Exact bilinear oracle
+
+Split an r-bit address into a and b of lengths $`r_a+r_b=r`$.
+Put $`H=2^{r_a}`$, $`J=2^{r_b}`$, and
+$`Q=HJ`$. For an arbitrary m-bit table, let
+$`D_\ell\in\mathbb F_2^{H\times J}`$ contain output bit ell. Introduce
+dirty registers $`Y\in\mathbb F_2^H`$ and $`X\in\mathbb F_2^J`$,
+disjoint from the address and arbitrary query output Z. Define
+
+```math
+\mathcal B:(Y,X,Z)\longmapsto
+\left(Y,X,\left(Z_\ell\oplus Y^{\mathsf T}D_\ell X\right)_{\ell=1}^m\right).
+```
+
+This is an involution. For $`\rho_\ell=\mathrm{rank}(D_\ell)`$,
+binary row and column elimination gives invertible $`P_\ell,Q_\ell`$ with
+$`P_\ell D_\ell Q_\ell=J_{\rho_\ell}`$, where the rectangular matrix on the
+right has rho diagonal ones. For this output bit, change coordinates by
+
+```math
+Y'=P_\ell^{-\mathsf T}Y,\qquad X'=Q_\ell^{-1}X.
+```
+
+Then $`Y^{\mathsf T}D_\ell X=Y'^{\mathsf T}J_{\rho_\ell}X'`$.
+The middle operation consists of rho Toffolis with disjoint control pairs
+$`(Y'_i,X'_i)`$ and common target $`Z_\ell`$. Conjugating that target
+by a Hadamard makes them shared-control CCZ gates. The
+[four-layer phase-polynomial schedule](T_DEPTH_COMPILER.md#a-shared-control-fredkin-batch-has-at-most-four-t-layers)
+therefore implements them with T-depth at most four and T-count
+$`6\rho_\ell+(\rho_\ell\bmod2)`$, preserving literal phase. Undo
+both coordinate changes before proceeding to another output bit.
+
+Elimination and its actual inverse use
+$`O(\rho_\ell(H+J))=O(HJ)`$ elementary Clifford gates for each nonzero
+matrix. No auxiliary qubit is required. Thus, writing
+$`R=\sum_\ell\rho_\ell`$, a sequential schedule over the output bits has
+
+```math
+T(\mathcal B)\le6R+\sum_\ell(\rho_\ell\bmod2),\qquad
+D_T(\mathcal B)\le4m,\qquad G(\mathcal B)=O(Qm).
+```
+
+In particular, $`T(\mathcal B)=O(m\min(H,J))`$. Every completed
+output-bit operation restores Y and X, although its internal Clifford
+changes need not preserve them individually.
+
+### The two indicator echoes
+
+Let $`I_a:Y\mapsto Y\oplus e_a`$ and
+$`I_b:X\mapsto X\oplus e_b`$ be exact dirty indicators, preserving their
+addresses and returning all their own helpers. Execute the chronological
+sequence
+
+```math
+\mathcal B,\ I_a,\ \mathcal B^\dagger,\ I_b,\quad
+\mathcal B,\ I_a^\dagger,\ \mathcal B^\dagger,\ I_b^\dagger.
+```
+
+The four bilinear calls add, for each output bit,
+
+```math
+Y^{\mathsf T}D_\ell X
+\oplus(Y+e_a)^{\mathsf T}D_\ell X
+\oplus(Y+e_a)^{\mathsf T}D_\ell(X+e_b)
+\oplus Y^{\mathsf T}D_\ell(X+e_b)
+=D_\ell[a,b].
+```
+
+All of X, Y, and the indicator helpers return exactly. Use the actual
+reversed native word for every dagger. This computational-basis identity
+retains literal phase and hence holds for arbitrary inputs and reference
+correlations.
+
+The query uses four bilinear oracles, two a-indicators, and two
+b-indicators, counting actual inverses at the same cost. If $`w_a,w_b`$
+are their additional dirty helper widths, the live dirty width, excluding
+address and query output, is
+
+```math
+H+J+\max(w_a,w_b).
+```
+
+The common helper pool is reused only after a completed indicator. The
+bilinear oracle requires none of it. For each resource
+$`C\in\{T,G,D_T\}`$, the query has the explicit upper ledger
+$`4C(\mathcal B)+2C(I_a)+2C(I_b)`$. In particular its T-depth is at
+most $`16m+2D_T(I_a)+2D_T(I_b)`$. There is no remaining bank router.
+
+The routed indicators already proved in Section 1 make this an
+unconditional alternative query. For $`Q\ge m`$, choose H as the
+largest power of two at most $`\sqrt{Q/m}`$ and put $`J=Q/H`$.
+Then $`H\le J`$ and $`H+J+mH=O(\sqrt{Qm})`$, giving
+
+```math
+T=O(\sqrt{Qm}),\qquad G=O(Qm),\qquad
+D_T=O(m+\log(Q+1)),\qquad w=O(\sqrt{Qm}).
+```
+
+For $`Q\lt m`$, taking $`H=1,J=Q`$ instead gives T-count
+$`O(m+Q)=O(m)`$ and dirty width $`O(Q)`$. These bounds require no
+shallow-indicator hypothesis. They recover count efficiency but do not
+improve the existing full-frame depth order with the routed indicators.
+
+### Conditional hybrid with the layerwise frame compiler
+
+Suppose that, for every k, an exact all-input dirty indicator on
+$`S=2^k`$ outputs has T-count, elementary Clifford count, and additional
+dirty width each at most $`O(SP(k+1))`$, for a fixed nondecreasing
+polynomial $`P\ge1`$, and T-depth at most $`f(k)`$. The address must
+return unchanged and every helper must return exactly, including on
+reference-entangled inputs. This is the hypothesis, not an available
+shallow construction. The routed indicator of Section 1 satisfies the
+count and width conditions but has $`f(k)=O(k)`$.
+
+For $`r_a=\lfloor r/2\rfloor`$, $`r_b=\lceil r/2\rceil`$, the
+exact query just proved then has
+
+```math
+T=O\!\left(\sqrt Q\,[m+P(r+1)]\right),\qquad
+G=O\!\left(Qm+\sqrt Q\,P(r+1)\right),\qquad
+w=O\!\left(\sqrt Q\,P(r+1)\right),
+```
+
+and depth $`O(m+f(r_a)+f(r_b))`$. The polynomial overhead is acceptable
+on early frame layers even though it need not preserve the optimal
+standalone lookup count.
+
+To see this, fix L and use the
+[capped layer precisions](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+$`m_d\le M_n=L+4+\lceil\log_2(8n)\rceil=O(\log(n+1))`$.
+Put $`k=n-d`$, so
+$`Q_d=4N2^{-k}`$ and $`r_d=d+2\le n+1`$. Let
+$`A_n=M_n+P(n+2)`$ and choose
+
+```math
+k_0=\min\!\left\{n,\left\lceil2\log_2 A_n\right\rceil+C_0\right\}
+=O(\log(n+1)).
+```
+
+Use the double-bilinear query when $`k\gt k_0`$ and the established
+amortized query in the last $`k_0`$ layers. The fixed constant $`C_0`$
+is chosen to fit the available extra pool when $`b=c\sqrt N`$ for a
+fixed sufficient $`c\gt0`$. If the early set is nonempty, geometric
+summation gives
+
+```math
+\sum_{k>k_0}\sqrt{Q_d}\,A_n
+=O\!\left(\sqrt N\,A_n2^{-k_0/2}\right)=O(\sqrt N).
+```
+
+The same estimate bounds each early query's live width, so the old
+$`B_0=O(n)`$ base and the new helper pool fit simultaneously. Those
+layers have $`Q_d=O(N/A_n^2)`$. Their additional indicator Clifford
+cost is covered by the same sum, while the bilinear cost satisfies
+$`\sum_dQ_dm_d=O(N)`$. Thus the polynomial indicator overhead does
+not increase the complete Clifford bound. Late queries retain total
+$`T=O(\sqrt N)`$ and $`G=O(N)`$ from the existing schedule.
+
+Write $`F_n=\max_{0\le k\le n+1}f(k)`$. Early queries have total depth
+$`O(n[M_n+F_n])`$. Late query routing costs $`O(nk_0)`$, and their
+chunk-depth terms sum to $`O(N/b^2)=O(1)`$. All sources and suffix
+predicates together cost $`O(n\log(n+1))`$ depth and polynomial count.
+Consequently the stated indicator hypothesis would imply, on the same
+two-clean complete real-frame circuit at fixed accuracy,
+
+```math
+T=O(\sqrt N),\qquad G=O(N),\qquad
+D_T=O\!\left(n[F_n+\log(n+1)]\right),\qquad b=\Theta(\sqrt N).
+```
+
+In particular, an indicator with $`f(k)=O(\log(k+1))`$ would give
+$`D_T=O(n\log(n+1))`$ while retaining optimal-order T-count. Exact
+query replacement preserves the capped full-frame error and actual-inverse
+amplification. No such indicator, and no unconditional improvement to the
+headline depth, is claimed here.
+
+This is a specialization of the dirty-indicator and bilinear framework in
+[Low–Kliuchnikov–Schaeffer, Appendix C](https://arxiv.org/html/1812.00954v2),
+combined with the existing rank reduction and exact shared-control phase
+schedule. The local result is an explicit resource and all-input interface
+for a conditional Hopf composition, not a new generic bilinear principle.
+The [bounded bilinear checks](../tests/test_bilinear_dirty_lookup.py)
+verify rectangular basis orientation, literal phases, actual inverses,
+complete dirty return, and emitted resource counts using the existing
+routed indicators. They do not implement the shallow indicator hypothesis.
+
+## 6. Attribution and evidence
 
 The [partial-batch extension](BATCHED_DIRTY_LOOKUP.md) retains the same
 bank echo while reusing fewer indicator wires. At fixed accuracy it

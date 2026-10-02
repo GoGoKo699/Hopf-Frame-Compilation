@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 variable-accuracy pass starts from verified main
-`9f615567fd1799aa7ddeaff7569a61b75f78c02e`, after the capped
-source-precision refinement. Check later commits before
+The 2026-10-02 large-workspace routing pass starts from verified main
+`5829ed558a81b228a1cb3d2654179f6aebe35042`, after the matching
+variable-accuracy theorem. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -260,6 +260,28 @@ is a shallow exact dirty-indicator batch with a full live-width ledger.
 Polynomial overhead could be affordable on early layers, whose table sizes
 decay geometrically, while retaining the existing queries near the leaves;
 that hybrid remains conditional on the missing batch construction.
+
+The [bilinear query reduction](docs/PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
+now removes the word-bank router from this proposed route. Split a table
+address into two parts and allocate two arbitrary dirty indicator words.
+A rank-reduced bilinear map, interleaved with two calls to each indicator,
+extracts the selected table entry and returns all work exactly. With the
+current routed indicators, an asymmetric split retains count-efficient
+queries but still has linear address depth; it does not improve the
+unconditional frame bound.
+
+A sufficient new ingredient is an exact k-bit indicator with
+$`O(2^k\mathrm{poly}(k))`$ T gates, Clifford gates, and dirty
+width, and $`O(\log(k+2))`$ T-depth, with every helper returned on all
+inputs. The proved conditional composition would then give fixed-accuracy
+$`T=O(\sqrt N)`$, $`D_T=O(n\log(n+1))`$, and $`G=O(N)`$ at
+sufficient $`b=\Theta(\sqrt N)`$. Polynomial overhead on the early
+layers is absorbed by their geometrically smaller tables; retain the
+existing count-efficient queries on the last $`O(\log n)`$ layers.
+This is a sufficient condition, not an available indicator or a matching
+depth theorem. Read-only dirty chains remain linear-depth, and balanced
+dirty conjunction echoes repeat recursive calls rather than inheriting
+clean-tree parallelism. Do not present either as the missing ingredient.
 Before another native fixture pass, require either a complete all-input
 construction with its count/depth/live-width ledger, or a lower bound
 in the unrestricted T-depth model. Rescheduling the certified exact source
