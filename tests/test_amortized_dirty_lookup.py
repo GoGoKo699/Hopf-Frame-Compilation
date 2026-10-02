@@ -10,6 +10,7 @@ fixtures; the asymptotic result is proved separately.
 from __future__ import annotations
 
 from fractions import Fraction
+from math import isqrt
 import unittest
 
 import numpy as np
@@ -377,6 +378,109 @@ class AmortizedDirtyLookupTests(unittest.TestCase):
                 self.assertLess(24 * mass * moment, 24 * (precision + 8))
                 self.assertLessEqual(24 * (precision + 8), 56 * precision)
                 self.assertLess(24 * mass * moment, 64 * precision)
+
+    def test_variable_accuracy_power_of_two_allocation_and_composition(self):
+        # Arithmetic ledgers only: no Q-row table or circuit is materialized.
+        # The existing native tests audit the formulas for the worst-rank
+        # selected shears, routers, and distinct physical T-layer targets.
+        def ceil_root(value):
+            root = isqrt(value)
+            return root + (root * root != value)
+
+        def allocate(rows, word_bits, budget):
+            address_bits = rows.bit_length() - 1
+            self.assertEqual(rows, 1 << address_bits)
+            self.assertGreaterEqual(budget, 16 * (word_bits + address_bits + 1))
+            if rows == 1:
+                return 1, 1, 0, 0, 0  # Direct Clifford row, no workspace.
+            if rows < word_bits:
+                banks = 1
+            else:
+                limit = min(isqrt(rows // word_bits), budget // (4 * word_bits))
+                banks = 1 << (limit.bit_length() - 1)
+            high_rows = rows // banks
+            limit = min(high_rows, budget // 4)
+            capacity = 1 << (limit.bit_length() - 1)
+            chunks = high_rows // capacity
+            selectors = chunks.bit_length() - 1
+            live = banks * word_bits + capacity + selectors
+            self.assertLessEqual(live, budget)
+            self.assertLessEqual(4 * banks * word_bits, budget)
+            self.assertLessEqual(4 * capacity, budget)
+            self.assertEqual(banks * capacity * chunks, rows)
+            if rows < word_bits:
+                self.assertEqual((banks, capacity, chunks), (1, rows, 1))
+            rank = min(capacity, banks * word_bits)
+            internal = 8 * chunks - 16 if selectors else 0
+            selected_count = (7 * internal + 2 * chunks * (6 * rank + rank % 2)
+                              if selectors else 0)
+            selected_depth = 4 * internal + 8 * chunks if selectors else 0
+            count = (4 * selected_count + 8 * _router_t_count(capacity)
+                     + 4 * _router_t_count(banks, word_bits))
+            depth = (4 * selected_depth + 32 * (capacity.bit_length() - 1)
+                     + 16 * (banks.bit_length() - 1))
+            self.assertLessEqual(count, 1200 * ceil_root(rows * word_bits)
+                                 + Fraction(3200 * rows * word_bits, budget))
+            self.assertLessEqual(depth, 32 * address_bits
+                                 + Fraction(40960 * rows * word_bits, budget * budget))
+            return banks, capacity, live, count, depth
+
+        # Both power-of-two rounding boundaries and both limiting caps.
+        self.assertEqual(allocate(1, 33, 544)[2:], (0, 0, 0))
+        self.assertEqual(allocate(2, 33, 560)[:2], (1, 2))
+        self.assertEqual(allocate(65536, 3, 1023)[:2], (64, 128))
+        self.assertEqual(allocate(65536, 3, 1024)[:2], (64, 256))
+        self.assertEqual(allocate(65536, 3, 1535)[0], 64)
+        self.assertEqual(allocate(65536, 3, 1536)[0], 128)
+        self.assertEqual(allocate(65536, 3, 1792)[:2], (128, 256))
+
+        for n in (2, 7, 25, 26, 32):
+            dimension, cap_bits = 1 << n, (8 * n - 1).bit_length()
+            for precision in {6, max(6, n), 4 * n, dimension}:
+                if precision < 6:
+                    continue
+                baseline = precision + n + 7
+                minimum = 17 * baseline
+                matching_maximum = isqrt(dimension * precision
+                                        // (n * precision + n * n))
+                budgets = {minimum, 2 * minimum}
+                if matching_maximum >= minimum:
+                    budgets |= {matching_maximum, matching_maximum + 1}
+                for dirty_width in budgets:
+                    extra = dirty_width - baseline
+                    count = depth = weighted = widths = roots = 0
+                    for layer in range(n):
+                        rows = 1 << (layer + 2)
+                        word_bits = precision + min(n - layer, cap_bits) + 4
+                        _, _, live, query_count, query_depth = allocate(rows, word_bits, extra)
+                        self.assertLessEqual(baseline + live, dirty_width)
+                        weighted += rows * word_bits
+                        widths += word_bits
+                        roots += ceil_root(rows * word_bits)
+                        count += query_count
+                        depth += query_depth
+                    self.assertLess(weighted, 8 * dimension * precision)
+                    self.assertLessEqual(roots, 8 * ceil_root(dimension * precision) + n)
+                    self.assertLessEqual(count, 1200 * roots + Fraction(3200 * weighted, extra))
+                    self.assertLessEqual(depth, 16 * n * (n + 3)
+                                         + Fraction(40960 * weighted, extra * extra))
+                    source_count = 2 * (widths - n)
+                    self.assertLessEqual(source_count, 2 * n * precision
+                                         + 8 * ceil_root(dimension * precision))
+                    if dirty_width <= matching_maximum:
+                        # The same range absorbs all additive source/depth
+                        # terms and the square-root count term, exactly.
+                        self.assertLessEqual(dirty_width ** 2 * (n * precision + n * n),
+                                             dimension * precision)
+                        self.assertLessEqual(n * precision * dirty_width, dimension * precision)
+                        self.assertLessEqual(dirty_width ** 2, dimension * precision)
+                    else:
+                        self.assertGreater(dirty_width ** 2 * (n * precision + n * n),
+                                           dimension * precision)
+        # For inverse-polynomial accuracy L=n, the literal b>=17*B0
+        # matching interval changes from empty to nonempty at this boundary.
+        self.assertLess(isqrt((1 << 25) // 50), 17 * (2 * 25 + 7))
+        self.assertGreaterEqual(isqrt((1 << 26) // 52), 17 * (2 * 26 + 7))
 
 
 if __name__ == '__main__':

@@ -296,7 +296,10 @@ that established possibility with explicit rank-sensitive T-count and
 Clifford-count bounds. The new composition moves the low-address
 indicator outside the high-address traversal and supplies its all-dirty
 return identity and complete Hopf resource ledger. It removes the batch
-logarithm and proves matching fixed-accuracy T-depth at modest width.
+logarithm and proves matching count and depth in an explicit
+precision/workspace range, including fixed and inverse-polynomial
+accuracy in N. The variable-accuracy extension uses the same native
+query and the existing layer error bounds.
 No priority is claimed for dirty iteration, commuting-operator grouping,
 or constant-depth controlled Clifford circuits.
 

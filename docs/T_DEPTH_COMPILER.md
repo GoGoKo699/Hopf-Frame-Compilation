@@ -16,12 +16,14 @@ and low T-depth simultaneously. This chapter supplies the routing primitive
 and the wider-range bank schedule used in that refinement.
 
 The [amortized extension](AMORTIZED_DIRTY_LOOKUP.md) reuses a smaller indicator
-pool and shares dirty traversal across the chunk addresses. At fixed L, two clean qubits
-and $`b\ge17(L+n+7)`$ give
-$`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
-$`D_T=O(N/b^2+n^2)`$ in the same complete real-frame circuit.
-Depth is optimal in order for $`b\le\sqrt N/n`$ above the threshold;
-the general-precision schedules below remain available.
+pool and shares dirty traversal across the chunk addresses. For every
+$`L\ge6`$, two clean qubits and $`b\ge17(L+n+7)`$ give one complete
+real-frame circuit with $`T=O(\sqrt{NL}+NL/b+nL)`$, $`G=O(NL)`$,
+and $`D_T=O(NL/b^2+nL+n^2)`$. Count and depth are both optimal in
+order when $`b\le\sqrt{NL/(nL+n^2)}`$ above that threshold.
+At fixed L the earlier matching depth range $`b\le\sqrt N/n`$
+is retained. The general-precision schedules below remain available
+where their source or workspace costs are sharper.
 Its [capped source allocation](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
 reduces source depth to $`O(nL+n\log(n+1))`$; the remaining per-layer
 routing keeps the fixed-accuracy total at $`O(N/b^2+n^2)`$.
@@ -418,7 +420,11 @@ At smaller eligible widths, the [amortized loader](AMORTIZED_DIRTY_LOOKUP.md)
 instead closes the gap: for fixed L and
 $`17B_0\le b\le\sqrt N/n`$, it gives
 $`D_T^\star=\Theta(N/b^2)`$ while retaining optimal-order count.
-The large-width and variable-precision cases above remain unresolved.
+For variable L, matching now also holds when
+$`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$. This includes
+$`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$, and
+$`D_T^\star=\Theta(N/n)`$ with $`T^\star=\Theta(N)`$.
+Large-width depth and the selected high-precision endpoint remain unresolved.
 
 The same complete-frame norm transfers to the existing Hopf-QBP bias
 and inverse guarantees. It does not by itself determine the observable

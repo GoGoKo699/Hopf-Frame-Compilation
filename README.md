@@ -31,8 +31,8 @@ Resume research from the [workspace checkpoint](WORKSPACE.md).
 
 ## Two resource models
 
-Both models target the complete frame. Their bounds use different
-constructions, without simultaneous optimality of every cost.
+Both models compile the complete frame; different circuits attain their
+optimal resource bounds.
 
 | Model | Resource question | Scope of the matching theorem |
 |---|---|---|
@@ -68,10 +68,8 @@ D_{\mathbb R}(n,m)
 }
 ```
 
-The upper bounds hold for every parameter tuple. The matching lower bounds
-hold in the worst case over the Hopf-frame family, uniformly in the
-clean-workspace budget. They do not impose the same cost on every individual
-frame.
+Upper bounds hold for every parameter tuple. Lower bounds are worst-case
+over Hopf frames, uniformly in clean workspace; individual frames may cost less.
 
 The worst-case **CNOT count alone is $\Theta(N)$ for $n\ge2$**,
 with free one-qubit gates and arbitrary clean workspace; it is zero for $n=1$.
@@ -140,10 +138,11 @@ magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
-At fixed accuracy, [amortized lookup](docs/AMORTIZED_DIRTY_LOOKUP.md) gives
-$`T=O(\sqrt N+N/b)`$ and
-$`D_T=O(N/b^2+n^2)`$ in one real-frame circuit with two
-clean qubits and $`b\ge17(L+n+7)`$ dirty qubits.
+[Amortized lookup](docs/AMORTIZED_DIRTY_LOOKUP.md) uses two clean flags and
+$`b\ge17(L+n+7)`$. Fixed L gives $`T=O(\sqrt N+N/b)`$,
+$`D_T=O(N/b^2+n^2)`$. For $`L=\Theta(n)`$, sufficient
+$`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$ and
+$`D_T=\Theta(N/n)`$ in one complete real-frame circuit.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean
@@ -324,7 +323,7 @@ rational resource checks. It does not yet provide a general elementary emitter
 for the complete asymptotic shared-source compiler. See the
 [focused reproduction guide](verification/fault_tolerant/README.md).
 
-Device connectivity, physical noise thresholds, optimal T-depth, arbitrary
+Device connectivity, physical noise thresholds, the full T-depth frontier, arbitrary
 non-Hopf charts, and application-independent observable costs remain outside
 the claims. Clifford work, T work, quantum executions, and classical output
 costs are reported separately.

@@ -10,7 +10,9 @@ the available optimal-order T-count on the same circuit.
 The [amortized refinement](AMORTIZED_DIRTY_LOOKUP.md) strengthens the
 fixed-accuracy depth below to $`O(N/b^2+n^2)`$ under the same sufficient
 reservation. It moves the indicator outside a multiplexed linear-map
-echo and replaces separate chunk guards by one dirty traversal. This
+echo and replaces separate chunk guards by one dirty traversal. It also
+gives same-circuit variable-accuracy bounds with an explicit matching
+count-and-depth range. This
 chapter retains the guarded-indicator identity and allocation argument
 used by that refinement.
 

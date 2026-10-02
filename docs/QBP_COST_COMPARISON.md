@@ -579,6 +579,24 @@ D_{B,\rm old}=O\!\left(\min\{nK+n^2,\ K\ell+n^3\}\right),
 \qquad T=O(\sqrt{NK}+K\ell),\qquad G=O(NK).
 ```
 
+The [amortized real-frame schedule](AMORTIZED_DIRTY_LOOKUP.md) adds another
+eligible same-circuit choice, at $`b\ge17(K+n+7)`$:
+
+```math
+D_{\rm amortized,old}=O\!\left(\frac{NK}{b^2}+nK+n^2\right),
+\qquad T=O\!\left(\sqrt{NK}+\frac{NK}{b}+nK\right),\qquad G=O(NK).
+```
+
+Use K here, not the state preparation floor P. In its nonempty matching
+range $`b\le\sqrt{NK/(nK+n^2)}`$, frame count and depth are both
+optimal in order. In particular, $`K=\Theta(n)`$ and sufficient
+$`b=\Theta(n)`$ give per-frame $`T=\Theta(N)`$ and
+$`D_T=\Theta(N/n)`$. Substitution into the first row's serial gradient
+ledger still charges both frame calls, the observable, and all S shots.
+This is a frame-compiler theorem, not a lower bound for gradient estimation
+or a change to the state-based schedules. The A/B comparison below remains
+a comparison of its stated expressions; all eligible schedules may be used.
+
 The common A pool satisfies the old A threshold. For a common B comparison,
 require literally
 

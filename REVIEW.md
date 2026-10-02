@@ -165,18 +165,26 @@ $`O(\sqrt N)`$ T gates with $`O(n^2)`$ T-depth.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
-At fixed L, the [amortized extension](docs/AMORTIZED_DIRTY_LOOKUP.md) also
-covers $`b\ge17(L+n+7)`$ with two clean qubits:
+The [amortized extension](docs/AMORTIZED_DIRTY_LOOKUP.md) covers every
+$`L\ge6`$ and $`b\ge17(L+n+7)`$ with two clean qubits:
 
 ```math
-T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
-D_T=O\!\left(\frac{N}{b^2}+n^2\right).
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
 ```
 
-All three bounds hold for one complete real-frame circuit. For
-$`17(L+n+7)\le b\le\sqrt N/n`$, both count and depth are optimal
-in order: $`D_T^\star=\Theta(N/b^2)`$. This includes sufficiently
-large $`b=\Theta(n)`$. The additive $`n^2`$ term leaves
+All three bounds hold for one complete real-frame circuit. When nonempty,
+the interval $`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$ has matching
+worst-case count $`T^\star=\Theta(NL/b)`$ and depth
+$`D_T^\star=\Theta(NL/b^2)`$. For inverse-polynomial error in N,
+$`L=\Theta(n)`$ and sufficient $`b=\Theta(n)`$ give
+$`T^\star=\Theta(N)`$, $`D_T^\star=\Theta(N/n)`$.
+Outside the interval the extra $`nL`$ count term is retained; no
+uniform count-optimality claim follows from this schedule.
+
+At fixed L, the previous $`T=O(\sqrt N+N/b)`$ and
+$`D_T=O(N/b^2+n^2)`$ bounds still hold, with matching depth throughout
+$`17(L+n+7)\le b\le\sqrt N/n`$. The additive quadratic term leaves
 square-root-scale workspace depth unresolved. A
 [precision cap](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
 reduces accumulated source depth to $`O(n\log(n+1))`$ at fixed L
@@ -1461,7 +1469,7 @@ Its project-specific role is to realize the Hopf tail direct sum inside the
 same workspace envelope as the conditioned prefix.
 
 The exact and finite-precision models are logical circuit models. Device
-routing, physical noise thresholds, optimal T-depth, optimizer convergence,
+routing, physical noise thresholds, the full T-depth frontier, optimizer convergence,
 and application-specific controlled-observable implementations remain outside
 their stated conclusions. The constant-clean T-count endpoint remains open.
 
