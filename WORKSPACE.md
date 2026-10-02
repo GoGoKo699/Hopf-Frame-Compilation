@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 large-workspace routing pass starts from verified main
-`5829ed558a81b228a1cb3d2654179f6aebe35042`, after the matching
-variable-accuracy theorem. Check later commits before
+The 2026-10-02 dirty-counter indicator pass starts from verified main
+`1d7c08ab183dcbafd8f78882f5ea395531dc83c5`, after the bilinear
+query reduction and matching variable-accuracy theorem. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -127,7 +127,10 @@ increasing any layer's width or the weighted lookup costs. It retains
 the full error guarantee using the sharper local isometry constant.
 The total assigned precision is within $`5n`$ bits of the optimum under
 that additive error certificate; this is not a frame-depth lower bound.
-Large-workspace depth still has the additive $`n^2`$ routing contribution.
+That schedule retains an additive $`n^2`$ routing contribution. The new
+[dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+improves fixed-accuracy large-workspace depth to
+$`O(n\log^2(n+2))`$ while retaining optimal-order T-count.
 The older general-precision schedules below remain useful where their
 source or workspace costs are sharper. The separate state-based and
 complex-frame schedules retain their existing contracts and bounds.
@@ -240,12 +243,13 @@ The guarded-batch logarithm is now amortized, and the variable-accuracy
 composition is complete; do not repeat either task.
 The next bounded depth target is fixed accuracy at sufficiently large
 $`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
-Its available depth bounds are still $`\Omega(1)`$ and $`O(n^2)`$.
+Its available depth bounds are now $`\Omega(1)`$ and
+$`O(\min\{n^2,n\log^2(n+2)\})`$.
 The capped precision allocation has removed the accumulated source widths
 as a quadratic contribution: sources and suffix predicates now cost
 $`O(n\log(n+1))`$ depth at fixed L. The retained per-layer routing
-still sums to $`O(n^2)`$. An improvement must price the complete queries,
-not only their rank-reduced shears or a single routed batch.
+sums to $`O(n^2)`$ in that older schedule. The new hybrid prices
+complete queries, including the replacement indicator work.
 
 Two attempted shortcuts do not yet supply such a circuit. Keeping an
 address-controlled router open conjugates an intervening table matrix A
@@ -255,11 +259,11 @@ requires read-only shared address controls and exactly returned private
 dirty work. The audited Khattar–Gidney logarithmic-depth dirty MCX circuit temporarily
 borrows its controls, so its row instances cannot simply overlap them.
 Dirty CNOT copies also carry unknown masks. These are gaps in the proposed
-schedules, not unrestricted impossibility results. A concrete next route
-is a shallow exact dirty-indicator batch with a full live-width ledger.
-Polynomial overhead could be affordable on early layers, whose table sizes
-decay geometrically, while retaining the existing queries near the leaves;
-that hybrid remains conditional on the missing batch construction.
+schedules, not unrestricted impossibility results. The successful route
+uses a shallow exact dirty-indicator batch with a full live-width ledger.
+Polynomial overhead is affordable on early layers, whose table sizes
+decay geometrically, while retaining the existing queries near the leaves.
+The counter construction below now makes that hybrid unconditional.
 
 The [bilinear query reduction](docs/PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
 now removes the word-bank router from this proposed route. Split a table
@@ -270,23 +274,44 @@ current routed indicators, an asymmetric split retains count-efficient
 queries but still has linear address depth; it does not improve the
 unconditional frame bound.
 
-A sufficient new ingredient is an exact k-bit indicator with
-$`O(2^k\mathrm{poly}(k))`$ T gates, Clifford gates, and dirty
-width, and $`O(\log(k+2))`$ T-depth, with every helper returned on all
-inputs. The proved conditional composition would then give fixed-accuracy
-$`T=O(\sqrt N)`$, $`D_T=O(n\log(n+1))`$, and $`G=O(N)`$ at
-sufficient $`b=\Theta(\sqrt N)`$. Polynomial overhead on the early
-layers is absorbed by their geometrically smaller tables; retain the
-existing count-efficient queries on the last $`O(\log n)`$ layers.
-This is a sufficient condition, not an available indicator or a matching
-depth theorem. Read-only dirty chains remain linear-depth, and balanced
-dirty conjunction echoes repeat recursive calls rather than inheriting
-clean-tree parallelism. Do not present either as the missing ingredient.
-Before another native fixture pass, require either a complete all-input
-construction with its count/depth/live-width ledger, or a lower bound
-in the unrestricted T-depth model. Rescheduling the certified exact source
-does not answer this question. The completed modest-width matching theorem
-does not require solving the high-precision endpoint.
+The missing polynomial-overhead indicator is now supplied by a
+[dirty-counter construction](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters).
+A reversible sum echo adds the Hamming weight into an arbitrary dirty
+counter; a cyclic-rotation echo removes its unknown offset. A final
+indicator echo extracts the all-literals-true predicate. Every helper
+returns exactly. Original address bits enter only through Clifford
+CNOTs; all non-Clifford gates act on private row work and parallelize.
+For k address bits the construction has
+$`T,G=O(2^k(k+1)\log^2(k+2))`$,
+$`w=O(2^k(k+1)\log(k+2))`$, and
+$`D_T=O(\log^2(k+2))`$ with no clean work.
+
+The established early/late hybrid therefore gives fixed-accuracy
+$`T=O(\sqrt N)`$, $`D_T=O(n\log^2(n+2))`$, and $`G=O(N)`$
+at sufficient $`b=\Theta(\sqrt N)`$. Polynomial overhead on early
+layers is absorbed by their geometrically smaller tables; the last
+$`O(\log n)`$ layers retain the existing count-efficient queries.
+This is an unconditional depth improvement with optimal-order count,
+not a matching depth theorem or a practical crossover estimate.
+
+The [two-bit base case](docs/PARALLEL_DIRTY_LOOKUP.md#12-the-two-bit-indicator-has-optimal-t-depth-two)
+also has optimal T-depth two, with eight T gates and no extra helper.
+A Pauli-transfer argument excludes one T layer for every nonaffine
+all-input classical permutation even with arbitrary returned dirty
+helpers. This constant lower bound does not apply to initialized-clean
+subspace contracts and does not close the frame-depth gap.
+
+The arithmetic improvement is already included: the Takahashi–Tani–Kunihiro
+linear-size modular adder needs no initialized work, so the sum tree
+costs $`O(m\log(k+1))`$ depth; the read-only controlled increments
+cost $`O(m^2)`$, where $`m=\lceil\log_2(k+1)\rceil`$.
+Do not repeat the slower cubic-adder fallback or its fourth-power
+logarithmic bound. The next bounded construction target is an indicator
+with $`O(\log(k+2))`$ T-depth and polynomial overhead, or a rigorously
+priced depth improvement for one of these two remaining arithmetic
+stages. A matching unrestricted frame-depth lower bound remains separate.
+The completed modest-width
+matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.

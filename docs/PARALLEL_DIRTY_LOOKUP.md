@@ -36,9 +36,14 @@ At fixed accuracy, a sufficiently large $`b=\Theta(\sqrt N)`$ therefore
 permits **the same circuit** to have
 
 ```math
-T=O(\sqrt N),\qquad D_T=O(n^2),\qquad G=O(N).
+T=O(\sqrt N),\qquad D_T=O\!\left(\min\{n^2,n\log^2(n+2)\}\right),
+\qquad G=O(N).
 ```
 
+The polylogarithmic factor follows from the dirty-counter construction
+in Section 6 and the hybrid in Section 5; the earlier routed circuit
+supplies the alternative quadratic bound. The sufficient dirty-width
+constant may be increased to cover both constructions.
 The existing worst-case lower bound makes this T-count optimal in order.
 The T-depth upper bound is not proved optimal, and does not bound total
 elementary depth. The selected allocation $`L=N,b=N+n+7`$ is not covered
@@ -86,6 +91,109 @@ $`O(H)`$ depth. In particular, the T-depth bound does not assume
 constant-depth Clifford fanout or routing. This direct conjugation
 replaces the earlier recursive bilinear indicator, whose quadratic
 address-depth and extra scratch were unnecessary for this T-depth task.
+
+### 1.1. A full-input lower bound
+
+An exact nonaffine classical permutation needs at least two T layers,
+even with arbitrarily many returned dirty helpers and arbitrary Clifford
+circuits between T layers. This is a full-Hilbert-space statement: no
+helper is promised to start in a particular state.
+
+Here is a short specialization of the one-layer Pauli-conjugation
+argument in [Selinger, Proposition 5.1](https://arxiv.org/html/1210.0974v2).
+For a permutation matrix U on w qubits, every Pauli-transfer entry
+
+```math
+2^{-w}\mathrm{Tr}(QUPU^\dagger)
+```
+
+is a dyadic rational. Indeed, the matrix entries in the trace sum are
+Gaussian integers, and the trace is real for Hermitian Paulis P and Q.
+Tensoring U with an identity on arbitrary dirty helpers preserves this
+property. Suppose instead that an implementation has one nonempty T
+layer, written $`V=C_2\tau C_1`$, where the C operators are arbitrary
+Cliffords and tau is a tensor product of T, its inverse, and identities.
+Choose an active wire j and $`P=C_1^\dagger X_jC_1`$. Then
+
+```math
+VPV^\dagger=(Q\pm R)/\sqrt2,
+```
+
+where Q and R are distinct Hermitian Paulis. Its two nonzero
+Pauli-transfer coefficients are irrational, a contradiction. An empty
+T layer leaves a Clifford; a Clifford that is a classical permutation
+acts affinely on bit strings. Thus a nonaffine permutation cannot have
+T-depth zero or one. Global phases do not affect this argument.
+
+For $`k\ge2`$, a coordinate of $`I_k`$ contains the degree-k Boolean
+monomial in the address bits, so its classical action is nonaffine.
+Consequently $`D_T(I_k)\ge2`$, independently of returned dirty width.
+This constant bound is not a growing lower bound and does not establish
+optimality of the routed construction. It also does not apply to a
+circuit required to work only on an initialized clean subspace; the
+physical unitary outside that subspace need not be a permutation.
+
+### 1.2. The two-bit indicator has optimal T-depth two
+
+First implement a Toffoli with one arbitrary dirty helper. For four bits
+a, b, c, d, the integer parity identity
+
+```math
+\sum_{s\in\{0,1\}^3}(-1)^{|s|}
+ \bigl(d\oplus(s_1a\oplus s_2b\oplus s_3c)\bigr)
+ =-4abc(-1)^d\equiv4abc\pmod8
+```
+
+implements the literal CCZ phase, independently of d. Split its eight
+parities into two ordered bases over the binary field:
+
+```math
+\mathcal A=(d,\ d\oplus a,\ d\oplus b,\ d\oplus c),
+```
+
+```math
+\mathcal B=(d\oplus a\oplus b,\ d\oplus a\oplus c,
+ d\oplus b\oplus c,\ d\oplus a\oplus b\oplus c).
+```
+
+Both bases are invertible: differences with d in the first, or with the
+last entry in the second, recover a, b, c and then d. For each basis,
+compute it by CNOTs on the four physical wires, apply four simultaneous
+T or inverse-T gates with the displayed parity signs, and undo the
+actual CNOT word. The signs are $`(+,-,-,-)`$ for A and
+$`(+,+,+,-)`$ for B. The result is exactly CCZ on a, b, c tensor the
+identity on d, with eight T gates in two T layers. Hadamards on c turn
+this into a Toffoli with the same resources. All-input equality also
+returns a helper entangled with any external reference.
+
+Now let a be the high address bit and b the low bit, and order the four
+dirty outputs by $`00,01,10,11`$. The indicator increment is
+
+```math
+e_{2a+b}=(1\oplus a\oplus b,\ b,\ a,\ 0)
+       \oplus ab(1,1,1,1).
+```
+
+The first vector uses only X and CNOT. For the second, let F fan out
+$`Y_{11}`$ into the other three output wires. Chronologically apply
+F, the above Toffoli with target $`Y_{11}`$, and F again. During the
+Toffoli, borrow $`Y_{00}`$ as its arbitrary dirty helper. The Toffoli
+returns that wire exactly before the final fanout, so the net change is
+ab in all four outputs. This uses the existing six wires, no additional
+helper, eight T gates, and T-depth two. Together with Section 1.1,
+
+```math
+D_T^\star(I_2)=2.
+```
+
+No optimal T-count is asserted. For comparison, $`I_0`$ and $`I_1`$
+are Clifford and have T-depth zero. The
+[native checks](../tests/test_dirty_indicator_depth.py) verify both
+parity bases, literal phases, actual inverses, and the full six-wire
+indicator matrix. This closes a bounded base case; Section 6 separately
+supplies the general shallow indicator used in Section 5. The phase-polynomial technique
+and one-layer Pauli normal form are established tools; no generic
+Toffoli synthesis priority is claimed.
 
 ## 2. Indicator workspace and exact return
 
@@ -238,9 +346,9 @@ guarantees follow from the existing approximation theorem.
 ## 5. A bilinear query reduction
 
 The following exact query removes the word-bank router by using two dirty
-indicators. Its depth remains conditional on the indicator implementation;
-the shallow indicator hypothesis stated below is **not established** by
-this chapter. The unconditional headline theorem is unchanged.
+indicators. Its depth depends on the indicator implementation. The
+general hybrid below isolates that dependence, and Section 6 supplies
+the polylogarithmic-depth implementation used in the improved bound.
 
 ### Exact bilinear oracle
 
@@ -345,16 +453,17 @@ $`O(m+Q)=O(m)`$ and dirty width $`O(Q)`$. These bounds require no
 shallow-indicator hypothesis. They recover count efficiency but do not
 improve the existing full-frame depth order with the routed indicators.
 
-### Conditional hybrid with the layerwise frame compiler
+### Hybrid with the layerwise frame compiler
 
 Suppose that, for every k, an exact all-input dirty indicator on
 $`S=2^k`$ outputs has T-count, elementary Clifford count, and additional
 dirty width each at most $`O(SP(k+1))`$, for a fixed nondecreasing
 polynomial $`P\ge1`$, and T-depth at most $`f(k)`$. The address must
 return unchanged and every helper must return exactly, including on
-reference-entangled inputs. This is the hypothesis, not an available
-shallow construction. The routed indicator of Section 1 satisfies the
-count and width conditions but has $`f(k)=O(k)`$.
+reference-entangled inputs. The routed indicator of Section 1 satisfies
+the count and width conditions with $`f(k)=O(k)`$. Section 6 supplies
+a different construction with $`f(k)=O(\log^2(k+2))`$. We first prove
+the composition for a general f.
 
 For $`r_a=\lfloor r/2\rfloor`$, $`r_b=\lceil r/2\rceil`$, the
 exact query just proved then has
@@ -408,7 +517,7 @@ Write $`F_n=\max_{0\le k\le n+1}f(k)`$. Early queries have total depth
 $`O(n[M_n+F_n])`$. Late query routing costs $`O(nk_0)`$, and their
 chunk-depth terms sum to $`O(N/b^2)=O(1)`$. All sources and suffix
 predicates together cost $`O(n\log(n+1))`$ depth and polynomial count.
-Consequently the stated indicator hypothesis would imply, on the same
+Consequently the stated indicator hypothesis implies, on the same
 two-clean complete real-frame circuit at fixed accuracy,
 
 ```math
@@ -419,20 +528,225 @@ D_T=O\!\left(n[F_n+\log(n+1)]\right),\qquad b=\Theta(\sqrt N).
 In particular, an indicator with $`f(k)=O(\log(k+1))`$ would give
 $`D_T=O(n\log(n+1))`$ while retaining optimal-order T-count. Exact
 query replacement preserves the capped full-frame error and actual-inverse
-amplification. No such indicator, and no unconditional improvement to the
-headline depth, is claimed here.
+amplification. The logarithmic indicator remains unavailable; the
+polylogarithmic construction below gives a weaker but unconditional
+improvement.
 
 This is a specialization of the dirty-indicator and bilinear framework in
 [Low–Kliuchnikov–Schaeffer, Appendix C](https://arxiv.org/html/1812.00954v2),
 combined with the existing rank reduction and exact shared-control phase
 schedule. The local result is an explicit resource and all-input interface
-for a conditional Hopf composition, not a new generic bilinear principle.
+for the Hopf composition, not a new generic bilinear principle.
 The [bounded bilinear checks](../tests/test_bilinear_dirty_lookup.py)
 verify rectangular basis orientation, literal phases, actual inverses,
 complete dirty return, and emitted resource counts using the existing
-routed indicators. They do not implement the shallow indicator hypothesis.
+routed indicators. The counter construction has separate bounded checks.
 
-## 6. Attribution and evidence
+## 6. A polylogarithmic-depth indicator using dirty counters
+
+For $`k\ge1`$, put $`m=\lceil\log_2(k+1)\rceil`$ and
+$`M=2^m\gt k`$. An exact indicator on $`H=2^k`$ arbitrary dirty
+outputs can be implemented with
+
+```math
+T,G=O\!\left(H(k+1)\log^2(k+2)\right),\qquad
+w=O\!\left(H(k+1)\log(k+2)\right),
+```
+
+```math
+D_T=O\!\left(\log^2(k+2)\right).
+```
+
+Here w is additional dirty helper width; all helpers return exactly, on
+all inputs. No clean qubit is used. The construction first computes a
+read-only conjunction, then runs all equality rows in parallel with an
+explicit shared-address schedule. It trades polynomially more dirty
+work for depth; Section 5 absorbs that overhead on early frame layers.
+
+### Read-only arithmetic on dirty registers
+
+A q-control NOT has a simple read-only-control implementation using
+q arbitrary dirty helpers. Let the controls be
+$`c_1,\ldots,c_q`$, the target t, and the helpers
+$`w_1,\ldots,w_q`$. Compute the ladder
+
+```math
+w_1\mathrel{\oplus}=c_1,\qquad
+w_i\mathrel{\oplus}=w_{i-1}c_i\quad(2\le i\le q),
+```
+
+toggle $`t\mathrel{\oplus}=w_q`$, and reverse the ladder.
+Repeat this compute/toggle/uncompute word with the first helper update
+omitted. The two target increments differ by
+$`c_1\cdots c_q`$, while every helper and control is returned.
+There are $`4(q-1)`$ Toffolis, all avoiding the first control. For
+q equal to one, simply use CNOT without a ladder. Literal Toffoli
+decompositions give $`O(q)`$ T-count, Clifford count, and T-depth.
+A negative first control requires no mutation of that control: replace
+its initial CNOT by CNOT followed by X on the private first helper,
+and use the actual inverse at uncomputation. For a single negative
+control, use CNOT followed by X on the target. This slightly wider
+ladder makes the shared address enter only through Clifford gates.
+
+On an l-bit arbitrary register A, a controlled increment by c modulo
+$`2^l`$ is obtained by visiting target bits from high to low: for
+$`j=l-1,\ldots,1`$, toggle $`A_j`$ controlled by c and
+$`A_0,\ldots,A_{j-1}`$, then apply CNOT from c to $`A_0`$.
+Each lower bit still has its original value when used as a control.
+Using the preceding ladder with c first, this increment has
+$`T,G,D_T=O(l^2)`$, uses at most l private dirty helpers, returns
+them, and leaves c read-only.
+
+For addition $`\mathrm{ADD}_m(A;B):B\mapsto B+A\pmod M`$
+preserving arbitrary A, use the exact ripple-carry circuit of
+[Takahashi–Tani–Kunihiro, Sections 2.1–2.3](https://arxiv.org/pdf/0910.2530v1).
+Their carry-output wire z is arbitrary and is targeted only by the
+CNOT from $`A_{m-1}`$ in Step 2 and the final Toffoli of Step 3. Delete those two gates
+and z; no remaining gate depends on z. The resulting two-register word
+is exactly modular addition, on all inputs, with no helper or initialized
+bit. For $`m\ge2`$ it uses $`2m-2`$ Toffolis and $`5m-6`$
+CNOTs; for m equal to one it is CNOT. Thus $`T,G,D_T=O(m)`$.
+The source's later clean-work and unbounded-fanout constructions are
+not used. A may change during this adder and is restored at completion;
+both registers are private in the application below. Every subtraction
+uses the actual reversed native addition word.
+
+### Add the Hamming weight without initializing a counter
+
+For one conjunction of k literals $`\ell_i`$, allocate private
+arbitrary m-bit registers $`a_1,\ldots,a_k,c`$. Form a balanced
+reversible addition tree on the a registers: add each left representative
+into its disjoint right representative and carry an unpaired block to
+the next level. Its root contains $`\sum_i a_i\pmod M`$.
+Add that root into c and reverse the entire tree. Denote this word by L;
+its exact action is
+
+```math
+L:\quad c\longmapsto c+\sum_i a_i\pmod M,
+\qquad (a_1,\ldots,a_k)\longmapsto(a_1,\ldots,a_k).
+```
+
+Each tree level consists of disjoint additions. Thus L has
+$`T,G=O(km)`$ and $`D_T=O(m\log(k+1))`$.
+Reserve m private ladder helpers per a register for the next operation.
+Allowing the same reservation for c gives the convenient conservative
+width bound used below; the modular adders themselves need no helper.
+
+Let J increment every $`a_i`$ by its literal $`\ell_i`$ in parallel.
+The chronological translation echo
+
+```math
+A=L^\dagger,\ J,\ L,\ J^\dagger
+```
+
+has the exact action $`c\mapsto c+s\pmod M`$, where
+$`s=\sum_i\ell_i`$, and returns every a register and ladder helper.
+Indeed, the two additions into c are minus the old sum of a registers
+and plus their sum after the literal increments. Unknown initial offsets
+cancel by arithmetic modulo M. No counter stores s by itself, and no
+zero sector is assumed.
+
+### Remove the remaining counter offset by cyclic routing
+
+Allocate M arbitrary dirty selector bits V. Define P to move the old
+bit $`V_j`$ to position $`j-1\pmod M`$, and let $`B_c=P^c`$
+act on V while preserving c. For each bit $`c_j`$, apply the fixed
+permutation $`P^{2^j}`$ controlled by that bit. Every fixed permutation
+is a product of two involutions, each a matching of disjoint swaps:
+on a cycle indexed by t, the reflections $`t\mapsto-t`$ and
+$`t\mapsto1-t`$ compose to one step. Choose their order for the
+desired orientation, and omit fixed points. The existing shared-control
+Fredkin schedule implements each matching in at most four T layers.
+Consequently $`B_c`$ has $`D_T\le8m`$, $`T,G=O(Mm)`$,
+and no additional work.
+
+The chronological word
+
+```math
+R=A,\ B_c,\ A^\dagger,\ B_c^\dagger
+```
+
+acts as $`P^s`$ on V and returns every counter and ladder helper.
+The first rotation sees $`c+s`$, the second sees the restored c, so
+their product is $`P^{c+s}P^{-c}=P^s`$. Since P moves old position
+s to zero, the word
+
+```math
+K=R,\ X_{V_0},\ R^\dagger
+```
+
+flips exactly $`V_s`$, returning all other registers. Finally use
+
+```math
+\mathrm{CX}(V_k;y),\ K,\ \mathrm{CX}(V_k;y),\ K^\dagger.
+```
+
+This toggles the arbitrary output y by $`[s=k]`$ and returns every
+bit of V. Because $`0\le s\le k\lt M`$, this is precisely the
+conjunction of all literals, with no modular alias. Every identity is
+literal on every computational-basis input; the native Toffoli and
+Fredkin words introduce no residual phases. Linearity therefore gives
+the complete arbitrary-input and reference-return statement.
+
+### Parallel equality rows and the resource ledger
+
+For row r, choose $`\ell_i=[x_i=r_i]`$, take y to be $`Y_r`$,
+and allocate its own counters, selector, and ladder helpers. All H rows
+are private except for the original address. The only operations that
+touch an address bit are in J or its actual inverse. Put that literal
+first in each ladder, so it appears only in CNOTs into private helpers
+or increment targets. Negative literals add only private X gates,
+never X on the shared address. Every Toffoli acts entirely within one
+private counter/helper block. Native T layers therefore run on disjoint
+wires across all rows and all literal positions. The shared CNOT fanout
+has a charged Clifford count; it is not assumed to have constant total
+depth. This proves
+$`D_T(J)=O(m^2)`$ for the entire row family, without an H or k
+serialization factor. The address can be coherent throughout.
+
+The live helper width per row is at most $`2(k+1)m+M`$: k input
+counters, one accumulator, their private ladder pools, and the selector.
+All are simultaneously reserved; none is borrowed from a live output
+or another row. L uses $`2(k-1)+1`$ additions. A, R, K, and the
+final output echo use only a fixed number of their constituent words
+and actual inverses. Thus a single row has
+
+```math
+T,G=O(km^2+Mm),\qquad
+D_T=O\!\left(m\log(k+1)+m^2+m\right).
+```
+
+Multiplying counts and width by H, while retaining the batched depth,
+proves the opening bounds. The case k equal to zero is X and needs no
+helper. No total Clifford-depth bound is being inferred from T-depth.
+
+### Complete-frame consequence
+
+The indicator satisfies the interface of Section 5 with a fixed
+polynomial majorant, for example $`P(t)=C(t+1)^3`$, and
+$`f(k)=O(\log^2(k+2))`$. At fixed accuracy and a sufficiently large
+$`b=\Theta(\sqrt N)`$, that composition now gives one two-clean
+complete real-frame circuit with
+
+```math
+T=O(\sqrt N),\qquad G=O(N),\qquad
+D_T=O\!\left(n\log^2(n+2)\right).
+```
+
+It retains the same full-isometry error bound and optimal-order
+worst-case T-count. Choosing between this circuit and the earlier routed
+one gives depth $`O(\min\{n^2,n\log^2(n+2)\})`$ at the same
+sufficient square-root-scale dirty width. This is an asymptotic
+improvement, not a practical crossover estimate or an optimal-depth
+theorem. The high-precision complete-frame endpoint remains open.
+
+The [counter checks](../tests/test_counter_dirty_indicator.py) audit the
+bounded emitted arithmetic, actual inverses, arbitrary dirty offsets,
+cyclic orientation, output selection, and shared-address scheduling.
+They support the exact identities; the general resource bounds and
+Hopf composition are analytic arguments above.
+
+## 7. Attribution and evidence
 
 The [partial-batch extension](BATCHED_DIRTY_LOOKUP.md) retains the same
 bank echo while reusing fewer indicator wires. At fixed accuracy it
@@ -453,7 +767,7 @@ Parallel dirty indicators and the separation of selector parallelism from
 word-bank count have primary precedent in Low, Kliuchnikov, and Schaeffer,
 *Trading T gates for dirty qubits in state preparation and unitary synthesis*,
 [arXiv:1812.00954v2, Appendix C](https://arxiv.org/html/1812.00954v2).
-The indicator above is a direct conjugation of that established routing
+The scratch-free indicator of Section 1 is a direct conjugation of that established routing
 primitive; no new general lookup tradeoff is claimed. Literal Fredkin
 words and the complete dirty-register ledger make it suitable for the
 repository's full-input contract. The local result is the sharper

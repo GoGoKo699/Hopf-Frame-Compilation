@@ -79,8 +79,8 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 | Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n^2)}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
 | $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ | $`\Omega(N/n)`$ | $`O(N/n)`$ with $`T=\Theta(N)`$ | Matching at inverse-polynomial error in N for sufficiently large n |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
-| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Simultaneous count/depth capability; depth lower bound remains unmatched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\log^2(n+2)\})`$ with $`T=O(\sqrt N)`$ | [Dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters); depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\log^2(n+2)\})`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
@@ -91,6 +91,10 @@ The [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-preci
 reduces source depth to $`O(n\log(n+1))`$ at fixed L without changing
 the count or workspace orders. The quadratic contribution remaining in
 this schedule comes from query routing; it is not an unavoidable source cost.
+The exact dirty-counter indicator and bilinear-query hybrid now improve
+the square-root-width upper bound to $`O(n\log^2(n+2))`$ while
+returning all work and retaining the same optimal-order T-count. The
+lower bound is still constant in this regime; depth optimality is open.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
 For varying L outside the matching interval, the new count bound retains

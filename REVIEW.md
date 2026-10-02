@@ -161,7 +161,10 @@ retains $`T=O(\sqrt{NL}+L\ell_*(n))`$ while attaining
 $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same circuit.
 At fixed accuracy, two clean and sufficiently large
 $`\Theta(\sqrt N)`$ dirty workspace give count-optimal
-$`O(\sqrt N)`$ T gates with $`O(n^2)`$ T-depth.
+$`O(\sqrt N)`$ T gates with
+$`O(\min\{n^2,n\log^2(n+2)\})`$ T-depth, using the
+[dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+for the new subquadratic bound.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
