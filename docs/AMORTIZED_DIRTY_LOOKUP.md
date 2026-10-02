@@ -46,7 +46,7 @@ threshold while replacing its depth bound by
 
 ```math
 D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right),\qquad
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
 Its simultaneous matching interval is

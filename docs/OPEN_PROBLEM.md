@@ -25,7 +25,7 @@ below. Lower bounds are worst-case over the stated frame family. For the
 hybrid depth bounds, write
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
 | Question | Retained result | Status and proof |
@@ -97,7 +97,8 @@ The [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-preci
 reduces source depth to $`O(n\log(n+1))`$ at fixed L without changing
 the count or workspace orders. The quadratic contribution remaining in
 this schedule comes from query routing; it is not an unavoidable source cost.
-The exact dirty-counter indicator and bilinear-query hybrid now improve
+The exact dirty-counter indicator, [masked-sum refinement](DIRTY_SUM_COMPRESSION.md),
+and bilinear-query hybrid now improve
 the square-root-width upper bound to $`O(n\chi(n))`$ while
 returning all work and retaining the same optimal-order T-count. The
 lower bound is still constant in this regime; depth optimality is open.

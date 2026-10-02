@@ -163,11 +163,11 @@ At fixed accuracy, two clean and sufficiently large
 $`\Theta(\sqrt N)`$ dirty workspace give count-optimal
 $`O(\sqrt N)`$ T gates with
 $`O(n\chi(n))`$ T-depth, using the
-[dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+[compressed dirty-counter hybrid](docs/DIRTY_SUM_COMPRESSION.md)
 for the new bound, where
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.

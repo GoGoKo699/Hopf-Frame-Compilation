@@ -142,8 +142,15 @@ routing, nested full-input echoes, actual inverses, and parallel native
 layers. Complete counter fixtures emit the linear TTK adder; separate
 fixtures check the shortened RV macro. The optimized RV ladder depth is
 imported analytically and is not inferred from those serial macro checks.
-The [analytic counter proof](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
-and hybrid composition give the improved complete-frame depth bound;
+The [masked-sum checks](../tests/test_dirty_sum_interfaces.py) separately
+audit the two-controlled-increment compressor, literal native phases,
+weighted helper offsets, the complete outer translation echo, actual
+inverses, and the static column schedule. Their native increment is a
+slower exact MCX expansion; the optimized one-dirty-helper increment
+depth is imported from Vandaele's theorem. The
+[analytic counter proof](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters),
+[compression proof](DIRTY_SUM_COMPRESSION.md), and hybrid composition
+give the improved complete-frame depth bound;
 the finite checks do not emit a variable-size complete frame.
 The [two-bit depth checks](../tests/test_dirty_indicator_depth.py) separately
 verify the eight-parity CCZ phase identity, both invertible CNOT bases,

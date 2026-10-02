@@ -142,7 +142,7 @@ Leaf-phase derivatives retain a separate QBP stream.
 $`b\ge17(L+n+7)`$. Fixed L gives $`T=O(\sqrt N+N/b)`$ and
 
 ```math
-D_T=O(N/b^2+n\log n(\log\log n)^2).
+D_T=O(N/b^2+n\log n\log\log n).
 ```
 
 For $`L=\Theta(n)`$, sufficient
