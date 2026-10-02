@@ -698,3 +698,49 @@ These baselines limit the interpretation of the quantum T-count result;
 they are not a claim to have invented reverse differentiation or classical
 importance sampling. Unknown controlled observables retain their distinct
 access model.
+
+## 16. Precision depth and workspace assumptions (2 October 2026)
+
+The [source-depth audit](SOURCE_T_DEPTH.md) separates a restriction of the
+current source implementation from the unrestricted
+[Hopf T-depth problem](T_DEPTH_COMPILER.md#4-lower-bounds-and-the-remaining-depth-gap).
+The relevant denominator technique is already present in
+[Casas et al., *Matchgate synthesis via Clifford matchgates and T gates*,
+arXiv:2602.05425v1, Section III.2.2, Eq. (29)](https://arxiv.org/html/2602.05425v1#S3.SS2.SSS2).
+In their Majorana representation, Clifford matchgates permute signed modes,
+and one layer of disjoint non-Clifford mode rotations increases the least
+square-root-of-two denominator exponent by at most one. Their resulting
+depth lower bound concerns exact synthesis within this restricted gate
+set. Applying that mechanism to the geometric source supplies a local
+obstruction to parallelizing that source in the same representation; it
+does not introduce a new general lower-bound method. Arbitrary Clifford
+interlayers need not preserve the Majorana span, and the frame compiler
+need not implement this source exactly, or use it at all.
+
+There is also an established alternative when precision-sized **clean**
+workspace is available. [Vasconcelos, *Depth-Optimal Quantum Compilation*,
+arXiv:2609.34659v1, Theorem 8](https://arxiv.org/html/2609.34659v1#S3.SS4.SSS1)
+constructs a fully unitary single-qubit rotation approximation with
+$`O(L)`$ initialized ancillas, $`O(L)`$ gates, and $`O(\log L)`$
+elementary depth, for $`L=\Theta(\log(1/\varepsilon))`$. Its error
+includes ancilla return and a stated common phase. Fixed exact Toffoli
+decompositions preserve these orders over Clifford+T. This demonstrates
+that linear precision depth is not intrinsic to rotation approximation.
+It does not give the same construction with two clean qubits and arbitrary
+dirty work. Its bounded-arity elementary-depth lower bound also does not
+bound T-depth when unrestricted Clifford circuits between T layers are free.
+
+[Kim, *Catalytic z-rotations in constant T-depth*, arXiv:2506.15147v3,
+Section 3](https://arxiv.org/pdf/2506.15147v3), published in *Quantum*
+**10**, 2191 (2026), explicitly leaves constant-T-depth rotation using
+only clean or dirty ancillas open. The depth-three construction assumes
+a prepared nonstabilizer catalyst; the supplied-catalyst resource cannot
+be replaced by arbitrary borrowed qubits. Charging catalyst preparation
+and its initialized workspace is necessary before composition with the
+present compiler.
+
+These comparisons identify usable techniques and their workspace
+conditions. They yield no asymptotic improvement to the unrestricted
+complete-frame depth bound in this pass, and no matching lower bound.
+The exact source restriction must therefore remain separate from both
+optimal approximate Hopf T-depth and the constant-clean T-count endpoint.

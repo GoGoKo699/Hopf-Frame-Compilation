@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 routed-indicator depth pass starts from verified main
-`1133cfa9cc66b082ef3f6c2cd42dfea47a68faf5`, after native residual
-QBP integration and coverage consolidation. Check later commits before
+The 2026-10-02 source-depth pass starts from verified main
+`2c4ca1b346fef092b3ae81d42b6fa3e43f28f3eb`, after the routed-indicator
+depth refinement. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -25,7 +25,8 @@ and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
 1. Begin active depth work with the [depth proof](docs/T_DEPTH_COMPILER.md)
-   and [routed indicator](docs/PARALLEL_DIRTY_LOOKUP.md). The completed
+   and [source-depth certificate](docs/SOURCE_T_DEPTH.md), then the
+   [routed indicator](docs/PARALLEL_DIRTY_LOOKUP.md). The completed
    [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md) supplies its
    separate task contract, resource table, proof map, and limits.
 2. Use the [cost comparison](docs/QBP_COST_COMPARISON.md) and
@@ -123,11 +124,18 @@ $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ in one circuit, improving the
 previous cubic depth bound. Literal routed-indicator/query checks include
 arbitrary dirty inputs, exact phases, and the actual inverse orientation.
 
-These remain upper schedules. No source parallelization or matching
-T-depth lower bound follows, and the selected $`b=N+n+7,L=N`$
-complete-frame endpoint is unchanged. Future depth work should target
-one remaining source/scheduling term or a lower-bound mechanism before
-expanding finite fixtures.
+These remain upper schedules. The [source-depth certificate](docs/SOURCE_T_DEPTH.md)
+parallelizes the paired source's two tails and proves matching exact depths
+within the specified Majorana-layer architecture. This changes constants,
+not the asymptotic Hopf bounds. It is not a lower bound for arbitrary
+Clifford interlayers, controlled sources, or approximate replacement sources.
+The [current literature audit](docs/RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
+records why shallow clean-workspace synthesis and supplied catalysts do not
+directly replace the dirty source. General T-depth optimality and the selected
+$`b=N+n+7,L=N`$ complete-frame endpoint are unchanged. Obtaining sublinear
+depth for these exact uncontrolled sources requires leaving the certified
+architecture or changing the target. Do not repeat tail rescheduling or
+denominator checks as an unrestricted lower bound.
 
 ## Completed native residual components
 
@@ -170,7 +178,7 @@ software extensions below are not prerequisites for the stated theorem.
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Optimal T-depth | Remains open after the routed-indicator improvement; serial source depth and weak lower bounds are the main unresolved directions |
+| Optimal T-depth | Remains open after routed-indicator improvement and exact source certification within the Majorana-layer architecture; a different source construction or a stronger unrestricted lower bound is still needed |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.

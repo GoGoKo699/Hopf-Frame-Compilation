@@ -115,6 +115,12 @@ The [T-depth schedule](T_DEPTH_COMPILER.md) has
 shared-control Fredkins, disjoint T-layer supports, actual inverses, and
 whole dirty-bank queries. Clifford layers may have substantial depth;
 the fixture does not treat T-depth as total execution depth.
+The [exact source-depth proof](SOURCE_T_DEPTH.md) has
+[separate checks](../tests/test_source_t_depth.py) for its source schedules,
+literal native phases, and exact denominator witnesses. The matching lower
+bounds apply only to the defined Majorana-layer architecture and exact
+targets, including its arbitrary returned dirty extensions. They are not
+general Hopf or controlled-source depth lower bounds.
 The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
 audit routed-indicator cancellation, literal native phases, disjoint T
 layers, scratch-free width, and arbitrary-input return using symbolic

@@ -381,6 +381,18 @@ linear T-count of the operator-source primitive does not prove a linear
 T-depth lower bound. Its serial schedule is an upper bound for one
 implementation.
 
+The [exact source-depth analysis](SOURCE_T_DEPTH.md) sharpens this statement
+within a restricted architecture: signed-permutation Majorana Clifford
+stages interleaved with disjoint-plane rotations. It certifies the geometric
+source and parallelizes the paired source's two tails with a matching
+lower bound in that class. These are constant-factor schedules. Arbitrary
+Clifford interlayers can leave the Majorana representation, so the restricted
+certificate supplies no additional asymptotic lower bound for this theorem.
+It also does not constrain approximate replacement sources or establish
+optimal controlled-source depth. The [workspace comparison](RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
+records the clean-initialization and catalyst assumptions of recent shallow
+rotation constructions.
+
 At fixed accuracy, with $`L=O(1)`$ and $`b=\Theta(N)`$, the older
 layer schedule with depth-optimized banks gives $`D_T=O(n^2)`$ with two clean qubits,
 while the worst-case T-count remains at least $`\Omega(\sqrt N)`$.
