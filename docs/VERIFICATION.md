@@ -142,12 +142,24 @@ routing, nested full-input echoes, actual inverses, and parallel native
 layers. Complete counter fixtures emit the linear TTK adder; separate
 fixtures check the shortened RV macro. The optimized RV ladder depth is
 imported analytically and is not inferred from those serial macro checks.
+The [involution-increment checks](../tests/test_readonly_dirty_increment.py)
+separately audit the two-dirty-bit replacement, both literal polarities,
+native phases, actual inverses, and shared-address scheduling. They use
+serial controlled increments for their bounded fixtures; the logarithmic
+depth is the imported analytic contract. Reversing the complement's
+position gives decrement, a negative case included in the checks.
 The [masked-sum checks](../tests/test_dirty_sum_interfaces.py) separately
 audit the two-controlled-increment compressor, literal native phases,
 weighted helper offsets, the complete outer translation echo, actual
 inverses, and the static column schedule. Their native increment is a
 slower exact MCX expansion; the optimized one-dirty-helper increment
 depth is imported from Vandaele's theorem. The
+[pipelined-sum checks](../tests/test_pipelined_dirty_sum.py) separately
+check deferred parity forests, emitted doubling-block increments,
+updated-prefix carry conditions, private phase helpers, full sum echoes,
+and the static bit-release schedule. The refined pipeline uses linear
+TTK arithmetic; its overlapping schedule is proved analytically.
+The
 [analytic counter proof](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters),
 [compression proof](DIRTY_SUM_COMPRESSION.md), and hybrid composition
 give the improved complete-frame depth bound;
