@@ -38,6 +38,7 @@ theorem by numerical extrapolation.
 | [`test_native_residual_lookup.py`](test_native_residual_lookup.py) | Four-row quadratic masks on arbitrary core inputs, temporary address tracking, literal phases, complete enabled/disabled sectors, and exact gate ledgers |
 | [`test_native_residual_state.py`](test_native_residual_state.py) | Two-flag native preparation, actual inverse and reflections, complete dirty-input isometry, literal phase, and rational precision/resource certificates |
 | [`test_native_two_qubit_residual_state.py`](test_native_two_qubit_residual_state.py) | Two-system-qubit preparation, exact borrowed-core reflection on arbitrary inputs, actual inverse through leakage, complete dirty-input isometry, and charged gate counts |
+| [`test_native_branched_residual_state.py`](test_native_branched_residual_state.py) | Coherent residual selection on an arbitrary branch, literal relative phase, branch-independent reflection, complete branch-and-dirty isometry, and separate normalization checks |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
@@ -94,7 +95,10 @@ The following checks are especially useful when modifying the scientific code:
     address phases, and need no additional helper;
 18. two-system-qubit preparation returns the reused reflection helper on
     arbitrary leaked inputs and includes both system bits in the initial
-    reflection, with all elementary gates charged.
+    reflection, with all elementary gates charged;
+19. coherent residual selection excludes the arbitrary protocol branch
+    from the initial reflection, retains relative phase on coherent
+    inputs, and checks both branch normalizations separately.
 
 The real and complex elementary integration fixtures use two logical
 qubits and exact finite-size preparation. Their bounded propagated columns
@@ -102,8 +106,9 @@ do not implement the general fine residual-table emitter. Classical
 coefficient certificates and floating histogram reconstruction have their
 separate scopes above. The unaddressed native row is a further implemented
 component, extended to addressed two- and four-row tables and bounded
-one- and two-system-qubit state amplification. General lookup and the full
-fine state schedule remain separate.
+one- and two-system-qubit state amplification. The one-system-qubit
+coherent selector includes an arbitrary branch and its relative phase.
+General lookup and the full fine state schedule remain separate.
 
 All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
 checks are retained.
