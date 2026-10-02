@@ -25,7 +25,7 @@ below. Lower bounds are worst-case over the stated frame family. For the
 hybrid depth bounds, write
 
 ```math
-\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
+\chi(t)=\log_2(t+2).
 ```
 
 | Question | Retained result | Status and proof |

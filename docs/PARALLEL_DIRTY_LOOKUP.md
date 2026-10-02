@@ -35,7 +35,7 @@ charged. The sufficient constant C is not a practical crossover estimate.
 **Hybrid theorem.** Define
 
 ```math
-\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
+\chi(t)=\log_2(t+2).
 ```
 
 For every $`b\ge17B_0`$, Sections 5–6 and the
@@ -573,7 +573,7 @@ The [compressed counter construction](DIRTY_SUM_COMPRESSION.md) supplies
 $`f(k)=O(\chi(k))`$, where
 
 ```math
-\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
+\chi(t)=\log_2(t+2).
 ```
 
 It follows that, for all $`L\ge6`$ and $`b\ge17B_0`$,
@@ -620,8 +620,8 @@ routed indicators. The counter construction has separate bounded checks.
 ## 6. A polylogarithmic-depth indicator using dirty counters
 
 This section gives the binary-adder-tree baseline and the surrounding
-counter echoes. [Masked compression](DIRTY_SUM_COMPRESSION.md) replaces
-only its sum operation, improving the indicator depth to $`O(\chi(k))`$
+counter echoes. [Pipelined masked compression](DIRTY_SUM_COMPRESSION.md)
+replaces its sum operation, improving the indicator depth to $`O(\chi(k))`$
 with polynomially larger per-row counts and width. The rest of this
 section's exact circuit remains in use.
 
@@ -681,8 +681,8 @@ T,G=O(m\log(m+2)),\qquad D_T=O(\log^2(m+2)).
 
 Both operands are private, so the synthesis may temporarily borrow their
 bits. The complete adder restores its first operand and adds it modulo
-M into the second. Use the linear-size TTK adder for the increment below
-and the faster adder for the sum tree.
+M into the second. The linear-size TTK adder supplies the retained
+signed-increment baseline; the faster adder supplies the sum tree.
 
 ### A read-only controlled increment using two additions
 
@@ -713,6 +713,51 @@ literal it is that CNOT followed by X on $`g_0`$. The address is never
 a target and never participates in a non-Clifford gate. This is an
 all-input identity, including coherent helpers and address controls.
 
+### A logarithmic-depth increment using two dirty bits
+
+The following involution echo improves that increment's private workspace
+and depth. Let $`S(U)=-U-1\pmod M`$ be bitwise complement and
+$`R(U)=-U\pmod M`$ be modular negation. Both are involutions, and
+chronological S followed by R is increment. Reserve two arbitrary dirty
+bits d,e, disjoint from U and the public literal ell.
+
+Implement $`R^d`$ by a CNOT from d to each counter bit, followed by
+the d-controlled increment from
+[Vandaele, Section 5, Corollary 7](https://arxiv.org/html/2603.12917v1#S5).
+That completed increment may borrow d internally, but d is private here;
+it returns d and the separate dirty helper e exactly. Write E for XOR of
+ell into d. Then the chronological word
+
+```math
+F=R^d,\ E,\ R^d,\ E
+```
+
+acts on U as $`R^{d\oplus\ell}R^d=R^\ell`$ and returns both dirty
+bits. Therefore the desired controlled increment is
+
+```math
+S^\ell,\ R^d,\ E,\ R^d,\ E:
+\qquad U\longmapsto U+\ell\pmod M.
+```
+
+The order matters: placing $`S^\ell`$ last gives decrement instead.
+For a positive literal, its public gates are CNOTs into U and d. For a
+negative literal, append X on each corresponding private target. The
+public address is never changed and participates only as a CNOT control.
+All non-Clifford gates belong to private row work. This implements
+
+```math
+T,G=O(m),\qquad D_T=O(\log(m+2)),\qquad w_{\mathrm{extra}}=2.
+```
+
+For m equal to one use a single literal-controlled X directly. For all
+other m, the two helper bits are sufficient; no minimality is claimed.
+The full permutation identity, including literal phase, proves the
+contract on arbitrary coherent dirty inputs and reference systems.
+The [bounded native checks](../tests/test_readonly_dirty_increment.py)
+use an explicitly slower serial controlled increment; the optimized
+depth above is inherited from the completed source theorem.
+
 ### Add the Hamming weight without initializing a counter
 
 For one conjunction of k literals $`\ell_i`$, allocate private
@@ -730,10 +775,11 @@ L:\quad c\longmapsto c+\sum_i a_i\pmod M,
 
 Each tree level consists of disjoint additions. Thus L has
 $`T,G=O(km\log(m+2))`$ and
-$`D_T=O(\log(k+1)\log^2(m+2))`$. Reserve m private helper
-bits per a register for its controlled increment. Allowing the same
-reservation for c gives the conservative width bound below; the
-modular adders themselves need no helper.
+$`D_T=O(\log(k+1)\log^2(m+2))`$. Two private helper bits per a
+register suffice for its controlled increment. The older m-bit helper
+reservation remains a valid conservative bound for m at least two;
+the one-bit increment needs no helper. The modular adders themselves
+need no helper.
 
 Let J increment every $`a_i`$ by its literal $`\ell_i`$ in parallel.
 The chronological translation echo
@@ -824,7 +870,7 @@ helper. No total Clifford-depth bound is being inferred from T-depth.
 
 The baseline indicator satisfies the polynomial-overhead interface of
 Section 5. Its [masked-sum refinement](DIRTY_SUM_COMPRESSION.md) uses
-$`T,G,w=O(2^k(k+1)^{\log_2 3})`$ and $`f(k)=O(\chi(k))`$;
+$`T,G,w=O(2^k(k+1)^3)`$ and $`f(k)=O(\chi(k))`$;
 the same majorant $`P(t)=C(t+1)^3`$ remains sufficient. At fixed
 accuracy and a sufficiently large $`b=\Theta(\sqrt N)`$, the refined
 composition gives one two-clean complete real-frame circuit with
@@ -849,8 +895,11 @@ checked separately; its optimized ladder depth is imported analytically,
 not emitted or inferred from the serial macro fixtures. The general
 resource bounds and Hopf composition are analytic arguments above. Separate
 [compression checks](../tests/test_dirty_sum_interfaces.py) audit the
-replacement sum, its helper offsets, actual inverses, and column schedule;
-the logarithmic controlled-increment depth is imported analytically.
+round-based sum, its helper offsets, actual inverses, and column schedule.
+The [pipeline checks](../tests/test_pipelined_dirty_sum.py) audit the
+deferred parity forests, doubling blocks, full sum echo, and release
+schedule. This refinement uses linear TTK arithmetic inside each block
+and for readout; its depth improvement comes from the pipeline proof.
 
 ## 7. Attribution and evidence
 

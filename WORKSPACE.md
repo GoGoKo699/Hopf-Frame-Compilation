@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 masked-sum refinement starts from verified main
-`a6c37a7935f36a689beda16ab76263f661a38a9a`, after the variable-width
-hybrid and signed-increment refinement. Check later commits before
+The 2026-10-02 carry-pipeline refinement starts from verified main
+`6fdef0b728f989652df92100cabeed51d514e3d7`, after the masked-sum
+compression refinement. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -106,7 +106,7 @@ T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
 Here
 
 ```math
-\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
+\chi(t)=\log_2(t+2).
 ```
 
 When nonempty, the range
@@ -291,7 +291,7 @@ indicator echo extracts the all-literals-true predicate. Every helper
 returns exactly. Original address bits enter only through Clifford
 CNOTs; all non-Clifford gates act on private row work and parallelize.
 For k address bits the construction has
-$`T,G,w=O(2^k(k+1)^{\log_2 3})`$ and
+$`T,G,w=O(2^k(k+1)^3)`$ and
 $`D_T=O(\chi(k))`$ with no clean work.
 
 The early/late hybrid now works at every eligible width and precision.
@@ -311,32 +311,39 @@ all-input classical permutation even with arbitrary returned dirty
 helpers. This constant lower bound does not apply to initialized-clean
 subspace contracts and does not close the frame-depth gap.
 
-The signed-translation echo and
-conditional bitwise complement implement each address-controlled
-increment using two linear TTK adders; all address gates are CNOTs.
-The former private binary-adder tree is now replaced by a compression
-network. Each triple produces its parity and increments a fresh dirty
-upper word under two disjoint two-bit predicates. Its weighted invariant
-retains the unknown initial upper word as a helper-only offset. That
-offset cancels in the outer echo, so no canonical initialized carry is
-needed. A weighted-excess potential proves $`O(\log k)`$ rounds, and
-a geometric count bounds all permanently reserved work by a fixed
-polynomial. Vandaele's exact dirty controlled increment gives each round
-$`O(\log\log k)`$ depth. Two final Remaud–Vandaele additions read the
-surviving words into the accumulator. Both optimized arithmetic depths
-are imported analytic bounds; bounded emitted fixtures use explicitly
-identified slower native words and test full-input identities.
+The signed-translation echo and conditional complement supply a linear
+TTK implementation of a read-only controlled increment. A separate
+involution refinement uses two dirty bits and Vandaele's controlled
+increment to reduce its depth to $`O(\log(m+2))`$ for m counter bits.
+All public-address interactions remain CNOTs.
 
-The next construction target is an exact read-only-address indicator
-with $`O(\log(k+2))`$ T-depth and polynomial overhead. The remaining
-factor comes from the controlled increments inside the compression
-rounds. A proof would need to overlap those carries across rounds or
-replace the local representation; simply reusing initialized carry-save
-circuits does not meet the contract. The new construction already shows
-that an exact sum with zero helper offset was stronger than needed.
+The masked sum now uses overlapping carry pipelines. Keep each column's
+raw bits fixed while expressing its parity forest as linear forms.
+Increment each fresh upper word in doubling blocks, testing the already
+updated lower prefix for zero. A completed bit is never written or
+borrowed again during the pipeline. Exact dirty-helper phase gadgets
+let later columns read those bits while higher blocks continue. A bit
+at distance d settles in $`O(d)`$ T layers, so launching column j at
+time proportional to j finishes every carry in $`O(m)`$ T-depth.
+Only then apply the deferred parity CNOTs. Two linear TTK additions
+read the final words, and the actual inverse returns all work.
+The helper-only offsets still cancel in the outer echo. The geometric
+width bound and balanced-forest Clifford count remain polynomial.
+The pipeline itself needs no fast increment or fast-adder import.
+
+This completes the selected $`O(\log(k+2))`$ indicator milestone and
+gives $`O(n\log(n+2))`$ fixed-accuracy frame depth with optimal-order
+T-count. The next bounded question is whether the remaining logarithm
+can be reduced while preserving the full-frame error and count bounds.
+The current additive source-error certificate already forces a total
+precision order $`nL+n\log n`$ for its layerwise sources; this is a
+restriction of that certificate and schedule, not a frame-depth lower
+bound. A useful next pass must examine joint error control, a different
+source implementation, or overlapping source layers with their actual
+dependencies charged. Do not repeat the completed carry pipeline or
+try to infer an unrestricted depth bound from its local representation.
 A matching unrestricted large-width frame-depth lower bound remains
-separate. Do not repeat the signed-increment, masked-compression, or
-variable-width hybrid passes; all are complete.
+separate.
 The completed modest-width
 matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare

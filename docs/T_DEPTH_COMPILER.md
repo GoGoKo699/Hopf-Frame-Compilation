@@ -414,8 +414,8 @@ make the polynomial T-depth optimal.
 The [parallel-loader refinement](PARALLEL_DIRTY_LOOKUP.md) achieves
 $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ together already with sufficiently
 large $`\Theta(\sqrt N)`$ dirty workspace at fixed accuracy. The
-[compressed dirty-counter hybrid](DIRTY_SUM_COMPRESSION.md)
-improves that depth to $`O(n\log n\log\log n)`$ with the same
+[pipelined dirty-counter hybrid](DIRTY_SUM_COMPRESSION.md)
+improves that depth to $`O(n\log(n+2))`$ with the same
 count and workspace orders. Its variable-width extension also enlarges
 the matching range at every precision; see the
 [hybrid theorem](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision). The depth lower-bound gap remains open.
