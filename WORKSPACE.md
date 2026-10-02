@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 carry-pipeline refinement starts from verified main
-`6fdef0b728f989652df92100cabeed51d514e3d7`, after the masked-sum
-compression refinement. Check later commits before
+The 2026-10-02 error-accumulation audit starts from verified main
+`91e5312dd9b4986c016b4167b4e9a0fbc04362b5`, after the carry-pipeline
+refinement. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -24,7 +24,8 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Begin active depth work with [masked dirty sums](docs/DIRTY_SUM_COMPRESSION.md)
+1. Begin active depth work with the [error audit](docs/HOPF_ERROR_ACCUMULATION.md),
+   [masked dirty sums](docs/DIRTY_SUM_COMPRESSION.md)
    and the [hybrid tradeoff](docs/PARALLEL_DIRTY_LOOKUP.md), then the
    [amortized baseline](docs/AMORTIZED_DIRTY_LOOKUP.md),
    then its [batched allocation](docs/BATCHED_DIRTY_LOOKUP.md),
@@ -70,6 +71,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
+| Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
 | Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
@@ -333,15 +335,31 @@ The pipeline itself needs no fast increment or fast-adder import.
 
 This completes the selected $`O(\log(k+2))`$ indicator milestone and
 gives $`O(n\log(n+2))`$ fixed-accuracy frame depth with optimal-order
-T-count. The next bounded question is whether the remaining logarithm
-can be reduced while preserving the full-frame error and count bounds.
-The current additive source-error certificate already forces a total
-precision order $`nL+n\log n`$ for its layerwise sources; this is a
-restriction of that certificate and schedule, not a frame-depth lower
-bound. A useful next pass must examine joint error control, a different
-source implementation, or overlapping source layers with their actual
-dependencies charged. Do not repeat the completed carry pipeline or
-try to infer an unrestricted depth bound from its local representation.
+T-count. The completed [error audit](docs/HOPF_ERROR_ACCUMULATION.md)
+now separates ideal angular error from physical source leakage. Exact
+angle perturbations have a sharp square-sum bound with asymptotic constant
+$`\sqrt2`$. For equal error magnitudes within each layer, the entire
+finite relative spectrum is independent of the base angles and signs.
+Nearest rounding on angular grids with a common spacing therefore still
+requires half a logarithm of n in that precision at fixed accuracy, even with
+coordinated midpoint tie choices. This is a restricted angle-grid result.
+
+For the actual common-precision source stages, local errors at most
+$`4\Delta`$ can yield full-frame error at least $`n\Delta/8`$ when
+$`\Delta\le(256n)^{-2}`$. Their full initialized-isometry errors have
+no uniform square-sum bound. This counterfamily is not a lower bound for
+the capped allocation, a replacement compiler, or fixed-accuracy depth.
+The count/depth frontier and high-precision endpoint remain unchanged.
+
+The next bounded circuit audit is a flag-reflection composite of two
+half-angle source calls: determine whether its rejected component is
+uniformly smaller, while charging its accepted product, actual inverses,
+literal phases, and all work return. A near-zero cancellation is
+insufficient, and even successful leakage suppression alone would not
+remove the independent-angle logarithm. A different shallow source or
+joint layer construction remains the route to a new asymptotic bound.
+Do not repeat the completed carry pipeline or replace the shared-flag
+additive certificate by the ideal-angle theorem.
 A matching unrestricted large-width frame-depth lower bound remains
 separate.
 The completed modest-width

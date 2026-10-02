@@ -197,6 +197,12 @@ keeps total source depth at $`O(n\log(n+1))`$; the dirty-counter
 queries account for the remaining term. Depth at square-root-scale
 workspace is still not known to be optimal.
 
+The [error audit](docs/HOPF_ERROR_ACCUMULATION.md) distinguishes sharp
+square-sum stability of ideal angle perturbations from coherent linear
+leakage in the actual shared-flag source layers. Independent nearest-grid
+angle rounding still needs logarithmic precision. These scoped results
+close an error-accounting shortcut without changing the depth frontier.
+
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)
 implements every prescribed real Hopf frame with

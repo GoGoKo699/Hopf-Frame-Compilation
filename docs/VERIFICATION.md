@@ -192,6 +192,16 @@ bank and indicator allocations, worst-rank native query ledgers, and
 full-frame sums, including high precision and the empty/nonempty matching
 window boundary. These are finite arithmetic checks of the analytic
 composition, not an emitted variable-size frame circuit.
+The [Hopf error checks](../tests/test_hopf_error_accumulation.py) compare
+small complete relative-frame spectra with the analytic finite recursion,
+including different bases and error signs. A single common representation
+of every active and inactive source mask then checks the exact Q/OAA
+algebra, its rejected-space sign, the coherent leakage witness, and actual
+inverse return. These source fixtures use a joint Clifford-algebra
+reduction evaluated in floating point; they are not emitted native words.
+Their dense matrices have dimension at most 64, and the larger small-n
+witnesses propagate one state through 32-dimensional blocks. The uniform
+stability and leakage bounds are proved in the [error chapter](HOPF_ERROR_ACCUMULATION.md).
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)
