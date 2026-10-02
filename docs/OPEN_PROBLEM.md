@@ -142,8 +142,23 @@ square-sum-plus-quadratic composition bound. Source widths may then use
 $`m_d=L+4+\min\{n-d,\lceil\tfrac12\log_2(8n)\rceil\}`$.
 This halves the logarithmic coefficient in assigned source precision,
 but additional calls and phase words preserve the same asymptotic costs.
-The next depth improvement must address the remaining source or joint
-layer cost; stronger radial suppression alone does not remove it.
+The [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
+now reduces the precision part to logarithmic depth when the active
+suffix can reserve 7m temporary clean bits for source width m.
+It uses the same two external flags and an enlarged, charged reflection.
+With the unfiltered additive cap, source/reflection depth at fixed
+accuracy becomes $`O(n\log\log(n+2)+\log^2(n+2))`$ after the late
+fallback. Lookup and suffix-predicate depths remain
+$`O(n\log(n+2))`$, so no improved complete-frame depth theorem follows.
+The next target is reuse of query/predicate work across a small group,
+with changed internal addresses and arbitrary dirty offsets accounted for.
+
+The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
+allows unrestricted Clifford interlayers: the original source at width
+at least five, or its controlled version at width at least four, remains
+at operator distance at least $`1/16`$ from every two-T-layer full-input
+circuit, regardless of dirty width. This does not cover a conditionally
+initialized source or the two-clean complete-frame isometry.
 
 ### What this already gives Hopf QBP
 

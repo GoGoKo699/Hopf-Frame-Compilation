@@ -12,6 +12,10 @@ subroutine is identity on the inactive sector. A decomposition of the
 residual into columns indexed by ancestor depth makes the required private
 work logarithmic in the group height. Several layers then share one
 precision charge, and successive group heights can grow exponentially.
+The separate [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
+uses the same active-suffix principle to reduce the precision component
+of a single layer to logarithmic T-depth. It does not improve the grouped
+endpoint theorem below or remove the complete-frame lookup-depth cost.
 
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$, $`0\lt\eta\leq1/64`$, and
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. Define

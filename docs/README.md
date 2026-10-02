@@ -23,6 +23,8 @@ topic has one primary chapter below.
 | [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Precision-uniform grouped bounds and their one-clean extension, ancestor-column residuals, and complete-input return |
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Exact source depth](SOURCE_T_DEPTH.md) | Parallel paired tails and matching exact source depths within a specified Majorana-linear circuit class; no unrestricted optimality claim |
+| [Two-layer source obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) | Width-independent approximation gaps for full-input sources with arbitrary Clifford interlayers and returned dirty helpers |
+| [Conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md) | Logarithmic precision depth using the active logical suffix as temporary clean work; lookup and suffix-predicate costs remain separate |
 | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md) | Sharp ideal-angle stability, finite relative spectra, and coherent leakage in the actual shared-flag sources; scoped precision boundaries |
 | [Flag-echo audit](HOPF_FLAG_ECHO.md) | Exact errors of four diagonal Pauli echoes, their generic linear leakage, and an exact equal-mask exception |
 | [Radial source filter](HOPF_RADIAL_FILTER.md) | Phase-calibrated fixed-point filtering, quadratic radial error, charged native phases, and a smaller complete-frame precision cap |

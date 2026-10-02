@@ -209,6 +209,17 @@ reduces the full radial error quadratically on the same two flags.
 Charging its additional source calls and native phase words permits a
 smaller source-width cap, while preserving the displayed asymptotic bounds.
 
+The [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md)
+now reduces the precision component to logarithmic depth wherever the
+active logical suffix supplies enough temporary clean work. Only the
+same two external clean flags are used. Its lookup and suffix-predicate
+costs remain charged, so the complete-frame depth frontier is unchanged.
+Separately, the [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md)
+excludes arbitrarily accurate full-input replacement of the original
+source by two T layers, even with unrestricted Clifford interlayers and
+arbitrarily many dirty helpers. That constant obstruction is not a
+complete-frame lower bound.
+
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)
 implements every prescribed real Hopf frame with

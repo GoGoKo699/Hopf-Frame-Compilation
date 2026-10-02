@@ -149,6 +149,7 @@ from the exact clean-workspace size–depth theorem.
 | F32 | [Takahashi–Tani–Kunihiro, arXiv:0910.2530v1](https://arxiv.org/pdf/0910.2530v1), Sections 2.1–2.3 | linear-size, linear-depth exact ripple-carry addition without initialized work | deleting the two gates targeting the arbitrary carry-output wire gives the modular adder used in the signed dirty increment and baseline sum tree; its literal CNOT/Toffoli word is emitted in the bounded checks; later clean-work/fanout constructions are not used |
 | F33 | [Remaud–Vandaele, arXiv:2501.16802v2](https://arxiv.org/html/2501.16802v2), Lemmas 2/4, Algorithm 3, Theorem 2 | exact helper-free addition via shallow CNOT and Toffoli ladders | truncate the carry output at the abstract ladder level, then synthesize the shorter ladders; applies only to private counters; bounded checks audit the reduced macro, while the optimized ladder-depth bound is imported analytically |
 | F34 | [Vandaele, arXiv:2603.12917v1](https://arxiv.org/html/2603.12917v1), Section 5, Theorem 4 and Corollary 7 | exact logarithmic-depth increment and controlled increment with one returned dirty helper | supplies the retained round-based compressor and the separate two-dirty-bit read-only increment; temporary control borrowing stays on private supports; the carry-pipeline refinement instead uses linear TTK arithmetic |
+| F35 | [Aaronson–Gottesman, arXiv:quant-ph/0406196v5](https://arxiv.org/pdf/quant-ph/0406196v5), Section III; [Zhang–Zhang, arXiv:2409.13809v2](https://arxiv.org/html/2409.13809v2#S3.SS1), Theorem III.1, Eqs. (10)–(11) | stabilizer-overlap quantization and Pauli conjugation by one T layer into a Hermitian Clifford | the [two-layer source obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) derives a full-space transfer alphabet and robust source witnesses; initialized-clean isometries and growing frame-depth lower bounds are excluded |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -272,6 +273,14 @@ schedule. Its lower bounds are for the stated Majorana-layer architecture
 and exact targets; it changes no asymptotic frame or state-QBP theorem.
 The [precision-depth comparison](RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
 records F28's distinct workspace contracts.
+The [two-layer source obstruction](SHALLOW_SOURCE_OBSTRUCTION.md)
+combines F35's standard facts with exact geometric-source coefficients.
+The [conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md)
+instead supplies an explicit reversible prefix preparation and its
+active-suffix block-encoding contract, using the existing exact lookup,
+native controlled-H, reflection, and amplification ingredients. It changes
+the precision component only; no all-dirty source resynthesis or improved
+overall frame-depth theorem is inferred.
 
 The [consolidated state-based QBP theorem](STATE_BASED_QBP_THEOREM.md)
 collects R36 and R38–R42 under one input, precision, workspace, and
