@@ -341,7 +341,8 @@ numerical correctness oracle.
 One- and two-system-qubit residual preparation are now implemented. A
 [coherent one-system-qubit selector](NATIVE_RESIDUAL_BRANCH.md) also
 preserves relative phase under a separate arbitrary protocol branch,
-which its initial reflection excludes. The next bounded task integrates
+which its initial reflection excludes. The
+[bounded native residual QBP example](NATIVE_RESIDUAL_QBP.md) integrates
 that selector with charged common-coarse QBP and both decoder streams.
 General lookup, the full fine state compiler, and its complete QBP
 integration remain implementation tasks. The complete-frame endpoint

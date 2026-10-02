@@ -419,3 +419,7 @@ The [bounded native integration](NATIVE_COARSE_QBP.md) emits this finite-size
 fallback for an exact two-qubit target and a complex native reference.
 It checks literal branch phase and an actively used arbitrary dirty helper.
 It does not emit the general addressed residual-table construction.
+The later [native residual QBP fixture](NATIVE_RESIDUAL_QBP.md) does use
+the bounded fine residual emitters inside both complete streams for a
+certified complex one-qubit target, with all coarse and observable gates
+charged. Variable-size native emission remains separate.

@@ -46,6 +46,7 @@ topic has one primary chapter below.
 | [Native residual rows and tables](NATIVE_RESIDUAL_ROTATION.md) | Exact coefficient-to-mask programming, elementary residual rows, and enabled two- and four-row tables with arbitrary borrowed inputs |
 | [Native residual state preparation](NATIVE_RESIDUAL_STATE.md) | One- and two-system-qubit integration, two clean flags, charged reflections, actual-inverse amplification, and complete borrowed-input isometry error |
 | [Coherent residual selection](NATIVE_RESIDUAL_BRANCH.md) | One-system-qubit reference/target selection under an arbitrary branch, literal relative phase, two clean flags, and complete branch-and-dirty isometry error |
+| [Native residual QBP integration](NATIVE_RESIDUAL_QBP.md) | Certified complex fixture, fine residual preparation inside both native streams, charged coarse/observable words, and exact raw-gradient histogram decoders |
 
 ### Research boundaries and related constructions
 

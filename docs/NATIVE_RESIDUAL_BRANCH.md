@@ -174,9 +174,9 @@ rational certificates and literal gate counts instead of large
 statevectors. Finite numerical evidence supplements the analytic bound.
 
 This completes the bounded coherent residual selector for one system
-qubit. The next task is a bounded native common-coarse QBP integration,
-charging forward C, the controlled observable, and inverse C in the
-magnitude stream while retaining both decoder streams. General lookup
-and the full fine state compiler remain implementation tasks. No new
-asymptotic result, end-to-end advantage, or complete-frame closure is
-claimed here.
+qubit. The [native residual QBP integration](NATIVE_RESIDUAL_QBP.md)
+now charges forward C, the controlled observable, and inverse C in the
+magnitude stream while retaining both decoder streams for a fixed complex
+target. General lookup and the full fine state compiler remain separate
+implementation tasks. No new asymptotic result, end-to-end advantage, or
+complete-frame closure is claimed here.

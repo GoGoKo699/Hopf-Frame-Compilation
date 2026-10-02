@@ -806,8 +806,14 @@ returning an arbitrary core helper on every leaked input. The bounded
 implements reference/target selection under an arbitrary protocol branch,
 preserving its relative phase and excluding it from the initial reflection.
 Its dirty allocation exceeds the basic n=1 reservation by four wires.
-The next bounded task integrates this selector into charged common-coarse
-QBP with both decoder streams. The full fine-precision native emitter remains an implementation task;
+The [native residual QBP integration](NATIVE_RESIDUAL_QBP.md) now connects
+this selector to an actual coarse circuit, controlled observable, actual
+inverse magnitude readout, direct phase readout, and exact histogram
+decoders for a fixed complex one-qubit target. Its coefficient and full
+coarse-distance promises have rational certificates. The next pass
+consolidates the proof-to-code map and identifies any remaining
+claim-relevant implementation gap before selecting more components.
+The full fine-precision native emitter remains an implementation task;
 completing it would strengthen executable evidence without changing the
 proved resource bounds by itself. No end-to-end advantage example is
 selected. Such a claim requires a concrete observable-access model and a

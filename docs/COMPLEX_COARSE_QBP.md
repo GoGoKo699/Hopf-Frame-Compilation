@@ -17,6 +17,10 @@ fine prescribed complete frame, establish a universal advantage, or supply
 a general native emitter for this complex protocol. The separate
 [bounded native example](NATIVE_COMPLEX_COARSE_QBP.md) now emits both
 streams completely for a special exact two-qubit target.
+The [native residual integration](NATIVE_RESIDUAL_QBP.md) also emits both
+streams for a certified complex one-qubit target, using fine residual
+preparation, charged common C and its actual inverse, and exact rational
+histogram reconstruction.
 
 ## 1. Supplied phases, the fixed gauge, and the actual native interface
 
