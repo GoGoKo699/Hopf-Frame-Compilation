@@ -162,22 +162,26 @@ $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same circuit.
 At fixed accuracy, two clean and sufficiently large
 $`\Theta(\sqrt N)`$ dirty workspace give count-optimal
 $`O(\sqrt N)`$ T gates with
-$`O(\min\{n^2,n\log^2(n+2)\})`$ T-depth, using the
+$`O(n\chi(n))`$ T-depth, using the
 [dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
-for the new subquadratic bound.
+for the new bound, where
+
+```math
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
-The [amortized extension](docs/AMORTIZED_DIRTY_LOOKUP.md) covers every
+The [hybrid extension](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) covers every
 $`L\ge6`$ and $`b\ge17(L+n+7)`$ with two clean qubits:
 
 ```math
 T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
-\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right).
 ```
 
 All three bounds hold for one complete real-frame circuit. When nonempty,
-the interval $`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$ has matching
+the interval $`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$ has matching
 worst-case count $`T^\star=\Theta(NL/b)`$ and depth
 $`D_T^\star=\Theta(NL/b^2)`$. For inverse-polynomial error in N,
 $`L=\Theta(n)`$ and sufficient $`b=\Theta(n)`$ give
@@ -185,14 +189,13 @@ $`T^\star=\Theta(N)`$, $`D_T^\star=\Theta(N/n)`$.
 Outside the interval the extra $`nL`$ count term is retained; no
 uniform count-optimality claim follows from this schedule.
 
-At fixed L, the previous $`T=O(\sqrt N+N/b)`$ and
-$`D_T=O(N/b^2+n^2)`$ bounds still hold, with matching depth throughout
-$`17(L+n+7)\le b\le\sqrt N/n`$. The additive quadratic term leaves
-square-root-scale workspace depth unresolved. A
-[precision cap](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
-reduces accumulated source depth to $`O(n\log(n+1))`$ at fixed L
-within the same reservation and error budget; query routing still
-contributes the quadratic term.
+At fixed L, the hybrid retains $`T=O(\sqrt N+N/b)`$ at every eligible
+width and gives $`D_T=O(N/b^2+n\chi(n))`$. Its matching interval
+extends asymptotically to order $`\sqrt{N/(n\chi(n))}`$.
+The [precision cap](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+keeps total source depth at $`O(n\log(n+1))`$; the dirty-counter
+queries account for the remaining term. Depth at square-root-scale
+workspace is still not known to be optimal.
 
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)

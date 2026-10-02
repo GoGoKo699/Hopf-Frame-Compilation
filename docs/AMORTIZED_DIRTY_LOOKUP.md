@@ -39,20 +39,29 @@ the optimal worst-case order:
 T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
 ```
 
-At fixed L, the separate [fixed-accuracy corollary](#fixed-accuracy-corollary)
-retains $`T=O(\sqrt N+N/b)`$ throughout $`b\ge17B_0`$ and matching
-depth on the original literal interval $`b\le\sqrt N/n`$. The
-[capped precision allocation](#capping-the-source-precision) gives
-accumulated source depth $`O(nL+n\log(n+1))`$; the retained query
-routing contributes $`O(n^2)`$. The separate
-[dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
-improves fixed-accuracy depth to $`O(n\log^2(n+2))`$ at sufficient
-$`b=\Theta(\sqrt N)`$, retaining optimal-order T-count.
-Large-workspace optimal depth and the
-high-precision constant-clean endpoint remain open. T-depth permits arbitrary
-Clifford circuits between T layers; their elementary depth is not
-bounded by this theorem, and their gate count remains included in G.
-The earlier batched construction remains a valid separate proof.
+The theorem above is the routed baseline proved in this chapter. The
+[hybrid refinement](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision)
+retains its T-count, Clifford count, two clean flags, and literal width
+threshold while replacing its depth bound by
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right),\qquad
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
+
+Its simultaneous matching interval is
+
+```math
+17B_0\le b\le\sqrt{\frac{NL}{nL+n\chi(n)}}.
+```
+
+The earlier interval and fixed-L corollary remain valid separately.
+The hybrid uses the capped precision allocation proved below and exactly
+replaces selected early queries. It adds no clean work or approximation
+error. Large-workspace optimal depth and the high-precision constant-clean
+endpoint remain open. T-depth permits arbitrary Clifford circuits between
+T layers; their elementary depth is not bounded by these theorems, while
+their gate count remains included in G.
 
 ## 1. A controlled linear shear has constant T-depth
 

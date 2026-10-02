@@ -5,6 +5,10 @@ Classical words audit complete work return; small native matrices audit
 literal phases and actual inverses. Native schedules retain parallel tree
 rounds, leaf increments, and Fredkin matchings. No large Hilbert-space
 matrix or general compiler interface is constructed here.
+
+Full counter fixtures retain the literal TTK native adder schedule. The
+RV ladder word below checks the modular interface before optimization;
+its expanded serial schedule does not implement RV's fast-depth lemma.
 """
 from __future__ import annotations
 
@@ -83,16 +87,30 @@ def _mcx(controls, target, helpers, *, negative_first=False):
     return _primitive(first + _adjoint(root_disabled))
 
 
-def _increment(control, counter, helpers, *, negative=False):
+def _increment_by_ladder(control, counter, helpers, *, negative=False):
     parts = [_mcx([control] + counter[:j], counter[j], helpers, negative_first=negative)
              for j in reversed(range(1, len(counter)))]
     parts.append(_mcx([control], counter[0], helpers, negative_first=negative))
     return _serial(parts)
 
 
+def _increment(control, counter, helpers, *, negative=False):
+    """The K,F,K signed echo adds one literal using two private adders."""
+    assert counter and len(helpers) >= len(counter)
+    helper_counter = helpers[:len(counter)]
+    assert len(set([control] + counter + helpers)) == 1 + len(counter) + len(helpers)
+    complement = _primitive([('CX', helper_counter[0], wire) for wire in counter])
+    literal = _primitive([('CX', control, helper_counter[0])]
+                         + ([('X', helper_counter[0])] if negative else []))
+    addition = _add(helper_counter, counter)
+    return _serial([complement, _reverse(addition), literal, addition,
+                    _reverse(literal), _reverse(complement)])
+
+
 def _add_by_increments(source, target, helpers):
     assert len(source) == len(target)
-    return _serial([_increment(wire, target[j:], helpers) for j, wire in enumerate(source)])
+    return _serial([_increment_by_ladder(wire, target[j:], helpers)
+                    for j, wire in enumerate(source)])
 
 
 def _add(source, target):
@@ -111,6 +129,22 @@ def _add(source, target):
         word += [('CX', source[i], target[i]),
                  ('CCX', target[i - 1], source[i - 1], source[i])]
     word += [('CX', source[i], source[i + 1]) for i in range(1, bits - 1)]
+    word += [('CX', source[i], target[i]) for i in range(bits)]
+    return _primitive(word)
+
+
+def _rv_add_macro(source, target):
+    """Reduced RV modular ladder word, expanded without its optimizer."""
+    assert len(source) == len(target) and source
+    assert len(set(source + target)) == len(source) + len(target)
+    bits = len(source)
+    wall = [('CX', source[i], target[i]) for i in range(1, bits)]
+    ladder1 = [('CX', source[i - 1], source[i]) for i in reversed(range(2, bits))]
+    ladder2 = [('CCX', source[i - 1], target[i - 1], source[i])
+               for i in reversed(range(1, bits))]
+    complements = [('X', target[i]) for i in range(1, bits - 1)]
+    word = wall + ladder1 + _adjoint(ladder2) + wall
+    word += complements + ladder2 + _adjoint(complements) + _adjoint(ladder1)
     word += [('CX', source[i], target[i]) for i in range(bits)]
     return _primitive(word)
 
@@ -221,7 +255,7 @@ class CounterDirtyIndicatorTests(unittest.TestCase):
             self.assertTrue(all(gate[-1] not in range(controls) for gate in circuit[0]))
             self.assertTrue(all(0 not in gate[1:] for gate in circuit[0] if gate[0] == 'CCX'))
         counter = [1, 2, 3]
-        increment = _increment(0, counter, [4, 5, 6], negative=True)
+        increment = _increment_by_ladder(0, counter, [4, 5, 6], negative=True)
         images = [_replace(basis, counter, (_read(basis, counter) + 1 - (basis & 1)) % 8)
                   for basis in range(128)]
         self.assert_native(7, increment, images)
@@ -229,6 +263,26 @@ class CounterDirtyIndicatorTests(unittest.TestCase):
         images = [_replace(basis, [2, 3], (_read(basis, [0, 1]) + _read(basis, [2, 3])) % 4)
                   for basis in range(64)]
         self.assert_native(6, addition, images)
+
+    def test_signed_increment_all_offsets_polarities_phases_and_cost(self):
+        for bits in range(1, 5):
+            counter = list(range(1, bits + 1))
+            helpers = list(range(bits + 1, 2 * bits + 1))
+            for negative in (False, True):
+                increment = _increment(0, counter, helpers, negative=negative)
+                images = [_replace(basis, counter,
+                                   (_read(basis, counter) + ((basis & 1) ^ negative)) % (1 << bits))
+                          for basis in range(1 << (2 * bits + 1))]
+                for basis, desired in enumerate(images):
+                    self.assertEqual(_basis_action(basis, increment[0]), desired)
+                    self.assertEqual(_basis_action(desired, _reverse(increment)[0]), basis)
+                if bits <= 3:
+                    self.assert_native(2 * bits + 1, increment, images)
+                self.assertEqual(_resources(increment), (28 * (bits - 1), 16 * (bits - 1)))
+                for gate in _word(increment[1]):
+                    self.assertNotEqual(gate[-1], 0)
+                    if 0 in gate[1:]:
+                        self.assertEqual(gate, ('CX', 0, helpers[0]))
 
     def test_linear_modular_adder_emitted_action_native_phases_and_cost(self):
         for bits in range(1, 6):
@@ -246,6 +300,22 @@ class CounterDirtyIndicatorTests(unittest.TestCase):
             self.assertEqual(sum(gate[0] == 'CX' for gate in addition[0]),
                              1 if bits == 1 else 5 * bits - 6)
             self.assertEqual(_resources(addition), (14 * (bits - 1), 8 * (bits - 1)))
+
+    def test_reduced_rv_macro_modular_action_actual_inverse_and_native_phase(self):
+        for bits in range(1, 6):
+            source, target = list(range(bits)), list(range(bits, 2 * bits))
+            addition = _rv_add_macro(source, target)
+            images = [_replace(basis, target,
+                               (_read(basis, source) + _read(basis, target)) % (1 << bits))
+                      for basis in range(1 << (2 * bits))]
+            for basis, desired in enumerate(images):
+                self.assertEqual(_basis_action(basis, addition[0]), desired)
+                self.assertEqual(_basis_action(desired, _reverse(addition)[0]), basis)
+            if bits <= 3:
+                self.assert_native(2 * bits, addition, images)
+            # This expanded word has serial CCX schedules. The fast depth
+            # result comes from the imported ladder lemma, not this emitter.
+            self.assertEqual(sum(gate[0] == 'CCX' for gate in addition[0]), 2 * bits - 2)
 
     def test_two_matching_cyclic_shift_native_phase_and_orientation(self):
         for bits in (1, 2):
@@ -330,10 +400,10 @@ class CounterDirtyIndicatorTests(unittest.TestCase):
                     self.assertEqual(_basis_action(basis, batch[0]), expected)
 
     def test_emitted_tree_parallel_depth_and_complete_resource_ledger(self):
-        for bits in (1, 2, 3):
+        for bits in (1, 2, 3, 4):
             fixture = _counter_fixture(bits, (1 << bits) - 1)
             m, rounds = fixture['counter_bits'], fixture['rounds']
-            inc_count, inc_depth = 14 * m * (m - 1), 8 * m * (m - 1)
+            inc_count, inc_depth = 28 * (m - 1), 16 * (m - 1)
             add_count, add_depth = 14 * (m - 1), 8 * (m - 1)
             self.assertEqual(rounds, (bits - 1).bit_length())
             self.assertEqual(_resources(fixture['increment']), (bits * inc_count, inc_depth))

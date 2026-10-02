@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 dirty-counter indicator pass starts from verified main
-`1d7c08ab183dcbafd8f78882f5ea395531dc83c5`, after the bilinear
-query reduction and matching variable-accuracy theorem. Check later commits before
+The 2026-10-02 hybrid-depth refinement starts from verified main
+`8cc8157e62ddcebaf03d0012b2575a4715864f41`, after the exact dirty-counter
+indicator and its first subquadratic frame-depth bound. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -92,17 +92,23 @@ The selected next-step recommendations were accepted: retain optimal-order
 T-count in the same circuit, and treat a logarithmic depth gap as a useful
 bounded milestone. The subsequent revision selected the variable-accuracy
 extension before another large-workspace routing attempt. That extension
-is now complete. The [amortized indicator proof](docs/AMORTIZED_DIRTY_LOOKUP.md)
+is now complete. The [hybrid refinement](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision)
 gives, for every $`L\ge6`$, two clean flags, and
 $`b\ge17(L+n+7)`$, one prescribed complete real-frame circuit with
 
 ```math
 T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
-\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n^2\right).
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right).
+```
+
+Here
+
+```math
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
 ```
 
 When nonempty, the range
-$`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$ has simultaneous
+$`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$ has simultaneous
 optimal-order $`T^\star=\Theta(NL/b)`$ and
 $`D_T^\star=\Theta(NL/b^2)`$. For $`L=\Theta(n)`$, or
 inverse-polynomial error in N, sufficiently large $`b=\Theta(n)`$
@@ -110,12 +116,12 @@ gives $`T^\star=\Theta(N)`$ and $`D_T^\star=\Theta(N/n)`$.
 Outside the matching range, retain the $`nL`$ term and compare the
 older grouped schedules before claiming count optimality.
 
-At fixed L, the previous $`T=O(\sqrt N+N/b)`$ and
-$`D_T=O(N/b^2+n^2)`$ bounds remain. For sufficiently large
+At fixed L, the retained $`T=O(\sqrt N+N/b)`$ and
+$`D_T=O(N/b^2+n\chi(n))`$ bounds remain. For sufficiently large
 $`b=\Theta(n)`$ above the threshold, one circuit has optimal-order
 $`T=\Theta(N/n)`$ and $`D_T=\Theta(N/n^2)`$.
 The matching depth tradeoff $`D_T^\star=\Theta(N/b^2)`$ holds throughout
-$`17(L+n+7)\le b\le\sqrt N/n`$ when this interval is nonempty.
+$`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$ when this interval is nonempty.
 The loader places one low-address indicator echo around a multiplexed
 family of linear shears. A two-pass dirty traversal and rank-reduced
 controlled shears amortize both former per-batch logarithms.
@@ -127,10 +133,10 @@ increasing any layer's width or the weighted lookup costs. It retains
 the full error guarantee using the sharper local isometry constant.
 The total assigned precision is within $`5n`$ bits of the optimum under
 that additive error certificate; this is not a frame-depth lower bound.
-That schedule retains an additive $`n^2`$ routing contribution. The new
+The original routed schedule retains an additive $`n^2`$ term. The
 [dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
 improves fixed-accuracy large-workspace depth to
-$`O(n\log^2(n+2))`$ while retaining optimal-order T-count.
+$`O(n\chi(n))`$ while retaining optimal-order T-count.
 The older general-precision schedules below remain useful where their
 source or workspace costs are sharper. The separate state-based and
 complex-frame schedules retain their existing contracts and bounds.
@@ -229,7 +235,7 @@ software extensions below are not prerequisites for the stated theorem.
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Optimal T-depth | Count and depth match for $`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$, plus the retained fixed-L interval $`b\le\sqrt N/n`$; large-width depth and precision outside these ranges remain unresolved |
+| Optimal T-depth | Count and depth match for $`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$, plus the retained fixed-L interval $`b\le\sqrt N/n`$; large-width depth and precision outside these ranges remain unresolved |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
@@ -244,7 +250,7 @@ composition is complete; do not repeat either task.
 The next bounded depth target is fixed accuracy at sufficiently large
 $`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
 Its available depth bounds are now $`\Omega(1)`$ and
-$`O(\min\{n^2,n\log^2(n+2)\})`$.
+$`O(\min\{n^2,n\chi(n)\})`$.
 The capped precision allocation has removed the accumulated source widths
 as a quadratic contribution: sources and suffix predicates now cost
 $`O(n\log(n+1))`$ depth at fixed L. The retained per-layer routing
@@ -282,12 +288,14 @@ indicator echo extracts the all-literals-true predicate. Every helper
 returns exactly. Original address bits enter only through Clifford
 CNOTs; all non-Clifford gates act on private row work and parallelize.
 For k address bits the construction has
-$`T,G=O(2^k(k+1)\log^2(k+2))`$,
+$`T,G=O(2^k(k+1)\log(k+2)\log\log(k+4))`$,
 $`w=O(2^k(k+1)\log(k+2))`$, and
-$`D_T=O(\log^2(k+2))`$ with no clean work.
+$`D_T=O(\chi(k))`$ with no clean work.
 
-The established early/late hybrid therefore gives fixed-accuracy
-$`T=O(\sqrt N)`$, $`D_T=O(n\log^2(n+2))`$, and $`G=O(N)`$
+The early/late hybrid now works at every eligible width and precision.
+It gives depth $`O(NL/b^2+nL+n\chi(n))`$ without changing count,
+error, or the $`17B_0`$ threshold. In particular, fixed accuracy gives
+$`T=O(\sqrt N)`$, $`D_T=O(n\chi(n))`$, and $`G=O(N)`$
 at sufficient $`b=\Theta(\sqrt N)`$. Polynomial overhead on early
 layers is absorbed by their geometrically smaller tables; the last
 $`O(\log n)`$ layers retain the existing count-efficient queries.
@@ -301,15 +309,23 @@ all-input classical permutation even with arbitrary returned dirty
 helpers. This constant lower bound does not apply to initialized-clean
 subspace contracts and does not close the frame-depth gap.
 
-The arithmetic improvement is already included: the Takahashi–Tani–Kunihiro
-linear-size modular adder needs no initialized work, so the sum tree
-costs $`O(m\log(k+1))`$ depth; the read-only controlled increments
-cost $`O(m^2)`$, where $`m=\lceil\log_2(k+1)\rceil`$.
-Do not repeat the slower cubic-adder fallback or its fourth-power
-logarithmic bound. The next bounded construction target is an indicator
-with $`O(\log(k+2))`$ T-depth and polynomial overhead, or a rigorously
-priced depth improvement for one of these two remaining arithmetic
-stages. A matching unrestricted frame-depth lower bound remains separate.
+The arithmetic refinements are complete. A signed-translation echo and
+conditional bitwise complement implement each address-controlled
+increment using two linear TTK adders; all address gates are CNOTs.
+For the private sum tree, Remaud–Vandaele's exact shortened-ladder adder
+has $`O(\log^2(m+2))`$ depth. With
+$`m=\lceil\log_2(k+1)\rceil`$, these give
+$`O(\log(k+1)\log^2(m+2)+m)`$ indicator depth. The fixtures
+emit the TTK schedule and separately check the reduced RV macro;
+the RV optimized ladder depth is an imported analytic bound.
+
+The next construction target is an exact read-only-address indicator
+with $`O(\log(k+2))`$ T-depth and polynomial overhead, or a direct
+all-dirty multioperand-sum construction improving the remaining sum-tree
+factor. Ordinary clean carry-save arithmetic does not meet this contract.
+A matching unrestricted large-width frame-depth lower bound remains
+separate. Do not repeat the signed-increment or variable-width hybrid
+passes; both are complete.
 The completed modest-width
 matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare
