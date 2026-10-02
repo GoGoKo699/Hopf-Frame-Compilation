@@ -132,9 +132,18 @@ rounding still requires a logarithmic precision budget. The literal
 shared-flag source stages instead admit a coherent linear-leakage family,
 so their full isometry errors cannot receive the same square-sum guarantee.
 These are restrictions of the specified error models, not a depth lower
-bound. A next circuit audit may test a flag-reflection composite, but it
-must control rejected-space evolution uniformly in the angle; a local
-near-zero cancellation would not improve the stated frontier.
+bound. The [short-echo audit](HOPF_FLAG_ECHO.md) closes the proposed
+two-half-angle square and three diagonal Pauli alternatives: generic
+radial error remains linear, despite a special exact equal-mask identity.
+The [radial filter](HOPF_RADIAL_FILTER.md) instead uses the standard
+pi-over-three fixed-point sequence with six charged native phase words.
+It gives quadratic full polar error on the same two flags and a physical
+square-sum-plus-quadratic composition bound. Source widths may then use
+$`m_d=L+4+\min\{n-d,\lceil\tfrac12\log_2(8n)\rceil\}`$.
+This halves the logarithmic coefficient in assigned source precision,
+but additional calls and phase words preserve the same asymptotic costs.
+The next depth improvement must address the remaining source or joint
+layer cost; stronger radial suppression alone does not remove it.
 
 ### What this already gives Hopf QBP
 

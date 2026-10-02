@@ -444,6 +444,15 @@ Independent nearest-grid angle rounding also retains a logarithmic
 precision requirement. Neither statement is a lower bound for this
 capped allocation or for unrestricted frame depth.
 
+The [radial-filter variant](HOPF_RADIAL_FILTER.md#5-a-smaller-source-precision-cap)
+changes the source circuit and proves a stronger mixed error certificate.
+Its cap replaces $`\lceil\log_2(8n)\rceil`$ by
+$`\lceil\tfrac12\log_2(8n)\rceil`$. All layerwise widths remain
+within the reservation above. The extra amplified calls and native phase
+words are charged, so the smaller source widths do not imply a gate-count
+factor saving or a new asymptotic depth bound. The original additive
+allocation and its certificate remain valid for the unmodified circuit.
+
 ### Workspace and the simultaneous resource ledger
 
 Reserve the entire old base $`B_0=L+n+7`$, including the source core,

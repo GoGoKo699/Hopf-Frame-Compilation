@@ -202,6 +202,12 @@ square-sum stability of ideal angle perturbations from coherent linear
 leakage in the actual shared-flag source layers. Independent nearest-grid
 angle rounding still needs logarithmic precision. These scoped results
 close an error-accounting shortcut without changing the depth frontier.
+The [short-echo audit](docs/HOPF_FLAG_ECHO.md) gives exact generic
+obstructions and an equal-mask exception. A
+[phase-calibrated fixed-point filter](docs/HOPF_RADIAL_FILTER.md) instead
+reduces the full radial error quadratically on the same two flags.
+Charging its additional source calls and native phase words permits a
+smaller source-width cap, while preserving the displayed asymptotic bounds.
 
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)

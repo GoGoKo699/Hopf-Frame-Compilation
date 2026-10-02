@@ -208,6 +208,18 @@ linear leakage on reused flags. It does not import a general composition
 lower bound or claim an unrestricted frame-depth obstruction. Its finite
 fixtures use one common reduced source algebra, not a new native compiler.
 
+The [four-echo audit](HOPF_FLAG_ECHO.md) derives exact compressed and
+full-isometry errors from those same source identities. The positive
+[radial filter](HOPF_RADIAL_FILTER.md) imports
+[Grover's fixed-point phase sequence](https://arxiv.org/abs/quant-ph/0503205),
+Eq. (1) and Section 3, and F5's determinant-one single-qubit word-length
+theorem. Fixed-point amplification and ancilla-free phase approximation
+are inherited. The local work supplies the literal global correction,
+the full error including the residual accepted phase, a two-flag native
+phase ledger, and the complete-frame precision cap. Failure-probability
+suppression is not identified with phase-sensitive operator error, and
+no new asymptotic count/depth frontier or fine-search runtime is claimed.
+
 The [amortized dirty-lookup theorem](AMORTIZED_DIRTY_LOOKUP.md) combines
 F2/F8's dirty traversal and echo with F29/F30's controlled-linear and
 commuting-operator techniques. Its query interface is retained by the

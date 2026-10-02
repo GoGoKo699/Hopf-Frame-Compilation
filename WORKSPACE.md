@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 error-accumulation audit starts from verified main
-`91e5312dd9b4986c016b4167b4e9a0fbc04362b5`, after the carry-pipeline
-refinement. Check later commits before
+The 2026-10-02 flag-echo and radial-filter pass starts from verified main
+`e473b98b4744121f9861c8df1df62d03bff8115a`, after the error-accumulation
+audit. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -24,7 +24,9 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Begin active depth work with the [error audit](docs/HOPF_ERROR_ACCUMULATION.md),
+1. Begin active depth work with the [radial filter](docs/HOPF_RADIAL_FILTER.md),
+   [short-echo audit](docs/HOPF_FLAG_ECHO.md), and
+   [error geometry](docs/HOPF_ERROR_ACCUMULATION.md),
    [masked dirty sums](docs/DIRTY_SUM_COMPRESSION.md)
    and the [hybrid tradeoff](docs/PARALLEL_DIRTY_LOOKUP.md), then the
    [amortized baseline](docs/AMORTIZED_DIRTY_LOOKUP.md),
@@ -72,6 +74,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
 | Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
+| Filtered complete-frame source | Quadratic radial error on the same two flags, charged native selective phases, and a smaller source-precision cap; [filter proof](docs/HOPF_RADIAL_FILTER.md) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
 | Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
@@ -351,15 +354,44 @@ no uniform square-sum bound. This counterfamily is not a lower bound for
 the capped allocation, a replacement compiler, or fixed-accuracy depth.
 The count/depth frontier and high-precision endpoint remain unchanged.
 
-The next bounded circuit audit is a flag-reflection composite of two
-half-angle source calls: determine whether its rejected component is
-uniformly smaller, while charging its accepted product, actual inverses,
-literal phases, and all work return. A near-zero cancellation is
-insufficient, and even successful leakage suppression alone would not
-remove the independent-angle logarithm. A different shallow source or
-joint layer construction remains the route to a new asymptotic bound.
-Do not repeat the completed carry pipeline or replace the shared-flag
-additive certificate by the ideal-angle theorem.
+The [short-echo audit](docs/HOPF_FLAG_ECHO.md) is now complete. The
+proposed half-angle reflection composite is exactly the source square,
+and all four diagonal Pauli flag echoes retain linear radial error at
+generic angles. The two-flag-Z echo has an exact full-space identity
+when the programmed cosine and sine masks coincide, but this does not
+give uniform cancellation.
+
+The [radial filter](docs/HOPF_RADIAL_FILTER.md) supplies a positive
+alternative: the standard pi-over-three fixed-point sequence, with
+literal phase correction and six native phase approximants, makes the
+full error relative to the encoded polar rotation quadratic in the
+radial defect. It uses the same two clean flags and returned dirty pool.
+The modified frame obeys angular square-sum plus quadratic remainder
+control. It permits
+
+```math
+m_d=L+4+\min\{n-d,\lceil\tfrac12\log_2(8n)\rceil\},
+\qquad \sum_dm_d=nL+\tfrac12n\log_2n+O(n).
+```
+
+This is a reduction in source widths, not a factor-two native gate
+saving: the filter triples the amplified calls and its phase words
+also cost $`O(m_d)`$. The existing same-circuit T/G/depth frontier and
+matching interval remain valid, and both large scientific gaps remain
+open. Native phase-word existence is proved; the bounded fixtures do
+not emit a variable-size filter or assert efficient fine-word search.
+
+The next bounded depth target should change the source implementation
+or jointly schedule actual source layers. Specify a candidate with
+sublinear precision T-depth, polynomial extra dirty width, and a full
+operator error contract before expanding fixtures. The hybrid can
+absorb fixed polynomial local overhead on early layers, but all native
+phases, programmed masks, and changed-address dependencies must be
+charged. Repeating a fixed number of radial filters leaves the encoded
+polar rotation angles unchanged and, by itself, does not improve the
+remaining source-depth order. Do not repeat the completed
+carry pipeline or the four short echoes, or apply the ideal-angle
+theorem to unfiltered source leakage.
 A matching unrestricted large-width frame-depth lower bound remains
 separate.
 The completed modest-width
