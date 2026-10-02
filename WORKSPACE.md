@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 hybrid-depth refinement starts from verified main
-`8cc8157e62ddcebaf03d0012b2575a4715864f41`, after the exact dirty-counter
-indicator and its first subquadratic frame-depth bound. Check later commits before
+The 2026-10-02 masked-sum refinement starts from verified main
+`a6c37a7935f36a689beda16ab76263f661a38a9a`, after the variable-width
+hybrid and signed-increment refinement. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -24,7 +24,9 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Begin active depth work with the [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md),
+1. Begin active depth work with [masked dirty sums](docs/DIRTY_SUM_COMPRESSION.md)
+   and the [hybrid tradeoff](docs/PARALLEL_DIRTY_LOOKUP.md), then the
+   [amortized baseline](docs/AMORTIZED_DIRTY_LOOKUP.md),
    then its [batched allocation](docs/BATCHED_DIRTY_LOOKUP.md),
    [depth proof](docs/T_DEPTH_COMPILER.md), and
    [source-depth certificate](docs/SOURCE_T_DEPTH.md), then the
@@ -104,7 +106,7 @@ T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
 Here
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
 When nonempty, the range
@@ -280,16 +282,16 @@ current routed indicators, an asymmetric split retains count-efficient
 queries but still has linear address depth; it does not improve the
 unconditional frame bound.
 
-The missing polynomial-overhead indicator is now supplied by a
-[dirty-counter construction](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters).
+The polynomial-overhead indicator is supplied by a
+[dirty-counter construction](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+with [masked compression](docs/DIRTY_SUM_COMPRESSION.md).
 A reversible sum echo adds the Hamming weight into an arbitrary dirty
 counter; a cyclic-rotation echo removes its unknown offset. A final
 indicator echo extracts the all-literals-true predicate. Every helper
 returns exactly. Original address bits enter only through Clifford
 CNOTs; all non-Clifford gates act on private row work and parallelize.
 For k address bits the construction has
-$`T,G=O(2^k(k+1)\log(k+2)\log\log(k+4))`$,
-$`w=O(2^k(k+1)\log(k+2))`$, and
+$`T,G,w=O(2^k(k+1)^{\log_2 3})`$ and
 $`D_T=O(\chi(k))`$ with no clean work.
 
 The early/late hybrid now works at every eligible width and precision.
@@ -309,23 +311,32 @@ all-input classical permutation even with arbitrary returned dirty
 helpers. This constant lower bound does not apply to initialized-clean
 subspace contracts and does not close the frame-depth gap.
 
-The arithmetic refinements are complete. A signed-translation echo and
+The signed-translation echo and
 conditional bitwise complement implement each address-controlled
 increment using two linear TTK adders; all address gates are CNOTs.
-For the private sum tree, Remaud–Vandaele's exact shortened-ladder adder
-has $`O(\log^2(m+2))`$ depth. With
-$`m=\lceil\log_2(k+1)\rceil`$, these give
-$`O(\log(k+1)\log^2(m+2)+m)`$ indicator depth. The fixtures
-emit the TTK schedule and separately check the reduced RV macro;
-the RV optimized ladder depth is an imported analytic bound.
+The former private binary-adder tree is now replaced by a compression
+network. Each triple produces its parity and increments a fresh dirty
+upper word under two disjoint two-bit predicates. Its weighted invariant
+retains the unknown initial upper word as a helper-only offset. That
+offset cancels in the outer echo, so no canonical initialized carry is
+needed. A weighted-excess potential proves $`O(\log k)`$ rounds, and
+a geometric count bounds all permanently reserved work by a fixed
+polynomial. Vandaele's exact dirty controlled increment gives each round
+$`O(\log\log k)`$ depth. Two final Remaud–Vandaele additions read the
+surviving words into the accumulator. Both optimized arithmetic depths
+are imported analytic bounds; bounded emitted fixtures use explicitly
+identified slower native words and test full-input identities.
 
 The next construction target is an exact read-only-address indicator
-with $`O(\log(k+2))`$ T-depth and polynomial overhead, or a direct
-all-dirty multioperand-sum construction improving the remaining sum-tree
-factor. Ordinary clean carry-save arithmetic does not meet this contract.
+with $`O(\log(k+2))`$ T-depth and polynomial overhead. The remaining
+factor comes from the controlled increments inside the compression
+rounds. A proof would need to overlap those carries across rounds or
+replace the local representation; simply reusing initialized carry-save
+circuits does not meet the contract. The new construction already shows
+that an exact sum with zero helper offset was stronger than needed.
 A matching unrestricted large-width frame-depth lower bound remains
-separate. Do not repeat the signed-increment or variable-width hybrid
-passes; both are complete.
+separate. Do not repeat the signed-increment, masked-compression, or
+variable-width hybrid passes; all are complete.
 The completed modest-width
 matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare

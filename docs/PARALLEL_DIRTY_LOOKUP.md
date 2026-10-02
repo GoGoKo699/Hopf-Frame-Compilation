@@ -35,10 +35,11 @@ charged. The sufficient constant C is not a practical crossover estimate.
 **Hybrid theorem.** Define
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
-For every $`b\ge17B_0`$, Sections 5–6 give a two-clean complete
+For every $`b\ge17B_0`$, Sections 5–6 and the
+[masked-sum refinement](DIRTY_SUM_COMPRESSION.md) give a two-clean complete
 real-frame circuit with the same error contract and
 
 ```math
@@ -473,8 +474,9 @@ dirty width each at most $`O(SP(k+1))`$, for a fixed nondecreasing
 polynomial $`P\ge1`$, and T-depth at most $`f(k)`$. The address must
 return unchanged and every helper must return exactly, including on
 reference-entangled inputs. The routed indicator of Section 1 satisfies
-the count and width conditions with $`f(k)=O(k)`$. Section 6 supplies
-a different construction with $`f(k)=O(\chi(k))`$, defined below. We first prove
+the count and width conditions with $`f(k)=O(k)`$. Section 6's counter
+construction, with [masked compression](DIRTY_SUM_COMPRESSION.md), supplies
+$`f(k)=O(\chi(k))`$, defined below. We first prove
 the composition for a general f.
 
 For $`r_a=\lfloor r/2\rfloor`$, $`r_b=\lceil r/2\rceil`$, the
@@ -567,10 +569,11 @@ uses an adjustable cutoff, not additional initialized work.
 
 ### The improved matching range
 
-Section 6 supplies $`f(k)=O(\chi(k))`$, where
+The [compressed counter construction](DIRTY_SUM_COMPRESSION.md) supplies
+$`f(k)=O(\chi(k))`$, where
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
 It follows that, for all $`L\ge6`$ and $`b\ge17B_0`$,
@@ -616,6 +619,12 @@ routed indicators. The counter construction has separate bounded checks.
 
 ## 6. A polylogarithmic-depth indicator using dirty counters
 
+This section gives the binary-adder-tree baseline and the surrounding
+counter echoes. [Masked compression](DIRTY_SUM_COMPRESSION.md) replaces
+only its sum operation, improving the indicator depth to $`O(\chi(k))`$
+with polynomially larger per-row counts and width. The rest of this
+section's exact circuit remains in use.
+
 For $`k\ge1`$, put $`m=\lceil\log_2(k+1)\rceil`$ and
 $`M=2^m\gt k`$. An exact indicator on $`H=2^k`$ arbitrary dirty
 outputs can be implemented with
@@ -626,10 +635,10 @@ w=O\!\left(H(k+1)\log(k+2)\right),
 ```
 
 ```math
-D_T=O(\chi(k)).
+D_T=O\!\left(\log(k+2)[\log\log(k+4)]^2\right).
 ```
 
-Here chi is defined in Section 5 and w is additional dirty helper width; all helpers return exactly, on
+Here w is additional dirty helper width; all helpers return exactly, on
 all inputs. No clean qubit is used. The construction first computes a
 read-only conjunction, then runs all equality rows in parallel with an
 explicit shared-address schedule. It trades polynomially more dirty
@@ -813,11 +822,12 @@ helper. No total Clifford-depth bound is being inferred from T-depth.
 
 ### Complete-frame consequence
 
-The indicator satisfies the interface of Section 5 with a fixed
-polynomial majorant, for example $`P(t)=C(t+1)^3`$, and
-$`f(k)=O(\chi(k))`$. At fixed accuracy and a sufficiently large
-$`b=\Theta(\sqrt N)`$, that composition now gives one two-clean
-complete real-frame circuit with
+The baseline indicator satisfies the polynomial-overhead interface of
+Section 5. Its [masked-sum refinement](DIRTY_SUM_COMPRESSION.md) uses
+$`T,G,w=O(2^k(k+1)^{\log_2 3})`$ and $`f(k)=O(\chi(k))`$;
+the same majorant $`P(t)=C(t+1)^3`$ remains sufficient. At fixed
+accuracy and a sufficiently large $`b=\Theta(\sqrt N)`$, the refined
+composition gives one two-clean complete real-frame circuit with
 
 ```math
 T=O(\sqrt N),\qquad G=O(N),\qquad
@@ -831,13 +841,16 @@ sufficient square-root-scale dirty width. This is an asymptotic
 improvement, not a practical crossover estimate or an optimal-depth
 theorem. The high-precision complete-frame endpoint remains open.
 
-The [counter checks](../tests/test_counter_dirty_indicator.py) audit
+The [baseline counter checks](../tests/test_counter_dirty_indicator.py) audit
 both modular-adder actions, signed increments, actual inverses, arbitrary
 dirty offsets, cyclic orientation, and shared-address scheduling. Full
 counter fixtures emit the linear TTK adder. The reduced RV macro is
 checked separately; its optimized ladder depth is imported analytically,
 not emitted or inferred from the serial macro fixtures. The general
-resource bounds and Hopf composition are analytic arguments above.
+resource bounds and Hopf composition are analytic arguments above. Separate
+[compression checks](../tests/test_dirty_sum_interfaces.py) audit the
+replacement sum, its helper offsets, actual inverses, and column schedule;
+the logarithmic controlled-increment depth is imported analytically.
 
 ## 7. Attribution and evidence
 

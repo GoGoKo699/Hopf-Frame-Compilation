@@ -148,6 +148,7 @@ from the exact clean-workspace size–depth theorem.
 | F31 | [Selinger, arXiv:1210.0974v2](https://arxiv.org/html/1210.0974v2), Proposition 5.1, Eqs. (17)–(21) | one-T-layer Pauli-conjugation normal form | the local rational-transfer specialization excludes T-depth one for full-input nonaffine classical permutations with arbitrary returned dirty helpers; initialized-clean-subspace implementations are outside that claim |
 | F32 | [Takahashi–Tani–Kunihiro, arXiv:0910.2530v1](https://arxiv.org/pdf/0910.2530v1), Sections 2.1–2.3 | linear-size, linear-depth exact ripple-carry addition without initialized work | deleting the two gates targeting the arbitrary carry-output wire gives the modular adder used in the signed dirty increment and baseline sum tree; its literal CNOT/Toffoli word is emitted in the bounded checks; later clean-work/fanout constructions are not used |
 | F33 | [Remaud–Vandaele, arXiv:2501.16802v2](https://arxiv.org/html/2501.16802v2), Lemmas 2/4, Algorithm 3, Theorem 2 | exact helper-free addition via shallow CNOT and Toffoli ladders | truncate the carry output at the abstract ladder level, then synthesize the shorter ladders; applies only to private counters; bounded checks audit the reduced macro, while the optimized ladder-depth bound is imported analytically |
+| F34 | [Vandaele, arXiv:2603.12917v1](https://arxiv.org/html/2603.12917v1), Section 5, Theorem 4 and Corollary 7 | exact logarithmic-depth increment and controlled increment with one returned dirty helper | the local masked compressor uses two doubly controlled increments on private supports; the source's temporary control borrowing is compatible with disjoint compression rounds; optimized depth is imported, not emitted by the bounded macro fixtures |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -210,7 +211,7 @@ T=O(\sqrt{NL}+NL/b+nL),\qquad G=O(NL),
 ```
 
 ```math
-\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+\chi(t)=\log_2(t+2)\,\log_2\log_2(t+4).
 ```
 
 Both count and depth match when
@@ -221,7 +222,14 @@ The [bilinear query](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
 specializes F2's indicator/bilinear framework. The
 [dirty-counter indicator](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
 uses exact sum and cyclic-rotation echoes; its signed increment applies
-two F32 adders and Clifford gates. F33 improves private sum-tree depth.
+two F32 adders and Clifford gates. F33 supplies the baseline sum-tree
+adder and two final readout additions in the
+[masked compression refinement](DIRTY_SUM_COMPRESSION.md). That refinement
+uses F34's controlled incrementers on disjoint private supports. A local
+weighted invariant retains helper-only offsets; a geometric resource sum
+and contracting column-height potential bound the complete network.
+The offsets cancel in the outer echo. Its finite checks emit a slower
+exact increment word, so F34's optimized depth remains an analytic import.
 A width-dependent early/late cutoff absorbs polynomial indicator overhead
 without changing the clean reservation, query error, or T-count order.
 Reversible addition, phase polynomials, routing, and echo cancellation are
