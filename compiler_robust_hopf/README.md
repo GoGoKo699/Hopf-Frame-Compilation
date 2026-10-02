@@ -68,6 +68,7 @@ from the all-workspace state-preparation framework.
 | [`native_residual_lookup.py`](native_residual_lookup.py) | four residual rows, exact quadratic mask lookup with core pivots, no additional helper, and coherent control phases |
 | [`native_residual_state.py`](native_residual_state.py) | bounded one-system-qubit preparation from two certified tables, exact reflections, two clean flags, and actual-inverse amplification |
 | [`native_two_qubit_residual_state.py`](native_two_qubit_residual_state.py) | bounded two-system-qubit preparation, four-row tables, a 28-T reflection with returned arbitrary core helper, and actual-inverse amplification |
+| [`native_branched_residual_state.py`](native_branched_residual_state.py) | coherent selection of two one-system-qubit residual states, arbitrary protocol branch, literal relative phase, branch-independent reflection, and per-branch certificates |
 | [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
@@ -78,7 +79,10 @@ they do not emit the general fine residual table. The
 unaddressed row or an enabled two- or four-row table from the helper's coefficients.
 The [bounded state emitter](../docs/NATIVE_RESIDUAL_STATE.md) composes two
 tables and one state-amplification step for one or two system qubits. General tables and the full
-fine state compiler remain unimplemented.
+fine state compiler remain unimplemented. The
+[bounded branch selector](../docs/NATIVE_RESIDUAL_BRANCH.md) also prepares
+two one-system-qubit residual states coherently, excluding the arbitrary
+branch from the initial reflection and retaining its literal phase.
 See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
 and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
 

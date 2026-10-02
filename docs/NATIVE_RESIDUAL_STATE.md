@@ -338,10 +338,11 @@ Fine-q checks use rational certificates and emitted counts, not large
 statevectors. The q=5 analytic constant is loose and is not the sole
 numerical correctness oracle.
 
-One- and two-system-qubit residual preparation are now implemented. The
-next bounded task is coherent reference/target selection under a separate
-protocol branch: its relative phase must be retained and the initial
-reflection must exclude that arbitrary branch. General lookup, the full
-fine state compiler, and its complete QBP integration remain open
-implementation tasks. The complete-frame endpoint and end-to-end
-advantage questions are unchanged.
+One- and two-system-qubit residual preparation are now implemented. A
+[coherent one-system-qubit selector](NATIVE_RESIDUAL_BRANCH.md) also
+preserves relative phase under a separate arbitrary protocol branch,
+which its initial reflection excludes. The next bounded task integrates
+that selector with charged common-coarse QBP and both decoder streams.
+General lookup, the full fine state compiler, and its complete QBP
+integration remain implementation tasks. The complete-frame endpoint
+and end-to-end advantage questions are unchanged.

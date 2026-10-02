@@ -235,7 +235,10 @@ and [native bridge](NATIVE_RESIDUAL_ROTATION.md) certify and emit an
 unaddressed completion or an enabled two- or four-row residual table. A bounded
 [one- or two-qubit residual preparation](NATIVE_RESIDUAL_STATE.md) composes these tables
 with two clean flags and the actual inverse in amplification; it uses
-more dirty work than the minimum-budget small-system fallback. Complete native [real](NATIVE_COARSE_QBP.md)
+more dirty work than the minimum-budget small-system fallback. A
+[bounded coherent residual selector](NATIVE_RESIDUAL_BRANCH.md) preserves
+an arbitrary protocol branch and its literal relative phase for one system
+qubit, with the same small-system workspace caveat. Complete native [real](NATIVE_COARSE_QBP.md)
 and [complex](NATIVE_COMPLEX_COARSE_QBP.md) examples verify special two-qubit
 targets. The general fine-precision native emitter is not implemented;
 the construction bound above is analytic.

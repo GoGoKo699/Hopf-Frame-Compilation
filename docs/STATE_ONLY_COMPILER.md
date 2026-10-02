@@ -310,9 +310,12 @@ its own observable, sampling, and classical reconstruction analysis.
 
 The [bounded native residual integration](NATIVE_RESIDUAL_STATE.md) emits
 the half-amplitude word and actual-inverse amplification for one or two
-system qubits, including the enlarged initial reflection. Its explicit dirty allocation is larger than the small-system
-minimum in Section 1; it does not replace that fallback or emit the
-general table schedule.
+system qubits, including the enlarged initial reflection. The
+[one-system-qubit coherent selector](NATIVE_RESIDUAL_BRANCH.md) adds an
+arbitrary branch with literal relative phase and a branch-independent
+initial reflection. Their explicit dirty allocations exceed the respective
+small-system minima in Section 1; they do not replace those fallbacks or
+emit the general table schedule.
 
 The [reference-state checks](../tests/test_reference_state_qbp.py) verify
 the ideal half-amplitude word, complex and zero residuals, the literal

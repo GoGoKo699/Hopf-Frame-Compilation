@@ -388,4 +388,8 @@ This completes the second-address lookup component. General table sizes,
 larger predicates, and the complete fine state-preparation schedule
 remain implementation work. The [two-system-qubit residual composition](NATIVE_RESIDUAL_STATE.md#5-two-system-qubit-preparation-and-a-returned-core-helper)
 now uses these tables with two clean compiler flags, an enlarged charged
-initial reflection, and amplification with the actual inverse. No complete-frame endpoint or end-to-end advantage follows.
+initial reflection, and amplification with the actual inverse. The
+[coherent residual selector](NATIVE_RESIDUAL_BRANCH.md) instead uses the
+second address as an arbitrary protocol branch, retaining its relative
+phase and excluding it from the initial reflection. No complete-frame
+endpoint or end-to-end advantage follows.

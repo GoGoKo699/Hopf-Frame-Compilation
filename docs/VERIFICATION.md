@@ -378,6 +378,21 @@ counts are checked without a large statevector. The enlarged reflection
 borrows an existing arbitrary core wire and returns it exactly; it does
 not introduce a third clean compiler flag or a reset.
 
+The [coherent residual-selection tests](../tests/test_native_branched_residual_state.py)
+use one system qubit and a separate arbitrary protocol branch. Their
+complete 2048-by-256 initialized isometry at q=5 retains both branch
+values and every dirty-input column. Native table sectors and independent
+source algebra agree with literal phases; flattened propagation and the
+actual inverse also cover coherent reference inputs. Ideal witnesses
+detect a changed relative phase and an initial reflection that wrongly
+tests the branch. The two main complex fixtures satisfy the actual 1/64
+residual neighborhood. A root-reference specialization and separate
+normalization checks retain the common-coarse coefficient contract.
+Fine-q rational certificates and counts establish the implemented
+conditional ledger without large statevectors. The
+[branch proof and scope](NATIVE_RESIDUAL_BRANCH.md) exclude a supplied
+coarse circuit, observable, or full native QBP integration from this component.
+
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

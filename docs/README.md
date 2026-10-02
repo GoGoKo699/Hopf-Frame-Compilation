@@ -45,6 +45,7 @@ topic has one primary chapter below.
 | [Residual-table preprocessing](RESIDUAL_TABLE_PREPROCESSING.md) | Certified algebraic rotation coefficients without Euler search, unchanged error constants, and the small-system banked construction |
 | [Native residual rows and tables](NATIVE_RESIDUAL_ROTATION.md) | Exact coefficient-to-mask programming, elementary residual rows, and enabled two- and four-row tables with arbitrary borrowed inputs |
 | [Native residual state preparation](NATIVE_RESIDUAL_STATE.md) | One- and two-system-qubit integration, two clean flags, charged reflections, actual-inverse amplification, and complete borrowed-input isometry error |
+| [Coherent residual selection](NATIVE_RESIDUAL_BRANCH.md) | One-system-qubit reference/target selection under an arbitrary branch, literal relative phase, two clean flags, and complete branch-and-dirty isometry error |
 
 ### Research boundaries and related constructions
 

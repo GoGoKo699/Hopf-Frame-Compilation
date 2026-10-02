@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 two-system-qubit residual state pass starts from verified main
-`fa65885fe8f05cdbd5928072183bffb7f98f650a`, after the four-row
-lookup implementation. Check later commits before continuing.
+The 2026-10-02 coherent residual branch pass starts from verified main
+`d021c9681366ad377650451687dca25f01fd2f07`, after the two-system-qubit
+state implementation. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -32,6 +32,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
    The [bounded state integration](docs/NATIVE_RESIDUAL_STATE.md) composes
    two tables and amplification with the actual inverse for one or two
    system qubits, including the enlarged initial reflection.
+   The [coherent selector](docs/NATIVE_RESIDUAL_BRANCH.md) adds an arbitrary
+   protocol branch to the one-system-qubit residual preparation.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -149,8 +151,20 @@ complete word uses two clean flags and q+2 dirty wires, with error below
 3240q+3820+210(2k_z+k_y), at most 3240q+5080. At q=L+10 the dirty
 pool exceeds the minimum n=2 allocation by three wires and fits the
 banked pool. The actual inverse retains all leakage; no reset or supplied
-coarse C is used. General tables and coherent QBP branch selection remain
-separate integration tasks.
+coarse C is used. General tables remain a separate integration task.
+
+The [coherent residual selector](docs/NATIVE_RESIDUAL_BRANCH.md) now uses
+the second address bit as an arbitrary protocol branch for one system
+qubit. Its seven-T initial reflection excludes that branch; literal
+relative phase and the actual inverse are retained. Both coefficient
+normalizations are checked separately. The complete branch-and-dirty
+isometry has error below 390 times 2 to the power minus q and count
+3240q+3793+210(2k_z+k_y), at most 3240q+5053. It uses q+2 dirty
+wires, one initialized system, two clean flags, and the separate arbitrary
+branch. At q=L+10 the pool exceeds the basic n=1 allocation by four wires
+and fits the banked pool. The common-coarse reference specialization uses
+root one and tail zero on branch zero; no coarse C or observable is
+emitted by this component.
 
 ## Remaining work and continuation criteria
 
@@ -160,13 +174,13 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, and one- and two-system-qubit residual state amplification are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded task adds coherent reference/target selection under a separate protocol branch, retaining relative phase and excluding that arbitrary branch from the initial reflection |
+| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, one- and two-system-qubit residual preparation, and a coherent one-system-qubit branch selector are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded task integrates the residual selector into common-coarse QBP, charging forward C, controlled observable, inverse C in the magnitude stream, and both decoder streams |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
-or one- and two-system-qubit state-amplification passes.
+one- and two-system-qubit amplification, or coherent residual-selection passes.
 For the next component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.
