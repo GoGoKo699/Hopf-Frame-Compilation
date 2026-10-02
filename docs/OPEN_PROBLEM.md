@@ -32,8 +32,8 @@ below. Lower bounds are worst-case over the stated frame family.
 | Grouped one-clean real-frame T-count | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge L+n+7`$ | Precision-uniform grouped bound without additional word banks; [one-clean extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
 | One-clean T-count with additional dirty banks | $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$, at $`a=1`$, $`b\ge2(L+n+7)`$ | Matches the lower bound if $`L\ell_*(n)^2\le N`$ or $`b\le N/\ell_*(n)`$; these are sufficient regimes; [banked one-clean proof](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit) |
 | One-clean phase-dressed complex magnitude frame | The same grouped and banked T-counts, at $`b\ge L+n+8`$ and $`b\ge2(L+n+8)`$, respectively | Compose the real compiler and literal phase diagonal in the same workspace; [composition corollary](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) |
-| T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^3,L\ell_*(n)+n^4\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
-| Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^3,L\ell_*(n)+n^4\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
+| T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
+| Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
 
 Take the best applicable construction. For fixed L, $`a=2`$ and
 $`b=L+n+7=\Theta(n)`$, the arbitrary-budget matching splice gives
@@ -71,8 +71,8 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 | Regime | Depth lower bound | Available depth upper bound | Remaining issue |
 |---|---|---|---|
 | Fixed L, $`b=\Theta(n)`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Factor-n gap |
-| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ with $`T=O(\sqrt N)`$ | Simultaneous count/depth capability; depth lower bound remains unmatched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^3)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Simultaneous count/depth capability; depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n^2)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
@@ -107,7 +107,7 @@ Thus fixed observable scale and coordinate accuracy give fixed L. In this
 regime, the arbitrary-budget real-frame compiler already attains
 worst-case optimal-order $`T=\Theta(\sqrt N)`$ with zero compiler clean
 qubits and $`b=\Theta(\sqrt N)`$. The separate parallel schedule gives
-this count together with $`D_T=O(n^3)`$ using two compiler clean qubits
+this count together with $`D_T=O(n^2)`$ using two compiler clean qubits
 and a sufficiently large square-root dirty allocation. Both preserve the
 prescribed frame used by QBP; their clean allocations cannot be interchanged.
 
@@ -826,9 +826,10 @@ contract and the missing interface it will supply. A new scientific pass
 should identify a claim beyond the established bounds and its proof
 obligation before producing another fixture. The complete-frame endpoint
 and depth optimality remain separate research questions; neither is
-needed for this state-based task. No end-to-end advantage example is
-selected. Such a claim requires a concrete observable-access model and a
-classical comparator; another special exact fixture would not supply it.
+needed for this state-based task. Application-level advantage is outside
+the current research scope.
+The existing cost comparisons and classical baselines remain valid
+boundaries; they are not pending work.
 
 #### Selected state-based depth audit
 
@@ -839,13 +840,13 @@ $`P=\max(n,K)`$, $`B_0=P+n+7`$, and two compiler flags, it gives:
 | Sufficient dirty width | Compiler T-depth | Compiler T-count |
 |---|---|---|
 | $`b\ge2B_0`$ | $`O(NP/b+P+n^3)`$ | $`O(NP)`$ |
-| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^4)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ |
+| $`b\ge16(B_0+\sqrt{NP})`$ | $`O(P+n^3)`$ | $`O(\sqrt{NP}+P+n\sqrt N)`$ |
 
 Both schedules have $`G=O(NP)`$, with count and depth holding on the
 same circuit. Exact query replacement preserves the borrowed-signal and
 amplification contracts. The actual coarse reflection interpreter is
 charged separately; its predicates surround whole row words, yielding
-the first schedule's $`n^3`$ overhead. Coarse work returns exactly,
+an $`n^3`$ overhead in both retained schedules. Coarse work returns exactly,
 while fine state work retains its full initialized-isometry error.
 The proof includes the coherent common reference, complex prefix phases,
 literal live-register inequalities, and the separate small-system source.

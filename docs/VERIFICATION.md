@@ -64,9 +64,11 @@ The bounded implementation pass stops here. No larger fixed fixture or
 general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The prescribed complete-frame
-endpoint, matching T-depth bounds, and end-to-end advantage remain
-[separate research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
+endpoint and matching T-depth bounds remain
+[active research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
 the existing state-based result does not require their resolution.
+Application-level advantage is outside the current research scope; the
+existing resource comparisons and classical baselines remain documented.
 
 ### Detailed finite checks
 
@@ -114,9 +116,10 @@ shared-control Fredkins, disjoint T-layer supports, actual inverses, and
 whole dirty-bank queries. Clifford layers may have substantial depth;
 the fixture does not treat T-depth as total execution depth.
 The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
-audit exact bilinear cancellation, literal native phases, disjoint T layers,
-recursive scratch reuse, and arbitrary-input return using symbolic Boolean
-polynomials. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
+audit routed-indicator cancellation, literal native phases, disjoint T
+layers, scratch-free width, and arbitrary-input return using symbolic
+Boolean polynomials. A reversed-router negative case protects the actual
+inverse orientation; a complete native query checks phases and work return. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
 the count bound while reducing T-depth under its sufficient dirty-width
 condition. The linear table maps still have a charged Clifford-depth cost.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
