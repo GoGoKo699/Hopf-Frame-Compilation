@@ -2,13 +2,15 @@
 
 [State compiler](STATE_ONLY_COMPILER.md) · [Native tables](NATIVE_RESIDUAL_ROTATION.md) · [Verification](VERIFICATION.md)
 
-The [bounded emitter](../compiler_robust_hopf/native_residual_state.py)
+The [one-qubit emitter](../compiler_robust_hopf/native_residual_state.py)
 composes two certified tables into a one-system-qubit state-preparation
 word. Both clean compiler flags are used. The amplification calls the
 actual inverse of the emitted half-amplitude word and retains all
 intermediate leakage. This implements the state identity already proved
 in [the state compiler, Sections 3–4](STATE_ONLY_COMPILER.md#3-two-flags-give-an-exact-half-amplitude-state).
-It adds no new asymptotic claim.
+The [two-qubit extension](#5-two-system-qubit-preparation-and-a-returned-core-helper)
+uses four-row tables and an enlarged initial reflection with a returned
+arbitrary core helper. Neither adds a new asymptotic claim.
 
 ## 1. Coefficients and initialized inputs
 
@@ -194,12 +196,152 @@ alone do not certify fine-precision accuracy. The literal minus sign,
 the system bit in the initial reflection, and the active-zero table row
 are essential to the ideal identity.
 
-This completes the selected one-system-qubit amplification integration.
-A [four-row lookup](NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
-now supplies the additional address bit with no extra helper. General
-table sizing and dirty lookup remain unimplemented. The next bounded
-composition uses two system qubits, charging the enlarged initial
-reflection and preserving every occupied flag and returned work input. The coherent QBP
-reference/target branch and the full fine state-preparation schedule
-remain separate integration tasks. The complete-frame endpoint and
-claims of end-to-end advantage are unchanged.
+The one-system-qubit integration is complete. The following extension
+uses the [four-row lookup](NATIVE_RESIDUAL_ROTATION.md#6-four-rows-with-two-address-bits-and-no-additional-helper)
+and charges the enlarged reflection explicitly.
+
+## 5. Two-system-qubit preparation and a returned core helper
+
+The [two-qubit emitter](../compiler_robust_hopf/native_two_qubit_residual_state.py)
+exports `emit_two_qubit_residual_state(a, tails, q)`. The three entries of
+`tails` approximate the scaled complex coefficients w1,w2,w3, in the
+same exact-dyadic pair format as a. The target is
+
+```math
+|\phi\rangle=a|0\rangle+\frac12\sum_{j=1}^3w_j|j\rangle,
+\qquad |a|^2+\frac14\sum_{j=1}^3|w_j|^2=1,\qquad |w_j|\le1.
+```
+
+Every supplied pair approximates its true coefficient within
+$`e=2^{-2q-20}`$, with $`q\ge5`$. These evaluation and normalization
+promises remain external. The necessary normalization sanity check is
+
+```math
+\left|\,|a_0|^2+\frac14\sum_{j=1}^3|w_{j,0}|^2-1\right|
+\le\frac72e+\frac74e^2.
+```
+
+It sums the squared-modulus error $`2e+e^2`$ with weights totaling
+$`7/4`$; passing it does not establish the external promises.
+
+| Wires | Role | Required input |
+|---|---|---|
+| 0 through q | Precision core | Arbitrary borrowed state |
+| q+1 | Synthesis signal | Arbitrary borrowed state |
+| q+2 | Flag t and table target | Zero |
+| q+3, q+4 | System bits x0,x1 and table addresses | Zero |
+| q+5 | Flag s and table enable | Zero |
+
+The row index is $`x=x_0+2x_1`$. There are two initialized system
+qubits, two clean compiler flags, and q+2 borrowed wires. The allocation
+is q+6 physical wires. Core wire zero is reused only during the initial
+reflection below; it is not an additional reservation.
+
+Use four-row table M0 with rows (a,a,a,a), enabled at s=0, and M1 with
+rows (0,w1,w2,w3), enabled at s=1. Put
+
+```math
+K=C_{s=1}(H_{x_0}H_{x_1}),\qquad Q=H_sM_1M_0KH_s.
+```
+
+The two controlled Hadamards cost four T/TDG gates in total. Their active
+branch is uniform on all four system labels. Thus, with good flags s=t=0,
+
+```math
+P_{\rm good}Q|00_x00_{s,t}\rangle
+=\frac12\left(a|0\rangle+\frac12\sum_{j=1}^3w_j|j\rangle\right)|00\rangle.
+```
+
+The same chronological amplification as Section 3 uses the actual inverse
+of this Q. The good reflection and literal minus sign are unchanged.
+The initial reflection now tests all four logical zeros, excluding the
+entire borrowed pool.
+
+### Exact initial reflection on arbitrary leaked inputs
+
+Let h be core wire zero and define exact native Toffoli words
+
+```math
+F=\operatorname{CCX}(x_0,x_1;h),\qquad
+G=\operatorname{CCX}(h,s;t).
+```
+
+The chronological echo F,G,F,G has the Boolean action
+
+```math
+h_{\rm out}=h,\qquad
+t_{\rm out}=t\oplus s(h\oplus x_0x_1)\oplus sh
+=t\oplus sx_0x_1.
+```
+
+All other wires are unchanged. The Toffolis have literal phase one, so
+linearity establishes the same identity on arbitrary superpositions and
+reference correlations. No assumption that h is zero is used.
+Conjugating this word by H on t gives the four-body controlled Z.
+Conjugating that by X on x0,x1,s,t gives exactly
+
+```math
+R_{\rm init}=\left(I-2|0000\rangle\langle0000|_{x,s,t}\right)
+\otimes I_{\rm dirty}.
+```
+
+This reflection uses four seven-T Toffolis, hence 28 T/TDG gates; the
+other gates are Clifford. It returns h exactly even when Q or its actual
+inverse has entangled it with the logical registers. Omitting the last G
+would retain an unwanted dependence on the incoming helper bit.
+The source core is reused between complete table subroutines, with no
+reset, projection, or assumed cleanup.
+
+### Error, literal count, and verification
+
+If the two table certificates are $`\delta_0,\delta_1`$, their disjoint
+enabled sectors give $`\delta_Q=\max(\delta_0,\delta_1)`$. The exact
+reflections and actual inverse retain the complete initialized-isometry
+bound
+
+```math
+\left\|\widehat A J-|\phi,00\rangle\otimes I_{\rm dirty}\right\|
+\le3\delta_Q\lt390\,2^{-q}.
+```
+
+J now appends two system zeros and two flag zeros to arbitrary borrowed
+input. All work return and flag leakage are included. No other logical
+input action or supplied coarse circuit is promised.
+
+M0 has identical rows, so both of its quadratic supports vanish. Let
+$`k_z,k_y\in\{0,1,2\}`$ count the nonempty quadratic axes of M1's
+outer and middle rotation tables. Including both tables, both controlled
+Hadamards, all three Q calls, and the enlarged reflection gives
+
+```math
+T(\widehat Q)=1080q+1264+70(2k_z+k_y),
+```
+
+```math
+T(\widehat A)=3240q+3820+210(2k_z+k_y)\le3240q+5080.
+```
+
+Gate storage remains $`O(q)`$. At $`q=L+10`$, error is below
+$`2^{-L}`$ with L+12 borrowed wires. This is three more than the
+minimum n=2 allocation L+9 in the state theorem, and fits its banked
+pool. It does not replace the minimum-budget small-system fallback.
+
+The [two-qubit tests](../tests/test_native_two_qubit_residual_state.py)
+check the reflection on every logical/helper input and the full
+2048-by-128 preparation isometry at q=5 through native table sectors.
+The actual inverse acts on all intermediate leakage; an independent
+source-algebra oracle and direct flattened-word propagation retain
+literal phases. Exact coefficient fixtures include a complex normalized
+state inside the actual 1/64 coarse radius, with all three tails nonzero;
+this certifies its residual neighborhood without supplying a coarse C.
+Fine-q checks use rational certificates and emitted counts, not large
+statevectors. The q=5 analytic constant is loose and is not the sole
+numerical correctness oracle.
+
+One- and two-system-qubit residual preparation are now implemented. The
+next bounded task is coherent reference/target selection under a separate
+protocol branch: its relative phase must be retained and the initial
+reflection must exclude that arbitrary branch. General lookup, the full
+fine state compiler, and its complete QBP integration remain open
+implementation tasks. The complete-frame endpoint and end-to-end
+advantage questions are unchanged.

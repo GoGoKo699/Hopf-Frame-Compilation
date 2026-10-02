@@ -67,6 +67,7 @@ from the all-workspace state-preparation framework.
 | [`native_residual_table.py`](native_residual_table.py) | two residual rows selected by one address bit and one enable literal; exact inactive identity and no extra predicate helper at this arity |
 | [`native_residual_lookup.py`](native_residual_lookup.py) | four residual rows, exact quadratic mask lookup with core pivots, no additional helper, and coherent control phases |
 | [`native_residual_state.py`](native_residual_state.py) | bounded one-system-qubit preparation from two certified tables, exact reflections, two clean flags, and actual-inverse amplification |
+| [`native_two_qubit_residual_state.py`](native_two_qubit_residual_state.py) | bounded two-system-qubit preparation, four-row tables, a 28-T reflection with returned arbitrary core helper, and actual-inverse amplification |
 | [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
@@ -76,7 +77,7 @@ they do not emit the general fine residual table. The
 [certified residual bridge](../docs/NATIVE_RESIDUAL_ROTATION.md) emits one
 unaddressed row or an enabled two- or four-row table from the helper's coefficients.
 The [bounded state emitter](../docs/NATIVE_RESIDUAL_STATE.md) composes two
-tables and one state-amplification step. General tables and the full
+tables and one state-amplification step for one or two system qubits. General tables and the full
 fine state compiler remain unimplemented.
 See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
 and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
