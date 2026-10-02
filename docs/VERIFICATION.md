@@ -130,6 +130,13 @@ Boolean polynomials. A reversed-router negative case protects the actual
 inverse orientation; a complete native query checks phases and work return. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
 the count bound while reducing T-depth under its sufficient dirty-width
 condition. The linear table maps still have a charged Clifford-depth cost.
+The [bilinear lookup checks](../tests/test_bilinear_dirty_lookup.py) audit
+the separate [two-indicator reduction](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction):
+rectangular binary basis changes, literal shared-target Toffoli phases,
+the four-corner echo, actual inverses, and arbitrary dirty-input return.
+These bounded fixtures use the existing routed indicators. They do not
+supply the shallow indicator assumed by the conditional depth consequence,
+or improve the unconditional complete-frame depth bound.
 The [batched lookup checks](../tests/test_batched_dirty_lookup.py) cover
 guarded partial indicators, symbolic arbitrary-input query return, a
 complete native query with literal phases, disjoint T layers, and the

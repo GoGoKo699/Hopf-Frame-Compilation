@@ -210,6 +210,15 @@ Large-width depth and generic lookup priority are not claimed.
 The [earlier batched proof](BATCHED_DIRTY_LOOKUP.md)
 supplies the allocation argument and a separately guarded fallback.
 
+The [bilinear query reduction](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
+specializes F2's indicator and bilinear-lookup framework. Binary rank
+reduction and the existing exact shared-control CCZ schedule implement its
+bilinear map; a four-corner echo returns both arbitrary dirty indicators.
+The resulting query removes the word-bank router from a proposed shallow
+schedule. Its conditional Hopf composition still requires a new indicator
+construction; no improved unconditional depth or generic lookup priority
+is claimed.
+
 The [exact source-depth certificate](SOURCE_T_DEPTH.md) specializes F27
 to the existing geometric and paired sources, with a parallel paired-tail
 schedule. Its lower bounds are for the stated Majorana-layer architecture
