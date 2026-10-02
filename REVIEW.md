@@ -165,6 +165,19 @@ $`O(\sqrt N)`$ T gates with $`O(n^2)`$ T-depth.
 The T-depth need not be optimal, and Clifford depth remains charged
 separately.
 
+At fixed L, the [batched extension](docs/BATCHED_DIRTY_LOOKUP.md) also
+covers $`b\ge17(L+n+7)`$ with two clean qubits:
+
+```math
+T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
+D_T=O\!\left(\frac{N\log(b+2)}{b^2}+n^2\right).
+```
+
+All three bounds hold for one complete real-frame circuit. For
+$`b=\Theta(n)`$ above this sufficient threshold, count is optimal in
+order and the depth gap is a factor of $`O(\log n)`$. The additive
+$`n^2`$ term prevents the same conclusion at square-root-scale width.
+
 With one clean qubit, the
 [one-clean extension](docs/ONE_CLEAN_COMPILER.md)
 implements every prescribed real Hopf frame with

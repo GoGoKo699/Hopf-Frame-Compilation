@@ -24,6 +24,7 @@ topic has one primary chapter below.
 | [T-depth schedule](T_DEPTH_COMPILER.md) | Explicit dirty-bank depth tradeoff, literal shared-control swaps, and the remaining lower-bound gap |
 | [Exact source depth](SOURCE_T_DEPTH.md) | Parallel paired tails and matching exact source depths within a specified Majorana-linear circuit class; no unrestricted optimality claim |
 | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md) | Exact returned dirty indicators and simultaneous count-efficient, low-T-depth full-frame compilation |
+| [Batched dirty lookup](BATCHED_DIRTY_LOOKUP.md) | Partial indicator batches give optimal-order fixed-accuracy frame count and a logarithmic depth gap at modest dirty width |
 | [Borrowed-workspace appendix](BORROWED_WORKSPACE_COMPILER.md) | Exact dirty lookup and predicates; arbitrary-budget bound and restricted matching splice |
 
 ### Gradient protocols and task costs

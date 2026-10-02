@@ -140,9 +140,10 @@ magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
-At fixed accuracy, [parallel lookup](docs/PARALLEL_DIRTY_LOOKUP.md)
-gives $`T=O(\sqrt N)`$ and $`D_T=O(n^2)`$ in one real-frame circuit
-with two clean and sufficiently large $`\Theta(\sqrt N)`$ dirty workspace.
+At fixed accuracy, [batched lookup](docs/BATCHED_DIRTY_LOOKUP.md) gives
+$`T=O(\sqrt N+N/b)`$ and
+$`D_T=O(N\log(b+2)/b^2+n^2)`$ in one real-frame circuit with two
+clean qubits and $`b\ge17(L+n+7)`$ dirty qubits.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean

@@ -128,6 +128,12 @@ Boolean polynomials. A reversed-router negative case protects the actual
 inverse orientation; a complete native query checks phases and work return. Their [analytic composition](PARALLEL_DIRTY_LOOKUP.md) retains
 the count bound while reducing T-depth under its sufficient dirty-width
 condition. The linear table maps still have a charged Clifford-depth cost.
+The [batched lookup checks](../tests/test_batched_dirty_lookup.py) cover
+guarded partial indicators, symbolic arbitrary-input query return, a
+complete native query with literal phases, disjoint T layers, and the
+allocation ledger. The [fixed-accuracy frame theorem](BATCHED_DIRTY_LOOKUP.md)
+is an analytic composition; these finite checks do not implement the
+general two-dirty-helper MCX or a variable-size full-frame emitter.
 The [state-based QBP depth proof](STATE_QBP_DEPTH.md) composes the same exact
 queries and [borrowed-signal rotations](ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations).
 Existing tests above and [rotation checks](../tests/test_one_clean_compiler.py)

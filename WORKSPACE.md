@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 source-depth pass starts from verified main
-`2c4ca1b346fef092b3ae81d42b6fa3e43f28f3eb`, after the routed-indicator
-depth refinement. Check later commits before
+The 2026-10-02 batched-depth pass starts from verified main
+`5d4cb8d516133792c77992f63ad41074de797d9e`, after the exact source-depth
+certificate. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -24,8 +24,9 @@ and release work outside this research pass. Use small analytic examples
 and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
-1. Begin active depth work with the [depth proof](docs/T_DEPTH_COMPILER.md)
-   and [source-depth certificate](docs/SOURCE_T_DEPTH.md), then the
+1. Begin active depth work with the [batched tradeoff](docs/BATCHED_DIRTY_LOOKUP.md),
+   [depth proof](docs/T_DEPTH_COMPILER.md), and
+   [source-depth certificate](docs/SOURCE_T_DEPTH.md), then the
    [routed indicator](docs/PARALLEL_DIRTY_LOOKUP.md). The completed
    [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md) supplies its
    separate task contract, resource table, proof map, and limits.
@@ -65,6 +66,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | State-based real and complex QBP | Two compiler flags, fine state preparation, an exact-return coarse word, and corrected magnitude/phase decoders; [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) |
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
+| Fixed-accuracy complete-frame T-depth | Optimal-order count in the same circuit, with a logarithmic depth gap at modest dirty width; [batched tradeoff](docs/BATCHED_DIRTY_LOOKUP.md) |
 | Bounded-input construction | Polynomial construction for the listed grouped/state alternatives, explicit program output, and separate fine-search caveats; [computational audit](docs/BOUNDED_INPUT_QBP.md) |
 | Implemented evidence | Certified residual rows, bounded preparations, and [complete bounded residual QBP streams](docs/NATIVE_RESIDUAL_QBP.md), alongside the earlier exact-target examples; [claim-to-proof coverage](docs/VERIFICATION.md#state-based-qbp-coverage) |
 
@@ -84,6 +86,27 @@ and term-only classical sampling. These results establish a task-specific
 compiler improvement, not a general end-to-end gradient speedup.
 
 ## Current depth frontier
+
+The selected next-step recommendations were accepted: retain optimal-order
+T-count in the same circuit, and treat a logarithmic depth gap as a useful
+bounded milestone. The [batched indicator proof](docs/BATCHED_DIRTY_LOOKUP.md)
+now reaches it for prescribed complete real frames at fixed L. With two
+clean flags and $`b\ge17(L+n+7)`$, one circuit has
+
+```math
+T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
+D_T=O\!\left(N\log(b+2)/b^2+n^2\right).
+```
+
+At $`b=\Theta(n)`$ above that threshold, the depth gap is reduced from
+a factor n to a factor $`\log n`$, with optimal-order $`T=\Theta(N/n)`$.
+The within-logarithm comparison also holds for
+$`17(L+n+7)\le b\le\sqrt N/n`$ when this interval is nonempty.
+Two dirty helpers are reserved separately while each query is live;
+all lookup work returns exactly. Full-frame error and QBP substitution
+are inherited unchanged. Large-workspace depth still has the additive
+$`n^2`$ floor. The following general-precision and state schedules retain
+their separate contracts; this pass does not extend the new bound to them.
 
 The [state-based depth theorem](docs/STATE_QBP_DEPTH.md) closes the selected
 composition audit for both real and gauge-fixed complex Hopf QBP. Put
@@ -178,7 +201,7 @@ software extensions below are not prerequisites for the stated theorem.
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Optimal T-depth | Remains open after routed-indicator improvement and exact source certification within the Majorana-layer architecture; a different source construction or a stronger unrestricted lower bound is still needed |
+| Optimal T-depth | The batched fixed-accuracy schedule reaches a logarithmic gap at modest width; eliminating that factor or the large-width $`n^2`$ floor needs a new construction or stronger unrestricted lower bound |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
@@ -188,6 +211,16 @@ future pass at the coverage map: specify either a concrete Hopf-QBP
 input/output requirement and its missing interface, or a new scientific
 claim and its proof obligation. A general compiler is not required to
 close this selected Hopf-QBP task.
+The next bounded depth question is whether the complete guarded batch's
+logarithmic depth can be removed or amortized without worsening the
+same-circuit T-count or dirty width. Both indicator routing and the
+high-address conjunction contribute a logarithm at modest width;
+removing only one does not close the gap.
+Before another native fixture pass, require either a complete all-input
+query identity with its count/depth/live-width ledger, or a lower bound
+in the unrestricted T-depth model. Rescheduling the certified exact source
+does not answer this question. The completed logarithmic-gap milestone
+does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.

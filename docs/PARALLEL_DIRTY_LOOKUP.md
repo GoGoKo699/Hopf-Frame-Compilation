@@ -237,6 +237,14 @@ guarantees follow from the existing approximation theorem.
 
 ## 5. Attribution and evidence
 
+The [partial-batch extension](BATCHED_DIRTY_LOOKUP.md) retains the same
+bank echo while reusing fewer indicator wires. At fixed accuracy it
+gives $`T=O(\sqrt N+N/b)`$ and
+$`D_T=O(N\log(b+2)/b^2+n^2)`$ for complete real frames with two
+clean qubits and $`b\ge17(L+n+7)`$. Two additional dirty helpers are
+reserved during each live batch guard; they are not borrowed from its
+occupied bank or indicator storage.
+
 Parallel dirty indicators and the separation of selector parallelism from
 word-bank count have primary precedent in Low, Kliuchnikov, and Schaeffer,
 *Trading T gates for dirty qubits in state preparation and unitary synthesis*,
