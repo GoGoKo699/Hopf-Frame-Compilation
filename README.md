@@ -138,9 +138,14 @@ magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
-[Amortized lookup](docs/AMORTIZED_DIRTY_LOOKUP.md) uses two clean flags and
-$`b\ge17(L+n+7)`$. Fixed L gives $`T=O(\sqrt N+N/b)`$,
-$`D_T=O(N/b^2+n^2)`$. For $`L=\Theta(n)`$, sufficient
+[Hybrid lookup](docs/PARALLEL_DIRTY_LOOKUP.md) uses two clean flags and
+$`b\ge17(L+n+7)`$. Fixed L gives $`T=O(\sqrt N+N/b)`$ and
+
+```math
+D_T=O(N/b^2+n\log n(\log\log n)^2).
+```
+
+For $`L=\Theta(n)`$, sufficient
 $`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$ and
 $`D_T=\Theta(N/n)`$ in one complete real-frame circuit.
 

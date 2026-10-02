@@ -137,8 +137,11 @@ the four-corner echo, actual inverses, and arbitrary dirty-input return.
 These bounded fixtures use the existing routed indicators. They do not
 supply the shallow indicator themselves.
 The [dirty-counter checks](../tests/test_counter_dirty_indicator.py)
-audit emitted read-only ladders, modular arithmetic, cyclic routing,
-the nested full-input echoes, actual inverses, and parallel native layers.
+audit the two-adder signed increment, both modular-adder actions, cyclic
+routing, nested full-input echoes, actual inverses, and parallel native
+layers. Complete counter fixtures emit the linear TTK adder; separate
+fixtures check the shortened RV macro. The optimized RV ladder depth is
+imported analytically and is not inferred from those serial macro checks.
 The [analytic counter proof](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
 and hybrid composition give the improved complete-frame depth bound;
 the finite checks do not emit a variable-size complete frame.

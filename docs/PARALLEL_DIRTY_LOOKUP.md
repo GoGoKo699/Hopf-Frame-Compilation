@@ -6,7 +6,7 @@ Additional dirty workspace can parallelize the selector computation without
 increasing the count-efficient number of word banks. This gives a simultaneous
 count and depth guarantee for the prescribed complete real Hopf frame.
 
-**Theorem.** Write $`N=2^n`$, $`n\ge1`$,
+**Routed baseline.** Write $`N=2^n`$, $`n\ge1`$,
 $`0\lt\eta\le1/64`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$,
 $`B_0=L+n+7`$, and $`\ell_*(n)=1+\log_2^*(n+2)`$.
 There is a fixed sufficient constant C such that, for
@@ -32,18 +32,30 @@ clean leakage and arbitrary dirty inputs with references. The coefficient
 tables remain classically specified and their quantum lookups are fully
 charged. The sufficient constant C is not a practical crossover estimate.
 
-At fixed accuracy, a sufficiently large $`b=\Theta(\sqrt N)`$ therefore
-permits **the same circuit** to have
+**Hybrid theorem.** Define
 
 ```math
-T=O(\sqrt N),\qquad D_T=O\!\left(\min\{n^2,n\log^2(n+2)\}\right),
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
+
+For every $`b\ge17B_0`$, Sections 5–6 give a two-clean complete
+real-frame circuit with the same error contract and
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right).
+```
+
+Both count and depth match their worst-case lower bounds when
+$`17B_0\le b\le\sqrt{NL/(nL+n\chi(n))}`$. At fixed accuracy,
+sufficiently large $`b=\Theta(\sqrt N)`$ permits **one circuit** to have
+
+```math
+T=O(\sqrt N),\qquad D_T=O\!\left(\min\{n^2,n\chi(n)\}\right),
 \qquad G=O(N).
 ```
 
-The polylogarithmic factor follows from the dirty-counter construction
-in Section 6 and the hybrid in Section 5; the earlier routed circuit
-supplies the alternative quadratic bound. The sufficient dirty-width
-constant may be increased to cover both constructions.
+The earlier routed circuit supplies the alternative quadratic bound.
 The existing worst-case lower bound makes this T-count optimal in order.
 The T-depth upper bound is not proved optimal, and does not bound total
 elementary depth. The selected allocation $`L=N,b=N+n+7`$ is not covered
@@ -462,7 +474,7 @@ polynomial $`P\ge1`$, and T-depth at most $`f(k)`$. The address must
 return unchanged and every helper must return exactly, including on
 reference-entangled inputs. The routed indicator of Section 1 satisfies
 the count and width conditions with $`f(k)=O(k)`$. Section 6 supplies
-a different construction with $`f(k)=O(\log^2(k+2))`$. We first prove
+a different construction with $`f(k)=O(\chi(k))`$, defined below. We first prove
 the composition for a general f.
 
 For $`r_a=\lfloor r/2\rfloor`$, $`r_b=\lceil r/2\rceil`$, the
@@ -478,59 +490,119 @@ and depth $`O(m+f(r_a)+f(r_b))`$. The polynomial overhead is acceptable
 on early frame layers even though it need not preserve the optimal
 standalone lookup count.
 
-To see this, fix L and use the
-[capped layer precisions](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision):
+### Every eligible width and precision
+
+The hybrid does not require fixed accuracy or square-root-scale width.
+For every $`L\ge6`$ and $`b\ge17B_0`$, put
 
 ```math
-m_d\le M_n=L+4+\lceil\log_2(8n)\rceil=O(\log(n+1)).
+M_n=L+4+\lceil\log_2(8n)\rceil,\qquad
+A_n=M_n+P(n+2),\qquad
+w_b=\min\{b-B_0,\sqrt{NL}\}.
 ```
 
-Put $`k=n-d`$, so
-$`Q_d=4N2^{-k}`$ and $`r_d=d+2\le n+1`$. Let
-$`A_n=M_n+P(n+2)`$ and choose
+The [capped layer precisions](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
+satisfy $`m_d\le M_n`$. Set $`k=n-d`$, so
+$`Q_d=4N2^{-k}`$ and $`r_d=d+2\le n+1`$. Choose a sufficiently
+large fixed constant kappa and the cutoff
 
 ```math
-k_0=\min\!\left\{n,\left\lceil2\log_2 A_n\right\rceil+C_0\right\}
-=O(\log(n+1)).
+k_0=\min\!\left\{n,
+ \left\lceil2\log_2\frac{\kappa\sqrt N\,A_n}{w_b}\right\rceil
+ \right\}.
 ```
 
-Use the double-bilinear query when $`k\gt k_0`$ and the established
-amortized query in the last $`k_0`$ layers. The fixed constant $`C_0`$
-is chosen to fit the available extra pool when $`b=c\sqrt N`$ for a
-fixed sufficient $`c\gt0`$. If the early set is nonempty, geometric
-summation gives
+Use the bilinear query when $`k\gt k_0`$, and the existing amortized
+query for the last $`k_0`$ layers. If the early set is nonempty,
+geometric summation gives
 
 ```math
 \sum_{k>k_0}\sqrt{Q_d}\,A_n
-=O\!\left(\sqrt N\,A_n2^{-k_0/2}\right)=O(\sqrt N).
+=O\!\left(\sqrt N\,A_n2^{-k_0/2}\right)=O(w_b).
 ```
 
-The same estimate bounds each early query's live width, so the old
-$`B_0=O(n)`$ base and the new helper pool fit simultaneously. Those
-layers have $`Q_d=O(N/A_n^2)`$. Their additional indicator Clifford
-cost is covered by the same sum, while the bilinear cost satisfies
-$`\sum_dQ_dm_d=O(N)`$. Thus the polynomial indicator overhead does
-not increase the complete Clifford bound. Late queries retain total
-$`T=O(\sqrt N)`$ and $`G=O(N)`$ from the existing schedule.
-
-Write $`F_n=\max_{0\le k\le n+1}f(k)`$. Early queries have total depth
-$`O(n[M_n+F_n])`$. Late query routing costs $`O(nk_0)`$, and their
-chunk-depth terms sum to $`O(N/b^2)=O(1)`$. All sources and suffix
-predicates together cost $`O(n\log(n+1))`$ depth and polynomial count.
-Consequently the stated indicator hypothesis implies, on the same
-two-clean complete real-frame circuit at fixed accuracy,
+Increasing kappa makes every early query's helper pool fit inside
+$`b-B_0`$; the complete base reservation is retained. Thus the literal
+threshold $`17B_0`$ is unchanged. An empty early set simply uses the
+old circuit. Early query T-count is $`O(w_b)\le O(\sqrt{NL})`$.
+Their indicator Clifford count has the same bound; bilinear Clifford
+cost is bounded by $`\sum_dQ_dm_d=O(NL)`$. Late queries are a subset
+of the old schedule and retain its count bounds. Sources, predicates,
+and their complete error proof are unchanged. Therefore
 
 ```math
-T=O(\sqrt N),\qquad G=O(N),\qquad
-D_T=O\!\left(n[F_n+\log(n+1)]\right),\qquad b=\Theta(\sqrt N).
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL).
 ```
 
-In particular, an indicator with $`f(k)=O(\log(k+1))`$ would give
-$`D_T=O(n\log(n+1))`$ while retaining optimal-order T-count. Exact
-query replacement preserves the capped full-frame error and actual-inverse
-amplification. The logarithmic indicator remains unavailable; the
-polylogarithmic construction below gives a weaker but unconditional
-improvement.
+Write $`F_n=\max_{0\le k\le n+1}f(k)`$. Early query depth is
+$`O(n[M_n+F_n])`$. Late routing costs $`O(nk_0)`$, and late
+chunk-depth terms sum to $`O(NL/b^2)`$. Sources and suffix predicates
+cost $`O(nL+n\log(n+1))`$ depth. Since P is fixed polynomial and
+$`b-B_0\ge16b/17`$,
+
+```math
+k_0=O\!\left(L+\log(n+2)
+ +\log_+\frac{\sqrt{NL}}{b}\right),
+\qquad \log_+x=\max\{0,\log_2x\}.
+```
+
+The apparent extra workspace logarithm is absorbed in the existing
+terms. With $`x=NL/b^2`$, the inequality
+$`\ln x\le\ln n+x/n`$ for positive x implies
+
+```math
+n\log_+x=O\!\left(x+n\log(n+2)\right).
+```
+
+Consequently the general indicator interface gives, on one two-clean
+complete real-frame circuit at every eligible width and precision,
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+nL+n[F_n+\log(n+2)]\right).
+```
+
+Exact query replacement preserves the full-isometry error, dirty/reference
+return, literal phases, and actual-inverse amplification. This argument
+uses an adjustable cutoff, not additional initialized work.
+
+### The improved matching range
+
+Section 6 supplies $`f(k)=O(\chi(k))`$, where
+
+```math
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
+
+It follows that, for all $`L\ge6`$ and $`b\ge17B_0`$,
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right)
+```
+
+with the preceding same-circuit T and Clifford counts. When nonempty,
+
+```math
+17B_0\le b\le\sqrt{\frac{NL}{nL+n\chi(n)}}
+```
+
+is a simultaneous matching range. Indeed the additive depth terms are
+at most $`NL/b^2`$. Also $`b\le\sqrt{NL}`$ and $`b\ge1`$, so
+$`\sqrt{NL}\le NL/b`$ and $`nL\le NL/b^2\le NL/b`$. The inherited worst-case
+count and depth lower bounds therefore match:
+
+```math
+T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
+```
+
+At fixed L, the upper endpoint has order
+$`\sqrt{N/(n\chi(n))}`$, asymptotically larger than the old
+$`\sqrt N/n`$ interval; retain the old interval separately at small n.
+At sufficient $`b=\Theta(\sqrt N)`$, the bound becomes
+$`D_T=O(n\chi(n))`$ with optimal-order $`T=O(\sqrt N)`$ and
+$`G=O(N)`$. More generally, $`b=\Theta(\sqrt{NL})`$ gives depth
+$`O(nL+n\chi(n))`$ whenever the allocation is eligible; T-count is
+optimal in order when $`L\le N/n^2`$. No high-precision endpoint
+improvement or unrestricted matching large-width depth follows.
 
 This is a specialization of the dirty-indicator and bilinear framework in
 [Low–Kliuchnikov–Schaeffer, Appendix C](https://arxiv.org/html/1812.00954v2),
@@ -549,53 +621,21 @@ $`M=2^m\gt k`$. An exact indicator on $`H=2^k`$ arbitrary dirty
 outputs can be implemented with
 
 ```math
-T,G=O\!\left(H(k+1)\log^2(k+2)\right),\qquad
+T,G=O\!\left(H(k+1)\log(k+2)\log\log(k+4)\right),\qquad
 w=O\!\left(H(k+1)\log(k+2)\right),
 ```
 
 ```math
-D_T=O\!\left(\log^2(k+2)\right).
+D_T=O(\chi(k)).
 ```
 
-Here w is additional dirty helper width; all helpers return exactly, on
+Here chi is defined in Section 5 and w is additional dirty helper width; all helpers return exactly, on
 all inputs. No clean qubit is used. The construction first computes a
 read-only conjunction, then runs all equality rows in parallel with an
 explicit shared-address schedule. It trades polynomially more dirty
 work for depth; Section 5 absorbs that overhead on early frame layers.
 
-### Read-only arithmetic on dirty registers
-
-A q-control NOT has a simple read-only-control implementation using
-q arbitrary dirty helpers. Let the controls be
-$`c_1,\ldots,c_q`$, the target t, and the helpers
-$`w_1,\ldots,w_q`$. Compute the ladder
-
-```math
-w_1\mathrel{\oplus}=c_1,\qquad
-w_i\mathrel{\oplus}=w_{i-1}c_i\quad(2\le i\le q),
-```
-
-toggle $`t\mathrel{\oplus}=w_q`$, and reverse the ladder.
-Repeat this compute/toggle/uncompute word with the first helper update
-omitted. The two target increments differ by
-$`c_1\cdots c_q`$, while every helper and control is returned.
-There are $`4(q-1)`$ Toffolis, all avoiding the first control. For
-q equal to one, simply use CNOT without a ladder. Literal Toffoli
-decompositions give $`O(q)`$ T-count, Clifford count, and T-depth.
-A negative first control requires no mutation of that control: replace
-its initial CNOT by CNOT followed by X on the private first helper,
-and use the actual inverse at uncomputation. For a single negative
-control, use CNOT followed by X on the target. This slightly wider
-ladder makes the shared address enter only through Clifford gates.
-
-On an l-bit arbitrary register A, a controlled increment by c modulo
-$`2^l`$ is obtained by visiting target bits from high to low: for
-$`j=l-1,\ldots,1`$, toggle $`A_j`$ controlled by c and
-$`A_0,\ldots,A_{j-1}`$, then apply CNOT from c to $`A_0`$.
-Each lower bit still has its original value when used as a control.
-Using the preceding ladder with c first, this increment has
-$`T,G,D_T=O(l^2)`$, uses at most l private dirty helpers, returns
-them, and leaves c read-only.
+### Exact modular adders
 
 For addition $`\mathrm{ADD}_m(A;B):B\mapsto B+A\pmod M`$
 preserving arbitrary A, use the exact ripple-carry circuit of
@@ -610,6 +650,59 @@ The source's later clean-work and unbounded-fanout constructions are
 not used. A may change during this adder and is restored at completion;
 both registers are private in the application below. Every subtraction
 uses the actual reversed native addition word.
+
+A faster private adder follows from
+[Remaud–Vandaele, Algorithm 3 and Lemmas 2/4](https://arxiv.org/html/2501.16802v2).
+Remove the carry output at the abstract ladder level, before optimizing:
+shorten Slice 2's CNOT ladder to $`(A_1,\ldots,A_{m-1})`$, and
+Slice 3's inverse Toffoli ladder to
+
+```math
+(A_0,B_0,\ldots,A_{m-2},B_{m-2},A_{m-1}).
+```
+
+In the serial forms this removes precisely the two gates targeting the
+carry output; all other slices remain. Apply the source's exact ladder
+synthesis to these shortened lists. No carry wire is then present to be
+borrowed internally. The result has no additional helper and
+
+```math
+T,G=O(m\log(m+2)),\qquad D_T=O(\log^2(m+2)).
+```
+
+Both operands are private, so the synthesis may temporarily borrow their
+bits. The complete adder restores its first operand and adds it modulo
+M into the second. Use the linear-size TTK adder for the increment below
+and the faster adder for the sum tree.
+
+### A read-only controlled increment using two additions
+
+Let U be an arbitrary m-bit counter and g an arbitrary m-bit helper.
+Write $`g_0`$ for its low bit and $`e=(-1)^{g_0}`$. Let
+$`Q=\mathrm{ADD}_m(g;U)`$, and let E XOR the literal ell into
+$`g_0`$. The chronological word
+
+```math
+F=Q^\dagger,\ E,\ Q,\ E
+```
+
+returns g and adds $`\ell e`$ to U modulo M: flipping the low bit
+changes the numerical value of g by $`\ell(1-2g_0)`$. Let $`C_g`$ be
+CNOT fanout from $`g_0`$ to all bits of U. Its arithmetic action is
+$`U\mapsto eU-g_0`$, so
+
+```math
+C_g,\ F,\ C_g:\qquad
+U\longmapsto e(eU-g_0+\ell e)-g_0=U+\ell\pmod M.
+```
+
+The last equality uses $`e^2=1`$ and $`(e+1)g_0=0`$. Thus two TTK
+adders and Clifford gates implement the controlled increment with
+$`T,G,D_T=O(m)`$, using exactly m arbitrary returned helper bits.
+For a positive address literal E is CNOT into $`g_0`$; for a negative
+literal it is that CNOT followed by X on $`g_0`$. The address is never
+a target and never participates in a non-Clifford gate. This is an
+all-input identity, including coherent helpers and address controls.
 
 ### Add the Hamming weight without initializing a counter
 
@@ -627,10 +720,11 @@ L:\quad c\longmapsto c+\sum_i a_i\pmod M,
 ```
 
 Each tree level consists of disjoint additions. Thus L has
-$`T,G=O(km)`$ and $`D_T=O(m\log(k+1))`$.
-Reserve m private ladder helpers per a register for the next operation.
-Allowing the same reservation for c gives the convenient conservative
-width bound used below; the modular adders themselves need no helper.
+$`T,G=O(km\log(m+2))`$ and
+$`D_T=O(\log(k+1)\log^2(m+2))`$. Reserve m private helper
+bits per a register for its controlled increment. Allowing the same
+reservation for c gives the conservative width bound below; the
+modular adders themselves need no helper.
 
 Let J increment every $`a_i`$ by its literal $`\ell_i`$ in parallel.
 The chronological translation echo
@@ -640,7 +734,7 @@ A=L^\dagger,\ J,\ L,\ J^\dagger
 ```
 
 has the exact action $`c\mapsto c+s\pmod M`$, where
-$`s=\sum_i\ell_i`$, and returns every a register and ladder helper.
+$`s=\sum_i\ell_i`$, and returns every a register and increment helper.
 Indeed, the two additions into c are minus the old sum of a registers
 and plus their sum after the literal increments. Unknown initial offsets
 cancel by arithmetic modulo M. No counter stores s by itself, and no
@@ -666,9 +760,9 @@ The chronological word
 R=A,\ B_c,\ A^\dagger,\ B_c^\dagger
 ```
 
-acts as $`P^s`$ on V and returns every counter and ladder helper.
+acts as $`P^s`$ on V and returns every counter and increment helper.
 The first rotation sees $`c+s`$, the second sees the restored c, so
-their product is $`P^{c+s}P^{-c}=P^s`$. Since P moves old position
+their product is $`P^{c+s}P^{-c}=P^s`$. Since $`P^s`$ moves old position
 s to zero, the word
 
 ```math
@@ -691,29 +785,26 @@ the complete arbitrary-input and reference-return statement.
 ### Parallel equality rows and the resource ledger
 
 For row r, choose $`\ell_i=[x_i=r_i]`$, take y to be $`Y_r`$,
-and allocate its own counters, selector, and ladder helpers. All H rows
-are private except for the original address. The only operations that
-touch an address bit are in J or its actual inverse. Put that literal
-first in each ladder, so it appears only in CNOTs into private helpers
-or increment targets. Negative literals add only private X gates,
-never X on the shared address. Every Toffoli acts entirely within one
-private counter/helper block. Native T layers therefore run on disjoint
-wires across all rows and all literal positions. The shared CNOT fanout
-has a charged Clifford count; it is not assumed to have constant total
-depth. This proves
-$`D_T(J)=O(m^2)`$ for the entire row family, without an H or k
-serialization factor. The address can be coherent throughout.
+and allocate its own counters, selector, and increment helpers. All H rows
+are private except for the original address. Its only occurrences are
+in J or its actual inverse, as CNOT controls in E. Negative literals add
+only X gates on private helper bits. During J, every adder and native T gate
+acts within one private counter/helper block. Hence all non-Clifford
+layers run on disjoint wires across rows and literal positions. Shared
+CNOT fanout has a charged gate count and is not assumed to have constant
+total depth. This proves $`D_T(J)=O(m)`$ for the whole family, without
+an H or k serialization factor; the address may be coherent.
 
 The live helper width per row is at most $`2(k+1)m+M`$: k input
-counters, one accumulator, their private ladder pools, and the selector.
+counters, one accumulator, their private increment helpers, and the selector.
 All are simultaneously reserved; none is borrowed from a live output
 or another row. L uses $`2(k-1)+1`$ additions. A, R, K, and the
 final output echo use only a fixed number of their constituent words
 and actual inverses. Thus a single row has
 
 ```math
-T,G=O(km^2+Mm),\qquad
-D_T=O\!\left(m\log(k+1)+m^2+m\right).
+T,G=O(km\log(m+2)+Mm),\qquad
+D_T=O\!\left(\log(k+1)\log^2(m+2)+m\right).
 ```
 
 Multiplying counts and width by H, while retaining the batched depth,
@@ -724,27 +815,29 @@ helper. No total Clifford-depth bound is being inferred from T-depth.
 
 The indicator satisfies the interface of Section 5 with a fixed
 polynomial majorant, for example $`P(t)=C(t+1)^3`$, and
-$`f(k)=O(\log^2(k+2))`$. At fixed accuracy and a sufficiently large
+$`f(k)=O(\chi(k))`$. At fixed accuracy and a sufficiently large
 $`b=\Theta(\sqrt N)`$, that composition now gives one two-clean
 complete real-frame circuit with
 
 ```math
 T=O(\sqrt N),\qquad G=O(N),\qquad
-D_T=O\!\left(n\log^2(n+2)\right).
+D_T=O\!\left(n\chi(n)\right).
 ```
 
 It retains the same full-isometry error bound and optimal-order
 worst-case T-count. Choosing between this circuit and the earlier routed
-one gives depth $`O(\min\{n^2,n\log^2(n+2)\})`$ at the same
+one gives depth $`O(\min\{n^2,n\chi(n)\})`$ at the same
 sufficient square-root-scale dirty width. This is an asymptotic
 improvement, not a practical crossover estimate or an optimal-depth
 theorem. The high-precision complete-frame endpoint remains open.
 
-The [counter checks](../tests/test_counter_dirty_indicator.py) audit the
-bounded emitted arithmetic, actual inverses, arbitrary dirty offsets,
-cyclic orientation, output selection, and shared-address scheduling.
-They support the exact identities; the general resource bounds and
-Hopf composition are analytic arguments above.
+The [counter checks](../tests/test_counter_dirty_indicator.py) audit
+both modular-adder actions, signed increments, actual inverses, arbitrary
+dirty offsets, cyclic orientation, and shared-address scheduling. Full
+counter fixtures emit the linear TTK adder. The reduced RV macro is
+checked separately; its optimized ladder depth is imported analytically,
+not emitted or inferred from the serial macro fixtures. The general
+resource bounds and Hopf composition are analytic arguments above.
 
 ## 7. Attribution and evidence
 

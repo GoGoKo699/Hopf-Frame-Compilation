@@ -21,7 +21,12 @@ $`\ell_*(n)=1+\log_2^*(n+2)`$. The exact model has arbitrary one-qubit
 gates and CNOTs; the approximate model has coherent Clifford+T gates.
 The clean budget in the exact model is m; in the approximate model a and b
 count clean and arbitrary dirty qubits. The precision parameter L is defined
-below. Lower bounds are worst-case over the stated frame family.
+below. Lower bounds are worst-case over the stated frame family. For the
+hybrid depth bounds, write
+
+```math
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
 
 | Question | Retained result | Status and proof |
 |---|---|---|
@@ -34,8 +39,8 @@ below. Lower bounds are worst-case over the stated frame family.
 | One-clean phase-dressed complex magnitude frame | The same grouped and banked T-counts, at $`b\ge L+n+8`$ and $`b\ge2(L+n+8)`$, respectively | Compose the real compiler and literal phase diagonal in the same workspace; [composition corollary](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
-| Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n^2)`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching for $`b\le\sqrt N/n`$; [amortized dirty lookup](AMORTIZED_DIRTY_LOOKUP.md) |
-| Variable-accuracy count and depth | $`T=O(\sqrt{NL}+NL/b+nL)`$, $`D_T=O(NL/b^2+nL+n^2)`$, $`G=O(NL)`$, at $`a=2`$, $`L\ge6`$, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; both are matching when $`b\le\sqrt{NL/(nL+n^2)}`$; [amortized composition](AMORTIZED_DIRTY_LOOKUP.md#5-complete-frame-composition-and-the-matching-range) |
+| Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n\chi(n))`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching for $`b\le\sqrt N/n`$; [amortized dirty lookup](AMORTIZED_DIRTY_LOOKUP.md) |
+| Variable-accuracy count and depth | $`T=O(\sqrt{NL}+NL/b+nL)`$, $`D_T=O(NL/b^2+nL+n\chi(n))`$, $`G=O(NL)`$, at $`a=2`$, $`L\ge6`$, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; both are matching when $`b\le\sqrt{NL/(nL+n\chi(n))}`$; [hybrid composition](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) |
 
 Take the best applicable construction. For fixed L, $`a=2`$ and
 $`b=L+n+7=\Theta(n)`$, the arbitrary-budget matching splice gives
@@ -76,23 +81,24 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 |---|---|---|---|
 | Fixed L, $`b=\Theta(n)`$ and $`b\ge17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n^2)`$ with $`T=\Theta(N/n)`$ | Matching count and depth in one circuit; [amortized schedule](AMORTIZED_DIRTY_LOOKUP.md) |
 | Fixed L, $`17B_0\le b\le\sqrt N/n`$ | $`\Omega(N/b^2)`$ | $`O(N/b^2)`$ with optimal-order count | Matching throughout this interval when nonempty |
-| Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n^2)}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
+| Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n\chi(n))}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
 | $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ | $`\Omega(N/n)`$ | $`O(N/n)`$ with $`T=\Theta(N)`$ | Matching at inverse-polynomial error in N for sufficiently large n |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
-| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\log^2(n+2)\})`$ with $`T=O(\sqrt N)`$ | [Dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters); depth lower bound remains unmatched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\log^2(n+2)\})`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\chi(n)\})`$ with $`T=O(\sqrt N)`$ | [Dirty-counter hybrid](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters); depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(\min\{n^2,n\chi(n)\})`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
 The amortized schedule removes the earlier per-batch logarithm from
-both indicator routing and chunk selection. Its additive $`n^2`$ term
-leaves the square-root-width depth exponent unresolved.
+both indicator routing and chunk selection. The newer hybrid replaces
+its additive $`n^2`$ term by $`n\chi(n)`$ at every eligible width
+and precision, expanding the simultaneous matching interval above.
 The [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
 reduces source depth to $`O(n\log(n+1))`$ at fixed L without changing
 the count or workspace orders. The quadratic contribution remaining in
 this schedule comes from query routing; it is not an unavoidable source cost.
 The exact dirty-counter indicator and bilinear-query hybrid now improve
-the square-root-width upper bound to $`O(n\log^2(n+2))`$ while
+the square-root-width upper bound to $`O(n\chi(n))`$ while
 returning all work and retaining the same optimal-order T-count. The
 lower bound is still constant in this regime; depth optimality is open.
 The lower bound does not assume count optimality; the upper circuit also

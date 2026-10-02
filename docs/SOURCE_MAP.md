@@ -146,7 +146,8 @@ from the exact clean-workspace size–depth theorem.
 | F29 | [Kim–Laakkonen, arXiv:2512.24982v1](https://arxiv.org/pdf/2512.24982v1), Theorems 3 and 5 | constant non-Clifford-depth control of CNOT and Clifford circuits without ancillas | the local controlled-shear lemma is a rank-sensitive specialization with a literal four-T-layer word and explicit Clifford ledger; constant-depth control is inherited |
 | F30 | [Boyd, arXiv:2312.00696v2](https://arxiv.org/html/2312.00696v2), Section III and Appendix A | commuting SELECT/QROM groups and Clifford changes of basis for parallel action | its address copies use initialized registers; the local all-dirty shear echo and workspace allocation are proved separately |
 | F31 | [Selinger, arXiv:1210.0974v2](https://arxiv.org/html/1210.0974v2), Proposition 5.1, Eqs. (17)–(21) | one-T-layer Pauli-conjugation normal form | the local rational-transfer specialization excludes T-depth one for full-input nonaffine classical permutations with arbitrary returned dirty helpers; initialized-clean-subspace implementations are outside that claim |
-| F32 | [Takahashi–Tani–Kunihiro, arXiv:0910.2530v1](https://arxiv.org/pdf/0910.2530v1), Sections 2.1–2.3 | linear-size, linear-depth exact ripple-carry addition without initialized work | deleting the two gates targeting the arbitrary carry-output wire gives the modular adder used in the dirty-counter sum tree; its literal CNOT/Toffoli word is emitted in the bounded checks; later clean-work/fanout constructions are not used |
+| F32 | [Takahashi–Tani–Kunihiro, arXiv:0910.2530v1](https://arxiv.org/pdf/0910.2530v1), Sections 2.1–2.3 | linear-size, linear-depth exact ripple-carry addition without initialized work | deleting the two gates targeting the arbitrary carry-output wire gives the modular adder used in the signed dirty increment and baseline sum tree; its literal CNOT/Toffoli word is emitted in the bounded checks; later clean-work/fanout constructions are not used |
+| F33 | [Remaud–Vandaele, arXiv:2501.16802v2](https://arxiv.org/html/2501.16802v2), Lemmas 2/4, Algorithm 3, Theorem 2 | exact helper-free addition via shallow CNOT and Toffoli ladders | truncate the carry output at the abstract ladder level, then synthesize the shorter ladders; applies only to private counters; bounded checks audit the reduced macro, while the optimized ladder-depth bound is imported analytically |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -197,38 +198,36 @@ is inherited.
 | R42 | state-based QBP T-depth composition | [depth proof](STATE_QBP_DEPTH.md) composes R21/R23's exact schedules, inherited from F2, with R36/R39's constant number of residual rotations and the actual exact-return coarse interpreter; with $`B_0=P+n+7`$, $`b\ge2B_0`$ gives $`D_T=O(NP/b+P+n^3)`$, $`T,G=O(NP)`$, while $`b\ge16(B_0+\sqrt{NP})`$ gives one circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$, $`G=O(NP)`$, and $`D_T=O(P+n^3)`$; both real/complex task streams and oracle depth are charged; no new lookup primitive, depth optimality, total-runtime gain, or general emitter is claimed |
 
 The [amortized dirty-lookup theorem](AMORTIZED_DIRTY_LOOKUP.md) combines
-F2/F8's dirty traversal and echo with the controlled-linear and commuting
-operator techniques represented by F29/F30. Its explicit multiplexed-shear
-identity moves the low-address indicator outside the chunk loop.
-For every $`L\ge6`$, two clean qubits and $`b\ge17(L+n+7)`$ give
-one complete real-frame circuit with $`T=O(\sqrt{NL}+NL/b+nL)`$,
-$`G=O(NL)`$, and $`D_T=O(NL/b^2+nL+n^2)`$. Both count and depth
-are matching when $`b\le\sqrt{NL/(nL+n^2)}`$ above that threshold.
-This includes inverse-polynomial error in N at sufficient
-$`b=\Theta(n)`$; the earlier fixed-L interval $`b\le\sqrt N/n`$
-is retained. The accuracy extension composes the existing arbitrary-width
-query lemma and layer error bounds; it introduces no new native primitive.
-Large-width depth and generic lookup priority are not claimed.
-The [earlier batched proof](BATCHED_DIRTY_LOOKUP.md)
-supplies the allocation argument and a separately guarded fallback.
+F2/F8's dirty traversal and echo with F29/F30's controlled-linear and
+commuting-operator techniques. Its query interface is retained by the
+[variable-width hybrid](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision).
+For every $`L\ge6`$, two clean flags and $`b\ge17(L+n+7)`$ give
+one complete real-frame circuit with
 
-The [bilinear query reduction](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
-specializes F2's indicator and bilinear-lookup framework. Binary rank
-reduction and the existing exact shared-control CCZ schedule implement its
-bilinear map; a four-corner echo returns both arbitrary dirty indicators.
-The resulting query removes the word-bank router from the shallow
-schedule. Its hybrid Hopf composition absorbs polynomial indicator
-overhead on early layers. The
-[dirty-counter construction](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
-supplies that indicator using F32's modular adder in exact sum and cyclic-rotation echoes,
-with an explicit read-only-address schedule and all-input return proof.
-It gives fixed-accuracy $`D_T=O(n\log^2(n+2))`$ with optimal-order
-$`T=O(\sqrt N)`$ and $`G=O(N)`$ at sufficient
-$`b=\Theta(\sqrt N)`$. Reversible addition, phase polynomials,
-permutation routing, and echo cancellation are established ingredients;
-no generic synthesis priority or matching depth lower bound is claimed.
-The separate two-bit indicator certificate uses F31 for its depth lower
-bound and proves a literal eight-T, two-layer implementation locally.
+```math
+T=O(\sqrt{NL}+NL/b+nL),\qquad G=O(NL),
+\qquad D_T=O(NL/b^2+nL+n\chi(n)),
+```
+
+```math
+\chi(t)=\log_2(t+2)\,[\log_2\log_2(t+4)]^2.
+```
+
+Both count and depth match when
+$`b\le\sqrt{NL/(nL+n\chi(n))}`$ and the interval is nonempty.
+The older routed matching intervals remain valid separately.
+
+The [bilinear query](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction)
+specializes F2's indicator/bilinear framework. The
+[dirty-counter indicator](PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
+uses exact sum and cyclic-rotation echoes; its signed increment applies
+two F32 adders and Clifford gates. F33 improves private sum-tree depth.
+A width-dependent early/late cutoff absorbs polynomial indicator overhead
+without changing the clean reservation, query error, or T-count order.
+Reversible addition, phase polynomials, routing, and echo cancellation are
+established ingredients; no generic synthesis priority or unrestricted
+matching large-width depth is claimed. The separate two-bit indicator
+certificate uses F31 for its full-input depth lower bound.
 
 The [exact source-depth certificate](SOURCE_T_DEPTH.md) specializes F27
 to the existing geometric and paired sources, with a parallel paired-tail
