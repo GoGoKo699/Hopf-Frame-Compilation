@@ -69,6 +69,7 @@ from the all-workspace state-preparation framework.
 | [`native_residual_state.py`](native_residual_state.py) | bounded one-system-qubit preparation from two certified tables, exact reflections, two clean flags, and actual-inverse amplification |
 | [`native_two_qubit_residual_state.py`](native_two_qubit_residual_state.py) | bounded two-system-qubit preparation, four-row tables, a 28-T reflection with returned arbitrary core helper, and actual-inverse amplification |
 | [`native_branched_residual_state.py`](native_branched_residual_state.py) | coherent selection of two one-system-qubit residual states, arbitrary protocol branch, literal relative phase, branch-independent reflection, and per-branch certificates |
+| [`native_residual_qbp.py`](native_residual_qbp.py) | fixed complex one-qubit QBP integration using certified fine residual synthesis, actual coarse/inverse words, charged controlled observable, both native readouts, and exact histogram decoders |
 | [`native_coarse_fixture.py`](native_coarse_fixture.py) | complete two-qubit Clifford+T fixture for real targets, explicit controls, dirty-helper return, and comparison with the original protocol |
 | [`native_complex_coarse_fixture.py`](native_complex_coarse_fixture.py) | complete two-qubit complex magnitude/phase streams, literal prefix selection, actual coarse inverse, and returned arbitrary helper |
 
@@ -83,6 +84,9 @@ fine state compiler remain unimplemented. The
 [bounded branch selector](../docs/NATIVE_RESIDUAL_BRANCH.md) also prepares
 two one-system-qubit residual states coherently, excluding the arbitrary
 branch from the initial reflection and retaining its literal phase.
+The [native residual QBP fixture](../docs/NATIVE_RESIDUAL_QBP.md) connects
+it to both charged gradient streams with certified coefficients for a
+fixed complex target. It does not emit the variable-size fine compiler.
 See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
 and [verification map](../docs/VERIFICATION.md) for these evidence boundaries.
 

@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 coherent residual branch pass starts from verified main
-`d021c9681366ad377650451687dca25f01fd2f07`, after the two-system-qubit
-state implementation. Check later commits before continuing.
+The 2026-10-02 native residual QBP pass starts from verified main
+`ad312be7b4247f6534a810074263eb7d7e8fd27d`, after coherent residual
+branch selection. Check later commits before continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
 It prepares a state and changes the gradient decoder while retaining all
@@ -34,6 +34,9 @@ compiler execution, supplied catalysts, or hidden initialized work.
    system qubits, including the enlarged initial reflection.
    The [coherent selector](docs/NATIVE_RESIDUAL_BRANCH.md) adds an arbitrary
    protocol branch to the one-system-qubit residual preparation.
+   The [native residual QBP integration](docs/NATIVE_RESIDUAL_QBP.md)
+   connects that selector to the actual coarse circuit, controlled
+   observable, and both raw gradient decoders for a fixed complex target.
 3. For the separate frame question, read the
    [research status](docs/OPEN_PROBLEM.md),
    [grouped compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md), and
@@ -166,6 +169,19 @@ and fits the banked pool. The common-coarse reference specialization uses
 root one and tail zero on branch zero; no coarse C or observable is
 emitted by this component.
 
+The [native residual QBP fixture](docs/NATIVE_RESIDUAL_QBP.md) completes
+that bounded integration. An exact rational coarse-distance certificate
+places its complex one-qubit target inside 1/64. Certified square-root
+intervals program its residual coefficients without floating angles.
+Magnitude readout charges the coherent residual word, common C, the
+controlled Hadamard observable, and actual C inverse; phase readout uses
+the unbranched residual word, common C, and the same observable. Both
+retain all flag/dirty leakage and have exact rational histogram decoders.
+The extra T charges are six and four respectively, so S executions of
+each stream cost S times (T_pair+T_one+10). The dirty allocation retains
+the banked n=1 caveat. This is finite native evidence for the existing
+theorem, without a general emitter or a same-accuracy fine-frame benchmark.
+
 ## Remaining work and continuation criteria
 
 The task-specific theorem, real/complex decoding, quantum resource ledger,
@@ -174,13 +190,16 @@ established. These are not pending research tasks.
 
 | Remaining question | Concrete boundary |
 |---|---|
-| General fine-precision native emitter | Certified rows, enabled two- and four-row tables, one- and two-system-qubit residual preparation, and a coherent one-system-qubit branch selector are implemented. General table sizing, dirty lookup/larger predicates, and full fine state preparation remain. The next bounded task integrates the residual selector into common-coarse QBP, charging forward C, controlled observable, inverse C in the magnitude stream, and both decoder streams |
+| General fine-precision native emitter | Certified rows, bounded tables and preparations, coherent residual selection, and a one-system-qubit native residual QBP integration with both decoders are implemented. General table sizing, larger predicates, and full variable-size fine emission remain separate. The next pass consolidates the proof-to-code map and checks which remaining implementation gaps affect any stated claim before selecting another component |
 | End-to-end algorithmic advantage | No example is selected. A new claim needs a concrete observable-access model and a classical comparator; explicit Pauli inputs do not supply the high-precision advantage claimed by T-count alone |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
 | Depth optimality and practical constants | Remain open after the completed upper-bound audit; optimal T-count does not imply optimal depth or a practical crossover |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
+The selected bounded residual-to-QBP integration is also complete. Do not
+automatically enlarge its dimension or add more fixtures: first identify
+a distinct interface or scientific claim that the next check would resolve.
 For the next component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
 error, and charge each reflection before composing a larger state compiler.

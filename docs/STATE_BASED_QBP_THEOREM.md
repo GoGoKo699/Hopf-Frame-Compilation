@@ -240,7 +240,11 @@ more dirty work than the minimum-budget small-system fallback. A
 an arbitrary protocol branch and its literal relative phase for one system
 qubit, with the same small-system workspace caveat. Complete native [real](NATIVE_COARSE_QBP.md)
 and [complex](NATIVE_COMPLEX_COARSE_QBP.md) examples verify special two-qubit
-targets. The general fine-precision native emitter is not implemented;
+targets through exact finite-size preparation. The
+[native residual QBP fixture](NATIVE_RESIDUAL_QBP.md) instead uses the
+fine residual emitter inside both complete streams for a certified complex
+one-qubit target, including actual coarse and observable costs and exact
+histogram decoders. The general fine-precision native emitter is not implemented;
 the construction bound above is analytic.
 
 | Ingredient | Canonical proof |

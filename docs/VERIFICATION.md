@@ -393,6 +393,22 @@ conditional ledger without large statevectors. The
 [branch proof and scope](NATIVE_RESIDUAL_BRANCH.md) exclude a supplied
 coarse circuit, observable, or full native QBP integration from this component.
 
+The [native residual QBP tests](../tests/test_native_residual_qbp.py)
+connect the fine preparation to an actual coarse word, controlled
+Hadamard observable, and both gradient readouts. Independent rational
+target/residual formulas and square-root enclosures check the coefficient
+promises and full logical coarse-distance certificate. Small coherent
+dirty/reference column batches propagate through complete native words
+and an independent source-algebra oracle, retaining all flag leakage.
+Probabilities sum over every work outcome without postselection; their
+score operators check magnitude and raw phase means. Ideal witnesses
+detect omitted Y records, the wrong coarse inverse, and a changed
+relative branch phase. Exact histogram tests retain finite raw phase
+sums, and fine-q ledgers charge the observable and every coarse call.
+The [proof and scope](NATIVE_RESIDUAL_QBP.md) distinguish these finite
+checks from analytic error bounds and sampling guarantees. This pass
+does not supply a native fine-frame cost benchmark or a general emitter.
+
 The [antichain checks](../tests/test_antichain_compiler.py) compare the exact
 strict-descendant forest factorization with complete complex tree words,
 pack mixed-depth disjoint updates into one last-bit multiplexor, and check

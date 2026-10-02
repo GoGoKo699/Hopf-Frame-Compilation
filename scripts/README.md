@@ -57,6 +57,20 @@ literal counts against the original protocol with the same observable.
 Its exact finite-size target is not a generic fine-precision compiler or an
 advantage experiment. See the [scope and word proof](../docs/NATIVE_COARSE_QBP.md).
 
+## Native residual QBP ledger
+
+```bash
+python scripts/residual_qbp_native_example.py
+python scripts/residual_qbp_native_example.py --q 16 --format json
+```
+
+This emits both fine-residual gradient streams for a fixed complex
+one-qubit target and reports exact coefficient, coarse-distance, gate,
+and gradient-bias certificates. It also demonstrates the exact histogram
+decoders. It performs no statevector propagation or sampling; the bounded
+native numerical checks live in the test suite. See the
+[integration proof and scope](../docs/NATIVE_RESIDUAL_QBP.md).
+
 ## Upstream synchronization
 
 ```bash
