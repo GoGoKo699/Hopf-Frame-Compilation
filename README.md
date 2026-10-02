@@ -25,8 +25,7 @@ The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the full-frame cl
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column, whereas Hopf differential-frame compilation fixes the state and designated frame columns." />
 </p>
 
-The [LLM reading guide](llms.txt) maps proofs and assumptions for complete-frame
-synthesis, ancilla–depth and T-count–precision tradeoffs, and Hopf QBP robustness.
+The [LLM reading guide](llms.txt) maps proofs and assumptions.
 Resume research from the [workspace checkpoint](WORKSPACE.md).
 
 ## Two resource models
@@ -68,8 +67,9 @@ D_{\mathbb R}(n,m)
 }
 ```
 
-Upper bounds hold for every parameter tuple. Lower bounds are worst-case
-over Hopf frames, uniformly in clean workspace; individual frames may cost less.
+The upper bounds hold for every parameter tuple; lower bounds hold in the
+worst case over the Hopf-frame family, uniformly in the clean-workspace budget.
+Individual frames may cost less.
 
 The worst-case **CNOT count alone is $\Theta(N)$ for $n\ge2$**,
 with free one-qubit gates and arbitrary clean workspace; it is zero for $n=1$.
