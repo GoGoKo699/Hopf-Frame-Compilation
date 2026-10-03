@@ -1016,3 +1016,24 @@ only under a sufficient condition such as $`L\le N/n^2`$.
 All preparation, queries, actual inverses and work return remain charged.
 The selected high-precision endpoint and unrestricted large-width depth
 optimality remain open. No priority claim follows from this composition.
+
+## 22. Scope of recent depth lower bounds (3 October 2026)
+
+These comparisons guide further research; neither is an imported compiler
+premise. [Parham, arXiv:2504.19966v1](https://arxiv.org/html/2504.19966v1),
+Proposition 1.8, relates T-depth to alternations of unrestricted Clifford
+and shallow circuits. Theorems 1.14–1.15 connect sufficiently strong
+explicit-state and Boolean-function lower bounds to classical threshold
+circuit lower bounds, with polynomial clean workspace in the model.
+Section 6 explicitly says that no analogous reduction is known for
+general prescribed-unitary implementation. This is therefore not a
+blanket complexity barrier to complete-frame operator lower bounds.
+
+[Al-Ghattas–Gamarnik–Kiani, arXiv:2610.02166v1](https://arxiv.org/html/2610.02166v1),
+submitted 1 October 2026, treats arbitrary Clifford blocks. Corollary
+1.7(iii) and Section 4.2 cover every fixed number of shallow blocks at
+total width $`M=O(n)`$; arbitrary-width extensions concern specific
+one-round classes. Lemma 4.4 retains an $`O(kM^2)`$ entropy term, so
+this theorem does not cover the current $`b\asymp\sqrt N`$ allocation.
+No applicable growing depth bound was identified in this comparison;
+that audit outcome does not prove that such a bound is impossible.

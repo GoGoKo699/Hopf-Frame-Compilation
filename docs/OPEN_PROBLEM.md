@@ -13,6 +13,86 @@ The [publication scope](../manuscript/PUBLICATION_SCOPE.md) retains the
 established frame results. The [verification map](VERIFICATION.md)
 distinguishes analytic proofs from implemented and finite evidence.
 
+## Revision checkpoint and selected next test
+
+This checkpoint consolidates the proved frontier and selects one bounded
+analytic test. It introduces no new theorem. Write $`N=2^n`$. The uniform-precision and
+low-precision bounds below are established; their remaining questions
+should not be conflated with the completed Hopf-QBP contract.
+
+| Remaining gap | Current boundary | Selected treatment |
+|---|---|---|
+| Large-width T-depth | At fixed accuracy, two clean flags and sufficiently large $`b=\Theta(\sqrt N)`$, $`\Omega(1)\le D_T^\star\le O(n)`$, with $`T=O(\sqrt N)`$ and $`G=O(N)`$ | Audit the linear-depth contributions, beginning with the exact dirty-indicator target below |
+| High-precision complete-frame count endpoint | At $`a=2,L=N,b=N+n+7,n\ge3`$, $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$ | Park until a new complete native identity supplies its symbolic precision, workspace, and work-return ledger; another local source fixture is not selected |
+
+At fixed accuracy the current schedule has
+$`O(n/\log(n+2))`$ early groups. Five separately charged contributions
+can retain order n in its upper ledger:
+
+| Contribution | Current depth allowance | What a faster indicator would change |
+|---|---|---|
+| Early logical stages and incremental selectors | $`O(g)`$ per height-g group, summed over at most n heights | Unchanged |
+| Early phase-source preparation, unary conversion, and actual inverse | $`O(\log(n+2))`$ per group | Unchanged |
+| Early outer activity predicate and its inverse | $`O(\log(n+2))`$ per group | Unchanged |
+| Early program prefetch and unload | $`O(\log(n+2))`$ per group | The proposed indicator still has this order for an address of length $`O(n)`$ |
+| Tail dirty indicators | The sum of $`O(n(k+1)2^{-k/12})`$ over remaining heights k is $`O(n)`$ | This is the contribution the next test targets |
+
+These are costs of the present schedules, not five independent lower
+bounds. The tail's other source, predicate, and unweighted query terms
+already fit $`o(n)`$ under the unary cutoff. Improving only its indicators
+would not prove a complete-frame $`o(n)`$ bound: the four early
+contributions would remain separately charged.
+
+### Candidate: nonuniform chunks in an exact dirty indicator
+
+For an s-bit address and $`S=2^s`$ arbitrary output bits Y, the target
+is an exact native circuit
+
+```math
+|x,Y,W\rangle\longmapsto|x,Y\oplus e_x,W\rangle,
+\qquad T,G,w=O(S),\qquad D_T=O(\log_2(s+2)),
+```
+
+with absolute constants, no initialized work, literal phase, and return
+of all arbitrary dirty work W, including references. Here w is additional
+dirty width, and G counts elementary Clifford gates. The case s equal
+to zero is the single-output Clifford X.
+
+The candidate uses the existing
+[dirty tree and root/leaf echoes](CHUNKED_DIRTY_INDICATOR.md#1-a-reversible-tree-on-arbitrary-dirty-inputs)
+with unequal positive chunk lengths. Start with r equal to s remaining
+address bits. While $`r\gt64`$, propose
+
+```math
+r'=\lceil4\log_2(r+2)\rceil,\qquad b=r-r',
+```
+
+consume that b-bit chunk, and continue with r equal to r prime. Finish
+the remaining at most 64 bits in one chunk. This is a candidate schedule,
+not a proved resource bound. Its intended stage budget is
+$`O(2^{s-r'}(b+3)^3)`$: there is one private conjunction per edge,
+controlled by its dirty parent and that chunk's literals.
+
+Before implementation or a new frontier claim, require all five checks:
+
+- Prove that arbitrary unequal chunks preserve the existing full-input
+  tree identity, literal conjugation order, and both actual-inverse echoes.
+- Check every rounded chunk is positive; prove linear total T and
+  elementary Clifford count with no residual $`\log^*s`$ factor.
+- Count all retained tree nodes and the maximum simultaneous private
+  conjunction pool; reuse a pool only after its exact return.
+- Prove the depth sum $`\sum_i\log_2(b_i+3)=O(\log_2(s+2))`$
+  while preserving the read-only shared-control interface.
+- Reinsert a successful lemma into the complete ledger, keeping every
+  early contribution and every return/error charge visible.
+
+Stop this candidate if any check requires clean helpers, overlapping live
+work, an uncharged phase, or a nonconstant count overhead. Record the
+first failed obligation without converting that failure into a general
+lower bound. A successful local test would strengthen the query interface;
+it would not by itself close the large-width frame-depth gap or change
+the parked high-precision endpoint.
+
 ## Established frontier
 
 Write $`N=2^n`$, $`q=n+a+b`$,
@@ -552,6 +632,10 @@ nonzero entries. Neither linear classical storage nor dense expansion
 supplies the missing native synthesis by itself.
 
 ## Revision decision and next bounded pass
+
+The current selection is the
+[revision checkpoint above](#revision-checkpoint-and-selected-next-test).
+This section retains the earlier source-carry decision and its boundaries.
 
 The coupled-merge passes have completed their structural task. The
 [commutator repair](RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis)

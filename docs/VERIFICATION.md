@@ -67,7 +67,7 @@ identifying the missing interface. The prescribed complete-frame
 endpoint and general T-depth frontier remain
 [active research questions](OPEN_PROBLEM.md#next-bounded-task-and-stopping-rule);
 count and depth now match in explicit accuracy/workspace ranges by the
-[amortized construction](AMORTIZED_DIRTY_LOOKUP.md). The existing
+[uniform-precision construction](UNIFORM_PRECISION_DEPTH.md). The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
 existing resource comparisons and classical baselines remain documented.
