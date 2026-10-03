@@ -213,6 +213,13 @@ is inherited.
 | R49 | shared-prefix query interface audit | [local audit](SHARED_PREFIX_QUERY_AUDIT.md), 3 October 2026: separates reusable dirty work from initialized cache capacity and charges the shared-prefix interface. F41 contextualizes the exact local rank boundary. No improved complete-frame bound, unrestricted T-depth obstruction, or priority claim |
 | R50 | charged two-group program refresh and its correction boundary | [shared-prefix audit, Sections 6–8](SHARED_PREFIX_QUERY_AUDIT.md#6-a-charged-two-group-program-refresh): exact retained-program/source identity with actual inverse return and a reused activity flag; the generic difference family contains fresh queries, while explicit affine factors admit a constant-depth dirty echo. Existing bilinear and literal-Toffoli premises suffice; no new external premise, generic depth lower bound, or improved complete-frame order |
 
+The [retained-source continuation](UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
+extends R32 and R43 with the following component result.
+
+| ID | Result | Scope and dependencies |
+|---|---|---|
+| R51 | original-modulus fusion and a shallow stabilizer completion | [exact source-ring factors](UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus) retain literal opposite determinant phases and every source input. The [growing even-height completion](UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion) caches invariant last-nonzero-pair sectors and uses two selected shifts, with $`D_T=O(\log(g+2))`$, $`T,w=O(q2^g+R)`$, and $`G=O(q2^g+qR)`$, excluding program queries, outer predicates, and source boundaries. F21 supplies the magic basis; existing F8/F31/F36/F37-based primitives supply conditional work and source shifts. The remaining complete transport is still height-linear; no new external premise, optimality, priority, or improved complete-frame order is claimed |
+
 The [Hopf error audit](HOPF_ERROR_ACCUMULATION.md) derives a sharp ideal-angle
 stability recurrence and an exact finite relative-spectrum recursion from
 the inherited nested frame supports H8, using standard block-matrix

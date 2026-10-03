@@ -1163,3 +1163,25 @@ affine-factor example uses the existing dirty echo and literal Toffoli
 words; low rank without cheap factors does not suffice. These are local
 algebraic consequences of the existing query interface, with no new
 external synthesis premise or unrestricted depth lower bound.
+
+## 27. Retained-source factors and invariant completion sectors (3 October 2026)
+
+The [retained-source continuation](UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
+uses the already attributed Vatan–Williams magic basis (F21), with
+Laurent entries on one common cyclic source. Opposite determinant
+monomials keep the original source modulus; they are retained operator
+phases, not discarded scalars. The Bell identity separates a factor that
+fixes the shared boundary from its complementary transport.
+
+The [completion schedule](UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion)
+then uses a property of the Hopf word: these factors have mutually
+orthogonal last-nonzero-pair sectors. Cached sector labels survive both
+paired-axis rounds, so the existing guarded cyclic-shift primitive serves
+the whole completion twice. Parallel conjunctions, conditional work,
+phase kickback, and bilinear multiplication retain their existing source
+attribution. The local contribution is this exact factorization and
+invariant-cache schedule, including full inactive cancellation and charged
+derived program rows. No new external synthesis premise is imported.
+The remaining transport still has a sequential height-linear schedule;
+the result does not improve the complete-frame depth order or establish
+an unrestricted lower bound.

@@ -184,6 +184,33 @@ tests do not emit the complete native bilinear XOR, selected-program
 network, scalable group, or full-frame lookup schedule. Their uniform
 work-return, count, width, depth, and error statements are analytic
 proofs, not extrapolations from the finite native and reduced fixtures.
+The [retained-source fusion identities](UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
+have [seven bounded checks](../tests/test_retained_source_fusion.py). Exact
+Gaussian-dyadic coefficients modulo $`z^q-1`$ compare all 512 four-mode
+label triples at q equal to eight with independent plane words, including
+unitarity. Three additional label triples check the literal determinant
+monomials and detect an incorrectly dropped source phase. Integer arithmetic
+has checked pre-operation bounds; its tensor products multiply coefficients on one
+shared source. Separate numerical checks cover every character of those
+words, the existing native magic Clifford, and all 16 states of a physical
+four-wire cyclic source bank. Exact eight-mode checks include unequal
+children, joint integer root exponents, and the Bell-stabilizer extraction
+with logical-only transpose. A noncommuting pair of transported factors
+checks the boundary word on Bell inputs and detects its invalid extension
+to the complete space. Negative cases retain a spurious source
+phase, invert source powers during transpose, or omit the required final
+factor. The inactive test checks cancellation of the fixed Clifford
+sandwich, without modeling private selector work. A noncommuting pair
+rules out only a common fixed basis for one diagonal round. A four-target
+fixture partitions sixteen logical modes into five orthogonal completion
+sectors and the vacuum. Each completed axis preserves every sector;
+two rounds using the original cached labels equal the serial completion
+word and its inverse. Independent upper/lower plane words verify the
+complete frame factorization on all columns. Recomputing a sector in the
+temporary basis, or dropping the upper transport's suffix guard, fails.
+This uses exact sector blocks, without simulating arbitrary cache inputs.
+General native selectors, work return, resource ledgers, and growing-block
+recurrences are analytic claims, not emitted by these fixtures.
 The [protected unary source bank](PROTECTED_UNARY_SOURCE.md) has
 [four bounded checks](../tests/test_protected_unary_source.py). Its q=4
 preparation is a literal native word on the full six-wire bank. Two

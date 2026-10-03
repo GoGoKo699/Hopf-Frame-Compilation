@@ -183,36 +183,84 @@ assuming related rows, or moving the readout into a conjugated basis does
 not pay for the missing correction. The cache-capacity and whole-window
 offset-echo failures remain in the same proof chapter.
 
-### Selected next test: fuse the actual retained-source logical stages
+### Retained-source fusion: the exact small-block result
 
-Move to the independent logical-stage contribution. The unary compiler
-uses signed powers of one cyclic source shift S, conjugated by fixed
-logical basis changes. Write its full two-level word as a matrix over
-Laurent polynomials in S, with $`S^q=I`$. Start with $`q=8`$ and four
-logical modes. Retain every source input, both target changes, literal
-phases, and the work-return contract. Then test an explicit proposed
-composition rule on eight logical modes; a two-level identity alone is
-not an asymptotic result.
+The [retained-source continuation](UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
+now lifts the existing ideal magic-basis benchmark to the complete source
+operator. Its four-mode factors have opposite determinant monomials.
+Their product is exact over the original Laurent ring with $`S^q=I`$;
+no half-angle source enlargement is required. This is a shared-source
+product, not two independent phase states. The two joint exponent tables
+use only the original labels and require two selected-shift rounds.
 
-The [ideal four-mode benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
-and [eight-mode controlled coupling](ENDPOINT_TREE_TRANSPORT.md#8-the-eight-mode-root-retains-a-controlled-coupling)
-already exist. Do not reproduce them as new progress. The new question is
-whether a factorization closes for the actual common-source operator and
-has a charged growing-block implementation. For this exact rewrite,
-checking only the prepared Fourier eigenstate misses the other source
-characters and does not prove
-this operator identity. An exact polynomial comparison, or all source
-characters for the bounded fixture, is the appropriate first check.
-A different unitary body that agrees only on the ideal source remains
-eligible with a proved global initialized-isometry and inactive/work-return
-contract; failure of an exact rewrite does not exclude that route.
+At eight modes, jointly diagonalizing the Bell-controlled root leaves
+only integer exponents zero or plus/minus the root label. One original
+source shift implements the whole root; its four commuting Pauli terms
+do not require four quarter-angle sources. Together with the two child
+rounds, this recovers three rounds. The retained compiler still supplies
+the height-linear schedule; diagonalization alone does not supply a new
+transformed-selector construction.
 
-Advance only with a symbolic recurrence for T-depth, T-count, Clifford
-count, simultaneous width, and exact cleanup. Keep source preparation and
-its actual inverse under the established global error bound. Stop if the
-candidate assumes a fresh source, an uncharged coherent evaluator, or
-only a fixed-size factorization. The separate query cost remains in the
-complete-frame ledger throughout this test.
+There is also a complete Bell-stabilizer extraction. For each child
+$`C_s=A_s\otimes B_s`$ over the shared source ring, put
+
+```math
+V_s=A_sB_s^{\mathsf T},\qquad
+K_s=B_s^{-\mathsf T}\otimes B_s,\qquad
+C_s=(V_s\otimes I)K_s.
+```
+
+The transpose affects only logical matrix indices. Each $`K_s`$ fixes
+the Bell state for every source input, so the controlled K commutes with
+the parent root U even for unequal children. Consequently
+$`CU=VUK`$ and $`CUC^\dagger=VUV^\dagger`$. The full word
+still needs K. Its direct charged schedule uses six rounds versus three
+for the baseline, and the conjugated-root schedule uses seven versus
+five. Derived one-hot program rows are explicitly charged. These upper
+schedules establish an exact interface, not a native depth improvement.
+The retained transport has noncommuting matrix coefficients; it is not
+another scalar two-dimensional factor to which the same formula applies.
+
+### A shallow completion and the remaining transport
+
+The [growing completion schedule](UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion)
+uses the stabilizer extraction across an even-height group. Its completion
+factors act on mutually orthogonal sectors: the last nonzero target pair
+and the earlier computational prefix identify the sector. Their two
+paired-axis words preserve these sectors on arbitrary source inputs.
+Cache all sector labels before applying the logical basis changes, use
+the cached labels in both selected shifts, and erase them after restoring
+the original basis. No transformed prefix is reread as an old address.
+
+For even g in the existing range, this gives
+
+```math
+D_{T,\rm completion}=O(\log(g+2)),\qquad
+T,w=O(q2^g+R),\qquad G=O(q2^g+qR),\qquad R=3^\ell.
+```
+
+The ledger excludes the charged program query pair, outer activity
+predicates, and protected-source preparation/return. The program includes
+derived difference rows. All conditional-zero cache and selector work is
+reserved; on the inactive sector the full word cancels on arbitrary work.
+The result is an exact component compiler on every logical/source column.
+
+The complete factorization still has an ordered transport product with
+three source-shift factors per target pair. Its available depth remains
+O(g). A faster state preparation sharing its first column cannot replace
+that product without pricing the change to every complementary column.
+
+**Decision.** The next unresolved interface is this noncommuting transport;
+no faster native rule is selected. Before another fixture pass, require
+an explicit rule with a depth/count/width recurrence and complete cleanup,
+or a better generic query schedule. Fixed magic-basis recursion or source
+phase rearrangement alone does not supply that rule. A small next matrix
+is not by itself a reason to open another construction pass.
+
+The complete-frame frontier and both linear allowances are unchanged.
+An exact rewrite must hold on all source characters; a different unitary
+body that agrees only on the ideal source remains eligible with a proved
+global initialized-isometry and inactive/work-return contract.
 
 ## Established frontier
 
