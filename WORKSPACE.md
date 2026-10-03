@@ -1,10 +1,12 @@
 # Continuing research workspace
 
 This is the current research checkpoint, revised **3 October 2026** from
-verified main `88350ab15ef22bdc49c9bfec3fcd2764283edbf7` (PR #85).
-That baseline passes 495 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. The charged query-correction audit below gives an
-exact fused word, but its generic correction retains a fresh lookup.
+verified main `7f4269f746d2c469fcb97bfc4b187420839cbbe8` (PR #86).
+That baseline passes 498 tests, four exact fault-tolerant receipt suites,
+and all five CI checks. The retained-source fusion audit below gives exact
+four- and eight-mode identities at the original phase modulus and a
+logarithmic-depth stabilizer completion for growing even-height groups.
+The complementary transport remains sequential.
 Two early linear-depth allowances remain, and the complete-frame frontier
 is unchanged.
 
@@ -188,22 +190,54 @@ This reduction is not a depth lower bound. Stop the generic difference-only
 route unless a new generic lookup schedule or uniformly cheap factorization
 is supplied; do not pursue more stale-mask or dirty-cache variants.
 
-The next selected task is the logical-stage row: write two consecutive
-unary stages as an exact matrix whose entries are Laurent polynomials in
-the cyclic source shift S, with $`S^q=I`$. Keep the full source action,
-changed logical controls, literal phase, and actual cleanup. Start at
-$`q=8`$ and four logical modes, then test closure at eight modes before
-claiming any recurrence. For this exact rewrite, equality only on the
-prepared Fourier source is insufficient: verify every source character
-or an exact polynomial identity.
-The existing ideal four-mode factorization is a starting comparison, not
-a new result. A fixed pairwise saving cannot reduce the total asymptotic
-depth; a growing-block recurrence must include selectors, work return,
-program access, and its T/Clifford/width costs. A different unitary body
-that agrees only on the ideal source remains eligible with a proved global
-initialized-isometry and work-return contract; failure of an exact rewrite
-does not exclude it. The query row remains separately linear unless a
-later construction improves it as well.
+The [retained-source fusion audit](docs/UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
+completes the next selected small-block test. Opposite determinant phases
+give a four-mode factorization over the original cyclic-shift ring,
+without half-powers or a larger source. The phases cancel only in the
+paired shared-source operator. Its joint selected programs use the
+original labels and take two shift rounds, matching the original two
+levels. The eight-mode Bell-controlled root needs one further ordinary
+signed shift, not four separately implemented quarter-angle shifts.
+
+A second exact identity extracts a child factor that fixes the Bell
+state and commutes with the parent coupling. The complementary factor
+must remain in the complete frame. With every derived program row loaded
+and charged, the direct extracted word takes six shift rounds versus
+three for the baseline; transported-root conjugation takes seven versus
+five. These are explicit upper schedules, not lower bounds. The surviving
+transport has noncommuting matrix coefficients, so the scalar two-factor
+identity cannot simply be iterated on it.
+
+There is a useful growing component. For an even group height g, the
+[stabilizer completion](docs/UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion)
+has mutually orthogonal sectors labeled by the last nonzero target pair
+and its earlier prefix. Cache those labels before changing bases. Every
+completed axis preserves them, so all completion factors share two source
+shifts and the cache erases exactly. Excluding program load/unload,
+outer predicates, and source boundaries, this gives
+
+```math
+D_{T,\rm completion}=O(\log(g+2)),\qquad
+T,w=O(q2^g+R),\qquad G=O(q2^g+qR).
+```
+
+Here $`R=3^\ell`$, $`q=2^\ell`$, and the existing condition
+$`g\le\ell`$ absorbs the parallel selector work. Derived program
+rows, their coherent queries, and conditional-zero work remain charged.
+This exact factorization retains the full frame, not only its prepared
+column. The available transport schedule is still height-linear, so the
+query and logical-stage rows retain their separate linear allowances.
+
+The next unresolved interface is now explicit: the noncommuting transport
+left after this shallow completion. No faster native rule for it is
+selected. A further construction pass needs such a rule or a better
+generic query schedule, with a symbolic depth/count/width recurrence and
+exact work return. Fixed magic-basis recursion and determinant-phase
+rearrangement alone do not qualify. Do not launch another matrix sweep
+without that rule. A different unitary body that agrees only on the ideal
+source remains eligible with a proved global initialized-isometry and
+inactive/work-return contract; merely preserving the first logical column
+does not preserve the prescribed complete frame.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the
