@@ -47,7 +47,11 @@ D_T^\star=\Theta_\eta(N/b^2).
 The additive n in the upper bound is not an unrestricted depth lower
 bound. Depth optimality at larger widths and the variable-accuracy
 complete-frame endpoint remain open. Constants may depend on the fixed
-accuracy; this theorem does not assert a new all-precision bound.
+accuracy in this chapter. The subsequent
+[uniform-precision refinement](UNIFORM_PRECISION_DEPTH.md) exposes that
+dependence and uses a rectangular allocation of the same query to prove
+absolute-constant depth O(NL/b²+nL), with a stronger slowly growing
+precision corollary.
 
 ## 1. A controlled bilinear output with one arbitrary dirty helper
 

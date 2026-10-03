@@ -18,7 +18,10 @@ previous conjugated geometric reflection by a shallow implementation.
 The [blocked bilinear extension](BLOCKED_BILINEAR_LOOKUP.md) retains this
 source construction and proves fixed-accuracy depth $`O(N/b^2+n)`$ with
 optimal-order T-count throughout the original sufficient dirty-width
-range. The square-root-width theorem below remains valid.
+range. The [uniform-precision composition](UNIFORM_PRECISION_DEPTH.md)
+subsequently bounds this source cutoff uniformly for slowly growing L
+and combines it with a rectangular query allocation. The fixed-accuracy
+square-root-width theorem below remains valid.
 
 ## 1. Local contract
 

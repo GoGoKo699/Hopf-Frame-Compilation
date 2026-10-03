@@ -67,8 +67,10 @@ At fixed accuracy, the [blocked bilinear refinement](BLOCKED_BILINEAR_LOOKUP.md)
 uses conditional unary groups and width-constrained bilinear blocks to
 give $`D_T=O(N/b^2+n)`$, retaining optimal-order T-count throughout
 $`b\ge17B_0`$. Count and depth match through $`b\le\sqrt{N/n}`$
-when nonempty. Its fixed-accuracy proof does not replace the uniform
-precision statements above.
+when nonempty. The subsequent [uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md)
+uses this hybrid at larger precision and a rectangular blocked allocation
+at smaller precision, improving the additive depth to nL with absolute
+constants throughout the same sufficient-width range.
 
 ## 1. An exact dirty indicator by conjugated routing
 

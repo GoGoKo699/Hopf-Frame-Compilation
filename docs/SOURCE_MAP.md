@@ -203,6 +203,7 @@ is inherited.
 | R42 | state-based QBP T-depth composition | [depth proof](STATE_QBP_DEPTH.md) composes R21/R23's exact schedules, inherited from F2, with R36/R39's constant number of residual rotations and the actual exact-return coarse interpreter; with $`B_0=P+n+7`$, $`b\ge2B_0`$ gives $`D_T=O(NP/b+P+n^3)`$, $`T,G=O(NP)`$, while $`b\ge16(B_0+\sqrt{NP})`$ gives one circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$, $`G=O(NP)`$, and $`D_T=O(P+n^3)`$; both real/complex task streams and oracle depth are charged; no new lookup primitive, depth optimality, total-runtime gain, or general emitter is claimed |
 | R43 | fixed-accuracy linear T-depth complete real frame | [unary phase-source proof](UNARY_PHASE_GRADIENT.md), 3 October 2026: coherent one-hot shifts, guarded bilinear work, unitary source preparation/return, and the Hopf angle-stability/group/query allocation give $`D_T=O_\eta(n)`$, $`T=O_\eta(\sqrt N)`$, $`G=O_\eta(N)`$ with two external clean flags and sufficient $`C_\eta\sqrt N`$ dirty work; F5/F8/F31/F36/F37 are attributed ingredients, F29/F38 are comparisons; no supplied catalyst, generic synthesis priority, matching depth lower bound, or high-precision endpoint follows |
 | R44 | fixed-accuracy dirty-width/depth tradeoff | [blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md), composed with R43's early groups: for fixed $`0\lt\eta\le1/64`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and $`b\ge17(L+n+7)`$, one two-clean complete real-frame circuit has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$ and $`D_T=O_\eta(N/b^2+n)`$; simultaneous worst-case orders are $`\Theta_\eta(N/b)`$ and $`\Theta_\eta(N/b^2)`$ when $`b\le\sqrt{N/n}`$; the full-input leaf and allocation use existing F2/F8/F29/F30/F31 ingredients, and F3/F4 supply the lower-bound lineage; large-width depth optimality and the high-precision endpoint remain open |
+| R45 | uniform precision and dirty-width depth tradeoff | [uniform composition](UNIFORM_PRECISION_DEPTH.md), 3 October 2026: at two clean flags, $`L\ge6`$ and $`b\ge17(L+n+7)`$, absolute constants give $`T=O(\sqrt{NL}+NL/b+nL)`$, $`G=O(NL)`$, $`D_T=O(NL/b^2+nL)`$; for $`L\le\log_2(n+2)/16`$, the sharper same-circuit bounds omit nL from T and replace it by n in depth. The matching width endpoints are respectively $`\sqrt{N/n}`$ and $`\sqrt{NL/n}`$ when eligible; this is rectangular allocation and uniform composition of R43/R44 with the existing hybrid, using the same external premises and F3/F4 lower bounds, with no new native query or high-precision endpoint claim |
 
 The [Hopf error audit](HOPF_ERROR_ACCUMULATION.md) derives a sharp ideal-angle
 stability recurrence and an exact finite relative-spectrum recursion from
@@ -343,6 +344,19 @@ The previous variable-accuracy theorem remains valid separately; R44's
 constants depend on fixed eta. Its enlarged matching window follows
 from the existing F3/F4 count lower bound divided by physical width,
 not a new depth lower-bound method.
+
+The [uniform precision refinement](UNIFORM_PRECISION_DEPTH.md), added
+**3 October 2026**, chooses rectangular blocks in R44's existing query
+and makes the unary cutoff and the split between precision regimes
+uniform. It reuses the same native circuits, source-return certificate,
+and F2/F8/F29/F30/F31/F36/F37 ingredients; no new external synthesis
+premise is introduced. R45's general count is optimal in order within
+its matching interval, or at all eligible widths when $`L\le N/n^2`$;
+its low-precision count is optimal throughout its stated regime. Both
+matching intervals use the existing F3/F4 lower bounds. The earlier
+theorems remain valid, and neither generic priority, unrestricted
+large-width depth optimality, nor the selected high-precision endpoint
+is claimed.
 
 The [consolidated state-based QBP theorem](STATE_BASED_QBP_THEOREM.md)
 collects R36 and R38–R42 under one input, precision, workspace, and

@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-03 width-sensitive bilinear pass starts from verified main
-`b94c77d8d82881c2bb2efc155a1da1f99f27c92e`, after the charged
-unary phase-source theorem. Check later commits before
+The 2026-10-03 uniform-precision pass starts from verified main
+`9ae9685154b498e3350f8a89262dfc1f02fb07d6`, after the width-sensitive
+blocked bilinear theorem. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -25,7 +25,8 @@ and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
 1. Begin active depth work with the
-   [width-sensitive bilinear theorem](docs/BLOCKED_BILINEAR_LOOKUP.md),
+   [uniform-precision theorem](docs/UNIFORM_PRECISION_DEPTH.md),
+   then the [width-sensitive bilinear theorem](docs/BLOCKED_BILINEAR_LOOKUP.md),
    then the [unary phase-source theorem](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy),
    then the [grouped complete-frame theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy),
    [chunked dirty indicator](docs/CHUNKED_DIRTY_INDICATOR.md),
@@ -79,7 +80,8 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | State-based real and complex QBP | Two compiler flags, fine state preparation, an exact-return coarse word, and corrected magnitude/phase decoders; [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) |
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
-| Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
+| Complete-frame T-count and T-depth | Uniform depth O(NL/b²+nL), retaining the same-circuit count bound at b at least 17(L+n+7); matching through sqrt(N/n); [uniform theorem](docs/UNIFORM_PRECISION_DEPTH.md) |
+| Slowly growing precision | For 6 ≤ L ≤ log₂(n+2)/16, depth O(NL/b²+n) and count O(sqrt(NL)+NL/b), with absolute constants; matching through sqrt(NL/n); [uniform theorem](docs/UNIFORM_PRECISION_DEPTH.md) |
 | Fixed-accuracy width-dependent depth | Two external flags, T-count O(sqrt N+N/b), and depth O(N/b²+n) at b at least 17(L+n+7); both orders match through sqrt(N/n); [blocked bilinear theorem](docs/BLOCKED_BILINEAR_LOOKUP.md) |
 | Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
 | Filtered complete-frame source | Quadratic radial error on the same two flags, charged native selective phases, and a smaller source-precision cap; [filter proof](docs/HOPF_RADIAL_FILTER.md) |
@@ -105,81 +107,60 @@ compiler improvement, not a general end-to-end gradient speedup.
 
 ## Current depth frontier
 
-The selected next-step recommendations were accepted: retain optimal-order
-T-count in the same circuit, and treat a logarithmic depth gap as a useful
-bounded milestone. The subsequent revision selected the variable-accuracy
-extension before another large-workspace routing attempt. That extension
-is now complete. The [hybrid refinement](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision)
-gives, for every $`L\ge6`$, two clean flags, and
-$`b\ge17(L+n+7)`$, one prescribed complete real-frame circuit with
+The [uniform-precision theorem](docs/UNIFORM_PRECISION_DEPTH.md) gives,
+for every $`L\ge6`$, two clean flags, and $`b\ge17(L+n+7)`$,
+one prescribed complete real-frame circuit with absolute constants:
 
 ```math
 T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
-\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right).
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL\right).
 ```
 
-Here
-
-```math
-\chi(t)=\log_2(t+2).
-```
-
-When nonempty, the range
-$`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$ has simultaneous
-optimal-order $`T^\star=\Theta(NL/b)`$ and
+When nonempty, $`17(L+n+7)\le b\le\sqrt{N/n}`$ is a simultaneous
+matching interval, with $`T^\star=\Theta(NL/b)`$ and
 $`D_T^\star=\Theta(NL/b^2)`$. For $`L=\Theta(n)`$, or
 inverse-polynomial error in N, sufficiently large $`b=\Theta(n)`$
 gives $`T^\star=\Theta(N)`$ and $`D_T^\star=\Theta(N/n)`$.
-Outside the matching range, retain the $`nL`$ term and compare the
-older grouped schedules before claiming count optimality.
+Outside the matching interval, retain the nL count term; the sufficient
+condition $`L\le N/n^2`$ makes it absorb into $`\sqrt{NL}`$.
 
-At fixed L, the [blocked bilinear theorem](docs/BLOCKED_BILINEAR_LOOKUP.md)
-now gives $`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and
-$`D_T=O(N/b^2+n)`$ at the same threshold. For sufficiently large
-$`b=\Theta(n)`$ above the threshold, one circuit has optimal-order
-$`T=\Theta(N/n)`$ and $`D_T=\Theta(N/n^2)`$.
-The fixed-accuracy matching depth tradeoff
-$`D_T^\star=\Theta(N/b^2)`$ now holds throughout
-$`17(L+n+7)\le b\le\sqrt{N/n}`$ when this interval is nonempty.
-The earlier loader places one low-address indicator echo around a multiplexed
-family of linear shears. A two-pass dirty traversal and rank-reduced
-controlled shears amortize both former per-batch logarithms.
-Dirty selector stacks remain separate from live banks and indicators;
-all lookup work returns exactly. Full-frame error and QBP substitution
-are inherited unchanged. A [capped precision allocation](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
-now reduces accumulated source depth to $`O(nL+n\log(n+1))`$ without
-increasing any layer's width or the weighted lookup costs. It retains
-the full error guarantee using the sharper local isometry constant.
-The total assigned precision is within $`5n`$ bits of the optimum under
-that additive error certificate; this is not a frame-depth lower bound.
-The original routed schedule retains an additive $`n^2`$ term. The
-[dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
-improves fixed-accuracy large-workspace depth to
-$`O(n\chi(n))`$ while retaining optimal-order T-count.
-The [unary phase-source theorem](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
-first improved the fixed-accuracy, sufficient-square-root-width bound to
+There is a stronger uniform corollary for slowly growing precision:
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(n),
-\qquad b\ge C_\eta\sqrt N.
+6\le L\le\frac{\log_2(n+2)}{16},\qquad
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
+D_T=O\!\left(\frac{NL}{b^2}+n\right),\qquad G=O(NL).
 ```
 
-These are simultaneous bounds on one complete real-frame circuit using
-two external clean flags. Early groups store one-hot programs and a charged
-unary phase source in conditional logical zeros. Bilinear cyclic shifts
-have constant T-depth; source preparation and its actual inverse occur
-once per group. Chunked dirty indicators and capped source precision
-control the entire remaining tail. The blocked bilinear refinement removes
-the late word-bank route at smaller dirty widths and extends this result
-to the displayed width-dependent curve.
-The worst-case count is optimal in order. At square-root-scale dirty
-width the depth lower bound remains only Omega(1). Fixed accuracy is
-essential to this theorem;
-the general-precision matching interval and endpoint remain unchanged.
-The older general-precision schedules below remain useful where their
-source or workspace costs are sharper. The separate state-based and
-complex-frame schedules retain their existing contracts and bounds.
+Its matching interval extends through $`b\le\sqrt{NL/n}`$.
+The absolute constants and thresholds are independent of eta and L.
+For fixed L this recovers the [blocked bilinear curve](docs/BLOCKED_BILINEAR_LOOKUP.md),
+whose constants could depend on eta. At square-root-scale width the
+fixed-accuracy depth upper bound is O(n), while the lower bound remains
+Omega(1). No unrestricted depth optimality or endpoint improvement follows.
+
+The new proof uses the charged [unary source](docs/UNARY_PHASE_GRADIENT.md)
+in early groups, with cutoff sublinear in n uniformly in the displayed
+precision range. Rectangular indicator allocation keeps the tail's
+weighted count at $`O(\sqrt{NL})`$ and its entire depth at
+$`O(NL/b^2+n)`$. For larger L, the existing
+[hybrid theorem](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision)
+already absorbs its $`n\log_2(n+2)`$ term into nL. No new native
+query identity is needed. Source preparation and actual inverses are
+charged; all dirty work returns, including arbitrary reference inputs.
+The original sufficient threshold remains exactly $`17(L+n+7)`$.
+The two-clean high-precision endpoint remains outside that threshold.
+
+Older schedules remain useful when their count or workspace requirements
+are sharper. In those ledgers, $`\chi(t)=\log_2(t+2)`$. The [amortized compiler](docs/AMORTIZED_DIRTY_LOOKUP.md)
+removed the per-batch logarithms but retained quadratic query depth.
+Its capped precision allocation has total source depth
+$`O(nL+n\log(n+1))`$ and is within $`5n`$ bits of its additive
+error-certificate optimum. The dirty-counter hybrid, grouped program
+reuse, unary source, and blocked bilinear query successively improve the
+depth upper bound. Their scoped obstructions are not frame-depth lower
+bounds. The separate state-based and complex-frame schedules retain
+their existing contracts.
 
 The [state-based depth theorem](docs/STATE_QBP_DEPTH.md) closes the selected
 composition audit for both real and gauge-fixed complex Hopf QBP. Put
@@ -275,7 +256,7 @@ software extensions below are not prerequisites for the stated theorem.
 | Variable-size native schedule | Optional software: general tables, predicates, reflections, and banked count/depth scheduling. The bounded component-to-gradient pass is complete |
 | General guarded decoder | Optional software: replace the general floating-point contractions with the proved certified arithmetic. Exact fixture decoders cover only their fixed target |
 | Constant-clean complete-frame endpoint | Still open independently of the state-based task. A new candidate must supply an explicit complete native identity and symbolic precision/workspace ledger before another fixture pass |
-| Optimal T-depth | At fixed accuracy both match through $`b\le\sqrt{N/n}`$ above the literal threshold; the variable-L interval remains $`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$; larger-width optimality and further precision dependence remain unresolved |
+| Optimal T-depth | Uniform matching through sqrt(N/n) above the literal threshold; for 6 ≤ L ≤ log₂(n+2)/16 this extends through sqrt(NL/n). Larger-width optimality remains open |
 
 Do not repeat the completed coefficient-to-row, two- and four-row lookup,
 one- and two-system-qubit amplification, or coherent residual-selection passes.
@@ -506,15 +487,22 @@ indicator echo returns all masks. Chunk lengths and block sizes are
 chosen together, and every tail resource sum is charged. This extends
 the simultaneous fixed-accuracy matching interval to sqrt(N/n).
 
-The next bounded question is the precision dependence of this route.
-First expose the eta-dependent source width, conditional suffix cutoff,
-and weighted query sums before asserting any uniform-L improvement.
-No such extension is established here. A stronger unrestricted
-large-width depth lower bound and the high-precision endpoint remain
-separate. Do not repeat the completed selector, source-reuse, unary
-source, or blocked-query proofs. Retain literal phases, actual inverses,
-full work return, and charged preparation in any new schedule.
-The completed modest-width
+The [uniform precision pass](docs/UNIFORM_PRECISION_DEPTH.md) now exposes
+the eta-dependent source width, conditional suffix cutoff, and weighted
+query sums. Its rectangular allocation avoids the balanced query's
+extra square root of precision in T-count. It proves the uniform bounds
+and the stronger slowly growing precision corollary above. Bounded
+integer checks cover allocation floors and workspace constraints; they
+do not replace the asymptotic proof or implement a scalable compiler.
+
+A next depth pass should target the remaining large-width gap: identify
+a concrete way to share work between unary groups or a full-frame
+lower-bound invariant that permits arbitrary Clifford interlayers.
+The linear upper bound is not itself a lower bound. The high-precision
+endpoint remains a separate question. Do not repeat the completed
+selector, source-reuse, unary source, blocked-query, or precision-splice
+proofs. Retain literal phases, actual inverses, full work return, and
+charged preparation in any new schedule. The completed modest-width
 matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare
 all initialized inputs, include borrowed-work return in its isometry
