@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 grouped-program-depth pass starts from verified main
-`57fffa5ccc95a9c8071ba35e7fe5d65d5011d6f7`, after the conditional
-source and robust two-layer obstruction. Check later commits before
+The 2026-10-02 group-selector and source-reuse pass starts from verified main
+`9f7906f57ba379bd2cd934d8c625ba9bb06dcca4`, after the grouped-program
+fixed-accuracy depth theorem. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -452,23 +452,38 @@ The global theorem uses the unchanged unfiltered additive precision:
 m=L+4+ceil log2(8n), cutoff R=min(n,256m), and early height
 g=floor log2(k/(64m)). These groups fit the literal suffix reservation,
 have O(n/log n) prefetches, and cost O(n log log n) depth internally.
-Late source/predicate costs are O(log²n). Repeated early source
-preparation, reflection, and internal selector/enable computation retain
-the log log n factor in the current schedule.
+Late source/predicate costs are O(log²n). The
+[incremental selector schedule](docs/GROUPED_PROGRAM_PREFETCH.md#10-amortized-local-selectors-and-suffix-enables)
+now removes the internal selector/enable logarithm: consume suffix enables
+before their controls change, grow prefix nodes after each target is final,
+and erase the retained prefix tree in reverse. It has O(g) group depth,
+fits the existing 16m2^g suffix reservation, and returns its work exactly
+through source leakage and on arbitrary inactive inputs. Across early
+groups this contribution is O(n). Source/reflection depth still retains
+the log log n factor, so the complete-frame frontier is unchanged.
 
-The next bounded target is whether source/reflection calls and internal
-selector/enable maintenance can be amortized inside a cached group,
-aiming at O(n) fixed-accuracy depth
-without sacrificing optimal-order T-count. Begin with a two-layer group
-identity or a scoped obstruction, not a larger numerical fixture.
-Do not assume that moving a preparation through a programmed phase mask
-is free; price the conjugated mask and every changed low-address
-dependency. The new program cache removes the external-prefix lookup
-cost, not these operator dependencies. Keep the high-precision endpoint
-as a separate question. Do not repeat the completed carry pipeline,
-short echoes, conditional preparation, grouped program identity, or
-chunked-query proof; do not apply ideal-angle stability to unfiltered
-source leakage.
+The [common-source audit](docs/GROUPED_PROGRAM_PREFETCH.md#11-a-common-source-identity-and-the-remaining-reflection)
+gives an exact two-layer conjugation identity, but two conjugated success
+reflections remain per layer. A legal exact zero-angle row leaves a stale
+success monitor with rejected norm sqrt(3)/2. Replacing individual Q calls
+by one-use fresh banks also leaves constant rejection unless a later
+operation mixes that bank's success and failure sectors. These are scoped
+failures of specified substitutions, not general depth lower bounds.
+
+The next bounded target is a literal implementation of the conjugated
+success reflection, or a maintained encoding that updates its monitor
+through the programmed word. Aim for O(g+log(m+2)) group depth at
+O(m2^g) native count and the stated suffix reservation; a larger charged
+reservation needs a revised global allocation. Start with two unequal
+legal rows and carry the same rule through a third stage, preserving
+literal phases, all rejected action, and exact inactive identity.
+An unpriced conjugated reflection or a fresh bank per Q is not a solution.
+If no rule meets these obligations, record that there is no selected
+construction rather than starting a larger fixture. Keep the high-precision
+endpoint separate. Do not repeat the completed selector schedule,
+common-source audit, carry pipeline, short echoes, conditional preparation,
+grouped program identity, or chunked-query proof; do not apply ideal-angle
+stability to unfiltered source leakage.
 A matching unrestricted large-width frame-depth lower bound remains
 separate.
 The completed modest-width

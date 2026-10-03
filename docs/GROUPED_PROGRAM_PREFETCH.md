@@ -510,3 +510,308 @@ operators; these tests do not emit the complete native frame compiler.
 The [chunked-indicator checks](../tests/test_chunked_dirty_indicator.py)
 separately test the late-query interface and resource sums. The
 asymptotic theorem follows from the analytic ledgers above.
+
+## 10. Amortized local selectors and suffix enables
+
+The selectors in Section 3 can be maintained across the group with
+$`O(g)`$ total T-depth, instead of recomputing a balanced tree at every
+height. This is an optional replacement for the selector interface; the
+source calls and reflections of Section 5 still have
+$`O(g\log(m+2))`$ total depth. Consequently this refinement alone does
+not improve the complete-frame bound in Section 8.
+
+The construction uses the chronological order of the local targets:
+stage ell changes only $`t_\ell`$ among the g local logical bits. This
+is an exact circuit property on every source-core and branch-flag input,
+including retained leakage. It does not assert that the source returns
+to zero between stages.
+
+### Consume each suffix enable before its controls change
+
+Reserve g conditional-zero wires $`u_0,\ldots,u_{g-1}`$.
+Initially set $`u_{g-1}=1`$. In descending order from g minus two to
+zero, apply the open-control Toffoli
+
+```math
+u_\ell\longleftarrow
+u_\ell\oplus\bigl((1-t_{\ell+1})u_{\ell+1}\bigr).
+```
+
+Each open control is the literal X--Toffoli--X word on
+$`t_{\ell+1}`$. Thus the stored values are exactly
+$`u_\ell=[t_{\ell+1}\cdots t_{g-1}=0]`$ on the active sector.
+The initial chain costs $`g-1`$ Toffolis and depth at most
+$`4(g-1)`$. Linear group depth is sufficient: the sum of group sizes
+is at most n.
+
+Immediately after stage ell, erase $`u_\ell`$ with the same
+open-control Toffoli. At that moment neither $`t_{\ell+1}`$ nor
+$`u_{\ell+1}`$ has changed, so the erasure is exact even if the stage
+has entangled its target with a leaked source. At the final height,
+erase the constant $`u_{g-1}`$ by X. Later stages use only the
+remaining enables, whose defining suffixes exclude all previously
+changed targets. Their values therefore remain correct. Delaying the
+whole enable-chain inverse until the group ends would generally fail,
+because later stages change its logical controls.
+
+### Grow selectors after each target reaches its final value
+
+Keep every prefix-tree node of depths zero through g minus one. These
+$`2^g-1`$ conditional-zero wires hold $`\pi_p`$, with the root
+$`\pi_\varnothing=1`$ set by X. At stage ell the depth-ell nodes
+equal the exact one-hot predicates of the current earlier local bits.
+After that stage, if ell is less than g minus one, compute its children:
+
+```math
+\pi_{p0}=\pi_p(1-t_\ell),\qquad
+\pi_{p1}=\pi_p t_\ell.
+```
+
+For every child separately, copy its parent and $`t_\ell`$ into two
+private zero leaves, negate the target-bit copy for a zero child, and
+apply one Toffoli into its zero child wire. Undo the negation and copies.
+All child Toffolis at this level have disjoint triples. The copies are
+Clifford, and the simultaneous native Toffolis have four T-layers.
+At most $`2^g`$ private copy wires suffice; they return to zero after
+each level and are reused. In particular, no simultaneous Toffolis
+silently share the logical target or a parent control.
+
+After stage ell, $`t_\ell`$ is never targeted again within the group.
+Consequently every created node remains the correct predicate of the
+current local bits, on arbitrary coherent target and source states.
+At group end, reverse the child computations in descending level order,
+then erase the constant root by X. The controls of every reversed
+computation still have their creation-time values. This erases all
+prefix nodes exactly without reversing any logical stage. Parent nodes
+must remain until their children have been erased.
+
+### Full inactive identity and exact return under leakage
+
+On the active sector, induction through the schedule establishes the
+prefix and enable identities just stated. All private copies are zero
+between completed computations. Each stage therefore has precisely the
+same selected row and internal enable as before. Its behavior on the
+source and branch flag is unchanged, including its entire leaked
+component. The final program inverse remains valid because the original
+program and external prefix are never modified.
+
+On h equal to zero, no work wire is assumed zero and no cached bit is
+interpreted as a Boolean predicate. Instead, each intervening completed
+stage is exactly identity on its full input space by Section 5. Each
+completed prefix-computation word preserves the logical bits and uses
+only prefix nodes and private copies as its other wires. Each completed
+enable gate also preserves the logical bits and uses only enable wires
+as its other wires. The two families therefore commute: their only
+shared wires are preserved logical controls. Move the enable erasures
+together; they are the actual inverse of the initial descending chain.
+The prefix erasures are likewise the actual inverses of the preceding
+ascending tree computations. Both pairs cancel on arbitrary work,
+including entanglement with the source, program, and external references.
+This proves full inactive identity without a clean-copy assumption.
+
+Thus the replacement returns every selector, enable, and private-copy
+wire exactly in both sectors and retains the existing initialized
+isometry error certificate. It changes neither the ideal Hopf group nor
+the error allocation. No source reinitialization, approximate predicate,
+or replacement of an actual inverse by an ideal inverse is used.
+
+### Native resources and the unchanged sufficient reservation
+
+The prefix growth and final erasure use
+$`2(2^g-2)`$ Toffolis. The enable initialization and early erasure use
+$`2(g-1)`$ Toffolis. Hence the entire selector/enable part has
+
+```math
+T\le14(2^g+g-3),\qquad G=O(2^g+g),\qquad
+D_T\le16(g-1).
+```
+
+For g equal to one these computations are entirely Clifford. The depth
+bound simply adds the prefix and enable schedules; it does not require
+overlapping their native gates.
+
+Keep the unchanged source, program, and mask pools from Section 6,
+separately from the new predicate storage. A sufficient simultaneous
+reservation is now
+
+| Live register | Suffix bits |
+|---|---:|
+| Complete program | $`2m(2^g-1)`$ |
+| Source core and preparation auxiliaries | $`7m`$ |
+| Retained prefix-tree nodes | $`2^g-1`$ |
+| Reusable private prefix-control copies | $`2^g`$ |
+| Suffix enables | $`g`$ |
+| Private mask copies and AND trees | $`9m2^g`$ |
+
+For $`m\ge2`$ and $`1\le g\le m`$ the sum satisfies
+
+```math
+11m2^g+5m+2^{g+1}+g-1\le15m2^g\le16m2^g.
+```
+
+Indeed $`2^{g+1}\le m2^g`$ and
+$`5m+g-1\le6m\le3m2^g`$. The original group-size choice and its
+external dirty-helper reservations therefore still suffice. The
+selector contribution summed over all early groups is $`O(n)`$
+T-depth, while its counts remain within the original $`O(m2^g)`$
+local allowance. The source/reflection factor remains a separate open
+depth issue.
+
+The [bounded selector checks](../tests/test_grouped_selector_reuse.py)
+prove exact rational equality for one-, two-, and three-stage fixtures
+on every local/source basis input, with noncommuting target stages and
+unreset source leakage. They also check exhaustive inactive arbitrary
+work return at two stages, the native phase and disjoint support of one
+child level, and negative controls for invalid cleanup orders. The
+stages in this fixture are reduced rational unitaries, not a native
+amplified complete-frame compiler. The general identities and resource
+bounds follow from the circuit argument above.
+
+## 11. A common-source identity and the remaining reflection
+
+Keep the same source core and branch throughout a cached group. Put
+
+```math
+D=VH_b,\qquad
+S_\ell=C_{h=u_\ell=b=1}(K_\ell)P_{h,u_\ell,W},\qquad
+E_\ell=\mathrm{CZ}(h,u_\ell).
+```
+
+The controlled target word commutes with V: it acts only on flags, the
+inner enable, and the logical target. The programmed mask is **not**
+commuted through V. Hence, with literal operator order,
+
+```math
+Q_\ell=D^\dagger S_\ell D,\qquad
+\widehat R_\ell=D R_\ell D^\dagger,\qquad
+B_\ell=E_\ell S_\ell\widehat R_\ell S_\ell^\dagger
+                    \widehat R_\ell S_\ell,
+\qquad A_\ell=D^\dagger B_\ell D.
+```
+
+On the invariant zero-preparation-work subspace, write
+$`|\omega\rangle=|+\rangle_b\otimes|\psi_m\rangle_{\rm core}`$,
+where $`|\psi_m\rangle`$ is the prepared geometric source. Then
+
+```math
+\widehat R_\ell
+=I-2[h=1,u_\ell=1]\otimes|\omega\rangle\langle\omega|.
+```
+
+The Section 3 selector/enable compute word $`C_\ell`$ acts on local
+logical and selector work only, so it commutes with D. Define
+$`\overline B_\ell=C_\ell^\dagger B_\ell C_\ell`$.
+The exact two-layer identity is
+
+```math
+(C_1^\dagger A_1 C_1)(C_0^\dagger A_0 C_0)
+=D^\dagger\overline B_1\overline B_0D.
+```
+
+The corresponding g-layer identity follows by telescoping. Section 10
+uses incremental selector maintenance instead of paired per-layer
+computations. Every one of its actual selector and enable words also
+commutes with D, so the same boundary conjugation follows through that
+actual interleaving; it does not require restoring the old selector
+schedule. Actual inverses and every enable phase remain unchanged.
+These conjugation identities hold on the full physical space, including
+arbitrary inactive helpers, when $`\widehat R_\ell`$ is defined by
+conjugation. The rank-one display is restricted to the invariant
+zero-work subspace. No fresh source per height is needed.
+
+This moves the preparations to the group boundaries, but leaves two
+conjugated reflections per layer. Synthesizing each by its displayed
+conjugation retains $`O(\log(m+2))`$ depth per reflection. The identity
+is a constant-factor reorganization, not an $`O(g+\log m)`$ group-depth
+theorem. It does not allow discarding the preparations while leaving an
+uncharged $`\widehat R_\ell`$ gate.
+
+### A cached success bit does not survive the programmed word
+
+Fix an active enabled row and put
+$`\Pi=|\omega\rangle\langle\omega|\otimes I_{\rm target}`$.
+A hypothetical extra monitor of this projector is
+
+```math
+C_\Pi=\Pi\otimes X_a+(I-\Pi)\otimes I_a.
+```
+
+This monitor is an audit device, not an additional uncharged compiler
+flag. The subspace in which a records the correct success bit is
+preserved by a word acting only on source and target if and only if
+that word commutes with $`\Pi`$. Computational-basis invariance of
+the diagonal mask is insufficient: $`\Pi`$ is not a
+computational-basis projector.
+
+There is a legal exact row witnessing a constant failure. Choose target
+angle zero, cosine mask zero, and sine mask with only its first geometric
+bit set. Since that bit has squared weight one half,
+
+```math
+c=1,\qquad s=0,\qquad \zeta=0.
+```
+
+For the resulting programmed mask P, its expectation on the source is
+
+```math
+\tau=\langle\omega|P|\omega\rangle=(1+0)/2=1/2,
+\qquad \|[P,\Pi]\|=\sqrt{1-\tau^2}=\sqrt3/2.
+```
+
+The commutator norm follows by resolving $`P|\omega\rangle`$ into
+its parallel and orthogonal components; P is a Hermitian involution.
+This holds for every $`m\ge2`$. All amplitudes and phases are exact;
+it is not an inadmissible coefficient pair outside the unit circle.
+The full middle word S also satisfies $`\Pi S\Pi=\Pi/2`$, because
+its target compression is $`(cI+sK)/2=I/2`$.
+For every normalized target state v,
+
+```math
+\|(I-\Pi)S(|\omega\rangle\otimes|v\rangle)\|=\sqrt3/2.
+```
+
+Compute the monitor from $`a=0`$, apply S without updating it, and
+apply the actual monitor inverse. The rejected source component leaves
+a equal to one with norm $`\sqrt3/2`$. Thus a precomputed success bit
+cannot be assumed to erase, and its stale value cannot supply the next
+reflection. An exact update must mix the success and failure sectors;
+writing the update as a conjugation transfers the original task instead
+of removing it.
+
+### A fresh bank per invocation does not supply work return
+
+Fresh independent banks per **complete amplified layer** are legitimate
+if their conditional-zero widths are charged. Fresh banks per Q
+occurrence are different. If an initialized bank is used once by Q,
+and every later operation commutes with that bank's success projector,
+its rejected norm is invariant. Since
+
+```math
+J^\dagger QJ=(cI+sK)/2,\qquad
+(J^\dagger QJ)^\dagger(J^\dagger QJ)=(c^2+s^2)I/4,
+```
+
+the rejected norm after that one use is
+$`\sqrt{1-(c^2+s^2)/4}`$. It equals $`\sqrt3/2`$ even on the exact
+zero-angle row above. Later operations on other banks, together with
+phases controlled by this bank's success sector, cannot return it to
+zero. The repeated interactions with the same bank in amplitude
+amplification remain necessary unless a different return mechanism is
+supplied.
+
+The [bounded source-reuse checks](../tests/test_grouped_source_reuse.py)
+retain all source and preparation-work input columns for the two-stage
+conjugation identity, including inactive inputs. Negative controls show
+that keeping the original zero reflection after moving the preparations
+is incorrect. An exact zero-angle fixture with native PREP checks both the stale
+monitor's rejected norm and the one-use source leakage, while proper
+amplification returns that row exactly. Masks and reflections in these
+fixtures are reduced operators; they do not emit a scalable reflection.
+
+These are obstructions to two specified replacement proposals. They do
+not lower-bound arbitrary source circuits, dynamically updated monitors,
+alternative encodings, initialized-clean frame compilation, or
+large-width T-depth. The complete-frame frontier remains unchanged. A
+positive next proposal must supply a shallow literal conjugated
+reflection or a different complete native identity, with every monitor
+update and all work return charged.

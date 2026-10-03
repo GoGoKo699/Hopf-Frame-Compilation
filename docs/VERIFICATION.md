@@ -144,6 +144,21 @@ internal-enable amplification sign. Exact integer ledgers check the
 adaptive group reservations and unchanged precision caps. The reduced
 group fixtures use direct diagonal masks and reflections; they are not
 a complete native query, reflection, or full-frame emitter.
+The [incremental-selector checks](../tests/test_grouped_selector_reuse.py)
+add exact rational one-, two-, and three-stage comparisons with retained
+source leakage, exhaustive two-stage inactive arbitrary-work return,
+native private-copy phases, and incorrect-cleanup negative controls.
+These stages are reduced rational unitaries testing the dependency
+interface, not emitted amplified source circuits. The linear group-depth
+and unchanged reservation are proved in
+[Section 10](GROUPED_PROGRAM_PREFETCH.md#10-amortized-local-selectors-and-suffix-enables).
+The [source-reuse checks](../tests/test_grouped_source_reuse.py) compare the
+two-stage conjugation on all small source/preparation-work inputs,
+detect replacement of the conjugated reflection by the original one,
+and check constant stale-monitor and one-use-bank leakage on a legal
+exact zero-angle row. PREP is native; masks, monitors, and reflections
+are reduced operator fixtures. They supply no new reflection emitter
+or unrestricted depth lower bound.
 The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
 [three bounded checks](../tests/test_chunked_dirty_indicator.py) for
 native shared-control phases, actual inverses, arbitrary dirty-tree
