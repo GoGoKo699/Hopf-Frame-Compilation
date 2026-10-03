@@ -1,14 +1,15 @@
 # Continuing research workspace
 
-This is the current research checkpoint, revised **3 October 2026** from
-verified main `7f4269f746d2c469fcb97bfc4b187420839cbbe8` (PR #86).
-That baseline passes 498 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. The retained-source fusion audit below gives exact
-four- and eight-mode identities at the original phase modulus and a
-logarithmic-depth stabilizer completion for growing even-height groups.
-The complementary transport remains sequential.
-Two early linear-depth allowances remain, and the complete-frame frontier
-is unchanged.
+This is the current research checkpoint, revised **3 October 2026** after
+merged PR #87, main `b8d9d229dc5b47470984175948eff59af3dcd89b`.
+The reviewed scientific tree passes 505 tests, four exact fault-tolerant
+receipt suites, and all five branch/PR checks, including rendered mathematics.
+
+**Decision:** consolidate the established compiler package and stop automatic
+construction passes. No new frontier construction is selected. The two open
+resource gaps are research opportunities, not prerequisites of the selected
+paper. The [scope](manuscript/PUBLICATION_SCOPE.md) now includes the strongest
+proved count/depth theorem; final manuscript writing remains on hold.
 
 ## Mandate and model
 
@@ -34,6 +35,7 @@ and nonzero physical depth remain separate costs.
 | Track | Analytic result and proof home | Implemented evidence and remaining boundary |
 |---|---|---|
 | Exact prescribed frames | Matching size and elementary depth across clean-work budgets; [exact theorem](docs/COMPILER_THEOREM.md) | Small complete matrices and reversible decoder/router ledgers. This exact-gate theorem is distinct from Clifford+T depth |
+| Sufficient-clean frame T-count | Matching worst-case precision/workspace frontier for real and phase-dressed complex magnitude frames; [fault-tolerant proof](docs/FAULT_TOLERANT_COMPILER.md) | Analytic full-frame theorem under its sufficient clean reservation; it is distinct from the constant-clean constructions |
 | Constant-clean frame T-count | One-clean grouped bound and separately banked refinements; [grouped proof](docs/CONDITIONAL_SUFFIX_COMPILER.md), [one-clean theorem](docs/ONE_CLEAN_COMPILER.md) | Native source/amplification and bounded group checks. The selected high-precision endpoint is still open |
 | Complete real-frame T-depth | Uniform and low-precision same-circuit bounds below; [uniform theorem](docs/UNIFORM_PRECISION_DEPTH.md) | Unary source components, native bilinear leaves, symbolic complete queries, and exact allocation checks. No scalable native frame emitter or unrestricted depth-optimality theorem |
 | State-based real/complex QBP | Fine state preparation, actual coarse reference/inverse, both original raw-gradient streams, and charged reconstruction; [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) | Certified bounded rows/tables, preparations, and a fixed complex residual-to-gradient integration. The selected theorem and bounded integration are complete |
@@ -90,7 +92,7 @@ Two scientific gaps remain:
 | Question | Known boundary |
 |---|---|
 | Fixed-accuracy, large-width T-depth | At sufficient $`b=\Theta_\eta(\sqrt N)`$, optimal-order $`T=\Theta_\eta(\sqrt N)`$ accompanies $`D_T=O_\eta(n)`$; the unrestricted depth lower bound is only $`\Omega(1)`$ |
-| Constant-clean high-precision count | At $`a=2`$, $`L=N`$, $`b=N+n+7`$: $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$ |
+| Constant-clean high-precision count | At $`a=2`$, $`L=N`$, $`b=N+n+7`$, $`n\ge3`$: $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$ |
 
 The uniform-depth width hypothesis excludes that literal endpoint.
 Its unary-source mechanism also does not scale to endpoint precision.
@@ -98,156 +100,130 @@ The separate state-based and phase-dressed complex results retain their
 own contracts; the new real-frame depth theorem is not automatically a
 complex-frame theorem.
 
-## Revision decision and next bounded task
+## Research decision and stopping rules
 
-The [current decision record](docs/OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
-consolidates three completed refinements:
+### Vision: one operator-compilation question, two resource models
 
-- The [nonuniform dirty indicator](docs/NONUNIFORM_DIRTY_INDICATOR.md)
-  has linear count/work and logarithmic address T-depth, with literal
-  dirty/reference return. At sufficient width this makes the low-precision
-  late tail sublinear.
-- The [protected source](docs/PROTECTED_UNARY_SOURCE.md) serves every early
-  group. One global $`2\delta`$ initialized-isometry bound includes final
-  source/flag leakage. Source preparation and its actual inverse contribute
-  $`O(L+\log(n+2))`$ total depth with $`\delta=\eta/8`$.
-- The [windowed predicates](docs/WINDOWED_GROUP_PREDICATES.md) use
-  $`J=\lceil\log_2(n+2)\rceil`$ groups per full window and
-  $`2J+1`$ additional conditional-zero bank bits. The two original clean
-  flags and two returned dirty predicate helpers still suffice.
+The central question is whether preserving a prescribed completion costs
+more than preparing its first column. We have an optimal exact
+workspace–depth theorem, a sufficient-clean optimal T-count frontier,
+constant-clean constructions, and simultaneous matching T-count/T-depth
+in explicit real-frame regimes. QBP explains why the additional columns
+matter. The completed state-based decoder is a separately scoped option;
+it does not replace the prescribed-frame theorem.
 
-The windowed predicates' aggregate activity depth in the uniform
-low-precision regime is
+The goal is a defensible account of these resource tradeoffs, with each
+claim attached to its assumptions and proof. It is not a requirement to
+solve every width and precision regime. None of these statements promises
+acceptance, external validation, or an application-level speedup.
 
-```math
-O\!\left(\frac{n\log\log(n+2)}{\log(n+2)}+\log(n+2)\right)=o(n).
-```
+### What the recent refinements bought
+
+| Result | Established gain | Present effect on the full-frame frontier |
+|---|---|---|
+| [Uniform precision and depth](docs/UNIFORM_PRECISION_DEPTH.md) | One circuit attains the displayed count/depth bounds and two explicit matching intervals | This is the latest complete-frame frontier advance and belongs in the principal theorem map |
+| [Nonuniform indicators](docs/NONUNIFORM_DIRTY_INDICATOR.md), [protected source](docs/PROTECTED_UNARY_SOURCE.md), [windowed predicates](docs/WINDOWED_GROUP_PREDICATES.md) | Reduce late-query, source-boundary, and activity overheads below linear depth at fixed accuracy and sufficient width | Useful components; the two remaining linear allowances still dominate |
+| [Query-cache and correction audit](docs/SHARED_PREFIX_QUERY_AUDIT.md) | Exact reader-capacity restriction, charged reuse identity, and the remaining generic correction query | Closes specific proposed shortcuts; supplies no unrestricted depth lower bound |
+| [Retained-source completion](docs/UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion) | Two source shifts and logarithmic completion depth for even-height groups, with full-frame and all-source identity | The ordered transport remains linear in group height; the complete-frame order does not improve |
 
 At fixed accuracy and sufficient square-root dirty width, the current
-same-circuit depth accounting is:
+same-circuit accounting remains:
 
-| Contribution | Current total allowance |
+| Contribution | Aggregate T-depth allowance |
 |---|---|
-| Logical shifts and incremental selectors | O(n) |
-| Program prefetch and unload | O(n) |
-| Activity predicates across group windows | O(n log log n/log n+log n) |
-| Protected-source and initial-bank-predicate boundaries | O(log n) |
-| Late queries, sources, and predicates | o(n) |
+| Logical transport and incremental selectors | $`O(n)`$ |
+| Program queries and actual unloads | $`O(n)`$ |
+| Windowed activity predicates | $`O(n\log\log(n+2)/\log(n+2)+\log(n+2))`$ |
+| Source and initial-bank-predicate boundaries | $`O(\log(n+2))`$ |
+| Late queries, sources, and predicates | $`o(n)`$ |
 
-These are construction costs, not lower bounds. The two remaining linear
-rows keep the complete-frame upper bound at O(n); the count, Clifford
-count, matching intervals, and literal width threshold retain the
-established theorem and fallbacks.
+These are construction costs, not lower bounds. The extracted transport
+uses three shifts per target pair; including the shallow completion gives
+$`3g/2+2`$ slots for even height g, versus g in the retained original
+compiler. Its factorization is useful structure, not a faster full group.
+Transport can move the pair's 00 state into its complement, so the
+completion's invariant-sector cache argument does not transfer to it.
+Noncommuting transported blocks also prevent direct scalar recursion.
 
-The window caches return exactly on active inputs with conditional-zero
-cache and an arbitrary source core. On $`Hh=00`$, the full window is
-identity for arbitrary cache, source, logical, dirty, and reference inputs.
-Each block-zero cache is erased before its targets change. Each chain bit
-is consumed while its later controls are still valid. Future logical bits
-may be temporary group work, but they must return before the cache is read
-again. No clean-cache assumption is made on the inactive sector, and no
-identity is asserted for arbitrary initial h equal to one.
+### Next step: one bounded consolidation audit
 
-The [shared-prefix query audit](docs/SHARED_PREFIX_QUERY_AUDIT.md)
-finds that a retained dirty indicator leaves an unknown output mask.
-A correction computed before the local address changes is generally
-stale, even for commuting XOR queries. A one-clean-bit native example
-shows precisely which baseline promise repairs the small construction.
+The next repository pass should audit the consolidated Results A–D as one
+claim package. Its deliverable is a claim-to-proof decision, not another
+component circuit or a new benchmark:
 
-More generally, consider an encoder that preserves the original prefix x,
-followed by exact reusable row readers that cannot access x at all.
-With c initialized cache bits and any number of arbitrary dirty bits,
-at most $`2^c`$ distinct row signatures fit. This counts every initialized
-wire used by the encoder, including conditional logical zeros. For arbitrary
-legal Hopf tables over G target bits, the requirement is
+1. Check that each leading formula has the correct real/complex target,
+   literal workspace threshold, precision regime, and same-circuit scope.
+2. Trace its upper construction, matching lower bound, and global work/error
+   contract to their existing proof homes; distinguish inherited premises
+   from the additional complete-operator argument.
+3. Check that the reader path, scope, attribution, and evidence map agree.
+   A finite fixture must not stand in for an asymptotic proof or a native
+   emitter. Preserve earlier constructions where their smaller reservations
+   or other resource regimes are useful.
+4. Record concrete blockers and repair them. If no claim-level blocker
+   remains, freeze the selected scientific scope. Do not add fresh research
+   requirements merely because another refinement might be possible.
 
-```math
-c\ge\min\{d,2^G-1\},\qquad d=n-k.
-```
+This is an internal readiness gate, not independent peer review. The current
+revision aligns the scope and reading guides; it does not represent a new
+end-to-end proof audit. Final writing begins only when requested. A general
+native emitter, practical crossover study, experiment, or application
+advantage is not a default prerequisite.
 
-Even granting all k remaining logical bits and both flags to this cache,
-when $`d\gt k+2`$ its window satisfies $`G\le\log_2(k+3)`$.
-It therefore cannot combine a growing number of the current early groups
-in that latter portion, without assuming a one-hot encoding.
-It does not constrain a reader that accesses x, even by CNOT,
-or a circuit that implements a fused window without exposing row queries.
+### Reopening research requires a qualifying mechanism
 
-The [charged correction](docs/SHARED_PREFIX_QUERY_AUDIT.md#6-a-charged-two-group-program-refresh)
-now gives an exact two-group query/body/inverse-query identity. It retains
-one prefix indicator and changes the common program by the XOR of the
-old and new table words, reading the second address after the first body.
-A reused activity flag has an explicitly charged transition; no extra
-old-flag copy is assumed. All actual inverses and arbitrary dirty/source
-inputs remain in the contract.
-
-This is not a general depth saving. Fixing the first program to a legal
-constant leaves the next program arbitrary, so a fixed Clifford XOR turns
-the correction into a fresh query. A rank-one difference is still hard in
-this reduction sense if its prefix factor is arbitrary. An affine parity
-factor does give an exact two-Toffoli correction with one returned dirty
-helper, but independently prescribed Hopf rows need not have that form.
-This reduction is not a depth lower bound. Stop the generic difference-only
-route unless a new generic lookup schedule or uniformly cheap factorization
-is supplied; do not pursue more stale-mask or dirty-cache variants.
-
-The [retained-source fusion audit](docs/UNARY_PHASE_GRADIENT.md#9-retained-source-fusion-without-a-larger-modulus)
-completes the next selected small-block test. Opposite determinant phases
-give a four-mode factorization over the original cyclic-shift ring,
-without half-powers or a larger source. The phases cancel only in the
-paired shared-source operator. Its joint selected programs use the
-original labels and take two shift rounds, matching the original two
-levels. The eight-mode Bell-controlled root needs one further ordinary
-signed shift, not four separately implemented quarter-angle shifts.
-
-A second exact identity extracts a child factor that fixes the Bell
-state and commutes with the parent coupling. The complementary factor
-must remain in the complete frame. With every derived program row loaded
-and charged, the direct extracted word takes six shift rounds versus
-three for the baseline; transported-root conjugation takes seven versus
-five. These are explicit upper schedules, not lower bounds. The surviving
-transport has noncommuting matrix coefficients, so the scalar two-factor
-identity cannot simply be iterated on it.
-
-There is a useful growing component. For an even group height g, the
-[stabilizer completion](docs/UNARY_PHASE_GRADIENT.md#10-two-source-shifts-for-the-stabilizer-completion)
-has mutually orthogonal sectors labeled by the last nonzero target pair
-and its earlier prefix. Cache those labels before changing bases. Every
-completed axis preserves them, so all completion factors share two source
-shifts and the cache erases exactly. Excluding program load/unload,
-outer predicates, and source boundaries, this gives
+The smallest substantial new large-width target is a complete real-frame
+circuit, at fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$,
+with two external clean flags and
 
 ```math
-D_{T,\rm completion}=O(\log(g+2)),\qquad
-T,w=O(q2^g+R),\qquad G=O(q2^g+qR).
+D_T=o(n),\qquad T=O_\eta(\sqrt N),\qquad G=O_\eta(N).
 ```
 
-Here $`R=3^\ell`$, $`q=2^\ell`$, and the existing condition
-$`g\le\ell`$ absorbs the parallel selector work. Derived program
-rows, their coherent queries, and conditional-zero work remain charged.
-This exact factorization retains the full frame, not only its prepared
-column. The available transport schedule is still height-linear, so the
-query and logical-stage rows retain their separate linear allowances.
+This would improve the frontier without claiming optimal depth. Both
+linear rows must become sublinear, or a fused circuit must bypass them.
+Improving only transport or only queries is a component milestone; a pass
+pursuing one must state the other remaining allowance at the outset.
 
-The next unresolved interface is now explicit: the noncommuting transport
-left after this shallow completion. No faster native rule for it is
-selected. A further construction pass needs such a rule or a better
-generic query schedule, with a symbolic depth/count/width recurrence and
-exact work return. Fixed magic-basis recursion and determinant-phase
-rearrangement alone do not qualify. Do not launch another matrix sweep
-without that rule. A different unitary body that agrees only on the ideal
-source remains eligible with a proved global initialized-isometry and
-inactive/work-return contract; merely preserving the first logical column
-does not preserve the prescribed complete frame.
+Before another construction pass, require an explicit native identity or
+encoding rule and symbolic depth/count/width/error recurrences. Price
+program generation queries, actual unloads, conditional logical zeros,
+source boundaries, and dirty/reference return. For a transport component,
+a sublinear group-depth recurrence must fit the retained asymptotic group
+workspace and gate budgets. A different body agreeing only on the ideal
+source remains eligible with a global initialized-isometry proof; matching
+only the first logical column is insufficient.
 
-Keep the high-precision endpoint parked until an explicit new global
-native identity or encoding rule survives the
-[endpoint selection conditions](docs/OPEN_PROBLEM.md#separate-complete-frame-question).
-Completed source transport, canonical completion, and unchanged-angle
-scattering attempts do not remove the joint interior's precision charge.
-A lower-bound project remains eligible, but must specify an invariant
-valid with arbitrary Clifford interlayers and returned dirty work.
-The [focused literature check](docs/RELATED_WORK.md#22-scope-of-recent-depth-lower-bounds-3-october-2026)
-does not supply such a growing bound in the selected large-width regime.
+**Candidate stop:** a transport-improvement proposal fails its target if
+its expanded schedule still pays a constant number of sequential shifts
+per target pair. A query-improvement proposal fails if its aggregate query
+cost remains unchanged after corrections and unloads are charged. Fresh
+queries are allowed if a new schedule makes their aggregate cost sublinear;
+a component milestone may retain the other unresolved linear allowance.
+Unpriced initialized history or an unproved return invalidates either
+proposal. More modes, determinant rearrangements, and constant-factor
+savings do not meet this pass's asymptotic target. One explicit failure
+record in the relevant proof home is sufficient. This rejects the candidate
+and its stated ledger, not all possible compilers.
+
+**Selection stop:** if no qualifying rule emerges from a bounded analytical
+selection pass, record “no selected construction” and park the frontier.
+That is the current status. Existing ingredients do not establish that
+closure is close, nor that the missing idea lies in already available theory.
+
+The high-precision endpoint remains separately parked until a global native
+identity meets its [literal endpoint conditions](docs/OPEN_PROBLEM.md#separate-complete-frame-question).
+An unrestricted lower-bound project would need a new invariant valid with
+arbitrary Clifford interlayers, initialized flags, and returned dirty work.
+The existing interface obstructions do not supply it. Neither route is
+selected simply to keep exploration active.
+
+**Project stop:** once the bounded consolidation audit has no unresolved
+claim-level blocker, the current scientific package is complete for its
+selected scope. Preserve both open gaps explicitly, keep all supporting
+proofs accessible, and move to manuscript preparation only on request.
+Reopen for a concrete qualifying idea, a discovered defect, or an explicit
+change of scope—not merely another request to “continue.”
 
 ## Proof map and completed work
 

@@ -6,8 +6,12 @@ The selected publication is **one full-length theoretical compiler paper**.
 Its scientific ingredients are developed and checked
 in this repository before final manuscript writing.
 Its subject is the prescribed Hopf differential frame, studied in two resource
-models. The constant-clean endpoint is an open problem in the discussion;
-resolving it is not a prerequisite for this paper.
+models. The established scientific package is Results A–D below. The
+constant-clean count endpoint and unrestricted large-width T-depth remain
+open discussion questions; each remains an open problem, and neither is a
+prerequisite for this paper.
+This revision maintains the scientific scope. Final manuscript writing
+remains on hold.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -25,7 +29,7 @@ they price the same prescribed operator under different gate models. The
 theorems use different constructions and do not assert that one circuit
 jointly minimizes CNOT count, T-count, depth, and workspace.
 
-## Three principal results
+## Four principal results
 
 Write $`N=2^n`$, $`n\ge1`$. The exact model uses arbitrary one-qubit gates
 and CNOTs with all-to-all connectivity. Its workspace budget is $`m`$ clean
@@ -54,6 +58,7 @@ the quantum gate counts.
 | **A. Exact complete-frame compilation** | Total elementary size $`\Theta(N)`$, CNOT count $`\Theta(N)`$ for $`n\ge2`$, and depth $`\Theta(n+N/(n+m))`$ | Every integer $`m\ge0`$; real and phase-dressed complex magnitude frames; workspace returned exactly; CNOT count is zero for $`n=1`$ |
 | **B. Matching fault-tolerant frontier** | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, with $`O(NL)`$ Clifford cost for the upper construction | Real frame and, by Corollary 7, the phase-dressed complex magnitude frame; sufficient clean reservation $`a\ge C(n+h)`$ for a sufficiently large fixed $`C`$; literal-phase, complete-input error |
 | **C. One-clean compilation** | $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ | Real Hopf frame; $`n\ge1`$, $`L\ge6`$, $`a=1`$, $`b\ge L+n+7`$; complete-input error including workspace return |
+| **D. Simultaneous T-count and T-depth** | Uniform same-circuit bounds and matching precision/workspace regimes stated below | Complete real frames; $`a=2`$, $`b\ge17(L+n+7)`$; absolute constants and the full initialized-isometry error contract |
 
 Result A includes a separate CNOT lower bound with arbitrary one-qubit gates
 free: a circuit with $`K`$ CNOTs has at most $`n+4K`$ relevant one-qubit
@@ -68,12 +73,55 @@ The endpoint's $`\Omega(N)`$ lower bound is unchanged.
 Proofs: [A](../docs/COMPILER_THEOREM.md),
 [B](../docs/FAULT_TOLERANT_COMPILER.md),
 [C](../docs/ONE_CLEAN_COMPILER.md), with its
-[grouped extension](../docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit). The
+[grouped extension](../docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit), and
+[D](../docs/UNIFORM_PRECISION_DEPTH.md). The
 [operator-source baseline](../docs/OPERATOR_SOURCE_COMPILER.md) gives
 $`O(N+nL)`$ with two clean qubits and supplies the dirty-lookup
 mechanism, exact source analysis, and earlier diagonal and multiplexor
 constructions. The one-clean proof establishes the corollaries below
 with their stated reservations.
+
+### Result D: the current count–depth tradeoff
+
+For two clean flags and $`b\ge17(L+n+7)`$, one complete real-frame
+circuit satisfies, with absolute constants,
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+```
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+nL\right).
+```
+
+In the explicit slowly growing precision range
+$`6\le L\le\log_2(n+2)/16`$, the same theorem gives
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
+D_T=O\!\left(\frac{NL}{b^2}+n\right),\qquad G=O(NL).
+```
+
+Both resources match their worst-case lower bounds on the following
+intervals, whenever nonempty:
+
+| Precision regime | Simultaneous matching interval |
+|---|---|
+| Every $`L\ge6`$ | $`17(L+n+7)\le b\le\sqrt{N/n}`$ |
+| $`6\le L\le\log_2(n+2)/16`$ | $`17(L+n+7)\le b\le\sqrt{NL/n}`$ |
+
+On either interval, $`T^\star=\Theta(NL/b)`$ and
+$`D_T^\star=\Theta(NL/b^2)`$, attained simultaneously. Outside these
+intervals, retain the stated upper bounds and their actual precision terms.
+The sufficient condition $`L\le N/n^2`$ absorbs the general count's
+$`nL`$ term into $`\sqrt{NL}`$, giving optimal-order count at every
+eligible width; it does not establish depth optimality there.
+
+Source preparation, actual inverse, program queries, and conditional work
+are charged. Arbitrary dirty/reference inputs and all final clean leakage
+obey the common error contract below. This theorem concerns real frames;
+the complex extensions of A–C do not automatically extend D. T-depth allows
+arbitrary Clifford interlayers and is distinct from total circuit depth.
 
 ## A compiler capability beyond Hopf frames
 
@@ -122,12 +170,17 @@ These complete the resource picture without becoming separate storylines.
 |---|---|
 | Dirty-bank refinement | With $`a=1`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
 | Zero-clean real-frame baseline | The [signal-symmetry corollary](../docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations) gives $`T=O(N+nL)`$, $`G=O(NL)`$, with $`a=0`$ and $`b\ge L+n+7`$. Its layerwise circuit borrows the signal qubit and includes its return error. This does not extend the grouped or literal-phase constructions to zero clean qubits. |
-| Constructive T-depth bound | Choose between the layerwise and grouped [depth-oriented schedules](../docs/T_DEPTH_COMPILER.md) to obtain $`D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\})`$ with two clean qubits, $`b\ge2(L+n+7)`$, and $`T,G=O(NL)`$. Retain as an appendix scheduling corollary for real frames; this trades gate count for depth and does not establish optimal T-depth or total circuit depth. |
-| Simultaneous count and depth | With $`b\ge C(L+n+7+\sqrt{NL})`$ for a sufficiently large fixed C, [parallel dirty lookup](../docs/PARALLEL_DIRTY_LOOKUP.md) gives $`T=O(\sqrt{NL}+L\ell_*(n))`$ and $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same two-clean real-frame circuit, with $`G=O(NL)`$. At fixed accuracy this is optimal-order T-count and polynomial-logarithmic T-depth with sufficiently large square-root dirty workspace; no depth optimality or selected-endpoint closure. |
 | Literal diagonal synthesis | For $`\ell\ge6`$, one clean qubit gives $`O(N+\ell)`$ T gates at error $`2^{-\ell}`$ with $`b\ge\ell+n+7`$. For $`b\ge2(\ell+n+7)`$, the bound $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound. Use as a supporting compiler corollary. |
 | Complex magnitude frame | Compose the one-clean grouped real frame and literal diagonal, with separately supplied certified phases and error $`\eta/2`$ per factor. This gives $`O(N+L\ell_*(n))`$ T gates at $`b\ge L+n+8`$, or $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$, with $`G=O(NL)`$. This compiles $`D_\phi W_{\mathbb R}`$; it is not arbitrary complex-unitary synthesis. |
 | Smaller clean/dirty allocations | For every $`a,b\ge0`$, the real-frame borrowed-workspace compiler gives $`T=O(NL/q+L\sqrt N)`$ and $`G=O(NL)`$. Its matching splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$. Retain as an appendix comparison; it can beat the grouped bound at low precision. |
 | Fixed-parameter QBP robustness | Exact substitution preserves the global record. Magnitude bias is at most $`4\lvert a_j\rvert(\eta+\eta_O)`$; the separate phase-vector bias is at most $`4(\eta+\eta_O)`$. The full complex gradient, reflection-sum observables, rounded classical weights, and correlated dirty-bank reuse have explicit error and cost budgets. |
+
+Earlier [depth-oriented schedules](../docs/T_DEPTH_COMPILER.md) and
+[parallel dirty lookup](../docs/PARALLEL_DIRTY_LOOKUP.md) remain proof
+dependencies and alternative resource points, including smaller literal
+dirty reservations or high-precision regimes where they are sharper.
+Present their applicable fallbacks in the appendices; Result D states the
+current uniform tradeoff and does not dominate every older construction.
 
 The exact and sufficient-clean complex extensions have their own proofs.
 The [one-clean corollary](../docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames)
@@ -166,7 +219,9 @@ comparison separately charges quantum executions, per-execution circuit
 cost, and classical output. It neither differentiates a discretely synthesized
 gate word nor proves optimality among all gradient algorithms.
 
-## The unresolved endpoint
+## Two unresolved resource questions
+
+The established results do not depend on resolving either question.
 
 The selected high-precision point is
 
@@ -180,18 +235,26 @@ The one-clean construction attains the same upper bound with $`a=1`$
 and the same dirty allocation; the selected two-clean endpoint above
 remains open as well.
 
-This gap is stated once in the main results and revisited in the discussion.
+This count gap is stated in the main results and revisited in the discussion.
 The paper does not claim that the grouped precision charge is necessary, or
 that every constant clean allocation and every linear dirty allocation has
 the same upper bound. Restrictions on particular source-processing interfaces
 do not supply an additive full-frame lower bound.
 
+At fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
+complete real-frame schedule attains $`T=\Theta_\eta(\sqrt N)`$ with
+$`D_T=O_\eta(n)`$. The unrestricted depth lower bound remains
+$`\Omega(1)`$. This large-width gap is separate from the high-precision
+count endpoint. Result D's literal width threshold excludes the displayed
+endpoint allocation, and its unary-source mechanism does not scale to that
+precision.
+
 The tree-generator and weighted-transport studies refine this open question.
 Their [two-flag residual assembly](../docs/RESIDUAL_ASSEMBLY.md) is an explicit
 complete-frame route at $`O(N+nL)`$ T cost, including native controls and
 actual inverses. It supports the endpoint research without changing Results
-A–C or adding a fourth principal result. The remaining joint precision task
-is specified in the [research revision](../docs/OPEN_PROBLEM.md#revision-decision-and-next-bounded-pass);
+A–D. The remaining joint precision task
+is specified in the [research status](../docs/OPEN_PROBLEM.md);
 its proposed linear gate budget is not an established publication claim.
 The cross-depth fusion audit retains an exact hierarchy with linear classical
 storage and identifies limits of specified repacking, local-transport, and
@@ -205,27 +268,34 @@ $`O(N+L)`$ T-count for separate literal native-baseline promises, using
 zero and one clean qubit respectively. They support the endpoint research:
 wide nonnested changes and a full nested path can each share precision.
 They do not settle general changes across comparable branching levels,
-change Results A–C, or add a fourth principal manuscript result.
+change Results A–D, or add another principal manuscript result.
+
+Later source, predicate, query, and stabilizer-completion refinements remain
+documented with their proofs and scoped limits. They do not change the
+current complete-frame orders, and need not all enter the paper. The
+completed [state-based QBP theorem](../docs/STATE_BASED_QBP_THEOREM.md)
+uses a changed decoder; it is a separate task-level result. The operational
+necessity of the full frame in this paper concerns the fixed inverse-frame
+decoder, not every possible gradient algorithm.
 
 ## Main text and appendices
 
 | Location | Contents |
 |---|---|
-| Main text | Operational necessity of the full frame; shared contract; Results A–C and resource regimes; one-clean diagonal and multiplexor capability; proof mechanisms; separately scoped complex-gradient consequence; open endpoint |
+| Main text | Fixed-decoder necessity of the full frame; shared contract; Results A–D and resource regimes; one-clean diagonal and multiplexor capability; proof mechanisms; separately scoped complex-gradient consequence; the two open resource questions |
 | Technical appendices | Echo, decoder, and router schedules; source preparation and exact primitive costs; residual composition and inherited failure compression; amplification and error sums; dirty queries/banks; Euler and diagonal proofs; lower-bound reductions; QBP concentration and classical preprocessing |
 
-Exploratory attenuation, modular, batching, clock, and catalysis investigations
-are outside the selected manuscript and the active repository. Their earlier
-versions remain recoverable through the snapshot identified in
-[provenance](../provenance/README.md). The current proof chapters contain all
-dependencies of the three principal results and retained corollaries.
+The retired exploratory package remains outside the selected manuscript and
+the active repository. Its earlier versions remain recoverable through the
+snapshot identified in [provenance](../provenance/README.md). The current proof chapters contain all
+dependencies of the four principal results and retained corollaries.
 
 ## Contribution and evidence boundaries
 
 The local claims concern the complete-operator factorizations, workspace
 schedules, precision-uniform residual composition, one-clean geometric
-operator construction, and conditional-suffix grouping that yield these
-resource guarantees. The earlier two-clean source and scheduling results
+operator construction, conditional-suffix grouping, and uniform query/source
+scheduling that yield these resource guarantees. The earlier two-clean source and scheduling results
 retain their separately established scope. Hopf geometry
 and QBP records are inherited from the earlier Hopf work. UCG synthesis,
 dirty lookup, Clifford-algebra loaders, geometric weighting, oblivious
@@ -236,7 +306,7 @@ The submission is a theoretical construction paper with executable finite
 checks. Those checks support fragile identities, conventions, and resource
 ledgers; they do not prove universal statements, certify priority, or supply
 a general elementary Clifford+T emitter. Hardware connectivity, physical
-noise thresholds, optimal T-depth, optimizer convergence, and practical
+noise thresholds, the unrestricted T-depth frontier, optimizer convergence, and practical
 end-to-end speedups are outside the selected claims.
 
 ## Scientific ingredients before final writing
@@ -250,13 +320,22 @@ package rather than introducing unsupported research claims during writing.
 | Exact resources | [Exact theorem](../docs/COMPILER_THEOREM.md): complete constructions, all clean budgets, total size, CNOT-only count, and depth lower bounds |
 | Precision sharing | [Fault-tolerant proof](../docs/FAULT_TOLERANT_COMPILER.md): sufficient-clean frontier, residual-dictionary sufficient condition, all charged source/history work, and complex extension |
 | Constant-clean capability | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md): real-frame primitive, one-clean diagonal and multiplexor frontiers, and phase-dressed complex-magnitude composition; [conditional-suffix proof, Section 10](../docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit): grouped and banked one-clean real-frame bounds; [operator-source proof](../docs/OPERATOR_SOURCE_COMPILER.md): two-clean baseline, smaller dirty reservations, exact source T minima, dirty/reference return, and finite certified preprocessing |
+| Simultaneous count and depth | [Uniform-precision proof](../docs/UNIFORM_PRECISION_DEPTH.md): literal two-clean/dirty allocation, same-circuit count and depth, uniform and low-precision regimes, complete-input error, and matching intervals |
 | Operational consequence | [Approximation proof](../docs/QBP_APPROXIMATION.md): complete complex gradients, general reflection sums, weight errors, conditional-mean concentration under dirty-bank reuse, and quantum/classical costs |
 | Comparisons and attribution | [Related work](../docs/RELATED_WORK.md) and [source map](../docs/SOURCE_MAP.md): input families, precision, initialized/borrowed work, current general-unitary baselines, and inherited compression |
 | Reproducible evidence | [Verification](../docs/VERIFICATION.md): native finite one-clean primitives and two-clean circuits, actual inverse and rejected-work composition, source witnesses, gradient fixtures, and exact receipts; no full grouped elementary emitter |
-| Honest unresolved question | [Open endpoint](../docs/OPEN_PROBLEM.md): the remaining full-frame gap between $`\Omega(N)`$ and $`O(N\ell_*(n))`$, the limit of the exact-source lower bound, and the unproved linear cost of a global block whose operator interface is already realized at $`O(N+nL)`$ |
+| Honest unresolved questions | [Research status](../docs/OPEN_PROBLEM.md): the high-precision full-frame count gap and fixed-accuracy large-width depth gap; scoped source/query restrictions do not supply unrestricted lower bounds |
 
-Final writing assembles these established statements and proofs into one
-argument with consistent notation and bibliography. No general elementary
-Clifford+T emitter, hardware experiment, or solution of the open endpoint is
-asserted by this package. External technical feedback on the complete draft
-and final submission preparation follow.
+The scientific stopping criteria are complete proofs and charged resource/error
+contracts for A–D and retained corollaries, consistent statements and attribution,
+relevant finite checks with their limitations, and passing repository verification
+and presentation gates. An identified defect in those claims reopens the
+necessary repair. Resolving either open gap, producing a general native emitter,
+or extending a fixed fixture is not an additional readiness condition.
+
+The [research decision and stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules)
+govern optional new work: require a concrete new rule and a symbolic resource
+claim before another construction pass. No selected qualifying lead means that
+exploration is parked. Final manuscript writing remains on hold; when resumed,
+it assembles this established package. External technical feedback and submission
+preparation follow the complete draft.

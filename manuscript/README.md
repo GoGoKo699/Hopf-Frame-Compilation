@@ -4,11 +4,14 @@
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
-The [publication scope](PUBLICATION_SCOPE.md) fixes the three principal
+The [publication scope](PUBLICATION_SCOPE.md) fixes four principal
 results and their corollaries. The exact theorem covers every $m\geq0$
 clean-workspace budget; the sufficient-clean and one-clean T-count
 constructions keep their distinct clean/dirty reservations and return
-guarantees.
+guarantees. Result D gives simultaneous T-count and T-depth bounds for
+complete real frames, matching both resources in explicit
+precision/workspace ranges. Final manuscript writing remains on hold;
+the present task is scope maintenance and repository consolidation.
 
 ## Scientific contribution
 
@@ -32,10 +35,11 @@ The [related-work comparison](../docs/RELATED_WORK.md) includes newer synthesis
 results and distinguishes their input contracts and workspace assumptions.
 The opening pages should explain why the prescribed frame
 requires more than state preparation, identify the new proof mechanisms,
-and state Results A–C with their resource assumptions. QBP provides the
+and state Results A–D with their resource assumptions. QBP provides the
 operational motivation and consequence. The exact and fault-tolerant models
-remain parts of one operator-compilation story; the open endpoint remains
-in the discussion.
+remain parts of one operator-compilation story. The constant-clean count
+endpoint and unrestricted large-width T-depth remain discussion questions;
+neither is a prerequisite for the selected paper.
 
 ## Paper order
 
@@ -47,20 +51,31 @@ in the discussion.
    construction and its grouped, banked, diagonal, general multiplexor,
    and phase-dressed complex-magnitude corollaries. Keep the distinct dirty
    reservations and the separately proved two-clean T-depth assumptions.
-5. Exact and approximate fixed-parameter QBP consequences, including complete
+5. Uniform same-circuit T-count and T-depth tradeoffs for complete real
+   frames, including matching intervals and the low-precision improvement.
+   Keep their two-clean reservation and full-input error contract explicit;
+   distinguish T-depth from total depth and retain older schedules as
+   applicable fallbacks.
+6. Exact and approximate fixed-parameter QBP consequences, including complete
    complex gradients and the costs of classical preprocessing and output.
-6. The remaining endpoint gap and the limits of the circuit model.
+7. The two remaining resource gaps and the limits of the circuit model.
 
 Detailed schedules, source preparation, reversible lookup, error estimates,
 and resource sums form the technical appendices. The exact toolkit credits
 Yuan and Zhang; the [source map](../docs/SOURCE_MAP.md) gives the complete
-attribution. Exploratory research is outside the selected manuscript.
+attribution. Later component refinements need not all enter the manuscript.
+The changed-decoder state-based QBP result remains separate; the necessity
+claim here concerns the fixed inverse-frame decoder.
 
-The current task is to finish and integrate the scientific ingredients listed
-in the [publication scope](PUBLICATION_SCOPE.md): analytic proofs, explicit
-resource and error contracts, current comparisons, operational consequences,
-and reproducible checks. Final LaTeX writing follows that consolidation;
-external technical feedback and submission follow the complete draft.
-The [open endpoint](../docs/OPEN_PROBLEM.md) is investigated separately and
-must retain its actual status. Update `CITATION.cff` when a manuscript
-identifier exists.
+The established scientific package has proof homes, explicit resource/error
+contracts, attributed comparisons, and scoped executable evidence. Readiness
+requires their consistency and passing verification and presentation gates;
+it does not require closing the open gaps or supplying a general native
+emitter. Follow the [research stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules)
+for any new construction pass. Otherwise retain the unresolved questions
+with their actual bounds and stop adding exploratory fixtures.
+
+When final writing resumes, assemble Results A–D and their retained
+corollaries into one argument. External technical feedback and submission
+follow the complete draft. Update `CITATION.cff` when a manuscript identifier
+exists.
