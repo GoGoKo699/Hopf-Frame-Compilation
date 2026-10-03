@@ -14,6 +14,8 @@ Canonical repository: https://github.com/GoGoKo699/Hopf-Frame-Compilation
 
 Start with the current theorem and its assumptions, not a historical intermediate bound. Upper constructions apply to every admitted parameter tuple; matching lower bounds are worst-case statements over the specified family. Record the exact commit consulted and use CITATION.cff for attribution.
 
+The bounded internal audit of Results A–D is complete without an unresolved claim-level blocker. The selected scientific scope is frozen, final manuscript writing remains on hold, and the two open resource gaps are optional research. See docs/CORE_CLAIM_AUDIT.md and WORKSPACE.md for the reviewed dependencies, evidence limits, and reopening gate. This is not independent peer review or formal proof certification.
+
 ## Current complete-frame results
 
 Write N=2^n, n>=1, 0<eta<=1/64, L=max{6,ceil(log2(1/eta))}, B0=L+n+7, h=1+ceil(log2(L+n+2)), and ell_*(n)=1+log2^*(n+2). The iterated logarithm counts repeated base-two logarithms until the value is at most one. In Clifford+T bounds, a and b count initialized clean and arbitrary dirty compiler qubits, and q_tot=n+a+b. G counts elementary Clifford gates.
@@ -94,6 +96,7 @@ Reopen a construction route only with an explicit composition rule, symbolic dep
 - [README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/README.md): Project overview and reproduction entry point.
 - [Technical narrative](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): Connected argument from the prescribed operator to compiler results and QBP.
 - [Scientific scope](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md): Selected claims and their resource/model limits.
+- [Core-claim audit](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/CORE_CLAIM_AUDIT.md): Completed internal claim-to-proof review of Results A–D, source premises, correction, and scope-freeze decision.
 - [Frame-safe compilation](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/FRAME_SAFE_COMPILATION.md): Operational necessity of the complete frame and singular exceptions.
 - [Exact compilation theorem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/COMPILER_THEOREM.md): Matching exact size, CNOT count, and clean-workspace depth.
 - [Fault-tolerant frame theorem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/FAULT_TOLERANT_COMPILER.md): Sufficient-clean matching T-count and phase-dressed complex extension.

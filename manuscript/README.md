@@ -10,8 +10,9 @@ clean-workspace budget; the sufficient-clean and one-clean T-count
 constructions keep their distinct clean/dirty reservations and return
 guarantees. Result D gives simultaneous T-count and T-depth bounds for
 complete real frames, matching both resources in explicit
-precision/workspace ranges. Final manuscript writing remains on hold;
-the present task is scope maintenance and repository consolidation.
+precision/workspace ranges. The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md)
+is complete without an unresolved claim-level blocker, and the selected
+scientific scope is frozen. Final manuscript writing remains on hold.
 
 ## Scientific contribution
 

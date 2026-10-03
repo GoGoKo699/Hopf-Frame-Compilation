@@ -453,7 +453,7 @@ All token-controlled subtree frames have disjoint data, token, and flag
 registers and run in parallel.  Every flag is cleared; the copies are recreated;
 the Fredkin levels are reversed; the copies and root token are reset.
 
-The tail peak is
+The tail peak is at most
 
 ```math
 (B-1)s+B+
