@@ -110,10 +110,15 @@ consolidates three completed refinements:
   $`O(L+\log(n+2))`$ total depth with $`\delta=\eta/8`$.
 - The [windowed predicates](docs/WINDOWED_GROUP_PREDICATES.md) use
   $`J=\lceil\log_2(n+2)\rceil`$ groups per full window and
-  $`2J+1`$ additional conditional-zero bank bits. Their aggregate activity
-  depth is $`O(n\log\log(n+2)/\log(n+2)+\log(n+2))`$ in the uniform
-  low-precision regime. The two original clean flags and two returned
-  dirty predicate helpers still suffice.
+  $`2J+1`$ additional conditional-zero bank bits. The two original clean
+  flags and two returned dirty predicate helpers still suffice.
+
+The windowed predicates' aggregate activity depth in the uniform
+low-precision regime is
+
+```math
+O\!\left(\frac{n\log\log(n+2)}{\log(n+2)}+\log(n+2)\right)=o(n).
+```
 
 At fixed accuracy and sufficient square-root dirty width, the current
 same-circuit depth accounting is:
