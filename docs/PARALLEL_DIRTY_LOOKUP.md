@@ -63,12 +63,12 @@ elementary depth. The selected allocation $`L=N,b=N+n+7`$ is not covered
 by the new sufficient-width hypothesis; its linear T-count endpoint remains
 open.
 
-At fixed accuracy, [grouped conditional program reuse](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
-and [chunked dirty indicators](CHUNKED_DIRTY_INDICATOR.md) further give
-$`D_T=O(n\log\log(n+2))`$ with the same optimal-order count at
-sufficient square-root-scale dirty width. Their global proof charges
-wide prefetches and the entire late-query segment. The uniform hybrid
-theorem and matching range above remain valid separately.
+At fixed accuracy, the [blocked bilinear refinement](BLOCKED_BILINEAR_LOOKUP.md)
+uses conditional unary groups and width-constrained bilinear blocks to
+give $`D_T=O(N/b^2+n)`$, retaining optimal-order T-count throughout
+$`b\ge17B_0`$. Count and depth match through $`b\le\sqrt{N/n}`$
+when nonempty. Its fixed-accuracy proof does not replace the uniform
+precision statements above.
 
 ## 1. An exact dirty indicator by conjugated routing
 

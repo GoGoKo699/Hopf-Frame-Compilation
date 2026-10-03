@@ -133,29 +133,24 @@ magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
 Leaf-phase derivatives retain a separate QBP stream.
 
-[Hybrid lookup](docs/PARALLEL_DIRTY_LOOKUP.md) uses two clean flags and
-$`b\ge17(L+n+7)`$. Fixed L gives $`T=O(\sqrt N+N/b)`$ and
+At fixed accuracy, [blocked bilinear lookup](docs/BLOCKED_BILINEAR_LOOKUP.md)
+with charged unary phase-source groups gives one complete real-frame
+circuit using two clean flags and $`b\ge17(L+n+7)`$, with
 
 ```math
-D_T=O(N/b^2+n\log(n+2)).
+T=O(\sqrt N+N/b),\qquad G=O(N),\qquad
+D_T=O(N/b^2+n).
 ```
 
-For $`L=\Theta(n)`$, sufficient
-$`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$ and
-$`D_T=\Theta(N/n)`$ in one complete real-frame circuit.
+T-count is optimal in order. Count and depth match simultaneously through
+$`b\le\sqrt{N/n}`$ when the interval is nonempty. Larger widths retain
+the linear depth upper bound; depth optimality remains open there.
+Source preparation, reuse, and return are charged.
 
-At fixed accuracy, [unary phase-source groups](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
-and chunked queries give, with two clean flags and sufficient
-$`b=\Theta(\sqrt N)`$, one complete real-frame circuit with
-
-```math
-T=O(\sqrt N),\qquad G=O(N),\qquad
-D_T=O(n).
-```
-
-Phase-source preparation, reuse, and return are charged. T-count is
-optimal in order; depth optimality and the high-precision endpoint
-remain open. The [variable-precision theorem](docs/OPEN_PROBLEM.md) is unchanged.
+The [variable-precision hybrid](docs/PARALLEL_DIRTY_LOOKUP.md) retains its
+existing bounds: at $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ gives
+optimal worst-case $`T=\Theta(N)`$ and $`D_T=\Theta(N/n)`$ in one
+complete real-frame circuit. The high-precision endpoint remains open.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean

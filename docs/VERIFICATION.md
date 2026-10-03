@@ -205,6 +205,24 @@ rectangular binary basis changes, literal shared-target Toffoli phases,
 the four-corner echo, actual inverses, and arbitrary dirty-input return.
 These bounded fixtures use the existing routed indicators. They do not
 supply the shallow indicator themselves.
+
+The [blocked bilinear checks](../tests/test_blocked_bilinear_lookup.py)
+add five bounded audits of the [selected-block query](BLOCKED_BILINEAR_LOOKUP.md).
+Native matrices cover rank-zero, rank-one, and rank-two controlled
+bilinear words, rectangular coordinate changes, arbitrary helper return,
+and an eight-wire selected block with a dirty traversal selector. Their
+emitted schedules check literal phases, actual inverses, T-count,
+T-depth, and disjoint targets within every T layer. Complete queries
+with three or four address bits and one or two output bits are checked
+as exact Boolean polynomials in every input wire, including both dirty
+indicator words, the selector stack, the helper, and arbitrary outputs.
+These larger queries use a reduced controlled-bilinear action whose
+native interface is checked separately. Negative cases remove the
+helper inverse or second traversal, or select the wrong block. The
+fixtures do not emit the scalable chunked indicators or establish the
+width-sensitive frame theorem by extrapolation; that resource and
+composition argument remains analytic.
+
 The [dirty-counter checks](../tests/test_counter_dirty_indicator.py)
 audit the two-adder signed increment, both modular-adder actions, cyclic
 routing, nested full-input echoes, actual inverses, and parallel native

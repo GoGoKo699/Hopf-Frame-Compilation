@@ -15,6 +15,11 @@ fixed-accuracy T-depth $`O_\eta(n)`$ with optimal-order T-count and
 square-root-scale dirty width. This construction does not replace the
 previous conjugated geometric reflection by a shallow implementation.
 
+The [blocked bilinear extension](BLOCKED_BILINEAR_LOOKUP.md) retains this
+source construction and proves fixed-accuracy depth $`O(N/b^2+n)`$ with
+optimal-order T-count throughout the original sufficient dirty-width
+range. The square-root-width theorem below remains valid.
+
 ## 1. Local contract
 
 Use the group registers of [the grouped interface](GROUPED_PROGRAM_PREFETCH.md#1-group-program-and-local-statement):
