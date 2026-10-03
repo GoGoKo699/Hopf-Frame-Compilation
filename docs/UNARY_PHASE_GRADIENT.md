@@ -593,7 +593,11 @@ groups therefore fits both stated exponential gate-count bounds. No
 per-group linear-in-k count claim is needed at this cutoff.
 
 Each group's internal T-depth is
-$`O(g+\log(q)+\log(\log(q)/\delta))=O_\eta(\log(n+2))`$.
+
+```math
+O(g+\log(q)+\log(\log(q)/\delta))=O_\eta(\log(n+2)).
+```
+
 Its prefetch, unload, and outer predicate/inverse also cost
 $`O(\log(n+2))`$ depth. Multiplying by the number of groups gives
 $`O_\eta(n)`$ total early depth.
