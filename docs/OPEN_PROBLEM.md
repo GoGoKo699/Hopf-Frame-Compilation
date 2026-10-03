@@ -39,7 +39,7 @@ hybrid depth bounds, write
 | One-clean phase-dressed complex magnitude frame | The same grouped and banked T-counts, at $`b\ge L+n+8`$ and $`b\ge2(L+n+8)`$, respectively | Compose the real compiler and literal phase diagonal in the same workspace; [composition corollary](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) |
 | T-depth with additional dirty banks | $`D_T=O(NL/b+\min\{nL+n^2,L\ell_*(n)+n^3\})`$ at $`a=2`$, $`b\ge2(L+n+7)`$, with $`T,G=O(NL)`$ | Choose between the layerwise and grouped [schedules](T_DEPTH_COMPILER.md); real frames; optimizing depth may increase T-count; no matching frontier established |
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
-| Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n\chi(n))`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching for $`b\le\sqrt N/n`$; [amortized dirty lookup](AMORTIZED_DIRTY_LOOKUP.md) |
+| Fixed-accuracy count and depth versus width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n)`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching through $`b\le\sqrt{N/n}`$; [blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md) |
 | Variable-accuracy count and depth | $`T=O(\sqrt{NL}+NL/b+nL)`$, $`D_T=O(NL/b^2+nL+n\chi(n))`$, $`G=O(NL)`$, at $`a=2`$, $`L\ge6`$, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; both are matching when $`b\le\sqrt{NL/(nL+n\chi(n))}`$; [hybrid composition](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) |
 | Fixed-accuracy large-width depth | $`T=O_\eta(\sqrt N)`$, $`G=O_\eta(N)`$, $`D_T=O_\eta(n)`$, at $`a=2`$, $`b\ge C_\eta\sqrt N`$ | Same complete real-frame circuit with charged unary source preparation/return; [unary theorem](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy); T-count is optimal in order, depth lower bound remains $`\Omega(1)`$ |
 
@@ -81,7 +81,7 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 | Regime | Depth lower bound | Available depth upper bound | Remaining issue |
 |---|---|---|---|
 | Fixed L, $`b=\Theta(n)`$ and $`b\ge17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n^2)`$ with $`T=\Theta(N/n)`$ | Matching count and depth in one circuit; [amortized schedule](AMORTIZED_DIRTY_LOOKUP.md) |
-| Fixed L, $`17B_0\le b\le\sqrt N/n`$ | $`\Omega(N/b^2)`$ | $`O(N/b^2)`$ with optimal-order count | Matching throughout this interval when nonempty |
+| Fixed L, $`17B_0\le b\le\sqrt{N/n}`$ | $`\Omega(N/b^2)`$ | $`O(N/b^2)`$ with optimal-order count | Matching throughout this interval when nonempty |
 | Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n\chi(n))}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
 | $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ | $`\Omega(N/n)`$ | $`O(N/n)`$ with $`T=\Theta(N)`$ | Matching at inverse-polynomial error in N for sufficiently large n |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
@@ -108,8 +108,13 @@ programs with a summable chunked-indicator budget for the late layers.
 The [unary phase-source refinement](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
 now gives $`O(n)`$ depth under the same external-flag and sufficient
 dirty-width orders. It charges source preparation/inversion and the
-coherent one-hot program interface.
-The lower bound is still constant in this regime; depth optimality is open.
+coherent one-hot program interface. The [blocked bilinear refinement](BLOCKED_BILINEAR_LOOKUP.md)
+extends this to $`D_T=O(N/b^2+n)`$ throughout
+$`b\ge17(L+n+7)`$, retaining the optimal-order count
+$`T=O(\sqrt N+N/b)`$. Both orders match through
+$`b\le\sqrt{N/n}`$ when the interval is nonempty.
+At square-root-scale dirty width, the depth lower bound is still constant,
+so depth optimality there remains open.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
 For varying L outside the matching interval, the new count bound retains
@@ -180,10 +185,13 @@ eigenstate and constant-T-depth programmed cyclic shifts. Conditional
 bilinear work returns exactly on all source inputs, the inactive sector
 is literal identity, and source preparation plus actual inversion costs
 at most twice its preparation error for the entire group. Its global
-allocation proves the displayed $`O(n)`$ upper bound. The next bounded
-question is a width-dependent $`O(N/b^2+n)`$ depth extension retaining
-$`O(\sqrt N+N/b)`$ T-count; this remains unproved. Its first obligation
-is a complete reduced-width prefetch and workspace schedule.
+allocation proves the displayed $`O(n)`$ upper bound. The
+[blocked bilinear theorem](BLOCKED_BILINEAR_LOOKUP.md) now closes the
+width-dependent extension. It replaces the residual bank route by
+selected bilinear blocks with one returned dirty phase helper, then
+charges the coupled block-size/chunk-length allocation. The next bounded
+question is the precision dependence of this route; its unary source
+width and suffix cutoff must be made explicit before any uniform-L claim.
 
 The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
 allows unrestricted Clifford interlayers: the original source at width

@@ -928,4 +928,50 @@ state or intermediate measurement. This improves the fixed-accuracy
 depth upper bound; it proves neither an unrestricted matching depth
 lower bound nor the constant-clean high-precision endpoint. The sources
 above identify inherited ingredients and interface distinctions, not
-priority for the composite construction.
+priority for the composite construction. This square-root-width result
+is also a corollary of the broader fixed-accuracy tradeoff below.
+
+## 20. Blocked bilinear queries and the dirty-width tradeoff (3 October 2026)
+
+The [blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md) combines the
+existing [two-pass dirty traversal](AMORTIZED_DIRTY_LOOKUP.md#2-selecting-a-shear-with-dirty-unary-traversal)
+with the [bilinear indicator echo](PARALLEL_DIRTY_LOOKUP.md#5-a-bilinear-query-reduction).
+Their lineage remains [LKS, Appendix C](https://arxiv.org/html/1812.00954v2),
+[Khattar–Gidney, Sections 4 and 7](https://arxiv.org/html/2407.17966v2),
+and the controlled-linear and commuting-basis constructions of
+Kim–Laakkonen and Boyd discussed in Section 9. Standard Boolean phase
+polarization supplies the controlled leaf: for a bilinear phase P,
+toggling a dirty bit d by hz between two applications of
+$`(-1)^{dP}`$ leaves exactly $`(-1)^{hzP}`$ and returns d.
+Neither that algebra nor generic dirty cancellation is a novelty claim.
+
+The local proof establishes a rank-sensitive native leaf with preserved
+controls and exact helper return, a selected-block traversal, and a chunk
+allocation whose depth sums across the final Hopf layers. Together with
+the unary early groups, it gives, for each fixed $`0\lt\eta\le1/64`$,
+$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and
+$`b\ge17(L+n+7)`$, one complete real-frame circuit with
+
+```math
+T=O_\eta\!\left(\sqrt N+\frac Nb\right),\qquad G=O_\eta(N),
+\qquad D_T=O_\eta\!\left(\frac N{b^2}+n\right).
+```
+
+Two external clean flags suffice. Full initialized-isometry error,
+literal phase and arbitrary dirty-reference return retain their existing
+contracts. Sources, actual inverses and all queries are charged.
+
+When the interval is nonempty, the inherited count lower bound and the
+physical width $`n+2+b=\Theta(b)`$ give simultaneous worst-case matches:
+
+```math
+17(L+n+7)\le b\le\sqrt{N/n},\qquad
+T^\star=\Theta_\eta(N/b),\quad D_T^\star=\Theta_\eta(N/b^2).
+```
+
+This extends the fixed-accuracy matching window; it introduces no new
+external synthesis premise or depth lower-bound method. The preceding
+variable-accuracy bounds remain separate and unchanged. The unary
+square-root-width schedule remains a valid predecessor and corollary;
+unrestricted large-width depth optimality and the constant-clean
+high-precision endpoint remain open. No generic lookup priority is claimed.
