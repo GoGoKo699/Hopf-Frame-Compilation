@@ -158,6 +158,22 @@ dirty indicators avoid the late routing bottleneck. The full depth is
 $`O(n\log\log(n+2))`$ with optimal-order count at sufficient
 square-root-scale dirty width and fixed accuracy.
 
+The [incremental group selectors](GROUPED_PROGRAM_PREFETCH.md#10-amortized-local-selectors-and-suffix-enables)
+now have $`O(g)`$ total depth in a height-g group, within the original
+$`16m2^g`$ suffix reservation. They erase each suffix enable before its
+controls change and retain prefix nodes until the final reverse traversal.
+Their work returns exactly through source leakage and on arbitrary
+inactive inputs. The resulting selector contribution is $`O(n)`$;
+the source/reflection contribution still determines the displayed frontier.
+The [common-source identity](GROUPED_PROGRAM_PREFETCH.md#11-a-common-source-identity-and-the-remaining-reflection)
+moves a shared preparation to the group boundaries but retains two
+conjugated success reflections per stage. A legal exact row rules out a
+stale success monitor and a one-use source-bank substitution, with constant
+rejected norm. These are interface restrictions, not depth lower bounds.
+The next bounded task is a charged shallow reflection or monitor-update
+identity that closes through two unequal rows and a third stage, including
+all rejected action. No such improved source construction is yet selected.
+
 The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
 allows unrestricted Clifford interlayers: the original source at width
 at least five, or its controlled version at width at least four, remains

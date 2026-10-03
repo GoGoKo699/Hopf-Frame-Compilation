@@ -297,6 +297,17 @@ counter, bilinear query, conditional-work, and amplification interfaces;
 they require no new external premise. Neither a matching large-width
 depth bound nor the high-precision endpoint follows.
 
+The [incremental selectors](GROUPED_PROGRAM_PREFETCH.md#10-amortized-local-selectors-and-suffix-enables)
+reuse this same conditional-work interface and exact native Toffolis.
+Their local dependency schedule reduces selector/enable maintenance to
+linear group depth within the original reservation. The
+[common-source audit](GROUPED_PROGRAM_PREFETCH.md#11-a-common-source-identity-and-the-remaining-reflection)
+uses direct unitary conjugation and the existing normalization-two block:
+boundary preparations cancel, but conjugated reflections and source-bank
+return remain charged. The legal zero-angle witness excludes only the
+stated stale-monitor and one-use-bank substitutions. Neither statement
+imports a new synthesis premise or improves the global depth order.
+
 The [consolidated state-based QBP theorem](STATE_BASED_QBP_THEOREM.md)
 collects R36 and R38–R42 under one input, precision, workspace, and
 sampling contract. It introduces no additional compiler bound or
