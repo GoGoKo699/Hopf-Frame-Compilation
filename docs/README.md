@@ -5,7 +5,7 @@
 For the gradient task, start with the
 [state-based QBP theorem](STATE_BASED_QBP_THEOREM.md). For the complete-frame
 compiler argument, start with the landing page and `REVIEW.md`. Each formal
-topic has one primary chapter below.
+topic has one primary chapter below. The [current research decision](../WORKSPACE.md#research-decision-and-stopping-rules) separates the consolidated theorem package from optional frontier work and fixes the stopping rules.
 
 ## Proof chapters
 
@@ -27,7 +27,7 @@ topic has one primary chapter below.
 | [Conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md) | Logarithmic precision depth using the active logical suffix as temporary clean work; lookup and suffix-predicate costs remain separate |
 | [Grouped program reuse](GROUPED_PROGRAM_PREFETCH.md) | Complete real-frame depth O(n log log n) at fixed accuracy and sufficient square-root dirty width; O(n) selector maintenance and scoped source-reuse audit |
 | [Unary phase-source groups](UNARY_PHASE_GRADIENT.md) | Complete real-frame T-depth O(n) at fixed accuracy, exact retained-source fusion, and a two-shift stabilizer completion; the remaining transport is sequential |
-| [Protected unary source](PROTECTED_UNARY_SOURCE.md) | One source across all early groups, two initialized flags, and a single preparation-error charge including final bank and flag leakage; three early linear-depth costs remain |
+| [Protected unary source](PROTECTED_UNARY_SOURCE.md) | One source across all early groups, two initialized flags, and a single preparation-error charge including final bank and flag leakage; source boundaries cease to be a linear-depth bottleneck |
 | [Windowed group predicates](WINDOWED_GROUP_PREDICATES.md) | Exact consumed caches reduce early activity-predicate depth to O(n log log n/log n); logical stages and program queries retain linear allowances |
 | [Blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md) | Full-input selected bilinear blocks with returned dirty work; fixed-accuracy depth O(N/b²+n), optimal-order T-count, and matching range through sqrt(N/n) |
 | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md) | Absolute-constant depth O(NL/b²+nL); rectangular allocation gives O(NL/b²+n) for slowly growing precision with the same-circuit count guarantee |
