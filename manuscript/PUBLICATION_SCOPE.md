@@ -10,8 +10,9 @@ models. The established scientific package is Results A–D below. The
 constant-clean count endpoint and unrestricted large-width T-depth remain
 open discussion questions; each remains an open problem, and neither is a
 prerequisite for this paper.
-This revision maintains the scientific scope. Final manuscript writing
-remains on hold.
+The [bounded claim-to-proof audit](../docs/CORE_CLAIM_AUDIT.md) found no
+unresolved claim-level blocker in Results A–D. The selected scientific scope
+is frozen; final manuscript writing remains on hold.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -329,7 +330,9 @@ package rather than introducing unsupported research claims during writing.
 The scientific stopping criteria are complete proofs and charged resource/error
 contracts for A–D and retained corollaries, consistent statements and attribution,
 relevant finite checks with their limitations, and passing repository verification
-and presentation gates. An identified defect in those claims reopens the
+and presentation gates. The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md)
+has completed the claim-to-proof gate without an unresolved blocker; this
+does not replace external technical review. An identified defect reopens the
 necessary repair. Resolving either open gap, producing a general native emitter,
 or extending a fixed fixture is not an additional readiness condition.
 

@@ -1,6 +1,6 @@
 # A linear-size dirty indicator with logarithmic address depth
 
-[Dirty tree and echoes](CHUNKED_DIRTY_INDICATOR.md) · [Read-only conjunction](DIRTY_SUM_COMPRESSION.md#6-indicator-and-complete-frame-consequences) · [Rectangular blocked allocation](UNIFORM_PRECISION_DEPTH.md#2-an-unequal-indicator-allocation-preserves-the-block-depth-bound) · [Current research checkpoint](OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
+[Dirty tree and echoes](CHUNKED_DIRTY_INDICATOR.md) · [Read-only conjunction](DIRTY_SUM_COMPRESSION.md#6-indicator-and-complete-frame-consequences) · [Rectangular blocked allocation](UNIFORM_PRECISION_DEPTH.md#2-an-unequal-indicator-allocation-preserves-the-block-depth-bound) · [Current research checkpoint](OPEN_PROBLEM.md#revision-checkpoint-and-completed-audit)
 
 Unequal address chunks remove the polynomial size overhead of the earlier
 uniform-chunk indicator while retaining logarithmic address T-depth. The

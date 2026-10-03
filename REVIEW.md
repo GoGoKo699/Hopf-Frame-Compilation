@@ -956,7 +956,7 @@ All $B$ subtree frames act on disjoint data, token, and flag registers and run
 in parallel.  Every flag is uncomputed.  The prefix copies are recreated, the
 Fredkin tree is reversed, the copies are erased, and the root token is reset.
 
-The tail peak is
+The tail peak is at most
 
 ```math
 (B-1)s+B+

@@ -1,6 +1,6 @@
 # Exact shared-prefix query interfaces and their limits
 
-[Bilinear query echo](BLOCKED_BILINEAR_LOOKUP.md#3-two-indicator-echoes-complete-the-exact-query) · [Protected source](PROTECTED_UNARY_SOURCE.md) · [Windowed predicates](WINDOWED_GROUP_PREDICATES.md) · [Current research checkpoint](OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
+[Bilinear query echo](BLOCKED_BILINEAR_LOOKUP.md#3-two-indicator-echoes-complete-the-exact-query) · [Protected source](PROTECTED_UNARY_SOURCE.md) · [Windowed predicates](WINDOWED_GROUP_PREDICATES.md) · [Current research checkpoint](OPEN_PROBLEM.md#revision-checkpoint-and-completed-audit)
 
 Retaining a dirty prefix indicator does not by itself make a later query
 independent of its unknown offset. This chapter identifies that residue,

@@ -13,14 +13,15 @@ The [publication scope](../manuscript/PUBLICATION_SCOPE.md) retains the
 established frame results. The [verification map](VERIFICATION.md)
 distinguishes analytic proofs from implemented and finite evidence.
 
-## Revision checkpoint and selected next test
+## Revision checkpoint and completed audit
 
-**Current decision, 3 October 2026:** stop automatic construction passes and
-consolidate the proved compiler package. The selected next task is the
-bounded claim-to-proof audit in
-[the workspace decision](../WORKSPACE.md#research-decision-and-stopping-rules).
-It is not another matrix sweep. The publication scope now includes the
-uniform count/depth theorem and its explicit matching ranges.
+**Current decision, 3 October 2026:** the
+[bounded claim-to-proof audit](CORE_CLAIM_AUDIT.md) found no unresolved
+claim-level blocker in Results A–D. Freeze the selected scientific scope and
+stop automatic construction passes. The publication scope includes the
+uniform count/depth theorem and its explicit matching ranges. The
+[workspace decision](../WORKSPACE.md#research-decision-and-stopping-rules)
+records the completed gate and the conditions for reopening research.
 
 This section is the current decision record. Earlier “next task” passages
 below retain the assumptions and outcomes of past route selections; they
@@ -101,10 +102,9 @@ body agreeing only on the ideal source is eligible with its own full
 initialized-isometry and inactive/work-return proof. Preserving only the
 first logical column does not preserve the prescribed frame.
 
-No candidate currently passes this entry gate. The next action is scope
-consolidation and its bounded audit, followed by freezing the selected
-scientific package if no claim-level blocker remains. Manuscript writing
-and any later reopening follow the
+No candidate currently passes this entry gate. The bounded audit is complete
+and the selected scientific package is frozen. Manuscript writing remains
+on hold; any later reopening follows the
 [workspace stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules).
 
 ## Established frontier
@@ -650,11 +650,12 @@ supplies the missing native synthesis by itself.
 ## Revision decision and next bounded pass
 
 This is a retained endpoint-route decision from an earlier pass. Its
-construction candidates remain conditional; the current work order is
-[the consolidation audit](../WORKSPACE.md#research-decision-and-stopping-rules).
+construction candidates remain conditional; the current decision follows
+[the completed audit](../WORKSPACE.md#research-decision-and-stopping-rules)
+and freezes the selected scientific scope.
 
 The current selection is the
-[revision checkpoint above](#revision-checkpoint-and-selected-next-test).
+[revision checkpoint above](#revision-checkpoint-and-completed-audit).
 This section retains the earlier source-carry decision and its boundaries.
 
 The coupled-merge passes have completed their structural task. The

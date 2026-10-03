@@ -1,12 +1,14 @@
 # Continuing research workspace
 
-This is the current research checkpoint, revised **3 October 2026** after
-merged PR #87, main `b8d9d229dc5b47470984175948eff59af3dcd89b`.
-The reviewed scientific tree passes 505 tests, four exact fault-tolerant
-receipt suites, and all five branch/PR checks, including rendered mathematics.
+This is the current research checkpoint, revised **3 October 2026** by the
+[bounded core-claim audit](docs/CORE_CLAIM_AUDIT.md). Its reviewed baseline is
+main `67a4cf25be30ec0440dd6e63a85181ca9c38121d`, after merged PR #88.
+That baseline passes 505 tests, four exact fault-tolerant receipt suites,
+and all five branch/PR checks, including rendered mathematics.
 
-**Decision:** consolidate the established compiler package and stop automatic
-construction passes. No new frontier construction is selected. The two open
+**Decision:** the bounded audit found no unresolved claim-level blocker;
+freeze the selected scientific package. Automatic construction passes stop,
+and no new frontier construction is selected. The two open
 resource gaps are research opportunities, not prerequisites of the selected
 paper. The [scope](manuscript/PUBLICATION_SCOPE.md) now includes the strongest
 proved count/depth theorem; final manuscript writing remains on hold.
@@ -145,30 +147,25 @@ Transport can move the pair's 00 state into its complement, so the
 completion's invariant-sector cache argument does not transfer to it.
 Noncommuting transported blocks also prevent direct scalar recursion.
 
-### Next step: one bounded consolidation audit
+### Completed gate: bounded claim-to-proof audit
 
-The next repository pass should audit the consolidated Results A–D as one
-claim package. Its deliverable is a claim-to-proof decision, not another
-component circuit or a new benchmark:
+The [audit record](docs/CORE_CLAIM_AUDIT.md) traces Results A–D to their
+upper constructions, matching lower bounds, literal work reservations,
+precision regimes, and global error contracts. It also checks the borrowed
+source premises and the fixed-decoder QBP interface. All four results pass
+this internal review. One conservative tail-work expression is now described
+as an upper bound; no theorem or resource frontier changes.
 
-1. Check that each leading formula has the correct real/complex target,
-   literal workspace threshold, precision regime, and same-circuit scope.
-2. Trace its upper construction, matching lower bound, and global work/error
-   contract to their existing proof homes; distinguish inherited premises
-   from the additional complete-operator argument.
-3. Check that the reader path, scope, attribution, and evidence map agree.
-   A finite fixture must not stand in for an asymptotic proof or a native
-   emitter. Preserve earlier constructions where their smaller reservations
-   or other resource regimes are useful.
-4. Record concrete blockers and repair them. If no claim-level blocker
-   remains, freeze the selected scientific scope. Do not add fresh research
-   requirements merely because another refinement might be possible.
+The selected scientific scope is frozen. This means the claimed package has
+no identified blocker from this bounded review, not that its proofs are
+formally verified or independently peer reviewed. The analytic constructions,
+finite certificates, native components, and missing scalable emitter remain
+distinct in the evidence map. Practical crossover constants are not supplied.
 
-This is an internal readiness gate, not independent peer review. The current
-revision aligns the scope and reading guides; it does not represent a new
-end-to-end proof audit. Final writing begins only when requested. A general
-native emitter, practical crossover study, experiment, or application
-advantage is not a default prerequisite.
+Final writing begins only when requested. A general native emitter, practical
+crossover study, experiment, or application advantage is not a default
+prerequisite. Repair a discovered defect; otherwise apply the reopening gate
+below instead of adding fresh requirements to the completed package.
 
 ### Reopening research requires a qualifying mechanism
 
@@ -218,8 +215,8 @@ arbitrary Clifford interlayers, initialized flags, and returned dirty work.
 The existing interface obstructions do not supply it. Neither route is
 selected simply to keep exploration active.
 
-**Project stop:** once the bounded consolidation audit has no unresolved
-claim-level blocker, the current scientific package is complete for its
+**Project stop reached:** the bounded consolidation audit has no unresolved
+claim-level blocker, so the current scientific package is complete for its
 selected scope. Preserve both open gaps explicitly, keep all supporting
 proofs accessible, and move to manuscript preparation only on request.
 Reopen for a concrete qualifying idea, a discovered defect, or an explicit

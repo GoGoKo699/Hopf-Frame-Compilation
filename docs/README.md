@@ -5,7 +5,10 @@
 For the gradient task, start with the
 [state-based QBP theorem](STATE_BASED_QBP_THEOREM.md). For the complete-frame
 compiler argument, start with the landing page and `REVIEW.md`. Each formal
-topic has one primary chapter below. The [current research decision](../WORKSPACE.md#research-decision-and-stopping-rules) separates the consolidated theorem package from optional frontier work and fixes the stopping rules.
+topic has one primary chapter below. The [core-claim audit](CORE_CLAIM_AUDIT.md)
+records the completed internal review of Results A–D. The
+[current research decision](../WORKSPACE.md#research-decision-and-stopping-rules)
+freezes that scientific scope and gives the entry gate for optional frontier work.
 
 ## Proof chapters
 
