@@ -17,6 +17,9 @@ entire early segment, including final return of its initial-zero flag.
 This removes the repeated early source-boundary depth allowance. Logical
 stages, group activity predicates, and program loading still have their
 separate linear upper allowances. The complete-frame frontier is unchanged.
+The later [windowed-predicate refinement](WINDOWED_GROUP_PREDICATES.md)
+also makes the activity-predicate allowance sublinear by reserving a small
+cache in this bank. Logical stages and program queries remain separate.
 
 ## 1. Registers, flags, and the guarded interface
 

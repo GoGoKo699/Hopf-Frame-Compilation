@@ -1,11 +1,11 @@
 # Continuing research workspace
 
 This is the current research checkpoint, revised **3 October 2026** from
-verified main `efbb75fdf3573a9d7403e2d3afd207b5180db053` (PR #82).
-That baseline passes 481 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. This continuation proves protected unary-source
-reuse across all early groups and adds four bounded checks. The complete-frame frontier is unchanged;
-the next windowed-predicate test is unproved.
+verified main `3d4f0900c9ac85724f425eff00356d6455765d59` (PR #83).
+That baseline passes 485 tests, four exact fault-tolerant receipt suites,
+and all five CI checks. This continuation proves windowed group predicates
+and adds five bounded checks. Two early linear-depth allowances remain;
+the complete-frame frontier is unchanged.
 
 ## Mandate and model
 
@@ -98,88 +98,62 @@ complex-frame theorem.
 ## Revision decision and next bounded task
 
 The [current decision record](docs/OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
-separates the completed indicator and source milestones from the next test.
-The [nonuniform indicator](docs/NONUNIFORM_DIRTY_INDICATOR.md) now proves
-an exact dirty indicator for $`S=2^s`$ outputs:
+consolidates three completed refinements:
+
+- The [nonuniform dirty indicator](docs/NONUNIFORM_DIRTY_INDICATOR.md)
+  has linear count/work and logarithmic address T-depth, with literal
+  dirty/reference return. At sufficient width this makes the low-precision
+  late tail sublinear.
+- The [protected source](docs/PROTECTED_UNARY_SOURCE.md) serves every early
+  group. One global $`2\delta`$ initialized-isometry bound includes final
+  source/flag leakage. Source preparation and its actual inverse contribute
+  $`O(L+\log(n+2))`$ total depth with $`\delta=\eta/8`$.
+- The [windowed predicates](docs/WINDOWED_GROUP_PREDICATES.md) use
+  $`J=\lceil\log_2(n+2)\rceil`$ groups per full window and
+  $`2J+1`$ additional conditional-zero bank bits. The two original clean
+  flags and two returned dirty predicate helpers still suffice.
+
+The windowed predicates' aggregate activity depth in the uniform
+low-precision regime is
 
 ```math
-|x,Y,W\rangle\longmapsto|x,Y\oplus e_x,W\rangle,
-\qquad T,G,w=O(S),\qquad D_T=O(\log_2(s+2)).
+O\!\left(\frac{n\log\log(n+2)}{\log(n+2)}+\log(n+2)\right)=o(n).
 ```
 
-It uses no initialized helpers and returns arbitrary dirty/reference
-inputs with literal phase. The arbitrary-partition echo, rounded schedule,
-linear total count, live width, and logarithmic depth are proved. Five
-bounded tests cover its fragile interfaces and exact resource inequalities.
-The rectangular query consequently has square-root count and logarithmic
-address T-depth at sufficient square-root dirty width for a fixed word.
+At fixed accuracy and sufficient square-root dirty width, the current
+same-circuit depth accounting is:
 
-This removes the previous linear indicator allowance from the late tail.
-In the uniform low-precision range, its depth is now
-$`O(NL/B^2+M[L+\log(n+2)])`$, with the second term o(n), whenever
-the new query's sufficient reservation fits. The full-frame literal width
-threshold retains its established fallback. After the two refinements,
-the early accounting is:
-
-| Contribution | Current accounting |
+| Contribution | Current total allowance |
 |---|---|
-| Early target-dependent shifts and selector updates | O(g) per group; total group height O(n) |
-| Early source preparation, conversion, and actual inverse | One global pair of depth O(L+log n) |
-| Early outer predicates and their inverses | O(log n) per group |
-| Early program loading and unloading | O(log n) per group |
+| Logical shifts and incremental selectors | O(n) |
+| Program prefetch and unload | O(n) |
+| Activity predicates across group windows | O(n log log n/log n+log n) |
+| Protected-source and initial-bank-predicate boundaries | O(log n) |
+| Late queries, sources, and predicates | o(n) |
 
-There are O(n/log n) early groups. These are separate upper allowances,
-not lower bounds; the tail improvement alone does not make the full
-frame sublinear.
+These are construction costs, not lower bounds. The two remaining linear
+rows keep the complete-frame upper bound at O(n); the count, Clifford
+count, matching intervals, and literal width threshold retain the
+established theorem and fallbacks.
 
-The [protected-source theorem](docs/PROTECTED_UNARY_SOURCE.md) now removes
-the repeated source-boundary cost. A fixed terminal logical bank supplies
-the source, preparation auxiliaries, and convolution work. Its original
-zero predicate is stored once in H; the other initialized flag h records
-each group's outer-zero predicate excluding that bank, conjoined with H.
-Actual preparation U is unconditional. The entire middle is identity on
-H equal to zero with h initially zero, so U and its actual inverse cancel
-on arbitrary inactive inputs. This does not assert identity for an
-arbitrary initial h; both external flags belong to the initialized contract.
+The window caches return exactly on active inputs with conditional-zero
+cache and an arbitrary source core. On $`Hh=00`$, the full window is
+identity for arbitrary cache, source, logical, dirty, and reference inputs.
+Each block-zero cache is erased before its targets change. Each chain bit
+is consumed while its later controls are still valid. Future logical bits
+may be temporary group work, but they must return before the cache is read
+again. No clean-cache assumption is made on the inactive sector, and no
+identity is asserted for arbitrary initial h equal to one.
 
-On the active sector every group's temporary work and h return exactly
-for any source input. A single $`2\delta`$ bound covers the entire early
-segment, including final bank leakage and H erasure. With
-$`\delta=\eta/8`$, the two global source/predicate boundaries have
-$`O(L+\log(n+2))`$ T-depth. The actual source need not return exactly
-before H is erased. The proof compares the complete isometry, with no
-reset or discarded rejected component.
-
-Logical stages, outer predicates, and program queries remain separately
-$`O(n)`$. The full-frame count, Clifford count, depth, matching intervals,
-and literal width threshold retain the existing theorem and fallbacks.
-
-The next selected **unproved component test** is a window of cached outer
-predicates. Reserve $`2J+1`$ additional conditional-zero bits in the protected bank. For
-$`J=\lceil\log_2(n+2)\rceil`$ consecutive early groups, cache each
-group block's zero bit and a suffix-product chain, plus one predicate for
-the suffix beyond the whole window, excluding the protected bank. Use
-these bits and H to set the external group flag h.
-
-Proceed in this order:
-
-1. Prove a consume-before-change schedule: erase a block's cached zero
-   bit before its logical targets change; erase each consumed chain bit
-   while its controls are still valid. Return all cache bits at the end
-   of the window, including arbitrary inactive inputs and references.
-2. Keep cache storage disjoint from source, convolution, program, and
-   selector work. Only the two original external flags may be initialized;
-   all additional zero promises must follow from H.
-3. Charge one long predicate pair per window and the short block/chain
-   cleanup. Test the candidate depth $`O(n\log\log(n+2)/\log(n+2))`$
-   in the uniform low-precision regime before claiming any improvement.
-
-Stop if cleanup needs an unchanged logical input after that input has
-become a target, assumes clean inactive cache bits, resets source leakage,
-or overlaps live work. A successful predicate test would still leave
-logical stages and program queries with linear allowances. Add only
-bounded checks that resolve a new concrete interface risk after the
-symbolic contract and resource ledger close.
+The next selected test must address the program-query or logical-stage
+row. Simple all-branch window prefetch does not fit the current one-hot
+program interface: with unary phase modulus q, G consecutive target bits
+require $`q(2^G-1)`$
+conditional-zero program bits. The O(k) available logical suffix imposes
+$`G=O(\log(k/q+1))`$, reproducing the existing group scale. A dirty cache
+cannot be treated as this clean one-hot program. The decision record
+specifies the next bounded query-interface audit before a larger circuit
+or improved complete-frame claim is attempted.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the
