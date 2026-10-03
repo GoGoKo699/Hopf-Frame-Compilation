@@ -972,7 +972,47 @@ T^\star=\Theta_\eta(N/b),\quad D_T^\star=\Theta_\eta(N/b^2).
 
 This extends the fixed-accuracy matching window; it introduces no new
 external synthesis premise or depth lower-bound method. The preceding
-variable-accuracy bounds remain separate and unchanged. The unary
+variable-accuracy bounds remain valid; Section 21 gives a uniform
+precision refinement. The unary
 square-root-width schedule remains a valid predecessor and corollary;
 unrestricted large-width depth optimality and the constant-clean
 high-precision endpoint remain open. No generic lookup priority is claimed.
+
+## 21. Uniform precision and rectangular query allocation (3 October 2026)
+
+The [uniform precision theorem](UNIFORM_PRECISION_DEPTH.md) uses the same
+native selected-block query, dirty traversal and bilinear echo as Section
+20. Rectangular block dimensions balance word precision against indicator
+cost. The proof makes the unary-source cutoff uniform at low precision
+and uses the existing hybrid when its source term absorbs the logarithmic
+depth contribution. These are allocation and composition results; the
+external ingredients in Sections 19–20 are unchanged, and no new native
+query or synthesis premise is assumed.
+
+With $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$, two clean flags
+and $`b\ge17(L+n+7)`$, one complete real-frame circuit has absolute,
+precision-independent constants in
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+nL\right).
+```
+
+For $`6\le L\le\log_2(n+2)/16`$, the sharper bounds are
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad G=O(NL),
+\qquad D_T=O\!\left(\frac{NL}{b^2}+n\right).
+```
+
+The existing count lower bounds divided by physical width give
+simultaneous worst-case $`T^\star=\Theta(NL/b)`$ and
+$`D_T^\star=\Theta(NL/b^2)`$ through $`b\le\sqrt{N/n}`$
+generally, and through $`b\le\sqrt{NL/n}`$ in the low-precision
+regime, above the literal threshold and when the intervals are nonempty.
+The low-precision count is optimal at every eligible width; the general
+count retains nL and is asserted optimal outside its matching interval
+only under a sufficient condition such as $`L\le N/n^2`$.
+All preparation, queries, actual inverses and work return remain charged.
+The selected high-precision endpoint and unrestricted large-width depth
+optimality remain open. No priority claim follows from this composition.

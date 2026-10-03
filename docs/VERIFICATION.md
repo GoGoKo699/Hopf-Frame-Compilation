@@ -223,6 +223,21 @@ fixtures do not emit the scalable chunked indicators or establish the
 width-sensitive frame theorem by extrapolation; that resource and
 composition argument remains analytic.
 
+The [rectangular allocation checks](../tests/test_rectangular_query_allocation.py)
+audit the [uniform-precision allocation](UNIFORM_PRECISION_DEPTH.md)
+with five exact arithmetic checks and the indicator constant normalized
+to one. An independent search over feasible powers of two checks the
+floor-based choice, address partition, simultaneous indicator pools,
+and traversal reservation. Integer comparisons, including squared
+positive remainders, check the block-count, selected-count, and indicator
+bounds without approximating square roots. Boundary cases include odd
+address length, output precision exceeding the row count, width-cap
+transitions, and the helper-free single-row Clifford word. An exact
+family shows the square allocation's square-root precision penalty in
+its selected-middle cost. These finite certificates neither assign
+unit constants to physical indicators nor establish asymptotic bounds
+by fitted data; they test the allocation proof's arithmetic interfaces.
+
 The [dirty-counter checks](../tests/test_counter_dirty_indicator.py)
 audit the two-adder signed increment, both modular-adder actions, cyclic
 routing, nested full-input echoes, actual inverses, and parallel native

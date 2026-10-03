@@ -159,45 +159,72 @@ $`b\ge C(L+n+7+\sqrt{NL})`$, the
 [parallel dirty-lookup construction](docs/PARALLEL_DIRTY_LOOKUP.md) instead
 retains $`T=O(\sqrt{NL}+L\ell_*(n))`$ while attaining
 $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$ in the same circuit.
-At fixed accuracy, two clean and sufficiently large
-$`\Theta(\sqrt N)`$ dirty workspace give count-optimal
-$`O(\sqrt N)`$ T gates with
-$`O(n\log\log(n+2))`$ T-depth, using the
-[grouped-program schedule](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy).
-It combines conditional program reuse with chunked late-query indicators.
-The earlier [dirty-counter hybrid](docs/DIRTY_SUM_COMPRESSION.md)
-retains its variable-precision and variable-width scope below, where
+The earlier
+[grouped-program schedule](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+combined conditional program reuse with chunked late-query indicators,
+giving fixed-accuracy $`O(n\log\log(n+2))`$ T-depth and optimal-order
+T-count at sufficient square-root dirty width. Its
+[unary-source refinement](docs/UNARY_PHASE_GRADIENT.md) gives
+$`O(n)`$ depth with charged source preparation and return. The
+[blocked bilinear query](docs/BLOCKED_BILINEAR_LOOKUP.md) extends this
+to $`O(N/b^2+n)`$ at every $`b\ge17(L+n+7)`$ for fixed L.
+These are dependencies of the uniform-precision result below. The older
+[dirty-counter hybrid](docs/DIRTY_SUM_COMPRESSION.md) uses
 
 ```math
 \chi(t)=\log_2(t+2).
 ```
-The T-depth need not be optimal, and Clifford depth remains charged
-separately.
 
-The [hybrid extension](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) covers every
-$`L\ge6`$ and $`b\ge17(L+n+7)`$ with two clean qubits:
+No matching large-width T-depth or elementary-depth conclusion follows.
+
+The [uniform-precision theorem](docs/UNIFORM_PRECISION_DEPTH.md) covers every
+$`L\ge6`$ and $`b\ge17(L+n+7)`$ with two external clean flags:
 
 ```math
-T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL),
-\qquad D_T=O\!\left(\frac{NL}{b^2}+nL+n\chi(n)\right).
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad G=O(NL).
 ```
 
-All three bounds hold for one complete real-frame circuit. When nonempty,
-the interval $`17(L+n+7)\le b\le\sqrt{NL/(nL+n\chi(n))}`$ has matching
-worst-case count $`T^\star=\Theta(NL/b)`$ and depth
+```math
+D_T=O\!\left(\frac{NL}{b^2}+nL\right).
+```
+
+All constants are absolute, and all three bounds hold for one complete
+real-frame circuit. Its full initialized-isometry error includes every
+returned work register and arbitrary dirty/reference inputs; no
+intermediate work is reset. When nonempty, the interval
+$`17(L+n+7)\le b\le\sqrt{N/n}`$ has matching worst-case count
+$`T^\star=\Theta(NL/b)`$ and depth
 $`D_T^\star=\Theta(NL/b^2)`$. For inverse-polynomial error in N,
 $`L=\Theta(n)`$ and sufficient $`b=\Theta(n)`$ give
 $`T^\star=\Theta(N)`$, $`D_T^\star=\Theta(N/n)`$.
-Outside the interval the extra $`nL`$ count term is retained; no
-uniform count-optimality claim follows from this schedule.
+At every eligible width, the sufficient condition $`L\le N/n^2`$
+absorbs $`nL`$ into $`\sqrt{NL}`$ and makes the count optimal in
+order. The general theorem retains that extra count term; it does not
+claim count optimality for all precisions.
 
-At fixed L, the hybrid retains $`T=O(\sqrt N+N/b)`$ at every eligible
-width and gives $`D_T=O(N/b^2+n\chi(n))`$. Its matching interval
-extends asymptotically to order $`\sqrt{N/(n\chi(n))}`$.
-The [precision cap](docs/AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
-keeps total source depth at $`O(n\log(n+1))`$; the dirty-counter
-queries account for the remaining term. Depth at square-root-scale
-workspace is still not known to be optimal.
+In the explicit low-precision range
+$`6\le L\le\log_2(n+2)/16`$, the same chapter gives the stronger
+absolute-constant bounds
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad G=O(NL).
+```
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+n\right).
+```
+
+Both resources match their lower bounds throughout the larger interval
+$`17(L+n+7)\le b\le\sqrt{NL/n}`$, when nonempty. The construction
+uses rectangular blocked queries to retain the $`\sqrt{NL}`$ count
+scale, and an explicit unary-source cutoff uniform in this precision
+range. This includes the new regime of slowly growing
+$`L=o(\log n)`$. For $`L=\Omega(\log n)`$, the older
+[hybrid bound](docs/PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision)
+already absorbs its $`n\chi(n)`$ term into $`nL`$. Neither the
+additive n nor nL is proved to be a general depth lower bound.
+Unrestricted large-width depth and the high-precision constant-clean
+endpoint remain open.
 
 The [error audit](docs/HOPF_ERROR_ACCUMULATION.md) distinguishes sharp
 square-sum stability of ideal angle perturbations from coherent linear
@@ -211,16 +238,17 @@ reduces the full radial error quadratically on the same two flags.
 Charging its additional source calls and native phase words permits a
 smaller source-width cap, while preserving the displayed asymptotic bounds.
 
-The [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md)
-now reduces the precision component to logarithmic depth wherever the
+The earlier [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md)
+reduces the precision component to logarithmic depth wherever the
 active logical suffix supplies enough temporary clean work. Only the
 same two external clean flags are used. Its lookup and suffix-predicate
 costs remain charged in that source-only interface. The
 [grouped composition](docs/GROUPED_PROGRAM_PREFETCH.md)
-now shares early prefetch and predicate costs, while the
+shares early prefetch and predicate costs, while the
 [chunked indicator](docs/CHUNKED_DIRTY_INDICATOR.md) bounds the entire
 late-query depth by $`O(n)`$ at fixed accuracy. Together they yield
-the improved complete-frame depth stated above.
+the earlier $`O(n\log\log(n+2))`$ complete-frame schedule; the unary
+source and rectangular blocked queries supply the subsequent refinements.
 Separately, the [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md)
 excludes arbitrarily accurate full-input replacement of the original
 source by two T layers, even with unrestricted Clifford interlayers and
