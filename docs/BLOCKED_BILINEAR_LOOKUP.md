@@ -53,6 +53,11 @@ dependence and uses a rectangular allocation of the same query to prove
 absolute-constant depth O(NL/b²+nL), with a stronger slowly growing
 precision corollary.
 
+The [nonuniform-indicator refinement](NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence)
+then removes the polynomial indicator overhead from that rectangular
+query. At sufficient width its late tail is sublinear in n; the early
+groups still contribute linear depth to the complete-frame bound.
+
 ## 1. A controlled bilinear output with one arbitrary dirty helper
 
 Let Y and X be disjoint registers of H and J arbitrary bits, let z be

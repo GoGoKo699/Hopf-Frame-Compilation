@@ -11,6 +11,11 @@ precision, the existing hybrid's logarithmic term is already absorbed
 by its nL term. This gives one uniform theorem, with constants independent
 of the requested accuracy.
 
+The later [nonuniform-indicator refinement](NONUNIFORM_DIRTY_INDICATOR.md)
+removes the linear indicator allowance from the late tail at sufficient
+width. The four early linear-depth contributions remain, so the complete
+theorems and their literal width thresholds below are unchanged.
+
 ## 1. The uniform theorem and its stronger low-precision corollary
 
 Let $`n\ge1`$, $`N=2^n`$, and $`0\lt\eta\le1/64`$. Put

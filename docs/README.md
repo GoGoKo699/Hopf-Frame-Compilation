@@ -30,6 +30,7 @@ topic has one primary chapter below.
 | [Blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md) | Full-input selected bilinear blocks with returned dirty work; fixed-accuracy depth O(N/b²+n), optimal-order T-count, and matching range through sqrt(N/n) |
 | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md) | Absolute-constant depth O(NL/b²+nL); rectangular allocation gives O(NL/b²+n) for slowly growing precision with the same-circuit count guarantee |
 | [Chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) | A tunable exact dirty-tree indicator and a summable late-query budget that removes the late routing bottleneck |
+| [Nonuniform dirty indicator](NONUNIFORM_DIRTY_INDICATOR.md) | Linear count and dirty width with logarithmic address T-depth; faster rectangular queries and a sublinear late tail at low precision and sufficient width, with early frame costs still charged |
 | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md) | Sharp ideal-angle stability, finite relative spectra, and coherent leakage in the actual shared-flag sources; scoped precision boundaries |
 | [Flag-echo audit](HOPF_FLAG_ECHO.md) | Exact errors of four diagonal Pauli echoes, their generic linear leakage, and an exact equal-mask exception |
 | [Radial source filter](HOPF_RADIAL_FILTER.md) | Phase-calibrated fixed-point filtering, quadratic radial error, charged native phases, and a smaller complete-frame precision cap |

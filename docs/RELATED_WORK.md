@@ -1037,3 +1037,43 @@ one-round classes. Lemma 4.4 retains an $`O(kM^2)`$ entropy term, so
 this theorem does not cover the current $`b\asymp\sqrt N`$ allocation.
 No applicable growing depth bound was identified in this comparison;
 that audit outcome does not prove that such a bound is impossible.
+
+## 23. Nonuniform chunks in a returned dirty indicator (3 October 2026)
+
+The [nonuniform indicator](NONUNIFORM_DIRTY_INDICATOR.md) refines the
+existing [chunk-boundary tree echo](CHUNKED_DIRTY_INDICATOR.md) using the
+same [read-only dirty conjunction](DIRTY_SUM_COMPRESSION.md#6-indicator-and-complete-frame-consequences).
+Its lineage remains [LKS, Appendix C, Theorems 1–2](https://arxiv.org/html/1812.00954v2)
+for dirty indicators and count-efficient XOR queries, and
+[Khattar–Gidney, Sections 4, 5.5 and 7](https://arxiv.org/html/2407.17966v2)
+for toggle detection, conjunctions and unary tree traversal. LKS's
+displayed s-bit indicator has $`O(2^s)`$ T-count and $`O(s^2)`$
+depth without extra ancillas; its depth includes Clifford operations.
+Parallel phase synthesis retains the Selinger attribution in Section 19.
+
+The local refinement consumes large chunks while few prefixes are live,
+then reduces the remaining address length to
+$`\lceil4\log_2(r+2)\rceil`$ at each step, finishing at bounded
+length. The weighted tree ledger gives
+
+```math
+T,G,w=O(2^s),\qquad D_T=O(\log_2(s+2)).
+```
+
+The indicator is exact on all inputs, including arbitrary outputs and
+dirty-reference correlations. This is a T-depth bound with charged
+Clifford count, not a bound on total elementary depth. For $`Q=2^r`$
+rows and word width m, the existing rectangular bilinear construction,
+under its stated additional dirty-width reservation B, consequently has
+
+```math
+T=O\!\left(\sqrt{Qm}+m+\frac{Qm}{B}\right),\qquad G=O(Qm),
+\qquad D_T=O\!\left(m\left[1+\frac{Q}{B^2}\right]+\log_2(r+2)\right).
+```
+
+In the existing [low-precision unary regime](UNIFORM_PRECISION_DEPTH.md) at sufficient
+$`b=\Theta(\sqrt{NL})`$, the late tail becomes $`o(n)`$.
+The early groups retain their $`O(n)`$ contribution, so this does not
+change the proved complete-frame depth order. The added result is the
+nonuniform allocation and charged query composition; no generic
+priority or new external synthesis premise is claimed.

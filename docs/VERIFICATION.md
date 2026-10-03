@@ -192,6 +192,20 @@ the late-layer resource sums. The small row macros do not establish
 the imported asymptotic counter depth. Together these fixtures support
 the fragile interfaces of the fixed-accuracy complete-frame theorem;
 its count, width, and depth bounds are proved analytically.
+The [nonuniform-indicator checks](../tests/test_nonuniform_dirty_indicator.py)
+add five bounded audits of unequal chunk partitions. Exact Boolean
+polynomials verify the complete leaf-readout echo, actual inverse,
+and return of every dirty input wire for small unequal trees. Separate
+native matrices check all input phases of the one- and two-bit edge
+interfaces composed by those trees; they are not dense native matrices
+of the whole tree. Negative cases reverse the root-conjugation order
+or omit final cleanup. Exact ceiling and normalized rational ledgers
+check the remaining-length recursion, private-pool bound, cubic count
+majorant, and logarithmic depth surrogate, including zero address and
+large arithmetic-only cases. No exponential register is allocated in
+those resource checks. The toy reversible ladders test the edge action;
+the shallow conjunction depth and uniform asymptotic bounds come from
+the analytic construction.
 The [parallel dirty-lookup checks](../tests/test_parallel_dirty_lookup.py)
 audit routed-indicator cancellation, literal native phases, disjoint T
 layers, scratch-free width, and arbitrary-input return using symbolic
