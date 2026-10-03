@@ -1,8 +1,8 @@
 """Bounded native audits of shared-prefix queries and their dirty offsets.
 
-Every word here is emitted in Clifford+T on at most seven wires. Expected
-actions are independent Boolean basis permutations, including every dirty
-input and literal phase. These are small query-interface counterexamples
+Every word here is emitted in Clifford+T on at most eight wires. Expected
+actions are independent signed Boolean basis permutations, including every
+dirty input and literal phase. These are small query-interface counterexamples
 and reference circuits, not complete Hopf groups or scalable lookup emitters.
 The clean-baseline contrast explicitly assumes its extra initialized bit.
 """
@@ -16,10 +16,12 @@ try:
     from .test_operator_source_compiler import (
         _adjoint, _apply_native_word, _expand_toffolis, _word_matrix,
     )
+    from .test_t_depth import _inverse, _native_schedule, _word as _schedule_word
 except ImportError:
     from test_operator_source_compiler import (
         _adjoint, _apply_native_word, _expand_toffolis, _word_matrix,
     )
+    from test_t_depth import _inverse, _native_schedule, _word as _schedule_word
 
 
 ATOL = 3e-11
@@ -64,6 +66,26 @@ def _per_group_reference():
     q2 = _expand_toffolis([('CCX', 0, 1, 4)])
     k2 = [('CX', 4, 2)]
     return q1 + k1 + _adjoint(q1) + _adjoint(k1) + q2 + k2 + _adjoint(q2) + _adjoint(k2)
+
+
+def _dirty_c3x(controls, target, dirty):
+    a, b, c = controls
+    return _expand_toffolis([
+        ('CCX', a, b, dirty), ('CCX', dirty, c, target),
+        ('CCX', a, b, dirty), ('CCX', dirty, c, target),
+    ])
+
+
+def _query(reader, feature):
+    return reader + feature + _adjoint(reader) + _adjoint(feature)
+
+
+def _signed_expected(width, action):
+    result = np.zeros((1 << width, 1 << width), dtype=complex)
+    for basis in range(1 << width):
+        image, sign = action(basis)
+        result[image, basis] = sign
+    return result
 
 
 class SharedPrefixQueryAuditTests(unittest.TestCase):
@@ -173,6 +195,118 @@ class SharedPrefixQueryAuditTests(unittest.TestCase):
         witness = 1 << 4  # x=t=s=d=0,b=1: both data targets wrongly flip.
         self.assertEqual(action(witness), witness | (1 << 1) | (1 << 2))
         self.assertEqual(action(witness) >> 3, witness >> 3)
+
+    def test_charged_fusion_preserves_literal_rotation_with_changed_second_address(self):
+        # x0,x1,t,s,p,Y,d. A stores one nonlinear feature, not a full
+        # four-bit indicator: the same shear algebra fits seven wires.
+        feature = _expand_toffolis([('CCX', 0, 1, 5)])
+        first = [('CX', 5, 4)]
+        second = _expand_toffolis([('CCX', 5, 2, 4)])
+        q1, q2 = _query(first, feature), _query(second, feature)
+        # Controlled XZ = controlled R(pi/2), including its minus sign.
+        body1 = [('H', 2), ('CX', 4, 2), ('H', 2), ('CX', 4, 2)]
+        body2 = [('CX', 4, 3)]
+        correction = [('X', 2)] + _dirty_c3x((0, 1, 2), 4, 6) + [('X', 2)]
+        original = q1 + body1 + _adjoint(q1) + q2 + body2 + _adjoint(q2)
+        opening = first + feature + _adjoint(first)
+        closing = second + _adjoint(feature) + _adjoint(second)
+        fused = opening + body1 + correction + body2 + closing
+
+        def action(basis):
+            e = _bit(basis, 0) & _bit(basis, 1)
+            p, old = _bit(basis, 4), _bit(basis, 2)
+            loaded = p ^ e
+            new = old ^ loaded
+            image = basis ^ (loaded << 2) ^ ((p ^ (e & new)) << 3)
+            return image, (-1) ** (loaded & old)
+
+        expected = _signed_expected(7, action)
+        self.assertTrue(np.any(expected == -1))
+        np.testing.assert_allclose(_word_matrix(7, original), expected, atol=ATOL, rtol=0)
+        actual = _word_matrix(7, fused)
+        np.testing.assert_allclose(actual, expected, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(_apply_native_word(7, _adjoint(fused), actual),
+                                   np.eye(128), atol=ATOL, rtol=0)
+        for bad in (opening + body1 + body2 + closing,
+                    opening + correction + body1 + body2 + closing):
+            self.assertGreater(np.max(np.abs(_word_matrix(7, bad) - expected)), .9)
+
+    def test_charged_fusion_reuses_one_activity_flag_with_actual_transition(self):
+        # x0,x1,t,s,p,Y,d,h: no wire stores an old copy of h.
+        feature = _expand_toffolis([('CCX', 0, 1, 5)])
+        first = _expand_toffolis([('CCX', 7, 5, 4)])
+        second = _dirty_c3x((7, 5, 2), 4, 6)
+        q1, q2 = _query(first, feature), _query(second, feature)
+        rotate = _expand_toffolis([('CCX', 7, 4, 2)])
+        body1 = [('H', 2)] + rotate + [('H', 2)] + rotate
+        body2 = _expand_toffolis([('CCX', 7, 4, 3)])
+        transition = [('X', 7)]  # gamma=1; tests both 0->1 and 1->0.
+        delta_reader = _adjoint(transition) + _adjoint(first) + transition + second
+        correction = _query(delta_reader, feature)
+
+        def correction_action(basis):
+            e = _bit(basis, 0) & _bit(basis, 1)
+            new_h, t = _bit(basis, 7), _bit(basis, 2)
+            delta = e & ((new_h & (1 ^ t)) ^ 1)
+            return basis ^ (delta << 4)
+
+        self.assert_native_action(8, correction, correction_action)
+        original = (q1 + body1 + _adjoint(q1) + transition
+                    + q2 + body2 + _adjoint(q2))
+        opening = first + feature + _adjoint(first)
+        closing = second + _adjoint(feature) + _adjoint(second)
+        fused = opening + body1 + transition + correction + body2 + closing
+
+        def action(basis):
+            e = _bit(basis, 0) & _bit(basis, 1)
+            h, p, old = _bit(basis, 7), _bit(basis, 4), _bit(basis, 2)
+            rotate_target = h & (p ^ (h & e))
+            new = old ^ rotate_target
+            new_h = h ^ 1
+            flip_source = new_h & (p ^ (new_h & e & new))
+            image = basis ^ (rotate_target << 2) ^ (flip_source << 3) ^ (1 << 7)
+            return image, (-1) ** (rotate_target & old)
+
+        expected = _signed_expected(8, action)
+        np.testing.assert_allclose(_word_matrix(8, original), expected, atol=ATOL, rtol=0)
+        actual = _word_matrix(8, fused)
+        np.testing.assert_allclose(actual, expected, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(_apply_native_word(8, _adjoint(fused), actual),
+                                   np.eye(256), atol=ATOL, rtol=0)
+        # Omitting gamma*f1 uses the new h as if it were the old h.
+        wrong_correction = correction + _expand_toffolis([('CCX', 0, 1, 4)])
+        wrong = opening + body1 + transition + wrong_correction + body2 + closing
+        self.assertGreater(np.max(np.abs(_word_matrix(8, wrong) - expected)), .9)
+
+    def test_affine_parity_refresh_has_two_literal_toffolis_and_eight_layers(self):
+        for count, constant in ((1, 0), (2, 1), (4, 0), (4, 1)):
+            # Prefix inputs, local t, program p, and one returned dirty d.
+            t, p, dirty = count, count + 1, count + 2
+            width = count + 3
+            parity = ([('X', dirty)] if constant else []) + [
+                ('CX', q, dirty) for q in range(count)
+            ]
+            middle = _native_schedule([('CCX', dirty, t, p)])
+            schedule = ([('C', parity)] + middle + [('C', _adjoint(parity))]
+                        + _inverse(middle))
+            word = _schedule_word(schedule)
+            self.assertEqual(sum(kind == 'T' for kind, _ in schedule), 8)
+            self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in word), 14)
+            for kind, gates in schedule:
+                if kind == 'T':
+                    self.assertEqual(len(gates), len({gate[1] for gate in gates}))
+            self.assertEqual(len(word), 2 * (count + constant) + 2 * len(_schedule_word(middle)))
+
+            def action(basis):
+                parity_value = (sum(_bit(basis, q) for q in range(count)) + constant) % 2
+                return basis ^ ((parity_value & _bit(basis, t)) << p)
+
+            actual, expected = self.assert_native_action(width, word, action)
+            reference = np.arange(1, 2 * (1 << width) + 1).reshape(1 << width, 2).astype(complex)
+            reference[:, 1] *= 1j
+            reference /= np.linalg.norm(reference)
+            np.testing.assert_allclose(actual @ reference, expected @ reference,
+                                       atol=ATOL, rtol=0)
 
 
 if __name__ == '__main__':

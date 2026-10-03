@@ -1,11 +1,12 @@
 # Continuing research workspace
 
 This is the current research checkpoint, revised **3 October 2026** from
-verified main `da0d948df7b1f034b649db77fa8aaca9c2064496` (PR #84).
-That baseline passes 490 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. The shared-prefix query audit below closes a
-specific cache route; it establishes no new depth saving. Two early
-linear-depth allowances remain, and the complete-frame frontier is unchanged.
+verified main `88350ab15ef22bdc49c9bfec3fcd2764283edbf7` (PR #85).
+That baseline passes 495 tests, four exact fault-tolerant receipt suites,
+and all five CI checks. The charged query-correction audit below gives an
+exact fused word, but its generic correction retains a fresh lookup.
+Two early linear-depth allowances remain, and the complete-frame frontier
+is unchanged.
 
 ## Mandate and model
 
@@ -169,15 +170,40 @@ in that latter portion, without assuming a one-hot encoding.
 It does not constrain a reader that accesses x, even by CNOT,
 or a circuit that implements a fused window without exposing row queries.
 
-The next selected test must expose the prefix-dependent correction in
-a two-group query/body/inverse-query word. Permit the existing read-only
-Clifford interface to x, keep the changed first-group target in the second
-address, and price every refresh and inverse. Seek an explicit reduction
-in long-prefix depth; an equivalent formula or constant-factor cancellation
-alone is insufficient. Stop if it exceeds the proved prefix-blind cache
-capacity, uses a stale dirty mask, or assumes an unproved relation between
-independent angle rows.
-The logical-stage cost remains independent of any query improvement.
+The [charged correction](docs/SHARED_PREFIX_QUERY_AUDIT.md#6-a-charged-two-group-program-refresh)
+now gives an exact two-group query/body/inverse-query identity. It retains
+one prefix indicator and changes the common program by the XOR of the
+old and new table words, reading the second address after the first body.
+A reused activity flag has an explicitly charged transition; no extra
+old-flag copy is assumed. All actual inverses and arbitrary dirty/source
+inputs remain in the contract.
+
+This is not a general depth saving. Fixing the first program to a legal
+constant leaves the next program arbitrary, so a fixed Clifford XOR turns
+the correction into a fresh query. A rank-one difference is still hard in
+this reduction sense if its prefix factor is arbitrary. An affine parity
+factor does give an exact two-Toffoli correction with one returned dirty
+helper, but independently prescribed Hopf rows need not have that form.
+This reduction is not a depth lower bound. Stop the generic difference-only
+route unless a new generic lookup schedule or uniformly cheap factorization
+is supplied; do not pursue more stale-mask or dirty-cache variants.
+
+The next selected task is the logical-stage row: write two consecutive
+unary stages as an exact matrix whose entries are Laurent polynomials in
+the cyclic source shift S, with $`S^q=I`$. Keep the full source action,
+changed logical controls, literal phase, and actual cleanup. Start at
+$`q=8`$ and four logical modes, then test closure at eight modes before
+claiming any recurrence. For this exact rewrite, equality only on the
+prepared Fourier source is insufficient: verify every source character
+or an exact polynomial identity.
+The existing ideal four-mode factorization is a starting comparison, not
+a new result. A fixed pairwise saving cannot reduce the total asymptotic
+depth; a growing-block recurrence must include selectors, work return,
+program access, and its T/Clifford/width costs. A different unitary body
+that agrees only on the ideal source remains eligible with a proved global
+initialized-isometry and work-return contract; failure of an exact rewrite
+does not exclude it. The query row remains separately linear unless a
+later construction improves it as well.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the

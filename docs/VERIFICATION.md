@@ -216,7 +216,7 @@ Completed group bodies remain reduced operators; the scalable predicate
 emitter, reservation, and asymptotic depth bounds are analytic.
 
 The [shared-prefix query audit](../tests/test_shared_prefix_query_audit.py)
-adds five native checks on at most seven wires, with independent Boolean
+adds eight native checks on at most eight wires, with independent signed Boolean
 expected actions for every input column and literal phase. Two small
 bilinear forms expose the retained-prefix dirty residue and check the
 actual inverse. A stale-mask example changes the local address between
@@ -227,6 +227,17 @@ whole-word echo instead leaves an extra source X. A separate baseline
 works under its explicit extra clean-bit promise and fails for arbitrary
 baseline input. Full-input comparisons imply coherent/reference safety
 for the positive words, with an additional explicit coherent check.
+Three additional checks compare the complete original and charged-fusion
+words, preserving the controlled rotation's literal sign and reading the
+second address after the first target changes. A single nonlinear feature
+$`Y\mapsto Y\oplus x_0x_1`$ keeps this fixture small; it is not a
+full one-hot indicator. The guarded fixture reuses the actual activity
+flag, tests both directions of its transition without an old-flag copy,
+and checks the resulting correction on every input. Missing, premature,
+and incorrectly guarded corrections are detected. A separate affine-parity
+refresh checks all input phases, dirty-helper return, coherent reference
+columns, exactly 14 T gates, and eight disjoint T layers in its emitted
+schedule. The general fusion and query-resource bounds remain analytic.
 These are bounded query-interface circuits and counterexamples, not
 complete Hopf groups, scalable query emitters, or lookup lower bounds.
 
