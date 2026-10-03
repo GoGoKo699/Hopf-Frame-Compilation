@@ -214,6 +214,22 @@ phase, helper return, and its actual inverse. Negative controls delay
 block-zero erasure, delay chain erasure, or omit the original H guard.
 Completed group bodies remain reduced operators; the scalable predicate
 emitter, reservation, and asymptotic depth bounds are analytic.
+
+The [shared-prefix query audit](../tests/test_shared_prefix_query_audit.py)
+adds five native checks on at most seven wires, with independent Boolean
+expected actions for every input column and literal phase. Two small
+bilinear forms expose the retained-prefix dirty residue and check the
+actual inverse. A stale-mask example changes the local address between
+baseline and loaded evaluations: every cache returns, but the output is
+wrong. Completed per-group XOR queries supply a positive reference with
+arbitrary dirty programs and retained source/data inputs; a delayed
+whole-word echo instead leaves an extra source X. A separate baseline
+works under its explicit extra clean-bit promise and fails for arbitrary
+baseline input. Full-input comparisons imply coherent/reference safety
+for the positive words, with an additional explicit coherent check.
+These are bounded query-interface circuits and counterexamples, not
+complete Hopf groups, scalable query emitters, or lookup lower bounds.
+
 The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
 [three bounded checks](../tests/test_chunked_dirty_indicator.py) for
 native shared-control phases, actual inverses, arbitrary dirty-tree

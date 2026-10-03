@@ -83,59 +83,100 @@ The two linear rows are upper bounds for the current construction, not
 lower bounds. No improved complete-frame asymptotic order or high-precision
 endpoint follows from the three completed overhead refinements alone.
 
-### Next decision: the remaining program-query interface
+### Query audit: what can and cannot be retained
 
-The simple all-branch prefetch proposal has a concrete storage limit in
-the existing representation. Here q denotes the unary phase modulus.
-For G consecutive target bits, the full
-binary group tree has $`2^G-1`$ rows, each stored as a q-bit one-hot
-translation word. Its program therefore occupies $`q(2^G-1)`$
-conditional-zero bits. Only O(k) logical suffix bits are available at
-remaining height k, so fitting this program requires
-$`G=O(\log(k/q+1))`$. This reproduces the present group scale and
-cannot amortize queries over a growing number of current groups.
-It is a restriction of this stored-program representation, not a lower
-bound on all coherent lookups or frame circuits.
-
-The simplest whole-window dirty-offset echo also fails as an abstract
-native identity. Let a be the desired two-bit program, d its arbitrary
-dirty offset, and, in algebraic order, set
+The [shared-prefix query audit](SHARED_PREFIX_QUERY_AUDIT.md) now tests
+this interface directly. With a retained dirty indicator
+$`Y=d\oplus e_x`$, completing only the short-address echo reads the
+selected table bit plus $`d^{\mathsf T}D e_t`$. Reusing a correction
+computed at an earlier local address leaves
 
 ```math
-K(p_1,p_2)=\mathrm{CNOT}_{t\to s}^{p_2}X_t^{p_1}.
+d^{\mathsf T}D(e_{t_{\rm old}}\oplus e_{t_{\rm new}}).
 ```
 
-The chronological word load a, apply K, unload a, apply the actual K
-inverse returns the program but acts as $`K(d)^\dagger K(d\oplus a)`$.
-For $`d=(1,0)`$ and $`a=(0,1)`$, this is
+It cancels for every dirty d exactly when the two table columns coincide.
+The chapter gives a native two-group counterexample and an exact positive
+example whose extra baseline bit must start clean. The latter is a
+reservation demonstration, not a query-depth improvement.
+
+A broader boundary applies to one specific reader architecture. Its
+encoder uses the unchanged logical prefix x only as a read-only control
+on a cache of c initialized and b arbitrary dirty bits. Subsequent exact
+row readers cannot access x or an uncounted prefix-bearing register;
+any final x-dependent decoder acts only on the cache. If the table has R
+distinct row signatures, orthogonal encoded supports give
 
 ```math
-X_t\mathrm{CNOT}_{t\to s}X_t
-=X_s\mathrm{CNOT}_{t\to s}\ne K(a).
+R2^b\le2^{b+c},\qquad c\ge\lceil\log_2 R\rceil.
 ```
 
-The extra logical X remains even though each individual controlled
-operation admits XOR-offset cancellation. This elementary counterexample
-does not rule out a specifically proved Hopf query identity or a different
-encoding; it rules out assuming whole-word cancellation from the separate
-single-operation identities.
+This is an elementary exact-programming dimension argument, with the
+Nielsen–Chuang precedent identified in the proof and
+[related-work comparison](RELATED_WORK.md#26-exact-shared-prefix-cache-capacity-3-october-2026).
+It is not a T-depth lower bound. Conditional logical zeros and every
+other initialized wire touched by the prefix encoder count among c.
 
-A different interface must respect that a later group's address includes
-earlier targets that have already changed. It must also return the dirty
-cache without interpreting its unknown offset as a valid one-hot program.
-Before selecting a large construction, audit the exact two-group native
-identity for such query reuse, including coherent common prefixes,
-changed address bits, literal
-phases, actual inverse queries, and the full retained-source action.
-A claimed saving must reduce the charged long-address query work; moving
-that work into a decoder or cache erasure is not sufficient.
+For G consecutive target bits there are $`2^G-1`$ independent local
+angle nodes per prefix. Two allowed angles per node already give legal
+tables with $`R=2^{\min(d,2^G-1)}`$. Thus the necessary cache capacity is
 
-Stop if the proposal needs the full clean all-branch program above,
-assumes a dirty program is one-hot, delays a program inverse until its
-address has changed, or requires source reinitialization. No reusable
-query identity or better total depth is established by this checkpoint.
-The logical-stage row remains an independent cost even if a query
-refinement succeeds.
+```math
+c\ge\min\{d,2^G-1\}.
+```
+
+Generously granting all k remaining logical bits and both flags to this
+cache gives $`c\le k+2`$. In the latter portion where $`d=n-k\gt k+2`$,
+
+```math
+G\le\log_2(k+3).
+```
+
+Each current early group has height of order log n from below in the
+uniform low-precision regime. This exact reusable-reader architecture
+therefore cannot join a growing number of current groups into a window
+there. The conclusion permits arbitrary cache encoding within its stated
+interface; it does not assume q-bit one-hot rows. When $`c\ge d`$, a
+clean copy of x is possible and this window-height consequence does not
+follow. Restricted tables must use their actual R.
+
+The earlier direct one-hot prefetch restriction remains a simpler special
+case of storage accounting: its program uses $`q(2^G-1)`$ clean logical
+bits for unary phase modulus q. The new dimension argument neither forces
+that representation nor claims that every fused frame circuit must expose
+an exact reader for every angle node.
+
+### Selected next test: charge the remaining prefix access
+
+A general whole-window offset echo remains invalid. For the algebraic word
+
+```math
+K(p_1,p_2)=\mathrm{CNOT}_{t\to s}^{p_2}X_t^{p_1},
+```
+
+loading a into an arbitrary program d and postponing its baseline inverse
+gives $`K(d)^\dagger K(d\oplus a)`$. At
+$`d=(1,0)`$ and $`a=(0,1)`$, this contains an extra $`X_s`$.
+Program return alone is insufficient.
+
+The next candidate must retain explicitly charged access to the common
+prefix or supply a fused-window identity that does not need arbitrary
+row readers. Select the first as the next bounded test: write the complete
+two-group query/body/inverse-query circuit with the original prefix entering
+through the existing read-only Clifford interface. The first group changes
+a logical bit used by the second query. Expose the required table-difference
+correction, all dirty offsets, literal phases, actual inverses, and the
+full retained-source action. A positive result must price the correction
+and lower the long-prefix depth, rather than move it into refresh or erasure.
+
+Do not repeat a prefix-independent dirty-cache design, assume a correlation
+between independently prescribed angle rows, or regard a constant-factor
+cancellation as a sublinear-depth result. The rank argument does not cover
+later CNOT access to x, relocation of the logical prefix into another
+encoding, approximate readers, or a jointly proved window unitary without
+the reader interface. These remain possibilities, not established savings.
+The logical-stage row remains a separate linear allowance, and the complete
+frame frontier is unchanged.
 
 ## Established frontier
 
