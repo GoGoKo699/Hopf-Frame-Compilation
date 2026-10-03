@@ -1077,3 +1077,32 @@ The early groups retain their $`O(n)`$ contribution, so this does not
 change the proved complete-frame depth order. The added result is the
 nonuniform allocation and charged query composition; no generic
 priority or new external synthesis premise is claimed.
+
+## 24. A protected source across early groups (3 October 2026)
+
+The [protected-source refinement](PROTECTED_UNARY_SOURCE.md) extends the
+charged unary reference from one group to the entire early segment.
+Reusable phase references remain the Jones et al. precedent in Section
+19; the Kim and Kim–Laakkonen catalyst comparisons retain their different
+preparation and workspace contracts. No new external premise is needed.
+
+A fixed terminal logical bank B stays outside every early target set.
+The initially zero flag H records $`[B=0]`$ before the unconditional
+native preparation U. The second initialized flag h records
+$`H[Z=0]`$ for each group's outer suffix Z with B removed. Each group
+returns h and its temporary work exactly for arbitrary source-core states.
+On initial nonzero-B inputs, the entire middle word is identity, so
+U cancels with its actual inverse. On the initial zero sector, the ideal
+Fourier source survives every group. One two-boundary comparison therefore
+charges $`2\delta`$ for the entire early segment, including final H
+erasure. Final source-bank and H return are approximate within that bound;
+the inactive cancellation requires the stated initialized flags.
+
+With a disjoint bank and the revised sufficient cutoff, preparation,
+unpreparation and the initial-zero predicate pair contribute
+$`O(L+\log(n+2))`$ T-depth, uniformly in the stated low-precision
+regime. Source preparation is fully charged and no source is supplied.
+The target stages/selectors, group predicates, and program query pairs
+retain separate $`O(n)`$ early contributions. Thus this is a source-use
+and error-accounting refinement, with no new complete-frame depth order,
+matching interval, high-precision endpoint, or generic reuse-priority claim.

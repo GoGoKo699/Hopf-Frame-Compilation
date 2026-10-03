@@ -36,6 +36,9 @@ This removes the tail's
 linear-depth indicator allowance in the current large-width frame
 schedule. Four separately charged early contributions remain; no new
 complete-frame asymptotic depth bound follows from this lemma alone.
+The subsequent [protected-source theorem](PROTECTED_UNARY_SOURCE.md)
+also removes repeated early source boundaries; logical stages, outer
+predicates, and program queries retain their separate linear allowances.
 
 ## 1. The exact tree interface permits unequal chunks
 

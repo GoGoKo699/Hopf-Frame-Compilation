@@ -15,6 +15,10 @@ The later [nonuniform-indicator refinement](NONUNIFORM_DIRTY_INDICATOR.md)
 removes the linear indicator allowance from the late tail at sufficient
 width. The four early linear-depth contributions remain, so the complete
 theorems and their literal width thresholds below are unchanged.
+The [protected-source refinement](PROTECTED_UNARY_SOURCE.md) subsequently
+reduces early source preparation and return to one global pair. Three
+other early linear-depth allowances remain, so it also preserves the
+complete-frame theorem and the fallback reservation below.
 
 ## 1. The uniform theorem and its stronger low-precision corollary
 

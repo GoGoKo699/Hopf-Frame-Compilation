@@ -1,11 +1,11 @@
 # Continuing research workspace
 
 This is the current research checkpoint, revised **3 October 2026** from
-verified main `9dab7203fd39e8c2b25da4c1662021cf9bd9738d` (PR #81).
-That baseline passes 476 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. This continuation proves the selected nonuniform
-dirty-indicator component and adds five bounded checks. Its complete-frame
-depth frontier remains unchanged; the next source-bank test is unproved.
+verified main `efbb75fdf3573a9d7403e2d3afd207b5180db053` (PR #82).
+That baseline passes 481 tests, four exact fault-tolerant receipt suites,
+and all five CI checks. This continuation proves protected unary-source
+reuse across all early groups and adds four bounded checks. The complete-frame frontier is unchanged;
+the next windowed-predicate test is unproved.
 
 ## Mandate and model
 
@@ -98,7 +98,7 @@ complex-frame theorem.
 ## Revision decision and next bounded task
 
 The [current decision record](docs/OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
-separates the completed indicator milestone from the next bounded test.
+separates the completed indicator and source milestones from the next test.
 The [nonuniform indicator](docs/NONUNIFORM_DIRTY_INDICATOR.md) now proves
 an exact dirty indicator for $`S=2^s`$ outputs:
 
@@ -118,43 +118,68 @@ This removes the previous linear indicator allowance from the late tail.
 In the uniform low-precision range, its depth is now
 $`O(NL/B^2+M[L+\log(n+2)])`$, with the second term o(n), whenever
 the new query's sufficient reservation fits. The full-frame literal width
-threshold retains its established fallback. Four early costs remain:
+threshold retains its established fallback. After the two refinements,
+the early accounting is:
 
 | Contribution | Current accounting |
 |---|---|
 | Early target-dependent shifts and selector updates | O(g) per group; total group height O(n) |
-| Early source preparation, conversion, and actual inverse | O(log n) per group |
+| Early source preparation, conversion, and actual inverse | One global pair of depth O(L+log n) |
 | Early outer predicates and their inverses | O(log n) per group |
 | Early program loading and unloading | O(log n) per group |
 
 There are O(n/log n) early groups. These are separate upper allowances,
-not lower bounds; the completed tail improvement does not make the full
+not lower bounds; the tail improvement alone does not make the full
 frame sublinear.
 
-The next selected **unproved component test** is a protected terminal
-logical source bank shared across early groups. Compute its initial-zero
-flag H once. Use the second clean flag for each group's outer-zero
-predicate excluding that bank, conjoined with H. Keep all program and
-selector work outside the protected bank. Prepare/convert the source
-once, use actual global unpreparation before the tail, and then erase H.
+The [protected-source theorem](docs/PROTECTED_UNARY_SOURCE.md) now removes
+the repeated source-boundary cost. A fixed terminal logical bank supplies
+the source, preparation auxiliaries, and convolution work. Its original
+zero predicate is stored once in H; the other initialized flag h records
+each group's outer-zero predicate excluding that bank, conjoined with H.
+Actual preparation U is unconditional. The entire middle is identity on
+H equal to zero with h initially zero, so U and its actual inverse cancel
+on arbitrary inactive inputs. This does not assert identity for an
+arbitrary initial h; both external flags belong to the initialized contract.
+
+On the active sector every group's temporary work and h return exactly
+for any source input. A single $`2\delta`$ bound covers the entire early
+segment, including final bank leakage and H erasure. With
+$`\delta=\eta/8`$, the two global source/predicate boundaries have
+$`O(L+\log(n+2))`$ T-depth. The actual source need not return exactly
+before H is erased. The proof compares the complete isometry, with no
+reset or discarded rejected component.
+
+Logical stages, outer predicates, and program queries remain separately
+$`O(n)`$. The full-frame count, Clifford count, depth, matching intervals,
+and literal width threshold retain the existing theorem and fallbacks.
+
+The next selected **unproved component test** is a window of cached outer
+predicates. Reserve $`2J+1`$ additional conditional-zero bits in the protected bank. For
+$`J=\lceil\log_2(n+2)\rceil`$ consecutive early groups, cache each
+group block's zero bit and a suffix-product chain, plus one predicate for
+the suffix beyond the whole window, excluding the protected bank. Use
+these bits and H to set the external group flag h.
 
 Proceed in this order:
 
-1. Prove the full-input two-flag guarded identity, including inactive
-   sectors, arbitrary dirty/reference inputs, and each group boundary.
-   The physically modified source bank must never be tested again as zero.
-2. Prove the whole initialized-isometry error, including final H erasure
-   and source leakage. Do not assume exact zero return from approximate
-   preparation; aim to charge its error at only the two global boundaries.
-3. Reserve all simultaneous work and a valid early/tail cutoff. Recompute
-   the source, predicate, program, and logical-stage ledgers separately.
-   Add only bounded checks that resolve a new concrete interface risk.
+1. Prove a consume-before-change schedule: erase a block's cached zero
+   bit before its logical targets change; erase each consumed chain bit
+   while its controls are still valid. Return all cache bits at the end
+   of the window, including arbitrary inactive inputs and references.
+2. Keep cache storage disjoint from source, convolution, program, and
+   selector work. Only the two original external flags may be initialized;
+   all additional zero promises must follow from H.
+3. Charge one long predicate pair per window and the short block/chain
+   cleanup. Test the candidate depth $`O(n\log\log(n+2)/\log(n+2))`$
+   in the uniform low-precision regime before claiming any improvement.
 
-Stop if a third clean flag, overlapping work, a modified-bank zero test,
-or an uncharged return assumption is needed. A successful test removes
-only one of the four early contributions; it would not prove sublinear
-complete-frame depth. Do not build larger fixtures before this symbolic
-ledger closes or substitute a numerical scaling fit.
+Stop if cleanup needs an unchanged logical input after that input has
+become a target, assumes clean inactive cache bits, resets source leakage,
+or overlaps live work. A successful predicate test would still leave
+logical stages and program queries with linear allowances. Add only
+bounded checks that resolve a new concrete interface risk after the
+symbolic contract and resource ledger close.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the
