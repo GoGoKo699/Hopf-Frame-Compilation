@@ -19,6 +19,9 @@ The [protected-source refinement](PROTECTED_UNARY_SOURCE.md) subsequently
 reduces early source preparation and return to one global pair. Three
 other early linear-depth allowances remain, so it also preserves the
 complete-frame theorem and the fallback reservation below.
+The [windowed activity schedule](WINDOWED_GROUP_PREDICATES.md) then makes
+the early predicate allowance sublinear. Logical stages and program
+queries still contribute linear depth to the same complete-frame bound.
 
 ## 1. The uniform theorem and its stronger low-precision corollary
 

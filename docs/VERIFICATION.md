@@ -200,6 +200,20 @@ reference extension. Negative controls retest the physical bank or
 substitute the ideal inverse. Predicates and group actions are reduced
 operator fixtures, not a native group or QROM emitter; scalable work
 return and resource bounds remain analytic.
+The [windowed group predicates](WINDOWED_GROUP_PREDICATES.md) have
+[five bounded checks](../tests/test_windowed_group_predicates.py). Exact
+rational comparisons cover one-group partial windows and unequal group
+sizes on every small logical/source/tail/dirty-helper input column, with
+zero active cache. Direct full-suffix predicates supply the independent
+expected enables. Noncommuting reduced bodies retain source leakage and
+temporarily use future logical bits as work, restoring them before the
+next cache operation. Exhaustive $`H=h=0`$ checks include arbitrary cache
+and both dirty helpers. The four-Toffoli constant-arity flag word is
+expanded to native gates and checked on all six-wire inputs for literal
+phase, helper return, and its actual inverse. Negative controls delay
+block-zero erasure, delay chain erasure, or omit the original H guard.
+Completed group bodies remain reduced operators; the scalable predicate
+emitter, reservation, and asymptotic depth bounds are analytic.
 The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
 [three bounded checks](../tests/test_chunked_dirty_indicator.py) for
 native shared-control phases, actual inverses, arbitrary dirty-tree

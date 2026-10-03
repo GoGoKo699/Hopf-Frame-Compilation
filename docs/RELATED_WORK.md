@@ -1106,3 +1106,35 @@ The target stages/selectors, group predicates, and program query pairs
 retain separate $`O(n)`$ early contributions. Thus this is a source-use
 and error-accounting refinement, with no new complete-frame depth order,
 matching interval, high-precision endpoint, or generic reuse-priority claim.
+
+## 25. Cached activity predicates across group windows (3 October 2026)
+
+The [windowed-predicate schedule](WINDOWED_GROUP_PREDICATES.md) combines
+the existing borrowed multi-control X construction attributed to
+Khattar–Gidney with the
+[consume-before-change selector schedule](GROUPED_PROGRAM_PREFETCH.md#10-amortized-local-selectors-and-suffix-enables)
+and the protected source of Section 24. A window shares one predicate
+for its unchanged outer suffix. Short block predicates and a suffix-product
+chain supply each group's activity; each cached predicate is erased while
+its logical controls still have their original values.
+
+For $`J=\lceil\log_2(n+2)\rceil`$ groups per full window, the
+protected logical bank gains $`2J+1`$ cache bits. They start at zero
+on H equal to one and may be arbitrary on H equal to zero. The exact
+schedule restores the cache in both sectors, with h initially zero, and reuses the
+same two returned dirty predicate helpers. No additional external clean
+flag or dirty-helper reservation is introduced. The protected source's
+global $`2\delta`$ error bound, including final bank and H return,
+is unchanged.
+
+In $`6\le L\le\log_2(n+2)/16`$, the total early activity depth is
+
+```math
+O\!\left(\frac{n\log\log(n+2)}{\log(n+2)}+\log(n+2)\right).
+```
+
+All cache preparation, consumed cleanup, and native flag toggles are
+charged. Logical stages/selectors and program query pairs retain separate
+$`O(n)`$ early allowances. This is a predicate-allocation refinement,
+with no new external premise, generic priority claim, complete-frame
+depth order, matching interval, or high-precision endpoint result.

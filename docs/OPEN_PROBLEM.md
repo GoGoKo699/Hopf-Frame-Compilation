@@ -15,122 +15,127 @@ distinguishes analytic proofs from implemented and finite evidence.
 
 ## Revision checkpoint and selected next test
 
-This checkpoint separates the completed component result from the next
-bounded analytic test. Write $`N=2^n`$. The uniform-precision and
-low-precision complete-frame bounds below remain established and unchanged.
-Their remaining questions are separate from the completed Hopf-QBP contract.
+This checkpoint separates completed component results from the remaining
+complete-frame questions. Write $`N=2^n`$. The uniform-precision and
+low-precision bounds below remain established and unchanged; these gaps
+are separate from the completed Hopf-QBP contract.
 
 | Remaining gap | Current boundary | Selected treatment |
 |---|---|---|
-| Large-width T-depth | At fixed accuracy, two clean flags and sufficiently large $`b=\Theta(\sqrt N)`$, $`\Omega(1)\le D_T^\star\le O(n)`$, with $`T=O(\sqrt N)`$ and $`G=O(N)`$ | The late-tail indicator and repeated source-boundary costs are resolved; next test windowed outer predicates |
+| Large-width T-depth | At fixed accuracy, two clean flags and sufficient $`b=\Theta(\sqrt N)`$, $`\Omega(1)\le D_T^\star\le O(n)`$, with $`T=O(\sqrt N)`$ and $`G=O(N)`$ | Three overhead refinements are complete; audit the remaining program-query and logical-stage costs |
 | High-precision complete-frame count endpoint | At $`a=2,L=N,b=N+n+7,n\ge3`$, $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$ | Park until a new complete native identity supplies its symbolic precision, workspace, and work-return ledger |
 
-### Completed: nonuniform chunks in an exact dirty indicator
+### Completed components and the current depth ledger
 
-The [nonuniform indicator theorem](NONUNIFORM_DIRTY_INDICATOR.md) proves
-an exact all-input transformation for an s-bit address and $`S=2^s`$
-arbitrary output bits Y:
+The [nonuniform indicator](NONUNIFORM_DIRTY_INDICATOR.md) implements the
+exact dirty/reference-safe transformation
 
 ```math
 |x,Y,W\rangle\longmapsto|x,Y\oplus e_x,W\rangle,
-\qquad T,G,w=O(S),\qquad D_T=O(\log_2(s+2)).
+\qquad T,G,w=O(2^s),\qquad D_T=O(\log_2(s+2))
 ```
 
-The constants are absolute. No helpers are initialized; all arbitrary
-dirty/reference inputs return with literal phase. Unequal chunks place
-large conjunctions at low-multiplicity tree boundaries. The proof charges
-all retained nodes, the maximum private pool, and both actual-inverse
-echoes. Five bounded checks cover unequal symbolic trees, native edge
-phases, incorrect conjugation/cleanup, and rounded resource inequalities.
+for an s-bit address. Its rectangular-query consequence removes the old
+linear indicator allowance from the low-precision late tail at sufficient
+width. The original literal full-frame reservation is retained through
+its established fallbacks; no matching query-depth lower bound is claimed.
 
-The rectangular-query consequence has, under its sufficient extra-width
-reservation $`B\ge16c_I(r+2)`$ for $`Q=2^r`$ rows,
+The [protected-source theorem](PROTECTED_UNARY_SOURCE.md) retains one
+unary source across the entire early segment. H records the original
+zero predicate of a fixed terminal logical bank. The preparation U is
+unconditional; the actual $`U^\dagger`$ is used at the global exit.
+Inactive inputs cancel exactly with h initially zero. On the active
+sector, one global $`2\delta`$ error bound includes all final source
+and H leakage. Setting $`\delta=\eta/8`$ gives a single
+$`O(L+\log(n+2))`$ source-boundary depth allowance.
+
+The [windowed-predicate theorem](WINDOWED_GROUP_PREDICATES.md) adds
+$`2J+1`$ disjoint conditional-zero cache bits to that bank, where
+$`J=\lceil\log_2(n+2)\rceil`$. One long outer-suffix predicate,
+short block-zero bits, and a suffix-product chain supply the activity
+flags for up to J consecutive groups. Block caches are erased before
+their logical targets change; chain bits are consumed while their later
+controls remain valid. The full cache returns exactly, including arbitrary
+inactive-cache and dirty/reference inputs at $`Hh=00`$. Sequential short
+predicate calls reuse the original two dirty helpers. Five bounded checks
+cover unequal/partial windows, retained sources, arbitrary inactive caches,
+native flag phases, and incorrect cleanup or guard choices.
+
+Its aggregate activity depth in the uniform low-precision regime is
 
 ```math
-T=O\!\left(m+\sqrt{Qm}+\frac{Qm}{B}\right),\quad G=O(Qm),
-\quad D_T=O\!\left(m[1+Q/B^2]+\log_2(r+2)\right).
+D_{T,\rm activity}
+=O\!\left(\frac{n\log\log(n+2)}{\log(n+2)}+\log(n+2)\right)=o(n).
 ```
 
-At fixed m and sufficiently large fixed $`B=C\sqrt Q`$, this gives
-square-root T-count and logarithmic address T-depth. No matching query
-depth lower bound is asserted. In the uniform low-precision unary regime,
-the late tail is now $`o(n)`$ when $`B\gg\sqrt{NL/n}`$ and the
-new reservation fits. The original full-frame width threshold remains
-valid through its existing fallbacks; this replacement does not claim to
-fit every instance at that literal threshold.
+At fixed accuracy and sufficient square-root dirty width, the resulting
+same-circuit ledger is:
 
-At fixed accuracy there are $`O(n/\log(n+2))`$ early groups. Three
-separate linear-depth allowances remain in the current accounting:
+| Contribution | Current total depth allowance |
+|---|---|
+| Logical stages and incremental selectors | $`O(n)`$ |
+| Program prefetch and unload | $`O(n)`$ |
+| Windowed activity predicates | $`O(n\log\log(n+2)/\log(n+2)+\log(n+2))`$ |
+| Protected-source and initial-bank-predicate boundaries | $`O(\log(n+2))`$ |
+| Late queries, sources, and predicates | $`o(n)`$ |
 
-| Contribution | Current depth allowance | Latest refinement |
-|---|---|---|
-| Early logical stages and incremental selectors | $`O(g)`$ per height-g group, with total height O(n) | Unchanged |
-| Early phase-source preparation, unary conversion, and actual inverse | One global pair of depth $`O(L+\log(n+2))`$ | The protected-source theorem removes repetition |
-| Early outer activity predicate and its inverse | $`O(\log(n+2))`$ per group | Unchanged |
-| Early program prefetch and unload | $`O(\log(n+2))`$ per group | Same order for an address of length O(n) |
-| Late queries, sources, and predicates | $`O(NL/B^2+M[L+\log(n+2)])`$, with the second term o(n) | The old linear indicator allowance is removed |
+The two linear rows are upper bounds for the current construction, not
+lower bounds. No improved complete-frame asymptotic order or high-precision
+endpoint follows from the three completed overhead refinements alone.
 
-These are construction costs, not lower bounds. Removing the last row's
-linear term does not prove sublinear complete-frame depth.
+### Next decision: the remaining program-query interface
 
-### Completed: a protected source bank across early groups
+The simple all-branch prefetch proposal has a concrete storage limit in
+the existing representation. Here q denotes the unary phase modulus.
+For G consecutive target bits, the full
+binary group tree has $`2^G-1`$ rows, each stored as a q-bit one-hot
+translation word. Its program therefore occupies $`q(2^G-1)`$
+conditional-zero bits. Only O(k) logical suffix bits are available at
+remaining height k, so fitting this program requires
+$`G=O(\log(k/q+1))`$. This reproduces the present group scale and
+cannot amortize queries over a growing number of current groups.
+It is a restriction of this stored-program representation, not a lower
+bound on all coherent lookups or frame circuits.
 
-The [protected-source theorem](PROTECTED_UNARY_SOURCE.md) uses a fixed
-terminal logical bank for the source and its static auxiliary work.
-Compute its initial-zero predicate into H once. For each early group,
-the second initialized flag h stores H conjoined with the zero predicate
-of that group's outer suffix **excluding the protected bank**. All local
-program and selector work remains outside that bank.
+The simplest whole-window dirty-offset echo also fails as an abstract
+native identity. Let a be the desired two-bit program, d its arbitrary
+dirty offset, and, in algebraic order, set
 
-Apply the actual source preparation U unconditionally, run all early
-middles without their per-group preparation pairs, then apply the actual
-$`U^\dagger`$ and erase H. On H equal to zero and h initially zero,
-the whole middle is identity on arbitrary bank and other work, so the
-preparation pair cancels exactly. On H equal to one, every group's local
-work and h return exactly for an arbitrary source input. The ideal unary
-eigen-source is preserved throughout the full early segment.
+```math
+K(p_1,p_2)=\mathrm{CNOT}_{t\to s}^{p_2}X_t^{p_1}.
+```
 
-If the prepared source column has error delta, the entire early segment
-has initialized-isometry error at most $`2\delta`$. The actual inverse
-may leave bank leakage; applying the same final H-erasure circuit to the
-actual and ideal comparisons includes any residual flag amplitude in
-that norm. No exact actual bank return, discarded component, or ideal
-inverse is assumed. Setting $`\delta=\eta/8`$ gives one global
-$`O(L+\log(n+2))`$ source-boundary depth allowance, with all live
-storage and the revised constant cutoff charged.
+The chronological word load a, apply K, unload a, apply the actual K
+inverse returns the program but acts as $`K(d)^\dagger K(d\oplus a)`$.
+For $`d=(1,0)`$ and $`a=(0,1)`$, this is
 
-Thus the repeated source-boundary cost is removed. The three remaining
-early costs in the table still allow linear depth; no new full-frame
-asymptotic order or high-precision endpoint follows.
+```math
+X_t\mathrm{CNOT}_{t\to s}X_t
+=X_s\mathrm{CNOT}_{t\to s}\ne K(a).
+```
 
-### Next bounded test: cached predicates for a window of groups
+The extra logical X remains even though each individual controlled
+operation admits XOR-offset cancellation. This elementary counterexample
+does not rule out a specifically proved Hopf query identity or a different
+encoding; it rules out assuming whole-word cancellation from the separate
+single-operation identities.
 
-This is an unproved candidate for the early outer-predicate contribution.
-For a window of $`J=\lceil\log_2(n+2)\rceil`$ consecutive early
-groups, use O(J) additional protected conditional-zero bits, disjoint from
-the source and convolution work. Cache each group's logical-block zero
-predicate, their suffix-product chain, and one zero predicate for the
-nonbank logical suffix beyond the window. These determine the group
-activity flag with a constant number of controls.
+A different interface must respect that a later group's address includes
+earlier targets that have already changed. It must also return the dirty
+cache without interpreting its unknown offset as a valid one-hot program.
+Before selecting a large construction, audit the exact two-group native
+identity for such query reuse, including coherent common prefixes,
+changed address bits, literal
+phases, actual inverse queries, and the full retained-source action.
+A claimed saving must reduce the charged long-address query work; moving
+that work into a decoder or cache erasure is not sufficient.
 
-The intended order consumes information before its logical controls
-change: erase a group's block-zero bit before acting on that group;
-erase the consumed chain bit while the next block-zero bit and chain
-bit are still valid. The window-tail predicate can be erased at the end
-because the completed window restores its outer logical suffix. Earlier
-groups may temporarily use future logical bits as work; cached values
-must be used only at completed boundaries where that work has returned.
-
-First prove the full-input window identity and arbitrary inactive-cache
-return, with both external flags initialized and no reset of source
-leakage. Then prove the simultaneous reservation and charge one long
-predicate pair per window, short block-zero computations and erasures,
-and the chain gates. The candidate total predicate depth is
-$`O(n\log\log(n+2)/\log(n+2))`$ in the uniform low-precision regime;
-it is not yet a theorem. Stop if a consumed cache bit must be erased from
-already changed logical controls, or if the inactive proof assumes clean
-cache bits. Even success would leave logical stages and program queries
-with separate linear allowances.
+Stop if the proposal needs the full clean all-branch program above,
+assumes a dirty program is one-hot, delays a program inverse until its
+address has changed, or requires source reinitialization. No reusable
+query identity or better total depth is established by this checkpoint.
+The logical-stage row remains an independent cost even if a query
+refinement succeeds.
 
 ## Established frontier
 
