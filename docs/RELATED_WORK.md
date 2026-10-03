@@ -941,8 +941,9 @@ Their lineage remains [LKS, Appendix C](https://arxiv.org/html/1812.00954v2),
 and the controlled-linear and commuting-basis constructions of
 Kim–Laakkonen and Boyd discussed in Section 9. Standard Boolean phase
 polarization supplies the controlled leaf: for a bilinear phase P,
-toggling a dirty bit d by hz between two applications of
-$`(-1)^{dP}`$ leaves exactly $`(-1)^{hzP}`$ and returns d.
+apply $`(-1)^{dP}`$, toggle the dirty bit d by hz, apply the phase
+again, and undo the toggle. This full four-step word leaves exactly
+$`(-1)^{hzP}`$ and returns d.
 Neither that algebra nor generic dirty cancellation is a novelty claim.
 
 The local proof establishes a rank-sensitive native leaf with preserved
