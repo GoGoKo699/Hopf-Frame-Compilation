@@ -18,6 +18,12 @@ Both ingredients are needed: retaining logarithmically many old late
 queries would retain the previous $`O(n\log(n+2))`$ depth allowance.
 Depth optimality and the high-precision endpoint remain open.
 
+The later [unary phase-source construction](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
+changes the source interface and improves the fixed-accuracy depth to
+$`O(n)`$, with the same asymptotic count and external-workspace orders.
+The geometric-source schedule proved here remains a valid construction;
+its individual conjugated reflections are not resynthesized by that result.
+
 ## 1. Group, program, and local statement
 
 Fix a group of heights $`d,\ldots,d+g-1`$, with $`g\ge1`$.

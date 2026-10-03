@@ -3,9 +3,9 @@
 This is the entry point when a previous conversation or execution workspace
 is unavailable. Proofs and decisions live in the repository.
 
-The 2026-10-02 group-selector and source-reuse pass starts from verified main
-`9f7906f57ba379bd2cd934d8c625ba9bb06dcca4`, after the grouped-program
-fixed-accuracy depth theorem. Check later commits before
+The 2026-10-03 unary phase-source pass starts from verified main
+`005debe2ccf7a0b2e7cbc032a0f1ae285b83d2ab`, after the incremental
+group-selector and common-source audit. Check later commits before
 continuing.
 The selected state-based Hopf QBP construction and its bounded-input audit are complete; the
 [consolidated theorem](docs/STATE_BASED_QBP_THEOREM.md) is their entry point.
@@ -25,7 +25,8 @@ and finite checks, without large simulations, QRAM, resets inside a
 compiler execution, supplied catalysts, or hidden initialized work.
 
 1. Begin active depth work with the
-   [grouped complete-frame theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy),
+   [unary phase-source theorem](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy),
+   then the [grouped complete-frame theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy),
    [chunked dirty indicator](docs/CHUNKED_DIRTY_INDICATOR.md),
    [conditional geometric source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md),
    [two-layer obstruction](docs/SHALLOW_SOURCE_OBSTRUCTION.md),
@@ -78,7 +79,7 @@ compiler execution, supplied catalysts, or hidden initialized work.
 | Additional dirty banks | Improve the state preparation T bound while charging the exact coarse circuit; [banked proof](docs/COMPLEX_COARSE_COMPILER.md#8-additional-dirty-banks-improve-fine-state-preparation) |
 | State-based T-depth | Two complete schedules, one retaining the sharper count at a stronger dirty reservation; [depth proof](docs/STATE_QBP_DEPTH.md) and [fair comparison](docs/QBP_COST_COMPARISON.md#7-state-based-t-depth-comparison) |
 | Complete-frame T-count and T-depth | Same-circuit bounds at every accuracy; matching in an explicit workspace range, including inverse-polynomial error; [amortized tradeoff](docs/AMORTIZED_DIRTY_LOOKUP.md) |
-| Fixed-accuracy large-width depth | Two external flags, sufficient square-root-scale dirty width, optimal-order square-root T-count, and O(n log log n) depth; [grouped program theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy) |
+| Fixed-accuracy large-width depth | Two external flags, sufficient square-root-scale dirty width, optimal-order square-root T-count, and O(n) depth; [unary phase-source theorem](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy) |
 | Complete-frame error accumulation | Sharp ideal-angle stability and finite relative spectra; coherent linear leakage in actual shared-flag source layers; [scoped error audit](docs/HOPF_ERROR_ACCUMULATION.md) |
 | Filtered complete-frame source | Quadratic radial error on the same two flags, charged native selective phases, and a smaller source-precision cap; [filter proof](docs/HOPF_RADIAL_FILTER.md) |
 | Conditional precision depth | Logarithmic source/reflection depth using an active zero suffix and two external flags; [conditional source](docs/CONDITIONAL_GEOMETRIC_SOURCE.md). Query/predicate depth remains charged |
@@ -152,18 +153,21 @@ The original routed schedule retains an additive $`n^2`$ term. The
 [dirty-counter hybrid](docs/PARALLEL_DIRTY_LOOKUP.md#6-a-polylogarithmic-depth-indicator-using-dirty-counters)
 improves fixed-accuracy large-workspace depth to
 $`O(n\chi(n))`$ while retaining optimal-order T-count.
-The [grouped-program theorem](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+The [unary phase-source theorem](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
 now improves this fixed-accuracy, sufficient-square-root-width bound to
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(n\log\log(n+2)\right),
+D_T=O_\eta(n),
 \qquad b\ge C_\eta\sqrt N.
 ```
 
 These are simultaneous bounds on one complete real-frame circuit using
-two external clean flags. Early groups store their programs in conditional
-logical zeros; chunked dirty indicators control the late-query depth.
+two external clean flags. Early groups store one-hot programs and a charged
+unary phase source in conditional logical zeros. Bilinear cyclic shifts
+have constant T-depth; source preparation and its actual inverse occur
+once per group. Chunked dirty indicators and capped source precision
+control the entire remaining tail.
 The worst-case count is optimal in order, but the available depth lower
 bound remains only Omega(1). Fixed accuracy is essential to this theorem;
 the general-precision matching interval and endpoint remain unchanged.
@@ -277,10 +281,10 @@ claim and its proof obligation. A general compiler is not required to
 close this selected Hopf-QBP task.
 The guarded-batch logarithm is now amortized, and the variable-accuracy
 composition is complete; do not repeat either task.
-The next bounded depth target is fixed accuracy at sufficiently large
-$`b=\Theta(\sqrt N)`$, retaining optimal-order $`T=\Theta(\sqrt N)`$.
-Its available depth bounds are now $`\Omega(1)`$ and
-$`O(n\log\log(n+2))`$ by the grouped-program schedule.
+The selected fixed-accuracy depth milestone at sufficiently large
+$`b=\Theta(\sqrt N)`$ now has $`D_T=O(n)`$, retaining
+optimal-order $`T=\Theta(\sqrt N)`$. Its available depth bounds
+are $`\Omega(1)`$ and $`O(n)`$; depth optimality remains open.
 The capped precision allocation has removed the accumulated source widths
 as a quadratic contribution: sources and suffix predicates now cost
 $`O(n\log(n+1))`$ depth at fixed L. The retained per-layer routing
@@ -448,7 +452,7 @@ leaves, use ell=min(address-half length,2^floor(k/12)). Its count is
 summable within O(sqrt N), while all final O(log n) queries have O(n)
 total depth. No unknown dirty program is treated as an initialized cache.
 
-The global theorem uses the unchanged unfiltered additive precision:
+The earlier geometric grouped theorem uses the unfiltered additive precision:
 m=L+4+ceil log2(8n), cutoff R=min(n,256m), and early height
 g=floor log2(k/(64m)). These groups fit the literal suffix reservation,
 have O(n/log n) prefetches, and cost O(n log log n) depth internally.
@@ -460,7 +464,8 @@ and erase the retained prefix tree in reverse. It has O(g) group depth,
 fits the existing 16m2^g suffix reservation, and returns its work exactly
 through source leakage and on arbitrary inactive inputs. Across early
 groups this contribution is O(n). Source/reflection depth still retains
-the log log n factor, so the complete-frame frontier is unchanged.
+the log log n factor in that geometric construction. The unary phase
+source below gives the current complete-frame frontier.
 
 The [common-source audit](docs/GROUPED_PROGRAM_PREFETCH.md#11-a-common-source-identity-and-the-remaining-reflection)
 gives an exact two-layer conjugation identity, but two conjugated success
@@ -470,22 +475,30 @@ by one-use fresh banks also leaves constant rejection unless a later
 operation mixes that bank's success and failure sectors. These are scoped
 failures of specified substitutions, not general depth lower bounds.
 
-The next bounded target is a literal implementation of the conjugated
-success reflection, or a maintained encoding that updates its monitor
-through the programmed word. Aim for O(g+log(m+2)) group depth at
-O(m2^g) native count and the stated suffix reservation; a larger charged
-reservation needs a revised global allocation. Start with two unequal
-legal rows and carry the same rule through a third stage, preserving
-literal phases, all rejected action, and exact inactive identity.
-An unpriced conjugated reflection or a fresh bank per Q is not a solution.
-If no rule meets these obligations, record that there is no selected
-construction rather than starting a larger fixture. Keep the high-precision
-endpoint separate. Do not repeat the completed selector schedule,
-common-source audit, carry pipeline, short echoes, conditional preparation,
-grouped program identity, or chunked-query proof; do not apply ideal-angle
-stability to unfiltered source leakage.
-A matching unrestricted large-width frame-depth lower bound remains
-separate.
+The [unary phase source](docs/UNARY_PHASE_GRADIENT.md) supplies a different
+route. A Karatsuba rank decomposition implements a coherent one-hot cyclic
+shift with private conditional work and literal full inactive identity.
+The ideal Fourier source supplies signed target phases; its charged native
+preparation and actual inverse cost at most twice the preparation error
+for the entire group. No geometric success reflection is retained.
+The natural suffix cutoff reserves the convolution pool. Early groups
+have O(log n) depth and number O(n/log n). The entire remaining tail uses
+chunked queries at the original capped source precision, giving O(n)
+total depth while preserving O(sqrt N) T-count and O(N) Clifford count.
+The six bounded tests cover the rank identity, native guard, arbitrary
+source shift, preparation/inversion, unequal rows, and full source-return
+error. They do not constitute a scalable native group compiler.
+
+The next bounded research question is whether this fixed-accuracy route
+extends to a width-dependent same-circuit bound of O(N/b²+n) depth with
+O(sqrt N+N/b) T-count. That extension is not established here. Start with
+a complete shared-work reservation and a summed prefetch schedule; do not
+assume the large-width parallel query bound survives reduced dirty width.
+A stronger unrestricted depth lower bound and the high-precision endpoint
+remain separate. Do not repeat the completed selector, common-source,
+unary phase-source, or chunked-query proofs. Any alternative must retain
+literal phases, actual inverses, full work return, and charged source
+preparation; ideal-angle stability does not bound unfiltered source leakage.
 The completed modest-width
 matching theorem does not require solving the high-precision endpoint.
 For any new component, keep literal phases and actual inverses, declare

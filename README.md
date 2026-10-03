@@ -144,18 +144,18 @@ For $`L=\Theta(n)`$, sufficient
 $`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$ and
 $`D_T=\Theta(N/n)`$ in one complete real-frame circuit.
 
-At fixed accuracy, [grouped programs](docs/GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
+At fixed accuracy, [unary phase-source groups](docs/UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
 and chunked queries give, with two clean flags and sufficient
 $`b=\Theta(\sqrt N)`$, one complete real-frame circuit with
 
 ```math
 T=O(\sqrt N),\qquad G=O(N),\qquad
-D_T=O\!\left(n\log\log(n+2)\right).
+D_T=O(n).
 ```
 
-T-count is optimal in worst-case order. Depth optimality and the
-high-precision endpoint remain open; the
-[variable-precision theorem](docs/OPEN_PROBLEM.md) is unchanged.
+Phase-source preparation, reuse, and return are charged. T-count is
+optimal in order; depth optimality and the high-precision endpoint
+remain open. The [variable-precision theorem](docs/OPEN_PROBLEM.md) is unchanged.
 
 Beyond Hopf frames, **literal diagonals and general one-target U(2)
 multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean

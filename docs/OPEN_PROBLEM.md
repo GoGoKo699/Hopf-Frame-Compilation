@@ -41,6 +41,7 @@ hybrid depth bounds, write
 | Simultaneous T-count and T-depth | $`T=O(\sqrt{NL}+L\ell_*(n))`$, $`D_T=O(\min\{nL+n^2,L\ell_*(n)+n^3\})`$, $`G=O(NL)`$, at $`a=2`$, $`b\ge C(L+n+7+\sqrt{NL})`$ | Same real-frame circuit, for sufficiently large fixed C; [parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md); T-depth optimality remains open |
 | Fixed-accuracy count and depth at modest width | $`T=O(\sqrt N+N/b)`$, $`D_T=O(N/b^2+n\chi(n))`$, $`G=O(N)`$, at $`a=2`$, fixed L, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; count is optimal in order, and depth is matching for $`b\le\sqrt N/n`$; [amortized dirty lookup](AMORTIZED_DIRTY_LOOKUP.md) |
 | Variable-accuracy count and depth | $`T=O(\sqrt{NL}+NL/b+nL)`$, $`D_T=O(NL/b^2+nL+n\chi(n))`$, $`G=O(NL)`$, at $`a=2`$, $`L\ge6`$, $`b\ge17(L+n+7)`$ | Same complete real-frame circuit; both are matching when $`b\le\sqrt{NL/(nL+n\chi(n))}`$; [hybrid composition](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) |
+| Fixed-accuracy large-width depth | $`T=O_\eta(\sqrt N)`$, $`G=O_\eta(N)`$, $`D_T=O_\eta(n)`$, at $`a=2`$, $`b\ge C_\eta\sqrt N`$ | Same complete real-frame circuit with charged unary source preparation/return; [unary theorem](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy); T-count is optimal in order, depth lower bound remains $`\Omega(1)`$ |
 
 Take the best applicable construction. For fixed L, $`a=2`$ and
 $`b=L+n+7=\Theta(n)`$, the arbitrary-budget matching splice gives
@@ -84,8 +85,8 @@ uses $`a=2`$ throughout and respects each sufficient allocation threshold.
 | Variable L, $`17B_0\le b\le\sqrt{NL/(nL+n\chi(n))}`$ | $`\Omega(NL/b^2)`$ | $`O(NL/b^2)`$ with $`T=\Theta(NL/b)`$ | Matching throughout this interval when nonempty |
 | $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$ | $`\Omega(N/n)`$ | $`O(N/n)`$ with $`T=\Theta(N)`$ | Matching at inverse-polynomial error in N for sufficiently large n |
 | Fixed L, $`2B_0\le b\lt17B_0`$ | $`\Omega(N/n^2)`$ | $`O(N/n)`$ | Earlier schedule remains the proved fallback at this literal reservation |
-| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n\log\log(n+2))`$ with $`T=O(\sqrt N)`$ | [Grouped program reuse](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy); depth lower bound remains unmatched |
-| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n\log\log(n+2))`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
+| Fixed L, sufficiently large $`b=\Theta(\sqrt N)`$ | $`\Omega(1)`$ | $`O(n)`$ with $`T=O(\sqrt N)`$ | [Unary phase-source groups](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy); depth lower bound remains unmatched |
+| Fixed L, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(n)`$ with $`T=O(\sqrt N)`$ | Extra width is not needed by this schedule; depth optimality remains open |
 | $`L=N`$, $`b=\Theta(N)`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ | Serial precision cost remains |
 | Selected endpoint $`L=N,b=B_0`$ | $`\Omega(1)`$ | $`O(N\ell_*(n))`$ from $`D_T\le T`$ | The larger-bank depth theorem does not apply |
 
@@ -101,9 +102,13 @@ The exact dirty-counter indicator, [masked-sum refinement](DIRTY_SUM_COMPRESSION
 and bilinear-query hybrid now improve
 the square-root-width upper bound to $`O(n\chi(n))`$. The
 [grouped-program refinement](GROUPED_PROGRAM_PREFETCH.md#8-complete-frame-theorem-at-fixed-accuracy)
-now gives $`O(n\log\log(n+2))`$ at fixed accuracy, with returned
+gives $`O(n\log\log(n+2))`$ at fixed accuracy, with returned
 work and the same optimal-order T-count. It combines cached conditional
 programs with a summable chunked-indicator budget for the late layers.
+The [unary phase-source refinement](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
+now gives $`O(n)`$ depth under the same external-flag and sufficient
+dirty-width orders. It charges source preparation/inversion and the
+coherent one-hot program interface.
 The lower bound is still constant in this regime; depth optimality is open.
 The lower bound does not assume count optimality; the upper circuit also
 retains optimal-order T-count. No high-precision endpoint improvement follows.
@@ -164,15 +169,21 @@ $`16m2^g`$ suffix reservation. They erase each suffix enable before its
 controls change and retain prefix nodes until the final reverse traversal.
 Their work returns exactly through source leakage and on arbitrary
 inactive inputs. The resulting selector contribution is $`O(n)`$;
-the source/reflection contribution still determines the displayed frontier.
+the source/reflection contribution retains the old geometric bound.
 The [common-source identity](GROUPED_PROGRAM_PREFETCH.md#11-a-common-source-identity-and-the-remaining-reflection)
 moves a shared preparation to the group boundaries but retains two
 conjugated success reflections per stage. A legal exact row rules out a
 stale success monitor and a one-use source-bank substitution, with constant
 rejected norm. These are interface restrictions, not depth lower bounds.
-The next bounded task is a charged shallow reflection or monitor-update
-identity that closes through two unequal rows and a third stage, including
-all rejected action. No such improved source construction is yet selected.
+The [unary construction](UNARY_PHASE_GRADIENT.md) instead uses a Fourier
+eigenstate and constant-T-depth programmed cyclic shifts. Conditional
+bilinear work returns exactly on all source inputs, the inactive sector
+is literal identity, and source preparation plus actual inversion costs
+at most twice its preparation error for the entire group. Its global
+allocation proves the displayed $`O(n)`$ upper bound. The next bounded
+question is a width-dependent $`O(N/b^2+n)`$ depth extension retaining
+$`O(\sqrt N+N/b)`$ T-count; this remains unproved. Its first obligation
+is a complete reduced-width prefetch and workspace schedule.
 
 The [two-layer obstruction](SHALLOW_SOURCE_OBSTRUCTION.md) separately
 allows unrestricted Clifford interlayers: the original source at width
