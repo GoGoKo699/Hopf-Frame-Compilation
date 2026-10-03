@@ -1138,3 +1138,18 @@ charged. Logical stages/selectors and program query pairs retain separate
 $`O(n)`$ early allowances. This is a predicate-allocation refinement,
 with no new external premise, generic priority claim, complete-frame
 depth order, matching interval, or high-precision endpoint result.
+
+## 26. Exact shared-prefix cache capacity (3 October 2026)
+
+The [shared-prefix audit](SHARED_PREFIX_QUERY_AUDIT.md) applies
+[Nielsen–Chuang's programming theorem](https://arxiv.org/pdf/quant-ph/9703032),
+pp. 1–2, Eq. (3) and the Result/Eqs. (6)–(10). Encoding preserves read-only
+prefix x and acts reversibly on b arbitrary dirty bits and c initialized
+cache bits, giving each program support rank $`2^b`$. A fixed exact
+processor without access to x, implementing R distinct XOR-query
+signatures, requires pairwise orthogonal supports. Consequently
+$`R2^b\le2^{b+c}`$, or $`R\le2^c`$. All other prefix-bearing
+bits must be counted in the program; conditional logical zeros count
+among c. Phase-query signatures instead require distinctness modulo
+global phase. This restricts the stated interface, without a T-depth
+lower bound or priority claim.

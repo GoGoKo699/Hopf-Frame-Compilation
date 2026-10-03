@@ -1,11 +1,11 @@
 # Continuing research workspace
 
 This is the current research checkpoint, revised **3 October 2026** from
-verified main `3d4f0900c9ac85724f425eff00356d6455765d59` (PR #83).
-That baseline passes 485 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. This continuation proves windowed group predicates
-and adds five bounded checks. Two early linear-depth allowances remain;
-the complete-frame frontier is unchanged.
+verified main `da0d948df7b1f034b649db77fa8aaca9c2064496` (PR #84).
+That baseline passes 490 tests, four exact fault-tolerant receipt suites,
+and all five CI checks. The shared-prefix query audit below closes a
+specific cache route; it establishes no new depth saving. Two early
+linear-depth allowances remain, and the complete-frame frontier is unchanged.
 
 ## Mandate and model
 
@@ -145,15 +145,39 @@ may be temporary group work, but they must return before the cache is read
 again. No clean-cache assumption is made on the inactive sector, and no
 identity is asserted for arbitrary initial h equal to one.
 
-The next selected test must address the program-query or logical-stage
-row. Simple all-branch window prefetch does not fit the current one-hot
-program interface: with unary phase modulus q, G consecutive target bits
-require $`q(2^G-1)`$
-conditional-zero program bits. The O(k) available logical suffix imposes
-$`G=O(\log(k/q+1))`$, reproducing the existing group scale. A dirty cache
-cannot be treated as this clean one-hot program. The decision record
-specifies the next bounded query-interface audit before a larger circuit
-or improved complete-frame claim is attempted.
+The [shared-prefix query audit](docs/SHARED_PREFIX_QUERY_AUDIT.md)
+finds that a retained dirty indicator leaves an unknown output mask.
+A correction computed before the local address changes is generally
+stale, even for commuting XOR queries. A one-clean-bit native example
+shows precisely which baseline promise repairs the small construction.
+
+More generally, consider an encoder that preserves the original prefix x,
+followed by exact reusable row readers that cannot access x at all.
+With c initialized cache bits and any number of arbitrary dirty bits,
+at most $`2^c`$ distinct row signatures fit. This counts every initialized
+wire used by the encoder, including conditional logical zeros. For arbitrary
+legal Hopf tables over G target bits, the requirement is
+
+```math
+c\ge\min\{d,2^G-1\},\qquad d=n-k.
+```
+
+Even granting all k remaining logical bits and both flags to this cache,
+when $`d\gt k+2`$ its window satisfies $`G\le\log_2(k+3)`$.
+It therefore cannot combine a growing number of the current early groups
+in that latter portion, without assuming a one-hot encoding.
+It does not constrain a reader that accesses x, even by CNOT,
+or a circuit that implements a fused window without exposing row queries.
+
+The next selected test must expose the prefix-dependent correction in
+a two-group query/body/inverse-query word. Permit the existing read-only
+Clifford interface to x, keep the changed first-group target in the second
+address, and price every refresh and inverse. Seek an explicit reduction
+in long-prefix depth; an equivalent formula or constant-factor cancellation
+alone is insufficient. Stop if it exceeds the proved prefix-blind cache
+capacity, uses a stale dirty mask, or assumes an unproved relation between
+independent angle rows.
+The logical-stage cost remains independent of any query improvement.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the

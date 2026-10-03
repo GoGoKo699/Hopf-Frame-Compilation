@@ -70,6 +70,7 @@ topic has one primary chapter below.
 | Chapter | Role |
 |---|---|
 | [Research status and open endpoint](OPEN_PROBLEM.md) | Reconciled hierarchy of bounds, promised update families, and supporting components; current task-specific protocol and separate complete-frame questions |
+| [Shared-prefix query audit](SHARED_PREFIX_QUERY_AUDIT.md) | Exact dirty-mask and cache-capacity boundaries for prefix-independent row readers; charged prefix access and fused-window circuits remain outside the restriction |
 | [Source-reuse limits](SOURCE_REUSE_LIMITS.md) | Scoped source restrictions, classical tree-generator compression, and the coherent transport and leakage obstacles |
 | [Endpoint tree transport](ENDPOINT_TREE_TRANSPORT.md) | Sparse path representation, explicit normalized unitary columns, weighted norm bound, and the remaining joint precision cost |
 | [Weighted transport block](WEIGHTED_TRANSPORT_BLOCK.md) | Complete one-signal-flag dilation, rejection correction, singular-case preprocessing, and native synthesis with exact or approximate dirty return |
