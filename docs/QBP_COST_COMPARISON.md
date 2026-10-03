@@ -597,6 +597,17 @@ This is a frame-compiler theorem, not a lower bound for gradient estimation
 or a change to the state-based schedules. The A/B comparison below remains
 a comparison of its stated expressions; all eligible schedules may be used.
 
+The subsequent [uniform real-frame theorem](UNIFORM_PRECISION_DEPTH.md)
+is also eligible at $`b\ge17(K+n+7)`$. It retains the last
+same-circuit T/Clifford bounds and improves depth to
+$`O(NK/b^2+nK)`$. For $`6\le K\le\log_2(n+2)/16`$, it gives
+$`T=O(\sqrt{NK}+NK/b)`$ and $`D_T=O(NK/b^2+n)`$.
+The fixed-accuracy predecessor already gives $`O_K(n)`$ depth at
+sufficient square-root dirty width. Thus the historical original-B
+expression compared below is not the best current fixed-accuracy frame
+bound. These improvements still use K, charge both frame calls and all
+shots, and assert no optimal gradient-estimation or complex-frame depth.
+
 The common A pool satisfies the old A threshold. For a common B comparison,
 require literally
 
