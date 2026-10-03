@@ -22,7 +22,7 @@ Their remaining questions are separate from the completed Hopf-QBP contract.
 
 | Remaining gap | Current boundary | Selected treatment |
 |---|---|---|
-| Large-width T-depth | At fixed accuracy, two clean flags and sufficiently large $`b=\Theta(\sqrt N)`$, $`\Omega(1)\le D_T^\star\le O(n)`$, with $`T=O(\sqrt N)`$ and $`G=O(N)`$ | The nonuniform indicator resolves the late-tail component; next test protected source reuse across early groups |
+| Large-width T-depth | At fixed accuracy, two clean flags and sufficiently large $`b=\Theta(\sqrt N)`$, $`\Omega(1)\le D_T^\star\le O(n)`$, with $`T=O(\sqrt N)`$ and $`G=O(N)`$ | The late-tail indicator and repeated source-boundary costs are resolved; next test windowed outer predicates |
 | High-precision complete-frame count endpoint | At $`a=2,L=N,b=N+n+7,n\ge3`$, $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$ | Park until a new complete native identity supplies its symbolic precision, workspace, and work-return ledger |
 
 ### Completed: nonuniform chunks in an exact dirty indicator
@@ -59,13 +59,13 @@ new reservation fits. The original full-frame width threshold remains
 valid through its existing fallbacks; this replacement does not claim to
 fit every instance at that literal threshold.
 
-At fixed accuracy there are $`O(n/\log(n+2))`$ early groups. Their
-four separate linear-depth allowances remain:
+At fixed accuracy there are $`O(n/\log(n+2))`$ early groups. Three
+separate linear-depth allowances remain in the current accounting:
 
-| Contribution | Current depth allowance | Effect of the new indicator |
+| Contribution | Current depth allowance | Latest refinement |
 |---|---|---|
 | Early logical stages and incremental selectors | $`O(g)`$ per height-g group, with total height O(n) | Unchanged |
-| Early phase-source preparation, unary conversion, and actual inverse | $`O(\log(n+2))`$ per group | Unchanged |
+| Early phase-source preparation, unary conversion, and actual inverse | One global pair of depth $`O(L+\log(n+2))`$ | The protected-source theorem removes repetition |
 | Early outer activity predicate and its inverse | $`O(\log(n+2))`$ per group | Unchanged |
 | Early program prefetch and unload | $`O(\log(n+2))`$ per group | Same order for an address of length O(n) |
 | Late queries, sources, and predicates | $`O(NL/B^2+M[L+\log(n+2)])`$, with the second term o(n) | The old linear indicator allowance is removed |
@@ -73,39 +73,64 @@ four separate linear-depth allowances remain:
 These are construction costs, not lower bounds. Removing the last row's
 linear term does not prove sublinear complete-frame depth.
 
-### Next bounded test: a protected source bank across early groups
+### Completed: a protected source bank across early groups
 
-This is an unproved candidate, selected to test one remaining contribution.
-Reserve a fixed terminal logical block for the unary phase source and its
-preparation workspace, with size of order $`q^\rho+q\log q`$ in the
-[unary-source notation](UNARY_PHASE_GRADIENT.md), where q here is the
-phase modulus and $`\rho=\log_2 3`$. Compute its initial-zero predicate into the first
-external clean flag H once, then prepare the source conditional on H.
-For each early group use the second clean flag for H conjoined with the
-zero predicate of that group's outer suffix **excluding the protected
-block**. Keep program, selector, and predicate work disjoint from that
-block. The source must survive each group while those local registers
-return; apply its actual inverse once before the late tail, then erase H.
+The [protected-source theorem](PROTECTED_UNARY_SOURCE.md) uses a fixed
+terminal logical bank for the source and its static auxiliary work.
+Compute its initial-zero predicate into H once. For each early group,
+the second initialized flag h stores H conjoined with the zero predicate
+of that group's outer suffix **excluding the protected bank**. All local
+program and selector work remains outside that bank.
 
-The decisive obligation is a complete-input two-flag identity and error
-bound. Never retest the physically modified source block as logical zero,
-and never assume an approximate source returns exactly to zero before H
-is erased. Charge the final flag erasure, source leakage, and every
-returned register in the same initialized-isometry norm. A successful
-argument should charge source preparation error only at the two global
-boundaries, while retaining the existing angle and tail error budgets.
-Compare the whole actual prepare/use/unprepare word against an ideal
-eigen-source, then apply the same actual H-erasure word to both outputs;
-only the ideal comparison is known to have the protected block zero.
-First close this symbolic contract and a simultaneous-work/cutoff ledger;
-only then add a small boundary check if it tests a new failure mode.
+Apply the actual source preparation U unconditionally, run all early
+middles without their per-group preparation pairs, then apply the actual
+$`U^\dagger`$ and erase H. On H equal to zero and h initially zero,
+the whole middle is identity on arbitrary bank and other work, so the
+preparation pair cancels exactly. On H equal to one, every group's local
+work and h return exactly for an arbitrary source input. The ideal unary
+eigen-source is preserved throughout the full early segment.
 
-Stop if the construction needs a third initialized flag, tests the
-modified bank as a zero suffix, overlaps live work, or relies on an
-uncharged source-return assumption. Even a successful source-bank test
-would remove only the early source-boundary allowance. Logical stages,
-outer predicates, and program loading still require separate progress
-before any sublinear complete-frame claim.
+If the prepared source column has error delta, the entire early segment
+has initialized-isometry error at most $`2\delta`$. The actual inverse
+may leave bank leakage; applying the same final H-erasure circuit to the
+actual and ideal comparisons includes any residual flag amplitude in
+that norm. No exact actual bank return, discarded component, or ideal
+inverse is assumed. Setting $`\delta=\eta/8`$ gives one global
+$`O(L+\log(n+2))`$ source-boundary depth allowance, with all live
+storage and the revised constant cutoff charged.
+
+Thus the repeated source-boundary cost is removed. The three remaining
+early costs in the table still allow linear depth; no new full-frame
+asymptotic order or high-precision endpoint follows.
+
+### Next bounded test: cached predicates for a window of groups
+
+This is an unproved candidate for the early outer-predicate contribution.
+For a window of $`J=\lceil\log_2(n+2)\rceil`$ consecutive early
+groups, use O(J) additional protected conditional-zero bits, disjoint from
+the source and convolution work. Cache each group's logical-block zero
+predicate, their suffix-product chain, and one zero predicate for the
+nonbank logical suffix beyond the window. These determine the group
+activity flag with a constant number of controls.
+
+The intended order consumes information before its logical controls
+change: erase a group's block-zero bit before acting on that group;
+erase the consumed chain bit while the next block-zero bit and chain
+bit are still valid. The window-tail predicate can be erased at the end
+because the completed window restores its outer logical suffix. Earlier
+groups may temporarily use future logical bits as work; cached values
+must be used only at completed boundaries where that work has returned.
+
+First prove the full-input window identity and arbitrary inactive-cache
+return, with both external flags initialized and no reset of source
+leakage. Then prove the simultaneous reservation and charge one long
+predicate pair per window, short block-zero computations and erasures,
+and the chain gates. The candidate total predicate depth is
+$`O(n\log\log(n+2)/\log(n+2))`$ in the uniform low-precision regime;
+it is not yet a theorem. Stop if a consumed cache bit must be erased from
+already changed logical controls, or if the inactive proof assumes clean
+cache bits. Even success would leave logical stages and program queries
+with separate linear allowances.
 
 ## Established frontier
 

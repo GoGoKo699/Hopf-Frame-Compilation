@@ -184,6 +184,22 @@ tests do not emit the complete native bilinear XOR, selected-program
 network, scalable group, or full-frame lookup schedule. Their uniform
 work-return, count, width, depth, and error statements are analytic
 proofs, not extrapolations from the finite native and reduced fixtures.
+The [protected unary source bank](PROTECTED_UNARY_SOURCE.md) has
+[four bounded checks](../tests/test_protected_unary_source.py). Its q=4
+preparation is a literal native word on the full six-wire bank. Two
+unequal group partitions are compared on every initial logical/bank
+column with both flags zero. The reduced group operators include signed
+shifts on every bank bitstring, the initial zero-bank predicate, and
+group enables that exclude the protected bank. Inactive interior identity
+is checked for $`H=0,h=0`$; arbitrary $`h=1`$ is outside that contract.
+Perturbed preparation creates components outside the unary source space;
+the actual inverse and final zero-bank predicate act on that live
+leakage. The complete output error obeys the single $`2\delta`$ bound
+across both groups, including a nonzero final-H residual and a coherent
+reference extension. Negative controls retest the physical bank or
+substitute the ideal inverse. Predicates and group actions are reduced
+operator fixtures, not a native group or QROM emitter; scalable work
+return and resource bounds remain analytic.
 The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
 [three bounded checks](../tests/test_chunked_dirty_indicator.py) for
 native shared-control phases, actual inverses, arbitrary dirty-tree

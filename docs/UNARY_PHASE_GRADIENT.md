@@ -23,6 +23,12 @@ subsequently bounds this source cutoff uniformly for slowly growing L
 and combines it with a rectangular query allocation. The fixed-accuracy
 square-root-width theorem below remains valid.
 
+The later [protected-source construction](PROTECTED_UNARY_SOURCE.md)
+retains one source across all early groups. Its initial-zero guard and
+actual final erasure charge source error at only two global boundaries.
+The per-group construction below remains the local interface; the full
+frame still has separate early logical, predicate, and query costs.
+
 ## 1. Local contract
 
 Use the group registers of [the grouped interface](GROUPED_PROGRAM_PREFETCH.md#1-group-program-and-local-statement):
