@@ -6,7 +6,10 @@ Retaining a dirty prefix indicator does not by itself make a later query
 independent of its unknown offset. This chapter identifies that residue,
 proves a capacity bound for an explicitly restricted exact cache reader,
 and gives a native positive example with one additional clean baseline.
-None supplies a faster complete-frame construction or a T-depth lower bound.
+A charged two-group identity then isolates the correction needed to share
+a prefix boundary. Its generic correction still contains a fresh lookup.
+These statements supply no faster complete-frame construction or T-depth
+lower bound.
 
 ## 1. The exact residue of a retained-prefix short echo
 
@@ -200,7 +203,186 @@ It therefore does not supply the claimed operation with a dirty baseline.
 This small positive example prices one initialized cache bit; it supplies
 no scalable lookup or complete-frame depth saving.
 
-## 6. Scope and the next admissible interface
+## 6. A charged two-group program refresh
+
+Let A be the completed exact dirty indicator $`Y\mapsto Y\oplus e_x`$,
+with read-only prefix x and returned private helpers. Use one common
+padded program P. For $`i=1,2`$, let the completed shear $`S_i`$ act as
+
+```math
+P\longmapsto P\oplus R_i(t_i)Y,
+```
+
+preserving x, Y, its local address $`t_i`$, and all helpers. Each body
+$`B_i`$ must preserve P, use x only as a read-only control, and act as
+identity on Y and the prefix-helper cache independently of their values.
+These standing assumptions imply $`[B_i,A]=0`$ on the full input space. Merely
+returning Y does not suffice: control by Y can violate the commutation.
+Both bodies preserve $`t_1`$;
+$`B_2`$ preserves $`t_2`$, while $`B_1`$ may change a logical target
+that belongs to $`t_2`$. The bodies may act on an arbitrary retained
+source and need not commute with each other or with the program shears.
+
+All sequences in this section are chronological. Define the exact XOR
+query $`Q_i`$ by
+
+```math
+Q_i:\quad S_i,\ A,\ S_i^\dagger,\ A^\dagger.
+```
+
+It adds $`R_i(t_i)e_x`$ to P and returns Y. The reference sequence
+
+```math
+Q_1,\ B_1,\ Q_1^\dagger,\ Q_2,\ B_2,\ Q_2^\dagger
+```
+
+equals the retained-prefix sequence
+
+```math
+S_1,\ A,\ S_1^\dagger,\ B_1,\
+Q_\Delta,\ B_2,\ S_2,\ A^\dagger,\ S_2^\dagger,
+```
+
+where the full-input correction query is
+
+```math
+Q_\Delta:\quad P\longmapsto
+P\oplus[R_1(t_1)+R_2(t_2)]e_x.
+```
+
+In this correction, $`t_2`$ is evaluated after $`B_1`$. To prove the
+identity, start with arbitrary program p and indicator y. The initial
+three words leave $`Y=y\oplus e_x`$ and
+$`P=p\oplus R_1(t_1)e_x`$, exactly the program seen by the first
+reference body. After that body, the correction changes P to
+$`p\oplus R_2(t_2)e_x`$. The second body therefore receives its
+correct current program. Its own address is preserved, so the final
+three words return P to p and Y to y. Each helper has returned at the
+stated completed boundary. This basis identity, with arbitrary source
+unitaries in the bodies, extends to coherent inputs and references.
+
+Equivalently, the interstitial chronological word obeys
+
+```math
+A^\dagger,(S_1^\dagger S_2),A
+=(S_1^\dagger S_2),Q_\Delta.
+```
+
+Parentheses denote chronological composition at the current boundary;
+this never moves $`S_2`$ through $`B_1`$. Actual inverses retain literal phases.
+The operator identity holds for arbitrary P and Y. If a body's intended
+logical interpretation requires a clean-loaded one-hot program, that
+promise is needed only for that interpretation at its body boundary.
+
+For a reused activity flag, insert its exact boundary transition
+$`C:h\mapsto h\oplus\gamma`$ after $`B_1`$ in the retained word.
+Both bodies preserve h. Its wire is disjoint from x, Y, and the prefix
+helpers; C commutes with A. The cached controls of gamma exclude P and Y
+and stay fixed throughout the separator. If $`F_i=R_i(t_i)e_x`$ is the ungated row, the correction
+must use the new h and add
+
+```math
+\Delta=(h\oplus\gamma)F_1\oplus hF_2
+=h(F_1\oplus F_2)\oplus\gamma F_1.
+```
+
+It replaces the old active program by the new active program without
+storing old h. The same boundary argument proves this variant. An exact
+generic implementation uses the chronological shear
+$`S_\Delta=C^\dagger,S_1^\dagger,C,S_2`$ in the usual A echo,
+with gated $`S_i`$ and C evaluated on the boundary controls. Every C
+and actual inverse inside this implementation is charged.
+
+## 7. Every correction and live register remains charged
+
+For $`C=T,G`$ or the serial T-depth upper ledger, the retained word has
+
+```math
+C_{\rm retained}\le2C(A)+2C(S_1)+2C(S_2)
+ +C(Q_\Delta)+C(B_1)+C(B_2).
+```
+
+For $`E\ge2`$ bodies satisfying the same commutation and own-address
+preservation contracts, the program-boundary argument gives one outer A
+pair, endpoint shears costing $`2C(S_1)+2C(S_E)`$, and $`E-1`$ adjacent
+corrections, each evaluated after its preceding body. Allowing two shears
+per body is a conservative bound; intermediate shears are charged inside
+the corrections:
+
+```math
+C_{\rm retained}\le2C(A)+2\sum_{i=1}^E C(S_i)
+ +\sum_{i=1}^{E-1}C(Q_{\Delta_i})+\sum_{i=1}^E C(B_i).
+```
+
+For $`E=1`$, the single load/body/unload word instead uses four $`S_1`$
+appearances and one A/actual-inverse pair.
+
+Add each actual activity transition C to these ledgers when flags change.
+Correction queries include every internal C/inverse they use. A generic
+implementation uses $`S_1^\dagger S_2`$ in the usual indicator echo,
+incurring another A/inverse pair and both shear directions. Classical
+table differencing alone gives no long-prefix depth saving.
+
+Reserve Y until the final A inverse and common P outside both target
+blocks. Any conditional-zero promise follows from an existing guard and
+holds whenever its body is active. Predicates cannot retest the live
+loaded P. Correction helpers are disjoint from P, Y, source, and selectors;
+private pools are reused only after exact return. All source and guard
+work is charged. This local identity proves no new full-frame allocation
+or width theorem.
+
+If the two programs occupy distinct banks, the interstitial correction
+unloads the old bank and loads the new one. Its table is their
+concatenation, not a same-bank XOR cancellation. Both banks and every
+copy or decoder must then be charged.
+
+## 8. A correction needs a proved structural saving
+
+Take $`q\ge8`$ and a constant first translation label
+$`a_0=q/4`$. Its real Hopf rotation is
+
+```math
+R(\pi/2)=XZ,\qquad |t\rangle\longmapsto(-1)^t|t\oplus1\rangle.
+```
+
+For this reduction choose that literal Clifford as the exact first logical
+body on its active zero-suffix sector; no equality to a generic unary-source
+word on arbitrary source characters is assumed.
+The first body changes the later address with its literal sign preserved.
+Let the second one-hot row $`e_{a(x,t)}`$ be
+otherwise arbitrary within the legal angle table class. Its correction
+is $`e_{a(x,t)}\oplus e_{a_0}`$. One fixed Clifford X on program bit
+$`a_0`$ converts this correction query into the fresh query for
+$`e_{a(x,t)}`$. Address change has not forced table correlation.
+The reduction is not a depth lower bound or an obstruction to structured families.
+
+There is a precise cheap promised case. Suppose one correction output
+is $`\Delta(x,t)=u(x)t`$ with u a known affine parity. Let $`P_u`$
+toggle an arbitrary dirty helper d by u using CNOTs and, for a constant
+term, X. The chronological native word
+
+```math
+P_u(d),\ \mathrm{CCX}(d,t;p),\
+P_u^\dagger(d),\ \mathrm{CCX}(d,t;p)
+```
+
+adds $`[(d\oplus u)t\oplus dt]=u(x)t`$ to output p and returns d.
+It uses two exact Toffolis: $`T=14`$, $`D_T\le8`$, and
+$`G=O(|x|+1)`$. The local address t may have changed before this
+refresh, but remains fixed during it. The identity holds on arbitrary
+dirty, output, and reference inputs. This processor explicitly accesses
+x through charged Clifford gates, so Sections 2–4 do not apply to it.
+
+Rank one alone does not give that ledger: for an arbitrary function
+$`f(x)`$, querying $`f(x)t`$ at $`t=1`$ recovers a fresh query for
+f. The arbitrary legal angle family provides no uniform affine-parity
+factorization. Stop the generic difference-only route unless it supplies
+a new generic lookup construction or proves a cheap factorization
+uniformly over the prescribed family, including its native decoder and
+actual inverse. Constant savings for one pair do not establish a saving
+across a growing window.
+
+## 9. Scope, evidence, and the next admissible interface
 
 The rank bound does not apply to later direct prefix access, even Clifford access;
 encoders that change or move the logical prefix; encoding logical payload;
@@ -208,17 +390,25 @@ and decoders that touch payload. Restricted tables have their actual R,
 and approximate or probabilistic readers require different bounds. The
 argument does not convert any of these excluded routes into an obstruction.
 
-A new proposal must either retain explicitly charged prefix access or
-specify a fused window contract that avoids independent all-row readers.
-Its decoder, actual inverse queries, changed local addresses, retained
-source, and dirty/reference return remain part of the complete ledger.
-No reusable faster query identity is established here; logical stages
-also retain their separate linear-depth allowance.
+The charged identity isolates the unresolved generic correction cost.
+A fused window may avoid independent row readers. Its next bounded test
+must address immediate eight-mode closure beyond the existing
+[magic-basis factorization and controlled coupling](ENDPOINT_TREE_TRANSPORT.md#8-the-eight-mode-root-retains-a-controlled-coupling).
+An exact rewrite of the retained-source word requires every source input.
+A different body may act correctly only on the ideal source character
+if a new complete error comparison and inactive/work-return proof suffice.
+An ideal four-mode factorization or constant pair saving alone does not
+improve the remaining linear-depth ledger. No faster frame theorem follows.
 
-The five [bounded native checks](../tests/test_shared_prefix_query_audit.py)
+The eight [bounded native checks](../tests/test_shared_prefix_query_audit.py)
 cover the short-echo residue, a stale baseline, correct completed local
 queries with changed targets, a failed delayed whole-word echo, and the
-clean-baseline toy. They compare full matrices on at most seven wires,
-including dirty inputs, literal phases, and actual inverses. They do not
-prove the symbolic capacity bound, emit complete Hopf groups, or establish
-an unrestricted Hopf obstruction.
+clean-baseline toy. Added checks compare charged two-group words with a
+signed XZ body, a reused-h transition with $`\gamma=1`$, and the affine
+refresh's 14-T/eight-layer schedule. Complete matrices on at most eight
+wires include arbitrary dirty inputs, literal phases, and actual inverses.
+The fusion fixtures use the reduced feature $`Y\mapsto Y\oplus x_0x_1`$,
+not a full one-hot prefix indicator. Missing or premature corrections and
+an omitted $`\gamma F_1`$ term fail explicitly. These checks neither
+prove the symbolic capacity bound nor emit complete Hopf groups or a
+scalable lookup, and establish no unrestricted Hopf obstruction.

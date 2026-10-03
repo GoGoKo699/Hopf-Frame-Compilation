@@ -1153,3 +1153,13 @@ bits must be counted in the program; conditional logical zeros count
 among c. Phase-query signatures instead require distinctness modulo
 global phase. This restricts the stated interface, without a T-depth
 lower bound or priority claim.
+
+The [charged continuation](SHARED_PREFIX_QUERY_AUDIT.md#6-a-charged-two-group-program-refresh)
+retains prefix access and so lies outside that capacity restriction. Its
+exact two-group identity reuses a program bank and charges an intervening
+table-difference query. Fixing one legal row to a constant reduces an
+ordinary fresh query to that correction by a Clifford output XOR. A cheap
+affine-factor example uses the existing dirty echo and literal Toffoli
+words; low rank without cheap factors does not suffice. These are local
+algebraic consequences of the existing query interface, with no new
+external synthesis premise or unrestricted depth lower bound.

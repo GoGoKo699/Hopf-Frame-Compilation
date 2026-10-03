@@ -146,37 +146,73 @@ bits for unary phase modulus q. The new dimension argument neither forces
 that representation nor claims that every fused frame circuit must expose
 an exact reader for every angle node.
 
-### Selected next test: charge the remaining prefix access
+### Charged correction: an exact identity with a remaining query
 
-A general whole-window offset echo remains invalid. For the algebraic word
+The [charged two-group word](SHARED_PREFIX_QUERY_AUDIT.md#6-a-charged-two-group-program-refresh)
+completes the selected prefix-access audit. Both groups use a common padded
+program bank. One prefix indicator remains live while the first body runs;
+an exact table-difference query changes the program to the second body's
+word at the current, changed address. The last actual inverse returns the
+program and indicator. The identity holds for arbitrary dirty program and
+source inputs, with the body's required one-hot promise stated separately
+at its use points. A transition of the existing activity flag is included
+without storing a third clean flag.
 
-```math
-K(p_1,p_2)=\mathrm{CNOT}_{t\to s}^{p_2}X_t^{p_1},
-```
+For E groups, this algebra leaves one outer indicator pair and E minus one
+correction queries. Every correction and its temporary work remain charged.
+The generic correction family contains ordinary fresh table queries: fix
+the old legal one-hot word to a constant and vary the new row freely. One
+fixed Clifford XOR recovers the new query. A constant first angle of
+$`\pi/2`$ can change the next address; its real Hopf rotation
+is $`XZ`$, including the sign on its one input. It imposes no relation on
+the later angle rows.
 
-loading a into an arbitrary program d and postponing its baseline inverse
-gives $`K(d)^\dagger K(d\oplus a)`$. At
-$`d=(1,0)`$ and $`a=(0,1)`$, this contains an extra $`X_s`$.
-Program return alone is insufficient.
+There is a useful restricted positive example. For an explicitly affine
+parity u of the prefix and a current local bit t, the correction
+$`\Delta(x,t)=u(x)t`$ uses two literal Toffolis and Clifford parity
+computations, returning one arbitrary dirty helper. But rank one alone
+is insufficient: $`f(x)t`$ with arbitrary f contains a fresh query at
+$`t=1`$. Independent Hopf parameters do not supply cheap prefix factors.
+These are exact identities and reductions, not unrestricted depth lower
+bounds. The complete-frame frontier and both linear allowances are unchanged.
 
-The next candidate must retain explicitly charged access to the common
-prefix or supply a fused-window identity that does not need arbitrary
-row readers. Select the first as the next bounded test: write the complete
-two-group query/body/inverse-query circuit with the original prefix entering
-through the existing read-only Clifford interface. The first group changes
-a logical bit used by the second query. Expose the required table-difference
-correction, all dirty offsets, literal phases, actual inverses, and the
-full retained-source action. A positive result must price the correction
-and lower the long-prefix depth, rather than move it into refresh or erasure.
+**Stop rule.** Do not continue the general table-difference route without
+either a better generic query schedule or a factorization proved cheap for
+every admissible row family. Recounting fewer explicit indicator symbols,
+assuming related rows, or moving the readout into a conjugated basis does
+not pay for the missing correction. The cache-capacity and whole-window
+offset-echo failures remain in the same proof chapter.
 
-Do not repeat a prefix-independent dirty-cache design, assume a correlation
-between independently prescribed angle rows, or regard a constant-factor
-cancellation as a sublinear-depth result. The rank argument does not cover
-later CNOT access to x, relocation of the logical prefix into another
-encoding, approximate readers, or a jointly proved window unitary without
-the reader interface. These remain possibilities, not established savings.
-The logical-stage row remains a separate linear allowance, and the complete
-frame frontier is unchanged.
+### Selected next test: fuse the actual retained-source logical stages
+
+Move to the independent logical-stage contribution. The unary compiler
+uses signed powers of one cyclic source shift S, conjugated by fixed
+logical basis changes. Write its full two-level word as a matrix over
+Laurent polynomials in S, with $`S^q=I`$. Start with $`q=8`$ and four
+logical modes. Retain every source input, both target changes, literal
+phases, and the work-return contract. Then test an explicit proposed
+composition rule on eight logical modes; a two-level identity alone is
+not an asymptotic result.
+
+The [ideal four-mode benchmark](ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark)
+and [eight-mode controlled coupling](ENDPOINT_TREE_TRANSPORT.md#8-the-eight-mode-root-retains-a-controlled-coupling)
+already exist. Do not reproduce them as new progress. The new question is
+whether a factorization closes for the actual common-source operator and
+has a charged growing-block implementation. For this exact rewrite,
+checking only the prepared Fourier eigenstate misses the other source
+characters and does not prove
+this operator identity. An exact polynomial comparison, or all source
+characters for the bounded fixture, is the appropriate first check.
+A different unitary body that agrees only on the ideal source remains
+eligible with a proved global initialized-isometry and inactive/work-return
+contract; failure of an exact rewrite does not exclude that route.
+
+Advance only with a symbolic recurrence for T-depth, T-count, Clifford
+count, simultaneous width, and exact cleanup. Keep source preparation and
+its actual inverse under the established global error bound. Stop if the
+candidate assumes a fresh source, an uncharged coherent evaluator, or
+only a fixed-size factorization. The separate query cost remains in the
+complete-frame ledger throughout this test.
 
 ## Established frontier
 
