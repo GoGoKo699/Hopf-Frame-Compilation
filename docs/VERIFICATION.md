@@ -159,6 +159,31 @@ and check constant stale-monitor and one-use-bank leakage on a legal
 exact zero-angle row. PREP is native; masks, monitors, and reflections
 are reduced operator fixtures. They supply no new reflection emitter
 or unrestricted depth lower bound.
+The [conditional unary phase-source proof](UNARY_PHASE_GRADIENT.md) has
+[six bounded checks](../tests/test_unary_phase_gradient.py). Exact integer
+checks establish the Karatsuba cyclic bilinear identities on every basis
+pair at $`q=1,2,4,8`$, check their rank counts and dense inputs, and verify
+the in-place shift and temporary-word return on every four-bit source
+string for both directions of every one-hot program. A literal 28-T
+scalar guarded trilinear phase gadget checks its active phase and full
+inactive arbitrary-work identity. Native source preparations at q equal
+to four and eight include the product phases, reversible binary-to-unary
+decode, and actual inverse; these small decode words do not implement
+the asymptotic parallel tree schedule.
+
+The group checks use reduced operators on the invariant unary source
+space. Three stages with unequal row programs test the signed-shift
+convention, local suffix enables, all logical columns, and exact inactive
+action on every reduced source input. A perturbed source is retained
+through all three stages and unprepared with its actual inverse; the
+full initialized-isometry error obeys the $`2\delta`$ group bound and
+includes the residual source component. Negative controls expose a
+missing original-h guard, an incorrect inverse shift, a reversed phase
+convention, and substitution of the ideal preparation inverse. These
+tests do not emit the complete native bilinear XOR, selected-program
+network, scalable group, or full-frame lookup schedule. Their uniform
+work-return, count, width, depth, and error statements are analytic
+proofs, not extrapolations from the finite native and reduced fixtures.
 The [chunked dirty indicator](CHUNKED_DIRTY_INDICATOR.md) has
 [three bounded checks](../tests/test_chunked_dirty_indicator.py) for
 native shared-control phases, actual inverses, arbitrary dirty-tree

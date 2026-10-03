@@ -739,7 +739,7 @@ access model.
 ## 16. Precision depth and workspace assumptions (2 October 2026)
 
 The [source-depth audit](SOURCE_T_DEPTH.md) separates a restriction of the
-current source implementation from the unrestricted
+geometric source implementation from the unrestricted
 [Hopf T-depth problem](T_DEPTH_COMPILER.md#4-lower-bounds-and-the-remaining-depth-gap).
 The relevant denominator technique is already present in
 [Casas et al., *Matchgate synthesis via Clifford matchgates and T gates*,
@@ -768,17 +768,20 @@ dirty work. Its bounded-arity elementary-depth lower bound also does not
 bound T-depth when unrestricted Clifford circuits between T layers are free.
 
 [Kim, *Catalytic z-rotations in constant T-depth*, arXiv:2506.15147v3,
-Section 3](https://arxiv.org/pdf/2506.15147v3), published in *Quantum*
+Section 3](https://arxiv.org/pdf/2506.15147), published in *Quantum*
 **10**, 2191 (2026), explicitly leaves constant-T-depth rotation using
 only clean or dirty ancillas open. The depth-three construction assumes
 a prepared nonstabilizer catalyst; the supplied-catalyst resource cannot
 be replaced by arbitrary borrowed qubits. Charging catalyst preparation
 and its initialized workspace is necessary before composition with the
-present compiler.
+present compiler. Its final note records subsequent depth-two and
+measurement-assisted depth-one refinements. The universal-catalyst
+comparison in Section 19 below includes Kim–Laakkonen's later construction.
 
 These comparisons identify usable techniques and their workspace
-conditions. They yield no asymptotic improvement to the unrestricted
-complete-frame depth bound in this pass, and no matching lower bound.
+conditions. The 2 October source-restriction pass yielded no asymptotic
+improvement to the unrestricted complete-frame depth bound, and no
+matching lower bound. Section 19 records the later unary-source compiler.
 The exact source restriction must therefore remain separate from both
 optimal approximate Hopf T-depth and the constant-clean T-count endpoint.
 
@@ -854,5 +857,75 @@ give fixed-accuracy $`O(n\log\log(n+2))`$ T-depth with optimal-order
 $`O(\sqrt N)`$ T-count, $`O(N)`$ Clifford count, two external clean
 flags, and sufficient $`C_\eta\sqrt N`$ dirty workspace. No generic
 priority claim is inferred. The variable-precision theorem keeps its
-previous bounds, and unrestricted large-width depth optimality and the
-constant-clean high-precision endpoint remain open.
+previous bounds. This geometric-source schedule remains a valid
+predecessor to the linear fixed-accuracy bound below; unrestricted
+large-width depth optimality and the constant-clean high-precision
+endpoint remain open.
+
+## 19. Unary phase-source reuse and linear T-depth (3 October 2026)
+
+The [unary phase-source compiler](UNARY_PHASE_GRADIENT.md) uses established
+phase kickback. [Jones et al., arXiv:1204.0567, Section 2.1,
+Eqs. (2)–(4), and Section 4.1, Fig. 15](https://arxiv.org/pdf/1204.0567)
+describe Fourier eigenstates of modular shifts, programmable phases,
+and repeated reference reuse. The local source uses a unary encoding,
+coherently selects its cyclic shift from a loaded one-hot program, and
+prepares/unprepares it inside the active zero suffix. Neither phase
+kickback nor shared phase-reference preparation is claimed as new.
+
+The cyclic convolution uses the standard three-product Karatsuba
+identity; see [Iggy van Hoof, arXiv:1910.02849v2, Section 4.2](https://arxiv.org/html/1910.02849v2).
+Recursive scalar products give the bilinear rank bound, and reduction
+modulo $`X^q-1`$ is linear. The constant T-depth does not come from
+van Hoof's space-efficient reversible multiplication schedule. It comes
+from the local guarded trilinear-phase construction with private
+conditional work and the retained native Toffoli word. Parallel
+parity-phase synthesis with initialized ancillas is already explicit in
+[Selinger, arXiv:1210.0974v2, Section 2, Eqs. (5)–(6), and
+Theorem 4.1](https://arxiv.org/pdf/1210.0974). The local proof must
+additionally establish identity on arbitrary inactive inputs and exact
+temporary return on every active source state.
+
+[Kim–Laakkonen, arXiv:2512.24982v1, Theorems 3, 5 and 6,
+and Section 5.1](https://arxiv.org/html/2512.24982v1) already give
+constant-depth controlled CNOT/Clifford circuits and a universal
+logarithmic-size catalyst for rotations. Their catalytic rotation
+chooses an angle-dependent CNOT matrix classically; its depth-one
+implementation uses measurement-assisted uncomputation. Their charged
+preparation uses measured phase estimation, expected repetitions, and
+dynamic compilation after selecting the catalyst eigenvalue. This does
+not directly supply the unary compiler's coherently loaded angle table,
+unitary source boundary pair, or conditional-work return contract.
+The present bound does not settle Kim's generic clean/dirty-only
+constant-T-depth rotation question: source preparation is charged and
+the complete frame has linear, rather than constant, T-depth.
+
+A recent comparison is [Wu et al., *Shared Phase Arithmetic for Parallel
+Quantum Rotations*, arXiv:2609.36574v1, Sections II.C, III.B and
+IV.C–E](https://arxiv.org/html/2609.36574v1), submitted 29 September 2026
+and checked here on 3 October. Their Theorem 1 expresses reversible
+phase-function evaluation, one binary addition, and decoding; Proposition 1
+gives Clifford-only encoding for disjoint binary supports. The displayed
+ripple adder permits measurement/feedforward and has depth linear in
+the phase-register width. Preparation is charged separately, and parallel
+batches require separate resources. These are useful shared-arithmetic
+precedents, not the constant-depth unary-program interface used here.
+
+The additional result is the complete charged composition: one unitary
+source boundary pair per group, coherent one-hot shift selection,
+inactive-sector identity, the Hopf angle-stability bound, and an
+early/late workspace and query allocation. For every fixed accuracy
+$`\eta`$, it gives one complete real-frame circuit with
+
+```math
+D_T=O_\eta(n),\qquad T=O_\eta(\sqrt N),\qquad G=O_\eta(N),
+```
+
+two external clean flags, and sufficient $`C_\eta\sqrt N`$ dirty
+workspace. The initialized-isometry error includes all returned work
+and arbitrary dirty-reference entanglement. It uses no supplied phase
+state or intermediate measurement. This improves the fixed-accuracy
+depth upper bound; it proves neither an unrestricted matching depth
+lower bound nor the constant-clean high-precision endpoint. The sources
+above identify inherited ingredients and interface distinctions, not
+priority for the composite construction.
