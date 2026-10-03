@@ -1,11 +1,11 @@
 # Continuing research workspace
 
-This is the current research checkpoint, revised **3 October 2026** after
-verified main `7a3fc0100dd5c1df7cbce1195d6a9504196db8a7` (PR #80).
+This is the current research checkpoint, revised **3 October 2026** from
+verified main `9dab7203fd39e8c2b25da4c1662021cf9bd9738d` (PR #81).
 That baseline passes 476 tests, four exact fault-tolerant receipt suites,
-and all five CI checks. Later commits may update this checkpoint.
-The revision consolidates results and selects a bounded next question;
-it does not assert another compiler theorem.
+and all five CI checks. This continuation proves the selected nonuniform
+dirty-indicator component and adds five bounded checks. Its complete-frame
+depth frontier remains unchanged; the next source-bank test is unproved.
 
 ## Mandate and model
 
@@ -98,55 +98,63 @@ complex-frame theorem.
 ## Revision decision and next bounded task
 
 The [current decision record](docs/OPEN_PROBLEM.md#revision-checkpoint-and-selected-next-test)
-supersedes broad suggestions to share sources or search for an unspecified
-lower-bound invariant. No source-sharing step alone currently supplies a
-sublinear complete-frame depth plan.
-
-The displayed fixed-accuracy schedule has several separate linear depth
-allowances. These are properties of its construction, not lower bounds:
-
-| Contribution | Current accounting |
-|---|---|
-| Early target-dependent shifts and selector updates | O(g) per group; the group heights sum to order n |
-| Early source preparation, conversion, and actual inverse | O(log n) per group |
-| Early outer predicates and their inverses | O(log n) per group |
-| Early program loading and unloading | O(log n) per group |
-| Last coefficient-query indicators | The fixed small chunk cap leaves O(n) address depth |
-
-There are O(n/log n) early groups. Removing any one row does not remove
-the others. The next selected **component target**, not an established
-result, is an exact dirty indicator for $`S=2^s`$ outputs:
+separates the completed indicator milestone from the next bounded test.
+The [nonuniform indicator](docs/NONUNIFORM_DIRTY_INDICATOR.md) now proves
+an exact dirty indicator for $`S=2^s`$ outputs:
 
 ```math
-|x,Y,d\rangle\longmapsto|x,Y\oplus e_x,d\rangle,
+|x,Y,W\rangle\longmapsto|x,Y\oplus e_x,W\rangle,
 \qquad T,G,w=O(S),\qquad D_T=O(\log_2(s+2)).
 ```
 
-It must use no initialized helpers and return arbitrary dirty/reference
-inputs with literal phase. The candidate is a nonuniform partition in
-the existing [chunked tree echo](docs/CHUNKED_DIRTY_INDICATOR.md): consume
-large chunks while few prefixes exist, then shrink chunk lengths near
-the exponentially larger leaf boundary. The decision record specifies
-the proposed rounded recurrence and the missing proof obligations.
+It uses no initialized helpers and returns arbitrary dirty/reference
+inputs with literal phase. The arbitrary-partition echo, rounded schedule,
+linear total count, live width, and logarithmic depth are proved. Five
+bounded tests cover its fragile interfaces and exact resource inequalities.
+The rectangular query consequently has square-root count and logarithmic
+address T-depth at sufficient square-root dirty width for a fixed word.
+
+This removes the previous linear indicator allowance from the late tail.
+In the uniform low-precision range, its depth is now
+$`O(NL/B^2+M[L+\log(n+2)])`$, with the second term o(n), whenever
+the new query's sufficient reservation fits. The full-frame literal width
+threshold retains its established fallback. Four early costs remain:
+
+| Contribution | Current accounting |
+|---|---|
+| Early target-dependent shifts and selector updates | O(g) per group; total group height O(n) |
+| Early source preparation, conversion, and actual inverse | O(log n) per group |
+| Early outer predicates and their inverses | O(log n) per group |
+| Early program loading and unloading | O(log n) per group |
+
+There are O(n/log n) early groups. These are separate upper allowances,
+not lower bounds; the completed tail improvement does not make the full
+frame sublinear.
+
+The next selected **unproved component test** is a protected terminal
+logical source bank shared across early groups. Compute its initial-zero
+flag H once. Use the second clean flag for each group's outer-zero
+predicate excluding that bank, conjoined with H. Keep all program and
+selector work outside the protected bank. Prepare/convert the source
+once, use actual global unpreparation before the tail, and then erase H.
 
 Proceed in this order:
 
-1. Prove the arbitrary-partition identity, rounded schedule, linear count
-   and live width, and logarithmic depth. Reuse the established read-only
-   conjunction and actual-inverse echo; charge all its Clifford gates.
-2. If that succeeds, check only new boundary cases and compose one exact
-   constant-word lookup: $`T=O(\sqrt Q)`$, $`G=O(Q)`$,
-   $`D_T=O(\log\log Q)`$ for large $`Q=2^r`$, with sufficient
-   $`C\sqrt Q`$ dirty work. State the small-address convention separately.
-3. Recompute the complete-frame ledger before choosing another primitive.
-   This component would remove the last-query linear term, but by itself
-   leaves the early-group O(n) terms. Do not report it as sublinear frame depth.
+1. Prove the full-input two-flag guarded identity, including inactive
+   sectors, arbitrary dirty/reference inputs, and each group boundary.
+   The physically modified source bank must never be tested again as zero.
+2. Prove the whole initialized-isometry error, including final H erasure
+   and source leakage. Do not assume exact zero return from approximate
+   preparation; aim to charge its error at only the two global boundaries.
+3. Reserve all simultaneous work and a valid early/tail cutoff. Recompute
+   the source, predicate, program, and logical-stage ledgers separately.
+   Add only bounded checks that resolve a new concrete interface risk.
 
-Stop this candidate if its proof needs clean helpers, changes inactive
-or dirty-return behavior, overlaps live pools, or introduces a growing
-count/width overhead. Do not produce larger fixtures before the symbolic
-ledger closes. If it fails, record the precise failure and reconsider the
-native operation; do not substitute a numerical scaling fit.
+Stop if a third clean flag, overlapping work, a modified-bank zero test,
+or an uncharged return assumption is needed. A successful test removes
+only one of the four early contributions; it would not prove sublinear
+complete-frame depth. Do not build larger fixtures before this symbolic
+ledger closes or substitute a numerical scaling fit.
 
 Keep the high-precision endpoint parked until an explicit new global
 native identity or encoding rule survives the
