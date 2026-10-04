@@ -185,11 +185,11 @@ literal phase, full-output error, and core return.
 
 [Conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md) uses logical
 suffix work only in its selected sector and streams coarse programs. With
-the one-clean refinement it gives $O(N+L\ell_*(n))$ T gates at
-$b\ge L+n+7$, where $\ell_*(n)=1+\log_2^*(n+2)$.
+the one-clean refinement it gives $`O(N+L\ell_*(n))`$ T gates at
+$b\ge L+n+7$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
 Its final conditional-work return error is included in the norm.
 The high-precision full-frame gap remains $\Omega(N)$ to
-$O(N\ell_*(n))$.
+$`O(N\ell_*(n))`$.
 
 ## 12. Contemporary comparisons and the broader compiler contribution
 
