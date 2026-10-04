@@ -480,7 +480,8 @@ def main() -> None:
         if args.browser:
             options['executable_path'] = args.browser
         browser = pw.chromium.launch(**options)
-        page = browser.new_page(device_scale_factor=1)
+        context = browser.new_context(device_scale_factor=1)
+        page = context.new_page()
         # Everything is supplied locally. Rendering must not transmit content.
         page.route('**/*', lambda route: route.abort())
         for name, desktop_width in WIDTHS.items():
