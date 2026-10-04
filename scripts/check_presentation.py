@@ -391,7 +391,17 @@ def check_documents(page: Any, root: Path, mathjax: Path, output: Path) -> dict:
         page.set_viewport_size({"width": 1280, "height": 960})
         # Tables and long display equations need inspection beyond the first screen.
         for i, table in enumerate(page.locator('table').all()):
-            table.screenshot(path=str(output / f'{stem}-table-{i + 1}.png'))
+            # Capture the document rectangle without Locator.screenshot's
+            # animation-frame stability wait and automatic scrolling. Those
+            # can stall on long catalogue tables taller than the viewport.
+            clip = table.evaluate("""e => {
+              const r = e.getBoundingClientRect();
+              const x = Math.floor(r.left + scrollX), y = Math.floor(r.top + scrollY);
+              return {x, y, width: Math.ceil(r.right + scrollX) - x,
+                      height: Math.ceil(r.bottom + scrollY) - y};
+            }""")
+            page.screenshot(path=str(output / f'{stem}-table-{i + 1}.png'),
+                            full_page=True, clip=clip)
         rendered = page.evaluate("() => {const d=document.documentElement.cloneNode(true);d.querySelectorAll('script').forEach(x=>x.remove());return '<!doctype html>'+d.outerHTML}")
         (output / f'{stem}-rendered.html').write_text(rendered, encoding='utf-8')
         native_count = render_native_math(page)
