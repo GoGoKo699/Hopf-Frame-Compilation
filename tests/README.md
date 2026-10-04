@@ -1,6 +1,6 @@
 # Validation suite
 
-[← Repository landing page](../README.md) · [State-based QBP theorem](../docs/STATE_BASED_QBP_THEOREM.md) · [Verification map](../docs/VERIFICATION.md) · [Implementation map](../compiler_robust_hopf/README.md)
+[← Repository landing page](../README.md) · [State-based QBP theorem](../supplements/state_based_qbp/STATE_BASED_QBP_THEOREM.md) · [Verification map](../docs/VERIFICATION.md) · [Implementation map](../compiler_robust_hopf/README.md)
 
 The tests are organized around the proof interfaces rather than around one
 particular circuit library.  They are designed to expose convention, operator,

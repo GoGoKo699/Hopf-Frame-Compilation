@@ -1,362 +1,199 @@
 # Exact and Fault-Tolerant Compilation of Hopf Differential Frames
 
-Exact state preparation normally specifies one initialized input:
+State preparation fixes one column of a unitary. The inverse-frame Hopf
+gradient decoder also uses designated coordinate-frame columns. This
+repository compiles that prescribed **complete operator**, with explicit
+costs for precision, initialized workspace, and borrowed workspace.
 
-```math
-|0^n\rangle|0^m\rangle
-\longmapsto
-|\psi\rangle|0^m\rangle.
-```
-
-The original inverse-frame Hopf decoder uses a prescribed unitary completion: the state in its
-first column and coordinate-frame directions in designated other columns.
-Its inverse resolves a common objective response.
-
-| Synthesis task | Required action |
-|---|---|
-| Exact state preparation | fix $U\lvert 0^n\rangle$ |
-| Hopf differential-frame compilation | fix $W\lvert x\rangle$ for every system basis state $\lvert x\rangle$ and restore workspace according to its input promise |
-
-This repository asks whether the prescribed Hopf completion retains the
-state-preparation size–depth frontier, and what finite precision costs.
-The [publication scope](manuscript/PUBLICATION_SCOPE.md) fixes the full-frame claims.
+The selected results are A–D below. Their proofs and retained corollaries
+are fixed in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
+A [bounded internal audit](docs/CORE_CLAIM_AUDIT.md) found no unresolved
+claim-level blocker; final manuscript writing remains on hold.
 
 <p align="center">
-  <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column, whereas Hopf differential-frame compilation fixes the state and designated frame columns." />
+  <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column; complete-frame compilation also preserves the designated coordinate-frame columns." />
 </p>
 
-The [LLM reading guide](llms.txt) maps proofs and assumptions.
-Resume research from the [workspace checkpoint](WORKSPACE.md).
-
-## Two resource models
-
-Both models compile the complete frame; different circuits attain their
-optimal resource bounds.
-
-| Model | Resource question | Scope of the matching theorem |
-|---|---|---|
-| Arbitrary one-qubit gates and CNOTs | exact size, CNOT count, and depth versus clean workspace | real and phase-dressed complex magnitude frames, every clean budget |
-| Clifford+T | T-count versus accuracy and clean/dirty workspace | real and phase-dressed complex magnitude frames, every precision, under the sufficient clean reservation below |
-
-### Exact logical theorem
-
-Let
-
-```math
-N=2^n
-```
-
-and let $m\geq0$ be the number of clean ancillary qubits.  In the exact all-to-all
-logical model with arbitrary one-qubit gates and CNOTs,
-
-```math
-\boxed{
-S_{\mathbb R}(n,m)
-=S_{\mathbb C,\mathrm{mag}}(n,m)
-=\Theta(N)
-}
-```
-
-and
-
-```math
-\boxed{
-D_{\mathbb R}(n,m)
-=D_{\mathbb C,\mathrm{mag}}(n,m)
-=\Theta\left(n+\frac{N}{n+m}\right).
-}
-```
-
-The upper bounds hold for every parameter tuple; lower bounds hold in the worst case
-over the Hopf-frame family, uniformly in the clean-workspace budget.
-
-The worst-case **CNOT count alone is $\Theta(N)$ for $n\ge2$**,
-with free one-qubit gates and arbitrary clean workspace; it is zero for $n=1$.
-See the [separate lower-bound proof](docs/COMPILER_THEOREM.md#cnot-count-with-unrestricted-clean-workspace).
-
-The real result concerns the complete Hopf differential frame.  The complex
-result concerns the phase-dressed magnitude frame
-
-```math
-W_{\mathbb C,\mathrm{mag}}
-=D_{\mathrm{ph}}W_{\mathbb R}.
-```
-
-The leaf-phase derivatives form a separate direct measurement stream; they are
-not additional columns of the same $N$-dimensional unitary.
-
-The construction restores at most $m$ clean ancillas exactly, reaching the
-optimal state-preparation frontier at every clean-workspace budget.
-
-### Fault-tolerant theorem
-
-Let $a$ be the number of initialized clean qubits and $b$ the number of borrowed
-qubits in an arbitrary unknown state. Write
-
-```math
-q=n+a+b,\qquad
-L=\max\{6,\lceil\log_2(1/\eta)\rceil\},\qquad
-h=1+\lceil\log_2(L+n+2)\rceil.
-```
-
-For $0\lt \eta\leq1/64$ and a sufficiently large fixed constant $C$, both the
-real frame and phase-dressed complex magnitude frame have matching worst-case T-count
-
-```math
-\boxed{
-T^\star(n,a,b,\eta)
-=\Theta\left(\sqrt{NL}+L+\frac{NL}{n+a+b}\right),
-\qquad a\geq C(n+h).
-}
-```
-
-The upper construction uses $O(NL)$ Clifford gates. Every supplied precision
-source is prepared and charged. Borrowed qubits are restored jointly with any
-external reference; complete-input approximation includes clean-work leakage.
-There are no measurements, resets, or free supplied catalysts in this model.
-
-At $L=N$, sufficient $a=\Theta(n)$ and $b=\Theta(N)$ give $T^\star=\Theta(N)$.
-With **one clean qubit** and $`b\ge L+n+7`$, the
-[one-clean compiler](docs/ONE_CLEAN_COMPILER.md) gives
-$`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ for real frames, where
-$`\ell_*(n)=1+\log_2^*(n+2)`$. The iterated logarithm counts base-two logs
-to at most one. At $`L=N`$, the
-[open endpoint](docs/OPEN_PROBLEM.md) is $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$.
-Smaller allocations retain the
-[borrowed-workspace bound](docs/BORROWED_WORKSPACE_COMPILER.md).
-At $`b\ge L+n+7`$, [zero-clean real-frame synthesis](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
-gives $`T=O(N+nL)`$, $`G=O(NL)`$; the grouped improvement still uses one clean qubit.
-
-Composing with a literal diagonal of separately supplied certified phases extends the
-[one-clean bound](docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames) to phase-dressed complex
-magnitude frames at $`b\ge L+n+8`$. With $`b\ge2(L+n+8)`$, it gives
-$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates, still $`G=O(NL)`$.
-Leaf-phase derivatives retain a separate QBP stream.
-
-The [uniform-precision depth theorem](docs/UNIFORM_PRECISION_DEPTH.md)
-gives one complete real-frame circuit using two clean flags and
-$`b\ge17(L+n+7)`$, with absolute constants:
-
-```math
-T=O(\sqrt{NL}+NL/b+nL),\qquad G=O(NL),\qquad
-D_T=O(NL/b^2+nL).
-```
-
-Count and depth match simultaneously through $`b\le\sqrt{N/n}`$
-when nonempty. For $`6\le L\le\log_2(n+2)/16`$, the same guarantee
-improves to $`T=O(\sqrt{NL}+NL/b)`$ and $`D_T=O(NL/b^2+n)`$;
-the matching interval extends through $`b\le\sqrt{NL/n}`$.
-Source preparation, reuse, and return are charged. At $`L=\Theta(n)`$,
-sufficient $`b=\Theta(n)`$ gives optimal worst-case $`T=\Theta(N)`$
-and $`D_T=\Theta(N/n)`$. Larger-width depth optimality and the
-high-precision endpoint remain open; the general count bound retains nL.
-
-Beyond Hopf frames, **literal diagonals and general one-target U(2)
-multiplexors** attain $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean
-qubit, respectively at $`b\ge2(L+n+7)`$ and $`b\ge2(L+n+9)`$.
-For the multiplexor, $n$ counts address qubits and $N$ counts its blocks.
-These matched one-stage frontiers do not close the multi-layer frame gap.
-
-Two update classes attain $`T=O(N+L)`$, $`G=O(NL)`$ at
-$`b\ge L+n+7`$, requiring literal agreement outside changed nodes
-with a native baseline whose determinant-one local words have
-length $`O(n-d+1)`$ at depth d.
-
-- [Antichain changes](docs/ANTICHAIN_COMPILER.md) use **zero clean qubits**;
-  no changed node is an ancestor of another.
-- [Sparse nested changes](docs/SPARSE_UPDATE_COMPILER.md) use **one clean qubit**.
-  If S is the ancestor closure of the changed nodes, a sufficient condition is
-
-```math
-n\ge 2\lceil\log_2(|S|+1)\rceil+32.
-```
-
-The sparse result includes a full root-to-leaf path for every n.
-Both preserve the complete frame and QBP interface. Generic rounding
-supplies neither promise.
-
-## Exact construction at a glance
-
-The Hopf frame is a product of addressed tree layers.  At depth $d$, the prefix
-selects one rotation angle and the complete lower suffix supplies a shared
-all-zero predicate.  Three schedules exploit this structure.
-
-| Workspace | Schedule | Mechanism |
-|---:|---|---|
-| $m=0$ | borrowed-suffix echo | one original suffix data qubit carries the predicate temporarily and is restored exactly |
-| $1\leq m\lt 4n$ | direct flagged UCG | one reusable clean flag stores the suffix-zero predicate |
-| larger $m$ | routed parallel subframes | a tree cut turns the tail into a direct sum; the suffix is routed coherently and the subtree frames run in parallel |
-
-<p align="center">
-  <img src="assets/literature-lineage.svg" width="940" alt="The all-workspace state-preparation line and the Hopf differential-frame line meet in the optimal complete-frame compiler." />
-</p>
-
-## Read the repository in three passes
-
-| Time | Route | Purpose |
-|---:|---|---|
-| 5 minutes | this page | problem, theorem, and construction map |
-| 30–40 minutes | **[complete technical narrative](REVIEW.md)** | shared contract, the two resource models, and the QBP consequence |
-| full audit | **[exact theorem](docs/COMPILER_THEOREM.md)**, **[T-count theorem](docs/FAULT_TOLERANT_COMPILER.md)**, **[one-clean theorem](docs/ONE_CLEAN_COMPILER.md)**, and **[verification map](docs/VERIFICATION.md)** | proofs, register schedules, evidence limits, and source dependencies |
-
-The [documentation map](docs/README.md) includes the
-[QBP consequence](docs/QBP_CONSEQUENCE.md), [related work](docs/RELATED_WORK.md),
-and [Hopf geometry](docs/HOPF_INTERFACE.md).
-
-## Why the completion matters
-
-The complete frame satisfies
-
-```math
-W_{\mathbb R}|0^n\rangle=|\psi\rangle,
-\qquad
-W_{\mathbb R}|\lambda(j)\rangle=|e_j\rangle.
-```
-
-At a regular coordinate,
-
-```math
-\partial_{\theta_j}|\psi\rangle
-=a_j|e_j\rangle,
-\qquad
-g_{j,j}=a_j^2,
-```
-
-where $a_j$ is the oriented amplitude entering the corresponding tree node.  On
-the canonical Hopf domains, $a_j\geq0$ and equals the principal metric square
-root.  At zero metric weight the raw derivative vanishes, while the marker
-column remains the chart-selected orthogonal continuation determined by the
-complete parameter tuple.
-
-A state-preparation-equivalent completion may move these marker columns.  The
-repository contains an exact two-qubit example in which the state is unchanged
-but the decoded gradient changes from
-
-```math
-(2,0,0)
-\quad\longmapsto\quad
-(0,\sqrt2,0).
-```
-
-For this fixed decoder, the relevant compiler contract is
-
-```math
-\widetilde W
-\bigl(|\varphi\rangle|0^m\rangle\bigr)
-=(W|\varphi\rangle)|0^m\rangle
-```
-
-for every system input $\lvert\varphi\rangle$, not only the forward preparation input.
-At regular points, universal preservation of the fixed decoder's means
-also forces this contract up to common phase; see the
-[necessity theorem](docs/FRAME_SAFE_COMPILATION.md#necessity-for-all-observable-dependent-gradient-means).
-
-## Relation to the all-workspace state-preparation framework
-
-Four imported exact tools supply the construction:
-
-| Imported result | Role here |
+| Read next | Purpose |
 |---|---|
-| optimal QSP frontier | benchmark and matching comparison |
-| ancilla-free multi-controlled X | zero-suffix predicates and toggles |
-| all-workspace UCG synthesis | prefix-selected rotations, subtree frames, and the phase diagonal |
-| coherent CNOT copy–uncopy | control fanout for the decoder and router |
+| [Proof roadmap](REVIEW.md) | Follow the mechanisms connecting the four claims |
+| [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
+| [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
+| [Research status and attempts](research/README.md) | Find the two open gaps and scoped construction attempts |
+| [Workspace checkpoint](WORKSPACE.md) · [LLM guide](llms.txt) | Continue maintenance with the current decisions |
 
-The Hopf-specific contributions are the complete-operator factorization and
-three workspace schedules, which adapt these primitives while preserving
-marker columns.
+## Target and resource contract
 
-The normative compiler citation is:
+Write $`N=2^n`$, $`n\ge1`$. The real frame has state column
+$`W_{\mathbb R}|0^n\rangle=|\psi\rangle`$ and designated marker columns
+$`W_{\mathbb R}|\lambda(j)\rangle=|e_j\rangle`$.
+At regular coordinates, $`\partial_{\theta_j}|\psi\rangle=a_j|e_j\rangle`$.
+The supplied parameter tuple also fixes the frame at singular charts.
 
-> P. Yuan and S. Zhang, “Optimal (controlled) quantum state preparation and
-> improved unitary synthesis by quantum circuits with any number of ancillary
-> qubits,” *Quantum* **7**, 956 (2023).
+The complex magnitude frame is $`D_{\rm ph}W_{\mathbb R}`$, with separately
+supplied leaf phases. Phase derivatives use a separate measurement stream;
+they are not extra columns of this unitary.
 
-## Consequence for quantum backpropagation
-
-Frame-safe compilation preserves the complete inverse-frame measurement
-distribution.  Under the primary finite-shot target of simultaneous absolute
-accuracy for the raw Hopf-coordinate gradient, the global magnitude stream uses
+The exact model uses arbitrary one-qubit gates and CNOTs, all-to-all
+connectivity, and $`m`$ clean ancillas returned exactly. The coherent
+Clifford+T model uses $`a`$ clean and $`b`$ arbitrary dirty qubits. If
+$`J_a`$ appends the clean zero state, its approximation contract is
 
 ```math
-O(\log n)=O(\log\log M)
+\|VJ_a-J_a(W\otimes I_b)\|_{\rm op}\le\eta.
 ```
 
-independent executions at fixed accuracy and confidence, where
-$M=\Theta(2^n)$ is the number of coordinates.
+This includes every system input, dirty work entangled with any reference,
+literal phases, and clean-work leakage. Return error is included in this
+same norm; Result B returns its dirty registers exactly. Source preparation,
+queries, and actual inverses are charged. There are no measurements, resets,
+or free supplied precision sources. Certified classical coefficient and
+table generation are accounted for separately from quantum gate counts.
 
-This is a matched-program statement: scalar and gradient programs use the same
-forward preparation family and controlled observable, while the gradient
-program adds one inverse frame of the same asymptotic logical depth as optimal
-state preparation.  Classical materialization of an $M$-entry output is not
-included in that quantum-depth ratio.
+## Four principal results
 
-At finite precision, the [approximation bridge](docs/QBP_APPROXIMATION.md)
-controls the bias of the same fixed-parameter, bounded-score estimator. It uses
-the actual compiled circuit and its actual adjoint. It does not differentiate a
-discontinuous family of compiled words. Frame-synthesis lower bounds alone do
-not establish optimal gradient-query or training complexity.
-The same proof now covers the complete complex gradient, reflection-sum
-observables, rounded classical weights, and correlated dirty-bank reuse
-between executions with fresh declared clean inputs.
+The upper bounds hold for every parameter tuple under the stated hypotheses.
+Matching lower bounds hold in the worst case over the Hopf-frame family.
+For Result A they hold uniformly in the clean-workspace budget. Different
+constructions attain the different resource guarantees.
 
-The separate [state-based QBP theorem](docs/STATE_BASED_QBP_THEOREM.md)
-changes the decoder and avoids compiling the fine complete frame.
-For real and phase-dressed complex Hopf states, observable coefficient norm $`\Lambda`$,
-and error $`\epsilon`$, put
-$`K=\max\{6,\lceil\log_2(80\Lambda/\epsilon)\rceil\}`$ and $`P=\max\{n,K\}`$.
-Two initialized compiler flags and $`b\ge P+n+7`$ dirty wires give
-$`T=O(N+P)`$, $`G=O(NP)`$ per execution apart from the observable;
-the protocol branch is separate. The actual coarse inverse and classical
-correction retain the shot scaling. [Depth schedules](docs/STATE_QBP_DEPTH.md)
-and bounded-input costs are explicit.
-[Bounded residual QBP](docs/NATIVE_RESIDUAL_QBP.md) implements both streams.
-[General software](docs/VERIFICATION.md#state-based-qbp-coverage) remains
-optional; the complete-frame endpoint is open.
-No end-to-end speedup is claimed.
+**A. Optimal exact compilation, at every clean budget.** For real and
+phase-dressed complex magnitude frames, every integer $`m\ge0`$ admits
 
-## Verification boundary
+```math
+S=\Theta(N),\qquad D=\Theta\!\left(n+\frac{N}{n+m}\right).
+```
 
-Checks cover complete logical identities, explicit decoder/router gates,
-arbitrary-entangled inputs, exact resource ledgers, and gradient decoders.
+The worst-case CNOT count alone is $`\Theta(N)`$ for $`n\ge2`$, even
+with free one-qubit gates and unrestricted clean workspace; it is zero for
+$`n=1`$. The [exact proof](docs/COMPILER_THEOREM.md) combines a borrowed-suffix
+echo, a direct flagged schedule, and coherently routed parallel subframes.
 
-UCG and multi-controlled-X decompositions are imported. Finite checks expose
-indexing, phase, order, cleanup, and resource errors; the asymptotic claims
-rest on proofs.
+For the approximate results, put
 
-The fault-tolerant evidence adds exact finite source/kernel identities and
-rational resource checks. It does not yet provide a general elementary emitter
-for the complete asymptotic shared-source compiler. See the
-[focused reproduction guide](verification/fault_tolerant/README.md).
+```math
+0\lt\eta\le1/64,\quad L=\max\{6,\lceil\log_2(1/\eta)\rceil\},
+\quad h=1+\lceil\log_2(L+n+2)\rceil,\quad q=n+a+b.
+```
 
-Device connectivity, physical noise thresholds, the full T-depth frontier, arbitrary
-non-Hopf charts, and application-independent observable costs remain outside
-the claims. Clifford work, T work, quantum executions, and classical output
-costs are reported separately.
+**B. Matching T-count with sufficient clean work.** For both frame families,
+when $`a\ge C(n+h)`$ for a sufficiently large absolute constant $`C`$,
 
-## Reproduce the checks
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{q}\right).
+```
+
+The [fault-tolerant proof](docs/FAULT_TOLERANT_COMPILER.md) shares one
+charged precision source across the complete residual-correction stream.
+The clean reservation is sufficient, not a clean-space lower bound.
+
+**C. One-clean compilation.** For real frames, $`a=1`$ and
+$`b\ge L+n+7`$ suffice for
+
+```math
+T=O(N+L\ell_*(n)),\qquad \ell_*(n)=1+\log_2^*(n+2).
+```
+
+Here the iterated logarithm counts base-two logs to at most one.
+The [one-clean proof](docs/ONE_CLEAN_COMPILER.md) and
+[conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) also
+give a banked tradeoff. The separately proved complex magnitude extension
+requires $`b\ge L+n+8`$. Literal diagonals and one-target multiplexors
+have their own matching one-clean corollaries and reservations.
+
+**D. Simultaneous T-count and T-depth.** For complete real frames,
+$`a=2`$ and $`b\ge17(L+n+7)`$ give one circuit with absolute constants:
+
+```math
+T=O(\sqrt{NL}+NL/b+nL),\qquad D_T=O(NL/b^2+nL).
+```
+
+For $`6\le L\le\log_2(n+2)/16`$, the same theorem strengthens this to
+
+```math
+T=O(\sqrt{NL}+NL/b),\qquad D_T=O(NL/b^2+n).
+```
+
+Both resources match simultaneously on the following intervals, when nonempty:
+
+| Precision regime | Matching dirty-width interval |
+|---|---|
+| Every $`L\ge6`$ | $`17(L+n+7)\le b\le\sqrt{N/n}`$ |
+| $`6\le L\le\log_2(n+2)/16`$ | $`17(L+n+7)\le b\le\sqrt{NL/n}`$ |
+
+There, $`T^\star=\Theta(NL/b)`$ and $`D_T^\star=\Theta(NL/b^2)`$.
+The [uniform-precision proof](docs/UNIFORM_PRECISION_DEPTH.md) charges
+source preparation, queries, and return on this same circuit. T-depth allows
+arbitrary Clifford interlayers and is distinct from total depth. No automatic
+complex extension or unrestricted depth optimality is claimed.
+
+All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
+The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
+regimes, complex extensions, and older schedules useful at smaller reservations.
+
+## Two open resource gaps
+
+Neither gap is a prerequisite for the selected A–D package.
+
+| Question | Current bounds |
+|---|---|
+| High precision, $`a=2,b=N+n+7,L=N,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | Optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
+
+The [research index](research/README.md) separates these questions from
+proved component results and failed shortcuts. Restrictions on a particular
+source or query interface do not prove unrestricted compiler lower bounds.
+
+## Operational consequence
+
+A state-equivalent completion can change the decoded gradient. An
+[exact two-qubit example](docs/COMPILER_BOUNDARIES.md#2-two-qubit-global-state-column-counterexample)
+changes $`(2,0,0)`$ to $`(0,\sqrt2,0)`$ without changing the prepared state.
+Among completions preparing that same state exactly, universal preservation
+of the fixed decoder's means at regular points forces the full frame up to
+common phase.
+
+Exact substitution preserves its complete measurement record. With
+phase-calibrated controlled access to the specified Hermitian-unitary
+observable, simultaneous absolute accuracy of the raw coordinate gradient
+uses $`O(\log n)`$ independent executions at fixed accuracy and confidence.
+The [QBP consequence](docs/QBP_CONSEQUENCE.md) and
+[approximation bridge](docs/QBP_APPROXIMATION.md) separately charge executions,
+circuit resources, and classical output; they use the actual compiled
+circuit and its actual adjoint, not derivatives of compiled gate words.
+
+The completed [state-based QBP branch](supplements/state_based_qbp/README.md)
+changes the decoder and has a separate task-level guarantee. Full-frame
+necessity here concerns the fixed decoder. No optimality among all gradient
+algorithms or end-to-end training speedup is claimed.
+
+## Evidence and reproduction
+
+This is a theoretical construction with executable finite checks. The
+[verification map](docs/VERIFICATION.md) distinguishes complete logical
+identities, explicit decoder/router gates, native finite primitives, exact
+resource ledgers, and analytic asymptotic arguments. Yuan–Zhang's exact UCG and multi-controlled-X synthesis supply the
+imported toolkit; the [related-work comparison](docs/RELATED_WORK.md)
+separates those premises from the prescribed-frame arguments. There is no
+general elementary emitter for the complete asymptotic shared-source compiler.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python scripts/reviewer_walkthrough.py
 python validate.py
 python scripts/verify_fault_tolerant.py
-python scripts/unified_resource_ledger.py --n 12
-python scripts/strict_zero_echo_ledger.py --n 12
 ```
 
-## Relationship to the Hopf repositories
+The [focused reproduction guide](verification/fault_tolerant/README.md)
+and [source map](docs/SOURCE_MAP.md) identify evidence and attribution.
+Hardware connectivity and physical noise thresholds are outside the model.
 
-| Repository | Role |
-|---|---|
-| [`Hopf-ansatz`](https://github.com/GoGoKo699/Hopf-ansatz) | coordinate chart, inverse map, metric, tangent preparation, and optimization interface |
-| [`Hopf-QBP`](https://github.com/GoGoKo699/Hopf-QBP) | global, direct-phase, and checkpoint gradient records, including the earlier Möttönen-style robustness result |
-| **This repository** | complete-frame contracts, exact and fault-tolerant compilation, and their scoped QBP consequences |
-
-## Status and license
-
-[Evidence](docs/VERIFICATION.md) and [sources](docs/SOURCE_MAP.md) delimit the claims.
-The repository uses the [MIT license](LICENSE).
+Hopf geometry and gradient records originate in
+[Hopf-ansatz](https://github.com/GoGoKo699/Hopf-ansatz) and
+[Hopf-QBP](https://github.com/GoGoKo699/Hopf-QBP); this repository supplies
+the complete-frame compiler claims and their scoped consequences.
+Contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+Citation metadata is in [CITATION.cff](CITATION.cff); code is under the
+[MIT license](LICENSE).

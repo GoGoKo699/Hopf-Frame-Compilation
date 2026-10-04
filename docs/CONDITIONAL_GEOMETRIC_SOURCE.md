@@ -1,6 +1,6 @@
 # A parallel geometric source on a conditional zero suffix
 
-[Conditional suffix workspace](CONDITIONAL_SUFFIX_COMPILER.md) · [Operator source](OPERATOR_SOURCE_COMPILER.md) · [Exact source-depth scope](SOURCE_T_DEPTH.md) · [Current frontier](OPEN_PROBLEM.md)
+[Conditional suffix workspace](CONDITIONAL_SUFFIX_COMPILER.md) · [Operator source](OPERATOR_SOURCE_COMPILER.md) · [Exact source-depth scope](../research/depth/SOURCE_T_DEPTH.md) · [Current frontier](OPEN_PROBLEM.md)
 
 A logical suffix that is zero on the active sector can supply a shallow
 geometric source. The construction uses the same two external clean

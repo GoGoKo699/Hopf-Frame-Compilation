@@ -9,24 +9,11 @@ workspace tradeoffs. The construction below chooses larger dirty lookup
 banks to reduce T-depth, and can use more T gates than the count-optimized
 compiler.
 
-The [parallel-indicator refinement](PARALLEL_DIRTY_LOOKUP.md) retains
-count-efficient banks and uses extra dirty selectors instead. Under its
-stronger sufficient-width condition, it obtains the best retained T-count
-and low T-depth simultaneously. This chapter supplies the routing primitive
-and the wider-range bank schedule used in that refinement.
-
-The [amortized extension](AMORTIZED_DIRTY_LOOKUP.md) reuses a smaller indicator
-pool and shares dirty traversal across the chunk addresses. For every
-$`L\ge6`$, two clean qubits and $`b\ge17(L+n+7)`$ give one complete
-real-frame circuit with $`T=O(\sqrt{NL}+NL/b+nL)`$, $`G=O(NL)`$,
-and $`D_T=O(NL/b^2+nL+n^2)`$. Count and depth are both optimal in
-order when $`b\le\sqrt{NL/(nL+n^2)}`$ above that threshold.
-At fixed L the earlier matching depth range $`b\le\sqrt N/n`$
-is retained. The general-precision schedules below remain available
-where their source or workspace costs are sharper.
-Its [capped source allocation](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
-reduces source depth to $`O(nL+n\log(n+1))`$; the remaining per-layer
-routing keeps the fixed-accuracy total at $`O(N/b^2+n^2)`$.
+This chapter supplies the literal routing/predicate primitives and a
+smaller-width schedule used by later proofs. The selected same-circuit
+frontier is [Result D](UNIFORM_PRECISION_DEPTH.md); its dependency map is
+in the [proof index](README.md). The local theorem below retains its own
+workspace reservation.
 
 **Theorem.** Let $`n\geq1`$, $`N=2^n`$,
 $`0\lt\eta\leq1/64`$, and
@@ -394,7 +381,7 @@ linear T-count of the operator-source primitive does not prove a linear
 T-depth lower bound. Its serial schedule is an upper bound for one
 implementation.
 
-The [exact source-depth analysis](SOURCE_T_DEPTH.md) sharpens this statement
+The [exact source-depth analysis](../research/depth/SOURCE_T_DEPTH.md) sharpens this statement
 within a restricted architecture: signed-permutation Majorana Clifford
 stages interleaved with disjoint-plane rotations. It certifies the geometric
 source and parallelizes the paired source's two tails with a matching
@@ -402,7 +389,7 @@ lower bound in that class. These are constant-factor schedules. Arbitrary
 Clifford interlayers can leave the Majorana representation, so the restricted
 certificate supplies no additional asymptotic lower bound for this theorem.
 It also does not constrain approximate replacement sources or establish
-optimal controlled-source depth. The [workspace comparison](RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
+optimal controlled-source depth. The [workspace comparison](../research/RELATED_WORK.md#16-precision-depth-and-workspace-assumptions-2-october-2026)
 records the clean-initialization and catalyst assumptions of recent shallow
 rotation constructions.
 

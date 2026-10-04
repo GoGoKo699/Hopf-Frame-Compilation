@@ -350,7 +350,7 @@ W_{\mathbb R}
 
 This column order is the entire reason that a state-equivalent completion need
 not be a valid differential-frame completion.  The numerical obstruction is
-given in [the complete narrative](../REVIEW.md#12-a-complete-two-qubit-obstruction).
+given in [the complete counterexample](COMPILER_BOUNDARIES.md#2-two-qubit-global-state-column-counterexample).
 
 ## 6. Phase-dressed complex magnitude frame
 

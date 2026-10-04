@@ -8,7 +8,7 @@ outer pairs use the same square root of the phase, including its sign.
 
 All decisions concern finite dyadic data. Square roots use integer isqrt;
 there is no angle solver, search, floating arithmetic, or exact-zero oracle
-for the original coefficient. See docs/RESIDUAL_TABLE_PREPROCESSING.md.
+for the original coefficient. See supplements/state_based_qbp/RESIDUAL_TABLE_PREPROCESSING.md.
 """
 from __future__ import annotations
 

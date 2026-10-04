@@ -9,11 +9,6 @@ and logarithmic address T-depth with polynomial overhead. It uses no
 initialized work, and all shared address and tree-parent wires are
 read-only controls during a completed stage.
 
-The [nonuniform-chunk refinement](NONUNIFORM_DIRTY_INDICATOR.md) uses
-the same exact tree and echoes with unequal boundaries. It obtains
-linear count and work together with logarithmic address T-depth. This
-chapter retains the uniform-cap ledger used in the earlier schedules.
-
 For an r-bit address, an arbitrary $`2^r`$-bit output Y, and any integer
 $`1\le\ell\le r`$, the circuit implements
 

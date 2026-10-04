@@ -4,79 +4,72 @@
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
-The [publication scope](PUBLICATION_SCOPE.md) fixes four principal
-results and their corollaries. The exact theorem covers every $m\geq0$
-clean-workspace budget; the sufficient-clean and one-clean T-count
-constructions keep their distinct clean/dirty reservations and return
-guarantees. Result D gives simultaneous T-count and T-depth bounds for
-complete real frames, matching both resources in explicit
-precision/workspace ranges. The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md)
-is complete without an unresolved claim-level blocker, and the selected
-scientific scope is frozen. Final manuscript writing remains on hold.
+The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
+Results A–D, retained corollaries, literal workspace reservations, and error
+contracts. The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md) found no
+unresolved claim-level blocker. The selected scientific scope is frozen;
+final manuscript writing remains on hold.
 
-## Scientific contribution
+## The argument to assemble
 
-The paper develops a compiler capability: preserving an entire
-operationally required frame while controlling exact entangling cost,
-fault-tolerant precision cost, and initialized versus borrowed workspace.
-The one-clean diagonal and general one-target multiplexor results also cover
-standard operator families beyond Hopf frames. The earlier two-clean
-constructions remain useful at their slightly smaller dirty reservations.
+The paper asks what it costs to preserve a prescribed Hopf completion rather
+than only its first state column. Exact entangling costs and fault-tolerant
+precision costs describe the same operator under two resource models. QBP
+explains why the additional columns matter to its fixed inverse-frame decoder.
+The one-clean diagonal and one-target multiplexor corollaries also establish
+compiler capabilities beyond the motivating frame family. Result A covers
+every integer clean-workspace budget $`m\ge0`$.
 
-The principal synthesis comparisons are Yuan–Zhang's
-[exact state-preparation tradeoffs](https://quantum-journal.org/papers/q-2023-03-20-956/)
-(Quantum 7, 956), Low–Kliuchnikov–Schaeffer's
-[dirty-workspace tradeoffs](https://quantum-journal.org/papers/q-2024-06-17-1375/)
-(Quantum 8, 1375), and Gosset–Kothari–Wu's
-[optimal T-count](https://quantum-journal.org/papers/q-2026-07-22-2168/)
-(Quantum 10, 2168). The manuscript must explain the new complete-operator
-guarantees relative to these results, with the attribution in the source map.
-
-The [related-work comparison](../docs/RELATED_WORK.md) includes newer synthesis
-results and distinguishes their input contracts and workspace assumptions.
-The opening pages should explain why the prescribed frame
-requires more than state preparation, identify the new proof mechanisms,
-and state Results A–D with their resource assumptions. QBP provides the
-operational motivation and consequence. The exact and fault-tolerant models
-remain parts of one operator-compilation story. The constant-clean count
-endpoint and unrestricted large-width T-depth remain discussion questions;
-neither is a prerequisite for the selected paper.
+The principal comparisons are Yuan–Zhang's exact state-preparation tradeoffs,
+Low–Kliuchnikov–Schaeffer's dirty-workspace tradeoffs, and
+Gosset–Kothari–Wu's optimal T-count. Use the
+[related-work comparison](../docs/RELATED_WORK.md) and
+[source map](../docs/SOURCE_MAP.md) for their exact statements, newer results,
+and attribution. Explain the complete-operator guarantees through their proof
+mechanisms and input/workspace contracts.
 
 ## Paper order
 
-1. Prescribed completion versus one-column state preparation, with the
-   two-qubit readout example.
-2. Shared Hopf-frame and complete-input compiler contract.
-3. Exact all-workspace size/depth theorem and its proof mechanisms.
-4. Sufficient-clean matching T theorem, followed by the one-clean real-frame
-   construction and its grouped, banked, diagonal, general multiplexor,
-   and phase-dressed complex-magnitude corollaries. Keep the distinct dirty
-   reservations and the separately proved two-clean T-depth assumptions.
-5. Uniform same-circuit T-count and T-depth tradeoffs for complete real
-   frames, including matching intervals and the low-precision improvement.
-   Keep their two-clean reservation and full-input error contract explicit;
-   distinguish T-depth from total depth and retain older schedules as
-   applicable fallbacks.
-6. Exact and approximate fixed-parameter QBP consequences, including complete
-   complex gradients and the costs of classical preprocessing and output.
-7. The two remaining resource gaps and the limits of the circuit model.
+1. Prescribed completion versus one-column preparation, using the two-qubit
+   readout example and the fixed-decoder necessity theorem.
+2. The Hopf operator and common complete-input contract: literal phases,
+   arbitrary dirty/reference inputs, actual inverses, and workspace return.
+3. Result A: exact all-workspace size, CNOT count, and depth, with matching
+   lower bounds and the phase-dressed complex magnitude extension.
+4. Result B: matching sufficient-clean T-count through residual dictionaries,
+   one shared geometric source, and retained failure history.
+5. Result C: one-clean rotations and conditional-suffix grouping, followed by
+   banked, diagonal, multiplexor, complex-magnitude, and zero-clean corollaries.
+   Retain the earlier two-clean constructions at their smaller dirty budgets.
+6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
+   explicit precision/workspace matching intervals, and applicable fallbacks.
+7. Exact and approximate fixed-parameter QBP consequences, complete complex
+   gradients, and charged quantum executions and classical reconstruction.
+8. The two open resource questions and the limits of the circuit model.
 
-Detailed schedules, source preparation, reversible lookup, error estimates,
-and resource sums form the technical appendices. The exact toolkit credits
-Yuan and Zhang; the [source map](../docs/SOURCE_MAP.md) gives the complete
-attribution. Later component refinements need not all enter the manuscript.
-The changed-decoder state-based QBP result remains separate; the necessity
-claim here concerns the fixed inverse-frame decoder.
+Keep the formula ledger in the scope and the technical proofs in their primary
+chapters. Appendices supply source preparation, echoes, decoders, routing,
+dirty queries, residual composition, amplification, error/resource sums,
+Euler/diagonal details, lower bounds, and finite classical preprocessing.
 
-The established scientific package has proof homes, explicit resource/error
-contracts, attributed comparisons, and scoped executable evidence. Readiness
-requires their consistency and passing verification and presentation gates;
-it does not require closing the open gaps or supplying a general native
-emitter. Follow the [research stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules)
-for any new construction pass. Otherwise retain the unresolved questions
-with their actual bounds and stop adding exploratory fixtures.
+## Boundaries and stopping point
 
-When final writing resumes, assemble Results A–D and their retained
-corollaries into one argument. External technical feedback and submission
-follow the complete draft. Update `CITATION.cff` when a manuscript identifier
-exists.
+Distinguish exact dirty return from return included in the initialized-isometry
+error. A logical zero suffix supplies clean work only on its proved active
+sector. T-depth allows arbitrary Clifford interlayers and differs from total
+depth. Only D claims simultaneous T-count/T-depth guarantees; its real
+frame theorem does not inherit the complex extensions of A–C automatically.
+
+The [research archive](../research/README.md) preserves attempts to close the
+two gaps and their scoped findings. The completed
+[state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
+changed decoder and remains separate from the selected paper. Neither branch
+adds a default requirement for manuscript readiness.
+
+Finite checks support fragile identities and resource ledgers; they do not
+replace asymptotic proofs, a scalable native emitter, or external peer review.
+Maintain consistent claims, attribution, and verification. Repair discovered
+defects; otherwise follow the [research stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules).
+Final writing begins only on request. External technical feedback and submission
+preparation follow the complete draft; update `CITATION.cff` when a manuscript
+identifier exists.

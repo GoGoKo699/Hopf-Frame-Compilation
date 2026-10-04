@@ -145,7 +145,7 @@ the related product decomposition is also recorded in
 ### Exact source costs, including returned helpers
 
 The following count minima are distinct from the
-[robust two-layer depth obstruction](SHALLOW_SOURCE_OBSTRUCTION.md),
+[robust two-layer depth obstruction](../research/depth/SHALLOW_SOURCE_OBSTRUCTION.md),
 which allows arbitrary Clifford interlayers but requires a full-input
 contract. An eligible active suffix also supports a
 [different geometric block encoding](CONDITIONAL_GEOMETRIC_SOURCE.md)
@@ -491,7 +491,7 @@ including dirty-work return. The pre-amplification word Q may have a
 rejected component. There is no source-state preparation or fresh
 initialization between calls.
 
-The [shared-flag error audit](HOPF_ERROR_ACCUMULATION.md#3-actual-source-layers-can-accumulate-leakage-linearly)
+The [shared-flag error audit](../research/depth/SOURCE_LEAKAGE_DIAGNOSTICS.md#3-actual-source-layers-can-accumulate-leakage-linearly)
 shows why the accepted rotation alone does not determine composition
 error. A family of these literal amplified stages has local error at
 most $`4\Delta`$ and global error at least $`n\Delta/8`$, for
@@ -499,7 +499,7 @@ $`\Delta\le(256n)^{-2}`$. A dimension-independent square-sum
 replacement for the full local errors is therefore invalid. This is
 not a lower bound on fixed-accuracy depth or a different source circuit.
 
-A [phase-calibrated radial filter](HOPF_RADIAL_FILTER.md) supplies such
+A [phase-calibrated radial filter](../research/depth/HOPF_RADIAL_FILTER.md) supplies such
 a circuit modification. Three amplified-stage calls and six native phase
 words reduce full error relative to each encoded polar rotation to
 $`O(2^{-2m})`$. Its additional $`O(m)`$ phase cost and actual inverses
@@ -1027,8 +1027,8 @@ can be evaluated sequentially. This construction does not supply a
 classical running-time bound for the separate sufficient-clean
 compiler's coarse Clifford+T word-synthesis primitive.
 
-The later [bounded-input QBP audit](BOUNDED_INPUT_QBP.md) separately
+The later [bounded-input QBP audit](../supplements/state_based_qbp/BOUNDED_INPUT_QBP.md) separately
 prices coarse-word enumeration for the grouped and state constructions,
 while retaining the exponential-search caveat for direct fine borrowed
-synthesis. Its [algebraic residual procedure](RESIDUAL_TABLE_PREPROCESSING.md)
+synthesis. Its [algebraic residual procedure](../supplements/state_based_qbp/RESIDUAL_TABLE_PREPROCESSING.md)
 also avoids Euler search for the state's particular SU(2) completion.
