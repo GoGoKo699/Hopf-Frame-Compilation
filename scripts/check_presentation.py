@@ -346,6 +346,46 @@ def rendered_markdown(path: Path) -> tuple[str, int]:
     return re.sub(r'(<img\b[^>]*\bsrc=")([^"]+)(")', local_image, markup), expected_math
 
 
+def capture_table_previews(page: Any, output: Path, stem: str) -> None:
+    """Capture typeset tables without repeatedly rasterizing a long document.
+
+    The original page still supplies every math and layout check. A separate
+    page preserves its styles and viewport for table images; dimension and
+    SVG-reference checks guard against changes introduced by the copy.
+    """
+    tables = page.locator('table').all()
+    if not tables:
+        return
+    styles = page.locator('style').evaluate_all(
+        "nodes => nodes.map(e => e.outerHTML).join('')")
+    preview = page.context.new_page()
+    try:
+        preview.set_viewport_size(page.viewport_size)
+        preview.route('**/*', lambda route: route.abort())
+        for i, table in enumerate(tables):
+            original = table.bounding_box()
+            markup = table.evaluate('e => e.outerHTML')
+            preview.set_content('<!doctype html><meta charset="utf-8">' + styles
+                                + '<article>' + markup + '</article>')
+            preview.evaluate('document.fonts.ready')
+            copied = preview.locator('table')
+            bounds = copied.bounding_box()
+            if (original is None or bounds is None
+                    or any(abs(original[key] - bounds[key]) > 1
+                           for key in ('width', 'height'))):
+                raise AssertionError(f"{stem}/table-{i + 1}: copied table dimensions changed: "
+                                     f"{original} -> {bounds}")
+            missing = copied.locator('svg use').evaluate_all("""nodes => nodes
+              .map(e => e.getAttribute('href') || e.getAttribute('xlink:href'))
+              .filter(ref => !ref || !ref.startsWith('#')
+                || !document.getElementById(ref.slice(1)))""")
+            if missing:
+                raise AssertionError(f"{stem}/table-{i + 1}: missing SVG glyph references: {missing}")
+            copied.screenshot(path=str(output / f'{stem}-table-{i + 1}.png'))
+    finally:
+        preview.close()
+
+
 def check_documents(page: Any, root: Path, mathjax: Path, output: Path) -> dict:
     """Check SVG and native-MathML pages; retain both for human review."""
     report: dict[str, Any] = {"pages": {}, "failures": []}
@@ -390,8 +430,7 @@ def check_documents(page: Any, root: Path, mathjax: Path, output: Path) -> dict:
             page.screenshot(path=str(output / f'{stem}-{mode}.png'))
         page.set_viewport_size({"width": 1280, "height": 960})
         # Tables and long display equations need inspection beyond the first screen.
-        for i, table in enumerate(page.locator('table').all()):
-            table.screenshot(path=str(output / f'{stem}-table-{i + 1}.png'))
+        capture_table_previews(page, output, stem)
         rendered = page.evaluate("() => {const d=document.documentElement.cloneNode(true);d.querySelectorAll('script').forEach(x=>x.remove());return '<!doctype html>'+d.outerHTML}")
         (output / f'{stem}-rendered.html').write_text(rendered, encoding='utf-8')
         native_count = render_native_math(page)
@@ -441,7 +480,8 @@ def main() -> None:
         if args.browser:
             options['executable_path'] = args.browser
         browser = pw.chromium.launch(**options)
-        page = browser.new_page(device_scale_factor=1)
+        context = browser.new_context(device_scale_factor=1)
+        page = context.new_page()
         # Everything is supplied locally. Rendering must not transmit content.
         page.route('**/*', lambda route: route.abort())
         for name, desktop_width in WIDTHS.items():
