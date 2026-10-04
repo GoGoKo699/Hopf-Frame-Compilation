@@ -205,7 +205,7 @@ supplies one family of implementations satisfying its premise.
 
 By contrast, equality only on $\lvert0^n\rangle$ preserves the reference state but leaves
 the response resolution unconstrained.  The two-qubit example in the
-[complete narrative](../REVIEW.md#12-a-complete-two-qubit-obstruction) shows the
+[complete counterexample](COMPILER_BOUNDARIES.md#2-two-qubit-global-state-column-counterexample) shows the
 resulting gradient corruption explicitly.
 
 ## 5. Statistical target

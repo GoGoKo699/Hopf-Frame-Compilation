@@ -21,21 +21,21 @@ PRIMARY_PAGES = (
     "docs/ONE_CLEAN_COMPILER.md",
     "docs/CONDITIONAL_SUFFIX_COMPILER.md",
     "docs/T_DEPTH_COMPILER.md",
-    "docs/SOURCE_T_DEPTH.md",
-    "docs/SHALLOW_SOURCE_OBSTRUCTION.md",
+    "research/depth/SOURCE_T_DEPTH.md",
+    "research/depth/SHALLOW_SOURCE_OBSTRUCTION.md",
     "docs/CONDITIONAL_GEOMETRIC_SOURCE.md",
     "docs/GROUPED_PROGRAM_PREFETCH.md",
     "docs/CHUNKED_DIRTY_INDICATOR.md",
     "docs/HOPF_ERROR_ACCUMULATION.md",
-    "docs/HOPF_FLAG_ECHO.md",
-    "docs/HOPF_RADIAL_FILTER.md",
+    "research/depth/HOPF_FLAG_ECHO.md",
+    "research/depth/HOPF_RADIAL_FILTER.md",
     "docs/PARALLEL_DIRTY_LOOKUP.md",
     "docs/DIRTY_SUM_COMPRESSION.md",
-    "docs/BATCHED_DIRTY_LOOKUP.md",
+    "research/depth/BATCHED_DIRTY_LOOKUP.md",
     "docs/AMORTIZED_DIRTY_LOOKUP.md",
-    "docs/ENDPOINT_TREE_TRANSPORT.md",
-    "docs/WEIGHTED_TRANSPORT_BLOCK.md",
-    "docs/RESIDUAL_ASSEMBLY.md",
+    "research/endpoint/ENDPOINT_TREE_TRANSPORT.md",
+    "research/endpoint/WEIGHTED_TRANSPORT_BLOCK.md",
+    "research/endpoint/RESIDUAL_ASSEMBLY.md",
     "docs/BORROWED_WORKSPACE_COMPILER.md",
     "docs/OPEN_PROBLEM.md",
     "docs/QBP_APPROXIMATION.md",
@@ -66,21 +66,21 @@ TABLE_MATH_PAGES = (
     "docs/ONE_CLEAN_COMPILER.md",
     "docs/CONDITIONAL_SUFFIX_COMPILER.md",
     "docs/T_DEPTH_COMPILER.md",
-    "docs/SOURCE_T_DEPTH.md",
-    "docs/SHALLOW_SOURCE_OBSTRUCTION.md",
+    "research/depth/SOURCE_T_DEPTH.md",
+    "research/depth/SHALLOW_SOURCE_OBSTRUCTION.md",
     "docs/CONDITIONAL_GEOMETRIC_SOURCE.md",
     "docs/GROUPED_PROGRAM_PREFETCH.md",
     "docs/CHUNKED_DIRTY_INDICATOR.md",
     "docs/HOPF_ERROR_ACCUMULATION.md",
-    "docs/HOPF_FLAG_ECHO.md",
-    "docs/HOPF_RADIAL_FILTER.md",
+    "research/depth/HOPF_FLAG_ECHO.md",
+    "research/depth/HOPF_RADIAL_FILTER.md",
     "docs/PARALLEL_DIRTY_LOOKUP.md",
     "docs/DIRTY_SUM_COMPRESSION.md",
-    "docs/BATCHED_DIRTY_LOOKUP.md",
+    "research/depth/BATCHED_DIRTY_LOOKUP.md",
     "docs/AMORTIZED_DIRTY_LOOKUP.md",
-    "docs/ENDPOINT_TREE_TRANSPORT.md",
-    "docs/WEIGHTED_TRANSPORT_BLOCK.md",
-    "docs/RESIDUAL_ASSEMBLY.md",
+    "research/endpoint/ENDPOINT_TREE_TRANSPORT.md",
+    "research/endpoint/WEIGHTED_TRANSPORT_BLOCK.md",
+    "research/endpoint/RESIDUAL_ASSEMBLY.md",
     "docs/OPEN_PROBLEM.md",
     "docs/BORROWED_WORKSPACE_COMPILER.md",
     "docs/QBP_APPROXIMATION.md",
@@ -206,7 +206,7 @@ class ReviewerNarrativeTests(unittest.TestCase):
         )
 
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn(r"$U\lvert 0^n\rangle$", readme)
+        self.assertIn(r"W_{\mathbb R}|0^n\rangle=|\psi\rangle", readme)
         hopf = (ROOT / "docs" / "HOPF_INTERFACE.md").read_text(
             encoding="utf-8"
         )
@@ -224,32 +224,37 @@ class ReviewerNarrativeTests(unittest.TestCase):
         opening = compact(readme[:2500]).lower()
         self.assertLess(len(readme), 15_000)
         self.assertIn("# exact and fault-tolerant compilation of hopf differential frames", opening)
-        self.assertIn("prescribed unitary completion", opening)
-        self.assertIn("exact state preparation normally specifies one initialized input", opening)
-        self.assertIn("this repository asks whether the prescribed hopf completion", opening)
+        self.assertIn("state preparation fixes one column", opening)
+        self.assertIn("complete operator", opening)
+        self.assertIn("coordinate-frame columns", opening)
         self.assertNotIn("yuan and zhang determine", opening)
 
     def test_complete_narrative_follows_the_compiler_first_chain(self) -> None:
         review = (ROOT / "REVIEW.md").read_text(encoding="utf-8")
-        self.assertGreater(len(review), 25_000)
+        # The roadmap points to authoritative proofs rather than duplicating them.
+        self.assertLess(len(review), 20_000)
         headings = (
-            "## 0. Problem and results",
-            "## 1. Why the prescribed completion matters",
-            "## 2. The Hopf operator seen by a compiler",
-            "## 3. Exact compiler toolkit",
-            "## 4. Strict zero workspace",
-            "## 5. Small positive workspace",
-            "## 6. Larger workspace: cut, route, and parallelize",
-            "## 7. Matching lower bounds",
-            "## 8. Phase-dressed complex magnitude frame",
-            "## 9. Finite precision and fault-tolerant compilation",
-            "## 10. Consequence for quantum backpropagation",
+            "## 1. Why the complete operator is the target",
+            "## 2. Result A: exact schedules cover every clean budget",
+            "## 3. Result B: pay fine precision once with sufficient clean work",
+            "## 4. Result C: operator precision and conditional suffix work",
+            "## 5. Result D: count and depth on the same circuit",
+            "## 6. Operational consequence, open gaps, and evidence",
         )
         positions = [review.index(heading) for heading in headings]
         self.assertEqual(positions, sorted(positions))
-        self.assertIn("### 1.2 A complete two-qubit obstruction", review)
-        self.assertIn("> **Proof checkpoint.**", review)
-        self.assertNotIn("What should be checked here?", review)
+        for proof in (
+            "docs/FRAME_SAFE_COMPILATION.md",
+            "docs/COMPILER_THEOREM.md",
+            "docs/FAULT_TOLERANT_COMPILER.md",
+            "docs/ONE_CLEAN_COMPILER.md",
+            "docs/CONDITIONAL_SUFFIX_COMPILER.md",
+            "docs/UNIFORM_PRECISION_DEPTH.md",
+            "docs/QBP_APPROXIMATION.md",
+        ):
+            self.assertIn(proof, review)
+        self.assertIn("research/README.md", review)
+        self.assertIn("supplements/state_based_qbp/README.md", review)
 
     def test_relation_to_prior_work_is_precise_and_generous(self) -> None:
         pages = {
@@ -363,12 +368,13 @@ class ReviewerNarrativeTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         for target in (
             "REVIEW.md",
-            "docs/HOPF_INTERFACE.md",
+            "docs/README.md",
+            "manuscript/PUBLICATION_SCOPE.md",
             "docs/COMPILER_THEOREM.md",
-            "docs/QBP_CONSEQUENCE.md",
+            "docs/UNIFORM_PRECISION_DEPTH.md",
             "docs/VERIFICATION.md",
-            "docs/SOURCE_MAP.md",
-            "docs/RELATED_WORK.md",
+            "research/README.md",
+            "supplements/state_based_qbp/README.md",
         ):
             self.assertIn(target, readme)
 

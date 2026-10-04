@@ -13,24 +13,10 @@ with the same one-clean count bounds at its separate dirty threshold.
 The zero-clean layerwise real-frame corollary and earlier two-clean
 constructions also satisfy the contract under their stated allocations.
 These resource choices do not change the bias argument below.
-A separate [reference-state protocol](REFERENCE_STATE_QBP.md) estimates
-the same real raw gradients using state preparation and leaf interference.
-It has its own precision and shot ledger; it is not a substitution into
-the inverse-frame circuit analyzed here.
-The subsequent [coarse-frame protocol](COARSE_FRAME_QBP.md) retains the
-logarithmic depth-block sampling order at every real angle tuple, with
-$`O(N+L')`$ native T-count per execution apart from the observable. It
-combines a fine state preparation, a charged coarse inverse, and scores
-computed from that actual coarse word; it has its own workspace contract.
-The [complex coarse-frame extension](COMPLEX_COARSE_QBP.md) includes both
-magnitude and leaf-phase gradients with the same two compiler flags and
-dirty threshold. It fixes a common state phase and uses the actual native
-prefix phase tables in its classical correction.
-The [complete task-cost comparison](QBP_COST_COMPARISON.md) keeps original
-accuracy bits separate from the state compiler's dimension floor. It also
-proves a zero-clean borrowed bound for the consistently gauged complex
-frame used by both original streams. That task-specific corollary does not
-compile the literal common phase of the prescribed complex frame.
+The separately completed [state-based QBP supplement](../supplements/state_based_qbp/README.md)
+changes the decoder. It estimates the same raw gradients under its own
+state, correction, workspace, and task-cost contracts; it is not a
+substitution into the inverse-frame circuit analyzed here.
 
 For the shared forward circuit and its actual adjoint, the magnitude stream
 satisfies
@@ -306,7 +292,7 @@ For fixed observable coefficient norm $`\Lambda`$ and fixed raw-gradient
 accuracy, [Section 10](#10-reflection-sums-and-finite-classical-weights)
 chooses constant L. Then $`a_F=0`$, $`b_F=\Theta(\sqrt N)`$ already give
 worst-case optimal-order per-frame $`T=\Theta(\sqrt N)`$, as summarized in
-[the QBP assessment](OPEN_PROBLEM.md#what-this-already-gives-hopf-qbp).
+[the QBP assessment](../manuscript/PUBLICATION_SCOPE.md).
 The high-precision $`L=N`$ endpoint is not required for that guarantee.
 
 With $`g_O`$ controlled-observable Clifford gates, the complete-gradient

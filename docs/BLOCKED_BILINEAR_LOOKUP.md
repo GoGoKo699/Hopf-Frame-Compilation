@@ -53,11 +53,6 @@ dependence and uses a rectangular allocation of the same query to prove
 absolute-constant depth O(NL/b²+nL), with a stronger slowly growing
 precision corollary.
 
-The [nonuniform-indicator refinement](NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence)
-then removes the polynomial indicator overhead from that rectangular
-query. At sufficient width its late tail is sublinear in n; the early
-groups still contribute linear depth to the complete-frame bound.
-
 ## 1. A controlled bilinear output with one arbitrary dirty helper
 
 Let Y and X be disjoint registers of H and J arbitrary bits, let z be
@@ -529,8 +524,8 @@ existing routed indicator; they do not emit asymptotic chunked indicators
 or a variable-size complete-frame compiler. Their exact scope is recorded
 in [verification](VERIFICATION.md).
 
-The [source map](SOURCE_MAP.md#5-fault-tolerant-sources-and-contribution-boundaries)
-and [related-work comparison](RELATED_WORK.md#20-blocked-bilinear-queries-and-the-dirty-width-tradeoff-3-october-2026)
+The [source map](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+and [related-work comparison](../research/RELATED_WORK.md#20-blocked-bilinear-queries-and-the-dirty-width-tradeoff-3-october-2026)
 attribute the dirty traversal, phase synthesis, and bilinear framework.
 The additional result is their charged selected-block interface and
 fixed-accuracy width composition, not generic priority for phase

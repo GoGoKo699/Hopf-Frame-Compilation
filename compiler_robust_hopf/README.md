@@ -1,6 +1,6 @@
 # Implementation map
 
-[← Repository landing page](../README.md) · [State-based QBP theorem](../docs/STATE_BASED_QBP_THEOREM.md) · [Complete technical narrative](../REVIEW.md) · [Verification map](../docs/VERIFICATION.md)
+[← Repository landing page](../README.md) · [State-based QBP theorem](../supplements/state_based_qbp/STATE_BASED_QBP_THEOREM.md) · [Complete technical narrative](../REVIEW.md) · [Verification map](../docs/VERIFICATION.md)
 
 The Python package follows the same order as the proof.  It contains reference
 operators, explicit reversible schedules, resource ledgers, and decoder checks.
@@ -76,19 +76,19 @@ from the all-workspace state-preparation framework.
 The decoder modules keep classical reconstruction separate from quantum
 execution. The earlier real and complex coarse fixtures use exact finite-size state preparation;
 they do not emit the general fine residual table. The
-[certified residual bridge](../docs/NATIVE_RESIDUAL_ROTATION.md) emits one
+[certified residual bridge](../supplements/state_based_qbp/NATIVE_RESIDUAL_ROTATION.md) emits one
 unaddressed row or an enabled two- or four-row table from the helper's coefficients.
-The [bounded state emitter](../docs/NATIVE_RESIDUAL_STATE.md) composes two
+The [bounded state emitter](../supplements/state_based_qbp/NATIVE_RESIDUAL_STATE.md) composes two
 tables and one state-amplification step for one or two system qubits. General tables and the full
 fine state compiler remain unimplemented. The
-[bounded branch selector](../docs/NATIVE_RESIDUAL_BRANCH.md) also prepares
+[bounded branch selector](../supplements/state_based_qbp/NATIVE_RESIDUAL_BRANCH.md) also prepares
 two one-system-qubit residual states coherently, excluding the arbitrary
 branch from the initial reflection and retaining its literal phase.
-The [native residual QBP fixture](../docs/NATIVE_RESIDUAL_QBP.md) connects
+The [native residual QBP fixture](../supplements/state_based_qbp/NATIVE_RESIDUAL_QBP.md) connects
 it to both charged gradient streams with certified coefficients for a
 fixed complex target. It does not emit the variable-size fine compiler.
-See the [task theorem](../docs/STATE_BASED_QBP_THEOREM.md)
-and [claim-to-proof coverage](../docs/VERIFICATION.md#state-based-qbp-coverage)
+See the [task theorem](../supplements/state_based_qbp/STATE_BASED_QBP_THEOREM.md)
+and [claim-to-proof coverage](../docs/reference/VERIFICATION_CATALOGUE.md#state-based-qbp-coverage)
 for these evidence boundaries. The selected bounded native integration is
 complete. A certified bounded-input/coarse front end, variable-size native
 schedule, and general guarded decoder are optional software extensions;

@@ -1107,23 +1107,13 @@ Hopf frames; Corollary 7 includes the phase-dressed complex magnitude
 frame with the same sufficient-clean asymptotics. The sufficient reservation
 $`a\geq C(n+h)`$ remains part of Theorem 1; the
 [constant-clean endpoint](OPEN_PROBLEM.md) is not
-settled by removing that hypothesis from the displayed formula. A separate
-[operator-source construction](OPERATOR_SOURCE_COMPILER.md)
-gives $`T=O(N+nL)`$ and $`G=O(NL)`$ with $`a=2`$ and
-$`b\ge L+n+7`$.
-[Conditional-suffix grouping](CONDITIONAL_SUFFIX_COMPILER.md) gives
-$`O(N+L\ell_*(n))`$ T gates and $`O(NL)`$ Clifford gates with that
-allocation, for every $`n\ge1`$ and $`L\ge6`$. Here
-$`\ell_*(n)=1+\log_2^*(n+2)`$; the iterated logarithm counts base-two
-logs until the value is at most one. At $`L=N`$, the upper bound is
-$`O(N\ell_*(n))`$. The linear endpoint remains open; Theorem 1 and its
-matching lower bounds are unchanged. The grouped compiler also has
-the banked bound $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ when
-$`b\ge2(L+n+7)`$.
-The operator-source baseline retains its literal diagonal and complex
-magnitude corollaries with their separate bounds and reservations.
-The grouped matching subregimes use the existing lower bounds; they do not
-remove Theorem 1's sufficient-clean hypothesis by substitution.
+settled by removing that hypothesis from the displayed formula. The
+[one-clean and grouped results](ONE_CLEAN_COMPILER.md) have distinct
+reservations and matching subregimes. The earlier
+[operator-source proof](OPERATOR_SOURCE_COMPILER.md) remains their source
+and lookup foundation and retains smaller two-clean diagonal/multiplexor
+reservations. Their claims do not follow by dropping Theorem 1's clean
+hypothesis.
 
 ### Primary references
 

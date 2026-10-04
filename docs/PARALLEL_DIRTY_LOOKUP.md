@@ -912,7 +912,7 @@ and for readout; its depth improvement comes from the pipeline proof.
 
 ## 7. Attribution and evidence
 
-The [partial-batch extension](BATCHED_DIRTY_LOOKUP.md) retains the same
+The [partial-batch extension](../research/depth/BATCHED_DIRTY_LOOKUP.md) retains the same
 bank echo while reusing fewer indicator wires. At fixed accuracy it
 gives $`T=O(\sqrt N+N/b)`$ and
 $`D_T=O(N\log(b+2)/b^2+n^2)`$ for complete real frames with two

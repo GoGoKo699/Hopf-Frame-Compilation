@@ -55,7 +55,7 @@ This bounded two-qubit example emits elementary Clifford+T words, checks
 complete preparation and coherent dirty-input gradient means, and reports
 literal counts against the original protocol with the same observable.
 Its exact finite-size target is not a generic fine-precision compiler or an
-advantage experiment. See the [scope and word proof](../docs/NATIVE_COARSE_QBP.md).
+advantage experiment. See the [scope and word proof](../supplements/state_based_qbp/NATIVE_COARSE_QBP.md).
 
 ## Native residual QBP ledger
 
@@ -69,7 +69,7 @@ one-qubit target and reports exact coefficient, coarse-distance, gate,
 and gradient-bias certificates. It also demonstrates the exact histogram
 decoders. It performs no statevector propagation or sampling; the bounded
 native numerical checks live in the test suite. See the
-[integration proof and scope](../docs/NATIVE_RESIDUAL_QBP.md).
+[integration proof and scope](../supplements/state_based_qbp/NATIVE_RESIDUAL_QBP.md).
 
 ## Upstream synchronization
 

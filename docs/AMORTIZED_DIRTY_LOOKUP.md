@@ -1,6 +1,6 @@
 # Amortized dirty lookup and matching T-depth ranges
 
-[Batched construction](BATCHED_DIRTY_LOOKUP.md) · [Depth model and routing](T_DEPTH_COMPILER.md) · [Complete-frame source](OPERATOR_SOURCE_COMPILER.md)
+[Batched construction](../research/depth/BATCHED_DIRTY_LOOKUP.md) · [Depth model and routing](T_DEPTH_COMPILER.md) · [Complete-frame source](OPERATOR_SOURCE_COMPILER.md)
 
 The low-address indicator router can be shared across every chunk of a
 dirty table query. The required change is to select a linear map on the
@@ -450,7 +450,7 @@ Independent nearest-grid angle rounding also retains a logarithmic
 precision requirement. Neither statement is a lower bound for this
 capped allocation or for unrestricted frame depth.
 
-The [radial-filter variant](HOPF_RADIAL_FILTER.md#5-a-smaller-source-precision-cap)
+The [radial-filter variant](../research/depth/HOPF_RADIAL_FILTER.md#5-a-smaller-source-precision-cap)
 changes the source circuit and proves a stronger mixed error certificate.
 Its cap replaces $`\lceil\log_2(8n)\rceil`$ by
 $`\lceil\tfrac12\log_2(8n)\rceil`$. All layerwise widths remain

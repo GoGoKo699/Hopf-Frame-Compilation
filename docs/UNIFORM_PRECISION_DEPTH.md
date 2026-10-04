@@ -11,18 +11,6 @@ precision, the existing hybrid's logarithmic term is already absorbed
 by its nL term. This gives one uniform theorem, with constants independent
 of the requested accuracy.
 
-The later [nonuniform-indicator refinement](NONUNIFORM_DIRTY_INDICATOR.md)
-removes the linear indicator allowance from the late tail at sufficient
-width. The four early linear-depth contributions remain, so the complete
-theorems and their literal width thresholds below are unchanged.
-The [protected-source refinement](PROTECTED_UNARY_SOURCE.md) subsequently
-reduces early source preparation and return to one global pair. Three
-other early linear-depth allowances remain, so it also preserves the
-complete-frame theorem and the fallback reservation below.
-The [windowed activity schedule](WINDOWED_GROUP_PREDICATES.md) then makes
-the early predicate allowance sublinear. Logical stages and program
-queries still contribute linear depth to the same complete-frame bound.
-
 ## 1. The uniform theorem and its stronger low-precision corollary
 
 Let $`n\ge1`$, $`N=2^n`$, and $`0\lt\eta\le1/64`$. Put
@@ -529,6 +517,6 @@ precision split proved above; they do not emit a scalable complete-frame
 compiler or establish a new unrestricted depth lower bound.
 
 The [source map](SOURCE_MAP.md) records this allocation and composition
-as R45; the [related-work scope](RELATED_WORK.md#21-uniform-precision-and-rectangular-query-allocation-3-october-2026)
+as R45; the [related-work scope](../research/RELATED_WORK.md#21-uniform-precision-and-rectangular-query-allocation-3-october-2026)
 identifies its inherited premises. No new external construction or
 priority claim is needed.

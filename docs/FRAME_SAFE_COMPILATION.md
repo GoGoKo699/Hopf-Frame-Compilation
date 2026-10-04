@@ -34,13 +34,13 @@ prefix circuit.
 The three promises support different reverse protocols and should not be
 interchanged.
 
-The [reference-state decoder](REFERENCE_STATE_QBP.md) is a separate
+The [reference-state decoder](../supplements/state_based_qbp/REFERENCE_STATE_QBP.md) is a separate
 protocol with leaf-dependent scores. It can use the
-[state-only compiler](STATE_ONLY_COMPILER.md) because it never invokes its
+[state-only compiler](../supplements/state_based_qbp/STATE_ONLY_COMPILER.md) because it never invokes its
 inverse on an observable response. Its sampling tradeoff does not weaken
 the frame contract for the designated inverse-frame decoder below.
 
-The [coarse-frame decoder](COARSE_FRAME_QBP.md) instead applies the actual
+The [coarse-frame decoder](../supplements/state_based_qbp/COARSE_FRAME_QBP.md) instead applies the actual
 inverse of a cheap coarse frame and corrects its scores classically. Its
 constant depth-record bound holds at all real angles. It requires coarse
 agreement on the marker columns, while the fine-precision circuit only

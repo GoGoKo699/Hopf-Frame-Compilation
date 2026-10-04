@@ -1,122 +1,43 @@
 # Hopf Frame Compilation
 
-> Exact and Fault-Tolerant Compilation of Hopf Differential Frames, by Ruge Lin. A theoretical quantum-circuit compilation repository with proofs and executable finite checks for prescribed complete Hopf frames, clean and borrowed workspace, and Clifford+T resource bounds.
+> Exact and Fault-Tolerant Compilation of Hopf Differential Frames, by Ruge Lin. Proofs and finite checks for prescribed complete Hopf frames under exact one-qubit/CNOT and coherent Clifford+T resource models.
 
 Canonical repository: https://github.com/GoGoKo699/Hopf-Frame-Compilation
 
-## When to consult this repository
+## Use this repository for
 
-- Prescribed unitary completions: the state column and designated differential-frame columns used by Hopf quantum backpropagation (QBP).
-- Exact circuit size, CNOT count, and ancilla-depth tradeoffs for complete Hopf frames.
-- Fault-tolerant Clifford+T synthesis: T-count and T-depth versus precision, clean ancillas, and dirty or borrowed qubits entangled with external references.
-- One-clean-qubit compilation, conditional logical-suffix workspace, literal diagonals, and complete one-target U(2) multiplexors.
-- Fixed-parameter gradient robustness and a separate state-based QBP decoder that avoids fine complete-frame synthesis.
+- Exact full-frame size, CNOT-count, and clean-workspace/depth tradeoffs.
+- T-count versus accuracy and clean/dirty workspace, including one-clean synthesis.
+- Simultaneous real-frame T-count/T-depth bounds in explicit precision/workspace regimes.
+- Literal diagonals, complete one-target multiplexors, and fixed-decoder Hopf QBP robustness.
 
-Start with the current theorem and its assumptions, not a historical intermediate bound. Upper constructions apply to every admitted parameter tuple; matching lower bounds are worst-case statements over the specified family. Record the exact commit consulted and use CITATION.cff for attribution.
+## Selected claims
 
-The bounded internal audit of Results A–D is complete without an unresolved claim-level blocker. The selected scientific scope is frozen, final manuscript writing remains on hold, and the two open resource gaps are optional research. See docs/CORE_CLAIM_AUDIT.md and WORKSPACE.md for the reviewed dependencies, evidence limits, and reopening gate. This is not independent peer review or formal proof certification.
+Start with manuscript/PUBLICATION_SCOPE.md for the complete hypotheses and formulas; docs/README.md maps every proof dependency.
 
-## Current complete-frame results
+- A: Exact real and phase-dressed complex magnitude frames have size Theta(N), CNOT count Theta(N) for n>=2 (zero for n=1), and depth Theta(n+N/(n+m)) for every clean budget m>=0, N=2^n.
+- B: T*=Theta(sqrt(NL)+L+NL/q), G=O(NL), for real and complex magnitude frames with sufficient clean allocation a>=C(n+h), q=n+a+b, h=1+ceil(log2(L+n+2)).
+- C: One-clean real-frame T=O(N+L ell_*(n)), G=O(NL), at b>=L+n+7; banked and complex extensions have separately stated reservations.
+- D: Two-clean real-frame T=O(sqrt(NL)+NL/b+nL), D_T=O(NL/b^2+nL), G=O(NL), at b>=17(L+n+7). The low-precision corollary and explicit matching intervals are in the selected claim ledger.
 
-Write N=2^n, n>=1, 0<eta<=1/64, L=max{6,ceil(log2(1/eta))}, B0=L+n+7, h=1+ceil(log2(L+n+2)), and ell_*(n)=1+log2^*(n+2). The iterated logarithm counts repeated base-two logarithms until the value is at most one. In Clifford+T bounds, a and b count initialized clean and arbitrary dirty compiler qubits, and q_tot=n+a+b. G counts elementary Clifford gates.
+Here 0<eta<=1/64 and L=max{6,ceil(log2(1/eta))}. Upper bounds hold for all admitted parameters; matching lower bounds are worst-case over the named family. T-depth permits arbitrary Clifford interlayers and is not total depth. Supplied parameters admit certified evaluation; classical preprocessing is separate from quantum gate counts.
 
-### Exact compilation
+The full initialized-isometry contract includes arbitrary logical and dirty/reference inputs, literal phases, and clean leakage. Return promises depend on the construction: exact synthesis returns all work exactly; B returns dirty work exactly; one-clean operator-core return is approximate within the norm. Actual adjoints and inactive conditional-work sectors are essential. No QRAM, reset, postselection, supplied catalyst, or free evaluator is assumed.
 
-With arbitrary one-qubit gates, CNOTs, all-to-all connectivity, and any integer m>=0 clean work qubits, the prescribed real and phase-dressed complex magnitude frames have:
+## Read by purpose
 
-- Total elementary size Theta(N).
-- CNOT count Theta(N) for n>=2; zero CNOTs for n=1.
-- Elementary depth Theta(n+N/(n+m)).
+- [Claim-led argument](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): The problem, four claims, their mechanisms, and operational consequence.
+- [Selected claim ledger](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md): Canonical assumptions, formulas, retained corollaries, and limits.
+- [Proof dependencies](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/README.md): A-D and their supporting lemmas.
+- [Verification](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/VERIFICATION.md): Evidence by claim, reproduction, and implementation boundaries.
+- [Source map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/SOURCE_MAP.md): Imported premises and local contributions; stable detailed catalogue linked there.
+- [Current gaps](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): Constant-clean high-precision count and large-workspace depth; literal targets and reopening conditions.
+- [Research archive](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/README.md): Gap-closing attempts, proved restricted cases, outcomes, and preserved evidence. Historical next steps are not current instructions.
+- [Completed state-based QBP supplement](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/supplements/state_based_qbp/README.md): Different-decoder results with their own proof, cost, and native-evidence map; not a fine complete-frame compiler or an application speedup claim.
+- [Continuing workspace](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md): Mandate, current decision, and verification workflow.
 
-Workspace returns exactly. These are matching orders, not optimal leading constants. See docs/COMPILER_THEOREM.md.
+## Status and attribution
 
-### Precision and workspace in T-count
+The bounded internal audit of A-D found no unresolved claim-level blocker. The selected scientific scope is frozen; manuscript writing remains on hold. The two open resource gaps are optional research. Internal review and finite tests are not external peer review, formal proof certification, or a general native emitter.
 
-The sufficient-clean theorem gives T*=Theta(sqrt(NL)+L+NL/q_tot), with G=O(NL), for both real and phase-dressed complex magnitude frames when a>=C(n+h) for a sufficiently large fixed C. This clean reservation is sufficient; it is not asserted necessary. See docs/FAULT_TOLERANT_COMPILER.md.
-
-The one-clean grouped real-frame compiler gives T=O(N+L ell_*(n)), G=O(NL), at a=1 and b>=B0. With b>=2B0, its banked refinement gives T=O(sqrt(NL)+L ell_*(n)+NL/b). Under that reservation it matches the lower bound when L ell_*(n)^2<=N or b<=N/ell_*(n). See docs/ONE_CLEAN_COMPILER.md and docs/CONDITIONAL_SUFFIX_COMPILER.md.
-
-A separate literal diagonal composes with the real frame to compile D_phi W_real for supplied certified leaf phases. This phase-dressed complex magnitude extension uses b>=L+n+8 for the unbanked one-clean bound, or b>=2(L+n+8) for the banked bound. It does not compile arbitrary complex unitaries; phase derivatives use a separate measurement stream.
-
-Other allocations retain distinct constructions. For every a,b>=0 the real-frame borrowed-workspace bound is T=O(NL/q_tot+L sqrt(N)), G=O(NL); its matching splice has the additional condition h+b<=c sqrt(N) for fixed c>0. A zero-clean real-frame construction gives T=O(N+nL), G=O(NL), at b>=B0. Neither statement removes the grouped compiler's clean predicate or the literal-phase primitive's initialized flag. Literal diagonals and complete U(2) multiplexors have separately matched one-stage bounds and their own dirty reservations in docs/ONE_CLEAN_COMPILER.md.
-
-### Simultaneous real-frame T-count and T-depth
-
-The uniform theorem uses a=2 and the literal reservation b>=17B0. One complete real-frame circuit has absolute-constant bounds:
-
-T=O(sqrt(NL)+NL/b+nL), G=O(NL), D_T=O(NL/b^2+nL).
-
-For 6<=L<=log2(n+2)/16, the same theorem strengthens these to:
-
-T=O(sqrt(NL)+NL/b), G=O(NL), D_T=O(NL/b^2+n).
-
-Always subject to b>=17B0, and only when the intervals are nonempty:
-
-- Every precision: b<=sqrt(N/n) gives T*=Theta(NL/b) and D_T*=Theta(NL/b^2).
-- The displayed slowly growing precision range: the same matching orders hold through b<=sqrt(NL/n).
-
-Outside these intervals the general count retains nL. The sufficient condition L<=N/n^2 absorbs nL into sqrt(NL), giving optimal-order count at every eligible width. The small coefficient in the slowly growing precision range is an asymptotic sufficient condition, not a practical crossover estimate. See docs/UNIFORM_PRECISION_DEPTH.md.
-
-At fixed eta, the blocked-bilinear theorem gives T=O_eta(sqrt(N)+N/b), G=O_eta(N), and D_T=O_eta(N/b^2+n), under the same b>=17B0 reservation. At sufficient b=Theta_eta(sqrt(N)), this is optimal-order T=Theta_eta(sqrt(N)) together with D_T=O_eta(n). The unrestricted depth lower bound there remains Omega(1). Constants in this fixed-eta statement may depend on eta; the uniform theorem's constants do not. Earlier schedules remain fallbacks at their smaller literal reservations. See docs/BLOCKED_BILINEAR_LOOKUP.md and docs/UNARY_PHASE_GRADIENT.md.
-
-These depth theorems are for real complete frames. They are not automatically complex-frame or state-based QBP theorems. T-depth counts T/T-dagger layers separated by arbitrary Clifford circuits; it is not elementary circuit depth or elapsed execution time.
-
-## Separate completed state-based QBP contract
-
-The state-based theorem changes the measurement decoder. It covers all-angle real Hopf states and both magnitude and phase gradients of phase-dressed complex states, including singular coordinates. It prescribes initialized state preparation rather than every column of the fine unitary. The complex protocol uses its declared phase gauge.
-
-Keep requested gradient precision K separate from the state precision floor P=max{n,K}; the theorem chooses K from the desired absolute gradient accuracy and observable coefficient scale. Two initialized compiler flags and b>=P+n+7 dirty wires give T=O(N+P), G=O(NP) per execution, apart from observable access. The initialized system, protocol interference branch, and observable work are additional reservations. Observable precision remains K even when P=n>K.
-
-The construction charges a native coarse reference, its actual inverse, coherent reference/target preparation, both original raw-gradient streams, and classical reconstruction. Its initialized-isometry error includes dirty/reference return and work leakage. All sampling executions, observable access, coefficient preprocessing, and output costs remain separately charged. Banked count and real/complex depth schedules have their own sufficient reservations; use docs/STATE_BASED_QBP_THEOREM.md and docs/STATE_QBP_DEPTH.md for the complete statements.
-
-The analytic theorem and bounded native integrations are complete. A general elementary emitter, a general software interface, and an application-level advantage are not selected prerequisites. State preparation does not close either complete-frame gap below. The cost comparison retains classical baselines and does not prove optimal gradient estimation or an end-to-end speedup.
-
-## Research decision and two optional open gaps
-
-1. Fixed-accuracy, large-width complete-frame T-depth: at a=2 and sufficient b=Theta_eta(sqrt(N)), the current bounds are Omega(1)<=D_T*<=O_eta(n), with optimal-order T-count in the upper construction.
-2. Constant-clean, high-precision complete-frame count: at a=2, L=N, b=N+n+7, and n>=3, Omega(N)<=T*<=O(N ell_*(n)). The one-clean construction attains the same upper bound. The uniform-depth width threshold excludes this literal endpoint, and its unary-source mechanism does not scale to this precision.
-
-These gaps are optional extensions of the established package. No new construction pass is active without a qualifying native rule. Follow [WORKSPACE.md#research-decision-and-stopping-rules](https://github.com/GoGoKo699/Hopf-Frame-Compilation/blob/main/WORKSPACE.md#research-decision-and-stopping-rules).
-
-The current large-width depth ledger still has two independent O(n) allowances: logical transport and program load/unload. Protected-source boundaries, windowed activity predicates, and late work have smaller allowances. A logarithmic-depth stabilizer-completion component does not remove the sequential transport or the query cost. Improving one component alone does not establish a sublinear complete-frame theorem.
-
-Reopen a construction route only with an explicit composition rule, symbolic depth/count/width recurrence, and full cleanup contract. An exact retained-source rewrite must hold on every source input; an ideal-source-only alternative needs a global initialized-isometry proof. A proposed lower bound must survive the admitted arbitrary Clifford interlayers and returned dirty work. More fixed-size matrices, phase rearrangements, stale-cache variants, or interface-specific obstructions do not by themselves justify another research pass. See docs/OPEN_PROBLEM.md for completed attempts and their precise boundaries.
-
-## Contracts and evidence boundaries
-
-- No QRAM, intermediate measurement/reset, postselection, supplied catalyst, free precision source, uncharged initialized history, target-frame oracle, or free coherent evaluator is assumed.
-- The complete-frame error is an operator-norm initialized-isometry bound: ||V J_a-J_a(W tensor I_dirty)||<=eta. It includes every logical input, arbitrary dirty inputs and external references, literal phases, and clean-work leakage.
-- Return promises depend on the construction. Exact compilation returns all work exactly; the sufficient-clean compiler returns dirty work exactly. One-clean and original two-clean operator cores return approximately within the stated norm while lookup/control work returns exactly. Conditional logical-suffix work is clean only on its active sector; inactive behavior and final return must be proved separately.
-- Supplied angles/phases admit certified evaluation. Classical coefficient generation and table preprocessing are outside quantum gate counts; the bounded-input QBP audit states when classical construction is efficient.
-- Finite native checks and exact certificates support specified identities and ledgers. They do not prove asymptotic bounds, establish priority, or supply independent peer review. No general elementary Clifford+T emitter for the full asymptotic compiler is claimed.
-
-## Reading map
-
-- [Continuing workspace](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md): Current strongest results, research decision, boundaries, and verification commands.
-- [README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/README.md): Project overview and reproduction entry point.
-- [Technical narrative](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): Connected argument from the prescribed operator to compiler results and QBP.
-- [Scientific scope](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md): Selected claims and their resource/model limits.
-- [Core-claim audit](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/CORE_CLAIM_AUDIT.md): Completed internal claim-to-proof review of Results A–D, source premises, correction, and scope-freeze decision.
-- [Frame-safe compilation](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/FRAME_SAFE_COMPILATION.md): Operational necessity of the complete frame and singular exceptions.
-- [Exact compilation theorem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/COMPILER_THEOREM.md): Matching exact size, CNOT count, and clean-workspace depth.
-- [Fault-tolerant frame theorem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/FAULT_TOLERANT_COMPILER.md): Sufficient-clean matching T-count and phase-dressed complex extension.
-- [One-clean compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/ONE_CLEAN_COMPILER.md): One-clean frame, diagonal, and multiplexor bounds; complex and borrowed-signal corollaries with distinct reservations.
-- [Conditional-suffix compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/CONDITIONAL_SUFFIX_COMPILER.md): Grouped precision sharing, banked refinement, inactive identity, and complete return error.
-- [Borrowed-workspace compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/BORROWED_WORKSPACE_COMPILER.md): Arbitrary allocations and its restricted matching splice.
-- [Uniform count and depth](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/UNIFORM_PRECISION_DEPTH.md): Strongest uniform real-frame composition and simultaneous matching intervals.
-- [Blocked bilinear lookup](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/BLOCKED_BILINEAR_LOOKUP.md): Fixed-accuracy variable-width count/depth theorem.
-- [Unary phase source](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/UNARY_PHASE_GRADIENT.md): Charged selected shifts, complete-frame O_eta(n) depth, exact retained-source factors, and shallow stabilizer completion with sequential transport still charged.
-- [State-based QBP theorem](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/STATE_BASED_QBP_THEOREM.md): Separate completed real/complex state contract, accuracy, workspace, sampling, and bounded implementation.
-- [State-based QBP depth](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/STATE_QBP_DEPTH.md): Separate same-circuit depth/count schedules and dirty reservations.
-- [QBP approximation](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/QBP_APPROXIMATION.md): Original frame-based robustness, complex gradients, observables, and dirty-bank reuse.
-- [Complete task-cost comparison](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/QBP_COST_COMPARISON.md): Common accuracy/workspace, all quantum executions, observable access, preprocessing, reconstruction, and classical baselines.
-- [Research status](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): The two open complete-frame frontiers, completed component work, and scoped failure diagnostics.
-- [Documentation map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/README.md): Full proof and supporting-material index.
-
-## Evidence and attribution
-
-- [Verification map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/VERIFICATION.md): Analytic claims, exact certificates, native finite checks, and evidence limits.
-- [Source map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/SOURCE_MAP.md): Fact-level attribution for inherited synthesis tools and Hopf geometry/QBP.
-- [Related work](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/RELATED_WORK.md): Comparisons by target operator, gate model, precision, and workspace.
-- [Citation metadata](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/CITATION.cff): Author, title, version metadata, and repository citation.
-- [License](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/LICENSE): MIT license.
+Use the exact consulted commit and CITATION.cff for attribution. The repository is MIT licensed. Collaborations: gogoko699@gmail.com.

@@ -1,13 +1,12 @@
 # One-clean compilation of Hopf frames
 
-[Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Source-reuse limits](SOURCE_REUSE_LIMITS.md) · [Open endpoint](OPEN_PROBLEM.md)
+[Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Open endpoint](OPEN_PROBLEM.md)
 
 One initialized flag suffices for an addressed real rotation with a
 precision-sized arbitrary dirty core. The construction conjugates one
 scalar block by another, routing their rejection terms through different
 logical Pauli operators. An anticommutator then cancels the dirty terms in
-the accepted block. This is a different unitary word from the direct
-flag-merging shortcut ruled out in the source-reuse chapter.
+the accepted block.
 
 The source is an exact Clifford+T circuit. Paired Majorana operators carry
 two independently programmed geometric coefficient lists on essentially
