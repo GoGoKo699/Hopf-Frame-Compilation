@@ -111,7 +111,7 @@ real Hopf frame $`W_{\mathbb R}`$. Define
 
 ```math
 \mu=\frac1N\sum_x\varphi_x,\qquad
-D_0=e^{-i\mu}\operatorname{diag}(e^{i\varphi_x}),\qquad
+D_0=e^{-i\mu}\,\mathrm{diag}(e^{i\varphi_x}),\qquad
 W'=D_0W_{\mathbb R}.
 ```
 
@@ -234,7 +234,7 @@ derivatives obey $`d'_j=e^{-i\mu}d_j=a_jW'|\lambda(j)\rangle`$,
 so the usual incoming-amplitude and marker scores are unchanged. The
 common scalar cancels from $`W'^\dagger O W'`$. In the direct phase
 stream, replacing psi by $`e^{-i\mu}\psi`$ leaves
-$`2\operatorname{Im}(\overline{\psi_x}(O\psi)_x)`$ unchanged.
+$`2\,\mathrm{Im}(\overline{\psi_x}(O\psi)_x)`$ unchanged.
 Equivalently, differentiating the selected gauge adds a common-phase
 direction whose Hermitian-energy derivative vanishes. Thus both streams
 estimate the original physical raw gradients, with the same complete

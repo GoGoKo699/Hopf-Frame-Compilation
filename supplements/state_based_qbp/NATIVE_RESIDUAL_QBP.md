@@ -24,7 +24,7 @@ Use the conventions
 ```math
 R_y(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\
 \sin\theta&\cos\theta\end{pmatrix},
-\qquad R_z(\phi)=\operatorname{diag}(e^{-i\phi},e^{i\phi}).
+\qquad R_z(\phi)=\mathrm{diag}(e^{-i\phi},e^{i\phi}).
 ```
 
 Fix

@@ -82,16 +82,16 @@ For $`v=UO\psi`$, the signed probabilities conditioned on the chosen basis
 obey
 
 ```math
-\sum_s s\Pr(s,x\mid X)=\frac{\operatorname{Re}v_x}{\sqrt N},\qquad
-\sum_s s\Pr(s,x\mid Y)=\frac{\operatorname{Im}v_x}{\sqrt N}.
+\sum_s s\Pr(s,x\mid X)=\frac{\mathrm{Re}\,v_x}{\sqrt N},\qquad
+\sum_s s\Pr(s,x\mid Y)=\frac{\mathrm{Im}\,v_x}{\sqrt N}.
 ```
 
 Use the records
 
 ```math
 Y_j(q,s,x)=4s\sqrt N\begin{cases}
-\operatorname{Re}f_{jx},&q=X,\\
-\operatorname{Im}f_{jx},&q=Y.
+\mathrm{Re}\,f_{jx},&q=X,\\
+\mathrm{Im}\,f_{jx},&q=Y.
 \end{cases}
 ```
 
@@ -101,8 +101,8 @@ Consequently
 ```math
 \begin{aligned}
 \mathbb E Y_j
-&=2\operatorname{Re}\sum_x\overline{f_{jx}}v_x\\
-&=2\operatorname{Re}\langle d_j|O|\psi\rangle
+&=2\,\mathrm{Re}\sum_x\overline{f_{jx}}v_x\\
+&=2\,\mathrm{Re}\langle d_j|O|\psi\rangle
 =\partial_{\theta_j}\langle\psi|O|\psi\rangle.
 \end{aligned}
 ```
@@ -118,7 +118,7 @@ the separate leaf-phase stream.
 
 For $`H=\sum_t c_tO_t`$, choose t independently with probability
 $`|c_t|/\Lambda`$, where $`\Lambda=\sum_t|c_t|\gt0`$, and multiply each
-record by $`\Lambda\operatorname{sgn}(c_t)`$. Coefficients and sampling
+record by $`\Lambda\,\mathrm{sgn}(c_t)`$. Coefficients and sampling
 probabilities have the [existing exact classical contract](../../docs/QBP_APPROXIMATION.md#10-reflection-sums-and-finite-classical-weights).
 The means then give the raw derivatives of $`\langle\psi|H|\psi\rangle`$.
 Classically preparing and sampling this distribution remains charged.
@@ -126,7 +126,7 @@ Classically preparing and sampling this distribution remains charged.
 ## 3. Every depth record has norm at most five
 
 Put $`E=C^\dagger W-I`$, so $`\|E\|\le\delta_c`$. At depth d, let
-$`J_d`$ inject its marker labels and let $`A_d=\operatorname{diag}(a_j)`$
+$`J_d`$ inject its marker labels and let $`A_d=\mathrm{diag}(a_j)`$
 on those nodes. The matrix of transformed derivative columns at this depth is
 
 ```math
@@ -175,8 +175,8 @@ and Euclidean duality therefore give depth-block bias at most
 ```
 
 Define normalized decoder coefficients
-$`\kappa^X_{jx}=\sqrt N\operatorname{Re}f_{jx}`$ and
-$`\kappa^Y_{jx}=\sqrt N\operatorname{Im}f_{jx}`$.
+$`\kappa^X_{jx}=\sqrt N\,\mathrm{Re}\,f_{jx}`$ and
+$`\kappa^Y_{jx}=\sqrt N\,\mathrm{Im}\,f_{jx}`$.
 Uniform coefficient error at most $`\tau`$ changes every empirical
 coordinate average by at most $`4\Lambda\tau`$. Alternatively, the
 histogram algorithm below may certify its final deterministic rounding error
@@ -219,8 +219,8 @@ each execution, and independently of each other.
 Keep signed integer histograms
 
 ```math
-A_x=\sum_{t:q_t=X,\,x_t=x}\operatorname{sgn}(c_{u_t})s_t,\qquad
-B_x=\sum_{t:q_t=Y,\,x_t=x}\operatorname{sgn}(c_{u_t})s_t,
+A_x=\sum_{t:q_t=X,\,x_t=x}\mathrm{sgn}(c_{u_t})s_t,\qquad
+B_x=\sum_{t:q_t=Y,\,x_t=x}\mathrm{sgn}(c_{u_t})s_t,
 ```
 
 where $`u_t`$ is the classically selected observable term. Let
@@ -229,8 +229,8 @@ columns are $`d_j`$, the exact empirical estimate is
 
 ```math
 \widehat g
-=\operatorname{Re}(J^\dagger U^\dagger h)
-=J^{\mathsf T}\operatorname{Re}(C H_n h).
+=\mathrm{Re}(J^\dagger U^\dagger h)
+=J^{\mathsf T}\,\mathrm{Re}(C H_n h).
 ```
 
 First apply $`H_n`$ by a fast Walsh transform. Then apply the recorded
@@ -239,7 +239,7 @@ their complex entries. This takes $`O(Nn)`$ and $`O(N)`$ scalar operations,
 respectively, once those two-by-two coefficients are available. It does not
 simulate the Hilbert space of the dirty implementation.
 
-At the leaves initialize $`\beta_x=\operatorname{Re}(C H_n h)_x`$.
+At the leaves initialize $`\beta_x=\mathrm{Re}(C H_n h)_x`$.
 Using the original tuple's signed incoming amplitudes $`a_j`$, propagate
 
 ```math
@@ -269,7 +269,7 @@ its real and imaginary integer counters need $`O(1+\log S)`$ bits. Then
 $`|u_x|\le1`$, $`\|u\|_2\le\sqrt N`$, and the same estimate is
 
 ```math
-\widehat g=4\Lambda J^{\mathsf T}\operatorname{Re}(Cu).
+\widehat g=4\Lambda J^{\mathsf T}\,\mathrm{Re}(Cu).
 ```
 
 Here is a sufficient conservative rounding analysis. Approximate each actual

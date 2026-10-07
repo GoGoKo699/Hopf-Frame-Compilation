@@ -7,6 +7,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import unquote
 
+from scripts.check_presentation import github_math_failures
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -178,14 +180,8 @@ class ReviewerNarrativeTests(unittest.TestCase):
             for phrase in PROCESS_PHRASES:
                 self.assertNotIn(phrase, text, msg=f"{phrase!r} in {relative}")
 
-    def test_primary_pages_use_github_safe_math_commands(self) -> None:
-        for relative in PRIMARY_PAGES:
-            text = (ROOT / relative).read_text(encoding="utf-8")
-            self.assertNotIn(
-                "\\operatorname",
-                text,
-                msg=f"unsupported GitHub math command in {relative}",
-            )
+    def test_repository_mathematics_uses_github_safe_commands(self) -> None:
+        self.assertEqual(github_math_failures(ROOT), [])
 
     def test_markdown_tables_render_mathematics_instead_of_code(self) -> None:
         offenders: list[str] = []

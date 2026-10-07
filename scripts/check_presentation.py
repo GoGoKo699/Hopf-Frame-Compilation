@@ -31,6 +31,12 @@ TOKENS = re.compile(
     r"|(?P<plain>(?<![\\$])\$(?![$`])(?P<plain_body>[^$\n]+?)(?<!\\)\$(?!\$))"
 )
 ESCAPED_PUNCTUATION = re.compile(r"\\[!\"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~]")
+# A display marker must be recognized before a plain inline token. Ordinary
+# code spans consume their contents before any dollar marker can become math.
+MATH_INPUT = re.compile(
+    TOKENS.pattern.replace(r"|(?P<plain>", r"|(?P<display>(?<!\\)\$\$)|(?P<plain>")
+)
+TEX_COMMAND = re.compile(r"\\(?:[A-Za-z]+|.)")
 
 
 def math_tokens(line: str) -> list[dict[str, Any]]:
@@ -56,6 +62,90 @@ def prose_lines(text: str, *, include_tables: bool = False):
             continue
         if fence is None and (include_tables or not line.lstrip().startswith("|")):
             yield number, line
+
+
+def mathematical_lines(text: str):
+    """Yield line-numbered TeX from inline math, tables, and display blocks.
+
+    Protected inline syntax is math; ordinary code spans and non-math fences
+    are literal examples. Dollar displays retain state across source lines.
+    This small source guard is not a replacement for a Markdown renderer.
+    """
+    fence = None
+    math_fence = False
+    display = False
+    for number, line in enumerate(text.splitlines(), 1):
+        marker = FENCE.match(line)
+        if marker:
+            token = marker.group(1)
+            if fence is None and not display:
+                fence = token
+                math_fence = line[marker.end():].strip() == "math"
+                continue
+            if fence is not None:
+                if (token[0] == fence[0] and len(token) >= len(fence)
+                        and not line[marker.end():].strip()):
+                    fence = None
+                    math_fence = False
+                continue
+        if fence is not None:
+            if math_fence:
+                yield number, line
+            continue
+        position = 0
+        while position < len(line):
+            if display:
+                end = re.search(r"(?<!\\)\$\$", line[position:])
+                if end is None:
+                    yield number, line[position:]
+                    break
+                yield number, line[position:position + end.start()]
+                position += end.end()
+                display = False
+                continue
+            token = MATH_INPUT.search(line, position)
+            if token is None:
+                break
+            position = token.end()
+            if token.group("display") is not None:
+                display = True
+            elif token.group("code") is None:
+                yield number, token.group("protected_body") or token.group("plain_body")
+
+
+def unsupported_github_math(text: str) -> list[tuple[int, str]]:
+    """Find the observed GitHub-rejected macro, without banning other TeX.
+
+    Tokenizing control sequences avoids treating a TeX line break followed by
+    the letters 'operatorname' as the macro itself.
+    """
+    return [(number, command.group())
+            for number, body in mathematical_lines(text)
+            for command in TEX_COMMAND.finditer(body)
+            if command.group() == r"\operatorname"]
+
+
+def github_math_failures(root: Path) -> list[str]:
+    """Check the entire reading corpus, including newly added nested pages."""
+    failures = []
+    paths = set(root.rglob("*.md")) | set(root.rglob("llms.txt"))
+    for path in sorted(paths):
+        relative = path.relative_to(root)
+        if any(part.startswith(".") or part in {
+            "node_modules", "__pycache__", "build", "dist"
+        } for part in relative.parts):
+            continue
+        failures.extend(f"{relative}:{number}: unsupported GitHub math command {command}"
+                        for number, command in unsupported_github_math(
+                            path.read_text(encoding="utf-8")))
+    return failures
+
+
+def assert_github_safe_math(root: Path) -> None:
+    """Fail before a permissive local MathJax renderer can hide incompatibility."""
+    failures = github_math_failures(root)
+    if failures:
+        raise AssertionError("GitHub math compatibility preflight failed:\n" + "\n".join(failures))
 
 
 class _Text(HTMLParser):
@@ -242,6 +332,7 @@ MEASURE = r"""() => {
 
 
 def check_math(page: Any, root: Path, mathjax: Path, output: Path) -> dict:
+    assert_github_safe_math(root)
     from markdown_it import MarkdownIt
     renderer = MarkdownIt("commonmark", {"html": True})
     expressions: dict[str, dict] = {}
@@ -388,6 +479,7 @@ def capture_table_previews(page: Any, output: Path, stem: str) -> None:
 
 def check_documents(page: Any, root: Path, mathjax: Path, output: Path) -> dict:
     """Check SVG and native-MathML pages; retain both for human review."""
+    assert_github_safe_math(root)
     report: dict[str, Any] = {"pages": {}, "failures": []}
     bundle = mathjax.read_text(encoding="utf-8")
     for path in sorted(root.rglob("*.md")):
@@ -470,6 +562,8 @@ def main() -> None:
     parser.add_argument('--mathjax', type=Path, help='Local MathJax tex-svg-full.js bundle')
     parser.add_argument('--svg-only', action='store_true')
     args = parser.parse_args()
+    if not args.svg_only:
+        assert_github_safe_math(args.root)
     if not args.svg_only and (args.mathjax is None or not args.mathjax.is_file()):
         parser.error('Supply --mathjax /path/to/tex-svg-full.js, or use --svg-only.')
     from playwright.sync_api import sync_playwright

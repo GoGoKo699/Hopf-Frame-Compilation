@@ -110,7 +110,7 @@ operations, plus at most $`O(MNn)`$ elementary bit work for naive index and
 parity calculation. It does not construct an $`N\times N`$ matrix.
 
 Initialize real leaf weights
-$`\beta_x=\operatorname{Re}(e^{-i\varphi_x}v_x)`$. Traverse the
+$`\beta_x=\mathrm{Re}(e^{-i\varphi_x}v_x)`$. Traverse the
 original real tree upward:
 
 ```math
@@ -121,10 +121,10 @@ g_{\theta_j}=2a_j(-s_j\beta_{j0}+c_j\beta_{j1}).
 At the leaves also output
 
 ```math
-g_{\varphi_x}=2\operatorname{Im}(\overline{\psi_x}v_x).
+g_{\varphi_x}=2\,\mathrm{Im}(\overline{\psi_x}v_x).
 ```
 
-These identities are $`2\operatorname{Re}(J^\dagger H\psi)`$ and
+These identities are $`2\,\mathrm{Re}(J^\dagger H\psi)`$ and
 the original direct phase derivative. The reverse pass holds v and the
 phase factors fixed; it is the analytic Hopf contraction, not a derivative
 through an approximate evaluator. It costs $`O(N)`$ operations and
@@ -278,7 +278,7 @@ Prepare the same amplitude data classically, sample r with probability
 $`|c_r|/\Lambda`$, and consider the whole coordinate vector
 
 ```math
-G_r=\Lambda\operatorname{sgn}(c_r)
+G_r=\Lambda\,\mathrm{sgn}(c_r)
        \nabla\langle\psi|Q_r|\psi\rangle.
 ```
 
@@ -287,7 +287,7 @@ columns are orthonormal marker columns multiplied by the real incoming
 amplitudes. Projection onto those columns and $`|a_j|\le1`$ give
 $`\|G_r^{(d)}\|_2\le2\Lambda`$. The entire phase block has norm at
 most $`2\Lambda`$ as well, since it is
-$`2\Lambda\operatorname{sgn}(c_r)\operatorname{Im}(\overline\psi\odot Q_r\psi)`$.
+$`2\Lambda\,\mathrm{sgn}(c_r)\,\mathrm{Im}(\overline\psi\odot Q_r\psi)`$.
 Thus the retained
 Hilbert-space concentration bound gives the same
 $`O(\Lambda^2\varepsilon_\infty^{-2}[1+\log((n+1)/\delta)])`$
@@ -298,7 +298,7 @@ There is no additional quantum branch or leaf measurement noise in this
 classical comparator.
 
 Do not compute and retain one gradient vector per draw. First collect
-$`h_r=\operatorname{sgn}(c_r)\,\#\{\text{draws of }r\}`$ and form
+$`h_r=\mathrm{sgn}(c_r)\,\#\{\text{draws of }r\}`$ and form
 
 ```math
 \widehat v=\frac\Lambda S\sum_{r:h_r\ne0}h_rQ_r\psi.
@@ -351,7 +351,7 @@ algorithm for finding such a word.
 There is nevertheless a deterministic, certified search costing
 
 ```math
-2^{O(p)}\operatorname{poly}(B+p+1)
+2^{O(p)}\,\mathrm{poly}(B+p+1)
 ```
 
 bit operations for the bounded-angle targets needed here. Enumerate
@@ -480,10 +480,10 @@ controlled Pauli terms, conservative bit-time bounds are
 ```math
 \begin{aligned}
 \mathcal P_{\rm grouped}
- &\le I_{\rm in}+N^{O(1)}\operatorname{poly}(B+K+J)
+ &\le I_{\rm in}+N^{O(1)}\,\mathrm{poly}(B+K+J)
              +O(MnJ),\\
 \mathcal P_{\rm state}
- &\le I_{\rm in}+N^{O(1)}\operatorname{poly}(B+P+J)
+ &\le I_{\rm in}+N^{O(1)}\,\mathrm{poly}(B+P+J)
              +O(MnJ).
 \end{aligned}
 ```
@@ -518,7 +518,7 @@ This theorem does not make every quantum minimum in the comparison
 polynomial-time constructible in K by the same proof. Direct fine
 borrowed-frame synthesis, including the gauge-fixed complex corollary,
 has the sufficient exhaustive-search bound
-$`2^{O(K+n)}\operatorname{poly}(B+K+J)`$ after summing over rows.
+$`2^{O(K+n)}\,\mathrm{poly}(B+K+J)`$ after summing over rows.
 It is polynomial in N when $`K=O(n)`$, but the bound can be exponential
 in K outside that regime. The basic-budget state fallback at fixed
 $`n\le5`$ has the analogous limitation. Faster synthesis algorithms

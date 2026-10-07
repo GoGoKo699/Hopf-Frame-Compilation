@@ -42,7 +42,7 @@ two-by-two algebra gives
 
 For example, with $`\omega=e^{i\pi/4}`$, the diagonal and off-diagonal
 entries of HTH are $`(1+\omega)/2`$ and $`(1-\omega)/2`$.
-They give $`\operatorname{tr}K_0=2-(1-1/\sqrt2)^2`$; for a
+They give $`\mathrm{tr}\,K_0=2-(1-1/\sqrt2)^2`$; for a
 determinant-one two-by-two unitary, the displayed distance follows.
 
 For unitaries A and B,

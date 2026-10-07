@@ -24,6 +24,15 @@ The source equations and proof checkpoints are in
 
 ## Rendering checks
 
+The dependency-free test suite scans mathematical input in every Markdown page
+and `llms.txt`, including nested research and supplement pages. It rejects the
+observed GitHub-incompatible `\operatorname` command with file and line
+diagnostics, while allowing literal code examples. The browser checker runs
+the same guard before MathJax, which can otherwise accept the rejected command.
+Protected and plain inline math, tables, math fences, and dollar displays are
+covered; this is a specific compatibility regression, not a complete model of
+GitHub's math filter.
+
 The optional [presentation checker](../scripts/check_presentation.py) renders
 all five SVGs at their desktop embedding widths and at a 358-pixel image width.
 It measures label containment, label overlap, annotated connector clearance and

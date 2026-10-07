@@ -27,7 +27,7 @@ frame specified by its angle tuple. Supply one real phase representative
 $`\varphi_x`$ per leaf, with certified classical evaluation. Set
 
 ```math
-D_\varphi=\operatorname{diag}(e^{i\varphi_x}),\qquad
+D_\varphi=\mathrm{diag}(e^{i\varphi_x}),\qquad
 \mu=\frac1N\sum_x\varphi_x,\qquad
 D_0=e^{-i\mu}D_\varphi,\qquad W'=D_0W_{\mathbb R}.
 ```
@@ -68,7 +68,7 @@ at a leaf. At an internal node put
 ```math
 \gamma_v=\frac{\mu_{v1}-\mu_{v0}}2,\qquad
 R_z(\gamma_v)=e^{-i\gamma_v Z}
- =\operatorname{diag}(e^{-i\gamma_v},e^{i\gamma_v}).
+ =\mathrm{diag}(e^{-i\gamma_v},e^{i\gamma_v}).
 ```
 
 At depth $`d=0,\ldots,n-1`$, apply this two-by-two table to the next
@@ -295,7 +295,7 @@ P_x=|x\rangle\langle x|.
 ```
 
 The extra common-phase term contributes zero to
-$`2\operatorname{Re}\langle\partial_{\varphi_x}\psi'|O|\psi'\rangle`$,
+$`2\,\mathrm{Re}\langle\partial_{\varphi_x}\psi'|O|\psi'\rangle`$,
 since $`\langle\psi'|O|\psi'\rangle`$ is real. Equivalently, one may
 freeze the chosen scalar gauge at the current tuple when forming the
 derivative records. This does not differentiate the discrete native
