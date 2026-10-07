@@ -69,8 +69,8 @@ therefore satisfies
 
 ```math
 \mathbb E Y_j
-=2\operatorname{Re}\sum_x d_{jx}(O\psi)_x
-=2\operatorname{Re}\langle\partial_j\psi|O|\psi\rangle
+=2\,\mathrm{Re}\sum_x d_{jx}(O\psi)_x
+=2\,\mathrm{Re}\langle\partial_j\psi|O|\psi\rangle
 =\partial_j\langle\psi|O|\psi\rangle.
 ```
 
@@ -191,7 +191,7 @@ angle tuple.
 Allow $`H=\sum_t c_tO_t`$ with known exact real coefficients and
 $`\Lambda=\sum_t|c_t|\gt0`$. Choose t independently with probability
 $`|c_t|/\Lambda`$ and multiply the record by
-$`\Lambda\operatorname{sgn}(c_t)`$. This classical sampling and its
+$`\Lambda\,\mathrm{sgn}(c_t)`$. This classical sampling and its
 preprocessing have the same contract as
 [the original reflection-sum protocol](../../docs/QBP_APPROXIMATION.md#10-reflection-sums-and-finite-classical-weights).
 One reflection is the case $`\Lambda=1`$.
@@ -330,7 +330,7 @@ also a histogram route with $`O(S+N)`$ arithmetic operations. Let
 
 ```math
 h_x=\frac{2\Lambda}{S r_x}
-       \sum_{t:\,x_t=x}\operatorname{sgn}(c_{u_t})s_t.
+       \sum_{t:\,x_t=x}\mathrm{sgn}(c_{u_t})s_t.
 ```
 
 The estimate is $`\widehat g_j=\sum_x h_xd_{jx}`$. Hold the measured h

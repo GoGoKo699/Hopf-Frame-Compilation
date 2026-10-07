@@ -262,8 +262,8 @@ entire borrowed pool.
 Let h be core wire zero and define exact native Toffoli words
 
 ```math
-F=\operatorname{CCX}(x_0,x_1;h),\qquad
-G=\operatorname{CCX}(h,s;t).
+F=\mathrm{CCX}(x_0,x_1;h),\qquad
+G=\mathrm{CCX}(h,s;t).
 ```
 
 The chronological echo F,G,F,G has the Boolean action

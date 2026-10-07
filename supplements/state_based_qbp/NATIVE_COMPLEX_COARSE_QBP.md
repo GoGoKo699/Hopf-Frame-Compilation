@@ -34,13 +34,13 @@ The supplied, unwrapped leaf phases are
 =\mu+( -4,-14,2,16)\pi/4.
 ```
 
-With $`R_z(\gamma)=\operatorname{diag}(e^{-i\gamma},e^{i\gamma})`$,
+With $`R_z(\gamma)=\mathrm{diag}(e^{-i\gamma},e^{i\gamma})`$,
 apply the root row on the high bit, then the two high-bit-selected child
 rows on the low bit. Every row acts on all its suffix copies. Their product
 is exactly
 
 ```math
-D_0=e^{-i\mu}D_\varphi=\operatorname{diag}(-1,i,i,1),
+D_0=e^{-i\mu}D_\varphi=\mathrm{diag}(-1,i,i,1),
 \qquad V=D_0W_{\mathbb R},\qquad |\psi'\rangle=V|00\rangle.
 ```
 
@@ -99,12 +99,12 @@ column. To certify the required constant, direct two-by-two multiplication
 in $`\mathbb Q(\sqrt2,i)`$ gives
 
 ```math
-\operatorname{tr}K_0=\frac12+\sqrt2,\qquad
-\operatorname{tr}K_1=1+\frac{11\sqrt2}{16},\qquad
-\operatorname{tr}K_2=\frac{1+2893\sqrt2}{2048}.
+\mathrm{tr}\,K_0=\frac12+\sqrt2,\qquad
+\mathrm{tr}\,K_1=1+\frac{11\sqrt2}{16},\qquad
+\mathrm{tr}\,K_2=\frac{1+2893\sqrt2}{2048}.
 ```
 
-For a determinant-one two-by-two unitary, $`\|K-I\|^2=2-\operatorname{tr}K`$.
+For a determinant-one two-by-two unitary, $`\|K-I\|^2=2-\mathrm{tr}\,K`$.
 Since $`\sqrt2\gt41/29`$ (because $`1681\lt1682`$),
 
 ```math

@@ -130,9 +130,9 @@ Transpose acts only on logical two-by-two indices; it neither conjugates
 nor inverts the source variable. The Bell identity gives
 $`K_s(|\Phi^+\rangle\otimes|\psi\rangle)=|\Phi^+\rangle\otimes|\psi\rangle`$
 for every source input. Put
-$`\mathcal C=\operatorname{diag}(C_0,C_1)`$,
-$`\mathcal V=\operatorname{diag}(V_0,V_1)\otimes I`$, and
-$`\mathcal K=\operatorname{diag}(K_0,K_1)`$.
+$`\mathcal C=\mathrm{diag}(C_0,C_1)`$,
+$`\mathcal V=\mathrm{diag}(V_0,V_1)\otimes I`$, and
+$`\mathcal K=\mathrm{diag}(K_0,K_1)`$.
 The branch-controlled $`\mathcal K`$ commutes with the root U even
 for unequal children: it is identity on the Bell sector, and U is
 identity on its complement. Source coefficients commute throughout.
@@ -164,7 +164,7 @@ There is a limited transport identity on the incoming root-times-Bell
 subspace. Let $`R_a(z)`$ be the two-by-two rotation defined above, and put
 
 ```math
-F=\operatorname{diag}(V_0,V_1)(R_a(z)\otimes I_2)\in\mathrm{SU}(4,\mathcal R_q),
+F=\mathrm{diag}(V_0,V_1)(R_a(z)\otimes I_2)\in\mathrm{SU}(4,\mathcal R_q),
 ```
 
 ```math

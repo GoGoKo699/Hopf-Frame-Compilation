@@ -241,7 +241,7 @@ B\ge16c_I(r+2),
 use the existing rectangular blocked allocation:
 
 ```math
-J=\operatorname{pow2floor}
+J=\mathrm{pow2floor}\,
   \min\left\{Q,\sqrt{Qm},\frac{B}{8c_I}\right\},
 \qquad H=\min\{J,Q/J\},\qquad K=Q/(HJ).
 ```

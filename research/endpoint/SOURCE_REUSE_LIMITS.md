@@ -190,7 +190,7 @@ Pauli rotations costs one T or T-dagger. Common scalars cancel.
 word gives
 
 ```math
-c_j=2^{-m}\operatorname{Tr}(PD_jPD_j)=1-2^{-j}.
+c_j=2^{-m}\,\mathrm{Tr}(PD_jPD_j)=1-2^{-j}.
 ```
 
 For $`j\ge1`$, exactly one term in the anticommuting Pauli expansion
@@ -232,7 +232,7 @@ to be zero. Set $`d=m+s`$, $`C=Z_0\otimes I_s`$,
 $`A=C\otimes I_{\rm clean}`$, $`F=VJ`$, and
 
 ```math
-c=2^{-d}\operatorname{Tr}(CF^\dagger AF).
+c=2^{-d}\,\mathrm{Tr}(CF^\dagger AF).
 ```
 
 The complete-isometry estimate gives
@@ -321,8 +321,8 @@ T or T-dagger gates.
 *Proof.* The exact normalized Pauli correlation is
 
 ```math
-2^{-m}\operatorname{Tr}(X_0D_g^\dagger X_0D_g)
-=2^{-m}\operatorname{Tr}(MP_g^\dagger MP_g)=s_g.
+2^{-m}\,\mathrm{Tr}(X_0D_g^\dagger X_0D_g)
+=2^{-m}\,\mathrm{Tr}(MP_g^\dagger MP_g)=s_g.
 ```
 
 The paired-source coefficient bounds give

@@ -20,7 +20,7 @@ and
 ```math
 R_y(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\
 \sin\theta&\cos\theta\end{pmatrix},\qquad
-R_z(\theta)=\operatorname{diag}(e^{-i\theta},e^{i\theta}).
+R_z(\theta)=\mathrm{diag}(e^{-i\theta},e^{i\theta}).
 ```
 
 In the residual construction, $`z`$ is either the root amplitude or
@@ -86,16 +86,16 @@ $`s=\sqrt{1-r^2}`$ and choose $`w=u+iv`$ as follows:
 ```math
 \begin{array}{ll}
 a\ge0:&u=\sqrt{\frac12+\frac{a}{2r}},\quad v=\frac{b}{2ru};\\[2mm]
-a\lt0:&v=\operatorname{sgn}_+(b)
+a\lt0:&v=\mathrm{sgn}_+(b)
  \sqrt{\frac12+\frac{|a|}{2r}},\quad u=\frac{b}{2rv}.
 \end{array}
 ```
 
-Here $`\operatorname{sgn}_+(0)=1`$ refers only to the finite dyadic
+Here $`\mathrm{sgn}_+(0)=1`$ refers only to the finite dyadic
 $`b`$. The primary component has magnitude at least $`1/\sqrt2`$;
 the other division consequently has a known denominator bound.
 The identities $`|w|=1`$ and $`w^2=\zeta/r`$ follow directly.
-With $`D(w)=\operatorname{diag}(w,\overline w)`$,
+With $`D(w)=\mathrm{diag}(w,\overline w)`$,
 
 ```math
 D(w)\begin{pmatrix}r&-s\\s&r\end{pmatrix}D(w)

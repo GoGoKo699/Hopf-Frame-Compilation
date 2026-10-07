@@ -2,11 +2,14 @@
 from __future__ import annotations
 
 import re
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.check_presentation import (
-    ESCAPED_PUNCTUATION, geometry_failures, math_tokens, prose_lines,
+    ESCAPED_PUNCTUATION, check_documents, check_math, geometry_failures,
+    github_math_failures, main, math_tokens, prose_lines, unsupported_github_math,
     native_equation_is_stacked, native_math_failures,
 )
 
@@ -113,6 +116,69 @@ def malformed_protected_boundaries(text: str) -> list[tuple[int, str]]:
 
 
 class PresentationTests(unittest.TestCase):
+    def test_github_rejects_screenshot_rank_formula(self) -> None:
+        # Local MathJax accepts this input, but the observed GitHub page did not.
+        source = '```math\nR_D=\\sum_j\\operatorname{rank}(D_j)\n```\n'
+        self.assertEqual(unsupported_github_math(source), [(2, r'\operatorname')])
+
+    def test_github_command_guard_covers_all_supported_math_locations(self) -> None:
+        source = (
+            'Use $`\\operatorname{rank}(D)`$ and $\\operatorname{tr}(D)$.\n'
+            '| $`\\operatorname{diag}(D)`$ | table |\n'
+            '$$\\operatorname{Re}(z)$$ and $\\operatorname{Im}(z)$.\n'
+            '$$\n\\operatorname{rank}(D)\n$$\n'
+            '> ~~~math\n> \\operatorname{diag}(D)\n> ~~~\n'
+        )
+        self.assertEqual([line for line, _ in unsupported_github_math(source)],
+                         [1, 1, 2, 3, 3, 5, 8])
+
+    def test_github_command_guard_allows_literal_examples_and_replacements(self) -> None:
+        source = (
+            'The command \\operatorname is discussed here.\n'
+            'Literal `$\\operatorname{rank}(D)$` and '
+            '``$`\\operatorname{rank}(D)`$`` are code.\n'
+            '```latex\n$$\\operatorname{rank}(D)$$\n```\n'
+            '~~~markdown\n```math\n\\operatorname{rank}(D)\n```\n~~~\n'
+            '$`R_D=\\sum_j\\mathrm{rank}(D_j)`$\n'
+            '$`R_D=\\sum_j\\mathop{\\mathrm{rank}}\\nolimits(D_j)`$\n'
+            '$`\\operatornameOther(D)`$ and $`x\\\\operatorname`$.\n'
+        )
+        self.assertEqual(unsupported_github_math(source), [])
+
+    def test_github_command_guard_discovers_new_nested_pages_and_llms(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            nested = root / 'research' / 'new-topic' / 'new-page.md'
+            nested.parent.mkdir(parents=True)
+            nested.write_text('A new page.\n$`\\operatorname{rank}(D)`$\n', encoding='utf-8')
+            (root / 'llms.txt').write_text('$\\operatorname{diag}(D)$\n', encoding='utf-8')
+            dependency = root / 'node_modules' / 'example.md'
+            dependency.parent.mkdir()
+            dependency.write_text('$\\operatorname{rank}(D)$\n', encoding='utf-8')
+            self.assertEqual(github_math_failures(root), [
+                'llms.txt:1: unsupported GitHub math command \\operatorname',
+                'research/new-topic/new-page.md:2: unsupported GitHub math command \\operatorname',
+            ])
+
+    def test_browser_math_checks_reject_commands_before_loading_mathjax(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'README.md').write_text(
+                '```math\nR_D=\\sum_j\\operatorname{rank}(D_j)\n```\n', encoding='utf-8')
+            # No page, bundle, optional browser imports, or output directory are
+            # available: the compatibility preflight must be the first failure.
+            missing_bundle = root / 'missing-mathjax.js'
+            output = root / 'output'
+            for check in (check_math, check_documents):
+                with self.subTest(check=check.__name__):
+                    with self.assertRaisesRegex(AssertionError, r'README\.md:2:.*\\operatorname'):
+                        check(None, root, missing_bundle, output)
+            with patch('sys.argv', ['check_presentation.py', '--root', str(root),
+                                    '--output', str(output)]):
+                with self.assertRaisesRegex(AssertionError, r'README\.md:2:.*\\operatorname'):
+                    main()
+            self.assertFalse(output.exists())
+
     def test_html_sensitive_comparisons_are_detected_in_math(self) -> None:
         source = (
             '```math\n\\begin{cases}a,&j<m-1\\\\b,&j=m-1\\end{cases}\n```\n'

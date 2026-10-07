@@ -309,9 +309,9 @@ coefficient is one into a support S. All terms on that axis commute.
 If S is nonempty, choose its smallest core wire p as a pivot and put
 
 ```math
-C_X=\prod_{j\in S\setminus\{p\}}\operatorname{CX}_{p\to j},
+C_X=\prod_{j\in S\setminus\{p\}}\mathrm{CX}_{p\to j},
 \qquad
-C_Z=\prod_{j\in S\setminus\{p\}}\operatorname{CX}_{j\to p}.
+C_Z=\prod_{j\in S\setminus\{p\}}\mathrm{CX}_{j\to p}.
 ```
 
 Each fanout or fanin is its own inverse and obeys

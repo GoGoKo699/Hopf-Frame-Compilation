@@ -106,10 +106,10 @@ with one returned arbitrary dirty bit d from the idle helper pair.
 Chronologically, apply
 
 ```math
-\operatorname{CCX}(H,v;d),\quad
-\operatorname{CCX}(d,u_i;h),\quad
-\operatorname{CCX}(H,v;d),\quad
-\operatorname{CCX}(d,u_i;h).
+\mathrm{CCX}(H,v;d),\quad
+\mathrm{CCX}(d,u_i;h),\quad
+\mathrm{CCX}(H,v;d),\quad
+\mathrm{CCX}(d,u_i;h).
 ```
 
 The two h toggles sum to $`u_i(d\oplus Hv)\oplus u_id=Hvu_i`$,

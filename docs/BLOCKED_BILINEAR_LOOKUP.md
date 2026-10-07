@@ -66,7 +66,7 @@ For a fixed binary matrix $`D\in\mathbb F_2^{H\times J}`$, we need
 Reserve one arbitrary dirty helper e, disjoint from these registers.
 Binary elimination, with actual inverse coordinate changes, puts the
 bilinear form into $`\sum_{i=1}^{\rho}Y_iX_i`$, where
-$`\rho=\operatorname{rank}(D)`$. The orientation is the same as in
+$`\rho=\mathrm{rank}(D)`$. The orientation is the same as in
 the [existing bilinear lemma](PARALLEL_DIRTY_LOOKUP.md#exact-bilinear-oracle):
 if $`PDQ=J_\rho`$, use $`Y'=P^{-\mathsf T}Y`$ and
 $`X'=Q^{-1}X`$. These basis changes and their inverses have
@@ -117,7 +117,7 @@ D_T\le16,\qquad G=O(\rho(H+J)).
 For rho equal to zero, emit identity. For an m-bit output Z with
 matrices $`D_1,\ldots,D_m`$, process the output bits sequentially,
 restoring both coordinate changes after every output. Reuse the same
-returned helper e. Writing $`R_D=\sum_j\operatorname{rank}(D_j)`$,
+returned helper e. Writing $`R_D=\sum_j\mathrm{rank}(D_j)`$,
 the complete controlled bilinear oracle has
 
 ```math

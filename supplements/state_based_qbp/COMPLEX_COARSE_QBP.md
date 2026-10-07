@@ -30,7 +30,7 @@ leaf-phase representatives $`\varphi_x`$. Write
 ```math
 \begin{gathered}
 |\psi_{\mathbb R}\rangle=W_{\mathbb R}|0^n\rangle,
-\qquad D_\varphi=\operatorname{diag}(e^{i\varphi_x}),
+\qquad D_\varphi=\mathrm{diag}(e^{i\varphi_x}),
 \qquad \mu=N^{-1}\sum_x\varphi_x,\\
 D_0=e^{-i\mu}D_\varphi,\qquad W'=D_0W_{\mathbb R},
 \qquad |\psi'\rangle=W'|0^n\rangle.
@@ -94,26 +94,26 @@ fair X or Y measurement on B and measure the system leaf x. If s is the
 branch eigenvalue, the records are
 
 ```math
-Y_j(q,s,x)=4\Lambda\operatorname{sgn}(c_t)s\sqrt N
+Y_j(q,s,x)=4\Lambda\,\mathrm{sgn}(c_t)s\sqrt N
 \begin{cases}
-\operatorname{Re}f_{jx},&q=X,\\
-\operatorname{Im}f_{jx},&q=Y.
+\mathrm{Re}\,f_{jx},&q=X,\\
+\mathrm{Im}\,f_{jx},&q=Y.
 \end{cases}
 ```
 
 For $`v=UO_t\psi'`$, the signed leaf probabilities conditioned on X
-and Y are respectively $`\operatorname{Re}v_x/\sqrt N`$ and
-$`\operatorname{Im}v_x/\sqrt N`$. Averaging the fair basis choice gives
+and Y are respectively $`\mathrm{Re}\,v_x/\sqrt N`$ and
+$`\mathrm{Im}\,v_x/\sqrt N`$. Averaging the fair basis choice gives
 
 ```math
 \mathbb E Y_j
-=2\operatorname{Re}\langle d'_j|H|\psi'\rangle
+=2\,\mathrm{Re}\langle d'_j|H|\psi'\rangle
 =\partial_{\theta_j}\langle D_\varphi\psi_{\mathbb R}|
  H|D_\varphi\psi_{\mathbb R}\rangle.
 ```
 
 For the norm bound put $`E=C^\dagger W'-I`$. If $`J_d`$ injects the
-marker labels at depth d and $`A_d=\operatorname{diag}(a_j)`$, their
+marker labels at depth d and $`A_d=\mathrm{diag}(a_j)`$, their
 transformed derivative columns form
 
 ```math
@@ -140,7 +140,7 @@ observable, and measure B in Y and the system in the computational basis.
 There is no inverse frame or inverse coarse circuit in this stream. Use
 
 ```math
-P=2\Lambda\operatorname{sgn}(c_t)s\,e_x,
+P=2\Lambda\,\mathrm{sgn}(c_t)s\,e_x,
 \qquad \|P\|_2=2\Lambda.
 ```
 
@@ -148,7 +148,7 @@ The standard Pauli-Y convention gives
 
 ```math
 \mathbb E P_x
-=2\operatorname{Im}\bigl(\overline{\psi'_x}(H\psi')_x\bigr)
+=2\,\mathrm{Im}\bigl(\overline{\psi'_x}(H\psi')_x\bigr)
 =\partial_{\varphi_x}\langle D_\varphi\psi_{\mathbb R}|
  H|D_\varphi\psi_{\mathbb R}\rangle.
 ```
@@ -230,8 +230,8 @@ The exact empirical magnitude estimate is
 
 ```math
 \widehat g_{\rm mag}
-=\operatorname{Re}[(J')^\dagger C H_nh]
-=J_{\mathbb R}^{\mathsf T}\operatorname{Re}(D_0^\dagger C H_nh).
+=\mathrm{Re}[(J')^\dagger C H_nh]
+=J_{\mathbb R}^{\mathsf T}\,\mathrm{Re}(D_0^\dagger C H_nh).
 ```
 
 Cancel square-root normalizations before numerical arithmetic. With the
@@ -240,7 +240,7 @@ integer Walsh matrix $`F_N=\sqrt N H_n`$, compute
 ```math
 k=F_N(A+iB),\qquad u=k/S,\qquad
 \boxed{\widehat g_{\rm mag}
-=4\Lambda J_{\mathbb R}^{\mathsf T}\operatorname{Re}(D_0^\dagger Cu).}
+=4\Lambda J_{\mathbb R}^{\mathsf T}\,\mathrm{Re}(D_0^\dagger Cu).}
 ```
 
 Use exact integer butterflies separately on A and B. Since

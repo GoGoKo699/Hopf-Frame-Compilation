@@ -14,7 +14,7 @@ For a complex chart, also supply N real phase representatives phi and set
 
 ```math
 \psi=D_\varphi\psi_{\mathbb R},\qquad
-D_\varphi=\operatorname{diag}(e^{i\varphi_x}).
+D_\varphi=\mathrm{diag}(e^{i\varphi_x}).
 ```
 
 For a real chart take $`D_\varphi=I`$ and request only magnitude
@@ -117,9 +117,9 @@ used. For $`d'_j=\partial_{\theta_j}\psi'`$, $`f_j=Ud'_j`$, and
 branch eigenvalue s, the ideal magnitude record is
 
 ```math
-Y_j=4\Lambda\operatorname{sgn}(c_t)s\sqrt N
-\begin{cases}\operatorname{Re}f_{jx},&X,\\
-\operatorname{Im}f_{jx},&Y.\end{cases}
+Y_j=4\Lambda\,\mathrm{sgn}(c_t)s\sqrt N
+\begin{cases}\mathrm{Re}\,f_{jx},&X,\\
+\mathrm{Im}\,f_{jx},&Y.\end{cases}
 ```
 
 Its mean is the original raw derivative. At every magnitude depth,
@@ -130,7 +130,7 @@ C is used in the reference, measurement, and correction.
 A complex chart uses S additional phase executions: prepare psi', use a
 plus branch and the controlled observable, then measure branch Y and the
 computational leaf. The record
-$`2\Lambda\operatorname{sgn}(c_t)s e_x`$ has the original phase
+$`2\Lambda\,\mathrm{sgn}(c_t)s e_x`$ has the original phase
 derivative as its mean and norm at most $`2\Lambda`$. This stream uses
 no inverse coarse or inverse fine frame. There are exactly S controlled
 observable calls in a real chart and $`2S`$ in a complex chart.

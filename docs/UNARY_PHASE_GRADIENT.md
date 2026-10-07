@@ -207,7 +207,7 @@ S_a|\Phi_q\rangle=\omega_q^{-a}|\Phi_q\rangle.
 
 It suffices to prepare this source to norm error delta once per group.
 Use an ell-bit index register. Hadamards followed by the one-qubit
-phases $`\operatorname{diag}(1,\omega_q^{2^k})`$ prepare the binary
+phases $`\mathrm{diag}(1,\omega_q^{2^k})`$ prepare the binary
 phase state. Replace each phase, up to its fixed scalar, by its
 determinant-one diagonal rotation and an actual Clifford+T approximation
 of error at most $`\delta/\ell`$. The repository's existing
@@ -293,7 +293,7 @@ p and its private work erase exactly, including on an arbitrary source
 state. On the ideal phase source, the target diagonal in the z basis is
 
 ```math
-\operatorname{diag}(\omega_q^{-a},\omega_q^{a})
+\mathrm{diag}(\omega_q^{-a},\omega_q^{a})
 =e^{-i(2\pi a/q)Z}.
 ```
 
