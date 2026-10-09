@@ -389,6 +389,14 @@ generator formula do not price that operation or its nonunitary
 compression. Thus this reduction preserves the selected endpoint's
 existing bounds while isolating a bounded, fixed-tree synthesis family.
 
+The [boundary-propagation construction](BOUNDARY_PROPAGATION.md) gives an
+exact sparse preconditioner and a native $`O(N)`$-T two-signal block for
+the associated shifted propagation operator. Its proof includes the
+coefficient norm, the exact all-table singular gap, and the full workspace
+and error ledger. The block retains rejected signal amplitudes; eliminating
+feedback and returning both signals remain necessary for the core
+hypothesis above.
+
 The [exact tree phase and chart tests](../../tests/test_tree_phase_chart.py)
 check all-column phase gauges, singular polynomial resolvents, decrement
 order, coarse-edge conjugacy, cotangent selection, and the Haar cut

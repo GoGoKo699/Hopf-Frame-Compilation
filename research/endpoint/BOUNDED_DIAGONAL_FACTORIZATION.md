@@ -49,7 +49,10 @@ The hypothesis is a sufficient algebraic route, not an established
 factorization of the Hopf family. Local tangent coverage or finite-size
 fits do not imply it. Restrictions on particular three-slot or anchored
 factorizations have the narrower scope recorded in the linked structural
-chapter.
+chapter. Its
+[global Haar obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks)
+also excludes every uniformly bounded strictly alternating balanced-Haar
+architecture, without any regularity assumption on its masks.
 
 ## 2. Native precision and the finite-dimensional fallback
 
@@ -184,3 +187,124 @@ representatives. Quotienting by global phase would not meet the literal
 error contract. An unbounded factor count $`K(n)`$ still incurs
 $`O(K(n)N)`$ through this construction; extra precision does not
 amortize repeated source calls.
+
+## 4. Nonalternating Haar candidate
+
+This subsection preserves an unresolved coverage candidate outside the
+[strict-alternation obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks).
+Let $`Q_n`$ be the fixed balanced Hopf frame and $`V_n=Q_n^2`$.
+The proposed five-mask equation is
+
+```math
+W=D_0V_nD_1V_n^\dagger D_2V_nD_3V_n^\dagger D_4.
+```
+
+It contains eight Haar calls, including consecutive equal orientations.
+Coverage by this word is unproved. The exact algebraic problem is
+
+```math
+V_n^\dagger D_0^\dagger W D_4^\dagger V_n
+=D_1(V_n^\dagger D_2V_n)D_3.
+```
+
+Since $`V_n`$ is real, the matrix inside parentheses is complex
+symmetric. The free exterior masks must first make the left side have
+symmetric entrywise absolute values, and then permit left/right phase
+removal into the fixed algebra $`V_n^\dagger\mathcal ZV_n`$, where
+$`\mathcal Z`$ is the complex diagonal algebra.
+The first condition alone does not imply the second. A useful next proof
+would establish both conditions under tree growth with these same five
+slots; parameter counting, local coverage, and finite fits do not do so.
+
+**An exact failed simplification.** The exterior choice
+$`D_0=D_4=I`$ cannot be imposed as a gauge. At $`n=3`$, let W
+have root angle $`\pi/4`$ and all other angles zero, so
+$`W=R_{0,4}(\pi/4)`$. With $`V=Q_3^2`$, exact arithmetic gives
+
+```math
+Z=V^\dagger WV,\qquad
+Z_{0,1}=-\frac{\sqrt2}{16},\qquad Z_{1,0}=-\frac18,\qquad
+|Z_{0,1}|^2-|Z_{1,0}|^2=-\frac1{128}.
+```
+
+This violates the necessary modulus symmetry for every choice of the
+three internal masks. The stdlib exact certificate is in
+[`test_global_haar.py`](../../tests/test_global_haar.py). It refutes
+the anchored simplification, not the free five-mask equation.
+
+**Conditional native accounting.** If the free five-mask equation were
+proved for all frames, certified search from Section 3 would apply to
+its computable fixed mixers. At $`\ell=N+5`$, each packed diagonal
+has error $`\eta/32`$ and needs
+
+```math
+b_D=n+1+\left\lceil\frac{N+9}{2}\right\rceil\le N+n+7.
+```
+
+The five calls cost $`O(N)`$. The eight Haar calls and their actual
+inverses cost $`O(n^3)=O(N)`$ by the
+[fixed-mixer construction](STRUCTURAL_COMPILATION_LIMITS.md#balanced-haar-boundary-identities);
+they are not free Clifford interlayers. The same two clean flags and
+dirty bank suffice. A searched product within $`\eta/2`$, followed by
+the five compiled masks, has initialized-isometry error at most
+$`\eta/2+5\eta/32=21\eta/32`$. The full-output telescoping
+identity in Section 2 supplies work return and reference correctness
+without resetting intermediate leakage. The missing premise is global
+coverage, not factor extraction or the resource ledger.
+
+### Direct weighted-Haar linear normal form
+
+There is a different all-column identity on the chart
+$`0\lt\theta_{d,p}\lt\pi/2`$.
+Set $`\psi=We_0`$ and, for each node v with interval
+$`I_v=L_v\cup R_v`$, define
+$`\mu_v=\sum_{x\in I_v}\psi_x^2`$ and child masses
+$`\mu_L,\mu_R`$. Its marker column is
+
+```math
+W_{x,\lambda(v)}=
+\begin{cases}
+-\psi_x\sqrt{\mu_R/(\mu_L\mu_v)},&x\in L_v,\\
+\phantom{-}\psi_x\sqrt{\mu_L/(\mu_R\mu_v)},&x\in R_v,\\
+0,&x\notin I_v.
+\end{cases}
+```
+
+To verify the formula, the node rotation contributes its negative sine
+or cosine to the marker column, and the descendant rotations supply
+the normalized restriction of psi to that child. Earlier layers act
+trivially on the marker input. This proves every prescribed column.
+
+Let $`u=N^{-1/2}(1,\ldots,1)^{\mathsf T}`$ and let $`S_n`$
+have root column u and marker column
+$`|I_v|^{-1/2}1_{I_v}`$. Define diagonal tables by
+
+```math
+\begin{aligned}
+a_0&=\sqrt N,& b_0&=0,\\
+a_v&=\frac{\sqrt{|I_v|}\sqrt{\mu_v}}{2\sqrt{\mu_L\mu_R}},&
+b_v&=\frac{\sqrt{|I_v|}(\mu_L-\mu_R)}
+ {2\sqrt{\mu_L\mu_R\mu_v}}.
+\end{aligned}
+```
+
+Combining the constant and signed columns gives the literal identity
+
+```math
+W=\mathrm{diag}(\psi)
+ \bigl[Q_n\mathrm{diag}(a)+S_n\mathrm{diag}(b)\bigr].
+```
+
+This is a linear normal form, not a unitary factorization: $`S_n`$
+is not a free mixer. Separately block encoding the three factors of the
+first term has no uniform product-normalization bound, even at fixed N.
+Choose a positive psi with almost
+all norm at leaf zero and every other amplitude epsilon. A deepest
+pair disjoint from zero has $`a_v=1/\varepsilon`$, while
+$`\|\mathrm{diag}(\psi)\|`$ approaches one. The product of these
+separate factor normalizations is therefore at least order
+$`1/\varepsilon`$.
+A useful construction would need a coupled unitary dilation that
+preserves the cancellation between local row and column weights, with
+priced work return; neither that dilation nor an all-chart extension
+is provided by this identity.

@@ -366,6 +366,202 @@ approximate coverage follows. The
 [bounded-diagonal reduction](BOUNDED_DIAGONAL_FACTORIZATION.md) allows
 such alternatives without requiring a differentiable extraction map.
 
+### Global obstruction for alternating balanced-Haar masks
+
+Let $`Q=Q_n`$ be the balanced frame, with all angles $`\pi/4`$,
+and $`u=N^{-1/2}(1,\ldots,1)^{\mathsf T}`$. Its first column is u;
+the other columns are normalized signed Haar wavelets on dyadic
+intervals. A **Haar phase multiplier** is
+
+```math
+A=Q\,\mathrm{diag}(z)Q^\dagger,\qquad |z_j|=1.
+```
+
+Unlike the preceding Walsh tangent obstruction, the following result
+allows arbitrary nonsmooth masks and gives a quantitative approximation
+bound. Both orientations and both parities have one common witness.
+
+**Theorem.** For $`n\ge3`$, put $`M=N/2`$, $`H_*=Q_{n-1}`$, and
+choose the full Hopf frame
+
+```math
+W_*=I_M\oplus H_*.
+```
+
+Its root and left-subtree angles are zero; its right-subtree angles are
+$`\pi/4`$. Consider any word
+
+```math
+P=D_0Q^{s_1}D_1\cdots Q^{s_r}D_r,
+```
+
+where all D matrices are unitary diagonal and the signs $`s_j\in\{1,-1\}`$
+alternate strictly. If $`\|P-W_*\|_{\rm op}\le\varepsilon\lt1/\sqrt2`$,
+then
+
+```math
+9^{\lfloor r/2\rfloor+1}
+\ge(1/\sqrt2-\varepsilon)2^{(n-1)/4}.
+```
+
+Thus every such architecture requires $`r=\Omega(n)`$ at fixed error
+below $`1/\sqrt2`$, including error $`2^{-N}`$. No finite menu of
+these words with an absolute bound on r covers every frame. No
+continuity, differentiability, measurability, or effective exact
+selection of the masks is assumed.
+
+**Haar multiplier bound.** We first prove, for complex phases and inputs,
+
+```math
+\|A\|_{4\to4}\le9,\qquad \|A^\dagger\|_{4\to4}\le9.
+```
+
+Give the leaves uniform probability and let $`\mathcal F_k`$ be the
+dyadic filtration through depth k. For complex leaf data f, set
+
+```math
+f_k=\mathbb E[f\mid\mathcal F_k],\quad
+d_0=f_0,\quad d_k=f_k-f_{k-1}\ (k\ge1),\quad
+S_f^2=\sum_{k=0}^n|d_k|^2,\quad f^*=\max_k|f_k|.
+```
+
+The finite maximal inequality
+$`\|f^*\|_4\le(4/3)\|f\|_4`$ follows directly by stopping at the
+first crossing of a level $`\lambda`$. Conditional Jensen gives
+
+```math
+\lambda\Pr(f^*\ge\lambda)
+\le\mathbb E[|f|\,1_{\{f^*\ge\lambda\}}].
+```
+
+Multiply by $`4\lambda^2`$, integrate over positive levels, and apply
+Hölder to obtain
+
+```math
+\mathbb E[(f^*)^4]
+\le\frac43\mathbb E[|f|(f^*)^3]
+\le\frac43\|f\|_4\|f^*\|_4^3.
+```
+
+The pointwise square identity is
+
+```math
+|f|^2=S_f^2+2Z,\qquad
+Z=\sum_{k=1}^n\mathrm{Re}(\overline{f_{k-1}}d_k).
+```
+
+The real summands defining Z are martingale differences, hence are
+orthogonal in $`L_2`$. Consequently
+
+```math
+\|Z\|_2^2
+\le\mathbb E\sum_k|f_{k-1}|^2|d_k|^2
+\le\mathbb E[(f^*)^2S_f^2]
+\le\|f^*\|_4^2\|S_f\|_4^2.
+```
+
+Writing $`a=\|f\|_4`$ and $`s=\|S_f\|_4`$, triangle inequality
+in both directions now gives
+
+```math
+s^2\le a^2+\frac83as,\qquad
+a^2\le s^2+\frac83as.
+```
+
+The positive root of $`x^2-(8/3)x-1`$ is 3, proving
+$`a/3\le s\le3a`$. Multiplication of each Haar coefficient by a
+unit phase is a martingale transform: on each dyadic parent, it
+multiplies the unique corresponding difference by that phase. Thus
+$`S_{Af}=S_f`$ pointwise, including the constant coefficient, and
+
+```math
+\|Af\|_4\le3\|S_{Af}\|_4=3\|S_f\|_4\le9\|f\|_4.
+```
+
+Changing from probability-normalized $`L_4`$ to vector $`\ell_4`$
+does not change the operator bound. Conjugating the phases proves the
+adjoint bound. In particular, a product E of m Haar multipliers and
+ordinary phase diagonals satisfies
+
+```math
+\|E\|_{4\to4},\ \|E^\dagger\|_{4\to4}\le9^m.
+```
+
+**The common witness.** Let $`u_L=(u_M,0)`$ and
+$`u_R=(0,u_M)`$, where $`u_M=M^{-1/2}(1,\ldots,1)^{\mathsf T}`$.
+They have Euclidean norm one and $`\ell_4`$ norm $`M^{-1/4}`$.
+Also $`W_*e_0=W_*^\dagger e_0=e_0`$ and
+$`W_*^\dagger u_R=e_M`$. For Euclidean operator error at most
+epsilon, each coordinate error on a Euclidean unit input is at most
+epsilon. This supplies the following lower bounds without a
+dimension-dependent norm conversion.
+
+- If $`r=2m`$ and the word starts with Q, pairing consecutive
+  $`QD Q^\dagger`$ factors gives m multipliers. Apply its adjoint
+  to $`u_R`$ to get
+  $`1-\varepsilon\le9^mM^{-1/4}`$.
+- If $`r=2m+1`$ and the word starts with Q, write
+  $`P=E QD_r`$, with m multipliers in E. Since
+  $`D_re_0=\zeta e_0`$ for a unit scalar zeta,
+  $`Pe_0=\zeta Eu`$. Its zero coordinate gives
+  $`1-\varepsilon\le9^mN^{-1/4}`$.
+- For an odd word starting with $`Q^\dagger`$, take its adjoint.
+  The preceding argument applies because $`W_*^\dagger e_0=e_0`$.
+- For $`r=2m`$ starting with $`Q^\dagger`$, conjugate by Q:
+
+```math
+E=QPQ^\dagger
+=(QD_0Q^\dagger)D_1(QD_2Q^\dagger)\cdots
+ D_{2m-1}(QD_{2m}Q^\dagger).
+```
+
+This has $`m+1`$ multipliers. Put $`T=QW_*Q^\dagger`$,
+$`a=M^{-1/2}`$, and $`c=1/\sqrt2`$. The recursion
+$`Q=(H_*\oplus H_*)R`$, with R the balanced rotation on
+coordinates $`0,M`$, gives
+
+```math
+Q^\dagger u_R=c(e_0+e_M),\qquad
+T^\dagger u_R
+=\frac{1-a}{2}u_L+c e_M+
+ \left(\frac12+a\left(\frac12-c\right)\right)u_R.
+```
+
+Indeed, apply $`W_*^\dagger`$ to the first displayed vector and
+then R and $`H_*\oplus H_*`$, using $`(H_*^\dagger e_0)_0=a`$.
+The last coefficient is nonnegative, so the $`e_M`$ coordinate is
+at least c. Since $`\|E-T\|_{\rm op}\le\varepsilon`$,
+
+```math
+1/\sqrt2-\varepsilon
+\le\|E^\dagger u_R\|_4\le9^{m+1}M^{-1/4}.
+```
+
+All four cases imply the theorem's common inequality. This proof retains
+literal scalar phases; taking a phase quotient is unnecessary.
+
+**Robustness and scope.** Replace each zero angle in $`W_*`$ by
+$`\kappa=\delta/N`$, retaining the right-subtree angles, where
+$`0\lt\delta\lt1/\sqrt2`$. The resulting frame $`W_\delta`$ has
+strictly positive angles. Telescoping at most $`N-1`$ rotations and
+$`\|R_y(t)-R_y(s)\|_{\rm op}\le|t-s|`$ gives
+$`\|W_\delta-W_*\|_{\rm op}\lt\delta`$. Approximation of
+$`W_\delta`$ to epsilon therefore obeys the same lower bound with
+$`\varepsilon+\delta`$ in place of epsilon, giving the same
+$`\Omega(n)`$ conclusion when $`\varepsilon+\delta\lt1/\sqrt2`$.
+The obstruction is not
+confined to singular state charts.
+
+It excludes constant-factor coverage and fixed-error coverage by
+strictly alternating balanced-Haar/adjoint words. It does not exclude
+consecutive equal mixers, arbitrary Clifford skeletons, or growing-stage
+circuits whose total T cost is $`O(N)`$. The
+[nonalternating candidate](BOUNDED_DIAGONAL_FACTORIZATION.md#4-nonalternating-haar-candidate)
+is outside its hypotheses. Exact finite certificates for the witness
+identity and a different anchored candidate are in
+[`test_global_haar.py`](../../tests/test_global_haar.py); the
+dimension-uniform proof is the argument above.
+
 ### Balanced-Haar boundary identities
 
 Fixed balanced frames are another available mixer. Write
@@ -411,8 +607,11 @@ W_{\rm child}R_{y,\mathrm{root}}(t)
 The remaining $`Z_r(t)`$ changes each distinguished coordinate relative
 to its own half, so it is not a transferable half-block scalar. Absorbing
 it into a final mask still appends a new $`Q_n^\dagger/Q_n`$ pair.
-Thus these all-angle, division-free identities isolate a boundary
-absorption problem rather than a closed constant-mask recursion. The
+These all-angle, division-free identities remain useful, but the theorem
+above rules out any constant-mask closure that stays within the
+strictly alternating architecture. A new boundary absorption mechanism
+must change that architecture or supply a different amortized compiler.
+The
 [tree Cayley reduction](TREE_CAYLEY_REDUCTION.md) supplies a separate
 global normal form.
 

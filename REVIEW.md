@@ -273,7 +273,7 @@ task-level result, not a closure of either compiler gap:
 
 | Unresolved question | Current guarantee |
 |---|---|
-| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
+| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N\ell_*(n))`$ |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 At the count endpoint, the packed source makes
@@ -281,7 +281,11 @@ At the count endpoint, the packed source makes
 including certified search for approximate factors. Independently, an
 [all-angle tree reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md)
 isolates a fixed Cayley family with bounded real parameters; its exterior
-diagonals and permutations already have O(N)-T implementations.
+diagonals and permutations already have O(N)-T implementations. A
+[native propagation block](research/endpoint/BOUNDARY_PROPAGATION.md)
+fits the same allocation; the coupled feedback is the remaining circuit
+interface. The lower bound follows from the
+[literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
 The [research index](research/README.md) records the hypotheses of these
 reductions and the scope of the related interface obstructions.
 

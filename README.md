@@ -136,18 +136,21 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 
 | Question | Current bounds |
 |---|---|
-| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
+| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N\ell_*(n))`$ |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | Optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-gives $`T\ge N-\log_2 24`$ at the count endpoint, even with unrestricted
-Clifford interlayers and workspace. Two constructive reductions isolate
+gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
+Clifford interlayers and workspace, under the literal-phase contract.
+Two constructive reductions isolate
 the remaining count question:
 [any fixed number of diagonal factors](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
 fits the exact workspace with certified factor selection, and
 [every frame reduces to a regular fixed-tree Cayley family](research/endpoint/TREE_CAYLEY_REDUCTION.md)
-using two diagonals and exact O(N)-T permutations. Uniform factor coverage
-or native synthesis of that Cayley family would close the bound.
+using two diagonals and exact O(N)-T permutations. Its
+[propagation block](research/endpoint/BOUNDARY_PROPAGATION.md) has an
+O(N)-T implementation at the endpoint allocation. Complete feedback
+recovery, or uniform bounded-factor coverage, would close the bound.
 The [research index](research/README.md) collects these reductions and
 method-specific limits with their precise hypotheses.
 

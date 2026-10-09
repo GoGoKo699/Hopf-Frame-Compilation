@@ -1079,83 +1079,214 @@ precision costs have been added to obtain this lower bound.
 ### 10.3 An explicit width-independent precision witness
 
 The precision term also has a direct algebraic proof for one prescribed
-frame, without a counting theorem. For every $`n\geq1`$, set all angles
-except the root angle to zero and choose
+frame, without a counting theorem. For every $`n\geq1`$, set the root
+angle to $`\theta_{0,0}=\pi/16`$ and every other angle to zero. These
+values admit certified classical evaluation. Any coherent Clifford+T
+circuit satisfying (2) for this tuple, throughout the declared range
+$`0\lt\eta\leq1/64`$, has
 
 ```math
-\cos\theta_{0,0}=\sqrt{2/3},\qquad
-\sin\theta_{0,0}=1/\sqrt3.
+\boxed{\tau(V)>2\log_2(1/\eta)-2.}
 ```
 
-These algebraic values admit certified classical evaluation. Any coherent
-Clifford+T circuit satisfying (2) for this tuple has
+The bound permits arbitrary finite Clifford count and arbitrary clean and
+borrowed widths. At $`\eta=2^{-N}`$ with $`n\geq3`$, integrality of
+T-count gives
 
 ```math
-\boxed{\tau(V)\geq\log_2(1/\eta)-\log_2 24.}
+\boxed{\tau(V)\geq2N-1.}
 ```
 
-This bound allows arbitrary finite Clifford count and arbitrary clean and
-borrowed widths. At the constant-clean endpoint $`\eta=2^{-N}`$, it gives
-$`\tau(V)\geq N-\log_2 24`$ independently of the workspace allocation.
+This is a literal-phase bound. The proof uses a stabilizer eigenvector
+whose target eigenphase must be retained; it is not a channel-distance
+bound or a bound modulo global phase. The adaptive-model lower bound
+in Section 10.1 is unchanged.
 
-**Proof.** Initialize the logical and borrowed registers to zero; this is
-a permitted test input for (2). The target logical output is
+**Lemma — positive Pauli-failure gap.** Let $`V`$ be a native circuit with
+$`t`$ T or T-dagger gates, let $`|s\rangle`$ be a stabilizer input, and
+let $`P`$ be a Hermitian Pauli. Reference qubits on which $`V`$ acts
+trivially may be included. Then
 
 ```math
-|\psi\rangle
-=\sqrt{2/3}|0^n\rangle+\frac1{\sqrt3}|10^{n-1}\rangle,
-\qquad \langle\psi|Z_1|\psi\rangle=\frac13.
+p=\langle s|V^\dagger\frac{I-P}{2}V|s\rangle
+\quad\Longrightarrow\quad
+p=0\ \text{or}\ p\geq2^{-t-2}.
 ```
 
-Let $`r`$ be the actual output expectation of $`Z_1`$, acting as identity
-on every other qubit, and let $`t=\tau(V)`$. The complete-output vector
-error is at most $`\eta`$, so
+*Proof.* Write $`r=\langle s|V^\dagger PV|s\rangle`$. Clifford
+conjugation is a signed permutation in the Hermitian Pauli basis. Every
+T or T-dagger transfer matrix has entries in
+$`\{0,\pm1,\pm1/\sqrt2\}`$, and stabilizer input expectations are
+integers. Hence
 
 ```math
-\left|r-\frac13\right|\leq2\eta.
+(\sqrt2)^t r\in\mathbb Z[\sqrt2],\qquad
+\alpha=(\sqrt2)^{t+2}p\in\mathbb Z[\sqrt2].
 ```
 
-In the Hermitian Pauli basis, Clifford conjugation is a signed permutation.
-Each T or T-dagger transfer matrix has entries in
-$`\{0,\pm1,\pm1/\sqrt2\}`$, while the initial stabilizer expectations
-are integers. Consequently
+Let $`\sigma`$ send $`\sqrt2`$ to $`-\sqrt2`$. It fixes every Clifford
+transfer matrix and replaces those of $`T,T^\dagger`$ by the transfer
+matrices of $`T^5,T^{-5}`$, respectively. Thus $`\sigma(p)`$ is the
+same Pauli-outcome probability for another physical unitary circuit, so
+$`0\leq\sigma(p)\leq1`$. If $`p\ne0`$, the algebraic integer
+$`\alpha`$ has nonzero integer field norm. Therefore
 
 ```math
-r\in\mathbb Z[1/\sqrt2],\qquad
-u=(\sqrt2)^t r\in\mathbb Z[\sqrt2].
+1\leq|\mathrm{Norm}(\alpha)|
+=2^{t+2}p\,\sigma(p)\leq2^{t+2}p,
 ```
 
-Let $`\sigma`$ be the field automorphism of $`\mathbb Q(\sqrt2)`$
-sending $`\sqrt2`$ to $`-\sqrt2`$. It fixes every Clifford transfer
-matrix and changes the transfer matrix of $`T`$ into that of $`T^5`$:
-the $`X,Y`$ rotation changes from $`\pi/4`$ to $`5\pi/4`$, and the
-$`I,Z`$ block stays fixed. The corresponding replacement for
-$`T^\dagger`$ is $`T^{-5}`$. Thus $`\sigma(r)`$ is also an expectation
-of a Pauli observable in a physical unitary circuit, and
-$`|\sigma(r)|\leq1`$.
+which proves the gap independently of width and Clifford word length. ∎
 
-The algebraic integer $`3u-(\sqrt2)^t`$ is nonzero: the rational elements
-of $`\mathbb Z[1/\sqrt2]`$ are dyadic rationals, so $`r\neq1/3`$.
-Its field norm is a nonzero integer. Since
-$`|\mathrm{Norm}((\sqrt2)^t)|=2^t`$, taking the norm of
-$`3(r-1/3)=[3u-(\sqrt2)^t]/(\sqrt2)^t`$ gives
+The following normalized-vector estimate preserves the boundary case.
+If $`\|v\|=\|w\|=1`$, $`\|v-w\|\leq\eta\leq\sqrt2`$, and an
+orthogonal projector $`F`$ satisfies $`Fw=0`$, then
 
 ```math
-\left|\left(r-\frac13\right)
-\left(\sigma(r)-\frac13\right)\right|
-\geq\frac1{9\,2^t}.
+\|Fv\|^2\leq1-|\langle w|v\rangle|^2
+\leq\eta^2-\eta^4/4\lt\eta^2,
 ```
 
-Using $`|\sigma(r)-1/3|\leq4/3`$ therefore yields
+where the second inequality follows from
+$`\mathrm{Re}\langle w|v\rangle\geq1-\eta^2/2`$ and the final strict
+inequality assumes $`\eta\gt0`$.
+
+**Lemma — scalar phases in the native coefficient ring.** The only
+unit-modulus elements of $`\mathbb Z[1/\sqrt2,i]`$ are the eighth roots
+of unity.
+
+*Proof.* Since $`1/\sqrt2=\sqrt2/2`$, write such an element as
 
 ```math
-\frac1{12\,2^t}\leq\left|r-\frac13\right|\leq2\eta,
+\lambda=\frac{a+b\sqrt2+i(c+d\sqrt2)}{2^k},
+\qquad a,b,c,d\in\mathbb Z,
 ```
 
-which proves the claim. The proof needs neither exact workspace return nor
-a bound on Clifford word length. It is a necessary condition under the
-literal-phase isometry contract; it does not establish or preclude the
-remaining uniform linear-T upper bound. ∎
+with minimal nonnegative $`k`$. Unit modulus implies
+
+```math
+a^2+2b^2+c^2+2d^2=2^{2k},\qquad ab+cd=0.
+```
+
+For $`k=0`$, these equations give $`\lambda\in\{\pm1,\pm i\}`$.
+Suppose $`k\geq1`$. Modulo two, $`a,c`$ have the same parity. If both
+were odd, the first equation modulo four would force $`b+d`$ odd, while
+the second modulo two forces $`b+d`$ even. Thus $`a,c`$ are even.
+The first equation modulo four now makes $`b,d`$ have the same parity;
+minimality of $`k`$ forces both to be odd.
+
+If $`k\geq2`$, put $`a=2A,c=2C`$. The first equation modulo eight
+forces $`A+C`$ odd, whereas $`Ab+Cd=0`$ modulo two forces $`A+C`$
+even. This contradiction leaves $`k=1`$. The first equation then forces
+$`a=c=0`$ and $`b,d\in\{\pm1\}`$, yielding the other four eighth
+roots of unity. ∎
+
+**Proof of the precision witness.** Use the permitted stabilizer input
+
+```math
+|s\rangle=|y_+\rangle_1|0^{n-1}\rangle
+|0^a\rangle|0^b\rangle,
+\qquad |y_+\rangle=(|0\rangle+i|1\rangle)/\sqrt2.
+```
+
+The zero suffix activates the root rotation, so its literal target
+output is $`e^{-i\pi/16}|s\rangle`$. Suppose
+$`t\leq2\log_2(1/\eta)-2`$. For each independent stabilizer generator
+of $`|s\rangle`$—$`Y`$ on the first qubit and $`Z`$ on every other
+qubit—the failure probability is strictly less than $`\eta^2`$ by the
+normalized-vector estimate. A positive probability would instead be at
+least $`2^{-t-2}\geq\eta^2`$. All generators therefore stabilize the
+actual output, and their common eigenspace is one-dimensional:
+
+```math
+V|s\rangle=\lambda|s\rangle,\qquad |\lambda|=1.
+```
+
+Every entry of the literal native gates and of $`|s\rangle`$ lies in
+$`\mathbb Z[1/\sqrt2,i]`$, so
+$`\lambda=\langle s|V|s\rangle`$ lies in that ring. The scalar lemma
+restricts it to an eighth root of unity. Consequently
+
+```math
+\|V|s\rangle-e^{-i\pi/16}|s\rangle\|
+=|\lambda-e^{-i\pi/16}|
+\geq2\sin(\pi/32)\gt1/64\geq\eta,
+```
+
+contradicting (2). This proves the strict general-precision bound. At
+$`\eta=2^{-N}`$, the same proof excludes $`t=2N-2`$ as well as every
+smaller count, giving $`t\geq2N-1`$. No exact-return assumption was
+inserted: the chosen dirty-zero input is a permitted witness for the
+arbitrary-dirty contract. The result strengthens the explicit linear
+lower bound but does not decide the remaining uniform linear-T upper
+bound. ∎
+
+### 10.4 Rigidity of approximate workspace return
+
+The same probability gap constrains the complete return map. Suppose a
+native circuit with $`t`$ T gates satisfies (2), and
+
+```math
+2^{-t-2}>\eta^2-\eta^4/4.
+```
+
+Then there is a logical unitary $`U`$ such that
+
+```math
+\boxed{VJ_a=J_a(U\otimes I_b),\qquad\|U-W\|\leq\eta.}
+```
+
+In particular, at $`\eta=2^{-N}`$ this exact-return conclusion holds
+whenever $`t\leq2N-2`$. It concerns the final complete isometry, not
+intermediate workspace states.
+
+**Proof.** For each computational logical input $`|x\rangle`$, use the
+stabilizer test state with the dirty register maximally entangled with
+an inaccessible reference:
+
+```math
+|x\rangle_L|0^a\rangle_C|\Phi_b\rangle_{DR},
+\qquad |\Phi_b\rangle=2^{-b/2}\sum_z|z\rangle_D|z\rangle_R.
+```
+
+The reference is a mathematical witness, not a compiler resource.
+Tensoring (2) with its identity preserves the norm bound. The ideal
+output is stabilized by each clean $`Z`$ and by
+$`X_{D_j}X_{R_j},Z_{D_j}Z_{R_j}`$ for every dirty wire. Each failure
+probability is at most $`\eta^2-\eta^4/4`$, and hence is zero by
+Section 10.3. The actual output therefore has the exact form
+
+```math
+\sum_y u_{yx}|y\rangle_L|0^a\rangle_C|\Phi_b\rangle_{DR}.
+```
+
+Comparing coefficients of each reference basis vector $`|z\rangle_R`$
+gives, for every logical column $`x`$ and every dirty basis input $`z`$,
+
+```math
+V\bigl(|x\rangle|0^a\rangle|z\rangle\bigr)
+=\sum_yu_{yx}|y\rangle|0^a\rangle|z\rangle.
+```
+
+Linearity proves the asserted product-return identity, including all
+reference correlations and literal phases. Unitarity of $`V`$ implies
+that the square matrix $`U=(u_{yx})`$ is unitary. Substitution into (2)
+then gives $`\|U-W\|\leq\eta`$. ∎
+
+Equivalently, if $`VJ_a`$ is not exactly a product-return isometry, its
+distance from every $`J_a(U\otimes I_b)`$ with unitary $`U`$ is at least
+
+```math
+\sqrt{2-2\sqrt{1-2^{-t-2}}}.
+```
+
+Indeed, some test above then has a positive failure probability
+$`p\geq2^{-t-2}`$, whereas its overlap with any normalized zero-failure
+target is at most $`\sqrt{1-p}`$. The
+[exact-return dirty-work separation](../research/endpoint/SOURCE_REUSE_LIMITS.md#exact-return-does-not-erase-the-value-of-dirty-work)
+shows why this does not remove the borrowed register at unchanged
+T-count. Its precision threshold also does not exclude an upper bound
+$`CN`$ with an arbitrary absolute constant $`C`$.
 
 ## 11. What is proved, and what remains to implement
 

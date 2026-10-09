@@ -113,6 +113,26 @@ chart, subtree flow sums, and Haar diagonal-difference identity. They
 support the [fixed-tree reduction](../../research/endpoint/TREE_CAYLEY_REDUCTION.md),
 not a native implementation of its remaining Cayley operator.
 
+The [boundary propagation tests](../../tests/test_tree_boundary.py) compare
+the complete sparse-preconditioned core with an independently ordered
+edge-phase product, including unequal signed and zero parameters. They
+check triangular coefficients, nearest-parent recurrence, root-chain
+compression, the all-table singular gap, dummy states and all dilation
+ports. The local rotation factorization retains literal phases, and the
+endpoint reservation and error fraction are exact integer/rational checks.
+The [resource proof](../../research/endpoint/BOUNDARY_PROPAGATION.md)
+imports the charged borrowed-signal primitive; the dense reference
+matrices do not emit that precision-dependent native circuit or eliminate
+its rejected signal amplitudes.
+
+The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
+$`\mathbb Q(\sqrt2)`$ to verify the common witness identity and the
+$`-1/128`$ modulus mismatch for an anchored nonalternating candidate.
+The dimension-independent multiplier bound and its restriction on arbitrary
+nonsmooth masks are [analytic](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks).
+The spectral encoding restriction, branch-rank bound and return rigidity
+also have analytic proofs; none is inferred from a finite fitting campaign.
+
 The [source-reuse limits](../../research/endpoint/SOURCE_REUSE_LIMITS.md) have
 [separate finite checks](../../tests/test_source_reuse_limits.py) for nilpotent
 contractions, arbitrary encoding bases, dirty-dimension independence, and

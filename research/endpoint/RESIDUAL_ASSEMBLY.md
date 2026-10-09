@@ -24,9 +24,14 @@ T=O(N+nL),\qquad G=O(NL).
 Its error includes initialized-flag leakage and approximate return of all
 borrowed work, on arbitrary logical and dirty inputs with references.
 At $`L=N`$ this is $`O(N\log N)`$ T gates. It does not improve the
-retained $`O(N\ell_*(n))`$ complete-frame endpoint bound. The useful
-new ingredient is an explicit assembly within two clean flags; a separate
+retained $`O(N\ell_*(n))`$ complete-frame endpoint bound. The construction gives an explicit assembly within two clean flags; a separate
 precision charge remains at every tree depth.
+
+[Section 10](#10-collective-correction-and-its-precision-interfaces) separates
+three requirements on a collective alternative: independent-stage error
+budgets, orthogonal branch averaging, and correction of coarse work
+leakage. The branch-rank restriction leaves the actual low-rank Hopf atoms
+open, and the polar alignment formula is not a native compiler.
 
 ## 1. Use one algebraic target for both branches
 
@@ -1187,3 +1192,226 @@ to share the surviving parent precision. A further endpoint advance
 requires a different native word or a separate global precision ledger
 for those wrappers. This conclusion concerns the displayed construction,
 not all low-rank repairs or all complete-frame compilers.
+
+## 10. Collective correction and its precision interfaces
+
+The following results distinguish a collective correction from independently
+returned stages. They hold on the complete logical and dirty input space,
+including references. None is an unrestricted compiler lower bound.
+
+### Independent-stage precision budgets
+
+Suppose R stages use certified errors $`a_g2^{-\ell_g}`$, with
+$`a_g\gt0`$, and their only composition certificate is
+
+```math
+\sum_{g=1}^R a_g2^{-\ell_g}\le2^{-L}.
+```
+
+AM–GM gives
+
+```math
+\sum_g\ell_g\ge R(L+\log_2R)+\sum_g\log_2a_g.
+```
+
+Equality in the continuous relaxation assigns error $`2^{-L}/R`$ to
+every stage. More generally, with positive precision weights $`w_g`$ and
+$`w=\sum_gw_g`$, the minimizing allocation is
+$`\epsilon_g=2^{-L}w_g/w`$, giving
+
+```math
+\min\sum_gw_g\ell_g
+=wL+\sum_gw_g\log_2(a_gw/w_g).
+```
+
+This follows either from a Lagrange multiplier or weighted AM–GM. Integer
+precision and workspace constraints can only increase this relaxed minimum.
+For prefactors and weights bounded above and below by positive absolute
+constants, it retains a declared
+$`\Omega(RL)`$ precision charge. Correlated errors and joint circuit
+rewrites are outside this certificate.
+
+The [conditional-suffix compiler](../../docs/CONDITIONAL_SUFFIX_COMPILER.md#6-exponentially-growing-groups-and-the-explicit-workspace-ledger)
+already makes its total table cost $`O(N)`$; its remaining charge is
+one length-L source allowance per group. Reallocating these certified
+errors therefore does not remove its growing group multiplicity. Nor
+does a small active sector reduce operator error: for every nonzero
+projector P,
+
+```math
+\|(I-P)+e^{i\alpha}P-I\|=|e^{i\alpha}-1|,
+```
+
+independently of its rank. A logical input supported in that sector sees
+the full discrepancy.
+
+### Orthogonal scalar branches and the low-rank Hopf escape
+
+**Lemma.** Let $`E:\mathbb C^D\to\mathbb C^{\rho D}`$ be any
+isometry and let $`P_1,\ldots,P_K`$ be pairwise orthogonal projectors.
+They may have unequal ranks and need not sum to identity. If
+$`p_j\gt0`$ and
+
+```math
+\|E^\dagger P_jE-p_jI_D\|\lt p_j
+\qquad\text{for every }j,
+```
+
+then $`K\le\rho`$.
+
+*Proof.* Each compression is positive definite, hence has rank D. Thus
+$`\mathrm{rank}(P_j)\ge D`$, and orthogonality gives
+$`\rho D\ge\sum_j\mathrm{rank}(P_j)\ge KD`$. ∎
+
+For a complete family $`\sum_jP_j=I`$, this gives an explicit uniform
+averaging counterexample. Suppose a preparation, sign selection and actual
+unpreparation promise
+
+```math
+E^\dagger\left(\sum_jf_jP_j\right)E
+\approx\frac1K\left(\sum_jf_j\right)I_D
+\qquad\text{for every }f\in\{1,-1\}^K.
+```
+
+If $`K\gt\rho`$, some compression $`E^\dagger P_jE`$ has a
+kernel vector v. Choose only $`f_j=-1`$. On v the actual compression
+is identity, whereas the requested average is $`1-2/K`$. Its worst-case
+accepted-block error, and therefore its full-output error, is at least
+$`2/K`$.
+
+With a supplied a-qubit clean register, $`\rho=2^a`$: every arbitrary
+logical and dirty input is included in D. Additional dirty wires multiply
+both dimensions equally. Two clean qubits therefore cannot supply this
+uniform scalar averaging interface at error below $`2/K`$ for more than
+four orthogonal branches, even with an arbitrary entangling encoding. On
+an active r-zero-suffix sector the corresponding cap is $`2^{r+2}`$.
+This explains the clean-label
+constraint of that interface; it is not a restriction on all coefficient
+encodings. Anticommuting source terms are not orthogonal label projectors.
+
+The actual [column-forest atoms](../../docs/CONDITIONAL_SUFFIX_COMPILER.md#2-the-residual-support-is-a-union-of-column-forests)
+leave a more substantial escape. For a local group dimension $`M=2^s`$,
+the forward atoms have the form $`D_jU_j\Pi_j`$. The marker-depth
+projectors, together with the zero-marker projector, partition its input:
+
+```math
+\sum_j\mathrm{rank}(D_jU_j\Pi_j)
+\le\sum_j\mathrm{rank}(\Pi_j)=M.
+```
+
+The reverse atoms have the same rank sum; the unchanged prefix multiplies
+both sums by its dimension. This statement concerns one set of forward or
+reverse coefficient atoms; splitting coefficients into four phase classes
+only multiplies the bound by four. Requiring a separate uniform scalar
+label replaces each partial atom by a full-rank branch. The lemma does
+**not** imply that a joint encoding of the actual Hopf atoms needs
+$`\log s`$ clean bits. Their summed partial ranks are compatible with a
+constant initialized-dimension ratio, without proving such an encoding.
+
+Inferring the depth from the input marker does not immediately supply it.
+The positive column map $`\sum_jU_j\Pi_j`$ is not an isometry:
+nested uniform interval columns overlap, and the zero and root-marker
+columns coincide. Balanced Haar signs make these columns orthogonal with
+the already charged fixed mixer, but the following coefficient filter
+still depends on both the original ancestor marker and the current output.
+A native joint filter that preserves and erases this correlation remains
+missing. The rank lemma does not exclude it.
+
+### A logical correction cannot erase coarse work leakage
+
+Section 1 uses an actual coarse C whose work returns exactly. Replacing it
+by a cheaper approximate-return circuit changes the correction problem.
+Let J insert the supplied clean work, put $`P=JJ^\dagger`$, and let
+$`\mathcal C`$ denote an actual physical coarse circuit. Write
+$`U=W\otimes I_b`$ for the desired logical and dirty action.
+
+If a unitary correction F preserves P, then
+
+```math
+\|(I-P)F\mathcal CJ\|=\|(I-P)\mathcal CJ\|,
+\qquad
+\|F\mathcal CJ-JU\|\ge\|(I-P)\mathcal CJ\|.
+```
+
+Indeed F is block diagonal with respect to P, so it preserves the norm of
+the rejected component. This includes every logical-only correction. For
+example, $`\mathcal C=R_y(\alpha)_{\rm flag}\otimes U`$ with a
+zero-initialized flag has leakage $`|\sin\alpha|`$ on every input,
+which no logical-only left correction changes.
+
+There is also a robust version. If $`\|(I-P)FP\|\le\epsilon`$,
+the equal-rank projection identity gives
+$`\|F^\dagger PF-P\|=\|(I-P)FP\|`$. Hence
+
+```math
+\begin{aligned}
+\|F\mathcal CJ-JU\|
+&\ge\|(I-F^\dagger PF)\mathcal CJ\|\\
+&\ge\|(I-P)\mathcal CJ\|-\epsilon.
+\end{aligned}
+```
+
+A fine correction whose own initialized-input leakage is at most epsilon
+cannot silently erase a much larger coarse leakage. A correction designed
+to act on that occupied rejected space has a different interface.
+
+### Exact polar alignment and the unpriced native step
+
+Such a full-space correction exists algebraically. Define
+
+```math
+\begin{aligned}
+Q&=\mathcal CP\mathcal C^\dagger,\qquad D=P-Q,\\
+Z&=PQ+(I-P)(I-Q)=\frac{I+R_PR_Q}{2},\\
+R_P&=2P-I,\qquad R_Q=\mathcal CR_P\mathcal C^\dagger.
+\end{aligned}
+```
+
+Direct multiplication gives $`Z^\dagger Z=I-D^2`$. If
+$`\|D\|\lt1`$, the polar unitary
+
+```math
+F_{\rm align}=Z(I-D^2)^{-1/2}
+```
+
+maps the range of Q onto the range of P. To see the intertwining, use
+$`ZQ=PZ`$ and note that $`D^2`$ commutes with both projectors.
+Thus $`F_{\rm align}\mathcal CJ`$ returns initialized work exactly;
+its accepted action is the polar part of $`J^\dagger\mathcal CJ`$.
+This compression can still act nontrivially on dirty work. Its remaining
+logical discrepancy and dirty-return error relative to U have not been
+corrected.
+
+If $`\|\mathcal CJ-JU\|\le\delta`$, the projection difference
+is at most $`2\delta`$. The binomial coefficients
+$`c_j={2j\choose j}/4^j\le1`$ give the polynomial
+
+```math
+F_k=Z\sum_{j=0}^kc_jD^{2j},\qquad
+\|F_k-F_{\rm align}\|
+\le\frac{(2\delta)^{2k+2}}{1-4\delta^2},
+\qquad2\delta\lt1.
+```
+
+The estimate follows by summing the omitted geometric tail and using
+$`\|Z\|\le1`$. It is a whole-space matrix estimate, including every
+dirty input. **The polynomial $`F_k`$ is not a supplied unitary circuit.**
+A block encoding, normalization, amplification, phase synthesis and work
+return all require native constructions and charges. The reflections have
+explicit ingredients: $`R_P`$ tests clean work and $`R_Q`$ uses
+$`\mathcal C`$ and its actual inverse. A one-clean coarse compiler
+leaves the second supplied clean wire available as a signal, but this
+observation alone does not implement the polynomial.
+
+The direct repeated-query route retains the precision problem. With R
+source-bearing groups, a certified coarse accuracy $`\delta=2^{-L_0}`$
+and $`L_0\asymp L/R`$ give the retained coarse upper bound
+$`O(N+RL_0)=O(N)`$ at $`L=N`$. Making the displayed tail certificate
+at most $`2^{-L}`$ requires $`k=\Omega(L/L_0)=\Omega(R)`$
+when $`L_0`$ grows. Pricing a degree-$`O(k)`$ reflection polynomial
+by $`O(k)`$ complete coarse calls gives the formal query ledger
+$`O(k[N+RL_0])=O(NR)`$ at $`k=\Theta(R)`$, before its remaining
+operations are priced. This is not a native compiler or a query lower
+bound. A useful collective alternative must jointly realize the alignment
+and the remaining logical and dirty correction without separately paying
+for each complete coarse word.
