@@ -1,17 +1,17 @@
-# Research archive: the two remaining compiler gaps
+# Research results for complete-frame compilation
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Current gaps](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-This archive preserves attempts to improve the constant-clean count endpoint
-and large-workspace T-depth. These notes are outside the proof chain selected
-for Results A–D. Some contain proved special cases or useful components;
-others identify why a specific proposal fails. Their status is stated below.
-An obstruction to one interface is not a lower bound for every compiler.
+These notes give constructive reductions, promised-family compilers, and
+limits of particular interfaces for the constant-clean count and T-depth
+questions. They are separate from the proof chain for Results A–D.
+Each result retains its mathematical hypotheses; a method-specific
+obstruction is not a lower bound for every compiler.
 
-The separately completed [state-based QBP supplement](../supplements/state_based_qbp/README.md)
-is a different decoder and is not failed endpoint work.
+The [state-based QBP supplement](../supplements/state_based_qbp/README.md)
+uses a different decoder and has its own task-level guarantee.
 
-## What we tried
+## Endpoint results
 
 ### Constant-clean high-precision count
 
@@ -20,10 +20,12 @@ the [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-c
 Compact classical descriptions, first-column agreement, or uncharged
 program access do not meet that target.
 
-| Study | What survives | Why the general endpoint remains open |
+| Study | Result | Scope |
 |---|---|---|
-| [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Sharp entrywise normalization and native coarse-residual witnesses; exact fixed-mixer and original-angle query obstructions | These apply to specified interfaces, not arbitrary Clifford+T compilers |
-| [Source reuse](endpoint/SOURCE_REUSE_LIMITS.md) | Encoded-source restrictions, exact source-width transitions, and small source-merging identities | Transformed masks, correlations, and rejected sectors still require charged work; a reusable precision state alone supplies no joint compiler |
+| [Bounded diagonal factorization](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) | Any fixed factor count fits the literal dirty budget; a certified finite search needs only exact factor coverage | Uniform bounded-factor coverage is the remaining hypothesis |
+| [Fixed-tree Cayley reduction](endpoint/TREE_CAYLEY_REDUCTION.md) | All-angle phase gauge, regular parameter chart, exact O(N)-T permutations, and a two-diagonal-algebra generator | The remaining Cayley operator needs a charged native implementation |
+| [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Sharp entrywise normalization and total mass; fixed-mixer, differentiable Walsh-mask, original-angle query, and fixed-bank bounds | Each theorem states its representation and regularity assumptions |
+| [Source reuse](endpoint/SOURCE_REUSE_LIMITS.md) | Encoded-source restrictions, source-width transitions, full-dirty Spin covariance, and Clifford Choi structure | Native lift synthesis and full-space extraction have distinct resource requirements |
 | [Tree transport](endpoint/ENDPOINT_TREE_TRANSPORT.md) | Sparse generators, weighted norms, complete transport columns, and native small-mode constructions | Representation size and classical conditioning do not price the joint native operation; unchanged local scattering retains its query limitation |
 | [Weighted transport block](endpoint/WEIGHTED_TRANSPORT_BLOCK.md) | Valid complete dilation with exact/approximate dirty-return variants | The constructed native word retains the repeated precision cost |
 | [Residual assembly](endpoint/RESIDUAL_ASSEMBLY.md) | Complete forward/reverse assembly, actual inverses, and coupled/commutator repairs | The proved accounting retains the per-depth precision term |
@@ -31,8 +33,8 @@ program access do not meet that target.
 | [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | **Proved special case:** linear endpoint count for a literal native-baseline antichain promise | Generic rounded frames need not satisfy that promise |
 | [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | **Proved special case:** linear endpoint count under the stated ancestor-closure condition, including a changed path | This is a restricted update family, not the unrestricted frame family |
 
-The [retained route assessments](ROUTE_HISTORY.md) explain earlier
-selection decisions and sufficient recurrences. The independent
+The [archived route assessments](ROUTE_HISTORY.md) retain additional
+derivations and their assumptions. The independent
 [single-angle precision lower bound](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 and [full-frame geometry](../docs/HOPF_INTERFACE.md) live in their canonical
 proof chapters; they are not duplicated here.
@@ -71,7 +73,6 @@ these studies. Stable source/result identifiers remain in the
 [finite-evidence catalogue](../docs/reference/VERIFICATION_CATALOGUE.md)
 identifies the corresponding checks and their limitations.
 
-Code and tests remain in their shared package and test directories, where
-their imports and full validation still work. Each archived proof retains
-its links to that evidence. Moving a note does not downgrade or remove its
-checks, and the archive is not excluded from mathematics or link validation.
+Each proof links its executable evidence in the shared package and test
+directories. The complete research corpus is included in mathematics,
+link and presentation validation.

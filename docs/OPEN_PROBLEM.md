@@ -1,59 +1,75 @@
-# Where the selected compiler claims stop
+# Two resource questions for complete Hopf frames
 
-[Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research archive](../research/README.md)
-
-Two resource questions remain open. They are distinct from the proved
-claims and are not prerequisites for the selected paper. The
-[research archive](../research/README.md#what-we-tried) records what was
-tried, the useful results obtained, and why each route stopped.
+[Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
 
 Write $`N=2^n`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$,
 and $`\ell_*(n)=1+\log_2^*(n+2)`$. The coherent Clifford+T model
-has a clean flags and b arbitrary dirty qubits, no QRAM, no supplied
-precision source, and no intermediate measurement or reset. The full
-initialized-isometry contract includes dirty/reference return and leakage.
+has $`a`$ initialized flags and $`b`$ arbitrary dirty qubits. Its full
+initialized-isometry contract includes all logical inputs, dirty/reference
+return, literal phases, and clean leakage. The supplied angles admit
+terminating certified evaluation, including unequal and singular tuples.
 
 ## Constant-clean high-precision count
 
-At the literal endpoint
+At the literal allocation
 
 ```math
-a=2,\qquad L=N,\qquad b=N+n+7,\qquad n\ge3,
+a=2,\qquad \eta=2^{-N},\qquad L=N,\qquad b=N+n+7,\qquad n\ge3,
 ```
 
-the current worst-case real-frame bounds are
+the worst-case real-frame bounds are
 
 ```math
-\Omega(N)\le T^\star\le O(N\ell_*(n)).
+N-\log_2 24\le T^\star\le O(N\ell_*(n)).
 ```
 
-The upper bound follows from the [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit),
-which may leave the second available flag unused. The
-[lower-bound chapter](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-also gives the explicit bound $`T\ge N-\log_2 24`$ for a root-only
-rotation with Pauli-Z expectation $`1/3`$, at arbitrary workspace width.
-The sufficient-clean optimum in Result B uses a growing clean reservation
-and therefore does not close this endpoint. Result D requires
-$`b\ge17(L+n+7)`$ and does not apply at this literal width either.
+The [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
+gives the upper bound while leaving the second available flag unused.
+The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+gives the lower bound even at unrestricted workspace width. The question
+is whether the upper bound can be reduced to O(N) at this exact allocation.
 
-A successful T-only resolution could have a larger fully charged Clifford
-cost. What is missing is a complete native construction with one global
-precision cost, or a stronger unrestricted lower bound. There is no
-selected qualifying construction and no basis for claiming that closure
-is close.
+### Bounded diagonal factorization
 
-The [endpoint studies](../research/README.md#constant-clean-high-precision-count)
-retain source reuse, tree transport, weighted blocks, residual assembly,
-and canonical scalar attempts. Antichain and sparse updates are proved
-restricted successes. They do not supply the promise for generic frames.
-The [structural compilation limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-give a sharp entrywise-loading normalization bound, including arbitrarily
-small residuals around an exact native coarse frame, and fixed-mixer and
-original-angle query obstructions. The
-[source-interface analysis](../research/endpoint/SOURCE_REUSE_LIMITS.md)
-separates clean tuple averages and promised catalysts from arbitrary dirty
-work. None of these method-specific results strengthens the unrestricted
-lower bound beyond linear order.
+The [packed diagonal compiler](OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
+gives error $`2^{-\ell}`$ using two flags and
+
+```math
+b_{\rm diag}=n+1+\left\lceil\frac{\ell+4}{2}\right\rceil,
+\qquad T=O(N+\ell),\qquad G=O(N\ell).
+```
+
+Consequently, **any absolute constant number of diagonal factors** fits
+the endpoint workspace with error left for certified factor selection.
+The [factorization reduction](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+proves a terminating rational-grid search from exact coverage alone,
+without requiring a continuous or computable exact phase-selection map.
+It includes a finite-small-dimension fallback and propagation of existing
+work leakage. The remaining hypothesis is coverage by a uniformly bounded
+number of factors with charged interlayers.
+
+### A regular fixed-tree Cayley family
+
+Every complete frame has the exact representation
+
+```math
+W=D_{\rm out}\Pi\sigma P(\phi)\sigma^\dagger D_{\rm in}^\dagger,
+\qquad |\cot\phi_j|\lt\sqrt3.
+```
+
+The [tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
+constructs both literal diagonals and both permutations effectively.
+The permutations cost O(N) T gates exactly and return their dirty helpers.
+The remaining operator acts on the same fixed incidence tree and is a
+Cayley transform with a bounded real parameter table. Its variable
+generator is a compressed difference of two fixed diagonal algebras.
+An O(N)-T native implementation of this family would complete the endpoint;
+the algebraic inverse and its norm bound alone do not implement it.
+
+The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)
+give precise restrictions on particular representations. They do not
+strengthen the unrestricted lower bound beyond linear order.
 
 ## Large-width T-depth
 
@@ -65,54 +81,20 @@ T=\Theta_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
 D_T=O_\eta(n).
 ```
 
-The unrestricted depth lower bound at that width is only $`\Omega(1)`$.
-The explicit matching intervals at smaller widths remain those of
-[Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
-T-depth allows arbitrary Clifford interlayers; total physical depth is a
-separate resource.
+The unrestricted depth lower bound is $`\Omega(1)`$. The question is
+whether one circuit can attain $`D_T=o(n)`$ with the same count, Clifford,
+and workspace budgets. The explicit matching intervals at smaller widths
+are those of [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
+T-depth permits arbitrary Clifford interlayers and is distinct from total
+physical depth. The [depth results](../research/README.md#large-workspace-t-depth)
+separate source, predicate, query, and logical-transport costs.
 
-The smallest substantial new construction target is $`D_T=o(n)`$ with
-those same clean, dirty, T-count, and Clifford budgets. The
-[depth studies](../research/README.md#large-workspace-t-depth) reduce source,
-predicate, and late-query overheads, but logical transport and program
-query/unload each retain an O(n) allowance. These are costs of existing
-constructions, not lower bounds on all possible circuits.
+## Full-circuit requirement
 
-The exact retained-source factors and shallow stabilizer completion do
-not remove the ordered transport. A source rewrite alone does not settle
-the full-frame question.
-
-## What would justify reopening
-
-Before another construction pass, supply an explicit native identity or
-encoding rule with symbolic count, depth, width, error, and cleanup bounds.
-Then use small unequal examples to test that rule. A compact matrix or
-classical recurrence alone is insufficient.
-
-- For the endpoint, fit $`b=N+n+7`$ literally. Charge derived tables,
-  basis changes, actual queries/unloads, and every precision-dependent call.
-  A grouped route needs a precision coefficient independent of its group
-  count; another full-frame route may bypass grouping.
-- For depth, reduce both remaining linear allowances or give a complete
-  circuit that bypasses them. A component proposal must state the other
-  allowance that remains.
-- An exact source rewrite must hold on every source input. A construction
-  agreeing only on an ideal source needs its own full initialized-isometry
-  proof, including inactive inputs and rejected work.
-- A lower-bound proposal must survive the permitted Clifford interlayers,
-  initialized flags, and returned dirty work. Failure of one query or source
-  interface is not such a lower bound.
-
-Stop a candidate whose expanded schedule retains the same asymptotic cost,
-uses unpriced initialized history, or lacks the return proof. Do not repeat
-larger instances of the same failed rule. A discovered defect in an existing
-claim reopens that repair directly.
-
-## Separate completed work
-
-The [state-based QBP supplement](../supplements/state_based_qbp/README.md)
-estimates the original raw gradients with a changed decoder. Its state
-compiler, charged coarse inverse, classical correction, and bounded native
-integration are complete at their stated scope. It does not implement the
-fine prescribed frame, so it neither closes nor invalidates either gap.
-Application-level advantage is outside the selected project scope.
+A resolution must charge source construction, tables, basis changes,
+queries, actual inverses, amplification, and workspace return on the same
+circuit. The count question allows arbitrary finite Clifford work and
+classical preprocessing. It allows no QRAM, supplied precision state,
+measurement, reset, postselection, or uncharged coherent evaluator.
+A lower bound must apply to this full model; a failure of one source,
+query interface, or factorization is a restriction of that method.

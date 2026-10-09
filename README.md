@@ -97,6 +97,10 @@ The [one-clean proof](docs/ONE_CLEAN_COMPILER.md) and
 give a banked tradeoff. The separately proved complex magnitude extension
 requires $`b\ge L+n+8`$. Literal diagonals and one-target multiplexors
 have their own matching one-clean corollaries and reservations.
+For literal diagonals, the
+[packed two-clean compiler](docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
+uses only $`b\ge n+1+\lceil(L+4)/2\rceil`$ dirty qubits at
+$`T=O(N+L)`$ and $`G=O(NL)`$.
 
 **D. Simultaneous T-count and T-depth.** For complete real frames,
 $`a=2`$ and $`b\ge17(L+n+7)`$ give one circuit with absolute constants:
@@ -130,22 +134,22 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 
 ## Two open resource gaps
 
-Neither gap is a prerequisite for the selected A–D package.
-
 | Question | Current bounds |
 |---|---|
-| High precision, $`a=2,b=N+n+7,L=N,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
+| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | Optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
-The [research index](research/README.md) separates these questions from
-proved component results and failed shortcuts. Restrictions on a particular
-source or query interface do not prove unrestricted compiler lower bounds.
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 gives $`T\ge N-\log_2 24`$ at the count endpoint, even with unrestricted
-Clifford interlayers and workspace. The
-[structural limits](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-identify normalization, fixed-mixer, and original-angle query restrictions;
-the upper bound remains unchanged.
+Clifford interlayers and workspace. Two constructive reductions isolate
+the remaining count question:
+[any fixed number of diagonal factors](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+fits the exact workspace with certified factor selection, and
+[every frame reduces to a regular fixed-tree Cayley family](research/endpoint/TREE_CAYLEY_REDUCTION.md)
+using two diagonals and exact O(N)-T permutations. Uniform factor coverage
+or native synthesis of that Cayley family would close the bound.
+The [research index](research/README.md) collects these reductions and
+method-specific limits with their precise hypotheses.
 
 ## Operational consequence
 

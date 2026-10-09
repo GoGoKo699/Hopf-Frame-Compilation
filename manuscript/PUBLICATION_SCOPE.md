@@ -117,9 +117,12 @@ literal phases and complete-input error. Their separate classical computation
 has no universal efficiency guarantee for arbitrary evaluators. Upper bounds
 also cover $`k=0`$; the matching claim uses $`k\ge1`$.
 
-Two-clean constructions retain smaller base dirty reservations: $`L+k+5`$
-for a literal diagonal and $`L+k+7`$ for a multiplexor, with matching banked
-bounds at twice those reservations. These remain distinct resource points.
+With two clean flags, the
+[packed literal-diagonal compiler](../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
+has base dirty reservation $`B_{\rm diag}=k+1+\lceil(L+4)/2\rceil`$,
+T-count $`O(M+L)`$, and matching banked count at $`b\ge2B_{\rm diag}`$.
+The two-clean multiplexor retains its separate base reservation $`L+k+7`$
+and matching banked bound at twice that reservation.
 
 ## Corollaries that stay in the paper
 
@@ -127,7 +130,7 @@ bounds at twice those reservations. These remain distinct resource points.
 |---|---|
 | Dirty-bank refinement | With $`a=1`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
 | Zero-clean real-frame baseline | The [signal-symmetry corollary](../docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations) gives $`T=O(N+nL)`$, $`G=O(NL)`$, with $`a=0`$ and $`b\ge L+n+7`$. Its layerwise circuit borrows the signal qubit and includes its return error. This does not extend the grouped or literal-phase constructions to zero clean qubits. |
-| Literal diagonal synthesis | For $`\ell\ge6`$, one clean qubit gives $`O(N+\ell)`$ T gates at error $`2^{-\ell}`$ with $`b\ge\ell+n+7`$. For $`b\ge2(\ell+n+7)`$, $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound; $`G=O(N\ell)`$. |
+| Literal diagonal synthesis | For $`\ell\ge6`$, error $`2^{-\ell}`$ and $`T=O(N+\ell)`$ use base dirty reservation $`B=\ell+n+7`$ with one clean flag, or $`B=n+1+\lceil(\ell+4)/2\rceil`$ with two. At $`b\ge2B`$, $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound; $`G=O(N\ell)`$. |
 | Complex magnitude frame | Compose the one-clean grouped real frame and literal diagonal, with separately supplied certified phases and error $`\eta/2`$ per factor. At $`a=1`$, this gives $`O(N+L\ell_*(n))`$ T gates at $`b\ge L+n+8`$, or $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$, with $`G=O(NL)`$. This compiles $`D_\phi W_{\mathbb R}`$; it is not arbitrary complex-unitary synthesis. |
 | Smaller clean/dirty allocations | For every $`a,b\ge0`$, the real-frame borrowed-workspace compiler gives $`T=O(NL/q+L\sqrt N)`$ and $`G=O(NL)`$. Its matching splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$. Retain as an appendix comparison; it can beat the grouped bound at low precision. |
 | Fixed-parameter QBP robustness | Exact substitution preserves the global record. Magnitude bias is at most $`4\lvert a_j\rvert(\eta+\eta_O)`$; the separate phase-vector bias is at most $`4(\eta+\eta_O)`$. The full complex gradient, reflection-sum observables, rounded classical weights, and correlated dirty-bank reuse have explicit error and cost budgets. |
