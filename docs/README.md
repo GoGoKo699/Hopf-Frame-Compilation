@@ -43,8 +43,10 @@ stated extensions. Follow the complete source, residual dictionaries,
 compressed failure history, amplification, and resource ledger.
 
 Section 10 gives the real-frame reduction to diagonal synthesis, the
-fixed-width counting argument, and an explicit single-angle precision
-witness valid at arbitrary width. These lower bounds also support C and D;
+fixed-width counting argument, and a literal-phase root witness giving
+$`T\ge2N-1`$ at $`\eta=2^{-N}`$, valid at arbitrary width.
+The same probability gap gives a threshold below which approximate workspace
+return is exact. These lower bounds also support C and D;
 they are not obtained by adding costs of particular source calls.
 
 ### C. One-clean compilation and its corollaries
@@ -132,7 +134,10 @@ reductions, promised-family compilers and scoped interface bounds. The
 uses the packed diagonal compiler; the
 [regular tree Cayley reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
 supplies an all-angle representation with charged exterior permutations.
-Their remaining hypotheses are separate from Results A–D.
+Its [boundary propagation proof](../research/endpoint/BOUNDARY_PROPAGATION.md)
+gives the sparse preconditioning identity and an O(N)-T two-signal block
+encoding at the endpoint width. Complete feedback recovery and uniform
+bounded-factor coverage remain separate hypotheses from Results A–D.
 
 ## Evidence and sources
 

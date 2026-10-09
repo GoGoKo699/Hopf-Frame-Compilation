@@ -2,12 +2,14 @@
 
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
-The canonical operator-source proof includes the packed two-clean diagonal
-reservation. The research index links the
+The canonical fault-tolerant proof gives the unrestricted endpoint lower
+bound $`2N-1`$. The research index links the
 [bounded-factor bridge](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md),
 [regular fixed-tree Cayley reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md),
-and scoped representation results. Results A–D and the full-frame endpoint
-orders are unchanged. Final manuscript drafting is a separate task.
+and [native boundary propagation block](research/endpoint/BOUNDARY_PROPAGATION.md).
+The full-frame endpoint remains linear to iterated-logarithmic overhead;
+the block encoding does not supply complete feedback recovery.
+Final manuscript drafting is a separate task.
 
 ## Mandate
 

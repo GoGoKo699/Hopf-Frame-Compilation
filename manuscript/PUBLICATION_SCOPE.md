@@ -191,11 +191,14 @@ The selected constant-clean high-precision open problem is
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 \qquad
-\Omega(N)\le T^\star\le O(N\ell_*(n)).
+2N-1\le T^\star\le O(N\ell_*(n)).
 ```
 
 One clean qubit attains the same upper bound and $`G=O(N^2)`$ at that dirty
-allocation. The selected two-clean endpoint remains open as well.
+allocation. The
+[root-angle precision witness](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+proves the displayed lower bound at arbitrary workspace width under the
+literal-phase contract. The selected two-clean endpoint remains open.
 
 The grouped precision charge is not claimed necessary, nor is the same upper
 bound claimed for every constant clean count or linear dirty prefactor.

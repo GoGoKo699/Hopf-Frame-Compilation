@@ -20,13 +20,14 @@ a=2,\qquad \eta=2^{-N},\qquad L=N,\qquad b=N+n+7,\qquad n\ge3,
 the worst-case real-frame bounds are
 
 ```math
-N-\log_2 24\le T^\star\le O(N\ell_*(n)).
+2N-1\le T^\star\le O(N\ell_*(n)).
 ```
 
 The [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
 gives the upper bound while leaving the second available flag unused.
 The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-gives the lower bound even at unrestricted workspace width. The question
+at root angle $`\pi/16`$ gives the lower bound even at unrestricted
+workspace width, retaining literal phases. The question
 is whether the upper bound can be reduced to O(N) at this exact allocation.
 
 ### Bounded diagonal factorization
@@ -63,8 +64,13 @@ The permutations cost O(N) T gates exactly and return their dirty helpers.
 The remaining operator acts on the same fixed incidence tree and is a
 Cayley transform with a bounded real parameter table. Its variable
 generator is a compressed difference of two fixed diagonal algebras.
-An O(N)-T native implementation of this family would complete the endpoint;
-the algebraic inverse and its norm bound alone do not implement it.
+The [boundary propagation construction](../research/endpoint/BOUNDARY_PROPAGATION.md)
+gives an O(N)-T block encoding of $`(I-\mathcal B)/2`$ using the two clean signals
+and exactly $`N+n+7`$ dirty qubits. Its full-unitary error is below
+$`(43/64)\eta`$. For every real parameter table,
+$`\sigma_{\min}(I-\mathcal B)=2\sin(\pi/(4n+2))`$.
+Completing the coupled Cayley feedback and returning the signals would
+resolve this route; the block encoding alone is not the complete frame.
 
 The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
 and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)
