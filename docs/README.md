@@ -144,11 +144,15 @@ small-conjugation error bound. The
 combines geometric histories and midpoint purification into a cubic
 replacement, with the actual baseline, all inverse calls, and peak width
 charged. The
+[coupled tree resolvent](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
+gives all-order norm, tail and support bounds and an ideal
+normalization-three dilation, with its native cost charged separately. The
 [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-cover Haar words, a quantitative three-mask flat-Clifford obstruction,
-and single-bank transport rigidity. Linear-T fine
-correlated synthesis and coverage by other mixer families remain separate hypotheses
-from Results A–D.
+cover Haar words, width-independent three- and four-mask flat-Clifford
+obstructions, and single-bank transport rigidity. The research index
+also maps exact realification, marker-support and Spin-decoding results.
+Linear-T fine correlated synthesis and coverage by other mixer families
+remain separate hypotheses from Results A–D.
 
 ## Evidence and sources
 

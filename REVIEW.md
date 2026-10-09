@@ -288,8 +288,11 @@ leaves one terminal encoder. Its
 uses exact geometric histories, midpoint conjugation, and opposite-sign
 purification to reach cubic coarse-error reduction within the same width.
 The complete-output and source costs are proved for that fixed-order
-replacement; an all-order correction with linear total cost remains the
-count question. The lower bound follows from the
+replacement. An [all-order coupled inverse](research/endpoint/COUPLED_TREE_RESOLVENT.md)
+has a constant norm bound and ideal normalization-three dilation, but
+its native depth-ordered realization still charges fine precision at
+every depth. A correction with linear total cost remains the count
+question. The lower bound follows from the
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
 The [research index](research/README.md) records the hypotheses of these
 reductions and the scope of the related interface obstructions.

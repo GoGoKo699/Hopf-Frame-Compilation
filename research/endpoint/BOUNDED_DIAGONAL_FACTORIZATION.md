@@ -48,7 +48,8 @@ initialization is used.
 The hypothesis is a sufficient algebraic route, not an established
 factorization of the Hopf family. Local tangent coverage or finite-size
 fits do not imply it. The structural chapter proves the restrictions on
-[three-mask flat-Clifford words](STRUCTURAL_COMPILATION_LIMITS.md#three-masks-with-two-flat-cliffords-a-width-independent-gap),
+[three-mask](STRUCTURAL_COMPILATION_LIMITS.md#three-masks-with-two-flat-cliffords-a-width-independent-gap)
+and [four-mask flat-Clifford words](STRUCTURAL_COMPILATION_LIMITS.md#four-masks-with-three-flat-cliffords-a-width-independent-gap),
 [bounded balanced-Haar words](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-unrestricted-haar-orientations),
 and [transport into one terminal Clifford gauge](STRUCTURAL_COMPILATION_LIMITS.md#transport-into-one-terminal-clifford-gauge-is-rigid).
 These restrictions leave the general coverage hypothesis, including
@@ -112,6 +113,53 @@ Taking norms bounds the total by the sum of stage errors. Actual
 earlier leakage propagates under the unitary suffix; flags and dirty
 work are not reset between stages. Tensoring with an arbitrary
 reference leaves the bound unchanged.
+
+### An explicit nonflat factorization with n diagonal slots
+
+Let $`B_d`$ act as SH on logical qubit d and identity elsewhere. Define
+$`D_d`$ to have entry $`e^{-i(-1)^z\theta_{d,p}}`$ on prefix p,
+target bit z, and zero lower suffix; on every other suffix its entry is
+one. Since $`B_dZ_dB_d^\dagger=Y_d`$ and $`B_d`$ leaves the prefix
+and suffix unchanged, the exact depth layer is
+
+```math
+L_d=B_dD_dB_d^\dagger,\qquad
+W=B_{n-1}D_{n-1}B_{n-1}^\dagger\cdots B_0D_0B_0^\dagger.
+```
+
+This retains literal phases and applies to zero, negative, and unequal
+angles. Each Clifford basis change is explicit and nonflat on the whole
+logical register. With
+
+```math
+h=\lceil\log_2 n\rceil,\qquad
+\ell=N+h+2,\qquad q=\left\lceil\frac{N+h+6}{2}\right\rceil,
+```
+
+the n packed diagonal calls have total initialized-isometry error at most
+$`n2^{-\ell}\le\eta/4`$ and the explicit ledger
+
+```math
+a=2,\qquad b=q+n+1\le N+n+7,\qquad
+T\le n(1344N+36q-18)=O(nN).
+```
+
+The same flags and dirty wires are reused, with Section 2's telescoping
+bound accounting for leakage and return. The Clifford count is
+$`O(nNq)`$, including the explicit basis changes. For a final-depth-only
+frame there is one slot: take $`\ell=N+2`$ and
+$`q=\lceil(N+6)/2\rceil`$ to obtain error at most $`\eta/4`$ and
+T-count $`1344N+36q-18=O(N)`$ within the same workspace allowance.
+This includes the witness for the
+[four-flat-mask obstruction](STRUCTURAL_COMPILATION_LIMITS.md#four-masks-with-three-flat-cliffords-a-width-independent-gap).
+
+The full-frame word has $`K(n)=n`$, so it does not meet the bounded-slot
+hypothesis. Although the $`B_d`$ commute with one another, $`B_d`$
+generally fails to commute with $`D_e`$ when $`e\ne d`$: for
+$`e\lt d`$ the diagonal uses qubit d in its lower-suffix projector,
+and for $`e\gt d`$ it can depend on prefix bit d through the unequal
+angle table. Collecting these basis changes at the endpoints therefore
+does not preserve the complete operator.
 
 ## 3. Certified search replaces factor extraction
 

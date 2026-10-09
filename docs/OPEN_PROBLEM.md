@@ -64,6 +64,14 @@ the same restriction. Dense Walsh mixers lie outside that bound. The
 factorization chapter gives a stable, all-column nested-projector
 criterion for a different mixer representation.
 
+For four arbitrary physical diagonals separated by three full-support
+flat Clifford mixers, a
+[uniform full-output gap](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md#four-masks-with-three-flat-cliffords-a-width-independent-gap)
+of at least $`1/40`$ holds even with target-dependent factors and arbitrary
+workspace. This does not cover extra exterior mixers or nonflat
+interlayers. An explicit nonflat factorization uses n diagonal slots and
+fits the endpoint width, but its direct cost is O(nN).
+
 ### A regular fixed-tree Cayley family
 
 Every complete frame has the exact representation
@@ -124,10 +132,34 @@ independent N-row program per quadratic stage would cost O(N log n).
 The unresolved implication is a closed physical correction or another
 global representation whose total source and table charges are O(N).
 
+The [coupled tree inverse](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
+supplies an all-order component. For contractive graded B and local
+defects $`\|E_j\|\le d2^{j-n}`$, $`0\le d\lt1`$, put
+$`X=(I-B)^{-1}E`$. Then
+
+```math
+\|X^k\|\le\frac{d^k}{\prod_{t=1}^k(2^t-1)},\qquad
+\|(I-X)^{-1}\|\lt\frac{43}{18}.
+```
+
+For edge-weighted tree shifts, the inverse has an ideal normalization-three
+scattering dilation. Its
+depth-ordered native realization retains O(N+nL) T-count, and the
+completion's workspace scaling does not certify the literal additive
+endpoint budget. Shrinking input support does not remove descendant
+coefficient data; static feedback and accepted-block baseline cancellation
+do not supply a free native inverse or prefix encoder.
+
 The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
 and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)
 give precise restrictions on particular representations. They do not
-strengthen the unrestricted lower bound beyond linear order.
+strengthen the unrestricted lower bound beyond linear order. The
+[realification theorem](../research/endpoint/NATIVE_REALIFICATION.md)
+preserves the full error with at most twice the T-count and one extra
+clean or dirty qubit; the existing one-clean upper bound leaves that
+clean qubit available. Its exact marker-support obstruction and the
+[Spin-decoding bounds](../research/endpoint/SPIN_DECODING_LIMITS.md)
+retain their support and wrapper hypotheses.
 
 ## Large-width T-depth
 

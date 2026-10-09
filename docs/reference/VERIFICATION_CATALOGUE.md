@@ -153,11 +153,34 @@ are imported from their separately checked contracts. No full variable-size
 refinement emitter is asserted.
 
 The [endpoint interface tests](../../tests/test_endpoint_refinement_routes.py)
-check dense three-point and unequal gauge witnesses, native dirty Klein
-dressing and unequal-address higher-grade terms, and exact correlated
-resolvent and history-capacity identities. These support the representation
-restrictions in the structural, source-reuse, and residual-assembly chapters;
-finite checks do not establish unrestricted circuit lower bounds.
+check dense three-point, four-mask XOR and unequal gauge witnesses,
+native dirty Klein dressing and unequal-address higher-grade terms,
+and exact correlated history identities. The precision-six inverse-pair
+fixture uses the literal full five-call source words, compares the dirty
+polar operator, and verifies its scalar-defect two-flag filter. Lookup
+fixtures test uniform-program invariance and changing-address transport.
+These support the structural and source-interface restrictions, without
+establishing source-witness reachability by the fixed global encoder.
+
+The [coupled-tree tests](../../tests/test_coupled_tree_resolvent.py)
+check graded powers, tails and computational input support, independent
+descendant parameters in a rank-one column, and a complete complex
+30-mode scattering unitary. Its zero-defect rejected column agrees with
+the prefix-history formula. The
+[resolvent proof](../../research/endpoint/COUPLED_TREE_RESOLVENT.md)
+establishes the all-size bounds; these ideal matrix checks do not emit
+the native precision-dependent completion.
+
+The [native representation tests](../../tests/test_native_representation_limits.py)
+verify realification gate words in exact cyclotomic arithmetic, the
+rectangular norm and full-isometry identity, bounded integer circle
+solutions, and literal marker-column gaps. Exact character and phase-grid
+enumeration checks Spin multiplicities at n=3 and n=4, retaining the
+small-dimension exception. The
+[realification](../../research/endpoint/NATIVE_REALIFICATION.md) and
+[Spin-decoding](../../research/endpoint/SPIN_DECODING_LIMITS.md) proofs
+give their arbitrary-size conclusions under the stated support and
+wrapper hypotheses. No unrestricted circuit lower bound is inferred.
 
 The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
 $`\mathbb Q(\sqrt2)`$ to verify common signed-path witnesses and
