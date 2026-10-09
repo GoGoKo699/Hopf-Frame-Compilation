@@ -229,7 +229,9 @@ accurate inexpensive coarse frames. It does not contradict the signed
 or [residual assembly](RESIDUAL_ASSEMBLY.md), which retain interference
 before taking absolute values.
 
-## 4. Three diagonal layers fail even with discontinuous phase choices
+## 4. Diagonal-mask restrictions
+
+### Three diagonal layers fail even with discontinuous phase choices
 
 **Proposition 4.** For $`n\ge2`$, no fixed unitaries $`C_1,C_2`$ can
 give, throughout a neighborhood of the zero-angle tuple,
@@ -292,8 +294,8 @@ nonproportional positive directions.
 This is an **exact neighborhood obstruction** for fixed arbitrary mixers.
 The next result gives a constant approximation bound and allows
 target-dependent mixers and arbitrary work, provided the two mixers are
-flat Cliffords. Neither statement covers four or more diagonal layers
-or a different whole-operator compiler.
+flat Cliffords. The four-mask theorem below uses a separate two-column identity;
+these statements are restrictions on their displayed factor words.
 
 ### Three masks with two flat Cliffords: a width-independent gap
 
@@ -333,13 +335,14 @@ C_{xy}=Q^{-1/2}r(x)c(y)(-1)^{x^{\mathsf T}Ay},
 ```
 
 where r,c are unit phases and A is invertible over $`\mathbb F_2`$.
-Indeed, conjugating the diagonal Paulis by C gives Pauli translation
-relations between its columns. The translation map has trivial kernel:
-otherwise a nontrivial diagonal Pauli would relate two diagonal sign
-patterns through a matrix with no zero entries. The map is thus
-invertible, and its relations give the displayed column characters.
-Row and column phases and a binary relabeling reduce the modulus
-calculation to the Walsh transform.
+The scalar phase is retained in r or c. To prove the form, conjugate
+$`Z_j`$ by C. The X labels of these commuting Pauli stabilizers form an
+invertible binary matrix: a nonzero combination with zero X label would
+give a nontrivial diagonal Pauli stabilizing a full-support column,
+which is impossible. Divide each column by column zero entrywise. The
+Pauli translation equations make each ratio a character, with the
+invertible bilinear pairing displayed above. Row and column phases and
+a binary relabeling reduce the modulus calculation to the Walsh transform.
 
 Absorb r and D into the three phases $`\alpha,\beta,\gamma`$ of f.
 The three pairwise XOR differences are distinct and nonzero. For
@@ -394,6 +397,158 @@ this three-mask architecture, including target-dependent full-support
 Cliffords. Non-flat target-dependent mixers and larger factor counts
 are outside its scope.
 
+### Four masks with three flat Cliffords: a width-independent gap
+
+**Theorem.** For every $`n\ge3`$ there is a prescribed real Hopf frame
+W such that every literal physical word
+
+```math
+V=D_4C_3D_3C_2D_2C_1D_1
+```
+
+with computational unitary diagonals and full-support flat Cliffords
+satisfies
+
+```math
+\|VJ_a-J_a(W\otimes I_b)\|\ge\frac1{40}.
+```
+
+All seven factors may depend on W. The theorem allows every number a
+of clean zero qubits and b of arbitrary dirty qubits, unrestricted action
+on occupied-clean inputs, and arbitrary intermediate clean leakage. The
+norm includes all logical and dirty inputs and external references.
+
+**Literal normal form.** Put $`Q=2^{n+a+b}`$ and
+$`F=H^{\otimes(n+a+b)}`$. The flat-Clifford form above gives each
+interlayer as a row diagonal, F, an invertible linear basis permutation,
+and a column diagonal. The identity
+$`P_AF=FP_{A^{-\mathsf T}}`$ moves the permutations to the right,
+conjugating the intervening diagonal masks. Thus, with literal phases,
+
+```math
+V=D_{\rm out}F D_a F D_b F D_{\rm in}P.
+```
+
+This is an algebraic identity for the lower bound, not a free-gate
+implementation. Multiplication on the left by $`FD_{\rm out}^\dagger`$
+and on the right by $`P^\dagger D_{\rm in}^\dagger`$ gives
+
+```math
+B=D_a C,\qquad C=FD_bF,\qquad
+B_{xj}=d_x c_{x\mathbin\oplus j}.
+```
+
+The right transformation maps each selected initialized computational
+input to a distinct column label, up to a phase. Hence its individual
+column error remains bounded by the original isometry error.
+
+**Two-column identity.** Consider two desired columns supported on
+$`\{y_i,y_i\mathbin\oplus t\}`$ and
+$`\{y_j,y_j\mathbin\oplus t\}`$, for the same nonzero t.
+After the outer row and column phase changes, write their coefficients
+as $`a_k,b_k`$, with $`|a_k|^2+|b_k|^2=1`$. Their scaled Walsh
+transforms are
+
+```math
+g_k(x)=(-1)^{y_k\cdot x}A_{k,e},\qquad
+A_{k,e}=a_k+(-1)^e b_k,\qquad e=t\cdot x.
+```
+
+In particular,
+$`|A_{k,e}|\le\sqrt2`$ and
+$`|A_{k,0}^2-A_{k,1}^2|=4|a_kb_k|`$.
+Let $`j_i,j_j`$ be the transformed input labels and put
+$`p=j_i\mathbin\oplus j_j`$. The actual scaled columns
+$`h_k(x)=\sqrt Q B_{x,j_k}`$ obey the pointwise identity
+
+```math
+h_i(x)h_i(x\mathbin\oplus p)
+=h_j(x)h_j(x\mathbin\oplus p).
+```
+
+Both products contain the same factors
+$`Qd_xd_{x\mathbin\oplus p}c_{x\mathbin\oplus j_i}c_{x\mathbin\oplus j_j}`$.
+This identity uses complete physical
+columns, with no accepted-block or intermediate-return assumption.
+
+**Stability at arbitrary physical width.** Let the isometry error be
+$`0\lt\epsilon\le1/40`$ and set $`\delta=3\epsilon`$.
+For each selected column,
+$`\mathbb E_x|h_k(x)-g_k(x)|^2\le\epsilon^2`$.
+Suppose $`t\cdot p=0`$. For either $`e\in\{0,1\}`$, there is
+an x with $`t\cdot x=e`$ such that all four errors for the two columns
+at x and $`x\mathbin\oplus p`$ are at most delta: Markov's inequality
+and a union bound put their total bad fraction at most
+$`4\epsilon^2/\delta^2=4/9\lt1/2`$, whereas this hyperplane occupies
+one half of the labels. Translation preserves each mean squared error.
+
+Replacing both products by their target products changes their difference
+by at most
+
+```math
+\gamma=4\sqrt2\,\delta+2\delta^2
+=12\sqrt2\,\epsilon+18\epsilon^2.
+```
+
+Because $`t\cdot p=0`$, both factors use the same e. Their Walsh
+characters give the sign
+$`\sigma=(-1)^{(y_i\mathbin\oplus y_j)\cdot p}`$, independent of e.
+Thus both values of e satisfy
+
+```math
+|A_{j,e}^2-\sigma A_{i,e}^2|\le\gamma.
+```
+
+Subtracting the two equations and taking moduli gives
+$`4\bigl||a_jb_j|-|a_ib_i|\bigr|\le2\gamma`$. For real rotation
+columns the consequence is
+
+```math
+\bigl||\sin(2\theta_j)|-|\sin(2\theta_i)|\bigr|\le\gamma,
+\qquad
+\gamma\le\frac{12\sqrt2}{40}+\frac{18}{1600}\lt\frac12.
+```
+
+The zero-error case follows directly from the pointwise identities.
+
+**Three-angle witness.** Set every angle above the last depth to zero.
+At three last-depth prefixes choose
+$`\theta_0=0,\theta_1=\pi/12,\theta_2=\pi/4`$, and set every
+other angle to zero. Its three marker columns are
+
+```math
+-\sin\theta_k\,|2k\rangle+\cos\theta_k\,|2k+1\rangle,
+\qquad k=0,1,2.
+```
+
+They share one output XOR direction t and have values
+$`|\sin(2\theta_k)|=0,1/2,1`$. Choose any fixed dirty basis label
+and clean label zero. Their desired physical columns have precisely the
+same two-coordinate form with returned work. Among the three distinct
+transformed input labels, two have the same value of $`t\cdot j_k`$.
+Their difference p therefore obeys $`t\cdot p=0`$, but their target
+invariants differ by at least $`1/2`$, contradicting the stability bound.
+This proves the stated closed bound. Since
+$`2^{-N}\le1/256\lt1/40`$ for $`n\ge3`$, the architecture fails at
+the prescribed endpoint tolerance at every allowed width.
+
+The restriction is specific to four masks with three flat Clifford
+interlayers. Additional exterior arbitrary Cliffords, nonflat interlayers,
+and five or more masks are outside its scope. The witness itself has a
+one-diagonal nonflat implementation: $`B=SH`$ obeys $`BZB^\dagger=Y`$,
+so its full last-depth bank is
+
+```math
+\bigoplus_p R_y(\theta_p)
+=(I\otimes B)\mathrm{diag}_{p,z}
+ (e^{-i(-1)^z\theta_p})(I\otimes B^\dagger).
+```
+
+The [per-depth nonflat factorization](BOUNDED_DIAGONAL_FACTORIZATION.md#an-explicit-nonflat-factorization-with-n-diagonal-slots)
+charges this bank and its extension to all n depths. Thus the theorem
+restricts the flat architecture even on a family with linear native
+T-count; it is not an intrinsic hardness result for that family.
+
 ### Four alternating Walsh masks: every differentiable identity baseline
 
 Let $`F=H^{\otimes n}`$ be the Walsh transform. For $`n\ge3`$, the
@@ -405,7 +560,9 @@ W(\theta)=D_4(\theta)F D_3(\theta)F D_2(\theta)F D_1(\theta)F
 
 cannot hold near zero with all four diagonal masks differentiable there.
 This includes every cancelling non-Clifford identity baseline and the
-displayed exterior Clifford. It is specific to these fixed mixers.
+displayed exterior Clifford. That exterior Walsh lies outside the
+preceding three-interlayer theorem. The argument here is specific to
+these fixed mixers and differentiable factor selections.
 
 To classify the baselines, write $`G=\mathbb F_2^n`$ and
 $`D_a U D_b=V`$ at zero, where U and V are XOR-circulant unitaries,

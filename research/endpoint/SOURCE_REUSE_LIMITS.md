@@ -684,20 +684,156 @@ mask's inverse past a gate that changes its address can leave a logical
 error even with exact dirty return. A fused word must unload before that
 change or explicitly account for the conjugated operation.
 
-Likewise, sharing a signal does not make accepted scalar blocks multiply.
-For the current paired source's fixed mask,
+### An inverse logical pair can leave a coherent dirty polar operator
+
+The actual paired-source primitive gives a stronger diagnostic than the
+accepted-block product alone. Use the Hermitian Clifford vectors
+$`M,N_f,N_g`$ of the
+[one-clean compiler](../../docs/ONE_CLEAN_COMPILER.md#3-conjugating-scalar-blocks-produces-a-rotation),
+with the fixed-mask moment $`c=1/2`$. Define
 
 ```math
-\mathcal S_f=\frac12 I+X_{\rm flag}D_f,\qquad
-D_f^2=-\frac34I,\qquad
-\langle0|\mathcal S_f^2|0\rangle=-\frac12I.
+\begin{aligned}
+sI&=\{M,N_g\}/2,& \tau I&=\{N_f,N_g\}/2,\\
+D_f&=(MN_f-N_fM)/2,&D_g&=(MN_g-N_gM)/2,\\
+t&=cs-\tau,&K_g&=D_g+2tD_f.
+\end{aligned}
 ```
 
-The product of its two accepted coefficients would instead be
-$`I/4`$. This exact $`3/4`$ discrepancy is independent of q.
-It excludes concatenation of these scalar words as a substitute for a
-new fusion identity; it does not exclude the complete affine assembly
-or another choice of rejected-space action.
+For signal r and logical target j, the complete unamplified routed word
+is
+
+```math
+Q_g=I_r\otimes(sI+tX_jZ_j)+X_r\otimes X_jK_g.
+```
+
+To derive the rejected term, expand the actual
+conjugation $`A^\dagger B_gA`$ from the one-clean compiler. Its
+signal-odd part is
+$`X_rX_j(c^2D_g+D_fD_gD_f)`$. The anticommutator
+$`D_fD_g+D_gD_f=2tI`$ and
+$`D_f^2=-(1-c^2)I`$ imply
+$`D_fD_gD_f=2tD_f+(1-c^2)D_g`$, giving precisely $`K_g`$.
+In particular, with $`\rho^2=s^2+t^2`$,
+
+```math
+K_g^\dagger=-K_g,\qquad
+K_g^\dagger K_g=(1-\rho^2)I,\qquad
+R_g=(sI+tX_jZ_j)/\rho.
+```
+
+For $`\rho\gt0`$, the literal five-call word and its complete output
+are
+
+```math
+\begin{aligned}
+V_g&=Q_gZ_rQ_g^\dagger Z_rQ_gZ_rQ_g^\dagger Z_rQ_g\\
+&=p_5(\rho)I_r\otimes R_g
+ +r_5(\rho)X_r\otimes X_jK_g,\\
+p_5(\rho)&=5\rho-20\rho^3+16\rho^5,\\
+r_5(\rho)&=1-12\rho^2+16\rho^4.
+\end{aligned}
+```
+
+Block multiplication using $`R_gX_j=X_jR_g^\dagger`$ proves the
+formula. The four signal reflections of the compiler are $`-Z_r`$;
+their four scalar signs cancel. All inverse calls here are actual
+adjoints, and no rejected block is discarded.
+
+At precision $`q=6`$, choose positive head signs and tail mean pairs
+
+```math
+(u_1,v_1)=(-1/16,3/8),\qquad (u_2,v_2)=(0,1/4).
+```
+
+These are legal certified sign-grid roundings for angles
+$`+3/50`$ and $`-3/50`$, respectively. The grid spacing is $`1/16`$;
+the desired means lie strictly inside the corresponding rounding cells,
+so sufficiently precise finite certified evaluations select them without
+an equality test. The programming formulas give
+
+```math
+s_1=s_2=5/16,\qquad t_1=-t_2=1/32,\qquad
+\rho^2=101/1024,\qquad R_2R_1=I.
+```
+
+Set $`a=p_5(\rho)`$, $`\lambda=r_5(\rho)\sqrt{1-\rho^2}`$, and
+write $`K_i=\sqrt{1-\rho^2}MF_i`$, where the $`F_i`$ are unit
+Clifford vectors perpendicular to M. Let
+$`zI=\{F_2,F_1\}/2`$. Multiplying the two complete primitives gives
+the accepted block of $`C=V_2V_1`$:
+
+```math
+\begin{aligned}
+B&=a^2I+r_5(\rho)^2K_2K_1\\
+&=(a^2-\lambda^2z)I-\lambda^2(F_2F_1-zI).
+\end{aligned}
+```
+
+It acts as identity on the logical target but not on dirty work.
+Since $`(F_2F_1-zI)^2=-(1-z^2)I`$, B has a scalar singular value h
+and a dirty polar unitary $`V_{\rm dirty}`$ with eigenphases
+$`\pm\omega`$:
+
+```math
+\begin{aligned}
+h^2&=(a^2-\lambda^2z)^2+\lambda^4(1-z^2),\\
+\tan\omega&=\frac{\lambda^2\sqrt{1-z^2}}{a^2-\lambda^2z}.
+\end{aligned}
+```
+
+Every sign representation of the displayed tail moments has
+$`|z|\lt1`$. To see this, denote the fixed and programmed source
+signs by $`f_i,g_{1,i},g_{2,i}\in\{-1,1\}`$. On each nonzero
+source coordinate, equality $`F_2=F_1`$ would require
+
+```math
+g_{2,i}-g_{1,i}=4t_1f_i-2t_1\in\{1/16,-3/16\},
+```
+
+which is impossible for signs. Equality $`F_2=-F_1`$ would instead
+require $`g_{2,i}+g_{1,i}=2s=5/8`$, also impossible.
+Moreover $`r_5(\rho)=-1831/65536`$ and
+$`0\lt\lambda^2\lt1/1000`$. The identity
+$`a^2+\lambda^2=1`$ makes the denominator positive, proving
+$`0\lt\omega\lt\pi/2`$ and a nontrivial dirty polar factor.
+
+This witness consists of two legal unconditioned source primitives.
+Both the requested rotations and the rounded rotations have complete
+product I, so its coherent dirty error has no aggregate logical
+coefficient-error term. It rules out a closure invariant based only on
+scalar accepted primitive blocks for this broader source family.
+Reachability of this pair by the fixed regular-core encoder is not
+asserted; an invariant for that smaller family requires its own proof.
+
+### Scalar-singular-value purification preserves the dirty phase separation
+
+Add an untouched second clean flag to C and use the exact two-flag
+projector. For an accepted block $`B=Vh`$, the
+[physical filter](COLLECTIVE_PRECISION_REFINEMENT.md) has accepted block
+
+```math
+Vh\left[I+e^{-i\pi/3}(I-h^2)\right].
+```
+
+For the preceding witness h is scalar. The accepted output is therefore
+a scalar multiple of the same $`V_{\rm dirty}`$; this remains true
+under repeated same-sign filtering. Suppressing rejected output cannot
+remove its relative dirty eigenphase, even after optimizing a scalar
+phase:
+
+```math
+\min_\phi\|e^{i\phi}V_{\rm dirty}-I\|
+=2\sin(\omega/2)\gt0.
+```
+
+The equality follows from the eigenphase pair $`\pm\omega`$ with
+$`0\lt\omega\lt\pi/2`$. This is a coherent dirty-return floor
+for the scalar-h example. When h is nonscalar, the filter multiplier
+can change the polar factor, so no general polar-preservation statement
+is implied. The opposite-sign filters in the collective cubic
+construction apply to its specified half steps; that construction does
+not assume repeated full-baseline purification repairs this defect.
 
 ### A scoped diagnostic for Pauli routing of rejected components
 
@@ -1486,7 +1622,79 @@ prepared-source promises. They do not exclude joint native synthesis.
 The broader literature comparison is in
 [Related Work, Section 19](../RELATED_WORK.md#19-unary-phase-source-reuse-and-linear-t-depth-3-october-2026).
 
+### Single-bracketing XOR lookup removal
+
+An outer lookup pair alone cannot turn an arbitrary dirty program into
+initialized data. Let X be the logical register, B an m-qubit arbitrary
+dirty program, and A all other dirty work. Write
+
+```math
+Q_f|x,b\rangle=|x,b\oplus f(x)\rangle,
+\qquad V_f=Q_f^\dagger K_fQ_f.
+```
+
+Let J initialize the supplied clean flags and let $`J_+`$ additionally
+restrict the legal input B to $`|+\rangle^{\otimes m}`$. If
+$`V_fJ`$ approximates $`J(W_f\otimes I_{AB})`$ within
+$`\epsilon`$ in operator norm, then
+
+```math
+\|K_fJ_+-J_+(W_f\otimes I_A)\|\le\epsilon.
+```
+
+Indeed every XOR fixes the uniform program, so $`Q_fJ_+=J_+`$ and
+$`Q_fJ_+(W_f\otimes I_A)=J_+(W_f\otimes I_A)`$. Multiply the
+assumed full-output estimate by $`Q_f`$ and restrict its input to this
+legal dirty state. The argument retains clean leakage, arbitrary
+correlations with other dirty work and references, and literal phase;
+K may change the logical address. A common dirty-only exterior
+conjugation $`U_B^\dagger V_fU_B`$ is covered by choosing the legal
+program input $`U_B^\dagger|+\rangle^{\otimes m}`$.
+
+Two consequences give the precise scope of this lookup sandwich.
+If K is independent of f, the triangle inequality yields
+$`\|W_f-W_g\|\le2\epsilon`$ for every two tables. If instead
+$`K_f`$ is an arbitrarily f-dependent Clifford circuit, even the legal
+Hopf frame with only its root angle equal to $`\pi/8`$ requires
+
+```math
+\epsilon\ge\sqrt{2-2\cos(\pi/8)}\gt0.39018.
+```
+
+To prove the latter bound, choose logical input $`|0^n\rangle`$ and
+stabilizer inputs on all work. The target contains the qubit
+$`\cos(\pi/8)|0\rangle+\sin(\pi/8)|1\rangle`$, with all remaining
+wires in prescribed stabilizer states. A pure stabilizer output has
+one-qubit marginal either a Pauli eigenstate or $`I/2`$. Its squared
+overlap with the target cannot exceed the overlap of this marginal with
+the desired qubit, which is at most $`\cos^2(\pi/8)`$. The full vector
+error therefore has the displayed lower bound, including when the
+Clifford output is entangled. This argument permits extra initialized
+stabilizer helpers. It does not restrict multiple interleaved queries or
+a charged non-Clifford interpreter.
+
+For a logical-only interleaver U, the address dependence is explicit:
+
+```math
+Q_f^\dagger(U\otimes I_B)Q_f
+=\sum_{x,y}U_{yx}|y\rangle\langle x|
+ \otimes X^{f(y)\oplus f(x)}.
+```
+
+This equals $`U\otimes I_B`$ exactly if
+$`U_{yx}=0`$ whenever $`f(y)\ne f(x)`$: compare the individual
+logical matrix blocks, in which a nonzero Pauli translation cannot be
+identity. The statement is on the full dirty space, not only on
+computational inputs.
+
 ### Whole-word XOR cancellation and a cyclic alternative
+
+A logical echo changes the architecture. For instance, let
+$`F=\mathrm{CNOT}_{B\to t}`$ on a one-bit program, with an unchanged
+address x. The word $`Q_fFQ_fF^\dagger`$ applies $`X_t^{f(x)}`$
+and returns B exactly. The final $`F^\dagger`$ is essential: this is
+not the preceding sandwich. For a general ordered interpreter, complete
+dirty cancellation is characterized by the following identity.
 
 Suppose a unitary family indexed by bit strings satisfies
 $`U_{z\oplus s}U_z^\dagger=V_s`$ independently of arbitrary dirty z.
@@ -1506,6 +1714,16 @@ insufficient: $`U_{z_1,z_2}=H^{z_2}X^{z_1}`$ and $`s=(1,0)`$ produce
 X or Z depending on the dirty second bit. The retained
 [reflection interpreter](../../docs/BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter)
 instead completes each symbol's cancellation before starting the next.
+The criterion assumes every program difference s is allowed; applying it
+to a restricted correlated family of Hopf rows would require a separate
+argument. Conjugating a whole-word XOR query by Hadamards on its program
+turns it into the diagonal
+$`D_f|x,z\rangle=(-1)^{z\cdot f(x)}|x,z\rangle`$. A constant number
+of complete queries and Clifford echoes is consequently a
+[bounded-diagonal architecture](BOUNDED_DIAGONAL_FACTORIZATION.md) with
+possibly nonflat interlayers. With $`O(N)`$ total table rows it has an
+$`O(N)`$ query T ledger; an all-column Hopf factorization with the
+required returned work is a separate condition on this architecture.
 
 A cyclic character does allow a complete dirty phase echo. For
 $`M=2^m`$, define $`P_M|z\rangle=e^{2\pi iz/M}|z\rangle`$ and
@@ -1926,6 +2144,10 @@ stream of the actual regular coins. Logical predicates are outside this
 closure statement, although the exact dirty-gauge identity still applies
 to them. This is a product representation; synthesizing
 the resulting orthogonal matrix still needs a native cost certificate.
+For the separate doubled-Spin representation, the
+[decoding restrictions](SPIN_DECODING_LIMITS.md) give spectral-multiplicity
+bounds for fixed encoders, target-dependent inverse encoders, and unrelated
+Clifford wrappers under the same clean/dirty budget.
 
 ### Unequal addresses generate a term outside that Spin algebra
 
@@ -2251,7 +2473,10 @@ interfaces; they do not convert prepared-source promises into dirty ones.
 
 The [refinement-route fixtures](../../tests/test_endpoint_refinement_routes.py)
 also check the common Clifford-vector algebra, the complete dirty-gauge
-identity, and the unequal-address conjugation defect. The identities above
+identity, and the unequal-address conjugation defect. They also retain the
+full five-call source word in the precision-six inverse-pair witness,
+verify its dirty polar operator and two-flag filter, and check the lookup
+invariant and changing-address formula. The identities above
 are full-operator statements; the scoped Spin obstruction is not an
 unrestricted T-count lower bound.
 

@@ -1569,30 +1569,12 @@ alignment polynomial above.
 
 ### Finite tree resolvents pack every insertion order
 
-On the $`2N-1`$ heap vertices let A be a forward weighted tree shift,
-with one coefficient per edge and zero on leaf columns. Nilpotence gives
-
-```math
-G_A=(I-A)^{-1}=I+A+\cdots+A^n.
-```
-
-Its descendant-ancestor entry is the unique path product, and all other
-off-diagonal entries vanish. Thus $`O(N)`$ edge coefficients describe
-$`O(Nn)`$ possible entries. For another such shift B, put $`E=A-B`$.
-The resolvent identity and $`X=G_BE`$ give
-
-```math
-G_A-G_B=G_AEG_B,\qquad
-G_A=(I-X)^{-1}G_B
-    =\sum_{k=0}^nX^kG_B.
-```
-
-Indeed $`I-A=(I-B)(I-G_BE)`$, and X moves strictly down the tree.
-The k-th term collects all ordered k-insertion histories without a
-separate orthogonal label for every tuple. The identities are finite
-polynomials, valid at zero edges with no division or convergence promise.
-They supply classical compression; n separately priced X calls or a fine
-implementation of $`G_A`$ do not supply a cheaper native circuit.
+The [coupled tree resolvent proof](COUPLED_TREE_RESOLVENT.md) gives the
+finite insertion-order identity, geometrically graded power and tail
+bounds, and an ideal normalization-three scattering construction. Its
+coupled inverse is bounded independently of height. That result is
+compatible with the following obstruction to *separate* damping and
+path-compensation normalizations.
 
 For a normalized shift T, whose outgoing squared magnitudes sum to one
 at every internal vertex, the root orbit $`z_d=T^dz_0`$ is orthonormal
@@ -1616,12 +1598,11 @@ requires maximum compensation at least $`\rho^{-n}`$. Hence separate
 normalizations of the damped inverse and that table cannot both remain
 constant as n grows.
 
-This does not obstruct a jointly normalized small residual. For example,
-$`\|G_AEG_B\|\le\|G_A\|\|E\|\|G_B\|`$ can be small despite
-polynomially growing inverse norms when E is exponentially small. The
-native implementation, actual dirty return, and total source-bearing call
-count remain the resource questions; the damping inequality is not an
-endpoint lower bound.
+The [graded inverse theorem](COUPLED_TREE_RESOLVENT.md#2-power-and-tail-bounds)
+provides the coupled alternative explicitly. Its
+[static feedback and physical baseline identities](COUPLED_TREE_RESOLVENT.md#5-native-cost-and-feedback)
+locate the native propagation cost; the damping inequality above is not
+an endpoint lower bound.
 
 The [refinement-route tests](../../tests/test_endpoint_refinement_routes.py)
 check the support count on signed unequal full frames, finite resolvent

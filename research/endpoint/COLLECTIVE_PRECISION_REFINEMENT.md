@@ -502,10 +502,13 @@ The output discrepancy is generally not another product of rounded
 correlated local coins: dirty operators and nonlocal commutators remain.
 Consequently neither (8) nor (10) is an iterable refinement theorem.
 Direct order-p source refinement costs $`O(N+pns)`$, which is
-$`O(pN)`$ at $`s=\lceil N/n\rceil`$. An order comparable to n, or
-repeated corrections with total $`O(N)`$ table and source cost, requires
-a further all-order construction. This limitation gives no lower bound
-for unrestricted native circuits.
+$`O(pN)`$ at $`s=\lceil N/n\rceil`$. The
+[coupled tree resolvent](COUPLED_TREE_RESOLVENT.md#7-precision-ledger)
+has an explicit all-order error certificate and a height-independent
+inverse norm, but its ideal scattering implementation retains
+$`O(N+nL)`$ native cost. Its shrinking input support does not by itself
+price descendant data or permit iteration of this physical correction.
+These are construction ledgers, not lower bounds for unrestricted circuits.
 
 ## 8. A fixed-basis one-bank obstruction
 

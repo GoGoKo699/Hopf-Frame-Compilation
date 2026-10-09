@@ -153,14 +153,14 @@ leaving one complete prefix encoder. The
 [joint coarse encoder](research/endpoint/COARSE_PREFIX_ENCODER.md) and
 [collective refinement](research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
 give a native cubic replacement for the regular-core terminal frame:
-error $`40\,2^{-3s}+2^{-L}`$ at O(N) T-count, where
-$`s=\lceil N/n\rceil`$, $`n\ge16`$, and $`3s\le L\le N`$.
-This fixed-order correction includes dirty/reference return and leaves
-the endpoint bounds unchanged. The
-[structural restrictions](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-separate excluded Haar and dense-mixer families from unrestricted synthesis.
-The [research index](research/README.md) collects these reductions and
-method-specific limits with their precise hypotheses.
+the fixed-order correction costs O(N) T gates and includes dirty/reference
+return. The [coupled tree inverse](research/endpoint/COUPLED_TREE_RESOLVENT.md)
+has a height-independent norm bound and ideal normalization-three
+scattering realization; its direct native precision cost remains
+O(N+nL). These results leave the endpoint bounds unchanged. The
+[research index](research/README.md) collects the reductions and scoped
+factorization, source, and representation limits with their precise
+hypotheses.
 
 ## Operational consequence
 

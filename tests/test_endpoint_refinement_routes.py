@@ -354,5 +354,164 @@ class SourceProgramTests(unittest.TestCase):
         self.assertEqual(leakage_squared, F(256, 697))
 
 
+class FourMaskTests(unittest.TestCase):
+    def test_physical_width_xor_product_and_target_column_identities(self):
+        for n, dirty, clean, seed in ((3, 0, 0, 61), (3, 1, 2, 62), (4, 1, 1, 63)):
+            rng = np.random.default_rng(seed)
+            width, size = n + dirty + clean, 1 << (n + dirty + clean)
+            walsh = np.ones((1, 1), complex)
+            for _ in range(width):
+                walsh = np.kron(walsh, H)
+            dout, da, db, din = [np.exp(1j * rng.uniform(-math.pi, math.pi, size)) for _ in range(4)]
+            rows = [1 << bit for bit in range(width)]
+            for _ in range(8 * width):
+                first, second = rng.choice(width, 2, replace=False)
+                rows[first] ^= rows[second]
+            mapping = np.array([sum(((value & rows[bit]).bit_count() % 2) << bit for bit in range(width))
+                                for value in range(size)])
+            self.assertEqual(sorted(mapping), list(range(size)))
+            permutation = np.zeros((size, size), complex)
+            permutation[mapping, np.arange(size)] = 1
+            normal = da[:, None] * ((walsh * db[None, :]) @ walsh)
+            full = (dout[:, None] * (walsh @ normal) * din[None, :]) @ permutation
+            recovered = walsh @ (dout.conj()[:, None] * full) @ permutation.conj().T
+            np.testing.assert_allclose(recovered * din.conj()[None, :], normal, atol=ATOL, rtol=0)
+
+            dirty_label, marker = (1 << dirty) - 1, 1 << (dirty + clean)
+            inputs = [(((2 * k + 1) << dirty) | dirty_label) << clean for k in range(3)]
+            first_outputs = [(((2 * k) << dirty) | dirty_label) << clean for k in range(3)]
+            labels = [mapping[value] for value in inputs]
+            pairs = [(i, j) for i in range(3) for j in range(i + 1, 3)
+                     if (int(marker & (labels[i] ^ labels[j]))).bit_count() % 2 == 0]
+            self.assertTrue(pairs)
+            i, j = pairs[0]
+            shift, xs = labels[i] ^ labels[j], np.arange(size)
+            fi, fj = math.sqrt(size) * normal[:, labels[i]], math.sqrt(size) * normal[:, labels[j]]
+            np.testing.assert_allclose(fi * fi[xs ^ shift], fj * fj[xs ^ shift], atol=ATOL, rtol=0)
+            coefficients, transformed = [], []
+            for k, theta in enumerate((0, math.pi / 12, math.pi / 4)):
+                y = first_outputs[k]
+                col = np.zeros(size, complex)
+                col[y], col[y ^ marker] = -math.sin(theta), math.cos(theta)
+                phase = din[labels[k]].conjugate()
+                a, b = col[y] * dout[y].conjugate() * phase, col[y ^ marker] * dout[y ^ marker].conjugate() * phase
+                expected = np.array([(-1) ** ((y & x).bit_count() % 2)
+                                     * (a + (-1) ** ((marker & x).bit_count() % 2) * b) for x in range(size)])
+                np.testing.assert_allclose(math.sqrt(size) * walsh @ (dout.conj() * col) * phase,
+                                           expected, atol=ATOL, rtol=0)
+                self.assertAlmostEqual(abs((a + b) ** 2 - (a - b) ** 2), 2 * abs(math.sin(2 * theta)))
+                coefficients.append((a, b))
+                transformed.append(expected)
+            sigma = (-1) ** (int((first_outputs[i] ^ first_outputs[j]) & shift).bit_count() % 2)
+            for parity in (0, 1):
+                ids = np.array([x for x in range(size) if (marker & x).bit_count() % 2 == parity])
+                ai = coefficients[i][0] + (-1) ** parity * coefficients[i][1]
+                aj = coefficients[j][0] + (-1) ** parity * coefficients[j][1]
+                defect = transformed[j][ids] * transformed[j][ids ^ shift] - transformed[i][ids] * transformed[i][ids ^ shift]
+                constant = (-1) ** (int(first_outputs[j] & shift).bit_count() % 2) * (aj * aj - sigma * ai * ai)
+                np.testing.assert_allclose(defect, constant, atol=ATOL, rtol=0)
+
+    def test_rms_gap_constant_and_nonflat_single_diagonal_witness(self):
+        epsilon = F(1, 40)
+        self.assertLess(F(4, 9), F(1, 2))
+        self.assertLess(12 * math.sqrt(2) * float(epsilon) + 18 * float(epsilon ** 2), .5)
+        for height in (3, 4):
+            angles = [0, math.pi / 12, math.pi / 4] + [0] * ((1 << (height - 1)) - 3)
+            coins = [np.eye(2) for _ in range((1 << height) - 1)]
+            for index, theta in enumerate(angles):
+                coins[(1 << (height - 1)) - 1 + index] = np.array(
+                    [[math.cos(theta), -math.sin(theta)], [math.sin(theta), math.cos(theta)]])
+            basis = np.kron(np.eye(1 << (height - 1)), np.diag([1, 1j]) @ H)
+            eigenvalues = np.array([np.exp(-1j * (-1) ** z * theta) for theta in angles for z in (0, 1)])
+            actual = (basis * eigenvalues[None, :]) @ basis.conj().T
+            np.testing.assert_allclose(actual, _prefix_frame(height, coins), atol=ATOL, rtol=0)
+            self.assertGreater(np.count_nonzero(abs(basis) < ATOL), 0)
+
+
+class PhysicalSourceClosureTests(unittest.TestCase):
+    def test_single_lookup_sandwich_invariant_and_changing_address(self):
+        table = [0, 1, 3, 2]
+        lookup = np.zeros((16, 16))
+        for address in range(4):
+            for program in range(4):
+                lookup[4 * address + (program ^ table[address]), 4 * address + program] = 1
+        plus = np.ones(4) / 2
+        insertion = np.kron(np.eye(4), plus[:, None])
+        np.testing.assert_array_equal(lookup @ insertion, insertion)
+        logical = np.kron(H, I2)
+        conjugated = lookup @ np.kron(logical, np.eye(4)) @ lookup
+        expected = np.zeros_like(conjugated)
+        for output in range(4):
+            for address in range(4):
+                for program in range(4):
+                    expected[4 * output + (program ^ table[output] ^ table[address]), 4 * address + program] = logical[output, address]
+        np.testing.assert_array_equal(conjugated, expected)
+        np.testing.assert_allclose(conjugated @ insertion, insertion @ logical, atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(conjugated - np.kron(logical, np.eye(4)), 2), 1)
+        self.assertGreater(math.sqrt(2 - 2 * math.cos(math.pi / 8)), .39018)
+
+    def test_precision_six_actual_source_word_has_dirty_polar_error(self):
+        q, core = 6, 7
+        source, gammas, weights, fixed_bits = _paired_source_data(q)
+        amplitudes = np.sqrt(weights)
+        np.testing.assert_allclose(source, sum(a * g for a, g in zip(amplitudes, gammas)), atol=ATOL, rtol=0)
+        fixed_signs = 1 - 2 * fixed_bits
+        tail_weights = 2 * weights[1:2 * q:2]
+
+        def signs(mean):
+            return np.array(next(values for values in itertools.product((-1, 1), repeat=q)
+                                 if np.dot(tail_weights, values) == mean))
+
+        words, rejections, directions = [], [], []
+        rho = math.sqrt(101 / 1024)
+        amplitude = 5 * rho - 20 * rho ** 3 + 16 * rho ** 5
+        rejection_polynomial = 1 - 12 * rho ** 2 + 16 * rho ** 4
+        reflection = np.kron(Z, np.eye(1 << (core + 1)))
+        for u, v, sign in ((-1 / 16, 3 / 8, 1), (0, 1 / 4, -1)):
+            mask_signs = np.ones(2 * core)
+            mask_signs[1:2 * q:2], mask_signs[2:2 * q + 1:2] = signs(u), signs(v)
+            scalar = np.dot(weights, mask_signs)
+            tangent = scalar / 2 - np.dot(weights, fixed_signs * mask_signs)
+            self.assertEqual(scalar, 5 / 16)
+            self.assertEqual(tangent, sign / 32)
+            direction = amplitudes * mask_signs + 2 * tangent * amplitudes * fixed_signs - (scalar + tangent) * amplitudes
+            rejection = source @ sum(a * g for a, g in zip(direction, gammas))
+            rotation = (scalar * I2 + tangent * X @ Z) / rho
+            # Emit the routed word, retaining every dirty input and flag output.
+            bits = ((1 - mask_signs) / 2).astype(int)
+            query = _word_matrix(core + 2, _sandwich_word(q, _literal_mask(bits), core, core + 1))
+            expected_query = np.kron(I2, rho * np.kron(rotation, np.eye(1 << core))) + np.kron(X, np.kron(X, rejection))
+            np.testing.assert_allclose(query, expected_query, atol=ATOL, rtol=0)
+            actual = query @ reflection @ query.conj().T @ reflection @ query @ reflection @ query.conj().T @ reflection @ query
+            expected = np.kron(I2, amplitude * np.kron(rotation, np.eye(1 << core))) + rejection_polynomial * np.kron(X, np.kron(X, rejection))
+            np.testing.assert_allclose(actual, expected, atol=ATOL, rtol=0)
+            words.append(actual)
+            rejections.append(rejection)
+            directions.append(direction)
+        product = words[1] @ words[0]
+        size = len(product) // 2
+        lam = rejection_polynomial * math.sqrt(1 - rho ** 2)
+        inner = np.dot(directions[1], directions[0]) / (1 - rho ** 2)
+        self.assertLess(abs(inner), 1)
+        alpha, beta = amplitude ** 2 - lam ** 2 * inner, -lam ** 2 * math.sqrt(1 - inner ** 2)
+        singular = math.hypot(alpha, beta)
+        angle = math.atan2(abs(beta), alpha)
+        polar = np.kron(I2, (amplitude ** 2 * np.eye(1 << core)
+                            + rejection_polynomial ** 2 * rejections[1] @ rejections[0]) / singular)
+        np.testing.assert_allclose(product[:size, :size], singular * polar, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(product.conj().T @ product, np.eye(2 * size), atol=ATOL, rtol=0)
+        np.testing.assert_allclose(polar.conj().T @ polar, np.eye(size), atol=ATOL, rtol=0)
+        self.assertGreater(2 * math.sin(angle / 2), 3e-4)
+        self.assertAlmostEqual(np.linalg.norm(polar - np.eye(size), 2), 2 * math.sin(angle / 2), places=10)
+        # The second clean flag and full inverse calls implement the physical filter.
+        two_flags = np.kron(I2, product)
+        phase = np.exp(1j * math.pi / 3 * (np.r_[np.ones(size), np.zeros(3 * size)] - .25))
+        filtered = (phase.conj() ** 2)[:, None] * two_flags
+        filtered = (filtered * phase[None, :]) @ two_flags.conj().T
+        filtered = (filtered * phase[None, :]) @ two_flags
+        expected = polar * singular * (1 + np.exp(-1j * math.pi / 3) * (1 - singular ** 2))
+        np.testing.assert_allclose(filtered[:size, :size], expected, atol=ATOL, rtol=0)
+
+
 if __name__ == '__main__':
     unittest.main()
