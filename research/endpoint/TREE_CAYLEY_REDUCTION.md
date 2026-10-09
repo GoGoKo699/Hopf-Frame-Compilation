@@ -24,7 +24,7 @@ prefix p, the ordered endpoints are
 ```math
 (a_{d,p},b_{d,p})=
 \bigl(p2^{n-d},(2p+1)2^{n-d-1}\bigr),
-\qquad 0\le d<n,\quad 0\le p<2^d.
+\qquad 0\le d\lt n,\quad 0\le p\lt 2^d.
 ```
 
 Each edge joins an existing anchor to a fresh marker. Indeed, the
@@ -221,7 +221,7 @@ $`z_j=(\cos\theta_j+i\sin\theta_j)^2`$ and refine until either strict
 test is certified:
 
 ```math
-e_j=0\quad\text{if }\Re z_j<1/2,\qquad
+e_j=0\quad\text{if }\Re z_j\lt 1/2,\qquad
 e_j=1\quad\text{if }\Re z_j>-1/2.
 ```
 
@@ -230,7 +230,7 @@ the unit circle, so selection terminates even at either boundary and
 at every original singular input. With $`w_j=(-1)^{e_j}z_j`$,
 
 ```math
-\Re w_j<1/2,\qquad |w_j-1|>1,\qquad
+\Re w_j\lt 1/2,\qquad |w_j-1|>1,\qquad
 \cot\delta_j=i\frac{w_j+1}{w_j-1}\in(-\sqrt3,\sqrt3).
 ```
 
@@ -242,7 +242,7 @@ resulting exact all-angle reduction is
 ```math
 \boxed{W=D_{\rm out}\Pi_n\sigma_n
              \mathcal C_n(t)\sigma_n^\dagger D_{\rm in}^\dagger,
-       \qquad |t_j|<\sqrt3.}
+       \qquad |t_j|\lt \sqrt3.}
 ```
 
 ## 4. The permutations have exact native linear cost
@@ -294,7 +294,7 @@ T(\sigma_n),\ G(\sigma_n)
 =O(N+n^4)=O(N).
 ```
 
-The last absorption is uniform because $`\sup_{n\ge1}n^4/2^n<\infty`$.
+The last absorption is uniform because $`\sup_{n\ge1}n^4/2^n\lt \infty`$.
 The same linear bound holds for $`\Pi_n`$ and the actual inverse word
 $`\sigma_n^\dagger`$. Controlled prefix calls have $`d\le n-1`$ and
 standalone $`\Pi_n`$ uses one fewer address bit, so at most $`n+1`$
@@ -376,7 +376,7 @@ call only on the ideal initialized input and propagates previous error
 by the norm-one actual word. Hence total error is at most
 
 ```math
-\eta/8+\eta/2+\eta/8=3\eta/4<\eta.
+\eta/8+\eta/2+\eta/8=3\eta/4\lt \eta.
 ```
 
 No intermediate reset or clean reinitialization is used. All supplied

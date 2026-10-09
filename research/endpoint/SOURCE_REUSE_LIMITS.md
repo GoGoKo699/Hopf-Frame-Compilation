@@ -1638,7 +1638,7 @@ legal preparation and does not apply to an arbitrary dirty qubit.
 ## 10. Higher-grade Spin identities on arbitrary dirty work
 
 Put $`q=N/2`$ and use the N paired Jordan--Wigner Majoranas
-$`\Gamma_{2r}=Z_{<r}X_r`$ and $`\Gamma_{2r+1}=Z_{<r}Y_r`$ on q
+$`\Gamma_{2r}=Z_{\lt r}X_r`$ and $`\Gamma_{2r+1}=Z_{\lt r}Y_r`$ on q
 dirty qubits. A coordinate-plane rotation has a half-angle Spin lift
 $`U_e=\exp(\pm\theta_e\Gamma_u\Gamma_v/2)`$, with orientation fixed
 so its ordered tree product U satisfies
@@ -1694,7 +1694,7 @@ Direct expansion gives
 ```math
 A^\dagger(W\otimes I)A
 =\frac{\mathrm{tr}(W)I+
- \sum_{j<k}(W_{jk}-W_{kj})\Gamma_j\Gamma_k}{N}.
+ \sum_{j\lt k}(W_{jk}-W_{kj})\Gamma_j\Gamma_k}{N}.
 ```
 
 For a single plane rotation of angle theta all overlap singular values
