@@ -222,9 +222,11 @@ weight-one suffix predicate uses the same central-toggle construction,
 adding $`O(n^4)=O(N)`$ T. This contract applies to real rotations and
 their fixed target conjugates, not arbitrary literal scalar-phase banks.
 
-The reversal in the feedback word is non-small, so this lemma does not
-upgrade its coarse encoder to endpoint precision. Such an upgrade still
-needs a complete correction or source-amortization argument.
+The [collective precision construction](COLLECTIVE_PRECISION_REFINEMENT.md)
+uses this lemma with exact geometric histories to obtain quadratic and
+cubic accuracy for the terminal regular-core frame, including the actual
+physical work disturbance. The non-small reversal in the feedback word
+does not satisfy this lemma's hypothesis.
 
 ## 5. Verification
 

@@ -150,12 +150,15 @@ using two diagonals and exact O(N)-T permutations. Its
 [propagation and feedback proof](research/endpoint/BOUNDARY_PROPAGATION.md)
 gives a precision-feasible repeated-call block and an exact cancellation
 leaving one complete prefix encoder. The
-[joint coarse encoder](research/endpoint/COARSE_PREFIX_ENCODER.md) costs
-O(N) T gates at error $`2^{-\lceil N/n\rceil}`$; fine synthesis retains
-its separate precision cost. A
-[global Haar-word obstruction](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-excludes every fixed number of Haar or adjoint interlayers with arbitrary
-diagonal masks, including the five-mask $`Q_n^2`$ proposal.
+[joint coarse encoder](research/endpoint/COARSE_PREFIX_ENCODER.md) and
+[collective refinement](research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+give a native cubic replacement for the regular-core terminal frame:
+error $`40\,2^{-3s}+2^{-L}`$ at O(N) T-count, where
+$`s=\lceil N/n\rceil`$, $`n\ge16`$, and $`3s\le L\le N`$.
+This fixed-order correction includes dirty/reference return and leaves
+the endpoint bounds unchanged. The
+[structural restrictions](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+separate excluded Haar and dense-mixer families from unrestricted synthesis.
 The [research index](research/README.md) collects these reductions and
 method-specific limits with their precise hypotheses.
 

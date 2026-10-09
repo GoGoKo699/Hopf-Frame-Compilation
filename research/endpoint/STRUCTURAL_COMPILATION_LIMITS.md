@@ -289,11 +289,110 @@ Taking magnitudes forces $`x_e y_f=y_e x_f`$. Connectivity of the tree's
 line graph forces all ratios $`y_e/x_e`$ equal, contradicted by choosing
 nonproportional positive directions.
 
-This is an **exact neighborhood obstruction**. It supplies no quantified
-approximation lower bound at $`2^{-N}`$. Additional exterior basis
-changes, four or more diagonal layers, parameter-dependent mixing, and
-workspace encodings require separate arguments. In particular, it does
-not rule out a different whole-operator compiler.
+This is an **exact neighborhood obstruction** for fixed arbitrary mixers.
+The next result gives a constant approximation bound and allows
+target-dependent mixers and arbitrary work, provided the two mixers are
+flat Cliffords. Neither statement covers four or more diagonal layers
+or a different whole-operator compiler.
+
+### Three masks with two flat Cliffords: a width-independent gap
+
+Call a physical Clifford on m qubits **flat** if all its matrix entries
+have modulus $`Q^{-1/2}`$, where $`Q=2^m`$.
+
+**Theorem.** For every logical $`n\ge3`$ there is a prescribed real Hopf
+frame W such that every physical word
+
+```math
+V=D_3C_2D_2C_1D_1
+```
+
+with arbitrary computational unitary diagonals and flat Cliffords
+$`C_1,C_2`$ satisfies
+
+```math
+\|VJ-J(W\otimes I_b)\|\ge\frac16.
+```
+
+Here J appends any number of clean zero qubits and b arbitrary dirty
+qubits are allowed. Both Cliffords and all masks may depend on the
+target. Their action on occupied-clean sectors is unrestricted.
+
+**Three-point row lemma.** If a unit row f is supported on three distinct
+binary labels, with modulus $`1/\sqrt3`$ at each, then for any phase
+diagonal D and flat Clifford C,
+
+```math
+\inf_{h:\ |h_x|=Q^{-1/2}}\|fDC-h\|_2\ge\frac16.
+```
+
+A flat Clifford has the form
+
+```math
+C_{xy}=Q^{-1/2}r(x)c(y)(-1)^{x^{\mathsf T}Ay},
+```
+
+where r,c are unit phases and A is invertible over $`\mathbb F_2`$.
+Indeed, conjugating the diagonal Paulis by C gives Pauli translation
+relations between its columns. The translation map has trivial kernel:
+otherwise a nontrivial diagonal Pauli would relate two diagonal sign
+patterns through a matrix with no zero entries. The map is thus
+invertible, and its relations give the displayed column characters.
+Row and column phases and a binary relabeling reduce the modulus
+calculation to the Walsh transform.
+
+Absorb r and D into the three phases $`\alpha,\beta,\gamma`$ of f.
+The three pairwise XOR differences are distinct and nonzero. For
+$`p=|fDC|^2`$, its probability Fourier coefficients at those differences
+are the three numbers $`(2/3)\cos(\alpha-\beta)`$ and their analogues.
+At least one has modulus at least $`1/3`$, because
+
+```math
+\sum_{\rm pairs}\cos^2(\alpha-\beta)
+=\frac{3+|e^{2i\alpha}+e^{2i\beta}+e^{2i\gamma}|^2}{4}
+\ge\frac34.
+```
+
+Writing $`u_Q`$ for the uniform probability vector, this gives
+$`\|p-u_Q\|_1\ge1/3`$. For every flat unit row h,
+Cauchy--Schwarz gives
+
+```math
+\bigl\||fDC|^2-|h|^2\bigr\|_1\le2\|fDC-h\|_2,
+```
+
+proving the lemma in every physical dimension.
+
+**Full-isometry witness.** Set all angles to zero except the edge
+$`(0,2)`$ at angle $`\pi/4`$ and the final-depth edge $`(0,1)`$
+with sine $`1/\sqrt3`$ and cosine $`\sqrt{2/3}`$. The prescribed
+two-rotation product has zeroth row
+
+```math
+W_{0,:}=\frac{e_0^{\mathsf T}-e_1^{\mathsf T}-e_2^{\mathsf T}}{\sqrt3}.
+```
+
+Put $`U=W\otimes I_b`$ and suppose the initialized-isometry error is
+epsilon. Actual unitarity gives
+
+```math
+V^\dagger J-JU^\dagger=-V^\dagger(VJ-JU)U^\dagger,
+\qquad \|J^\dagger V-UJ^\dagger\|\le\epsilon.
+```
+
+Choose the physical output row with logical label zero, any fixed dirty
+label and clean label zero. Its desired row f has three equal-modulus
+entries. Its actual V row is within epsilon of f. Right-multiplication
+by $`D_1^\dagger C_1^\dagger`$ makes the actual row a row of
+$`D_3C_2D_2`$, hence flat. The desired row satisfies the row lemma
+with $`D=D_1^\dagger`$ and $`C=C_1^\dagger`$, proving
+$`\epsilon\ge1/6`$.
+
+This proof permits arbitrary intermediate leakage and arbitrary
+reference-entangled dirty inputs. It excludes the endpoint tolerance for
+this three-mask architecture, including target-dependent full-support
+Cliffords. Non-flat target-dependent mixers and larger factor counts
+are outside its scope.
 
 ### Four alternating Walsh masks: every differentiable identity baseline
 
@@ -960,7 +1059,217 @@ scope. The
 [hierarchical rank-one cuts](BOUNDED_DIAGONAL_FACTORIZATION.md#hierarchical-rank-one-cuts)
 show why highly degenerate cut projections can still give low rank.
 
-## 8. Verification and scope
+## 8. Phase matching and terminal Clifford gauges
+
+The [nested-projector criterion](BOUNDED_DIAGONAL_FACTORIZATION.md#4-complete-coverage-through-nested-projectors)
+requires simultaneous complete-frame identities. Flattening each local
+root separately does not ensure them. The following calculations locate
+two restrictions on transporting such local phase corrections.
+
+### Unequal children obstruct one simultaneous leaf gauge
+
+For positive four-leaf angles $`a,b,c\in(0,\pi/2)`$, the root vector is
+
+```math
+(\cos a\cos b,\ \cos a\sin b,\ \sin a\cos c,\ \sin a\sin c).
+```
+
+A computational phase gauge makes the two children Walsh-flat only if
+their respective phases are in quadrature. Write the gauged child
+vectors as
+
+```math
+e^{i\alpha}(\cos b,i\epsilon_L\sin b),\qquad
+e^{i\beta}(\cos c,i\epsilon_R\sin c),\qquad
+\epsilon_L,\epsilon_R\in\{1,-1\}.
+```
+
+Their Walsh outputs have phases $`\pm\epsilon_L b`$ and
+$`\pm\epsilon_R c`$. Put
+$`\Delta=\epsilon_Rc-\epsilon_Lb`$ and $`\delta=\beta-\alpha`$.
+The parent's two frequency pairs are flat exactly when
+
+```math
+\cos(\delta+\Delta)=\cos(\delta-\Delta)=0.
+```
+
+This requires $`\Delta\in(\pi/2)\mathbb Z`$. For
+$`b=\pi/12,c=\pi/6`$ no sign choice meets that requirement.
+More quantitatively, retaining exact child flatness and minimizing the
+parent's largest probability deviation from $`1/4`$ over delta gives
+
+```math
+\frac{|\cos a\sin a|}{2}
+\min\{|\sin\Delta|,|\cos\Delta|\}.
+```
+
+At $`a=\pi/4`$, the minimum over both signs is
+$`\sin(\pi/12)/4>0.0647`$. These identities apply inside a larger
+tree without dividing by its global subtree mass.
+
+There is an exact frequency-dependent repair. Choose
+$`\alpha=\beta=0`$ and insert, between the two child Walsh transforms
+and the parent Hadamard, the diagonal
+
+```math
+B(b,c)=\mathrm{diag}
+ (e^{-i\epsilon_Lb},e^{i\epsilon_Lb},
+  i e^{-i\epsilon_Rc},i e^{i\epsilon_Rc}).
+```
+
+It cancels the child frequency phases and places the two children in
+quadrature, making all four parent output moduli $`1/2`$. Repeating
+this repair adds a phase stage at each height. Its direct packed-mask
+cost is $`O(nN)`$, since each fine phase bank retains its precision
+charge. This root-vector calculation alone supplies no complete-frame
+factorization.
+
+### Transport into one terminal Clifford gauge is rigid
+
+Call a unitary **Clifford-diagonalizable** if it equals
+$`CDC^\dagger`$ for a Clifford C and a computational unitary diagonal D.
+Write a complete frame recursively as $`W=(W_L\oplus W_R)R`$, with R
+the root rotation on the two child anchors. If the child words equal
+$`F_s=W_sG_s`$, then their full-operator phase mismatch is exactly
+
+```math
+(F_L\oplus F_R)R=W H_G,\qquad
+H_G=R^\dagger G R,\qquad G=G_L\oplus G_R.
+```
+
+**Theorem.** Let $`G_L,G_R`$ be any four-dimensional
+Clifford-diagonalizable unitaries. Let R rotate anchors 0 and 4 with
+cosine $`3/5`$ and sine $`4/5`$. If $`H_G`$ is
+Clifford-diagonalizable, then both child gauges fix their respective
+anchors with the same eigenvalue. In particular, $`[G,R]=0`$ and
+$`H_G=G`$. All three Cliffords may be target-dependent and non-flat;
+arbitrary eigenvalue degeneracies are allowed.
+
+**Proof.** Every spectral projector of an m-qubit
+Clifford-diagonalizable unitary has entries in
+$`2^{-m}\mathbb Z[i]`$. To see this, a Clifford column is a joint
+eigenvector of commuting Paulis. Their translation constraints give an
+affine binary support with constant modulus $`2^{-r/2}`$, with relative
+phases in $`\{1,i,-1,-i\}`$. The other columns are Pauli translates,
+with the same r. A sum of their rank-one projectors therefore has
+entries in $`2^{-r}\mathbb Z[i]\subseteq2^{-m}\mathbb Z[i]`$.
+
+Fix an eigenvalue lambda of G. Its spectral projector is
+$`P=P_L\oplus P_R`$, allowing either block to be zero. The corresponding
+projector of $`H_G`$ is $`Q=R^\dagger P R`$ and must have Gaussian
+dyadic entries. For $`j=1,2,3`$,
+
+```math
+Q_{0j}=\frac35(P_L)_{0j}.
+```
+
+Write $`(P_L)_{0j}=(u+iv)/4`$. Projector entries have modulus at most
+one, so $`|u|,|v|\le4`$. Dyadicity forces 5 to divide both integers,
+hence both vanish. The corresponding right-child entries also vanish.
+Each anchor is now an isolated row and column of its projector, so
+its diagonal entry $`p_s`$ is zero or one. But
+
+```math
+Q_{00}=\frac{9p_L+16p_R}{25}
+```
+
+is dyadic only when $`p_L=p_R`$. For every eigenvalue, both anchors
+therefore belong to the same eigenspace, proving the theorem.
+
+For child dimension $`M=2^m`$, the same conclusion holds for a
+primitive Pythagorean root rotation with cosine $`a/q`$ and sine
+$`b/q`$, where q is odd and $`q>M`$. Child projector numerators now
+have real and imaginary parts bounded by M. Since
+$`\gcd(a,q)=1`$, the same divisibility proof isolates the anchors;
+the transported diagonal then forces their eigenspaces to agree.
+Such angles exist, for example from
+$`(a,b,q)=(k^2-1,2k,k^2+1)`$ with even $`k\ge2`$ and $`k^2+1>M`$.
+
+### An unequal eight-mode example with a finite gap
+
+Take the repaired profiles above with positive quadrature signs and
+
+```math
+e^{ib}=\frac{4+3i}{5},\quad
+e^{ic}=\frac{12+5i}{13},\quad
+e^{id}=\frac{15+8i}{17},\quad
+e^{ie}=\frac{24+7i}{25}.
+```
+
+With $`C=H\otimes H`$, set
+$`G_L=CB(b,c)C^\dagger`$ and $`G_R=CB(d,e)C^\dagger`$ and use the
+$`3/5,4/5`$ root rotation. The eight eigenvalues of $`H_G`$ are
+pairwise distinct. Every normalized eigenvector has the same multiset
+of absolute amplitudes,
+
+```math
+\left\{\frac3{10},\frac12,\frac12,\frac12,\frac25,0,0,0\right\}.
+```
+
+Thus none is a stabilizer vector: its nonzero amplitudes are unequal
+and its support has size five. The first eigenprojector also has the
+non-dyadic entries $`Q_{00}=9/100`$ and $`Q_{01}=3/20`$.
+These profiles use four unequal bottom angles of an eight-leaf frame;
+its two child root angles can also be unequal. The identity for
+$`F_s=W_sG_s`$ concerns their complete unitary matrices.
+
+The minimum separation of the eight eigenvalues is
+$`g=2\sqrt{13}/65`$. A stabilizer vector has uniform modulus on a
+support of size 1,2,4 or 8. Even ignoring its affine-support and phase
+restrictions, its overlap with a target eigenvector is at most
+$`19/20`$, attained as a modulus bound by summing the four largest
+amplitudes and dividing by two. The distance between their rank-one
+projectors is therefore at least $`d=\sqrt{39}/20`$.
+
+Suppose a Clifford-diagonalizable K satisfies
+$`\|H_G-K\|=\epsilon`$. Since both matrices are normal, for any target
+eigenvalue lambda some eigenvalue mu of K lies within epsilon: apply
+$`K-\lambda I`$ to a target eigenvector and use the normal resolvent
+bound. Choose a Clifford-basis eigenvector phi of K at mu. It obeys
+$`\|(H_G-\mu I)\phi\|\le\epsilon`$, while its component orthogonal
+to the lambda eigenvector has norm at least d. If $`\epsilon\lt g/2`$,
+all other target eigenvalues are at distance at least
+$`g-\epsilon`$ from mu. Hence
+$`\epsilon\ge(g-\epsilon)d`$. The same resulting bound is automatic
+when $`\epsilon\ge g/2`$. Consequently
+
+```math
+\|H_G-K\|\ge\frac{gd}{1+d}>0.026>2^{-8}.
+```
+
+This excludes exact or endpoint-accurate replacement of this terminal
+gauge by one Clifford-diagonalizable bank. It does not exclude a joint
+rewrite using several banks and cancellations in the complete word.
+
+### The transported correction has rank at most four
+
+For any child dimension, define
+
+```math
+K_G=H_GG^\dagger=R^\dagger G R G^\dagger,\qquad
+\mathcal S=\mathrm{span}\{e_0,e_M,Ge_0,Ge_M\}.
+```
+
+Then $`\mathrm{rank}(K_G-I)\le4`$ and $`K_G`$ fixes
+$`\mathcal S^\perp`$ pointwise. Indeed,
+
+```math
+H_G-G=R^\dagger G(R-I)+(R^\dagger-I)G
+```
+
+has range in $`\mathcal S`$: $`R-I`$ has range in the anchor pair,
+and $`R^\dagger`$ changes a vector only by an anchor-pair vector.
+Right-multiplication by $`G^\dagger`$ preserves this range bound.
+Unitarity then makes $`\mathcal S^\perp`$ a fixed subspace.
+
+The displayed commutator is an exact constructive correction, including
+degenerate child spectra. Even when both children share a Clifford
+skeleton, so G itself is one packed phase bank, this word calls both G
+and its actual inverse. The rank bound supplies neither their amortized
+precision cost nor a simultaneous block decomposition of the overlapping
+ancestor correction spaces.
+
+## 9. Verification and scope
 
 The coarse circuit uses the retained full-space borrowed-MCX identity,
 not a zero promise on a logical helper. The
@@ -968,6 +1277,12 @@ not a zero promise on a logical helper. The
 the complete-matrix and native-gate identities at bounded sizes. These
 finite checks do not establish the asymptotic statements; the propositions
 above give their analytical proofs.
+
+The [refinement-route checks](../../tests/test_endpoint_refinement_routes.py)
+also exercise the flat-Clifford witness, unequal-child phase equations,
+complete eight-mode gauge identity, spectral gap, and rank-four support
+calculation. Gaussian-rational identities certify the eight-mode example
+without relying on numerical eigenvectors.
 
 These results constrain specific representations. The signed residual
 approach still has the separate native precision ledger documented in

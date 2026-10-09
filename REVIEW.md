@@ -282,9 +282,14 @@ including certified search for approximate factors. Independently, an
 [all-angle tree reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md)
 isolates a fixed Cayley family with bounded real parameters; its exterior
 diagonals and permutations already have O(N)-T implementations. A
-[native propagation block](research/endpoint/BOUNDARY_PROPAGATION.md)
-fits the same allocation; the coupled feedback is the remaining circuit
-interface. The lower bound follows from the
+[native propagation and feedback identity](research/endpoint/BOUNDARY_PROPAGATION.md)
+leaves one terminal encoder. Its
+[collective refinement](research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+uses exact geometric histories, midpoint conjugation, and opposite-sign
+purification to reach cubic coarse-error reduction within the same width.
+The complete-output and source costs are proved for that fixed-order
+replacement; an all-order correction with linear total cost remains the
+count question. The lower bound follows from the
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
 The [research index](research/README.md) records the hypotheses of these
 reductions and the scope of the related interface obstructions.

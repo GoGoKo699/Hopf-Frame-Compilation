@@ -10,9 +10,11 @@ block encoding with $`O(N)`$ T count at the selected endpoint.
 A complete lossless feedback word reduces the Cayley core to one prefix
 encoder, an entrance diagonal, and fixed permutations. The adjoint encoder
 cancels on the initialized entrance. The surviving encoder has a direct
-$`O(nN)`$-T fine-precision realization and an
-[$`O(N)`$-T coarse realization](COARSE_PREFIX_ENCODER.md); neither improves
-the retained complete-frame endpoint bound.
+$`O(nN)`$-T fine-precision realization. Its
+[coarse realization](COARSE_PREFIX_ENCODER.md) and
+[cubic collective replacement](COLLECTIVE_PRECISION_REFINEMENT.md)
+cost O(N) at their stated error scales; the complete-frame endpoint bound
+is unchanged.
 
 ## 1. Sparse boundary preconditioning
 
@@ -554,11 +556,13 @@ It is weaker than the retained endpoint upper bound.
 
 The [coarse prefix encoder](COARSE_PREFIX_ENCODER.md) compiles this same
 complete encoder at error $`(43/64)2^{-\lceil N/n\rceil}`$ with
-$`O(N)`$ T gates. Fine precision still requires a joint source program
-or a replacement for the one surviving encoder. An independently usable
-reversal and a second encoder are unnecessary obligations. Neither the
-propagation gap nor a coarse conjugation by the non-small reversal closes
-that precision gap.
+$`O(N)`$ T gates. The
+[collective refinement](COLLECTIVE_PRECISION_REFINEMENT.md) gives a cubic
+replacement for its terminal frame, with a charged physical baseline and
+full initialized-output return. Endpoint precision still requires a linear
+total source/table ledger. An independently usable reversal and a second
+encoder are unnecessary obligations; the non-small reversal does not
+receive small-conjugation error suppression.
 
 The [matrix helpers](../../compiler_robust_hopf/tree_boundary.py) and
 [tests](../../tests/test_tree_boundary.py) compare all initialized feedback

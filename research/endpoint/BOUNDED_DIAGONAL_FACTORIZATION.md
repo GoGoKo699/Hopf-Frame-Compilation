@@ -47,13 +47,13 @@ initialization is used.
 
 The hypothesis is a sufficient algebraic route, not an established
 factorization of the Hopf family. Local tangent coverage or finite-size
-fits do not imply it. Restrictions on particular three-slot or anchored
-factorizations have the narrower scope recorded in the linked structural
-chapter. Its
-[global Haar obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-unrestricted-haar-orientations)
-excludes every uniformly bounded balanced-Haar word in either orientation,
-without any regularity assumption on its masks. Dense Clifford mixers
-remain compatible with this conditional theorem.
+fits do not imply it. The structural chapter proves the restrictions on
+[three-mask flat-Clifford words](STRUCTURAL_COMPILATION_LIMITS.md#three-masks-with-two-flat-cliffords-a-width-independent-gap),
+[bounded balanced-Haar words](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-unrestricted-haar-orientations),
+and [transport into one terminal Clifford gauge](STRUCTURAL_COMPILATION_LIMITS.md#transport-into-one-terminal-clifford-gauge-is-rigid).
+These restrictions leave the general coverage hypothesis, including
+larger constant factor counts and target-dependent Clifford skeletons,
+undecided.
 
 ## 2. Native precision and the finite-dimensional fallback
 

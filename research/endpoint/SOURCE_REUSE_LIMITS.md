@@ -1876,6 +1876,116 @@ part of the endpoint contract. The
 [tree Cayley reduction](TREE_CAYLEY_REDUCTION.md) provide alternative
 global representations without assuming those resources.
 
+### Actual source words share a Spin algebra before addressing
+
+The paired-source primitive admits a different, exact joint representation
+that retains its rejected action. Here use source precision q and
+$`m=q+1`$ core qubits, and write $`D_f=MF`$, $`D_g=MG`$ as in the
+[one-clean primitive](../../docs/ONE_CLEAN_COMPILER.md#3-conjugating-scalar-blocks-produces-a-rotation).
+The source vectors F and G are perpendicular to M. For a Hermitian Pauli
+K on separate arbitrary dirty work, define
+
+```math
+C_K=|0\rangle\langle0|_r\otimes I
+    +|1\rangle\langle1|_r\otimes K.
+```
+
+Dressing both routing axes $`X_rZ_t`$ and $`X_rX_t`$ by K conjugates
+the complete primitive Q by $`C_K`$. Since $`C_K`$ commutes with its
+four signal reflections, the actual amplified word obeys
+
+```math
+Q_K=C_KQC_K,\qquad V_K=C_KVC_K.
+```
+
+It also commutes with the ideal logical operation tensored with work
+identities. Thus the full-operator error, approximate dirty/reference
+return, and exact inactive-predicate identity are unchanged. This does
+not require intermediate signal or core return.
+
+Choose n anticommuting Hermitian Pauli factors $`K_j`$ on
+$`\lceil n/2\rceil`$ separate dirty qubits. If
+$`F_1,\ldots,F_{2m-1}`$ is an orthonormal Majorana-vector basis
+perpendicular to M, then these vectors together with
+
+```math
+\Lambda_{j,\alpha}=X_r\sigma_{j,\alpha}K_jM,
+\qquad \alpha\in\{x,y,z\},
+```
+
+are mutually anticommuting Hermitian involutions. Pauli anticommutation
+supplies the sign within each target, the K factors supply it between
+targets, and M supplies it against every F. An unconditioned, address-independent
+scalar route is a scalar plus a simple bivector in this one Clifford
+algebra, hence a Spin rotation. Signal reflection conjugation preserves
+the bivectors, and its four occurrences cancel in the five-call word.
+Also $`\Lambda_{j,x}\Lambda_{j,y}=iZ_j`$, with cyclic analogues.
+Consequently changing logical targets or rotation axes preserves this
+common Spin representation for an unconditioned, address-independent
+stream of the actual regular coins. Logical predicates are outside this
+closure statement, although the exact dirty-gauge identity still applies
+to them. This is a product representation; synthesizing
+the resulting orthogonal matrix still needs a native cost certificate.
+
+### Unequal addresses generate a term outside that Spin algebra
+
+Let x be an address bit and t a distinct target. For the regular coin
+$`Q(u)=R_y(\pi/2)R_x(\arctan u)R_z(\arctan u)`$, put
+
+```math
+B=|0\rangle\langle0|_x\otimes Q(u)
+ +|1\rangle\langle1|_x\otimes Q(v),
+\qquad u,v\in(-\sqrt3,\sqrt3).
+```
+
+Direct multiplication gives
+
+```math
+Q(u)ZQ(u)^\dagger
+=-\frac{2u}{1+u^2}Y+\frac{u^2-1}{1+u^2}Z
+=:\boldsymbol\nu(u)\cdot\boldsymbol\sigma.
+```
+
+The conjugate of $`\Lambda_{t,z}`$ has a component outside the
+Clifford-vector span equal to
+
+```math
+\frac12 Z_xX_rK_tM
+ [\boldsymbol\nu(u)-\boldsymbol\nu(v)]\cdot\boldsymbol\sigma_t.
+```
+
+It is orthogonal to that span in normalized Hilbert--Schmidt inner
+product: it has nonidentity Pauli support on two logical targets, whereas
+each original vector has support on at most one. Its norm in that inner
+product is
+
+```math
+d(u,v)=\frac{|u-v|}{\sqrt{(1+u^2)(1+v^2)}}.
+```
+
+Any G in this particular Spin group maps vectors back to their span.
+The estimate $`\|G-B\|\le\epsilon`$ would imply conjugation error
+at most $`2\epsilon`$ in operator norm, hence also in normalized
+Hilbert--Schmidt norm. Therefore
+
+```math
+\epsilon\ge d(u,v)/2,
+\qquad (u,v)=(1/4,5/4)\ \Longrightarrow\
+\epsilon\ge8/\sqrt{697}.
+```
+
+This restricts full-operator approximation inside the specified fusion
+group. It does not restrict all native circuits, target-dependent
+algebras, complete tree products, or other completions required only on
+an initialized signal sector.
+
+The K dressing uses Clifford gates only. At common q, the same stream of
+$`2n`$ real banks still has the source charge
+$`(80n+4)q+O(n)`$ from Section 2, plus queries and predicates, and
+uses $`q+1+\lceil n/2\rceil`$ dirty qubits besides the supplied signal.
+Thus its displayed cost remains $`O(N+nq+n^4)`$ T gates. The exact
+common algebra neither discards rejected outputs nor removes this charge.
+
 ## 11. A single Clifford cannot carry the full frame through an encoding
 
 Consider a physical word $`B_\theta^\dagger C_\theta B_\theta`$, where
@@ -2102,6 +2212,7 @@ python -m unittest tests.test_precision_carry
 python -m unittest tests.test_correlated_precision_carry
 python -m unittest tests.test_small_product_compilation
 python -m unittest tests.test_endpoint_structural_limits
+python -m unittest tests.test_endpoint_refinement_routes
 ```
 
 The tests exercise the dimension inequality on small nilpotent
@@ -2137,6 +2248,12 @@ SELECT disturbance and its clean compression, the actual Majorana word's
 first and second moments, and the complete phase-halving action on prepared
 and arbitrary catalysts. These checks verify the stated
 interfaces; they do not convert prepared-source promises into dirty ones.
+
+The [refinement-route fixtures](../../tests/test_endpoint_refinement_routes.py)
+also check the common Clifford-vector algebra, the complete dirty-gauge
+identity, and the unequal-address conjugation defect. The identities above
+are full-operator statements; the scoped Spin obstruction is not an
+unrestricted T-count lower bound.
 
 The [tree-residual fixtures](../../tests/test_tree_residual_structure.py)
 independently compare addressed circuits, recursive subtree vectors, and

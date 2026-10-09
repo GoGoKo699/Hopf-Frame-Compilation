@@ -27,11 +27,11 @@ At $`L=N`$ this is $`O(N\log N)`$ T gates. It does not improve the
 retained $`O(N\ell_*(n))`$ complete-frame endpoint bound. The construction gives an explicit assembly within two clean flags; a separate
 precision charge remains at every tree depth.
 
-[Section 10](#10-collective-correction-and-its-precision-interfaces) separates
-three requirements on a collective alternative: independent-stage error
-budgets, orthogonal branch averaging, and correction of coarse work
-leakage. The branch-rank restriction leaves the actual low-rank Hopf atoms
-open, and the polar alignment formula is not a native compiler.
+[Section 10](#10-collective-correction-and-its-precision-interfaces) gives
+the interfaces for collective alternatives: actual physical refinement,
+history capacity, all-order tree resolvents, and coarse-work correction.
+The low-rank Hopf atoms remain compatible with constant initialized width;
+the matrix identities retain their explicit native synthesis requirements.
 
 ## 1. Use one algebraic target for both branches
 
@@ -1245,6 +1245,36 @@ projector P,
 independently of its rank. A logical input supported in that sector sees
 the full discrepancy.
 
+Actual physical refinement has a different precision budget. Put
+$`s=\lceil N/n\rceil`$ and $`a_j=2^js`$. Independently targeted
+corrections of size $`2^{-a_j}`$ whose implementation errors are only
+added at the end need relative precision approximately $`N-a_j`$.
+For n a power of two, $`s=N/n`$ and $`r=\log_2n`$ give
+
+```math
+\sum_{j=0}^{r-1}(N-2^js)
+=N\log_2n-N+N/n.
+```
+
+By contrast, a word that corrects the actual preceding native circuit may
+satisfy
+
+```math
+\delta_{j+1}\le K\delta_j^2+\epsilon_j,
+\qquad \epsilon_j\le c\delta_j^2.
+```
+
+Its size-$`\delta_j`$ correction then needs relative precision of order
+$`\delta_j`$, so $`q_j=O(a_j)`$ and a doubling schedule through
+precision N has $`\sum_jq_j=O(N)`$. Thus growing precision alone is
+compatible with a linear total charge. An independent N-row lookup or
+complete encoder at each of $`\Theta(\log n)`$ steps still gives an
+$`O(N\log n)`$ displayed table cost. A useful recurrence must also
+amortize those calls and preserve its correction interface. The
+[collective encoder refinement](COLLECTIVE_PRECISION_REFINEMENT.md) supplies
+fixed-order constructions with actual inverses and work return; it does
+not establish this iterative closure.
+
 ### Orthogonal scalar branches and the low-rank Hopf escape
 
 **Lemma.** Let $`E:\mathbb C^D\to\mathbb C^{\rho D}`$ be any
@@ -1320,6 +1350,34 @@ does exploit the shared path products: it has a joint O(N)-T construction
 at error below $`(43/64)2^{-\lceil N/n\rceil}`$. This coarse encoder
 does not supply the fine coefficient filter, and the rank lemma does not
 exclude one.
+
+### Static transition histories require more than four mode copies
+
+Choose a legal real tuple with every local sine and cosine nonzero.
+The first frame column has N nonzeros. Each depth-d marker column has
+exactly $`2^{n-d}`$, with $`2^d`$ such columns. Every entry is a
+single nonzero path product, so
+
+```math
+\mathrm{nnz}(W)
+=N+\sum_{d=0}^{n-1}2^d2^{n-d}=N(n+1).
+```
+
+Suppose a proposed dilation, at one common instant, assigns each nonzero
+input-output transition a mutually orthogonal history subspace containing
+a full copy of the arbitrary b-qubit dirty input. Its required dimension
+is at least $`N(n+1)2^b`$, whereas a initialized qubits give physical
+dimension $`2^aN2^b`$. Hence this static history interface requires
+
+```math
+2^a\ge n+1,\qquad a\ge\lceil\log_2(n+1)\rceil.
+```
+
+Two clean qubits fail for this interface when $`n\ge4`$; adding arbitrary
+dirty wires cancels from the comparison. This is not a bound on complete
+frame compilers. Coherent collisions, dynamic reuse, nonorthogonal
+histories, and encodings of the partial-rank atoms above do not satisfy
+the static-history assumption.
 
 ### Independent forest tables require superlinear T-count
 
@@ -1501,3 +1559,71 @@ operations are priced. This is not a native compiler or a query lower
 bound. A useful collective alternative must jointly realize the alignment
 and the remaining logical and dirty correction without separately paying
 for each complete coarse word.
+
+For the actual paired-source encoder, the
+[collective precision proof](COLLECTIVE_PRECISION_REFINEMENT.md) uses a
+near-unitary compression and literal two-flag filters to obtain quadratic
+and cubic replacements. These finite native words provide approximate
+return at their stated orders without implementing the exact polar
+alignment polynomial above.
+
+### Finite tree resolvents pack every insertion order
+
+On the $`2N-1`$ heap vertices let A be a forward weighted tree shift,
+with one coefficient per edge and zero on leaf columns. Nilpotence gives
+
+```math
+G_A=(I-A)^{-1}=I+A+\cdots+A^n.
+```
+
+Its descendant-ancestor entry is the unique path product, and all other
+off-diagonal entries vanish. Thus $`O(N)`$ edge coefficients describe
+$`O(Nn)`$ possible entries. For another such shift B, put $`E=A-B`$.
+The resolvent identity and $`X=G_BE`$ give
+
+```math
+G_A-G_B=G_AEG_B,\qquad
+G_A=(I-X)^{-1}G_B
+    =\sum_{k=0}^nX^kG_B.
+```
+
+Indeed $`I-A=(I-B)(I-G_BE)`$, and X moves strictly down the tree.
+The k-th term collects all ordered k-insertion histories without a
+separate orthogonal label for every tuple. The identities are finite
+polynomials, valid at zero edges with no division or convergence promise.
+They supply classical compression; n separately priced X calls or a fine
+implementation of $`G_A`$ do not supply a cheaper native circuit.
+
+For a normalized shift T, whose outgoing squared magnitudes sum to one
+at every internal vertex, the root orbit $`z_d=T^dz_0`$ is orthonormal
+for $`0\le d\le n`$. For $`0\lt\rho\le1`$ apply
+$`R_\rho=(I-\rho T)^{-1}`$ to
+$`f=(z_0+\cdots+z_n)/\sqrt{n+1}`$. Its level-d coefficient is
+$`(1+\rho+\cdots+\rho^d)/\sqrt{n+1}`$, at least
+$`\rho^n(d+1)/\sqrt{n+1}`$. Therefore
+
+```math
+\rho^{-n}\|(I-\rho T)^{-1}\|
+\ge\sqrt{\frac{(n+2)(2n+3)}6}
+\ge\frac{n+1}{\sqrt3}.
+```
+
+At $`\rho=1`$, the root-chain restriction is the lower triangular
+all-ones matrix of order $`n+1`$, with norm
+$`\tfrac12\csc(\pi/(4n+6))`$. Damping a length-$`\ell`$ path by
+$`\rho^\ell`$ and restoring it through a separate coefficient table
+requires maximum compensation at least $`\rho^{-n}`$. Hence separate
+normalizations of the damped inverse and that table cannot both remain
+constant as n grows.
+
+This does not obstruct a jointly normalized small residual. For example,
+$`\|G_AEG_B\|\le\|G_A\|\|E\|\|G_B\|`$ can be small despite
+polynomially growing inverse norms when E is exponentially small. The
+native implementation, actual dirty return, and total source-bearing call
+count remain the resource questions; the damping inequality is not an
+endpoint lower bound.
+
+The [refinement-route tests](../../tests/test_endpoint_refinement_routes.py)
+check the support count on signed unequal full frames, finite resolvent
+identities, and the damping inequality. The all-size conclusions follow
+from the proofs above, independently of these finite fixtures.

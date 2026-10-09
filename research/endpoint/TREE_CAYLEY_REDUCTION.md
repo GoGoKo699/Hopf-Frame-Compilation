@@ -78,6 +78,72 @@ direction, write $`N=2h`$: the root swaps 0 and h, and the remaining
 two disjoint subtree products decrement separately in each half. This
 sends 0 to $`N-1`$, h to $`h-1`$, and every other x to $`x-1`$.
 
+### The same gauge applies to all regular-core prefixes at once
+
+For the [prefix encoder's regular coins](COARSE_PREFIX_ENCODER.md#3-the-canonical-su2-native-circuit),
+put
+
+```math
+z_v=\frac{1-it_v}{\sqrt{1+t_v^2}},\qquad
+R_v=\begin{pmatrix}s_v&-c_v\\c_v&s_v\end{pmatrix},
+\quad s_v=\frac{t_v}{\sqrt{1+t_v^2}},\quad
+c_v=\frac1{\sqrt{1+t_v^2}}.
+```
+
+Set the heap path phases and marker phases to
+
+```math
+r_1=1,\qquad r_{2v}=iz_vr_v,\qquad r_{2v+1}=z_vr_v,
+\qquad \chi_v=-i\bar z_v^{\,2}\bar r_v.
+```
+
+At depth d, use output phase $`r_{2^d+p}`$ on row p, and input phase
+1 on column zero and $`\chi_v`$ on the marker born at node v. Then
+
+```math
+W_d(Q)=D_{{\rm out},d}W_d(R)D_{{\rm in},d},\qquad
+T_{\rm pre}(Q)=D_{\rm out}T_{\rm pre}(R)D_{\rm in}.
+```
+
+To verify every column, the first-column entries of Q are those of R
+multiplied by $`iz_v,z_v`$. Its second-column entries equal those of R
+multiplied by the same respective factors and the common scalar
+$`-i\bar z_v^{\,2}`$. Path propagation gives r, and the factor
+$`\bar r_v`$ cancels the ancestor phase at a marker's birth. These are
+multiplication identities, also valid when $`t_v=0`$ or a path amplitude
+vanishes. Taking the direct sum over all depths and giving dummy mode
+zero phase 1 proves the prefix identity. Each exterior diagonal has
+only $`2N`$ entries. In the
+[entrance convention](BOUNDARY_PROPAGATION.md#5-complete-feedback-and-the-surviving-prefix-encoder),
+$`d_v=-z_v^2`$, so $`\chi_vd_v=i\bar r_v`$.
+
+This specialization replaces two variable real banks per depth by one
+real bank and two global phase tables. At
+
+```math
+q=N+\lceil\log_2(86(n+2))\rceil,
+```
+
+the [one-clean phase primitive](../../docs/ONE_CLEAN_COMPILER.md#literal-diagonal-phases-use-the-same-flag)
+and the full-operator real primitive give total initialized-signal error
+below $`(43n+60)2^{-q}\lt\eta/2`$. The mode bit is arbitrary data.
+Unitary telescoping compares each call on the ideal initialized signal;
+it does not assume exact intermediate work return or an occupied-signal
+guarantee for the phase words. With self-borrowed queries and the exact
+delimiter routing, the reservation and cost are
+
+```math
+b=q+1\le N+n+7\quad(n\ge3),\qquad
+T=O(N+(n+2)q+n^4),\quad G=O(Nq+n^4).
+```
+
+For the displayed hoisted word, the source-rotation charge becomes
+$`[40(n+2)+4]q+O(n)`$, in place of $`(80n+4)q+O(n)`$ for the two-axis
+emission at the same common q. All queries and predicates remain charged.
+This is a constant-factor use of the same phase gauge; fine T-count
+remains $`O(nN)`$, and the stronger full-operator coarse interface is
+not obtained by this initialized-signal comparison.
+
 ## 2. The polynomial resolvent and physical Cayley generator
 
 Put
@@ -403,6 +469,9 @@ unresolved part of the core hypothesis above.
 The [exact tree phase and chart tests](../../tests/test_tree_phase_chart.py)
 check all-column phase gauges, singular polynomial resolvents, decrement
 order, coarse-edge conjugacy, cotangent selection, and the Haar cut
-identity over rational or cyclotomic arithmetic. Finite tests supplement
+identity over rational or cyclotomic arithmetic. The
+[refinement-route tests](../../tests/test_endpoint_refinement_routes.py)
+also check the simultaneous-prefix specialization on unequal, signed,
+and zero parameters. Finite tests supplement
 the arbitrary-n proofs above; they are not a native implementation of
 the conditional Cayley core.
