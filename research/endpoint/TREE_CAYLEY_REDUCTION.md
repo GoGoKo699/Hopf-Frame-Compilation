@@ -383,7 +383,7 @@ No intermediate reset or clean reinitialization is used. All supplied
 angle computations and chart choices terminate by their certified
 enclosures; no uniform evaluation-time bound is assumed.
 
-The remaining hypothesis is specifically the native realization of
+The remaining hypothesis is specifically an O(N)-T native realization of
 $`\mathcal C_n(t)`$. The bounded inverse norm and the fixed Haar
 generator formula do not price that operation or its nonunitary
 compression. Thus this reduction preserves the selected endpoint's
@@ -394,10 +394,11 @@ exact sparse preconditioner and a native $`O(N)`$-T two-signal block for
 the associated shifted propagation operator. Its proof includes the
 coefficient norm, the exact all-table singular gap, and the repeated-call
 workspace and error ledger. Its complete feedback identity cancels the
-entrance against the inverse encoder, leaving one prefix-frame encoder.
+entrance against the inverse encoder, leaving one prefix-frame encoder
+with a direct O(nN)-T fine-precision realization.
 The [coarse encoder](COARSE_PREFIX_ENCODER.md) realizes that family in
-linear T-count at coarse precision; its fine endpoint synthesis remains
-the unresolved part of the core hypothesis above.
+linear T-count at coarse precision; linear-T fine synthesis remains the
+unresolved part of the core hypothesis above.
 
 The [exact tree phase and chart tests](../../tests/test_tree_phase_chart.py)
 check all-column phase gauges, singular polynomial resolvents, decrement
