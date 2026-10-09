@@ -392,10 +392,12 @@ existing bounds while isolating a bounded, fixed-tree synthesis family.
 The [boundary-propagation construction](BOUNDARY_PROPAGATION.md) gives an
 exact sparse preconditioner and a native $`O(N)`$-T two-signal block for
 the associated shifted propagation operator. Its proof includes the
-coefficient norm, the exact all-table singular gap, and the full workspace
-and error ledger. The block retains rejected signal amplitudes; eliminating
-feedback and returning both signals remain necessary for the core
-hypothesis above.
+coefficient norm, the exact all-table singular gap, and the repeated-call
+workspace and error ledger. Its complete feedback identity cancels the
+entrance against the inverse encoder, leaving one prefix-frame encoder.
+The [coarse encoder](COARSE_PREFIX_ENCODER.md) realizes that family in
+linear T-count at coarse precision; its fine endpoint synthesis remains
+the unresolved part of the core hypothesis above.
 
 The [exact tree phase and chart tests](../../tests/test_tree_phase_chart.py)
 check all-column phase gauges, singular polynomial resolvents, decrement

@@ -1,8 +1,8 @@
 # A compiler from an operator source on dirty qubits
 
-The [one-clean extension](ONE_CLEAN_COMPILER.md) now gives the real-frame
-baseline and grouped bounds with one initialized qubit. This chapter retains
-the original two-flag construction and its independently priced corollaries.
+The [one-clean compiler](ONE_CLEAN_COMPILER.md) gives the real-frame
+baseline and grouped bounds with one initialized qubit. This chapter gives
+the two-flag construction and its independently priced corollaries.
 
 Two initialized qubits and a precision-sized bank of arbitrary dirty
 qubits suffice for the following full-frame upper bound. The construction
@@ -312,6 +312,35 @@ P_{f(y)}=H^{\otimes m}Q_fH^{\otimes m}.
 
 No separate initialized program word is loaded. The selector work returns
 exactly, even while the core contains a state changed by the source.
+
+### Self-borrowed whole-word queries
+
+If $`m\ge2k`$, the output itself supplies all selectors, with unchanged
+$`O(2^k)`$ T and $`O(2^km+2^k)`$ Clifford counts and no external work.
+Partition the output into A and B, each containing at least k bits. Query
+$`f_A`$ into A using k bits of B as selectors. Its completed action is
+exactly $`(z_A,z_B)\mapsto(z_A\oplus f_A(y),z_B)`$. Then query
+$`f_B`$ into B using k bits of A. The second query accepts arbitrary,
+possibly entangled selectors, including the modified A register. Their
+composition is exactly (14) without w. Each individual query has disjoint
+targets and selectors; the roles change only between completed queries.
+For $`k=0`$, the fixed X word needs no work.
+
+Both queries are phase-free permutations. Exact seven-T Toffolis and
+$`X=HS^2H`$ give a finite word in the stated native alphabet. Equation
+(15) applies by conjugating the **completed full-output query** with
+Hadamards on all m output bits, including the bits borrowed as selectors
+during its partial calls. Conjugating only a partial target bank would
+not implement the required Z mask.
+
+For the paired-source mask $`P_f=X^{x(y)}Z^{z(y)}`$, execute the
+full Z query before the full X query and use the actual circuit inverse
+for $`P_f^\dagger`$. The address-dependent Pauli scalar is retained.
+The [native query fixtures](../tests/test_self_borrowed_query.py) check
+all input columns of the complete XOR and literal Pauli words, their
+inverses, and the borrowing boundaries.
+
+### The scalar block
 
 With one initialized flag a, define
 

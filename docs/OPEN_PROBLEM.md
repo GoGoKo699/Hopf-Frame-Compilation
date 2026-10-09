@@ -49,6 +49,21 @@ It includes a finite-small-dimension fallback and propagation of existing
 work leakage. The remaining hypothesis is coverage by a uniformly bounded
 number of factors with charged interlayers.
 
+For arbitrary diagonal masks and r Haar or adjoint occurrences, a
+[global norm bound](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+gives a common Hopf witness requiring
+
+```math
+[2\sqrt{n+1}]^{r+1}\ge(1-\epsilon)\sqrt N.
+```
+
+Thus even nonalternating Haar words need $`\Omega(n/\log n)`$ calls;
+the five-mask $`Q_n^2`$ family does not give uniform coverage. Fixed
+alphabets with polynomially bounded summed entrywise absolute norms obey
+the same restriction. Dense Walsh mixers lie outside that bound. The
+factorization chapter gives a stable, all-column nested-projector
+criterion for a different mixer representation.
+
 ### A regular fixed-tree Cayley family
 
 Every complete frame has the exact representation
@@ -65,12 +80,27 @@ The remaining operator acts on the same fixed incidence tree and is a
 Cayley transform with a bounded real parameter table. Its variable
 generator is a compressed difference of two fixed diagonal algebras.
 The [boundary propagation construction](../research/endpoint/BOUNDARY_PROPAGATION.md)
-gives an O(N)-T block encoding of $`(I-\mathcal B)/2`$ using the two clean signals
-and exactly $`N+n+7`$ dirty qubits. Its full-unitary error is below
-$`(43/64)\eta`$. For every real parameter table,
+gives an O(N)-T block encoding of $`(I-\mathcal B)/2`$ with two signal
+ports. For every real table,
 $`\sigma_{\min}(I-\mathcal B)=2\sin(\pi/(4n+2))`$.
-Completing the coupled Cayley feedback and returning the signals would
-resolve this route; the block encoding alone is not the complete frame.
+Self-borrowed table programming and reuse of the occupied dilation port
+allow R calls at precision $`q=N+h+9`$, where
+$`h=\lceil\log_2R\rceil`$. Their dirty core uses $`q+1`$ wires and
+their summed full-operator error is below $`43\eta/256`$ when
+$`h\le n-3`$. Additional unchanged controls consume the corresponding
+width slack. The direct T-count remains O(RN).
+
+The complete feedback identity cancels an adjoint chain encoder on its
+initialized entrance, leaving exactly one terminal prefix-frame encoder.
+The [simultaneous coarse construction](../research/endpoint/COARSE_PREFIX_ENCODER.md)
+implements all prefix frames in O(N) T gates. For the regular-core coins,
+$`s=\lceil N/n\rceil`$, its full-operator error is below
+$`(43/64)2^{-s}`$ and its dirty reservation is $`s+n+9\le N+n+7`$.
+Conjugation around a middle gate within $`\kappa`$ of identity on the full space suppresses encoder
+error to $`2\kappa\delta`$; the middle gate's native error is added
+separately. A complete fine-precision correction with summed O(N) T-count
+is still required. The non-small chain reversal does not itself receive
+this error suppression.
 
 The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
 and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)

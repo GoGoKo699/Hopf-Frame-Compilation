@@ -157,7 +157,11 @@ query on the m core bits. An addressed $`Z^z`$ mask is another such
 query conjugated by m Hadamards. Their selectors return exactly on all
 inputs. Consequently one mask costs $`O(S)`$ T gates and
 $`O(Sm+m)`$ Clifford gates, using k additional dirty selectors. The
-fixed mask used below only needs ordinary Pauli gates.
+fixed mask used below only needs ordinary Pauli gates. If $`m\ge2k`$,
+the [self-borrowed query](OPERATOR_SOURCE_COMPILER.md#self-borrowed-whole-word-queries)
+removes those external selectors with the same counts. Its full-output
+Hadamard conjugation and actual inverse preserve the literal
+$`P_f=X^xZ^z`$ convention.
 
 ## 3. Conjugating scalar blocks produces a rotation
 
@@ -742,6 +746,46 @@ circuits satisfy the same full-space error bound for the inverse target.
 In contrast, the literal phase construction replaces one routed flag
 Pauli by $`Y_r`$. The displayed $`X_r`$ symmetry is then unavailable.
 This lemma does not remove the initialized flag from Sections 7 or 8.
+
+### Reusing an occupied port and the precision core
+
+Suppose an existing qubit r is disjoint from the target, address, predicate
+controls, and precision core. It may be occupied or entangled with those
+registers. The full-unitary estimate above permits r to serve as the
+borrowed signal without allocating another wire. If $`m=q+1\ge2k`$,
+use the self-borrowed mask queries, so no external selectors are needed.
+
+The remaining predicate helper can also come from the core. Every
+conditioned source has the form $`U C_{h,r=v}(X_0)U^\dagger`$,
+or the same word without the r control. During its central X operation,
+borrow core bit 1 as the exact
+[multi-control helper](BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector).
+The helper is distinct from core target 0 and every control, and it
+returns exactly before the surrounding loader continues. The borrowed-MCX
+contract holds on its entire input space, so source-induced core
+entanglement is harmless. With at most one predicate literal, the center
+already has at most two controls and needs only CNOT or Toffoli.
+
+These sequential substitutions leave the same actual source and mask
+operators. They therefore retain
+
+```math
+\|\widehat V-W_{x,h}\otimes I_{r,\mathrm{core}}\|
+\lt43\,2^{-q},\qquad
+T=O(2^k+q+p^2),\qquad G=O(2^kq+q+p^2),
+```
+
+using only $`q+1`$ external dirty core wires beyond the existing r and
+logical registers. The complete inactive sector is exactly identity;
+the active signal and core return approximately in the displayed norm.
+Fixed target Clifford conjugations give the corresponding Rx and Rz
+banks, and actual inverses satisfy the inverse-target estimate.
+
+This specialization supplies no initialized controls and does not apply
+the real-word symmetry to the literal phase primitive. The
+[propagation block ledger](../research/endpoint/BOUNDARY_PROPAGATION.md)
+uses it with an existing occupied dilation port; any additional control
+wires there are counted separately.
 
 ### A zero-clean layerwise real-frame compiler
 

@@ -1,4 +1,4 @@
-"""Finite boundary-propagation matrices and the exact endpoint ledger.
+"""Finite boundary-feedback matrices and exact component resource ledgers.
 
 The dense matrices expose the identities in BOUNDARY_PROPAGATION.md. They
 are diagnostic constructions, not a native feedback compiler. In particular,
@@ -171,22 +171,138 @@ class EndpointBlockLedger:
     error_ratio: Fraction
 
 
-def endpoint_block_ledger(height: int) -> EndpointBlockLedger:
-    """Return the uniform q=N+7, four-sector, two-variable-bank ledger."""
+def endpoint_block_ledger(height: int, calls: int = 1,
+                          extra_controls: int = 0) -> EndpointBlockLedger:
+    """Price repeated blocks using self-borrowed queries and occupied port a.
+
+    ``error_ratio`` is the accumulated error of all ``calls``, divided by
+    eta. Additional controls are reserved arbitrary wires, not clean flags.
+    """
 
     if height < 3:
         raise ValueError("the endpoint block reservation requires height>=3.")
+    if calls < 1 or extra_controls < 0:
+        raise ValueError("calls must be positive and extra_controls nonnegative.")
+    overhead = (calls - 1).bit_length()
+    if overhead + extra_controls > height - 3:
+        raise ValueError("repeated calls and controls exceed the dirty allocation.")
     size = 1 << height
-    source_width = size + 7
-    selectors = height - 3
-    dirty = source_width + 1 + selectors + 1 + 1
+    source_width = size + overhead + 9
+    dirty = source_width + 1 + extra_controls
     return EndpointBlockLedger(
         height=height, logical_dimension=size, source_width=source_width,
-        core_qubits=source_width + 1, selector_qubits=selectors,
-        predicate_helper_qubits=1, borrowed_signal_qubits=1,
+        core_qubits=source_width + 1, selector_qubits=0,
+        predicate_helper_qubits=0, borrowed_signal_qubits=0,
         clean_signal_qubits=2, dirty_qubits=dirty,
-        total_width=height + 2 + dirty, sectors_per_bank=4,
-        variable_banks=2, predicate_literals=3,
-        free_table_rows=1 << selectors,
-        error_ratio=Fraction(2 * 43, 1 << (source_width - size)),
+        total_width=height + 2 + dirty, sectors_per_bank=1,
+        variable_banks=2, predicate_literals=1 + extra_controls,
+        free_table_rows=size // 2,
+        error_ratio=Fraction(calls * 2 * 43, 1 << (source_width - size)),
+    )
+
+
+def full_tree_coin_bank(table: object) -> np.ndarray:
+    """Return the SU(2) child bank on all 2N heap modes, fixing (0,1)."""
+
+    height, values = _table(table)
+    bank = np.eye(2 << height, dtype=complex)
+    for node, value in enumerate(values, start=1):
+        g = 1 / (1 + 1j * value)
+        h = value * g
+        bank[2 * node:2 * node + 2, 2 * node:2 * node + 2] = (
+            (1j * h, -g.conjugate()), (g, -1j * h.conjugate()))
+    return bank
+
+
+def prefix_encoder(table: object) -> np.ndarray:
+    """Return T_n=V_n E_even(T_(n-1)) on every heap-mode column.
+
+    The dense recurrence is an ideal matrix diagnostic, not a fine-precision
+    O(N)-T emitter. The encoder fixes dummy zero and preserves node depth.
+    """
+
+    height, values = _table(table)
+    dimension = 2 << height
+    embedded = np.eye(dimension, dtype=complex)
+    if height > 1:
+        even = np.arange(0, dimension, 2)
+        embedded[np.ix_(even, even)] = prefix_encoder(values[:(1 << (height - 1)) - 1])
+    return full_tree_coin_bank(values) @ embedded
+
+
+def canonical_reversal_permutation(height: int) -> tuple[int, ...]:
+    """Reverse each canonical even-child chain, including the zero dummy."""
+
+    _validate_height(height)
+    destinations = [0]
+    for node in range(1, 2 << height):
+        age = (node & -node).bit_length() - 1
+        odd = node >> age
+        last_age = height - (odd.bit_length() - 1)
+        destinations.append(odd << (last_age - age))
+    return tuple(destinations)
+
+
+def feedback_entrance(table: object) -> tuple[np.ndarray, np.ndarray]:
+    """Return the complete P_in permutation and n-bit entrance diagonal D."""
+
+    height, values = _table(table)
+    size = 1 << height
+    node_of_input = np.zeros(size, dtype=int)
+    diagonal = np.ones(size, dtype=complex)
+    for depth in range(height):
+        for prefix in range(1 << depth):
+            node = (1 << depth) + prefix
+            marker = (2 * prefix + 1) << (height - depth - 1)
+            node_of_input[marker - 1] = node
+            value = values[node - 1]
+            diagonal[marker - 1] = -(1 - 1j * value) / (1 + 1j * value)
+    incoming = np.zeros((2 * size, 2 * size))
+    for port in range(2):
+        incoming[2 * node_of_input + 1 - port, port * size + np.arange(size)] = 1
+    return incoming, np.diag(diagonal)
+
+
+def boundary_feedback(table: object) -> np.ndarray:
+    """Return X_a T_n R_0 P_in (I_a tensor D P0), with one encoder.
+
+    Its initialized-port columns equal (C_n(t), 0)^T. The other columns
+    specify a complete unitary; the second signal is ideally untouched.
+    """
+
+    height, values = _table(table)
+    size = 1 << height
+    incoming, diagonal = feedback_entrance(values)
+    reversal = np.zeros((2 * size, 2 * size))
+    reversal[canonical_reversal_permutation(height), np.arange(2 * size)] = 1
+    flip = np.kron(np.array([[0, 1], [1, 0]]), np.eye(size))
+    decrement = np.roll(np.eye(size), -1, axis=0)
+    return (flip @ prefix_encoder(values) @ reversal @ incoming
+            @ np.kron(np.eye(2), diagonal @ decrement))
+
+
+@dataclass(frozen=True)
+class CoarseEncoderLedger:
+    """Canonical SU(2) full-operator encoder; ratio multiplies 2**(-s)."""
+
+    height: int
+    coarse_bits: int
+    source_widths: tuple[int, ...]
+    dirty_qubits: int
+    total_table_rows: int
+    error_ratio: Fraction
+
+
+def coarse_encoder_ledger(height: int) -> CoarseEncoderLedger:
+    """Return the geometric q_j=s+n-j+7 schedule and its exact error sum."""
+
+    if height < 3:
+        raise ValueError("the coarse encoder reservation requires height>=3.")
+    size = 1 << height
+    bits = (size + height - 1) // height
+    widths = tuple(bits + height - stage + 7 for stage in range(height))
+    return CoarseEncoderLedger(
+        height=height, coarse_bits=bits, source_widths=widths,
+        dirty_qubits=bits + height + 9, total_table_rows=size - 1,
+        error_ratio=sum((Fraction(86, 1 << (q - bits)) for q in widths), Fraction()),
     )

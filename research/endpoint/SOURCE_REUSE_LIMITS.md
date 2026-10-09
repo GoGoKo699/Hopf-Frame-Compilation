@@ -290,11 +290,17 @@ logical operator E,
 =\bigl\|B-E\otimes I_{\rm dirty}\bigr\|.
 ```
 
-This is unitary invariance, since E acts on different wires from U;
-the full-isometry error is unchanged as well. If the interior K were
-independently cheap, the outer basis changes could be omitted. In the
-present source extraction, the precision dependence moves into K's
-transformed masks.
+The full-isometry identity is equally exact:
+
+```math
+\|QJ-J(E\otimes I_{\rm dirty})\|
+=\|KJ-J(E\otimes I_{\rm dirty})\|.
+```
+
+The dirty-only U passes through J as an input-dirty unitary and commutes
+with the returned-work target. Unitary invariance proves both equalities.
+If the interior K were independently cheap, the outer basis changes could
+be omitted; precision needed for the target must survive inside K.
 
 The [one-clean compiler](../../docs/ONE_CLEAN_COMPILER.md#2-an-exact-two-tail-source-and-its-dirty-masks)
 uses a different, paired source. Its programmed masks have the same
@@ -357,7 +363,47 @@ Factoring a common $`U_q`$ outside successive words therefore does
 not make the intervening transformed masks free or constant-cost
 Cliffords. This corollary prices one separately implemented mask.
 Its costs cannot be added to obtain a depth-dependent compiler lower
-bound; a jointly synthesized source/program word remains open.
+bound.
+
+### Exact hoisting of the paired source
+
+The actual cancellation can be displayed without assigning independent
+costs to its transformed masks. At one fixed precision let
+$`M=UX_0U^\dagger`$ and let $`P_g`$ be the complete programmed mask.
+The scalar word is exactly $`\mathcal S_g=U\mathcal K_gU^\dagger`$,
+where
+
+```math
+\mathcal K_g
+=H_r C_{r=0}(X_0)
+ (U^\dagger P_gU)X_0(U^\dagger P_g^\dagger U)
+ C_{r=1}(X_0)H_r.
+```
+
+All logical/signal routing and amplification reflections commute with
+the unconditional dirty-only U. Thus a stream of real primitives using
+this core and precision cancels its common exterior
+$`U^\dagger U`$ pairs, including when the logical target changes.
+The self-borrowed masks and core-borrowed predicate helpers have the
+same complete operators as their external-work versions, so they
+preserve this identity.
+
+For the fixed mask f of the one-clean compiler, all tail rotations
+commute with $`P_f`$: each joins Majoranas with equal f signs. Writing
+$`U=U_{\rm tail}U_{\rm seed}`$ leaves
+
+```math
+U^\dagger P_fU=U_{\rm seed}^\dagger P_fU_{\rm seed},
+```
+
+which uses only the two seed rotations and their inverses. The arbitrary
+programmed mask g retains $`U^\dagger P_gU`$. Each real primitive
+contains five programmable scalar occurrences after amplification and
+hence ten such transforms. Since U uses $`2q`$ T gates, the displayed
+hoisted word for s primitives has source-rotation charge at most
+$`(40s+4)q+O(s)`$, in addition to its queries and predicate gates.
+This is a direct upper certificate for that word, not an additive lower
+bound against a joint rewrite of the coupled transformed masks.
 
 ## 3. Tree generators compress the residual classically
 
@@ -1689,6 +1735,40 @@ exactly. The image of A occupies only a $`1/N`$ fraction of the
 logical-spinor space, so covariance on this image is not a full-input
 implementation of W.
 
+### Low-rank reflection products require N factors
+
+Let d denote the full dirty input dimension. For any projectors
+$`P_1,\ldots,P_r`$ of rank at most d on the ambient physical space,
+
+```math
+\mathrm{rank}\left[\prod_{j=r}^{1}(I-2P_j)-I\right]\le rd.
+```
+
+Indeed $`AB-I=A(B-I)+(A-I)`$ makes the rank subadditive, and each
+factor differs from identity by rank at most d. The statement includes
+arbitrary conjugated rank-d reflections; any conjugating unitary may
+depend on the target. For the preceding Majorana isometry, $`AA^\dagger`$
+has rank d, including identity factors on additional dirty work. The same
+bound applies if its opposite reflection convention
+$`2AA^\dagger-I`$ is used an even number of times.
+
+Choose the admitted Hopf frame with every upper angle zero and all
+final-depth angles $`\pi/4`$. It is a direct sum of $`N/2`$ real
+rotations and satisfies $`\sigma_{\min}(W-I)=2\sin(\pi/8)`$.
+Let J embed its Nd-dimensional logical/dirty input into any clean-work
+extension. If the reflection product V satisfies
+
+```math
+\|VJ-J(W\otimes I_d)\|\lt2\sin(\pi/8),
+```
+
+then $`(V-I)J`$ is injective. A nonzero kernel vector would give
+approximation error at least that smallest singular value. Therefore
+$`Nd\le\mathrm{rank}(V-I)\le rd`$, so $`r\ge N`$.
+This is a restriction on products of these low-rank reflections; it
+does not apply to arbitrary interleaved operations or projectors whose
+rank grows beyond d.
+
 ### The reflection-only interface loses sensitivity
 
 Direct expansion gives
@@ -1725,6 +1805,32 @@ with fixed error below one if the only angle-dependent operation is
 $`R_U`$. Controlled queries, inverses and fixed auxiliary encodings obey
 the same hybrid bound. Direct U queries and angle-dependent interlayers
 are outside this reflection-only restriction.
+
+### Matched dirty frames force commuting logical labels
+
+Suppose Clifford programming sends a family of anticommuting dirty
+Majoranas to the matched form
+$`Q_j=P_j\otimes\Gamma_j`$, with Hermitian logical Paulis
+$`P_j`$ and the same dirty $`\Gamma_j`$. For distinct j and k,
+
+```math
+0=\{Q_j,Q_k\}
+=[P_j,P_k]\otimes\Gamma_j\Gamma_k.
+```
+
+The dirty product is invertible, so all logical labels commute. For
+$`A_0=\sum_j a_j I\otimes\Gamma_j`$ and
+$`B_0=\sum_j b_jP_j\otimes\Gamma_j`$, the scalar-overlap identity is
+
+```math
+\frac{A_0B_0+B_0A_0}{2}
+=\sum_j a_jb_jP_j\otimes I.
+```
+
+It therefore lies in a commuting logical Pauli algebra. A permutation of
+the matched dirty frame gives the same result after relabelling. The
+restriction is the matched form itself; different dirty frames or more
+general extraction words are outside this argument.
 
 ### A fixed Clifford organizes the complete Choi expansion
 
@@ -2001,7 +2107,10 @@ python -m unittest tests.test_endpoint_structural_limits
 The tests exercise the dimension inequality on small nilpotent
 contractions and encoded subspaces, the explicit geometric construction,
 the need for nilpotence, and the transformed-mask correlations.
-These finite checks support indexing and assumption boundaries.
+They also check the literal paired-source hoist, its fixed-tail
+cancellation, the low-rank reflection kernel witness, and the matched-frame
+commutation constraint. These finite checks support indexing and assumption
+boundaries.
 The common-conjugator fixture additionally checks every dirty and occupied
 signal column of the literal native fork, its target-half-block failure,
 and its source counts. Small mask sweeps check the ellipse and row

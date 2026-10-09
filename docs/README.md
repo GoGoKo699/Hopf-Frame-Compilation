@@ -135,9 +135,15 @@ uses the packed diagonal compiler; the
 [regular tree Cayley reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
 supplies an all-angle representation with charged exterior permutations.
 Its [boundary propagation proof](../research/endpoint/BOUNDARY_PROPAGATION.md)
-gives the sparse preconditioning identity and an O(N)-T two-signal block
-encoding at the endpoint width. Complete feedback recovery and uniform
-bounded-factor coverage remain separate hypotheses from Results A–D.
+gives sparse preconditioning, repeated-call precision within the endpoint
+width, and exact feedback cancellation to one prefix encoder. The
+[coarse prefix encoder](../research/endpoint/COARSE_PREFIX_ENCODER.md)
+compiles the entire correlated basis jointly and proves a full-output
+small-conjugation error bound. The
+[structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+exclude bounded-length Haar-mask words in arbitrary order. Fine correlated
+synthesis and coverage by other mixer families remain separate hypotheses
+from Results A–D.
 
 ## Evidence and sources
 

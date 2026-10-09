@@ -4,9 +4,12 @@ Independent frame matrices and subtree Schur solves audit the affine forward
 block, the swapped-pair actual inverse, and the final amplified isometry.
 Circuit matrices have dimension at most 64. These are logical unitary checks,
 not native emitters, asymptotic cost measurements, or large simulations.
+Separate integer/rational checks cover the independent forest support and
+finite packing inequalities; their lower bound concerns the enlarged family.
 """
 from __future__ import annotations
 
+from fractions import Fraction
 import unittest
 
 import numpy as np
@@ -191,6 +194,68 @@ def _assembly(height, coarse, target):
 
 
 class ResidualAssemblyTests(unittest.TestCase):
+    def test_independent_forest_support_and_positive_selected_walsh_columns(self):
+        # Integer supports are compared with a separate marker-depth rule.
+        # Raw Walsh signs suffice: each column's square-root scale cancels
+        # exactly against its diagonal filter in the analytic parametrization.
+        for height in range(3, 9):
+            size = 1 << height
+            columns, support = {0}, {(row, 0) for row in range(1, size)}
+            for depth in range(height):
+                span = 1 << (height - depth)
+                for prefix in range(1 << depth):
+                    anchor = prefix * span
+                    marker = anchor + span // 2
+                    self.assertNotIn(marker, columns)
+                    columns.add(marker)
+                    flipped_suffix = (marker % span) ^ (span // 2)
+                    for row in range(anchor, anchor + span):
+                        walsh_sign = (-1) ** ((row % span) & flipped_suffix).bit_count()
+                        self.assertEqual(walsh_sign, 1)
+                        if row not in (anchor, marker):
+                            support.add((row, marker))
+            independent_support = {(row, 0) for row in range(1, size)}
+            for marker in range(1, size):
+                span = 2 * (marker & -marker)
+                anchor = (marker // span) * span
+                for row in range(anchor, anchor + span):
+                    if row and (row & -row) < span // 2:
+                        independent_support.add((row, marker))
+            self.assertEqual(columns, set(range(size)))
+            self.assertEqual(support, independent_support)
+            dimension = (height - 1) * size + 1
+            self.assertEqual(len(support), dimension)
+            # All cube corners obey the Frobenius and filter bounds, with
+            # rational squares so no floating-point square root is needed.
+            radius_squared = Fraction(1, 16 * dimension)
+            self.assertEqual(dimension * radius_squared, Fraction(1, 16))
+            self.assertLessEqual(size * radius_squared, Fraction(1, 16))
+
+    def test_independent_forest_rational_grid_exceeds_native_word_capacity(self):
+        # A rational inner cube of radius 1/(4d) is enough. Its grid has at
+        # least 2**(N-ceil(log2(12d))) points per entry at eta=2**(-N).
+        # Compare exponents only; no exponential-size matrix or grid exists.
+        for height in (8, 16, 32, 64, 128):
+            size = 1 << height
+            dimension = (height - 1) * size + 1
+            width = size + 2 * height + 9
+            radius = Fraction(1, 4 * dimension)
+            self.assertLessEqual(dimension * radius ** 2, Fraction(1, 16))
+            self.assertLessEqual(size * radius ** 2, Fraction(1, 16))
+            ceiling_log = (12 * dimension - 1).bit_length()
+            grid_exponent = size - ceiling_log
+            t_count = size * height // 8
+            packing_exponent = dimension * grid_exponent
+            word_exponent = (2 * width ** 2 + 3 * width + 5
+                             + (2 * width + 1) * t_count)
+            self.assertGreater(grid_exponent, 0)
+            self.assertGreater(packing_exponent, word_exponent)
+        eta = Fraction(1, 1 << 16)
+        spacing = 3 * eta
+        # Differing in a single coordinate is an exact rank-one matrix
+        # separation; two eta-balls cannot cover both of those grid targets.
+        self.assertGreater(spacing, 2 * eta)
+
     def test_affine_riccati_matches_independent_dense_subtree_schur_solve(self):
         for height in (1, 2, 3, 4):
             size = 1 << height
