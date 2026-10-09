@@ -6,9 +6,8 @@ Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frame
 
 The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
 Results A–D, retained corollaries, literal workspace reservations, and error
-contracts. The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md) found no
-unresolved claim-level blocker. The selected scientific scope is frozen;
-final manuscript writing remains on hold.
+contracts. Its source and verification maps identify the premises and
+executable evidence for each claim.
 
 ## The argument to assemble
 
@@ -40,7 +39,7 @@ mechanisms and input/workspace contracts.
    one shared geometric source, and retained failure history.
 5. Result C: one-clean rotations and conditional-suffix grouping, followed by
    banked, diagonal, multiplexor, complex-magnitude, and zero-clean corollaries.
-   Retain the earlier two-clean constructions at their smaller dirty budgets.
+   Compare the packed two-clean diagonal construction at its smaller dirty budget.
 6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
    explicit precision/workspace matching intervals, and applicable fallbacks.
 7. Exact and approximate fixed-parameter QBP consequences, complete complex

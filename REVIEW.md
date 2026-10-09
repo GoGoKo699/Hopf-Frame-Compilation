@@ -9,11 +9,6 @@ clean reservation to one qubit. Result D schedules count and T-depth on one
 complete real-frame circuit. This roadmap explains how the proofs connect;
 the linked chapters contain the constructions and estimates.
 
-The [bounded claim-to-proof audit](docs/CORE_CLAIM_AUDIT.md) found no
-unresolved blocker in this selected package. It is an internal mathematical
-review, not formal certification or independent peer review. Final manuscript
-writing remains on hold.
-
 ## 1. Why the complete operator is the target
 
 For $`N=2^n`$, the real Hopf frame specifies
@@ -206,6 +201,11 @@ $`L+n+8`$ and $`2(L+n+8)`$.
 
 The [diagonal and U(2) multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
 are complete-operator capabilities with their own reservations. The
+[packed two-clean diagonal source](docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
+places one geometric tail across both Majoranas of each dirty core qubit.
+It gives error $`2^{-\ell}`$ using
+$`b=n+1+\lceil(\ell+4)/2\rceil`$ and $`T=O(N+\ell)`$.
+The
 [zero-clean corollary](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
 is only the layerwise real-frame construction. Its borrowed signal does
 not make the grouped or literal-phase constructions zero-clean.
@@ -273,12 +273,17 @@ task-level result, not a closure of either compiler gap:
 
 | Unresolved question | Current guarantee |
 |---|---|
-| $`a=2,b=N+n+7,L=N,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
+| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`\Omega(N)\le T^\star\le O(N\ell_*(n))`$ |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-The [research index](research/README.md) preserves the literal open targets,
-promised-update results, and scoped attempts. Interface obstructions do not
-supply unrestricted lower bounds. Neither gap blocks the selected package.
+At the count endpoint, the packed source makes
+[any fixed factor count affordable](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md),
+including certified search for approximate factors. Independently, an
+[all-angle tree reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md)
+isolates a fixed Cayley family with bounded real parameters; its exterior
+diagonals and permutations already have O(N)-T implementations.
+The [research index](research/README.md) records the hypotheses of these
+reductions and the scope of the related interface obstructions.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

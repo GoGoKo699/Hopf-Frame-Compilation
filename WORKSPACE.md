@@ -1,13 +1,13 @@
 # Continuing workspace
 
-**Checkpoint: 9 October 2026.** The repository is organized around the
+The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
-The endpoint investigation adds an explicit precision witness and
-full-frame geometry to the canonical proof chapters, and scoped
-[structural limits](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-and [source-interface results](research/endpoint/SOURCE_REUSE_LIMITS.md)
-to the research archive. Results A–D and both open resource gaps are
-unchanged. Final manuscript writing remains on hold.
+The canonical operator-source proof includes the packed two-clean diagonal
+reservation. The research index links the
+[bounded-factor bridge](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md),
+[regular fixed-tree Cayley reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md),
+and scoped representation results. Results A–D and the full-frame endpoint
+orders are unchanged. Final manuscript drafting is a separate task.
 
 ## Mandate
 
@@ -59,7 +59,7 @@ requirement. The internal audit does not replace external technical review.
 
 ### Reopening research requires a qualifying mechanism
 
-Use the [current entry conditions](docs/OPEN_PROBLEM.md#what-would-justify-reopening):
+Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
 recurrences must precede new fixtures. At large width, a complete improvement
 must reduce both the logical-transport and query allowances or bypass them.

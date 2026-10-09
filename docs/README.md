@@ -58,7 +58,7 @@ also prove inactive identity on arbitrary inputs and the full return-error estim
 
 | Supporting proof | Why it remains in the package |
 |---|---|
-| [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) | Full-input two-clean source, amplification/error certificate, layerwise frame baseline, and distinct diagonal/multiplexor reservations |
+| [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) | Full-input two-clean source, packed diagonal precision/workspace bound, amplification/error certificate, layerwise frame baseline, and separate multiplexor reservation |
 | [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Residual columns, active logical work, iterated grouping, and banked one-clean composition |
 | [One-clean compiler](ONE_CLEAN_COMPILER.md) | Native one-clean primitive; literal diagonals, complete one-target U(2) multiplexors, phase-dressed magnitude frames, and the separate zero-clean real-frame corollary |
 | [Borrowed-workspace compiler](BORROWED_WORKSPACE_COMPILER.md) | Arbitrary clean/dirty allocations, exact dirty traversal, and the restricted matching splice |
@@ -126,12 +126,13 @@ real/complex theorem, computational input audit, task costs, and bounded
 native integrations are grouped there. It does not replace the complete-frame
 contract or become an extra prerequisite for A–D.
 
-The [optional research archive](../research/README.md) preserves the two open
-resource frontiers, component refinements, scoped obstructions, and tested
-routes toward closing them. Those investigations are outside the principal
-claim path. Archiving their exposition does not retract their established
-lemmas or remove their evidence; the archive records their limits and
-reopening conditions.
+The [research index](../research/README.md) maps constructive endpoint
+reductions, promised-family compilers and scoped interface bounds. The
+[bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+uses the packed diagonal compiler; the
+[regular tree Cayley reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
+supplies an all-angle representation with charged exterior permutations.
+Their remaining hypotheses are separate from Results A–D.
 
 ## Evidence and sources
 
@@ -152,4 +153,4 @@ The [implementation](../compiler_robust_hopf/README.md),
 [tests](../tests/README.md), [scripts](../scripts/README.md), and
 [diagrams](../assets/README.md) provide reproduction maps.
 The [manuscript guide](../manuscript/README.md) gives the selected argument's
-section order. Final manuscript writing remains on hold.
+section order.

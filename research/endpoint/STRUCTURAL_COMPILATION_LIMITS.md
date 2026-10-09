@@ -96,6 +96,31 @@ $`n+1`$, attaining the bound.
 Unitarity alone therefore cannot justify constant normalization after
 passing to this entrywise loading interface.
 
+### Linear total entry mass does not give constant normalization
+
+The same subtree supports give the sharp global bound
+
+```math
+\sum_{i,j}|W_{ij}|
+\le\sqrt N+\sum_{d=0}^{n-1}2^d\sqrt{2^{n-d}}
+=(1+\sqrt2)N-\sqrt{2N}.
+```
+
+Each unit column has entry sum at most the square root of its support
+size, and the balanced frame attains equality column by column. This
+linear total mass coexists with a growing worst-case row sum. Set
+$`\sin\theta_{d,0}=1/\sqrt{d+2}`$ and
+$`\cos\theta_{d,0}=\sqrt{(d+1)/(d+2)}`$ on the zero path. The root
+entry and all n marker entries in row zero then have magnitude
+$`1/\sqrt{n+1}`$, by telescoping the later cosine factors.
+
+Consequently, any signed-monomial decomposition
+$`W=\sum_r\alpha_r P_r`$ has
+$`\sum_r|\alpha_r|\ge\sqrt{n+1}`$ on this family: each monomial
+unitary has row entry sum one. This restriction concerns that LCU
+interface; the total entry-mass bound alone supplies neither coherent
+loading nor a constant-normalization block encoding.
+
 ## 3. Arbitrarily small residuals with an inexpensive native coarse frame
 
 Let C have angle $`\pi/4`$ at depths $`0,\ldots,n-2`$ and angle zero
@@ -270,6 +295,127 @@ changes, four or more diagonal layers, parameter-dependent mixing, and
 workspace encodings require separate arguments. In particular, it does
 not rule out a different whole-operator compiler.
 
+### Four alternating Walsh masks: every differentiable identity baseline
+
+Let $`F=H^{\otimes n}`$ be the Walsh transform. For $`n\ge3`$, the
+ansatz
+
+```math
+W(\theta)=D_4(\theta)F D_3(\theta)F D_2(\theta)F D_1(\theta)F
+```
+
+cannot hold near zero with all four diagonal masks differentiable there.
+This includes every cancelling non-Clifford identity baseline and the
+displayed exterior Clifford. It is specific to these fixed mixers.
+
+To classify the baselines, write $`G=\mathbb F_2^n`$ and
+$`D_a U D_b=V`$ at zero, where U and V are XOR-circulant unitaries,
+$`U_{xy}=u(x+y)`$ and $`V_{xy}=v(x+y)`$. Their common support S obeys
+
+```math
+a(x)b(x+s)=r(s):=v(s)/u(s),\qquad s\in S.
+```
+
+Choose $`s_0\in S`$ and
+$`K=\mathrm{span}\{s+s_0:s\in S\}`$. Ratios of these equations
+give $`b(y+t)/b(y)=\chi(t)`$ for $`t\in K`$. Translation composition
+makes chi a character, and exponent two gives $`\chi(t)\in\{1,-1\}`$.
+Extend chi to $`(-1)^{z\cdot y}`$ on G. Precisely the scalar solutions
+are therefore
+
+```math
+b(y)=(-1)^{z\cdot y}e(y),\quad e(y+t)=e(y)\ (t\in K),
+\qquad a(x)=r(s_0)/b(x+s_0),
+```
+
+with $`r(s)=r(s_0)\chi(s+s_0)`$ on S. Thus all additional phase
+freedom lives on $`G/K`$, and U,V are supported on $`s_0+K`$.
+
+Let $`\mathcal Z`$ denote the diagonal Hermitian algebra and
+$`\mathcal X=F\mathcal ZF`$. The right-logarithmic tangent is contained
+in the complexification of
+
+```math
+\mathcal Z+\mathcal X+\mathrm{Ad}_{D_a}(\mathcal X)
++\mathrm{Ad}_{V}(\mathcal Z).
+```
+
+The following three cases exhaust the baseline classification.
+
+- If $`0\lt\dim K\lt n`$, choose a coordinate vector $`e_j\notin K`$.
+  At displacement $`e_j`$, the first three summands have K-invariant
+  entry profiles, because $`a(x)/a(x+e_j)`$ is K-invariant. The final
+  summand has support only on displacements in K. A single tree-edge
+  generator at $`e_j`$ has profile support $`\{p,p+e_j\}`$; invariance
+  would force $`K\subseteq\mathrm{span}\{e_j\}`$, a contradiction.
+- If $`K=\{0\}`$, V is a scalar X Pauli, so the final summand is
+  $`\mathcal Z`$. At any nonzero displacement the remaining profiles
+  span at most $`1`$ and $`a(x)/a(x+s)`$. The final-depth tree edges
+  give $`N/2\ge4`$ independent profiles at their common displacement.
+- If $`K=G`$, $`D_a`$ is a scalar Z Pauli. In the Fourier basis the
+  profiles at a nonzero displacement s span at most the constant function
+  and $`\widehat v(k)\overline{\widehat v(k+s)}`$. At
+  $`s=(1,\ldots,1)`$, the n tree edges $`\{0,e_j\}`$ have profiles
+  proportional to the independent characters $`(-1)^{k_j}`$.
+
+Each case excludes the full frame derivative. Differentiability is
+essential: a commutator loop with phases proportional to $`\sqrt t`$
+can produce an order-t direction outside this ordinary tangent space.
+No assertion about singular factor selections, different mixers, or
+approximate coverage follows. The
+[bounded-diagonal reduction](BOUNDED_DIAGONAL_FACTORIZATION.md) allows
+such alternatives without requiring a differentiable extraction map.
+
+### Balanced-Haar boundary identities
+
+Fixed balanced frames are another available mixer. Write
+$`Q_n=B R`$, where $`B=Q_{n-1}\oplus Q_{n-1}`$ and
+$`R=R_{y,\mathrm{root}}(\pi/4)`$ acts on the distinguished coordinates
+0 and $`N/2`$. These fixed mixers have exact $`O(n^3)=O(N)`$ T-count
+by the controlled-rotation construction in Section 3, including the
+uncontrolled final layer.
+
+For a paired child word
+
+```math
+W_{\rm child}=D_0B^\dagger D_1B D_2\cdots
+ B^\dagger D_{2m-1}B D_{2m},\qquad m\ge1,
+```
+
+scalar phases on each half commute with B and can be transferred between
+masks. Choose them so every even mask has equal distinguished-pair
+entries, and hence commutes with R. Substitution then gives
+$`W_{\rm child}=R A R^\dagger`$, where A is the same mask word with
+B replaced by $`Q_n`$. The frame recursion becomes
+$`W_n=R A R_{y,\mathrm{root}}(\theta-\pi/4)`$.
+
+The variable boundary has a literal diagonal identity. Let S(t) be
+$`e^{it}`$ on the left half and $`e^{-it}`$ on the right; let
+$`Z_r(t)`$ agree with S(t) on the distinguished pair and equal identity
+elsewhere; and put $`P=S(-\pi/4)`$. Since B commutes with S(t),
+
+```math
+R_{y,\mathrm{root}}(t)
+=P Q_n^\dagger S(t)Q_nP^\dagger S(t)^\dagger Z_r(t),
+```
+
+using $`R^\dagger ZR=-X`$ and $`PXP^\dagger=Y`$ on the pair.
+The last two diagonal factors cancel the unwanted spectator phases.
+Only valid commuting moves give
+
+```math
+W_{\rm child}R_{y,\mathrm{root}}(t)
+=P S(t)^\dagger[W_{\rm child}Z_r(t)]Q_n^\dagger S(t)Q_nP^\dagger.
+```
+
+The remaining $`Z_r(t)`$ changes each distinguished coordinate relative
+to its own half, so it is not a transferable half-block scalar. Absorbing
+it into a final mask still appends a new $`Q_n^\dagger/Q_n`$ pair.
+Thus these all-angle, division-free identities isolate a boundary
+absorption problem rather than a closed constant-mask recursion. The
+[tree Cayley reduction](TREE_CAYLEY_REDUCTION.md) supplies a separate
+global normal form.
+
 ## 5. Original-angle parallel coins need at least n queries
 
 Let the original-angle oracle be
@@ -358,6 +504,53 @@ proper fixed block decomposition, including a direct sum of two-dimensional
 blocks after a fixed arbitrary basis change. It does not exclude products
 of noncommuting block operators or parameter-dependent encodings. The
 displayed constant alone does not exclude the $`n=3`$ endpoint.
+
+### One U(2) bank fails even with arbitrary fixed encoders and workspace
+
+A stronger constant bound holds for blocks of dimension at most two.
+Let A,B be fixed unitaries on any auxiliary width, J the initialized-work
+isometry, and every $`M_X`$ belong to the **same** direct-sum-of-U(2)
+block algebra. If
+
+```math
+\|A M_X B J-J(X\otimes I_{\rm dirty})\|\le\epsilon
+```
+
+holds for all complete frames X, then for $`n\ge2`$,
+
+```math
+\epsilon\ge\frac{\sqrt2}{30}.
+```
+
+For any two 2-by-2 matrices the commutator has trace zero; Cayley--Hamilton
+therefore makes its square scalar. The polynomial
+$`p(U,V)=[[U,V]^2,U]`$ vanishes on the common block algebra. Two legal
+frame instances, each rotating one of two edges sharing a vertex by
+$`\pi/2`$, restrict to
+
+```math
+U=\begin{pmatrix}0&-1&0\\1&0&0\\0&0&1\end{pmatrix},\qquad
+V=\begin{pmatrix}0&0&-1\\0&1&0\\1&0&0\end{pmatrix},\qquad
+p(U,V)=\begin{pmatrix}0&-2&0\\-2&0&-2\\0&2&0\end{pmatrix}.
+```
+
+The final matrix has norm $`2\sqrt2`$. Put $`E=BJ`$ and
+$`R_X=M_I^\dagger M_X`$. The identity instance and unitarity imply
+$`\|R_XE-E(X\otimes I_{\rm dirty})\|\le2\epsilon`$.
+The six surviving signed words in p all have length five, so telescoping
+each word on E gives
+
+```math
+2\sqrt2=\|E(p(U,V)\otimes I_{\rm dirty})\|
+\le60\epsilon,
+```
+
+since $`p(R_U,R_V)=0`$. This uses full initialized columns and remains
+valid for arbitrary dirty inputs and references; it makes no assumption
+that the encoder's image is an exact invariant subspace. It excludes the
+endpoint error for every $`n\ge3`$. Multiple banks and parameter-dependent
+encoders remain outside its scope; Proposition 6 separately covers larger
+fixed blocks without arbitrary encoding.
 
 ## 7. Verification and scope
 

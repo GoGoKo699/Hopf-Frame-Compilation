@@ -1566,14 +1566,25 @@ There are two further interface conditions. The paired-Majorana realization
 uses at least $`\lceil(m+1)/2\rceil`$ source qubits in addition to the
 m-bit data bank; at $`m=N`$ this misses the endpoint width for large n.
 Identifying source and data would invalidate their assumed commutation.
-For noncommuting logical involutions the identity itself acquires
+More generally, for nonzero real weights and logical Hermitian coefficients,
 
 ```math
-N^2=I+\sum_{i\lt j}\sqrt{p_ip_j}\,
-\Gamma_i\Gamma_j\otimes[P_i,P_j].
+S=\sum_j a_j A_j\otimes\Gamma_j
+\quad\Longrightarrow\quad
+S^2=\sum_j a_j^2A_j^2\otimes I
++\sum_{j\lt k}a_ja_k[A_j,A_k]\otimes\Gamma_j\Gamma_k.
 ```
 
-Neither restriction is an unrestricted compiler lower bound.
+For the independent paired Majoranas, the identity and distinct grade-two
+monomials are linearly independent. Hence this linear Hermitian source is
+unitary exactly when $`\sum_j a_j^2A_j^2=I`$ and all logical coefficients
+commute. Two overlapping tree-edge swaps A,B obey
+$`\|[A,B]\|=\sqrt3`$: their products are opposite three-cycles on their
+three-dimensional support. Thus
+$`S=(A\otimes\Gamma_0+B\otimes\Gamma_1)/\sqrt2`$ has
+$`\|S^2-I\|=\sqrt3/2`$. Higher Majorana grades are outside this linear
+ansatz; their full-word structure is treated below. None of these
+restrictions is an unrestricted compiler lower bound.
 
 ### Phase halving requires its promised catalyst
 
@@ -1624,9 +1635,143 @@ Compare the initial and final ideal catalyst through the full unitary.
 This bound need not accumulate per catalytic use, but it presupposes a
 legal preparation and does not apply to an arbitrary dirty qubit.
 
-<a id="9-finite-checks-and-evidence-limits"></a>
+## 10. Higher-grade Spin identities on arbitrary dirty work
 
-## 10. Finite checks and evidence limits
+Put $`q=N/2`$ and use the N paired Jordan--Wigner Majoranas
+$`\Gamma_{2r}=Z_{<r}X_r`$ and $`\Gamma_{2r+1}=Z_{<r}Y_r`$ on q
+dirty qubits. A coordinate-plane rotation has a half-angle Spin lift
+$`U_e=\exp(\pm\theta_e\Gamma_u\Gamma_v/2)`$, with orientation fixed
+so its ordered tree product U satisfies
+
+```math
+U\Gamma_jU^\dagger=\sum_i W_{ij}\Gamma_i.
+```
+
+The following identities concern the full dirty Hilbert space; they use
+no selected spinor state. The displayed lift still contains $`N-1`$
+independently specified rotations, so its native synthesis cost must be
+accounted for separately.
+
+### Covariance and an exact native reflection
+
+Define the isometry from spinor space to logical-index times spinor space,
+
+```math
+A|\psi\rangle=\frac1{\sqrt N}\sum_j|j\rangle\Gamma_j|\psi\rangle.
+\qquad A^\dagger A=I,\qquad (W\otimes U)A=AU.
+```
+
+The first identity uses orthogonality of the index labels; covariance
+follows by substituting the conjugation equation and using
+$`\sum_jW_{kj}W_{ij}=\delta_{ki}`$. Let
+$`S=\sum_j|j\rangle\langle j|\otimes\Gamma_j`$ and
+$`T=S(H^{\otimes n}\otimes I)`$. Then
+
+```math
+R=2AA^\dagger-I
+=T(2|0^n\rangle\langle0^n|\otimes I-I)T^\dagger
+```
+
+is a native reflection on **every** logical and dirty input. This formula
+does not require the logical register to start in zero.
+
+Two exact [dirty-word queries](../../docs/ONE_CLEAN_COMPILER.md) implement
+the X and Z masks of S, using at most n returned dirty selectors.
+The S gate on the index parity bit supplies the literal i in $`Y=iXZ`$.
+The logical zero reflection uses the exact borrowed-MCX construction
+with $`O(n^2)`$ T gates, borrowing already returned work. Its scalar
+minus sign, when needed, is the exact Clifford word XZXZ. Thus R has
+$`O(N)`$ T-count, $`O(Nq)`$ elementary Clifford count, and uses
+$`q+n`$ dirty qubits with no added clean qubit. All selectors return
+exactly. The image of A occupies only a $`1/N`$ fraction of the
+logical-spinor space, so covariance on this image is not a full-input
+implementation of W.
+
+### The reflection-only interface loses sensitivity
+
+Direct expansion gives
+
+```math
+A^\dagger(W\otimes I)A
+=\frac{\mathrm{tr}(W)I+
+ \sum_{j<k}(W_{jk}-W_{kj})\Gamma_j\Gamma_k}{N}.
+```
+
+For a single plane rotation of angle theta all overlap singular values
+equal
+
+```math
+s_\theta=\sqrt{1-\frac{4(N-2)(1-\cos\theta)}{N^2}}.
+```
+
+Indeed the overlap is
+$`[(N-2+2\cos\theta)I\pm2\sin\theta\Gamma_a\Gamma_b]/N`$;
+squaring its singular values gives the formula. Covariance implies
+
+```math
+R_U=(I\otimes U)R(I\otimes U^\dagger)
+=(W^{\mathsf T}\otimes I)R(W\otimes I),\qquad
+\|R_U-R\|=\frac{4\sqrt{(N-2)(1-\cos\theta)}}{N}.
+```
+
+The norm follows from the principal angles of the two equal-rank
+projector ranges: reflection distance is $`2\sqrt{1-s_\theta^2}`$.
+At $`\theta=\pi`$ it is $`\Theta(N^{-1/2})`$, whereas
+$`\|W-I\|=2`$. A unitary hybrid therefore requires
+$`\Omega(\sqrt N)`$ queries to distinguish the two target isometries
+with fixed error below one if the only angle-dependent operation is
+$`R_U`$. Controlled queries, inverses and fixed auxiliary encodings obey
+the same hybrid bound. Direct U queries and angle-dependent interlayers
+are outside this reflection-only restriction.
+
+### A fixed Clifford organizes the complete Choi expansion
+
+For each tree edge let $`P_e=i\Gamma_u\Gamma_v`$ and absorb fixed
+orientation signs into its angle. The binary Pauli labels of these
+$`N-1`$ bivectors are independent. In fact, the N Majorana labels have
+symplectic Gram matrix $`I+\mathbf1\mathbf1^{\mathsf T}`$ over
+$`\mathbb F_2`$, whose square is I because N is even. They form a
+basis. The tree incidence columns are independent by leaf elimination;
+multiplying them by this basis gives the independent edge labels.
+
+Expand the actual ordered word
+
+```math
+U=\prod_e\bigl(\cos(\theta_e/2)I+i\sin(\theta_e/2)P_e\bigr).
+```
+
+Every subset of edges has a distinct Pauli label. In canonical
+$`X^xZ^z`$ order its coefficient phase is a linear power of i times
+a quadratic sign in the subset bits: multiplication contributes
+$`(-1)^{z\cdot x'}`$. Thus a fixed, angle-independent Clifford E on
+the $`2q=N`$ Choi qubits satisfies
+
+```math
+|U\rangle\!\rangle
+=E\left[\bigotimes_e
+  \bigl(\cos(\theta_e/2)|0\rangle+\sin(\theta_e/2)|1\rangle\bigr)
+  \otimes|0\rangle\right],
+```
+
+where $`|U\rangle\!\rangle`$ is normalized vectorization. Construct E
+by the S/CZ phase function, an invertible CNOT map extending the edge
+labels to a basis, and the Clifford Bell-basis encoding. This accounts
+for all Majorana grades and their literal phases.
+
+This is a Choi-state identity, not a physical pre/post Clifford
+factorization of U: E may mix the two Choi halves. Using it as a compiler
+requires both a charged synthesis of the independent fine-angle factors
+and a full-input extraction with the allowed clean/dirty return.
+Neither prepared Choi qubits nor measurement-based gate teleportation is
+part of the endpoint contract. The
+[bounded-diagonal route](BOUNDED_DIAGONAL_FACTORIZATION.md) and
+[tree Cayley reduction](TREE_CAYLEY_REDUCTION.md) provide alternative
+global representations without assuming those resources.
+
+<a id="9-finite-checks-and-evidence-limits"></a>
+<a id="10-finite-checks-and-evidence-limits"></a>
+
+## 11. Finite checks and evidence limits
 
 Run:
 

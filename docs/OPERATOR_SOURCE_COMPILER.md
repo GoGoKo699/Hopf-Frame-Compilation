@@ -687,17 +687,81 @@ Its sufficient matching regimes replace n in (35) by $`\ell_*(n)`$.
 ## 8. Literal diagonal unitaries and phase-dressed frames
 
 The scalar block also gives a direct compiler for an arbitrary
-classically specified diagonal unitary
+classically specified diagonal unitary. A single geometric coefficient
+list can be packed into paired Majoranas, using two coefficient bits per
+dirty core qubit:
 
 ```math
 D_\phi=\sum_{x=0}^{N-1}e^{i\phi_x}|x\rangle\langle x|.
 \qquad\text{(36)}
 ```
 
-Use the cosine and sine sign tables for $`\phi_x`$ with address
-$`(b,x)`$, and omit both the rotation target and the suffix predicate.
-Replace the controlled target XZ in (20) by a phase S on the sector
-flag b:
+**Packed source and masks.** On $`q\ge1`$ dirty core qubits use the
+[paired Majoranas](ONE_CLEAN_COMPILER.md#2-an-exact-two-tail-source-and-its-dirty-masks)
+
+```math
+\gamma_{2j}=Z_0\cdots Z_{j-1}X_j,\qquad
+\gamma_{2j+1}=Z_0\cdots Z_{j-1}Y_j,\qquad 0\le j\lt q.
+```
+
+They obey $`\{\gamma_i,\gamma_j\}=2\delta_{ij}I`$. Put $`m=2q`$
+and split one coefficient list along all m generators:
+
+```math
+R_j=\exp\!\left(\frac{i\pi}{8}(i\gamma_j\gamma_{j+1})\right),
+\qquad U=R_{m-2}\cdots R_0,\qquad M=UX_0U^\dagger.
+```
+
+The conjugation calculation (7) gives (8), with $`\Gamma_j`$ replaced
+by $`\gamma_j`$ and the same coefficients $`a_j`$. In particular,
+$`M=M^\dagger`$, $`M^2=I`$, and the signed scalar grid (12)–(13)
+has rounding radius $`e=2^{1-2q}`$. The adjacent generators are
+
+```math
+i\gamma_{2j}\gamma_{2j+1}=-Z_j,\qquad
+i\gamma_{2j+1}\gamma_{2j+2}=-X_jX_{j+1}.
+```
+
+Every splitting rotation is therefore one T gate conjugated by a fixed
+Clifford, up to a scalar. In the actual native words
+$`U X_0 U^\dagger`$ and $`U C_{a=v}(X_0)U^\dagger`$ that scalar
+cancels exactly. Both surrounding words are unconditional. Each source
+or controlled source costs at most $`4q-2`$ T gates and $`O(q)`$
+Clifford gates, with no additional work.
+
+For any sign string $`f\in\{0,1\}^{2q}`$, set
+
+```math
+u_j=f_{2j}\mathbin\oplus f_{2j+1},\qquad
+v_j=f_{2j}\mathbin\oplus\bigoplus_{r\lt j}u_r,\qquad
+P_f=X^uZ^v.
+```
+
+Conjugation by $`P_f`$ changes the sign of $`\gamma_i`$ by
+$`(-1)^{f_i}`$: on $`\gamma_{2j}`$ the sign exponent is
+$`v_j\oplus\bigoplus_{r\lt j}u_r`$, and on $`\gamma_{2j+1}`$ it
+additionally includes $`u_j`$. Consequently
+
+```math
+N_f=P_fMP_f^\dagger,\qquad
+\frac{MN_f+N_fM}{2}=c_fI,\qquad
+c_f=\sum_i a_i^2(-1)^{f_i}.
+```
+
+For a k-bit address, the $`X^u`$ part uses one exact q-bit whole-word
+query from Section 3. The $`Z^v`$ part uses a second query conjugated
+by core Hadamards. Both reuse the same k dirty selectors, which return
+exactly. Thus a mask costs $`O(2^k)`$ T gates and $`O(2^kq+q)`$
+Clifford gates, with total dirty reservation $`q+k`$. The mask need
+not be Hermitian: use its actual inverse in $`N_f`$ and throughout
+amplification. Any address-dependent Pauli scalar then cancels. These
+are full-input operator identities, including arbitrary dirty inputs
+and their references.
+
+**Literal diagonal block.** Use this source and its masks in the scalar
+word (16). Select cosine and sine sign tables for $`\phi_x`$ with
+address $`(b,x)`$, omitting the rotation target and suffix predicate.
+Replace the controlled target XZ in (20) by a phase S on sector flag b:
 
 ```math
 Q_{\rm diag}=H_b S_b\,\mathcal S_{f(b,x)}\,H_b,\qquad
@@ -708,45 +772,94 @@ J^\dagger Q_{\rm diag}J
 
 The two flags a and b are the only initialized wires. The literal factor
 i on the sine branch fixes the phase in (36); no common or
-address-dependent scalar is discarded. The same certified rounding,
-actual inverse, normalization-two amplification, and complete
-isometry estimate apply.
-
-For desired error $`2^{-\ell}`$, $`\ell\geq6`$, take
-$`m=\ell+4`$. There are $`n+1`$ dirty selectors and no dirty suffix
-control, so the exact base reservation is
-$`B_{\rm diag}=\ell+n+5`$. This proves
+address-dependent scalar is discarded. Certified rounding (13) gives
 
 ```math
-a=2,\quad b\geq\ell+n+5
+\|2J^\dagger Q_{\rm diag}J-D_\phi\otimes I_{\rm dirty}\|
+\le\frac{5\sqrt2}{4}\,2^{1-2q}.
+```
+
+Section 5's normalization-two amplification, with actual inverses and the
+same Clifford reflection on the flags, therefore gives
+
+```math
+\|V_{\rm diag}J_2-J_2(D_\phi\otimes I_b)\|
+\le5\sqrt2\,2^{1-2q}\le2^{4-2q}.
+```
+
+This is the full initialized-isometry error, including clean leakage and
+dirty-core disturbance. The small-error hypothesis holds for the following
+precision choice. For $`\ell\ge6`$, put
+
+```math
+q=\left\lceil\frac{\ell+4}{2}\right\rceil,\qquad
+B_{\rm diag}=q+n+1.
+```
+
+There are $`n+1`$ dirty selectors and no dirty suffix control. Thus
+
+```math
+a=2,\quad b\geq n+1+\left\lceil\frac{\ell+4}{2}\right\rceil
 \quad\Longrightarrow\quad
 T=O(N+\ell),\qquad G=O(N\ell),
 \qquad\text{(38)}
 ```
 
-with
-$`\|V_{\rm diag}J_2-J_2(D_\phi\otimes I_b)\|\leq2^{-\ell}`$.
-Additional dirty banks give
+with error at most $`2^{-\ell}`$. A conservative explicit native count is
 
 ```math
-a=2,\quad b\geq2(\ell+n+5)
+T(V_{\rm diag})\le1344N+36q-18.
+```
+
+Indeed, the two-pass traversal uses at most $`8\cdot2^k`$ Toffolis
+per whole-word query. At $`k=n+1`$, seven T gates per exact Toffoli
+give at most $`112N`$ T gates per query. The three amplified block
+calls contain twelve queries and nine source appearances, each charged
+at $`4q-2`$. Flag operations, reflections and the leading literal
+minus sign are Clifford. No initialized program, separate output word
+or source-private helper is required. Certified real and imaginary entry
+evaluation suffices; an explicit phase angle is unnecessary.
+
+**Additional dirty banks.** The Section 7 query applies to each of the
+two q-bit mask words. They reuse the same additional banks because every
+completed query returns them on all inputs. With $`S=2N`$ and
+$`\lambda`$ additional q-bit banks, the query costs
+$`O(S/\lambda+\lambda q)`$ T gates and $`O(Sq)`$ Clifford gates.
+When $`b\ge2B_{\rm diag}`$, put $`K=b-B_{\rm diag}\ge b/2`$
+and choose the largest power of two not exceeding
+
+```math
+\max\!\left\{1,\min\!\left(S,\sqrt{S/q},K/q\right)\right\}.
+```
+
+The banks fit alongside the core and selectors. Including all sources,
+masks and amplification gives
+$`T=O(\sqrt{Nq}+q+Nq/b)`$; when $`q>S`$, the single-bank choice
+is absorbed by the additive q term. Since $`q=\Theta(\ell)`$, this is
+
+```math
+a=2,\quad b\geq2\left(n+1+\left\lceil\frac{\ell+4}{2}\right\rceil\right)
 \quad\Longrightarrow\quad
 T=O\!\left(\sqrt{N\ell}+\ell+\frac{N\ell}{b}\right),
 \qquad G=O(N\ell).
 \qquad\text{(39)}
 ```
 
-Since $`q=n+2+b=\Theta(b)`$, (39) matches the diagonal lower bound in
+Since the physical width is $`Q_{\rm phys}=n+2+b=\Theta(b)`$, (39)
+matches the diagonal lower bound in
 the same model, with every initialized and borrowed wire included.
 The GKW diagonal theorem cited in
 [Section 10.1 of the main proof](FAULT_TOLERANT_COMPILER.md#101-the-real-frame-contains-arbitrary-diagonals)
 supplies $`\Omega(\sqrt{N\ell}+\ell)`$.
 The [fixed-width circuit count in Section 10.2](FAULT_TOLERANT_COMPILER.md#102-fixed-width-coherent-counting),
 applied to an $`N`$-phase diagonal grid packing, supplies
-$`\Omega(N\ell/q)`$ when $`q^2`$ is a sufficiently small multiple of
+$`\Omega(N\ell/Q_{\rm phys})`$ when $`Q_{\rm phys}^2`$ is a sufficiently small multiple of
 $`N\ell`$; otherwise that term is absorbed by $`\sqrt{N\ell}`$.
-In particular, the diagonal problem has an $`O(N)`$
-construction at $`\ell=N`$ with a sufficiently large linear dirty bank.
+At the complete-frame budget $`b=N+n+7`$, taking $`q=N+6`$ gives
+per-diagonal error at most $`5\sqrt2\,2^{-2N-11}`$. Thus any fixed
+number of diagonal factors can share this workspace with room for a
+certified factor search; the precise conditional statement is proved in
+[bounded diagonal factorization](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md).
 
 There is also an immediate, explicitly scoped complex extension.
 For independently supplied real Hopf angles and diagonal phases, consider
@@ -758,8 +871,8 @@ U=D_\phi W_{\mathbb R}.
 
 Compile $`W_{\mathbb R}`$ and then $`D_\phi`$, each to error at most
 $`\eta/2`$. With $`L`$ as in the theorem, use $`L'=L+1`$.
-The real-frame reservation is $`L+n+8`$ and dominates the diagonal
-reservation $`L+n+6`$. Both circuits reuse the same two clean flags
+The real-frame reservation is $`L+n+8`$ and dominates the packed diagonal
+reservation $`n+1+\lceil(L+5)/2\rceil`$. Both circuits reuse the same two clean flags
 and the same dirty pool. A unitary hybrid gives total complete-isometry
 error at most $`\eta`$, including any work leakage from the first
 circuit.
@@ -865,8 +978,10 @@ selectors and no suffix-control qubit. For a z rotation, conjugate this
 entire circuit on its target by the fixed Clifford
 $`K=HS^\dagger`$, which obeys $`KYK^\dagger=Z`$.
 For the scalar factor $`e^{i\alpha_x}`$, use the literal diagonal
-construction on the address, leaving the target untouched. Its S phase
-on the sine branch retains the desired literal phase.
+block (37) with the original source (8), leaving the target untouched.
+Its S phase on the sine branch retains the desired literal phase. This
+four-factor proof uses the original m-qubit core throughout; it does not
+require the packed reservation of (38).
 
 In all four factors take the same core size
 
@@ -950,6 +1065,12 @@ literal block phases and four-factor composition at exact and coarse
 precision. These checks support the signs and normalization;
 the dimension-independent identities and resource proof above establish
 the asymptotic statement.
+
+The [packed-diagonal tests](../tests/test_packed_diagonal.py) check the
+paired one-tail source and every sign mask for $`q=1,2,3`$ in exact
+$`\mathbb Q(\sqrt2,i)`$ arithmetic. They retain native scalar phases,
+unequal cosine/sine tables, actual adjoints, and the amplified accepted
+block and full-isometry error identity.
 
 The construction combines established Clifford-loader algebra, exact
 dirty XOR lookup, a fixed native geometric specialization, and a

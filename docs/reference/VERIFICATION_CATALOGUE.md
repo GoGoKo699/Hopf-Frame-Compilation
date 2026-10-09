@@ -69,7 +69,7 @@ general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The prescribed complete-frame
 endpoint and general T-depth frontier remain
-[active research questions](../OPEN_PROBLEM.md#what-would-justify-reopening);
+[active research questions](../OPEN_PROBLEM.md#full-circuit-requirement);
 count and depth now match in explicit accuracy/workspace ranges by the
 [uniform-precision construction](../UNIFORM_PRECISION_DEPTH.md). The existing
 state-based result does not require the remaining questions' resolution.
@@ -97,6 +97,22 @@ theorem's asymptotic accuracy. Separate fixtures verify general U(2)
 multiplexor Euler order, address-dependent phases, and four-stage composition,
 as well as the optimal exact source words and Pauli-transfer witnesses.
 
+The [packed diagonal tests](../../tests/test_packed_diagonal.py) reuse the
+retained exact arithmetic and native gate evaluator. They check the one-tail
+paired-Majorana source on one to three dirty core qubits, every small sign
+mask, literal scalar and complex blocks, and the full-output amplification
+identity. These checks accompany the reduced dirty reservation in
+[operator-source Section 8](../OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames).
+The bounded-factor consequence and terminating classical search have their
+analytic proof in [the factorization reduction](../../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md).
+
+The [tree phase/chart tests](../../tests/test_tree_phase_chart.py) use exact
+rational-complex matrices for the all-angle phase gauge, polynomial
+resolvent, singular inputs, coarse-permutation conjugacy, stable cotangent
+chart, subtree flow sums, and Haar diagonal-difference identity. They
+support the [fixed-tree reduction](../../research/endpoint/TREE_CAYLEY_REDUCTION.md),
+not a native implementation of its remaining Cayley operator.
+
 The [source-reuse limits](../../research/endpoint/SOURCE_REUSE_LIMITS.md) have
 [separate finite checks](../../tests/test_source_reuse_limits.py) for nilpotent
 contractions, arbitrary encoding bases, dirty-dimension independence, and
@@ -112,6 +128,12 @@ They use small complete matrices and independent formulas, including
 unequal and singular angles. The proofs establish the all-dimension
 claims; these numerical checks are not a general compiler, a proof of the
 fixed-mixer theorem, or an unrestricted endpoint impossibility result.
+
+The [representation-interface tests](../../tests/test_endpoint_representation_limits.py)
+add exact integer block-polynomial witnesses and binary tree-label rank,
+plus finite floating checks of sharp entry mass, full-dirty Spin covariance,
+overlap and reflection distance. The Walsh baseline classification is
+analytic; fitting a finite collection of masks is not used as its evidence.
 
 The [conditional-suffix proof](../CONDITIONAL_SUFFIX_COMPILER.md) has
 [focused grouped-block checks](../../tests/test_conditional_suffix_compiler.py).

@@ -110,6 +110,12 @@ also records supporting corollaries, separate state-based QBP theorems, and
 research constructions. Their individual hypotheses are not suppressed by
 these four headline claims.
 
+R17 includes the packed two-clean diagonal reservation. The endpoint
+[bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+and [regular tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
+are R52–R53. Their factor-coverage and Cayley-synthesis hypotheses distinguish
+these constructive reductions from the complete-frame upper bounds.
+
 ## 5. Fault-tolerant sources and contribution boundaries
 
 | Premise | Primary locator | Imported role and local specialization |
