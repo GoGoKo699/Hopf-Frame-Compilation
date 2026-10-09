@@ -140,8 +140,13 @@ width, and exact feedback cancellation to one prefix encoder. The
 [coarse prefix encoder](../research/endpoint/COARSE_PREFIX_ENCODER.md)
 compiles the entire correlated basis jointly and proves a full-output
 small-conjugation error bound. The
+[collective refinement](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+combines geometric histories and midpoint purification into a cubic
+replacement, with the actual baseline, all inverse calls, and peak width
+charged. The
 [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-exclude bounded-length Haar-mask words in arbitrary order. Linear-T fine
+cover Haar words, a quantitative three-mask flat-Clifford obstruction,
+and single-bank transport rigidity. Linear-T fine
 correlated synthesis and coverage by other mixer families remain separate hypotheses
 from Results A–D.
 

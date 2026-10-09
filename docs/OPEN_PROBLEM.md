@@ -99,8 +99,30 @@ $`(43/64)2^{-s}`$ and its dirty reservation is $`s+n+9\le N+n+7`$.
 Conjugation around a middle gate within $`\kappa`$ of identity on the full space suppresses encoder
 error to $`2\kappa\delta`$; the middle gate's native error is added
 separately. A complete fine-precision correction with summed O(N) T-count
-is still required. The non-small chain reversal does not itself receive
-this error suppression.
+is the remaining resource question. The non-small chain reversal does not
+itself receive this error suppression.
+
+The [collective refinement theorem](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+constructs a replacement for the terminal regular-core frame with
+
+```math
+\epsilon\le40\,2^{-3s}+2^{-L},\qquad
+T=O(N+3ns+n^4)+O(N+L),
+```
+
+for $`n\ge16`$, $`s=\lceil N/n\rceil`$, and $`3s\le L\le N`$,
+within $`b=N+n+7`$. Exact geometric histories and midpoint conjugation
+collect the local defects into one bank; opposite-sign purification
+cancels its quadratic phase. A native baseline replacement accounts for
+the original dirty disturbance. The complete initialized-output norm
+includes literal phase, leakage, and dirty/reference return.
+
+This fixed-order construction costs O(N), as does directly increasing
+coarse precision by a fixed factor. It does not change the endpoint bounds.
+Higher-order defects need not retain the rounded-coin form, and an
+independent N-row program per quadratic stage would cost O(N log n).
+The unresolved implication is a closed physical correction or another
+global representation whose total source and table charges are O(N).
 
 The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
 and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)

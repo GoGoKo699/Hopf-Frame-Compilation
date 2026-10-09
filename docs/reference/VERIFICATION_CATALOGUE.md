@@ -139,8 +139,25 @@ The [coarse prefix tests](../../tests/test_coarse_prefix_encoder.py) check
 the complete depth-frame/Wold encoder, delimiter permutation, and
 full-operator small-conjugation bound, together with exact resource
 ledgers. The [encoder theorem](../../research/endpoint/COARSE_PREFIX_ENCODER.md)
-establishes the arbitrary-size native construction at coarse precision;
-these fixtures do not implement a fine endpoint correction.
+establishes the arbitrary-size native construction at coarse precision.
+
+The [collective refinement tests](../../tests/test_collective_precision.py)
+check the exact routed geometric history on occupied as well as initialized
+inputs, all-column tangent and midpoint comparisons, generic two-flag
+purification, opposite-sign cancellation with dirty work, and the same
+circuit's precision/width ledger. Their
+[analytic proof](../../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+gives the quadratic and cubic native replacements. Reduced operators test
+the correction identities; elementary source and borrowed-control synthesis
+are imported from their separately checked contracts. No full variable-size
+refinement emitter is asserted.
+
+The [endpoint interface tests](../../tests/test_endpoint_refinement_routes.py)
+check dense three-point and unequal gauge witnesses, native dirty Klein
+dressing and unequal-address higher-grade terms, and exact correlated
+resolvent and history-capacity identities. These support the representation
+restrictions in the structural, source-reuse, and residual-assembly chapters;
+finite checks do not establish unrestricted circuit lower bounds.
 
 The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
 $`\mathbb Q(\sqrt2)`$ to verify common signed-path witnesses and
