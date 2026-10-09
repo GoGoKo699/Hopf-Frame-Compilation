@@ -1520,6 +1520,11 @@ Consider a coherent word making k calls to the ideal
 $`\mathscr S(\theta)`$, its adjoint, or their controlled versions,
 interleaved with arbitrary parameter-independent unitaries. Fixed dense
 basis changes and additional initialized or dirty work are allowed.
+The [original-angle query theorem](STRUCTURAL_COMPILATION_LIMITS.md#5-original-angle-parallel-coins-need-at-least-n-queries)
+proves that $`k\lt n`$ has worst-case literal error at least one on
+signed angle tuples, by restricting a path to Boolean parity. Here the
+remaining question is the narrower canonical interval $`[0,\pi/2]`$.
+
 Set all angles on the all-right path $`v=1,3,\ldots,N-1`$ to
 one variable theta and every other angle to zero. The target entry is
 
@@ -1530,17 +1535,14 @@ one variable theta and every other angle to zero. The target entry is
 Each oracle entry has Laurent degree at most one in
 $`z=e^{i\theta}`$. Therefore any selected complete output amplitude
 $`p_k(\theta)`$ has Laurent degree at most k. For $`k\lt n`$, it
-cannot equal the target on any open angle interval. Uniformly over a
-full period, its error is at least $`2^{-n}`$, the magnitude of the
-missing frequency-n coefficient.
+cannot equal the target on any open angle interval.
 
 This is the elementary degree-growth argument underlying the
 [quantum query polynomial method](https://homepages.cwi.nl/~rdewolf/publ/qc/polynomials.pdf),
 Lemma 4.1, applied here to Laurent entries rather than Boolean variables.
 The local content is the Hopf path amplitude and the specified coin model.
 
-The conclusion also holds at sufficiently fine accuracy on the canonical
-interval $`[0,\pi/2]`$. Put $`d=2n`$. The polynomial
+To quantify the error on the canonical interval, put $`d=2n`$. The polynomial
 
 ```math
 P(z)=z^n\bigl(\sin^n\theta-p_k(\theta)\bigr)

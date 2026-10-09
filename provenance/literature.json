@@ -350,22 +350,50 @@
       "id": "yamazaki_akibue_controlled_precision",
       "authors": [
         "Soichiro Yamazaki",
-        "Seiseki Akibue"
+        "Seiseki Akibue",
+        "Kaoru Sano"
       ],
-      "title": "Multi-qubit controlled gate with optimal T-count",
-      "checked_eprint": "arXiv:2603.14202v1",
+      "title": "Multi-qubit controlled gate synthesis without T-count overhead in the small-error limit",
+      "checked_eprint": "arXiv:2603.14202v3",
+      "checked_date": "2026-10-09",
       "year": 2026,
-      "url": "https://arxiv.org/html/2603.14202v1",
+      "url": "https://arxiv.org/html/2603.14202v3",
       "locators": [
         "Theorem 1",
-        "Section 3",
-        "Theorem 4"
+        "Equations (21)-(24)",
+        "Equation (27)",
+        "Section 3.1"
       ],
       "roles": [
-        "leading precision constants for complete multiplexed SU(2) synthesis",
-        "explicit precision-length clean program with dirty lookup"
+        "deterministic multiplexed SU(2) bound m+O(sqrt(N(m+1)))",
+        "probabilistic leading precision coefficient at fixed control width"
       ],
-      "boundary": "The displayed dirty-assisted circuit uses 3L+O(n)+o(L) clean qubits under a typical-target guarantee. Its ancilla-free alternative has order NL+Nn cost. The comparison uses channel distance and does not imply a literal-phase two-clean compiler for every target."
+      "boundary": "Equation (27) aligns determinant-one block lifts and relative signs. Exactly restored O(m+n+1) clean ancillas include m+K+O(1) instruction bits and miss the endpoint workspace budget. The matching coefficient-three lower bound assumes independent Haar blocks and fixed n."
+    },
+    {
+      "id": "zhang_tan_kothari_gosset_gidney_constant_overhead",
+      "authors": [
+        "Chenyi Zhang",
+        "Xinyu Tan",
+        "Robin Kothari",
+        "David Gosset",
+        "Craig Gidney"
+      ],
+      "title": "Quantum circuit compilation with constant overhead",
+      "checked_eprint": "arXiv:2609.39092v1",
+      "checked_date": "2026-10-09",
+      "year": 2026,
+      "url": "https://arxiv.org/html/2609.39092v1",
+      "locators": [
+        "Theorems 1-3",
+        "Section 5, Theorem 10 and Equation (65)",
+        "Appendix B, Proposition 16"
+      ],
+      "roles": [
+        "adaptive constant-overhead compilation at inverse-polynomial error",
+        "unitary linear-cost phase-gradient state preparation"
+      ],
+      "boundary": "Theorem 3 uses O(m) initialized work, including a 128m-qubit tuple register. Phase-halving requires its specified prepared catalyst. Dirty-substitution checks reside in research/endpoint/SOURCE_REUSE_LIMITS.md; no constant-clean compiler is imported."
     },
     {
       "id": "yuan_zhang_zi_general_unitary",
@@ -471,7 +499,7 @@
   ],
   "fault_tolerant_claim_policy": {
     "audit_date": "2026-09-22",
-    "audit_scope": "Primary-source comparison through 2026-09-22, including current generic-unitary and controlled-gate bounds, dirty-QROM refinements, and block-product compression; bounded technical comparison, not certification of priority",
+    "audit_scope": "Primary-source baseline comparison checked 2026-09-22, with targeted controlled-gate and phase-gradient updates checked 2026-10-09 as dated in the entries; bounded technical comparison, not certification of priority",
     "model": "Coherent Clifford+T compilation with a literal-phase complete initialized-isometry error bound over arbitrary logical, dirty and reference inputs. The sufficient-clean frame compiler returns dirty work exactly; the two-clean operator-source compiler includes approximate dirty-core return in the norm and returns lookup work exactly. Budgets, precision and Clifford cost are separate.",
     "do_not_claim": [
       "invention of optimal unrestricted state preparation or diagonal synthesis",

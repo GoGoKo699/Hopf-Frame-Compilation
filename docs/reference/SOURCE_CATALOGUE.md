@@ -16,7 +16,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F41 and R12–R51: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
+| F1–F42 and R12–R51: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -138,7 +138,7 @@ from the exact clean-workspace size–depth theorem.
 | F9 | [Kerenidis–Prakash, arXiv:2202.00054v2](https://arxiv.org/html/2202.00054v2), Definitions 4.4/4.6 and Theorem 4.9; [Chee et al., arXiv:2301.07477](https://arxiv.org/pdf/2301.07477), Appendix C; [Bravyi, arXiv:quant-ph/0404180](https://arxiv.org/pdf/quant-ph/0404180), Section II, Eqs. (2)–(5) | full-space Clifford loaders, scalar/antisymmetric product decomposition, and paired-Majorana rotations | the Pauli representation and overlap algebra predate this work; the operator-source notes supply native geometric specializations and dirty-programmed block words; paired Majoranas and their anticommutation are standard representations |
 | F10 | [Low–Wiebe, arXiv:1805.00675v2](https://arxiv.org/html/1805.00675v2), Lemma 13; [Fang–Lin–Tong, arXiv:2208.06941v2](https://arxiv.org/html/2208.06941v2), Section 2.4, Lemma 3 and Appendix D | coherent product compression with logarithmic failure-history work | failure tracking is inherited; residual factorization, shared-source reuse and the charged frame schedule are the local specialization |
 | F11 | [Berry–Childs–Cleve–Kothari–Somma, arXiv:1412.4687](https://arxiv.org/pdf/1412.4687), Eqs. (7)–(15) | prepared linear combinations of selected unitary blocks, normalization-two oblivious amplification, and its cubic accepted block | LCU and amplification are inherited; the local proofs explicitly price the selected branches and bound the complete initialized isometry, including rejected work retained coherently |
-| F12 | [Yamazaki–Akibue, arXiv:2603.14202v1](https://arxiv.org/html/2603.14202v1), Theorem 1, Section 3 and Theorem 4 | leading precision constants for complete controlled SU(2) synthesis | the dirty-assisted construction retains a precision-length clean instruction register; the ancilla-free construction has different scaling and a typical-target guarantee |
+| F12 | [Yamazaki–Akibue–Sano, arXiv:2603.14202v3](https://arxiv.org/html/2603.14202v3), Theorem 1, Eqs. (21)–(24), (27), Section 3.1 | deterministic complete controlled SU(2) synthesis and probabilistic precision constants | precision-length clean instructions remain; the matching coefficient-three lower bound holds for fixed control width and independent Haar blocks |
 | F13 | [Yuan–Zhang–Zi, arXiv:2608.17846v2](https://arxiv.org/html/2608.17846v2), Theorem I.1 and Definition II.1; [Fang–Heunen–Wang, arXiv:2607.12907v1](https://arxiv.org/html/2607.12907v1), Theorem 1.2 and Corollaries 3.8–3.9 | current generic-unitary and near-Clifford comparisons; the [endpoint substitution](../../research/ROUTE_HISTORY.md#selection-audit-after-canonical-completion) keeps precision factors explicit | different target families and clean allocations; the initialized-isometry contract already appears in general-unitary synthesis |
 | F14 | [Vasconcelos–Gilyén, arXiv:2507.07900v2](https://arxiv.org/html/2507.07900v2), Sections 2–3 and Appendix B | block-work uncomputation, exact-history lower bounds and approximate product compression | original clean work is still needed during a query; the lower bound is for the defined coherent-measurement class, and approximate compression needs near-identity dilations |
 | F15 | [Ma–Joven–Liu, arXiv:2609.11153v1](https://arxiv.org/html/2609.11153v1), Theorem 3.1 | clean ancilla compression for block-encoding counting bounds | at most $`n+2T`$ clean ancillas, with possible normalization change; no two-clean unitary conclusion |
@@ -169,6 +169,7 @@ from the exact clean-workspace size–depth theorem.
 | F39 | [Parham, arXiv:2504.19966v1](https://arxiv.org/html/2504.19966v1), Proposition 1.8, Theorems 1.14–1.15 and Section 6 | magic-hierarchy and classical-complexity comparisons | comparison only: the state/Boolean reductions do not establish a blanket barrier for prescribed-unitary lower bounds; no compiler premise or growing frame-depth lower bound is imported |
 | F40 | [Al-Ghattas–Gamarnik–Kiani, arXiv:2610.02166v1](https://arxiv.org/html/2610.02166v1), Corollary 1.7, Lemma 4.4 and Proposition 4.5 | state-complexity comparisons with unrestricted Clifford blocks | comparison only: the multiple-round theorem requires linear total width; arbitrary-width extensions concern specific one-round classes and do not supply a growing bound at $`b\asymp\sqrt N`$ |
 | F41 | [Nielsen–Chuang, arXiv:quant-ph/9703032v1](https://arxiv.org/pdf/quant-ph/9703032), pp. 1–2, Eq. (3), Result and Eqs. (6)–(10) | exact programmable-unitary orthogonality | attribution for R49's local cache-capacity boundary; no native depth lower bound |
+| F42 | [Zhang–Tan–Kothari–Gosset–Gidney, arXiv:2609.39092v1](https://arxiv.org/html/2609.39092v1), Theorems 1–3, Section 5 and Appendix B, Proposition 16 | adaptive constant-overhead compilation at inverse-polynomial error and unitary linear-cost phase-gradient preparation | Theorem 3 is measurement-free but uses precision-sized initialized work; the [source-reuse audit](../../research/endpoint/SOURCE_REUSE_LIMITS.md#9-dirty-programs-and-phase-gradient-sources) checks dirty substitutions and catalyst return without importing a two-clean compiler |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -441,7 +442,7 @@ The source audit supports these precise dependencies and comparisons. It does
 not certify priority or infer novelty from a bounded search finding no match.
 The current general-unitary benchmark includes Yuan–Zhang–Zi rather than
 treating Tan as the newest result. The literal-diagonal theorem and its one-clean refinement
-are separately compared with GKW and Yamazaki–Akibue in
+are separately compared with GKW and Yamazaki–Akibue–Sano in
 [related work, Section 12](#12-contemporary-comparisons-and-the-broader-compiler-contribution).
 
 ## Extended lineage for the core and its supporting constructions
@@ -925,8 +926,9 @@ they do not certify priority.
 ## 12. Contemporary comparisons and the broader compiler contribution
 
 The following comparisons were checked against primary sources on
-**22 September 2026**. Their precision, initialization, and error contracts
-matter as much as their T-count exponents.
+**22 September 2026**, with the F12 comparison updated to v3 on
+**9 October 2026**. Precision, initialization, and error contracts
+matter as much as T-count exponents.
 
 **General unitary synthesis.** Tan is no longer the newest generic upper
 bound. [Yuan–Zhang–Zi, arXiv:2608.17846v2, Theorem I.1 and Definition II.1](https://arxiv.org/html/2608.17846v2)
@@ -950,15 +952,18 @@ their detailed conclusion is in diamond distance. It supplies neither a
 two-clean guarantee nor the prescribed frame's worst-case frontier.
 
 **The closest precision and workspace comparison.**
-[Yamazaki–Akibue, arXiv:2603.14202v1, Theorem 1 and Section 3](https://arxiv.org/html/2603.14202v1)
-sharpen the leading precision coefficient for complete multiplexed SU(2)
-gates to $`3L+O(\sqrt{NL})+o(L)`$ for most targets. Their displayed
-construction explicitly reserves $`3L+O(n)+o(L)`$ clean ancillas; its
-remaining ancillas can be dirty. Theorem 4 removes ancillas with a cost
-of order $`NL+Nn`$, under its stated typical-target guarantee. These are
-channel-distance results with additional restrictions in the matching
-leading-constant lower bound. They do not establish a literal-phase,
-constant-clean implementation for every supplied table.
+[Yamazaki–Akibue–Sano, arXiv:2603.14202v3, Theorem 1 and Section 3.1](https://arxiv.org/html/2603.14202v3)
+give the deterministic bound $`m+O(\sqrt{N(m+1)})`$ for every supplied
+SU(2) block table at diamond distance $`\varepsilon`$. Here m is the
+largest minimum even T count of an ancilla-free block approximation.
+The circuit uses $`O(m+n+1)`$ clean and $`O(\sqrt{N(m+1)})`$ dirty
+ancillas, exactly restored; its clean instruction word has
+$`m+K+O(1)`$ bits with $`K\le\min\{N,m/2+1\}`$.
+The leading precision coefficient three and its matching lower bound
+are probabilistic statements for independent Haar blocks, with the
+matching limit taken at fixed n. Equation (27) aligns determinant-one
+block lifts and their relative signs. The decisive endpoint mismatch is
+the $`O(m+n+1)`$ clean-work allocation.
 
 GKW's diagonal proof likewise computes a precision-length instruction word
 into an initialized register, then applies that word and uncomputes it. LKS
@@ -998,7 +1003,7 @@ all return error included. The [one-clean corollary](../ONE_CLEAN_COMPILER.md#7-
 uses the retained certified matrix-entry procedure through finite approximate
 Euler search,
 so no nonsingular-chart or exact-zero promise is introduced. This directly
-addresses the complete multiplexor task in the GKW and Yamazaki–Akibue
+addresses the complete multiplexor task in the GKW and Yamazaki–Akibue–Sano
 comparisons, while supplying the one-clean guarantee. It does not
 improve their leading constants, and its general classical coordinate search
 is not claimed efficient. It also does not combine all Hopf tree depths into

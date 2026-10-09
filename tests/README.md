@@ -42,6 +42,7 @@ theorem by numerical extrapolation.
 | [`test_native_residual_qbp.py`](test_native_residual_qbp.py) | Certified complex residual fixture, complete native magnitude/phase streams on coherent dirty inputs, no-postselection score means, exact histogram decoders, and full coarse/observable gate ledger |
 | [`test_operator_source_compiler.py`](test_operator_source_compiler.py) | Native two-clean frame composition, optimal source words and witnesses, dirty echoes/banks, and literal U(2) multiplexor phases |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, assumption counterexamples, and transformed-mask operator identities |
+| [`test_endpoint_structural_limits.py`](test_endpoint_structural_limits.py) | Full-frame tangent metric, sharp absolute-value norms, coarse-residual witnesses, native control phases, original-angle query parity, and dirty-source counterexamples; bounded evidence for the scoped analytic proofs |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_t_depth.py`](test_t_depth.py) | Literal shared-control Fredkin batches, four disjoint T layers, and native dirty-bank queries with exact return |
 | [`test_source_t_depth.py`](test_source_t_depth.py) | Exact geometric and paired-source depth certificates within the Majorana-layer architecture, paired native T layers, literal phases, and denominator witnesses |

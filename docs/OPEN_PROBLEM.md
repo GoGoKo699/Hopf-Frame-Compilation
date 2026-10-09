@@ -2,14 +2,6 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research archive](../research/README.md)
 
-## Current decision
-
-Results A–D and their retained corollaries pass the
-[bounded internal claim-to-proof audit](CORE_CLAIM_AUDIT.md). The selected
-scientific scope is frozen. This is an internal readiness decision, not
-external peer review or formal proof certification. Manuscript writing
-remains on hold.
-
 Two resource questions remain open. They are distinct from the proved
 claims and are not prerequisites for the selected paper. The
 [research archive](../research/README.md#what-we-tried) records what was
@@ -36,8 +28,10 @@ the current worst-case real-frame bounds are
 ```
 
 The upper bound follows from the [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit),
-which may leave the second available flag unused. The lower bound is
-inherited from [the full-frame counting argument](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage).
+which may leave the second available flag unused. The
+[lower-bound chapter](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+also gives the explicit bound $`T\ge N-\log_2 24`$ for a root-only
+rotation with Pauli-Z expectation $`1/3`$, at arbitrary workspace width.
 The sufficient-clean optimum in Result B uses a growing clean reservation
 and therefore does not close this endpoint. Result D requires
 $`b\ge17(L+n+7)`$ and does not apply at this literal width either.
@@ -52,6 +46,14 @@ The [endpoint studies](../research/README.md#constant-clean-high-precision-count
 retain source reuse, tree transport, weighted blocks, residual assembly,
 and canonical scalar attempts. Antichain and sparse updates are proved
 restricted successes. They do not supply the promise for generic frames.
+The [structural compilation limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+give a sharp entrywise-loading normalization bound, including arbitrarily
+small residuals around an exact native coarse frame, and fixed-mixer and
+original-angle query obstructions. The
+[source-interface analysis](../research/endpoint/SOURCE_REUSE_LIMITS.md)
+separates clean tuple averages and promised catalysts from arbitrary dirty
+work. None of these method-specific results strengthens the unrestricted
+lower bound beyond linear order.
 
 ## Large-width T-depth
 

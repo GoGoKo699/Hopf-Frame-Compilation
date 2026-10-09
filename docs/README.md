@@ -7,12 +7,6 @@ sufficient-clean matching T-count, one-clean compilation, and simultaneous
 T-count/T-depth tradeoffs for complete real frames. Start with the landing
 page and `REVIEW.md`, then follow the relevant claim below.
 
-The [core-claim audit](CORE_CLAIM_AUDIT.md) records the completed bounded
-internal review. It found no unresolved claim-level blocker; this is not
-independent peer review or formal proof certification. The
-[research decision](../WORKSPACE.md#research-decision-and-stopping-rules)
-freezes the selected scientific scope and states when further work may reopen.
-
 ## Proof chapters
 
 ### Shared target and error contract
@@ -24,7 +18,7 @@ and their references, literal phases, and clean-work leakage.
 
 | Read | Purpose |
 |---|---|
-| [Hopf interface](HOPF_INTERFACE.md) | Coordinates, marker columns, singular charts, and addressed layers |
+| [Hopf interface](HOPF_INTERFACE.md) | Coordinates, marker columns, singular charts, addressed layers, and the full-frame tangent metric |
 | [Frame-safe compilation](FRAME_SAFE_COMPILATION.md) | Complete-input error, actual adjoints, fixed-decoder necessity, and singular exceptions |
 | [Compiler boundaries](COMPILER_BOUNDARIES.md) | Concrete distinctions between state preparation, checkpoints, and prescribed complete frames |
 
@@ -48,8 +42,9 @@ reservation. Real and phase-dressed complex magnitude families have their
 stated extensions. Follow the complete source, residual dictionaries,
 compressed failure history, amplification, and resource ledger.
 
-Section 10 gives the real-frame reduction to diagonal synthesis and the
-fixed-width counting argument. These lower bounds also support C and D;
+Section 10 gives the real-frame reduction to diagonal synthesis, the
+fixed-width counting argument, and an explicit single-angle precision
+witness valid at arbitrary width. These lower bounds also support C and D;
 they are not obtained by adding costs of particular source calls.
 
 ### C. One-clean compilation and its corollaries
@@ -142,7 +137,7 @@ reopening conditions.
 
 | Read | Purpose |
 |---|---|
-| [Core-claim audit](CORE_CLAIM_AUDIT.md) | Claim-to-proof decisions, checked source interfaces, correction, and scope-freezing boundary |
+| [Core-claim audit](CORE_CLAIM_AUDIT.md) | Recorded internal claim-to-proof review and its evidence limits |
 | [Verification](VERIFICATION.md) | Analytic proofs, exact certificates, native finite checks, and missing general-emitter coverage |
 | [Fault-tolerant receipts](../verification/fault_tolerant/README.md) | Four standalone exact source/kernel/resource checks |
 | [Source map](SOURCE_MAP.md) | Imported premises, inherited interfaces, and local constructions |

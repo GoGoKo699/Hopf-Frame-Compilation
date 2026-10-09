@@ -104,6 +104,15 @@ transformed-mask operator identities. Counterexamples test why nilpotence
 and complete-output accuracy cannot be omitted. These support the scoped
 analytic restrictions; they do not establish a full-frame impossibility.
 
+The [structural endpoint checks](../../tests/test_endpoint_structural_limits.py)
+test the [full-frame metric](../HOPF_INTERFACE.md#41-complete-frame-parameter-geometry),
+[normalization and residual witnesses](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md),
+native control phases, query parity, and source-return counterexamples.
+They use small complete matrices and independent formulas, including
+unequal and singular angles. The proofs establish the all-dimension
+claims; these numerical checks are not a general compiler, a proof of the
+fixed-mixer theorem, or an unrestricted endpoint impossibility result.
+
 The [conditional-suffix proof](../CONDITIONAL_SUFFIX_COMPILER.md) has
 [focused grouped-block checks](../../tests/test_conditional_suffix_compiler.py).
 They combine a native small operator source with separate scalar and

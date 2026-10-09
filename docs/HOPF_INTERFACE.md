@@ -272,6 +272,73 @@ structural feature exploited by all three compiler schedules.
 > preparation path.  Every proposed compiler must preserve its identity action
 > on all nonzero-suffix sectors.
 
+### 4.1 Complete-frame parameter geometry
+
+The state metric $`g_{j,j}=a_j^2`$ can vanish, but the complete operator
+retains every angle as an independent local coordinate. With the
+unnormalized Frobenius inner product, its parameter metric is exactly
+
+```math
+\boxed{
+\mathrm{Tr}\!\left[
+\left(\partial_{\theta_j}W_{\mathbb R}\right)^T
+\partial_{\theta_k}W_{\mathbb R}
+\right]=2\delta_{j,k}.
+}
+```
+
+This identity holds for every real angle tuple, including every singular
+state chart. Moreover, $`\boldsymbol\theta\mapsto W_{\mathbb R}`$ is
+injective modulo the individual $`2\pi`$ angle periods.
+
+**Proof of the metric identity.** Order the individual rotations breadth
+first, as in the marker convention. For node $`j=2^d+r`$, write
+
+```math
+\mu_j=(2r)2^{n-d-1},\qquad b_j=\lambda(j),\qquad
+K_j=|b_j\rangle\langle\mu_j|-|\mu_j\rangle\langle b_j|,
+```
+
+```math
+R_j=e^{\theta_jK_j},\qquad
+V_j=R_j\cdots R_1,\qquad V_0=I.
+```
+
+The marker $`b_j`$ has not been touched by any earlier rotation. The other
+endpoint $`\mu_j`$ is zero or an earlier marker. Thus $`V_{j-1}`$
+preserves the span of zero and the earlier markers, fixes $`|b_j\rangle`$,
+and sends $`|\mu_j\rangle`$ under its transpose to a unit vector
+$`|u_j\rangle=V_{j-1}^T|\mu_j\rangle`$ in that earlier span. Cancelling
+the later rotations in the derivative gives
+
+```math
+A_j:=W_{\mathbb R}^T\partial_{\theta_j}W_{\mathbb R}
+=V_{j-1}^TK_jV_{j-1}
+=|b_j\rangle\langle u_j|-|u_j\rangle\langle b_j|.
+```
+
+Every nonzero entry of $`A_j`$ has one index equal to the fresh marker
+$`b_j`$. For $`k\lt j`$, the support of $`A_k`$ lies entirely in the earlier
+span. Hence $`\mathrm{Tr}(A_j^TA_k)=0`$ for distinct indices,
+while $`\|A_j\|_F^2=2`$. Left multiplication by the orthogonal matrix
+$`W_{\mathbb R}`$ preserves these inner products, proving the formula.
+
+**Proof of injectivity.** A final-depth marker column is
+
+```math
+W_{\mathbb R}|b_j\rangle
+=-\sin\theta_j|\mu_j\rangle+\cos\theta_j|b_j\rangle
+\qquad(d=n-1).
+```
+
+Earlier layers fix this input basis vector, and the final-depth rotations
+act on disjoint pairs. These columns therefore determine all final-depth
+sines and cosines, hence their angles modulo $`2\pi`$. Remove that
+determined layer by left multiplication by its transpose. The same
+argument recovers the preceding layer, and induction recovers the whole
+tuple. This is a uniqueness proof; the compiler need not extract angles
+or decide whether an incoming amplitude vanishes. ∎
+
 ## 5. Two-qubit orientation
 
 For two qubits, the three magnitude angles give

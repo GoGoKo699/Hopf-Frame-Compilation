@@ -8,10 +8,6 @@ for Results A–D. Some contain proved special cases or useful components;
 others identify why a specific proposal fails. Their status is stated below.
 An obstruction to one interface is not a lower bound for every compiler.
 
-The scientific scope is frozen after the
-[bounded internal audit](../docs/CORE_CLAIM_AUDIT.md). Nothing in an archived
-“next task” paragraph automatically reopens research. The
-[current gap statement](../docs/OPEN_PROBLEM.md) gives the live conditions.
 The separately completed [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 is a different decoder and is not failed endpoint work.
 
@@ -26,6 +22,7 @@ program access do not meet that target.
 
 | Study | What survives | Why the general endpoint remains open |
 |---|---|---|
+| [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Sharp entrywise normalization and native coarse-residual witnesses; exact fixed-mixer and original-angle query obstructions | These apply to specified interfaces, not arbitrary Clifford+T compilers |
 | [Source reuse](endpoint/SOURCE_REUSE_LIMITS.md) | Encoded-source restrictions, exact source-width transitions, and small source-merging identities | Transformed masks, correlations, and rejected sectors still require charged work; a reusable precision state alone supplies no joint compiler |
 | [Tree transport](endpoint/ENDPOINT_TREE_TRANSPORT.md) | Sparse generators, weighted norms, complete transport columns, and native small-mode constructions | Representation size and classical conditioning do not price the joint native operation; unchanged local scattering retains its query limitation |
 | [Weighted transport block](endpoint/WEIGHTED_TRANSPORT_BLOCK.md) | Valid complete dilation with exact/approximate dirty-return variants | The constructed native word retains the repeated precision cost |
@@ -34,10 +31,11 @@ program access do not meet that target.
 | [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | **Proved special case:** linear endpoint count for a literal native-baseline antichain promise | Generic rounded frames need not satisfy that promise |
 | [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | **Proved special case:** linear endpoint count under the stated ancestor-closure condition, including a changed path | This is a restricted update family, not the unrestricted frame family |
 
-The [retained route assessments](ROUTE_HISTORY.md) explain the earlier
-selection decisions and sufficient recurrences. They are historical
-assessments; the current rule is to require a new priced native mechanism
-before another fixture pass.
+The [retained route assessments](ROUTE_HISTORY.md) explain earlier
+selection decisions and sufficient recurrences. The independent
+[single-angle precision lower bound](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+and [full-frame geometry](../docs/HOPF_INTERFACE.md) live in their canonical
+proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
@@ -77,8 +75,3 @@ Code and tests remain in their shared package and test directories, where
 their imports and full validation still work. Each archived proof retains
 its links to that evidence. Moving a note does not downgrade or remove its
 checks, and the archive is not excluded from mathematics or link validation.
-
-No attempt is resumed merely because another finite example can be run.
-Reopen for a concrete qualifying rule, an unrestricted lower-bound idea,
-a discovered defect, or an explicit change of scope. Manuscript writing
-remains on hold.

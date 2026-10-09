@@ -5,9 +5,7 @@
 The selected publication is **one full-length theoretical compiler paper**
 on prescribed Hopf differential frames. This is its canonical claim ledger:
 Results A–D, retained corollaries, and their resource and error contracts.
-The [bounded internal audit](../docs/CORE_CLAIM_AUDIT.md) found no unresolved
-claim-level blocker. The scientific scope is frozen; final manuscript writing
-remains on hold. Neither open resource question below is a prerequisite.
+Neither open resource question below is a prerequisite for these results.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -254,7 +252,4 @@ consistent attribution, scoped finite checks, and passing verification gates.
 The completed internal audit is not external peer review. Practical crossover
 constants and a scalable native emitter remain outside the selected claims.
 
-Final writing assembles this package when requested. A discovered claim defect
-reopens its repair; optional new research follows the
-[stopping rules](../WORKSPACE.md#research-decision-and-stopping-rules).
 Closing either gap or adding further fixtures is not a readiness requirement.

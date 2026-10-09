@@ -33,11 +33,12 @@ The full initialized-isometry contract includes arbitrary logical and dirty/refe
 - [Source map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/SOURCE_MAP.md): Imported premises and local contributions; stable detailed catalogue linked there.
 - [Current gaps](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): Constant-clean high-precision count and large-workspace depth; literal targets and reopening conditions.
 - [Research archive](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/README.md): Gap-closing attempts, proved restricted cases, outcomes, and preserved evidence. Historical next steps are not current instructions.
+- [Structural compilation limits](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md): Sharp entrywise normalization and native residual witnesses, fixed-mixer factorization limits, and original-angle query limits. These do not rule out a general linear-T compiler.
 - [Completed state-based QBP supplement](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/supplements/state_based_qbp/README.md): Different-decoder results with their own proof, cost, and native-evidence map; not a fine complete-frame compiler or an application speedup claim.
 - [Continuing workspace](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md): Mandate, current decision, and verification workflow.
 
 ## Status and attribution
 
-The bounded internal audit of A-D found no unresolved claim-level blocker. The selected scientific scope is frozen; manuscript writing remains on hold. The two open resource gaps are optional research. Internal review and finite tests are not external peer review, formal proof certification, or a general native emitter.
+The high-precision count endpoint remains Omega(N) to O(N ell_*(n)). FAULT_TOLERANT_COMPILER Section 10.3 supplies an explicit root-angle witness T>=N-log2(24), independent of workspace width. HOPF_INTERFACE Section 4.1 proves the complete-frame Frobenius tangent metric is 2I even at singular state coordinates. Source- and query-specific obstructions remain distinct from unrestricted lower bounds. Internal review and finite tests are not external peer review, formal proof certification, or a general native emitter. Maintenance and writing instructions are kept in WORKSPACE.md.
 
 Use the exact consulted commit and CITATION.cff for attribution. The repository is MIT licensed. Collaborations: gogoko699@gmail.com.
