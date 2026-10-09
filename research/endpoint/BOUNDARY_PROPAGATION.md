@@ -7,9 +7,12 @@ even inside the regular parameter chart. A nearest-parent propagation
 operator has an explicitly known singular gap and a native two-signal
 block encoding with $`O(N)`$ T count at the selected endpoint.
 
-The block encoding is a complete unitary with rejected signal amplitudes.
-It does not eliminate feedback or return both signal qubits, and therefore
-does not establish a compiler for the complete Cayley core.
+A complete lossless feedback word reduces the Cayley core to one prefix
+encoder, an entrance diagonal, and fixed permutations. The adjoint encoder
+cancels on the initialized entrance. The surviving encoder has a direct
+$`O(nN)`$-T fine-precision realization and an
+[$`O(N)`$-T coarse realization](COARSE_PREFIX_ENCODER.md); neither improves
+the retained complete-frame endpoint bound.
 
 ## 1. Sparse boundary preconditioning
 
@@ -253,9 +256,9 @@ two signal qubits a,c such that
 \langle0_c0_a|U_A|0_c0_a\rangle=(I-\mathcal B)/2.
 ```
 
-At $`n\ge3`$ and $`\eta=2^{-N}`$, its native approximation uses exactly
+At $`n\ge3`$ and $`\eta=2^{-N}`$, its native approximation fits
 $`N+n+7`$ arbitrary dirty qubits, has $`O(N)`$ T count, and approximates
-the entire unitary within $`(43/64)\eta`$. The rejected signal components
+the entire unitary within $`(43/256)\eta`$. The rejected signal components
 are part of the specified unitary, rather than discarded outputs.
 
 ### The child-pair bank and every dilation port
@@ -345,84 +348,224 @@ $`R_x`$ and $`R_z`$. The actual primitive is identity on each inactive
 predicate sector, including occupied signal and core inputs. The
 initialized-only literal phase primitive is not used.
 
-### Exact endpoint reservation and error
+### Repeated calls within the same width
 
-For each of the two variable banks choose
-
-```math
-q=N+7,\qquad k=n-3.
-```
-
-Fix two of the $`n-1`$ parent address bits as sector literals and process
-their four values sequentially. The three predicate literals are those
-two values and $`c=1`$. The remaining k bits are the free table address.
-At every bank call the complete dirty reservation is
-
-```math
-\underbrace{N+8}_{\text{precision core}}
-+\underbrace{n-3}_{\text{selectors}}
-+\underbrace{1}_{\text{predicate helper}}
-+\underbrace{1}_{\text{borrowed signal}}
-=N+n+7.
-```
-
-The borrowed signal is an arbitrary dirty wire, distinct from a,c. The two
-supplied clean wires are exactly a,c, so total physical width is
-$`N+2n+9`$. The fixed routing and multi-controls run sequentially with the
-banks and reuse their dirty pool.
-
-Sector errors take a maximum because the four sectors are invariant and
-the other sector words are exactly inactive. The two variable banks compose
-with exact routing and literal gates, giving the complete-operator estimate
+The [self-borrowed whole-word query](../../docs/OPERATOR_SOURCE_COMPILER.md#self-borrowed-whole-word-queries)
+needs no external selectors when its m output wires satisfy $`m\ge2k`$.
+Use all $`k=n-1`$ parent bits as the address, and use the occupied
+dilation port a as the real primitive's arbitrary signal. The full-operator
+contract applies even after $`D_S`$ entangles a. The unchanged predicate
+is $`c=1`$, so each source-center X has at most the two controls a,c;
+no external predicate helper is needed. Fixed routing and the controlled
+XZ factor borrow a core wire sequentially and return it exactly before
+the next source call. Thus at source width q, with $`m=q+1`$,
 
 ```math
-\boxed{\|\widehat U_A-U_A\otimes I_b\|
- \lt86\,2^{-(N+7)}=\frac{43}{64}\,2^{-N}\lt\eta.}
+\|\widehat U_A-U_A\otimes I_m\|\lt 86\,2^{-q},\qquad
+T=O(N+q+n^2),\qquad G=O(Nq+q+n^2).
 ```
 
-This estimate applies to arbitrary initial a,c values, arbitrary dirty
-inputs, and their references. A unitary hybrid uses the complete actual
-words; it assumes no reset or intermediate exact return of approximate
-work. The selectors and predicate helpers return exactly, and the core
-and borrowed signal return within the displayed norm.
+This estimate includes every port, dirty input, and reference. The actual
+reversed native word has the same inverse error. False predicate sectors
+are exactly identity on the complete occupied workspace.
 
-There are four sectors in each of two banks. Substitution into the native
-cost bound gives
+For R appearances of the block or its actual inverse, choose
 
 ```math
-T=8O(2^{n-3}+N+16)+O(n^2)=O(N),
+h=\lceil\log_2R\rceil,\qquad q=N+h+9,\qquad m=N+h+10.
 ```
+
+Then $`m\ge2(n-1)`$, and a full-unitary hybrid gives
 
 ```math
-G=8O(2^{n-3}(N+7)+N+16)+O(n^2)=O(N^2).
+\boxed{\|\widehat{\mathcal V}-\mathcal V\|
+ \lt 86R\,2^{-q}\le\frac{43}{256}\eta.}
 ```
 
-All constants are independent of n and the regular parameter table. The
-certified table computations terminate without a uniform classical
-running-time promise.
+With $`\rho`$ additional unchanged control wires, use
 
-## 5. Remaining interface and verification
+```math
+C_g(U_A)=H_c\,C_g(Z_c)\,C_{g,c}(U_B)\,H_c.
+```
 
-The native block above has constant normalization for
-$`(I-\mathcal B)/2`$. It leaves rejected amplitudes in a,c. Recovering the
-physical Cayley unitary still requires a finite native feedback or matrix
-function construction that includes the incidence coupling and returns
-both signals on every logical/dirty input. The exact gap of order
-$`1/n`$ neither supplies this operation nor proves an unrestricted
-compiler lower bound.
+On $`g=0`$ the complete word is exactly identity. A source-center
+multi-control gate may borrow another core bit as an exact returned helper;
+the additional control wires remain disjoint from the core, ports, and node register.
+The simultaneous external dirty allocation fits precisely under the
+sufficient condition
 
-For an elimination using Q successive approximate bank calls, a uniform
-triangle-budget certificate uses per-call precision
-$`N+\lceil\log_2Q\rceil+O(1)`$. The increased precision core and each
-extra call must be priced within the same dirty pool; the single-block
-ledger cannot be silently reused unchanged. A free chain eigenbasis or a
-Schur complement expression also does not satisfy the missing interface.
+```math
+\boxed{q+1+\rho\le N+n+7
+       \quad\Longleftrightarrow\quad h+\rho\le n-3.}
+```
 
-The [boundary matrix helpers](../../compiler_robust_hopf/tree_boundary.py)
-and [boundary tests](../../tests/test_tree_boundary.py) verify complete
-logical matrices against an independently ordered edge product, unequal
-and zero parameters, the triangular and nearest-parent identities, root
-chain compression, the all-table gap, all dilation ports and dummy modes,
-the literal local factorization, and the exact endpoint reservation.
-These finite diagnostics supplement the arbitrary-n proofs; they are not
-a native emitter for feedback elimination.
+These are arbitrary occupied control wires, not supplied clean flags.
+Controlled fixed routing costs
+$`O(n(\rho+1)^2+(n+\rho)^2)`$ T, which is $`O(N)`$ in this range.
+Consequently the direct certificate remains $`O(RN)`$ T and
+$`O(RN^2)`$ Clifford. Intervening gates and errors are charged separately.
+For $`\rho=0`$, every $`R\le N/8`$ fits; every fixed polynomial in n
+therefore fits for sufficiently large n. Exceptional sizes need their own
+construction. Saving query selectors removes a width obstruction, not the
+repeated precision-source cost or the rejected amplitudes in a,c.
+
+## 5. Complete feedback and the surviving prefix encoder
+
+Extend the heap to all $`2N`$ modes: dummy zero, internal nodes
+$`1,\ldots,N-1`$, and leaves $`N,\ldots,2N-1`$. The mode bit a and
+n node bits represent this space. In this section $`\mathcal B`$ extends
+the same child formula to every internal node and vanishes on the leaves
+and dummy. The normalized child column and symmetric complement are
+
+```math
+b_v=(ih_v,g_v)^T,\qquad e_v=(g_v,ih_v)^T.
+```
+
+They are orthonormal. The wandering space, excluding the dummy, consists
+of the root and these $`N-1`$ disjoint complement columns. A vector e
+born at depth d generates the orthonormal chain
+$`e,\mathcal Be,\ldots,\mathcal B^{n-d}e`$. Different chains are
+orthogonal by reducing overlaps with $`\mathcal B^\dagger`$ to the
+first orthogonal child columns. Their dimensions sum to $`2N-1`$.
+Let R fix zero and reverse every chain. It is a complete Hermitian unitary
+mapping each wandering vector to its leaf endpoint, without a separately
+normalized inverse.
+
+### Entrance phases and all logical columns
+
+Let V be the full child bank with the SU(2) blocks $`Q_v`$ of Section 4,
+now for every $`1\le v\lt N`$. Its second column becomes $`e_v`$ after
+multiplication by
+
+```math
+d_v=-\frac{1-it_v}{1+it_v}.
+```
+
+Let $`\lambda(v)=(2p+1)2^{n-d-1}`$ for $`v=2^d+p`$, and let the
+fixed permutation $`H_n`$ send $`\lambda(v)`$ to v and zero to zero.
+Put $`v(x)=H_n(x+1\bmod N)`$, and set $`D(x)=d_{v(x)}`$ when
+$`v(x)\ne0`$ and $`D(N-1)=1`$. Define the complete entrance by
+
+```math
+P_{\rm in}(a,x)=2v(x)+(1-a),\qquad
+E=VP_{\rm in}(I_a\otimes D).
+```
+
+Initialized a=0 enters only odd modes. Input $`N-1`$ enters the root;
+input $`\lambda(v)-1`$ enters $`e_v`$. Each local physical Cayley
+factor, in incoming-anchor/fresh-marker order, is literally
+
+```math
+\begin{pmatrix}ih_v&g_v\\g_v&ih_v\end{pmatrix}.
+```
+
+Earlier edges leave each fresh marker untouched. Its completed column is
+therefore its injected complement propagated to the leaves; the root
+column is $`\mathcal B^n|1\rangle`$. Reversal supplies exactly these
+columns, and $`X_a`$ returns the leaf modes to a=0. With $`J_a`$
+inserting the initialized mode bit,
+
+```math
+X_aRE(I_a\otimes P_0)J_a=J_a\mathcal C_n(t).
+```
+
+This is an equality of complete initialized columns, including zero
+rejected output rows and literal scalar phase. The second supplied clean
+wire c is ideally unchanged. D is a packed literal diagonal, and V is
+one two-axis bank. For routing, increment x, apply $`H_n`$, reorder bits,
+and flip the appended bit. The recursion for $`H_n`$ brings the final
+bit forward and repeats on the suffix only while the produced prefix is
+zero. It uses $`O(n^2)`$ controlled swaps; the exact borrowed-control
+construction gives a polynomial in n, hence $`O(N)`$, T cost.
+
+### The adjoint encoder cancels on the entrance
+
+Let $`\mathcal B_0|v\rangle=|2v\rangle`$ on internal nodes. Its
+wandering roots are root 1 and the odd children. Let $`T_n`$ fix dummy
+zero and map its canonical chains to the weighted chains, choosing the
+second column of $`Q_v`$ for each complement. Chain-root phases cancel
+in reversal, so
+
+```math
+R=T_nR_{0,n}T_n^\dagger,
+\qquad \mathcal BT_n=T_n\mathcal B_0.
+```
+
+Write $`E_{\rm even}(A)`$ for A on the even-node subspace, with
+$`|v\rangle\mapsto|2v\rangle`$, and identity on odd nodes. Then
+
+```math
+\boxed{T_n=V_nE_{\rm even}(T_{n-1}).}
+```
+
+On every odd node the encoder column is V's second column, so
+$`V_n^\dagger T_n`$ is identity there. On an even node, intertwining
+gives $`V_n^\dagger T_n|2v\rangle=\mathcal B_0T_{n-1}|v\rangle`$.
+This proves the recurrence on all columns, including zero, with
+$`T_0=I_2`$. Only the first $`N/2-1`$ parameters enter $`T_{n-1}`$.
+
+Because $`P_{\rm in}J_a`$ has only odd-node support, the adjoint
+embedded encoder cancels exactly at that interface. Consequently
+
+```math
+\boxed{X_aT_nR_{0,n}P_{\rm in}(I_a\otimes DP_0)J_a
+       =J_a\mathcal C_n(t).}
+```
+
+Only one encoder survives. The fixed reversal sends the canonical
+wandering roots to leaves, so this word uses only the final depth block
+of $`T_n`$: the entire target-dependent prefix frame.
+
+The fixed $`R_{0,n}`$ also has a polynomial-size exact word. For a nonzero
+binary node write $`0^a\omega0^j`$, with $`\omega`$ beginning and
+ending in 1; reversal sends it to $`0^j\omega0^a`$. Reverse all bits,
+then reverse the interior between the first and last 1. Unroll the latter
+over pairs of endpoint positions, using disjoint unchanged sector
+predicates and controlled interior swaps. Dummy zero is fixed. Every
+helper returns exactly, and the polynomial T cost is $`O(N)`$.
+
+### Fine precision and its direct native price
+
+At stage j of the recurrence, $`0\le j\lt n`$, a two-axis bank has
+$`n-j`$ address bits and a j-bit zero-suffix predicate. The heap mode
+occupies the logical register and a; c can be the real primitive's
+arbitrary signal. Self-borrowed queries use only the $`q+1`$ core wires
+when $`q+1\ge2n`$, and source-center predicates borrow another core bit
+as their exact helper. Hence
+
+```math
+T(T_n)=\sum_{j=0}^{n-1}O(2^{n-j}+q+(n+j)^2)
+       =O(N+nq+n^3),\qquad G(T_n)=O(Nq+nq+n^3).
+```
+
+Choose $`q=N+\lceil\log_2(2n)\rceil+9`$. The $`2n`$ variable
+banks contribute at most $`(43/512)\eta`$ full-operator error. Their
+core fits the declared dirty pool when
+$`\lceil\log_2(2n)\rceil\le n-3`$, in particular for $`n\ge7`$.
+D can first be compiled at error $`\eta/4`$ with the supplied two clean
+wires; subsequent actual unitary words propagate that error without a
+reset. Fixed routing is exact. The retained finite-dimensional compiler
+handles the finitely many smaller sizes, with their constant cost absorbed
+in the asymptotic certificate. Thus this complete word has a direct
+$`O(nN)`$ T price and includes final signal and dirty/reference return.
+It is weaker than the retained endpoint upper bound.
+
+## 6. Scope and verification
+
+The [coarse prefix encoder](COARSE_PREFIX_ENCODER.md) compiles this same
+complete encoder at error $`(43/64)2^{-\lceil N/n\rceil}`$ with
+$`O(N)`$ T gates. Fine precision still requires a joint source program
+or a replacement for the one surviving encoder. An independently usable
+reversal and a second encoder are unnecessary obligations. Neither the
+propagation gap nor a coarse conjugation by the non-small reversal closes
+that precision gap.
+
+The [matrix helpers](../../compiler_robust_hopf/tree_boundary.py) and
+[tests](../../tests/test_tree_boundary.py) compare all initialized feedback
+columns against the original chronological edge product, including
+unequal, signed, and zero parameters. They also check the recurrence,
+entrance cancellation, full-unitary reversal, every dilation port and
+dummy mode, literal local factors, propagation identities and spectrum,
+and exact repeated-call width/error reservations. These finite matrix
+diagnostics supplement the arbitrary-n proofs; they do not emit a
+fine-precision linear-T compiler.

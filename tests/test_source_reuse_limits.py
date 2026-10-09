@@ -44,6 +44,90 @@ def _pauli(width, factors):
 
 
 class SourceReuseLimitsTests(unittest.TestCase):
+    def test_native_paired_source_hoist_and_fixed_tail_cancellation(self):
+        from tests.test_one_clean_compiler import (
+            _mask_bits, _paired_source_word, _paired_weights, _pauli_t_word,
+            _scalar_word,
+        )
+        from tests.test_operator_source_compiler import _word_matrix
+
+        rng = np.random.default_rng(61705)
+        for q in (2, 3):
+            core, flag = q + 1, q + 1
+            width = core + 1
+            loader = _word_matrix(width, _paired_source_word(q))
+            seed = _word_matrix(
+                width, [('T', 0)] + _pauli_t_word({0: 'Y', 1: 'X'}, -1))
+            x0 = _word_matrix(width, [('X', 0)])
+            h = _word_matrix(width, [('H', flag)])
+            c1 = _word_matrix(width, [('CX', flag, 0)])
+            c0 = _word_matrix(width, [('X', flag), ('CX', flag, 0), ('X', flag)])
+            fixed = _paired_weights(q)[1]
+            for signs in [fixed, *rng.integers(0, 2, size=(4, 2 * core))]:
+                xs, zs = _mask_bits(signs)
+                # Chronological Z then X implements the canonical literal XZ.
+                mask_word = ([('Z', bit) for bit in range(core) if (zs >> bit) & 1]
+                             + [('X', bit) for bit in range(core) if (xs >> bit) & 1])
+                mask = _word_matrix(width, mask_word)
+                transformed = loader.conj().T @ mask @ loader
+                middle = h @ c0 @ transformed @ x0 @ transformed.conj().T @ c1 @ h
+                actual = _word_matrix(width, _scalar_word(q, mask_word, flag))
+                np.testing.assert_allclose(
+                    actual, loader @ middle @ loader.conj().T, atol=ATOL, rtol=0)
+                if np.array_equal(signs, fixed):
+                    np.testing.assert_allclose(
+                        transformed, seed.conj().T @ mask @ seed, atol=ATOL, rtol=0)
+
+    def test_low_rank_reflections_leave_a_target_separated_kernel(self):
+        rng = np.random.default_rng(62012)
+        logical, dirty = 4, 2
+        dimension = logical * dirty
+        identity = np.eye(dimension)
+        theta = np.pi / 4
+        rotation = np.array([[np.cos(theta), -np.sin(theta)],
+                             [np.sin(theta), np.cos(theta)]])
+        target = np.kron(np.kron(np.eye(logical // 2), rotation), np.eye(dirty))
+        gap = 2 * np.sin(np.pi / 8)
+        np.testing.assert_allclose(
+            np.linalg.svd(target - identity, compute_uv=False), gap, atol=ATOL, rtol=0)
+        product = identity.copy()
+        for count in range(1, logical):
+            embedding = _random_unitary(rng, dimension)[:, :dirty]
+            product = (identity - 2 * embedding @ embedding.conj().T) @ product
+            difference = product - identity
+            self.assertLessEqual(np.linalg.matrix_rank(difference, tol=ATOL), count * dirty)
+            _, _, vh = np.linalg.svd(difference)
+            kernel = vh[-1].conj()
+            np.testing.assert_allclose(difference @ kernel, 0, atol=ATOL, rtol=0)
+            self.assertGreaterEqual(np.linalg.norm((product - target) @ kernel) + ATOL, gap)
+
+    def test_matched_majoranas_allow_only_commuting_logical_labels(self):
+        x = np.array([[0, 1], [1, 0]], dtype=complex)
+        y = np.array([[0, -1j], [1j, 0]], dtype=complex)
+        z = np.diag([1, -1]).astype(complex)
+        for left in (np.eye(2), x, y, z):
+            for right in (np.eye(2), x, y, z):
+                q0, q1 = np.kron(left, x), np.kron(right, y)
+                anticommutator = q0 @ q1 + q1 @ q0
+                commutator = left @ right - right @ left
+                np.testing.assert_allclose(
+                    anticommutator, np.kron(commutator, x @ y), atol=ATOL, rtol=0)
+                self.assertEqual(np.linalg.norm(anticommutator) < ATOL,
+                                 np.linalg.norm(commutator) < ATOL)
+        # A commuting four-label family retains the full scalar-overlap identity.
+        labels = [np.eye(4), _pauli(2, {0: z}), _pauli(2, {1: z}),
+                  _pauli(2, {0: z, 1: z})]
+        gammas = [_pauli(2, {**{j: z for j in range(bit)}, bit: factor})
+                  for bit in range(2) for factor in (x, y)]
+        a, b = np.array([1, 2, -3, 4]) / 6, np.array([4, -2, 1, 3]) / 5
+        first = sum(value * np.kron(np.eye(4), gamma) for value, gamma in zip(a, gammas))
+        second = sum(value * np.kron(label, gamma)
+                     for value, label, gamma in zip(b, labels, gammas))
+        expected = sum(ai * bi * np.kron(label, np.eye(4))
+                       for ai, bi, label in zip(a, b, labels))
+        np.testing.assert_allclose((first @ second + second @ first) / 2,
+                                   expected, atol=ATOL, rtol=0)
+
     def test_smallest_singular_subspaces_of_nilpotent_contractions(self):
         rng = np.random.default_rng(20260930)
         for ratio in (1, 2, 4):

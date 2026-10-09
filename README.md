@@ -142,15 +142,20 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
 Clifford interlayers and workspace, under the literal-phase contract.
-Two constructive reductions isolate
-the remaining count question:
+Two constructive reductions isolate the count question:
 [any fixed number of diagonal factors](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
 fits the exact workspace with certified factor selection, and
 [every frame reduces to a regular fixed-tree Cayley family](research/endpoint/TREE_CAYLEY_REDUCTION.md)
 using two diagonals and exact O(N)-T permutations. Its
-[propagation block](research/endpoint/BOUNDARY_PROPAGATION.md) has an
-O(N)-T implementation at the endpoint allocation. Complete feedback
-recovery, or uniform bounded-factor coverage, would close the bound.
+[propagation and feedback proof](research/endpoint/BOUNDARY_PROPAGATION.md)
+gives a precision-feasible repeated-call block and an exact cancellation
+leaving one complete prefix encoder. The
+[joint coarse encoder](research/endpoint/COARSE_PREFIX_ENCODER.md) costs
+O(N) T gates at error $`2^{-\lceil N/n\rceil}`$; fine synthesis retains
+its separate precision cost. A
+[global Haar-word obstruction](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+excludes every fixed number of Haar or adjoint interlayers with arbitrary
+diagonal masks, including the five-mask $`Q_n^2`$ proposal.
 The [research index](research/README.md) collects these reductions and
 method-specific limits with their precise hypotheses.
 

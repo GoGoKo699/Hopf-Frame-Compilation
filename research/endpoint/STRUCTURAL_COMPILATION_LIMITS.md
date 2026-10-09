@@ -552,15 +552,116 @@ $`\Omega(n)`$ conclusion when $`\varepsilon+\delta\lt1/\sqrt2`$.
 The obstruction is not
 confined to singular state charts.
 
-It excludes constant-factor coverage and fixed-error coverage by
-strictly alternating balanced-Haar/adjoint words. It does not exclude
-consecutive equal mixers, arbitrary Clifford skeletons, or growing-stage
-circuits whose total T cost is $`O(N)`$. The
-[nonalternating candidate](BOUNDED_DIAGONAL_FACTORIZATION.md#4-nonalternating-haar-candidate)
-is outside its hypotheses. Exact finite certificates for the witness
-identity and a different anchored candidate are in
+This stronger linear call bound uses strict alternation. The next theorem
+covers arbitrary orientations with a weaker asymptotic bound. Exact
+finite witness certificates are in
 [`test_global_haar.py`](../../tests/test_global_haar.py); the
-dimension-uniform proof is the argument above.
+dimension-uniform bounds follow from the proofs.
+
+### Global obstruction for unrestricted Haar orientations
+
+**Theorem.** For every $`n\ge3`$ there is a complete Hopf frame
+$`W_n`$, with all angles in $`\{0,\pi/2\}`$, such that every word
+
+```math
+P=D_0Q^{s_1}D_1\cdots Q^{s_r}D_r,\qquad s_j\in\{1,-1\},
+```
+
+with arbitrary unitary diagonal masks and
+$`\|P-W_n\|_{\rm op}\le\varepsilon\lt1`$ satisfies
+
+```math
+[2\sqrt{n+1}]^{r+1}\ge(1-\varepsilon)\sqrt N.
+```
+
+Orientations need not alternate, and the masks may be discontinuous,
+noncomputable selections with arbitrary cancelling baselines. The same
+target works for every word in this alphabet. Thus
+$`r=\Omega(n/\log n)`$ at any fixed error below one, including the
+endpoint error $`2^{-N}`$.
+
+**Proof.** Put $`A=|Q|+|Q|^{\mathsf T}`$. Its graph is connected:
+the flat root column of Q makes row and column zero of A positive.
+There is a strictly positive Perron vector w with
+
+```math
+Aw=\lambda w,\qquad
+\lambda=\rho(A)=\|A\|_{\rm op}\le2\sqrt{n+1}.
+```
+
+For completeness, take a maximizing eigenvector of this real symmetric
+nonnegative matrix, replace it by its componentwise absolute value in
+the Rayleigh quotient, and use connectedness to make all components
+positive. The last bound follows from Proposition 2.
+
+In the weighted norm $`\|x\|_{\infty,w}=\max_i|x_i|/w_i`$, every
+unitary diagonal is an isometry, and both Q and its adjoint have induced
+norm at most lambda: their absolute row sums against w are bounded by
+$`Aw`$. Hence $`\|P\|_{\infty,w\to\infty,w}\le\lambda^r`$.
+Choose j minimizing $`w_j`$. The flat root column gives
+
+```math
+\lambda w_0=(Aw)_0\ge N^{-1/2}\sum_iw_i\ge\sqrt N\,w_j.
+```
+
+Choose the frame angles on the path to leaf j to be zero for a left
+step and $`\pi/2`$ for a right step, and zero off that path. Each
+rotation is a literal signed permutation, and each right step moves
+the root amplitude with coefficient +1. The prescribed complete frame
+therefore satisfies $`W_ne_0=e_j`$; all other columns remain those
+of the same Hopf product. Euclidean operator error gives
+$`|(Pe_0)_j|\ge1-\varepsilon`$. Comparing weighted norms now yields
+
+```math
+\lambda^r\ge(1-\varepsilon)\frac{w_0}{w_j}
+\ge\frac{(1-\varepsilon)\sqrt N}{\lambda},
+```
+
+as required. The proof retains literal scalar phase. The witness has
+exact certified trigonometric values; its existence invokes no equality
+oracle for the supplied angles.
+
+**Five-mask consequence.** The equation
+
+```math
+W=D_0V D_1V^\dagger D_2V D_3V^\dagger D_4,\qquad V=Q^2,
+```
+
+has eight Haar occurrences and cannot cover all dimensions even with
+all five masks free. For example, at $`n=128`$ and error at most
+$`1/2`$, the necessary inequality would give
+$`(2\sqrt{129})^9\ge2^{63}`$, whereas its left side is less than
+$`32^9=2^{45}`$. The conclusion also excludes every bounded word in powers
+of Q with exponents bounded independently of n, their adjoints, and
+computational phase masks.
+
+**Fixed-alphabet extension.** Let $`U_1,\ldots,U_s`$ be a fixed
+logical mixer alphabet, each available in either orientation. Include
+Q as an auxiliary comparison matrix, whether or not it is used, and set
+
+```math
+A=|Q|+|Q|^{\mathsf T}
+  +\sum_{k=1}^s(|U_k|+|U_k|^{\mathsf T}),\qquad
+\lambda\le2\sqrt{n+1}+2\sum_{k=1}^s\|\,|U_k|\,\|_{\rm op}.
+```
+
+The same proof supplies one Hopf witness for which
+$`\lambda^{r+1}\ge(1-\varepsilon)\sqrt N`$, where r counts every
+actual mixer occurrence. The unused comparison matrix contributes no
+occurrence; omit its duplicate term if Q is already in the alphabet.
+In particular, adding s fixed permutations to Q gives
+$`\lambda\le2\sqrt{n+1}+2s`$. More generally, an alphabet with total
+absolute-matrix norm polynomial in n still needs
+$`\Omega(n/\log n)`$ calls at fixed error.
+
+For a menu of architectures, this norm sum must include the union of
+its mixers. The result does not treat an arbitrary target-dependent
+Clifford or permutation as one member of a fixed small alphabet.
+The Walsh Clifford $`H^{\otimes n}`$ has absolute-matrix norm
+$`\sqrt N`$ and escapes the useful polynomial bound. These are
+representation restrictions, not unrestricted T-count bounds: arbitrary
+finite Clifford work and growing words with jointly amortized source
+cost remain within the native compiler contract.
 
 ### Balanced-Haar boundary identities
 
@@ -607,11 +708,9 @@ W_{\rm child}R_{y,\mathrm{root}}(t)
 The remaining $`Z_r(t)`$ changes each distinguished coordinate relative
 to its own half, so it is not a transferable half-block scalar. Absorbing
 it into a final mask still appends a new $`Q_n^\dagger/Q_n`$ pair.
-These all-angle, division-free identities remain useful, but the theorem
-above rules out any constant-mask closure that stays within the
-strictly alternating architecture. A new boundary absorption mechanism
-must change that architecture or supply a different amortized compiler.
-The
+These all-angle, division-free identities retain the exact boundary
+phases. The preceding theorems exclude bounded-mask closure using only
+Q and its adjoint, in any orientation. The
 [tree Cayley reduction](TREE_CAYLEY_REDUCTION.md) supplies a separate
 global normal form.
 
@@ -751,7 +850,117 @@ endpoint error for every $`n\ge3`$. Multiple banks and parameter-dependent
 encoders remain outside its scope; Proposition 6 separately covers larger
 fixed blocks without arbitrary encoding.
 
-## 7. Verification and scope
+## 7. Low-rank defects after restricted preconditioning
+
+### Monomial preconditioning and reflection rank
+
+Let $`W_*`$ have zero upper angles and final-depth angles
+$`\pi/4`$, so $`W_*`$ is a direct sum of $`R_y(\pi/4)`$ blocks.
+If M is any monomial unitary, R is unitary, and
+$`\|W_*-MR\|\le\varepsilon\lt1`$, then
+
+```math
+\mathrm{rank}(R-I)\ge
+N\frac{1-\varepsilon^2/2-1/\sqrt2}{2-\varepsilon^2/2}
+```
+
+whenever the numerator is positive. M may depend arbitrarily on the
+target, including its permutation and phases.
+
+Every entry of $`W_*`$ has modulus at most $`1/\sqrt2`$, so
+$`\mathrm{Re}\,\mathrm{tr}(W_*^\dagger M)\le N/\sqrt2`$.
+Write $`r=\mathrm{rank}(R-I)`$. On its kernel, of dimension $`N-r`$,
+the approximation implies
+$`\mathrm{Re}\langle W_*x,Mx\rangle\ge1-\varepsilon^2/2`$
+for each unit x. Complete an orthonormal basis and bound each remaining
+real correlation below by -1. Thus
+
+```math
+N/\sqrt2\ge(N-r)(1-\varepsilon^2/2)-r,
+```
+
+proving the claim. Products satisfy
+$`\mathrm{rank}(R_k\cdots R_1-I)\le\sum_j\mathrm{rank}(R_j-I)`$.
+Interleaved monomials can be moved outside by conjugating these factors,
+which preserves rank. Hence bounded total reflection rank cannot cover
+the family after arbitrary monomial preconditioning. This does not
+exclude a bounded number of reflections of rank $`\Theta(N)`$ or
+$`O(N)`$ low-rank factors with a jointly linear precision cost.
+
+### A fixed dense baseline menu
+
+Fix any menu $`C_1,\ldots,C_s`$ of logical unitaries, with an absolute
+constant $`s\ge1`$. There is a final-depth-only Hopf frame W such that
+
+```math
+\max_{a,i,j}|(W^\dagger C_a)_{ij}|\le c_s,
+\qquad c_s=\cos\frac{\pi}{16s}\lt1.
+```
+
+For each row pair, choose its real rotation independently. A column of
+$`C_a`$ has pair energy $`\rho_j=|u_j|^2+|v_j|^2\le1`$, with
+$`\sum_j\rho_j=2`$. Only columns with $`\rho_j>c_s^2`$ can violate
+the desired bound; there are at most two since $`c_s^2>2/3`$. The
+squared moduli of the rotated outputs are
+
+```math
+\frac{\rho_j}{2}\ \pm\bigl(A_j\cos(2\theta)+B_j\sin(2\theta)\bigr),
+\qquad \sqrt{A_j^2+B_j^2}\le\rho_j/2\le1/2.
+```
+
+Either output exceeding $`c_s^2`$ requires
+$`|\cos(2\theta-\phi_j)|>2c_s^2-1`$ for a suitable phase. The bad
+angles occupy at most $`(4/\pi)\arccos c_s=1/(4s)`$ of a period.
+Across at most $`2s`$ relevant columns, their union has measure at most
+one half. Choosing an allowed angle for each pair proves the claim,
+also for complex baselines.
+
+For every a and every monomial M this gives
+$`\mathrm{Re}\,\mathrm{tr}(W^\dagger C_aM)\le c_sN`$. The same
+kernel argument therefore yields
+
+```math
+\|W-C_aMR\|\le\varepsilon\lt1
+\quad\Longrightarrow\quad
+\mathrm{rank}(R-I)\ge
+N\frac{1-\varepsilon^2/2-c_s}{2-\varepsilon^2/2}.
+```
+
+This statement has the displayed factor order and a constant-size
+baseline menu. It does not cover arbitrary interleavings of dense
+mixers and target-dependent masks or a growing menu.
+
+### Fixed diagonal displacement
+
+Let A,B be fixed diagonal matrices. If
+$`\mathrm{rank}(AW-WB)\le r`$ for every complete Hopf frame W,
+and A has $`K\ge2`$ distinct diagonal entries, then $`K\le2r`$.
+In particular, a simple-spectrum A forces $`r\ge N/2`$.
+
+The identity frame gives $`\mathrm{rank}(A-B)\le r`$. Set every
+angle to $`\pi/2`$ to obtain a signed permutation P whose underlying
+permutation is an N-cycle. Indeed, the rotation edges form a tree, and
+the product of its edge transpositions, each used once, is an N-cycle.
+An induction removes a leaf edge: all remaining factors fix that leaf;
+conjugating the removed transposition past one prefix attaches the leaf
+to the single cycle on the other vertices.
+Consequently
+
+```math
+\mathrm{rank}(AP-PA)
+\le\mathrm{rank}(AP-PB)+\mathrm{rank}(P(B-A))\le2r.
+```
+
+The commutator is a monomial times a diagonal, with a nonzero entry at
+each change of A's labels around the cycle. A cyclic sequence with
+$`K\ge2`$ labels has at least K such transitions, proving the bound.
+This is a fixed diagonal Sylvester-displacement restriction.
+Nondiagonal or target-dependent displacement operators are outside its
+scope. The
+[hierarchical rank-one cuts](BOUNDED_DIAGONAL_FACTORIZATION.md#hierarchical-rank-one-cuts)
+show why highly degenerate cut projections can still give low rank.
+
+## 8. Verification and scope
 
 The coarse circuit uses the retained full-space borrowed-MCX identity,
 not a zero promise on a logical helper. The

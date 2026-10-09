@@ -1,4 +1,4 @@
-"""Finite boundary-core checks; no feedback or native-emitter claim.
+"""Finite complete boundary-feedback checks; no native-emitter claim.
 
 The original chronological edge word, inherited-charge recurrence, literal
 rotation word, and all-port routing provide independent reference paths.
@@ -10,6 +10,11 @@ import numpy as np
 
 from compiler_robust_hopf.tree_boundary import (
     boundary_core,
+    boundary_feedback,
+    canonical_reversal_permutation,
+    feedback_entrance,
+    full_tree_coin_bank,
+    prefix_encoder,
     boundary_incidence,
     coefficient_matrix,
     endpoint_block_ledger,
@@ -277,42 +282,100 @@ class TreeBoundaryTests(unittest.TestCase):
                     # accepting the block does not return the two flags.
                     self.assertGreater(np.linalg.norm(actual[size:, 0]), .5)
 
-    def test_endpoint_ledger_exact_width_and_complete_operator_error(self):
+    def test_complete_feedback_and_initialized_encoder_cancellation(self):
+        for height in range(1, 6):
+            size = 1 << height
+            dim = 2 * size
+            canonical = _permutation(canonical_reversal_permutation(height))
+            for index, table in enumerate(_tables(height)):
+                with self.subTest(height=height, table=index):
+                    bank = full_tree_coin_bank(table)
+                    encoder = prefix_encoder(table)
+                    # Construct weighted chains independently from the recurrence.
+                    propagation = np.zeros((dim, dim), dtype=complex)
+                    for node in range(1, size):
+                        propagation[:, node] = bank[:, 2 * node]
+                    independent = np.eye(dim, dtype=complex)
+                    for node in range(1, dim):
+                        age = (node & -node).bit_length() - 1
+                        root = node >> age
+                        vector = (np.eye(dim)[:, 1].astype(complex) if root == 1
+                                  else bank[:, root].copy())
+                        for _ in range(age):
+                            vector = propagation @ vector
+                        independent[:, node] = vector
+                    np.testing.assert_allclose(encoder, independent, atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(encoder.conj().T @ encoder, np.eye(dim),
+                                               atol=ATOL, rtol=0)
+                    reversal = encoder @ canonical @ encoder.conj().T
+                    np.testing.assert_allclose(reversal @ reversal, np.eye(dim),
+                                               atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(reversal, reversal.conj().T,
+                                               atol=ATOL, rtol=0)
+                    incoming, diagonal = feedback_entrance(table)
+                    entrance = bank @ incoming @ np.kron(np.eye(2), diagonal)
+                    np.testing.assert_allclose(
+                        (encoder.conj().T @ entrance)[:, :size],
+                        (incoming @ np.kron(np.eye(2), diagonal))[:, :size],
+                        atol=ATOL, rtol=0)
+                    actual = boundary_feedback(table)
+                    expected = _chronological_phase_word(height, table)
+                    np.testing.assert_allclose(actual[:, :size],
+                                               np.vstack((expected, np.zeros_like(expected))),
+                                               atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(actual.conj().T @ actual, np.eye(dim),
+                                               atol=ATOL, rtol=0)
+
+    def test_canonical_reversal_by_endpoint_bit_reversals(self):
+        for height in range(1, 9):
+            expected = [0]
+            for source in range(1, 2 << height):
+                bits = list(format(source, f"0{height + 1}b")[::-1])
+                first = bits.index('1')
+                last = len(bits) - 1 - bits[::-1].index('1')
+                if last > first:
+                    bits[first + 1:last] = bits[first + 1:last][::-1]
+                expected.append(int(''.join(bits), 2))
+            self.assertEqual(canonical_reversal_permutation(height), tuple(expected))
+            self.assertEqual(sorted(expected), list(range(2 << height)))
+
+    def test_repeated_block_width_and_full_operator_error(self):
         for height in (3, 4, 8, 20):
-            with self.subTest(height=height):
-                size = 1 << height
-                ledger = endpoint_block_ledger(height)
-                self.assertEqual(ledger.height, height)
-                self.assertEqual(ledger.logical_dimension, size)
-                self.assertEqual(ledger.source_width, size + 7)
-                self.assertEqual(ledger.core_qubits, size + 8)
-                self.assertEqual(ledger.selector_qubits, height - 3)
-                self.assertEqual(ledger.predicate_helper_qubits, 1)
-                self.assertEqual(ledger.borrowed_signal_qubits, 1)
-                self.assertEqual(ledger.clean_signal_qubits, 2)
-                self.assertEqual(ledger.dirty_qubits, size + height + 7)
-                self.assertEqual(ledger.dirty_qubits, ledger.core_qubits + ledger.selector_qubits
-                                 + ledger.predicate_helper_qubits + ledger.borrowed_signal_qubits)
-                self.assertEqual(ledger.total_width, size + 2 * height + 9)
-                self.assertEqual(ledger.sectors_per_bank, 4)
-                self.assertEqual(ledger.variable_banks, 2)
-                self.assertEqual(ledger.predicate_literals, 3)
-                self.assertEqual(ledger.free_table_rows * ledger.sectors_per_bank, size // 2)
-                # Invariant sectors take a maximum, while the two banks add.
-                expected_ratio = Fraction(43 * ledger.variable_banks,
-                                          1 << (ledger.source_width - size))
-                self.assertEqual(ledger.error_ratio, expected_ratio)
-                self.assertEqual(ledger.error_ratio, Fraction(43, 64))
-                self.assertLess(ledger.error_ratio, 1)
+            for overhead in range(height - 2):
+                for calls in sorted({1 << overhead, max(1, (1 << overhead) - 1)}):
+                    actual_overhead = (calls - 1).bit_length()
+                    for controls in (0, height - 3 - actual_overhead):
+                        with self.subTest(height=height, calls=calls, controls=controls):
+                            size = 1 << height
+                            ledger = endpoint_block_ledger(height, calls, controls)
+                            self.assertEqual(ledger.source_width, size + actual_overhead + 9)
+                            self.assertEqual(ledger.core_qubits, ledger.source_width + 1)
+                            self.assertGreaterEqual(ledger.core_qubits, 2 * (height - 1))
+                            self.assertEqual(ledger.selector_qubits, 0)
+                            self.assertEqual(ledger.predicate_helper_qubits, 0)
+                            self.assertEqual(ledger.borrowed_signal_qubits, 0)
+                            self.assertEqual(ledger.clean_signal_qubits, 2)
+                            self.assertEqual(ledger.dirty_qubits, ledger.core_qubits + controls)
+                            self.assertLessEqual(ledger.dirty_qubits, size + height + 7)
+                            self.assertEqual(ledger.total_width, height + 2 + ledger.dirty_qubits)
+                            self.assertEqual(ledger.sectors_per_bank, 1)
+                            self.assertEqual(ledger.variable_banks, 2)
+                            self.assertEqual(ledger.predicate_literals, 1 + controls)
+                            self.assertEqual(ledger.free_table_rows, size // 2)
+                            self.assertEqual(ledger.error_ratio,
+                                             Fraction(86 * calls, 1 << (actual_overhead + 9)))
+                            self.assertLessEqual(ledger.error_ratio, Fraction(43, 256))
 
     def test_invalid_tables_and_heights_are_rejected(self):
         for function in (coefficient_matrix, propagation_matrices, boundary_core,
-                         propagation_dilation, propagation_block_encoding):
+                         propagation_dilation, propagation_block_encoding,
+                         full_tree_coin_bank, prefix_encoder, feedback_entrance, boundary_feedback):
             for table in ([], [1., 2.], [np.nan], [np.inf], [-np.inf], [1j]):
                 with self.subTest(function=function.__name__, table=table):
                     with self.assertRaises(ValueError):
                         function(table)
-        for function in (boundary_incidence, shift_dilation_permutation):
+        for function in (boundary_incidence, shift_dilation_permutation,
+                         canonical_reversal_permutation):
             for height in (-1, 0):
                 with self.subTest(function=function.__name__, height=height):
                     with self.assertRaises(ValueError):
@@ -321,6 +384,9 @@ class TreeBoundaryTests(unittest.TestCase):
             with self.subTest(ledger_height=height):
                 with self.assertRaises(ValueError):
                     endpoint_block_ledger(height)
+        for height, calls, controls in ((3, 2, 0), (4, 2, 1), (5, 0, 0), (5, 1, -1)):
+            with self.assertRaises(ValueError):
+                endpoint_block_ledger(height, calls, controls)
 
 
 if __name__ == '__main__':

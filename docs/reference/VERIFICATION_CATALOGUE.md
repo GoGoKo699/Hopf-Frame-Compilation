@@ -118,32 +118,52 @@ the complete sparse-preconditioned core with an independently ordered
 edge-phase product, including unequal signed and zero parameters. They
 check triangular coefficients, nearest-parent recurrence, root-chain
 compression, the all-table singular gap, dummy states and all dilation
-ports. The local rotation factorization retains literal phases, and the
-endpoint reservation and error fraction are exact integer/rational checks.
-The [resource proof](../../research/endpoint/BOUNDARY_PROPAGATION.md)
+ports. The complete feedback entrance, chain reversal and recurrence are
+checked on every logical column, including the cancellation that leaves
+one prefix encoder. The local rotation factorization retains literal
+phases, and the repeated-call reservation and error fraction are exact
+integer/rational checks. The [resource proof](../../research/endpoint/BOUNDARY_PROPAGATION.md)
 imports the charged borrowed-signal primitive; the dense reference
-matrices do not emit that precision-dependent native circuit or eliminate
-its rejected signal amplitudes.
+matrices do not emit that precision-dependent native circuit.
+
+The [self-borrowed query tests](../../tests/test_self_borrowed_query.py)
+propagate all 64 input columns in 24 native XOR/Pauli fixtures, including
+the actual inverse. Exact Boolean checks cover overlapping output and
+selector bits, the full-core Hadamard sign identity, and a source-core bit
+used as the central MCX helper. These check the all-input contracts in the
+[source compiler](../OPERATOR_SOURCE_COMPILER.md) and
+[one-clean compiler](../ONE_CLEAN_COMPILER.md); output borrowing supplies no
+initialized register.
+
+The [coarse prefix tests](../../tests/test_coarse_prefix_encoder.py) check
+the complete depth-frame/Wold encoder, delimiter permutation, and
+full-operator small-conjugation bound, together with exact resource
+ledgers. The [encoder theorem](../../research/endpoint/COARSE_PREFIX_ENCODER.md)
+establishes the arbitrary-size native construction at coarse precision;
+these fixtures do not implement a fine endpoint correction.
 
 The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
-$`\mathbb Q(\sqrt2)`$ to verify the common witness identity and the
-$`-1/128`$ modulus mismatch for an anchored nonalternating candidate.
-The dimension-independent multiplier bound and its restriction on arbitrary
-nonsmooth masks are [analytic](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks).
+$`\mathbb Q(\sqrt2)`$ to verify common signed-path witnesses and
+absolute-matrix certificates. The arbitrary-order Haar obstruction, its
+fixed-alphabet extension and the stronger alternating bound are
+[analytic](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md).
 The spectral encoding restriction, branch-rank bound and return rigidity
 also have analytic proofs; none is inferred from a finite fitting campaign.
 
 The [source-reuse limits](../../research/endpoint/SOURCE_REUSE_LIMITS.md) have
 [separate finite checks](../../tests/test_source_reuse_limits.py) for nilpotent
 contractions, arbitrary encoding bases, dirty-dimension independence, and
-transformed-mask operator identities. Counterexamples test why nilpotence
+transformed-mask operator identities, exact source hoisting,
+matched-Majorana commutation and rank-limited reflection extraction.
+Counterexamples test why nilpotence
 and complete-output accuracy cannot be omitted. These support the scoped
 analytic restrictions; they do not establish a full-frame impossibility.
 
 The [structural endpoint checks](../../tests/test_endpoint_structural_limits.py)
 test the [full-frame metric](../HOPF_INTERFACE.md#41-complete-frame-parameter-geometry),
 [normalization and residual witnesses](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md),
-native control phases, query parity, and source-return counterexamples.
+singular-safe nested projectors, restricted reflection and displacement
+bounds, native control phases, query parity, and source-return counterexamples.
 They use small complete matrices and independent formulas, including
 unequal and singular angles. The proofs establish the all-dimension
 claims; these numerical checks are not a general compiler, a proof of the
@@ -505,6 +525,13 @@ The [native assembly and resource bound](../../research/endpoint/RESIDUAL_ASSEMB
 analytically. These operator fixtures use matrices of dimension at most 64;
 they do not emit the native compiler or demonstrate an improved endpoint
 T-count.
+
+Exact support and Walsh-column checks in the same residual-assembly suite
+verify the independent-forest parametrization and its cube dimension.
+Rational capacity checks support the packing ledger. The resulting
+$`\Omega(Nn)`$ theorem concerns the enlarged independent family, including
+accepted-block-only approximation; it is not a bound on the correlated
+Hopf subfamily.
 The [affine-tree fusion checks](../../tests/test_affine_tree_fusion.py) compare
 the ten-mode and recursive full-input merges with literal local products,
 actual inverses, and independent path maps. They test continuation ranks,

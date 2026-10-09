@@ -78,10 +78,11 @@ def _mask_bits(signs):
 
 
 def _literal_mask(signs):
+    """Chronological Z then X realizes the canonical literal P=X^x Z^z."""
     xmask, zmask = _mask_bits(signs)
     core = len(signs) // 2
-    return ([('X', qubit) for qubit in range(core) if (xmask >> qubit) & 1]
-            + [('Z', qubit) for qubit in range(core) if (zmask >> qubit) & 1])
+    return ([('Z', qubit) for qubit in range(core) if (zmask >> qubit) & 1]
+            + [('X', qubit) for qubit in range(core) if (xmask >> qubit) & 1])
 
 
 def _encoded_signs(q, theta):
@@ -163,8 +164,8 @@ def _mask_table_word(core, address, selector, sign_rows):
         return word
 
     hadamards = [('H', qubit) for qubit in range(core)]
-    return (query([mask[0] for mask in masks]) + hadamards
-            + query([mask[1] for mask in masks]) + hadamards)
+    return (hadamards + query([mask[1] for mask in masks]) + hadamards
+            + query([mask[0] for mask in masks]))
 
 
 def _conditional_mask_word(signs, predicate, helper):
@@ -179,7 +180,7 @@ def _conditional_mask_word(signs, predicate, helper):
         return toggle + query + toggle + query
 
     hadamards = [('H', qubit) for qubit in range(core)]
-    return echo(xmask) + hadamards + echo(zmask) + hadamards
+    return hadamards + echo(zmask) + hadamards + echo(xmask)
 
 
 class OneCleanCompilerTests(unittest.TestCase):
@@ -256,7 +257,7 @@ class OneCleanCompilerTests(unittest.TestCase):
             row = sum(((basis >> qubit) & 1) << j for j, qubit in enumerate(address))
             xmask, zmask = _mask_bits(rows[row])
             image = basis ^ xmask
-            expected[image, basis] = (-1) ** ((image & zmask).bit_count())
+            expected[image, basis] = (-1) ** ((basis & zmask).bit_count())
         np.testing.assert_allclose(actual, expected, atol=ATOL, rtol=0)
         inverse = _word_matrix(width, _adjoint(word))
         np.testing.assert_allclose(inverse @ actual, np.eye(1 << width), atol=ATOL, rtol=0)

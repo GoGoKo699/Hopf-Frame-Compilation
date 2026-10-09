@@ -50,9 +50,10 @@ factorization of the Hopf family. Local tangent coverage or finite-size
 fits do not imply it. Restrictions on particular three-slot or anchored
 factorizations have the narrower scope recorded in the linked structural
 chapter. Its
-[global Haar obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks)
-also excludes every uniformly bounded strictly alternating balanced-Haar
-architecture, without any regularity assumption on its masks.
+[global Haar obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-unrestricted-haar-orientations)
+excludes every uniformly bounded balanced-Haar word in either orientation,
+without any regularity assumption on its masks. Dense Clifford mixers
+remain compatible with this conditional theorem.
 
 ## 2. Native precision and the finite-dimensional fallback
 
@@ -188,71 +189,119 @@ error contract. An unbounded factor count $`K(n)`$ still incurs
 $`O(K(n)N)`$ through this construction; extra precision does not
 amortize repeated source calls.
 
-## 4. Nonalternating Haar candidate
+## 4. Complete coverage through nested projectors
 
-This subsection preserves an unresolved coverage candidate outside the
-[strict-alternation obstruction](STRUCTURAL_COMPILATION_LIMITS.md#global-obstruction-for-alternating-balanced-haar-masks).
-Let $`Q_n`$ be the fixed balanced Hopf frame and $`V_n=Q_n^2`$.
-The proposed five-mask equation is
-
-```math
-W=D_0V_nD_1V_n^\dagger D_2V_nD_3V_n^\dagger D_4.
-```
-
-It contains eight Haar calls, including consecutive equal orientations.
-Coverage by this word is unproved. The exact algebraic problem is
+For every dyadic interval $`I=[a,a+s)`$, write $`\Pi_I`$ for its
+coordinate projection. Let $`\psi_I`$ be the normalized root column of
+the local subtree frame, using only the angles inside I, and define
 
 ```math
-V_n^\dagger D_0^\dagger W D_4^\dagger V_n
-=D_1(V_n^\dagger D_2V_n)D_3.
+E_I=\Pi_I-|a\rangle\langle a|,\qquad
+P_I=\Pi_I-|\psi_I\rangle\langle\psi_I|.
 ```
 
-Since $`V_n`$ is real, the matrix inside parentheses is complex
-symmetric. The free exterior masks must first make the left side have
-symmetric entrywise absolute values, and then permit left/right phase
-removal into the fixed algebra $`V_n^\dagger\mathcal ZV_n`$, where
-$`\mathcal Z`$ is the complex diagonal algebra.
-The first condition alone does not imply the second. A useful next proof
-would establish both conditions under tree growth with these same five
-slots; parameter counting, local coverage, and finite fits do not do so.
+These definitions use no division by the global root-state mass of I.
+They therefore apply to every admitted real angle tuple, including a
+subtree with zero global mass.
 
-**An exact failed simplification.** The exterior choice
-$`D_0=D_4=I`$ cannot be imposed as a gauge. At $`n=3`$, let W
-have root angle $`\pi/4`$ and all other angles zero, so
-$`W=R_{0,4}(\pi/4)`$. With $`V=Q_3^2`$, exact arithmetic gives
+**Exact criterion.** The prescribed complete frame satisfies
 
 ```math
-Z=V^\dagger WV,\qquad
-Z_{0,1}=-\frac{\sqrt2}{16},\qquad Z_{1,0}=-\frac18,\qquad
-|Z_{0,1}|^2-|Z_{1,0}|^2=-\frac1{128}.
+W E_I W^\dagger=P_I\qquad\text{for every dyadic }I.
 ```
 
-This violates the necessary modulus symmetry for every choice of the
-three internal masks. The stdlib exact certificate is in
-[`test_global_haar.py`](../../tests/test_global_haar.py). It refutes
-the anchored simplification, not the free five-mask equation.
+Conversely, a unitary F satisfying all these identities is $`F=WD`$
+for a computational unitary diagonal D. Thus one actual right phase
+mask corrects every column phase.
 
-**Conditional native accounting.** If the free five-mask equation were
-proved for all frames, certified search from Section 3 would apply to
-its computable fixed mixers. At $`\ell=N+5`$, each packed diagonal
-has error $`\eta/32`$ and needs
+The inputs in $`I\setminus\{a\}`$ are precisely the subtree's internal
+markers. Ancestor rotations fix those inputs; their final columns are
+the orthonormal local details spanning $`\psi_I^\perp`$ inside I.
+This proves the identities. If I has children L,R and right-child left
+endpoint b, then
 
 ```math
-b_D=n+1+\left\lceil\frac{N+9}{2}\right\rceil\le N+n+7.
+E_I-E_L-E_R=|b\rangle\langle b|,\qquad
+P_I-P_L-P_R=W|b\rangle\langle b|W^\dagger.
 ```
 
-The five calls cost $`O(N)`$. The eight Haar calls and their actual
-inverses cost $`O(n^3)=O(N)`$ by the
-[fixed-mixer construction](STRUCTURAL_COMPILATION_LIMITS.md#balanced-haar-boundary-identities);
-they are not free Clifford interlayers. The same two clean flags and
-dirty bank suffice. A searched product within $`\eta/2`$, followed by
-the five compiled masks, has initialized-isometry error at most
-$`\eta/2+5\eta/32=21\eta/32`$. The full-output telescoping
-identity in Section 2 supplies work return and reference correctness
-without resetting intermediate leakage. The missing premise is global
-coverage, not factor extraction or the resource ledger.
+Also $`I-E_{[0,N)}=|0\rangle\langle0|`$. These differences recover
+each individual column projector. Equal unit-vector projectors differ
+by a unit scalar, proving the converse without changing the prescribed
+completion.
 
-### Direct weighted-Haar linear normal form
+**Operator-norm stability.** Suppose a logical unitary F obeys
+
+```math
+\|F E_I F^\dagger-P_I\|\le\delta\quad\text{for every }I,
+\qquad \kappa=(2n-1)\delta\lt1.
+```
+
+There is a computational unitary diagonal D with
+
+```math
+\|FD-W\|\le\kappa+1-\sqrt{1-\kappa^2}
+\le\kappa+\kappa^2.
+```
+
+To prove it, set $`U=W^\dagger F`$. Unitary invariance gives
+$`\|[U,E_I]\|\le\delta`$. Split the whole space into
+$`|0\rangle`$ and $`E_{[0,N)}`$. Its off-diagonal part has norm at
+most delta, since the two off-diagonal blocks have orthogonal domains
+and ranges. Recursively split each internal marker space by
+
+```math
+E_I=E_L+E_R+|b\rangle\langle b|.
+```
+
+Every off-diagonal block in this three-part split has norm at most
+delta, by the commutator with $`E_L`$ or $`E_R`$. Comparing component
+norms with the scalar matrix
+$`\delta(\boldsymbol1\boldsymbol1^{\mathsf T}-I_3)`$ bounds this part
+by $`2\delta`$. At one tree depth the parent spaces are mutually
+orthogonal, so their direct sum has the same bound. There are $`n-1`$
+nontrivial depths, down to intervals of size four; size-two marker
+spaces are already one-dimensional. The root split and these depth
+parts partition every off-diagonal entry once. Consequently
+
+```math
+\|U-\mathrm{diag}(U)\|\le\delta+2(n-1)\delta=\kappa.
+```
+
+Each unit column then gives $`|U_{jj}|\ge\sqrt{1-\kappa^2}`$.
+Choose $`D_{jj}=\overline{U_{jj}}/|U_{jj}|`$. The triangle inequality
+proves the stated bound. If F admits certified matrix-entry evaluation,
+as does a concrete candidate word, these overlaps are bounded away from
+zero and their phases admit terminating certified evaluation without an
+equality oracle. D is an actual factor, not a phase quotient of the error
+contract.
+
+For example, $`\delta=\eta/[8(2n-1)]`$ gives
+$`\|FD-W\|\le9\eta/64\lt\eta/4`$. Any implementation errors of F
+and D then compose through the full-output identity in Section 2. The
+criterion is a complete logical coverage test; separately preparing the
+local states $`\psi_I`$ does not implement its simultaneous identities.
+
+### Hierarchical rank-one cuts
+
+The same marker support also gives, at every dyadic interval I,
+
+```math
+\mathrm{rank}((I-\Pi_I)W\Pi_I)\le1,\qquad
+\mathrm{rank}(\Pi_IW(I-\Pi_I))\le1,\qquad
+\mathrm{rank}([\Pi_I,W])\le2.
+```
+
+Only the anchor input a can propagate outside I; all other inputs there
+are internal markers. Conversely, ancestors inject outside inputs into
+I only through a. Descendant rotations send all such contributions to
+scalar multiples of the same local root state $`\psi_I`$. This proves
+both rank-one bounds, including zero branches. The two off-diagonal
+commutator blocks have orthogonal domains and ranges. These identities
+describe the coupled unitary hierarchy; they do not factor it into a
+bounded number of global native gates.
+
+## 5. Direct weighted-Haar linear normal form
 
 There is a different all-column identity on the chart
 $`0\lt\theta_{d,p}\lt\pi/2`$.
@@ -304,7 +353,5 @@ pair disjoint from zero has $`a_v=1/\varepsilon`$, while
 $`\|\mathrm{diag}(\psi)\|`$ approaches one. The product of these
 separate factor normalizations is therefore at least order
 $`1/\varepsilon`$.
-A useful construction would need a coupled unitary dilation that
-preserves the cancellation between local row and column weights, with
-priced work return; neither that dilation nor an all-chart extension
-is provided by this identity.
+The separate-factor normalization therefore does not supply the
+constant-cost unitary coverage required in Section 1.

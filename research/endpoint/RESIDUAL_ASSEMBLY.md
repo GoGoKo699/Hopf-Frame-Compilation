@@ -1315,7 +1315,93 @@ columns coincide. Balanced Haar signs make these columns orthogonal with
 the already charged fixed mixer, but the following coefficient filter
 still depends on both the original ancestor marker and the current output.
 A native joint filter that preserves and erases this correlation remains
-missing. The rank lemma does not exclude it.
+unpriced at final accuracy. The [complete prefix encoder](COARSE_PREFIX_ENCODER.md)
+does exploit the shared path products: it has a joint O(N)-T construction
+at error below $`(43/64)2^{-\lceil N/n\rceil}`$. This coarse encoder
+does not supply the fine coefficient filter, and the rank lemma does not
+exclude one.
+
+### Independent forest tables require superlinear T-count
+
+The partial-rank condition alone cannot imply a generic linear-T primitive.
+The following enlarged family has the same rank budget and bounded filters,
+but its entries are independent rather than correlated Hopf path products.
+
+**Proposition.** Put $`N=2^n`$, $`n\ge3`$,
+$`d=(n-1)N+1`$, and $`M=N+2n+9`$. There is a d-dimensional cube
+of strict contractions A, each expressible as a sum of diagonally filtered
+partial unitaries with total input rank N, for which any uniform accepted-block
+compiler at error $`\eta=2^{-N}`$ and physical width at most M has
+worst-case T-count
+
+```math
+t\ge
+\frac{d\bigl[N-\log_2(12\sqrt d)\bigr]-2M^2-3M-5}{2M+1}
+=\Omega(Nn).
+```
+
+The finite bound may be negative at small n. The accepted-block promise
+allows an arbitrary target-dependent rejected completion and unlimited
+finite Clifford work.
+
+*Proof.* Column zero allows outputs $`u=1,\ldots,N-1`$. A depth-j
+marker $`v_{j,z}=z2^{n-j}+2^{n-j-1}`$ allows all outputs in its
+dyadic interval $`I_{j,z}=[z2^{n-j},(z+1)2^{n-j})`$ except its
+anchor and itself. Thus the number of allowed ordered entries is
+
+```math
+(N-1)+\sum_{j=0}^{n-1}2^j(2^{n-j}-2)=(n-1)N+1=d.
+```
+
+Let $`\Pi_*=|0\rangle\langle0|`$ and let $`\Pi_j`$ select
+the depth-j markers. Set
+
+```math
+U_*=H^{\otimes n},\qquad
+U_j=(I_{2^j}\otimes H^{\otimes(n-j)})X_j,
+```
+
+where $`X_j`$ flips bit j, counting from the most significant end.
+Each selected column of $`U_j\Pi_j`$ is positive and uniform on its
+own interval. These intervals are disjoint at each depth. Choose every
+allowed $`a_{uv}`$ independently in $`[0,\rho]`$, where
+$`\rho=1/(4\sqrt d)`$, and set all other entries to zero. The filters
+
+```math
+D_*(u)=\sqrt N\,a_{u0},\qquad
+D_j(u)=2^{(n-j)/2}a_{u,v_{j,z}}\quad(u\in I_{j,z})
+```
+
+give exactly $`A=D_*U_*\Pi_*+\sum_jD_jU_j\Pi_j`$. Their
+input-projector ranks sum to N, and
+
+```math
+\|A\|\le\|A\|_F\le\sqrt d\,\rho=1/4,
+\qquad \|D_*\|,\|D_j\|\le\sqrt N\,\rho\le1/4.
+```
+
+A coordinate grid of step $`3\eta`$ contains at least
+$`(12\sqrt d\,\eta)^{-d}`$ targets. Distinct targets differ by
+at least $`3\eta`$ in one matrix entry and hence in operator norm.
+With $`b=N+n+7`$, a circuit V satisfying only
+
+```math
+\|J_2^\dagger VJ_2-A\otimes I_b\|\le\eta
+```
+
+can approximate at most one grid target. This condition does not demand
+clean return while applying the nonunitary A. Smaller circuits may be
+padded by unused dirty wires. The
+[literal native-word count](../../docs/FAULT_TOLERANT_COMPILER.md#102-fixed-width-coherent-counting)
+at width M is at most $`2^{2M^2+3M+5+(2M+1)t}`$: commuting
+Cliffords into signed Pauli T rotations leaves one terminal Clifford and
+a finite scalar allowance. Comparing the two counts proves the bound. ∎
+
+The actual Hopf coefficients share O(N) coin parameters. They do not
+contain this independent $`\Theta(Nn)`$-dimensional cube. The proposition
+therefore requires a generic forest primitive to use more than the
+partial-rank and filter-norm hypotheses; it supplies no superlinear lower
+bound for the original Hopf family.
 
 ### A logical correction cannot erase coarse work leakage
 

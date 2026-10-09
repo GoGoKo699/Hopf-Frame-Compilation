@@ -49,7 +49,154 @@ def _haar_core_word(n):
     return word
 
 
+def _nested_projectors(theta, n):
+    """Local root columns, computed independently of the global frame."""
+    dimension = 1 << n
+    result = {}
+    for depth in range(n + 1):
+        height, size = n - depth, 1 << (n - depth)
+        for prefix in range(1 << depth):
+            anchor = prefix * size
+            local_angles = [theta[(1 << (depth + level))
+                                  + (prefix << level) + j - 1]
+                            for level in range(height) for j in range(1 << level)]
+            local_root = (real_frame_matrix(local_angles)[:, 0]
+                          if height else np.ones(1))
+            state = np.zeros(dimension)
+            state[anchor:anchor + size] = local_root
+            coordinate = np.zeros((dimension, dimension))
+            coordinate[anchor:anchor + size, anchor:anchor + size] = np.eye(size)
+            marker_space = coordinate.copy()
+            marker_space[anchor, anchor] = 0
+            result[(depth, prefix)] = (
+                marker_space, coordinate - np.outer(state, state), coordinate, state)
+    return result
+
+
 class EndpointStructuralLimitsTests(unittest.TestCase):
+    def test_nested_projectors_determine_all_columns_in_singular_charts(self):
+        for n in (2, 3, 4):
+            dimension = 1 << n
+            unequal = np.linspace(-1.1, 2.3, dimension - 1)
+            singular = unequal.copy()
+            singular[0], singular[2] = 0, np.pi / 2
+            for theta in (unequal, singular, np.zeros(dimension - 1)):
+                with self.subTest(n=n, chart=tuple(theta)):
+                    frame = real_frame_matrix(theta)
+                    projectors = _nested_projectors(theta, n)
+                    for (depth, prefix), (e, p, coordinate, state) in projectors.items():
+                        np.testing.assert_allclose(frame @ e @ frame.T, p,
+                                                   atol=ATOL, rtol=0)
+                        self.assertAlmostEqual(np.linalg.norm(state), 1, delta=ATOL)
+                        other = np.eye(dimension) - coordinate
+                        for block in (other @ frame @ coordinate,
+                                      coordinate @ frame @ other):
+                            # Support/coupling claims concern all input columns.
+                            self.assertLessEqual(np.linalg.svd(block, compute_uv=False)[1], ATOL)
+                        if depth < n:
+                            left = projectors[(depth + 1, 2 * prefix)]
+                            right = projectors[(depth + 1, 2 * prefix + 1)]
+                            marker = (2 * prefix + 1) << (n - depth - 1)
+                            column = frame[:, marker]
+                            np.testing.assert_allclose(p - left[1] - right[1],
+                                                       np.outer(column, column),
+                                                       atol=ATOL, rtol=0)
+                    root = frame[:, 0]
+                    np.testing.assert_allclose(np.eye(dimension) - projectors[(0, 0)][1],
+                                               np.outer(root, root), atol=ATOL, rtol=0)
+                    # Same prepared state, different completion: a marker swap
+                    # must violate at least one individual subtree constraint.
+                    changed = frame.copy()
+                    changed[:, [1, 2]] = changed[:, [2, 1]]
+                    np.testing.assert_allclose(changed[:, 0], root, atol=ATOL, rtol=0)
+                    self.assertGreater(max(np.linalg.norm(changed @ e @ changed.T - p, 2)
+                                           for e, p, _, _ in projectors.values()), 0.9)
+
+    def test_nested_projector_stability_and_tree_offdiagonal_partition(self):
+        for n in (2, 3, 4):
+            dimension = 1 << n
+            theta = np.linspace(-0.8, 1.9, dimension - 1)
+            theta[0] = 0  # Zero global mass does not remove local constraints.
+            frame = real_frame_matrix(theta)
+            projectors = _nested_projectors(theta, n)
+            indices = np.arange(dimension)
+            raw = np.exp(1j * (indices[:, None] + 1) * (indices[None, :] + 2))
+            hermitian = (raw + raw.conj().T) / (2 * dimension)
+            values, vectors = np.linalg.eigh(hermitian)
+            u = (vectors * np.exp(0.013j * values)) @ vectors.conj().T
+            u = u @ np.diag(np.exp(0.37j * indices))
+            candidate = frame @ u
+            delta = max(np.linalg.norm(candidate @ e @ candidate.conj().T - p, 2)
+                        for e, p, _, _ in projectors.values())
+            kappa = (2 * n - 1) * delta
+            with self.subTest(n=n):
+                self.assertLess(kappa, 1)
+                root_e = projectors[(0, 0)][0]
+                root_zero = np.eye(dimension) - root_e
+                parts = root_zero @ u @ root_e + root_e @ u @ root_zero
+                self.assertLessEqual(np.linalg.norm(parts, 2), delta + ATOL)
+                for depth in range(n - 1):
+                    depth_part = np.zeros_like(u)
+                    for prefix in range(1 << depth):
+                        e = projectors[(depth, prefix)][0]
+                        left = projectors[(depth + 1, 2 * prefix)][0]
+                        right = projectors[(depth + 1, 2 * prefix + 1)][0]
+                        marker = e - left - right
+                        depth_part += (e @ u @ e - left @ u @ left
+                                       - right @ u @ right - marker @ u @ marker)
+                    self.assertLessEqual(np.linalg.norm(depth_part, 2), 2 * delta + ATOL)
+                    parts += depth_part
+                np.testing.assert_allclose(parts, u - np.diag(np.diag(u)),
+                                           atol=ATOL, rtol=0)
+                self.assertLessEqual(np.linalg.norm(parts, 2), kappa + ATOL)
+                correction = np.diag(np.conj(np.diag(u)) / np.abs(np.diag(u)))
+                self.assertLessEqual(np.linalg.norm(candidate @ correction - frame, 2),
+                                     kappa + 1 - np.sqrt(1 - kappa ** 2) + ATOL)
+                # Exact phase freedom satisfies the projectors and is removed
+                # by an actual diagonal; no scalar quotient is used.
+                phases = np.exp(0.21j * indices)
+                exact = frame @ np.diag(phases)
+                for e, p, _, _ in projectors.values():
+                    np.testing.assert_allclose(exact @ e @ exact.conj().T, p,
+                                               atol=ATOL, rtol=0)
+                np.testing.assert_allclose(exact @ np.diag(phases.conj()), frame,
+                                           atol=ATOL, rtol=0)
+
+    def test_all_quarter_turn_edges_form_one_cycle_and_diagonal_transitions(self):
+        for n in (2, 3, 4):
+            dimension = 1 << n
+            frame = real_frame_matrix(np.full(dimension - 1, np.pi / 2))
+            permutation = np.argmax(np.abs(frame), axis=0)
+            visited, vertex = set(), 0
+            while vertex not in visited:
+                visited.add(vertex)
+                vertex = int(permutation[vertex])
+            with self.subTest(n=n):
+                self.assertEqual(vertex, 0)
+                self.assertEqual(len(visited), dimension)
+                for labels in (np.arange(dimension), np.arange(dimension) % 3,
+                               np.repeat([0, 1], dimension // 2)):
+                    diagonal = np.diag(labels)
+                    displacement = diagonal @ frame - frame @ diagonal
+                    transitions = np.count_nonzero(labels != labels[permutation])
+                    self.assertEqual(np.linalg.matrix_rank(displacement, tol=ATOL), transitions)
+                    self.assertGreaterEqual(transitions, len(set(labels)))
+
+    def test_complex_pair_rotation_energy_identity_for_fixed_baselines(self):
+        # The fixed-menu proof permits complex baseline entries. This fixture
+        # checks the real-angle energy formula without a real-column assumption.
+        pair = np.array([0.3 + 0.4j, -0.2 + 0.7j])
+        rho = np.vdot(pair, pair).real
+        a = (abs(pair[0]) ** 2 - abs(pair[1]) ** 2) / 2
+        b = np.real(pair[0] * np.conj(pair[1]))
+        self.assertLessEqual(np.hypot(a, b), rho / 2)
+        for angle in np.linspace(-2.1, 2.7, 11):
+            rotated = hopf_ry(angle).T @ pair
+            wave = a * np.cos(2 * angle) + b * np.sin(2 * angle)
+            np.testing.assert_allclose(np.abs(rotated) ** 2,
+                                       [rho / 2 + wave, rho / 2 - wave],
+                                       atol=ATOL, rtol=0)
+
     def test_full_frame_tangent_gram_in_unequal_and_singular_charts(self):
         for n in (2, 3, 4):
             count = (1 << n) - 1
