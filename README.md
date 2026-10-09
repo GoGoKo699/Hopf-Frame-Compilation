@@ -5,10 +5,8 @@ gradient decoder also uses designated coordinate-frame columns. This
 repository compiles that prescribed **complete operator**, with explicit
 costs for precision, initialized workspace, and borrowed workspace.
 
-The selected results are A–D below. Their proofs and retained corollaries
-are fixed in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
-A [bounded internal audit](docs/CORE_CLAIM_AUDIT.md) found no unresolved
-claim-level blocker; final manuscript writing remains on hold.
+The principal results are A–D below. Their hypotheses and retained
+corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column; complete-frame compilation also preserves the designated coordinate-frame columns." />
@@ -19,8 +17,7 @@ claim-level blocker; final manuscript writing remains on hold.
 | [Proof roadmap](REVIEW.md) | Follow the mechanisms connecting the four claims |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Research status and attempts](research/README.md) | Find the two open gaps and scoped construction attempts |
-| [Workspace checkpoint](WORKSPACE.md) · [LLM guide](llms.txt) | Continue maintenance with the current decisions |
+| [Research results and open gaps](research/README.md) | Find restricted successes and limits of specific compilation methods |
 
 ## Target and resource contract
 
@@ -143,6 +140,12 @@ Neither gap is a prerequisite for the selected A–D package.
 The [research index](research/README.md) separates these questions from
 proved component results and failed shortcuts. Restrictions on a particular
 source or query interface do not prove unrestricted compiler lower bounds.
+An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+gives $`T\ge N-\log_2 24`$ at the count endpoint, even with unrestricted
+Clifford interlayers and workspace. The
+[structural limits](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+identify normalization, fixed-mixer, and original-angle query restrictions;
+the upper bound remains unchanged.
 
 ## Operational consequence
 

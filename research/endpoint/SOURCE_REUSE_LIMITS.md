@@ -1431,7 +1431,202 @@ loader and simplifying the fixed mask exposes the same leading precision
 cost in the comparison word: the remaining programmable masks still
 carry a precision charge per layer.
 
-## 9. Finite checks and evidence limits
+## 9. Dirty programs and phase-gradient sources
+
+The following identities distinguish complete dirty-input operations from
+prepared-source promises. They do not exclude joint native synthesis.
+The broader literature comparison is in
+[Related Work, Section 19](../../docs/RELATED_WORK.md#19-unary-phase-source-reuse-and-linear-t-depth-3-october-2026).
+
+### Whole-word XOR cancellation and a cyclic alternative
+
+Suppose a unitary family indexed by bit strings satisfies
+$`U_{z\oplus s}U_z^\dagger=V_s`$ independently of arbitrary dirty z.
+Taking $`z=0`$ and substituting back gives
+
+```math
+U_s=V_sU_0,\qquad V_{z\oplus s}=V_sV_z.
+```
+
+Thus the $`V_s`$ must be commuting involutions; conversely that condition
+suffices. This is a literal-phase identity. In particular, if the two echo
+outputs $`U_sU_0^\dagger`$ and $`U_0U_s^\dagger`$ both approximate V
+within $`\epsilon`$,
+then $`\|V-V^\dagger\|\le2\epsilon`$. For $`V=R_y(\theta)`$ this
+requires $`\epsilon\ge|\sin\theta|`$. An involution alphabet alone is
+insufficient: $`U_{z_1,z_2}=H^{z_2}X^{z_1}`$ and $`s=(1,0)`$ produce
+X or Z depending on the dirty second bit. The retained
+[reflection interpreter](../../docs/BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter)
+instead completes each symbol's cancellation before starting the next.
+
+A cyclic character does allow a complete dirty phase echo. For
+$`M=2^m`$, define $`P_M|z\rangle=e^{2\pi iz/M}|z\rangle`$ and
+$`A_f|x,z\rangle=|x,z+f(x)\bmod M\rangle`$. Then
+
+```math
+A_f^\dagger(I\otimes P_M)A_f(I\otimes P_M^\dagger)
+=\sum_x e^{2\pi if(x)/M}|x\rangle\langle x|\otimes I.
+```
+
+Evaluating on $`|x,z\rangle`$ proves the identity, hence also dirty return
+under arbitrary reference entanglement. Native costs are
+$`2T(A_f)+2T(P_M)`$; actual adjoints and complete-isometry primitive errors
+$`\epsilon_A,\epsilon_P`$ give total error at most
+$`2\epsilon_A+2\epsilon_P`$. Both operations still need charged circuits.
+XOR lookup cannot replace modular addition: for $`M=4,f=1`$ its phase is
+i on even z and $`-i`$ on odd z. A cheap dirty phase-gradient unitary,
+a cheap dirty addition table, and complete-frame amortization remain
+separate missing constructions.
+
+### A prepared tuple is not an arbitrary dirty register
+
+Zhang, Tan, Kothari, Gosset, and Gidney,
+[*Quantum circuit compilation with constant overhead*](https://arxiv.org/html/2609.39092v1),
+Section 5, give unitary $`O(m)`$-gate phase-gradient preparation at error
+$`2^{-m}`$. Their construction prepares a coefficient register from
+$`|0^B\rangle`$ and a tuple register $`|+^M\rangle`$, with
+$`B=O(m)`$ and $`M=128m`$ (Eqs. 46–54). These are initialized registers.
+
+There is a useful operator extension: remove the initial Hadamards on the
+data while retaining those prepared registers. Equations 60–64 then give
+a block approximating $`\gamma e^{-iH}`$ for
+$`H=\pi\sum_{j=1}^m2^{-j}Z_j`$, uniformly on every data input. Indeed,
+the selected Paulis have norm one, so the preparation, tuple-tail, and
+Taylor-tail bounds apply to an arbitrary data vector and reference.
+Constant-round oblivious amplification and correction of the known phase
+of $`\gamma`$ preserve linear T-count with that initialized work. This
+does not fit two clean qubits; at $`m=N`$ the tuple alone exceeds the
+total physical width.
+
+The obstruction to a direct dirty substitution is explicit. Let F project
+onto tuple strings with at least one 1. Although
+$`\|(I-F)|+^M\rangle\|=2^{-M/2}`$, one has $`\|I-F\|=1`$.
+Even valid tuples fail to give the required average. At Taylor order one,
+the orthogonal valid states
+
+```math
+|a\rangle=|1\rangle|+^{M-1}\rangle,\qquad
+|b\rangle=|01\rangle|+^{M-2}\rangle
+```
+
+select $`Z_1`$ and $`Z_2`$, respectively. On data $`|10\cdots0\rangle`$,
+SELECT sends $`(|a\rangle+|b\rangle)/\sqrt2`$ to the orthogonal dirty
+state $`(-|a\rangle+|b\rangle)/\sqrt2`$. Its distance from any common
+data-only scalar phase, on these two dirty inputs, is at least $`\sqrt2`$.
+The matrix element in the prepared tuple state is an average; the
+tuple-controlled unitary is not that average tensored with identity.
+
+### A Majorana first moment does not supply independent powers
+
+Let $`p_j\ge0`$ sum to one, let $`\Gamma_j`$ be anticommuting Hermitian
+involutions, and let $`P_j`$ be commuting Hermitian involutions on disjoint
+data wires. Set
+
+```math
+M=\sum_j\sqrt{p_j}\Gamma_j\otimes I,\qquad
+N=\sum_j\sqrt{p_j}\Gamma_j\otimes P_j,\qquad
+H_0=\sum_jp_jP_j.
+```
+
+Pairing the cross terms proves
+$`M^2=N^2=I`$ and $`(MN+NM)/2=I\otimes H_0`$ on the entire source
+space. For $`p_j=2^{-j}`$ ($`1\le j\le m`$), a capped identity tail
+$`p_{m+1}=2^{-m}`$ with $`P_{m+1}=I`$, and $`P_j=Z_j`$ for
+$`1\le j\le m`$, the geometric Majorana loader
+and a data-controlled Pauli mask give an $`O(m)`$-T first-moment block.
+The mask is Clifford because its source-Pauli exponents are linear
+functions of the data bits.
+
+Suppressing the source identity in $`H_0`$, the actual one-flag word
+$`H_f\,\mathrm{diag}(MN,NM)\,H_f`$ is
+
+```math
+S=I_f\otimes H_0+X_f\otimes D,\qquad
+D=(MN-NM)/2,\qquad [D,H_0]=0,\quad D^2=H_0^2-I.
+```
+
+Reusing its occupied flag therefore gives
+
+```math
+\langle0|S^2|0\rangle=2H_0^2-I,\qquad
+\langle0|S^k|0\rangle=T_k(H_0),
+```
+
+where $`T_k`$ is the Chebyshev polynomial, rather than the independent
+tuple moment $`H_0^k`$. For $`m=2`$,
+$`H_0=Z_1/2+Z_2/4+I/4`$ vanishes on $`|10\rangle`$; the second
+compressed moment is $`-I`$ there instead of zero. Signal processing can
+use these Chebyshev moments, but a degree-K word then charges K source
+calls in the direct implementation. At the Taylor degree
+$`K=\Theta(m/\log(m+2))`$, this is $`O(mK)`$ T gates before phase
+synthesis, not a single $`O(m)`$ charge. No source-fusion identity is
+supplied by the first-moment equation.
+
+There are two further interface conditions. The paired-Majorana realization
+uses at least $`\lceil(m+1)/2\rceil`$ source qubits in addition to the
+m-bit data bank; at $`m=N`$ this misses the endpoint width for large n.
+Identifying source and data would invalidate their assumed commutation.
+For noncommuting logical involutions the identity itself acquires
+
+```math
+N^2=I+\sum_{i\lt j}\sqrt{p_ip_j}\,
+\Gamma_i\Gamma_j\otimes[P_i,P_j].
+```
+
+Neither restriction is an unrestricted compiler lower bound.
+
+### Phase halving requires its promised catalyst
+
+Appendix B, Proposition 16 of the same paper assumes the catalyst
+$`|\chi_+\rangle=R(\theta)|+\rangle`$, where
+$`R(\theta)=\mathrm{diag}(1,e^{i\theta})`$. The measurement-free word
+with both Toffolis retained has, on an arbitrary catalyst c and a zero
+helper, the complete effective action
+
+```math
+\begin{aligned}
+U_\theta={}&I_c\otimes|00\rangle\langle00|\\
+&+R_c(2\theta)X_c\otimes
+ (|01\rangle\langle01|+|10\rangle\langle10|)\\
+&+e^{2i\theta}I_c\otimes|11\rangle\langle11|.
+\end{aligned}
+```
+
+The helper returns to zero. Define
+
+```math
+Q_\theta=e^{-i\theta}R(2\theta)X
+=\cos\theta X+\sin\theta Y.
+```
+
+The word is the desired
+$`R(\theta)\otimes R(\theta)`$ followed by $`Q_\theta`$ on c,
+controlled on odd data parity. The promised catalyst is its +1
+eigenvector. Its orthogonal −1 eigenvector produces an extra
+$`Z\otimes Z`$ on the data. In particular,
+
+```math
+|0\rangle_c|01\rangle|0\rangle_a
+\longmapsto e^{2i\theta}|1\rangle_c|01\rangle|0\rangle_a,
+```
+
+at distance $`\sqrt2`$ from the requested dirty-return output
+$`e^{i\theta}|0\rangle_c|01\rangle|0\rangle_a`$. Correcting the
+controlled $`Q_\theta`$ requires a further angle-dependent operation.
+Replacing the paper's measurement-based four-T uncomputation by exact
+Toffolis changes a constant cost, not this catalyst requirement.
+
+A prepared approximate catalyst remains useful: if a full ideal sequence
+returns $`|\chi_+\rangle`$ and implements W, replacing that catalyst by
+a normalized state within $`\delta`$ changes the complete action,
+relative to returning the actual supplied state, by at most $`2\delta`$.
+Compare the initial and final ideal catalyst through the full unitary.
+This bound need not accumulate per catalytic use, but it presupposes a
+legal preparation and does not apply to an arbitrary dirty qubit.
+
+<a id="9-finite-checks-and-evidence-limits"></a>
+
+## 10. Finite checks and evidence limits
 
 Run:
 
@@ -1443,6 +1638,7 @@ python -m unittest tests.test_shared_conjugator_merge
 python -m unittest tests.test_precision_carry
 python -m unittest tests.test_correlated_precision_carry
 python -m unittest tests.test_small_product_compilation
+python -m unittest tests.test_endpoint_structural_limits
 ```
 
 The tests exercise the dimension inequality on small nilpotent
@@ -1468,6 +1664,13 @@ fixed-address compiler, not a new general precision-sharing theorem.
 The dimension and T-count statements rest on the analytic proofs above;
 the tests do not establish an unrestricted impossibility theorem or
 literature priority.
+
+The [endpoint structural fixtures](../../tests/test_endpoint_structural_limits.py)
+also check the noncommuting dirty-word counterexample, the valid-tuple
+SELECT disturbance and its clean compression, the actual Majorana word's
+first and second moments, and the complete phase-halving action on prepared
+and arbitrary catalysts. These checks verify the stated
+interfaces; they do not convert prepared-source promises into dirty ones.
 
 The [tree-residual fixtures](../../tests/test_tree_residual_structure.py)
 independently compare addressed circuits, recursive subtree vectors, and

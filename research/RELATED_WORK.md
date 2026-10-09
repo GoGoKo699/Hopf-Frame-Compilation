@@ -196,6 +196,18 @@ the phase-register width. Preparation is charged separately, and parallel
 batches require separate resources. These are useful shared-arithmetic
 precedents, not the constant-depth unary-program interface used here.
 
+**Comparison checked 9 October 2026.**
+[Zhang–Tan–Kothari–Gosset–Gidney, arXiv:2609.39092v1](https://arxiv.org/html/2609.39092v1)
+prove adaptive constant-overhead compilation at inverse-polynomial error
+and, separately, unitary
+preparation of an m-qubit phase-gradient state to error $`2^{-m}`$
+with $`O(m)`$ gates and initialized work. The
+[source-reuse audit](endpoint/SOURCE_REUSE_LIMITS.md#9-dirty-programs-and-phase-gradient-sources) records the precise
+clean-register and catalyst requirements and the dirty-substitution
+counterexamples. The related clean-instruction comparison is updated to
+Yamazaki–Akibue–Sano v3 in the
+[source catalogue](../docs/reference/SOURCE_CATALOGUE.md#12-contemporary-comparisons-and-the-broader-compiler-contribution).
+
 The additional result is the complete charged composition: one unitary
 source boundary pair per group, coherent one-hot shift selection,
 inactive-sector identity, the Hopf angle-stability bound, and an

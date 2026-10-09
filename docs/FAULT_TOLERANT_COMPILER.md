@@ -1076,6 +1076,87 @@ range, $`NL/q=O(\sqrt{NL})`$, already supplied by (29). Combining
 at every width, and (4) follows from the construction. No local
 precision costs have been added to obtain this lower bound.
 
+### 10.3 An explicit width-independent precision witness
+
+The precision term also has a direct algebraic proof for one prescribed
+frame, without a counting theorem. For every $`n\geq1`$, set all angles
+except the root angle to zero and choose
+
+```math
+\cos\theta_{0,0}=\sqrt{2/3},\qquad
+\sin\theta_{0,0}=1/\sqrt3.
+```
+
+These algebraic values admit certified classical evaluation. Any coherent
+Clifford+T circuit satisfying (2) for this tuple has
+
+```math
+\boxed{\tau(V)\geq\log_2(1/\eta)-\log_2 24.}
+```
+
+This bound allows arbitrary finite Clifford count and arbitrary clean and
+borrowed widths. At the constant-clean endpoint $`\eta=2^{-N}`$, it gives
+$`\tau(V)\geq N-\log_2 24`$ independently of the workspace allocation.
+
+**Proof.** Initialize the logical and borrowed registers to zero; this is
+a permitted test input for (2). The target logical output is
+
+```math
+|\psi\rangle
+=\sqrt{2/3}|0^n\rangle+\frac1{\sqrt3}|10^{n-1}\rangle,
+\qquad \langle\psi|Z_1|\psi\rangle=\frac13.
+```
+
+Let $`r`$ be the actual output expectation of $`Z_1`$, acting as identity
+on every other qubit, and let $`t=\tau(V)`$. The complete-output vector
+error is at most $`\eta`$, so
+
+```math
+\left|r-\frac13\right|\leq2\eta.
+```
+
+In the Hermitian Pauli basis, Clifford conjugation is a signed permutation.
+Each T or T-dagger transfer matrix has entries in
+$`\{0,\pm1,\pm1/\sqrt2\}`$, while the initial stabilizer expectations
+are integers. Consequently
+
+```math
+r\in\mathbb Z[1/\sqrt2],\qquad
+u=(\sqrt2)^t r\in\mathbb Z[\sqrt2].
+```
+
+Let $`\sigma`$ be the field automorphism of $`\mathbb Q(\sqrt2)`$
+sending $`\sqrt2`$ to $`-\sqrt2`$. It fixes every Clifford transfer
+matrix and changes the transfer matrix of $`T`$ into that of $`T^5`$:
+the $`X,Y`$ rotation changes from $`\pi/4`$ to $`5\pi/4`$, and the
+$`I,Z`$ block stays fixed. The corresponding replacement for
+$`T^\dagger`$ is $`T^{-5}`$. Thus $`\sigma(r)`$ is also an expectation
+of a Pauli observable in a physical unitary circuit, and
+$`|\sigma(r)|\leq1`$.
+
+The algebraic integer $`3u-(\sqrt2)^t`$ is nonzero: the rational elements
+of $`\mathbb Z[1/\sqrt2]`$ are dyadic rationals, so $`r\neq1/3`$.
+Its field norm is a nonzero integer. Since
+$`|\mathrm{Norm}((\sqrt2)^t)|=2^t`$, taking the norm of
+$`3(r-1/3)=[3u-(\sqrt2)^t]/(\sqrt2)^t`$ gives
+
+```math
+\left|\left(r-\frac13\right)
+\left(\sigma(r)-\frac13\right)\right|
+\geq\frac1{9\,2^t}.
+```
+
+Using $`|\sigma(r)-1/3|\leq4/3`$ therefore yields
+
+```math
+\frac1{12\,2^t}\leq\left|r-\frac13\right|\leq2\eta,
+```
+
+which proves the claim. The proof needs neither exact workspace return nor
+a bound on Clifford word length. It is a necessary condition under the
+literal-phase isometry contract; it does not establish or preclude the
+remaining uniform linear-T upper bound. ∎
+
 ## 11. What is proved, and what remains to implement
 
 The result is an analytic circuit construction with an explicit

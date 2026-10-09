@@ -1,10 +1,13 @@
 # Continuing workspace
 
-**Checkpoint: 4 October 2026.** The repository is organized around the
+**Checkpoint: 9 October 2026.** The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
-The [bounded internal audit](docs/CORE_CLAIM_AUDIT.md) found no unresolved
-claim-level blocker. Scientific scope is frozen; manuscript writing remains
-on hold. The current refurnishing changes organization, not theorem scope.
+The endpoint investigation adds an explicit precision witness and
+full-frame geometry to the canonical proof chapters, and scoped
+[structural limits](research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+and [source-interface results](research/endpoint/SOURCE_REUSE_LIMITS.md)
+to the research archive. Results A–D and both open resource gaps are
+unchanged. Final manuscript writing remains on hold.
 
 ## Mandate
 
@@ -89,9 +92,6 @@ scientific tests and receipt hashes must not be weakened or regenerated.
 ## Restore and verify
 
 Start with `git status --short --branch` and the relevant proof chapter.
-The reviewed pre-refurnishing baseline is
-`8824ca5eb2e3c80462a4bd63a4ebae31f01db62e`, with 505 passing tests,
-four exact fault-tolerant receipt suites, and all five branch checks.
 For substantive theorem/circuit changes, use:
 
 ```bash
