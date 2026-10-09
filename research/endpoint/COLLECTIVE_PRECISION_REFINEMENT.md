@@ -95,8 +95,8 @@ return assumption. Full-space telescoping gives error at most e, and
 the canonical schedule yields
 
 ```math
-q_j=s+n-j+7,\quad 0\le j<n,\qquad
-e<\frac{43}{64}\,2^{-s}.
+q_j=s+n-j+7,\quad 0\le j\lt n,\qquad
+e\lt \frac{43}{64}\,2^{-s}.
 ```
 
 Thus $`W_0`$ is an exact comparison frame, not an exactly returned native
@@ -107,7 +107,7 @@ actual coarse word with its logical polar factors.
 ## 2. A literal two-flag purification lemma
 
 Let $`P=JJ^\dagger`$, let C be any physical unitary, and suppose
-$`\|J^\dagger CJ-U\|\le a<1`$ for a unitary U on logical and dirty
+$`\|J^\dagger CJ-U\|\le a\lt 1`$ for a unitary U on logical and dirty
 inputs. Define
 
 **Two-flag filter (2).**
@@ -263,7 +263,7 @@ remainder, and the corresponding ordered-product remainder, give
 ```
 
 Canonical programming gives $`\|X_{j+1}\|\le65\,2^{-q_j}`$; hence
-$`\kappa\le(65/128)2^{-s}<2^{-s}`$. One SU(2) middle bank, decomposed
+$`\kappa\le(65/128)2^{-s}\lt 2^{-s}`$. One SU(2) middle bank, decomposed
 into three addressed fixed-axis banks, contains all local derivatives.
 For each block, search the dense dyadic triples of Euler angles until
 certified evaluation bounds its distance from the target below
@@ -300,7 +300,7 @@ $`q_j=s+n-j+9`$ in the controlled auxiliary prefix encoder and
 $`q=s+10`$ in its child bank. Their errors sum to less than $`2^{-s}`$.
 Use $`q=L+20`$ in each fine middle/phase axis. Each three-axis bank has
 error at most $`130\,2^{-q}`$, and their total contribution in (3) is
-at most $`[(2+\sqrt3)+8]130\,2^{-q}<2^{-L}`$. The two purifiers use
+at most $`[(2+\sqrt3)+8]130\,2^{-q}\lt 2^{-L}`$. The two purifiers use
 three baseline calls, three correction calls, six auxiliary S calls,
 three middle calls, six history calls, and eight phase calls, including
 inverses. The S, middle and history counts expand the correction count.
@@ -388,7 +388,7 @@ h_X(h_X-T)+(h_X-T)T=X^\dagger X-T^2
 
 gives $`\|h_X-T\|\le(2r+r^2)/(2t-r)`$, because $`\|T\|\le1`$.
 Consequently $`\|\mathrm{polar}(X)-I\|`$ is at most
-$`[r+(2r+r^2)/(2t-r)]/(t-r)<3d^3`$. This uses no commutativity
+$`[r+(2r+r^2)/(2t-r)]/(t-r)\lt 3d^3`$. This uses no commutativity
 assumption and is uniform in dimension.
 
 ## 6. Opposite filters and the complete cubic word
@@ -461,11 +461,11 @@ baseline contribute less than
 
 ```math
 \left(16+11+12\frac{172}{1024}+\frac{86}{1024}\right)d^3
- <30d^3.
+ \lt 30d^3.
 ```
 
 The fourteen fine-bank appearances add at most
-$`14\cdot130\,2^{-(L+20)}<2^{-L}`$. This proves the stated
+$`14\cdot130\,2^{-(L+20)}\lt 2^{-L}`$. This proves the stated
 $`40\,8^{-s}+2^{-L}`$ bound, with the same circuit's T and G counts.
 Ordinary isometry telescoping is valid for arbitrary dirty inputs and
 references; it requires neither a reset nor intermediate exact return.

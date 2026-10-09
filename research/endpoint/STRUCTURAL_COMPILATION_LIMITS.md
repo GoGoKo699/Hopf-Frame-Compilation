@@ -1227,7 +1227,7 @@ eigenvalue lambda some eigenvalue mu of K lies within epsilon: apply
 $`K-\lambda I`$ to a target eigenvector and use the normal resolvent
 bound. Choose a Clifford-basis eigenvector phi of K at mu. It obeys
 $`\|(H_G-\mu I)\phi\|\le\epsilon`$, while its component orthogonal
-to the lambda eigenvector has norm at least d. If $`\epsilon<g/2`$,
+to the lambda eigenvector has norm at least d. If $`\epsilon\lt g/2`$,
 all other target eigenvalues are at distance at least
 $`g-\epsilon`$ from mu. Hence
 $`\epsilon\ge(g-\epsilon)d`$. The same resulting bound is automatic
