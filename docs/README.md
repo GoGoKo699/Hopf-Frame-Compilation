@@ -18,7 +18,7 @@ and their references, literal phases, and clean-work leakage.
 
 | Read | Purpose |
 |---|---|
-| [Hopf interface](HOPF_INTERFACE.md) | Coordinates, marker columns, singular charts, addressed layers, and the full-frame tangent metric |
+| [Hopf interface](HOPF_INTERFACE.md) | Coordinates, marker columns, singular charts, addressed layers, and full-frame tangent metric and operator stability |
 | [Frame-safe compilation](FRAME_SAFE_COMPILATION.md) | Complete-input error, actual adjoints, fixed-decoder necessity, and singular exceptions |
 | [Compiler boundaries](COMPILER_BOUNDARIES.md) | Concrete distinctions between state preparation, checkpoints, and prescribed complete frames |
 
@@ -128,31 +128,21 @@ real/complex theorem, computational input audit, task costs, and bounded
 native integrations are grouped there. It does not replace the complete-frame
 contract or become an extra prerequisite for A–D.
 
-The [research index](../research/README.md) maps constructive endpoint
-reductions, promised-family compilers and scoped interface bounds. The
-[bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-uses the packed diagonal compiler; the
-[regular tree Cayley reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
-supplies an all-angle representation with charged exterior permutations.
-Its [boundary propagation proof](../research/endpoint/BOUNDARY_PROPAGATION.md)
-gives sparse preconditioning, repeated-call precision within the endpoint
-width, and exact feedback cancellation to one prefix encoder. The
-[coarse prefix encoder](../research/endpoint/COARSE_PREFIX_ENCODER.md)
-compiles the entire correlated basis jointly and proves a full-output
-small-conjugation error bound. The
-[collective refinement](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
-combines geometric histories and midpoint purification into a cubic
-replacement, with the actual baseline, all inverse calls, and peak width
-charged. The
-[coupled tree resolvent](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
-gives all-order norm, tail and support bounds and an ideal
-normalization-three dilation, with its native cost charged separately. The
-[structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-cover Haar words, width-independent three- and four-mask flat-Clifford
-obstructions, and single-bank transport rigidity. The research index
-also maps exact realification, marker-support and Spin-decoding results.
-Linear-T fine correlated synthesis and coverage by other mixer families
-remain separate hypotheses from Results A–D.
+The [research index](../research/README.md) maps endpoint and depth
+results by their hypotheses. Its constructive count chain is
+[disjoint native blocks](../research/endpoint/DISJOINT_BLOCK_COMPILER.md),
+[precision gauges](../research/endpoint/PRECISION_GAUGE_COMPILER.md),
+and [structured forests](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md).
+These prove linear endpoint count for specified families.
+
+The [open-problem statement](OPEN_PROBLEM.md) separates those families
+from the all-angle tree reductions and unpaid recovery operations.
+The [canonical-star oracle](../research/endpoint/CANONICAL_STAR_RESOLVENT.md),
+[scalar Schur limits](../research/endpoint/SCALAR_SCHUR_LIMITS.md),
+[structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md),
+and [native representation results](../research/endpoint/NATIVE_REALIFICATION.md)
+retain their individual source, baseline, or factorization assumptions.
+They are separate from the proof chain for Results A–D.
 
 ## Evidence and sources
 

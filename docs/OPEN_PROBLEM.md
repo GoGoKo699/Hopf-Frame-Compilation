@@ -30,136 +30,76 @@ at root angle $`\pi/16`$ gives the lower bound even at unrestricted
 workspace width, retaining literal phases. The question
 is whether the upper bound can be reduced to O(N) at this exact allocation.
 
+### Proved linear-count families
+
+The following families have $`O(N)`$ T-count at the literal allocation
+above. Constants may depend on fixed promises, never on $`n`$ or the
+target tuple.
+
+| Family | Exact promise and proof |
+|---|---|
+| Regular or common-scale branches | The [precision-gauge compiler](../research/endpoint/PRECISION_GAUGE_COMPILER.md) covers polynomially regular normalized branches, a fixed-ratio interval of branch exponents, and the stated cheap/ultraweak separation |
+| Sparse computational forests | The [structured-forest compiler](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) covers fixed outgoing degree in the original tree $`p(j)=j-\mathrm{lowbit}(j)`$, more generally certified sub-binary growth within degree windows; active angles may be arbitrary, signed, or singular |
+| Bounded exceptional path depth | The same forest theorem allows arbitrary-scale exceptional edges when each computational path meets only a fixed number, over a cheap or fixed-ratio base family |
+| Native-baseline updates | [Antichain](../research/endpoint/ANTICHAIN_COMPILER.md) and [ancestor-closed sparse updates](../research/endpoint/SPARSE_UPDATE_COMPILER.md) retain their separate promises |
+
+A common primitive is the [disjoint SU-block compiler](../research/endpoint/DISJOINT_BLOCK_COMPILER.md):
+$`\sum_j m_j^2\le\kappa N`$ for fixed $`\kappa`$ gives
+$`O_\kappa(N)`$ T-count, including the actual source construction,
+inverses, and return error. Whole components can be too large for this
+criterion; the forest theorem obtains a constant number of eligible
+factors by exact component dressing.
+
+These promises do not cover every supplied tuple. In particular, full
+binomial components have binary descendant growth, while arbitrary
+heterogeneous precision scales need not have a bounded precision sum.
+Reordering a star into an arbitrary binary graph does not preserve the
+original tree's degree-window condition.
+
 ### Bounded diagonal factorization
 
-The [packed diagonal compiler](OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
-gives error $`2^{-\ell}`$ using two flags and
+Any fixed number of literal diagonal factors with charged interlayers fits
+the endpoint width. The [factorization reduction](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+proves terminating certified selection from exact coverage; uniformly
+bounded coverage remains a hypothesis.
 
-```math
-b_{\rm diag}=n+1+\left\lceil\frac{\ell+4}{2}\right\rceil,
-\qquad T=O(N+\ell),\qquad G=O(N\ell).
-```
-
-Consequently, **any absolute constant number of diagonal factors** fits
-the endpoint workspace with error left for certified factor selection.
-The [factorization reduction](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-proves a terminating rational-grid search from exact coverage alone,
-without requiring a continuous or computable exact phase-selection map.
-It includes a finite-small-dimension fallback and propagation of existing
-work leakage. The remaining hypothesis is coverage by a uniformly bounded
-number of factors with charged interlayers.
-
-For arbitrary diagonal masks and r Haar or adjoint occurrences, a
-[global norm bound](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-gives a common Hopf witness requiring
-
-```math
-[2\sqrt{n+1}]^{r+1}\ge(1-\epsilon)\sqrt N.
-```
-
-Thus even nonalternating Haar words need $`\Omega(n/\log n)`$ calls;
-the five-mask $`Q_n^2`$ family does not give uniform coverage. Fixed
-alphabets with polynomially bounded summed entrywise absolute norms obey
-the same restriction. Dense Walsh mixers lie outside that bound. The
-factorization chapter gives a stable, all-column nested-projector
-criterion for a different mixer representation.
-
-For four arbitrary physical diagonals separated by three full-support
-flat Clifford mixers, a
-[uniform full-output gap](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md#four-masks-with-three-flat-cliffords-a-width-independent-gap)
-of at least $`1/40`$ holds even with target-dependent factors and arbitrary
-workspace. This does not cover extra exterior mixers or nonflat
-interlayers. An explicit nonflat factorization uses n diagonal slots and
-fits the endpoint width, but its direct cost is O(nN).
+The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+separate restrictions on Haar/flat-Clifford mixers from the general
+problem. With fixed Clifford interleavings and differentiable diagonal
+stages that are Clifford-valued at the origin, exact full-family synthesis
+needs $`n`$ stages. An approximate version additionally requires a
+physical Lipschitz bound. Non-Clifford baselines, nonsmooth selection,
+and target-dependent interleavings are outside that theorem.
 
 ### A regular fixed-tree Cayley family
 
-Every complete frame has the exact representation
+The [all-angle tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
+expresses every frame through bounded cotangent parameters, two literal
+diagonals, and exact $`O(N)`$-T permutations. The
+[boundary feedback identity](../research/endpoint/BOUNDARY_PROPAGATION.md)
+leaves one complete prefix encoder.
+The [coarse encoder](../research/endpoint/COARSE_PREFIX_ENCODER.md) and
+[fixed-order refinement](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
+price coarse and cubic replacements in $`O(N)`$ T gates.
+The [coupled inverse](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
+has an all-order norm bound and ideal scattering completion, but its
+direct native precision cost remains $`O(N+nL)`$.
 
-```math
-W=D_{\rm out}\Pi\sigma P(\phi)\sigma^\dagger D_{\rm in}^\dagger,
-\qquad |\cot\phi_j|\lt\sqrt3.
-```
+A complementary [canonical-star identity](../research/endpoint/CANONICAL_STAR_RESOLVENT.md)
+gives a full native local scattering oracle at linear count and writes
+the target using a triangular descendant inverse. The inverse is still
+unpaid. Conditioning, small rank, and accepted-block identities do not
+supply a complete native recovery circuit.
 
-The [tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
-constructs both literal diagonals and both permutations effectively.
-The permutations cost O(N) T gates exactly and return their dirty helpers.
-The remaining operator acts on the same fixed incidence tree and is a
-Cayley transform with a bounded real parameter table. Its variable
-generator is a compressed difference of two fixed diagonal algebras.
-The [boundary propagation construction](../research/endpoint/BOUNDARY_PROPAGATION.md)
-gives an O(N)-T block encoding of $`(I-\mathcal B)/2`$ with two signal
-ports. For every real table,
-$`\sigma_{\min}(I-\mathcal B)=2\sin(\pi/(4n+2))`$.
-Self-borrowed table programming and reuse of the occupied dilation port
-allow R calls at precision $`q=N+h+9`$, where
-$`h=\lceil\log_2R\rceil`$. Their dirty core uses $`q+1`$ wires and
-their summed full-operator error is below $`43\eta/256`$ when
-$`h\le n-3`$. Additional unchanged controls consume the corresponding
-width slack. The direct T-count remains O(RN).
-
-The complete feedback identity cancels an adjoint chain encoder on its
-initialized entrance, leaving exactly one terminal prefix-frame encoder.
-The [simultaneous coarse construction](../research/endpoint/COARSE_PREFIX_ENCODER.md)
-implements all prefix frames in O(N) T gates. For the regular-core coins,
-$`s=\lceil N/n\rceil`$, its full-operator error is below
-$`(43/64)2^{-s}`$ and its dirty reservation is $`s+n+9\le N+n+7`$.
-Conjugation around a middle gate within $`\kappa`$ of identity on the full space suppresses encoder
-error to $`2\kappa\delta`$; the middle gate's native error is added
-separately. A complete fine-precision correction with summed O(N) T-count
-is the remaining resource question. The non-small chain reversal does not
-itself receive this error suppression.
-
-The [collective refinement theorem](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
-constructs a replacement for the terminal regular-core frame with
-
-```math
-\epsilon\le40\,2^{-3s}+2^{-L},\qquad
-T=O(N+3ns+n^4)+O(N+L),
-```
-
-for $`n\ge16`$, $`s=\lceil N/n\rceil`$, and $`3s\le L\le N`$,
-within $`b=N+n+7`$. Exact geometric histories and midpoint conjugation
-collect the local defects into one bank; opposite-sign purification
-cancels its quadratic phase. A native baseline replacement accounts for
-the original dirty disturbance. The complete initialized-output norm
-includes literal phase, leakage, and dirty/reference return.
-
-This fixed-order construction costs O(N), as does directly increasing
-coarse precision by a fixed factor. It does not change the endpoint bounds.
-Higher-order defects need not retain the rounded-coin form, and an
-independent N-row program per quadratic stage would cost O(N log n).
-The unresolved implication is a closed physical correction or another
-global representation whose total source and table charges are O(N).
-
-The [coupled tree inverse](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
-supplies an all-order component. For contractive graded B and local
-defects $`\|E_j\|\le d2^{j-n}`$, $`0\le d\lt1`$, put
-$`X=(I-B)^{-1}E`$. Then
-
-```math
-\|X^k\|\le\frac{d^k}{\prod_{t=1}^k(2^t-1)},\qquad
-\|(I-X)^{-1}\|\lt\frac{43}{18}.
-```
-
-For edge-weighted tree shifts, the inverse has an ideal normalization-three
-scattering dilation. Its
-depth-ordered native realization retains O(N+nL) T-count, and the
-completion's workspace scaling does not certify the literal additive
-endpoint budget. Shrinking input support does not remove descendant
-coefficient data; static feedback and accepted-block baseline cancellation
-do not supply a free native inverse or prefix encoder.
-
-The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-and [source interfaces](../research/endpoint/SOURCE_REUSE_LIMITS.md)
-give precise restrictions on particular representations. They do not
-strengthen the unrestricted lower bound beyond linear order. The
-[realification theorem](../research/endpoint/NATIVE_REALIFICATION.md)
-preserves the full error with at most twice the T-count and one extra
-clean or dirty qubit; the existing one-clean upper bound leaves that
-clean qubit available. Its exact marker-support obstruction and the
-[Spin-decoding bounds](../research/endpoint/SPIN_DECODING_LIMITS.md)
-retain their support and wrapper hypotheses.
+The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
+gives an exact complex coarse-frame gauge and a support-forced completion
+rank of at least $`n+1`$ when the selected chain correlations satisfy
+$`q_j\lt1`$. Its robust polynomial error floor concerns one
+prescribed coarse call with fixed-dimensional bounded scalar sources.
+Dirty operator-valued sources and other recovery mechanisms remain
+eligible. Similarly, [linear ring-height approximation](../research/endpoint/NATIVE_REALIFICATION.md)
+does not imply a linear native factorization. These statements leave the
+unrestricted endpoint bounds unchanged.
 
 ## Large-width T-depth
 

@@ -75,6 +75,159 @@ def _rotation(theta):
 
 
 class NativeRepresentationLimitTests(unittest.TestCase):
+    def test_integer_wavelets_and_empty_quadrant_completion_are_exact_dyadic(self):
+        # Unequal signed leaves independently generate every prescribed
+        # integer marker. Small scaling is enough to audit ring completion;
+        # this is not an exponential-precision compiler fixture.
+        leaves = np.array([1, 2, -1, 2], dtype=np.int64)
+        size, exponent = len(leaves), 6
+        denominator = 1 << exponent
+        columns = np.zeros((size, size), dtype=np.int64)
+        columns[:, 0] = leaves
+        for depth in range(2):
+            block_size = size >> depth
+            for prefix in range(1 << depth):
+                start = prefix * block_size
+                marker = start + block_size // 2
+                left, right = leaves[start:marker], leaves[marker:start + block_size]
+                a, b = int(left @ left), int(right @ right)
+                columns[start:marker, marker] = -b * left
+                columns[marker:start + block_size, marker] = a * right
+        norms = np.diag(columns.T @ columns)
+        np.testing.assert_array_equal(columns.T @ columns, np.diag(norms))
+        self.assertTrue(np.all(norms > 0))
+
+        def four_squares(value):
+            pairs = {}
+            for a in range(math.isqrt(value) + 1):
+                for b in range(math.isqrt(value - a * a) + 1):
+                    pairs.setdefault(a * a + b * b, (a, b))
+            for total, pair in pairs.items():
+                if value - total in pairs:
+                    return (*pair, *pairs[value - total])
+            self.fail("finite four-square enumeration missed a positive integer")
+
+        q = _Cyclotomic
+        source = np.full((4 * size, size), q(), dtype=object)
+        alphas = []
+        for j, squared_norm in enumerate(norms):
+            multiplier = math.isqrt((denominator ** 2 - 1) // int(squared_norm))
+            numerator = multiplier * columns[:, j]
+            for row, value in enumerate(numerator):
+                source[row, j] = q(Fraction(int(value), denominator))
+            residual = denominator ** 2 - int(numerator @ numerator)
+            a, b, c, d = four_squares(residual)
+            source[size + j, j] = q(Fraction(a, denominator), 0, Fraction(b, denominator))
+            source[2 * size + j, j] = q(Fraction(c, denominator), 0, Fraction(d, denominator))
+            alphas.append(multiplier * math.sqrt(squared_norm) / denominator)
+
+        def exact_equal(left, right):
+            self.assertTrue(all(q.of(value) == q() for value in (left - right).flat))
+
+        identity = np.eye(4 * size, dtype=object)
+        inclusion = identity[:, :size]
+        empty = identity[:, 3 * size:]
+        difference = empty - source
+        reflection = identity - difference @ _adjoint(difference)
+        permutation = np.kron(np.fliplr(np.eye(4, dtype=object)), np.eye(size, dtype=object))
+        unitary = reflection @ permutation
+        exact_equal(_adjoint(source) @ source, np.eye(size, dtype=object))
+        exact_equal(_adjoint(difference) @ difference, 2 * np.eye(size, dtype=object))
+        exact_equal(reflection @ reflection, identity)
+        exact_equal(_adjoint(reflection), reflection)
+        exact_equal(unitary @ inclusion, source)
+        # A rank-N reflection has N negative eigenvalues; N is even.
+        self.assertEqual(sum(q.of(reflection[i, i]).a for i in range(4 * size)), 2 * size)
+        self.assertEqual(round(np.linalg.det(permutation.astype(float))), 1)
+        for value in unitary.flat:
+            value = q.of(value)
+            self.assertEqual(value.b, 0)
+            self.assertEqual(value.d, 0)
+            for coefficient in (value.a, value.c):
+                self.assertEqual((denominator ** 2) % coefficient.denominator, 0)
+
+        def approximate(matrix):
+            return np.array([[complex(float(q.of(v).a), float(q.of(v).c))
+                              for v in row] for row in matrix])
+
+        normalized = columns / np.sqrt(norms)
+        error = approximate(source) - inclusion.astype(float) @ normalized
+        np.testing.assert_allclose(error.conj().T @ error,
+                                   np.diag(2 - 2 * np.array(alphas)), atol=ATOL, rtol=0)
+        self.assertAlmostEqual(np.linalg.det(approximate(unitary)), 1, delta=ATOL)
+
+    def test_vertex_stopped_components_have_the_completed_cut_factorization(self):
+        # This uses explicit two-level matrices and a separate graph walk,
+        # rather than a compiler's decomposition or a state-only comparison.
+        n, threshold = 4, 1e-5
+        size = 1 << n
+        angles = [1e-6 if index % 3 == 0 else 0.2 + 0.03 * (index % 7)
+                  for index in range(size - 1)]
+        edges, children = [], [[] for _ in range(size)]
+        for depth in range(n):
+            for prefix in range(1 << depth):
+                parent = prefix << (n - depth)
+                child = parent + (1 << (n - depth - 1))
+                angle = angles[(1 << depth) - 1 + prefix]
+                gate = np.eye(size)
+                gate[np.ix_([parent, child], [parent, child])] = _rotation(angle)
+                edges.append((parent, child, angle, gate))
+                children[parent].append((child, angle))
+        component, parity = {}, {0: 0}
+        boundary = []
+
+        def grow(vertex, root, path):
+            component[vertex] = root
+            expand = path > threshold
+            if children[vertex] and not expand:
+                boundary.append((vertex, path))
+            for child, angle in children[vertex]:
+                if expand:
+                    grow(child, root, path * math.sin(angle))
+                else:
+                    parity[child] = 1 - parity[root]
+                    grow(child, child, 1.0)
+
+        grow(0, 0, 1.0)
+        self.assertTrue(boundary)
+        internal = {root: np.eye(size) for root in parity}
+        frame = np.eye(size)
+        for parent, child, _, gate in edges:
+            frame = gate @ frame
+            if component[parent] == component[child]:
+                root = component[parent]
+                internal[root] = gate @ internal[root]
+        all_internal = np.eye(size)
+        for word in internal.values():
+            all_internal = word @ all_internal
+        dressed_word = np.eye(size)
+        dressed = [np.eye(size), np.eye(size)]
+        cut = [np.eye(size), np.eye(size)]
+        color_internal = [np.eye(size), np.eye(size)]
+        for root, word in internal.items():
+            color = parity[root]
+            color_internal[color] = word @ color_internal[color]
+        for parent, child, _, gate in edges:
+            if component[parent] == component[child]:
+                continue
+            root = component[parent]
+            word = internal[root]
+            transformed = word.T @ gate @ word
+            dressed_word = transformed @ dressed_word
+            color = parity[root]
+            dressed[color] = transformed @ dressed[color]
+            cut[color] = gate @ cut[color]
+        np.testing.assert_allclose(frame, _prefix_frame(n, [_rotation(t) for t in angles]),
+                                   atol=ATOL, rtol=0)
+        np.testing.assert_allclose(frame, all_internal @ dressed_word, atol=ATOL, rtol=0)
+        for color in (0, 1):
+            word = color_internal[color]
+            np.testing.assert_allclose(dressed[color], word.T @ cut[color] @ word,
+                                       atol=ATOL, rtol=0)
+        reordered = all_internal @ dressed[0] @ dressed[1]
+        self.assertLessEqual(np.linalg.norm(frame - reordered, 2),
+                             8 * size ** 2 * threshold)
+
     def test_unit_circle_ring_points_by_integer_enumeration(self):
         for exponent in range(7):
             scale, solutions = 1 << exponent, set()
