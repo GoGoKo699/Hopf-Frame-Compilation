@@ -498,8 +498,8 @@ Equality is attained at the scheduling level: align the bottom-up stages
 of all components, with one class-r stage in each of the first $`h_r`$
 banks. Each such bank is a disjoint matching. Thus the minimum precision
 charge is $`\Theta(N\log n)`$, although P is linear. The unbanked query
-ledger also gives total $`O(N\log n)`$, since each active node is queried
-once per stream and routing contributes only $`O(N)`$.
+ledger also gives total $`O(N\log n)`$, since each active node contributes
+only a fixed number of query entries per stream and routing costs $`O(N)`$.
 
 This is a bound for the specified scheduling model. The actual paired
 loader has $`2q_b`$ one-T splitting rotations per invocation, so separately
