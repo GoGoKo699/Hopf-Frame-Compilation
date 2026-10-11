@@ -5,6 +5,8 @@ Numerical completions exercise arbitrary dirty rejections, not just scalar
 padding. Neither fixture assigns a native cost to a matrix factorization.
 """
 from fractions import Fraction as F
+from functools import cache
+from itertools import product
 import unittest
 
 import numpy as np
@@ -78,6 +80,71 @@ def _unitary(rng, size):
 
 
 class PrecisionGaugeCompilerTests(unittest.TestCase):
+    def test_mixed_height_packing_and_actual_depth_trace(self):
+        # Integer certificates avoid allocating the exponentially large frame.
+        for t in range(2, 7):
+            n = 1 << (2 * t)
+            size = 1 << n
+            mass = size >> (t - 1).bit_length()
+            heights = [n >> (r + 1) for r in range(t)]
+            overhead = 2 * n.bit_length() + 20
+            precisions = [size // h + overhead for h in heights]
+            self.assertLessEqual(t * mass, size)
+            self.assertGreater(t * mass, size // 2)
+            for r, h in enumerate(heights):
+                block = 1 << h
+                self.assertEqual(mass % block, 0)
+                self.assertEqual((r * mass) % block, 0)
+                self.assertLessEqual((r + 1) * mass, size)
+            self.assertEqual(max(h * q for h, q in zip(heights, precisions)),
+                             size + overhead * heights[0])
+            trace, active_nodes = 0, 0
+            for d in range(n):
+                active = [(h, q) for h, q in zip(heights, precisions)
+                          if n - h <= d]
+                trace += max((q for _, q in active), default=0)
+                active_nodes += len(active) * (mass >> (n - d))
+            self.assertEqual(trace, size * (t + 1) // 2 + overhead * heights[0])
+            self.assertEqual(active_nodes,
+                             sum(mass - (mass >> h) for h in heights))
+            self.assertLess(active_nodes, size)
+
+        # The serial leftmost binary carrier is a computational root star.
+        # A different chain, setting bits high-to-low, is a parent-child path.
+        for h in range(2, 6):
+            base = 3 << h
+            pairs = [_node(h, 1 << d)[1:] for d in range(h)]
+            self.assertEqual({first for first, _ in pairs}, {0})
+            self.assertEqual(len({second for _, second in pairs}), h)
+            previous = base
+            for j in range(h - 1, -1, -1):
+                child = previous + (1 << j)
+                self.assertEqual(child - (child & -child), previous)
+                previous = child
+
+    def test_unfused_bank_optimum_by_exhaustive_chain_schedules(self):
+        # Search every nonempty subset of unfinished chains at each bank.
+        # This includes staggered starts, idle chains and every interleaving.
+        weights = (1, 2, 4)
+        for lengths in product(range(1, 5), repeat=len(weights)):
+            @cache
+            def optimum(done):
+                if done == lengths:
+                    return 0
+                candidates = []
+                for mask in range(1, 1 << len(weights)):
+                    chosen = [i for i in range(len(weights)) if mask & (1 << i)]
+                    if any(done[i] == lengths[i] for i in chosen):
+                        continue
+                    after = tuple(done[i] + (i in chosen) for i in range(len(weights)))
+                    candidates.append(max(weights[i] for i in chosen) + optimum(after))
+                return min(candidates)
+
+            threshold_bound = weights[0] * max(lengths)
+            threshold_bound += sum((weights[r] - weights[r - 1]) * max(lengths[r:])
+                                   for r in range(1, len(weights)))
+            self.assertEqual(optimum((0,) * len(weights)), threshold_bound)
+
     def test_regular_gauge_exact_all_columns_and_complex_phases(self):
         for n in range(1, 4):
             size = 1 << n
