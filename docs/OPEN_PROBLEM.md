@@ -93,7 +93,8 @@ supply a complete native recovery circuit.
 
 The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
 gives an exact complex coarse-frame gauge and a support-forced completion
-rank of at least $`n+1`$. Its robust polynomial error floor concerns one
+rank of at least $`n+1`$ when the selected chain correlations satisfy
+$`q_j\lt1`$. Its robust polynomial error floor concerns one
 prescribed coarse call with fixed-dimensional bounded scalar sources.
 Dirty operator-valued sources and other recovery mechanisms remain
 eligible. Similarly, [linear ring-height approximation](../research/endpoint/NATIVE_REALIFICATION.md)

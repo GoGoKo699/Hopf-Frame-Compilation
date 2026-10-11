@@ -215,8 +215,9 @@ precision.
 The [research results](../research/README.md) include linear-count native
 compilers for disjoint SU blocks with a linear squared-dimension budget,
 regular and specified scale-separated forests, and computational forests
-with certified sub-binary degree-window growth or bounded exceptional path
-depth. Canonical-star, scalar-source, and diagonal-stage theorems retain
+with certified sub-binary degree-window growth, or bounded exceptional path
+depth over a cheap or fixed-ratio base family. Canonical-star, scalar-source,
+and diagonal-stage theorems retain
 their explicit representation hypotheses. These are separate endpoint
 results, not additional principal claims or unrestricted lower bounds. The completed
 [state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
