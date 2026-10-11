@@ -2,13 +2,13 @@
 
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
-The canonical fault-tolerant proof gives the unrestricted endpoint lower
-bound $`2N-1`$. The research index links the
-[bounded-factor bridge](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md),
-[regular fixed-tree Cayley reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md),
-and [native boundary propagation block](research/endpoint/BOUNDARY_PROPAGATION.md).
-The full-frame endpoint remains linear to iterated-logarithmic overhead;
-the block encoding does not supply complete feedback recovery.
+The [endpoint statement](docs/OPEN_PROBLEM.md) gives the unchanged
+unrestricted bounds and separates the proved linear-count families from
+the remaining gap. The [research index](research/README.md) maps the
+disjoint native primitive, precision-gauge and structured-forest compilers,
+canonical-star oracle, and scoped source/representation limits. Each result
+has one proof home and focused finite evidence. A local oracle or bounded
+ring height does not supply a linear-count full recovery circuit.
 Final manuscript drafting is a separate task.
 
 ## Mandate
@@ -36,7 +36,7 @@ must be proved separately.
 | Evidence and limits | [Verification](docs/VERIFICATION.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
 | What remains unresolved | [Two resource gaps](docs/OPEN_PROBLEM.md) |
-| What we tried and why it stopped | [Research archive](research/README.md) |
+| Restricted compilers, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
 Results A–D are the principal claim package. Their retained diagonal,

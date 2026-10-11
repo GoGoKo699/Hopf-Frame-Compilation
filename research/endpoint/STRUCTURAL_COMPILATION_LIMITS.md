@@ -549,6 +549,137 @@ charges this bank and its extension to all n depths. Thus the theorem
 restricts the flat architecture even on a family with linear native
 T-count; it is not an intrinsic hardness result for that family.
 
+### Arbitrary fixed Cliffords: exactly n centered diagonal stages
+
+The next result allows every fixed Clifford mixer and arbitrary workspace,
+but restricts the baseline of each diagonal factor. It complements the
+four-Walsh theorem below, which instead treats every differentiable
+cancelling baseline for those particular mixers.
+
+**Centered-stage theorem.** Suppose the complete frame family has an exact
+factorization near the zero-angle tuple,
+
+```math
+U(\theta)=C_kD_k(\theta)C_{k-1}\cdots C_1D_1(\theta)C_0,
+\qquad U(\theta)J=J(W(\theta)\otimes I_b),
+```
+
+where all C matrices are fixed physical Cliffords, all D matrices are
+computational-basis diagonal and differentiable at zero, and
+$`D_j(0)=I`$. The inclusion J initializes any number of clean stabilizer
+ancillas and leaves b dirty qubits arbitrary. Then $`k\ge n`$. The same
+conclusion holds if each $`D_j(0)`$ is a diagonal Clifford: absorb these
+fixed factors into adjacent Cliffords. Exactly n stages suffice without
+ancillas, so the bound is tight within this class.
+
+*Proof.* Number the logical qubits from zero, starting at the most
+significant bit. At the origin, the Hermitian generator for the angle at
+depth i and prefix p is
+
+```math
+G_{i,p}=|p\rangle\langle p|\otimes Y_i\otimes
+ |0^{n-i-1}\rangle\langle0^{n-i-1}|,
+\qquad \partial_{i,p}W(0)=-iG_{i,p}.
+```
+
+Its Pauli expansion has coefficient $`2^{-(n-1)}`$ on
+
+```math
+P_i=I^{\otimes i}\otimes Y\otimes Z^{\otimes(n-i-1)}.
+```
+
+The n strings $`P_0,\ldots,P_{n-1}`$ pairwise anticommute. For
+$`i\lt j`$, the sole anticommuting overlap is Z versus Y at site j.
+
+Moving the fixed Cliffords through the centered factors shows that every
+first derivative is a sum of k Clifford-conjugated diagonal generators.
+Each such algebra has a commuting Pauli basis. The net fixed Clifford
+acts as identity on the image of J and therefore drops out after
+compression. A fixed Clifford on the clean register reduces its
+stabilizer input to computational zeros. Compression of a physical Pauli
+then either vanishes or leaves only I/Z factors on those clean qubits.
+
+To contribute to the coefficient of $`P_i\otimes I_b`$, a surviving
+physical Pauli must have exactly that logical/dirty factor and only I/Z
+clean factors. Representatives of two different $`P_i`$ still
+anticommute physically; clean Z factors cannot cancel their
+anticommutation. One commuting stage algebra can therefore supply at
+most one of these n required Pauli coefficients. This proves
+$`k\ge n`$, independently of dirty width or intermediate clean leakage.
+
+For tightness, put $`B_i=S_iH_i`$, so
+$`B_iZ_iB_i^\dagger=Y_i`$. Each prescribed level has the exact form
+
+```math
+L_i=B_i\exp\!\left[-i\sum_p\theta_{i,p}
+ |p\rangle\langle p|\otimes Z_i\otimes
+ |0^{n-i-1}\rangle\langle0^{n-i-1}|\right]B_i^\dagger.
+```
+
+The n diagonal factors are identity at zero. This is the existing
+[per-depth factorization](BOUNDED_DIAGONAL_FACTORIZATION.md#an-explicit-nonflat-factorization-with-n-diagonal-slots),
+now matched by a lower bound for its centered fixed-Clifford class.
+It counts diagonal stages, not native T gates.
+
+**Conditional finite-error version.** A separate quantitative regularity
+assumption gives an approximation statement. Keep fixed Cliffords,
+$`D_j(0)=I`$, and exact identity action of the net fixed Clifford on
+the initialized subspace. Suppose that along every single-angle axis,
+for $`|t|\le1`$ and a common $`L\ge1`$,
+
+```math
+\|D_j(t)-I\|\le L|t|.
+```
+
+Differentiability is not needed. If $`1\le k\lt n`$, some single-angle
+target at
+
+```math
+t_* =\frac1{2^{n+1}k^2L^2}
+```
+
+has full initialized-isometry error at least
+
+```math
+\frac1{2^{2n+2}k^2L^2}=\frac1{4N^2k^2L^2}.
+```
+
+Choose a string $`P_i`$ missing from all k stage Pauli algebras, including
+all its surviving clean representatives. Write each conjugated diagonal
+factor as $`I+E_j`$. The compressed linear sum has zero coefficient on
+$`P_i\otimes I_b`$. With $`s=\sum_j\|E_j\|\le kLt\le1`$,
+the product terms of degree at least two have total norm at most
+
+```math
+\prod_j(1+\|E_j\|)-1-\sum_j\|E_j\|
+\le e^s-1-s\le s^2.
+```
+
+For a target with only $`\theta_{i,p}=t`$ nonzero, the required
+normalized Pauli coefficient is $`-i\sin(t)/2^{n-1}`$. A normalized
+Pauli coefficient is bounded by operator norm, and compression cannot
+increase the full isometry error. The latter is consequently at least
+
+```math
+\frac{\sin t}{2^{n-1}}-(kLt)^2.
+```
+
+Using $`\sin t\ge t/2`$ at the displayed $`t_*`$ proves the bound.
+For k zero, the fixed identity instead has error $`\sqrt2`$ on a
+single-angle $`\pi/2`$ target. Thus uniform error $`2^{-N}`$ with
+$`1\le k\lt n`$ in this quantitative model requires
+
+```math
+L\ge\frac{2^{N/2}}{2Nk}.
+```
+
+This argument includes approximate dirty/clean return and references.
+The exact tangent theorem alone implies **no** finite-error lower bound.
+Non-Clifford cancelling baselines, angle-dependent Clifford choices,
+nonsmooth selections without the displayed bound, and general native
+compilers are outside the quantitative statement. Neither theorem is
+an unrestricted T-count lower bound.
+
 ### Four alternating Walsh masks: every differentiable identity baseline
 
 Let $`F=H^{\otimes n}`$ be the Walsh transform. For $`n\ge3`$, the
@@ -1440,6 +1571,11 @@ also exercise the flat-Clifford witness, unequal-child phase equations,
 complete eight-mode gauge identity, spectral gap, and rank-four support
 calculation. Gaussian-rational identities certify the eight-mode example
 without relying on numerical eigenvectors.
+
+The structural checks also verify the centered-stage Pauli coefficients,
+their anticommutation after clean/dirty restriction, the literal n-stage
+factorization, and a quadratic finite-error witness. Those finite checks
+do not replace the all-width stage-algebra proof.
 
 These results constrain specific representations. The signed residual
 approach still has the separate native precision ledger documented in

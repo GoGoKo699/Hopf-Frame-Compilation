@@ -27,6 +27,7 @@ Their equality is a central convention check.
 |---|---|
 | [`compiler_boundaries.py`](compiler_boundaries.py) | exact two-qubit examples separating state-column, checkpoint-interface, and complete-frame promises |
 | [`tree_boundary.py`](tree_boundary.py) | sparse regular-core reference matrices, complete two-signal propagation dilation, and repeated-call width/error ledger; diagnostic matrices retain rejected amplitudes |
+| [`structured_forests.py`](structured_forests.py) | computational degree bands, component dressing, and full-matrix forest factorizations; diagnostic operators, not a native gate emitter |
 
 These fixtures are deliberately small enough to inspect as complete matrices
 and output distributions.

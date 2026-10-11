@@ -26,6 +26,7 @@ from tests.test_operator_source_compiler import _apply_native_word
 ATOL = 3e-12
 I2 = np.eye(2, dtype=complex)
 X = np.array([[0, 1], [1, 0]], dtype=complex)
+Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
 Z = np.diag([1, -1]).astype(complex)
 H = np.array([[1, 1], [1, -1]], dtype=complex) / np.sqrt(2)
 
@@ -74,6 +75,121 @@ def _nested_projectors(theta, n):
 
 
 class EndpointStructuralLimitsTests(unittest.TestCase):
+    def test_centered_stage_tangent_paulis_and_tight_literal_factorization(self):
+        def tensor(factors):
+            result = np.ones((1, 1), dtype=complex)
+            for factor in factors:
+                result = np.kron(result, factor)
+            return result
+
+        for n in (2, 3, 4):
+            size = 1 << n
+            witnesses = [tensor([I2] * i + [Y] + [Z] * (n - i - 1))
+                         for i in range(n)]
+            for i, first in enumerate(witnesses):
+                for second in witnesses[i + 1:]:
+                    np.testing.assert_array_equal(first @ second + second @ first,
+                                                  np.zeros((size, size)))
+                for prefix in range(1 << i):
+                    a = prefix << (n - i)
+                    b = a + (1 << (n - i - 1))
+                    generator = np.zeros((size, size), dtype=complex)
+                    generator[a, b], generator[b, a] = -1j, 1j
+                    self.assertEqual(np.trace(first @ generator) / size,
+                                     2 ** (-(n - 1)))
+
+            for theta in (np.linspace(-1.7, 2.1, size - 1),
+                          np.resize([0.0, np.pi / 2, -np.pi / 4], size - 1)):
+                actual = np.eye(size, dtype=complex)
+                for i in range(n):
+                    basis = tensor([I2] * i + [np.diag([1, 1j]) @ H]
+                                   + [I2] * (n - i - 1))
+                    diagonal = np.ones(size, dtype=complex)
+                    for prefix in range(1 << i):
+                        angle = theta[(1 << i) - 1 + prefix]
+                        a = prefix << (n - i)
+                        b = a + (1 << (n - i - 1))
+                        diagonal[a], diagonal[b] = np.exp(-1j * angle), np.exp(1j * angle)
+                    actual = basis @ np.diag(diagonal) @ basis.conj().T @ actual
+                np.testing.assert_allclose(actual, real_frame_matrix(theta),
+                                           atol=ATOL, rtol=0)
+
+    def test_commuting_clifford_stage_cannot_supply_two_surviving_witnesses(self):
+        # Exact unsigned symplectic arithmetic on three data, one dirty,
+        # and one clean qubit. H/S/CNOT generate the physical stage algebra.
+        n, width, dirty, clean = 3, 5, 3, 4
+        witnesses = {(1 << i, sum(1 << j for j in range(i, n))): i
+                     for i in range(n)}
+
+        def conjugate(x, z, word):
+            for gate, first, second in word:
+                xb, zb = (x >> first) & 1, (z >> first) & 1
+                if gate == "H":
+                    if xb != zb:
+                        x ^= 1 << first
+                        z ^= 1 << first
+                elif gate == "S":
+                    z ^= xb << first
+                else:
+                    x ^= xb << second
+                    z ^= ((z >> second) & 1) << first
+            return x, z
+
+        words = []
+        for i in range(n):
+            word = [("H", i, None), ("S", i, None)]
+            for j in range(i + 1, n):
+                word += [("H", j, None), ("CNOT", i, j), ("H", j, None)]
+            words.append(word)
+        rng = np.random.default_rng(321)
+        for _ in range(24):
+            word = []
+            for _ in range(20):
+                first, second = rng.choice(width, 2, replace=False)
+                word.append((rng.choice(["H", "S", "CNOT"]), int(first), int(second)))
+            words.append(word)
+
+        for index, word in enumerate(words):
+            group = [conjugate(0, z, word) for z in range(1 << width)]
+            supplied = set()
+            for x, z in group:
+                for u, v in group:
+                    self.assertEqual(((x & v).bit_count() + (z & u).bit_count()) % 2, 0)
+                if ((x >> clean) & 1) or (((x | z) >> dirty) & 1):
+                    continue
+                restricted = x & ((1 << n) - 1), z & ((1 << n) - 1)
+                if restricted in witnesses:
+                    supplied.add(witnesses[restricted])
+            self.assertLessEqual(len(supplied), 1)
+            if index < n:
+                self.assertEqual(supplied, {index})
+
+    def test_centered_finite_error_witness_keeps_the_quadratic_product_term(self):
+        n, stages, lipschitz = 3, 2, 1
+        size = 1 << n
+        t = 1 / (2 ** (n + 1) * stages ** 2 * lipschitz ** 2)
+        x, y, z = (np.kron(np.eye(size // 2), p) for p in (X, Y, Z))
+        first = np.cos(t) * np.eye(size) - 1j * np.sin(t) * x
+        second = np.cos(t) * np.eye(size) - 1j * np.sin(t) * z
+        actual = first @ second
+        linear = first + second - 2 * np.eye(size)
+        self.assertAlmostEqual(abs(np.trace(y @ linear) / size), 0, delta=ATOL)
+        # The missing Y direction nevertheless appears at second order.
+        self.assertAlmostEqual(abs(np.trace(y @ actual) / size), np.sin(t) ** 2,
+                               delta=ATOL)
+        theta = np.zeros(size - 1)
+        theta[(1 << (n - 1)) - 1] = t
+        target = real_frame_matrix(theta)
+        self.assertAlmostEqual(np.trace(y @ target) / size,
+                               -1j * np.sin(t) / 2 ** (n - 1), delta=ATOL)
+        self.assertLessEqual(np.linalg.norm(actual - np.eye(size) - linear, 2),
+                             (stages * lipschitz * t) ** 2 + ATOL)
+        coefficient_gap = abs(np.trace(y @ (target - actual)) / size)
+        certified = 1 / (4 * size ** 2 * stages ** 2 * lipschitz ** 2)
+        self.assertGreaterEqual(coefficient_gap, certified)
+        self.assertGreaterEqual(np.linalg.norm(target - actual, 2) + ATOL,
+                                coefficient_gap)
+
     def test_nested_projectors_determine_all_columns_in_singular_charts(self):
         for n in (2, 3, 4):
             dimension = 1 << n

@@ -54,6 +54,12 @@ theorem by numerical extrapolation.
 | [`test_endpoint_representation_limits.py`](test_endpoint_representation_limits.py) | Fixed-bank polynomial witness, sharp total entry mass, full-dirty Spin covariance and reflection distance, and exact binary tree-bivector independence |
 | [`test_source_reuse_limits.py`](test_source_reuse_limits.py) | Nilpotent encoded-source dimension limits, exact source hoisting and transformed masks, matched-Majorana commutation, and rank-limited reflection extraction |
 | [`test_endpoint_structural_limits.py`](test_endpoint_structural_limits.py) | Full-frame metric, absolute-value norms, singular-safe nested projectors, restricted reflection and displacement witnesses, native control phases, query parity, and dirty-source counterexamples |
+| [`test_frame_operator_stability.py`](test_frame_operator_stability.py) | Independent full-product derivatives, tangent PSD sum, sharp path factor, depth-cap equality, finite bounds and isolated-angle precision |
+| [`test_disjoint_block_compiler.py`](test_disjoint_block_compiler.py) | Exact dirty clock phase, adjacent SU mesh, full complex pair sources and accepted/rejected recovery |
+| [`test_precision_gauge_compiler.py`](test_precision_gauge_compiler.py) | Complete complex gauges, exact Parseval source, actual dirty rejection replay, source overlap and full amplification |
+| [`test_structured_forests.py`](test_structured_forests.py) | Degree-window counts, stable star transfer, complete signed/corner component dressing, and incorrect-order negative control |
+| [`test_canonical_star_resolvent.py`](test_canonical_star_resolvent.py) | Full stars, Cayley and triangular identities, midpoint oracle, support padding and literal-width checks |
+| [`test_scalar_schur_limits.py`](test_scalar_schur_limits.py) | Complex all-column gauge, support-forced exact completion determinants and robust fixed-minor bounds |
 | [`test_conditional_suffix_compiler.py`](test_conditional_suffix_compiler.py) | Ancestor-column residuals, separate dilation flags, conditional suffix use, complete-output amplification, and resource ledgers |
 | [`test_t_depth.py`](test_t_depth.py) | Literal shared-control Fredkin batches, four disjoint T layers, and native dirty-bank queries with exact return |
 | [`test_source_t_depth.py`](test_source_t_depth.py) | Exact geometric and paired-source depth certificates within the Majorana-layer architecture, paired native T layers, literal phases, and denominator witnesses |

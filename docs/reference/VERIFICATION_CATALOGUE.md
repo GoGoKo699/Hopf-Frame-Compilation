@@ -171,6 +171,44 @@ the prefix-history formula. The
 establishes the all-size bounds; these ideal matrix checks do not emit
 the native precision-dependent completion.
 
+The [disjoint-block tests](../../tests/test_disjoint_block_compiler.py)
+check the literal dirty clock phase on every input, adjacent-row SU meshes
+including padding, complex pair-source orientation, and full accepted/rejected
+amplification with inactive labels. The [block proof](../../research/endpoint/DISJOINT_BLOCK_COMPILER.md)
+supplies the source coverage and native resource theorem.
+
+The [precision-gauge tests](../../tests/test_precision_gauge_compiler.py)
+compare complete complex regular and lossy gauges, exact Parseval networks,
+actual arbitrary-dirty rejection replay, source overlap, and full recovery.
+The [precision-trace theorem](../../research/endpoint/PRECISION_GAUGE_COMPILER.md)
+establishes its dimension-independent native schedule. The
+[structured-forest tests](../../tests/test_structured_forests.py) independently
+check computational degree counts and growth, stable star transfer, and exact
+component dressing for signed and corner angles. A reversed-product negative
+control detects an incorrect quotient-depth order. The native conclusion
+uses the [forest proof](../../research/endpoint/STRUCTURED_FOREST_COMPILERS.md),
+not a gate count inferred from these matrices.
+
+The [canonical-star tests](../../tests/test_canonical_star_resolvent.py)
+check both Cayley congruences, the triangular descendant denominator, full
+complex stars, midpoint completions, support packing and literal-width bounds.
+The [oracle theorem](../../research/endpoint/CANONICAL_STAR_RESOLVENT.md)
+prices local scattering, while inverse recovery remains separate.
+
+The [Schur tests](../../tests/test_scalar_schur_limits.py) verify the full
+complex-phase gauge, exact rational-complex completion determinants with
+unconstrained upper entries, support and minor-weight bounds, and a bounded-rank
+approximation example. The [completion proof](../../research/endpoint/SCALAR_SCHUR_LIMITS.md)
+establishes rank and robust error floors only for its scalar source model.
+
+The [operator-stability tests](../../tests/test_frame_operator_stability.py)
+use an independent product-rule derivative to check the tangent PSD sum,
+sharp factor-two path, uniform-depth spectral equality at arbitrary base
+angles and signs, finite perturbations, and isolated-angle precision.
+The [interface proof](../HOPF_INTERFACE.md#42-complete-frame-operator-stability)
+complements the existing [depth-cap theorem](../HOPF_ERROR_ACCUMULATION.md).
+Neither ideal-angle estimate replaces a native source-leakage bound.
+
 The [native representation tests](../../tests/test_native_representation_limits.py)
 verify realification gate words in exact cyclotomic arithmetic, the
 rectangular norm and full-isometry identity, bounded integer circle
@@ -180,7 +218,11 @@ small-dimension exception. The
 [realification](../../research/endpoint/NATIVE_REALIFICATION.md) and
 [Spin-decoding](../../research/endpoint/SPIN_DECODING_LIMITS.md) proofs
 give their arbitrary-size conclusions under the stated support and
-wrapper hypotheses. No unrestricted circuit lower bound is inferred.
+wrapper hypotheses. Additional exact integer-wavelet and four-square
+Householder fixtures check the dyadic construction, including determinant
+and unused-quadrant identities. The linear-height and seven-factor
+bounds are analytic; ring height is not a native T-count certificate.
+No unrestricted circuit lower bound is inferred.
 
 The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
 $`\mathbb Q(\sqrt2)`$ to verify common signed-path witnesses and
@@ -204,6 +246,9 @@ test the [full-frame metric](../HOPF_INTERFACE.md#41-complete-frame-parameter-ge
 [normalization and residual witnesses](../../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md),
 singular-safe nested projectors, restricted reflection and displacement
 bounds, native control phases, query parity, and source-return counterexamples.
+The centered-stage fixtures additionally check pairwise anticommuting target
+Paulis, clean/dirty projection, the exact n-slot realization, and a scalar
+finite-error witness under the separate Lipschitz hypothesis.
 They use small complete matrices and independent formulas, including
 unequal and singular angles. The proofs establish the all-dimension
 claims; these numerical checks are not a general compiler, a proof of the

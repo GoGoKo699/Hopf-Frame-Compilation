@@ -142,25 +142,20 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
 Clifford interlayers and workspace, under the literal-phase contract.
-Two constructive reductions isolate the count question:
-[any fixed number of diagonal factors](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-fits the exact workspace with certified factor selection, and
-[every frame reduces to a regular fixed-tree Cayley family](research/endpoint/TREE_CAYLEY_REDUCTION.md)
-using two diagonals and exact O(N)-T permutations. Its
-[propagation and feedback proof](research/endpoint/BOUNDARY_PROPAGATION.md)
-gives a precision-feasible repeated-call block and an exact cancellation
-leaving one complete prefix encoder. The
-[joint coarse encoder](research/endpoint/COARSE_PREFIX_ENCODER.md) and
-[collective refinement](research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
-give a native cubic replacement for the regular-core terminal frame:
-the fixed-order correction costs O(N) T gates and includes dirty/reference
-return. The [coupled tree inverse](research/endpoint/COUPLED_TREE_RESOLVENT.md)
-has a height-independent norm bound and ideal normalization-three
-scattering realization; its direct native precision cost remains
-O(N+nL). These results leave the endpoint bounds unchanged. The
-[research index](research/README.md) collects the reductions and scoped
-factorization, source, and representation limits with their precise
-hypotheses.
+The [structured-forest theorem](research/endpoint/STRUCTURED_FOREST_COMPILERS.md)
+achieves linear T-count for arbitrary angles on fixed-outdegree
+computational forests, and for bounded exceptional path depth over a
+cheap or common-scale base. The [precision-gauge compiler](research/endpoint/PRECISION_GAUGE_COMPILER.md)
+covers regular and specified scale-separated families. Their shared
+[disjoint-block primitive](research/endpoint/DISJOINT_BLOCK_COMPILER.md)
+charges native sources, inverses, and complete workspace return.
+
+The [open-problem statement](docs/OPEN_PROBLEM.md) distinguishes these
+proved families from all-angle reductions and the remaining inverse or
+precision-source cost. The [research index](research/README.md) maps
+canonical proofs, including the local-star oracle, scalar Schur-source
+obstruction, and fixed-Clifford diagonal-stage limit. None changes the
+unrestricted bounds above.
 
 ## Operational consequence
 

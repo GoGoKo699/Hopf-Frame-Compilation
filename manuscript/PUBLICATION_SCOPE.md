@@ -212,9 +212,13 @@ count endpoint. Result D's literal width threshold excludes the displayed
 endpoint allocation, and its unary-source mechanism does not scale to that
 precision.
 
-The [research archive](../research/README.md) records tried routes, proved
-restricted cases, component improvements, and their scoped limits. They are
-not additional principal results or unrestricted lower bounds. The completed
+The [research results](../research/README.md) include linear-count native
+compilers for disjoint SU blocks with a linear squared-dimension budget,
+regular and specified scale-separated forests, and computational forests
+with certified sub-binary degree-window growth or bounded exceptional path
+depth. Canonical-star, scalar-source, and diagonal-stage theorems retain
+their explicit representation hypotheses. These are separate endpoint
+results, not additional principal claims or unrestricted lower bounds. The completed
 [state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
 changed decoder and remains a separate result; the fixed-decoder necessity
 claim here does not apply to every gradient algorithm.

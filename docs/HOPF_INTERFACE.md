@@ -339,6 +339,140 @@ argument recovers the preceding layer, and induction recovers the whole
 tuple. This is a uniqueness proof; the compiler need not extract angles
 or decide whether an incoming amplitude vanishes. ∎
 
+### 4.2 Complete-frame operator stability
+
+The Frobenius metric above is distinct from the operator norm needed by
+the compiler. The nested marker supports give two complementary bounds
+on that norm, valid at every real angle tuple, including singular state
+charts. Write $`W=W_{\mathbb R}`$ and consider a differentiable angle path.
+Define the old and new subspaces and the preceding layer product by
+
+```math
+\mathcal S_d=\mathrm{span}\{|p0^{n-d}\rangle:|p|=d\},\qquad
+\mathcal M_d=\mathcal S_{d+1}\ominus\mathcal S_d,\qquad
+V_d=L_{d-1}\cdots L_0,\quad V_0=I.
+```
+
+Earlier layers preserve $`\mathcal S_d`$ and fix its orthogonal
+complement pointwise. Put
+
+```math
+E_d=\sum_p\dot\theta_{d,p}
+ |p1\,0^{n-d-1}\rangle\langle p0\,0^{n-d-1}|,
+\qquad R_d=E_dV_d,\qquad R=\sum_dR_d.
+```
+
+Then $`R_d:\mathcal S_d\to\mathcal M_d`$, and the complete
+logarithmic derivative and its positive semidefinite bound are
+
+```math
+\boxed{
+W^T\dot W=R-R^T,\qquad
+Q=R^TR=\sum_dR_d^TR_d,\qquad
+\|\dot W\|\le2\sqrt{\|Q\|}.
+}
+```
+
+In particular, $`Q`$ retains the locations and magnitudes of the
+individual angle errors, rather than only a maximum at each depth:
+
+```math
+Q=\sum_d V_d^T
+ \left(\sum_p\dot\theta_{d,p}^{\,2}
+ |p0\,0^{n-d-1}\rangle\langle p0\,0^{n-d-1}|\right)V_d.
+```
+
+**Proof.** Disjoint rotations in one layer give
+$`L_d^T\dot L_d=E_d-E_d^T`$. Since $`V_d`$ fixes
+$`\mathcal M_d`$ pointwise, $`V_d^TE_dV_d=E_dV_d=R_d`$.
+Cancelling the later layers in the product derivative therefore gives
+$`W^T\dot W=\sum_d(R_d-R_d^T)`$. The spaces
+$`\mathcal M_d`$ are mutually orthogonal, so
+$`R_d^TR_e=0`$ for distinct depths and $`R^TR=Q`$.
+Finally, $`\|R-R^T\|\le2\|R\|=2\sqrt{\|Q\|}`$. ∎
+
+**The factor two is sharp.** At the zero angle tuple, set the derivative
+to one only at prefix $`p=1^d`$ at each depth, and to zero elsewhere.
+These edges form a path through the successive vertices
+$`0^n,10^{n-1},110^{n-2},\ldots,1^n`$. On that path,
+$`R`$ is a forward shift. Consequently
+
+```math
+Q^2=Q,\qquad \|Q\|=1,\qquad
+\|R-R^T\|=2\cos\!\left(\frac{\pi}{n+2}\right)\longrightarrow2.
+```
+
+No smaller universal factor can replace two in this PSD bound.
+
+#### Depth caps and finite perturbations
+
+The complementary bound uses only the largest angle speed at each depth:
+
+```math
+e_d=\max_p|\dot\theta_{d,p}|,\qquad
+\Lambda_0=0,\qquad
+\Lambda_{d+1}=\frac{\Lambda_d+\sqrt{\Lambda_d^2+4e_d^2}}2.
+```
+
+Then $`\|\dot W\|\le\Lambda_n`$. If every derivative at depth
+$`d`$ has magnitude $`e_d`$, equality holds at every base angle
+tuple, with arbitrary signs at individual nodes and with zero caps
+allowed. The [canonical stability proof](HOPF_ERROR_ACCUMULATION.md#nested-support-proves-the-recurrence)
+derives the block recurrence
+
+```math
+K_{d+1}=\begin{pmatrix}K_d&-B_d^T\\B_d&0\end{pmatrix},
+\qquad \|B_d\|=e_d.
+```
+
+For equal magnitudes within a depth, $`B_d^TB_d=e_d^2I`$.
+Each eigenvalue $`\mu`$ of $`iK_d`$ therefore gives two eigenvalues
+
+```math
+\frac{\mu\pm\sqrt{\mu^2+4e_d^2}}2
+```
+
+of $`iK_{d+1}`$. This explains the exact norm recurrence and its
+independence from base angles and derivative signs; the linked chapter
+also proves the stronger finite relative-spectrum statement. Neither
+the PSD bound nor the depth-cap bound dominates the other in every
+instance: the selected-path example has PSD bound two, while uniform
+depth magnitudes attain $`\Lambda_n`$.
+
+For a straight path $`\theta(t)=\theta+t\Delta\theta`$, use the
+constant caps $`e_d=\max_p|\Delta\theta_{d,p}|`$. Integration gives
+
+```math
+\|W(\theta+\Delta\theta)-W(\theta)\|
+\le\min\left\{2,\Lambda_n,
+ 2\int_0^1\sqrt{\|Q(t)\|}\,dt\right\},
+\qquad
+\Lambda_n\le\sqrt{e_0^2+2\sum_{d=1}^{n-1}e_d^2}.
+```
+
+These are literal-phase operator-norm bounds; tensoring identity on
+untouched dirty work or a reference preserves them. They do not certify
+the full initialized output of an approximate source circuit. That
+distinction and the sharp square-root dependence on depth are treated
+in [ideal-angle error accumulation](HOPF_ERROR_ACCUMULATION.md).
+
+**An isolated angle still needs absolute precision.** If only one angle
+changes by $`\delta`$, all other factors cancel under unitary
+invariance of the norm:
+
+```math
+\|W(\theta+\delta\mathbf e_j)-W(\theta)\|
+=\|R_y(\theta_j+\delta)-R_y(\theta_j)\|
+=2|\sin(\delta/2)|.
+```
+
+Here $`\mathbf e_j`$ denotes a coordinate unit vector, not a marker
+column. The identity is independent of the incoming state amplitude,
+even when that amplitude is zero. Thus the PSD bound improves the
+accumulation of actual angular errors; it does not make a small branch
+insensitive, regularize a relative-error source gauge, or supply a
+precision-sharing compiler. The endpoint resource bounds are unchanged.
+
 ## 5. Two-qubit orientation
 
 For two qubits, the three magnitude angles give
@@ -482,6 +616,7 @@ weights, chart domains, and addressed-layer product above.
 - [Marker convention](../compiler_robust_hopf/conventions.py)
 - [Complex magnitude and phase derivatives](../compiler_robust_hopf/complex_analysis.py)
 - [Frame and chart-domain tests](../tests/test_frames.py)
+- [Full-operator differential and stability tests](../tests/test_frame_operator_stability.py)
 - [Complex analysis tests](../tests/test_complex_analysis.py)
 
 ---
