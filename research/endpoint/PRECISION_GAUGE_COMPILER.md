@@ -422,6 +422,104 @@ not been proved: intermediate source bridges are target-dependent
 operators, not automatically cancelling masks. Formula (10) records
 this remaining cost rather than claiming an unrestricted compiler.
 
+### Mixed heights and the limit of rescheduling
+
+A pathwise precision budget cannot replace the trace in (10) merely by
+rescheduling the same elementary merge banks. The following family makes
+the distinction precise. Take integers $`t\ge2`$ and put
+
+```math
+n=2^{2t},\qquad N=2^n,\qquad k=t,\qquad
+h_r=\frac{n}{2^{r+1}},\quad E_r=\frac{N}{h_r},\quad 0\le r\lt k.
+```
+
+Let $`M=N/2^{\lceil\log_2 k\rceil}`$. Give each class one aligned
+M-label interval, partitioned into $`M/2^{h_r}`$ aligned blocks of
+size $`2^{h_r}`$. Their total size $`kM`$ lies between $`N/2`$ and N.
+Set all rotations crossing those blocks to zero and retain a complete
+height-$`h_r`$ Hopf component inside each block. This is an actual
+pruned frame on the original computational labels. Every smaller branch
+in class r may vary independently within
+$`2^{-E_r-1}\le s_v\le2^{-E_r}`$.
+
+Choose the standard coarse precision $`q_r=E_r+c_n`$, where one common
+$`c_n=O(\log n)`$ supplies the relative tolerance in Section 3.
+Every binary root-to-leaf path then has total assigned precision at most
+
+```math
+P=\max_r h_rq_r=N+c_nh_0=O(N).
+```
+
+The same bound holds on computational parent-child paths inside a block.
+These are distinct path notions: the binary leftmost carrier chain below
+corresponds to a computational root star, not a computational path.
+
+The existing sufficient criteria do not directly settle this family with
+uniform constants. Compiling whole components as arbitrary SU blocks
+would have squared-dimension charge
+
+```math
+\sum_j m_j^2=M\sum_{r=0}^{k-1}2^{h_r}\ge M2^{h_{k-1}},
+\qquad h_{k-1}=\sqrt n.
+```
+
+Even the smallest class exceeds every fixed linear block budget. A fixed
+exponent-ratio interval covers only a bounded number of classes, as does
+any fixed cheap threshold $`A N/n`$. No branch is ultraweak at the
+threshold of Section 7. The complete components have unbounded
+computational degree and binary descendant growth, and outside any fixed
+cheap or fixed-ratio base their exceptional path depth tends to infinity.
+These observations concern the stated sufficient criteria; they do not
+exclude a different factorization of the same family.
+
+**Unfused-bank scheduling proposition.** Retain the elementary three-port
+merges of (5), their carrier dependencies, and their assigned precisions.
+Allow arbitrary ordering and grouping into disjoint matchings. A bank b
+has one common precision $`q_b`$ at least that of each merge it contains.
+Then
+
+```math
+\sum_b q_b\ge q_0h_0+
+\sum_{r=1}^{k-1}(q_r-q_{r-1})h_r
+=N\frac{k+1}{2}+c_nh_0.
+\qquad\text{(11a)}
+```
+
+To prove this, select one component from each class. Its binary leftmost
+carrier participates in $`h_r`$ successive merges; no disjoint matching
+can contain two of those merges. Therefore at least $`h_r`$ banks have
+precision at least $`q_r`$. Write each bank's charge as its contributions
+above the successive thresholds $`q_0,\ldots,q_{k-1}`$, and sum these
+inequalities. Since $`h_rE_r=N`$ and $`E_r=2E_{r-1}`$, the right side
+is the displayed expression. Packing or relabeling the modes preserves
+the carrier dependencies.
+
+Equality is attained at the scheduling level: align the bottom-up stages
+of all components, with one class-r stage in each of the first $`h_r`$
+banks. Each such bank is a disjoint matching. Thus the minimum precision
+charge is $`\Theta(N\log n)`$, although P is linear. The unbanked query
+ledger also gives total $`O(N\log n)`$, since each active node is queried
+once per stream and routing contributes only $`O(N)`$.
+
+This is a bound for the specified scheduling model. The actual paired
+loader has $`2q_b`$ one-T splitting rotations per invocation, so separately
+emitting the unchanged bank templates retains this order of loader cost.
+It is not a lower bound after joint native simplification, replacement of
+the sources, or fusion of several merges. In particular, the existing
+unrestricted $`O(N[1+\log_2^*(n+2)])`$ compiler is already better than
+this direct schedule.
+
+The row-source merge stream alone has the charge (11a). Replaying the
+same dirty rejection in the column source and using the actual inverses
+in (9) adds only fixed multiplicities; fine precision, flags and dirty
+reservation remain those of Sections 4–5. Hoisting a common loader leaves
+the [transformed masks and width-transition bodies](SOURCE_REUSE_LIMITS.md#2-factoring-out-the-source-can-move-its-cost-into-the-masks)
+to be compiled, so exterior cancellation does not supply a new ledger.
+This rescheduling route stops at (11a). Reopening requires a native
+multi-merge or shared-source identity that changes the separately emitted
+bank model and charges those bodies, their actual inverses, and full work
+return. The mixed-height family's unrestricted linear cost remains open.
+
 ## 6. Fixed exponent-ratio families
 
 Suppose every nonzero normalized smaller branch satisfies
@@ -540,6 +638,8 @@ complete regular and lossy column identities, complex Parseval source
 recurrence, arbitrary-dirty two-query replay, and literal recovery
 polynomial. Algebraic fixtures use exact $`\mathbb Q(\sqrt2,i)`$
 arithmetic where practical; numerical dirty completions check the full
-operator. These are bounded diagnostics of the displayed identities.
+operator. Exact packing checks and exhaustive small chain schedules check
+the mixed-height construction and (11a), without asserting a native
+compiler lower bound. These are bounded diagnostics of the displayed identities.
 The native count follows from the charged interfaces and estimates above,
 not from finite matrix agreement.
