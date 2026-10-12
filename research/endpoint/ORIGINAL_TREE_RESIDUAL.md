@@ -206,7 +206,7 @@ Then, across every original edge cut $`A\mid B`$ in either direction,
 ```math
 S_E^\dagger=-S_E,\qquad
 \|S_E\|\le\frac{\delta}{2-\delta},\qquad
-\operatorname{rank}E_{AB},\ \operatorname{rank}(S_E)_{AB}\le2. \tag{10}
+\mathrm{rank}E_{AB},\ \mathrm{rank}(S_E)_{AB}\le2. \tag{10}
 ```
 
 **Proof.** Isolate the only gate crossing that cut. Earlier and later
