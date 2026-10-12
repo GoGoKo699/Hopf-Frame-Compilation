@@ -303,5 +303,93 @@ class SourceReuseLimitsTests(unittest.TestCase):
                             atol=ATOL, rtol=0)
 
 
+class InvolutoryDirtyEchoTests(unittest.TestCase):
+    def test_addressed_approximate_echo_with_clean_leakage(self):
+        x = np.array([[0, 1], [1, 0]], dtype=complex)
+        y = np.array([[0, -1j], [1j, 0]], dtype=complex)
+        z = np.diag([1, -1]).astype(complex)
+        p0, p1 = np.diag([1, 0]), np.diag([0, 1])
+        theta, beta, leakage_angle = 0.01, 0.0001, 0.0003
+        rotation = np.cos(theta) * np.eye(2) - 1j * np.sin(theta) * y
+        # Tensor order: clean flag, unchanged address, target, dirty program.
+        embedding = np.kron(np.array([[1], [0]]), np.eye(8))
+        input_lookup = (np.kron(p0, np.eye(4))
+                        + np.kron(p1, np.kron(np.eye(2), x)))
+        lookup = np.kron(np.eye(2), input_lookup)
+        target = (np.kron(p0, np.eye(4))
+                  + np.kron(p1, np.kron(rotation, np.eye(2))))
+        interpreter = np.eye(16, dtype=complex)
+        for angle, generator in (
+                (beta, _pauli(4, {1: y, 0: z})),
+                (leakage_angle, _pauli(4, {3: y, 0: z}))):
+            interpreter = (np.cos(angle / 2) * np.eye(16)
+                           - 1j * np.sin(angle / 2) * generator) @ interpreter
+        echo = interpreter.conj().T @ lookup @ interpreter @ lookup
+        residual = echo @ embedding - embedding @ target
+        epsilon = np.linalg.norm(residual, ord=2)
+
+        np.testing.assert_allclose(lookup @ lookup, np.eye(16), atol=ATOL, rtol=0)
+        np.testing.assert_allclose(
+            lookup @ embedding, embedding @ input_lookup, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(
+            input_lookup @ target, target @ input_lookup, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(
+            lookup @ echo @ lookup, echo.conj().T, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(
+            echo.conj().T @ embedding - embedding @ target.conj().T,
+            -echo.conj().T @ residual @ target.conj().T, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(
+            echo.conj().T @ embedding - embedding @ target,
+            lookup @ residual @ input_lookup, atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(echo - np.eye(16), ord=2), 0.0001)
+        leakage = (np.eye(16) - embedding @ embedding.conj().T) @ echo @ embedding
+        self.assertGreater(np.linalg.norm(leakage, ord=2), 0.0001)
+        # A nonidentity echo with leakage nearly attains the small-angle floor.
+        self.assertGreaterEqual(epsilon + ATOL, abs(np.sin(theta)))
+        self.assertLess(epsilon, 1.1 * abs(np.sin(theta)))
+        self.assertLessEqual(
+            np.linalg.norm(target - target.conj().T, ord=2), 2 * epsilon + ATOL)
+
+    def test_logical_lookup_without_commutation_allows_an_exact_rotation(self):
+        theta = 0.3
+        rotation = np.array([[np.cos(theta), -np.sin(theta)],
+                             [np.sin(theta), np.cos(theta)]])
+        half_inverse = np.array([[np.cos(theta / 2), np.sin(theta / 2)],
+                                 [-np.sin(theta / 2), np.cos(theta / 2)]])
+        embedding = np.kron(np.array([[1], [0]]), np.eye(4))
+        input_lookup = np.kron(np.diag([1, -1]), np.eye(2))
+        lookup = np.kron(np.eye(2), input_lookup)
+        interpreter = np.kron(np.eye(2), np.kron(half_inverse, np.eye(2)))
+        target = np.kron(rotation, np.eye(2))
+        echo = interpreter.conj().T @ lookup @ interpreter @ lookup
+        np.testing.assert_allclose(
+            lookup @ embedding, embedding @ input_lookup, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(echo @ embedding, embedding @ target,
+                                   atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(input_lookup @ target
+                                          - target @ input_lookup, ord=2), 0.5)
+        self.assertGreater(np.linalg.norm(target - target.conj().T, ord=2), 0.5)
+
+    def test_nonunitary_involution_does_not_satisfy_the_error_bound(self):
+        theta, shear = np.pi / 3, 100.0
+        phase = np.exp(1j * theta)
+        v = (phase - 1) / shear
+        u = np.sqrt(1 - abs(v) ** 2)
+        interpreter = np.kron(np.array([[u, -v.conjugate()], [v, u]]), np.eye(2))
+        lookup = np.kron(np.array([[1, shear], [0, -1]]), np.eye(2))
+        embedding = np.kron(np.array([[1], [0]]), np.eye(2))
+        target = phase * np.eye(2)
+        echo = interpreter.conj().T @ lookup @ interpreter @ lookup
+        np.testing.assert_allclose(interpreter.conj().T @ interpreter, np.eye(4),
+                                   atol=ATOL, rtol=0)
+        np.testing.assert_allclose(lookup @ lookup, np.eye(4), atol=ATOL, rtol=0)
+        # X_0 = I, so intertwining and target commutation still hold.
+        np.testing.assert_allclose(lookup @ embedding, embedding, atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(lookup.conj().T @ lookup - np.eye(4)), 1)
+        epsilon = np.linalg.norm(echo @ embedding - embedding @ target, ord=2)
+        self.assertLess(epsilon, 0.02)
+        self.assertGreater(np.linalg.norm(target - target.conj().T, ord=2), 2 * epsilon)
+
+
 if __name__ == '__main__':
     unittest.main()

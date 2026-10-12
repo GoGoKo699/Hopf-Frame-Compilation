@@ -1705,18 +1705,59 @@ U_s=V_sU_0,\qquad V_{z\oplus s}=V_sV_z.
 ```
 
 Thus the $`V_s`$ must be commuting involutions; conversely that condition
-suffices. This is a literal-phase identity. In particular, if the two echo
-outputs $`U_sU_0^\dagger`$ and $`U_0U_s^\dagger`$ both approximate V
-within $`\epsilon`$,
-then $`\|V-V^\dagger\|\le2\epsilon`$. For $`V=R_y(\theta)`$ this
-requires $`\epsilon\ge|\sin\theta|`$. An involution alphabet alone is
+suffices. This is a literal-phase identity. An involution alphabet alone is
 insufficient: $`U_{z_1,z_2}=H^{z_2}X^{z_1}`$ and $`s=(1,0)`$ produce
 X or Z depending on the dirty second bit. The retained
 [reflection interpreter](../../docs/BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter)
 instead completes each symbol's cancellation before starting the next.
 The criterion assumes every program difference s is allowed; applying it
 to a restricted correlated family of Hopf rows would require a separate
-argument. Conjugating a whole-word XOR query by Hadamards on its program
+argument.
+
+A single echo has an approximate obstruction without assuming a
+classical program or a family of allowed differences. Let J be the
+initialized-clean isometry, let F and X be physical-space unitaries, and
+assume
+
+```math
+X^2=I,\qquad XJ=JX_0,\qquad [X_0,A]=0,
+\qquad C=F^\dagger XFX,
+```
+
+where A is the desired input-space unitary, including identity on all
+returned dirty work. The intertwining identity makes $`X_0`$ a unitary
+involution. Then
+
+```math
+\|CJ-JA\|\le\epsilon
+\quad\Longrightarrow\quad
+\|A-A^\dagger\|\le2\epsilon.
+```
+
+For the proof, $`XCX=C^\dagger`$. Set $`\Delta=CJ-JA`$. Unitarity
+and the intertwining and commutation assumptions give the two exact
+identities
+
+```math
+C^\dagger J-JA^\dagger=-C^\dagger\Delta A^\dagger,
+\qquad
+C^\dagger J-JA=X\Delta X_0.
+```
+
+Both right-hand sides have norm $`\|\Delta\|`$. Subtracting and using
+that J is an isometry proves the bound. No exact clean return is assumed;
+the complete output norm includes leakage and arbitrary dirty/reference
+correlations, with literal phase.
+
+For $`A=(\bigoplus_x R_y(\theta_x))\otimes I_{\rm dirty}`$, this gives
+$`\max_x|\sin\theta_x|\le\epsilon`$. In particular, X may be an XOR
+lookup controlled by the unchanged address x, since it commutes with
+these addressed target rotations. F may mix the address and workspace.
+The statement requires X to be unitary, not merely to satisfy
+$`X^2=I`$. It does not cover multiple echoes, noninvolutory lookups, or
+lookups that fail the displayed commutation or intertwining assumptions.
+
+Conjugating a whole-word XOR query by Hadamards on its program
 turns it into the diagonal
 $`D_f|x,z\rangle=(-1)^{z\cdot f(x)}|x,z\rangle`$. A constant number
 of complete queries and Clifford echoes is consequently a
@@ -2442,8 +2483,10 @@ contractions and encoded subspaces, the explicit geometric construction,
 the need for nilpotence, and the transformed-mask correlations.
 They also check the literal paired-source hoist, its fixed-tail
 cancellation, the low-rank reflection kernel witness, and the matched-frame
-commutation constraint. These finite checks support indexing and assumption
-boundaries.
+commutation constraint. The single-echo fixtures retain clean leakage in
+an addressed approximation and check counterexamples when commutation or
+unitarity of the lookup is dropped. These finite checks support indexing
+and assumption boundaries.
 The common-conjugator fixture additionally checks every dirty and occupied
 signal column of the literal native fork, its target-half-block failure,
 and its source counts. Small mask sweeps check the ellipse and row

@@ -222,7 +222,14 @@ wrapper hypotheses. Additional exact integer-wavelet and four-square
 Householder fixtures check the dyadic construction, including determinant
 and unused-quadrant identities. The linear-height and seven-factor
 bounds are analytic; ring height is not a native T-count certificate.
-No unrestricted circuit lower bound is inferred.
+Exact native two-qubit words additionally check the normalized accepted
+scalar phase bound, both Galois estimates, and tiny acceptance amplitudes.
+A rephased-boundary counterexample checks why the
+[phase theorem](../../research/endpoint/NATIVE_REALIFICATION.md#4-normalized-accepted-amplitudes-retain-a-phase-cost)
+requires literal Clifford calibration. It concerns the specified coherent
+scalar amplitude, not a success probability or arbitrary retained features.
+These representation checks do not establish a stronger unrestricted
+endpoint bound.
 
 The [exact Haar tests](../../tests/test_global_haar.py) use arithmetic over
 $`\mathbb Q(\sqrt2)`$ to verify common signed-path witnesses and
@@ -237,8 +244,11 @@ The [source-reuse limits](../../research/endpoint/SOURCE_REUSE_LIMITS.md) have
 contractions, arbitrary encoding bases, dirty-dimension independence, and
 transformed-mask operator identities, exact source hoisting,
 matched-Majorana commutation and rank-limited reflection extraction.
-Counterexamples test why nilpotence
-and complete-output accuracy cannot be omitted. These support the scoped
+Single-involution echo checks retain clean leakage and test failures when
+lookup unitarity or target commutation is omitted; the analytic bound
+also requires the lookup to preserve the initialized subspace.
+Counterexamples test why nilpotence and complete-output accuracy cannot
+be omitted. These support the scoped
 analytic restrictions; they do not establish a full-frame impossibility.
 
 The [structural endpoint checks](../../tests/test_endpoint_structural_limits.py)
@@ -679,10 +689,24 @@ The [Cayley checks](../../tests/test_tree_cayley.py) start with four modes and
 extend to eight. They compare direct complete residuals with the recursive
 skew-Hermitian generator, including actual complex native coarse words,
 zero defects, chart boundaries, small-inverse conditioning, and inverse
-Cayley stability. This verifies the new operator representation, not a
+Cayley stability. This verifies the recursive operator representation, not a
 Clifford+T emitter or a reduced precision-source count. The inverse audit
 also checks Woodbury cancellation, complete scattering ports, and an
 actual native child with non-scalar dirty compression.
+The [original-tree checks](../../tests/test_original_tree_residual.py)
+extend this evidence to arbitrary ordered trees, oriented path/time signs,
+and the determinant identity. Independent complete products test both
+off-diagonal directions of every tree cut for the logical residual
+$`WQ^\dagger`$ and its Cayley transform, including complex coarse blocks.
+The outward Hopf order has rank-one cuts; reordered words include a sharp
+rank-two witness. The shared-factor checks reconstruct the Hopf residual
+with $`3N-2`$ modes, test the Gram bounds, and count $`5N-2`$ modes for
+the separate failure-bank completion. The
+[extension proof](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
+distinguishes these factors from completed source isometries: the latter
+count is not a lower bound for every possible joint completion. Numerical
+rank/chart tolerances are diagnostic, not certified equality decisions or
+a native-cost certificate.
 The [four-mode native checks](../../tests/test_native_cayley.py) retain the
 magic Clifford's literal phase and orientation, recover regular Cayley
 factors at zero and nonzero defects, and test an addressed native word

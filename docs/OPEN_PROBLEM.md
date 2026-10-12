@@ -91,14 +91,27 @@ the target using a triangular descendant inverse. The inverse is still
 unpaid. Conditioning, small rank, and accepted-block identities do not
 supply a complete native recovery circuit.
 
+The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
+provides a complementary reduction without a change of tree. Its signed
+path and determinant formulas locate the direct Cayley singularities.
+An exact native coarse frame costing $`O(N)`$ T gates leaves a uniformly
+small residual with rank at most one across every original tree-edge cut.
+A shared factorization uses at most $`3N-2`$ modes, but its direct
+isometry completion reserves $`5N-2`$, beyond the $`4N`$ modes supplied by
+two clean flags. The missing step is a charged native source with the
+required approximate half-residual block and actual inverse.
+
 The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
 gives an exact complex coarse-frame gauge and a support-forced completion
 rank of at least $`n+1`$ when the selected chain correlations satisfy
 $`q_j\lt1`$. Its robust polynomial error floor concerns one
 prescribed coarse call with fixed-dimensional bounded scalar sources.
 Dirty operator-valued sources and other recovery mechanisms remain
-eligible. Similarly, [linear ring-height approximation](../research/endpoint/NATIVE_REALIFICATION.md)
-does not imply a linear native factorization. These statements leave the
+eligible. The [native representation results](../research/endpoint/NATIVE_REALIFICATION.md)
+separate linear ring height from native factorization and give a phase
+cost for normalized scalar acceptance, even at arbitrarily small success
+probability. The [single-echo bound](../research/endpoint/SOURCE_REUSE_LIMITS.md#whole-word-xor-cancellation-and-a-cyclic-alternative)
+likewise applies only to its commuting involutory interface. These statements leave the
 unrestricted endpoint bounds unchanged.
 
 ## Large-width T-depth
