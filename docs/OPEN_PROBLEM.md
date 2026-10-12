@@ -94,12 +94,23 @@ supply a complete native recovery circuit.
 The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
 provides a complementary reduction without a change of tree. Its signed
 path and determinant formulas locate the direct Cayley singularities.
-An exact native coarse frame costing $`O(N)`$ T gates leaves a uniformly
-small residual with rank at most one across every original tree-edge cut.
-A shared factorization uses at most $`3N-2`$ modes, but its direct
-isometry completion reserves $`5N-2`$, beyond the $`4N`$ modes supplied by
-two clean flags. The missing step is a charged native source with the
-required approximate half-residual block and actual inverse.
+An exactly returned native coarse frame has $`O(N)`$ T-count and leaves
+a residual smaller than $`2^{-\lceil\sqrt N\rceil-6}`$, with rank at
+most one across every original tree-edge cut. A regularized joint-Gram
+construction completes its canonical factors on exactly $`4N`$ modes,
+with bounded conditioning and cut ranks. This removes the earlier specific
+completion overrun, not the unproved native cost of its fine source and
+actual inverse.
+
+The [ordered-bank and finite-history results](../research/endpoint/ORDERED_BLOCK_BANKS.md)
+give an exact full-frame factorization with $`(4+o(1))N`$ total squared
+block size and $`(1+o(1))\log_2n`$ ordered factors. The stored banks,
+right readout, coarse prefix bank and local fine SU(2) bank have charged
+native implementations under their stated interfaces. Their ordered fine
+evaluation or the alternative fine left source remains unconstructed.
+The sharp block-factorization and independently compiled-module bounds
+restrict those representations; they do not change the unrestricted
+T-count comparison.
 
 The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
 gives an exact complex coarse-frame gauge and a support-forced completion
