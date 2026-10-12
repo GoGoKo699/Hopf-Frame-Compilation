@@ -489,7 +489,119 @@ not control T-count, and a generic exact synthesis may enlarge intermediate
 denominators. Factoring these particular integer-wavelet completions
 with $`O(N)`$ T gates remains a separate unsupported step.
 
-## 4. Verification
+## 4. Normalized accepted amplitudes retain a phase cost
+
+The exact-return circle restriction does not cover a nonunit accepted
+amplitude. Nevertheless, making its success probability arbitrarily
+small cannot make its normalized phase free to implement.
+
+**Theorem.** Let $`\omega=e^{i\pi/4}`$ and let
+$`\alpha=\langle s_{\rm out}|U|s_{\rm in}\rangle\ne0`$, where the two
+boundary vectors have fixed literal Clifford preparations from
+computational zero. If U contains t T or inverse-T gates, then
+
+```math
+\mathrm{Im}\alpha\ne0
+\quad\Longrightarrow\quad
+\frac{|\mathrm{Im}\alpha|}{|\alpha|}
+\ge\frac{1}{2(4+2\sqrt2)^t}\ge2^{-3t-1}.
+```
+
+The bound permits arbitrary finite width and Clifford count. The
+boundary convention is essential: arbitrary global phases assigned to
+stabilizer rays would change the amplitude. Using the same returned
+stabilizer vector at both boundaries cancels that freedom.
+
+*Proof.* Absorb the boundary preparations into U. Move all Clifford
+gates to the right, leaving t Pauli phase rotations followed by a
+Clifford C, and expand
+
+```math
+T_P^{\varepsilon}
+=\frac{(1+\omega^{\varepsilon})I+
+       (1-\omega^{\varepsilon})P}{2},
+\qquad \varepsilon\in\{1,-1\}.
+```
+
+A product of Paulis maps the computational-zero bra to a basis bra
+with a fourth-root phase. The nonzero computational amplitudes of the
+fixed, literally prepared stabilizer vector $`C|0\rangle`$ all have
+one modulus $`2^{-r/2}`$ and eighth-root phases. Thus
+
+```math
+\alpha=2^{-t-r/2}A,\qquad
+A=\sum_{b\in\{0,1\}^t}\gamma_b
+  \prod_{j=1}^t\bigl(1+(-1)^{b_j}\omega^{\varepsilon_j}\bigr)
+\in\mathbb Z[\omega],
+\qquad \gamma_b\in\{0\}\cup\{\omega^k:0\le k\lt8\}.
+```
+
+Let $`\sigma`$ fix i and send $`\sqrt2\mapsto-\sqrt2`$, so
+$`\omega\mapsto-\omega`$. It exchanges the two coefficient moduli
+in each expansion factor. The triangle inequality in both embeddings
+therefore gives
+
+```math
+|A|,\ |\sigma(A)|\le B^t,
+\qquad B=|1+\omega|+|1-\omega|,
+\qquad B^2=4+2\sqrt2.
+```
+
+Write $`A=a+b\omega+ci+d\omega^3`$ with integer coefficients.
+Its imaginary part $`y=c+(b+d)/\sqrt2`$ has, when nonzero, a
+nonzero half-integer quadratic norm:
+
+```math
+|y\sigma(y)|
+=\left|c^2-\frac{(b+d)^2}{2}\right|\ge\frac12.
+```
+
+Since $`|\sigma(y)|\le|\sigma(A)|`$, division by $`|A|`$ proves
+the claim. The positive real factor $`2^{-t-r/2}`$ cancels, regardless
+of the success probability. ∎
+
+**Small-phase corollary.** For integers $`m\ge0`$, $`q\ge m+4`$,
+
+```math
+\left|\frac{\alpha}{|\alpha|}-e^{i2^{-m}}\right|\le2^{-q}
+\quad\Longrightarrow\quad
+t\ge\left\lceil\frac{m-1}{3}\right\rceil.
+```
+
+Indeed, the normalized imaginary part is positive and at most
+$`(17/16)2^{-m}`$: on $`[0,1]`$, sine is at least
+$`(\sin1)`$ times its argument and at most its argument. Combining
+this with the theorem gives $`3t>m-2`$ and the displayed integer
+bound. Complex conjugation gives the same statement for the negative
+phase. A standalone scalar constructor therefore cannot have total
+T-count $`O(q-m)`$ uniformly when $`q-m`$ is fixed.
+
+An accepted block $`\alpha I_{\rm dirty}`$ falls under the theorem by
+choosing computational-zero dirty input and output. For a real accepted
+block $`uI+vXZ`$ with $`u,v\in\mathbb R`$, the calibrated stabilizer
+vector $`|y_+\rangle=(|0\rangle+i|1\rangle)/\sqrt2`$ instead gives
+the scalar $`u-iv`$. The acceptance boundary must be a specified
+coherent amplitude; a coarse-grained success probability alone is not
+such a scalar.
+
+For standalone returned rotations, the
+[positive Pauli-failure gap and literal-phase argument](../../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+already give stronger corollaries: an approximation of
+$`R_y(2^{-m})`$ with full-output error at most $`2^{-m}/10`$ needs
+$`t\ge2m-2`$; literal error $`2^{-q}`$ with $`q\ge m+4`$ needs
+$`t\ge2q-1`$, using $`|y_+\rangle`$. These use the rotation
+convention in Section 1 and permit arbitrary dirty work. The existing
+[return-rigidity theorem](../../docs/FAULT_TOLERANT_COMPILER.md#104-rigidity-of-approximate-workspace-return)
+also includes the rejected output, rather than only the accepted block.
+
+These statements concern T-count and the stated scalar interfaces.
+They neither rule out genuinely matrix-valued retained features nor
+establish an endpoint impossibility or optimal T-depth. A previously
+prepared nonstabilizer source changes the boundary hypothesis and its
+preparation must be charged. In particular, an $`O(N+q-m)`$ bank is
+not contradicted: its N term may already pay for the scalar scale.
+
+## 5. Verification
 
 The [native-representation tests](../../tests/test_native_representation_limits.py) verify the literal gate words
 in exact $`\mathbb Q(\sqrt2,i)`$ arithmetic, check the circle equations
@@ -497,6 +609,12 @@ over bounded integer ranges, and exercise the rectangular norm and
 full-isometry identities. Small frame checks confirm the marker-column
 gap. The all-size conclusions follow from the proofs above, independently
 of these finite checks.
+
+Exact two-qubit native words also check the accepted-amplitude Pauli
+expansion, both Galois bounds and the normalized-phase inequality.
+Tensor-Hadamard acceptance flags test cancellation of arbitrarily small
+success amplitudes; a separately rephased boundary demonstrates why
+literal Clifford calibration is required.
 
 The same tests check exact integer-wavelet orthogonality and the
 empty-quadrant reflection completion, including its determinant and

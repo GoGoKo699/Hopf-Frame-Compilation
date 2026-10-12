@@ -137,6 +137,9 @@ These prove linear endpoint count for specified families.
 
 The [open-problem statement](OPEN_PROBLEM.md) separates those families
 from the all-angle tree reductions and unpaid recovery operations.
+The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
+gives exact signed path formulas and a stable rank-one Hopf residual,
+with its source-completion deficit stated explicitly.
 The [canonical-star oracle](../research/endpoint/CANONICAL_STAR_RESOLVENT.md),
 [scalar Schur limits](../research/endpoint/SCALAR_SCHUR_LIMITS.md),
 [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md),

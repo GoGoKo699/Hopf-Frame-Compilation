@@ -559,26 +559,13 @@ a priority claim for the transform or low-rank update method.
 
 ### The two-level real example
 
-Let a, b, c be the half-angle tangents at the root, left child, and right
-child. In logical order 0, 1, 2, 3, the frame applies the root rotation
-on the pair (0, 2), followed by the rotations on (0, 1) and (2, 3).
-Assume the three half-angle tangents are finite. Its Cayley transform is exactly
-
-```math
-K=(W-I)(W+I)^{-1}
-=\begin{pmatrix}
-0&-b&-a&-ac\\
-b&0&-ab&-abc\\
-a&ab&0&-c\\
-ac&abc&c&0
-\end{pmatrix}.
-```
-
-The sibling off-diagonal block is the rank-one matrix
-$`-a(1,b)^{\mathsf T}(1,c)`$. The full matrix is generally dense and
-full rank. Thus the useful feature is a recursive description, not a
-small global rank. A three-level example can have all 28 upper-triangular entries nonzero
-while retaining these recursive rank-one sibling couplings.
+The [original-tree Cayley theorem](ORIGINAL_TREE_RESIDUAL.md#1-the-original-ordered-tree-word)
+gives the signed path formula and exact determinant for any edge order.
+For root, left-child, and right-child half-angle tangents a, b, c,
+the four-mode sibling block is $`-a(1,b)^{\mathsf T}(1,c)`$.
+The full matrix can be dense and full rank; the useful structure is
+the rank of tree cuts. The [four-mode fixture](../../tests/test_tree_cayley.py)
+retains the explicit matrix and its complete-frame comparison.
 
 For a real frame with identity coarse frame, write
 $`p_v=(I+K_v)e_0`$. If t is the root half-angle tangent, then
@@ -591,10 +578,10 @@ t p_Rp_L^{\mathsf T}&K_R
 p_v=\begin{pmatrix}p_L\\t p_R\end{pmatrix}.
 ```
 
-Products of half-angle tangents therefore describe the coupling columns.
-Using the full target W in this transform is not a uniformly small-norm
-construction: W may approach an eigenvalue minus one. The residual below
-uses the established coarse approximation instead.
+This is the Hopf-order specialization of that path formula. The
+[homogeneous conditioning bound](ORIGINAL_TREE_RESIDUAL.md#2-a-regular-angle-conditioning-adversary)
+quantifies its growth even on regular angles. The residual below uses
+the established coarse approximation instead.
 
 ### The actual complex-coarse residual
 
@@ -731,18 +718,12 @@ at most two as well. This is a compact classical representation. Its
 bases may lose rank at zero defects; no formula orthonormalizes or
 inverts them, and no free quantum state preparation is implied.
 
-For skew-Hermitian K and an approximation $`\widehat K`$ that is
-also skew-Hermitian, inverse Cayley conversion has the stable bound
-
-```math
-\left\|(I+\widehat K)(I-\widehat K)^{-1}
- -(I+K)(I-K)^{-1}\right\|
-\le2\|\widehat K-K\|.
-```
-
-Indeed the inverse transform is $`2(I-K)^{-1}-I`$, and both
-resolvents have norm at most one. This is an operator perturbation
-bound, not a gate-count estimate for implementing a resolvent.
+The [inverse Cayley stability bound](ORIGINAL_TREE_RESIDUAL.md#4-small-residual-and-tree-cut-rank)
+is globally 2-Lipschitz on skew-Hermitian generators. That section also
+distinguishes the right residual $`\mathcal W\mathcal C^\dagger`$:
+in outward Hopf order it has rank-one original tree cuts, whereas the
+left residual here retains the explicit rank-two nested recursion.
+Neither rank nor stability prices a native resolvent implementation.
 
 ### What remains to make this a compiler
 
@@ -761,8 +742,8 @@ conversion a constant-query operation. Linear classical storage alone
 does not prove linear table work or one global precision charge.
 The generic compiler frontier is unchanged.
 
-The [Cayley fixtures](../../tests/test_tree_cayley.py) start with the displayed
-four-mode product and extend to eight modes. They compare direct complete
+The [Cayley fixtures](../../tests/test_tree_cayley.py) start with the
+four-mode example and extend to eight modes. They compare direct complete
 matrices with the recursive data, including actual complex native coarse
 words, zero defects, chart boundaries, conditioning, and inverse conversion.
 They do not emit a Clifford+T implementation of the Cayley generator or

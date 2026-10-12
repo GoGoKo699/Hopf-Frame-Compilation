@@ -61,6 +61,23 @@ class _Cyclotomic:
     def conjugate(self):
         return _Cyclotomic(self.a, self.b, -self.c, -self.d)
 
+    def galois(self):
+        """Fix i and send sqrt(2) to -sqrt(2), hence omega to -omega."""
+        return _Cyclotomic(self.a, -self.b, self.c, -self.d)
+
+
+def _quadratic_nonnegative(value):
+    """Compare a real Q(sqrt(2)) value with zero without rounding."""
+    value = _Cyclotomic.of(value)
+    if value.c or value.d:
+        raise ValueError("the comparison requires a real quadratic value")
+    a, b = value.a, value.b
+    if a >= 0 and b >= 0:
+        return True
+    if a <= 0 and b <= 0:
+        return False
+    return a * a >= 2 * b * b if a >= 0 else 2 * b * b >= a * a
+
 
 def _adjoint(matrix):
     return np.array([[_Cyclotomic.of(x).conjugate() for x in row] for row in matrix.T], dtype=object)
@@ -75,6 +92,132 @@ def _rotation(theta):
 
 
 class NativeRepresentationLimitTests(unittest.TestCase):
+    def test_native_accepted_phase_expansion_and_galois_gap_are_exact(self):
+        q = _Cyclotomic
+        halfroot, imaginary = q(0, Fraction(1, 2)), q(0, 0, 1)
+        root, omega = 2 * halfroot, halfroot * (1 + imaginary)
+        h = np.array([[halfroot, halfroot], [halfroot, -halfroot]], dtype=object)
+        s, t = np.diag([q(1), imaginary]), np.diag([q(1), omega])
+        i2, i4 = np.eye(2, dtype=object), np.eye(4, dtype=object)
+        h0, h1 = np.kron(h, i2), np.kron(i2, h)
+        s0, t0 = np.kron(s, i2), np.kron(t, i2)
+        z0 = np.diag([q(1), q(1), q(-1), q(-1)])
+        cnot = np.array([[1, 0, 0, 0], [0, 1, 0, 0],
+                         [0, 0, 0, 1], [0, 0, 1, 0]], dtype=object)
+        conjugators = (i4, h0, s0 @ h0, cnot @ h0, h1 @ cnot @ h0)
+        endings = (i4, h0, h0 @ h1, cnot @ h0 @ s0 @ h1)
+        roots = {q(1)}
+        power = q(1)
+        for _ in range(7):
+            power = power * omega
+            roots.add(power)
+        imaginary_amplitudes = 0
+
+        for t_count, ending_index in product(range(5), range(len(endings))):
+            clifford = endings[ending_index]
+            actual = clifford.copy()
+            # Independently multiply the native K T^(+/-1) K^dagger words.
+            # The expansion below has no T matrices, only Pauli products.
+            branches = [(q(1), i4)]
+            for step in range(t_count):
+                k = conjugators[(step + ending_index) % len(conjugators)]
+                inverse = (step + ending_index) % 2
+                native_t = _adjoint(t0) if inverse else t0
+                phase = omega.conjugate() if inverse else omega
+                actual = k @ native_t @ _adjoint(k) @ actual
+                pauli = k @ z0 @ _adjoint(k)
+                branches = [(coefficient * (1 + phase), word)
+                            for coefficient, word in branches] + [
+                            (coefficient * (1 - phase), pauli @ word)
+                            for coefficient, word in branches]
+            expanded = [(coefficient, word @ clifford) for coefficient, word in branches]
+            bound_squared = q(1)
+            for _ in range(t_count):
+                bound_squared = bound_squared * q(4, 2)
+
+            for column in range(4):
+                support = sum(q.of(value) != q() for value in clifford[:, column])
+                self.assertIn(support, (1, 2, 4))
+                r = support.bit_length() - 1
+                scale = q(1)
+                for _ in range(r):
+                    scale = scale * root
+                for row in range(4):
+                    numerator = q()
+                    for coefficient, word in expanded:
+                        gamma = scale * q.of(word[row, column])
+                        self.assertTrue(gamma == q() or gamma in roots)
+                        numerator = numerator + coefficient * gamma
+                    alpha = q.of(actual[row, column])
+                    self.assertEqual(numerator, (1 << t_count) * scale * alpha)
+                    # Coefficients in the integer basis 1, omega, i, omega^3.
+                    integral = (numerator.a, numerator.b + numerator.d,
+                                numerator.c, numerator.d - numerator.b)
+                    self.assertTrue(all(v.denominator == 1 for v in integral))
+                    for embedding in (numerator, numerator.galois()):
+                        norm = embedding * embedding.conjugate()
+                        self.assertTrue(_quadratic_nonnegative(bound_squared - norm))
+                    y = q(numerator.c, numerator.d)
+                    if y == q():
+                        continue
+                    imaginary_amplitudes += 1
+                    quadratic_norm = y * y.galois()
+                    self.assertEqual(quadratic_norm.b, 0)
+                    self.assertGreaterEqual(abs(quadratic_norm.a), Fraction(1, 2))
+                    norm = numerator * numerator.conjugate()
+                    self.assertTrue(_quadratic_nonnegative(
+                        4 * bound_squared * bound_squared * y * y - norm))
+                    # The simpler 2^(-3t-1) bound, squared and cross-multiplied.
+                    self.assertTrue(_quadratic_nonnegative(
+                        (1 << (6 * t_count + 2)) * y * y - norm))
+        self.assertGreater(imaginary_amplitudes, 40)
+
+    def test_tiny_acceptance_changes_magnitude_but_not_normalized_phase(self):
+        q = _Cyclotomic
+        halfroot, imaginary = q(0, Fraction(1, 2)), q(0, 0, 1)
+        h = np.array([[halfroot, halfroot], [halfroot, -halfroot]], dtype=object)
+        t = np.diag([q(1), halfroot * (1 + imaginary)])
+        native = h @ t @ h
+        alpha0 = q.of(native[0, 0])
+        self.assertEqual(alpha0, (1 + halfroot * (1 + imaginary)) * Fraction(1, 2))
+        norm0, y0 = alpha0 * alpha0.conjugate(), q(alpha0.c, alpha0.d)
+        self.assertNotEqual(y0, q())
+        self.assertTrue(_quadratic_nonnegative(1 - norm0))
+
+        for flags in (0, 1, 2, 16, 256):
+            # Tensoring H on fresh acceptance flags is an actual native circuit
+            # with still one T. Factor its matrix element rather than allocate
+            # an exponentially large matrix for the large-width witnesses.
+            alpha = alpha0
+            for _ in range(flags):
+                alpha = alpha * halfroot
+            if flags <= 2:
+                direct = native
+                for _ in range(flags):
+                    direct = np.kron(direct, h)
+                self.assertEqual(alpha, q.of(direct[0, 0]))
+            norm, y = alpha * alpha.conjugate(), q(alpha.c, alpha.d)
+            self.assertNotEqual(alpha, q())
+            self.assertEqual(norm, norm0 * Fraction(1, 1 << flags))
+            self.assertEqual(y * y * norm0, y0 * y0 * norm)
+            self.assertTrue(_quadratic_nonnegative(256 * y * y - norm))
+            if flags == 256:
+                self.assertTrue(_quadratic_nonnegative(q(Fraction(1, 1 << 256)) - norm))
+
+    def test_literal_boundary_calibration_cannot_be_replaced_by_stabilizer_rays(self):
+        q = _Cyclotomic
+        # I has zero T gates. Rephasing only the output |0> by conjugate(z)
+        # creates this amplitude between the same stabilizer rays. It violates
+        # the t=0 phase gap, because that boundary is not literally prepared by
+        # a native Clifford. This is an excluded-case witness, not a circuit.
+        z = q(Fraction(63, 65), 0, Fraction(16, 65))
+        self.assertEqual(z * z.conjugate(), q(1))
+        self.assertGreater(z.c, 0)
+        self.assertLess(z.c, Fraction(1, 2))
+        self.assertFalse(_quadratic_nonnegative(4 * q(z.c) * q(z.c) - 1))
+        # A common boundary phase cancels exactly in a returned-state overlap.
+        self.assertEqual(z.conjugate() * q(1) * z, q(1))
+
     def test_integer_wavelets_and_empty_quadrant_completion_are_exact_dyadic(self):
         # Unequal signed leaves independently generate every prescribed
         # integer marker. Small scaling is enough to audit ring completion;
