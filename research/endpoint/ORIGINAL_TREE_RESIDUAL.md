@@ -36,7 +36,7 @@ depth may be ordered arbitrarily.
 **Original-tree Cayley theorem.** For every real angle tuple,
 
 ```math
-\boxed{\det(I+W)=2^N\prod_e\cos^2(\theta_e/2).} \tag{1}
+\boxed{\det(I+W)=2^N\prod_e\cos^2(\theta_e/2).} \qquad\text{(1)}
 ```
 
 Thus the singular set is exactly an edge angle $`\pi\bmod2\pi`$. Off
@@ -47,7 +47,7 @@ $`\sigma_i=(K_{e_i})_{v_{i-1},v_i}\in\{-1,1\}`$. Then
 ```math
 S_{uv}=\left(\prod_{i=1}^k\sigma_it_{e_i}\right)
        \left(\prod_{i=1}^{k-1}\mathrm{sgn}(\tau_{e_i}-\tau_{e_{i+1}})\right),
-\qquad S_{uu}=0. \tag{2}
+\qquad S_{uu}=0. \qquad\text{(2)}
 ```
 
 The matrix is real skew-symmetric, and both crossing blocks have rank at
@@ -75,7 +75,7 @@ Woodbury gives
 
 ```math
 (I+RQ)^{-1}=(I+Q)^{-1}-\tfrac12(I-S)tK(I+S),
-\qquad S_{\rm new}=S+t(I-S)K(I+S). \tag{3}
+\qquad S_{\rm new}=S+t(I-S)K(I+S). \qquad\text{(3)}
 ```
 
 The correction has only rank-one cross blocks between the joined
@@ -89,12 +89,12 @@ is not an instruction to test exact equality of computable inputs.
 
 ## 2. A regular-angle conditioning adversary
 
-For homogeneous $`t_e=t>0`$, split the first-bit halves:
+For homogeneous $`t_e=t\gt 0`$, split the first-bit halves:
 
 ```math
 S_n=\begin{pmatrix}S_{n-1}&0\\0&S_{n-1}\end{pmatrix}
 +t\begin{pmatrix}0&-vv^T\\vv^T&0\end{pmatrix},
-\qquad v=(I+S_{n-1})e_0. \tag{4}
+\qquad v=(I+S_{n-1})e_0. \qquad\text{(4)}
 ```
 
 The root rotation is first; applying (3) to the transposed word, where
@@ -104,7 +104,7 @@ $`\|v\|^2=(1+t^2)^{n-1}`$. The root cross block and a geometric
 triangle bound imply
 
 ```math
-t(1+t^2)^{n-1}\le\|S_n\|_2\le\frac{(1+t^2)^n-1}{t}. \tag{5}
+t(1+t^2)^{n-1}\le\|S_n\|_2\le\frac{(1+t^2)^n-1}{t}. \qquad\text{(5)}
 ```
 
 Let $`s_1,\ldots,s_{N/2}`$ contain one singular value from each skew
@@ -121,14 +121,14 @@ $`\sqrt{1+s_j^2}`$,
 ```math
 \frac{\sqrt{1+t^2(1+t^2)^{2n-2}}}{1+t^2}
 \le\kappa_2(I\pm S_n)
-\le\sqrt{1+\left(\frac{(1+t^2)^n-1}{t}\right)^2}. \tag{6}
+\le\sqrt{1+\left(\frac{(1+t^2)^n-1}{t}\right)^2}. \qquad\text{(6)}
 ```
 
 For fixed t this is $`\Theta_t(N^{\log_2(1+t^2)})`$. If
-$`0<t\le1`$, also
+$`0\lt t\le1`$, also
 
 ```math
-\|S_n\|_\infty=(1+t)^n-1. \tag{7}
+\|S_n\|_\infty=(1+t)^n-1. \qquad\text{(7)}
 ```
 
 The root row attains (7). Inductively any other row in (4) is bounded by
@@ -148,9 +148,9 @@ precision exponent $`s\ge6`$, with $`b=N+n+7`$, it emits
 
 ```math
 \widehat Q_s=Q_s\otimes I_b,\qquad
-\|W-Q_s\|<2^{-s},\qquad
+\|W-Q_s\|\lt 2^{-s},\qquad
 T(\widehat Q_s)=O\!\left(\frac{Ns}{N+2n+7}+s\sqrt N\right),
-\qquad G(\widehat Q_s)=O(Ns). \tag{8}
+\qquad G(\widehat Q_s)=O(Ns). \qquad\text{(8)}
 ```
 
 The first equality is exact on the entire input space, including dirty
@@ -185,17 +185,17 @@ $`T=O(n\sqrt N)`$, $`G=O(Nn)`$.
 
 ```math
 s=\lceil\sqrt N\rceil+6,\qquad\delta=2^{-s}.
-\quad T(\widehat Q_s)=O(N),\qquad G(\widehat Q_s)=O(N^{3/2}). \tag{9}
+\quad T(\widehat Q_s)=O(N),\qquad G(\widehat Q_s)=O(N^{3/2}). \qquad\text{(9)}
 ```
 
 This is a parameter substitution in the existing native theorem, not a
 new independently synthesized fine correction. In particular
-$`\delta<1/(8\sqrt N)`$ for all permitted dimensions.
+$`\delta\lt 1/(8\sqrt N)`$ for all permitted dimensions.
 
 ## 4. Small residual and tree-cut rank
 
 Let Q use one two-level unitary on each original edge and suppose
-$`\|W-Q\|\le\delta<2`$. For now its order may differ. Set
+$`\|W-Q\|\le\delta\lt 2`$. For now its order may differ. Set
 
 ```math
 E=WQ^\dagger,\qquad S_E=(E-I)(E+I)^{-1}.
@@ -206,7 +206,7 @@ Then, across every original edge cut $`A\mid B`$ in either direction,
 ```math
 S_E^\dagger=-S_E,\qquad
 \|S_E\|\le\frac{\delta}{2-\delta},\qquad
-\mathrm{rank}E_{AB},\ \mathrm{rank}(S_E)_{AB}\le2. \tag{10}
+\mathrm{rank}E_{AB},\ \mathrm{rank}(S_E)_{AB}\le2. \qquad\text{(10)}
 ```
 
 **Proof.** Isolate the only gate crossing that cut. Earlier and later
@@ -241,7 +241,7 @@ For $`\delta\le1/(8\sqrt N)`$, Cauchy--Schwarz also gives
 
 ```math
 \|S_E\|\le\frac1{16\sqrt N-1},\qquad
-\|E\|_1,\|E\|_\infty\le1+\sqrt N\delta\le9/8. \tag{11}
+\|E\|_1,\|E\|_\infty\le1+\sqrt N\delta\le9/8. \qquad\text{(11)}
 ```
 
 These matrices are computable from certified inputs and the finite Q.
@@ -251,7 +251,7 @@ For anti-Hermitian S,T, Cayley reconstruction is globally stable:
 
 ```math
 \mathcal C(S)=(I+S)(I-S)^{-1},\qquad
-\|\mathcal C(S)-\mathcal C(T)\|\le2\|S-T\|. \tag{12}
+\|\mathcal C(S)-\mathcal C(T)\|\le2\|S-T\|. \qquad\text{(12)}
 ```
 
 This follows from the resolvent identity and both inverse norms at most
@@ -268,7 +268,7 @@ separately. Every entry belongs to exactly one block or the diagonal:
 
 ```math
 E=AB^\dagger,\qquad A,B\in\mathbb C^{N\times m},\qquad m\le3N-2.
-\tag{13}
+\qquad\text{(13)}
 ```
 
 There are N diagonal terms and two directed terms per split. Zero terms
@@ -280,7 +280,7 @@ at most $`\delta`$. Therefore
 
 ```math
 AA^\dagger,BB^\dagger\preceq(1+n\delta)I,
-\qquad n\delta\le3/(16\sqrt2)<1/4. \tag{14}
+\qquad n\delta\le3/(16\sqrt2)\lt 1/4. \qquad\text{(14)}
 ```
 
 Write $`F=A/\sqrt2`$, $`G=B/\sqrt2`$, $`P_F=FF^\dagger`$,
@@ -306,14 +306,14 @@ Set $`P_F^+=P_F+I/8`$, $`P_G^+=P_G+I/8`$ and
 K=\begin{pmatrix}P_F^+&E/2\\E^\dagger/2&P_G^+\end{pmatrix}
 =\begin{pmatrix}F\\G\end{pmatrix}
  \begin{pmatrix}F\\G\end{pmatrix}^{\dagger}+I_{2N}/8.
-\tag{15}
+\qquad\text{(15)}
 ```
 
 The bounds are dimension-uniform:
 
 ```math
 I/8\preceq K\preceq5I/4,\qquad
-I/4\preceq I-P_F^+,I-P_G^+\preceq7I/8. \tag{16}
+I/4\preceq I-P_F^+,I-P_G^+\preceq7I/8. \qquad\text{(16)}
 ```
 
 For the upper bound, the diagonal block norm is at most 3/4 and the cross
@@ -325,7 +325,7 @@ Let $`R=[R_F\ R_G]`$ in the original two N-column groups. Then
 S_F=\begin{pmatrix}R_F\\C_F\\0\end{pmatrix},\qquad
 S_G=\begin{pmatrix}R_G\\0\\C_G\end{pmatrix},\qquad
 S_F^\dagger S_F=S_G^\dagger S_G=I,\quad S_F^\dagger S_G=E/2.
-\tag{17}
+\qquad\text{(17)}
 ```
 
 Both sources have exactly $`4N=2^{n+2}`$ rows: these are modes on n
@@ -349,7 +349,7 @@ With fixed flag flips $`P_{11},P_{10}`$, put
 $`A_E=H_FP_{11}`$, $`B_E=H_GP_{10}`$. Their literal overlap is
 
 ```math
-J_{00}^\dagger A_E^\dagger B_EJ_{00}=E/2. \tag{18}
+J_{00}^\dagger A_E^\dagger B_EJ_{00}=E/2. \qquad\text{(18)}
 ```
 
 Neither reflection is asserted to be a native elementary gate.
@@ -396,7 +396,7 @@ Both ranges have dimension N, so r must be at least 2N.
 More robustly, if the two deficits exceed $`d_FI,d_GI`$ and r<2N,
 
 ```math
-\|X^\dagger Y\|\ge\sqrt{d_Fd_G}. \tag{19}
+\|X^\dagger Y\|\ge\sqrt{d_Fd_G}. \qquad\text{(19)}
 ```
 
 Their ranges intersect. Polar decompositions express X,Y as isometries
@@ -439,7 +439,7 @@ root, the convergent series around the identity gives
 
 ```math
 \det C(u)=-u^6/2048+O(u^7),\qquad
-\sigma_2(C(u))=\sqrt2\,u^5/1024+O(u^6). \tag{20}
+\sigma_2(C(u))=\sqrt2\,u^5/1024+O(u^6). \qquad\text{(20)}
 ```
 
 These coefficients follow recursively by writing
@@ -450,7 +450,7 @@ The leading singular value is $`u/(2\sqrt2)+O(u^2)`$; its product
 with the second is the absolute determinant. Exact rational series tests
 check (20). Embedding in the first four decisions and setting later
 angles zero preserves the witness. At $`u=1/(64\sqrt N)`$ it satisfies
-$`\|E-I\|<1/(8\sqrt N)`$, but the lost singular value is
+$`\|E-I\|\lt 1/(8\sqrt N)`$, but the lost singular value is
 $`\Theta(N^{-5/2})`$, not endpoint-small. A rank-one approximation to
 this particular root therefore fails uniformly. This is a legal residual
 family, not a claim about the output of a fixed coarse-search algorithm.
@@ -466,7 +466,7 @@ $`\varepsilon=2^{-N}`$:
 ```math
 T(\widehat U)=O(N),\quad b\le N+n+7,\qquad
 \|2J_2^\dagger\widehat UJ_2-E\otimes I_b\|\le\varepsilon/4.
-\tag{21}
+\qquad\text{(21)}
 ```
 
 The cost includes both source preparations, completions, controls,

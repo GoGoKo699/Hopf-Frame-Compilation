@@ -23,12 +23,12 @@ two clean flags and at most $`N+n+7`$ arbitrary dirty qubits. Every claimed
 native approximation uses the full initialized-isometry norm, literal phase,
 actual inverses and dirty/reference return. Only T-count is optimized.
 
-For $`0\le a<b\le n`$, define $`F_{a,b}=L_{b-1}\cdots L_a`$.
+For $`0\le a\lt b\le n`$, define $`F_{a,b}=L_{b-1}\cdots L_a`$.
 This is a direct sum of $`2^a`$ special-unitary blocks of dimension
 $`2^{b-a}`$, acting on
 
 ```math
-\{(p2^{b-a}+u)2^{n-b}:0\le u<2^{b-a}\},\qquad 0\le p<2^a,
+\{(p2^{b-a}+u)2^{n-b}:0\le u\lt 2^{b-a}\},\qquad 0\le p\lt 2^a,
 ```
 
 with identity on all other labels. It follows directly by retaining the
@@ -37,7 +37,7 @@ identity, not a zero-input promise. The active-mode and squared-size sums
 are
 
 ```math
-M_{a,b}=2^b,\qquad B_{a,b}=2^{2b-a}. \tag{1}
+M_{a,b}=2^b,\qquad B_{a,b}=2^{2b-a}. \qquad\text{(1)}
 ```
 
 Any consecutive depth partition gives W exactly, in its original order.
@@ -54,7 +54,7 @@ The bottom volume is $`8N`$; band j has volume at most
 $`N2^{1-j}`$ for $`j\ge2`$. Hence
 
 ```math
-\mathcal V<9N,\qquad K\le1+\lceil\log_2n\rceil. \tag{2}
+\mathcal V\lt 9N,\qquad K\le1+\lceil\log_2n\rceil. \qquad\text{(2)}
 ```
 
 The first earlier factor occupies at most $`N/8`$ modes; each subsequent
@@ -65,18 +65,18 @@ In particular $`\mathcal M\le7N/6`$.
 ### A nearly optimal volume schedule
 
 Keep the final p depths as individual factors, and use (2) for the remaining
-$`n-p`$ depths. For $`0\le p<n`$, the singletons contribute
+$`n-p`$ depths. For $`0\le p\lt n`$, the singletons contribute
 $`4N(1-2^{-p})`$ in volume and $`2N(1-2^{-p})`$ in modes. The
 remaining problem has size $`N'=N2^{-p}`$. Consequently
 
 ```math
-\mathcal V<(4+5\,2^{-p})N,\qquad
+\mathcal V\lt (4+5\,2^{-p})N,\qquad
 \mathcal M\le2N-\tfrac56N2^{-p},\qquad
-K\le p+1+\lceil\log_2(n-p)\rceil. \tag{3}
+K\le p+1+\lceil\log_2(n-p)\rceil. \qquad\text{(3)}
 ```
 
 At p=n the exact sums are $`4N-4`$ and $`2N-2`$. For fixed
-$`\epsilon>0`$, fixed p gives volume below $`(4+\epsilon)N`$ and
+$`\epsilon\gt 0`$, fixed p gives volume below $`(4+\epsilon)N`$ and
 $`K=\log_2n+O_\epsilon(1)`$. With
 $`p=\lceil\log_2\lceil\log_2n\rceil\rceil`$, the representation
 has $`\mathcal V=(4+o(1))N`$ and
@@ -93,10 +93,10 @@ Starting from one basis mode, let $`s_j`$ be the number of reachable modes.
 A touched m-block adds at most $`m-1`$ modes and
 $`m^2\ge4(m-1)`$. Thus $`\mathcal V\ge4(s_K-1)`$.
 The balanced Hopf root column is flat. At endpoint error, omitting even one
-coordinate costs $`1/\sqrt N>\eta`$, so
+coordinate costs $`1/\sqrt N\gt \eta`$, so
 
 ```math
-\mathcal V\ge4(N-1). \tag{4}
+\mathcal V\ge4(N-1). \qquad\text{(4)}
 ```
 
 For consecutive bands this also follows by telescoping
@@ -108,15 +108,15 @@ q unchanged singletons, then $`q+u\le s`$. Cauchy--Schwarz gives
 
 ```math
 s_j^2\le s_{j-1}(B_j+s_{j-1}),\qquad
-s_{j-1}\le1+\sum_{i<j}B_i,\qquad
-s_K\le(\mathcal V+1)^{1-2^{-K}}. \tag{5}
+s_{j-1}\le1+\sum_{i\lt j}B_i,\qquad
+s_K\le(\mathcal V+1)^{1-2^{-K}}. \qquad\text{(5)}
 ```
 
-At error $`\epsilon<1`$ the flat column needs at least
+At error $`\epsilon\lt 1`$ the flat column needs at least
 $`(1-\epsilon^2)N`$ reachable outputs; therefore
 
 ```math
-\mathcal V\ge[(1-\epsilon^2)N]^{2^K/(2^K-1)}-1. \tag{6}
+\mathcal V\ge[(1-\epsilon^2)N]^{2^K/(2^K-1)}-1. \qquad\text{(6)}
 ```
 
 A linear volume budget implies $`K\ge\log_2n-O(1)`$. Conversely,
@@ -157,12 +157,12 @@ Let $`P_1\le\cdots\le P_K=I`$ be known computational projections.
 Let unitary factors $`F_j,G_j`$ act as identity on $`P_j^\perp`$ and
 preserve $`P_j`$. They need not preserve every earlier projection.
 Write $`\Delta_j=F_j-G_j`$ and suppose
-$`\sum_j\|\Delta_j\|\le\delta<1/4`$. In application order, expand
+$`\sum_j\|\Delta_j\|\le\delta\lt 1/4`$. In application order, expand
 
 ```math
 \mathcal W(z)=\prod_{j=K}^{1}(G_j+z\Delta_j)
 =\sum_{k=0}^{K}z^k C_k,\qquad
-C_0=Q,\quad\sum_k C_k=W. \tag{7}
+C_0=Q,\quad\sum_k C_k=W. \qquad\text{(7)}
 ```
 
 An input outside $`P_j`$ is unchanged in its first j factors. Its formal
@@ -170,7 +170,7 @@ column has degree at most $`K-j`$, proving
 
 ```math
 C_k=C_kP_{K-k+1},\qquad
-\|C_k\|\le\delta^k/k!. \tag{8}
+\|C_k\|\le\delta^k/k!. \qquad\text{(8)}
 ```
 
 The norm bound sums products of local defects and uses unit norm of the
@@ -190,7 +190,7 @@ $`C_k`$ has right support on multiples of $`2^{k-1}`$. Their dimensions
 sum to $`2N-2`$. The finer geometric local bound in that case is
 
 ```math
-\|C_k\|\le\frac{\delta^k}{\prod_{r=1}^k(2^r-1)}. \tag{9}
+\|C_k\|\le\frac{\delta^k}{\prod_{r=1}^k(2^r-1)}. \qquad\text{(9)}
 ```
 
 To obtain (9), bound the finite elementary symmetric sum by that of
@@ -205,9 +205,9 @@ $`(i,k)`$, $`0\le k\le h(i)`$, with the first N rows $`(i,0)`$.
 Set
 
 ```math
-\beta_{ki}=\begin{cases}2^{-(k+1)/2},&k<h(i),\\2^{-h(i)/2},&k=h(i),\end{cases}
+\beta_{ki}=\begin{cases}2^{-(k+1)/2},&k\lt h(i),\\2^{-h(i)/2},&k=h(i),\end{cases}
 \qquad S_B^{\rm sh}|i\rangle=\sum_{k=0}^{h(i)}\beta_{ki}|i,k\rangle.
-\tag{10}
+\qquad\text{(10)}
 ```
 
 The last two weights agree, and their squared sum is one. Different input
@@ -223,7 +223,7 @@ $`C_k[:,i]^\dagger/(2\beta_{ki})`$. Then (8) gives
 L^\dagger S_B^{\rm sh}=W/2,\qquad
 L^\dagger L=I/2+H,\qquad
 0\preceq H,\quad\|H\|\le\sum_{k\ge1}2^{k-1}\|C_k\|^2
-\le\frac{\delta^2}{1-2\delta^2}<2\delta^2. \tag{11}
+\le\frac{\delta^2}{1-2\delta^2}\lt 2\delta^2. \qquad\text{(11)}
 ```
 
 A single failure bank completes the sources:
@@ -232,7 +232,7 @@ A single failure bank completes the sources:
 S_A=\begin{pmatrix}L\\Q^\dagger(I-L^\dagger L)^{1/2}\end{pmatrix},
 \qquad S_B=\begin{pmatrix}S_B^{\rm sh}\\0\end{pmatrix},
 \quad S_A^\dagger S_A=S_B^\dagger S_B=I,
-\quad S_A^\dagger S_B=W/2. \tag{12}
+\quad S_A^\dagger S_B=W/2. \qquad\text{(12)}
 ```
 
 The nonpadding mode count is $`2N+\sum_j\dim P_j`$: $`4N-2`$
@@ -274,7 +274,7 @@ cost
 ```math
 T(B)=O(Kn\sqrt N)=O(N),\qquad G(B)=O(KnN),\qquad
 b_B=2^{\lfloor(n+1)/2\rfloor}+\lceil(n+1)/2\rceil\le N+n+7.
-\tag{13}
+\qquad\text{(13)}
 ```
 
 Here $`K\le n`$ and $`n^2\sqrt N=O(N)`$ with an absolute
@@ -296,7 +296,7 @@ restriction by $`\bar V_d`$. Pack the restrictions as
 
 ```math
 \mathcal P_Q=\left(\bigoplus_{d=0}^{n-1}\bar V_d\right)\oplus I_2,
-\qquad\dim\mathcal P_Q=2N. \tag{14}
+\qquad\dim\mathcal P_Q=2N. \qquad\text{(14)}
 ```
 
 At coarse depth $`\ell`$, $`2^\ell`$ local words appear in every
@@ -317,7 +317,7 @@ Include the packing/unpacking permutations and borrowed predicates:
 ```math
 \widehat{\mathcal P}_Q=\mathcal P_Q\otimes I_b,\qquad
 T=O((s+1)\sqrt N+n^2\sqrt N+n^3)=O(N),\quad G=O(N^{3/2}),
-\quad b\le2^{\lfloor n/2\rfloor}+\lceil n/2\rceil+1. \tag{15}
+\quad b\le2^{\lfloor n/2\rfloor}+\lceil n/2\rceil+1. \qquad\text{(15)}
 ```
 
 The equality is exact. A compressed-prefix echo requires actual local words
@@ -353,8 +353,8 @@ selection to error $`\eta/128`$ and three rotation calls give
 
 ```math
 \|\widehat{\mathcal D}-\mathcal D\otimes I_{\rm signal,dirty}\|
-<129\,2^{-N-15}+\eta/128<\eta/64,
-\qquad T=O(N),\quad G=O(N^2). \tag{16}
+\lt 129\,2^{-N-15}+\eta/128\lt \eta/64,
+\qquad T=O(N),\quad G=O(N^2). \qquad\text{(16)}
 ```
 
 For $`3\le n\le8`$, direct dirty-table synthesis gives a finite
@@ -368,8 +368,8 @@ nontrivial restrictions of these operators. Exact cancellation gives
 
 ```math
 Q^\dagger W=A_{n-1}\cdots A_0,\qquad
-Q^\dagger C_k=\sum_{d_k>\cdots>d_1}(A_{d_k}-I)\cdots(A_{d_1}-I).
-\tag{17}
+Q^\dagger C_k=\sum_{d_k\gt \cdots\gt d_1}(A_{d_k}-I)\cdots(A_{d_1}-I).
+\qquad\text{(17)}
 ```
 
 This is a left-residual identity, not a transfer of the original right-cut
@@ -394,7 +394,7 @@ u=2^{-(s+n+2)},\qquad \theta_j=2\arctan(\sigma_j u),\quad\sigma_j=\pm1.
 ```
 
 The common coarse word Q=I is valid: local error is at most 2u and
-$`\|W-I\|\le2Ku<\delta/2`$. This is a permitted coarse choice,
+$`\|W-I\|\le2Ku\lt \delta/2`$. This is a permitted coarse choice,
 not a statement that a particular synthesis search always selects identity.
 Each bank entry has Boolean degree at most one. After R queries every
 amplitude has degree at most R, whereas the target path amplitude is
@@ -402,7 +402,7 @@ amplitude has degree at most R, whereas the target path amplitude is
 ```math
 \langle v_K|W_\sigma|0\rangle
 =\left(\prod_j\sigma_j\right)a,\qquad
- a=\left(\frac{2u}{1+u^2}\right)^K\ge u^K. \tag{18}
+ a=\left(\frac{2u}{1+u^2}\right)^K\ge u^K. \qquad\text{(18)}
 ```
 
 For R<K its degree-K Fourier coefficient cannot agree; averaging against
@@ -411,19 +411,19 @@ For both the p=0 and the p(n) schedules, when $`n\ge8`$,
 $`K(s+n+2)\le N-n`$, hence $`a\ge2^n\eta`$.
 At n=8 use respectively K=3 and K=5, s=22. For n≥9, K≤n and
 $`s\le2^{n/2}+7`$ suffice because
-$`n2^{n/2}+n^2+10n<2^n`$: it holds at nine and both positive
+$`n2^{n/2}+n^2+10n\lt 2^n`$: it holds at nine and both positive
 terms divided by $`2^n`$ decrease thereafter. Thus R≥K is necessary.
 
 If each module has error at most $`\eta/64`$ on its actually used
 subspace, an honest hybrid gives ideal-query error at most
-$`\eta+R\eta/64<2^n\eta`$ for R<K. The restriction survives.
+$`\eta+R\eta/64\lt 2^n\eta`$ for R<K. The restriction survives.
 With initialized-isometry module guarantees the ideal call must meet that
 initialization premise; no occupied-flag extension is inferred.
 
 Each nonempty bank contains a two-level rotation with stabilizer eigenvector
 $`(|a\rangle+i|b\rangle)/\sqrt2`$ and eigenphase
 $`e^{\pm i\theta}`$. Its distance to the nearest eighth root, 1, is
-$`2u/\sqrt{1+u^2}>u>\eta`$. The
+$`2u/\sqrt{1+u^2}\gt u\gt \eta`$. The
 [positive Pauli-failure gap and scalar lemma](../../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
 then force at least $`2N-1`$ T gates in any separately compiled bank
 accurate to $`\eta/64`$. Otherwise all stabilizer failures vanish,
@@ -433,7 +433,7 @@ active pair without changing that argument.
 Consequently **additive standalone module accounting** gives
 
 ```math
-T_{\rm modular}\ge K(2N-1)=\Omega(N\log n). \tag{19}
+T_{\rm modular}\ge K(2N-1)=\Omega(N\log n). \qquad\text{(19)}
 ```
 
 The same complete witness acts only on K+1 labels. Since
@@ -462,7 +462,7 @@ therefore obeys
 
 ```math
 \epsilon\ge\frac{2m!(r/m)^m}{(1+r^2)^{(m+1)/2}}
-\ge\frac{2(r/e)^m}{(1+r^2)^{(m+1)/2}}. \tag{20}
+\ge\frac{2(r/e)^m}{(1+r^2)^{(m+1)/2}}. \qquad\text{(20)}
 ```
 
 At $`r=2^{-s-2}`$, ε≤$`2^{-N}`$ implies
@@ -504,7 +504,7 @@ span of v. Its error to W is therefore at least $`\sin^2\theta/2`$.
 This includes the accepted cubic amplification polynomial. With
 $`\theta=\delta/(4N)`$, the lower bound exceeds η for n≥6: use
 $`\sin\theta\ge\theta/2`$ and check
-$`N>2s+2n+7`$, directly at six and monotonically thereafter.
+$`N\gt 2s+2n+7`$, directly at six and monotonically thereafter.
 The example obeys the local small-error budget. It excludes that averaged
 accepted-block algebra, not a richer rejected-space encoding retaining order.
 
