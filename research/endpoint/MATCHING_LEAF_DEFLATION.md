@@ -166,7 +166,13 @@ G=\begin{pmatrix}T&DT\\-DT&T\end{pmatrix},\quad B=TAT.
 
 A is strictly outward with at most one parent per row. G is a matching bank
 of $`R_y(-\arctan d_i)`$. The leaf-only canonical baseline is $`P_0=G^{-2}`$.
-Define $`\widetilde L=\begin{pmatrix}B&0\\DB&0\end{pmatrix}`$. Then
+Define
+
+```math
+\widetilde L=\begin{pmatrix}B&0\\DB&0\end{pmatrix}.
+```
+
+Then
 
 ```math
 \boxed{G\mathfrak C(L)G=\mathfrak C(\widetilde L).}
@@ -220,7 +226,7 @@ $`R^T\widetilde L R=JL'J^T`$. Orthogonal covariance yields
 ```math
 \boxed{\mathfrak C(L)=G^TR[\mathfrak C(L')\oplus I]R^TG^T,}
 \qquad
-P_0^T\mathfrak C(L)=(GR)[\mathfrak C(L')\oplus I](GR)^T.
+P_0^T\mathfrak C(L)=(GR)\bigl(\mathfrak C(L')\oplus I\bigr)(GR)^T.
 ```
 
 The retired subspace undergoes the known nonidentity baseline P0. It is not

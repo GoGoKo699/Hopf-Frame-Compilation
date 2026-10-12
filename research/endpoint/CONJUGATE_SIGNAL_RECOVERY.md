@@ -149,8 +149,14 @@ sectors. The genuine mode/recovery flag has not been removed.
 
 ## 3. Recovery must be checked on both sectors
 
-For an actual unitary $`U=\begin{pmatrix}A&B\\C&D\end{pmatrix}`$ with equal
-sector dimensions, put $`Z_f=\mathrm{diag}(I,-I)`$. Full multiplication gives
+For an actual unitary with equal sector dimensions, write
+
+```math
+U=\begin{pmatrix}A&B\\C&D\end{pmatrix},\qquad
+Z_f=\mathrm{diag}(I,-I).
+```
+
+Full multiplication gives
 
 ```math
 \mathcal R(U)=-UZ_fU^\dagger Z_fU
