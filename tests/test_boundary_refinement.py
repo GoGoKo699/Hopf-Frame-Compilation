@@ -161,6 +161,22 @@ class BoundaryFusionTests(unittest.TestCase):
 
 
 class CanonicalForestTests(unittest.TestCase):
+    def test_paid_root_column_transfer_is_not_rank_invariance(self):
+        original = np.eye(4)
+        for j, angle in enumerate((.3, -.7, .45), 1):
+            original[[0, j], :] = rotation(angle) @ original[[0, j], :]
+        shift = np.zeros((4, 4))
+        shift[1:, 0] = original[1:, 0]/(1+original[0, 0])
+        canonical = canonical_frame(shift)
+        correction = canonical.T @ original
+        np.testing.assert_allclose(canonical[:, 0], original[:, 0], atol=1e-12)
+        np.testing.assert_allclose(correction[:, 0], np.eye(4)[:, 0], atol=1e-12)
+        np.testing.assert_allclose(correction[0, :], np.eye(4)[0, :], atol=1e-12)
+        np.testing.assert_allclose(canonical @ correction, original, atol=1e-12)
+        self.assertAlmostEqual(np.linalg.det(correction[1:, 1:]), 1., places=12)
+        self.assertEqual(np.linalg.matrix_rank(original-np.eye(4), tol=1e-10), 4)
+        self.assertEqual(np.linalg.matrix_rank(canonical-np.eye(4), tol=1e-10), 2)
+
     def test_matching_against_exhaustive_subsets(self):
         rng = np.random.default_rng(10315)
         for n in range(2, 10):
