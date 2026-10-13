@@ -147,3 +147,26 @@ python scripts/strict_zero_echo_ledger.py --n 12
 
 See the [verification map](../docs/VERIFICATION.md) for the evidence level and
 test coverage of each module.
+
+## Endpoint research modules
+
+The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
+maps these supporting modules to their proofs, tests, and individual evidence
+boundaries. They are separate from the compiler proof chain for Results A–D.
+
+- Source geometry and recovery: [`source_completions.py`](source_completions.py),
+  [`boundary_refinement.py`](boundary_refinement.py), and
+  [`conjugate_recovery.py`](conjugate_recovery.py).
+- Ordered banks and native components: [`ordered_block_banks.py`](ordered_block_banks.py)
+  and [`native_ordered_banks.py`](native_ordered_banks.py).
+- Encodings and reflection representations: [`paid_logical_encodings.py`](paid_logical_encodings.py),
+  [`centered_phase_reflections.py`](centered_phase_reflections.py),
+  [`programmed_reflections.py`](programmed_reflections.py), and
+  [`spectral_reflection_chart.py`](spectral_reflection_chart.py).
+- Raw-source and completed-group resynthesis: [`source_resynthesis.py`](source_resynthesis.py),
+  [`native_source_resynthesis.py`](native_source_resynthesis.py), and
+  [`source_group_resynthesis.py`](source_group_resynthesis.py).
+
+The index distinguishes finite matrix diagnostics, exact arithmetic, and
+emitted native component words. None of these modules emits the unrestricted
+fine-precision complete-frame endpoint.

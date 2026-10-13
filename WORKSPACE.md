@@ -4,11 +4,12 @@ The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [endpoint statement](docs/OPEN_PROBLEM.md) gives the unchanged
 unrestricted bounds and separates the proved linear-count families from
-the remaining gap. The [research index](research/README.md) maps the
-disjoint native primitive, precision-gauge and structured-forest compilers,
-canonical-star oracle, and scoped source/representation limits. Each result
-has one proof home and focused finite evidence. A local oracle or bounded
-ring height does not supply a linear-count full recovery circuit.
+the remaining gap. The [research index](research/README.md) groups native
+primitives and promised families, full-frame reductions, source programs,
+and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
+links their implementations and checks. Each result has one proof home;
+a completed source isometry or compact representation does not by itself
+supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
 ## Mandate
@@ -47,7 +48,7 @@ reason to delete its lemmas.
 
 Exploratory gap-closing notes and positive restricted cases are indexed in
 `research/`. Their historical next-step passages are not current work
-orders. Completed state-based work is separate from both that archive and
+orders. Completed state-based work is separate from both those studies and
 the prescribed-frame proof chain. Native code, tests, and exact receipts
 remain in their shared directories and continue to be verified.
 

@@ -3,7 +3,7 @@
 **Preserved research study.** This note is outside the selected A–D proof chain. Its outcome and limits are indexed in the [research archive](../README.md); historical proposals are not current work orders. The local mathematical statements retain their stated hypotheses.
 
 
-[Bilinear query echo](../../docs/BLOCKED_BILINEAR_LOOKUP.md#3-two-indicator-echoes-complete-the-exact-query) · [Protected source](PROTECTED_UNARY_SOURCE.md) · [Windowed predicates](WINDOWED_GROUP_PREDICATES.md) · [Current research checkpoint](../../docs/OPEN_PROBLEM.md#current-decision)
+[Bilinear query echo](../../docs/BLOCKED_BILINEAR_LOOKUP.md#3-two-indicator-echoes-complete-the-exact-query) · [Protected source](PROTECTED_UNARY_SOURCE.md) · [Windowed predicates](WINDOWED_GROUP_PREDICATES.md) · [Research scope and stopping rules](../../WORKSPACE.md#research-decision-and-stopping-rules)
 
 Retaining a dirty prefix indicator does not by itself make a later query
 independent of its unknown offset. This chapter identifies that residue,

@@ -276,26 +276,13 @@ task-level result, not a closure of either compiler gap:
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N\ell_*(n))`$ |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-At the count endpoint, the packed source makes
-[any fixed factor count affordable](research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md),
-including certified search for approximate factors. Independently, an
-[all-angle tree reduction](research/endpoint/TREE_CAYLEY_REDUCTION.md)
-isolates a fixed Cayley family with bounded real parameters; its exterior
-diagonals and permutations already have O(N)-T implementations. A
-[native propagation and feedback identity](research/endpoint/BOUNDARY_PROPAGATION.md)
-leaves one terminal encoder. Its
-[collective refinement](research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
-uses exact geometric histories, midpoint conjugation, and opposite-sign
-purification to reach cubic coarse-error reduction within the same width.
-The complete-output and source costs are proved for that fixed-order
-replacement. An [all-order coupled inverse](research/endpoint/COUPLED_TREE_RESOLVENT.md)
-has a constant norm bound and ideal normalization-three dilation, but
-its native depth-ordered realization still charges fine precision at
-every depth. A correction with linear total cost remains the count
-question. The lower bound follows from the
+The [open-problem statement](docs/OPEN_PROBLEM.md) separates proved
+linear-count endpoint families from all-angle reductions with unpaid native
+recovery or precision-source costs. The [research index](research/README.md)
+maps these constructions and the hypotheses of source, factorization, and
+depth restrictions. None changes the unrestricted bounds above. The count
+lower bound follows from the
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
-The [research index](research/README.md) records the hypotheses of these
-reductions and the scope of the related interface obstructions.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

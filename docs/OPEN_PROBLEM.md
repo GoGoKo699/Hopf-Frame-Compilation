@@ -50,6 +50,16 @@ inverses, and return error. Whole components can be too large for this
 criterion; the forest theorem obtains a constant number of eligible
 factors by exact component dressing.
 
+The [rank-weighted compiler](../research/endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md)
+extends this primitive to supplied bounds
+$`\mathrm{rank}(U_j-I)\le r_j`$ with $`\sum_jm_jr_j\le\kappa N`$.
+It also compiles complete sequences of boundary corrections when their
+collective basis and core satisfy the stated weighted budgets. Complex
+blocks use two clean flags; real blocks use one through the
+[borrowed conjugate signal](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md).
+All retain the literal dirty reservation. The disjoint or collective-budget
+promises do not follow from adding ranks of arbitrary overlapping factors.
+
 These promises do not cover every supplied tuple. In particular, full
 binomial components have binary descendant growth, while arbitrary
 heterogeneous precision scales need not have a bounded precision sum.
@@ -124,6 +134,23 @@ cost for normalized scalar acceptance, even at arbitrarily small success
 probability. The [single-echo bound](../research/endpoint/SOURCE_REUSE_LIMITS.md#whole-word-xor-cancellation-and-a-cyclic-alternative)
 likewise applies only to its commuting involutory interface. These statements leave the
 unrestricted endpoint bounds unchanged.
+
+### Source-program resynthesis
+
+The [source-program results](../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md)
+distinguish raw scalar-source programs from fully recovered groups.
+After complete group recovery, a prefix-controlled dirty-core gauge that
+commutes with the group target preserves its initialized-isometry error.
+Different groups may therefore use independent gauges without physical
+connectors. Raw prefix changes still require their connectors, and every
+transformed group interior remains to be compiled.
+
+At this endpoint, the same chapter gives a normal form using one fixed
+physical core of $`\mu=N+6+\lceil\log_2n\rceil`$ dirty qubits for all
+source calls, within the literal allocation and with two clean flags.
+Width transitions disappear, but repeated precision charges retain the
+$`O(N\ell_*(n))`$ bound. Resynthesis at fixed source algebra or fixed local
+dimension does not price the growing interiors of the unrestricted family.
 
 ## Large-width T-depth
 
