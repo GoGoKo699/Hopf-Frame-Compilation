@@ -81,13 +81,88 @@ def small_ratio_parameters(height: int, *, suffix_constant: int) -> SmallRatioPa
                                 rescaling_bits, suffix_constant * _ceil_log2(height + 2))
 
 
+@dataclass(frozen=True)
+class CommonSourceParameters:
+    """Symbolic common-source ledger, without constructing N=2**height.
+
+    The exponent spacing is Delta=2**spacing_log2=N/n**2. The caller's
+    maximum multiplier and suffix constant are accounting inputs; this
+    object does not certify a native circuit's clean-work allocation.
+    """
+
+    height: int
+    order: int
+    source_length: int
+    rare_probability: Fraction
+    rescaling_bits: int
+    spacing_log2: int
+    maximum_multiplier: int
+    suffix_bits: int
+
+    @property
+    def cap_exponent_at_least_three_precision_lengths(self) -> bool:
+        """M(Delta-B)>=3N follows from Delta>=4B, with M=4n**2."""
+        return _ceil_log2(4 * self.rescaling_bits) <= self.spacing_log2
+
+    def coefficient_precision_overhead(self, mantissa_bits: int) -> int:
+        """q_coef <= n*Delta + this polynomial overhead (integer arithmetic)."""
+        mantissa_bits = _integer(mantissa_bits, "mantissa_bits")
+        return self.order * (mantissa_bits + self.maximum_multiplier * self.rescaling_bits)
+
+    def stage_precision_at_most_twice_endpoint(self, mantissa_bits: int) -> bool:
+        """Certify n*q_coef<=2N using n**2*Delta=N, never forming N."""
+        overhead = self.height * self.coefficient_precision_overhead(mantissa_bits)
+        return _ceil_log2(overhead) <= self.height
+
+
+def common_source_parameters(
+    height: int, *, suffix_constant: int, maximum_multiplier: int | None = None,
+) -> CommonSourceParameters:
+    """Use P=n, M=4n**2 and Delta=N/n**2 for power-of-four heights.
+
+    The default multiplier floor(n**2/log2(n)) corresponds to E<=N/log2(n).
+    Other supplied bounds, including n*sqrt(n), are allowed. The suffix
+    multiplier is supplied explicitly and is not certified sufficient here.
+    """
+    base = small_ratio_parameters(height, suffix_constant=suffix_constant)
+    logarithm = base.height.bit_length() - 1
+    if logarithm % 2 or base.height < 4:
+        raise ValueError("height must be a power of four at least four")
+    if maximum_multiplier is None:
+        maximum_multiplier = base.height ** 2 // logarithm
+    maximum_multiplier = _integer(maximum_multiplier, "maximum_multiplier", 1)
+    return CommonSourceParameters(
+        base.height, base.order, 4 * base.height ** 2, base.rare_probability,
+        base.rescaling_bits, base.height - 2 * logarithm,
+        maximum_multiplier, base.suffix_bits,
+    )
+
+
+def exponent_metadata(exponent: int, spacing: int) -> tuple[int, int]:
+    """Exact E=a*Delta+r metadata, with 0<=r<Delta; no bin rounding."""
+    exponent = _integer(exponent, "exponent")
+    spacing = _integer(spacing, "spacing", 1)
+    return divmod(exponent, spacing)
+
+
+def common_source_ratio(spacing: int, rescaling_bits: int) -> Fraction:
+    """Explicit beta=2**(B-Delta) for finite diagnostics, not huge ledgers."""
+    spacing = _integer(spacing, "spacing", 1)
+    rescaling_bits = _integer(rescaling_bits, "rescaling_bits")
+    if spacing <= rescaling_bits:
+        raise ValueError("spacing must exceed rescaling_bits")
+    return Fraction(1, 1 << (spacing - rescaling_bits))
+
+
 def source_shift_residual_squared(beta: Fraction, length: int, shift: int) -> Fraction:
-    """Exact ||S^r g_beta-beta^r g_beta||^2 for the normalized finite source."""
+    """Exact finite-source residual, with S^r=0 for every r>=length."""
     beta = _rational(beta, "beta")
     length = _integer(length, "length", 1)
     shift = _integer(shift, "shift")
-    if not 0 < beta < 1 or shift > length:
-        raise ValueError("require 0 < beta < 1 and shift <= length")
+    if not 0 < beta < 1:
+        raise ValueError("require 0 < beta < 1")
+    if shift >= length:
+        return beta ** (2 * shift)
     return beta ** (2 * length) * (1 - beta ** (2 * shift)) / (1 - beta ** (2 * length))
 
 
@@ -142,5 +217,50 @@ def kernel_source_error_bound(
     parameter = beta * Fraction(mantissa) / (1 << rescaling_bits)
     cap = probability * sum(map(abs, coefficients), Fraction()) * beta ** length
     cap /= order * (1 - beta * beta)
+    tail = 2 * (1 - probability) * abs(parameter) ** (order + 1) / (1 - abs(parameter))
+    return cap + tail
+
+
+def common_source_kernel_coefficients(
+    mantissa: Fraction, order: int, rare_probability: Fraction, rescaling_bits: int,
+    *, multiplier: int, remainder: int,
+) -> tuple[Fraction, ...]:
+    """Exact coefficients for S^(a*nu) J^nu, keeping r in dyadic metadata.
+
+    For E=a*Delta+r, each coefficient equals
+    2P(1-p)/p * u**nu * 2**(-(r+a*B)*nu). The quarterturn power is
+    nu, independently of the source shift a*nu.
+    """
+    multiplier = _integer(multiplier, "multiplier", 1)
+    remainder = _integer(remainder, "remainder")
+    rescaling_bits = _integer(rescaling_bits, "rescaling_bits")
+    return cayley_kernel_coefficients(mantissa, order, rare_probability,
+                                      remainder + multiplier * rescaling_bits)
+
+
+def common_source_kernel_error_bound(
+    beta: Fraction, mantissa: Fraction, order: int, length: int,
+    rare_probability: Fraction, rescaling_bits: int, *, multiplier: int, remainder: int,
+) -> Fraction:
+    """Rational source-column cap-plus-tail bound, including saturated shifts."""
+    beta = _rational(beta, "beta")
+    order = _integer(order, "order", 1)
+    length = _integer(length, "length", 1)
+    if not 0 < beta < 1:
+        raise ValueError("require 0 < beta < 1")
+    coefficients = common_source_kernel_coefficients(
+        mantissa, order, rare_probability, rescaling_bits,
+        multiplier=multiplier, remainder=remainder,
+    )
+    probability = Fraction(rare_probability)
+    parameter = beta ** multiplier * Fraction(mantissa)
+    parameter /= 1 << (remainder + multiplier * rescaling_bits)
+    cap = Fraction()
+    for degree, coefficient in enumerate(coefficients, 1):
+        shift = multiplier * degree
+        residual_bound = (beta ** shift if shift >= length
+                          else beta ** length / (1 - beta * beta))
+        cap += abs(coefficient) * residual_bound
+    cap *= probability / order
     tail = 2 * (1 - probability) * abs(parameter) ** (order + 1) / (1 - abs(parameter))
     return cap + tail

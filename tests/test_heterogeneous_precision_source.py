@@ -11,7 +11,12 @@ import numpy as np
 from compiler_robust_hopf.heterogeneous_precision_source import (
     cayley_kernel_coefficients,
     cayley_pair,
+    common_source_kernel_coefficients,
+    common_source_kernel_error_bound,
+    common_source_parameters,
+    common_source_ratio,
     dyadic_precision,
+    exponent_metadata,
     kernel_source_error_bound,
     small_ratio_parameters,
     source_shift_residual_squared,
@@ -68,7 +73,8 @@ def _unitary_dilation(contraction):
     return np.block([[contraction, top], [bottom, -contraction.conj().T]])
 
 
-def _selected_term(length, shift, coefficient, separate_flags=True):
+def _selected_term(length, shift, coefficient, separate_flags=True, *,
+                   target_power=None, compare_modulo=False):
     """Actual full permutation/scalar word, with a nontrivial dirty rejection."""
     flags = 4 if separate_flags else 2
     shape = (flags, length, 2, 2)
@@ -88,15 +94,36 @@ def _selected_term(length, shift, coefficient, separate_flags=True):
                            for flag in range(2) for dirty in range(2)]
                 scalar[np.ix_(indices, indices)] = local
     permutation = np.zeros_like(scalar)
-    target_word = np.linalg.matrix_power(J, shift)
+    target_word = np.linalg.matrix_power(J, shift if target_power is None else target_power)
     for column in range(size):
         flag, source, target, dirty = np.unravel_index(column, shape)
-        flag ^= (2 if separate_flags else 1) * (source < shift)
+        threshold = shift % length if compare_modulo else shift
+        flag ^= (2 if separate_flags else 1) * (source < threshold)
         destination = (source - shift) % length
         for output in range(2):
             row = np.ravel_multi_index((flag, destination, output, dirty), shape)
             permutation[row, column] = target_word[output, target]
     return permutation @ scalar
+
+
+def _plane(size, left, right, angle):
+    matrix = np.eye(size)
+    matrix[np.ix_((left, right), (left, right))] = (
+        np.cos(angle) * np.eye(2) + np.sin(angle) * J)
+    return matrix
+
+
+def _common_plane_kernel(size, left, right, beta, mantissa, multiplier, remainder,
+                         *, order=2, length=4, probability=Fraction(1, 64), bits=10):
+    result = (1 - float(probability)) * np.eye(size * length)
+    coefficients = common_source_kernel_coefficients(
+        mantissa, order, probability, bits, multiplier=multiplier, remainder=remainder)
+    for degree, coefficient in enumerate(coefficients, 1):
+        local = np.zeros((size, size))
+        local[np.ix_((left, right), (left, right))] = np.linalg.matrix_power(J, degree)
+        result += float(probability * coefficient / order) * np.kron(
+            _shift(length, multiplier * degree), local)
+    return result
 
 
 class HeterogeneousPrecisionSourceTests(unittest.TestCase):
@@ -105,7 +132,7 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
             for length in (2, 4, 7):
                 weights = [beta ** j for j in range(length)]
                 norm_squared = sum((value * value for value in weights), Fraction())
-                for shift in range(length + 1):
+                for shift in range(2 * length + 2):
                     residual = [(weights[j + shift] if j + shift < length else 0) -
                                 beta ** shift * weights[j] for j in range(length)]
                     exact = sum((value * value for value in residual), Fraction()) / norm_squared
@@ -225,8 +252,8 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
         self.assertAlmostEqual(float(np.linalg.norm(state.ravel())), np.sqrt(columns), delta=ATOL)
 
     def test_pruned_feature_layout_preserves_class_source_on_all_mode_columns(self):
-        # Two aligned four-label components, with a full eight-label feature
-        # bank. Feature inputs are ordinary occupied data in this check.
+        # Historical class-dependent source, not the newer common source.
+        # Feature inputs are ordinary occupied data in this check.
         mode_count, length = 16, 4
         betas = (Fraction(1, 2), Fraction(1, 4))
         source = np.zeros((length * mode_count, mode_count))
@@ -258,13 +285,177 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
                                    source @ product, atol=ATOL, rtol=0)
         self.assertGreater(np.linalg.norm(product[:8, 8:]), .3)
 
-        # Even an identity merge must not introduce this cross-boundary
-        # splitter: it changes which geometric source the mode requires.
+        # For this CLASS-DEPENDENT source, the crossing changes the geometric
+        # source required by the mode. The common-source test below permits it.
         crossing = plane(0, 8 + 4, .37)
         self.assertGreater(np.linalg.norm(projector @ crossing - crossing @ projector, 2), .3)
         wrong = np.kron(np.eye(length), crossing) @ source - source @ crossing
         self.assertGreater(np.linalg.norm(wrong, 2), .03)
         self.assertGreater(np.linalg.norm(wrong[:, 8 + 4]), .03)
+
+    def test_common_exponent_remainders_and_symbolic_coefficient_ledger(self):
+        spacing, bits, order, probability = 11, 10, 4, Fraction(1, 64)
+        beta = common_source_ratio(spacing, bits)
+        self.assertEqual(beta, Fraction(1, 2))
+        for exponent in (11, 14, 25, 33, 37):
+            multiplier, remainder = exponent_metadata(exponent, spacing)
+            self.assertEqual(exponent, multiplier * spacing + remainder)
+            self.assertTrue(0 <= remainder < spacing)
+            for mantissa in (Fraction(0), Fraction(3, 4), Fraction(-5, 8)):
+                coefficients = common_source_kernel_coefficients(
+                    mantissa, order, probability, bits,
+                    multiplier=multiplier, remainder=remainder)
+                parameter = mantissa / (1 << exponent)
+                for degree, coefficient in enumerate(coefficients, 1):
+                    self.assertEqual(probability * coefficient * beta ** (multiplier * degree) /
+                                     order, 2 * (1 - probability) * parameter ** degree)
+                    self.assertLessEqual(abs(coefficient), Fraction(1, 2))
+                    self.assertLessEqual(dyadic_precision(coefficient),
+                                         degree * (dyadic_precision(mantissa) + remainder +
+                                                   multiplier * bits))
+                if remainder and mantissa:
+                    wrong = common_source_kernel_coefficients(
+                        mantissa, order, probability, bits,
+                        multiplier=multiplier, remainder=0)
+                    self.assertNotEqual(wrong, coefficients)
+        for height in (16, 64, 256, 1 << 20, 1 << 80):
+            for maximum in (None, height * (1 << ((height.bit_length() - 1) // 2)),
+                            3 * height ** 2 // (height.bit_length() - 1)):
+                parameters = common_source_parameters(
+                    height, suffix_constant=20, maximum_multiplier=maximum)
+                log_height = height.bit_length() - 1
+                self.assertEqual(parameters.spacing_log2 + 2 * log_height, height)
+                self.assertEqual(parameters.source_length, 4 * height * height)
+                self.assertTrue(parameters.cap_exponent_at_least_three_precision_lengths)
+                # q<=n*Delta+overhead, so n*q<=N+n*overhead. Compare the
+                # polynomial overhead's bit length against log2(N)=n.
+                overhead = parameters.coefficient_precision_overhead(3 * log_height + 7)
+                self.assertEqual(overhead, height * (3 * log_height + 7 +
+                                 parameters.maximum_multiplier * parameters.rescaling_bits))
+                if height >= 64:
+                    self.assertTrue(parameters.stage_precision_at_most_twice_endpoint(
+                        3 * log_height + 7))
+                self.assertEqual(parameters.suffix_bits, 20 * (height + 1).bit_length())
+
+    def test_saturated_shifts_are_zero_and_target_power_is_degree(self):
+        length, coefficient = 4, Fraction(3, 5)
+        for multiplier, degree in ((2, 2), (3, 2), (4, 1)):
+            shift = multiplier * degree
+            word = _selected_term(length, shift, coefficient, target_power=degree)
+            np.testing.assert_allclose(word.conj().T @ word, np.eye(len(word)), atol=ATOL, rtol=0)
+            accepted_size = 4 * length
+            np.testing.assert_array_equal(word[:accepted_size, :accepted_size],
+                                          np.zeros((accepted_size, accepted_size)))
+            wrong = _selected_term(length, shift, coefficient, target_power=degree,
+                                   compare_modulo=True)
+            self.assertGreater(np.linalg.norm(wrong[:accepted_size, :accepted_size], 2), .5)
+        # Before saturation, J**nu and J**(a*nu) are already distinguishable.
+        word = _selected_term(length, 2, coefficient, target_power=1)
+        expected = float(coefficient) * np.kron(_shift(length, 2), np.kron(J, np.eye(2)))
+        np.testing.assert_allclose(word[:16, :16], expected, atol=ATOL, rtol=0)
+        wrong = _selected_term(length, 2, coefficient, target_power=2)
+        self.assertGreater(np.linalg.norm(wrong[:16, :16] - expected, 2), .5)
+
+    def test_pair_symmetric_metadata_uncomputes_on_occupied_inputs(self):
+        # Axes: logical pair/target label, metadata, source, underflow. Metadata
+        # storage is tested on BOTH input values, not silently initialized.
+        shape = (4, 2, 4, 2)
+        size = int(np.prod(shape))
+
+        def word(symmetric):
+            result = np.zeros((size, size))
+            for column in range(size):
+                label, metadata, source, flag = np.unravel_index(column, shape)
+                tag = label // 2 if symmetric else label % 2
+                loaded = metadata ^ tag
+                shift = 1 + 2 * loaded
+                for target in range(2):
+                    output_label = 2 * (label // 2) + target
+                    output_tag = output_label // 2 if symmetric else output_label % 2
+                    output = (output_label, loaded ^ output_tag,
+                              (source - shift) % 4, flag ^ (source < shift))
+                    result[np.ravel_multi_index(output, shape), column] = J[target, label % 2]
+            return result
+
+        actual = word(True)
+        np.testing.assert_array_equal(actual.T @ actual, np.eye(size))
+        for metadata in range(2):
+            columns = [index for index in range(size)
+                       if np.unravel_index(index, shape)[1] == metadata]
+            other = [index for index in range(size)
+                     if np.unravel_index(index, shape)[1] != metadata]
+            np.testing.assert_array_equal(actual[np.ix_(other, columns)],
+                                          np.zeros((len(other), len(columns))))
+        wrong = word(False)
+        np.testing.assert_array_equal(wrong.T @ wrong, np.eye(size))
+        empty = [index for index in range(size) if np.unravel_index(index, shape)[1] == 0]
+        occupied = [index for index in range(size) if np.unravel_index(index, shape)[1] == 1]
+        self.assertEqual(np.linalg.norm(wrong[np.ix_(occupied, empty)], 2), 1.)
+
+    def test_common_source_interleaved_scales_and_zero_merge_splitter_history(self):
+        # A connected four-label tree, occupied feature inputs, and a single
+        # geometric source. Different exponents occur on overlapping root
+        # planes. A zero right-child merge STILL receives its splitter.
+        beta, spacing, bits = Fraction(1, 2), 11, 10
+        probability, length, modes = Fraction(1, 64), 4, 8
+        source = np.kron(_source(beta, length)[:, None], np.eye(modes))
+        specifications = ((0, 1, 1, 3, Fraction(3, 4)),
+                          (2, 3, 3, 2, Fraction(0)),
+                          (0, 2, 2, 1, Fraction(-5, 8)))
+        data_size, history_size = modes * length, 4
+        state = np.zeros((history_size, 2, data_size, modes), dtype=complex)
+        state[0, 0] = source
+        compressed, ideal = source.copy(), np.eye(modes)
+        no_history = np.vstack((source, np.zeros_like(source)))
+        total_bound = Fraction()
+        for stage, (left, right, multiplier, remainder, mantissa) in enumerate(specifications):
+            contraction = _common_plane_kernel(modes, left, right, beta, mantissa,
+                                                multiplier, remainder)
+            dilation = _unitary_dilation(contraction)
+            splitter = _plane(modes, left, 4 + right, .23)
+            lifted = np.kron(np.eye(length), splitter)
+            unitary = _direct_sum((lifted, lifted)) @ dilation
+            np.testing.assert_allclose(unitary.conj().T @ unitary,
+                                       np.eye(2 * data_size), atol=ATOL, rtol=0)
+            # Full occupied-feature intertwining holds, even at zero merges.
+            np.testing.assert_allclose(lifted @ source, source @ splitter, atol=ATOL, rtol=0)
+            for history in range(history_size):
+                state[history] = (unitary @ state[history].reshape(2 * data_size, modes)).reshape(
+                    2, data_size, modes)
+            if stage + 1 < len(specifications):
+                state[:, 1] = np.roll(state[:, 1].copy(), 1, axis=0)
+            no_history = unitary @ no_history
+            compressed = lifted @ contraction @ compressed
+            parameter = mantissa / (1 << (multiplier * spacing + remainder))
+            ideal = splitter @ _plane(modes, left, right, 2 * np.arctan(float(parameter))) @ ideal
+            total_bound += common_source_kernel_error_bound(
+                beta, mantissa, 2, length, probability, bits,
+                multiplier=multiplier, remainder=remainder)
+        np.testing.assert_allclose(state[0, 0], compressed, atol=ATOL, rtol=0)
+        self.assertLessEqual(np.linalg.norm(compressed - float((1 - probability) ** 3) *
+                                           source @ ideal, 2), float(total_bound) + ATOL)
+        self.assertGreater(np.linalg.norm(no_history[:data_size] - compressed, 2), .01)
+
+        # Independently check why the identity-merge splitter must remain.
+        # Q's complete leaf columns have top block Gamma W^T only with equal
+        # child attenuation before the root merge.
+        left_angle, root_angle, split_angle = .31, -.42, .23
+        coarse = _plane(4, 0, 1, left_angle) @ _plane(4, 0, 2, root_angle)
+        correct = np.eye(8)
+        omitted = np.eye(8)
+        exact_stages = (_plane(8, 0, 1, -left_angle), _plane(8, 0, 5, split_angle),
+                        _plane(8, 2, 7, split_angle), _plane(8, 0, 2, -root_angle),
+                        _plane(8, 0, 6, split_angle))
+        for index, stage in enumerate(exact_stages):
+            correct = stage @ correct
+            if index != 2:
+                omitted = stage @ omitted
+            np.testing.assert_allclose(np.kron(np.eye(length), stage) @ source,
+                                       source @ stage, atol=ATOL, rtol=0)
+        attenuation = np.cos(split_angle)
+        gamma_rows = np.diag((attenuation ** 2, 1., attenuation, 1.))
+        np.testing.assert_allclose(correct[:4, :4], gamma_rows @ coarse.T, atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(omitted[:4, :4] - gamma_rows @ coarse.T, 2), .02)
 
     def test_invalid_parameters_are_rejected_without_rounding(self):
         for height in (0, 1, 3, True, 2.0):
@@ -279,11 +470,21 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 cayley_kernel_coefficients(mantissa, 2, probability, bits)
         with self.assertRaises(ValueError):
-            source_shift_residual_squared(Fraction(1, 2), 4, 5)
+            source_shift_residual_squared(Fraction(1, 2), 4, -1)
         for order in ("2", True, 0):
             with self.subTest(order=order), self.assertRaises(ValueError):
                 kernel_source_error_bound(Fraction(1, 4), Fraction(1, 2), order, 4,
                                           Fraction(1, 16), 8)
+        for height in (2, 8, 32):
+            with self.assertRaises(ValueError):
+                common_source_parameters(height, suffix_constant=20)
+        with self.assertRaises(ValueError):
+            common_source_ratio(4, 4)
+        with self.assertRaises(ValueError):
+            exponent_metadata(7, 0)
+        with self.assertRaises(ValueError):
+            common_source_kernel_coefficients(Fraction(1, 2), 2, Fraction(1, 16), 8,
+                                              multiplier=0, remainder=1)
 
 
 if __name__ == "__main__":
