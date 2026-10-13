@@ -165,7 +165,11 @@ on every logical and dirty input. More generally,
 [three calls to a joint history compressor](../research/endpoint/JOINT_HISTORY_COMPRESSION.md)
 recover a complete fine prefix, with at most 24 times the compression error.
 A linear-count compressor would itself suffice to finish the endpoint;
-logical-label-preserving mixing cannot supply it. The
+logical-label-preserving mixing cannot supply it. Its anchored Householder
+completion is well-conditioned but has no priced native source. Recovering
+the compressor from its unchanged history range reflection requires
+$`\Omega(N)`$ queries when all other operations are target-independent;
+this oracle restriction does not cover general native resynthesis. The
 [joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
 compresses returned dirty work according to the Pauli axes' symplectic rank,
 without additional T gates or error. These results do not supply a uniform
