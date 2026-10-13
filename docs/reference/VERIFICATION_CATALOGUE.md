@@ -256,6 +256,12 @@ compare complete complex regular and lossy gauges, exact Parseval networks,
 actual arbitrary-dirty rejection replay, source overlap, and full recovery.
 The [precision-trace theorem](../../research/endpoint/PRECISION_GAUGE_COMPILER.md)
 establishes its dimension-independent native schedule. The
+[heterogeneous-source checks](../../tests/test_heterogeneous_precision_source.py)
+test the finite geometric residual, exact dyadic coefficient grid, inactive
+attenuation, and retained failure history. The
+[mixed-height proof](../../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md)
+prices the prepared source, complete row network, and final recovery;
+these finite identities are not a variable-size native emitter. The
 [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact
 component dressing for signed and corner angles. A reversed-product negative

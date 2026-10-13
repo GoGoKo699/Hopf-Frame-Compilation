@@ -454,7 +454,7 @@ The same bound holds on computational parent-child paths inside a block.
 These are distinct path notions: the binary leftmost carrier chain below
 corresponds to a computational root star, not a computational path.
 
-The existing sufficient criteria do not directly settle this family with
+The preceding sufficient criteria do not directly settle this family with
 uniform constants. Compiling whole components as arbitrary SU blocks
 would have squared-dimension charge
 
@@ -515,10 +515,14 @@ in (9) adds only fixed multiplicities; fine precision, flags and dirty
 reservation remain those of Sections 4–5. Hoisting a common loader leaves
 the [transformed masks and width-transition bodies](SOURCE_REUSE_LIMITS.md#2-factoring-out-the-source-can-move-its-cost-into-the-masks)
 to be compiled, so exterior cancellation does not supply a new ledger.
-This rescheduling route stops at (11a). Reopening requires a native
-multi-merge or shared-source identity that changes the separately emitted
-bank model and charges those bodies, their actual inverses, and full work
-return. The mixed-height family's unrestricted linear cost remains open.
+This rescheduling route stops at (11a). The
+[heterogeneous-source compiler](HETEROGENEOUS_PRECISION_SOURCE.md) supplies
+a different native identity: a prepared geometric source with a tiny
+class-dependent ratio is carried through exact dyadic Cayley kernels.
+It proves linear cost for this mixed-height family, including preparation,
+actual inverses, and full work return. It changes the sources and merge
+implementation, so it does not contradict the unchanged-bank proposition.
+The unrestricted endpoint question remains open.
 
 ## 6. Fixed exponent-ratio families
 
