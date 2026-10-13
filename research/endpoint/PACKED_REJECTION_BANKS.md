@@ -592,7 +592,7 @@ E|S,x\rangle
 \qquad\text{(16)}
 ```
 
-Use e=D for no entry. The squared amplitudes sum to one in every case.
+Use $`e=D`$ for no entry. The squared amplitudes sum to one in every case.
 As in (10), two complete flag rotations specify E: the first has
 cosine $`\sqrt{17}/8`$ and sine $`\sqrt{47}/8`$; the second has
 cosine $`8\sqrt{g_{e,0}}/\sqrt{17}`$ and sine
@@ -602,7 +602,7 @@ and fix the other sectors. No completion oracle is required.
 Use the ideal canonical stage of Section 8 with attenuation
 $`\alpha_{d,a}`$ and its actual residual-axis unitary. Immediately
 before that stage, the active success amplitude has scalar modulus
-$`\sqrt{g_{d,a}}`$. Its rejection has modulus exactly c_d, since
+$`\sqrt{g_{d,a}}`$. Its rejection has modulus exactly $`c_d`$, since
 
 ```math
 g_{d,a}(1-\alpha_{d,a}^2)=c_d^2.
@@ -624,7 +624,7 @@ $`H\otimes H`$ in the ordered four-port coordinates
 $`(C,F_{d,0},F_{d,1},F_{d,2})`$, with the all-positive row going to C.
 This leaves $`(2c_d,0,0,0)`$. Since $`2c_d=c_{d+1}`$,
 the same induction works for every entry depth, including no entry.
-Writing $`H_D`$ for these chronological four-port transforms and U_can
+Writing $`H_D`$ for these chronological four-port transforms and $`U_{\rm can}`$
 for the ideal canonical cascade, with its separate coarse operations,
 gives the full initialized-isometry identity
 
@@ -651,7 +651,7 @@ cap coordinates, applying the routed cap-bank H for its second bank,
 and undoing the swap. Use the same routed pair gate with X instead of
 H for the swap. All these gates fix every other mode exactly.
 
-Thus the complete H_D and its actual inverse cost $`O(n^3)`$ T gates,
+Thus the complete $`H_D`$ and its actual inverse cost $`O(n^3)`$ T gates,
 use one returned arbitrary predicate helper, and need no clean register
 or approximated rotation. The bank count is
 
@@ -733,7 +733,7 @@ no uniformly better count bound is claimed from that fallback.
 
 If $`\|\widehat G-G\|\le\epsilon_G`$ and
 $`\|\widehat E-E\|\le\epsilon_E`$, pair $`\widehat G`$ with
-its actual inverse. For the physical raw cascade U_raw,
+its actual inverse. For the physical raw cascade $`U_{\rm raw}`$,
 
 ```math
 \|\widehat G U_{\rm raw}\widehat G^\dagger\widehat E
@@ -745,7 +745,7 @@ its actual inverse. For the physical raw cascade U_raw,
 This is a full-operator comparison. Exact G fixes the preweight banks;
 no intermediate initialization, postselection, or dirty reset occurs.
 Choosing $`\epsilon_G\le\eta/128`$ and
-$`\epsilon_E\le\eta/64`$ makes (21) smaller than eta/16.
+$`\epsilon_E\le\eta/64`$ makes (21) smaller than $`\eta/16`$.
 Left multiplication by the *ideal* unwinding and Walsh operators preserves
 that bound. An implemented unwinding would add its own full-input error
 and cost. Equations (20)–(21) remove the serial schedule's particular
@@ -755,7 +755,7 @@ The directly emitted raw cascade still costs $`O(N+nq)=O(nN)`$.
 ### What a bankwise unwinding must still implement
 
 The prefix requirement can be made quantitative. Identify one stage bank
-with P_d S and let W_before be its chronological ideal prefix. If a unitary
+with $`P_d S`$ and let $`W_{\rm before}`$ be its chronological ideal prefix. If a unitary
 H on that bank and arbitrary dirty work makes its failure column scalar
 to error epsilon, then
 
@@ -768,7 +768,7 @@ to error epsilon, then
 \qquad\text{(22)}
 ```
 
-This follows by division by c_d and right multiplication by the unitary
+This follows by division by $`c_d`$ and right multiplication by the unitary
 prefix inverse. It covers every bank and dirty input, not just one
 prepared column. In the last depth $`c_{D-1}=1/16`$, so a bankwise
 endpoint-accurate scalarization still needs an endpoint-accurate logical
