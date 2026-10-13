@@ -259,3 +259,297 @@ permutations, inactive banks, multiplication, the failure of scalar-only
 normalization, preweight, and actual inverse recovery.
 They are finite matrix/permutation checks, not an arbitrary-angle native
 emitter. Dimension, cost, and full-isometry statements above are analytic.
+
+## 8. Balanced scalar histories with two preweight banks
+
+There is a stronger scalar-history identity if the attenuations are chosen
+together with the preweight. It uses **ideal canonical dilations** and a
+different allocation from Sections 1–6: two N-dimensional preweight banks
+instead of one. It does not identify the raw source's rejected dirty action
+with a scalar for free.
+
+Let $`P_1\preceq\cdots\preceq P_R`$ be nested coordinate projectors,
+and let V_k be unitary supported in P_k. Identify F_k with P_k S and use
+the complete canonical unitary
+
+```math
+K_k\big|_{P_kS\oplus F_k}
+=\begin{pmatrix}\alpha_kV_k&-s_kI\\s_kI&\alpha_kV_k^\dagger\end{pmatrix},
+\qquad s_k=\sqrt{1-\alpha_k^2}.
+```
+
+K_k is identity on all other modes. The matrix is unitary for every V_k,
+including unequal complex coins. The algebra below tensors with identity
+on every arbitrary dirty input and reference. In this section require
+
+```math
+3N+\sum_{k=1}^R\mathrm{rank}P_k\le4N.
+```
+
+Write B for the baseline-preweight bank and C for the cap-preweight bank,
+both copies of S. Fix $`\lambda=1/64`$ and set
+
+```math
+\begin{aligned}
+g_k&=\frac14+\lambda(1-2^{k-R}),&&0\le k\le R,\\
+w_k^2&=g_{k-1}-g_k=\lambda2^{k-R-1},&&1\le k\le R,\\
+\alpha_k^2&=\frac{g_k}{g_{k-1}}.
+\end{aligned}
+```
+
+For a coordinate x, let e(x) be its first active stage, with e(x)=R+1
+when it belongs to no support. Prepare the following column of a full
+unitary E:
+
+```math
+E|S,x\rangle
+=\sqrt{g_{e(x)-1}}\,|S,x\rangle
++\frac{\sqrt{47}}8|B,x\rangle
++\sqrt{\lambda2^{e(x)-R-1}}\,|C,x\rangle.
+\tag{9}
+```
+
+The squared amplitudes sum to one, including the no-entry case. This is
+the same success preweight as Section 2, since
+
+```math
+D_x=\prod_{k=e(x)}^R\alpha_k
+=\frac{1}{2\sqrt{g_{e(x)-1}}},
+\qquad (2D_x)^{-1}=\sqrt{g_{e(x)-1}}.
+```
+
+In particular $`D_x\ge4/\sqrt{17}`$, and every attenuation is at least
+$`\sqrt{32/33}`$. No small accepted amplitude is introduced.
+
+A complete E is specified by two rotations. First rotate S into S and B
+with cosine $`\sqrt{17}/8`$ and sine $`\sqrt{47}/8`$. Then rotate S into
+S and C, addressed by x, with
+
+```math
+\cos\phi_x=\frac{\sqrt{g_{e(x)-1}}}{\sqrt{17}/8},
+\qquad
+\sin\phi_x=\frac{\sqrt{\lambda2^{e(x)-R-1}}}{\sqrt{17}/8}.
+\tag{10}
+```
+
+Each rotation has the usual real block $`\left(\begin{smallmatrix}c&-s\\s&c\end{smallmatrix}\right)`$
+on its two copies and fixes the others. These equations specify the action
+on initially occupied and unoccupied flag sectors; E is not merely an
+isometry completion left to an oracle. The entry function is a finite
+table determined by the support labels, requiring no angle equality test.
+
+Put $`W_k=V_k\cdots V_1`$, with W_0=I. Immediately before stage k, the
+success contribution of an active input column is
+$`\sqrt{g_{k-1}}W_{k-1}|x\rangle`$. Thus its rejected contribution in
+F_k is $`w_kW_{k-1}|x\rangle`$. Define the complete bank unitary
+
+```math
+\mathcal B=I_{S\oplus B\oplus C}
+\oplus\bigoplus_{k=1}^R W_{k-1}^\dagger\big|_{P_k}
+\oplus I_{\rm unused}.
+\tag{11}
+```
+
+The restriction exists because earlier supported unitaries preserve every
+later support. After applying this **unwinding bank**, each active
+F_k column has scalar amplitude w_k in the original x coordinate. Its
+native implementation has not been supplied by (11).
+
+For k=1 through R, apply an exact Hadamard between C(x) and F_k(x) for
+every x in P_k, with the positive sum going to C. Denote the chronological
+product by H_bal. A column entering at e starts with cap amplitude w_e.
+Its first Hadamard acts on $`(w_e,w_e)`$, produces
+$`(\sqrt2w_e,0)`$, and for e less than R,
+$`\sqrt2w_e=w_{e+1}`$. At the last stage,
+$`\sqrt2w_R=\sqrt\lambda=1/8`$. Induction therefore zeroes every
+stage bank and leaves that cap amplitude.
+A no-entry column already has that amplitude. Consequently
+
+```math
+H_{\rm bal}\mathcal B K_R\cdots K_1 E J
+=\begin{pmatrix}
+W_R/2\\(\sqrt{47}/8)I\\I/8\\0
+\end{pmatrix}.
+\tag{12}
+```
+
+The last row includes every stage bank and unused mode. This is a complete
+initialized-isometry equality, with literal positive coefficients. One
+uniform ordered Hadamard network handles all entry stages; it does not
+look up e(x) during compression. Omitting (11) generally invalidates (12),
+even though the accepted block remains W_R/2. Section 5's recovery still
+applies to that accepted block and the actual uncompressed rejections.
+
+## 9. Physical allocation and exact native scalar compression
+
+For n at least four, reserve the last **three** Hopf depths for the
+standalone compiler. Use three stages at each depth
+$`0\le d\le n-4`$, so $`R=3(n-3)`$. Allocate flags (f,e)=00 to success,
+01 to B, 10 to C, and 11 to the stage banks. At depth d and axis j=0,1,2,
+the bank coordinate corresponding to $`x=p_d b0^{n-d-1}`$ is
+
+```math
+(f,e,y)=(1,1,\mathrm{type}_j\,0^{n-d-4}1p_db).
+\tag{13}
+```
+
+The two-bit type and the sentinel make all banks disjoint. They occupy
+
+```math
+\sum_k\mathrm{rank}P_k
+=3\sum_{d=0}^{n-4}2^{d+1}=3N/4-6<N.
+```
+
+Thus the three full copies and all stage banks fit within the two flags'
+4N modes. There is no initialized history register.
+
+Both a canonical stage and its cap-to-bank Hadamard have full-input affine
+routing maps. Here is one explicit construction. Fix c=0 for a stage or
+c=1 for a compressor. On e=1, permute the remaining n+1 wires as follows:
+send b to logical bit zero, the d prefix bits to the next d logical bits,
+old f to the sentinel position, and one frozen suffix bit to f. Put the
+remaining frozen bits in the remaining logical positions. Flip f, flip
+the sentinel by $`1-c`$, and insert the two type bits by fixed flips.
+On e=0 act as identity. This is a controlled affine permutation on the
+entire basis, and it maps
+
+```math
+(c,1,p_db0^{n-d-1})\longmapsto
+(1,1,\mathrm{type}_j0^{n-d-4}1p_db).
+```
+
+For c=0, conjugating an e-signal canonical stage with predicate
+$`f=0`$ and zero suffix routes exactly its rejected sector into F_k.
+For c=1, conjugating H on e with predicate $`f=1`$ and zero suffix
+implements the required Hadamards between C(x) and F_k(x). The whole
+e=0 sector is fixed by each route. Conjugated primitives are identity
+outside their specified pair of subspaces, including on all other banks.
+The inverse is the inverse of the complete affine permutation.
+
+There are O(n) controlled wire swaps and conditional fixed flips per
+route, costing O(n) T gates. A predicate-controlled H is exactly native:
+the fixed Clifford+T word $`V=SHTHS^\dagger`$ satisfies
+$`VZV^\dagger=H`$, so conjugate a multiply controlled Z by V. The
+[borrowed predicate construction](../../docs/BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector)
+implements its equivalent multiply controlled X with one returned dirty
+helper and O(n^2) exact Toffolis. Therefore all of H_bal, its routes, and
+its inverse cost O(n^3) T gates, independently of q. No rotation angle,
+clean helper, or approximation is hidden in this scalar compression.
+This is a native decomposition and cost argument, not an emitted scalable
+gate word.
+
+The two preweight rotations (10) are not claimed to be exactly native.
+The [borrowed-axis compiler](BORROWED_AXIS_COMPILER.md) provides their
+separate full-norm approximation with O(N+q) table/source cost, plus
+polynomial predicate overhead, charged once. The other flag is a sector
+predicate in each rotation and need not be supplied in zero. Its arbitrary
+occupied sectors are included in the full-unitary contract.
+
+The balanced attenuation also allows linear total coarse-word length.
+For $`\delta_k=(1-\alpha_k)/4`$,
+
+```math
+\delta_k=\frac{w_k^2}{4g_{k-1}(1+\alpha_k)},
+\qquad
+\frac8{17}w_k^2\le\delta_k\le w_k^2\le1/128.
+```
+
+Thus the ideal near-unit source chart in Section 4 is available for
+residual angles at most delta_k. At each depth choose coarse accuracy for
+the smallest of its three deltas. Its word length is
+$`O(R-k+1)=O(n-d)`$, giving
+$`\sum_d2^d(n-d)=O(N)`$. Predicate overhead is polynomial in n and
+hence O(N) asymptotically. This prices the coarse words; it does not turn
+their raw rejection operators into the canonical blocks of Section 8.
+
+## 10. The exact full-unitary prefix factorization
+
+The operation missing from (12) can be isolated on the complete space,
+including inputs initially in failure banks. Let R_k be the scalar version
+of K_k, obtained by replacing V_k by I. Then
+
+```math
+K_R\cdots K_1
+=\mathrm{diag}\!\left(W_R,\bigoplus_{k=1}^R
+ W_{k-1}\big|_{P_k}\right)
+ (R_R\cdots R_1)
+ \mathrm{diag}\!\left(I,\bigoplus_{k=1}^R
+ W_k^\dagger\big|_{P_k}\right).
+\tag{14}
+```
+
+The display orders success before the stage banks; B, C, and unused modes
+carry identities throughout. To prove it, factor each K_k as R_k between
+a left boundary with W_k on success and W_{k-1} on F_k, and a right
+boundary with $`W_{k-1}^\dagger`$ on success and $`W_k^\dagger`$ on F_k.
+Its four active blocks are exactly
+$`\alpha_kV_k,-s_kI,s_kI,\alpha_kV_k^\dagger`$; outside P_k the success
+factors cancel. Adjacent success boundaries cancel in the product. A
+boundary on F_k commutes with every R_j for j different from k, since R_j
+fixes F_k pointwise. Move those bank factors to the two exterior
+boundaries to obtain (14).
+
+The right boundary is identity on the preweight columns (9), which have
+no F_k component. The left bank boundary is precisely the inverse of
+(11). Thus (14) explains both the scalar history and the required prefix
+unwinding on the full unitary. It is not a synthesis shortcut: treating
+W_R or either prefix bank as an already available native gate would assume
+the unresolved work.
+
+## 11. Precision scope and checked consequences
+
+Sections 8–10 prove an ideal canonical identity and an exact native scalar
+compressor. An addressed canonical stage with two-dimensional target rows
+has a separate full-norm compiler at O(S+q) cost plus predicate overhead:
+factor its local matrix as
+$`\mathrm{diag}(V_k,I)R_k\mathrm{diag}(I,V_k^\dagger)`$
+and use the borrowed-axis compiler on its bounded number of addressed
+axis rotations. Together with (10), this gives the usual separately
+compiled canonical-cascade baseline. It still pays fine precision for
+each stage and does not provide uniform O(N+q) synthesis of (11) or (14).
+
+The raw paired source has its actual dirty rejection orientation. The
+[borrowed-axis analysis](BORROWED_AXIS_COMPILER.md) discusses how that
+orientation can be represented and separately priced. Applying a coarse
+coin only on success can also change the two rejection-side coordinates.
+Neither a bank-coordinate choice nor those identities make the raw word
+equal to the particular canonical completion used here at no cost.
+
+There is an additional precision issue for this balanced schedule.
+The earliest canonical defect satisfies $`s_1=\Theta(2^{-R/2})`$.
+If a rounded accepted coin differs from $`\alpha V`$ by epsilon and has
+scalar radius $`\widehat\alpha`$, then
+
+```math
+|\widehat\alpha-\alpha|\le\epsilon,\qquad
+|\widehat s-s|
+\le\frac{(2\alpha+\epsilon)\epsilon}{s},
+\qquad
+\widehat s=\sqrt{1-\widehat\alpha^2}.
+```
+
+Consequently a direct stagewise comparison of rounded canonical blocks
+with the ideal balanced blocks has bound
+$`O(R2^{R/2}2^{-q})`$. To make this bound at most $`2^{-N}`$, a sufficient
+choice is $`q=N+R/2+O(\log R)`$. This estimate exceeds the literal source
+width allocation used in Section 6 for growing n. It is not a lower
+bound: compiling the ideal canonical rotations separately remains valid,
+and a different joint construction might avoid this comparison. However,
+the usual $`q=N+O(\log n)`$ accepted-block estimate does not establish
+the same full-norm comparison or exact Hadamard cleanup. Canonicalizing
+the actual rounded defect preserves that defect rather than the balanced
+coefficients. The actual rounded radii can also depend on the address;
+those contractions need not commute with earlier logical coins. The
+scalar-history identities here require the ideal stagewise constant
+alpha_k. For the physical raw word, the accepted-block telescoping bound
+and recovery of Section 5 remain the applicable guarantees. No O(N)
+endpoint compiler follows from these sections.
+
+The [balanced-history tests](../../tests/test_balanced_rejection_history.py)
+check exact rational attenuation and preweight identities for every entry
+stage, integer bank capacity and complete routing permutations, and a
+bounded unequal-target canonical cascade with full unitarity, preweight,
+unwinding, and Hadamard compression. They also check that omitting
+unwinding spoils (12) while leaving ordinary recovery valid.
+These checks support the stated algebra; they do not emit the unresolved
+native prefix bank.

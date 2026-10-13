@@ -98,6 +98,8 @@ supply the all-size statements within their declared interfaces.
 | Regular spectral chart | [Programmed reflections §§5–7](../../research/endpoint/PROGRAMMED_REFLECTIONS.md#5-a-regular-signed-cycle-chart) | [spectral_reflection_chart](../../compiler_robust_hopf/spectral_reflection_chart.py); [tests](../../tests/test_spectral_reflection_chart.py) | Fixed native signed-cycle and alternate-baseline words have exact dirty-return/inverse checks. Spectral, polar and quadrature calculations are bounded floating diagnostics, not emitted variable spectral reflections. |
 | Raw-source resynthesis | [Source-program resynthesis §§1–4](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md) | [source_resynthesis](../../compiler_robust_hopf/source_resynthesis.py); [tests](../../tests/test_source_resynthesis.py) | Exact dyadic masks, rational source ranks/denominator growth and binary Lie closures; bounded common-basis, alignment and product matrices. Arbitrary rotations in those matrices are not supplied native gates. |
 | Native selected tails | [Source-program resynthesis §4](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#4-conserved-prefix-raw-programs-have-a-coherently-priced-basis) | [native_source_resynthesis](../../compiler_robust_hopf/native_source_resynthesis.py); [tests](../../tests/test_native_source_resynthesis.py) | Exact four-qubit selected-tail word and literal inverse; complete dirty Boolean queries and bounded full-matrix/reference checks. Emits selected-tail components, not arbitrary-angle fine resynthesis. |
+| Borrowed selected axes | [Borrowed-axis compiler](../../research/endpoint/BORROWED_AXIS_COMPILER.md) | [exact tests](../../tests/test_borrowed_pauli_rotations.py) | Full CQ2 matrices with unequal selected angles, arbitrary borrowed/core columns, signed Pauli phases and actual reverse inverses. Checks the conjugation identity; no arbitrary-angle native emitter or endpoint bound is inferred from the fixture. |
+| Paired-source rejection orientations | [Orientation bank](../../research/endpoint/BORROWED_AXIS_COMPILER.md) | [tests](../../tests/test_paired_source_orientation.py) | Exact small raw-source words and Clifford-vector identities, bounded normalized full-bank gauges, and exact sign-class dimensions. The joint O(Q+q+ell) compiler is analytic; these fixtures do not emit its fine rotations. |
 | Completed-group resynthesis | [Source-program resynthesis §§5–6](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#5-completed-groups-admit-independent-gauges-without-connectors) | [source_group_resynthesis](../../compiler_robust_hopf/source_group_resynthesis.py); [tests](../../tests/test_source_group_resynthesis.py) | Exact rational coefficient/mask tables and raw-connector sign witness; bounded complete recovery/gauge words in faithful compact Clifford coordinates, retaining both central sectors and leakage. No large physical-core simulation or gate emitter. |
 
 ### Detailed finite checks
@@ -108,6 +110,14 @@ and [tests](../../tests/test_packed_rejection_banks.py). They distinguish exact
 mode permutations from bounded floating checks of dirty rejected blocks,
 preweight, recovery leakage, and incorrect-inverse/bank-collision controls.
 No fine-precision native word is emitted.
+
+The [balanced-history tests](../../tests/test_balanced_rejection_history.py)
+check exact rational attenuation and preweight identities, complete integer
+bank routes, and a bounded complex canonical cascade with prefix unwinding
+and exact Hadamard compression. Omitting the prefix bank breaks scalar
+compression while preserving the accepted block and ordinary final recovery.
+These tests supply the prefix operator explicitly; they do not price it or
+identify rounded raw-source defects with ideal balanced defects.
 
 The [joint-word proof](../../research/endpoint/JOINT_NATIVE_WORDS.md) has
 [exact phase, projected-Clifford and error-Gram witnesses](../../tests/test_joint_native_words.py).
