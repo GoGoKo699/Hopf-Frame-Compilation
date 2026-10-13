@@ -385,7 +385,11 @@ $`O(n2^{-q})`$. A full-canonical comparison at endpoint error thus
 uses $`q=N+2\log_2 n+O(1)`$; its workspace must again be checked
 through (6). This polynomial schedule fits asymptotically. Exponentially
 smaller balanced defects cannot inherit the same precision choice
-without another analysis of (8).
+without another analysis of (8). The
+[depthwise balanced schedule](PACKED_REJECTION_BANKS.md#12-depthwise-balance-fits-the-literal-precision-width)
+provides that analysis: equalizing three rejection amplitudes per depth
+gives a geometric reciprocal-defect sum and a full comparison within
+the literal dirty width. Its chronological prefix bank remains unpaid.
 
 In the ideal constant-attenuation model, after the complete orientation
 and logical-prefix alignment, the scalar history vectors can be normalized
