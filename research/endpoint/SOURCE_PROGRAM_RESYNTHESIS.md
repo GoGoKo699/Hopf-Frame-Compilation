@@ -569,6 +569,40 @@ zero ancillas. Unused suffix-zero tests can be removed only after proving that
 the body leaves them untouched. The allocation and O(8^w) factor are not
 asserted uniform in growing height. No linear total fine cost follows yet.
 
+### Independent completed-group accuracy forces repeated precision
+
+For any fixed, angle-independent partition into R nonempty depth groups,
+the additive objective $`\sum_gT(\widehat K_g)=O(N)`$ is impossible
+when R grows and each completed group retains the endpoint error guarantee.
+Choose one legal angle $`\pi/16`$ in every group and set all other angles
+to zero. Each group is then one two-level rotation on a computational-tree
+edge. Its two labels differ in one bit, so a stabilizer eigenvector has
+literal eigenphase $`e^{\pm i\pi/16}`$. The
+[single-angle precision bound](../../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+therefore gives
+
+```math
+T(\widehat K_g)\ge2N-1,\qquad
+\sum_{g=1}^R T(\widehat K_g)\ge R(2N-1).
+```
+
+An admissible gauge preserves the group target and cannot remove this
+witness. The hybrid budget $`\sum_g(\delta_g+\xi_g)\le\eta`$
+implies that every separately emitted group has error at most eta.
+This is an application of the existing
+[modular-bank separation](ORDERED_BLOCK_BANKS.md#8-a-modular-bank-separation),
+not an unrestricted lower bound.
+
+The combined witness acts on at most $`2R\le2n`$ computational labels,
+with identity on the complement. Its one nontrivial SU block has squared
+dimension $`O(n^2)=O(N)`$, so the disjoint-block theorem compiles the
+whole target in O(N) T gates. The remaining constructive objective must
+therefore permit joint native synthesis across group boundaries or use
+intermediate guarantees that do not require separately accurate returned
+groups. The gauges above remain valid, but do not make their costs additive
+at linear total count. A [global native-word formulation](JOINT_NATIVE_WORDS.md)
+keeps this distinction explicit.
+
 ## 6. Endpoint-only normal form with one fixed physical source core
 
 Use the original two-external-clean group layout and the original two-flag,

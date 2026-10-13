@@ -140,7 +140,7 @@ from the exact clean-workspace size–depth theorem.
 | F11 | [Berry–Childs–Cleve–Kothari–Somma, arXiv:1412.4687](https://arxiv.org/pdf/1412.4687), Eqs. (7)–(15) | prepared linear combinations of selected unitary blocks, normalization-two oblivious amplification, and its cubic accepted block | LCU and amplification are inherited; the local proofs explicitly price the selected branches and bound the complete initialized isometry, including rejected work retained coherently |
 | F12 | [Yamazaki–Akibue–Sano, arXiv:2603.14202v3](https://arxiv.org/html/2603.14202v3), Theorem 1, Eqs. (21)–(24), (27), Section 3.1 | deterministic complete controlled SU(2) synthesis and probabilistic precision constants | precision-length clean instructions remain; the matching coefficient-three lower bound holds for fixed control width and independent Haar blocks |
 | F13 | [Yuan–Zhang–Zi, arXiv:2608.17846v2](https://arxiv.org/html/2608.17846v2), Theorem I.1 and Definition II.1; [Fang–Heunen–Wang, arXiv:2607.12907v1](https://arxiv.org/html/2607.12907v1), Theorem 1.2 and Corollaries 3.8–3.9 | current generic-unitary and near-Clifford comparisons; the [endpoint substitution](../../research/ROUTE_HISTORY.md#selection-audit-after-canonical-completion) keeps precision factors explicit | different target families and clean allocations; the initialized-isometry contract already appears in general-unitary synthesis |
-| F14 | [Vasconcelos–Gilyén, arXiv:2507.07900v2](https://arxiv.org/html/2507.07900v2), Sections 2–3 and Appendix B | block-work uncomputation, exact-history lower bounds and approximate product compression | original clean work is still needed during a query; the lower bound is for the defined coherent-measurement class, and approximate compression needs near-identity dilations |
+| F14 | [Vasconcelos–Gilyén, arXiv:2507.07900v3](https://arxiv.org/html/2507.07900v3), Sections 2–3 and Appendix B | block-work uncomputation and restricted exact-history comparison; approximate modular-clock audit | original clean work is needed during queries; the exact lower bound is class-specific; the proposed approximate bound has the [counterexample below](#modular-clock-counterexample), also present in v2 |
 | F15 | [Ma–Joven–Liu, arXiv:2609.11153v1](https://arxiv.org/html/2609.11153v1), Theorem 3.1 | clean ancilla compression for block-encoding counting bounds | at most $`n+2T`$ clean ancillas, with possible normalization change; no two-clean unitary conclusion |
 | F16 | [Motlagh–Pocrnic, arXiv:2605.20334v1](https://arxiv.org/html/2605.20334v1), Section II | improved dirty-QROM constants | the displayed output word remains initialized; no asymptotic or constant-factor lookup improvement is claimed here |
 | F17 | [Lai, arXiv:1411.5408v3](https://arxiv.org/pdf/1411.5408v3), Theorems 1.6 and 1.8 | finite-tree Carleson embedding and L2 maximal inequality | the inequalities are inherited; the tree-transport note supplies the local overlap-defect identity and its weighted residual application, not a free block-encoding circuit |
@@ -1020,15 +1020,15 @@ is not claimed efficient. It also does not combine all Hopf tree depths into
 one jointly charged precision source.
 
 **Why general compression does not remove the distinction.**
-[Vasconcelos–Gilyén, arXiv:2507.07900v2](https://arxiv.org/html/2507.07900v2)
+[Vasconcelos–Gilyén, arXiv:2507.07900v3](https://arxiv.org/html/2507.07900v3)
 give an ancilla-uncomputation procedure that still queries the original
 block encoding on its initialized work. Thus it reduces retained work
 between calls, not the initial peak-clean requirement to a constant number
 of qubits. Their
 exact-product logarithmic ancilla lower bound is for the specified multiple
-coherent measurement circuit class. Their approximate compression theorem
-requires near-identity supplied dilations, not merely near-identity accepted
-blocks. Neither statement proves or resolves our constant-clean frame gap.
+coherent measurement circuit class. The approximate modular-clock theorem
+has the counterexample below even under its full-unitary near-identity
+assumption. These comparisons do not resolve our constant-clean frame gap.
 [Ma–Joven–Liu, arXiv:2609.11153v1, Theorem 3.1](https://arxiv.org/html/2609.11153v1)
 compress a block encoding to at most $`n+2T`$ clean ancillas without raising
 T count, possibly changing normalization. This supports counting lower
@@ -1041,6 +1041,57 @@ packets. The output instruction register remains initialized in their
 construction. These improvements preserve the asymptotic lookup tradeoff
 used here and do not supply the one-clean diagonal compiler. We claim no
 improvement to their constant factors.
+
+### Modular-clock counterexample
+
+This audit concerns Definition 11, Theorem 11, and Claim 8 in
+[arXiv:2507.07900v3](https://arxiv.org/html/2507.07900v3#A2.SS3),
+checked on 2026-10-13; the same issue occurs in v2. It does not concern
+the exact nonwrapping compression used in the sufficient-clean compiler.
+
+Let the private block flag be one qubit, the modular clock have period four,
+and let an arbitrary logical register be untouched. For $`K\ge5`$, set
+
+```math
+\theta_K=2\arcsin\frac1{2K},\qquad
+R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{pmatrix},\qquad
+U_1=R(\theta_K),\quad U_5=R(\theta_K)^\dagger,
+```
+
+with every other supplied unitary equal to identity. Each full unitary has
+distance at most $`1/K`$ from identity. Write
+$`D=|0\rangle\langle0|\otimes I+|1\rangle\langle1|\otimes\mathrm{ADD}_4`$.
+The specified circuit applies D after each supplied unitary except the last.
+There are exactly four D operations between the two pulses, so $`D^4=I`$
+and the pulses cancel exactly. Subsequent increments fix the returned zero
+flag. The accepted block is I, whereas the product of the individual
+accepted blocks is $`\cos^2\theta_K I`$. Their discrepancy is
+
+```math
+\sin^2\theta_K=\frac1{K^2}-\frac1{4K^4}
+>\frac{e^5}{128K^4}\qquad(K\ge5),
+```
+
+contradicting the proposed period-four bound. The inequality follows already
+from $`e\lt 3`$ and $`K^2-1/4>3^5/128`$.
+The rejected path stays bad for four checks but incurs only two transitions.
+In Equation (144), $`|\Delta x|\le2|x|`$ has been used with the wrong
+inequality direction for a base between zero and one.
+
+There is also a nonvanishing-error family. For fixed $`P=2^p`$ and
+$`K=LP+1`$, apply the same rotation $`R(\theta_K)`$ at stages
+$`1,P+1,\ldots,LP+1`$. Every intervening clock section is $`D^P=I`$.
+The actual and intended accepted coefficients tend respectively to
+$`\cos(1/P)`$ and 1. Thus the stated hypotheses do not even force the
+fixed-clock error to vanish as K grows.
+
+These are supplied-unitary counterexamples, with literal phases and an
+untouched logical/reference system. No native synthesis assertion is needed.
+[Exact rational matrix tests](../../tests/test_modular_history_audit.py)
+use the variant $`\theta_K=2\arctan(1/(2K))`$, whose distance is below
+$`1/K`$, and also check that a nonwrapping clock retains the intended block.
+Results A–D use no disputed approximate modular-clock estimate.
 
 ## References highlighted here
 

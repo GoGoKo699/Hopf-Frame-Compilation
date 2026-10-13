@@ -893,11 +893,12 @@ structure of the prescribed frame enters the general sufficient condition.
 
 The counter is not evidence for a lower bound on the clean workspace of a
 Hopf compiler. Vasconcelos–Gilyén [7] prove a logarithmic history bound for
-their specified multiple-coherent-measurement circuit class, and analyze
-approximate compression under additional hypotheses. In particular, their
-near-identity assumption bounds the full supplied block-encoding unitary.
-A small accepted residual alone does not establish that hypothesis for the
-rare-mode dilation used here.
+their specified multiple-coherent-measurement circuit class. Their proposed
+approximate modular-clock bound cannot be imported: the
+[source audit](reference/SOURCE_CATALOGUE.md#modular-clock-counterexample)
+gives an exact counterexample even with near-identity full supplied unitaries.
+The nonwrapping counter and exact accepted-path argument used here do not
+depend on that approximate bound.
 
 ### 9.2 Literal diagonals and the complex magnitude frame
 
@@ -1370,8 +1371,10 @@ hypothesis.
    register, followed by amplification where appropriate.
 7. Francisca Vasconcelos and András Gilyén, *Methods for Reducing
    Ancilla-Overhead in Block Encodings*,
-   [arXiv:2507.07900v2](https://arxiv.org/html/2507.07900v2),
+   [arXiv:2507.07900v3](https://arxiv.org/html/2507.07900v3),
    Sections 3.1–3.2 and Appendix B.2.2. Their exact-history lower bound
    concerns a specified multiple-coherent-measurement circuit class;
-   their approximate-product results require additional conditions on
-   the full block-encoding unitaries.
+   the approximate modular-clock bound has the
+   [counterexample recorded in the source audit](reference/SOURCE_CATALOGUE.md#modular-clock-counterexample),
+   even under its full-unitary near-identity condition. The nonwrapping
+   compiler used here does not depend on that bound.
