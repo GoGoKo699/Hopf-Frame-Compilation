@@ -119,6 +119,14 @@ compression while preserving the accepted block and ordinary final recovery.
 These tests supply the prefix operator explicitly; they do not price it or
 identify rounded raw-source defects with ideal balanced defects.
 
+The [depthwise balance tests](../../tests/test_depth_balanced_rejection.py)
+check the revised equal-amplitude schedule within each three-axis depth:
+exact rational weights, the geometric comparison bound and literal width,
+complete routed Walsh gates, and a bounded complex cascade with separate
+success-only coarse operations. The proof supplies the native and asymptotic
+cost statements. The finite matrices still supply the fine prefix explicitly;
+they are not a prefix compiler or an endpoint gate-count certificate.
+
 The [joint-word proof](../../research/endpoint/JOINT_NATIVE_WORDS.md) has
 [exact phase, projected-Clifford and error-Gram witnesses](../../tests/test_joint_native_words.py).
 The source-leakage fixture explicitly avoids assuming that the approximate

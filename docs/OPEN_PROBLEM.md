@@ -157,7 +157,11 @@ dimension does not price the growing interiors of the unrestricted family.
 The [packed rejection-bank construction](../research/endpoint/PACKED_REJECTION_BANKS.md)
 fits supported failure paths into the two mode flags. An input preweight
 and one final recovery remove separate group recoveries, but its direct
-fine-source cost remains O(nN). The
+fine-source cost remains O(nN). Its depthwise balanced schedule gives exact
+four-port history compression and a full rounded-source comparison within
+the literal dirty width. The preceding fine prefix-unwinding bank remains
+unconstructed; a bank-preserving scalarization must approximate that prefix
+on every logical and dirty input. The
 [joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
 compresses returned dirty work according to the Pauli axes' symplectic rank,
 without additional T gates or error. Neither result supplies a uniform

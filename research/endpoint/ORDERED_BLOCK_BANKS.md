@@ -272,8 +272,10 @@ literal matrix decompositions, not gates modulo a scalar phase. Thus K rounds
 cost
 
 ```math
-T(B)=O(Kn\sqrt N)=O(N),\qquad G(B)=O(KnN),\qquad
-b_B=2^{\lfloor(n+1)/2\rfloor}+\lceil(n+1)/2\rceil\le N+n+7.
+\begin{aligned}
+T(B)&=O(Kn\sqrt N)=O(N),\qquad G(B)=O(KnN),\\
+b_B&=2^{\lfloor(n+1)/2\rfloor}+\lceil(n+1)/2\rceil\le N+n+7.
+\end{aligned}
 \qquad\text{(13)}
 ```
 
@@ -315,9 +317,12 @@ exact packing give
 Include the packing/unpacking permutations and borrowed predicates:
 
 ```math
-\widehat{\mathcal P}_Q=\mathcal P_Q\otimes I_b,\qquad
-T=O((s+1)\sqrt N+n^2\sqrt N+n^3)=O(N),\quad G=O(N^{3/2}),
-\quad b\le2^{\lfloor n/2\rfloor}+\lceil n/2\rceil+1. \qquad\text{(15)}
+\begin{aligned}
+\widehat{\mathcal P}_Q&=\mathcal P_Q\otimes I_b,\\
+T&=O((s+1)\sqrt N+n^2\sqrt N+n^3)=O(N),\quad G=O(N^{3/2}),\\
+b&\le2^{\lfloor n/2\rfloor}+\lceil n/2\rceil+1.
+\end{aligned}
+\qquad\text{(15)}
 ```
 
 The equality is exact. A compressed-prefix echo requires actual local words

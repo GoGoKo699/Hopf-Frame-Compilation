@@ -6,7 +6,9 @@ Supported block encodings can store rejected amplitudes in disjoint logical
 mode banks instead of an initialized history counter. For the Hopf tree,
 those banks fit in the two supplied flags. A diagonal preweight converts
 the accepted product into half of the complete target, allowing one final
-coherent recovery. The direct source implementation still pays fine
+coherent recovery. Balancing the three equal-support stages at each depth
+also gives an exact four-port compressor and a raw-to-canonical comparison
+within the literal dirty width. The direct source implementation still pays fine
 precision at every depth. This does not improve the endpoint bound.
 
 ## 1. Exact multiplication with disjoint rejection spaces
@@ -520,7 +522,7 @@ coin only on success can also change the two rejection-side coordinates.
 Neither a bank-coordinate choice nor those identities make the raw word
 equal to the particular canonical completion used here at no cost.
 
-There is an additional precision issue for this balanced schedule.
+There is an additional precision issue for this **serial** balanced schedule.
 The earliest canonical defect satisfies $`s_1=\Theta(2^{-R/2})`$.
 If a rounded accepted coin differs from $`\alpha V`$ by epsilon and has
 scalar radius $`\widehat\alpha`$, then
@@ -557,4 +559,227 @@ bounded unequal-target canonical cascade with full unitarity, preweight,
 unwinding, and Hadamard compression. They also check that omitting
 unwinding spoils (12) while leaving ordinary recovery valid.
 These checks support the stated algebra; they do not emit the unresolved
-native prefix bank.
+native prefix bank. The depthwise schedule below removes the stated width
+overrun without supplying that bank.
+
+## 12. Depthwise balance fits the literal precision width
+
+Three consecutive residual-axis stages at one Hopf depth have the same
+support. Their three rejection amplitudes can therefore be balanced
+together with the cap. This replaces three successive two-port merges
+by one four-port Walsh transform. Unlike the serial schedule, its full
+rounded-source comparison fits the endpoint width.
+
+Let D be the number of retained depths, indexed by $`0\le d\lt D`$.
+Keep the two full preweight banks B,C and the three stage banks per depth
+from Section 9. Set
+
+```math
+c_d=\frac{2^{d-D}}8,\qquad
+g_{d,a}=\frac{17}{64}-(a+1)c_d^2,\quad 0\le a\le3,
+\qquad
+\alpha_{d,a}^2=\frac{g_{d,a+1}}{g_{d,a}},\quad 0\le a\lt 3.
+\qquad\text{(15)}
+```
+
+In particular $`g_{d,3}=g_{d+1,0}`$ and $`g_{D,0}=1/4`$.
+For an input coordinate whose first active depth is e, prepare
+
+```math
+E|S,x\rangle
+=\sqrt{g_{e,0}}|S,x\rangle
++\frac{\sqrt{47}}8|B,x\rangle+c_e|C,x\rangle.
+\qquad\text{(16)}
+```
+
+Use $`e=D`$ for no entry. The squared amplitudes sum to one in every case.
+As in (10), two complete flag rotations specify E: the first has
+cosine $`\sqrt{17}/8`$ and sine $`\sqrt{47}/8`$; the second has
+cosine $`8\sqrt{g_{e,0}}/\sqrt{17}`$ and sine
+$`8c_e/\sqrt{17}`$. Both act on their whole pair of flag sectors
+and fix the other sectors. No completion oracle is required.
+
+Use the ideal canonical stage of Section 8 with attenuation
+$`\alpha_{d,a}`$ and its actual residual-axis unitary. Immediately
+before that stage, the active success amplitude has scalar modulus
+$`\sqrt{g_{d,a}}`$. Its rejection has modulus exactly $`c_d`$, since
+
+```math
+g_{d,a}(1-\alpha_{d,a}^2)=c_d^2.
+\qquad\text{(17)}
+```
+
+The logical factor is the complete chronological prefix before the stage.
+It includes any intervening success-only coarse coins. These coarse
+operations preserve the nested supports and fix every failure bank, so
+they change that prefix but not (17). Keep them as separate operations:
+multiplying a canonical stage on success alone does not give another
+canonical stage with scalar off-diagonal blocks.
+
+Let $`\mathcal B_D`$ be the direct sum of the actual ideal prefix
+inverses on the private stage banks, identity on S,B,C and unused modes.
+After applying it, the cap and the three failure coordinates at the
+first active depth have amplitudes $`(c_d,c_d,c_d,c_d)`$. Apply
+$`H\otimes H`$ in the ordered four-port coordinates
+$`(C,F_{d,0},F_{d,1},F_{d,2})`$, with the all-positive row going to C.
+This leaves $`(2c_d,0,0,0)`$. Since $`2c_d=c_{d+1}`$,
+the same induction works for every entry depth, including no entry.
+Writing $`H_D`$ for these chronological four-port transforms and $`U_{\rm can}`$
+for the ideal canonical cascade, with its separate coarse operations,
+gives the full initialized-isometry identity
+
+```math
+H_D\mathcal B_D U_{\rm can}EJ
+=\begin{pmatrix}
+W/2\\(\sqrt{47}/8)I\\I/8\\0
+\end{pmatrix}.
+\qquad\text{(18)}
+```
+
+W is the complete retained-depth logical word. Identities on every
+arbitrary dirty input and reference are understood throughout.
+
+### Complete native Walsh routing and coarse cost
+
+The four-port transform is a specified full unitary, including occupied
+failure inputs. It is the product of the two disjoint pairs
+$`H(C,F_{d,0})`$, $`H(F_{d,1},F_{d,2})`$, followed by
+$`H(C,F_{d,1})`$, $`H(F_{d,0},F_{d,2})`$. The cap-bank pair-H
+operations use Section 9's full controlled-affine routes. A bank-bank
+pair-H can be implemented by swapping its first bank with the active
+cap coordinates, applying the routed cap-bank H for its second bank,
+and undoing the swap. Use the same routed pair gate with X instead of
+H for the swap. All these gates fix every other mode exactly.
+
+Thus the complete $`H_D`$ and its actual inverse cost $`O(n^3)`$ T gates,
+use one returned arbitrary predicate helper, and need no clean register
+or approximated rotation. The bank count is
+
+```math
+3\sum_{d=0}^{D-1}2^{d+1}=6(2^D-1).
+\qquad\text{(19)}
+```
+
+Together with S,B,C it fits 4N modes whenever $`D\le n-3`$.
+For the precision ledger below choose $`D=n-8`$, $`n\ge9`$;
+the last eight depths use the existing standalone compiler.
+
+Every attenuation obeys $`\alpha_{d,a}\ge\sqrt{64/65}`$.
+With $`\delta_{d,a}=(1-\alpha_{d,a})/4`$,
+
+```math
+\delta_{d,a}
+=\frac{c_d^2}{4g_{d,a}(1+\alpha_{d,a})}
+=\Theta(c_d^2),\qquad \delta_{d,a}\lt 1/100.
+```
+
+The near-unit raw-source chart of Section 4 is therefore available.
+Coarse word length at depth d is $`O(D-d+1)`$, and
+$`\sum_d2^d(D-d+1)=O(2^D)`$. The coarse words, their predicates,
+and the four-port routing all have total O(N) T cost.
+
+### Rounded canonical comparison without a width overrun
+
+Let $`s_{d,a}=\sqrt{1-\alpha_{d,a}^2}=c_d/\sqrt{g_{d,a}}`$.
+For each programmed row the native paired source gives accepted error
+$`\epsilon\lt (5/2)2^{-q}`$. Its exact rejection-orientation gauge from
+[the borrowed-axis theorem](BORROWED_AXIS_COMPILER.md#4-one-global-canonicalization-with-its-scope)
+puts its entire raw block in canonical form. The rounded radius and
+defect may depend on the row; do not assume that their histories are
+exactly scalar. Instead compare complete blocks before any unwinding.
+The bound (8) in that theorem is
+$`\epsilon+2\epsilon/s_{d,a}`$ on the full active block.
+
+Since $`\sqrt{g_{d,a}}\lt \sqrt{17}/8`$,
+
+```math
+\sum_{d=0}^{D-1}\sum_{a=0}^2\frac1{s_{d,a}}
+\lt 6\sqrt{17}(2^D-1).
+```
+
+Full-unitary telescoping, including the unchanged coarse operations,
+therefore bounds the complete cascade difference by
+
+```math
+\Delta_q
+\lt \left(\frac{15D}{2}+30\sqrt{17}(2^D-1)\right)2^{-q}
+\lt 128\,2^{D-q}.
+\qquad\text{(20)}
+```
+
+The last inequality uses $`D/2^D\le1/2`$ and
+$`15/4+30\sqrt{17}\lt 128`$. There is no additional factor D:
+the reciprocal defects form a geometric sum.
+At $`\eta=2^{-N}`$, choose
+
+```math
+q=N+D+12=N+n+4.
+```
+
+Then $`\Delta_q\lt \eta/32`$, while the q+1 source core and two
+arbitrary outside helpers use exactly $`N+n+7`$ dirty wires.
+The joint orientation bank G and the two preweight rotations have
+$`O(N+q+\ell)`$ T cost at $`\ell=N+c`$, for a fixed constant c
+chosen for their error budgets. Their actual shared reservation is
+
+```math
+\max\{q+1,\ell+1,2k+8\}+2,\qquad k\le n+O(1).
+```
+
+For sufficiently large n this equals q+3, as required. This explicit
+maximum, rather than an asymptotic width alone, covers the implementation.
+Finitely many smaller n retain the existing finite-dimension fallback;
+no uniformly better count bound is claimed from that fallback.
+
+If $`\|\widehat G-G\|\le\epsilon_G`$ and
+$`\|\widehat E-E\|\le\epsilon_E`$, pair $`\widehat G`$ with
+its actual inverse. For the physical raw cascade $`U_{\rm raw}`$,
+
+```math
+\|\widehat G U_{\rm raw}\widehat G^\dagger\widehat E
+       -U_{\rm can}E\|
+\le2\epsilon_G+\epsilon_E+\Delta_q.
+\qquad\text{(21)}
+```
+
+This is a full-operator comparison. Exact G fixes the preweight banks;
+no intermediate initialization, postselection, or dirty reset occurs.
+Choosing $`\epsilon_G\le\eta/128`$ and
+$`\epsilon_E\le\eta/64`$ makes (21) smaller than $`\eta/16`$.
+Left multiplication by the *ideal* unwinding and Walsh operators preserves
+that bound. An implemented unwinding would add its own full-input error
+and cost. Equations (20)–(21) remove the serial schedule's particular
+precision-width obstruction; they do not provide that implementation.
+The directly emitted raw cascade still costs $`O(N+nq)=O(nN)`$.
+
+### What a bankwise unwinding must still implement
+
+The prefix requirement can be made quantitative. Identify one stage bank
+with $`P_d S`$ and let $`W_{\rm before}`$ be its chronological ideal prefix. If a unitary
+H on that bank and arbitrary dirty work makes its failure column scalar
+to error epsilon, then
+
+```math
+\|c_d H(W_{\rm before}|_{P_d}\otimes I_b)-c_d I\|
+\le\epsilon
+\quad\Longrightarrow\quad
+\|H-(W_{\rm before}^\dagger|_{P_d}\otimes I_b)\|
+\le\epsilon/c_d.
+\qquad\text{(22)}
+```
+
+This follows by division by $`c_d`$ and right multiplication by the unitary
+prefix inverse. It covers every bank and dirty input, not just one
+prepared column. In the last depth $`c_{D-1}=1/16`$, so a bankwise
+endpoint-accurate scalarization still needs an endpoint-accurate logical
+prefix, with error at most sixteen times its allowed column error.
+Coarse prefix substitution or attenuation alone does not remove that
+obligation. The statement concerns bank-preserving scalarization; joint
+bank mixing or a different complete compiler is outside its scope.
+It is not an unrestricted T-count lower bound.
+
+The [depthwise tests](../../tests/test_depth_balanced_rejection.py) check
+exact rational weights and width inequalities, full routing and Walsh
+action, and a bounded complex cascade with separate coarse interlayers.
+They do not emit the unresolved prefix bank or establish a new endpoint
+count bound.
