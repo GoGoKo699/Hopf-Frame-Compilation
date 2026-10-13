@@ -127,6 +127,13 @@ success-only coarse operations. The proof supplies the native and asymptotic
 cost statements. The finite matrices still supply the fine prefix explicitly;
 they are not a prefix compiler or an endpoint gate-count certificate.
 
+The [joint-history tests](../../tests/test_joint_history_compression.py)
+check the [three-call extraction reduction](../../research/endpoint/JOINT_HISTORY_COMPRESSION.md):
+complete active and inactive columns, arbitrary occupied-input completions,
+dirty entanglement, the 24-times error bound, and a conserved-label
+constant-gap example. The compressor is supplied as a finite matrix;
+these checks do not construct a native compressor or improve its count.
+
 The [joint-word proof](../../research/endpoint/JOINT_NATIVE_WORDS.md) has
 [exact phase, projected-Clifford and error-Gram witnesses](../../tests/test_joint_native_words.py).
 The source-leakage fixture explicitly avoids assuming that the approximate

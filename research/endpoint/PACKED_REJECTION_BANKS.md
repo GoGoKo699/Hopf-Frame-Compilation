@@ -778,6 +778,13 @@ obligation. The statement concerns bank-preserving scalarization; joint
 bank mixing or a different complete compiler is outside its scope.
 It is not an unrestricted T-count lower bound.
 
+The [joint-compression reduction](JOINT_HISTORY_COMPRESSION.md) addresses
+general mixing separately: three calls to any sufficiently accurate joint
+compressor and its actual inverse recover a complete fine prefix. Adding
+the constant remaining tail would complete the endpoint if that compressor
+had linear cost. Logical-label-preserving bank mixing has its own constant
+error floor; neither statement rules out general native mixing.
+
 The [depthwise tests](../../tests/test_depth_balanced_rejection.py) check
 exact rational weights and width inequalities, full routing and Walsh
 action, and a bounded complex cascade with separate coarse interlayers.
