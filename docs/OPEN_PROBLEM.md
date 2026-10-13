@@ -126,9 +126,11 @@ The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
 gives an exact complex coarse-frame gauge and a support-forced completion
 rank of at least $`n+1`$ when the selected chain correlations satisfy
 $`q_j\lt1`$. Its robust polynomial error floor concerns one
-prescribed coarse call with fixed-dimensional bounded scalar sources.
-Dirty operator-valued sources and other recovery mechanisms remain
-eligible. The [native representation results](../research/endpoint/NATIVE_REALIFICATION.md)
+prescribed coarse call with fixed source-mode dimension and bounded,
+logical-label-preserving sources. The operator-valued extension makes
+that floor independent of arbitrary dirty width. Logical-label mixing,
+multiple coarse calls, and other recovery mechanisms remain eligible.
+The [native representation results](../research/endpoint/NATIVE_REALIFICATION.md)
 separate linear ring height from native factorization and give a phase
 cost for normalized scalar acceptance, even at arbitrarily small success
 probability. The [single-echo bound](../research/endpoint/SOURCE_REUSE_LIMITS.md#whole-word-xor-cancellation-and-a-cyclic-alternative)
@@ -151,6 +153,15 @@ source calls, within the literal allocation and with two clean flags.
 Width transitions disappear, but repeated precision charges retain the
 $`O(N\ell_*(n))`$ bound. Resynthesis at fixed source algebra or fixed local
 dimension does not price the growing interiors of the unrestricted family.
+
+The [packed rejection-bank construction](../research/endpoint/PACKED_REJECTION_BANKS.md)
+fits supported failure paths into the two mode flags. An input preweight
+and one final recovery remove separate group recoveries, but its direct
+fine-source cost remains O(nN). The
+[joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
+compresses returned dirty work according to the Pauli axes' symplectic rank,
+without additional T gates or error. Neither result supplies a uniform
+O(N) native selection rule or improves the endpoint comparison.
 
 ## Large-width T-depth
 

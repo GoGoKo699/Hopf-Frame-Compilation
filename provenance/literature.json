@@ -330,21 +330,24 @@
         "Andras Gilyen"
       ],
       "title": "Methods for Reducing Ancilla-Overhead in Block Encodings",
-      "checked_eprint": "arXiv:2507.07900v2",
+      "checked_eprint": "arXiv:2507.07900v3",
       "year": 2025,
-      "url": "https://arxiv.org/html/2507.07900v2",
+      "url": "https://arxiv.org/html/2507.07900v3",
       "locators": [
         "Section 2",
         "Section 3.1",
         "Section 3.2",
-        "Appendix B.2.2"
+        "Appendix B.2.2",
+        "Definition 11",
+        "Theorem 11",
+        "Claim 8, Equation (144)"
       ],
       "roles": [
         "ancilla-uncomputation comparison",
         "restricted exact-history ancilla lower bound",
-        "approximate product compression comparison"
+        "approximate modular-clock counterexample audit"
       ],
-      "boundary": "The uncomputation procedure still queries the original block encoding with its initialized work. Exact-product lower bounds concern the defined MCM circuit class, not unrestricted Hopf compilation. Approximate compression needs near-identity full dilations, not only near-identity accepted blocks."
+      "boundary": "The uncomputation procedure still queries the original block encoding with its initialized work. Exact-product lower bounds concern the defined MCM circuit class, not unrestricted Hopf compilation. The proposed approximate modular-clock bound has an exact counterexample even for near-identity full dilations; see SOURCE_CATALOGUE.md. The issue is present in v2 and v3; the nonwrapping compiler does not use that bound."
     },
     {
       "id": "yamazaki_akibue_controlled_precision",
@@ -468,10 +471,12 @@
       "year": 2026,
       "url": "https://arxiv.org/html/2609.11153v1",
       "locators": [
-        "Theorem 3.1"
+        "Theorem 3.1",
+        "Appendix C, Theorem C.1"
       ],
       "roles": [
-        "recent clean-ancilla compression for block-encoding lower bounds"
+        "recent clean-ancilla compression for block-encoding lower bounds",
+        "projected-Clifford normal form used in returned-dirty compression"
       ],
       "boundary": "Compresses to at most n+2T clean ancillas and can change normalization. It is not a two-clean unitary implementation result or a lower bound for the Hopf endpoint."
     },

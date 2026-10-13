@@ -102,6 +102,24 @@ supply the all-size statements within their declared interfaces.
 
 ### Detailed finite checks
 
+The [packed rejection-bank proof](../../research/endpoint/PACKED_REJECTION_BANKS.md)
+has [integer-routing and full-unitary diagnostics](../../compiler_robust_hopf/packed_rejection_banks.py)
+and [tests](../../tests/test_packed_rejection_banks.py). They distinguish exact
+mode permutations from bounded floating checks of dirty rejected blocks,
+preweight, recovery leakage, and incorrect-inverse/bank-collision controls.
+No fine-precision native word is emitted.
+
+The [joint-word proof](../../research/endpoint/JOINT_NATIVE_WORDS.md) has
+[exact phase, projected-Clifford and error-Gram witnesses](../../tests/test_joint_native_words.py).
+The source-leakage fixture explicitly avoids assuming that the approximate
+input lies in the projected Clifford's source code. The all-width compression
+and counting statements follow from the proof, not these finite examples.
+
+The [modular-clock source audit](SOURCE_CATALOGUE.md#modular-clock-counterexample)
+has [exact rational full-circuit checks](../../tests/test_modular_history_audit.py)
+of two-pulse return, repeated accumulation and a nonwrapping comparison.
+The supplied-unitary counterexample is distinct from a native emitter.
+
 The [operator-source proof](../OPERATOR_SOURCE_COMPILER.md) is accompanied by
 [finite circuit checks](../../tests/test_operator_source_compiler.py).
 These test the native geometric operator, its programmable scalar block,
@@ -223,7 +241,10 @@ The [Schur tests](../../tests/test_scalar_schur_limits.py) verify the full
 complex-phase gauge, exact rational-complex completion determinants with
 unconstrained upper entries, support and minor-weight bounds, and a bounded-rank
 approximation example. The [completion proof](../../research/endpoint/SCALAR_SCHUR_LIMITS.md)
-establishes rank and robust error floors only for its scalar source model.
+establishes rank and robust error floors for the stated scalar interface
+and its bounded, logical-label-preserving dirty-operator extension. The
+existing finite tests cover the scalar identities; the dimension-independent
+extension uses the analytic block-rank and inverse estimates.
 
 The [operator-stability tests](../../tests/test_frame_operator_stability.py)
 use an independent product-rule derivative to check the tangent PSD sum,

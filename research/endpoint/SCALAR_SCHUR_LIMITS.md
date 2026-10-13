@@ -1,12 +1,14 @@
-# Tree-correlation gauges and scalar source limits
+# Tree-correlation gauges and source-dimension limits
 
 [Endpoint contract](../../docs/OPEN_PROBLEM.md) · [Research index](../README.md)
 
 A complete frame has an exact coarse-frame Schur representation with
-bounded outer gauges, including zero target branches. Its scalar
-correlation factor has a support-forced rank obstruction. This concerns
-logical-index-preserving scalar sources around one prescribed coarse call;
-it is not an unrestricted circuit or T-count lower bound.
+bounded outer gauges, including zero target branches. Its correlation
+factor has a support-forced rank obstruction. The scalar proof extends to
+bounded operator-valued sources acting on arbitrarily large dirty work,
+with an error floor independent of that dirty dimension. These results
+concern logical-index-preserving sources around one prescribed coarse call;
+they are not unrestricted circuit or T-count lower bounds.
 
 ## 1. Exact gauge with a complex native coarse frame
 
@@ -187,16 +189,130 @@ $`2^{-N}`$ for sufficiently large $`n`$. In particular a four-dimensional
 scalar environment has a polynomial floor in this interface. Fixed block
 normalization only changes the bounded-amplitude constant.
 
-## 5. Scope and evidence
+## 5. Operator-valued sources with arbitrary dirty dimension
+
+Let $`\mathcal H_D`$ be the dirty input space of finite dimension $`d`$.
+For every logical output $`i`$ and input $`j`$, take source columns
+
+```math
+A_i,B_j:\mathcal H_D\longrightarrow\mathbb C^r\otimes\mathcal H_D,
+\qquad G_{ij}=A_i^\dagger B_j,\qquad \|G_{ij}\|\le B.
+```
+
+Isometric source columns give $`B=1`$. The two source operations preserve
+logical labels; the sole intervening coarse call acts as $`W_0`$ on those
+labels and as identity on the source modes and dirty space. With the fixed
+outer gauges from (1), the accepted block has entries
+$`H_{ij}G_{ij}`$, where $`H=DW_0C`$. Allowing these scalar gauges for free
+only enlarges this restricted architecture. Any different gauge choice
+must re-establish the bounded-coefficient hypothesis.
+
+On $`m`$ selected labels, the collective source maps have domain
+$`\mathcal H_D^{\oplus m}`$ and codomain
+$`\mathbb C^r\otimes\mathcal H_D`$. Consequently
+
+```math
+G=A^\dagger B,\qquad \mathrm{rank}G\le rd.
+```
+
+In particular $`G`$ is singular when $`m>r`$, even though its blocks need
+not commute. Suppose its required chain entries approximate
+$`K_{ij}I_D`$ to operator error at most $`\delta`$, with
+$`0\le q_j\lt 1`$. Replace just those entries by their exact values to obtain
+$`\widetilde G`$. Set
+
+```math
+M=\max(B,1),\qquad Q=1+\max_j q_j,\qquad
+\kappa=\min_j(1-q_j^2)>0.
+```
+
+Every block of $`\widetilde G`$ has norm at most $`M`$, and the block norm
+estimate gives $`\|G-\widetilde G\|\le m\delta`$. Right multiply by the
+same scalar lower bidiagonal matrix $`T`$ used in Section 2, tensored with
+$`I_D`$. Its norm is at most $`Q`$. The block matrix
+$`F=\widetilde G T`$ is upper triangular: its diagonal blocks are
+$`(1-q_1^2)I_D,\ldots,(1-q_{m-1}^2)I_D,I_D`$, and every strict upper
+block has norm at most $`QM`$. Only scalar multiplication is used in the
+cancellations, so the argument does not assume commuting dirty operators.
+
+For $`Fx=y`$, put $`Y=\max_i\|y_i\|`$. Back substitution gives
+
+```math
+\|x_i\|\le\frac{Y}{\kappa}
+  +\frac{QM}{\kappa}\sum_{j>i}\|x_j\|
+\le\frac{Y}{\kappa}
+  \left(1+\frac{QM}{\kappa}\right)^{m-1-i}.
+```
+
+Thus
+
+```math
+\|\widetilde G^{-1}\|=\|TF^{-1}\|
+\le\frac{Q\sqrt m}{\kappa}
+  \left(1+\frac{QM}{\kappa}\right)^{m-1}.
+```
+
+Because $`G`$ is singular, its distance from the invertible matrix
+$`\widetilde G`$ is at least $`1/\|\widetilde G^{-1}\|`$. Combining the
+two estimates proves the following bound, independent of $`d`$.
+
+**Operator-valued completion bound (5).** For $`m>r`$,
+
+```math
+\delta\ge
+\frac{\kappa}
+ {Qm^{3/2}\left(1+QM/\kappa\right)^{m-1}}.
+```
+
+At zero error, the block triangular calculation itself forces $`r\ge m`$.
+For $`q_j=1/2`$ and isometric source columns, (5) becomes
+$`\delta\ge1/[2m^{3/2}3^{m-1}]`$.
+
+For $`n\ge r\ge1`$, apply this to the native-compatible witness of Section 4
+with $`m=r+1`$. Its fixed gauged coarse entries on the required pattern have
+magnitude at least $`\alpha=1/[2(20n)^r]`$. Here the effective angle is
+$`\beta_{\rm eff}=\arcsin|b|`$, and the lower bound uses
+$`\tan\beta_{\rm eff}\ge|b|\ge1/(20n)`$. If the accepted block
+approximates $`W_\theta\otimes I_D`$ with operator error $`\eta`$, each
+required block obeys
+
+```math
+|H_{ij}|\,\|G_{ij}-K_{ij}I_D\|\le\eta.
+```
+
+Hence $`\delta\le\eta/\alpha`$, and (5) yields
+
+**Dirty-dimension-independent operator gap (6).** For isometric sources,
+
+```math
+\eta\ge
+\frac{1}{4(20n)^r(r+1)^{3/2}3^r}.
+```
+
+For fixed $`r`$, arbitrarily many dirty qubits therefore cannot remove the
+polynomial error floor of this interface. A fixed normalization changes
+$`B`$ in (5), retaining a polynomial floor for fixed $`r,B`$. All norms
+are unchanged upon tensoring an arbitrary reference identity. Requiring
+the target blocks to be $`K_{ij}I_D`$ enforces the entire dirty input
+space, not merely one dirty state or an averaged matrix element. Since
+projection onto the accepted flags cannot increase an error norm, the
+same lower bound applies to a full initialized-input isometry satisfying
+this architecture.
+
+## 6. Scope and evidence
 
 This result covers one prescribed coarse call between two
-logical-index-preserving scalar sources. It does not cover dirty
-operator-valued coefficients, retained input labels, extra source
-dimension, multiple coherent coarse queries, or every adaptive choice of
-a different coarse frame. The [canonical-star resolvent](CANONICAL_STAR_RESOLVENT.md)
+logical-index-preserving sources with bounded scalar or dirty-operator
+coefficients. It does not cover source operations mixing logical labels,
+additional retained labels beyond the stated source space, growing source
+dimension, multiple coherent coarse queries, coarse transport acting
+nontrivially on the source or dirty space, or every adaptive choice of a
+different coarse frame. The [canonical-star resolvent](CANONICAL_STAR_RESOLVENT.md)
 uses a distinct local oracle; its descendant inverse remains unpaid.
 
 [Finite tests](../../tests/test_scalar_schur_limits.py) check the full
 complex-phase gauge, support, exact rational-complex determinants with
-free upper entries, and minor-weight bounds. The rank and asymptotic
-operator-error conclusions follow from the analytic proofs.
+free upper entries, and minor-weight bounds. Those tests concern the scalar
+identities; the operator-valued extension follows from the block rank and
+inverse estimates above. The rank and asymptotic operator-error conclusions
+follow from the analytic proofs.
