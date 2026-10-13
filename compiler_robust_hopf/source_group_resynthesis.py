@@ -36,7 +36,7 @@ def rational_root_word(s,t):
             c=(1-u*u)/(1+u*u); v=2*u/(1+u*u)
             x=2*prefix*stride; y=x+stride
             old_x=W[x].copy(); old_y=W[y].copy()
-            W[x]=c*old_x-v*old_y; W[y]=v old_x+c*old_y
+            W[x]=c*old_x-v*old_y; W[y]=v*old_x+c*old_y
     return W
 
 
