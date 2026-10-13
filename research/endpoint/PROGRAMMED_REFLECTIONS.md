@@ -240,8 +240,13 @@ He_0=(4/3-x,\ -5x/3-y/3,\ 2x/3+y/3-1,\ 2x-2,
        -x,\ -y,\ -1/3,\ -x-2/3)^T.
 ```
 
-Its squared norm minus one is
-$`(92x^2+14xy-96x+11y^2-6y+57)/9\ge3415/963`$.
+Its squared norm minus one satisfies
+
+```math
+\frac{92x^2+14xy-96x+11y^2-6y+57}{9}
+\ge\frac{3415}{963}.
+```
+
 Thus the linear equations already preclude an involution.
 
 For a quantitative certificate put
