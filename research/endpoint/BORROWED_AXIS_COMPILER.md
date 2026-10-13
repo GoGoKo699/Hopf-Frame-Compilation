@@ -44,7 +44,7 @@ B_yF_yZ_uF_yB_y=P_y,
 ```math
 B_yF_y e^{i\theta_yZ_u}F_yB_y
 =e^{i\theta_yP_y}\otimes I_u.
-\tag{1}
+\qquad\text{(1)}
 ```
 
 Use the [borrowed-signal real-rotation primitive](../../docs/ONE_CLEAN_COMPILER.md#reusing-an-occupied-port-and-the-precision-core),
@@ -96,7 +96,7 @@ selected-tail implementation, implement its control as
 
 ```math
 C_u(A_y)=L_y C_u(\Gamma_{p(y)})L_y^\dagger.
-\tag{2}
+\qquad\text{(2)}
 ```
 
 The loaders are unconditional. On u=0 their actual inverse cancels
@@ -110,7 +110,7 @@ With a shared core of size
 
 ```math
 m=\max\{q+1,\ell+1,2k+8\},
-\tag{3}
+\qquad\text{(3)}
 ```
 
 one selected source-axis exponential therefore costs
@@ -224,7 +224,7 @@ K_g=D_g+2tD_f=ML_g,
 \qquad
 L_g=N_g+2tN_f-(s+t)M,
 \qquad \lambda^2=1-s^2-t^2.
-\tag{4}
+\qquad\text{(4)}
 ```
 
 The source identities give
@@ -233,7 +233,7 @@ define the literal unitary
 
 ```math
 \Omega_g=X M(L_g/\lambda).
-\tag{5}
+\qquad\text{(5)}
 ```
 
 It satisfies $`B_g=\lambda\Omega_g`$,
@@ -256,7 +256,7 @@ b=\max\{q+1,\ell+1,2k+8\}+2,
 \qquad
 \|\widehat\Omega-\Omega\otimes I_{\rm work}\|
 \le C2^{-\ell},
-\tag{6}
+\qquad\text{(6)}
 ```
 
 where C is an absolute constant. The original q+1 source qubits are
@@ -328,7 +328,7 @@ G_jQ_jG_j^\dagger
 A_j&-\lambda_j I\\
 \lambda_j I&A_j^\dagger
 \end{pmatrix}.
-\tag{7}
+\qquad\text{(7)}
 ```
 
 Lambda may depend on the unchanged row. The zero-lambda convention in
@@ -373,7 +373,7 @@ The full canonical-block difference is therefore at most
 
 ```math
 \epsilon+{2\epsilon\over\sqrt{1-\alpha^2}}.
-\tag{8}
+\qquad\text{(8)}
 ```
 
 For the retained polynomial attenuation

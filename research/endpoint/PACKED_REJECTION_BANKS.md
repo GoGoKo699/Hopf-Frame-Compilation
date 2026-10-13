@@ -306,7 +306,7 @@ E|S,x\rangle
 =\sqrt{g_{e(x)-1}}\,|S,x\rangle
 +\frac{\sqrt{47}}8|B,x\rangle
 +\sqrt{\lambda2^{e(x)-R-1}}\,|C,x\rangle.
-\tag{9}
+\qquad\text{(9)}
 ```
 
 The squared amplitudes sum to one, including the no-entry case. This is
@@ -329,11 +329,16 @@ S and C, addressed by x, with
 \cos\phi_x=\frac{\sqrt{g_{e(x)-1}}}{\sqrt{17}/8},
 \qquad
 \sin\phi_x=\frac{\sqrt{\lambda2^{e(x)-R-1}}}{\sqrt{17}/8}.
-\tag{10}
+\qquad\text{(10)}
 ```
 
-Each rotation has the usual real block $`\left(\begin{smallmatrix}c&-s\\s&c\end{smallmatrix}\right)`$
-on its two copies and fixes the others. These equations specify the action
+Each rotation has the usual real block on its two copies and fixes the others:
+
+```math
+\begin{pmatrix}c&-s\\s&c\end{pmatrix}.
+```
+
+ These equations specify the action
 on initially occupied and unoccupied flag sectors; E is not merely an
 isometry completion left to an oracle. The entry function is a finite
 table determined by the support labels, requiring no angle equality test.
@@ -347,7 +352,7 @@ F_k is $`w_kW_{k-1}|x\rangle`$. Define the complete bank unitary
 \mathcal B=I_{S\oplus B\oplus C}
 \oplus\bigoplus_{k=1}^R W_{k-1}^\dagger\big|_{P_k}
 \oplus I_{\rm unused}.
-\tag{11}
+\qquad\text{(11)}
 ```
 
 The restriction exists because earlier supported unitaries preserve every
@@ -370,7 +375,7 @@ H_{\rm bal}\mathcal B K_R\cdots K_1 E J
 =\begin{pmatrix}
 W_R/2\\(\sqrt{47}/8)I\\I/8\\0
 \end{pmatrix}.
-\tag{12}
+\qquad\text{(12)}
 ```
 
 The last row includes every stage bank and unused mode. This is a complete
@@ -390,14 +395,14 @@ the bank coordinate corresponding to $`x=p_d b0^{n-d-1}`$ is
 
 ```math
 (f,e,y)=(1,1,\mathrm{type}_j\,0^{n-d-4}1p_db).
-\tag{13}
+\qquad\text{(13)}
 ```
 
 The two-bit type and the sentinel make all banks disjoint. They occupy
 
 ```math
 \sum_k\mathrm{rank}P_k
-=3\sum_{d=0}^{n-4}2^{d+1}=3N/4-6<N.
+=3\sum_{d=0}^{n-4}2^{d+1}=3N/4-6\lt N.
 ```
 
 Thus the three full copies and all stage banks fit within the two flags'
@@ -475,7 +480,7 @@ K_R\cdots K_1
  (R_R\cdots R_1)
  \mathrm{diag}\!\left(I,\bigoplus_{k=1}^R
  W_k^\dagger\big|_{P_k}\right).
-\tag{14}
+\qquad\text{(14)}
 ```
 
 The display orders success before the stage banks; B, C, and unused modes
