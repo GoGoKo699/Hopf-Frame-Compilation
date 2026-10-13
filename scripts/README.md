@@ -57,6 +57,21 @@ literal counts against the original protocol with the same observable.
 Its exact finite-size target is not a generic fine-precision compiler or an
 advantage experiment. See the [scope and word proof](../supplements/state_based_qbp/NATIVE_COARSE_QBP.md).
 
+## Native complex coarse-frame example
+
+```bash
+python scripts/complex_coarse_native_example.py
+python scripts/complex_coarse_native_example.py --case singular --format json
+```
+
+This bounded two-qubit complex example propagates native words through both
+magnitude and phase gradient streams, checks complete preparation and dirty-input
+score operators, and reports gate counts against the original protocol. It also
+checks fixed-record histogram decoding, without sampling. Numerical errors are
+finite floating checks; the exact target and word construction are described in
+the [complex fixture proof](../supplements/state_based_qbp/NATIVE_COMPLEX_COARSE_QBP.md).
+It is not a general fine-residual compiler or an advantage experiment.
+
 ## Native residual QBP ledger
 
 ```bash
@@ -70,6 +85,22 @@ and gradient-bias certificates. It also demonstrates the exact histogram
 decoders. It performs no statevector propagation or sampling; the bounded
 native numerical checks live in the test suite. See the
 [integration proof and scope](../supplements/state_based_qbp/NATIVE_RESIDUAL_QBP.md).
+
+## Native ordered-bank components
+
+```bash
+python scripts/ordered_banks_native_example.py --n 2
+python scripts/ordered_banks_native_example.py --n 3
+```
+
+This regenerates native right-readout and coarse-prefix words and reports
+their gate counts, hashes, and floating errors on two vectors per component.
+The script supports only n=2 and n=3; these vector checks are not all-column
+verification or endpoint synthesis. The
+[ordered-bank proof and tests](../research/endpoint/ORDERED_BLOCK_BANKS.md#10-remaining-native-theorem-and-reproducibility)
+supply the component identities and wider evidence. The fine left source is
+not emitted. Add `--write-gates /tmp/hopf-ordered-banks` to export local gate
+lists; generated lists are not additional canonical evidence.
 
 ## Upstream synchronization
 

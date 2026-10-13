@@ -14,6 +14,7 @@ not prove universal statements or asymptotic optimality.
 | Material | Entry point | Scope |
 |---|---|---|
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
+| Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
 | Complete exact-frame checks | [Core verification §§2–8](../VERIFICATION.md#2-what-is-represented-locally) | Frame identities, explicit routing, resource ledgers, and records |
 | Four standalone exact receipts | [Receipt index](../../verification/fault_tolerant/README.md) | Gray source, shift kernel, resources, and reflection |
@@ -75,6 +76,29 @@ count and depth now match in explicit accuracy/workspace ranges by the
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
 existing resource comparisons and classical baselines remain documented.
+
+### Endpoint source and representation checks
+
+These fixtures support the endpoint research chapters. Exact arithmetic,
+emitted native component words, and bounded floating matrix checks are
+distinguished below; none emits the unrestricted fine-precision complete
+frame. Floating rank, support, spectral, and chart decisions are diagnostics,
+not certified decisions about arbitrary computable inputs. The linked proofs
+supply the all-size statements within their declared interfaces.
+
+| Construction | Proof home | Module and tests | Evidence and boundary |
+|---|---|---|---|
+| Joint source completion | [Original-tree residual §5](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md#5-shared-factors-contraction-slack-and-the-completion-gap) | [source_completions](../../compiler_robust_hopf/source_completions.py); [ordered-bank tests](../../tests/test_ordered_block_banks.py) | Regularized 4N-mode isometries, full-unitary extensions, cut/Gram bounds and rejected-space identities are finite matrix checks; the root-series obstruction is rational-exact. No fine source emitter. |
+| Ordered banks and native readout | [Ordered block banks](../../research/endpoint/ORDERED_BLOCK_BANKS.md) | [ordered_block_banks](../../compiler_robust_hopf/ordered_block_banks.py), [native_ordered_banks](../../compiler_robust_hopf/native_ordered_banks.py); [tests](../../tests/test_ordered_block_banks.py) | Exact integer schedules and rational witnesses; bounded source matrices; native right-readout and coarse-prefix words with small full dirty interpreters and occupied/entangled-vector checks. No fine left-source or endpoint emitter. |
+| Conjugate-sector recovery | [Conjugate signal recovery](../../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | [conjugate_recovery](../../compiler_robust_hopf/conjugate_recovery.py); [tests](../../tests/test_conjugate_recovery.py) | Exact native recovery counterexample and gate lifts; bounded full-sector recovery polynomials and phase-error matrices. Accepted-sector success alone does not certify dirty-signal return; no fine source is emitted. |
+| Boundary rank and forest deflation | [Rank-weighted compiler](../../research/endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md), [matching/leaf deflation](../../research/endpoint/MATCHING_LEAF_DEFLATION.md) | [boundary_refinement](../../compiler_robust_hopf/boundary_refinement.py); [tests](../../tests/test_boundary_refinement.py) | Finite residual-rank, reflection-LCU/recovery, boundary cancellation, transport and closed-forest checks; exact combinatorial matching/bin checks. Floating ranks do not supply a native compiler or endpoint error certificate. |
+| Paid logical encodings | [Paid encodings](../../research/endpoint/PAID_LOGICAL_ENCODINGS.md) | [paid_logical_encodings](../../compiler_robust_hopf/paid_logical_encodings.py); [tests](../../tests/test_paid_logical_encodings.py) | Complete Boolean permutations, exact six-bit native matrix, encoded controls and bounded frame/code diagnostics. Encoders act on all inputs; zero remainders require the stated code. No arbitrary-angle core is emitted. |
+| Center-phase reflection family | [Centered phase reflections](../../research/endpoint/CENTERED_PHASE_REFLECTIONS.md) | [centered_phase_reflections](../../compiler_robust_hopf/centered_phase_reflections.py); [tests](../../tests/test_centered_phase_reflections.py) | One five-qubit native member: exact initialized columns and full actual inverse, with 144 T appearances. Floating checks test optimized floors and real-family identities; they do not certify general endpoint synthesis. |
+| Programmed reflection orbits | [Programmed reflections §§1–4](../../research/endpoint/PROGRAMMED_REFLECTIONS.md) | [programmed_reflections](../../compiler_robust_hopf/programmed_reflections.py); [tests](../../tests/test_programmed_reflections.py) | Exact rational dual certificate and fixed native corner/inverse checks; bounded orbit, kernel and moment diagnostics. A kernel solution alone is not full programming coverage; no variable-angle program or eigenbasis is emitted. |
+| Regular spectral chart | [Programmed reflections §§5–7](../../research/endpoint/PROGRAMMED_REFLECTIONS.md#5-a-regular-signed-cycle-chart) | [spectral_reflection_chart](../../compiler_robust_hopf/spectral_reflection_chart.py); [tests](../../tests/test_spectral_reflection_chart.py) | Fixed native signed-cycle and alternate-baseline words have exact dirty-return/inverse checks. Spectral, polar and quadrature calculations are bounded floating diagnostics, not emitted variable spectral reflections. |
+| Raw-source resynthesis | [Source-program resynthesis §§1–4](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md) | [source_resynthesis](../../compiler_robust_hopf/source_resynthesis.py); [tests](../../tests/test_source_resynthesis.py) | Exact dyadic masks, rational source ranks/denominator growth and binary Lie closures; bounded common-basis, alignment and product matrices. Arbitrary rotations in those matrices are not supplied native gates. |
+| Native selected tails | [Source-program resynthesis §4](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#4-conserved-prefix-raw-programs-have-a-coherently-priced-basis) | [native_source_resynthesis](../../compiler_robust_hopf/native_source_resynthesis.py); [tests](../../tests/test_native_source_resynthesis.py) | Exact four-qubit selected-tail word and literal inverse; complete dirty Boolean queries and bounded full-matrix/reference checks. Emits selected-tail components, not arbitrary-angle fine resynthesis. |
+| Completed-group resynthesis | [Source-program resynthesis §§5–6](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#5-completed-groups-admit-independent-gauges-without-connectors) | [source_group_resynthesis](../../compiler_robust_hopf/source_group_resynthesis.py); [tests](../../tests/test_source_group_resynthesis.py) | Exact rational coefficient/mask tables and raw-connector sign witness; bounded complete recovery/gauge words in faithful compact Clifford coordinates, retaining both central sectors and leakage. No large physical-core simulation or gate emitter. |
 
 ### Detailed finite checks
 
@@ -700,13 +724,14 @@ off-diagonal directions of every tree cut for the logical residual
 $`WQ^\dagger`$ and its Cayley transform, including complex coarse blocks.
 The outward Hopf order has rank-one cuts; reordered words include a sharp
 rank-two witness. The shared-factor checks reconstruct the Hopf residual
-with $`3N-2`$ modes, test the Gram bounds, and count $`5N-2`$ modes for
-the separate failure-bank completion. The
-[extension proof](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
-distinguishes these factors from completed source isometries: the latter
-count is not a lower bound for every possible joint completion. Numerical
-rank/chart tolerances are diagnostic, not certified equality decisions or
-a native-cost certificate.
+with $`3N-2`$ modes, test the Gram bounds, and retain the $`5N-2`$ count
+for separate failure banks as a diagnostic of that construction. The
+[regularized joint completion](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md#51-regularized-joint-completion-on-four-flag-blocks)
+fits the legal $`4N`$-mode space; its evidence is mapped
+[above](#endpoint-source-and-representation-checks). Neither the separate-bank
+count nor the joint matrix construction supplies a native-cost lower or upper
+bound. Numerical rank/chart tolerances are diagnostic, not certified equality
+decisions.
 The [four-mode native checks](../../tests/test_native_cayley.py) retain the
 magic Clifford's literal phase and orientation, recover regular Cayley
 factors at zero and nonzero defects, and test an addressed native word

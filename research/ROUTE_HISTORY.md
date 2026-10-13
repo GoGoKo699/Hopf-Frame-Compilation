@@ -169,14 +169,11 @@ supplies the missing native synthesis by itself.
 
 ## Revision decision and next bounded pass
 
-This is a retained endpoint-route decision from an earlier pass. Its
-construction candidates remain conditional; the current decision follows
-[the completed audit](../WORKSPACE.md#research-decision-and-stopping-rules)
-and freezes the selected scientific scope.
-
-The current selection is the
-[revision checkpoint above](../docs/OPEN_PROBLEM.md#current-decision).
-This section retains the earlier source-carry decision and its boundaries.
+This section retains earlier source-carry decisions and their derivations.
+Their construction candidates remain conditional; later outcomes are mapped
+in the [research index](README.md). The current scope and stopping rules
+are in the [workspace guide](../WORKSPACE.md#research-decision-and-stopping-rules).
+The proposals below are historical, not current work orders.
 
 The coupled-merge passes have completed their structural task. The
 [commutator repair](endpoint/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis)

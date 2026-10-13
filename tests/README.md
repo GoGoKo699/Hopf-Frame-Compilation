@@ -108,6 +108,15 @@ theorem by numerical extrapolation.
 | [`test_hyphen_inline_math.py`](test_hyphen_inline_math.py) | Does inline mathematics next to a word hyphen use the protected GitHub syntax? |
 | [`test_presentation.py`](test_presentation.py) | Does the presentation checker detect damaged math handoffs, diagram overflow, overlapping labels, and obscured connectors? |
 
+The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
+also maps the source-completion, ordered-bank, recovery, boundary, encoding,
+reflection, and source-resynthesis suites to their proof and module homes.
+The [detailed finite checks](../docs/reference/VERIFICATION_CATALOGUE.md#detailed-finite-checks)
+cover the Cayley and scattering tests, transported repairs, precision carry,
+small products, joint-source bodies, canonical grouped scalars, and task-cost
+arithmetic. Together these maps describe the full collection discovered by
+`validate.py`.
+
 ## Highest-leverage operator checks
 
 The following checks are especially useful when modifying the scientific code:
@@ -161,12 +170,10 @@ Its bounded QBP integration supplies certified fixture coefficients and
 both charged native readout streams with exact histogram decoders.
 General lookup and the full fine state schedule remain separate.
 
-All exact-frame, resource, QBP, one-clean primitive, and two-clean compiler
-checks are retained.
-Earlier exploratory endpoint constructions are preserved in repository
-history; their finite checks are outside this suite. The focused
-source-reuse checks above accompany the current open-problem note and
-preserve its explicit interface restrictions.
+The suite includes exact-frame, resource, QBP, one-clean primitive,
+two-clean compiler, and endpoint/depth research checks. Each research
+fixture retains its stated interface restrictions; its inclusion does
+not enlarge the selected compiler claims.
 
 ## Run the suite
 
