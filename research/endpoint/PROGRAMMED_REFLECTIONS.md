@@ -52,11 +52,13 @@ preserves reversibility; arbitrary extra multiplication need not do so.
 For a unitary W with $`\|W-I\|\lt1`$, put
 
 ```math
-Q=WJ,\quad H_*=\mathrm{sign}((Q+Q^\dagger)/2),
-\quad\omega=\|(Q-Q^\dagger)/(2i)\|.
+Q=WJ,\qquad B_Q=(Q+Q^\dagger)/2,
+\qquad\omega=\|(Q-Q^\dagger)/(2i)\|.
 ```
 
-The Hermitian part is within distance one of J and has the same inertia.
+Let H_* act as +1 on the positive eigenspace of B_Q and as -1 on its
+negative eigenspace. The Hermitian part B_Q is within distance one of J
+and has the same inertia, so there is no zero eigenspace.
 For each unit eigenvector of Q, the nearest possible eigenvalue of an
 involution is one of -1 and 1. H_* makes those choices simultaneously.
 Thus the unrestricted matrix optimum is
