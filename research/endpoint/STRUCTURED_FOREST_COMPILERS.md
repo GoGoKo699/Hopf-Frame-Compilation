@@ -2,12 +2,15 @@
 
 [Disjoint-block primitive](DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks) · [Precision gauge](PRECISION_GAUGE_COMPILER.md) · [Same-root star transfer](CANONICAL_STAR_RESOLVENT.md#1-same-root-column-transfer)
 
-Two structural conditions give linear-T compilation of the complete prescribed
-frame: subbinary growth in computational degree windows, and bounded exceptional
-path depth outside a uniformly compilable angle family. The first includes
-arbitrary angles on every fixed-outdegree active computational forest. Both
-results retain the literal two-clean-qubit contract and arbitrary dirty inputs.
-They are restricted-family theorems; the unrestricted A–D comparison is unchanged.
+Structural conditions give linear-T compilation of the complete prescribed
+frame: subbinary growth in computational degree windows, bounded exceptional
+path depth, or bounded exceptional exits from each component of a uniformly
+compilable base forest. The last condition permits arbitrarily long exceptional
+paths through base components with unbounded branching. The window condition
+includes arbitrary angles on every fixed-outdegree active computational forest.
+All results retain the literal two-clean-qubit contract and arbitrary dirty
+inputs. They are restricted-family theorems; the unrestricted A–D comparison
+is unchanged.
 
 ## 1. Model and native primitive
 
@@ -297,7 +300,227 @@ rounding is needed for normalization, classify first and preserve the labels
 under a sufficiently small perturbation. The combinatorial promise is on the
 chosen normalized labeled tree.
 
-## 6. Error, workspace, and verification
+## 6. Bounded exceptional exits from base components
+
+Use the normalized, marked forest of Section 5, with either of its two base
+promises. Delete all exceptional edges and call the remaining base components
+C. Suppose each C has at most a fixed number $`b\ge1`$ of outgoing exceptional
+edges. This counts exits from the **whole component**, not separately from each
+of its vertices. The quotient graph of base components is a forest of outdegree
+at most b. Its path depth is unrestricted, and different child components may
+have equal root degree.
+
+**Theorem.** Under this finite support certificate, the complete prescribed
+frame has $`O_{A,b}(N)`$ or $`O_{K,b}(N)`$ T count for the respective base
+promise, with the full contract of Section 1. Exceptional angles have no
+magnitude restriction. For a constant integer s chosen below, the construction
+uses at most $`3s`$ priced factors, in addition to the signed-normalization
+permutations. One of these factors is a complete base-forest call; all the
+others are disjoint determinant-one block sums. The factor count is independent
+of the exceptional path depth.
+
+### Exact dressed cuts and small coordinate supports
+
+Pay the stable base-first star transfer from Section 5. It gives
+$`W=W'C_{\rm in}`$, with one priced disjoint input correction. The base
+components have unchanged vertex sets and satisfy the same coefficient bounds
+as in that section. Therefore their complete direct sum $`U_{\rm all}`$ has
+the asserted linear native cost.
+
+For a component C write $`r_C`$ for its root, $`d_C=d(r_C)`$, and $`U_C`$
+for its complete internal base word. The suffix-cut identity gives
+
+```math
+W'=U_{\rm all}\mathcal D.
+```
+
+An exceptional edge $`e=(l,r_D)`$ leaving C becomes a real plane rotation
+between the orthonormal vectors
+
+```math
+u_e=U_C^\dagger e_l,\qquad e_{r_D}.
+```
+
+This retains every column of the frame. No target-dependent circuit for an
+individual vector $`u_e`$ is assumed.
+
+Every row of $`U_C`$ has a combinatorial coordinate-support envelope of size
+at most $`d_C+1`$. To see this, list the retained children of a vertex of
+degree d in their stable decreasing-degree order. Its i-th retained child
+has degree at most $`d-i`$. A row in that child's subtree acquires at most
+i additional coordinates when its carrier coordinate is expanded through
+the parent star. Induction bounds its support by
+$`(d-i+1)+i=d+1`$. The carrier row has at most d child coordinates and
+itself. The argument uses only the retained edge pattern, so exact zeros
+and cancellations require no equality test. A support envelope need not
+be a computational ancestor path: earlier sibling carriers can occur.
+
+Include the incoming carrier and every outgoing row envelope in
+
+```math
+T_C=\{r_C\}\ \cup\!
+ \bigcup_{e\text{ leaves }C}\mathrm{envelope}(U_C^\dagger e_l),
+\qquad |T_C|\le1+b(d_C+1).
+```
+
+These are disjoint computational coordinate sets for different C. Thus the
+entire dressed word acts only on their union. Keeping these conservative
+sets avoids a rank test or an additional basis-compression circuit.
+
+Sort $`\mathcal D`$ stably by decreasing child-component root degree. This
+sorting is exact. Two outgoing cuts of one component at different boundary
+vertices have orthogonal parent vectors, because
+$`\langle U_C^\dagger e_l,U_C^\dagger e_{l'}\rangle=\delta_{ll'}`$;
+their rotations commute. Cuts at the same boundary vertex already have
+decreasing child degree by the stable exceptional order. An incoming cut
+and an outgoing cut of the same component already occur in that order,
+and the incoming child degree $`d_C`$ is strictly larger than every outgoing
+child degree. All other distinct-component pairs have disjoint supports.
+Consequently every pair inverted by the sorting commutes, including when
+child degrees repeat.
+
+### Subbinary growth after contracting base components
+
+A computational root r of degree d represents the aligned interval
+$`[r,r+2^d)`$. The roots of the outgoing child components of C are an
+antichain in its original computational subtree. Their complete intervals
+are disjoint, lie inside $`[r_C,r_C+2^{d_C})`$, and avoid $`r_C`$.
+For at most b such intervals,
+
+```math
+\sum_{D\text{ child of }C}2^{d_D}
+\le\kappa_b 2^{d_C},\qquad \kappa_b=1-2^{-b}.
+```
+
+Indeed, the parent interval minus its first label is partitioned into its
+canonical right-sibling intervals of sizes
+$`2^{d_C-1},2^{d_C-2},\ldots,1`$. Each child interval lies in one of
+these. At most b canonical intervals are occupied; their combined length
+is at most the sum of the b largest sizes. This also covers $`b>d_C`$.
+Distinct child degrees are unnecessary.
+
+Choose a constant $`0\lt\alpha\lt1`$ sufficiently close to one that
+
+```math
+\gamma=2^\alpha,\qquad
+r_b=b^{1-\alpha}\kappa_b^\alpha\lt1,
+\qquad C_b\ge(1-r_b)^{-1}.
+```
+
+Hölder's inequality gives
+$`\sum_D\gamma^{d_D}\le r_b\gamma^{d_C}`$. The same inequality
+holds after restricting children to any lower degree cutoff L and dividing
+by $`\gamma^L`$. Strong induction therefore bounds the number of quotient
+vertices reachable from a degree-d root without going below L by
+
+```math
+F_L(d)\le C_b\gamma^{d-L}.
+```
+
+The induction is $`F_L(d)\le1+\sum_D F_L(d_D)`$, with
+$`1+C_br_b\gamma^{d-L}\le C_b\gamma^{d-L}`$. It proves a uniform
+subbinary degree-window certificate on the contracted forest. A fixed b is
+essential; no constant is asserted uniformly in growing b.
+
+### Constant many block factors
+
+Choose an integer s with
+$`\rho=\gamma^{1+1/s}/2\lt1`$. Within each complete quotient tree of
+root degree d, partition degrees into at most s consecutive bands of width
+$`w=\lceil(d+1)/s\rceil`$. Keep dressed cuts internal precisely when their
+two component roots are in the same band. The sorted child-degree order
+places every internal outgoing cut before every cross-band outgoing cut
+of the same parent component. A path crosses at most $`s-1`$ bands.
+
+For each resulting band component B, put
+$`T_B=\bigcup_{C\in B}T_C`$. Its internal dressed-cut word is a
+determinant-one unitary supported on $`T_B`$. The window bound controls
+the number of quotient vertices in B by $`C_b\gamma^{w-1}`$, and the
+whole quotient tree has at most $`C_b\gamma^d`$ vertices. Hence
+
+```math
+\begin{aligned}
+\sum_{B\text{ in this tree}}|T_B|^2
+&\le C_b^2[1+b(d+1)]^2\gamma^{d+w-1}\\
+&\le C_b^2\gamma^{1/s}[1+b(d+1)]^2
+       \gamma^{(1+1/s)d}.
+\end{aligned}
+```
+
+Sum over quotient-tree roots, using the original computational degree
+distribution. With
+
+```math
+S_b(\rho)=\sum_{d=0}^{\infty}[1+b(d+1)]^2\rho^d\lt\infty,
+```
+
+the nonzero roots contribute at most
+$`C_b^2\gamma^{1/s}NS_b(\rho)/2`$. The possible degree-n root
+contributes at most $`C_b^2\gamma^{1/s}NS_b(\rho)`$. Thus the total
+band-block squared-size budget is bounded by a constant depending only
+on b times N. The polynomial coordinate-support overhead has been included.
+
+The exact suffix factorization of Section 2 now applies to these supported
+plane rotations. For a cut leaving a quotient vertex C, every internal
+edge touching C occurs earlier: an incoming edge does so by ancestry,
+and an outgoing edge does so by the degree-band suffix property. All later
+internal edges therefore fix its parent vector, which lies in $`T_C`$.
+Inside the child band, every internal edge occurs after its incoming cut,
+since its child degree is strictly smaller. These facts justify the
+completed internal band words in the conjugations even when a quotient
+vertex has several different parent vectors.
+
+Let $`V_r`$ be the direct sum of internal band words at quotient depth r,
+and let $`K_r`$ contain the original dressed cuts leaving those band
+components. If a parent band component B contains $`|B|`$ quotient
+vertices, these cuts have support inside $`T_B`$ together with at most
+$`b|B|`$ child-component root coordinates. Since every $`T_C`$ contains
+its own root, their combined block size is at most
+$`(b+1)|T_B|`$. At fixed quotient depth these enlarged supports are
+disjoint. Therefore every $`K_r`$ has a linear squared-size budget too.
+All these blocks are products of real determinant-one plane rotations.
+
+Writing $`U_{\rm bands}`$ for the complete direct sum of internal band
+words gives the literal full-operator identity
+
+```math
+F_r=V_r^\dagger K_rV_r,\qquad
+\mathcal D=U_{\rm bands}F_{s-2}\cdots F_0.
+```
+
+The product displays later quotient depths on the left; empty factors are
+omitted. There are at most $`3s-2`$ disjoint-block factors for this word,
+plus $`U_{\rm all}`$ and $`C_{\rm in}`$: at most $`3s`$ priced factors
+in total. Their matrices are finite classical functions of the original
+angles. The disjoint-block primitive prices their full native synthesis;
+there are no executed prefix-oracle calls or supplied boundary states.
+Fixed fractions of the final error suffice, and Section 7 supplies the
+unchanged workspace and arbitrary-dirty composition guarantees. ∎
+
+For example, at $`b=2`$ one may take
+$`\alpha=3/4`$, $`\gamma=2^{3/4}`$, and $`s=4`$:
+$`r_b^4=27/32\lt1`$ and $`\rho=2^{-1/16}\lt1`$. Twelve priced
+factors suffice. At $`b=1`$ every quotient component is a chain with
+strictly decreasing degrees. Its entire dressed word has support at most
+$`\sum_{j=0}^{d}(j+2)=(d+1)(d+4)/2`$. Summing the squares of this
+polynomial bound over root degrees is already $`O(N)`$. Thus one block
+sum compiles all dressed chains, giving three priced factors including
+the base forest and input correction.
+
+As a family with growing exceptional depth, start at the global root and
+follow the highest-degree child at each step to the terminal label
+$`N-1`$. Mark precisely these n path edges exceptional and let every
+other angle vary independently in $`[\pi/8,\pi/4]`$. The regular base
+angles need not be exact native gates. Each base component has one exceptional
+exit, although the original base branching is unbounded. For sufficiently large n,
+the exceptional sines may be chosen independently with exponents
+$`E_j=\lfloor N/(j+4)\rfloor`$, $`0\le j\lt n`$; their exponent
+ratio and their path count both grow. The theorem also permits arbitrary
+other exceptional angles on this support. This is a checkable extension
+of the bounded-depth condition, not a claim that every other compiler
+fails on this example or that unrestricted branching has been resolved.
+
+## 7. Error, workspace, and verification
 
 Allocate a fixed fraction of $`\epsilon`$ to each native factor and to any
 required input rounding. For a fixed number of factors the fine-source
@@ -318,5 +541,10 @@ exact finite squared-size budgets. It does not emit native gates. The
 complete edge matrices with the grouped factors, include signed and exact
 corner angles, verify same-root input correction on every column, and guard
 against reversing the matrix-product order. Graph tests check the original
-degree counts and the binary-growth certificate. These diagnostics support the
-identities; the analytical estimates above establish the asymptotic counts.
+degree counts and the binary-growth certificate. The
+[exceptional-exit tests](../../tests/test_exceptional_exits.py) additionally
+check the two successive full-matrix factorizations, structural row envelopes,
+commuting cuts at distinct boundary vertices, repeated child degrees, dyadic
+packing, long quotient chains, and finite block budgets. These diagnostics
+support the identities; the analytical estimates above establish the
+asymptotic counts.

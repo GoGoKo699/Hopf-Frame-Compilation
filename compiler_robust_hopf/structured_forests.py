@@ -179,3 +179,149 @@ def partition_degree_bands(
     cuts = tuple((left, right) for left, right in word
                  if ordinal[left] != ordinal[right])
     return partition_suffix_forest(height, word, cuts)
+
+
+@dataclass(frozen=True)
+class ExceptionalExitPartition:
+    """Finite supports for the bounded-exit theorem, not a native emitter.
+
+    ``bands`` groups base-component indices into connected degree windows.
+    The cut matrices use the exact parent rows of the base word; the sets
+    recorded here contain their supports without inspecting angle values.
+    All matrix products in the proof act rightmost first.
+    """
+
+    base: ForestPartition
+    port_supports: tuple[tuple[int, ...], ...]
+    ordered_cuts: tuple[Edge, ...]
+    bands: tuple[tuple[int, ...], ...]
+    band_of: tuple[int, ...]
+    band_depths: tuple[int, ...]
+    internal_cuts: tuple[Edge, ...]
+    cut_groups: tuple[tuple[Edge, ...], ...]
+
+    @property
+    def band_supports(self) -> tuple[tuple[int, ...], ...]:
+        return tuple(tuple(sorted({v for component in band
+                                   for v in self.port_supports[component]}))
+                     for band in self.bands)
+
+    @property
+    def square_budget(self) -> int:
+        return sum(len(support) ** 2 for support in self.band_supports)
+
+    @property
+    def cut_block_supports(self) -> tuple[tuple[tuple[int, ...], ...], ...]:
+        """One disjoint block per parent band in each chronological group."""
+        supports = self.band_supports
+        groups = []
+        for edges in self.cut_groups:
+            blocks: dict[int, set[int]] = {}
+            for left, right in edges:
+                parent_band = self.band_of[self.base.component_of[left]]
+                blocks.setdefault(parent_band, set(supports[parent_band])).add(right)
+            groups.append(tuple(tuple(sorted(blocks[index])) for index in sorted(blocks)))
+        return tuple(groups)
+
+    @property
+    def cut_square_budgets(self) -> tuple[int, ...]:
+        return tuple(sum(len(support) ** 2 for support in group)
+                     for group in self.cut_block_supports)
+
+    @property
+    def factor_count(self) -> int:
+        """Include the base word, input correction, and band factorization."""
+        return 3 + 3 * len(self.cut_groups)
+
+
+def partition_exceptional_exits(
+    height: int,
+    edge_word: Iterable[Edge],
+    exceptional: Iterable[Edge],
+    bands: int,
+    exit_bound: int,
+) -> ExceptionalExitPartition:
+    """Certify supports after stable base-first same-root star transfer.
+
+    Base and exceptional children must separately retain decreasing degree.
+    Each base component may have at most ``exit_bound`` exceptional exits;
+    its number of descendants and the exceptional path depth are unrestricted.
+    The caller supplies the transferred angles separately. This helper neither
+    performs star transfer nor decides whether the base angles are cheap.
+    """
+    for name, value in (("bands", bands), ("exit_bound", exit_bound)):
+        if not isinstance(value, Integral) or isinstance(value, bool) or value < 1:
+            raise ValueError(f"{name} must be a positive integer")
+    bands, exit_bound = int(bands), int(exit_bound)
+    base = partition_suffix_forest(height, edge_word, exceptional)
+    height = base.height
+    previous_degree: dict[tuple[int, bool], int] = {}
+    for edge in base.edges:
+        left, right = edge
+        key = left, edge in base.cuts
+        degree = trailing_degree(right, height)
+        if degree >= previous_degree.get(key, height + 1):
+            raise ValueError("base and exceptional children must retain decreasing degree")
+        previous_degree[key] = degree
+
+    component_count = len(base.components)
+    roots = tuple(component[0] for component in base.components)
+    exits: list[list[Edge]] = [[] for _ in roots]
+    parents: list[int | None] = [None] * component_count
+    for left, right in base.edges:
+        if (left, right) in base.cuts:
+            parent, child = base.component_of[left], base.component_of[right]
+            exits[parent].append((left, right))
+            parents[child] = parent
+    if any(len(edges) > exit_bound for edges in exits):
+        raise ValueError("a base component exceeds the exceptional exit bound")
+
+    # Generic row supports are propagated by unions, including both endpoints
+    # even for a supplied zero or corner angle. No floating zero test is used.
+    rows = [{vertex} for vertex in range(1 << height)]
+    for left, right in base.internal_edges:
+        support = rows[left] | rows[right]
+        rows[left], rows[right] = support, support
+    port_supports = []
+    for index, root in enumerate(roots):
+        support = {root}
+        for left, _ in exits[index]:
+            support.update(rows[left])
+        port_supports.append(tuple(sorted(support)))
+
+    ordered = tuple(sorted((edge for edge in base.edges if edge in base.cuts),
+                           key=lambda edge: -trailing_degree(edge[1], height)))
+    tree_roots = list(range(component_count))
+    ordinals = [0] * component_count
+    for index, parent in enumerate(parents):
+        if parent is not None:
+            tree_roots[index] = tree_roots[parent]
+        root_degree = trailing_degree(roots[tree_roots[index]], height)
+        width = (root_degree + 1 + bands - 1) // bands
+        ordinals[index] = (root_degree - trailing_degree(roots[index], height)) // width
+
+    band_components: list[list[int]] = []
+    band_of = [-1] * component_count
+    depths: list[int] = []
+    for index, parent in enumerate(parents):
+        if parent is None or ordinals[parent] != ordinals[index]:
+            band = len(band_components)
+            band_components.append([])
+            depths.append(0 if parent is None else depths[band_of[parent]] + 1)
+        else:
+            band = band_of[parent]
+        band_components[band].append(index)
+        band_of[index] = band
+    internal = []
+    groups: list[list[Edge]] = [[] for _ in range(max(depths, default=0))]
+    for edge in ordered:
+        left, right = edge
+        parent_band = band_of[base.component_of[left]]
+        if parent_band == band_of[base.component_of[right]]:
+            internal.append(edge)
+        else:
+            groups[depths[parent_band]].append(edge)
+    return ExceptionalExitPartition(
+        base, tuple(port_supports), ordered, tuple(map(tuple, band_components)),
+        tuple(band_of), tuple(depths), tuple(internal), tuple(map(tuple, groups)),
+    )

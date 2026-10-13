@@ -41,6 +41,7 @@ target tuple.
 | Regular or common-scale branches | The [precision-gauge compiler](../research/endpoint/PRECISION_GAUGE_COMPILER.md) covers polynomially regular normalized branches, a fixed-ratio interval of branch exponents, and the stated cheap/ultraweak separation |
 | Sparse computational forests | The [structured-forest compiler](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) covers fixed outgoing degree in the original tree $`p(j)=j-\mathrm{lowbit}(j)`$, more generally certified sub-binary growth within degree windows; active angles may be arbitrary, signed, or singular |
 | Bounded exceptional path depth | The same forest theorem allows arbitrary-scale exceptional edges when each computational path meets only a fixed number, over a cheap or fixed-ratio base family |
+| Bounded exceptional exits | The [contracted-forest extension](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md#6-bounded-exceptional-exits-from-base-components) allows arbitrarily deep exceptional paths when each whole base component has only a fixed number of outgoing exceptional edges; the base may contain nonnative regular angles |
 | Native-baseline updates | [Antichain](../research/endpoint/ANTICHAIN_COMPILER.md) and [ancestor-closed sparse updates](../research/endpoint/SPARSE_UPDATE_COMPILER.md) retain their separate promises |
 
 A common primitive is the [disjoint SU-block compiler](../research/endpoint/DISJOINT_BLOCK_COMPILER.md):
@@ -49,6 +50,11 @@ $`O_\kappa(N)`$ T-count, including the actual source construction,
 inverses, and return error. Whole components can be too large for this
 criterion; the forest theorem obtains a constant number of eligible
 factors by exact component dressing.
+
+For the bounded-exit extension, one exit per base component needs three
+priced factors, while two exits need at most twelve, apart from signed
+normalization. The factors include the base forest and the input correction;
+their full native cost is charged.
 
 The [rank-weighted compiler](../research/endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md)
 extends this primitive to supplied bounds
