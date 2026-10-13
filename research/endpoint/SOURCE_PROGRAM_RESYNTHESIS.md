@@ -228,10 +228,12 @@ retained as an arbitrary qubit, not assigned an eigenvalue. The entire common
 basis has cost $`O(qm+(q^2+q)\log((q+1)/\epsilon_B))`$.
 
 For k interacting non-core qubits, any finite program using these sources,
-actual inverses and local interlayers becomes one operation on w=k+s_* qubits
+actual inverses and Clifford interlayers becomes one operation on w=k+s_* qubits
 in this basis. Multiply it classically before synthesis. A finite decomposition
-into a literal phase and selected SU(2) rotations, with selectors expanded
-into commuting Pauli terms, gives a conservative O(8^w) Pauli-rotation count.
+into its known Clifford scalar phase and selected SU(2) rotations, with selectors
+expanded into commuting Pauli terms, gives a conservative O(8^w) Pauli-rotation
+count. Arbitrary non-Clifford scalar interlayers are not included in this
+zero-additional-helper statement.
 Thus
 
 ```math
