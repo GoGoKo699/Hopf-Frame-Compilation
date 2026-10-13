@@ -259,7 +259,14 @@ establishes its dimension-independent native schedule. The
 [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact
 component dressing for signed and corner angles. A reversed-product negative
-control detects an incorrect quotient-depth order. The native conclusion
+control detects an incorrect quotient-depth order. The
+[exceptional-exit tests](../../tests/test_exceptional_exits.py) check stable
+star transfer followed by dressed-cut degree sorting and a second band
+factorization on every column. They also verify structural row envelopes,
+commuting distinct-boundary cuts, repeated quotient child degrees, exact
+dyadic packing, long exceptional chains, and finite block-support budgets.
+The helper records combinatorial certificates without inferring support from
+numerical zeros or emitting gates. The native conclusion
 uses the [forest proof](../../research/endpoint/STRUCTURED_FOREST_COMPILERS.md),
 not a gate count inferred from these matrices.
 
