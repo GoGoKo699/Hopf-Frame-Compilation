@@ -161,11 +161,15 @@ fine-source cost remains O(nN). Its depthwise balanced schedule gives exact
 four-port history compression and a full rounded-source comparison within
 the literal dirty width. The preceding fine prefix-unwinding bank remains
 unconstructed; a bank-preserving scalarization must approximate that prefix
-on every logical and dirty input. The
+on every logical and dirty input. More generally,
+[three calls to a joint history compressor](../research/endpoint/JOINT_HISTORY_COMPRESSION.md)
+recover a complete fine prefix, with at most 24 times the compression error.
+A linear-count compressor would itself suffice to finish the endpoint;
+logical-label-preserving mixing cannot supply it. The
 [joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
 compresses returned dirty work according to the Pauli axes' symplectic rank,
-without additional T gates or error. Neither result supplies a uniform
-O(N) native selection rule or improves the endpoint comparison.
+without additional T gates or error. These results do not supply a uniform
+O(N) native selection rule or improve the endpoint comparison.
 
 ## Large-width T-depth
 
