@@ -134,6 +134,13 @@ dirty entanglement, the 24-times error bound, and a conserved-label
 constant-gap example. The compressor is supplied as a finite matrix;
 these checks do not construct a native compressor or improve its count.
 
+The [history-reflection tests](../../tests/test_history_reflections.py)
+check the anchored Householder completion and its bounded normalization,
+the full-operator reflection error from approximate compressor columns,
+and a promised root family whose range reflection suppresses orientation
+changes. Exact scalar checks support the restricted query-bound constants;
+the native T-count remains a separate question.
+
 The [joint-word proof](../../research/endpoint/JOINT_NATIVE_WORDS.md) has
 [exact phase, projected-Clifford and error-Gram witnesses](../../tests/test_joint_native_words.py).
 The source-leakage fixture explicitly avoids assuming that the approximate
