@@ -22,7 +22,7 @@ and define
 
 ```math
 R=I-2ee^T,\qquad S=I+(i-1)ee^T,\qquad
-Q(d)=F\operatorname{diag}(d)F,\quad |d_k|=1,
+Q(d)=F\mathrm{diag}(d)F,\quad |d_k|=1,
 \qquad V(d)=S Q(d)R Q(d)^\dagger R S^\dagger.
 ```
 
@@ -130,7 +130,7 @@ A stable expression is $`\sqrt2\,t/\sqrt{1+\sqrt{1-t^2}}`$. The small-angle
 loss is $`\gamma^2/4+O(\gamma^4)`$. This is a global lower bound over the
 table, not merely a Taylor upper estimate. More generally a fixed direction
 with nonzero variance of $`\lambda^2`$ has leading loss
-$`\sin^2(\gamma/2)\sqrt{\operatorname{Var}(\lambda^2)}`$; its higher-order
+$`\sin^2(\gamma/2)\sqrt{\mathrm{Var}(\lambda^2)}`$; its higher-order
 constant may depend on the direction and N. The explicit two-coordinate
 formula supplies the uniform witness. This plane target is not asserted to
 be an original ordered Hopf word.
