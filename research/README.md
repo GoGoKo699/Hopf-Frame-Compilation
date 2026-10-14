@@ -9,7 +9,10 @@ gives the minimal dependency chain; the remaining studies retain their
 own hypotheses and distinct resource points. The
 [sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) resolves
 $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
-constant square-root dirty width. Optimal T-depth remains open.
+constant square-root dirty width. Its precision-uniform extension retains
+sublinear depth with shrinking error $`2^{-L}`$ for
+$`L=o(\sqrt n)`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
+Optimal T-depth remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -151,32 +154,37 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The [complete sublinear-depth theorem](depth/SUBLINEAR_T_DEPTH.md)
-gives, for every fixed $`0\lt\eta\le1/64`$, two external clean flags
-and $`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits,
+The [precision-uniform compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+gives, for some absolute $`c>0`$, every integer $`6\le L\le cn`$,
+two external clean flags and every $`b\ge17(L+n+7)`$.
+Put $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$. Then
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(\sqrt n\log_2(n+2)\right)=o(n).
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-The same circuit preserves the prescribed complete real frame in the
-full initialized-isometry norm. The constant $`C_\eta`$ is sufficiently
-large and fixed. The result resolves the stated sublinear-depth existence
-question, while the optimal depth order remains open. The
-[uniform precision/workspace theorem](../docs/UNIFORM_PRECISION_DEPTH.md)
-retains its separate precision guarantees. At every
-$`b\ge17(L+n+7)`$, the fixed-accuracy extension gives
-$`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
+All constants are absolute. One circuit preserves the prescribed complete
+real frame with error at most $`2^{-L}`$ in the full initialized-isometry
+norm. Count is optimal throughout this range; count and depth match through
+$`b\le\sqrt{NL/F(n,L)}`$ on every nonempty interval above the
+literal lower threshold. The
+[all-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md)
+retains its guarantees outside this subrange.
+
+For every fixed $`0\lt\eta\le1/64`$, the separate all-n statement
+has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 $`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
-It extends simultaneous matching through
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$ on every
-nonempty interval above that lower threshold.
+At sufficient square-root dirty width it gives $`o(n)`$ depth.
+The uniform extension also gives sublinear depth for shrinking error
+when $`L=o(\sqrt n)`$ and $`b=\Theta(\sqrt{NL})`$ is
+sufficiently large. Optimal depth remains open.
 
 | Current proof | Role |
 |---|---|
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
-| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, parallel binary phase-gradient calibration, and complete work/error contract |
+| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, native calibration, and complete work/error contract |
+| [Shared-gradient recovery](depth/SHARED_GRADIENT_RECOVERY.md) | One native phase-source preparation and actual return across early recovery, priced arithmetic and coefficient tables, and a reflection excluding the invariant live gradient |
 | [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
 | [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
 

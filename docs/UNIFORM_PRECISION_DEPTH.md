@@ -80,18 +80,26 @@ T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
 
 These are worst-case bounds over prescribed complete real frames. No
 unrestricted lower bound for the additive n or nL is asserted. The
-large-width depth optimum remains open. A separate
-[fixed-accuracy construction](../research/depth/SUBLINEAR_T_DEPTH.md)
-now gives $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ at sufficient
-$`b=\Theta_\eta(\sqrt N)`$, with two clean flags,
-$`T=O_\eta(\sqrt N)`$, and $`G=O_\eta(N)`$ on the same circuit.
-Its fixed-accuracy width extension gives
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$ and
-$`T=O_\eta(\sqrt N+N/b)`$ for every $`b\ge17B_0`$, retaining
-$`G=O_\eta(N)`$. It extends simultaneous fixed-accuracy matching through
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, on every nonempty
-interval above the same lower threshold. The theorem on this page retains
-its precision-uniform constants and matching intervals. The separate
+large-width depth optimum remains open. The separate
+[compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md)
+gives the fixed-accuracy sublinear-depth theorem. Its
+[precision-uniform extension](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+has, for some absolute $`c\gt0`$ and $`6\le L\le cn`$,
+
+```math
+T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad G=O(NL),
+```
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}
+ +\min\{nL,\sqrt n\log_2(n+2)+L^2\}\right),
+```
+
+at the same literal lower threshold $`b\ge17B_0`$, with two clean
+flags and full error at most $`2^{-L}`$. Its constants are absolute;
+the proof prices the shared gradient and its table-based arithmetic.
+The theorem on this page remains the all-precision fallback and retains
+its own matching intervals. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 resolves the two-clean high-precision real-frame count endpoint at its
 stated literal allocation; the uniform theorem here retains nL in its

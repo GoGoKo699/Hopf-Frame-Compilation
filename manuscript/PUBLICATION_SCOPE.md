@@ -258,32 +258,40 @@ Result C also gives linear count for real frames at this dirty allocation;
 its complex reservation uses one more dirty qubit. Source-interface
 restrictions remain distinct from unrestricted lower bounds.
 
-At every fixed $`0\lt\eta\le1/64`$, the separate
-[compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md)
-uses two external clean flags and sufficient
-$`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits to attain,
-on one complete-real-frame circuit,
+The separate [compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+has absolute constants for some absolute $`c>0`$, every integer
+$`6\le L\le cn`$, two external clean flags, and every
+$`b\ge17(L+n+7)`$. With
+$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$, it gives
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\log(n+2))=o(n).
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-The T-count remains worst-case optimal. The full initialized-isometry
-error is at most eta, including actual inverses and all work return.
+These are simultaneous complete-real-frame bounds with full
+initialized-isometry error at most $`2^{-L}`$. Count is worst-case
+optimal throughout this range. Count and depth match their inherited
+lower bounds through $`b\le\sqrt{NL/F(n,L)}`$, whenever the
+interval above the literal lower threshold is nonempty. At sufficient
+$`b=\Theta(\sqrt{NL})`$, depth remains sublinear for
+$`L=o(\sqrt n)`$.
+
 The coherent descendant source uses the Boolean-phase method of
 Gosset–Kothari–Wu, exact dirty queries, and a local certifiable selection
-rule. The complete-operator proof charges its column encoding, recovery,
-conditional workspace and late tail. Classical preprocessing is terminating,
-with no efficiency claim. This resolves the earlier sublinear-depth
-existence question; optimal depth remains an open problem, with unrestricted lower
-bound $`\Omega(1)`$ at square-root width. For every
-$`b\ge17(L+n+7)`$, the fixed-accuracy extension gives
+rule. [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md)
+charges one native phase-source preparation and actual return across
+early recovery, including its arithmetic and coefficient tables.
+The proof also charges conditional workspace and the final layers'
+quadratic precision contribution. Classical preprocessing terminates,
+with no efficiency claim.
+
+For every fixed $`0\lt\eta\le1/64`$, the all-n statement retains
 $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
-Count and depth match their inherited lower bounds through
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, whenever this
-interval is nonempty. Result D retains its precision-uniform guarantees;
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$ at
+every eligible width. At sufficient square-root width it gives
+$`o(n)`$ depth, while the unrestricted lower bound is $`\Omega(1)`$.
+Optimal depth remains an open problem. Result D retains its all-precision guarantees;
 C does not improve its depth. The separate
 [entry-indexed normalization bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 is restricted to that state-source architecture and is not an
@@ -327,7 +335,7 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C | [One-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using growing precision sources, [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md), exact dirty word banks, and the [layerwise one-clean baseline](../docs/ONE_CLEAN_COMPILER.md) |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
-| Fixed-accuracy large-width refinement | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md): coherent descendant sources, charged native dirty queries, complete-column recovery, and a polylogarithmic late tail |
+| Precision-uniform large-width refinement | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision): coherent descendant sources, one charged shared gradient, native dirty queries, complete-column recovery, and a precision-dependent final tail |
 | Compiler corollaries and distinct allocations | [One-clean primitives](../docs/ONE_CLEAN_COMPILER.md), [operator sources](../docs/OPERATOR_SOURCE_COMPILER.md), [borrowed-workspace compiler](../docs/BORROWED_WORKSPACE_COMPILER.md), and [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); each keeps its literal reservation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |

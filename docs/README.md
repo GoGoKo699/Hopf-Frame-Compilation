@@ -99,25 +99,24 @@ count and depth on explicit intervals, plus a stronger slowly growing
 precision range. Its fixed-accuracy specialization gives O(n) T-depth
 at sufficient square-root dirty width.
 
-The [sublinear-depth construction](../research/depth/SUBLINEAR_T_DEPTH.md)
-sharpens that fixed-accuracy point. For every fixed
-$`0\lt\eta\le1/64`$, two clean flags and
-$`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits suffice for
-one complete real-frame circuit with
+The [compressed-column refinement](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+has absolute constants for $`6\le L\le cn`$, with some absolute
+$`c>0`$, two clean flags, and every $`b\ge17(L+n+7)`$. With
+$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$, it gives
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(\sqrt n\log_2(n+2)\right)=o(n).
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-The constant $`C_\eta`$ is sufficiently large and fixed. For every
-$`b\ge17(L+n+7)`$, its width-sensitive extension gives
-$`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
-It extends simultaneous matching at fixed accuracy to
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, subject to the
-same lower threshold. Optimal depth beyond this range remains open.
-The uniform theorem retains its separate precision guarantees.
+Count is optimal throughout this range. Count and depth match through
+$`b\le\sqrt{NL/F(n,L)}`$, subject to the same lower threshold.
+At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error
+$`2^{-L}`$ retains sublinear depth whenever $`L=o(\sqrt n)`$.
+The fixed-accuracy statement covers every n with accuracy-dependent
+constants and retains $`O_\eta(\sqrt n\log(n+2))`$ depth at
+sufficient square-root width. Optimal depth remains open; the all-precision
+theorem retains its guarantees outside the new subrange.
 
 The uniform proof has an early unary-group branch, an exact rectangular-query tail,
 and an all-precision fallback. The following chapters are mathematical
@@ -137,12 +136,13 @@ dependencies, not a sequence of research tasks to repeat.
 | Native scheduling and depth bounds | [T-depth schedule](T_DEPTH_COMPILER.md): exact shared-control phase/Fredkin batches, routing, two-dirty predicates, and count-to-depth lower-bound transfer |
 | Angular approximation | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md), Section 1: full-frame square-sum bound for ideal angle perturbations |
 
-The fixed-accuracy improvement has a separate, shorter dependency chain:
+The compressed-column improvement has a separate dependency chain:
 
 | Part of the sublinear-depth argument | Proof dependency and role |
 |---|---|
 | Complete early operator | [Sublinear T-depth](../research/depth/SUBLINEAR_T_DEPTH.md): orthogonal column sectors, dimension-independent source completion, literal-phase recovery, and early/tail resource closure |
-| Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, parallel phase-gradient preparation, exact guarded arithmetic, and full source-isometry error |
+| Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, exact guarded arithmetic, and full source-isometry error |
+| Shared precision source | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md): one native source preparation/actual return, priced arithmetic and coefficient tables, invariant gradient sector, and recovery reflection excluding the live core |
 | Native early data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): private T-layer scheduling with shared read-only addresses, Boolean phase echoes, and guarded variable-suffix Hadamards |
 | Count-efficient final layers | [Nonuniform indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md) and [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision): linear indicator count/work, logarithmic address depth, and the retained complete-input layer error |
 

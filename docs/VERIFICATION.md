@@ -31,7 +31,7 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
-| Fixed-accuracy width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), and retained query/indicator suites | Analytic coherent descendant source, width splice and native schedule; finite recovery completions are verification devices, not a native compiler |
+| Precision-uniform width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), [shared-gradient checks](../tests/test_shared_gradient_recovery.py), and retained query/indicator suites | Absolute constants in the stated linear-precision range; analytic source, invariant-sector recovery, uniform workspace splice and native schedule; finite checks are not a general compiler |
 | Entry-indexed normalization barrier | [Encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) | Exact Haar spectrum, explicit optimal factorization and nuclear-norm dual witness | Analytic proof for the stated factorization contract; no unrestricted native-depth or recovery-query lower bound |
 
 <a id="endpoint-count-evidence"></a>
@@ -108,10 +108,23 @@ error bound. Negative controls drop a guard or target sign, or substitute
 an ideal preparation inverse. The source is deliberately coarse, not an
 implementation of arbitrary-accuracy one-qubit synthesis.
 
+The [shared-gradient checks](../tests/test_shared_gradient_recovery.py)
+add a literal two-bit compute/swap/uncompute adder, occupied-work inactive
+echoes, and a complete coefficient-bank phase table. Recovery-shaped
+noncommuting words test one native preparation and its actual inverse at
+the two boundaries, including nonzero final leakage and a preparation-error
+bound independent of the number of middle calls. Counterchecks reject a
+reflection that tests the live gradient, a substituted ideal inverse, and
+a discarded coefficient-bank scalar phase. Programmable angle accuracy
+requires a zero program; the fixed outer damping instead ignores program
+contents. These checks use small exact permutations and matrices of
+dimension at most 64. They test the local identities and source boundary
+comparison, not a complete emitted amplitude-amplification compiler.
+
 These fixtures do not emit the derived Boolean tables or a complete native
 descendant loader. The existing native dirty-query, shared-control phase,
 returned-helper predicate and nonuniform-indicator tests cover their stated
-finite interfaces. Terminating source selection, polynomial overhead
+finite interfaces. Terminating source selection, polynomial and arithmetic-table overhead
 absorption, and the same-circuit asymptotic theorem are proved analytically;
 no numerical extrapolation or efficient preprocessing claim is made.
 

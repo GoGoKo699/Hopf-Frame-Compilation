@@ -21,10 +21,11 @@ baseline, and finite evidence. Its older Result C is a retained supporting
 construction. A, B, and D retain their distinct resource statements.
 
 A separate reconstruction below checks the
-[fixed-accuracy large-width depth construction](../research/depth/SUBLINEAR_T_DEPTH.md).
-It preserves C and the uniform D theorem while establishing a sublinear
-depth upper bound at sufficiently large constant square-root dirty width,
-with a width-sensitive extension at every eligible dirty allocation.
+[large-width depth construction](../research/depth/SUBLINEAR_T_DEPTH.md).
+It preserves C and the all-precision D theorem while establishing an
+absolute-constant refinement through a small linear-precision range.
+Its fixed-accuracy specialization gives sublinear depth at sufficiently
+large constant square-root dirty width.
 
 ## Claim-to-proof decisions
 
@@ -101,46 +102,48 @@ domain. It replaces the overly broad claim that zero leaf phases embed
 the entire real-angle domain. The specific root-angle $`\pi/16`$
 witness belongs to both families.
 
-## Fixed-accuracy large-width depth audit
+<a id="fixed-accuracy-large-width-depth-audit"></a>
 
-For every fixed $`0\lt\eta\le1/64`$, the
-[complete construction](../research/depth/SUBLINEAR_T_DEPTH.md) gives
-all prescribed real frames on $`n\ge1`$ qubits a circuit with two
-initialized flags and $`b=\lceil C_\eta\sqrt N\rceil`$ dirty qubits:
+## Precision-uniform large-width depth audit
+
+The [uniform extension](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+gives complete real frames a circuit with two initialized flags, error
+at most $`2^{-L}`$, and absolute constants for every integer
+$`6\le L\le cn`$ and $`b\ge17(L+n+7)`$, for some absolute
+$`c>0`$. Writing $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$,
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\,\log(n+2))=o(n).
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-These are simultaneous bounds with the full initialized-isometry error
-at most eta. They settle the stated fixed-accuracy sublinear-depth
-existence question; they do not determine optimal depth or replace D's
-precision-uniform bounds. The fixed-accuracy width extension retains the
-literal lower threshold $`b\ge17(L+n+7)`$ and gives
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$,
-$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
-Its matching interval ends at
-$`\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$ when nonempty.
+The bounds hold simultaneously in the full initialized-isometry contract.
+Count is optimal throughout this range; count and depth match through
+$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty. The
+fixed-accuracy all-n statement retains $`O_\eta(\sqrt n\log(n+2))`$
+depth at sufficient square-root width. Optimal depth remains open, and D
+retains its all-precision guarantee outside the new subrange.
 
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
 | Imported state source | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3) supplies coarse Boolean-phase state approximation and LCU/amplification structure. Its ancillary allocation is not treated as a two-clean implementation. |
 | Effective coherent preparation | The [descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) uses a local strict residual search, a common geometric coefficient state, and source-label-dependent attenuation. It terminates at zero residuals without equality decisions. Orthogonal tag/prefix sectors prevent a dimension factor in source-isometry error. |
-| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. The [loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) prepares binary phase factors in parallel and uses exact signed-addition echoes. Its actual preparation inverse gives exact inactive identity on occupied source/program registers; active source leakage is charged in the full comparison. Fixed coefficient echoes have disjoint T supports. |
-| Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. A mathematical near-isometry completion controls actual forward and inverse source words in full operator norm, including leaked source scratch. Guarded amplitude amplification retains its literal active-sector sign. |
-| Same-circuit resource budgets | A terminal block of $`M=\lceil\log_2^2(n+2)\rceil`$ supplies the simultaneous $`O_\eta(\log(n+2))`$ conditional clean reservation. Early tables have $`2^{n-M}\mathrm{poly}_\eta(n)`$ rows. The [nonuniform dirty indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) keeps the final M layers within the count and Clifford budgets; they contribute only polylogarithmic depth at square-root width, with the additional $`N/b^2`$ term at general widths. |
-| Literal-width splice | Below $`b=\sqrt{N/n}`$, the retained compiler absorbs n into $`N/b^2`$. Above it, the early width is $`o_\eta(\sqrt{N/n})`$ and the tail keeps its $`N/b`$, $`N/b^2`$ terms. The old compiler covers finite dimensions; the new indicator is not assumed to fit at every literal base allocation. |
+| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. Exact arithmetic echoes give full-space inactive identity, including occupied programs and source registers. The baseline calibration remains separately available. |
+| Shared precision source | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md) prepares the gradient once and applies its actual inverse after the full early word. Exact addition is computed, swapped, and uncomputed using explicitly charged tables; a short angle-sum table handles the coefficient bank. Every completed native macro preserves the ideal-gradient sector. |
+| Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. Recovery reflects initialized work outside the live gradient. A near-isometry completion within the ideal-gradient sector controls actual forward and inverse words; source-boundary error is charged globally. Guarded amplitude amplification retains its literal active-sector sign. |
+| Same-circuit resource budgets | A protected suffix of $`M=O(L+\log(n+2))`$ holds simultaneous conditional scratch. The cutoff explicitly absorbs the arithmetic tables' exponential precision dependence and the large queries' polynomial factors into the early count and width budgets. The final M layers use [nonuniform dirty indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence), contributing $`O(NL/b^2+(L+\log(n+2))^2)`$ depth. |
+| Literal-width splice | Below $`b=\sqrt{N/n}`$, the retained compiler absorbs $`nL`$ into $`NL/b^2`$. Above it, early work fits uniformly in L after one absolute dimension cutoff. The retained compiler covers the finite exceptional dimensions with one absolute constant and supplies the alternative $`nL`$ depth term. |
 | Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) uses an explicit factorization contract and the balanced Haar frame. Its exact and approximate bounds concern normalization only; they supply no unrestricted native-depth lower bound. |
 
 An occupied active angle program represents its XOR-offset word, so the
 audit does not identify initialized-program accuracy with a specified
 full-space row rotation. The recovery comparison instead includes the
 actual normalized source outputs and all scratch leakage. The original
-terminal-zero predicate is reversed only after recovery; unitary
+terminal-zero predicate is reversed only after source return; unitary
 telescoping covers its leakage and the following tail without a reset.
-Finite exceptional dimensions use the retained compiler with enlarged
-fixed-accuracy constants.
+The absolute linear-precision restriction and dimension cutoff enforce
+simultaneous conditional workspace and table budgets; they are not
+claims about practical crossover sizes.
 
 ## Shared operator and operational contract
 
@@ -170,6 +173,6 @@ receipt hashes are retained.
 This is internal proof reconstruction, not external technical review or
 formal proof certification. The selected count package is ready for
 manuscript development when requested. The large-width construction
-establishes sublinear depth and extends the matching width range at fixed
-accuracy. Optimal depth beyond that range and precision-uniform refinements
-remain separate questions.
+establishes a precision-uniform large-width refinement and extends the
+matching width range. Optimal depth beyond the stated matching interval
+remains a separate question.

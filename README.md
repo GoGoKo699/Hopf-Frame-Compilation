@@ -165,13 +165,20 @@ The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The separate [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md)
-resolves the fixed-accuracy sublinear-depth existence question and gives
-$`D_T=O_\eta(N/b^2+\sqrt n\log(n+2))`$ at every
-$`b\ge17(L+n+7)`$, while retaining
-$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$. The
-[resource statement](docs/OPEN_PROBLEM.md) records the remaining optimal-depth
-question, and the [research index](research/README.md)
+T-depth bound. The separate [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+has an absolute-constant refinement: for some absolute $`c>0`$,
+$`6\le L\le cn`$ and every $`b\ge17(L+n+7)`$, two clean
+flags suffice for
+
+```math
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O\!\left(NL/b^2+\min\{nL,\sqrt n\log_2(n+2)+L^2\}\right).
+```
+
+At sufficient $`b=\Theta(\sqrt{NL})`$, this retains sublinear
+T-depth while error $`2^{-L}`$ shrinks, whenever $`L=o(\sqrt n)`$.
+The [resource statement](docs/OPEN_PROBLEM.md) gives its matching interval
+and the remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.
 
 ## Operational consequence
