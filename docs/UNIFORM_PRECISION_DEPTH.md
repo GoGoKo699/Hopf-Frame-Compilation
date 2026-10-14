@@ -80,9 +80,11 @@ T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
 
 These are worst-case bounds over prescribed complete real frames. No
 unrestricted lower bound for the additive n or nL is asserted. The
-large-width depth optimum and the high-precision complete-frame count
-endpoint remain separate questions; the uniform theorem retains nL
-in its general T-count. The sufficient condition $`L\le N/n^2`$
+large-width depth optimum remains open. The separate
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean high-precision real-frame count endpoint at its
+stated literal allocation; the uniform theorem here retains nL in its
+general T-count. The sufficient condition $`L\le N/n^2`$
 absorbs that term into $`\sqrt{NL}`$, making the count optimal in
 order at every eligible width in that precision range.
 

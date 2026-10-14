@@ -1106,10 +1106,12 @@ dirty XOR lookup, a fixed native geometric specialization, and a
 normalization-two block. Its programmed mask depends on the address and
 implements one address-selected rotation.
 
-The unrestricted $`O(N)`$ endpoint remains open. At the explicit
-two-clean, $`N+n+7`$-dirty allocation, this chapter's baseline is
-$`O(N\log N)`$; the [grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md)
-gives $`O(N\log_2^*N)`$ while preserving the complete frame.
+At the explicit two-clean, $`L=N`$, $`N+n+7`$-dirty allocation,
+this chapter's baseline is $`O(N\log N)`$; the
+[grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md) gives
+$`O(N\log_2^*N)`$ while preserving the complete frame. The separate
+[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+settles this real-frame count endpoint at $`O(N)`$.
 
 ## 10. Classical table construction
 

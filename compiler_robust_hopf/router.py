@@ -112,7 +112,11 @@ class RouterScheduleRow:
 
 @dataclass(frozen=True)
 class RoutedBasisSnapshot:
-    """Decoded logical content after forward routing of one clean basis input."""
+    """Decoded physical output after forward routing of a clean basis input.
+
+    ``active_branch`` and ``suffix`` are -1 unless exactly one token is set.
+    ``inactive_data_nonzero`` checks data in branches whose tokens are zero.
+    """
 
     prefix: int
     suffix: int
@@ -482,7 +486,7 @@ def _wire_value(label: int, wires_lsb_to_msb: tuple[int, ...]) -> int:
 def routed_basis_snapshot(
     layout: RouterLayout, system_label: int
 ) -> RoutedBasisSnapshot:
-    """Route one clean basis label and decode the branch/token content."""
+    """Route a basis input and read its actual prefix, branch data, and tokens."""
 
     if not 0 <= system_label < 1 << layout.n:
         raise ValueError("system_label is outside the logical register.")
@@ -490,22 +494,27 @@ def routed_basis_snapshot(
     if len(routed) != 1:
         raise AssertionError("A basis input did not remain a basis state.")
     label = next(iter(routed))
-    prefix = system_label >> layout.suffix_qubits
-    suffix = system_label & ((1 << layout.suffix_qubits) - 1)
+    prefix = _wire_value(label, layout.prefix_lsb_to_msb)
     active_tokens = [
         branch
         for branch, qubit in enumerate(layout.tokens)
         if (label >> qubit) & 1
     ]
+    active_branch = active_tokens[0] if len(active_tokens) == 1 else -1
+    suffix = (
+        _wire_value(label, layout.branch_data[active_branch])
+        if active_branch >= 0
+        else -1
+    )
     inactive_nonzero = any(
         _wire_value(label, wires) != 0
         for branch, wires in enumerate(layout.branch_data)
-        if branch != prefix
+        if not ((label >> layout.tokens[branch]) & 1)
     )
     return RoutedBasisSnapshot(
         prefix=prefix,
         suffix=suffix,
-        active_branch=active_tokens[0] if len(active_tokens) == 1 else -1,
+        active_branch=active_branch,
         active_token_count=len(active_tokens),
         inactive_data_nonzero=inactive_nonzero,
         copies_clean=copies_are_clean(routed, layout),

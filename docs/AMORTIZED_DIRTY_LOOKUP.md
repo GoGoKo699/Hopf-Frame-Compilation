@@ -58,10 +58,12 @@ Its simultaneous matching interval is
 The earlier interval and fixed-L corollary remain valid separately.
 The hybrid uses the capped precision allocation proved below and exactly
 replaces selected early queries. It adds no clean work or approximation
-error. Large-workspace optimal depth and the high-precision constant-clean
-endpoint remain open. T-depth permits arbitrary Clifford circuits between
-T layers; their elementary depth is not bounded by these theorems, while
-their gate count remains included in G.
+error. Large-workspace optimal depth remains open. The separate
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean high-precision real-frame count endpoint at its
+stated literal allocation. T-depth permits arbitrary Clifford circuits
+between T layers; their elementary depth is not bounded by these theorems,
+while their gate count remains included in G.
 At fixed accuracy, the [blocked bilinear refinement](BLOCKED_BILINEAR_LOOKUP.md)
 retains the literal width threshold and optimal-order T-count while giving
 $`D_T=O(N/b^2+n)`$. Its simultaneous matching interval extends to
@@ -592,8 +594,8 @@ These are prescribed complete real-frame results, with the same QBP
 substitution contract; no new state-only or complex-frame theorem is
 asserted. At large workspace the depth gap remains. In particular,
 the allocation $`L=N,b=L+n+7`$ does not meet this theorem's bank
-threshold, and the variable-accuracy extension does not resolve the
-high-precision constant-clean endpoint. The restricted Majorana source
+threshold, so this variable-accuracy extension does not attain the separate
+growing-source endpoint bound. The restricted Majorana source
 certificate is not promoted to an unrestricted depth lower bound.
 
 ## 6. Attribution and proof scope

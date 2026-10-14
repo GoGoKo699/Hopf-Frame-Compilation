@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -104,6 +105,55 @@ class CoherentRouterTests(unittest.TestCase):
                     routed = apply_router_forward({label: 1.0 + 0.0j}, layout)
                     restored = apply_router_inverse(routed, layout)
                     self.assertEqual(restored, {label: 1.0 + 0.0j})
+
+    def test_snapshot_exposes_corrupted_physical_prefix_and_data(self) -> None:
+        layout = router_layout(4, 2)
+        system_label = 0b1001
+        routed = apply_router_forward({system_label: 1.0 + 0.0j}, layout)
+        routed_label = next(iter(routed))
+
+        # Deliberately corrupt the routed output while keeping the requested
+        # input unchanged. A snapshot inferred from the input would miss both.
+        cases = (
+            ("prefix", layout.prefix_lsb_to_msb[0], 0b11, 0b01),
+            ("active data", layout.branch_data[2][1], 0b10, 0b11),
+        )
+        for name, wire, expected_prefix, expected_suffix in cases:
+            with self.subTest(corruption=name):
+                corrupted = {routed_label ^ (1 << wire): 1.0 + 0.0j}
+                with patch(
+                    "compiler_robust_hopf.router.apply_router_forward",
+                    return_value=corrupted,
+                ):
+                    snapshot = routed_basis_snapshot(layout, system_label)
+                self.assertEqual(snapshot.prefix, expected_prefix)
+                self.assertEqual(snapshot.suffix, expected_suffix)
+                self.assertEqual(snapshot.active_branch, 2)
+                self.assertEqual(snapshot.active_token_count, 1)
+                self.assertFalse(snapshot.inactive_data_nonzero)
+
+    def test_snapshot_marks_ambiguous_token_selection(self) -> None:
+        layout = router_layout(4, 2)
+        system_label = 0b1001
+        routed = apply_router_forward({system_label: 1.0 + 0.0j}, layout)
+        routed_label = next(iter(routed))
+        cases = (
+            ("missing token", layout.tokens[2], 0, True),
+            ("extra token", layout.tokens[0], 2, False),
+        )
+        for name, wire, expected_count, inactive_data in cases:
+            with self.subTest(corruption=name):
+                corrupted = {routed_label ^ (1 << wire): 1.0 + 0.0j}
+                with patch(
+                    "compiler_robust_hopf.router.apply_router_forward",
+                    return_value=corrupted,
+                ):
+                    snapshot = routed_basis_snapshot(layout, system_label)
+                self.assertEqual(snapshot.prefix, 2)
+                self.assertEqual(snapshot.active_branch, -1)
+                self.assertEqual(snapshot.suffix, -1)
+                self.assertEqual(snapshot.active_token_count, expected_count)
+                self.assertEqual(snapshot.inactive_data_nonzero, inactive_data)
 
     def test_route_inverse_is_identity_on_arbitrary_entangled_inputs(self) -> None:
         rng = np.random.default_rng(260920)

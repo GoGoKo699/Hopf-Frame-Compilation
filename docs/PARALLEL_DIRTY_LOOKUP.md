@@ -60,8 +60,10 @@ The earlier routed circuit supplies the alternative quadratic bound.
 The existing worst-case lower bound makes this T-count optimal in order.
 The T-depth upper bound is not proved optimal, and does not bound total
 elementary depth. The selected allocation $`L=N,b=N+n+7`$ is not covered
-by the new sufficient-width hypothesis; its linear T-count endpoint remains
-open.
+by this sufficient-width hypothesis. The separate
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean real-frame count endpoint at its stated literal
+allocation; it does not extend this chapter's precision-uniform guarantees.
 
 At fixed accuracy, the [blocked bilinear refinement](BLOCKED_BILINEAR_LOOKUP.md)
 uses conditional unary groups and width-constrained bilinear blocks to
@@ -894,7 +896,8 @@ worst-case T-count. Choosing between this circuit and the earlier routed
 one gives depth $`O(\min\{n^2,n\chi(n)\})`$ at the same
 sufficient square-root-scale dirty width. This is an asymptotic
 improvement, not a practical crossover estimate or an optimal-depth
-theorem. The high-precision complete-frame endpoint remains open.
+theorem. This construction does not attain the separate growing-source
+high-precision count endpoint.
 
 The [baseline counter checks](../tests/test_counter_dirty_indicator.py) audit
 both modular-adder actions, signed increments, actual inverses, arbitrary
@@ -942,5 +945,5 @@ in the linked depth proof.
 [Focused checks](../tests/test_parallel_dirty_lookup.py) test the selected
 bit, actual inverse, literal native phases, scratch-free width, and
 completed lookup return. Finite checks do not establish the asymptotic
-theorem or optimal T-depth. A matching depth lower bound and the
-high-precision linear endpoint remain separate open questions.
+theorem or optimal T-depth. Unrestricted large-width depth optimality
+remains open.
