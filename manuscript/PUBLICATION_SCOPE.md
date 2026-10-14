@@ -5,7 +5,7 @@
 The selected publication is **one full-length theoretical compiler paper**
 on prescribed Hopf differential frames. This is its canonical claim ledger:
 Results A–D, retained corollaries, and their resource and error contracts.
-Neither open resource question below is a prerequisite for these results.
+The separate endpoint research below is not a prerequisite for these results.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -184,31 +184,40 @@ cost, and classical output. It neither differentiates a discretely synthesized
 gate word nor proves optimality among all gradient algorithms or an
 end-to-end application advantage.
 
-## Two unresolved resource questions
+<a id="two-unresolved-resource-questions"></a>
 
-The selected constant-clean high-precision open problem is
+## Endpoint research and the remaining depth question
+
+The separate [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean high-precision real-frame count endpoint:
 
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 \qquad
-2N-1\le T^\star\le O(N\ell_*(n)).
+2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
 ```
 
-One clean qubit attains the same upper bound and $`G=O(N^2)`$ at that dirty
-allocation. The
+It charges native source transitions and packing, retains rejected paths
+in disjoint logical modes, and returns all work by one final recovery.
+This endpoint theorem does not change Results A–D or assert their
+precision-uniform, Clifford-count, one-clean, or T-depth guarantees.
+At one clean qubit, Result C still gives
+$`T=O(N\ell_*(n))`$ and $`G=O(N^2)`$ at the displayed dirty allocation.
+The
 [root-angle precision witness](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
 proves the displayed lower bound at arbitrary workspace width under the
-literal-phase contract. The selected two-clean endpoint remains open.
+literal-phase contract.
 
-The grouped precision charge is not claimed necessary, nor is the same upper
-bound claimed for every constant clean count or linear dirty prefactor.
+The grouped precision charge is not claimed necessary for one-clean
+compilation, nor is the new endpoint theorem claimed for every linear
+dirty prefactor.
 Source-interface restrictions do not supply additive full-frame lower bounds.
 
 At fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
 complete real-frame schedule attains $`T=\Theta_\eta(\sqrt N)`$ with
 $`D_T=O_\eta(n)`$. The unrestricted depth lower bound remains
-$`\Omega(1)`$. This large-width gap is separate from the high-precision
-count endpoint. Result D's literal width threshold excludes the displayed
+$`\Omega(1)`$. This large-width open problem is separate from the resolved
+high-precision count endpoint. Result D's literal width threshold excludes the displayed
 endpoint allocation, and its unary-source mechanism does not scale to that
 precision.
 
@@ -253,7 +262,7 @@ end-to-end speedups are outside the selected claims.
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |
 
 The main text follows the target, shared contract, Results A–D, compiler
-corollaries, operational consequence, and two open questions. Technical
+corollaries, operational consequence, and separate endpoint research. Technical
 appendices contain exact echo/decoder/router schedules, source preparation,
 dirty queries, residual composition, amplification, error and resource sums,
 Euler/diagonal details, lower-bound reductions, and classical preprocessing.
@@ -263,4 +272,4 @@ consistent attribution, scoped finite checks, and passing verification gates.
 The completed internal audit is not external peer review. Practical crossover
 constants and a scalable native emitter remain outside the selected claims.
 
-Closing either gap or adding further fixtures is not a readiness requirement.
+Closing the remaining depth gap or adding further fixtures is not a readiness requirement.

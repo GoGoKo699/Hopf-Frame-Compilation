@@ -128,11 +128,14 @@ real/complex theorem, computational input audit, task costs, and bounded
 native integrations are grouped there. It does not replace the complete-frame
 contract or become an extra prerequisite for A–D.
 
-The [research index](../research/README.md) maps linear-count endpoint
-families, all-angle reductions, and limits of specific source or factorization
-models by their hypotheses. The [open-problem statement](OPEN_PROBLEM.md)
-fixes the unrestricted bounds and identifies the unpaid native operations.
-These separate results are not dependencies of Results A–D.
+The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+proves unrestricted $`\Theta(N)`$ worst-case T-count for complete real
+frames at $`\eta=2^{-N},a=2,b=N+n+7`$. The
+[research index](../research/README.md) maps its native dependencies,
+earlier promised families, and limits of specific source or factorization
+models. The [endpoint statement](OPEN_PROBLEM.md) records the remaining
+large-width depth question. These separate results are not dependencies
+of Results A–D.
 
 The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
 has rank at most one across each original tree-edge cut. Its ideal joint

@@ -7,7 +7,9 @@ cuts. An exactly returned native coarse word leaves an exponentially small
 right residual at linear T count. A regularized joint-Gram construction
 completes its canonical factors on exactly $`4N`$ modes, with uniformly
 bounded conditioning and cut ranks. The fine native source and its inverse
-remain unpriced; the unrestricted endpoint bounds are unchanged.
+remain unpriced in this construction. The separate
+[growing-source compiler](GROWING_SOURCE_COMPILER.md) resolves the unrestricted
+endpoint without supplying those missing source interfaces.
 
 This chapter preserves every supplied angle and logical column. It does not
 make the exterior phase/permutation change of the

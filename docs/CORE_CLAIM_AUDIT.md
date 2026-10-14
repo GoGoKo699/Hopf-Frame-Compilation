@@ -159,9 +159,11 @@ It does not promise a general grouped elementary emitter or useful numerical
 crossover constants for existential grouping thresholds.
 
 The scientific stopping gate is satisfied for the selected package.
-Keep the high-precision constant-clean count gap and the large-width depth
-gap explicit. Both remain optional research. A discovered defect reopens its
-repair; a new construction requires the native rule and symbolic resource,
+Subsequent optional research closes the two-clean high-precision count
+endpoint in the [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md),
+without changing this recorded A–D audit. The large-width depth gap remains
+open. A discovered defect reopens its repair; a new construction requires
+the native rule and symbolic resource,
 error, and cleanup recurrences in the
 [workspace gate](../WORKSPACE.md#reopening-research-requires-a-qualifying-mechanism).
 Manuscript writing remains on hold until requested. Further activity alone

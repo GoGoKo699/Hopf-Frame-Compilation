@@ -525,7 +525,10 @@ allows arbitrary mixing and includes this mixed-height family as a
 corollary, with source preparation, global fine replay, actual inverses,
 and full work return charged. It changes the sources and merge
 implementation, so it does not contradict the unchanged-bank proposition.
-The unrestricted endpoint question remains open.
+The [growing-source compiler](GROWING_SOURCE_COMPILER.md) subsequently
+attains unrestricted linear real-frame count at the two-clean endpoint.
+Its changing sources and retained rejection modes do not alter the scope
+of the unchanged-bank proposition.
 
 ## 6. Fixed exponent-ratio families
 

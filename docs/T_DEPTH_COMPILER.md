@@ -422,7 +422,10 @@ For variable L, matching now also holds when
 $`17(L+n+7)\le b\le\sqrt{NL/(nL+n^2)}`$. This includes
 $`L=\Theta(n)`$, sufficient $`b=\Theta(n)`$, and
 $`D_T^\star=\Theta(N/n)`$ with $`T^\star=\Theta(N)`$.
-Large-width depth and the selected high-precision endpoint remain unresolved.
+Large-width depth remains unresolved. The separate
+[growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean real-frame high-precision count endpoint; it does
+not improve the depth bounds of this chapter.
 
 The same complete-frame norm transfers to the existing Hopf-QBP bias
 and inverse guarantees. It does not by itself determine the observable

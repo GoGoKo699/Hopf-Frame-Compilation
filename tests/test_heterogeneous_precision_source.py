@@ -9,8 +9,11 @@ import unittest
 import numpy as np
 
 from compiler_robust_hopf.heterogeneous_precision_source import (
+    bottom_precision_trace,
     cayley_kernel_coefficients,
     cayley_pair,
+    clipped_branch_decision,
+    clipped_source_parameters,
     common_source_kernel_coefficients,
     common_source_kernel_error_bound,
     common_source_parameters,
@@ -461,6 +464,185 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
                     self.assertTrue(parameters.stage_precision_at_most_twice_endpoint(
                         3 * log_height + 7))
                 self.assertEqual(parameters.suffix_bits, 20 * (height + 1).bit_length())
+
+    def test_all_height_clipped_ledger_without_logical_padding(self):
+        # Tiny heights use the finite fallback. Rounding a scalar loop order
+        # never changes the logical height, including immediately past powers
+        # of two. Huge heights exercise exponent-only accounting.
+        heights = tuple(range(1, 97)) + ((1 << 20) - 1, (1 << 20) + 1,
+                                       (1 << 80) - 3, (1 << 80) + 1)
+        for height in heights:
+            with self.subTest(height=height):
+                parameters = clipped_source_parameters(height, suffix_constant=3)
+                order = parameters.order
+                logarithm = order.bit_length() - 1
+                self.assertEqual(parameters.height, height)
+                self.assertLessEqual(height, order)
+                self.assertLess(order, 2 * height)
+                self.assertEqual(order & (order - 1), 0)
+                self.assertEqual(parameters.rare_probability * 8 * order, 1)
+                self.assertEqual(parameters.source_length, 4 * order ** 2)
+                self.assertEqual(parameters.rescaling_bits, 6 + 2 * logarithm)
+                self.assertEqual(parameters.spacing_log2 + 2 * logarithm, height)
+                self.assertEqual(parameters.minimum_expensive_exponent_log2 + logarithm,
+                                 height + 1)
+                self.assertEqual(parameters.suffix_bits,
+                                 min(height, 3 * (order + 1).bit_length()))
+                self.assertEqual(parameters.clipping_bound_relative_to_endpoint,
+                                 Fraction(height, 16 * order))
+                self.assertLessEqual(parameters.clipping_bound_relative_to_endpoint,
+                                     Fraction(1, 16))
+                if height < 14:
+                    self.assertTrue(parameters.uses_finite_fallback)
+                    self.assertFalse(parameters.stage_precision_at_most_twice_endpoint(20))
+                    with self.assertRaises(ValueError):
+                        parameters.coefficient_precision_overhead(20)
+                    continue
+                self.assertFalse(parameters.uses_finite_fallback)
+                mantissa_bits = (16000 * order ** 2 - 1).bit_length()
+                overhead = parameters.coefficient_precision_overhead(mantissa_bits)
+                self.assertEqual(overhead,
+                                 order * (mantissa_bits + order ** 2 * parameters.rescaling_bits))
+                if height <= 96:
+                    # N is small here. The separate huge-height cases above
+                    # never construct N, much less a denominator 2**N.
+                    endpoint = 1 << height
+                    spacing = 1 << parameters.spacing_log2
+                    cap = endpoint + parameters.clipping_exponent_offset - 1
+                    self.assertEqual(parameters.source_length * spacing, 4 * endpoint)
+                    self.assertEqual(cap // spacing, parameters.maximum_multiplier)
+                    self.assertTrue(parameters.retained_exponent_within_cap(cap))
+                    self.assertFalse(parameters.retained_exponent_within_cap(cap + 1))
+                    self.assertGreaterEqual(parameters.source_length *
+                                            (spacing - parameters.rescaling_bits), 3 * endpoint)
+                    if parameters.stage_precision_at_most_twice_endpoint(mantissa_bits):
+                        self.assertLessEqual(height * (order * spacing + overhead), 2 * endpoint)
+                else:
+                    self.assertTrue(parameters.stage_precision_at_most_twice_endpoint(mantissa_bits))
+                    self.assertTrue(parameters.retained_exponent_within_cap(height ** 3))
+
+    def test_certified_clipping_controls_complete_frame_by_layer_maximum(self):
+        for height in (2, 3, 4):
+            size = 1 << height
+            parameters = clipped_source_parameters(height, suffix_constant=3)
+            exponent = size + parameters.clipping_exponent_offset
+            threshold = Fraction(1, 1 << exponent)
+            original, clipped = np.eye(size), np.eye(size)
+            layer_bounds, retained_depths = [], []
+            for depth in range(height):
+                width = size >> depth
+                original_layer, clipped_layer = np.eye(size), np.eye(size)
+                local_errors, retained = [], []
+                for node, left in enumerate(range(0, size, width)):
+                    right = left + width // 2
+                    if depth == 0:
+                        parameter, offset, supplied_bin = Fraction(1, 4), Fraction(), 1
+                    elif depth == height - 1:
+                        parameter, offset, supplied_bin = threshold / 4, -threshold / 8, None
+                    else:
+                        parameter = 3 * threshold / 4
+                        offset = threshold / 8 if node % 2 == 0 else -threshold / 8
+                        supplied_bin = exponent - 1
+                    cosine, sine = cayley_pair(parameter)
+                    approximation = sine + offset
+                    self.assertLessEqual(abs(approximation - sine), threshold / 8)
+                    drop = clipped_branch_decision(approximation, threshold)
+                    local = np.array([[float(cosine), -float(sine)],
+                                      [float(sine), float(cosine)]])
+                    original_layer[np.ix_((left, right), (left, right))] = local
+                    if drop:
+                        self.assertLessEqual(sine, 13 * threshold / 8)
+                        local_errors.append(np.linalg.norm(local - np.eye(2), 2))
+                    else:
+                        self.assertGreater(sine, threshold)
+                        self.assertIsNotNone(supplied_bin)
+                        self.assertLess(Fraction(1, 1 << (supplied_bin + 2)), sine)
+                        self.assertLess(sine, Fraction(1, 1 << supplied_bin))
+                        self.assertTrue(parameters.retained_exponent_within_cap(supplied_bin))
+                        retained.append(supplied_bin)
+                        clipped_layer[np.ix_((left, right), (left, right))] = local
+                        local_errors.append(0.)
+                maximum = max(local_errors)
+                self.assertAlmostEqual(np.linalg.norm(original_layer - clipped_layer, 2),
+                                       maximum, delta=ATOL)
+                if depth == height - 1:
+                    # Several disjoint tiny rotations cost their maximum in
+                    # operator norm. Summing nodes would overcharge this layer.
+                    self.assertGreater(sum(local_errors), 1.5 * maximum)
+                original = original_layer @ original
+                clipped = clipped_layer @ clipped
+                layer_bounds.append(maximum)
+                retained_depths.append(tuple(retained))
+            for frame in (original, clipped):
+                np.testing.assert_allclose(frame.T @ frame, np.eye(size), atol=ATOL, rtol=0)
+            error = np.linalg.norm(original - clipped, 2)
+            self.assertGreater(error, float(threshold / 4))
+            self.assertLessEqual(error, sum(layer_bounds) + ATOL)
+            self.assertLessEqual(sum(layer_bounds), float(4 * height * threshold))
+            self.assertLessEqual(4 * height * threshold, Fraction(1, 16 * (1 << size)))
+            self.assertEqual(bottom_precision_trace(retained_depths, 1), 0)
+
+        # Certified comparisons can deliberately overlap: the same branch
+        # admits either decision, while an exact dyadic branch needs no exact
+        # logarithm. These are supplied open-width-four bins.
+        threshold = Fraction(1, 1024)
+        branch = 3 * threshold / 2
+        self.assertTrue(clipped_branch_decision(branch - threshold / 8, threshold))
+        self.assertFalse(clipped_branch_decision(branch + threshold / 8, threshold))
+        self.assertTrue(clipped_branch_decision(3 * threshold / 2, threshold))
+        for power in (1, 4, 9):
+            branch, supplied_bin = Fraction(1, 1 << power), power - 1
+            self.assertLess(Fraction(1, 1 << (supplied_bin + 2)), branch)
+            self.assertLess(branch, Fraction(1, 1 << supplied_bin))
+
+    def test_clipped_bottom_trace_counts_depths_and_empty_layers(self):
+        depths = ((60,), (19, 19), (), (4, 4, 4), (7, 1, 7), ())
+        parameters = clipped_source_parameters(len(depths), suffix_constant=3)
+        self.assertTrue(all(parameters.retained_exponent_within_cap(exponent)
+                            for depth in depths for exponent in depth))
+        self.assertEqual(bottom_precision_trace(depths, 4), 11)
+        self.assertEqual(bottom_precision_trace(depths, 0), 0)
+        self.assertEqual(bottom_precision_trace(depths, 6), 90)
+        repeated = tuple(depth * 17 for depth in depths)
+        self.assertEqual(bottom_precision_trace(repeated, 4), 11)
+        self.assertNotEqual(sum(sum(depth) for depth in repeated[-4:]), 11)
+        self.assertNotEqual(4 * max(max(depth, default=0) for depth in depths), 11)
+
+    def test_all_height_source_remainders_reach_clipped_cap_and_saturate(self):
+        parameters = clipped_source_parameters(14, suffix_constant=3)
+        self.assertNotEqual(parameters.height, parameters.order)
+        spacing = 1 << parameters.spacing_log2
+        beta = common_source_ratio(spacing, parameters.rescaling_bits)
+        endpoint = 1 << parameters.height
+        cap = endpoint + parameters.clipping_exponent_offset - 1
+        order, probability = parameters.order, parameters.rare_probability
+        mantissa = Fraction(3, 4)
+        for exponent in (2 * endpoint // order + 1, endpoint // 4 + 3, cap):
+            multiplier, remainder = exponent_metadata(exponent, spacing)
+            self.assertGreater(remainder, 0)
+            self.assertLess(remainder, spacing)
+            self.assertLessEqual(multiplier, parameters.maximum_multiplier)
+            coefficients = common_source_kernel_coefficients(
+                mantissa, order, probability, parameters.rescaling_bits,
+                multiplier=multiplier, remainder=remainder)
+            prefactor = 2 * order * (1 - probability) / probability
+            target_parameter = mantissa / (1 << exponent)
+            for degree in (1, 3, order):
+                coefficient = coefficients[degree - 1]
+                shift = multiplier * degree
+                self.assertEqual(coefficient * beta ** shift,
+                                 prefactor * target_parameter ** degree)
+                self.assertLessEqual(abs(coefficient), 1)
+                self.assertLessEqual(dyadic_precision(coefficient), degree *
+                                     (2 + remainder + multiplier * parameters.rescaling_bits))
+                if shift >= parameters.source_length:
+                    # S_shift=0, not a cyclic shift: its complete source
+                    # residual is the entire desired beta**shift column.
+                    self.assertEqual(source_shift_residual_squared(
+                        beta, parameters.source_length, shift), beta ** (2 * shift))
+            if exponent == cap:
+                self.assertEqual(multiplier, parameters.maximum_multiplier)
+                self.assertGreater(multiplier * order, parameters.source_length)
 
     def test_saturated_shifts_are_zero_and_target_power_is_degree(self):
         length, coefficient = 4, Fraction(3, 5)

@@ -385,8 +385,9 @@ They do not emit a native implementation of the anchored reflection.
 
 Scalar or logical-label-preserving bank mixing is stopped by (11).
 General mixing remains possible, but by (9) a linear-count implementation
-would itself complete the endpoint. Reopening that route requires an
+would also give an endpoint compiler. Reopening that route requires an
 actual native synthesis rule for H, with its inverse, literal workspace
 and full column error priced. Replacing H by the unchanged history
 reflection and target-independent entry phases is stopped by (19).
-The existing endpoint bounds are unchanged.
+The separate [growing-source compiler](GROWING_SOURCE_COMPILER.md) resolves
+the endpoint without implementing this joint history compressor.

@@ -235,7 +235,7 @@ class ReviewerNarrativeTests(unittest.TestCase):
             "## 3. Result B: pay fine precision once with sufficient clean work",
             "## 4. Result C: operator precision and conditional suffix work",
             "## 5. Result D: count and depth on the same circuit",
-            "## 6. Operational consequence, open gaps, and evidence",
+            "## 6. Operational consequence, endpoint status, and evidence",
         )
         positions = [review.index(heading) for heading in headings]
         self.assertEqual(positions, sorted(positions))
@@ -327,7 +327,9 @@ class ReviewerNarrativeTests(unittest.TestCase):
         self.assertIn("not arbitrary complex-unitary synthesis", normalized)
         self.assertIn("do not prove universal statements", normalized)
         self.assertIn("open problem", normalized)
-        self.assertIn(r"2N-1\le T^\star\le O(N\ell_*(n))", scope)
+        self.assertIn(r"2N-1\le T^\star\le O(N)", scope)
+        self.assertIn("GROWING_SOURCE_COMPILER.md", scope)
+        self.assertIn("does not change Results A–D", scope)
 
     def test_all_markdown_local_links_resolve(self) -> None:
         for page in markdown_pages():
