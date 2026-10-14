@@ -12,10 +12,10 @@ $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
 constant square-root dirty width. Its precision-uniform extension retains
 sublinear depth with shrinking error $`2^{-L}`$ for
 $`L=o(n/\log(n+2))`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
-The [real all-precision depth theorem](depth/ALL_PRECISION_DEPTH.md) now combines
+The [one-clean depth theorem](depth/ONE_CLEAN_DEPTH.md) combines
 that branch with a whole-frame binary stream and a high-precision query
-schedule, retaining optimal count for every precision. Optimal T-depth
-remains open.
+schedule, retaining optimal count for every precision for both frame
+families. Optimal T-depth remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -157,8 +157,8 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The [all-precision theorem](depth/ALL_PRECISION_DEPTH.md) gives, for every
-$`n\ge1`$, integer $`L\ge6`$, two external clean flags and every
+The [one-clean theorem](depth/ONE_CLEAN_DEPTH.md), R72, gives, for every
+$`n\ge1`$, integer $`L\ge6`$, one external clean flag and every
 $`b\ge17(L+n+7)`$,
 
 ```math
@@ -174,25 +174,25 @@ All constants are absolute. One circuit preserves the prescribed complete
 real frame with error at most $`2^{-L}`$ in the full initialized-isometry
 norm. Count is optimal at every precision; count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$ on every nonempty interval above the
-literal lower threshold. For $`L>N/n^2`$, the
-[high-precision schedule](depth/HIGH_PRECISION_DEPTH.md) gives the stronger
-additive L depth term.
+literal lower threshold. For $`L>N/n^2`$, the stronger depth has
+additive L in place of F.
 
-The [complex extension](depth/COMPLEX_FRAME_DEPTH.md) proves the same
-all-precision and high-precision bounds for the prescribed magnitude frame
-$`D_\phi W_{\mathbb R}`$, with two clean flags and
-$`b\ge17(L+n+8)`$. It charges the literal diagonal's native depth
+R72 proves the same bounds for the prescribed magnitude frame
+$`D_\phi W_{\mathbb R}`$, with one clean flag and
+$`b\ge17(L+n+8)`$. It charges the native one-clean literal diagonal
 and composes half-error factors on the same workspace, including earlier
 leakage and common phase. Its depth matching interval has the corresponding
-complex lower threshold. Optimal large-width depth remains open.
+complex lower threshold. Optimal large-width depth remains open. The
+[real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
+[complex R71 theorem](depth/COMPLEX_FRAME_DEPTH.md) retain their two-clean
+statements and supporting proofs.
 
-For real frames, the [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+For real frames with two clean flags, the retained [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains the stronger logarithm $`\log_2(n+2)`$ for $`6\le L\le cn`$,
 with absolute c. The [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md)
-remains a necessary baseline in the precision and width splices.
+retains its role in the two-clean precision and width splices.
 
-For every fixed $`0\lt\eta\le1/64`$, the separate all-n statement
-has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
+For every fixed $`0\lt\eta\le1/64`$, R72 gives the one-clean all-n bounds $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 
 ```math
 D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}).
@@ -207,8 +207,9 @@ remains open.
 
 | Current proof | Role |
 |---|---|
-| [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
-| [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
+| [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retain both families' simultaneous bounds using native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
+| [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
+| [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Retained two-clean theorem: charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
 | [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Reuse the binary source above a logarithmic protected bank through exponentially growing precision, with explicit precision cardinality in every query charge |
 | [High-precision depth schedule](depth/HIGH_PRECISION_DEPTH.md) | Replace completed real masks after the signal lift, sum their rectangular-query depths, and serialize the separately bounded native remainder |
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |

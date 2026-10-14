@@ -1,6 +1,9 @@
 # A linear-size dirty indicator with logarithmic address depth
 
-**Preserved research study.** This note is outside the selected A–D proof chain. Its outcome and limits are indexed in the [research archive](../README.md); historical proposals are not current work orders. The local mathematical statements retain their stated hypotheses.
+**Retained proof component.** The rectangular query in Section 5 is used
+by the [one-clean Result D](ONE_CLEAN_DEPTH.md) and its earlier depth
+constructions. The standalone indicator statements retain their own
+hypotheses; historical proposals below are not current work orders.
 
 
 [Dirty tree and echoes](../../docs/CHUNKED_DIRTY_INDICATOR.md) · [Read-only conjunction](../../docs/DIRTY_SUM_COMPRESSION.md#6-indicator-and-complete-frame-consequences) · [Rectangular blocked allocation](../../docs/UNIFORM_PRECISION_DEPTH.md#2-an-unequal-indicator-allocation-preserves-the-block-depth-bound) · [Research scope and stopping rules](../../WORKSPACE.md#research-decision-and-stopping-rules)

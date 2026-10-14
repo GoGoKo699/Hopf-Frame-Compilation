@@ -10,6 +10,11 @@ already fits the logarithmic envelope. The combination introduces no new
 native primitive or source-state premise. Its stable result identifier is
 **R70**.
 
+The [one-clean refinement](ONE_CLEAN_DEPTH.md), R72, is the selected
+Result D. It retains these bounds and literal thresholds using a new
+workspace and width argument. This chapter preserves the two-clean
+theorem and its proof dependencies.
+
 The [phase-dressed extension](COMPLEX_FRAME_DEPTH.md), R71, separately
 proves a literal-diagonal depth schedule and composes it with this theorem.
 It covers complex magnitude frames at $`b\ge17(L+n+8)`$; the real

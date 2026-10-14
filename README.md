@@ -111,13 +111,13 @@ The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-
 retain their own workspace reservations.
 
 **D. Optimal T-count with all-precision T-depth bounds.** For every
-$`n\ge1`$ and integer $`L\ge6`$, two clean flags suffice at these
+$`n\ge1`$ and integer $`L\ge6`$, [one clean qubit suffices](research/depth/ONE_CLEAN_DEPTH.md) at these
 family-specific dirty reservations:
 
 | Target | Dirty reservation | Proof |
 |---|---|---|
-| Complete real frame | $`b\ge17(L+n+7)`$ | [Real theorem](research/depth/ALL_PRECISION_DEPTH.md) |
-| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [Complex extension](research/depth/COMPLEX_FRAME_DEPTH.md) |
+| Complete real frame | $`b\ge17(L+n+7)`$ | [One-clean theorem](research/depth/ONE_CLEAN_DEPTH.md) |
+| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [One-clean phase dressing](research/depth/ONE_CLEAN_DEPTH.md) |
 
 Each theorem gives one circuit with absolute constants. Define
 
@@ -143,8 +143,13 @@ Source preparation, queries, actual inverses, and work return are charged.
 T-depth allows arbitrary Clifford interlayers and is distinct from total
 depth. The complex extension charges its literal leaf-phase diagonal and
 composes both factors on the same workspace. Unrestricted depth optimality
-remains open. The [retained baseline](docs/UNIFORM_PRECISION_DEPTH.md)
-supplies the alternative $`nL`$ depth term and literal-width fallbacks.
+remains open. R72 charges native one-clean words, moves terminal rejection
+work into the protected logical bank, and proves its own width and precision
+splices. The earlier [real](research/depth/ALL_PRECISION_DEPTH.md) and
+[complex](research/depth/COMPLEX_FRAME_DEPTH.md) two-clean theorems retain
+their stated proofs and allocations; their
+[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) keeps its separate
+precision bounds and matching intervals.
 
 All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
@@ -169,13 +174,13 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The real-frame [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+T-depth bound. The retained two-clean real-frame [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 replaces the logarithm above by $`\log_2(n+2)`$: for some absolute $`c>0`$,
 $`6\le L\le cn`$ and every $`b\ge17(L+n+7)`$, two clean
 flags suffice for

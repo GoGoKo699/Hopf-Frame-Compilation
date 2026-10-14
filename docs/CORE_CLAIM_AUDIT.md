@@ -21,7 +21,7 @@ baseline, and finite evidence. Its older Result C is a retained supporting
 construction. A, B, and D retain their distinct resource statements.
 
 A separate reconstruction below checks the
-[all-precision depth theorem](../research/depth/ALL_PRECISION_DEPTH.md),
+[one-clean depth theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
 which gives Result D optimal count at every eligible precision and width.
 The compressed-column construction remains a stronger linear-precision
 special case; fixed accuracy retains sublinear depth at sufficiently
@@ -108,8 +108,8 @@ witness belongs to both families.
 
 ## All-precision count and depth audit
 
-The [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md)
-gives complete real frames a circuit with two initialized flags, error
+The [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+gives complete real frames a circuit with one initialized flag, error
 at most $`2^{-L}`$, and absolute constants for every $`n\ge1`$,
 integer $`L\ge6`$, and $`b\ge17(L+n+7)`$. Define
 
@@ -130,30 +130,30 @@ $`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
 For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
 Optimal depth beyond the stated matching range remains open.
 
-The [phase-dressed theorem](../research/depth/COMPLEX_FRAME_DEPTH.md),
-R71, gives the same bounds for $`D_\phi W_{\mathbb R}`$ at
+R72 gives the same bounds for $`D_\phi W_{\mathbb R}`$ at
 $`b\ge17(L+n+8)`$. Its literal-diagonal depth is proved on the
 same optimal-count circuit. Both factors use precision $`L+1`$ and
-reuse the same two flags and dirty pool. The full-isometry hybrid propagates
+reuse the same clean flag and dirty pool. The full-isometry hybrid propagates
 the real factor's earlier leakage unitarily; no intermediate reset or exact
 core return is assumed. The diagonal subclass with zero magnitude angles
 supplies the complex family's count and width-dependent depth lower bounds.
 
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
-| All-precision splice | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70, selects complete circuits while preserving optimal count, the elementary Clifford budget, full error, and the literal dirty threshold. |
-| Literal diagonal and complex composition | [Phase-dressed depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71, charges twelve completed XOR/Z queries and nine packed-source calls. Nonuniform indicators and the routed fallback respect the literal allocation. Ordered Pauli masks, actual inverses, the sine-branch phase, and the amplification scalar retain the entire operator. Half-error composition preserves the global F bound and the high-precision clause. |
-| Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68, charges its source, native queries, complete recovery, and simultaneous workspace without assuming supplied precision states. |
-| High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69, gives $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with the same count and Clifford bounds. Its proof covers the stated literal allocation and bounded dimensions. |
-| Alternative depth and literal-width fallback | The [retained uniform compiler](UNIFORM_PRECISION_DEPTH.md) supplies $`O(NL/b^2+nL)`$ depth. The all-precision proof controls its count when selecting this branch; its $`nL`$ count term is not dropped at arbitrary precision. |
-| Stronger linear-precision result | The [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) retains $`\log_2(n+2)`$ for $`6\le L\le cn`$. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) keep their own exact inactive guards, complete-column recovery, failure history, and source-return comparisons. |
+| One-clean native baseline | [R72](../research/depth/ONE_CLEAN_DEPTH.md) schedules the existing one-clean source word with complete rectangular queries and returned predicate helpers. Its uncapped depth is $`O(NL/b^2+n(L+n))`$; the extra term is charged before the width split, not discarded. |
+| Width and precision splices | R72 splits at $`b_c=\sqrt{NL/[n(L+n)]}`$: below it the width term absorbs the uncapped remainder; above it the protected native schedules fit after a fixed dimension cutoff. The proof checks optimal count, elementary Clifford cost, full error, and bounded dimensions on each selected complete circuit. |
+| Terminal flag and recovery | The early shared-gradient construction uses one external activity flag. Terminal padding rejection moves into the protected logical bank, is included in the recovery reflection, and is returned before erasing the original predicate. The inactive full-space identity and source-return comparison are retained. |
+| Literal diagonal and complex composition | R72 charges twenty completed mask queries and forty-five native source appearances for the one-clean phase word. Nonuniform indicators and the routed fallback respect the literal allocation. The source has precision $`q=\ell+5`$ and core width $`\ell+6`$; ordered masks, actual inverses, and literal phases retain the full operator. Half-error composition on the sole clean flag preserves the global F bound and high-precision clause. |
+| High-precision branch | The unbounded-dimension [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) already leaves its second clean flag unused. R72 supplies a one-clean bounded-dimension fallback and charges the completed-mask replacements and native remainder, giving $`O(NL/b^2+L)`$ for $`L>N/n^2`$. |
+| Retained two-clean proofs | [R70](../research/depth/ALL_PRECISION_DEPTH.md) and [R71](../research/depth/COMPLEX_FRAME_DEPTH.md) retain their original statements. The [uniform baseline](UNIFORM_PRECISION_DEPTH.md), [whole-frame stream](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), and [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) remain separately scoped supporting proofs; their two-clean assumptions are not transferred without the R72 arguments above. |
+| Stronger linear-precision result | The retained two-clean [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) retains $`\log_2(n+2)`$ for $`6\le L\le cn`$. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) keep their own exact inactive guards, complete-column recovery, failure history, and source-return comparisons. |
 | Imported state source | GKW v3, Lemma 3.2 and Section 3.3, supplies the coarse Boolean-state premise used by the compressed-column construction. Its ancillary allocation is not imported as a two-clean implementation; local coherent source and native schedules remain necessary. |
 | Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) concerns normalization under its explicit row/column factorization contract. It supplies no unrestricted native-depth lower bound. |
 
 At sufficient $`b=\Theta(\sqrt{NL})`$, the linear-precision
 special case gives sublinear depth for $`L=o(n/\log(n+2))`$.
-The fixed-accuracy all-n statement retains
-$`O_\eta(\sqrt n\log(n+2))`$ depth at sufficient square-root width.
+R72 independently gives the one-clean fixed-accuracy all-n consequence
+$`O_\eta(\sqrt n\log(n+2))`$ at sufficient square-root width.
 
 Every selected branch includes source leakage, dirty/reference inputs,
 literal phases, and actual inverse words in its full comparison.

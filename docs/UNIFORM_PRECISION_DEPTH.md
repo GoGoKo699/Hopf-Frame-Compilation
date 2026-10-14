@@ -3,11 +3,12 @@
 [Blocked bilinear query](BLOCKED_BILINEAR_LOOKUP.md) · [Unary group compiler](UNARY_PHASE_GRADIENT.md) · [Existing all-precision hybrid](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) · [Capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
 
 The selected Result D is now the
-[all-precision same-circuit theorem](../research/depth/ALL_PRECISION_DEPTH.md).
+[one-clean all-precision theorem](../research/depth/ONE_CLEAN_DEPTH.md).
 It has optimal T-count at every precision and a stronger depth envelope,
 at the same literal dirty allocation and full return contract. This page
-retains the baseline construction used in its width, precision, and
-bounded-dimension splices; the section statements below remain unchanged.
+retains the two-clean baseline used by
+[R70](../research/depth/ALL_PRECISION_DEPTH.md); R72 proves its own
+one-clean fallback. The section statements below remain unchanged.
 
 The blocked query can retain its depth bound while using unequal
 indicator lengths to retain the frame's square-root precision
@@ -114,8 +115,8 @@ The [whole-frame binary stream](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
 extends shared-source reuse beyond linear precision; the
 [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md)
 supplies a separately proved depth lift of the banked count compiler.
-Their [combined theorem](../research/depth/ALL_PRECISION_DEPTH.md) is the
-current Result D. The separate
+Their [combined theorem](../research/depth/ALL_PRECISION_DEPTH.md) supplies
+the two-clean predecessor to the current one-clean Result D. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 resolves the two-clean high-precision real-frame count endpoint at its
 stated literal allocation; the uniform theorem here retains nL in its

@@ -15,6 +15,7 @@ not prove universal statements or asymptotic optimality.
 | Material | Entry point | Scope |
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
+| D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | Analytic native schedule and flag relocation; existing one-clean, source, recovery and dirty-query checks retain their finite scopes |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -77,8 +78,9 @@ establish the one-clean count guarantees at the [stated reservations](../../manu
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
-[real all-precision construction](../../research/depth/ALL_PRECISION_DEPTH.md)
-and its [phase-dressed extension](../../research/depth/COMPLEX_FRAME_DEPTH.md).
+[one-clean theorem](../../research/depth/ONE_CLEAN_DEPTH.md), R72, for
+both frame families. The earlier real and complex theorems retain their
+two-clean proof scopes.
 The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
@@ -111,7 +113,17 @@ supply the all-size statements within their declared interfaces.
 
 ### Detailed finite checks
 
-The [all-precision depth theorem](../../research/depth/ALL_PRECISION_DEPTH.md)
+The [one-clean count/depth theorem](../../research/depth/ONE_CLEAN_DEPTH.md),
+R72, adds an analytic native schedule, protected terminal flag relocation,
+a width/precision splice, and one-clean literal phase composition. The
+[one-clean suite](../../tests/test_one_clean_compiler.py) checks the native
+phase and real words, complete input columns, and actual inverses. Retained
+source, recovery and dirty-query suites support their component contracts.
+They do not certify the relocated logical bank, unbounded schedule, or
+asymptotic cutoffs by testing. R72 changes no native fixture or immutable
+receipt and supplies no general native emitter.
+
+The retained two-clean [all-precision depth theorem](../../research/depth/ALL_PRECISION_DEPTH.md)
 adds two analytic schedule proofs. The
 [whole-frame stream](../../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
 reuses the existing shared-binary-terminal native identities with an explicit

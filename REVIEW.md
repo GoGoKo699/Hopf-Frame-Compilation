@@ -6,7 +6,8 @@ The four principal results price the same prescribed operator in two gate
 models. Result A reaches the exact all-workspace size/depth frontier.
 Result B shares precision with sufficient clean work. Result C attains the
 count frontier with one clean qubit and explicit dirty reservations. Result D
-schedules count and T-depth on one complete real-frame circuit. A sharper
+schedules count and T-depth with one clean qubit for real and phase-dressed
+complex magnitude frames. A sharper
 two-clean complex endpoint retains its distinct allocation. This roadmap
 explains how the proofs connect; the linked chapters contain the constructions
 and estimates.
@@ -234,9 +235,9 @@ operator guarantees and establishes no new depth bound.
 
 ## 5. Result D: count and depth on the same circuit
 
-For real frames, the [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
-uses two external clean flags and $`b\ge17(L+n+7)`$ dirty qubits,
-for every $`n\ge1`$ and integer $`L\ge6`$. Define
+The [one-clean theorem](research/depth/ONE_CLEAN_DEPTH.md), R72, uses
+one external clean flag and $`b\ge17(L+n+7)`$ dirty qubits for real
+frames, for every $`n\ge1`$ and integer $`L\ge6`$. Define
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
@@ -254,27 +255,29 @@ Count is worst-case optimal at every eligible width. Dividing the inherited
 count lower bound by physical width also matches depth throughout every
 nonempty interval ending at $`b=\sqrt{NL/F(n,L)}`$.
 
-The proof combines a [whole-frame binary-source schedule](research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
-with a [high-precision schedule](research/depth/HIGH_PRECISION_DEPTH.md).
-The latter gives the stronger $`D_T=O(NL/b^2+L)`$ whenever
-$`L>N/n^2`$, with the same count and Clifford bounds. The
-[retained uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) supplies
-the $`nL`$ depth alternative and covers literal-width and bounded-dimension
-fallbacks. Each branch charges preparation, queries, predicates, actual
-inverses, and full work return; selecting a branch retains all three
-resource bounds on one circuit.
+R72 gives a native one-clean layerwise baseline and a separate width split.
+The early shared-gradient construction already uses one external flag;
+the terminal padding-rejection bit moves into the protected logical bank,
+where the full recovery reflection includes it. The proof charges both
+active and inactive sectors, source return, queries, predicates, and actual
+inverses. The high-precision branch gives the stronger
+$`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$, with the same count
+and Clifford bounds. The earlier [real theorem](research/depth/ALL_PRECISION_DEPTH.md)
+and [complex theorem](research/depth/COMPLEX_FRAME_DEPTH.md) remain valid
+under their original two-clean assumptions. Their
+[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) retains the earlier
+precision-dependent schedules and matching intervals.
 
-The [complex extension](research/depth/COMPLEX_FRAME_DEPTH.md) gives the
-same bounds for the prescribed phase-dressed magnitude frame
-$`D_\phi W_{\mathbb R}`$, with two clean flags and
-$`b\ge17(L+n+8)`$. It separately prices a literal diagonal's native
-T-depth and composes it after the real factor at half error per factor.
-Both factors reuse the same workspace; the full-isometry hybrid carries
+The same R72 theorem covers the prescribed phase-dressed magnitude frame
+$`D_\phi W_{\mathbb R}`$, with one clean flag and
+$`b\ge17(L+n+8)`$. Its one-clean literal-diagonal schedule charges
+complete mask queries and native sources before composing half-error
+factors on the same flag and dirty pool. The full-isometry hybrid carries
 earlier leakage through the second actual circuit. Common phase and actual
 inverses are retained. The stronger high-precision additive L term also
 holds at this complex reservation.
 
-For real frames and some absolute $`c>0`$, the
+For real frames, two clean flags, and some absolute $`c>0`$, the retained
 [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains the stronger $`\log_2(n+2)`$ dependence for
 $`6\le L\le cn`$:
@@ -320,7 +323,7 @@ task-level result. Two additional resource points remain separate from C:
 | Resource point | Current guarantee |
 |---|---|
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 saves one dirty qubit for the complex frame at $`L=N`$. The

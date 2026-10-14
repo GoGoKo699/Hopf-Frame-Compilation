@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F42 and R12–R71: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
+| F1–F42 and R12–R72: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -254,8 +254,9 @@ extends R32 and R43 with the following component result.
 | R69 | high-precision same-circuit depth lift | [High-precision proof](../../research/depth/HIGH_PRECISION_DEPTH.md): at every $`n\ge1`$, $`L>N/n^2`$, integer $`L\ge6`$, two clean flags and $`b\ge17(L+n+7)`$, the R65 real-frame compiler admits $`D_T=O(L+NL/b^2)`$ on the same circuit as optimal count and $`G=O(NL)`$. Completed real XOR/Z masks are replaced after conjugate lifting by the nonuniform rectangular query, leaving the borrowed signal untouched. Full rejected operators, mixed gauges and actual replay are preserved. Unweighted output-width sums and a separately bounded unchanged native remainder give the depth bound; finite dimensions use R45. This is a new schedule proof, not a depth inference from R65's total count; no new external premise or depth lower bound. |
 | R70 | all-precision simultaneous optimal count and depth envelope | [Combined theorem](../../research/depth/ALL_PRECISION_DEPTH.md): every $`n\ge1`$, integer $`L\ge6`$, two clean flags and $`b\ge17(L+n+7)`$ admit full error $`2^{-L}`$, optimal $`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, and $`D_T=O(NL/b^2+F(n,L))`$, where F is the all-precision envelope below. The high-precision branch retains R69's stronger additive L. R45/R66/R68/R69 provide complete same-circuit branches and an absolute bounded-dimension fallback. F3/F4's inherited lower bounds match count everywhere and depth on the stated nonempty width interval; no unrestricted optimal-depth, efficient preprocessing or general-emitter claim. |
 | R71 | phase-dressed complex magnitude-frame depth | [Complex extension](../../research/depth/COMPLEX_FRAME_DEPTH.md): for every $`n\ge1`$, integer $`L\ge6`$, two clean flags and $`b\ge17(L+n+8)`$, the prescribed $`D_\phi W_{\mathbb R}`$ has full initialized-isometry error at most $`2^{-L}`$, optimal $`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, and $`D_T=O(NL/b^2+F(n,L))`$ with the R70 envelope below. For $`L>N/n^2`$, depth strengthens to $`O(NL/b^2+L)`$. A charged literal-diagonal schedule composes after the R70 real factor at half error per factor, reusing the same two flags and dirty pool. The actual inverse and hybrid retain all leakage, common phase and dirty/reference inputs. Existing diagonal-family lower bounds match count throughout and depth on the stated nonempty width interval. R70's real threshold and R66's stronger real low-precision statement remain unchanged; no new external premise, arbitrary-complex-unitary theorem, unrestricted optimal-depth, efficient preprocessing or general-emitter claim. |
+| R72 | one-clean simultaneous optimal count and depth | [One-clean theorem](../../research/depth/ONE_CLEAN_DEPTH.md): every $`n\ge1`$, integer $`L\ge6`$, one clean flag and $`b\ge17(L+n+7)`$ for real frames or $`b\ge17(L+n+8)`$ for prescribed phase-dressed complex magnitude frames admit full initialized-isometry error $`2^{-L}`$, optimal $`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, and $`D_T=O(NL/b^2+F(n,L))`$ with the all-precision envelope below. For $`L>N/n^2`$, depth strengthens to $`O(NL/b^2+L)`$. Native one-clean layer words and exact rectangular queries supply an uncapped baseline; a separate width/precision splice, protected terminal flag relocation, and bounded-dimension fallback retain one external flag. Twenty complete mask queries and forty-five source appearances price the one-clean literal diagonal before half-error composition on the same flag and dirty pool. Full active/inactive sectors, literal phases, actual inverses, dirty/reference inputs and prior leakage are included. R70/R71 retain their two-clean statements; R66's stronger real low-precision statement remains separately scoped. Existing interfaces and imported premises suffice; no unrestricted optimal-depth, efficient preprocessing or general-emitter claim. |
 
-For R70 and R71, the all-precision envelope is
+For R70, R71 and R72, the all-precision envelope is
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
@@ -264,8 +265,9 @@ F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 The count/depth matching interval ends at $`b=\sqrt{NL/F(n,L)}`$,
 above the family-specific lower threshold when nonempty. R70 retains
 $`17(L+n+7)`$ for real frames; R71 uses $`17(L+n+8)`$ for the
-phase-dressed complex magnitude frame. The stronger R66 real low-precision
-result and R69 real high-precision result retain their separate statements.
+phase-dressed complex magnitude frame. R72 uses those respective thresholds
+with one clean flag. The stronger R66 real low-precision result and R69 real
+high-precision result retain their separate two-clean statements.
 
 
 For the current R66 refinement,
@@ -994,7 +996,8 @@ bound $`T=O(N+nL)`$, $`G=O(NL)`$ at $`b\ge L+n+7`$.
 The scalar-phase word does not share this symmetry, and the grouped proof
 retains its external clean predicate. These corollaries do not lower the
 proved full-frame endpoint T count or extend the separately proved
-two-clean T-depth schedules.
+two-clean T-depth schedules by themselves. The later [R72 proof](../../research/depth/ONE_CLEAN_DEPTH.md)
+supplies the native schedules and complete-workspace arguments for one-clean depth.
 
 The same primitive prices the
 [weighted forward component](../../research/endpoint/WEIGHTED_TRANSPORT_BLOCK.md) at
