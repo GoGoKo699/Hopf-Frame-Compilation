@@ -39,7 +39,7 @@ target tuple.
 | Family | Exact promise and proof |
 |---|---|
 | Regular or common-scale branches | The [precision-gauge compiler](../research/endpoint/PRECISION_GAUGE_COMPILER.md) covers polynomially regular normalized branches, a fixed-ratio interval of branch exponents, and the stated cheap/ultraweak separation |
-| Mixed component heights and precisions | The [heterogeneous-source compiler](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) covers the specified aligned family with $`n=2^{2t}`$, $`h_r=n/2^{r+1}`$, $`0\le r\lt t`$, and independent smaller branches in $`[2^{-N/h_r-1},2^{-N/h_r}]`$; the class label is preserved throughout each component |
+| Heterogeneous node precisions | For $`n=2^{2t}`$, $`t\ge2`$, and fixed $`A>0`$, the [common-source compiler](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) covers supplied nodewise integer bins $`2N/n\le E_v\le AN/\log_2 n`$, with each nonzero normalized smaller branch in $`[2^{-E_v-1},2^{-E_v}]`$; known exact-zero merges and connected trees are allowed, and the former mixed-height family is a corollary |
 | Sparse computational forests | The [structured-forest compiler](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) covers fixed outgoing degree in the original tree $`p(j)=j-\mathrm{lowbit}(j)`$, more generally certified sub-binary growth within degree windows; active angles may be arbitrary, signed, or singular |
 | Bounded exceptional path depth | The same forest theorem allows arbitrary-scale exceptional edges when each computational path meets only a fixed number, over a cheap or fixed-ratio base family |
 | Bounded exceptional exits | The [contracted-forest extension](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md#6-bounded-exceptional-exits-from-base-components) allows arbitrarily deep exceptional paths when each whole base component has only a fixed number of outgoing exceptional edges; the base may contain nonnative regular angles |
@@ -68,9 +68,9 @@ All retain the literal dirty reservation. The disjoint or collective-budget
 promises do not follow from adding ranks of arbitrary overlapping factors.
 
 These promises do not cover every supplied tuple. In particular, full
-binomial components have binary descendant growth, while arbitrary
-heterogeneous precision scales need not have a bounded precision sum or
-the conserved component classes used by the heterogeneous-source theorem.
+binomial components have binary descendant growth. The common-source
+theorem does not cover arbitrary smaller nonzero exponents or expensive
+bottom precision traces outside its stated interval.
 Reordering a star into an arbitrary binary graph does not preserve the
 original tree's degree-window condition.
 

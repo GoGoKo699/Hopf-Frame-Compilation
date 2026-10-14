@@ -518,9 +518,10 @@ to be compiled, so exterior cancellation does not supply a new ledger.
 This rescheduling route stops at (11a). The
 [heterogeneous-source compiler](HETEROGENEOUS_PRECISION_SOURCE.md) supplies
 a different native identity: a prepared geometric source with a tiny
-class-dependent ratio is carried through exact dyadic Cayley kernels.
-It proves linear cost for this mixed-height family, including preparation,
-actual inverses, and full work return. It changes the sources and merge
+common ratio is carried through exact dyadic Cayley kernels with
+node-dependent integer shifts. Its nodewise exponent theorem includes
+this mixed-height family as a corollary, with preparation, actual inverses,
+and full work return charged. It changes the sources and merge
 implementation, so it does not contradict the unchanged-bank proposition.
 The unrestricted endpoint question remains open.
 
