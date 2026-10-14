@@ -291,7 +291,7 @@ $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 $`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$ at
 every eligible width. At sufficient square-root width it gives
 $`o(n)`$ depth, while the unrestricted lower bound is $`\Omega(1)`$.
-Optimal depth remains open. Result D retains its all-precision guarantees;
+Optimal depth remains an open problem. Result D retains its all-precision guarantees;
 C does not improve its depth. The separate
 [entry-indexed normalization bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 is restricted to that state-source architecture and is not an
