@@ -1,4 +1,6 @@
-# Two resource questions for complete Hopf frames
+<a id="two-resource-questions-for-complete-hopf-frames"></a>
+
+# Endpoint theorem and remaining depth question
 
 [Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
 
@@ -35,159 +37,6 @@ workspace width, retaining literal phases. Thus the two-clean real-frame
 count endpoint is resolved. The complex-frame, one-clean, and T-depth
 guarantees retain their separate scopes.
 
-### Proved linear-count families
-
-The following earlier compilers retain their own hypotheses and native
-constructions. Constants may depend on fixed promises, never on $`n`$
-or the target tuple.
-
-| Family | Exact promise and proof |
-|---|---|
-| Regular or common-scale branches | The [precision-gauge compiler](../research/endpoint/PRECISION_GAUGE_COMPILER.md) covers polynomially regular normalized branches, a fixed-ratio interval of branch exponents, and the stated cheap/ultraweak separation |
-| Heterogeneous node precisions | At every integer height, the [common-source compiler](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) gives $`O(N+\mathcal B_K)`$ after certified clipping, where $`\mathcal B_K`$ is the retained bottom-depth precision trace; a linear trace gives linear count, including the earlier global exponent-envelope and mixed-height families |
-| Sparse computational forests | The [structured-forest compiler](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) covers fixed outgoing degree in the original tree $`p(j)=j-\mathrm{lowbit}(j)`$, more generally certified sub-binary growth within degree windows; active angles may be arbitrary, signed, or singular |
-| Bounded exceptional path depth | The same forest theorem allows arbitrary-scale exceptional edges when each computational path meets only a fixed number, over a cheap or fixed-ratio base family |
-| Bounded exceptional exits | The [contracted-forest extension](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md#6-bounded-exceptional-exits-from-base-components) allows arbitrarily deep exceptional paths when each whole base component has only a fixed number of outgoing exceptional edges; the base may contain nonnative regular angles |
-| Native-baseline updates | [Antichain](../research/endpoint/ANTICHAIN_COMPILER.md) and [ancestor-closed sparse updates](../research/endpoint/SPARSE_UPDATE_COMPILER.md) retain their separate promises |
-
-A common primitive is the [disjoint SU-block compiler](../research/endpoint/DISJOINT_BLOCK_COMPILER.md):
-$`\sum_j m_j^2\le\kappa N`$ for fixed $`\kappa`$ gives
-$`O_\kappa(N)`$ T-count, including the actual source construction,
-inverses, and return error. Whole components can be too large for this
-criterion; the forest theorem obtains a constant number of eligible
-factors by exact component dressing.
-
-For the bounded-exit extension, one exit per base component needs three
-priced factors, while two exits need at most twelve, apart from signed
-normalization. The factors include the base forest and the input correction;
-their full native cost is charged.
-
-The [rank-weighted compiler](../research/endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md)
-extends this primitive to supplied bounds
-$`\mathrm{rank}(U_j-I)\le r_j`$ with $`\sum_jm_jr_j\le\kappa N`$.
-It also compiles complete sequences of boundary corrections when their
-collective basis and core satisfy the stated weighted budgets. Complex
-blocks use two clean flags; real blocks use one through the
-[borrowed conjugate signal](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md).
-All retain the literal dirty reservation. The disjoint or collective-budget
-promises do not follow from adding ranks of arbitrary overlapping factors.
-
-These earlier methods have restrictions that the growing-source theorem
-does not impose. Full binomial components have binary descendant growth,
-and the fixed common-source construction retains its bottom precision
-trace cost.
-Reordering a star into an arbitrary binary graph does not preserve the
-original tree's degree-window condition.
-
-### Bounded diagonal factorization
-
-Any fixed number of literal diagonal factors with charged interlayers fits
-the endpoint width. The [factorization reduction](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-proves terminating certified selection from exact coverage; uniformly
-bounded coverage remains a hypothesis.
-
-The [structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-separate restrictions on Haar/flat-Clifford mixers from the general
-problem. With fixed Clifford interleavings and differentiable diagonal
-stages that are Clifford-valued at the origin, exact full-family synthesis
-needs $`n`$ stages. An approximate version additionally requires a
-physical Lipschitz bound. Non-Clifford baselines, nonsmooth selection,
-and target-dependent interleavings are outside that theorem.
-
-### A regular fixed-tree Cayley family
-
-The [all-angle tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
-expresses every frame through bounded cotangent parameters, two literal
-diagonals, and exact $`O(N)`$-T permutations. The
-[boundary feedback identity](../research/endpoint/BOUNDARY_PROPAGATION.md)
-leaves one complete prefix encoder.
-The [coarse encoder](../research/endpoint/COARSE_PREFIX_ENCODER.md) and
-[fixed-order refinement](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md)
-price coarse and cubic replacements in $`O(N)`$ T gates.
-The [coupled inverse](../research/endpoint/COUPLED_TREE_RESOLVENT.md)
-has an all-order norm bound and ideal scattering completion, but its
-direct native precision cost remains $`O(N+nL)`$.
-
-A complementary [canonical-star identity](../research/endpoint/CANONICAL_STAR_RESOLVENT.md)
-gives a full native local scattering oracle at linear count and writes
-the target using a triangular descendant inverse. The inverse is still
-unpaid. Conditioning, small rank, and accepted-block identities do not
-supply a complete native recovery circuit.
-
-The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
-provides a complementary reduction without a change of tree. Its signed
-path and determinant formulas locate the direct Cayley singularities.
-An exactly returned native coarse frame has $`O(N)`$ T-count and leaves
-a residual smaller than $`2^{-\lceil\sqrt N\rceil-6}`$, with rank at
-most one across every original tree-edge cut. A regularized joint-Gram
-construction completes its canonical factors on exactly $`4N`$ modes,
-with bounded conditioning and cut ranks. This removes the earlier specific
-completion overrun, not the unproved native cost of its fine source and
-actual inverse.
-
-The [ordered-bank and finite-history results](../research/endpoint/ORDERED_BLOCK_BANKS.md)
-give an exact full-frame factorization with $`(4+o(1))N`$ total squared
-block size and $`(1+o(1))\log_2n`$ ordered factors. The stored banks,
-right readout, coarse prefix bank and local fine SU(2) bank have charged
-native implementations under their stated interfaces. Their ordered fine
-evaluation or the alternative fine left source remains unconstructed.
-The sharp block-factorization and independently compiled-module bounds
-restrict those representations; they do not change the unrestricted
-T-count comparison.
-
-The [scalar Schur theorem](../research/endpoint/SCALAR_SCHUR_LIMITS.md)
-gives an exact complex coarse-frame gauge and a support-forced completion
-rank of at least $`n+1`$ when the selected chain correlations satisfy
-$`q_j\lt1`$. Its robust polynomial error floor concerns one
-prescribed coarse call with fixed source-mode dimension and bounded,
-logical-label-preserving sources. The operator-valued extension makes
-that floor independent of arbitrary dirty width. Logical-label mixing,
-multiple coarse calls, and other recovery mechanisms remain eligible.
-The [native representation results](../research/endpoint/NATIVE_REALIFICATION.md)
-separate linear ring height from native factorization and give a phase
-cost for normalized scalar acceptance, even at arbitrarily small success
-probability. The [single-echo bound](../research/endpoint/SOURCE_REUSE_LIMITS.md#whole-word-xor-cancellation-and-a-cyclic-alternative)
-likewise applies only to its commuting involutory interface. These statements leave the
-unrestricted endpoint bounds unchanged.
-
-### Source-program resynthesis
-
-The [source-program results](../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md)
-distinguish raw scalar-source programs from fully recovered groups.
-After complete group recovery, a prefix-controlled dirty-core gauge that
-commutes with the group target preserves its initialized-isometry error.
-Different groups may therefore use independent gauges without physical
-connectors. Raw prefix changes still require their connectors, and every
-transformed group interior remains to be compiled.
-
-At this endpoint, the same chapter gives a normal form using one fixed
-physical core of $`\mu=N+6+\lceil\log_2n\rceil`$ dirty qubits for all
-source calls, within the literal allocation and with two clean flags.
-Width transitions disappear, but repeated precision charges retain the
-$`O(N\ell_*(n))`$ bound. Resynthesis at fixed source algebra or fixed local
-dimension does not price the growing interiors of the unrestricted family.
-
-The [packed rejection-bank construction](../research/endpoint/PACKED_REJECTION_BANKS.md)
-fits supported failure paths into the two mode flags. An input preweight
-and one final recovery remove separate group recoveries, but its direct
-fine-source cost remains O(nN). Its depthwise balanced schedule gives exact
-four-port history compression and a full rounded-source comparison within
-the literal dirty width. The preceding fine prefix-unwinding bank remains
-unconstructed; a bank-preserving scalarization must approximate that prefix
-on every logical and dirty input. More generally,
-[three calls to a joint history compressor](../research/endpoint/JOINT_HISTORY_COMPRESSION.md)
-recover a complete fine prefix, with at most 24 times the compression error.
-A linear-count compressor would give another endpoint compiler;
-logical-label-preserving mixing cannot supply it. Its anchored Householder
-completion is well-conditioned but has no priced native source. Recovering
-the compressor from its unchanged history range reflection requires
-$`\Omega(N)`$ queries when all other operations are target-independent;
-this oracle restriction does not cover general native resynthesis. The
-[joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
-compresses returned dirty work according to the Pauli axes' symplectic rank,
-without additional T gates or error. These results do not supply a uniform
-O(N) native selection rule for their stated representations.
-
 ## Large-width T-depth
 
 At fixed $`0\lt\eta\le1/64`$, two clean flags, and sufficient
@@ -206,12 +55,52 @@ T-depth permits arbitrary Clifford interlayers and is distinct from total
 physical depth. The [depth results](../research/README.md#large-workspace-t-depth)
 separate source, predicate, query, and logical-transport costs.
 
+## Earlier endpoint constructions
+
+The [research index](../research/README.md#constant-clean-high-precision-count)
+is the catalogue of earlier constructions and their exact hypotheses.
+Their method-specific open steps are alternatives to the resolved endpoint,
+not gaps in the growing-source theorem. Unique proofs, negative results,
+and executable evidence remain at their original paths.
+
+### Proved linear-count families
+
+The [native primitives and promised families](../research/README.md#native-primitives-and-promised-families)
+include disjoint and rank-weighted blocks, precision gauges, heterogeneous
+sources, structured forests, and sparse updates. Several are dependencies
+of the growing-source proof; their separate clean/dirty reservations and
+stronger promises remain explicit in their own statements.
+
+### Bounded diagonal factorization
+
+[Bounded diagonal coverage](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
+is a sufficient route with terminating certified selection. The
+[structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
+apply to specified mixers and regularity assumptions, not arbitrary compilers.
+
+### A regular fixed-tree Cayley family
+
+The [full-frame reductions](../research/README.md#full-frame-reductions-and-remaining-native-steps)
+preserve Cayley, prefix, scattering, residual, and ordered-bank constructions.
+Each distinguishes its priced native operations from its remaining recovery
+or fine-source step. Small rank, bounded conditioning, and compact storage
+alone do not certify native cost.
+
+### Source-program resynthesis
+
+The [source programs and encodings](../research/README.md#source-programs-and-encodings)
+and [diagonal and reflection architectures](../research/README.md#diagonal-and-reflection-architectures)
+record paid fusion rules and restrictions on particular source, history,
+and query interfaces. They supply neither an additive unrestricted lower
+bound nor an uncharged native implementation of a different representation.
+
 ## Full-circuit requirement
 
-A resolution must charge source construction, tables, basis changes,
+Every compiler must charge source construction, tables, basis changes,
 queries, actual inverses, amplification, and workspace return on the same
-circuit. The count question allows arbitrary finite Clifford work and
-classical preprocessing. It allows no QRAM, supplied precision state,
+circuit. The resolved count endpoint allows arbitrary finite Clifford work
+and classical preprocessing; the depth question retains its displayed
+Clifford budget. Neither permits QRAM, a supplied precision state,
 measurement, reset, postselection, or uncharged coherent evaluator.
 A lower bound must apply to this full model; a failure of one source,
 query interface, or factorization is a restriction of that method.

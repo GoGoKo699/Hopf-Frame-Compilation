@@ -17,7 +17,8 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Proof roadmap](REVIEW.md) | Follow the mechanisms connecting the four claims |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Research results and open gaps](research/README.md) | Find the linear-count endpoint theorem, earlier constructions, and scoped limits |
+| [Endpoint theorem and depth question](docs/OPEN_PROBLEM.md) | Read the resolved high-precision count and remaining large-width depth target |
+| [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 
 ## Target and resource contract
 

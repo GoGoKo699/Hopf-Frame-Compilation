@@ -120,27 +120,26 @@ These statements separately charge quantum executions, observable access,
 initialized protocol work, and classical output. They do not establish
 optimality among all gradient algorithms or an end-to-end advantage.
 
-### Separate supplements and optional research
+<a id="separate-supplements-and-optional-research"></a>
 
-The completed [state-based QBP supplement](../supplements/state_based_qbp/README.md)
-uses a changed decoder and an initialized state-preparation interface. Its
-real/complex theorem, computational input audit, task costs, and bounded
-native integrations are grouped there. It does not replace the complete-frame
-contract or become an extra prerequisite for A–D.
+### Separate endpoint theorem
 
 The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 proves unrestricted $`\Theta(N)`$ worst-case T-count for complete real
-frames at $`\eta=2^{-N},a=2,b=N+n+7`$. The
+frames at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. The
 [research index](../research/README.md) maps its native dependencies,
 earlier promised families, and limits of specific source or factorization
 models. The [endpoint statement](OPEN_PROBLEM.md) records the remaining
 large-width depth question. These separate results are not dependencies
 of Results A–D.
 
-The [original-tree residual](../research/endpoint/ORIGINAL_TREE_RESIDUAL.md)
-has rank at most one across each original tree-edge cut. Its ideal joint
-completion fits exactly $`4N`$ modes with bounded conditioning and cut ranks;
-the fine native source and its actual inverse remain unpriced.
+### Completed changed-decoder supplement
+
+The [state-based QBP supplement](../supplements/state_based_qbp/README.md)
+uses a changed decoder and an initialized state-preparation interface. Its
+real/complex theorem, computational input audit, task costs, and bounded
+native integrations are grouped there. It does not replace the complete-frame
+contract or become an extra prerequisite for A–D.
 
 ## Evidence and sources
 

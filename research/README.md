@@ -1,10 +1,11 @@
 # Research results for complete-frame compilation
 
-[Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Current gaps](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
+[Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-These notes give constructive reductions, promised-family compilers, and
-limits of particular interfaces for the constant-clean count and T-depth
-questions. They are separate from the proof chain for Results A–D.
+The two-clean high-precision real-frame count endpoint is resolved by the
+growing-source theorem below. The large-width T-depth question remains open.
+These results and the retained earlier constructions are separate from the
+proof chain for Results A–D.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -18,16 +19,30 @@ uses a different decoder and has its own task-level guarantee.
 The target is the complete prescribed frame at the literal allocation in
 the [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count).
 The [growing-source compiler](endpoint/GROWING_SOURCE_COMPILER.md) attains
-$`T=O(N)`$ for every real frame with two clean flags and $`N+n+7`$
-dirty qubits, matching the endpoint lower bound in order.
-Compact classical descriptions, first-column agreement, or uncharged
-program access do not meet that target.
+$`T=\Theta(N)`$ in the worst case at $`\eta=2^{-N}`$, $`n\ge3`$,
+with two clean flags and $`N+n+7`$ dirty qubits. Its upper bound covers
+every prescribed real frame. Growing sources, sealed rejection modes,
+frozen output tags, actual dirty replay, and final recovery are charged.
+The theorem makes no additional one-clean, complex-frame, Clifford-count,
+or T-depth claim.
 
-#### Native primitives and promised families
+Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
+[bottom-level precision bound](endpoint/PRECISION_GAUGE_COMPILER.md#5-precision-trace-and-native-resource-bound),
+and [disjoint source extensions](endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
+together with the linked conditional-suffix, scalar, and recovery primitives.
+Those earlier chapters remain proof dependencies even where their headline
+frame bounds have been superseded.
+
+The remaining tables catalogue earlier methods and their individual limits.
+An unconstructed source or fine step in one of these methods is not an
+unresolved part of the growing-source theorem or a new work order.
+
+<a id="native-primitives-and-promised-families"></a>
+
+#### Retained primitives and promised families
 
 | Study | Result | Scope |
 |---|---|---|
-| [Growing precision source](endpoint/GROWING_SOURCE_COMPILER.md) | Unrestricted real-frame endpoint $`T=\Theta(N)`$ at error $`2^{-N}`$, two clean flags and $`N+n+7`$ dirty qubits | Growing sources, sealed rejection modes, frozen output tags and actual dirty replay are charged; no additional one-clean, complex-frame or depth bound |
 | [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear-count synthesis of disjoint SU blocks with a linear sum of squared dimensions; disjoint reflection corollary | Actual coarse mesh, fine sources, literal phase, and complete return are charged |
 | [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
 | [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, zero-clean real reflection banks, and one-clean real block refinements | The mode/recovery flag remains necessary for the stated accepted-block construction; exact native counterexample and balanced-sector bound |
@@ -39,13 +54,15 @@ program access do not meet that target.
 | [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | **Proved special case:** linear endpoint count for a literal native-baseline antichain promise | Generic rounded frames need not satisfy that promise |
 | [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | **Proved special case:** linear endpoint count under the stated ancestor-closure condition, including a changed path | This is a restricted update family, not the unrestricted frame family |
 
-#### Full-frame reductions and remaining native steps
+<a id="full-frame-reductions-and-remaining-native-steps"></a>
+
+#### Earlier full-frame reductions and their native limits
 
 | Study | Result | Scope |
 |---|---|---|
-| [Fixed-tree Cayley reduction](endpoint/TREE_CAYLEY_REDUCTION.md) | All-angle phase gauge, regular parameter chart, exact O(N)-T permutations, and a two-diagonal-algebra generator | The core has an O(nN)-T fine realization; O(N)-T synthesis remains open |
+| [Fixed-tree Cayley reduction](endpoint/TREE_CAYLEY_REDUCTION.md) | All-angle phase gauge, regular parameter chart, exact O(N)-T permutations, and a two-diagonal-algebra generator | This route's direct fine-core realization costs O(nN); it supplies no separate linear native ledger |
 | [Boundary propagation](endpoint/BOUNDARY_PROPAGATION.md) | Sparse preconditioning, repeated-call precision within the exact width, and complete feedback cancellation to one prefix encoder | Repeated calls cost O(RN); the surviving fine encoder has a direct O(nN)-T certificate |
-| [Coarse encoder](endpoint/COARSE_PREFIX_ENCODER.md) and [collective refinement](endpoint/COLLECTIVE_PRECISION_REFINEMENT.md) | Joint prefix compilation, exact geometric history, quadratic physical purification, and a cubic midpoint replacement at O(N) T-count | Fixed-order refinement of the terminal regular-core frame; an all-order linear-cost ledger remains open |
+| [Coarse encoder](endpoint/COARSE_PREFIX_ENCODER.md) and [collective refinement](endpoint/COLLECTIVE_PRECISION_REFINEMENT.md) | Joint prefix compilation, exact geometric history, quadratic physical purification, and a cubic midpoint replacement at O(N) T-count | Fixed-order refinement of the terminal regular-core frame; this refinement route has no all-order linear-cost ledger |
 | [Coupled tree resolvent](endpoint/COUPLED_TREE_RESOLVENT.md) | All-order graded inverse, tail and support bounds, ideal normalization-three scattering, and hidden-prefix baseline identity | Direct native synthesis retains O(N+nL) cost; small rank and static feedback do not establish a linear native ledger |
 | [Canonical-star resolvent](endpoint/CANONICAL_STAR_RESOLVENT.md) | Exact root-column transfer, triangular Cayley denominator, and a linear-count full native local oracle | The descendant feedback inverse remains unpaid |
 | [Original-tree residual](endpoint/ORIGINAL_TREE_RESIDUAL.md) | Signed path and determinant identities; exponentially accurate exactly returned coarse word; regularized 4N-mode source completion with bounded tree-cut ranks | Ideal source geometry is proved; fine native source preparation and its inverse remain unpaid |
