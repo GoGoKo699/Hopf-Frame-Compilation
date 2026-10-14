@@ -34,7 +34,9 @@ return, and resource accounting under the individual recorded contracts.
 
 <a id="endpoint-count-evidence"></a>
 
-### Two-clean count evidence
+<a id="two-clean-count-evidence"></a>
+
+### One-clean count evidence
 
 The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
@@ -45,16 +47,24 @@ $`N=2^n`$, error $`2^{-N}`$, two clean flags, and $`b=N+n+7`$ dirty
 qubits. The error includes every logical column, returned flags, arbitrary
 dirty inputs, and external references.
 
-The [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+The [one-clean precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`T=O(N+L)`$ for integer $`L\ge6`$ at error $`2^{-L}`$,
-with two clean flags and dirty reservation $`b\ge L+n+7`$ for real
-frames or $`b\ge L+n+8`$ for complex magnitude frames. At those
+with $`G=O(NL)`$, one clean flag, and dirty reservation
+$`B=L+n+7`$ for real frames or $`B=L+n+8`$ for complex magnitude
+frames. The upper bound applies at every $`b\ge B`$. At those
 exact base widths, the existing lower bound gives worst-case
-$`T^\star=\Theta(N+L)`$ when $`L\ge\max(6,n)`$; no matching
-lower bound at every larger width is inferred. The fixed $`L=N`$
-endpoint retains its sharper common reservation $`b=N+n+7`$.
-These count results supplement Results A–D and do not settle general
-optimal T-depth.
+$`T^\star=\Theta(N+L)`$ when $`L\ge\max(6,n)`$. The
+[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+gives, for every $`b\ge2B`$ and integer $`L\ge6`$,
+
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O(NL),\qquad a=1.
+```
+
+The fixed $`L=N`$ complex endpoint retains the sharper reservation
+$`b=N+n+7`$ with two clean flags. These count results supplement
+Results A–D and do not settle general optimal T-depth.
 
 The real [growing-source diagnostics](../tests/test_growing_precision_source.py) test
 normalized refinement, sealed occupied and entangled failures, retained
@@ -78,6 +88,15 @@ and reference-entangled inputs. Discarded leakage, reversed factor order,
 and omitted common phase have counterchecks. Its addressed direct sum is
 supplied; it emits neither the growing-source compiler nor a general
 diagonal table. The precision and workspace bounds remain analytic.
+
+The [conjugate-recovery suite](../tests/test_conjugate_recovery.py) adds a
+separate 16-dimensional diagnostic retaining the original initialized
+mode anchor and an arbitrary borrowed signal. It checks a lifted native
+interlayer, both signal sectors, dirty/reference inputs, actual inverses,
+and a full-operator perturbation that leaves nonzero recovery leakage.
+Negative controls incorrectly initialize the borrowed signal or omit an
+interlayer lift. Its source is a supplied matrix; it does not emit a
+growing-source circuit or establish the all-size banked resource bound.
 
 ### Detailed evidence records
 

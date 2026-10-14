@@ -14,7 +14,15 @@ $`b\ge L+n+7`$ for real frames or $`b\ge L+n+8`$ for complex
 magnitude frames. These count theorems are selected alongside the unchanged
 Results A–D. At exactly those base dirty widths and
 $`L\ge\max\{6,n\}`$, the existing finite-width lower bound gives
-worst-case $`\Theta(N+L)`$. This log preserves earlier route
+worst-case $`\Theta(N+L)`$. The
+[one-clean extension](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+now gives the same uniform count and base dirty widths with $`a=1`$
+and $`G=O(NL)`$. Its
+[banked form](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+matches $`\Theta(\sqrt{NL}+L+NL/b)`$ for every integer $`L\ge6`$
+and $`n\ge3`$, at real $`b\ge2(L+n+7)`$ or complex magnitude
+$`b\ge2(L+n+8)`$. The sharper complex endpoint $`b=N+n+7`$
+remains two-clean. This log preserves earlier route
 assessments, their derivations, and method-specific obstructions.
 References below to the best bound, an endpoint gap, or a next step describe
 the corresponding historical pass; they are not current work orders.

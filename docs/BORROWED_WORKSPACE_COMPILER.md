@@ -353,7 +353,11 @@ The [grouped one-clean construction](CONDITIONAL_SUFFIX_COMPILER.md#10-the-group
 improves this to $`O(N\ell_*(n))`$ at $`a=1`$ and
 $`b\ge N+n+7`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
 These constructions retain their separate clean and dirty reservations.
-At $`a=2,b=N+n+7,n\ge3`$, the separate
-[growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-attains $`O(N)`$ T-count at error $`2^{-N}`$. This does not extend the
-zero- or one-clean bounds above; see the [endpoint status](OPEN_PROBLEM.md).
+At $`a=1,b=N+n+7,n\ge3`$, the separate
+[growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+attains $`O(N)`$ T-count at error $`2^{-N}`$. More generally it gives
+$`O(N+L)`$ at $`b\ge L+n+7`$ with $`G=O(NL)`$, and its
+[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching for all $`L\ge6,n\ge3`$ at $`b\ge2(L+n+7)`$.
+The zero-clean bound above remains separate; see the
+[endpoint status](OPEN_PROBLEM.md).

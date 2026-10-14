@@ -6,7 +6,8 @@ repository compiles that prescribed **complete operator**, with explicit
 costs for precision, initialized workspace, and borrowed workspace.
 
 The principal results are A–D below, accompanied by a precision-uniform
-two-clean count theorem and its sharper high-precision endpoint. Their
+one-clean count theorem, optimal banked count, and a sharper two-clean
+high-precision endpoint. Their
 hypotheses and retained corollaries are collected in the
 [publication scope](manuscript/PUBLICATION_SCOPE.md).
 
@@ -16,10 +17,10 @@ hypotheses and retained corollaries are collected in the
 
 | Read next | Purpose |
 |---|---|
-| [Proof roadmap](REVIEW.md) | Follow A–D and the selected two-clean count theorem |
+| [Proof roadmap](REVIEW.md) | Follow A–D and the selected one-clean count frontier |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Count theorem and depth question](docs/OPEN_PROBLEM.md) | Read the uniform two-clean count, sharp endpoint, and remaining large-width depth target |
+| [Count theorem and depth question](docs/OPEN_PROBLEM.md) | Read the one-clean count frontier, sharp endpoint, and remaining large-width depth target |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 
 ## Target and resource contract
@@ -140,45 +141,50 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 
 <a id="endpoint-count-claim-and-remaining-depth-gap"></a>
 
-## Two-clean count theorem and remaining depth gap
+<a id="two-clean-count-theorem-and-remaining-depth-gap"></a>
+
+## One-clean count frontier and remaining depth gap
 
 For $`n\ge3`$ and every integer $`L\ge6`$, the selected
-[precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-compiles both frame families to error $`2^{-L}`$ with universal constants:
+[precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+compiles both frame families to error $`2^{-L}`$ with one clean qubit
+and universal constants:
 
-| Family | Clean qubits | Dirty reservation | T-count |
-|---|---|---|---|
-| Complete real frame | $`a=2`$ | $`b\ge L+n+7`$ | $`O(N+L)`$ |
-| Phase-dressed complex magnitude frame | $`a=2`$ | $`b\ge L+n+8`$ | $`O(N+L)`$ |
+| Family | Base dirty reservation B | T-count at $`b\ge B`$ |
+|---|---|---|
+| Complete real frame | $`L+n+7`$ | $`O(N+L)`$ |
+| Phase-dressed complex magnitude frame | $`L+n+8`$ | $`O(N+L)`$ |
 
+Both constructions have $`G=O(NL)`$ elementary Clifford gates.
 At exactly these base reservations and $`L\ge\max\{6,n\}`$,
 the count is worst-case optimal: $`T^\star=\Theta(N+L)`$.
-The fixed endpoint retains a tighter complex allocation; the depth question
-has its own circuit and resource regime.
+For every $`L\ge6`$ and $`b\ge2B`$, the
+[banked theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+attains the complete worst-case count frontier with the same one clean qubit:
 
-| Question | Current bounds |
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O(NL).
+```
+
+The growing-source proof separates precision from logical mode allocation.
+A borrowed signal carries conjugate source sectors; their recovery agrees
+on the real target. Exact word-bank queries reduce lookup cost while
+returning arbitrary dirty banks. Literal leaf phases compose afterward
+using the sole clean flag. Every column, phase, actual inverse, and
+workspace return is covered by the common full-isometry contract.
+
+| Separate resource point | Current guarantee |
 |---|---|
-| Selected high-precision endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$, hence $`T^\star=\Theta(N)`$, for complete real and phase-dressed complex magnitude frames |
+| Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the uniform complex allocation |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
-An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
-Clifford interlayers and workspace, under the literal-phase contract.
-The [growing-source compiler](research/endpoint/GROWING_SOURCE_COMPILER.md)
-supplies the unrestricted real-frame upper bound. Source precision can
-grow independently of logical dimension as the number of live carriers
-shrinks; rejected paths remain in separate reserved modes until one final
-recovery. A splice with the existing compiler covers modest precision and
-bounded n. Native source refinements, packing, actual inverses, and
-dirty/reference return are all charged.
-The [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes a packed literal leaf-phase diagonal on the same workspace, with
-both factors' return errors included in the full-isometry bound. Zero leaf
-phases retain the real-family lower bound. The uniform theorem and sharper
-endpoint supplement A–D at their own literal allocations; they supply no
-new one-clean, Clifford-count, or T-depth guarantee. The uniform statement
-is an upper bound across all L, not an optimality claim at every precision
-and width.
+The [earlier two-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+and [sharper endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+retain their own allocations. These selected count results supplement the
+unchanged A–D statements. They establish no new T-depth guarantee or
+general native emitter, and the base-width upper bound is not an
+optimality claim at every smaller precision and dirty allocation.
 
 The [endpoint statement](docs/OPEN_PROBLEM.md) records the remaining
 large-width depth question. The [research index](research/README.md)

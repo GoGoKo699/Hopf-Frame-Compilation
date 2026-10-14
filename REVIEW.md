@@ -6,9 +6,9 @@ The four principal results price the same prescribed operator in two gate
 models. Result A reaches the exact all-workspace size/depth frontier.
 Result B shares precision with sufficient clean work. Result C reduces the
 clean reservation to one qubit. Result D schedules count and T-depth on one
-complete real-frame circuit. A selected precision-uniform two-clean count
-theorem and sharper high-precision endpoint supplement A–D at their own
-literal allocations. This roadmap explains how the proofs connect; the linked
+complete real-frame circuit. The selected precision-uniform one-clean count
+theorem, optimal banked count, and sharper two-clean endpoint supplement A–D
+at their own literal allocations. This roadmap explains how the proofs connect; the linked
 chapters contain the constructions and estimates.
 
 ## 1. Why the complete operator is the target
@@ -273,35 +273,44 @@ optimality among all gradient algorithms is inferred.
 
 The completed [state-based QBP supplement](supplements/state_based_qbp/README.md)
 changes the decoder and avoids the fine complete frame. It is a distinct
-task-level result. The selected two-clean count theorem and remaining depth
+task-level result. The selected count frontier and remaining depth
 question are:
 
 | Resource question | Current guarantee |
 |---|---|
-| Every integer $`L\ge6`$, $`n\ge3`$, error $`2^{-L}`$, $`a=2`$ | $`T=O(N+L)`$ with universal constants; real $`b\ge L+n+7`$, complex magnitude $`b\ge L+n+8`$ |
+| Every integer $`L\ge6`$, $`n\ge3`$, error $`2^{-L}`$, $`a=1`$ | $`T=O(N+L)`$ and $`G=O(NL)`$; real base $`B=L+n+7`$, complex magnitude base $`B=L+n+8`$, every $`b\ge B`$ |
+| Same families and precision range, $`a=1`$, $`b\ge2B`$ | $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$, with $`G=O(NL)`$ for the upper construction |
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-The [precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-separates source precision from logical dimension. At high precision its
-summable native charges give $`O(N+L)`$; the existing $`O(N+nL)`$
-compiler covers $`L\le N/n`$ and bounded n. Exact source refinements
-and permanently separate rejection modes precede one final recovery.
-The complex construction composes a packed literal diagonal on the same
-workspace, including both factors' error and work return in the full-isometry
-norm. The [fixed-precision corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-retains the sharper complex allocation at $`L=N`$. At exactly the
-uniform theorem's base reservations and $`L\ge\max\{6,n\}`$,
-the existing width-dependent lower bound gives
-$`T^\star=\Theta(N+L)`$. These selected count claims stand beside
-A–D; they add no Clifford-count, one-clean, or depth guarantee, and do not
-assert optimality at every precision and width.
-The [endpoint statement](docs/OPEN_PROBLEM.md) and
+The [one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+uses the growing-source construction with a borrowed conjugate-sector signal.
+The source words may be complex, but the two recovered sectors have the same
+real target. This permits complete-input recovery without an initialized
+fine-source flag. One external clean predicate remains. The Clifford ledger
+charges the same coarse interlayers and fine queries. A one-clean baseline
+covers modest precision and bounded n; literal leaf phases reuse the sole
+clean flag after the real frame.
+
+The [banked proof](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+replaces coefficient queries by exact dirty-bank queries. Both their
+square-root row/precision costs and their table-volume costs are summable.
+The older grouped compiler supplies the complementary modest-precision
+regime. Its existing lower bound then matches throughout $`b\ge2B`$.
+At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the width-dependent
+lower bound instead gives $`T^\star=\Theta(N+L)`$.
+
+The [earlier two-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+and [fixed-precision corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+retain their separate guarantees; the latter saves one dirty qubit for the
+complex frame at $`L=N`$. These count results stand beside unchanged
+A–D and supply no new T-depth guarantee. The
+[literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+gives the endpoint precision lower bound, also present in the complex
+magnitude family when all leaf phases are zero. The
+[resource statement](docs/OPEN_PROBLEM.md) and
 [research index](research/README.md) retain the large-width depth question
 and the hypotheses of earlier source and factorization restrictions.
-The count lower bound follows from the
-[literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness),
-also present in the complex magnitude family when all leaf phases are zero.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

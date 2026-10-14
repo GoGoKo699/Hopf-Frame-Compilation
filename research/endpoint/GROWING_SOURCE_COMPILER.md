@@ -17,6 +17,10 @@ append a literal diagonal within the same workspace and linear T-count.
 The [precision-uniform extension](#10-precision-uniform-two-clean-count)
 separates the logical dimension from the requested accuracy and gives
 $`O(N+L)`$ count with two clean qubits.
+The [one-clean extension](#11-precision-uniform-one-clean-count)
+borrows only the fine-phase signal, retaining the initialized recovery
+anchor. The [banked frontier](#12-optimal-banked-count-frontier)
+then matches the worst-case count lower bound at its stated dirty widths.
 
 ## 1. Statement, clipping, and the fixed anchor
 
@@ -845,9 +849,10 @@ The real endpoint construction uses exact refinement, full-space sealed
 arena allocation, compensated overlap, and the summable native ledger.
 The next corollary extends its count to the phase-dressed complex
 magnitude frame. Section 10 separately extends the count to arbitrary
-precision. These results supply no $`O(NL)`$ Clifford bound, optimal
-depth bound, efficient classical preprocessing algorithm, or scalable
-native emitter.
+precision. Sections 11--12 separately supply the one-clean extension
+and a charged $`O(NL)`$ Clifford bound. No result here supplies an
+optimal depth bound, efficient classical preprocessing algorithm, or
+scalable native emitter.
 
 ## 9. Complex-magnitude endpoint
 
@@ -1121,10 +1126,335 @@ banked and sufficient-clean frontiers retain their stronger applicable
 guarantees. No new Clifford-count, one-clean, depth,
 classical-efficiency, or native-emitter bound follows here.
 
+## 11. Precision-uniform one-clean count
+
+Under the same certified-input contract, for every $`n\ge3`$ and
+integer $`L\ge6`$, both frame families have an effective coherent
+Clifford+T compiler satisfying
+
+```math
+\begin{gathered}
+a=1,\qquad T=O(N+L),\qquad G=O(NL),\\
+\|VJ_1-J_1(W\otimes I_b)\|_{\rm op}\le2^{-L},\\
+b\ge L+n+7\quad\text{(real)},\qquad
+b\ge L+n+8\quad\text{(complex magnitude)}.
+\end{gathered}
+```
+
+Constants are universal. The guarantee covers the complete operator on
+initialized clean work, arbitrary dirty and reference inputs, literal
+phases, and the actual inverse. It is the fine-phase flag c that is
+removed; the anchor predicate h remains initialized. In particular,
+this does not assert that the old two-clean complex endpoint in
+Section 9 keeps its sharper $`N+n+7`$ width with one clean qubit.
+
+### Lift before compiling the fine slots
+
+Work first in the high regime of Section 10: $`n>n_0`$ and
+$`L>N/n`$, after increasing a universal $`n_0`$ as needed. Keep
+its precision scale K, mode allocation, clipping, and actual cheap
+words. Before implementing the ideal fine diagonal slots, remove their
+compiler flag c from the high-level words. It is not a logical mode
+or a recovery coordinate of those ideal words. Retain h and all the
+original logical suffix coordinates.
+
+Reserve one arbitrary dirty signal r disjoint from every dirty core,
+selector set, and bank throughout the source and its replay. Use the
+[initialized-real-target lifting identity](CONJUGATE_SIGNAL_RECOVERY.md#a-real-initialized-target-is-sufficient)
+and the [overlap recovery lemma](CONJUGATE_SIGNAL_RECOVERY.md#lift-an-overlap-before-its-recovery):
+
+```math
+\Pi_r(U)=|0\rangle\langle0|_r\otimes U
+       +|1\rangle\langle1|_r\otimes\overline U.
+```
+
+Lift every exact native interlayer, including the coarse words, cheap
+scalar words, actual inverse replays, predicate signs, and routing.
+Real H and CNOT gates lift unchanged; S remains Clifford and a T
+lift uses two T gates. The operation preserves products and adjoints.
+Fix each actual cheap word and core before evaluating its mixed gauge;
+the column replays that same word, now lifted, on that same core.
+Thus the full rejected operator identity, including arbitrary dirty
+input, holds in each r sector.
+
+For every remaining ideal diagonal D, implement $`\Pi_r(D)`$ by
+the actual finite phase word of
+[the full-operator phase lemma](CONJUGATE_SIGNAL_RECOVERY.md#1-the-actual-finite-phase-word).
+Its signal is r itself; there is no second borrowed rotation signal.
+At precision $`q=L+c_0`$ the error is $`O(2^{-q})`$ on the
+entire input space, including both signal sectors and their mixing.
+Exact whole-word conditioning controls only the central source gates,
+so the completed word is exactly identity on an inactive predicate
+even for occupied r and arbitrary dirty work. All h guards survive.
+Choose the fixed $`c_0`$ for the same constant number of fine slots
+and source error budgets as in Section 10.
+
+### Recover on the original anchor, excluding the signal
+
+Let $`J_A`$ initialize only the original logical suffix on the active
+h sector, with identity on the reduced input and all other dirty
+work. Put $`J_r=I_r\otimes J_A`$. Before the fine replacements,
+the two lifted source columns have compression
+
+```math
+J_r^\dagger\Pi_r(Q^\dagger P)J_r
+=A\oplus\overline A,\qquad
+\|A-W_{\rm upper}/2\|\le e_n.
+```
+
+The target $`W_{\rm upper}`$ and embedding $`J_A`$ are real.
+Consequently both signal sectors approximate the same half-unitary,
+regardless of whether the source words or their complementary blocks
+are real. Certified-data and native fine-slot errors give
+
+```math
+\left\|J_r^\dagger\widehat Q^\dagger\widehat P J_r
+       -I_r\otimes W_{\rm upper}/2\right\|
+\le e_n+\epsilon_P+\epsilon_Q
+\le\epsilon/96.
+```
+
+Here $`\epsilon_P,\epsilon_Q\le\epsilon/384`$ are complete
+initialized-source-column bounds. Certified-data errors retain their
+original amplitude-norm budgets: lifting a source column gives the
+direct sum of that column and its conjugate, preserving its norm even
+when the source target is complex. Only the native fine-slot
+replacements require full-operator bounds. Their unitary telescope
+retains all earlier leakage and any r mixing. Comparing the two actual
+source columns gives the displayed overlap estimate without an
+operator-norm approximation to the entire data-dependent source.
+The normalization-two recovery
+uses the actual $`U=\widehat Q^\dagger\widehat P`$ and its
+actual inverse, with the guarded reflection
+
+```math
+R_h=I-2\Pi_{h=1,\,x\in\mathcal A}\otimes I_r\otimes I_{\rm dirty},
+\qquad Z_hU_hR_hU_h^\dagger R_hU_h.
+```
+
+There is no test on r or on later private fields. This gives complete
+output error at most $`\epsilon/8`$, including return of the signal
+to its arbitrary input state. Every completed factor is exactly
+identity on $`h=0`$. Reverse the actual anchor-predicate computation;
+the ideal recovered output belongs to the original anchor, and the
+same error bounds actual suffix and h leakage.
+
+The real bottom blocks lie in $`\mathrm{SO}(2^{d_0})`$. Invoke the
+[one-clean real disjoint-block interface](CONJUGATE_SIGNAL_RECOVERY.md#precision-parametrized-real-blocks-and-sources)
+with $`\kappa=2^{d_0}`$, error $`\epsilon/4`$, and the same
+clean wire after the upper circuit. Its complete isometry bound
+composes with prior leakage unitarily. Initial real state extensions
+and final real tag extensions use that interface's zero-clean source
+form, or equivalently the same lifted ideal fine-slot words. The
+clipping, normalization, upper recovery and bottom budgets still sum
+to at most $`\epsilon/2`$.
+
+### Literal width, counts, and remaining regimes
+
+The fine reservation is $`q+1`$ core wires and one independent r.
+Its $`L+O(1)`$ total, the fixed returned guard helpers, and at most
+$`n+2`$ self-borrowed address selectors fit in $`L+n+7`$ after
+increasing the fixed threshold on n. In particular
+$`q+1\ge2(n+2)`$. Selectors are portions of the dirty core;
+they are not extra initialized work. The smaller cheap, coefficient,
+and refinement cores and coarse routing reservations from Section 10
+fit with the same separate r in this pool in their respective stages.
+No logical private coordinate is counted as dirty storage.
+
+Lifting at most doubles the native T-count outside the constant number
+of fine calls. Each such call is $`O(N+L)`$, so the total remains
+$`O(N+L)`$. The Clifford ledger in Section 12 below also applies
+with unbanked exact queries, giving $`G=O(NL)`$ at this base width.
+
+For $`L\le N/n`$, use the existing
+[one-clean real baseline](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger):
+$`T=O(N+nL)=O(N)`$, $`G=O(NL)`$, and $`b=L+n+7`$.
+For each $`3\le n\le n_0`$ and arbitrary L, that same baseline
+has $`N+nL=O(N+L)`$ with one universal enlarged constant.
+This covers all dimensions without a finite-net fallback at variable
+precision.
+
+For the complex magnitude frame, compose the real theorem at precision
+$`L+1`$ with the existing
+[one-clean literal diagonal](../../docs/ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames)
+at precision $`L+1`$. Both use the same initialized wire and
+$`b=L+n+8`$ dirty pool sequentially. Their half-error full-isometry
+bounds compose by the identity in Section 9; counts add, preserving
+$`T=O(N+L)`$ and $`G=O(NL)`$. If $`J=J_1`$ and the dirty
+identity is included in W, the actual inverse satisfies
+
+```math
+V^\dagger J-JW^\dagger=V^\dagger(JW-VJ)W^\dagger.
+```
+
+Its error is the same. All these operator-norm identities remain valid
+after tensoring an arbitrary reference. ∎
+
+At the exact base dirty widths, the physical widths are now
+$`q_{\rm phys}=L+2n+8`$ for real and $`L+2n+9`$ for complex
+magnitude frames. For $`L\ge\max\{6,n\}`$ the existing lower
+bound gives $`T^\star=\Theta(N+L)`$, as in Section 10. This
+base-width matching statement is not extended to arbitrary larger b.
+
+## 12. Optimal banked count frontier
+
+For every $`n\ge3`$ and integer $`L\ge6`$, retain one clean
+qubit and allow
+
+```math
+b\ge2(L+n+7)\quad\text{(real)},\qquad
+b\ge2(L+n+8)\quad\text{(complex magnitude)}.
+```
+
+Under the same complete-input and certified-data contract there are
+effective compilers with
+
+```math
+T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad G=O(NL),
+\qquad \|VJ_1-J_1(W\otimes I_b)\|_{\rm op}\le2^{-L}.
+```
+
+These match the worst-case lower bound throughout the stated widths:
+
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
+```
+
+### Bank exact native tables and sum their costs
+
+In the high regime $`n>n_0`$, $`L>N/n`$, retain the construction
+of Section 11. Use the
+[banked real block and source interfaces](CONJUGATE_SIGNAL_RECOVERY.md#banked-real-interfaces)
+for the fixed bottom blocks and constant source extensions. Their
+literal base reservation includes the separate borrowed signal r.
+For each fine, cheap or coefficient query, leave r outside both the
+core and the additional word banks.
+
+The [banked self-borrowing lemma](DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces)
+implements the complete m-bit XOR query on an S-row table with
+
+```math
+T_{\rm query}=O\!\left(\sqrt{Sm}+m+\frac{Sm}{b}\right),
+\qquad G_{\rm query}=O(Sm).
+```
+
+The base pool is $`B_0=L+n+7`$; the additional pool has at least
+$`b/2`$ wires. Two halves of a long core provide one another's
+returned address selectors, while at most $`b-B_0`$ bank wires
+are used. For shorter metadata queries, selectors come from a
+disjoint returned portion of the base core. Every completed query is
+the original mask tensored with identity on the banks, on all inputs.
+Hence the scalar source, its rejected operator, full-space guards,
+and actual inverses are unchanged. Fix the banked row word before
+forming its mixed gauge, and replay that exact word and core in the
+column. Banks need not be initially zero or independent of the input.
+
+At height d the coefficient tables have
+$`Q_d=O(S_dP_d)`$ rows, $`S_d=N/2^d`$, and word widths
+
+```math
+m_d=O\!\left(L/P_d+P_d^3\log P_d\right),\qquad P_d\asymp(d+1)^2.
+```
+
+There are only constantly many whole coefficient masks per kernel;
+small multiplier/type lookups have no larger row charge. The source
+gates and central predicates add $`O(m_d+\mathrm{poly}(d))`$
+per height, rather than a predicate charge per precision digit. The
+convergent geometric row sums give
+
+```math
+\begin{aligned}
+\sum_d Q_dm_d&=O(NL),\\
+\sum_d\sqrt{Q_dm_d}&=O(\sqrt{NL}),\\
+\sum_d m_d&=O(L+\mathrm{poly}(n)).
+\end{aligned}
+```
+
+For example, the leading product is $`O(NL/2^d)`$, while each
+remaining product is $`N2^{-d}`$ times a fixed polynomial in d.
+Its square root is likewise summable. Cheap row words and their
+actual column replays have $`O(S_d)`$ rows and
+$`O(L/P_d+\log P_d)`$ word width, satisfying the same bounds.
+The strictly halving refinement widths sum to $`O(L)`$ and use no
+long table. The source, attenuation, tag, and replay fine banks occur
+only constantly many times and each has $`O(N)`$ rows and
+$`O(L)`$ word width. Their totals have the claimed three terms.
+
+All exact routing, coarse blocks, short splitter words, and predicate
+echoes have T-count at most $`N^{3/4}\mathrm{poly}(n)`$
+and Clifford count at most $`N\mathrm{poly}(n)`$, by the
+independent coarse ledger in the banked interface. For the growing
+node-type words, load the preserved type bit once with an exact banked
+one-bit query, execute its $`\mathrm{poly}(d)`$-length controlled
+splitter word once, and unload. The T-count per height is
+$`O(\sqrt{S_d}+1+S_d/b+\mathrm{poly}(d))`$; summing gives
+$`O(\sqrt N+N/b+\mathrm{poly}(n))`$, within the claimed frontier.
+Their Clifford cost is at most $`O(S_d\mathrm{poly}(d))`$ and
+sums to $`O(N)`$. Since $`L>N/n`$,
+
+```math
+N^{3/4}\mathrm{poly}(n)=O(\sqrt{NL}),\qquad
+N\mathrm{poly}(n)=O(NL),\qquad
+\mathrm{poly}(n)=O(L).
+```
+
+Thus exact logical transport and the coarse compiler are charged, as
+well as every precision table. The lift sends $`T\mapsto O(T)`$
+and $`G\mapsto O(G+T)`$; $`T=O(NL)`$ throughout this regime.
+One outer recovery multiplies the sums by a constant. The original
+error and cleanup proof is unchanged because full mask operators are
+unchanged. This proves the high-regime banked upper bound.
+
+For the unbanked assertion of Section 11, use the same row and width
+products with ordinary exact queries. Their T-count is $`O(S+m)`$
+and Clifford count $`O(Sm)`$. The same sums give $`T=O(N+L)`$
+and $`G=O(NL)`$ without extra banks. The coarse ledger is identical.
+
+### Splice, compose, and match the lower bound
+
+For $`L\le N/n`$, the existing one-clean grouped banked theorem
+in [the one-clean compiler](../../docs/ONE_CLEAN_COMPILER.md#6-complete-real-frames-and-the-grouped-extension)
+gives
+
+```math
+T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
+\qquad G=O(NL).
+```
+
+Here $`\ell_*(n)`$ is its iterated grouping overhead. Its ratio
+to $`\sqrt n`$ is bounded by a universal constant. Therefore
+$`L\ell_*(n)\le\sqrt{NL}\,\ell_*(n)/\sqrt n=O(\sqrt{NL})`$
+in this regime. For each remaining bounded $`3\le n\le n_0`$
+and arbitrary L, use the existing banked baseline with count
+$`O(\sqrt{NL}+nL+NL/b)`$. The factor n is uniformly bounded,
+so it gives the desired formula. Both routes use one clean qubit and
+the stated literal banked width, covering all regimes.
+
+Compose the real result at $`L+1`$ with the banked one-clean literal
+diagonal at $`L+1`$. Their required dirty threshold is
+$`2(L+n+8)`$ and their counts add to the displayed complex bound.
+The half-error hybrid and actual-inverse identity are those of
+Section 11. Setting $`D_\phi=I`$ includes the real family.
+
+Finally the existing
+[complete-frame lower bound](../../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+at total width $`q_{\rm phys}=n+1+b`$ gives
+
+```math
+T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{q_{\rm phys}}\right).
+```
+
+At either stated banked threshold, $`q_{\rm phys}=\Theta(b)`$.
+The lower and upper bounds match, with universal constants, for both
+families. This is a count frontier at sufficient dirty width. It gives
+no new T-depth bound and makes no claim about the full transition
+between the base and doubled-base reservations. ∎
+
 <a id="9-bounded-implementation-evidence"></a>
 <a id="10-bounded-implementation-evidence"></a>
+<a id="11-bounded-implementation-evidence"></a>
 
-## 11. Bounded implementation evidence
+## 13. Bounded implementation evidence
 
 The [exact helper](../../compiler_robust_hopf/growing_precision_source.py)
 records the dyadic height schedule and normalized refinement factors,
@@ -1157,6 +1487,17 @@ dirty core. It retains intermediate leakage and tests literal phases,
 the actual inverse and reference-entangled inputs. The addressed
 direct sum is supplied; this is a composition check, not a native
 growing-source or general table emitter.
+
+The [conjugate recovery diagnostic](../../tests/test_conjugate_recovery.py)
+adds one 16-dimensional initialized-real-target check. It lifts an
+actual native interlayer and a supplied source, recovers on the
+original mode anchor while excluding the arbitrary signal, and tests
+dirty/reference entanglement, the actual inverse, retained leakage,
+and the full-operator fine-slot hybrid. Negative controls detect a
+signal-dependent recovery projector and an unlifted interlayer. The
+uninitialized complement remains complex, so the test does not assume
+whole-space reality. Its source matrix is supplied; the separate
+finite-phase tests check the actual native phase word.
 
 These fixtures use bounded dimensions and diagnostic dilations. They
 do not emit the asymptotic compiler or simulate its exponentially fine
