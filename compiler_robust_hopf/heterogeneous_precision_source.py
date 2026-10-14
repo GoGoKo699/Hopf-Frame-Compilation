@@ -21,7 +21,11 @@ def _integer(value: int, name: str, minimum: int = 0) -> int:
 def _rational(value: Fraction | int, name: str) -> Fraction:
     if isinstance(value, bool) or not isinstance(value, (Fraction, Integral)):
         raise ValueError(f"{name} must be an exact rational")
-    return Fraction(value)
+    # Fraction can retain NumPy Integral numerators. Normalize both parts so
+    # later exact powers cannot silently become fixed-width arithmetic.
+    if isinstance(value, Fraction):
+        return Fraction(int(value.numerator), int(value.denominator))
+    return Fraction(int(value))
 
 
 def _ceil_log2(value: int) -> int:
@@ -207,8 +211,11 @@ def kernel_source_error_bound(
     and conservative. The bound concerns the complete source column.
     """
     beta = _rational(beta, "beta")
+    mantissa = _rational(mantissa, "mantissa")
+    rare_probability = _rational(rare_probability, "rare_probability")
     order = _integer(order, "order", 1)
     length = _integer(length, "length", 1)
+    rescaling_bits = _integer(rescaling_bits, "rescaling_bits")
     if not 0 < beta < 1 or order >= length:
         raise ValueError("require 0 < beta < 1 and order < length")
     coefficients = cayley_kernel_coefficients(mantissa, order, rare_probability,
@@ -244,8 +251,13 @@ def common_source_kernel_error_bound(
 ) -> Fraction:
     """Rational source-column cap-plus-tail bound, including saturated shifts."""
     beta = _rational(beta, "beta")
+    mantissa = _rational(mantissa, "mantissa")
+    rare_probability = _rational(rare_probability, "rare_probability")
     order = _integer(order, "order", 1)
     length = _integer(length, "length", 1)
+    multiplier = _integer(multiplier, "multiplier", 1)
+    remainder = _integer(remainder, "remainder")
+    rescaling_bits = _integer(rescaling_bits, "rescaling_bits")
     if not 0 < beta < 1:
         raise ValueError("require 0 < beta < 1")
     coefficients = common_source_kernel_coefficients(
@@ -264,3 +276,23 @@ def common_source_kernel_error_bound(
     cap *= probability / order
     tail = 2 * (1 - probability) * abs(parameter) ** (order + 1) / (1 - abs(parameter))
     return cap + tail
+
+
+def splitter_gauge_coefficients(target, coarse, carrier, node_gauge=1):
+    """Local detail coefficients for the mixed chart's expensive node.
+
+    The caller supplies normalized real pairs (c,s), (a,b), a nonzero complex
+    carrier r, and node gauge d. For B=R(a,b) diag(conj(r),1) and L=(a,b),
+    these are the literal coefficients C,A in the full-column gauge identity.
+    This algebraic helper neither synthesizes a splitter nor infers its phase.
+    Known corners use their separate identity chart and are excluded here.
+    """
+    cosine, sine = target
+    coarse_cosine, coarse_sine = coarse
+    denominator = node_gauge * cosine * sine
+    if denominator == 0 or carrier == 0 or coarse_cosine * coarse_sine == 0:
+        raise ValueError("the splitter chart requires nonzero gauges and branches")
+    factor = carrier.conjugate() / denominator
+    coefficient = factor * coarse_cosine * coarse_sine
+    correction = factor * (cosine ** 2 * coarse_sine ** 2 - sine ** 2 * coarse_cosine ** 2)
+    return coefficient, correction
