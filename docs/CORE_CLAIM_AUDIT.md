@@ -110,7 +110,13 @@ The [uniform extension](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-un
 gives complete real frames a circuit with two initialized flags, error
 at most $`2^{-L}`$, and absolute constants for every integer
 $`6\le L\le cn`$ and $`b\ge17(L+n+7)`$, for some absolute
-$`c>0`$. Writing $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$,
+$`c>0`$. Define
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+Then
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
@@ -131,7 +137,8 @@ retains its all-precision guarantee outside the new subrange.
 | Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. Exact arithmetic echoes give full-space inactive identity, including occupied programs and source registers. The baseline calibration remains separately available. |
 | Shared precision source | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md) prepares the gradient once and applies its actual inverse after the full early word. Exact addition is computed, swapped, and uncomputed using explicitly charged tables; a short angle-sum table handles the coefficient bank. Every completed native macro preserves the ideal-gradient sector. |
 | Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. Recovery reflects initialized work outside the live gradient. A near-isometry completion within the ideal-gradient sector controls actual forward and inverse words; source-boundary error is charged globally. Guarded amplitude amplification retains its literal active-sector sign. |
-| Same-circuit resource budgets | A protected suffix of $`M=O(L+\log(n+2))`$ holds simultaneous conditional scratch. The cutoff explicitly absorbs the arithmetic tables' exponential precision dependence and the large queries' polynomial factors into the early count and width budgets. The final M layers use [nonuniform dirty indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence), contributing $`O(NL/b^2+(L+\log(n+2))^2)`$ depth. |
+| Early resource budgets | A protected suffix of $`M=O(L+\log(n+2))`$ holds simultaneous conditional scratch. The cutoff explicitly absorbs the arithmetic tables' exponential precision dependence and the large queries' polynomial factors into the early count and width budgets. |
+| Grouped terminal budget | The [terminal compiler](../research/depth/GROUPED_TERMINAL_DEPTH.md) uses groups of height $`\Theta(\sqrt p)`$, where $`p=L+\log(n+2)`$. Complete exact coarse programs are prefetched into conditional suffix work, followed by one fine residual per group; $`O(\sqrt p+\log(n+2))`$ capped bottom layers complete the frame. Its same-circuit ledger gives $`O(NL/b^2+p^{3/2}+p\log(n+2))`$ depth with the stated count and Clifford budgets. |
 | Literal-width splice | Below $`b=\sqrt{N/n}`$, the retained compiler absorbs $`nL`$ into $`NL/b^2`$. Above it, early work fits uniformly in L after one absolute dimension cutoff. The retained compiler covers the finite exceptional dimensions with one absolute constant and supplies the alternative $`nL`$ depth term. |
 | Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) uses an explicit factorization contract and the balanced Haar frame. Its exact and approximate bounds concern normalization only; they supply no unrestricted native-depth lower bound. |
 
