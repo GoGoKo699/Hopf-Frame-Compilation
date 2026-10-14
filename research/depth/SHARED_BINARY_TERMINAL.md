@@ -118,7 +118,12 @@ M_s=2J,\quad
 
 Thus $`R\pi\le1/8`$ and $`7/8\le\gamma\le1`$. Full-operator native
 synthesis at accuracy $`\delta_c`$ gives words of length
-$`w=O(\log(R+1)+\log J)=O(\log(p+2))`$. Define the residual from
+
+```math
+w=O(\log(R+1)+\log J)=O(\log(p+2)).
+```
+
+Define the residual from
 these actual words, retaining their literal phases. Each coefficient
 satisfies $`0\le a_{i,\lambda}\le\delta_c=\varepsilon/4`$.
 
