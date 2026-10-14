@@ -87,47 +87,68 @@ Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
 
 ## Large-width T-depth
 
-For complete real frames at fixed $`0\lt\eta\le1/64`$, two clean flags,
-and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
-[compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md)
-gives one circuit with
+For complete real frames, some absolute $`c>0`$ makes the
+[precision-uniform compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+available for every integer $`6\le L\le cn`$, two clean flags,
+and every $`b\ge17(L+n+7)`$. Define
 
 ```math
-T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\,\log(n+2))=o(n).
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}.
 ```
 
-The T-count remains worst-case optimal in order. The previously stated
-$`o(n)`$ existence question is resolved positively; the optimal depth
-order remains open, with unrestricted lower bound $`\Omega(1)`$.
-The proof prepares signed descendant columns coherently in orthogonal
-depth-and-prefix sectors, recovers the early complete unitary with
-$`O(\sqrt n)`$ amplification calls, and compiles the final
-polylogarithmically many layers by exact dirty queries. Its error includes
-all source leakage and workspace return. This fixed-accuracy theorem does
-not assert a precision-uniform improvement or efficient classical preprocessing.
-More generally, put $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$.
-For every $`b\ge17(L+n+7)`$, the same construction combined with
-the retained small-width compiler gives
+One circuit has error at most $`2^{-L}`$ in the full initialized-isometry
+norm and simultaneous bounds with absolute constants:
+
+```math
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
+```
+
+Count is worst-case optimal throughout this precision and width range.
+The inherited lower bounds also match depth on every nonempty interval
+
+```math
+17(L+n+7)\le b\le\sqrt{NL/F(n,L)}:
+\qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
+```
+
+At sufficient $`b=\Theta(\sqrt{NL})`$, precision
+$`L=O(n^{1/4}\sqrt{\log(n+2)})`$ retains
+$`O(\sqrt n\log(n+2))`$ depth. For example,
+$`L=\lfloor n^{1/3}\rfloor`$ gives $`O(n^{2/3})`$ depth
+and error at most $`2^{-\lfloor n^{1/3}\rfloor}`$, for sufficiently
+large n. More generally $`L=o(\sqrt n)`$ gives sublinear depth.
+The absolute constant c is an existence threshold, not a practical crossover.
+
+The [shared-gradient construction](../research/depth/SHARED_GRADIENT_RECOVERY.md)
+pays native phase-source preparation and actual return once over early
+recovery. Its exact arithmetic uses explicitly priced tables, and recovery
+reflects only the initialized work outside the live gradient. The final
+layers still contribute $`O((L+\log(n+2))^2)`$ depth; after the
+logarithmic terms are absorbed, this gives the displayed $`L^2`$ term.
+Classical preprocessing terminates, with no efficiency claim.
+[Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
+retains its all-precision bounds outside this subrange.
+
+The separate fixed-accuracy statement covers every $`n\ge1`$.
+For every fixed $`0\lt\eta\le1/64`$, put
+$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. At two clean
+flags and every $`b\ge17(L+n+7)`$, it gives
 
 ```math
 T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad
 D_T=O_\eta\!\left(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}\right).
 ```
 
-The inherited lower bounds match both count and depth throughout every
-nonempty interval
+At sufficient $`b=\Theta_\eta(\sqrt N)`$, this is optimal-order
+T-count with $`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth. Both count
+and depth match through
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, whenever the
+interval above the literal lower threshold is nonempty. The sublinear-depth
+existence question is resolved; optimal large-width depth remains open,
+with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
-```math
-17(L+n+7)\le b\le
-\frac{\sqrt N}{n^{1/4}\sqrt{\log_2(n+2)}}:
-\qquad T^\star=\Theta_\eta(N/b),\quad
-D_T^\star=\Theta_\eta(N/b^2).
-```
-
-This is a fixed-accuracy extension; [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
-retains its accuracy-uniform constants and intervals. The
-[entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 shows that the current source architecture needs worst-case normalization
 $`\Omega(\sqrt n)`$, even at fixed operator error. That is a bound
 on this encoding method, with no unrestricted native-depth consequence.

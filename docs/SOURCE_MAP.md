@@ -3,7 +3,7 @@
 [← Verification](VERIFICATION.md) · [Complete narrative](../REVIEW.md) · [Related work →](RELATED_WORK.md)
 
 This is the claim-to-source map for Results A–D, including C's
-one-clean banked frontier and the fixed-accuracy large-width depth theorem. It separates
+one-clean banked frontier and the precision-uniform large-width depth refinement. It separates
 imported synthesis tools, inherited Hopf/QBP interfaces, and the operator
 constructions established here. The [source catalogue](reference/SOURCE_CATALOGUE.md)
 preserves the complete stable C/H/Q/F/R register and detailed contribution
@@ -91,7 +91,7 @@ worst-case statements over the specified family.
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
 | **C. One-clean count frontier**: $`T=O(N+L)`$ at base width; $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at doubled base width | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R64–R65, with R25's small-dimension corollary | Every $`n\ge1`$, $`L\ge6`$, fixed $`a=1`$; base $`B=L+n+7`$ real, $`B=L+n+8`$ complex magnitude; banked match at $`b\ge2B`$; $`G=O(NL)`$. Exact-base matching at $`L\ge\max\{6,n\}`$. Existing F2–F5, F8–F9, F11, F19–F20 and R17/R20/R25/R62/R63 interfaces; full isometry, literal phases and actual inverses. |
 | **D. Same-circuit count and T-depth** | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md), with retained [unary source](UNARY_PHASE_GRADIENT.md) and dirty-query constructions; R43–R45 | Two clean flags and $b\ge17(L+n+7)$; complete real frames. Native sources, inverses, predicates, queries, and conditional work are charged. |
-| **Fixed-accuracy width-sensitive depth**: $`D_T=O_\eta(N/b^2+\sqrt n\log(n+2))`$ | [Compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md), [coherent descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md), and [shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md); R66 | Every fixed $`0\lt\eta\le1/64`$, two clean flags, and $`b\ge17(L+n+7)`$; complete real frames, same-circuit $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$. GKW's Boolean-state lemma and TTK's exact modular addition are imported; coherent loading, guarded phase-gradient calibration, native query scheduling, width splice and full-operator recovery are local. The linked theorem retains the stronger minimum with n. No optimal-depth claim beyond its matching interval or precision-uniform improvement. |
+| **Precision-uniform large-width depth**: $`D_T=O(NL/b^2+\min\{nL,\sqrt n\log(n+2)+L^2\})`$ | [Compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [coherent descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), and [shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md); R66 | Some absolute $`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every $`b\ge17(L+n+7)`$; complete real frames, error $`2^{-L}`$, and simultaneous $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, with absolute constants. GKW's Boolean-state lemma is imported; coherent loading, shared native gradient, priced table arithmetic, query scheduling, uniform width splice and full-operator recovery are local. The fixed-accuracy all-n statement retains its own constants. No unrestricted optimal-depth claim. |
 | **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 | **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
 
@@ -113,16 +113,17 @@ $17(L+n+7)\le b\le\sqrt{NL/n}$ in the stated slow-precision range,
 whenever the intervals are nonempty. Outside those ranges the upper bounds
 retain their actual precision terms; no general T-depth optimum is claimed.
 
-The fixed-accuracy large-width theorem has a separate dependency chain;
-it does not change the uniform theorem's literal thresholds or matching
-intervals:
+The compressed-column refinement has a separate dependency chain. It
+retains the uniform theorem's literal threshold and improves its depth
+bound on the stated subrange:
 
 | Obligation | Source and local proof boundary |
 |---|---|
 | Coarse real-state approximation | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3): Boolean-phase state preparation and LCU/amplification architecture; its ancillary allocation is not imported |
 | Coherent descendant source | [Loader Sections 2–5](../research/depth/COHERENT_DESCENDANT_LOADER.md#2-a-strictly-certifiable-geometric-expansion): local strict certified residual recursion, preserved tag/prefix sectors, calibrated real rotations, exact inactive identity, and source-isometry error including leakage |
 | Native data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): returned arbitrary-input XOR/phase queries, private non-Clifford supports under shared read-only addresses, and charged mask/guard words |
-| Complete-column recovery | [Depth construction Sections 3–6](../research/depth/SUBLINEAR_T_DEPTH.md#3-compress-the-complete-columns): depth tags, normalization $`\sqrt K`$ with $`K=O(n)`$, full-unitary comparison, literal amplification signs, and polylogarithmic terminal cutoff |
+| Shared precision and recovery | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md): native source preparation once, priced compute/swap/uncompute arithmetic and coefficient tables, ideal-gradient invariant sector, and recovery reflection excluding the live core; the older per-call calibration uses TTK's exact adder |
+| Complete-column recovery and uniform closure | [Depth construction](../research/depth/SUBLINEAR_T_DEPTH.md#3-compress-the-complete-columns): depth tags, normalization $`\sqrt K`$ with $`K=O(n)`$, full-unitary comparison, literal amplification signs, and a precision-dependent terminal cutoff with absolute count, width, and error constants |
 | Count-efficient final layers | [Retained nonuniform indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) and capped operator source: linear indicator count, separate simultaneous dirty reservations, and complete tail error |
 
 The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)

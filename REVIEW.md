@@ -270,15 +270,25 @@ This is a real-frame theorem, with no automatic complex extension.
 T-depth permits arbitrary Clifford interlayers; their gate count remains
 charged, but this is not total circuit depth. Earlier schedules remain
 useful at some smaller reservations or higher precisions. The separate
-[compressed-column construction](research/depth/SUBLINEAR_T_DEPTH.md)
-improves fixed-accuracy large-width depth to
-$`O_\eta(\sqrt n\log(n+2))=o(n)`$ with the same optimal count
-order and linear elementary Clifford budget. Its fixed-accuracy width
-extension gives $`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log(n+2)\})`$
-and $`T=O_\eta(\sqrt N+N/b)`$ at every $`b\ge17(L+n+7)`$.
-This extends simultaneous matching at fixed accuracy through
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$. The
-precision-uniform bounds above remain unchanged.
+[compressed-column construction](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+gives an absolute-constant refinement for $`6\le L\le cn`$, with
+some absolute $`c>0`$, at the same literal dirty threshold. Put
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}.
+```
+
+It gives $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, and
+$`D_T=O(NL/b^2+F(n,L))`$ on one circuit. A
+[shared native phase gradient](research/depth/SHARED_GRADIENT_RECOVERY.md)
+is prepared and returned once across early recovery; every arithmetic table,
+coefficient rotation, predicate, and final layer remains charged. Count is
+optimal throughout the stated range, and depth also matches through
+$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
+At sufficient square-root width, fixed accuracy retains
+$`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth; shrinking error
+$`2^{-L}`$ retains sublinear depth for $`L=o(\sqrt n)`$.
+The all-precision bounds above remain available outside this subrange.
 
 <a id="6-operational-consequence-open-gaps-and-evidence"></a>
 

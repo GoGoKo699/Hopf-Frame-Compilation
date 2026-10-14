@@ -482,3 +482,34 @@ derived program rows. No new external synthesis premise is imported.
 The remaining transport still has a sequential height-linear schedule;
 the result does not improve the complete-frame depth order or establish
 an unrestricted lower bound.
+
+## 28. Compressed-column recovery and shared precision
+
+The [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md) uses
+[Gosset–Kothari–Wu, arXiv:2411.04790v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3)
+for coarse Boolean-phase state approximation and the LCU/amplification
+architecture. The local proof supplies strict certified residual selection,
+coherent tag/prefix source labels, arbitrary-dirty native queries, and
+complete-column recovery. Its fixed-accuracy calibration uses the already
+attributed helper-free TTK modular adder; this is not an imported two-clean
+state-preparation theorem.
+
+The [shared-gradient refinement](depth/SHARED_GRADIENT_RECOVERY.md) replaces
+that repeated calibration preparation with one charged native boundary
+pair. A compute/swap/uncompute construction realizes exact addition from
+two fully priced Boolean output tables. A short table for the whole
+coefficient bank retains its literal eigenphases. The recovery comparison
+uses an invariant gradient sector and excludes the live gradient from
+native zero tests. The source-preparation error is charged twice globally;
+rounded-angle errors remain charged over the actual recovery calls.
+
+The [uniform assembly](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+absorbs the arithmetic tables only in its stated small absolute
+linear-precision range, preserves the original dirty-width threshold, and
+retains the quadratic precision cost of the final layers. These are local
+native identities and resource/error composition results. They import no
+new arithmetic or synthesis premise and make no generic adder, phase-source
+reuse, or literature-priority claim. The separate
+[entry-indexed normalization limit](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+restricts its explicit factorization interface, not unrestricted block
+encodings or native T-depth.

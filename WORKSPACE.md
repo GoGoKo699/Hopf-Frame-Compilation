@@ -77,21 +77,36 @@ chapter remains necessary. Historical audits stay in the reference
 catalogue; current claims are stated in the publication scope.
 
 The user explicitly reopened large-width depth research. The resulting
-[compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md) resolves
-the fixed-accuracy sublinear-depth existence question: at two clean flags
-and sufficient square-root dirty width, it gives
-$`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ with optimal T-count order
-and linear elementary Clifford count. Its coherent descendant source,
-native queries, parallel phase-gradient calibration, all-column recovery,
-exact inactive guards and final tail are charged in one proof. At every
-$`b\ge17(L+n+7)`$, its fixed-accuracy extension has
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log(n+2)\})`$,
-$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
+[compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+now has an absolute-constant precision-uniform refinement. For some absolute
+$`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every
+$`b\ge17(L+n+7)`$, it gives full initialized-isometry error at most
+$`2^{-L}`$ and simultaneous bounds
+
+```math
+T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+D_T=O\!\left(NL/b^2+\min\{nL,\sqrt n\log_2(n+2)+L^2\}\right).
+```
+
+The [shared-gradient proof](research/depth/SHARED_GRADIENT_RECOVERY.md)
+pays native preparation and actual return once across early recovery.
+All arithmetic/coefficient tables, complete-column recovery, exact inactive
+guards, simultaneous conditional scratch, and the final tail are charged.
+The final layers retain a quadratic precision contribution. At sufficient
+$`b=\Theta(\sqrt{NL})`$, shrinking error retains sublinear depth
+when $`L=o(\sqrt n)`$. Count is optimal throughout the stated range;
+depth also matches through $`b\le\sqrt{NL/F(n,L)}`$, where
+$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$, whenever
+that interval is nonempty. The retained all-precision D theorem covers
+other precisions; the fixed-accuracy statement covers every n.
+
 The [entry-indexed encoding bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 fixes the scope of the remaining square-root normalization cost; it is
-not an unrestricted native-depth lower bound. Optimal depth remains open. A general native
-emitter, practical crossovers and further fixed fixtures are not default
-requirements. The internal audit does not replace external technical review.
+not an unrestricted native-depth lower bound. Optimal depth remains open.
+The small absolute precision constant and dimension cutoff carry no
+practical crossover claim. A general native emitter, practical crossovers
+and further fixed fixtures are not default requirements. The internal
+audit does not replace external technical review.
 
 ### Reopening research requires a qualifying mechanism
 

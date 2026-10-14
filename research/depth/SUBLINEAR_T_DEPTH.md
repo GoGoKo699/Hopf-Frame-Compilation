@@ -1,6 +1,8 @@
 <a id="sublinear-t-depth-at-square-root-dirty-width"></a>
 
-# Sublinear T-depth and a fixed-accuracy width frontier
+<a id="sublinear-t-depth-and-a-fixed-accuracy-width-frontier"></a>
+
+# Sublinear T-depth and a width and precision frontier
 
 [Resource statement](../../docs/OPEN_PROBLEM.md) · [Shallow dirty queries](SHALLOW_DIRTY_QUERIES.md) · [Coherent descendant loader](COHERENT_DESCENDANT_LOADER.md) · [Linear-size dirty indicators](NONUNIFORM_DIRTY_INDICATOR.md)
 
@@ -8,10 +10,17 @@ This construction bypasses the successive early Hopf layers by encoding
 their complete columns into orthogonal depth-and-prefix sectors. A
 coherent real-state loader implements that encoding; a Clifford row
 isometry gives normalization $`O(\sqrt n)`$. Amplitude amplification
-recovers the whole early frame. The last polylogarithmically many original
-layers use the retained native layerwise compiler. Keeping their width
+recovers the whole early frame. The remaining original layers use the
+retained native layerwise compiler. Keeping their width
 penalty and selecting the retained compiler at smaller widths gives an
 all-eligible-width theorem.
+
+Sections 1–9 retain the fixed-accuracy construction. Section 10 proves
+an absolute-constant precision-uniform extension, using
+[one charged gradient across recovery](SHARED_GRADIENT_RECOVERY.md)
+and a precision-dependent terminal cutoff. The two constructions have
+separate gradient-reflection rules and share the same complete-input
+contract and native query lemmas.
 
 The construction uses the Boolean-phase state-preparation method of
 Gosset–Kothari–Wu, with a separately proved terminating selection rule,
@@ -80,6 +89,8 @@ unchanged. They answer the $`o(n)`$ existence question positively and
 extend the fixed-accuracy interval of matching width-sensitive depth.
 Optimal depth beyond the matching interval, an unrestricted growing-depth
 lower bound at square-root width, and a general native emitter remain open.
+Section 10 gives a separate precision-uniform extension through a
+sufficiently small absolute linear-precision range.
 
 ## 2. Protect one terminal logical block
 
@@ -560,7 +571,8 @@ The result closes the previously stated $`o(n)`$ existence question at
 fixed accuracy and sufficiently large constant square-root dirty width,
 and supplies an all-eligible-width fixed-accuracy bound with a larger
 matching interval. It leaves depth beyond that interval and a
-precision-uniform refinement open.
+general high-precision depth refinement open. The absolute-constant
+extension in Section 10 covers its stated range of growing precision.
 The [five bounded recovery checks](../../tests/test_sublinear_depth_recovery.py)
 test signed and singular complete columns, marker tags, actual inverses,
 active-only phase, and final leaked-work return. Their small numerical
@@ -571,3 +583,411 @@ inactive occupied inputs, actual native preparation inverses, and gradient
 leakage. They support that local native interface, not a general frame emitter.
 They are not evidence for the asymptotic count absorption or a claim that
 the resulting exponentially sized circuits have been emitted.
+
+## 10. A precision-uniform extension through linear precision
+
+There are absolute constants $`c\gt0`$ and C such that for every
+$`n\ge1`$, integer $`6\le L\le cn`$, and integer
+$`b\ge17(L+n+7)`$, every prescribed complete real Hopf frame on
+$`N=2^n`$ dimensions has one circuit with two external clean flags,
+at most b arbitrary dirty qubits, and
+
+```math
+\|VJ_2-J_2(W\otimes I_b)\|\le2^{-L}.
+```
+
+Put
+
+```math
+\ell=\log_2(n+2),\qquad p=L+\ell,\qquad
+F(n,L)=\min\{nL,\sqrt n\,\ell+L^2\}.
+```
+
+The same circuit satisfies
+
+```math
+T\le C\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
+G\le CNL,
+```
+
+```math
+D_T\le C\left(\frac{NL}{b^2}+F(n,L)\right).
+```
+
+All constants here are independent of n, L, b, and the prescribed frame.
+The full initialized-isometry contract, literal phases, arbitrary dirty
+inputs and references, terminating certified preprocessing, and absence
+of measurements or supplied precision states are the same as in Section 1.
+For general eta, choosing its ceiling precision L gives
+$`2^{-L}\le\eta`$ whenever this L lies in the displayed range.
+
+The inherited lower bounds give simultaneous worst-case matching on
+every nonempty interval
+
+```math
+17(L+n+7)\le b\le\sqrt{\frac{NL}{F(n,L)}}:
+\qquad
+T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
+```
+
+The T-count also matches in order at every eligible width. For a
+sufficient absolute $`C_b`$, the allocation
+$`b=\lceil C_b\sqrt{NL}\rceil`$ is eligible in every stated dimension
+and gives
+
+```math
+T=O(\sqrt{NL}),\qquad G=O(NL),\qquad
+D_T=O(\sqrt n\log_2(n+2)+L^2).
+```
+
+In particular, $`L=O(n^{1/4}\sqrt{\log(n+2)})`$ retains the
+$`O(\sqrt n\log(n+2))`$ depth order, and $`L=o(\sqrt n)`$
+gives $`D_T=o(n)`$ at this allocation. These statements remain within
+$`L\le cn`$. This is a sufficient precision range, not a claim that
+the logical scratch allocation works at arbitrary L. The fixed-accuracy
+theorem and its proof above remain valid separately.
+
+### 10.1 An absolute source and query ledger
+
+Use the same recovery with $`R=2k+1\le C_R\sqrt n`$ source calls,
+where $`C_R`$ is absolute, but set
+
+```math
+\delta=\frac{2^{-L}}{64R},\qquad
+\rho=1+\lceil\log_2(1/\delta)\rceil\le C_\rho p,
+\qquad u=n+\rho+2.
+```
+
+The constants in the [descendant source](COHERENT_DESCENDANT_LOADER.md#6-native-resource-interface)
+are absolute when written in h and rho. Its geometric expansion uses
+the fixed numbers $`3/5`$ and $`4/5`$; its length is $`O(\rho)`$.
+Parallel gradient synthesis and its actual inverse have
+$`O(\rho^2)`$ T and Clifford counts and $`O(\rho)`$ T-depth.
+The helper-free modular adders have $`O(\rho)`$ count and depth.
+The fixed coefficient bank and outer damping fit these bounds using
+the same uniform one-qubit synthesis premise. Thus no source constant
+depends separately on the requested error.
+
+All simultaneously initialized internal work fits $`C_s p`$ bits
+for an absolute $`C_s`$. This includes tag, source index, both
+attenuations, calibration program, gradient core, and the additional
+returned addition register used by the shared version below. In the
+independently prepared source, the outer selective phase tests every
+live work bit as in Section 5. The shared version has the different
+reflection specified below. Both reflections are native zero predicates
+with dirty returned helpers, not lookup tables indexed by the data and
+every precision-work bit.
+
+For $`Q=2^h`$, every large table has at most
+$`C(h+1)Q\rho\le Cu^2Q`$ rows, at most $`Cu`$ output bits,
+and at most $`Cu`$ address bits. Padded rows and the activity guard
+only change the absolute constant. The conservative shallow-query
+lemma therefore gives, per completed query,
+
+```math
+T,w\le Cu^5\sqrt Q,\qquad G\le Cu^5Q,
+\qquad D_T\le C\log_2(u+2).
+```
+
+There are a constant number of such queries per source call, including
+their actual inverses and the source reflection. The marker-to-tag query
+has Q rows and $`O(\log(n+2))`$ outputs and fits the same ledger.
+Short-tag masks have $`O(n)`$ rows and $`O(n)`$ outputs; applying
+the query lemma to them costs at most $`Cu^5`$. Native zero predicates
+on at most $`Cu`$ controls have count and returned dirty work at most
+$`Cu^3`$, by the retained read-only conjunction bound. This also
+charges the initial and final protected-suffix predicates. None of
+these operations adds a new initialized register outside the protected
+logical block.
+
+Multiplying counts by $`O(\sqrt n)`$ recovery calls and bounding all
+additional local words gives the following convenient degree-six bound
+for the independently prepared version:
+
+```math
+T_E,w_E\le C_Eu^6(\sqrt Q+1),\qquad
+G_E\le C_Eu^6(Q+1),\qquad
+D_{T,E}\le C_E\sqrt n\,p.
+```
+
+Peak width is reused after completed return and need not be multiplied
+by the number of calls; the displayed larger bound is sufficient.
+Every constant in this ledger is absolute. In particular, the earlier
+$`\mathrm{poly}_\eta(n)`$ notation is not being used to assert a
+precision-uniform bound without controlling its degree or coefficients.
+
+To obtain the stronger theorem, use the
+[shared-gradient early recovery](SHARED_GRADIENT_RECOVERY.md) instead.
+Its arithmetic precision is
+
+```math
+r=L+\lceil\log_2R\rceil+16
+\le L+\tfrac12\log_2(n+2)+20=O(p).
+```
+
+The three r-bit registers are the program B, retained gradient F, and
+returned zero addition register C. Their total allocation, including
+the tag, source index and two attenuations, is $`3r+q+s+2\le C_s p`$
+after enlarging the same absolute constant. The new modular adder uses
+two exact queries on 2r address bits with r outputs, and a Clifford
+swap. It has
+
+```math
+T,w=O((r+1)^4 2^r),\qquad
+G=O(r4^r+(r+1)^4 2^r),\qquad D_T=O(\log(r+2)).
+```
+
+Its literal addition contract holds on C zero for arbitrary program
+and gradient inputs; its actual inverse gives subtraction there. The
+completed activity echo is identity on every inactive input, including
+occupied C. Coefficient banks use one short phase table, calibration
+retains its original table, and fixed outer damping is hardwired into
+arithmetic tables so that it has the required full-operator contract
+even on occupied B.
+
+The local proof charges one preparation and one actual inverse at the
+exterior boundaries. Its recovery takes place inside the exactly
+invariant sector $`|\Gamma_r\rangle_F|0^r\rangle_C`$. Source-angle
+comparison first uses the invariant B-zero subspace; source-isometry
+completion then applies on the larger mode space allowing occupied B.
+The physical outer reflection omits F and includes C. The reflection
+of Section 5, which tests F zero, must not be used for this shared
+construction. No gradient reset or source-return promise is introduced.
+
+The standalone arithmetic tables add genuine precision-dependent costs.
+Including them, the early circuit has absolute bounds
+
+```math
+T_E,w_E\le C_Eu^6(\sqrt Q+2^r+1),\qquad
+G_E\le C_Eu^6(Q+4^r+1),
+```
+
+```math
+D_{T,E}\le C_E\left(L+\log(r+2)
+       +\sqrt n[\ell+\log(r+2)]\right).
+```
+
+Here $`r=O(\rho)`$, so all per-call polynomial factors, short
+tables, and the single preparation pair fit the same degree-six
+majorant. The source data and angular errors telescope across the R
+calls, whereas preparation error is paid only at the two boundaries.
+The local proof gives complete early error at most
+$`9\cdot2^{-L}/64\lt2^{-L}/4`$, including all work and flag
+leakage. This is an entire early-unitary lemma, not merely a replacement
+state-source promise.
+
+### 10.2 A protected suffix and an absolute dimension cutoff
+
+Fix an absolute integer
+
+```math
+A\ge\max\{16,C_s+1\},\qquad c=\frac1{8A},\qquad
+M=\left\lceil A\left[L+\log_2(n+L+2)\right]\right\rceil.
+```
+
+This ensures $`M\ge C_s p`$. For all sufficiently large n,
+uniformly over $`L\le cn`$, it also gives $`M\le n/2`$ and
+$`h=n-M\ge n/2`$. For example, it suffices that $`n\ge8`$ and
+
+```math
+\log_2(2n+2)\le\frac{n}{8A}.
+```
+
+Indeed $`L\le n/(8A)`$ and $`n+L+2\le2n+2`$ imply
+$`M\le n/4+1\le n/2`$. The early/tail operator decomposition
+in Section 2 holds for this M with no change to its all-column proof.
+
+There is an absolute $`C_u`$ with
+$`u\le C_u(n+L+2)`$. Hence
+
+```math
+u^6 2^{-M/2}
+\le C_u^6(n+L+2)^{6-A/2}2^{-AL/2}
+\le C_u^6(n+L+2)^{-2}.
+```
+
+The analogous Clifford factor obeys
+$`u^6 2^{-M}\le C_u^6(n+L+2)^{6-A}`$.
+Since $`L\le cn\le n`$, one has $`u^6=O(n^6)`$ with an
+absolute constant. Increase an absolute dimension cutoff until also
+
+```math
+cn+\tfrac12\log_2(n+2)+20\le n/4.
+```
+
+Then $`r\le n/4`$. The standalone arithmetic width and T-count
+are at most $`O(n^6 2^{n/4})`$, and their Clifford count is at most
+$`O(n^6 2^{n/2})`$. These costs are suppressed by their own precision
+bound, not by $`2^{-M}`$. Thus, for absolute $`C_1,C_2`$,
+
+```math
+w_E\le C_1 n^{-2}\sqrt N+C_2n^6(2^{n/4}+1).
+```
+
+Choose once and for all an absolute integer $`n_0`$ after which both
+preceding cutoff inequalities and the following inequalities hold:
+
+```math
+C_1n^{-2}\sqrt N+C_2n^6(2^{n/4}+1)\le\frac12\sqrt{N/n},
+```
+
+```math
+\sqrt{N/n}\ge\max\{4n+18,32c_I(n+3)\}.
+```
+
+Include also the arithmetic Clifford condition
+
+```math
+C_2n^6(2^{n/2}+1)\le N,
+```
+
+enlarging the same absolute $`C_2`$ to cover its native constant.
+
+Increase $`C_2`$ if necessary to cover the cubic returned-helper pools
+of the tail predicates as well. The first inequality then also ensures
+that those polynomial-size pools fit the returned query workspace.
+Such an $`n_0`$ exists because $`c\le1/128`$, the logarithmic
+terms are sublinear, and exponential growth dominates every fixed
+polynomial; it is independent of L, b, and the frame.
+
+For $`n\ge n_0`$ and $`b\ge\sqrt{N/n}`$, all early dirty
+work fits b. The same bounds give $`T_E=O(\sqrt N)`$ and
+$`G_E=O(N)`$, and hence the desired $`O(\sqrt{NL})`$ and
+$`O(NL)`$ budgets. Conditional source work fits M by construction.
+Since $`r\le n/4`$, its early depth is
+$`O(L+\sqrt n\,\ell)`$.
+No accuracy-dependent crossover or supplied phase-state reservation
+is used.
+
+### 10.3 The uniform tail and error composition
+
+Use exactly the capped tail precision from Section 7:
+
+```math
+m_j=L+6+\min\{j,\lceil\log_2(8n)\rceil\},\qquad
+Q_j=4N2^{-j},\qquad 1\le j\le M.
+```
+
+The base reservation is still $`B_0'=L+n+9`$, and the source fits
+because $`m_j+r_j+1\le B_0'`$. On the large-dimension, large-width
+branch, $`L\le n`$ and the cutoff inequalities give
+
+```math
+B=b-B_0'\ge b/2,\qquad B\ge16c_I(n+3).
+```
+
+Apply the same exact nonuniform-indicator query. The geometric sums now
+retain their precision dependence with absolute constants:
+
+```math
+\sum_{j=1}^M Q_jm_j=O(NL),\qquad
+\sum_{j=1}^M\sqrt{Q_jm_j}=O(\sqrt{NL}),\qquad
+\sum_{j=1}^M m_j=O(Mp).
+```
+
+These follow from $`m_j\le L+6+j`$, $`L\ge6`$, and convergence
+of the corresponding geometric series. The native source words add
+$`O(Mp)`$ count and depth. Suffix predicates add
+$`O(M\log(n+2))`$ depth and at most $`O(M(n+2)^3)`$ count,
+using at most $`O((n+2)^3)`$ returned dirty helpers at a time.
+They borrow the pool only between completed queries. The local counts
+are polynomial in n because $`M\le n`$ and $`L\le n`$, and are
+absorbed by the exponential count budgets with absolute constants.
+Thus
+
+```math
+T_T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
+G_T=O(NL),\qquad
+D_{T,T}=O\!\left(\frac{NL}{b^2}+Mp\right).
+```
+
+Since $`L\le n`$, the chosen cutoff has $`M=O(p)`$. This gives
+$`D_{T,T}=O(NL/b^2+p^2)`$. The early and tail reservations are
+sequential, so their maximum, not their sum, is the required dirty width.
+
+The shared-gradient recovery gives early error at most
+$`9\cdot2^{-L}/64`$. The retained tail certificate gives error
+strictly less than $`2^{-L}/4`$. Composing them exactly as in Section 8
+therefore gives full initialized-isometry error less than $`2^{-L}`$,
+including gradient, source, flag, and logical-work leakage. Every reversal
+uses the actual native inverse, and the early lemma proves literal
+inactive identity before the final H erasure. Combining the two ledgers proves
+
+```math
+D_T=O\!\left(\frac{NL}{b^2}+L+\sqrt n\,\ell+p^2\right)
+```
+
+on this branch, with the theorem's simultaneous T and G bounds.
+Finally,
+
+```math
+p^2\le2L^2+2\ell^2,\qquad
+\ell^2=O(\sqrt n\,\ell),\qquad L\le L^2,
+```
+
+so its additive depth is $`O(\sqrt n\,\ell+L^2)`$.
+
+### 10.4 Every eligible width and a uniform finite fallback
+
+For $`n\ge n_0`$ and $`17(L+n+7)\le b\lt\sqrt{N/n}`$,
+use the retained precision-uniform compiler. It has
+$`D_T=O(NL/b^2+nL)`$, and here $`nL\le NL/b^2`$.
+Its count term $`nL`$ is absorbed into $`\sqrt{NL}`$ throughout
+$`L\le cn\le n`$, because
+
+```math
+\frac{nL}{\sqrt{NL}}
+=\frac{n\sqrt L}{2^{n/2}}
+\le\frac{n^{3/2}}{2^{n/2}}=O(1).
+```
+
+This proves all desired bounds on the smaller-width branch without
+changing its literal base allocation.
+
+For $`n\lt n_0`$, use that same retained compiler at every eligible b.
+Its constants are already absolute. Moreover,
+
+```math
+nL\le n_0L^2,
+```
+
+so its depth satisfies the new upper bound after increasing one absolute
+constant. This fallback is uniform in L and b; it is not a separate
+finite-size constant for each accuracy. It also avoids claiming that
+the new indicator fits at the literal minimum $`17(L+n+7)`$.
+
+Finally, the retained compiler itself satisfies the theorem's T and G
+bounds throughout this precision range and has depth
+$`O(NL/b^2+nL)`$. Selecting between the two complete circuits gives
+the minimum in the theorem. Every choice retains the full return
+contract and all three resource bounds on one circuit.
+
+At every eligible width the physical width is $`\Theta(b)`$, so the
+inherited lower bounds are
+
+```math
+T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad
+D_T^\star=\Omega(NL/b^2).
+```
+
+Here $`L=O(\sqrt{NL})`$, so the T-count matches throughout the
+stated range. If $`b\le\sqrt{NL/F(n,L)}`$, then
+$`F(n,L)\le NL/b^2`$ and $`b\le\sqrt{NL}`$, since
+$`F(n,L)\ge1`$. This proves the displayed simultaneous matching
+interval. Choosing a sufficient absolute $`C_b`$ makes
+$`\lceil C_b\sqrt{NL}\rceil\ge17(L+n+7)`$ for every stated
+n and L: use $`L\ge6`$, $`L\le n`$, and boundedness of
+$`(2n+7)/2^{n/2}`$. Substitution proves the square-root-width
+corollaries, including sublinear depth when $`L=o(\sqrt n)`$.
+
+The linear-precision restriction pays for simultaneously initialized
+program and gradient work inside the protected logical suffix. This
+proof supplies no uniform extension to arbitrary precision, no optimal
+depth claim beyond inherited matching lower bounds, and no efficient
+classical preprocessing or general native-emitter guarantee.
+The [bounded shared-gradient checks](../../tests/test_shared_gradient_recovery.py)
+exercise exact addition, occupied inactive work, literal coefficient
+phases, preparation paid once, occupied-program damping, and
+wrong-reflection/inverse controls.
+They support the native interfaces; the uniform degree, cutoff, and
+resource statements above are analytic proofs, not numerical extrapolations.

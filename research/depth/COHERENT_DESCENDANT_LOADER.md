@@ -7,6 +7,12 @@ resource statement uses the separately charged
 an unrestricted T-depth lower bound or, by itself, a complete-frame
 depth theorem.
 
+The calibration interface here prepares and returns its gradient on each
+call. The [shared-gradient refinement](SHARED_GRADIENT_RECOVERY.md) retains
+the same coherent source architecture while replacing all precision
+rotations and changing the outer recovery reflection; its stronger depth
+ledger has a separate invariant-sector proof.
+
 [Complete frame and marker convention](../../docs/HOPF_INTERFACE.md) ·
 [Conditional-work contract](../../docs/CONDITIONAL_SUFFIX_COMPILER.md#1-an-active-suffix-supplies-workspace-conditionally) ·
 [Existing literal routing and predicates](../../docs/T_DEPTH_COMPILER.md)
