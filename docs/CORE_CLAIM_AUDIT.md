@@ -23,7 +23,8 @@ construction. A, B, and D retain their distinct resource statements.
 A separate reconstruction below checks the
 [fixed-accuracy large-width depth construction](../research/depth/SUBLINEAR_T_DEPTH.md).
 It preserves C and the uniform D theorem while establishing a sublinear
-depth upper bound at sufficiently large constant square-root dirty width.
+depth upper bound at sufficiently large constant square-root dirty width,
+with a width-sensitive extension at every eligible dirty allocation.
 
 ## Claim-to-proof decisions
 
@@ -109,21 +110,28 @@ initialized flags and $`b=\lceil C_\eta\sqrt N\rceil`$ dirty qubits:
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\,\log^2(n+2))=o(n).
+D_T=O_\eta(\sqrt n\,\log(n+2))=o(n).
 ```
 
 These are simultaneous bounds with the full initialized-isometry error
 at most eta. They settle the stated fixed-accuracy sublinear-depth
 existence question; they do not determine optimal depth or replace D's
-precision-uniform bounds and matching intervals.
+precision-uniform bounds. The fixed-accuracy width extension retains the
+literal lower threshold $`b\ge17(L+n+7)`$ and gives
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$,
+$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
+Its matching interval ends at
+$`\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$ when nonempty.
 
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
 | Imported state source | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3) supplies coarse Boolean-phase state approximation and LCU/amplification structure. Its ancillary allocation is not treated as a two-clean implementation. |
 | Effective coherent preparation | The [descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) uses a local strict residual search, a common geometric coefficient state, and source-label-dependent attenuation. It terminates at zero residuals without equality decisions. Orthogonal tag/prefix sectors prevent a dimension factor in source-isometry error. |
-| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. Boolean phase and controlled-H echoes return arbitrary dirty work. Binary real-Y echoes replace any controlled-T interpreter; actual inverses give exact inactive identity even on occupied programs. |
+| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. The [loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) prepares binary phase factors in parallel and uses exact signed-addition echoes. Its actual preparation inverse gives exact inactive identity on occupied source/program registers; active source leakage is charged in the full comparison. Fixed coefficient echoes have disjoint T supports. |
 | Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. A mathematical near-isometry completion controls actual forward and inverse source words in full operator norm, including leaked source scratch. Guarded amplitude amplification retains its literal active-sector sign. |
-| Same-circuit resource budgets | A terminal block of $`M=\lceil\log_2^2(n+2)\rceil`$ supplies the simultaneous $`O_\eta(\log(n+2))`$ conditional clean reservation. Early tables have $`2^{n-M}\mathrm{poly}_\eta(n)`$ rows. The [nonuniform dirty indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) keeps the final M layers within the count and Clifford budgets; they contribute only polylogarithmic depth. |
+| Same-circuit resource budgets | A terminal block of $`M=\lceil\log_2^2(n+2)\rceil`$ supplies the simultaneous $`O_\eta(\log(n+2))`$ conditional clean reservation. Early tables have $`2^{n-M}\mathrm{poly}_\eta(n)`$ rows. The [nonuniform dirty indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) keeps the final M layers within the count and Clifford budgets; they contribute only polylogarithmic depth at square-root width, with the additional $`N/b^2`$ term at general widths. |
+| Literal-width splice | Below $`b=\sqrt{N/n}`$, the retained compiler absorbs n into $`N/b^2`$. Above it, the early width is $`o_\eta(\sqrt{N/n})`$ and the tail keeps its $`N/b`$, $`N/b^2`$ terms. The old compiler covers finite dimensions; the new indicator is not assumed to fit at every literal base allocation. |
+| Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) uses an explicit factorization contract and the balanced Haar frame. Its exact and approximate bounds concern normalization only; they supply no unrestricted native-depth lower bound. |
 
 An occupied active angle program represents its XOR-offset word, so the
 audit does not identify initialized-program accuracy with a specified
@@ -162,5 +170,6 @@ receipt hashes are retained.
 This is internal proof reconstruction, not external technical review or
 formal proof certification. The selected count package is ready for
 manuscript development when requested. The large-width construction
-establishes sublinear depth; its optimal order, lower bounds, and other
-width/precision regimes remain separate questions.
+establishes sublinear depth and extends the matching width range at fixed
+accuracy. Optimal depth beyond that range and precision-uniform refinements
+remain separate questions.

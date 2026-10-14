@@ -31,7 +31,8 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
-| Fixed-accuracy sublinear large-width depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), plus retained native query and nonuniform-indicator suites | Analytic coherent descendant source and native schedule; finite matrix completions are verification devices, not a native compiler |
+| Fixed-accuracy width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), and retained query/indicator suites | Analytic coherent descendant source, width splice and native schedule; finite recovery completions are verification devices, not a native compiler |
+| Entry-indexed normalization barrier | [Encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) | Exact Haar spectrum, explicit optimal factorization and nuclear-norm dual witness | Analytic proof for the stated factorization contract; no unrestricted native-depth or recovery-query lower bound |
 
 <a id="endpoint-count-evidence"></a>
 
@@ -97,7 +98,17 @@ controls preserve the root while corrupting a marker, substitute a different
 completion's inverse, or apply the active minus globally. The last error
 check includes final guard erasure and exact identity on inactive columns.
 
-Those matrix fixtures do not emit the derived Boolean tables or a native
+Five [binary-gradient calibration checks](../tests/test_phase_gradient_calibration.py)
+reuse the emitted helper-free TTK adder. Exhaustive small register inputs
+cover occupied programs, gradient offsets, both target signs, inactivity,
+and actual inverses. A two-bit Clifford+T matrix checks literal phases;
+larger small kickback blocks check the real rotation. A coarse native
+product source produces nonzero leakage and verifies its complete-output
+error bound. Negative controls drop a guard or target sign, or substitute
+an ideal preparation inverse. The source is deliberately coarse, not an
+implementation of arbitrary-accuracy one-qubit synthesis.
+
+These fixtures do not emit the derived Boolean tables or a complete native
 descendant loader. The existing native dirty-query, shared-control phase,
 returned-helper predicate and nonuniform-indicator tests cover their stated
 finite interfaces. Terminating source selection, polynomial overhead

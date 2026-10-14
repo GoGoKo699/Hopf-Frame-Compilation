@@ -272,9 +272,13 @@ charged, but this is not total circuit depth. Earlier schedules remain
 useful at some smaller reservations or higher precisions. The separate
 [compressed-column construction](research/depth/SUBLINEAR_T_DEPTH.md)
 improves fixed-accuracy large-width depth to
-$`O_\eta(\sqrt n\log^2(n+2))=o(n)`$ with the same optimal count
-order and linear elementary Clifford budget. It does not change the
-precision-uniform bounds or matching intervals above.
+$`O_\eta(\sqrt n\log(n+2))=o(n)`$ with the same optimal count
+order and linear elementary Clifford budget. Its fixed-accuracy width
+extension gives $`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log(n+2)\})`$
+and $`T=O_\eta(\sqrt N+N/b)`$ at every $`b\ge17(L+n+7)`$.
+This extends simultaneous matching at fixed accuracy through
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$. The
+precision-uniform bounds above remain unchanged.
 
 <a id="6-operational-consequence-open-gaps-and-evidence"></a>
 
@@ -302,7 +306,7 @@ task-level result. Two additional resource points remain separate from C:
 | Resource point | Current guarantee |
 |---|---|
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 saves one dirty qubit for the complex frame at $`L=N`$. The

@@ -266,7 +266,7 @@ on one complete-real-frame circuit,
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\log^2(n+2))=o(n).
+D_T=O_\eta(\sqrt n\log(n+2))=o(n).
 ```
 
 The T-count remains worst-case optimal. The full initialized-isometry
@@ -277,8 +277,17 @@ rule. The complete-operator proof charges its column encoding, recovery,
 conditional workspace and late tail. Classical preprocessing is terminating,
 with no efficiency claim. This resolves the earlier sublinear-depth
 existence question; optimal depth remains an open problem, with unrestricted lower
-bound $`\Omega(1)`$. Result D retains its precision-uniform circuit,
-literal width threshold and matching intervals; C does not improve its depth.
+bound $`\Omega(1)`$ at square-root width. For every
+$`b\ge17(L+n+7)`$, the fixed-accuracy extension gives
+$`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
+Count and depth match their inherited lower bounds through
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, whenever this
+interval is nonempty. Result D retains its precision-uniform guarantees;
+C does not improve its depth. The separate
+[entry-indexed normalization bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+is restricted to that state-source architecture and is not an
+unrestricted native-depth lower bound.
 
 The [research catalogue](../research/README.md) preserves the endpoint
 dependencies and earlier linear-count native compilers for disjoint SU

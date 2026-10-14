@@ -1,4 +1,6 @@
-# Sublinear T-depth at square-root dirty width
+<a id="sublinear-t-depth-at-square-root-dirty-width"></a>
+
+# Sublinear T-depth and a fixed-accuracy width frontier
 
 [Resource statement](../../docs/OPEN_PROBLEM.md) · [Shallow dirty queries](SHALLOW_DIRTY_QUERIES.md) · [Coherent descendant loader](COHERENT_DESCENDANT_LOADER.md) · [Linear-size dirty indicators](NONUNIFORM_DIRTY_INDICATOR.md)
 
@@ -7,7 +9,9 @@ their complete columns into orthogonal depth-and-prefix sectors. A
 coherent real-state loader implements that encoding; a Clifford row
 isometry gives normalization $`O(\sqrt n)`$. Amplitude amplification
 recovers the whole early frame. The last polylogarithmically many original
-layers use the retained native layerwise compiler.
+layers use the retained native layerwise compiler. Keeping their width
+penalty and selecting the retained compiler at smaller widths gives an
+all-eligible-width theorem.
 
 The construction uses the Boolean-phase state-preparation method of
 Gosset–Kothari–Wu, with a separately proved terminating selection rule,
@@ -16,20 +20,26 @@ It is not an invocation of an uncharged state-preparation oracle.
 
 ## 1. Fixed-accuracy theorem
 
-For every fixed $`0\lt\eta\le1/64`$, there are constants
-$`C_\eta,c_\eta`$ such that every prescribed complete real Hopf frame W
-on $`n\ge1`$ qubits, $`N=2^n`$, has a coherent Clifford+T circuit V
-with two external initialized flags and at most
-$`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits satisfying
+For every fixed $`0\lt\eta\le1/64`$, put
+
+```math
+L=\max\{6,\lceil\log_2(1/\eta)\rceil\},\qquad
+B_0=L+n+7,\qquad f(n)=\sqrt n\,\log_2(n+2).
+```
+
+There is a constant $`c_\eta`$ such that for every $`n\ge1`$,
+$`N=2^n`$, and integer $`b\ge17B_0`$, every prescribed complete
+real Hopf frame W has one coherent Clifford+T circuit V with two
+external initialized flags and at most b arbitrary dirty qubits satisfying
 
 ```math
 \|VJ_2-J_2(W\otimes I_b)\|\le\eta,
 ```
 
 ```math
-T\le c_\eta\sqrt N,\qquad
+T\le c_\eta\left(\sqrt N+\frac Nb\right),\qquad
 G\le c_\eta N,\qquad
-D_T\le c_\eta\sqrt n\,[\log_2(n+2)]^2=o(n).
+D_T\le c_\eta\left(\frac N{b^2}+\min\{n,f(n)\}\right).
 ```
 
 All bounds hold on the same circuit. G counts elementary Clifford gates.
@@ -44,14 +54,38 @@ claimed efficiency bound. Every source, query, actual inverse, selective
 phase and recovery call is compiled and counted. There are no measurements,
 resets, supplied precision states, QRAM, or uncharged coherent evaluators.
 
-This answers the fixed-accuracy $`o(n)`$ existence question positively.
-It does not establish optimal T-depth, a precision-uniform refinement of
-Result D, or a general native emitter. The unrestricted growing-depth
-lower-bound problem remains open.
+In particular, there is a constant $`C_\eta`$ such that at
+$`b=\lceil C_\eta\sqrt N\rceil`$ the same guarantees become
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta(f(n))=o(n).
+```
+
+The inherited worst-case lower bounds match the T-count at every
+eligible width. They also match the depth throughout every nonempty interval
+
+```math
+17B_0\le b\le\sqrt{\frac N{f(n)}}
+=\frac{\sqrt N}{n^{1/4}\sqrt{\log_2(n+2)}}:
+\qquad
+T^\star=\Theta_\eta(N/b),\qquad
+D_T^\star=\Theta_\eta(N/b^2).
+```
+
+These are fixed-accuracy statements; their constants may depend on eta.
+They leave the precision-uniform constants and original matching intervals
+of [Result D](../../docs/UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
+unchanged. They answer the $`o(n)`$ existence question positively and
+extend the fixed-accuracy interval of matching width-sensitive depth.
+Optimal depth beyond the matching interval, an unrestricted growing-depth
+lower bound at square-root width, and a general native emitter remain open.
 
 ## 2. Protect one terminal logical block
 
-For all sufficiently large n, choose
+First consider sufficiently large n and
+$`b\ge\sqrt{N/n}`$. Section 8 covers every other eligible allocation
+using the retained compiler. Choose
 
 ```math
 M=\lceil[\log_2(n+2)]^2\rceil,\qquad
@@ -83,7 +117,7 @@ holds source work. The other external flag may remain unused until the tail.
 
 The dirty query pool is disjoint from X, Z, and both external flags.
 All Z reservations are simultaneous: tag, LCU index, inner attenuation,
-reused angle program, and outer attenuation. Their sum is
+reused angle program, gradient core, and outer attenuation. Their sum is
 $`O_\eta(\log(n+2))`$, which fits M for sufficiently large n.
 
 ## 3. Compress the complete columns
@@ -263,8 +297,8 @@ iterate
 ```
 
 Here $`\Pi`$ tests every initialized live Z bit: tag, source index,
-inner attenuation, angle program, and outer attenuation. It excludes X,
-the dirty pool, and H. Unused Z bits are spectators, and the comparison
+inner attenuation, angle program, gradient core, and outer attenuation.
+It excludes X, the dirty pool, and H. Unused Z bits are spectators, and the comparison
 extension above is identity on them. Compile this selective phase by
 the exact returned-helper zero predicate, with its controls additionally
 including H. Its polynomial-logarithmic count and
@@ -320,19 +354,28 @@ return, and have exact inactive identity when their table rows vanish.
 
 Here $`\delta^{-1}=\mathrm{poly}_\eta(n)`$. One descendant preparation
 uses a constant number of large Boolean phase queries and actual inverses;
-its source reflection is another such query. It has
-$`O_\eta(\log\log(n+2))`$ fixed coefficient rotations, whose total
-serial synthesis depth is $`O_\eta(\log(n+2)\log\log(n+2))`$.
-There is only one source-label-dependent calibration rotation per
-unamplified loader call. Its binary angle has $`O_\eta(\log(n+2))`$
-bits; serial exact guarded half-angle echoes give
-$`O_\eta(\log^2(n+2))`$ depth including synthesis. Constantly many
-inner amplification calls preserve this bound. The tag packing, variable
-Hadamards, row Hadamards, outer damping and selective phases also fit it.
-Thus
+its source reflection is another such query. Its
+$`O_\eta(\log\log(n+2))`$ fixed coefficient rotations act on distinct
+index bits and run in parallel, with depth $`O_\eta(\log(n+2))`$.
+Their shared activity control occurs only in Clifford CZ banks.
+
+The source-label-dependent calibration uses the loader's
+[signed modular-shift construction](COHERENT_DESCENDANT_LOADER.md#guarded-real-rotations-and-the-calibration-table).
+Its angle program and separate gradient core each have
+$`O_\eta(\log(n+2))`$ bits. Parallel native product preparation,
+two exact helper-free modular adders, Clifford complement banks, and
+the actual preparation inverse have total depth
+$`O_\eta(\log(n+2))`$. Every calibration prepares and unprepares
+its own gradient. The inactive sector is literally identity on arbitrary
+program and core inputs; active gradient leakage enters the source error.
+There is no supplied phase state, reset, or uncharged reuse assumption.
+
+Constantly many inner amplification calls preserve this depth bound.
+The tag packing, variable Hadamards, row Hadamards, outer damping and
+selective phases also fit it. Thus
 
 ```math
-D_{T,E}=O_\eta(\sqrt n\,\log^2(n+2)).
+D_{T,E}=O_\eta(\sqrt n\,\log(n+2))=O_\eta(f(n)).
 ```
 
 All table row counts are at most $`Q\,\mathrm{poly}_\eta(n)`$;
@@ -352,12 +395,15 @@ G_E\le\mathrm{poly}_\eta(n)N2^{-M}
 
 ```math
 w_E\le\mathrm{poly}_\eta(n)\sqrt N\,2^{-M/2}
-        +\mathrm{poly}_\eta(n)=o_\eta(\sqrt N).
+        +\mathrm{poly}_\eta(n)=o_\eta(\sqrt{N/n}).
 ```
 
 The same dirty pool is reused after completed return, so peak width is
 not summed over calls. These limits follow from
-$`M/\log(n+2)\longrightarrow\infty`$. This suppression pays for
+$`M/\log(n+2)\longrightarrow\infty`$: even after multiplying
+the normalized width by $`\sqrt n`$, the exponential suppression
+beats every fixed polynomial. Thus all early dirty reservations fit
+every $`b\ge\sqrt{N/n}`$ for sufficiently large n. This suppression pays for
 native data access; it cannot remove the number of sequential recovery
 calls, which has been counted separately.
 
@@ -382,10 +428,13 @@ inverses and rejected-space error retain that full contract.
 
 Keep the base dirty reservation $`B_0'=L+n+9`$ and the two external
 clean flags. The source fits because $`m_j+r_j+1\le B_0'`$.
-Choose $`C_\eta`$ sufficiently large that for large n the extra
-query pool $`B=b-B_0'`$ satisfies
+For large n in this branch the extra query pool $`B=b-B_0'`$ satisfies
 $`B\ge b/2`$ and $`B\ge16c_I(n+3)`$, where $`c_I`$ is the
 fixed constant of the [nonuniform indicator](NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence).
+Both inequalities follow from $`b\ge\sqrt{N/n}`$ and the fact
+that the base and helper reservations are only linear in n at fixed eta.
+This does not assert that the new indicator fits the literal minimum
+$`b=17B_0`$; Section 8 retains the old compiler where it does not fit.
 
 That retained indicator has genuinely linear count and dirty width,
 and logarithmic address T-depth. Its nonuniform chunk sum is bounded by
@@ -419,9 +468,15 @@ suffix predicates add $`O(M\log(n+2))`$ depth and polynomial count;
 two-clean reflections cost a constant per layer. Thus the same tail has
 
 ```math
-T_T=O_\eta(\sqrt N),\qquad G_T=O_\eta(N),\qquad
-D_{T,T}=O_\eta(M\log(n+2)+N/B^2)=O_\eta(\log^3(n+2)).
+T_T=O_\eta\!\left(\sqrt N+\frac Nb\right),\qquad
+G_T=O_\eta(N),\qquad
+D_{T,T}=O_\eta\!\left(\log^3(n+2)+\frac N{b^2}\right).
 ```
+
+Here $`B\ge b/2`$ converts the query penalties to b, and the
+unweighted source and predicate counts are polynomial in n and fit the
+exponential count budgets. At square-root width this specializes to the
+previous $`O_\eta(\log^3(n+2))`$ tail depth.
 
 Only the early segment uses the protected logical bank. The tail uses
 the original arbitrary-dirty operator source and has no supplied unary
@@ -429,21 +484,69 @@ phase-state reservation.
 
 ## 8. Compose and cover every dimension
 
-The early and tail dirty reservations are used sequentially. Enlarge
-$`C_\eta`$ to cover their maximum. Their errors compose in the full
+The early and tail dirty reservations are used sequentially. In the
+large-n branch $`b\ge\sqrt{N/n}`$, each fits the supplied allocation,
+so their maximum fits too. Their errors compose in the full
 initialized-isometry norm: apply the actual tail unitary to the early
 error, then compare the tail on the ideal returned-work embedding.
 This gives total error less than $`\eta/2+\eta/4\lt\eta`$ and requires
 no physical reset after the approximate early circuit.
 
-The early depth dominates the tail because
-$`\log(n+2)=O(\sqrt n)`$. Their T and elementary Clifford counts
-give the stated simultaneous bounds. For the finitely many n before
-$`h\ge1`$, the scratch fit, and the asymptotic width inequalities hold,
-use the retained [two-clean full-frame compiler](../../docs/UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
-At fixed eta, enlarging $`C_\eta,c_\eta`$ covers all these dimensions
-and their literal base reservations. This is an asymptotic theorem, not
-a practical crossover estimate.
+The additive tail depth is absorbed because
+$`\log^3(n+2)=O(f(n))`$. Summing the same circuit's resources gives
+
+```math
+T=O_\eta\!\left(\sqrt N+\frac Nb\right),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(\frac N{b^2}+f(n)\right).
+```
+
+Choose a fixed threshold $`n_0(\eta)`$ after which $`h\ge1`$,
+the conditional scratch fits, and every width inequality used above
+holds whenever $`b\ge\sqrt{N/n}`$. This threshold is independent
+of b and of the prescribed frame. For $`n\ge n_0(\eta)`$ and
+$`17B_0\le b\lt\sqrt{N/n}`$, use the retained
+[two-clean full-frame compiler](../../docs/UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
+At fixed eta its bounds are
+
+```math
+T=O_\eta\!\left(\sqrt N+\frac Nb\right),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(\frac N{b^2}+n\right).
+```
+
+The original additive T-count term n is absorbed by $`\sqrt N`$.
+In this width branch $`n\le N/b^2`$, so its depth is
+$`O_\eta(N/b^2)`$ and satisfies the desired bound.
+
+For the finitely many $`n\lt n_0(\eta)`$, use the same retained
+compiler at every $`b\ge17B_0`$. The finite maximum of
+$`n/f(n)`$ is absorbed into a constant depending only on eta,
+uniformly for all those b. This preserves the literal base allocation:
+no unproved claim about the new indicator at $`17B_0`$ is needed.
+Consequently the displayed $`N/b^2+f(n)`$ upper bound holds for
+every eligible width and dimension. Selecting between this construction
+and the retained $`N/b^2+n`$ construction gives the stronger
+$`N/b^2+\min\{n,f(n)\}`$ statement. Each selection is one circuit
+with all the stated count, depth, error, and workspace guarantees.
+
+Choose $`C_\eta`$ so that $`\lceil C_\eta\sqrt N\rceil\ge17B_0`$
+for every n. Such a constant exists because $`(L+n+7)/2^{n/2}`$
+is bounded at fixed eta. Substitution proves the square-root-width
+corollary. These constants are asymptotic guarantees, not practical
+crossover estimates.
+
+Finally, at physical width $`n+b+2=\Theta(b)`$, the
+[inherited lower bounds](../../docs/UNIFORM_PRECISION_DEPTH.md#5-complete-the-uniform-theorem-and-its-matching-statements)
+give
+
+```math
+T^\star=\Omega_\eta\!\left(\sqrt N+\frac Nb\right),\qquad
+D_T^\star=\Omega_\eta(N/b^2).
+```
+
+If $`b\le\sqrt{N/f(n)}`$, then $`f(n)\le N/b^2`$ and
+$`b\le\sqrt N`$. Both upper bounds therefore match these lower
+bounds, proving the interval in Section 1. The unrestricted optimum
+beyond that interval is not determined by this argument.
 
 ## 9. Scope and evidence
 
@@ -454,11 +557,17 @@ above supply the missing complete-operator step. A state source alone
 would not prove the theorem.
 
 The result closes the previously stated $`o(n)`$ existence question at
-fixed accuracy and sufficiently large constant square-root dirty width.
-It leaves the optimal depth order and other width/precision regimes open.
+fixed accuracy and sufficiently large constant square-root dirty width,
+and supplies an all-eligible-width fixed-accuracy bound with a larger
+matching interval. It leaves depth beyond that interval and a
+precision-uniform refinement open.
 The [five bounded recovery checks](../../tests/test_sublinear_depth_recovery.py)
 test signed and singular complete columns, marker tags, actual inverses,
 active-only phase, and final leaked-work return. Their small numerical
 unitary completions are verification devices, not compiler primitives.
+The [five bounded calibration checks](../../tests/test_phase_gradient_calibration.py)
+exercise the emitted signed modular-shift echo, literal rotation phase,
+inactive occupied inputs, actual native preparation inverses, and gradient
+leakage. They support that local native interface, not a general frame emitter.
 They are not evidence for the asymptotic count absorption or a claim that
 the resulting exponentially sized circuits have been emitted.

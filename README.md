@@ -159,14 +159,17 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
 T-depth bound. The separate [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md)
-resolves the fixed-accuracy sublinear-depth existence question. The
+resolves the fixed-accuracy sublinear-depth existence question and gives
+$`D_T=O_\eta(N/b^2+\sqrt n\log(n+2))`$ at every
+$`b\ge17(L+n+7)`$, while retaining
+$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$. The
 [resource statement](docs/OPEN_PROBLEM.md) records the remaining optimal-depth
 question, and the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.

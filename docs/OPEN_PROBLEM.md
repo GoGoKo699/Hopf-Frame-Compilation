@@ -94,7 +94,7 @@ gives one circuit with
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(\sqrt n\,\log^2(n+2))=o(n).
+D_T=O_\eta(\sqrt n\,\log(n+2))=o(n).
 ```
 
 The T-count remains worst-case optimal in order. The previously stated
@@ -106,8 +106,31 @@ $`O(\sqrt n)`$ amplification calls, and compiles the final
 polylogarithmically many layers by exact dirty queries. Its error includes
 all source leakage and workspace return. This fixed-accuracy theorem does
 not assert a precision-uniform improvement or efficient classical preprocessing.
-The explicit matching intervals at smaller widths
-are those of [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
+More generally, put $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$.
+For every $`b\ge17(L+n+7)`$, the same construction combined with
+the retained small-width compiler gives
+
+```math
+T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}\right).
+```
+
+The inherited lower bounds match both count and depth throughout every
+nonempty interval
+
+```math
+17(L+n+7)\le b\le
+\frac{\sqrt N}{n^{1/4}\sqrt{\log_2(n+2)}}:
+\qquad T^\star=\Theta_\eta(N/b),\quad
+D_T^\star=\Theta_\eta(N/b^2).
+```
+
+This is a fixed-accuracy extension; [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
+retains its accuracy-uniform constants and intervals. The
+[entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+shows that the current source architecture needs worst-case normalization
+$`\Omega(\sqrt n)`$, even at fixed operator error. That is a bound
+on this encoding method, with no unrestricted native-depth consequence.
 T-depth permits arbitrary Clifford interlayers and is distinct from total
 physical depth. The [depth results](../research/README.md#large-workspace-t-depth)
 record the new complete construction and preserve the earlier component

@@ -80,10 +80,16 @@ The user explicitly reopened large-width depth research. The resulting
 [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md) resolves
 the fixed-accuracy sublinear-depth existence question: at two clean flags
 and sufficient square-root dirty width, it gives
-$`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ with optimal T-count order
+$`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ with optimal T-count order
 and linear elementary Clifford count. Its coherent descendant source,
-native queries, all-column recovery, exact inactive guards and final tail
-are charged in one proof. Optimal depth remains open. A general native
+native queries, parallel phase-gradient calibration, all-column recovery,
+exact inactive guards and final tail are charged in one proof. At every
+$`b\ge17(L+n+7)`$, its fixed-accuracy extension has
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log(n+2)\})`$,
+$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
+The [entry-indexed encoding bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+fixes the scope of the remaining square-root normalization cost; it is
+not an unrestricted native-depth lower bound. Optimal depth remains open. A general native
 emitter, practical crossovers and further fixed fixtures are not default
 requirements. The internal audit does not replace external technical review.
 

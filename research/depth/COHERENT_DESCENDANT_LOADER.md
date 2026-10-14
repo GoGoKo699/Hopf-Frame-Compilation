@@ -252,59 +252,173 @@ live source/program registers.
 ### Guarded real rotations and the calibration table
 
 Every continuous operation above is a real rotation
-$`R_y(\theta)=e^{-i\theta Y}`$. Let p be a preserved program bit,
-t its target, and $`Z_c=\mathrm{CCZ}(z,p;t)`$. If a native word V
-approximates $`R_y(\theta/2)`$ with literal operator error e, use the
-chronological sequence
+$`R_y(\theta)=e^{-i\theta Y}`$, with literal matrix
 
 ```math
-V_t,\ Z_c,\ V_t^\dagger,\ Z_c.
+R_y(\theta)=
+\begin{pmatrix}\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{pmatrix}.
 ```
 
-On $`z=p=1`$, its ideal matrix is
+**Parallel fixed coefficient rotations.** If a native word V on target t
+approximates $`R_y(\theta/2)`$ with literal operator error e, the
+chronological word
+
+```math
+V_t,\ \mathrm{CZ}(z,t),\ V_t^\dagger,\ \mathrm{CZ}(z,t)
+```
+
+has active ideal action
 
 ```math
 Z R_y(-\theta/2) Z R_y(\theta/2)=R_y(\theta).
 ```
 
-Its error is at most $`2e`$. If either control is zero, the actual
-word is exactly $`V^\dagger V=I`$, on every target input. Its
-inverse is the actual reversed native word. For a fixed coefficient
-rotation, replace CCZ by $`\mathrm{CZ}(z,t)`$. No controlled-T
-primitive, initialized phase state, or row-dependent discarded scalar
-is assumed.
-
-For each a, choose an r-bit approximation to the calibration angle,
-with circular error at most $`2\pi2^{-r}`$. Load its binary digits
-into a separate conditionally zero r-bit program register, apply the
-preceding echo to every angle bit, and reverse the actual query.
-The address depends only on the preserved tag and prefix, not on the
-rotated attenuation bit. The program is used only as controls.
-Consequently it returns exactly to zero on active initialized inputs;
-the supplied dirty query pool returns exactly on all inputs. At
-$`z=0`$, the query and every echo are exactly identity, even if the
-program is occupied.
-
-If each half-angle word has error $`e_{\rm syn}`$, the complete
-active initialized-program error is at most
+Its error is at most $`2e`$. On $`z=0`$ the actual word is exactly
+$`V^\dagger V=I`$ on every target input. Its inverse is the actual
+reversed word. The q coefficient rotations act on distinct index bits.
+Their V words can run in parallel, followed by the Clifford CZ bank,
+their parallel actual inverses, and the second CZ bank. The shared
+control z therefore creates no shared non-Clifford support. Allocating
+error $`O(\epsilon/q)`$ to each half-angle word gives bank error
+at most epsilon and
 
 ```math
-2\pi2^{-r}+2r e_{\rm syn}.
+T,G=O(q\log(q/\epsilon)),\qquad
+D_T=O(\log(q/\epsilon)).
+```
+
+The one-qubit synthesis is the retained
+[literal approximation premise](../../docs/FAULT_TOLERANT_COMPILER.md#primary-references).
+Clifford gates sharing z may be serialized; their count is charged, and
+they do not add T-depth. A fixed outer damping rotation uses the same
+one-target echo.
+
+**An exact signed modular-shift guard.** Reserve separate r-bit registers
+B for the calibration program and F for a binary phase gradient. Put
+$`L_r=2^r`$, and interpret both registers in little-endian binary. The
+existing [helper-free TTK modular adder](../../docs/PARALLEL_DIRTY_LOOKUP.md#exact-modular-adders)
+implements
+
+```math
+\mathsf A_r|m,x\rangle=|m,x+m\pmod {L_r}\rangle
+```
+
+on arbitrary inputs, using $`T,G,D_T=O(r)`$ and no additional helper.
+The adder may modify B internally but restores it at completion. Its
+subtraction is the actual reversed CNOT/Toffoli word, with literal phase.
+
+Let $`\mathsf C_c`$ complement every F bit controlled by a preserved
+bit c. It is a Clifford CNOT bank; at $`c=1`$ it maps
+$`x\mapsto L_r-1-x=-x-1\pmod {L_r}`$. For the attenuation target t,
+define $`\mathsf V_t=\mathsf C_t\mathsf A_r\mathsf C_t`$.
+It shifts F by $`(-1)^t m`$. Use the chronological word
+
+```math
+\mathsf V_t,\ \mathsf C_z,\
+\mathsf V_t^\dagger,\ \mathsf C_z.
+```
+
+Its operator is
+$`\mathsf E_{z,t}=\mathsf C_z\mathsf V_t^\dagger\mathsf C_z\mathsf V_t`$.
+On $`z=0`$, it is exactly identity on arbitrary F, B and t. On
+$`z=1`$, complementation conjugates each translation to its inverse,
+so it shifts F by $`2(-1)^t m`$. Thus the full-space permutation is
+
+```math
+\mathsf E_{z,t}|z,t,m,x\rangle
+=|z,t,m,x+2z(-1)^t m\pmod {L_r}\rangle.
+```
+
+The program and both control bits are preserved exactly. The guard
+uses two ordinary modular adders and Clifford banks; it does not
+control the native gates of an adder or assume a controlled-T primitive.
+
+**Charged product preparation and literal rotation.** Define
+
+```math
+|\Gamma_r\rangle=\frac1{\sqrt{L_r}}
+  \sum_{x=0}^{L_r-1}e^{2\pi i x/L_r}|x\rangle.
+```
+
+A shift by d has eigenvalue $`e^{-2\pi i d/L_r}`$ on this state.
+The active shift echo therefore acts on t as
+$`\mathrm{diag}(e^{-i\theta_m},e^{i\theta_m})`$, where
+$`\theta_m=4\pi m/L_r`$. With $`Q=SH`$, one has
+$`QZQ^\dagger=Y`$, so conjugating that diagonal by Q gives
+the literal $`R_y(\theta_m)`$, without a program-dependent scalar.
+
+For $`\alpha_j=2\pi2^j/L_r`$, an ideal product preparation is
+
+```math
+P_0=\bigotimes_{j=0}^{r-1}
+ \left(e^{-i\alpha_j Z/2}H\right),\qquad
+P_0|0^r\rangle=\lambda_r|\Gamma_r\rangle,\qquad
+\lambda_r=e^{-i\pi(1-1/L_r)}.
+```
+
+Synthesize the r determinant-one rotations separately with literal
+operator error at most $`e_P/r`$, and apply their words in parallel.
+The resulting native P satisfies $`\|P-P_0\|\le e_P`$ and has
+
+```math
+T,G=O(r\log(r/e_P)),\qquad D_T=O(\log(r/e_P)).
+```
+
+The H gates are Clifford and charged. In particular, no unsynthesizable
+single-qubit determinant is hidden in a literal diagonal phase gate.
+Run the complete calibration macro in chronological order as
+
+```math
+P_F,\ Q_t^\dagger,\ \mathsf E_{z,t},\ Q_t,\ P_F^\dagger.
+```
+
+Both preparations are unconditional, and the final word is the actual
+inverse. On $`z=0`$ the middle echo is identity for every F and B input,
+so the Q blocks and the actual P blocks cancel exactly. On active
+zero-F input, replacing P by $`P_0`$ gives $`R_y(\theta_m)`$ and
+returns F to zero for every program and target input. The common
+$`\lambda_r`$ cancels against the inverse preparation. On the entire
+Hilbert space the actual macro differs from this ideal-preparation
+macro by at most $`2e_P`$. The actual F return need only be approximate;
+its leakage is included in this bound and in the source error below.
+
+For every preserved label a, choose
+$`m_a\in\{0,\ldots,L_r/2-1\}`$ with a certified strict circular
+angle error $`\mathrm{dist}_{2\pi}(\theta_a,4\pi m_a/L_r)\lt4\pi/L_r`$.
+Such a choice is terminating: a nearest grid point
+has distance at most $`2\pi/L_r`$, so dovetailing finite interval
+certificates for the looser strict test must succeed, without deciding
+an exact midpoint. Load the r-bit word into conditionally zero B,
+apply the macro, and reverse the actual query. The address depends
+only on tag and prefix, not on t or F. Each completed adder restores
+B exactly, so the query inverse returns B to zero even with gradient
+leakage. The supplied dirty query pool returns exactly on all inputs.
+The inactive query row is zero, preserving exact $`z=0`$ identity on
+arbitrary occupied B and F.
+
+The complete active initialized-program/core error is less than
+
+```math
+4\pi2^{-r}+2e_P.
 ```
 
 For target error $`\epsilon_{\rm rot}`$, take
-$`r=O(\log(1/\epsilon_{\rm rot}))`$ and
-$`e_{\rm syn}=O(\epsilon_{\rm rot}/r)`$. The small-gate
-contribution to T, G, and T-depth is
+$`r\ge\max\{2,\lceil\log_2(8\pi/\epsilon_{\rm rot})\rceil\}`$
+and $`e_P\le\epsilon_{\rm rot}/4`$. The non-query contribution is
 
 ```math
-O\!\left(r\log(r/\epsilon_{\rm rot})\right).
+T,G=O(r\log(r/\epsilon_{\rm rot})),\qquad
+D_T=O(r+\log(r/\epsilon_{\rm rot}))
+   =O(\log(1/\epsilon_{\rm rot})).
 ```
 
-The fixed coefficient rotations have smaller polynomial-logarithmic
-cost and need no calibration program. Their native synthesis uses the
-retained [one-qubit synthesis premise](../../docs/FAULT_TOLERANT_COMPILER.md#primary-references).
-The same physical program register is reused only after its exact return.
+The extra precision bit in the angle grid accounts for the doubled
+shift. There is no supplied phase state, shared catalyst, or preparation
+amortization assumption: every calibration includes its own P and
+actual inverse. The physical program and gradient registers are reused
+between completed macros without a reset; the error comparison propagates
+all residual gradient leakage through the later actual words.
 
 On an occupied active program input, load/rotate/unload implements the
 XOR-offset program. It is not asserted to equal the desired calibrated
@@ -328,18 +442,39 @@ Fixed zero tests may alternatively use the returned-helper
 Variable suffix zero tests can be folded into the Boolean table. Neither
 construction assumes a clean dirty helper or a zero preserved prefix.
 
+The inner reflections in Section 3 continue to act as identity on the
+program B and gradient F: their tests use only the stated source index,
+attenuation, and local target bits. The ideal-preparation calibration
+preserves $`B=F=0`$ for every target input after load/unload, so this
+does not change the ideal amplification. Actual gradient leakage is
+handled by the full-operator preparation comparison, not by an assumed
+zero outcome. No gradient bits are appended to the large Boolean-table
+address. The outer full-source reflection in the complete-frame proof
+does include F among its initialized work bits.
+
 ## 5. Coherent error and full-unitary comparison
 
 Let $`A_{\rm all}`$ include the index, attenuation, and calibration
-program registers. The active calibration load/rotate/unload preserves
-every computational program value exactly: the address is unchanged,
-program bits are controls only, and the actual query inverse removes
-the loaded word. Thus its zero-program subspace is exactly invariant
-for every target/index input and under actual forward and inverse
-words. The other source macros do not change that register. Native
-rotation error comparisons and unitary telescoping may therefore be
-performed on this invariant subspace, without asserting the desired
-row rotation on occupied programs.
+program and gradient registers. The active calibration load/rotate/unload
+preserves every computational program value exactly: the address is
+unchanged, every completed modular adder restores its program operand,
+and the actual query inverse removes the loaded word. Thus the
+zero-program subspace is exactly invariant for every target, index,
+and gradient input, under both actual forward and inverse words.
+The other source macros do not change the program.
+
+Replace each actual gradient preparation P by its ideal product
+$`P_0`$, and the exit by $`P_0^\dagger`$, for comparison only.
+Each completed calibration changes by at most $`2e_P`$ in full
+operator norm, including arbitrary occupied gradient inputs. Its actual
+adjoint obeys the same estimate. This permits unitary telescoping even
+after earlier calibration error has left F nonzero. In the resulting
+comparison word, $`B=F=0`$ is exactly invariant under every completed
+forward/inverse calibration and every other source macro. The rounded
+angles can therefore be compared with their desired angles on that
+invariant subspace. Fixed coefficient-bank errors are already full
+operator errors. No desired row action on occupied programs, exact
+actual gradient return, or intermediate reset is assumed.
 
 Choose the data and native rotation errors so that the completed native
 source has, for every allowed a,
@@ -349,10 +484,11 @@ source has, for every allowed a,
 ```
 
 where $`v_a`$ is its actual normalized output, including any leakage
-into index, attenuation, and program scratch. A constant number of
-native flagging words and reflections occur, so ordinary unitary
-telescoping bounds the native error by a constant multiple of the
-allocated rotation errors. The data error contributes separately.
+into index, attenuation, and gradient scratch. The program returns
+exactly. A constant number of native flagging words and reflections
+occur, so the preceding comparisons bound the native error by a constant
+multiple of the allocated rotation errors. The data error contributes
+separately.
 
 The native circuit preserves tag and prefix exactly. All complete dirty
 query words return their dirty registers exactly, so the mode-space
@@ -381,7 +517,9 @@ specified full-space action on occupied program registers.
 
 Put $`p=1+\lceil\log_2(1/\delta)\rceil`$. The source uses a
 common $`J=O(p)`$ expansion length, an $`O(\log p)`$-bit index,
-one attenuation bit, and a reused $`O(p)`$-bit calibration program.
+one attenuation bit, a reused $`O(p)`$-bit calibration program, and
+a separate $`O(p)`$-bit gradient core. The modular adders need no
+additional work, and the coefficient rotations need no program.
 Its additional conditionally initialized footprint is $`O(p)`$;
 the tag itself is separate. All large query banks and mask outputs are
 arbitrary dirty qubits.
@@ -410,13 +548,19 @@ for these padded row and output sizes. The source has
 \begin{aligned}
 T&=O(T_{\rm q}+\mathrm{poly}(h+p)),\\
 G&=O(G_{\rm q}+\mathrm{poly}(h+p)),\\
-D_T&=O(D_{\rm q}+p^2+\log(h+2)),\\
+D_T&=O(D_{\rm q}+p+\log(h+2)),\\
 b&=O(b_{\rm q}+\mathrm{poly}(h+p)).
 \end{aligned}
 ```
 
 The polynomial terms include short-tag mask queries, exact returned
-predicate helpers, and the native small rotations. For an R-row,
+predicate helpers, and the native small rotations. With rotation errors
+$`\Theta(\delta)`$, parallel gradient preparation and its actual
+inverse have depth $`O(\log(p/\delta))=O(p)`$; the signed modular
+shift has depth $`O(p)`$. The $`O(\log p)`$ fixed coefficient
+rotations form one parallel bank of depth $`O(p)`$. Their counts
+remain polynomial in p, including all preparation boundaries.
+For an R-row,
 m-output query, the conservative standalone query theorem gives
 $`T_{\rm q},b_{\rm q}=O(m(r+2)^3\sqrt R)`$,
 $`G_{\rm q}=O(mR+m(r+2)^3\sqrt R)`$, and
@@ -427,17 +571,17 @@ polynomial P such that
 ```math
 T,b\le P(h,p)2^{h/2},\qquad
 G\le P(h,p)2^h,\qquad
-D_T=O(\log(h+2)+p^2).
+D_T=O(\log(h+2)+p).
 ```
 
 The additional conditional-zero scratch is $`O(p)`$ beyond the
 separately stored $`O(\log(h+2))`$-bit tag. At
 $`\delta^{-1}=\mathrm{poly}(n)`$ and $`h\le n`$, the complete
-source depth is therefore $`O(\log^2 n)`$. The final early/tail
+source depth is therefore $`O(\log(n+2))`$. The final early/tail
 allocation must still absorb the displayed polynomial count and width
 factors; they are not omitted from the native ledger.
 
 The complete source proof uses no measurement, postselection, reset,
-QRAM, supplied magic state, or catalyst. Approximate native rotations
+QRAM, supplied magic state, or uncharged catalyst. Approximate native rotations
 are not required to preserve exact real amplitudes; their effect and
 all resulting work leakage are covered by the isometry estimate.
