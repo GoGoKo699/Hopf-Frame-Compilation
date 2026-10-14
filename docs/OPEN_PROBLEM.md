@@ -4,6 +4,8 @@
 
 <a id="two-clean-count-theorems-and-remaining-depth-question"></a>
 
+<a id="one-clean-count-frontier-and-remaining-depth-question"></a>
+
 # One-clean count frontier and sublinear large-width depth
 
 [Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
