@@ -68,10 +68,12 @@ arbitrary caller's data.
 The bounded implementation pass stops here. No larger fixed fixture or
 general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
-identifying the missing interface. The prescribed complete-frame
-endpoint and general T-depth frontier remain
-[active research questions](../OPEN_PROBLEM.md#full-circuit-requirement);
-count and depth now match in explicit accuracy/workspace ranges by the
+identifying the missing interface. The
+[growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
+establishes the linear count endpoint for prescribed complete real frames;
+the general T-depth frontier remains an
+[active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
+Count and depth match in explicit accuracy/workspace ranges by the
 [uniform-precision construction](../UNIFORM_PRECISION_DEPTH.md). The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
@@ -267,13 +269,40 @@ complex splitter phases and known-zero nodes, then actual source replay,
 $`W/2`$ overlap and complete initialized-isometry recovery. Negative
 controls replace dirty rejection by its norm, reverse replay, drop a
 splitter phase or incorrectly include dirty inputs in the clean reflection.
-Exact integer metadata also has an overflow regression. The
-[mixed nodewise common-source proof](../../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md)
+Exact integer metadata also has an overflow regression. All-height checks
+cover rational certified clipping on every frame column, dyadic scalar-order
+padding without changing the logical dimension, the selected retained
+bottom-depth trace, and source shifts beyond the clipped cap. The
+[all-height common-source proof](../../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md)
 prices one prepared source, the complete row network with actual cheap
-dirty-source action, global fine replay, and final recovery for the stated
-upper exponent envelope with arbitrary cheap/expensive mixing;
-these finite identities are not a variable-size native emitter. The
-[structured-forest tests](../../tests/test_structured_forests.py) independently
+dirty-source action, global fine replay, and final recovery at
+$`O(N+\mathcal B_K)`$ cost. It charges the actual selected bottom trace
+and imposes no exponent promise on the upper tree. The former exponent
+envelopes are corollaries. These finite identities are not a variable-size
+native emitter.
+
+The separate [growing-source helper](../../compiler_robust_hopf/growing_precision_source.py)
+records exact rational refinement factors and symbolic source scales.
+Its [tests](../../tests/test_growing_precision_source.py) check the normalized
+rare-event refinement and its dirty-dependent unitary dilation, fresh-cell
+permutations that fix occupied and entangled sealed failures, and a bounded
+128-coordinate two-stage source word. The latter checks frozen source tags,
+height-dependent attenuation compensation, the actual noncommuting dirty
+rejection replay, and the complete $`W/2`$ overlap. Negative controls omit
+the geometric normalization, reuse sealed failures, reflect about final
+source tags or selected dirty values, and replace the actual inverse.
+A separate perturbation check includes the rejected output and verifies
+linear full-isometry recovery error from an accepted-block error. Exact
+integer checks preserve $`q_dM_d=4N`$ across four binary refinements at
+each scale change. These are finite unitary diagnostics, not emitted
+Clifford+T source words or a certificate of asymptotic arena capacity.
+The [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
+supplies the full-space arena allocation, exact guards, summable native
+charges, literal dirty reservation, and unrestricted real-frame count
+theorem. The fixtures and internal proof review do not constitute
+independent external review or a scalable native emitter.
+
+The [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact
 component dressing for signed and corner angles. A reversed-product negative
 control detects an incorrect quotient-depth order. The

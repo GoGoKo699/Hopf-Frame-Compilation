@@ -17,29 +17,34 @@ At the literal allocation
 a=2,\qquad \eta=2^{-N},\qquad L=N,\qquad b=N+n+7,\qquad n\ge3,
 ```
 
-the worst-case real-frame bounds are
+the worst-case real-frame count is
 
 ```math
-2N-1\le T^\star\le O(N\ell_*(n)).
+2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
 ```
 
-The [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
-gives the upper bound while leaving the second available flag unused.
+The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+gives the upper bound for every prescribed real frame, including unequal
+and singular tuples. It charges source preparation, retained rejection,
+actual inverses, and complete workspace return. The
+[one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
+retains its separate $`O(N\ell_*(n))`$ bound with one clean flag.
 The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 at root angle $`\pi/16`$ gives the lower bound even at unrestricted
-workspace width, retaining literal phases. The question
-is whether the upper bound can be reduced to O(N) at this exact allocation.
+workspace width, retaining literal phases. Thus the two-clean real-frame
+count endpoint is resolved. The complex-frame, one-clean, and T-depth
+guarantees retain their separate scopes.
 
 ### Proved linear-count families
 
-The following families have $`O(N)`$ T-count at the literal allocation
-above. Constants may depend on fixed promises, never on $`n`$ or the
-target tuple.
+The following earlier compilers retain their own hypotheses and native
+constructions. Constants may depend on fixed promises, never on $`n`$
+or the target tuple.
 
 | Family | Exact promise and proof |
 |---|---|
 | Regular or common-scale branches | The [precision-gauge compiler](../research/endpoint/PRECISION_GAUGE_COMPILER.md) covers polynomially regular normalized branches, a fixed-ratio interval of branch exponents, and the stated cheap/ultraweak separation |
-| Heterogeneous node precisions | For $`n=2^{2t}`$, $`t\ge2`$, and fixed $`A>0`$, the [common-source compiler](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) covers supplied nodewise integer bins $`0\le E_v\le AN/\log_2 n`$, with each nonzero normalized smaller branch in $`[2^{-E_v-1},2^{-E_v}]`$; cheap and expensive nodes may mix arbitrarily, with known exact-zero merges and connected trees allowed |
+| Heterogeneous node precisions | At every integer height, the [common-source compiler](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) gives $`O(N+\mathcal B_K)`$ after certified clipping, where $`\mathcal B_K`$ is the retained bottom-depth precision trace; a linear trace gives linear count, including the earlier global exponent-envelope and mixed-height families |
 | Sparse computational forests | The [structured-forest compiler](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) covers fixed outgoing degree in the original tree $`p(j)=j-\mathrm{lowbit}(j)`$, more generally certified sub-binary growth within degree windows; active angles may be arbitrary, signed, or singular |
 | Bounded exceptional path depth | The same forest theorem allows arbitrary-scale exceptional edges when each computational path meets only a fixed number, over a cheap or fixed-ratio base family |
 | Bounded exceptional exits | The [contracted-forest extension](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md#6-bounded-exceptional-exits-from-base-components) allows arbitrarily deep exceptional paths when each whole base component has only a fixed number of outgoing exceptional edges; the base may contain nonnative regular angles |
@@ -67,11 +72,10 @@ blocks use two clean flags; real blocks use one through the
 All retain the literal dirty reservation. The disjoint or collective-budget
 promises do not follow from adding ranks of arbitrary overlapping factors.
 
-These promises do not cover every supplied tuple. In particular, full
-binomial components have binary descendant growth. The common-source
-theorem retains an upper exponent envelope that bounds the bottom
-precision trace; arbitrary exponents with an uncontrolled bottom trace
-remain outside this construction.
+These earlier methods have restrictions that the growing-source theorem
+does not impose. Full binomial components have binary descendant growth,
+and the fixed common-source construction retains its bottom precision
+trace cost.
 Reordering a star into an arbitrary binary graph does not preserve the
 original tree's degree-window condition.
 
@@ -173,7 +177,7 @@ unconstructed; a bank-preserving scalarization must approximate that prefix
 on every logical and dirty input. More generally,
 [three calls to a joint history compressor](../research/endpoint/JOINT_HISTORY_COMPRESSION.md)
 recover a complete fine prefix, with at most 24 times the compression error.
-A linear-count compressor would itself suffice to finish the endpoint;
+A linear-count compressor would give another endpoint compiler;
 logical-label-preserving mixing cannot supply it. Its anchored Householder
 completion is well-conditioned but has no priced native source. Recovering
 the compressor from its unchanged history range reflection requires
@@ -182,7 +186,7 @@ this oracle restriction does not cover general native resynthesis. The
 [joint-word formulation](../research/endpoint/JOINT_NATIVE_WORDS.md) also
 compresses returned dirty work according to the Pauli axes' symplectic rank,
 without additional T gates or error. These results do not supply a uniform
-O(N) native selection rule or improve the endpoint comparison.
+O(N) native selection rule for their stated representations.
 
 ## Large-width T-depth
 

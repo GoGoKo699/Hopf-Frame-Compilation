@@ -1,0 +1,845 @@
+# A growing-source compiler for complete real Hopf frames
+
+[Mixed local gauges](HETEROGENEOUS_PRECISION_SOURCE.md#2-mixed-local-merges-with-one-feature-per-node) · [Exact dirty scalars](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger) · [Disjoint state extensions](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources)
+
+The carried source can grow as the bottom-up row network retires its
+detail and feature outputs. Fresh mode arenas supply the larger source
+and all private fields. Every rejected mode is retained permanently,
+and every later completed word fixes it. An exact dyadic refinement
+changes the source ratio without another endpoint-precision synthesis.
+The resulting precision charges are summable. A single final column
+source compensates the known attenuation of each retired output.
+
+## 1. Statement, clipping, and the fixed anchor
+
+Let $`n\ge3`$, $`N=2^n`$, and $`\epsilon=2^{-N}`$. Let W be a
+prescribed complete real Hopf frame whose rotation data admit terminating
+certified evaluation. No regularity, sparsity, or exponent promise is
+imposed.
+
+**Theorem.** There is an effective coherent Clifford+T circuit V with
+
+```math
+T(V)=O(N),\qquad
+\|VJ_2-J_2(W\otimes I_b)\|\le2^{-N},\qquad b=N+n+7.
+\qquad\text{(1)}
+```
+
+The constant is universal. The norm includes every logical column,
+both initialized outputs, arbitrary dirty inputs, and external
+references. All inverses are actual circuit inverses. Classical
+coefficient evaluation and finite table construction are preprocessing;
+there are no supplied precision states, uncharged coherent evaluators,
+measurements, or resets.
+
+Use the [effective normalization and clipping convention](HETEROGENEOUS_PRECISION_SOURCE.md#1-family-contract-and-the-upper-sector).
+After an optional separately charged signed normalization, the retained
+normalized branches have selected integer certificates
+
+```math
+2^{-E_v-2}\le s_v\le2^{-E_v},\qquad
+0\le E_v\le N+\lceil\log_2n\rceil+5.
+```
+
+The clipping rule uses a certified dyadic approximation and overlapping
+tests, not a zero oracle or a floor of a real logarithm. It changes the
+complete frame by at most $`\epsilon/16`$. At a clipped or known zero
+node use the exact identity chart. The original signed permutations are
+priced in $`O(N)`$. Reserve another $`\epsilon/16`$ for any rounding
+needed by effective normalization.
+
+Choose one sufficiently large universal integer $`d_0`$. Its size is
+fixed by the mode-volume bound in Section 4, not by n or the target.
+The working construction is for n above a universal threshold with
+$`n\gt d_0`$; Section 8 treats every smaller height by a finite
+fallback before any $`d_0`$-bit suffix is used.
+Separate the bottom $`d_0`$ physical binary levels of the clipped frame:
+
+```math
+\widetilde W=W_{\rm bottom}W_{\rm upper}.
+```
+
+The [precision-trace compiler](PRECISION_GAUGE_COMPILER.md#5-precision-trace-and-native-resource-bound)
+prices this fixed number of bottom levels in $`O(N)`$ T gates, since
+every retained exponent is $`N+O(\log n)`$ or smaller. The forward
+frame circuit executes the upper compiler before this bottom compiler.
+Only the row-source construction inside the upper compiler runs
+bottom-up.
+
+The upper frame acts on the original anchor set
+$`\mathcal A=\{x:\text{the final }d_0\text{ logical bits are zero}\}`$,
+of size $`N_0=N/2^{d_0}`$, and is identity on its complement.
+Compute $`h=[x\in\mathcal A]`$ in external clean qubit 1 with the exact
+borrowed predicate word. Preserve h throughout. External clean qubit 2,
+denoted c, is the only fine-diagonal compiler flag. All other source,
+feature, attenuation, scalar, and arithmetic fields below are coordinates
+of the original n logical mode bits. They are not extra qubits.
+
+Every completed upper subroutine is exactly identity on $`h=0`$,
+including on occupied private fields and arbitrary dirty inputs. The
+[conditional-suffix interface](../../docs/CONDITIONAL_SUFFIX_COMPILER.md#1-an-active-suffix-supplies-workspace-conditionally)
+then permits the original anchor suffix to supply the initial work.
+After recovery the ideal output again lies in $`\mathcal A`$ and has $`c=0`$.
+Reversing the actual predicate computation returns h; the full-isometry
+error also bounds the actual suffix and flag leakage.
+
+## 2. A polynomial schedule and the mixed local gauge
+
+The physical height d is measured upward from the original leaves.
+Initial upper carriers are the roots at height $`d_0`$. For
+$`d_0\le d\le n`$ set
+
+```math
+\begin{gathered}
+P_d=2^{2\lceil\log_2(d+1)\rceil},\qquad
+M_d=4P_d^2,\qquad q_d=N/P_d^2,\qquad\beta_d=2^{-q_d},\\
+p_d=\frac1{8P_d},\qquad B_d=6+2\log_2P_d,\qquad
+\Delta_d=q_d+B_d.
+\end{gathered}
+\qquad\text{(2)}
+```
+
+Thus $`(d+1)^2\le P_d\lt4(d+1)^2`$. The sequence P changes only
+by a factor four. For all n beyond a universal threshold, every
+$`q_d`$ is a positive integer: $`P_d^2`$ is a power of two bounded
+by a fixed polynomial in n, while $`N=2^n`$. Enlarge that threshold
+so that $`q_d\ge B_d`$ and every source ratio used below is at most
+the corresponding $`p_d`$. All smaller n have a finite fallback in
+Section 8. No logical dimension is padded.
+
+At height d call a retained node cheap if $`E_v\lt4N/P_d`$ and
+expensive otherwise. Use local relative tolerance and splitter loss
+
+```math
+\eta_d=\frac1{1000P_d^2},\qquad
+l_d\in[1/(1600P_d),1/(800P_d)].
+\qquad\text{(3)}
+```
+
+The [one-feature mixed construction](HETEROGENEOUS_PRECISION_SOURCE.md#2-mixed-local-merges-with-one-feature-per-node)
+supplies at each node the exact physical local column
+
+```math
+\begin{bmatrix}B_v^\dagger\\F_vL_v^\dagger\end{bmatrix},
+\qquad B_vB_v^\dagger+l_vL_vL_v^\dagger=I,
+\qquad F_v^\dagger F_v=l_vI.
+\qquad\text{(4)}
+```
+
+At a cheap node this is the actual native lossy scalar word with its
+actual rejected operator on the dirty core. Fix one precision
+$`q_{{\rm ch},d}=\lceil4N/P_d\rceil+O(\log P_d)`$ at that
+height, and fix the emitted masks and physical core before computing
+the gauge. Source-index bits and future arena coordinates are never
+borrowed as that core: on an enabled node the word is exactly
+$`I_{\rm source}\otimes U_v`$. The dyadic loss parameter can be
+$`2^{-E_v-\lceil\log_2(400/\eta_d)\rceil}`$.
+At an expensive node the mathematical coarse merge is the Cayley
+rotation $`R(t_v)`$, with
+
+```math
+t_v=2^{-E_v}u_v,\qquad 1/16\le u_v\le1,
+\qquad m_d=O(\log P_d)
+```
+
+dyadic mantissa bits and relative entry error at most $`\eta_d`$.
+For example $`2^{-m_d}\le1/(16000P_d^2)`$ suffices. Its row
+implementation is $`R(t_v)^\dagger`$ followed by one actual native
+splitter with literal first column $`(r_d,t_d^{\rm sp})`$ and loss
+(3). Consequently
+$`B_v=R(t_v)\mathrm{diag}(\bar r_d,1)`$,
+$`L_v=R(t_v)e_0`$, and $`F_v=t_d^{\rm sp}I`$.
+No complex phase is discarded. A zero node has $`B_v=I,F_v=0`$ and
+no splitter or scalar query.
+
+Apply the same local two-coordinate gauge identity from that chapter
+to obtain the coarse matrices $`W_B,L_B`$, leaf diagonal D, and
+column coefficients C,A. It gives on every upper-frame column
+
+```math
+\begin{gathered}
+W_{\rm upper}=D(W_BC+L_BA),\\
+Q_0x=\begin{bmatrix}W_B^\dagger x\\
+ (F_v(L_B^\dagger x)_v)_v\end{bmatrix},\qquad
+Q_0^\dagger Q_0=I.
+\end{gathered}
+\qquad\text{(5)}
+```
+
+Here $`Q_0`$ denotes the mathematical mixed row network before source
+attenuation. Its accepted carrier blocks are scalar on the dirty space;
+each feature leaves the carrier network once and is fixed afterward.
+Thus its feature contains exactly its own $`F_v`$, with no product
+of rejected dirty operators from different nodes.
+
+The variable tolerances retain the previous uniform gauge slack. Along
+any path,
+
+```math
+\sum_{d>d_0}\eta_d\le\frac1{3000d_0^3},\qquad
+\sum_{d>d_0}l_d\le\frac1{800d_0}.
+```
+
+Increasing fixed $`d_0`$ therefore ensures
+$`.999\lt|D|\lt1.002`$ and $`.98\lt|C_v|\lt1.02`$.
+The cheap bound is $`|A_v|/l_v\lt.8`$; the expensive bound is
+$`|A_v|/l_d\le4.8/P_d\le.3`$. These statements retain the
+complex local phases in the gauge. Root and zero-node columns have
+zero feature coefficient, without evaluating a zero denominator.
+
+## 3. Exact source refinement and carried kernels
+
+For $`0\lt\beta\lt1`$ define the normalized finite source
+
+```math
+g_{\beta,M}=a_{\beta,M}\sum_{j=0}^{M-1}\beta^j|j\rangle,
+\qquad a_{\beta,M}=\sqrt{\frac{1-\beta^2}{1-\beta^{2M}}}.
+```
+
+Prepare $`g_{\beta_{d_0},M_{d_0}}`$ once on every initial carrier,
+using the one-clean disjoint state-extension interface with compiler
+flag c. This has $`O(N)`$ cost at any fixed error fraction of
+$`\epsilon`$. Its supports and padding fit the mode allocation in
+Section 4. Its emitted native inverse is the only inverse ever used.
+No intermediate source is prepared again or unprepared.
+
+### A source square root with an exact dyadic scalar
+
+Appending a zero coordinate bit and interleaving
+$`|j\rangle|b\rangle\mapsto|2j+b\rangle`$ gives the exact identity
+
+```math
+(I+\beta X)(g_{\beta^2,M}\otimes|0\rangle)
+=\sqrt{1+\beta^2}\,g_{\beta,2M}.
+\qquad\text{(6)}
+```
+
+For $`p=2^{-r}`$ with positive integer r and dyadic
+$`\beta\le p`$, set
+$`f=(1-p)\beta/p`$. Prepare an exact rare event of probability p,
+apply the exact raw dyadic scalar f on that event with a separate
+retained scalar flag, apply X on the appended source bit on that same
+rare event, and reverse
+the rare-event preparation. Its zero-private compression is
+
+```math
+T_{\rm ref}=(1-p)I+pfX=(1-p)(I+\beta X).
+```
+
+It is a contraction because $`(1-p)(1+\beta)\le1`$. On the
+intended normalized source it has the scalar attenuation
+
+```math
+\lambda_{\rm ref}=(1-p)\sqrt{1+\beta^2},\qquad
+1-p\le\lambda_{\rm ref}\le1.
+\qquad\text{(7)}
+```
+
+The square root in (7) is not omitted. With $`\beta=2^{-q}`$ and
+$`p=p_d`$, f is the exact dyadic $`(8P_d-1)2^{-q}`$, requiring
+only $`q+O(1)`$ scalar precision. The source scalar has accepted
+action fI on every dirty input; its actual rejected operator is kept.
+
+To process nodes at height $`d>d_0`$, first refine all still-live
+child carriers from $`g_{d-1}`$ to $`g_d`$. There is no refinement
+when P is unchanged. At a jump $`P_d=4P_{d-1}`$, use four binary
+substeps, each halving q and doubling M, with rare probability $`p_d`$.
+Their product changes $`q_{d-1}`$ to $`q_d=q_{d-1}/16`$ and
+$`M_{d-1}`$ to $`M_d=16M_{d-1}`$. Every substep retains
+$`qM=4N`$. A new zero coordinate comes from an actual fresh mode
+embedding, not an assumed reset.
+
+### The expensive merge kernel
+
+For an expensive node at height d compute offline
+
+```math
+E_v=k_v\Delta_d+e_v,\qquad 0\le e_v\lt\Delta_d.
+```
+
+For sufficiently large n, $`q_d\ge B_d`$ and the expensive cutoff
+imply $`k_v\ge2P_d`$. Clipping gives $`k_v\le2P_d^2`$.
+Only this $`O(\log d)`$-bit multiplier is loaded. The remainder,
+which can require order n classical bits, stays entirely in the
+offline scalar masks. For $`1\le\nu\le P_d`$ define
+
+```math
+f_{v,\nu}=2P_d(8P_d-1)u_v^\nu
+                 2^{-\nu(k_vB_d+e_v)}.
+\qquad\text{(8)}
+```
+
+These are exact dyadics in $`[0,1/4]`$. Set them to zero on cheap,
+zero, and frozen correction rows. Their scalar precision is bounded by
+
+```math
+q_{{\rm coef},d}
+\le P_d(m_d+2P_d^2B_d+\Delta_d)+O(\log P_d)
+=\frac N{P_d}+O(P_d^3\log P_d).
+\qquad\text{(9)}
+```
+
+Let $`S_k=\sum_{j=k}^{M_d-1}|j-k\rangle\langle j|`$ when
+$`k\lt M_d`$, and $`S_k=0`$ otherwise. Its native dilation first
+compares the full product $`k_v\nu`$ with the source index, toggles
+a distinct underflow flag, and only then subtracts modulo $`M_d`$.
+Thus a shift at least $`M_d`$ has accepted block zero. Metadata and
+arithmetic are uncomputed before the logical quarter-turn changes the
+carrier endpoint. The quarter-turn is $`J_v^\nu`$, not
+$`J_v^{k_v\nu}`$, with $`J_v=-\begin{bmatrix}0&-1\\1&0\end{bmatrix}`$
+on the carrier pair. Source-underflow and scalar-rejection flags are
+distinct and retained.
+
+Use an exact uniform $`P_d`$-valued power label and a rare event of
+probability $`p_d`$. The zero-private block of the full unitary kernel is
+
+```math
+T_d=(1-p_d)I+\frac{p_d}{P_d}
+\sum_{\nu=1}^{P_d}\sum_{v\text{ at height }d}
+S_{k_v\nu}\otimes f_{v,\nu}J_v^\nu.
+\qquad\text{(10)}
+```
+
+On the common source, use
+$`t_v=\beta_d^{k_v}u_v2^{-(k_vB_d+e_v)}`$. The finite-shift
+residual is at most $`2\beta_d^{M_d}`$ for every shift, including
+shifts past the cap. The same direct-sum argument as in the
+[fixed-source kernel](HETEROGENEOUS_PRECISION_SOURCE.md#4-exact-dyadic-local-kernels)
+therefore gives
+
+```math
+\begin{gathered}
+\|T_dE_{g_d}-E_{g_d}(1-p_d)\mathcal R_d\|
+\le\delta_d,\\
+\delta_d=2p_d\beta_d^{M_d}
+ +\frac{2(1-p_d)t_{\max,d}^{P_d+1}}{1-t_{\max,d}}
+\le5\,2^{-4N}.
+\end{gathered}
+\qquad\text{(11)}
+```
+
+Here $`\mathcal R_d`$ is the direct sum of expensive Cayley merge
+adjoints and identities on the other pairs. Indeed
+$`\beta_d^{M_d}=2^{-4N}`$ and
+$`t_{\max,d}^{P_d+1}\le2^{-4N}`$. Disjoint pairs give a maximum,
+not a sum over nodes. The intertwiner $`E_{g_d}`$ tensors the same
+source with identity on the complete system and arbitrary dirty
+register. It thus commutes with the actual dirty-dependent cheap
+interlayers, including on occupied feature modes.
+Every surviving carrier, including one at a cheap or zero node,
+receives the same baseline $`1-p_d`$ and the same required source
+refinements. Zero corrections do not skip that baseline.
+
+## 4. Full-unitary mode arenas and exact guards
+
+### Fixed external flags and packed compact banks
+
+On $`h=1`$, first apply an exact permutation $`\pi_0`$ sending the
+strided original anchor set $`\mathcal A`$ to a compact
+$`N_0`$-mode input bank.
+After this packing take a,b as two logical mode coordinates. Reserve
+four compact $`N_0`$-mode subbanks: ordinary representatives in
+$`a0b0`$, feature representatives in $`a0b1`$, column attenuation
+failure in $`a1b0`$, and row attenuation failure in $`a1b1`$.
+Unused root-feature positions are harmless padding. Every growing
+arena and every final shared source tag lies in $`a=0`$. The coordinate
+b need not keep its feature interpretation inside those arenas.
+
+Both source words include the same initial packing:
+$`Q=\widetilde Q\pi_0`$ and $`P=\widetilde P\pi_0`$.
+Their actual inverses undo it. Consequently the overlap is conjugated
+back to the original anchors, and the recovery reflection below tests
+the original suffix, not the packed bank or later arena fields.
+
+### A summable full-space reservation
+
+At height d there are at most $`2N/2^d`$ entering carriers. A complete
+kernel arena includes the node/port label, all $`M_d=O(d^4)`$ source
+coordinates, the power and rare labels, multiplier and full product,
+scalar and underflow flags, node type, and reversible arithmetic work.
+The multiplier, product, and scratch have $`O(\log d)`$ bits. No
+mantissa or remainder register is initialized. Standard reversible
+addition, comparison, and multiplication use $`O(\log d)`$ work
+bits and polynomially many gates, returning the scratch before the
+stage boundary. A refinement has no larger type of reservation.
+
+It follows directly that the complete arenas at height d, including
+every private-field value and a constant number of refinements, have
+total size at most
+
+```math
+C_1N2^{-d}(d+1)^D
+\qquad\text{(12)}
+```
+
+for universal constants $`C_1,D`$. Round every reservation to a
+dyadic size; absorb that factor and the padding for final tag
+extensions into $`C_1,D`$. The bound counts whole unitary dilations,
+not only initialized source columns or accepted modes. Choose fixed
+$`d_0`$ so large that
+
+```math
+4\,2^{-d_0}+C_1\sum_{d\ge d_0}2^{-d}(d+1)^D\lt1/4.
+\qquad\text{(13)}
+```
+
+The initial source arena is included at $`d=d_0`$. All compact
+representatives, complete stage arenas, sealed rejections, retired
+outputs, and conservative tag padding now fit inside N logical modes.
+No dirty qubit is used as one of these mode coordinates.
+
+An explicit aligned placement avoids an implicit fragmentation
+assumption. Put the two compact shared subbanks at the starts of the
+two $`a0b`$ quarters. The upper half of each such quarter has size
+$`N/8`$ and is free. Every
+dyadic arena is at most $`N/8`$, and their total is below $`N/4`$;
+descending-size dyadic packing places them in those two free halves.
+The two compact attenuation-failure banks lie in their respective
+$`a1b`$ quarters. All arena predicates are unchanged high-prefix
+conditions on their internal source and private operations.
+
+### Fresh work is supplied by a permutation
+
+Before a stage, distinguish live source cells L, frozen shared cells,
+and sealed row failures. Choose a fresh arena X disjoint from every
+previous reservation and the compact failure banks. Inject every basis
+label in L into X with its source coordinate unchanged and every new
+coordinate/private bit zero. For a refinement this includes the new
+source bit. If the injection is f, the disjoint-swap permutation
+
+```math
+\pi_X=\prod_{j\in L}(j,f(j))
+\qquad\text{(14)}
+```
+
+is a full-space unitary. It fixes all old frozen and sealed cells and
+supplies the zero fields on the entire live subspace, including dirty
+and reference entanglement. It does not reset a register or assume
+anything about arbitrary inputs elsewhere in the mode space.
+
+Apply the full refinement/kernel word within X and identity elsewhere.
+Seal every output with nonzero acceptance-private fields. Guarded on
+those fields being zero, apply the exact cheap merges and native splitters,
+freeze each new detail and feature source block, and carry only the
+parent cells onward. Future permutations and completed words fix all
+old frozen and sealed cells, on their entire source and dirty spaces.
+Old evacuated live cells remain reserved; none is silently recycled as
+fresh work. Each operation is a unitary on every physical input.
+Any fourth port padding of a three-port merge, or other non-designated
+arithmetic and private output coordinate, also remains permanently
+reserved. The assertion that only live, detail, and feature columns
+occur concerns the ideal initialized input, not arbitrary occupied
+padding inputs.
+
+The ideal initialized trajectory has no amplitude in a fresh arena
+before (14). Actual fine-preparation leakage may have such amplitude;
+the complete-isometry hybrid propagates it through the same full
+unitaries. It is never declared zero or discarded.
+
+### A zero coefficient does not provide an arena guard
+
+The full-word guard must freeze an old arena even when all its private
+fields are occupied. Let e be the preserved conjunction of h, the
+shared sector, and the current aligned arena prefix. Write an exact
+dirty source as $`M=U_mX_0U_m^\dagger`$ and its unitary mask as
+$`P_f`$. The raw scalar word has the form
+
+```math
+\mathcal S_f=H_z C_{z=0}(M)P_fMP_f^\dagger C_{z=1}(M)H_z.
+```
+
+Replace its three source occurrences by
+$`C_{e\wedge z=0}(M)`$, $`C_e(M)`$, and
+$`C_{e\wedge z=1}(M)`$, respectively. On $`e=1`$ this is the
+original scalar word. On $`e=0`$ it is exactly
+$`H_zP_fP_f^\dagger H_z=I`$ on every signal and dirty input.
+The second mask is its actual inverse. Real-kernel masks are
+involutions, but paired masks used by cheap complex scalar constituents
+need not square to I; their literal phases are covered by this form.
+Each guarded
+source is implemented as
+
+```math
+C_G(M)=U_mC_G(X_0)U_m^\dagger.
+\qquad\text{(15)}
+```
+
+Only its central X receives the long prefix control; the long source
+loaders are not controlled gate by gate. Borrowed predicate helpers
+return before the inverse loader. This is the full-space
+[central-source guard](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger),
+and it applies to every raw constituent of the cheap scalar word as
+well. Assigning f=0 alone would not prove this identity.
+
+Short metadata queries can also retain their compressed addresses.
+Let Q be an involutory XOR query, let z be a dirty control disjoint
+from its targets, and let $`T_e`$ toggle z by e. The chronological echo
+$`T_e,C_zQ,T_e,C_zQ`$ implements $`Q^e`$ and returns z, since
+$`(z\mathbin\oplus e)\mathbin\oplus z=e`$. The controlled query
+has only one extra short address bit. Each completed query returns
+borrowed selectors before dirty-changing work; its inverse works on
+the possibly changed arbitrary dirty state.
+
+Coefficient masks read only the node and power labels, not the source
+index or all ambient N mode labels. Thus the guard does not expand the
+table. Rare/power Hadamards, arithmetic, and quarter-turn SELECTs have
+only polynomially many small-register gates and use the same exact
+borrowed-prefix conditioning. All inactive private inputs are covered.
+
+The constant fine calls obey the same whole-word condition. Use the
+completed conditional one-clean primitive for each literal diagonal
+and attenuation bank, including its conditional leading sign when
+it contains amplification. Condition the state-extension Walsh,
+coarse, center, and routing interlayers by the exact borrowed-control
+interface. All these completed words are identity on $`h=0`$ even
+when c is occupied. An identity phase table alone is not used as a
+substitute for that full-word guard. Preserved block predicates also
+fix the appropriate compact failure banks during later source steps.
+
+## 5. Retired source tags and the compensated overlap
+
+Include frozen successful outputs and current live cells in the
+accepted direct sum. A new stage's accepted compression is a
+contraction; it is identity on all earlier frozen coordinates.
+Equation (6) is exact on a live source column, and (11) bounds each
+kernel's error on that column, on the entire dirty space. Therefore
+contractive telescoping gives
+
+```math
+e_d\le e_{d-1}+\delta_d,\qquad
+e_n\le5n\,2^{-4N}.
+\qquad\text{(16)}
+```
+
+Source-cap residuals remain in their accepted source coordinates.
+Neither a live source nor a failure register is asserted to have
+returned at an intermediate boundary.
+
+For each final output r let $`\Gamma_r`$ be the product of every
+kernel factor $`1-p_d`$ and every normalized refinement factor (7)
+on its live path until it freezes. A node's detail and feature have
+the same factor $`\Gamma_d`$. The final root has the product along
+the full path. At most one kernel and four refinement events occur at
+each height, so
+
+```math
+\sum_{\rm events}p\le\frac5{8d_0},\qquad
+7/8\le\Gamma_r\le1
+\qquad\text{(17)}
+```
+
+after increasing fixed $`d_0`$ if necessary. The upper bound uses
+$`\lambda_{\rm ref}\le1`$, not a discarded source normalization.
+All these scalar factors are known by terminating classical evaluation.
+
+Let $`J_{\rm tag}`$ send each compact ordinary/feature representative
+to the normalized source $`g_d`$ in its final frozen cell, and the
+root to $`g_n`$. Those target cells are pairwise disjoint. Let
+$`\Gamma`$ be their positive diagonal attenuation. The ideal shared
+part of the row source, after attenuation by $`D^\dagger/\Lambda`$
+with $`\Lambda=5/4`$, is
+
+```math
+Q_{\rm shared}=\frac1\Lambda J_{\rm tag}\Gamma
+\begin{bmatrix}W_B^\dagger D^\dagger\\
+(F_v(L_B^\dagger D^\dagger)_v)_v\end{bmatrix}.
+\qquad\text{(18)}
+```
+
+Equation (18) is a reference shared column. The actual source is
+obtained from the native stream, not from an uncharged completion of
+that reference. Its accepted-column error is (16), plus
+its charged fine-preparation errors. Its other amplitudes remain in
+the sealed row-failure cells or the row attenuation-failure bank.
+There is no intermediate amplification and no final row-source
+unpreparation.
+
+### The column source repeats the actual dirty rejection
+
+Set $`\kappa=8/5`$. At the compact detail representative for node v,
+prepare shared coefficients
+
+```math
+x_v=\frac{C_v}{\kappa\Gamma_d},\qquad
+y_v=\frac{A_v}{\kappa\Gamma_d l_v},\qquad
+\rho_v=\sqrt{|x_v|^2+l_v|y_v|^2}.
+\qquad\text{(19)}
+```
+
+The unscaled mixed construction has $`\rho_v\lt.7`$; (17) gives
+$`\rho_v\lt.8`$ here. The normalized replay ratio
+$`|y_v|/\rho_v`$ is unchanged by compensation. At root and zero
+nodes use zero feature coefficient and no division by l.
+
+For the actual local word $`U_v|0\rangle=[z_{0,v}I;F_v]`$, use
+the exact identity
+
+```math
+U_v\mathrm{diag}(e^{i\phi},1)U_v^\dagger|0\rangle
+=\begin{bmatrix}
+1+(e^{i\phi}-1)|z_{0,v}|^2\\
+(e^{i\phi}-1)\bar z_{0,v}F_v
+\end{bmatrix}.
+\qquad\text{(20)}
+```
+
+It prepares the required normalized pair after two sector phases.
+For cheap nodes replay the exact emitted row word, with the same
+physical dirty core and finite masks at that height. Relabeling its
+node address to its unique compact detail label does not replace it
+by another synthesis with the same accepted scalar. Expensive nodes
+repeat their actual native splitter. All these words have disjoint
+compact detail labels. Execute all blocks of $`U_*^\dagger`$, one
+global fine phase bank, all blocks of $`U_*`$, and the two global
+sector-phase banks. There is no fine phase call inside the depth loop.
+Completed routing and guards may differ, but on the active node they
+give that exact $`U_v`$ and identity on returned helpers and selectors.
+Only logical modes are relabeled. Thus the rejected $`F_v`$ is
+identical even when earlier row words have changed the arbitrary dirty
+state. Different heights may use different core sizes; their actual
+words and cores are retained in the replay.
+
+First attenuate by $`\rho_v`$ and put failure in $`a1b0`$.
+Every subsequent replay, phase, and tag operation is enabled only in
+the shared sector and fixes that failure bank. The fine compiler flag
+is the independent external c, never an occupied attenuation mode.
+Choose replay phases by certified amplitude-norm approximants, as in
+the mixed-source construction, including when a requested component
+vanishes. No exact test whether a nonzero node's correction $`A_v`$
+is zero is needed.
+
+After this compact replay, apply one disjoint state extension realizing
+$`J_{\rm tag}`$. Its representative $`e_r`$ lies outside its target
+tag cell, so an exact extension is the product of the two reflections
+with normals $`(e_r+g_d)/\sqrt2`$ and $`e_r`$. Supports for distinct
+r are disjoint. Their padded sizes, at most $`2(M_d+1)`$ each, were
+included in (13). Invoke the full disjoint-state interface, including
+its priced coarse preparation; the first normal is not presumed close
+to $`e_r`$. This costs $`O(N)`$ with a constant number of fine calls
+and ideally fixes the column-failure bank on its whole space.
+
+The resulting ideal shared column is
+
+```math
+P_{\rm shared}=\frac1\kappa J_{\rm tag}\Gamma^{-1}
+\begin{bmatrix}C\\(A_vF_v/l_v)_v\end{bmatrix}.
+\qquad\text{(21)}
+```
+
+The row's sealed failures and attenuation failure are disjoint from
+the column attenuation failure. The ideal column has no amplitude in
+any sealed row-failure cell. Equations (18)--(21), with
+$`F_v^\dagger F_v=l_vI`$, give the literal complete-column overlap
+
+```math
+Q_{\rm shared}^\dagger P_{\rm shared}
+=\frac1{\Lambda\kappa}D(W_BC+L_BA)
+=W_{\rm upper}/2.
+\qquad\text{(22)}
+```
+
+The tags and their positive attenuations cancel. Distinct node features
+exclude cross-node dirty products. No information about the size or
+polar part of a sealed rejected operator is used.
+
+## 6. Actual inverses and the original-anchor recovery
+
+Let J initialize only the original suffix $`d_0`$ and external c on
+the active $`h=1`$ sector. It is identity on the original reduced
+logical input and on all dirty inputs. It does not test fields that
+are only later interpreted as source, metadata, or private coordinates.
+After the initial packing has been undone by the actual source
+inverses, (22) is expressed on precisely this original anchor.
+
+Let $`\widehat P,\widehat Q`$ be the full emitted source words and
+$`U=\widehat Q^\dagger\widehat P`$. Fine-call replacements are
+bounded by a complete-isometry hybrid; earlier leakage continues
+unitarily. Compare the overlap directly as
+$`J^\dagger UJ=(\widehat QJ)^\dagger(\widehat PJ)`$.
+Both source columns are independently initialized. The ideal column
+source is orthogonal to every sealed row failure, so only the row's
+shared projection requires (16). No approximation for
+$`\widehat Q^\dagger`$ on the arbitrary output of
+$`\widehat P`$ is assumed. From these column bounds,
+
+```math
+\|J^\dagger UJ-W_{\rm upper}/2\|
+\le e_n+\epsilon_P+\epsilon_Q=:\delta.
+\qquad\text{(23)}
+```
+
+Only a constant number of fine calls occurs in each source. Choose
+$`q=N+c_0`$ for one fixed sufficiently large $`c_0`$ so that the
+total fine hybrid errors satisfy
+$`\epsilon_P,\epsilon_Q\le\epsilon/384`$. Beyond the universal
+threshold, (16) is at most $`\epsilon/192`$, giving
+$`\delta\le\epsilon/96`$.
+
+For $`R=I-2JJ^\dagger`$ the actual word $`-URU^\dagger RU`$
+has accepted and rejected columns
+
+```math
+3A_U-4A_UA_U^\dagger A_U,\qquad
+B_f(I-4A_U^\dagger A_U),
+```
+
+where $`A_U=J^\dagger UJ`$ and $`B_f=(I-JJ^\dagger)UJ`$.
+The [normalization-two lemma](../../docs/FAULT_TOLERANT_COMPILER.md#4-from-a-half-unitary-block-to-the-complete-output)
+bounds the full output error by $`12\delta\le\epsilon/8`$.
+All displayed identities hold on arbitrary dirty and reference inputs;
+the reflection excludes them.
+
+Use the literal conditional word
+
+```math
+Z_hU_hR_hU_h^\dagger R_hU_h,\qquad
+R_h=I-2\Pi_{h=1,\,x\in\mathcal A,\,c=0}.
+\qquad\text{(24)}
+```
+
+Its leading sign is correct on $`h=1`$. Every factor is exactly
+identity on $`h=0`$. The zero-work test is the original suffix and c;
+it never tests all of the later growing arena coordinates. Reversing
+the actual h predicate then returns both external qubits. Compose the
+bottom compiler at error at most $`\epsilon/4`$. Together with
+clipping and optional normalization, the total remains below
+$`\epsilon`$, proving the error assertion in (1).
+
+## 7. Summable native charges
+
+Write $`S_d=N/2^d`$ for the number of nodes at physical height d.
+At one kernel the coefficient table has $`O(S_dP_d)`$ rows; its
+values are identical across source indices and unused private fields.
+The raw scalar and exact guards cost
+
+```math
+O(S_dP_d+q_{{\rm coef},d}+\mathrm{poly}(n)).
+```
+
+Short multiplier/type tables have no larger row charge. Their small
+outputs do not supply their own selector bank: completed lookups borrow
+and return $`O(n)`$ selectors from the much larger current scalar
+core. This happens before dirty-changing work, and inverse lookups are
+valid on the resulting arbitrary dirty state.
+
+From $`P_d\asymp(d+1)^2`$ and (9),
+
+```math
+\begin{gathered}
+\sum_{d>d_0}S_dP_d=O(N),\\
+\sum_{d>d_0}q_{{\rm coef},d}
+\le N\sum_{d>d_0}P_d^{-1}+\mathrm{poly}(n)=O(N).
+\end{gathered}
+\qquad\text{(25)}
+```
+
+The additive polynomial is absorbed beyond a universal threshold;
+the precision term is retained explicitly. Cheap row words and their
+exact column replays similarly cost
+
+```math
+O\left(\sum_{d>d_0}[S_d+4N/P_d+O(\log P_d)]
+       +\mathrm{poly}(n)\right)=O(N).
+```
+
+The common native splitter at a height has polynomial-in-log(d) word
+length. Load the preserved node-type bit once, apply that word under
+the bit, and unload it. Its table is not read separately for every
+native symbol. Even a conservative $`S_d\mathrm{poly}(d)`$ row
+allowance is summable. The mantissas remain offline mask data.
+
+Across every refinement substep the precision q halves strictly.
+Hence
+
+```math
+\sum_{\rm refinements}q_{\rm new}\lt q_{d_0}=N/P_{d_0}^2.
+\qquad\text{(26)}
+```
+
+Their controls and arithmetic contribute only $`\mathrm{poly}(n)`$.
+The initial source preparation, final tag extension, attenuations,
+and global replay phase banks each occur a constant number of times
+and cost $`O(N)`$. The single outer amplification multiplies these
+charges by a constant, not by the tree height.
+
+Exact packings and fresh-cell permutations use the
+[dirty-only permutation interface](DISJOINT_BLOCK_COMPILER.md#2-exact-routing-and-coarse-words)
+on at most $`2N`$ modes including h. Each costs
+$`O(n\sqrt N+\mathrm{poly}(n))`$ T gates and needs no clean
+helper. There are only polynomially many such whole-mode operations,
+not one per table row or precision digit. Their total is
+$`O(\mathrm{poly}(n)\sqrt N)=O(N)`$. The central source guards,
+metadata echoes, and small-register exact guards have additive
+polynomial cost; they never multiply a long precision loader by n.
+The fixed bottom part and signed normalization add $`O(N)`$.
+This proves the count in (1).
+
+## 8. Literal workspace and scope
+
+The only external initialized wires are h and c. All growing private
+bits and failure records are logical mode coordinates counted in the
+complete volume (13). No separate clean history register is used:
+sealing full rejected mode spaces prevents their later re-entry.
+
+The dirty reservations are sequential. Increasing fixed $`d_0`$ and
+the universal n threshold gives
+
+```math
+\begin{gathered}
+\max_d q_{{\rm coef},d}\le N/P_{d_0}+O(n^6\log n)\lt N/2,\\
+\max_d q_{{\rm ch},d}\le4N/P_{d_0}+O(\log n)\lt N/2,\qquad
+\max q_{\rm ref}\le N/P_{d_0}^2\lt N/2.
+\end{gathered}
+```
+
+Each such core supplies returned query selectors and a fixed number of
+central-guard helpers. Permutations and coarse reflection routing use
+$`O(\sqrt N+\mathrm{poly}(n))`$ dirty space instead. Fine calls
+use one shared core of $`q+1=N+c_0+1`$ arbitrary dirty wires.
+Their largest address includes h and at most n logical bits, so
+self-borrowing applies once $`q+1\ge2(n+1)`$. Returned core helpers
+handle the remaining central predicates; any fixed external helpers
+fit inside the remaining $`n+6-c_0`$ wires. These are the same literal
+reservations as the one-clean fine and disjoint-state interfaces.
+At no time is a logical private bit also counted as dirty storage.
+The peak is therefore $`N+n+7`$.
+
+For the finitely many n below the universal threshold, the existing
+literal-phase determinant-one finite-net fallback compiles every frame
+at the required accuracy with the same two flags and dirty pool.
+The finite maximum of T/N is absorbed into the universal constant.
+Neither the fixed anchor size nor the asymptotic threshold is asserted
+to be a practical crossover.
+
+The theorem concerns the endpoint prescribed real-frame count. It does
+not assert an optimal depth bound, a complex-frame extension, an
+efficient classical preprocessing algorithm, or a scalable native
+emitter. Its mechanism is the exact refinement, the full-space sealed
+arena allocation, the compensated overlap, and the summable native
+ledger above.
+
+## 9. Bounded implementation evidence
+
+The [exact helper](../../compiler_robust_hopf/growing_precision_source.py)
+records the dyadic height schedule and normalized refinement factors.
+The [focused tests](../../tests/test_growing_precision_source.py) check
+the schedule identity $`M_dq_d=4N`$ and the four binary refinements at
+a factor-four P jump. A separate rare-event fixture uses an actual
+scalar flag, nontrivial dirty rejection, controlled X, and inverse
+rare preparation to check its full accepted operator.
+
+The staged finite-mode fixture uses explicit fresh-cell swap
+permutations, retained rejection spaces, frozen features, and dirty
+reference entanglement. It checks the normalized $`\Gamma`$ factors,
+their inverse compensation in the actual dirty replay, the shared
+overlap, and recovery with actual circuit inverses and the original
+anchor projector. Negative checks expose a missing refinement
+normalization, reusing a rejection cell, and testing dirty or later
+source fields in the recovery reflection. A separate perturbed-overlap
+fixture checks the rejected column and the linear recovery error.
+
+These fixtures use bounded dimensions and diagnostic dilations. They
+do not emit the asymptotic compiler or simulate its exponentially fine
+endpoint parameters. The theorem rests on the native identities,
+complete-space allocation, error recurrence, and literal resource
+ledger above.

@@ -250,7 +250,9 @@ charged, but this is not total circuit depth. Earlier schedules remain
 useful at some smaller reservations or higher precisions. Later component
 refinements do not change these complete-frame orders.
 
-## 6. Operational consequence, open gaps, and evidence
+<a id="6-operational-consequence-open-gaps-and-evidence"></a>
+
+## 6. Operational consequence, endpoint status, and evidence
 
 [Exact substitution](docs/QBP_CONSEQUENCE.md#4-frame-safe-substitution)
 preserves the global inverse-frame measurement record. For simultaneous
@@ -269,19 +271,21 @@ optimality among all gradient algorithms is inferred.
 
 The completed [state-based QBP supplement](supplements/state_based_qbp/README.md)
 changes the decoder and avoids the fine complete frame. It is a distinct
-task-level result, not a closure of either compiler gap:
+task-level result. The compiler research has the following current status:
 
-| Unresolved question | Current guarantee |
+| Resource question | Current guarantee |
 |---|---|
-| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N\ell_*(n))`$ |
+| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real frames |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-The [open-problem statement](docs/OPEN_PROBLEM.md) separates proved
-linear-count endpoint families from all-angle reductions with unpaid native
-recovery or precision-source costs. The [research index](research/README.md)
-maps these constructions and the hypotheses of source, factorization, and
-depth restrictions. None changes the unrestricted bounds above. The count
-lower bound follows from the
+The [growing-source theorem](research/endpoint/GROWING_SOURCE_COMPILER.md)
+closes the two-clean count endpoint using summable precision costs, exact
+source refinements, and permanently separate rejection modes. Its full
+native ledger and final recovery are independent of the selected A–D
+package. The [endpoint statement](docs/OPEN_PROBLEM.md) and
+[research index](research/README.md) retain the large-width depth question
+and the hypotheses of earlier source and factorization restrictions.
+The count lower bound follows from the
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,

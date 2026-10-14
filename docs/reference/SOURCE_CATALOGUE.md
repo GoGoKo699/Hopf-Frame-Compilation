@@ -203,7 +203,7 @@ is inherited.
 | R25 | one-clean operator-source compiler and corollaries | [proof](../ONE_CLEAN_COMPILER.md): conjugated scalar-source word and Pauli-routed anticommutator, native head-and-two-tail source, and fixed five-call amplification using F20; real grouped/banked bounds extend to $`a=1`$, as do phase-dressed complex magnitude frames by sequential composition at their separate threshold; X symmetry gives a zero-clean layerwise real-frame corollary; matched literal-diagonal and complete U(2) multiplexor bounds retain their own reservations; F2/F9 supply inherited lookup and Clifford-algebra ingredients, and no new T-depth claim is made |
 | R26 | complete two-clean residual assembly | [proof](../../research/endpoint/RESIDUAL_ASSEMBLY.md): affine forward dilation using F18, native controls using F19 and the borrowed-signal compiler, and two-term selection/amplification using F11 give $`T=O(N+nL)`$, $`G=O(NL)`$ at $`a=2`$, $`b\ge L+n+7`$, including leakage and dirty return; the full-mode hierarchy and elementary coupled completion have complete recursive contracts; direct block algebra gives a rank-at-most-four commutator repair without a mode-gap assumption, exact child-call cancellation, and a weighted repair-error bound; the surviving local wrappers retain their precision cost, so no grouped endpoint improvement or priority claim for the elementary completion follows |
 | R27 | native-baseline antichain correction | [proof](../../research/endpoint/ANTICHAIN_COMPILER.md): exact descendant-forest conjugation and prefix-pair packing reduce promised antichain-only changes to one addressed SU(2) table; the retained borrowed interpreter and three Euler factors, using F19 and the borrowed-signal refinement of R25, give $`T=O(N+L)`$, $`G=O(NL)`$ at $`a=0`$, $`b\ge L+n+7`$; the supplied baseline has determinant-one native local words of length $`O(n-d+1)`$ at depth d, and the target agrees with it literally outside the antichain; neither generic rounding, a general complex-magnitude extension, nor closure of the unrestricted endpoint is claimed |
-| R28 | native-baseline sparse nested updates | [proof](../../research/endpoint/SPARSE_UPDATE_COMPILER.md): exact off-support forest factorization and charged basis packing reduce an ancestor-closed set S to $`m=\lvert S\rvert+1`$ modes; for $`s=\lceil\log_2m\rceil`$ and $`n\ge2s+32`$, a shared dense column-residual dictionary and the R17 scalar-source block, using the inherited lookup, routing, and normalization-two amplification ingredients F2/F11/F19, give $`T=O(N+L)`$, $`G=O(NL)`$ at $`a=1`$, $`b\ge L+n+7`$; the complete initialized-isometry bound includes approximate work return and arbitrary dirty references; all changes on one root-to-leaf path are covered with a finite small-n fallback, but the unrestricted frame endpoint remains open |
+| R28 | native-baseline sparse nested updates | [proof](../../research/endpoint/SPARSE_UPDATE_COMPILER.md): exact off-support forest factorization and charged basis packing reduce an ancestor-closed set S to $`m=\lvert S\rvert+1`$ modes; for $`s=\lceil\log_2m\rceil`$ and $`n\ge2s+32`$, a shared dense column-residual dictionary and the R17 scalar-source block, using the inherited lookup, routing, and normalization-two amplification ingredients F2/F11/F19, give $`T=O(N+L)`$, $`G=O(NL)`$ at $`a=1`$, $`b\ge L+n+7`$; the complete initialized-isometry bound includes approximate work return and arbitrary dirty references; all changes on one root-to-leaf path are covered with a finite small-n fallback; this result retains its native-baseline promise |
 | R29 | native source-width boundaries | [source-width proof](../../research/endpoint/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): the reversed geometric loader retains the coefficient grid and gives $`O(L+n)`$ T gates and $`O(NL)`$ Clifford gates for the outer loaders and monotone width bridges; the transformed group bodies remain separately charged; inherited Pauli-transfer and algebraic-norm methods price the original bridge and one mask from a legal grouped coefficient; [native checks](../../tests/test_precision_carry.py) support the literal phases, bridge direction, and full-input identities, without improving the compiler frontier |
 | R30 | correlated flag/source boundary | [correlated-boundary proof](../../research/endpoint/SOURCE_REUSE_LIMITS.md#7-a-flag-correlated-source-boundary-and-its-query-cost): charged initialization and decoding, direct code identities, and native physical width changes include arbitrary dirty references and released tail wires; a legal grouped mask produces code leakage, and complete coherent two-syndrome renewal reduces to the separately priced returned-source operation; [code checks](../../tests/test_correlated_precision_carry.py) include actual inverses and approximate flag leakage; this restriction concerns the full renewal interface, not accepted-only blocks or arbitrary carried-source compilers |
 | R31 | small-product and original-tree residual coordinates | [Product-first examples](../../research/endpoint/SOURCE_REUSE_LIMITS.md#8-small-products-compress-before-synthesis) reuse the fixed-address compiler; the existing [complex-coarse Cayley recursion](../../research/endpoint/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) supplies stable local coordinates. The [original-tree extension](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md) adds arbitrary-tree path/time signs and a determinant formula. For the outward Hopf order, $`WQ^\dagger`$ and its Cayley transform have rank-one cuts, giving $`3N-2`$ shared-mode factors with Gram bounds; arbitrary edge orders retain rank two. Separate failure banks use $`5N-2`$ modes in the Hopf case, not a universal completion lower bound. [Finite checks](../../tests/test_original_tree_residual.py) use standard Cayley/low-rank matrix algebra; no free coherent evaluator, native T-count improvement, or priority for the classical transform is claimed |
@@ -219,7 +219,7 @@ is inherited.
 | R41 | bounded-input construction and classical comparison | [algebraic residual coefficients](../../supplements/state_based_qbp/RESIDUAL_TABLE_PREPROCESSING.md) use standard half-phase identities with one shared root, certified rational intervals, and a finite-radius cutoff to preserve R36/R39's error constants without Euler search; [bounded-input audit](../../supplements/state_based_qbp/BOUNDED_INPUT_QBP.md) combines F5 existence with coarse enumeration, explicit masks and instruction output to prove polynomial construction for the listed grouped/state alternatives; the banked small-system source uses $`P+13`$ dirty wires. Deterministic and term-sampled classical Pauli baselines are charged; no unconditional efficient fine-word search, generic Euler-runtime theorem, or end-to-end quantum advantage is claimed |
 | R42 | state-based QBP T-depth composition | [depth proof](../../supplements/state_based_qbp/STATE_QBP_DEPTH.md) composes R21/R23's exact schedules, inherited from F2, with R36/R39's constant number of residual rotations and the actual exact-return coarse interpreter; with $`B_0=P+n+7`$, $`b\ge2B_0`$ gives $`D_T=O(NP/b+P+n^3)`$, $`T,G=O(NP)`$, while $`b\ge16(B_0+\sqrt{NP})`$ gives one circuit with $`T=O(\sqrt{NP}+P+n\sqrt N)`$, $`G=O(NP)`$, and $`D_T=O(P+n^3)`$; both real/complex task streams and oracle depth are charged; no new lookup primitive, depth optimality, total-runtime gain, or general emitter is claimed |
 | R43 | fixed-accuracy linear T-depth complete real frame | [unary phase-source proof](../UNARY_PHASE_GRADIENT.md), 3 October 2026: coherent one-hot shifts, guarded bilinear work, unitary source preparation/return, and the Hopf angle-stability/group/query allocation give $`D_T=O_\eta(n)`$, $`T=O_\eta(\sqrt N)`$, $`G=O_\eta(N)`$ with two external clean flags and sufficient $`C_\eta\sqrt N`$ dirty work; F5/F8/F31/F36/F37 are attributed ingredients, F29/F38 are comparisons; no supplied catalyst, generic synthesis priority, matching depth lower bound, or high-precision endpoint follows |
-| R44 | fixed-accuracy dirty-width/depth tradeoff | [blocked bilinear lookup](../BLOCKED_BILINEAR_LOOKUP.md), composed with R43's early groups: for fixed $`0\lt\eta\le1/64`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and $`b\ge17(L+n+7)`$, one two-clean complete real-frame circuit has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$ and $`D_T=O_\eta(N/b^2+n)`$; simultaneous worst-case orders are $`\Theta_\eta(N/b)`$ and $`\Theta_\eta(N/b^2)`$ when $`b\le\sqrt{N/n}`$; the full-input leaf and allocation use existing F2/F8/F29/F30/F31 ingredients, and F3/F4 supply the lower-bound lineage; large-width depth optimality and the high-precision endpoint remain open |
+| R44 | fixed-accuracy dirty-width/depth tradeoff | [blocked bilinear lookup](../BLOCKED_BILINEAR_LOOKUP.md), composed with R43's early groups: for fixed $`0\lt\eta\le1/64`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ and $`b\ge17(L+n+7)`$, one two-clean complete real-frame circuit has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$ and $`D_T=O_\eta(N/b^2+n)`$; simultaneous worst-case orders are $`\Theta_\eta(N/b)`$ and $`\Theta_\eta(N/b^2)`$ when $`b\le\sqrt{N/n}`$; the full-input leaf and allocation use existing F2/F8/F29/F30/F31 ingredients, and F3/F4 supply the lower-bound lineage; large-width depth optimality remains open; this fixed-accuracy theorem has no high-precision endpoint claim |
 | R45 | uniform precision and dirty-width depth tradeoff | [uniform composition](../UNIFORM_PRECISION_DEPTH.md), 3 October 2026: at two clean flags, $`L\ge6`$ and $`b\ge17(L+n+7)`$, absolute constants give $`T=O(\sqrt{NL}+NL/b+nL)`$, $`G=O(NL)`$, $`D_T=O(NL/b^2+nL)`$; for $`L\le\log_2(n+2)/16`$, the sharper same-circuit bounds omit nL from T and replace it by n in depth. The matching width endpoints are respectively $`\sqrt{N/n}`$ and $`\sqrt{NL/n}`$ when eligible; this is rectangular allocation and uniform composition of R43/R44 with the existing hybrid, using the same external premises and F3/F4 lower bounds, with no new native query or high-precision endpoint claim |
 | R46 | linear-size dirty indicator with logarithmic address T-depth | [nonuniform chunk schedule](../../research/depth/NONUNIFORM_DIRTY_INDICATOR.md), 3 October 2026: an exact s-bit indicator has $`T,G,w=O(2^s)`$ and $`D_T=O(\log(s+2))`$, including arbitrary dirty-reference return. Unequal chunks reuse the existing tree echo and read-only conjunction; F2/F8/F31 retain their indicator, dirty-work and phase-synthesis roles. Composition with the existing rectangular bilinear query improves the late-tail ledger; early unary groups retain their $`O(n)`$ depth contribution. No new external premise, synthesis-priority claim or complete-frame depth order follows |
 | R47 | one protected source across the early unary groups | [protected-source proof](../../research/depth/PROTECTED_UNARY_SOURCE.md), 3 October 2026: two initialized flags record the initial zero sector of a fixed logical source bank and each group's nonbank activity. One unconditional native U and its actual inverse give a global $`2\delta`$ source-error bound including final bank/flag return; inactive initial-bank sectors cancel exactly. With the stated reservations, the source-boundary depth is $`O(L+\log(n+2))`$, while three other early $`O(n)`$ contributions remain. F36 supplies phase-reference reuse, F8 conditional work, and F28/F29 remain catalytic comparisons; no supplied catalyst, new external premise, priority claim or improved full-frame depth order |
@@ -366,8 +366,9 @@ fixed accuracy. This improves the preceding geometric-source schedule
 without giving a shallow implementation of its conjugated reflection.
 F29 and F38 give nearby catalytic/shared-arithmetic interfaces, with
 different program, preparation, and workspace contracts. No priority
-claim is inferred from these comparisons, and the high-precision
-endpoint and unrestricted T-depth optimality remain open.
+claim is inferred from these comparisons. Unrestricted T-depth optimality
+remains open; the separate [growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean real-frame high-precision count endpoint.
 
 The [blocked bilinear query](../BLOCKED_BILINEAR_LOOKUP.md), also added
 **3 October 2026**, extends that fixed-accuracy conclusion to every
@@ -430,9 +431,12 @@ matching T count. That regime is not attributed to the later shared-source
 composition. The latter removes the repeated precision cost uniformly over
 precision. Write $`\ell_*(n)=1+\log_2^*(n+2)`$, where $`\log_2^*`$
 counts base-two logarithms until the value is at most one. Conditional-suffix
-grouping and its one-clean refinement give the constant-clean endpoint upper bound $`O(N\ell_*(n))`$.
-The gap from $`\Omega(N)`$ remains at the
-[selected high-precision endpoint](../OPEN_PROBLEM.md).
+grouping and its one-clean refinement give the endpoint upper bound
+$`O(N\ell_*(n))`$ for that construction. The separate
+[growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
+attains $`O(N)`$ with two clean flags at the literal
+[high-precision endpoint](../OPEN_PROBLEM.md), matching the existing
+$`\Omega(N)`$ lower bound in order.
 At $`b\ge2(L+n+7)`$, the grouped compiler's banked form gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates and $`O(NL)`$ Clifford gates.
 
@@ -841,8 +845,10 @@ frames at $`n\ge1`$, $`L\ge6`$, $`a=2`$, and $`b\ge L+n+7`$.
 Here $`\ell_*(n)=1+\log_2^*(n+2)`$, with repeated base-two logarithms
 stopping at a value at most one. Star residuals and streamed coarse programs
 use logical suffix qubits as clean work only in the active sector. At
-$`L=N`$, the upper bound is $`O(N\ell_*(n))`$; the $`\Omega(N)`$
-lower bound remains unchanged.
+$`L=N`$, this construction has upper bound $`O(N\ell_*(n))`$.
+The [growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
+separately attains the optimal-order $`\Theta(N)`$ count with two clean
+flags; the one-clean grouped bound remains as stated.
 With $`b\ge2(L+n+7)`$, the grouped banked bound is
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, still with $`O(NL)`$ Clifford gates.
 These are explicitly charged constructions in their stated regimes;
@@ -911,7 +917,7 @@ $`O(N+nL)`$ T gates using only borrowed synthesis work alongside its
 logical dilation signal. Approximate return of the core and borrowed
 amplification signal is included in the full-operator error. The earlier
 $`O(L\sqrt N)`$ route remains useful for its exact dirty-work return.
-Neither component bound removes the full-frame endpoint gap.
+Neither component bound supplies the unrestricted linear-count frame compiler.
 
 The [complete residual assembly](../../research/endpoint/RESIDUAL_ASSEMBLY.md) incorporates the
 diagonal and forward term into one affine tree map, then selects it or the
@@ -997,9 +1003,10 @@ core; lookup banks and selectors return exactly. Since $`n+1+b=\Theta(b)`$
 in this range, GKW's diagonal lower bound and LKS-style finite-width counting
 give the stated worst-case match. At $`L=N`$ and $`b=2(N+n+7)`$ this is
 $`\Theta(N)`$ T count with one clean qubit. This diagonal endpoint is
-settled by the retained proof, whereas the corresponding complete-frame
-endpoint still has a gap between $`\Omega(N)`$ and
-$`O(N\ell_*(n))`$. The broader scientific contribution
+settled by the retained proof. The complete real-frame endpoint is
+separately settled at $`\Theta(N)`$ by the
+[growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md),
+with two clean flags and $`N+n+7`$ dirty qubits. The broader scientific contribution
 is therefore a precision/workspace compiler for a standard operator family,
 together with the structured complete-frame extensions. It is not a claim
 that the entire constant-clean frame frontier is matched.
@@ -1028,7 +1035,7 @@ of qubits. Their
 exact-product logarithmic ancilla lower bound is for the specified multiple
 coherent measurement circuit class. The approximate modular-clock theorem
 has the counterexample below even under its full-unitary near-identity
-assumption. These comparisons do not resolve our constant-clean frame gap.
+assumption. These comparisons do not supply the constant-clean frame compiler.
 [Ma–Joven–Liu, arXiv:2609.11153v1, Theorem 3.1](https://arxiv.org/html/2609.11153v1)
 compress a block encoding to at most $`n+2T`$ clean ancillas without raising
 T count, possibly changing normalization. This supports counting lower

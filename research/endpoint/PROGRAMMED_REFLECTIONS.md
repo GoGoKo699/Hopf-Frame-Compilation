@@ -6,8 +6,10 @@ This chapter separates phase-orbit membership, selection of reversing
 reflections, and native implementation. It gives exact programming tests,
 a certified rejected pair of complex mixers, a regular spectral chart,
 and a query restriction for separately reconstructing its chosen factor.
-A cheap alternate baseline is kept beside that restriction. None of these
-statements changes the unrestricted complete-frame endpoint.
+A cheap alternate baseline is kept beside that restriction. These interfaces
+do not themselves supply an unrestricted linear-T compiler. The separate
+[growing-source compiler](GROWING_SOURCE_COMPILER.md) resolves the complete-frame
+endpoint by a different construction.
 
 Throughout, the original target has N=2^n logical modes, n at least three,
 error eta=2^(-N), two initialized flags, and N+n+7 arbitrary dirty qubits.
@@ -566,6 +568,7 @@ complete programming proof. The [chart tests](../../tests/test_spectral_reflecti
 check full native dirty-return and inverse action, the Fourier forcing
 coefficient, the alternate baseline, quadrature error, and the physical width
 and query inequalities. Finite matrices are diagnostics, not endpoint-precision
-simulations. No selected variable spectral reflection or general complete-frame
-linear-T word is emitted. These results constrain and implement specified
-interfaces; the unrestricted endpoint comparison is unchanged.
+simulations. These routines emit no selected variable spectral reflection or
+general complete-frame linear-T word. Their results constrain and implement
+the specified interfaces; the separate growing-source construction does not
+remove the unpaid native steps of this reflection route.

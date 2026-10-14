@@ -17,6 +17,9 @@ uses a different decoder and has its own task-level guarantee.
 
 The target is the complete prescribed frame at the literal allocation in
 the [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count).
+The [growing-source compiler](endpoint/GROWING_SOURCE_COMPILER.md) attains
+$`T=O(N)`$ for every real frame with two clean flags and $`N+n+7`$
+dirty qubits, matching the endpoint lower bound in order.
 Compact classical descriptions, first-column agreement, or uncharged
 program access do not meet that target.
 
@@ -24,13 +27,14 @@ program access do not meet that target.
 
 | Study | Result | Scope |
 |---|---|---|
+| [Growing precision source](endpoint/GROWING_SOURCE_COMPILER.md) | Unrestricted real-frame endpoint $`T=\Theta(N)`$ at error $`2^{-N}`$, two clean flags and $`N+n+7`$ dirty qubits | Growing sources, sealed rejection modes, frozen output tags and actual dirty replay are charged; no additional one-clean, complex-frame or depth bound |
 | [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear-count synthesis of disjoint SU blocks with a linear sum of squared dimensions; disjoint reflection corollary | Actual coarse mesh, fine sources, literal phase, and complete return are charged |
 | [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
 | [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, zero-clean real reflection banks, and one-clean real block refinements | The mode/recovery flag remains necessary for the stated accepted-block construction; exact native counterexample and balanced-sector bound |
 | [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Full-input selected Pauli/source-axis rotations with two arbitrary helpers; jointly compiled raw rejection orientations at O(Q+q+ell) T-count | Literal query phases and shared-core width are charged; raw canonicalization does not compile transported logical prefixes |
 | [Matching and leaf deflation](endpoint/MATCHING_LEAF_DEFLATION.md) | Canonical rank equals twice forest matching size; matching-budget compilers and an explicitly closed nonidentity deflation | Paid input correction retained; separate-level precision still costs O(nN); no unrestricted endpoint improvement |
 | [Precision-gauge compiler](endpoint/PRECISION_GAUGE_COMPILER.md) | Linear endpoint count on regular charts, fixed-ratio exponent intervals, and the stated cheap/ultraweak family; exact mixed-height scheduling bound | Rescheduling unchanged merge banks retains repeated precision cost; the next construction changes those sources |
-| [Heterogeneous precision source](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) | Linear endpoint count for supplied nodewise integer bins $`0\le E_v\le AN/\log_2 n`$ at $`n=2^{2t}`$, $`t\ge2`$, and fixed $`A>0`$; one correction feature combines cheap native merges with the carried common source, allowing arbitrary mixing and known exact-zero merges | Includes the earlier common-source and mixed-height families; actual dirty rejection replay, complete row-network recovery, source preparation and conditional suffix return are charged; the upper exponent envelope controls the bottom precision trace |
+| [Heterogeneous precision source](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) | At every integer height, $`O(N+\mathcal B_K)`$ count after certified clipping; linear retained bottom trace gives linear count | Fixed common-source construction with mixed local gauges and actual dirty replay; includes the earlier exponent-envelope and mixed-height families |
 | [Structured forests](endpoint/STRUCTURED_FOREST_COMPILERS.md) | Linear endpoint count under sub-binary degree-window growth, including fixed computational outdegree; over a cheap or fixed-ratio base, either bounded exceptional path depth or bounded exits per base component suffices | Bounded exits allow arbitrarily deep exceptional paths; original computational-label tree and fixed promise constants, with exact signed and corner tuples included |
 | [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | **Proved special case:** linear endpoint count for a literal native-baseline antichain promise | Generic rounded frames need not satisfy that promise |
 | [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | **Proved special case:** linear endpoint count under the stated ancestor-closure condition, including a changed path | This is a restricted update family, not the unrestricted frame family |

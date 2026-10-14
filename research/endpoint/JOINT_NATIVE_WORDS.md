@@ -5,8 +5,10 @@
 A complete native word has precision-sharing freedom that is absent when
 each recovered group is compiled separately. This chapter gives a canonical
 description of that freedom and a compression theorem for arbitrary
-returned dirty work. Neither supplies an unrestricted linear-T Hopf compiler
-or a superlinear lower bound. The endpoint bounds remain unchanged.
+returned dirty work. Neither result supplies an unrestricted linear-T Hopf
+compiler or a superlinear lower bound. The separate
+[growing-source compiler](GROWING_SOURCE_COMPILER.md) resolves the endpoint
+by a different construction.
 
 The Pauli-word and symplectic normal forms are standard. The projected-
 Clifford lemma used below is explicitly
@@ -320,7 +322,8 @@ work is removable. This includes the Clifford-only case.
 The alternating dirty Gram matrix has quadratic information capacity in t.
 At $`t=\Theta(N)`$, counting does not prevent it from encoding
 $`\Theta(N^2)`$ bits of endpoint data. That is a capacity statement, not
-an encoding or existence theorem. The constructive requirement remains a
+an encoding or existence theorem. For this normal-form route, the
+constructive requirement remains a
 terminating rule selecting the complete axes and final Clifford with
 $`t=O(N)`$, the literal dirty reservation, and the full error inequality
 in Section 1. Separate high-precision prices for individual rotations or

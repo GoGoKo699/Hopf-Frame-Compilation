@@ -17,7 +17,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Proof roadmap](REVIEW.md) | Follow the mechanisms connecting the four claims |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Research results and open gaps](research/README.md) | Find restricted successes and limits of specific compilation methods |
+| [Research results and open gaps](research/README.md) | Find the linear-count endpoint theorem, earlier constructions, and scoped limits |
 
 ## Target and resource contract
 
@@ -132,30 +132,30 @@ All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
 regimes, complex extensions, and older schedules useful at smaller reservations.
 
-## Two open resource gaps
+<a id="two-open-resource-gaps"></a>
+
+## Linear-count endpoint and remaining depth gap
 
 | Question | Current bounds |
 |---|---|
-| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N\ell_*(n))`$ |
+| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$, hence $`T^\star=\Theta(N)`$, for complete real frames |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | Optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
 Clifford interlayers and workspace, under the literal-phase contract.
-The [structured-forest theorem](research/endpoint/STRUCTURED_FOREST_COMPILERS.md)
-achieves linear T-count for arbitrary angles on fixed-outdegree
-computational forests, and for bounded exceptional path depth over a
-cheap or common-scale base. The [precision-gauge compiler](research/endpoint/PRECISION_GAUGE_COMPILER.md)
-covers regular and specified scale-separated families. Their shared
-[disjoint-block primitive](research/endpoint/DISJOINT_BLOCK_COMPILER.md)
-charges native sources, inverses, and complete workspace return.
+The [growing-source compiler](research/endpoint/GROWING_SOURCE_COMPILER.md)
+supplies the unrestricted real-frame upper bound. Source capacity grows
+as the number of live carriers shrinks; rejected paths remain in separate
+reserved modes until one final recovery. Native source refinements,
+packing, actual inverses, and dirty/reference return are all charged.
+This endpoint result is separate from the precision-uniform claims A–D.
 
-The [open-problem statement](docs/OPEN_PROBLEM.md) distinguishes these
-proved families from all-angle reductions and the remaining inverse or
-precision-source cost. The [research index](research/README.md) maps
-canonical proofs, including the local-star oracle, scalar Schur-source
-obstruction, and fixed-Clifford diagonal-stage limit. None changes the
-unrestricted bounds above.
+The [endpoint statement](docs/OPEN_PROBLEM.md) records the remaining
+large-width depth question. The [research index](research/README.md)
+preserves the earlier promised-family compilers and the limits of specific
+source, query, and factorization interfaces. Those restrictions retain
+their stated hypotheses.
 
 ## Operational consequence
 

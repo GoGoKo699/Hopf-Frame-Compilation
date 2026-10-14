@@ -425,8 +425,10 @@ The constant inverse bound and ideal scattering construction concern
 coupled expressions; they provide neither cheap separate powers nor a
 constant-call native feedback operation. The selected-branch compiler
 must also include the affine diagonal, occupied-selector control, actual
-inverses and arbitrary dirty inputs. These component results leave the
-complete-frame endpoint bounds unchanged.
+inverses and arbitrary dirty inputs. These component results do not supply
+that native interface. The separate
+[growing-source compiler](GROWING_SOURCE_COMPILER.md) resolves the complete-frame
+endpoint without implementing this feedback construction.
 
 ## 8. Verification
 

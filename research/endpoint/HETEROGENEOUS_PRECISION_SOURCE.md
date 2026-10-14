@@ -2,90 +2,139 @@
 
 [Precision gauges](PRECISION_GAUGE_COMPILER.md) · [Disjoint reflection sources](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources) · [Carried-source history](../../docs/FAULT_TOLERANT_COMPILER.md#8-shared-private-work-history-and-the-final-normalization)
 
-Complete connected Hopf trees admit a linear native compiler when every
-nonzero branch exponent is at most a fixed multiple of $`N/\log_2n`$.
-The exponent can change independently at every node. Cheap native
-scalar merges and a common-source polynomial compiler share one correction
-feature per node. One small-ratio geometric source is retained through the entire coarse row
-network; a short integer shift multiplier and an exactly dyadic scalar
-encode each node's precision. The source returns in one final
-amplification, with the original two clean qubits and dirty reservation.
+Complete connected Hopf trees admit a native compiler with cost
+$`O(N+\mathcal B_K)`$, where $`\mathcal B_K`$ is the retained precision
+trace in the bottom $`K=O(\log n)`$ depths. The upper tree costs
+$`O(N)`$ with independently changing node precisions. Branches below
+the endpoint error scale are first rounded to zero on every frame
+column. Cheap native scalar merges and a common-source polynomial
+compiler then share one correction feature per node. The common source
+returns in one final amplification, with the original two clean qubits
+and dirty reservation.
 
-The earlier mixed-height family is a corollary. The construction does
-not reschedule its unchanged high-precision merge banks, and does not
-establish an unrestricted linear-count compiler.
+The former global exponent-envelope and mixed-height families are
+corollaries. The construction applies at every integer height and gives
+a linear bound when the retained bottom trace is linear. The separate
+[growing-source compiler](GROWING_SOURCE_COMPILER.md) removes this trace
+restriction and proves unrestricted linear real-frame count at the
+same two-clean endpoint.
 
 ## 1. Family, contract, and the upper sector
 
-Fix a constant $`A_\star\gt0`$, an integer $`t\ge2`$, and
+Let $`n\ge3`$ be any integer and set
 
 ```math
-n=2^{2t},\qquad N=2^n.
+\begin{gathered}
+N=2^n,\qquad \epsilon=2^{-N},\qquad
+P=2^{\lceil\log_2n\rceil},\\
+H=N+\log_2P+6,\qquad \zeta=2^{-H}.
+\end{gathered}
 ```
 
-At every node of the complete height-n binary tree, allow either a known
-zero rotation or a normalized rotation with smaller branch
+Start with effective normalized branch data $`0\le s_v\le c_v`$,
+$`c_v^2+s_v^2=1`$, on the complete height-n binary tree. The
+[priced effective signed normalization](PRECISION_GAUGE_COMPILER.md#1-contract-and-effective-normalization)
+may be attached for general real tuples, with a fixed separate error
+fraction if that normalization rounds near a chart boundary.
+There is no component-label invariance assumption.
+
+No supplied exponent bins or zero oracle are necessary. For each node,
+compute a dyadic $`q_v`$ with $`|q_v-s_v|\le\zeta/8`$. Replace the
+rotation by its normalized exact zero when $`q_v\le3\zeta/2`$;
+otherwise retain it. This rational comparison implements overlapping
+certified tests: a replaced branch satisfies $`s_v\lt2\zeta`$, and a
+retained branch satisfies $`s_v\gt\zeta`$. Known exact zeros can of
+course be retained as zeros directly. At each retained node select an
+integer $`E_v\ge0`$ by the overlapping open tests
 
 ```math
-2^{-E_v-1}\le s_v\le2^{-E_v},\qquad
-0\le E_v\le\frac{A_\star N}{\log_2n},\qquad E_v\in\mathbb Z.
+2^{-E_v-2}\lt s_v\lt2^{-E_v},\qquad 0\le E_v\le H-1.
 ```
 
-The integer bins are supplied effective classical data, independently at
-every nonzero node. No floor of an unknown logarithm or equality test
-at a dyadic boundary is required. Exact-zero status may likewise be
-supplied, or certified using the promised gap below the smallest allowed
-nonzero branch. The supplied normalized chart has positive cosine and
-nonnegative sine; the already priced signed normalizations may also be
-attached if needed. The theorem in particular permits all rotations to
-be nonzero, so there is no component-label invariance hypothesis.
+These intervals cover every retained branch, including dyadic boundary
+values. A finite search with certified bounds therefore terminates.
+The proof uses only the weak versions of these inequalities, so supplied
+certificates, including the former width-two bins, are also admissible.
+All subsequent exponents refer to this selected retained tree, denoted
+$`\widetilde W`$, never to a clipped branch's original exponent.
+At one binary depth the rotations have disjoint supports. Since
+$`\|R_y(\theta)-I\|\le2s`$ in the normalized chart, telescoping the
+depth factors gives
+
+```math
+\|W-\widetilde W\|\le4n\zeta
+=\frac{n}{P}\frac{\epsilon}{16}\le\frac{\epsilon}{16}.
+```
+
+This is an operator-norm estimate on every frame column; tensoring with
+arbitrary dirty registers and reference systems does not change it.
+
+Choose a sufficiently large universal positive integer C, set
+$`K=\min\{n,C\lceil\log_2(P+2)\rceil\}`$, and number binary depths
+from 0 at the root to $`n-1`$ at the leaves. Define the bottom trace by
+
+```math
+\mathcal B_K=\sum_{d=n-K}^{n-1}
+\max\bigl(\{E_v:v\text{ retained at depth }d\}\cup\{0\}\bigr).
+```
+
+Thus an empty depth contributes zero. The trace belongs to the actual
+selected clipping/bin certificate. The theorem holds for every such
+certificate; no minimum over an uncomputed choice is presumed.
 
 **Theorem.** Every such prescribed complete real frame W has an effective
 coherent Clifford+T compiler satisfying
 
 ```math
-T=O_{A_\star}(N),\qquad
+T=O(N+\mathcal B_K),\qquad
 \|VJ_2-J_2(W\otimes I_b)\|\le2^{-N},
 \qquad b=N+n+7.
 \qquad\text{(1)}
 ```
 
-The constant depends only on $`A_\star`$, not on t, the exponent
-assignment, or the branch values. The norm includes
-every logical column, both initialized outputs, arbitrary dirty inputs,
-and external references. All inverses are actual circuit inverses.
-Certified classical evaluation and table construction are preprocessing;
-no prepared precision state, quantum evaluator, reset, or measurement is
-supplied.
+The constant is universal, independent of n, the exponent assignment,
+and the branch values. The norm includes every logical column, both
+initialized outputs, arbitrary dirty inputs, and external references.
+All inverses are actual circuit inverses. Certified classical evaluation
+and table construction are preprocessing; no prepared precision state,
+quantum evaluator, reset, or measurement is supplied.
 
-Choose one sufficiently large universal positive integer C and put
+For the upper-sector construction put
 
 ```math
-K=C\lceil\log_2(n+2)\rceil,\qquad N'=N/2^K.
+K=\min\{n,C\lceil\log_2(P+2)\rceil\},\qquad N'=N/2^K.
 \qquad\text{(2)}
 ```
 
-All asymptotic arguments below are for a fixed threshold beyond which
-$`K\lt n`$ and the displayed workspace inequalities hold.
-The finitely many smaller n are handled at the end. Increase C once to
-cover the fixed clean-work constants and the polynomial table factors
-identified below; no particular numerical value of C is asserted.
+All asymptotic arguments below are beyond a universal threshold where
+$`K\lt n`$ and the displayed workspace inequalities hold. The finitely
+many smaller n are handled at the end. Increase C once to cover the
+fixed clean-work constants and polynomial table factors identified below;
+no particular numerical value of C is asserted.
 
-Separate the bottom K binary depths from the upper frame, so
-$`W=W_{\rm bottom}W_{\rm up}`$ and the upper part acts first. The bottom
-part is a forest whose precision trace is at most
+Separate the bottom K depths of the clipped tree, so
+$`\widetilde W=W_{\rm bottom}W_{\rm up}`$ and the upper part acts
+first. If $`e_d`$ is the required scalar precision at a bottom depth,
+the [precision-trace ledger](PRECISION_GAUGE_COMPILER.md#5-precision-trace-and-native-resource-bound)
+gives
 
 ```math
-O\bigl(K(E_{max}+\log n)\bigr)
-=O_{A_\star}(N+\log^2n)=O_{A_\star}(N).
+\begin{gathered}
+\sum_d e_d\le\mathcal B_K+O(K\log n),\\
+T_{\rm bottom}
+=O\left(N+\sum_d e_d+\sqrt{N\sum_d e_d}\right)\\
+=O(N+\mathcal B_K).
+\end{gathered}
 \qquad\text{(3)}
 ```
 
-The precision-trace theorem therefore compiles it in linear T count.
-The upper frame acts only when the last K logical bits are zero. On that
-sector it is a complete height-$`n-K`$ frame on $`N'`$ labels, with the
-same known zero rotations where present. Standard aligned labels are
-retained throughout.
+Here Cauchy--Schwarz uses $`\sum_dS_d\le N-1`$; the final bound
+uses $`2\sqrt{Nx}\le N+x`$ and $`K\log n=O(\log^2n)`$.
+Every $`e_d\le N+O(\log n)`$ after clipping, within that ledger's
+literal dirty reservation. The upper frame acts only when the last K
+logical bits are zero. On that sector it is a complete height-$`n-K`$
+frame on $`N'`$ labels, including the selected zero rotations.
+Standard aligned labels are retained throughout.
 
 Compute $`h=[\text{last K bits}=0]`$ into the first external clean qubit
 using the exact borrowed predicate construction. Keep h unchanged until
@@ -107,9 +156,9 @@ R_y(\theta)=\begin{bmatrix}c&-s\\s&c\end{bmatrix},
 \qquad \tau=\tan(\theta/2)=\frac{s}{1+c}.
 ```
 
-Call a nonzero node cheap when $`E_v\lt2N/n`$ and expensive otherwise.
-This comparison is on the supplied integer bin. Both constructions below
-use $`\eta=1/(1000n^2)`$ and retain literal complex phases.
+Call a retained node cheap when $`E_v\lt2N/P`$ and expensive otherwise.
+This comparison is on the selected integer bin. Both constructions below
+use $`\eta=1/(1000P^2)`$ and retain literal complex phases.
 
 ### Expensive nodes: a Cayley rotation and a native splitter
 
@@ -117,12 +166,12 @@ For an expensive node v choose a positive dyadic $`u_v`$, with m fractional
 bits, approximating $`2^{E_v}\tau_v`$, where
 
 ```math
-m=O(\log n),\qquad 2^{-m}\le\frac1{16000n^2},
-\qquad \frac18\le u_v\le1.
+m=O(\log P),\qquad 2^{-m}\le\frac1{16000P^2},
+\qquad \frac1{16}\le u_v\le1.
 ```
 
 These bounds hold uniformly for sufficiently large n, by certified
-rounding of $`2^{E_v}\tau_v\in[1/4,1]`$. Put $`t_v=2^{-E_v}u_v`$.
+rounding of $`2^{E_v}\tau_v\in[1/8,1]`$. Put $`t_v=2^{-E_v}u_v`$.
 For the polynomial compiler only, put $`t_v=u_v=0`$ at every cheap or
 known zero node; its actual cheap merge will be a separate native interlayer.
 The exact mathematical coarse gate is the dyadic Cayley rotation
@@ -135,9 +184,11 @@ R(t)=(I+tJ)(I-tJ)^{-1}
 ```
 
 The derivatives of its first column, together with
-$`s_v\ge2^{-E_v-1}`$, give relative error at most
+$`s_v\ge2^{-E_v-2}`$, give relative error at most
 $`\eta`$ in both nonzero entries, after the fixed
-rounding margin above. All coefficients in (4) are exact computable
+rounding margin above. In particular the sine-entry error is at most
+$`8\cdot2^{-m}\le\eta/2`$ relative to $`s_v`$.
+All coefficients in (4) are exact computable
 rationals; (4) is a mathematical target, not an assumed exact native gate.
 Write its first column as $`(a_v,b_v)`$, with real positive entries.
 First apply $`R(t_v)^\dagger`$ to the child carriers, then apply a fixed
@@ -145,10 +196,10 @@ exact native splitter $`U^{\rm sp}`$ between the parent carrier and its
 fresh feature. Choose its literal first column $`(r,t)`$ so that
 
 ```math
-l=|t|^2=1-|r|^2\in[1/(1600n),1/(800n)].
+l=|t|^2=1-|r|^2\in[1/(1600P),1/(800P)].
 ```
 
-A strict interior target and a polynomial-in-log(n) native word suffice.
+A strict interior target and a polynomial-in-log(P) native word suffice.
 Its entries may be complex; neither r nor t is replaced by its magnitude.
 The resulting local column on arbitrary dirty inputs is
 
@@ -167,11 +218,11 @@ Use the [lossy scalar construction](PRECISION_GAUGE_COMPILER.md#3-lossy-native-s
 Choose the dyadic loss parameter
 
 ```math
-\tau_v=2^{-E_v-\lceil\log_2(200/\eta)\rceil},\qquad
-\eta s_v/400\le\tau_v\le\eta s_v/100.
+\tau_v=2^{-E_v-\lceil\log_2(400/\eta)\rceil},\qquad
+\eta s_v/800\le\tau_v\le\eta s_v/100.
 ```
 
-Fix one common precision $`q_{\rm ch}=\lceil2N/n\rceil+O(\log n)`$
+Fix one common precision $`q_{\rm ch}=\lceil2N/P\rceil+O(\log P)`$
 and one physical dirty source core for all cheap nodes, with a fixed
 sufficient margin. Let $`z_v`$ be the actual accepted scalar of the
 word emitted at that precision,
@@ -273,11 +324,11 @@ The constants have uniform slack. Every path has at most n nodes, and
 the relative coarse errors are at most $`\eta`$ after removing the
 cheap node's local unit-modulus phase $`e^{i\theta_v}`$. That phase
 remains in the complex gauge; the following bound concerns its modulus.
-For $`n\ge16`$,
+Since $`n\le P`$, for $`P\ge16`$,
 
 ```math
-(1+\eta)^{-n}\le|d_v|
-\le(1-\eta)^{-n}(1-1/(800n))^{-n/2},\qquad
+(1+\eta)^{-P}\le|d_v|
+\le(1-\eta)^{-P}(1-1/(800P))^{-P/2},\qquad
 .999\lt|d_v|\lt1.002.
 ```
 
@@ -287,7 +338,7 @@ $`a_v=c_v(1+e)`$ and $`b_v=s_v(1+f)`$ gives
 
 ```math
 A_v=\frac{\bar r}{d_v}c_vs_v\bigl[(1+f)^2-(1+e)^2\bigr],\qquad
-|A_v|\le3\eta,\qquad |A_v|/l\le4.8/n\le.3.
+|A_v|\le3\eta,\qquad |A_v|/l\le4.8/P\le.3.
 ```
 
 This cancellation is why a very small branch does not enlarge its
@@ -325,15 +376,19 @@ below stays uniform.
 
 ## 3. One common finite source with a small ratio
 
-Because n is dyadic, all of the following choices are exact:
+The dyadic parameter P makes all of the following choices exact for
+sufficiently large n, without padding the logical dimension N:
 
 ```math
-\Delta=\frac{N}{n^2},\qquad P=n,\qquad M=4n^2,\qquad
-p=\frac1{8n},\qquad B=6+2\log_2n,\qquad \beta=2^{B-\Delta}.
+\begin{gathered}
+\Delta=\frac{N}{P^2}=2^{n-2\log_2P},\qquad M=4P^2,\\
+p=\frac1{8P},\qquad B=6+2\log_2P,\qquad \beta=2^{B-\Delta}.
+\end{gathered}
 \qquad\text{(7)}
 ```
 
-The spacing $`\Delta`$ is an integer. For sufficiently large n,
+The spacing $`\Delta`$ is an integer once $`n\ge2\log_2P`$.
+For sufficiently large n,
 $`0\lt\beta\le1/2`$. On an M-mode source register define
 
 ```math
@@ -414,10 +469,12 @@ For every expensive node compute classically
 ```math
 E_v=k_v\Delta+e_v,\qquad
 k_v=\lfloor E_v/\Delta\rfloor,\qquad 0\le e_v\lt\Delta,
-\qquad 2n\le k_v\le k_{max}\le\frac{A_\star n^2}{\log_2n}.
+\qquad 2P\le k_v\le k_{max}\le2P^2.
 ```
 
-This division is on a supplied integer, not an unknown real exponent.
+This division is on a selected integer, not an unknown real exponent.
+The upper bound follows from $`E_v\le H-1\lt2N`$ and
+$`\Delta=N/P^2`$.
 At a cheap or known zero node put $`k_v=e_v=u_v=0`$. These multiplier
 symbols are distinct from the local coarse matrix entries. For
 $`1\le\nu\le P`$, define
@@ -425,7 +482,7 @@ $`1\le\nu\le P`$, define
 ```math
 f_{v,\nu}
 =\frac{2P(1-p)}p\,u_v^\nu2^{-\nu(k_vB+e_v)}
-=2n(8n-1)u_v^\nu2^{-\nu(k_vB+e_v)}.
+=2P(8P-1)u_v^\nu2^{-\nu(k_vB+e_v)}.
 \qquad\text{(12)}
 ```
 
@@ -436,7 +493,7 @@ and need at most
 
 ```math
 q_{\rm coef}\le P(m+k_{max}B+\Delta)+O(1)
-=\frac Nn+O_{A_\star}(n^3).
+=\frac NP+O(P^3\log P).
 \qquad\text{(13)}
 ```
 
@@ -451,11 +508,11 @@ or unrounded real coefficient is being encoded.
 The long remainder $`e_v`$ appears only in the offline scalar-mask
 table. It is never loaded into a quantum register: unlike $`k_v`$, its
 ordinary binary description can have order n bits. Only the multiplier
-$`k_v`$, of $`O(\log n)`$ bits for fixed $`A_\star`$, is loaded
+$`k_v`$, of $`O(\log P)`$ bits, is loaded
 coherently.
 
 Prepare a uniform P-valued label $`\ell`$ and interpret
-$`\nu=\ell+1`$. Prepare $`\log_2(8n)`$ Hadamard bits and designate
+$`\nu=\ell+1`$. Prepare $`\log_2(8P)`$ Hadamard bits and designate
 their all-zero string as a rare event, of probability p. In the common
 event SELECT is identity. In the rare event apply the scalar word for
 f, the shift dilation for $`S_{k_v\nu}`$, and the literal quarter-turn
@@ -464,7 +521,7 @@ four powers suffice. The quarter-turn exponent is still $`\nu`$, not
 $`k_v\nu`$.
 
 Load $`k_v`$ by an exact whole-word table, multiply by $`\nu`$ into
-$`O(\log n)`$ clean arithmetic work, and let $`d=k_v\nu`$ be the
+$`O(\log P)`$ clean arithmetic work, and let $`d=k_v\nu`$ be the
 full nonnegative product. Toggle a distinct underflow flag by
 $`[j\lt d]`$ **before** reducing d modulo M, then subtract d modulo M
 from the source index. If $`d\ge M`$, the predicate is true for every
@@ -519,9 +576,9 @@ Disjoint carrier pairs make the nodewise contribution a maximum,
 so no factor equal to the number of nodes occurs in (15).
 Frozen and disabled sectors have exactly $`(1-p)I`$ as their kernel;
 they do not acquire a different attenuation. Also
-$`\|D_d\|=1-p`$. Every expensive node has $`E_v\ge2N/n`$;
+$`\|D_d\|=1-p`$. Every expensive node has $`E_v\ge2N/P`$;
 all other polynomial rows have $`t_v=0`$. Increasing the fixed
-threshold so that $`4n^2B\le N`$ gives
+threshold so that $`4P^2B\le N`$ gives
 
 ```math
 M(\Delta-B)\ge3N,\qquad
@@ -532,13 +589,15 @@ R\delta_{\rm ker}=o(2^{-N}).
 
 ## 5. Whole-network history, normalization, and return
 
-Share F among all R kernels. Initialize a history counter H of
+Share F among all R kernels. Initialize a history counter $`H_{\rm hist}`$ of
 $`\lceil\log_2R\rceil`$ bits, omitting it if $`R=1`$. After each
-kernel except the last, increment H if and only if $`F\ne0`$. There
-are at most $`R-1`$ increments. Hence a path beginning at H=0 cannot
-wrap back to zero. Later kernels never act on H.
+kernel except the last, increment it if and only if $`F\ne0`$. There
+are at most $`R-1`$ increments. Hence a path beginning at
+$`H_{\rm hist}=0`$ cannot wrap back to zero. Later kernels never act
+on the counter.
 
-Expand in the F and H computational bases. Final H=F=0 retains exactly
+Expand in the F and history computational bases. Final
+$`H_{\rm hist}=F=0`$ retains exactly
 those paths whose F value was zero at every intervening boundary. It
 therefore inserts the intermediate projectors, giving the exact accepted
 operator on carried source and system
@@ -557,7 +616,7 @@ proves
 ```math
 \|V_{\rm acc}E_g-E_g\gamma Q_0\|
 \le R\delta_{\rm ker},\qquad
-\gamma=(1-p)^R\ge1-Rp\ge7/8.
+\gamma=(1-p)^R\ge1-Rp\ge1-n/(8P)\ge7/8.
 \qquad\text{(18)}
 ```
 
@@ -718,10 +777,13 @@ recovery with the conditional sign convention (20). Its reflection tests
 every initialized private and suffix wire and the feature flag; h is
 the preserved enable, excluded from the zero-work test. It does not test
 reduced logical or dirty input. Fixed error fractions give upper-frame
-error below $`2^{-N}/2`$.
+error below $`\epsilon/4`$.
 
 Finally reverse the upper-sector predicate and compose with the bottom
-compiler from (3), also at error below $`2^{-N}/2`$. This proves (1).
+compiler from (3), also at error below $`\epsilon/4`$. These errors,
+the clipping error at most $`\epsilon/16`$, and any separately charged
+normalization error at most $`\epsilon/16`$ sum to less than
+$`\epsilon`$. This proves the full-isometry bound in (1).
 The cheap native words themselves, including their dirty action, are
 executed as exact interlayers and exact replays. Only the expensive
 Cayley gates require the carried polynomial compiler. No approximately
@@ -736,15 +798,15 @@ T cost $`O(N'P+q_{\rm coef})`$. The output mask width affects the
 Clifford work, not the row contribution to T. The source-word constant
 is fixed. The short multiplier table costs $`O(N')`$ per stage, or
 $`O(N'P)`$ if conservatively addressed by the power as well. Its
-$`O(\log n)`$-bit output does not supply enough self-borrowed selectors;
+$`O(\log P)`$-bit output does not supply enough self-borrowed selectors;
 instead this completed query borrows and exactly returns $`O(n)`$
 selectors inside the much larger scalar-source dirty core. Exact shift
 arithmetic, rare predicates, quarter-turn powers, and history operations
 have a fixed polynomial cost in n. Crucially, (13) gives
 
 ```math
-nq_{\rm coef}\le n^2\Delta+O_{A_\star}(n^4)
-=N+O_{A_\star}(n^4).
+nq_{\rm coef}\le P^2\Delta+O(P^4\log P)
+=N+O(P^4\log P).
 ```
 
 The long residual-exponent charge is therefore retained. The
@@ -752,8 +814,8 @@ conservative full-table ledger over $`R\le n`$ stages is
 
 ```math
 T_{\rm kernels}
-=O\left(n^2\frac{N}{2^K}+nq_{\rm coef}+\mathrm{poly}(n)\right)
-=O_{A_\star}(N).
+=O\left(nP\frac{N}{2^K}+nq_{\rm coef}+\mathrm{poly}(n)\right)
+=O(N).
 \qquad\text{(22)}
 ```
 
@@ -770,7 +832,7 @@ possibly changed arbitrary dirty state and returns its selectors exactly.
 A conservative total $`O(nN')`$ covers these type tables.
 
 The cheap row banks and all their column replays use the fixed
-$`q_{\rm ch}=2N/n+O(\log n)`$ source core and their actual finite
+$`q_{\rm ch}=2N/P+O(\log P)`$ source core and their actual finite
 masks. If $`S_d`$ counts addressed nodes at depth d, their combined
 native cost is
 
@@ -780,6 +842,8 @@ T_{\rm cheap+replay}
               +N'\mathrm{poly}(n)+\mathrm{poly}(n)\right)=O(N).
 ```
 
+Here $`nq_{\rm ch}\le2N+O(n\log P)`$ because $`n\le P`$.
+
 There are only a constant number of global fine phase banks in the
 replay, not one per depth. Source preparation and its
 inverse, global normalization, and all fine gauge banks each have
@@ -788,13 +852,13 @@ amplifications. Equation (3) charges the bottom part. This proves the
 T count in (1).
 
 The simultaneous active clean reservation consists of a source register
-of $`\log_2M=O(\log n)`$ bits, a power register and its increment
-scratch, a multiplier and full-product register of $`O(\log n)`$
-bits, $`\log_2(8n)`$ rare bits, $`\lceil\log_2R\rceil`$ history
-bits, arithmetic/predicate scratch of $`O(\log n)`$ bits, and a fixed
+of $`\log_2M=O(\log P)`$ bits, a power register and its increment
+scratch, a multiplier and full-product register of $`O(\log P)`$
+bits, $`\log_2(8P)`$ rare bits, $`\lceil\log_2R\rceil`$ history
+bits, arithmetic/predicate scratch of $`O(\log P)`$ bits, and a fixed
 number of distinct scalar, underflow, preparation, normalization, and
 fine-gauge flags, including the separate fine compiler and the returned
-node-type flags. This totals $`O(\log n)`$ with a fixed constant,
+node-type flags. This totals $`O(\log P)=O(\log n)`$ with a fixed constant,
 covered by K. Long logical suffix predicates use the existing returned
 borrowed construction, not an n-bit clean register.
 
@@ -812,31 +876,48 @@ reuse returned core helpers in completed subroutines. A fixed number of
 external dirty helpers, if used, fits in the remaining $`n+6-c_0`$
 wires for sufficiently large n. Coarse reflection routing uses
 $`O(\sqrt N+\mathrm{poly}(n))`$ dirty space instead, and the
-dyadic kernels use at most $`N/n+O_{A_\star}(n^3)`$ dirty source
+dyadic kernels use at most $`N/P+O(P^3\log P)`$ dirty source
 wires, which is below $`N/2`$ after enlarging the threshold.
-The cheap source uses $`2N/n+O(\log n)`$ wires, also below $`N/2`$.
+The cheap source uses $`2N/P+O(\log P)`$ wires, also below $`N/2`$.
 Their short-output metadata queries reuse returned selectors inside
 that core. These reservations are sequential and reuse the same pool.
 No active-suffix bit is also
 counted as dirty storage. Thus the literal maximum is $`N+n+7`$.
-The coefficient of K can be chosen universally: for each fixed
-$`A_\star`$, the $`O(\log A_\star)`$ metadata margin is at most
-$`O(\log n)`$ beyond an $`A_\star`$-dependent threshold. Only that
-threshold and the count constant depend on $`A_\star`$.
+The coefficient of K and the asymptotic threshold are universal:
+clipping gives $`k_{max}\le2P^2`$ with no target-dependent metadata
+margin. Padding P to a power of two changes neither the logical
+dimension N nor the available dirty pool.
 
 All finitely many n below the chosen threshold have fixed dimension and
 fixed required accuracy. The existing direct determinant-one,
 literal-phase finite-net fallback compiles every frame in those compact
 families with the same two flags and dirty pool. The finite maximum of
-T/N is absorbed into the constant depending on $`A_\star`$. This is an asymptotic
+T/N is absorbed into the universal constant. This is an asymptotic
 theorem, not a proposed practical crossover threshold.
 
 ## 8. Scope and verification
 
-**Nodewise square-root-window corollary.** The theorem covers arbitrary
-independent bins $`0\le E_v\le N/\sqrt n`$ on a fully connected
-tree, because $`\sqrt n\ge\log_2n`$ for the permitted n. This is
-the case $`A_\star=1`$.
+**Linear bottom-trace corollary.** If the selected retained tree has
+$`\mathcal B_K\le A_0N`$ for fixed $`A_0`$, its complete frame has
+an $`O_{A_0}(N)`$ compiler. No exponent envelope is imposed on the
+upper tree before clipping. Nor is a per-node envelope required on the
+bottom tree: a fixed number of bottom depths may each have exponents
+of order N while the trace remains linear.
+
+**Global exponent-envelope corollary.** For fixed $`A_\star\gt0`$,
+the earlier promise of supplied bins
+$`2^{-e_v-1}\le s_v\le2^{-e_v}`$ with
+$`0\le e_v\le A_\star N/\log_2n`$ gives
+$`\mathcal B_K\le K A_\star N/\log_2n=O_{A_\star}(N)`$.
+Indeed any selected open width-four bin is $`E_v=e_v`$ or
+$`E_v=e_v-1`$ when the latter is nonnegative; clipping only deletes
+nodes. The original supplied bins themselves are also valid weak
+certificates. The same linear bound now holds at every integer height.
+
+**Nodewise square-root-window corollary.** Arbitrary independent
+original bins $`0\le e_v\le N/\sqrt n`$ also give a linear bound,
+since $`K/\sqrt n`$ is uniformly bounded. Known zero rotations and
+fully connected trees are both allowed.
 
 **Mixed-height corollary.** The earlier
 [mixed-height family](PRECISION_GAUGE_COMPILER.md#mixed-heights-and-the-limit-of-rescheduling)
@@ -848,25 +929,36 @@ scheduling proposition remains a statement about those original banks;
 the present circuit uses a common source and different local kernels.
 
 The exponentially small shift eigenvalue in (9) permits endpoint
-accuracy with only $`M=4n^2`$ initialized source modes. Nodewise scale
+accuracy with only $`M=4P^2=O(n^2)`$ initialized source modes. Nodewise scale
 changes on expensive nodes are encoded by the short multiplier $`k_v`$
 and the charged dyadic remainder. The cheap nodes retain their actual
 native rejected operators in the same single-feature gauge. The upper
-proof needs no class preservation. The threshold $`2N/n`$ controls the
-expensive Taylor order and cheap source sum; it is no longer a lower
-endpoint of the theorem. The upper envelope
-$`A_\star N/\log_2n`$ pays for the bottom K depths. Frames whose
-remaining bottom precision trace is uncontrolled are outside this
-theorem.
+proof needs no class preservation. The threshold $`2N/P`$ controls the
+expensive Taylor order and cheap source sum; it is not a lower endpoint
+of the theorem. Clipping, dyadic P, and the charged remainder remove
+the former upper-tree exponent and height restrictions. The cost for
+arbitrary trees is $`O(N+\mathcal B_K)`$; a growing bottom trace has
+not been removed or rescheduled away in this fixed-source construction.
+The [growing-source compiler](GROWING_SOURCE_COMPILER.md) uses changing
+source sizes and permanently retained rejection modes to attain the
+unrestricted $`O(N)`$ endpoint bound.
 
 The [exact helper](../../compiler_robust_hopf/heterogeneous_precision_source.py)
 records finite source residuals, dyadic Cayley coefficients, and symbolic
 parameter margins, including the common-source spacing and multiplier
-ledger. The
+ledger. Its all-height ledger keeps the logical dimension fixed while
+rounding P, explicitly identifies the finite fallback regime, and
+retains the $`N/P`$ precision term. The
 [focused tests](../../tests/test_heterogeneous_precision_source.py)
 check finite shift residuals including shifts beyond the cap, exact
 dyadic quotient/remainder coefficients, the retained linear precision
 charge, truncated kernel columns, and exact large-integer metadata.
+All-height fixtures check the rational clipping rule, open bins at
+dyadic boundaries, the selected bottom-depth trace with empty layers,
+and full frame columns for noncommuting tree layers. They verify the
+maximum-per-depth clipping bound and common-source remainders through
+the clipped exponent cap, including shifts beyond the finite source
+length.
 Full-input checks cover separate scalar/underflow flags, multiplier
 cleanup on occupied inputs, interleaved node scales, and no-wrap history
 with uniform attenuation. Mixed-chart fixtures compose the actual

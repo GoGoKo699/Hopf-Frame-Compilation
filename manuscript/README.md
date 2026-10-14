@@ -44,7 +44,8 @@ mechanisms and input/workspace contracts.
    explicit precision/workspace matching intervals, and applicable fallbacks.
 7. Exact and approximate fixed-parameter QBP consequences, complete complex
    gradients, and charged quantum executions and classical reconstruction.
-8. The two open resource questions and the limits of the circuit model.
+8. The separate linear-count endpoint result, remaining large-width depth
+   question, and limits of the circuit model.
 
 Keep the formula ledger in the scope and the technical proofs in their primary
 chapters. Appendices supply source preparation, echoes, decoders, routing,
@@ -59,8 +60,9 @@ sector. T-depth allows arbitrary Clifford interlayers and differs from total
 depth. Only D claims simultaneous T-count/T-depth guarantees; its real
 frame theorem does not inherit the complex extensions of A–C automatically.
 
-The [research archive](../research/README.md) preserves attempts to close the
-two gaps and their scoped findings. The completed
+The [research archive](../research/README.md) records the growing-source
+resolution of the two-clean count endpoint, the remaining large-width
+depth question, and earlier attempts with their scoped findings. The completed
 [state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
 changed decoder and remains separate from the selected paper. Neither branch
 adds a default requirement for manuscript readiness.

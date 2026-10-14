@@ -87,7 +87,7 @@ def small_ratio_parameters(height: int, *, suffix_constant: int) -> SmallRatioPa
 
 @dataclass(frozen=True)
 class CommonSourceParameters:
-    """Symbolic common-source ledger, without constructing N=2**height.
+    """Legacy power-of-four ledger, without constructing N=2**height.
 
     The exponent spacing is Delta=2**spacing_log2=N/n**2. The caller's
     maximum multiplier and suffix constant are accounting inputs; this
@@ -140,6 +140,126 @@ def common_source_parameters(
         base.rescaling_bits, base.height - 2 * logarithm,
         maximum_multiplier, base.suffix_bits,
     )
+
+
+@dataclass(frozen=True)
+class ClippedSourceParameters:
+    """All-height accounting for a clipped frame; not a native emitter.
+
+    Only the scalar selector order P is rounded up to a power of two. The
+    logical frame still has height n. Delta=2**spacing_log2=N/P**2 and
+    H=N+clipping_exponent_offset remain symbolic. Below the stated source
+    regime the theorem uses a finite-height fallback, not this source.
+    """
+
+    height: int
+    order: int
+    source_length: int
+    rare_probability: Fraction
+    rescaling_bits: int
+    spacing_log2: int
+    suffix_bits: int
+
+    @property
+    def clipping_exponent_offset(self) -> int:
+        """The additive offset in H=N+ceil(log2(n))+6."""
+        return self.order.bit_length() - 1 + 6
+
+    @property
+    def clipping_bound_relative_to_endpoint(self) -> Fraction:
+        """4n*2**(-H) / 2**(-N), without forming either tiny number."""
+        return Fraction(self.height, 16 * self.order)
+
+    @property
+    def minimum_expensive_exponent_log2(self) -> int:
+        """log2(2N/P); this cutoff times P is exactly 2N."""
+        return self.height + 1 - (self.order.bit_length() - 1)
+
+    @property
+    def cap_exponent_at_least_three_precision_lengths(self) -> bool:
+        """M(Delta-B)>=3N follows from Delta>=4B and M*Delta=4N."""
+        return _ceil_log2(4 * self.rescaling_bits) <= self.spacing_log2
+
+    @property
+    def uses_finite_fallback(self) -> bool:
+        return not self.cap_exponent_at_least_three_precision_lengths
+
+    @property
+    def maximum_multiplier(self) -> int:
+        """floor((H-1)/Delta)=P**2 in the qualified source regime."""
+        if self.uses_finite_fallback:
+            raise ValueError("the common source requires the large-height regime")
+        # Delta>=4B>ceil(log2(n))+5, so the clipping offset adds no
+        # further multiple of Delta. No exponentially large N is needed.
+        return self.order ** 2
+
+    def retained_exponent_within_cap(self, exponent: int) -> bool:
+        """Check E<=H-1, not membership in a supplied open branch bin."""
+        exponent = _integer(exponent, "exponent")
+        beyond_offset = exponent - (self.clipping_exponent_offset - 1)
+        return beyond_offset <= 0 or _ceil_log2(beyond_offset) <= self.height
+
+    def coefficient_precision_overhead(self, mantissa_bits: int) -> int:
+        """q_coef<=N/P+this overhead, using r<Delta and degree<=P."""
+        mantissa_bits = _integer(mantissa_bits, "mantissa_bits")
+        return self.order * (mantissa_bits + self.maximum_multiplier * self.rescaling_bits)
+
+    def stage_precision_at_most_twice_endpoint(self, mantissa_bits: int) -> bool:
+        """Certify n*q_coef<=2N, using n/P<=1 and exponent comparisons."""
+        mantissa_bits = _integer(mantissa_bits, "mantissa_bits")
+        if self.uses_finite_fallback:
+            return False
+        overhead = self.height * self.coefficient_precision_overhead(mantissa_bits)
+        return _ceil_log2(overhead) <= self.height
+
+
+def clipped_source_parameters(height: int, *, suffix_constant: int) -> ClippedSourceParameters:
+    """Set P=2**ceil(log2(n)), M=4P**2, p=1/(8P), B=6+2log2(P).
+
+    Every positive integer height is accepted. ``uses_finite_fallback``
+    marks heights for which the common-source inequalities do not yet hold.
+    The supplied C gives K=min(n,C*ceil(log2(P+2))); it is an accounting
+    multiplier, not a certificate that C provides sufficient clean work.
+    """
+    height = _integer(height, "height", 1)
+    suffix_constant = _integer(suffix_constant, "suffix_constant", 1)
+    logarithm = _ceil_log2(height)
+    order = 1 << logarithm
+    return ClippedSourceParameters(
+        height, order, 4 * order ** 2, Fraction(1, 8 * order),
+        6 + 2 * logarithm, height - 2 * logarithm,
+        min(height, suffix_constant * _ceil_log2(order + 2)),
+    )
+
+
+def clipped_branch_decision(approximation: Fraction, threshold: Fraction) -> bool:
+    """Return the finite certificate's decision q<=3*zeta/2.
+
+    The caller must certify |q-s|<=zeta/8 for the nonnegative smaller
+    branch s. Then clipping implies s<=13*zeta/8, while retaining implies
+    s>11*zeta/8>zeta. This comparison never decides equality of s with a
+    dyadic threshold and does not choose an exact logarithm of s.
+    """
+    approximation = _rational(approximation, "approximation")
+    threshold = _rational(threshold, "threshold")
+    if threshold <= 0:
+        raise ValueError("threshold must be positive")
+    return approximation <= Fraction(3, 2) * threshold
+
+
+def bottom_precision_trace(retained_exponents_by_depth, suffix_bits: int) -> int:
+    """Sum depth maxima in the bottom K layers, with empty maxima zero.
+
+    Depths are supplied root first and contain only retained nodes' supplied
+    bin exponents. This accounts for disjoint planes within a layer; it does
+    not sum over nodes, infer bins, or certify any native implementation.
+    """
+    depths = tuple(tuple(_integer(exponent, "exponent") for exponent in depth)
+                   for depth in retained_exponents_by_depth)
+    suffix_bits = _integer(suffix_bits, "suffix_bits")
+    if suffix_bits > len(depths):
+        raise ValueError("suffix_bits cannot exceed the number of depths")
+    return sum(max(depth, default=0) for depth in depths[len(depths) - suffix_bits:])
 
 
 def exponent_metadata(exponent: int, spacing: int) -> tuple[int, int]:

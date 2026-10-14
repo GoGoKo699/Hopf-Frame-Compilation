@@ -2,9 +2,9 @@
 
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
-The [endpoint statement](docs/OPEN_PROBLEM.md) gives the unchanged
-unrestricted bounds and separates the proved linear-count families from
-the remaining gap. The [research index](research/README.md) groups native
+The [endpoint statement](docs/OPEN_PROBLEM.md) records the proved
+unrestricted linear-count real-frame endpoint and the remaining
+large-width depth gap. The [research index](research/README.md) groups native
 primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -36,8 +36,8 @@ must be proved separately.
 | Which proof supports each claim | [Proof dependency map](docs/README.md) |
 | Evidence and limits | [Verification](docs/VERIFICATION.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
-| What remains unresolved | [Two resource gaps](docs/OPEN_PROBLEM.md) |
-| Restricted compilers, reductions, and scoped limits | [Research results](research/README.md) |
+| Endpoint status and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
+| Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
 Results A–D are the principal claim package. Their retained diagonal,
@@ -54,9 +54,11 @@ remain in their shared directories and continue to be verified.
 
 ## Research decision and stopping rules
 
-The selected scientific package has reached its stopping point. Keep the
-constant-clean high-precision count gap and large-width depth gap explicit.
-Neither is a prerequisite for the selected paper. A general native emitter,
+The selected scientific package has reached its stopping point. The
+[growing-source theorem](research/endpoint/GROWING_SOURCE_COMPILER.md)
+closes the two-clean high-precision count endpoint; the large-width depth
+gap remains explicit. Neither endpoint research direction is a prerequisite
+for the selected paper. A general native emitter,
 practical crossover study, or additional fixed fixture is not a default
 requirement. The internal audit does not replace external technical review.
 
