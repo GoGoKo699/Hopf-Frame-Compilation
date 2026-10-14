@@ -364,6 +364,13 @@ the same base slack and self-borrowing argument apply after increasing
 the threshold, and the extra factors are constant. This banked ledger
 does not imply any T-depth bound.
 
+For complete real frames, the separate
+[high-precision depth proof](../depth/HIGH_PRECISION_DEPTH.md#2-exact-replacement-at-a-completed-mask-boundary)
+uses the real full-operator identity to resynthesize completed XOR/Z
+masks without touching r. Together with a separately bounded remainder,
+this supplies $`D_T=O(L+NL/b^2)`$ when $`L\gt N/n^2`$ and
+$`b\ge17(L+n+7)`$, retaining optimal counts and at most two clean flags.
+
 ## 3. Recovery must be checked on both sectors
 
 For an actual unitary with equal sector dimensions, write

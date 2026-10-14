@@ -1478,6 +1478,14 @@ in both families. This is a count frontier at sufficient dirty width. It gives
 no new T-depth bound and makes no claim about the full transition
 between the base and doubled-base reservations. ∎
 
+The separate [high-precision depth schedule](../depth/HIGH_PRECISION_DEPTH.md)
+resynthesizes completed real masks after the conjugate-signal lift. For
+complete real frames,
+$`L\gt N/n^2`$ and $`b\ge17(L+n+7)`$, it supplies
+$`D_T=O(L+NL/b^2)`$ with these count bounds on the same circuit,
+using at most two clean flags. That depth statement uses an explicit
+native schedule; it is not a consequence of the count ledger alone.
+
 <a id="9-bounded-implementation-evidence"></a>
 <a id="10-bounded-implementation-evidence"></a>
 <a id="11-bounded-implementation-evidence"></a>

@@ -977,6 +977,11 @@ $`(2n+7)/2^{n/2}`$. Substitution proves the square-root-width
 corollaries, including sublinear depth when
 $`L=o(n/\log(n+2))`$.
 
+The [all-precision theorem](ALL_PRECISION_DEPTH.md) now combines this
+low-precision branch with a whole-frame binary stream and a separately
+proved high-precision schedule. It retains optimal counts at every
+precision; this chapter remains the stronger low-precision proof home.
+
 The linear-precision restriction pays for the early simultaneously
 initialized program and gradient work inside the protected logical suffix.
 The terminal source and history use only logarithmic initialized work. This

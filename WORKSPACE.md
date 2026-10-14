@@ -4,7 +4,8 @@ The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
-sharper two-clean complex endpoint, and sublinear large-width T-depth. The
+sharper two-clean complex endpoint, and all-precision count/depth bounds
+with sublinear large-width special cases. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -56,7 +57,7 @@ remain in their shared directories and continue to be verified.
 
 ## Research decision and stopping rules
 
-The selected scientific package has reached its stopping point.
+The selected count package has reached its stopping point.
 [Result C](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every integer $`L\ge6`$
 and $`n\ge1`$, at base dirty reservation $`B=L+n+7`$ for real
@@ -76,46 +77,49 @@ dependency of C's current count proof. The conditioning lemma in its
 chapter remains necessary. Historical audits stay in the reference
 catalogue; current claims are stated in the publication scope.
 
-The user explicitly reopened large-width depth research. The resulting
+The reopened depth research now has an
+[all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md) (R70).
+For every $`n\ge1`$, integer $`L\ge6`$, two clean flags, and
+$`b\ge17(L+n+7)`$, one complete real-frame circuit has full
+initialized-isometry error at most $`2^{-L}`$ and absolute-constant bounds
+
+```math
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)),
+```
+
+```math
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
+```
+
+Count is optimal at every eligible width; depth also matches through
+$`b\le\sqrt{NL/F(n,L)}`$ whenever that interval is nonempty.
+The [whole-frame binary schedule](research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
+and [high-precision schedule](research/depth/HIGH_PRECISION_DEPTH.md)
+provide the new branches. For $`L>N/n^2`$, depth strengthens to
+$`O(NL/b^2+L)`$ with the same count and Clifford budgets. The
+retained uniform baseline supplies the $`nL`$ depth alternative and
+literal-width fallbacks. Source preparation, coherent queries, actual
+inverses, conditional work, and external-reference error are all charged.
+
+For some absolute $`c>0`$, the
 [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-now has an absolute-constant precision-uniform refinement. For some absolute
-$`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every
-$`b\ge17(L+n+7)`$, it gives full initialized-isometry error at most
-$`2^{-L}`$ and simultaneous bounds
+retains the stronger logarithm $`\log_2(n+2)`$ on
+$`6\le L\le cn`$. At sufficient $`b=\Theta(\sqrt{NL})`$,
+shrinking error retains sublinear depth for $`L=o(n/\log(n+2))`$;
+the fixed-accuracy all-n statement remains valid. Its early gradient and
+terminal binary source are separate resources. The grouped terminal
+proof and its exact coarse-program interface remain at their original paths.
 
-```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
-D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
-```
-
-The [shared-gradient proof](research/depth/SHARED_GRADIENT_RECOVERY.md)
-pays native preparation and actual return once across early recovery.
-All arithmetic/coefficient tables, complete-column recovery, exact inactive
-guards, simultaneous conditional scratch, and the final tail are charged.
-The [shared binary terminal proof](research/depth/SHARED_BINARY_TERMINAL.md)
-uses a separate capped geometric source, retained failure history, and
-one recovery for the terminal stream. A protected logarithmic bank and
-logarithmically many capped bottom layers preserve the same budgets.
-At sufficient
-$`b=\Theta(\sqrt{NL})`$, shrinking error retains sublinear depth
-when $`L=o(n/\log(n+2))`$. Count is optimal throughout the stated range;
-depth also matches through $`b\le\sqrt{NL/F(n,L)}`$ whenever
-that interval is nonempty, where
-
-```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
-```
-
-The retained all-precision D theorem covers
-other precisions; the fixed-accuracy statement covers every n.
-
-The [entry-indexed encoding bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-fixes the scope of the remaining square-root normalization cost; it is
-not an unrestricted native-depth lower bound. Optimal depth remains open.
-The small absolute precision constant and dimension cutoff carry no
-practical crossover claim. A general native emitter, practical crossovers
-and further fixed fixtures are not default requirements. The internal
-audit does not replace external technical review.
+The all-precision extension is complete at the stated scope. Further
+research must address a concrete depth improvement or a valid unrestricted
+lower bound; producing more fixtures is not a default next step. The
+[entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+remains an architecture-specific normalization bound, not an unrestricted
+native-depth lower bound. Optimal depth remains open. No practical
+crossover, efficient preprocessing, or general native emitter is claimed.
+Internal audits do not replace external technical review. Final manuscript
+drafting remains a separate task requiring the user's request.
 
 ### Reopening research requires a qualifying mechanism
 
