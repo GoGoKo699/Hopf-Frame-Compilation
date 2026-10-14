@@ -133,6 +133,14 @@ crossover, efficient preprocessing, or general native emitter is claimed.
 Internal audits do not replace external technical review. Final manuscript
 drafting remains a separate task requiring the user's request.
 
+The [clean-aware obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, supplies a constant lower bound for arbitrary Clifford interlayers
+and dirty width: for each fixed clean budget, some complete frames require
+at least four T layers below a positive, unevaluated accuracy threshold,
+uniformly in dimension. The explicit one-clean two-layer gap separately
+forces at least three layers for integer $`L\ge8`$. These bounds do not
+grow with dimension or precision. Optimal depth remains an open problem.
+
 ### Reopening research requires a qualifying mechanism
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):

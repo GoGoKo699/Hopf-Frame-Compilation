@@ -375,6 +375,19 @@ $`\sqrt{2-2\cos(\pi/8)}`$, larger than $`1/64`$, independently of
 helper width. One may write the combined lower bound with a maximum of
 one and the displayed expression.
 
+For a fixed initialized clean budget, the
+[clean-aware obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, gives a stronger constant independently of dirty width. For every
+fixed $`a\ge0`$, some complete real frames require at least four T layers
+at initialized-isometry error strictly below a positive
+$`\varepsilon_a`$, uniform in n and b. This threshold is not evaluated.
+For one clean qubit, a separate explicit witness has error at least
+$`(3-2\sqrt2)/32>2^{-8}`$ against every circuit with at most two
+T layers, giving a three-layer worst-case lower bound at $`L\ge8`$.
+Arbitrary Clifford interlayers and dirty/reference correlations are allowed;
+zero leaf phases include these witnesses in the complex magnitude family.
+These are constant bounds, with no growth in n or L.
+
 These bounds leave a substantial gap. At $`L=N`$ and width
 $`q=\Theta(N)`$, they supply only $`\Omega(1)`$ T-depth. The exact
 linear T-count of the operator-source primitive does not prove a linear

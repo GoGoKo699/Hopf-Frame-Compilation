@@ -161,6 +161,18 @@ interval above the literal lower threshold is nonempty. The sublinear-depth
 existence question is resolved; optimal large-width depth remains open,
 with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
+The [constant-depth obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, strengthens that constant at sufficiently small accuracy. For every
+fixed clean budget $`a\ge0`$, there is $`\varepsilon_a>0`$, uniform
+in n and dirty width b, such that a complete real frame requires at least
+four T layers whenever the full initialized-isometry error is strictly
+below $`\varepsilon_a`$. The proof allows arbitrary Clifford interlayers
+and dirty/reference inputs; the threshold is not evaluated. Separately,
+an explicit one-clean witness requires at least three T layers for
+integer $`L\ge8`$. Zero leaf phases put both witnesses in the complex
+magnitude family. Neither bound grows with n or L.
+Optimal depth remains an open problem.
+
 The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 shows that the current source architecture needs worst-case normalization
 $`\Omega(\sqrt n)`$, even at fixed operator error. That is a bound

@@ -513,6 +513,14 @@ interlayers, exact rational subset grids, optimized witness gaps, and
 native source/controlled-source witnesses with arbitrary dirty extensions.
 Its robust constant lower bounds are analytic, not inferred from sampling
 the finite circuits. Initialized-clean isometries remain outside its scope.
+The separate [clean-aware proof](../../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md)
+has [seven bounded checks](../../tests/test_clean_aware_depth_obstruction.py)
+for the initialized-projector sum and robustness, exact complete-frame
+witnesses, the explicit one-clean gap with an infinite-tail certificate,
+mod-eight residue events, and a native three-layer counterexample to the
+two-layer alphabet. The fixed-clean three-layer obstruction instead uses
+the cited polynomial-limit theorem and analytic compactness. These tests
+neither prove that imported theorem nor evaluate its positive error gap.
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for
 prefix preparation, native controlled-H phases, actual inverse, scalar

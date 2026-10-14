@@ -173,6 +173,14 @@ separately identifies the sharp worst-case square-root normalization cost
 of that source architecture, including operator-norm approximation. It is
 not an unrestricted circuit-depth lower bound or an input to the upper bound.
 
+The separate [constant-depth obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, applies to arbitrary Clifford interlayers and dirty width. For every
+fixed clean budget, some complete frames require at least four T layers
+below a positive, unevaluated accuracy threshold, uniformly in dimension.
+Its explicit one-clean two-layer gap also gives a three-layer lower bound
+at $`L\ge8`$. These constant bounds do not establish asymptotic depth
+optimality. Optimal depth remains an open problem.
+
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count
 recurrence are needed by the later pipeline; the grouped selector schedule
