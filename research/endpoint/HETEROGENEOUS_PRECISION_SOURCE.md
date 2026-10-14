@@ -3,9 +3,10 @@
 [Precision gauges](PRECISION_GAUGE_COMPILER.md) · [Disjoint reflection sources](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources) · [Carried-source history](../../docs/FAULT_TOLERANT_COMPILER.md#8-shared-private-work-history-and-the-final-normalization)
 
 Complete connected Hopf trees admit a linear native compiler when every
-nonzero branch exponent lies between $`2N/n`$ and a fixed multiple of
-$`N/\log_2n`$. The exponent can change independently at every node. One
-small-ratio geometric source is retained through the entire coarse row
+nonzero branch exponent is at most a fixed multiple of $`N/\log_2n`$.
+The exponent can change independently at every node. Cheap native
+scalar merges and a common-source polynomial compiler share one correction
+feature per node. One small-ratio geometric source is retained through the entire coarse row
 network; a short integer shift multiplier and an exactly dyadic scalar
 encode each node's precision. The source returns in one final
 amplification, with the original two clean qubits and dirty reservation.
@@ -27,7 +28,7 @@ zero rotation or a normalized rotation with smaller branch
 
 ```math
 2^{-E_v-1}\le s_v\le2^{-E_v},\qquad
-\frac{2N}{n}\le E_v\le\frac{A_\star N}{\log_2n},\qquad E_v\in\mathbb Z.
+0\le E_v\le\frac{A_\star N}{\log_2n},\qquad E_v\in\mathbb Z.
 ```
 
 The integer bins are supplied effective classical data, independently at
@@ -97,7 +98,7 @@ whole space of the remaining registers, using the
 Finally reverse the actual predicate word. A complete-isometry hybrid
 charges any suffix leakage; no intermediate reset is used.
 
-## 2. Exact coarse rotations and their full row network
+## 2. Mixed local merges with one feature per node
 
 Write a target normalized node rotation as
 
@@ -106,7 +107,13 @@ R_y(\theta)=\begin{bmatrix}c&-s\\s&c\end{bmatrix},
 \qquad \tau=\tan(\theta/2)=\frac{s}{1+c}.
 ```
 
-For a nonzero node v choose a positive dyadic $`u_v`$, with m fractional
+Call a nonzero node cheap when $`E_v\lt2N/n`$ and expensive otherwise.
+This comparison is on the supplied integer bin. Both constructions below
+use $`\eta=1/(1000n^2)`$ and retain literal complex phases.
+
+### Expensive nodes: a Cayley rotation and a native splitter
+
+For an expensive node v choose a positive dyadic $`u_v`$, with m fractional
 bits, approximating $`2^{E_v}\tau_v`$, where
 
 ```math
@@ -116,7 +123,8 @@ m=O(\log n),\qquad 2^{-m}\le\frac1{16000n^2},
 
 These bounds hold uniformly for sufficiently large n, by certified
 rounding of $`2^{E_v}\tau_v\in[1/4,1]`$. Put $`t_v=2^{-E_v}u_v`$.
-At a known zero node take $`t_v=u_v=0`$ and the exact identity gate.
+For the polynomial compiler only, put $`t_v=u_v=0`$ at every cheap or
+known zero node; its actual cheap merge will be a separate native interlayer.
 The exact mathematical coarse gate is the dyadic Cayley rotation
 
 ```math
@@ -128,42 +136,163 @@ R(t)=(I+tJ)(I-tJ)^{-1}
 
 The derivatives of its first column, together with
 $`s_v\ge2^{-E_v-1}`$, give relative error at most
-$`\eta_{\mathrm{rel}}=1/(1000n^2)`$ in both nonzero entries, after the fixed
+$`\eta`$ in both nonzero entries, after the fixed
 rounding margin above. All coefficients in (4) are exact computable
-rationals. This defines the ideal coarse frame $`W_0`$ and the regular
-gauge; it does not assert that (4) is an exact finite native gate.
-
-Use the [regular Parseval network](PRECISION_GAUGE_COMPILER.md#2-the-full-column-regular-gauge-and-its-parseval-source)
-for these gates. At each depth, first merge the two carriers with
-$`R(t_v)^\dagger=R(-t_v)`$, then split the parent carrier against its
-fresh feature mode with an exactly native splitter. Choose its literal
-first column $`(r_d,t_d^{\rm split})`$ so that
+rationals; (4) is a mathematical target, not an assumed exact native gate.
+Write its first column as $`(a_v,b_v)`$, with real positive entries.
+First apply $`R(t_v)^\dagger`$ to the child carriers, then apply a fixed
+exact native splitter $`U^{\rm sp}`$ between the parent carrier and its
+fresh feature. Choose its literal first column $`(r,t)`$ so that
 
 ```math
-\frac1{16n}\le |t_d^{\rm split}|^2\le\frac1{8n}.
+l=|t|^2=1-|r|^2\in[1/(1600n),1/(800n)].
 ```
 
-Finite native single-qubit approximants with polynomial-in-log(n) word
-length suffice, using a strict interior target. Keep the splitter at
-every node of the full upper tree, including known zero rotations and
-crossings that previously separated components. Both child carriers
-therefore have the same depthwise attenuation before each merge. Since
-every path has at most n stages, products of the actual $`r_d`$ give the
-regular-gauge uniform bounds:
+A strict interior target and a polynomial-in-log(n) native word suffice.
+Its entries may be complex; neither r nor t is replaced by its magnitude.
+The resulting local column on arbitrary dirty inputs is
 
 ```math
-Q_0|x,0\rangle
-=\begin{bmatrix}\Gamma W_0^\dagger x\\
-                 \Omega T_0^\dagger x\end{bmatrix},\qquad
-|\gamma_j|^2\ge7/8,\qquad
-|\omega_v|^2\ge7/(128n).
+\begin{bmatrix}B_v^\dagger\\F_vL_v^\dagger\end{bmatrix},\qquad
+B_v=R(t_v)\,\mathrm{diag}(\bar r,1),\quad
+L_v=R(t_v)e_0=(a_v,b_v)^T,\quad F_v=tI.
+```
+
+Thus $`B_vB_v^\dagger+lL_vL_v^\dagger=I`$ and
+$`F_v^\dagger F_v=lI`$. Only one feature mode is used.
+
+### Cheap nodes: the actual lossy native scalar
+
+Use the [lossy scalar construction](PRECISION_GAUGE_COMPILER.md#3-lossy-native-scalars-supply-their-own-correction-features).
+Choose the dyadic loss parameter
+
+```math
+\tau_v=2^{-E_v-\lceil\log_2(200/\eta)\rceil},\qquad
+\eta s_v/400\le\tau_v\le\eta s_v/100.
+```
+
+Fix one common precision $`q_{\rm ch}=\lceil2N/n\rceil+O(\log n)`$
+and one physical dirty source core for all cheap nodes, with a fixed
+sufficient margin. Let $`z_v`$ be the actual accepted scalar of the
+word emitted at that precision,
+with $`|z_v-(1-\tau_v)e^{2i\theta_v}|\le\tau_v/100`$. The
+exact emitted word $`U_v`$ and its actual rejection satisfy
+
+```math
+U_v|0\rangle=|0\rangle\bar z_vI+|1\rangle F_v,\qquad
+F_v^\dagger F_v=l_vI,\qquad l_v=1-|z_v|^2.
+```
+
+Take
+
+```math
+a_v=(1+z_v)/2,\qquad b_v=(z_v-1)/(2i),\qquad
+B_v=\begin{bmatrix}a_v&-b_v\\b_v&a_v\end{bmatrix},\qquad
+L_v=\ell=(1,-i)^T/\sqrt2.
+```
+
+The fixed Clifford eigenbasis construction implements exactly
+$`[B_v^\dagger;F_vL_v^\dagger]`$, with
+$`B_vB_v^\dagger+l_vL_vL_v^\dagger=I`$. Its rejected operator
+is retained, not replaced by a scalar completion. Choose and fix each
+actual row word before computing the gauge. These words are exact native
+interlayers even though their accepted carrier blocks are contractions;
+the precision-trace theorem is not being used as an exact coarse unitary.
+
+At a known normalized zero use $`B_v=I`$, $`F_v=0`$, and no feature
+query or splitter. One may fix $`L_v=e_0`$ there; its coefficient below
+is zero. Every node retains its allocated feature label, even when unused.
+
+### Full-column gauge for the mixed network
+
+For either nonzero chart, let $`B_v=[b_{0,v},b_{1,v}]`$ and set
+$`d_{root}=1`$ and
+
+```math
+d_L=d_vc_v/(b_{0,v})_0,\qquad d_R=d_vs_v/(b_{0,v})_1.
+```
+
+Define the two scalar correction coefficients by the local identity
+
+```math
+\mathrm{diag}(d_L,d_R)^{-1}(-s_v,c_v)^T
+=b_{1,v}C_v+L_vA_v.
+```
+
+For a cheap node these are exactly the coefficients in the lossy gauge:
+
+```math
+C_v=\frac{z_v-\cos(2\theta_v)}{2id_vc_vs_v},\qquad
+A_v=-\frac{(z_v-e^{2i\theta_v})(z_v-e^{-2i\theta_v})}
+                 {2\sqrt2\,d_vc_vs_v}.
+```
+
+For an expensive node, direct expansion in the orthonormal vectors
+$`(-b_v,a_v)^T`$ and $`(a_v,b_v)^T`$ gives
+
+```math
+d_L=\frac{d_vc_v}{\bar r a_v},\qquad
+d_R=\frac{d_vs_v}{\bar r b_v},\qquad
+C_v=\frac{\bar r a_vb_v}{d_vc_vs_v},\qquad
+A_v=\frac{\bar r(c_v^2b_v^2-s_v^2a_v^2)}{d_vc_vs_v}.
+```
+
+At a zero node use equal child gauges $`d_L=d_R=d_v`$,
+$`C_v=1/d_v`$, and $`A_v=0`$, without evaluating a zero denominator.
+
+Let $`W_B`$ be the complete coarse frame obtained by inserting the
+matrices $`B_v`$ in the tree recursion. Let $`L_B`$ contain the vector
+$`L_v`$ injected at node v and propagated through its coarse descendants.
+Let D contain the leaf gauges, let $`C_{root}=1`$, and place $`C_v`$
+and $`A_v`$ at v's original detail column. Descendant induction gives
+
+```math
+\begin{gathered}
+W_{\rm up}=D(W_BC+L_BA),\\
+Q_0|x,0\rangle=
+\begin{bmatrix}W_B^\dagger x\\
+ (F_v(L_B^\dagger x)_v)_v\end{bmatrix},\qquad Q_0^\dagger Q_0=I.
+\end{gathered}
 \qquad\text{(5)}
 ```
 
-Here $`T_0`$ contains the actual coarse internal-root states, and the
-feature flag supplies their modes. The physical merge/split circuit
-defines $`Q_0`$ as a unitary on all $`2N'`$ modes, including inputs with
-occupied feature modes. That full unitary is the target compiled below.
+Indeed each coarse root is mapped by its descendant diagonal gauge to
+$`d_v`$ times the target root. The displayed two-coordinate detail
+identity then supplies every detail column. The row identity follows by
+composing the actual local columns: accepted carrier blocks are scalar
+on the dirty register, while a feature leaves the carrier network at its
+unique node. Later stages fix that feature. Thus its one surviving
+rejection is exactly $`F_v`$. No common attenuation of sibling carriers
+is needed; their differing losses are already contained in $`B_v`$.
+
+The physical network is a full unitary on all $`2N'`$ modes and all
+dirty inputs, including occupied features. This full dirty-dependent
+unitary $`Q_0`$ is the target of the carried-source compiler.
+
+The constants have uniform slack. Every path has at most n nodes, and
+the relative coarse errors are at most $`\eta`$ after removing the
+cheap node's local unit-modulus phase $`e^{i\theta_v}`$. That phase
+remains in the complex gauge; the following bound concerns its modulus.
+For $`n\ge16`$,
+
+```math
+(1+\eta)^{-n}\le|d_v|
+\le(1-\eta)^{-n}(1-1/(800n))^{-n/2},\qquad
+.999\lt|d_v|\lt1.002.
+```
+
+Consequently $`.98\lt|C_v|\lt1.02`$ at both node types. The cheap
+bound $`|A_v|/l_v\lt.8`$ is unchanged. At an expensive node, writing
+$`a_v=c_v(1+e)`$ and $`b_v=s_v(1+f)`$ gives
+
+```math
+A_v=\frac{\bar r}{d_v}c_vs_v\bigl[(1+f)^2-(1+e)^2\bigr],\qquad
+|A_v|\le3\eta,\qquad |A_v|/l\le4.8/n\le.3.
+```
+
+This cancellation is why a very small branch does not enlarge its
+feature coefficient. The root coefficient and all zero-node coefficients
+obey the same uniform bounds.
 
 For clarity, if p and m are the left and right carrier labels of a node,
 the merge acts on $`(0,p),(0,m)`$ and its splitter on
@@ -176,10 +305,13 @@ an explicit native matching layout on all modes, with the conjugating
 CNOTs cancelling on other pairs. No whole logical endpoint or exponent
 is copied to a fresh clean register.
 
-Let $`C_d`$ denote the exact splitter layer. Let $`\mathcal R_d`$ be its
-preceding merge layer. On each active carrier pair use generator
-$`J_d=-J`$, so its merge is $`R(-t_v)`$; feature and frozen modes have
-identity merge. There is one list of $`R=n-K\le n`$ depths. Thus
+Let $`\mathcal R_d`$ apply only the expensive Cayley merge adjoints at
+depth d, and let $`C_d`$ apply the cheap native three-port merges and the
+expensive fixed splitters on their disjoint node modes. It is an exact
+native unitary on the logical, feature, and dirty registers. On expensive
+carrier pairs the polynomial generator is $`J_d=-J`$; every other row
+has identity polynomial merge. There is one list of
+$`R=n-K\le n`$ depths. Thus
 
 ```math
 Q_0=C_R\mathcal R_R\cdots C_1\mathcal R_1.
@@ -188,8 +320,7 @@ Q_0=C_R\mathcal R_R\cdots C_1\mathcal R_1.
 
 The same construction can include a preserved row-attenuation flag: on
 its failure value set all polynomial coefficients to zero and disable
-every splitter. This is the only sector on which the entire splitter
-network is disabled. Its target is exactly I, while the normalization
+every native merge and splitter. Its target is exactly I, while the normalization
 below stays uniform.
 
 ## 3. One common finite source with a small ratio
@@ -230,8 +361,11 @@ For $`d\ge M`$ the residual is $`\beta^d\le\beta^M`$, so the final
 bound in (9) holds for every nonnegative integer d. This is a full-output
 relation on the source column, not just a projected overlap. Define
 $`E_g=|g_\beta\rangle\otimes I`$ with exactly the same source on every
-carrier, feature, and row-attenuation-control value. It commutes with
-every system-only operation; no unchanged class label is required.
+carrier, feature, and row-attenuation-control value, and tensor it with
+identity on the entire arbitrary dirty register. In this chapter the
+system for the inner compiler includes those dirty inputs. Thus every
+actual cheap merge, including its dirty action, intertwines with
+$`E_g`$. No unchanged class label or intermediate dirty return is required.
 
 ### Charged preparation and its full-space extension
 
@@ -258,8 +392,11 @@ There is no need for a coarse preparation. Indeed
 $`\|v-e_0\|=O(\beta)\le1/(16M)`$ for sufficiently large n,
 so the reflection interface's local state chart takes its coarse word
 to be identity. Its Walsh interlayers act only on source bits, and its
-diagonals and center signs preserve every system label. Thus the emitted
-word preserves the system exactly, even when its private compiler flag leaks.
+diagonals and center signs preserve every reduced logical, feature, and
+row-attenuation address label. The emitted word preserves those labels
+exactly, even when its private compiler flag leaks. Disturbance of its
+arbitrary dirty compiler core is included in $`\delta_A`$; no exact
+dirty-return claim is imposed on this approximate preparation.
 Its inverse below is its actual native inverse. The flag is distinct
 from all private flags used by the carried stream.
 
@@ -272,22 +409,23 @@ R(-t_v)=I+2\sum_{\nu=1}^{\infty}t_v^\nu J_d^\nu.
 \qquad\text{(11)}
 ```
 
-For every nonzero node compute classically
+For every expensive node compute classically
 
 ```math
-E_v=a_v\Delta+r_v,\qquad
-a_v=\lfloor E_v/\Delta\rfloor,\qquad 0\le r_v\lt\Delta,
-\qquad 2n\le a_v\le a_{max}\le\frac{A_\star n^2}{\log_2n}.
+E_v=k_v\Delta+e_v,\qquad
+k_v=\lfloor E_v/\Delta\rfloor,\qquad 0\le e_v\lt\Delta,
+\qquad 2n\le k_v\le k_{max}\le\frac{A_\star n^2}{\log_2n}.
 ```
 
 This division is on a supplied integer, not an unknown real exponent.
-At a known zero node put $`a_v=r_v=u_v=0`$. For
+At a cheap or known zero node put $`k_v=e_v=u_v=0`$. These multiplier
+symbols are distinct from the local coarse matrix entries. For
 $`1\le\nu\le P`$, define
 
 ```math
 f_{v,\nu}
-=\frac{2P(1-p)}p\,u_v^\nu2^{-\nu(a_vB+r_v)}
-=2n(8n-1)u_v^\nu2^{-\nu(a_vB+r_v)}.
+=\frac{2P(1-p)}p\,u_v^\nu2^{-\nu(k_vB+e_v)}
+=2n(8n-1)u_v^\nu2^{-\nu(k_vB+e_v)}.
 \qquad\text{(12)}
 ```
 
@@ -297,7 +435,7 @@ labels. These numbers are exact dyadics, obey $`0\le f_{v,\nu}\le1/4`$,
 and need at most
 
 ```math
-q_{\rm coef}\le P(m+a_{max}B+\Delta)+O(1)
+q_{\rm coef}\le P(m+k_{max}B+\Delta)+O(1)
 =\frac Nn+O_{A_\star}(n^3).
 \qquad\text{(13)}
 ```
@@ -310,23 +448,23 @@ wires. Enlarge the finite sign grid by a fixed number of places when
 necessary. This is the unamplified scalar word; no inverse polynomial
 or unrounded real coefficient is being encoded.
 
-The long remainder $`r_v`$ appears only in the offline scalar-mask
-table. It is never loaded into a quantum register: unlike $`a_v`$, its
+The long remainder $`e_v`$ appears only in the offline scalar-mask
+table. It is never loaded into a quantum register: unlike $`k_v`$, its
 ordinary binary description can have order n bits. Only the multiplier
-$`a_v`$, of $`O(\log n)`$ bits for fixed $`A_\star`$, is loaded
+$`k_v`$, of $`O(\log n)`$ bits for fixed $`A_\star`$, is loaded
 coherently.
 
 Prepare a uniform P-valued label $`\ell`$ and interpret
 $`\nu=\ell+1`$. Prepare $`\log_2(8n)`$ Hadamard bits and designate
 their all-zero string as a rare event, of probability p. In the common
 event SELECT is identity. In the rare event apply the scalar word for
-f, the shift dilation for $`S_{a_v\nu}`$, and the literal quarter-turn
+f, the shift dilation for $`S_{k_v\nu}`$, and the literal quarter-turn
 $`J_d^\nu`$ on the selected carrier pair. Its phase is retained; modulo
 four powers suffice. The quarter-turn exponent is still $`\nu`$, not
-$`a_v\nu`$.
+$`k_v\nu`$.
 
-Load $`a_v`$ by an exact whole-word table, multiply by $`\nu`$ into
-$`O(\log n)`$ clean arithmetic work, and let $`d=a_v\nu`$ be the
+Load $`k_v`$ by an exact whole-word table, multiply by $`\nu`$ into
+$`O(\log n)`$ clean arithmetic work, and let $`d=k_v\nu`$ be the
 full nonnegative product. Toggle a distinct underflow flag by
 $`[j\lt d]`$ **before** reducing d modulo M, then subtract d modulo M
 from the source index. If $`d\ge M`$, the predicate is true for every
@@ -351,7 +489,7 @@ the boundary. The actual kernel $`K_d`$ has F-zero block
 
 ```math
 T_d=(1-p)I+\frac pP\sum_{\nu=1}^P\sum_{v\text{ at depth }d}
-S_{a_v\nu}\otimes f_{v,\nu}J_{d,v}^\nu.
+S_{k_v\nu}\otimes f_{v,\nu}J_{d,v}^\nu.
 \qquad\text{(14)}
 ```
 
@@ -365,7 +503,7 @@ later operation on the same flag. Since it is a compression of a
 unitary, $`\|T_d\|\le1`$.
 
 Use the exact identity
-$`t_v=\beta^{a_v}u_v2^{-(a_vB+r_v)}`$ in (11). With
+$`t_v=\beta^{k_v}u_v2^{-(k_vB+e_v)}`$ in (11). With
 $`D_d=(1-p)\mathcal R_d`$, equations (9), (12), and (14) give
 
 ```math
@@ -381,7 +519,8 @@ Disjoint carrier pairs make the nodewise contribution a maximum,
 so no factor equal to the number of nodes occurs in (15).
 Frozen and disabled sectors have exactly $`(1-p)I`$ as their kernel;
 they do not acquire a different attenuation. Also
-$`\|D_d\|=1-p`$. Since $`E_{min}=2N/n`$, increasing the fixed
+$`\|D_d\|=1-p`$. Every expensive node has $`E_v\ge2N/n`$;
+all other polynomial rows have $`t_v=0`$. Increasing the fixed
 threshold so that $`4n^2B\le N`$ gives
 
 ```math
@@ -409,8 +548,9 @@ V_{\rm acc}=(I\otimes C_R)T_R\cdots(I\otimes C_1)T_1.
 \qquad\text{(17)}
 ```
 
-Each $`C_d`$ is defined on every occupied feature input and acts only on
-the system. The source is the same on every system mode. Thus
+Each $`C_d`$ is defined on every occupied feature and arbitrary dirty
+input. It acts on those system registers and never on the carried source
+or private history. The source is the same on every system input. Thus
 $`(I\otimes C_d)E_g=E_gC_d`$, and contractive telescoping of (15)
 proves
 
@@ -475,65 +615,117 @@ reflection does not test arbitrary logical, feature, or dirty inputs.
 When compiling the row-controlled version, its preserved attenuation
 control is likewise system data, not initialized work.
 
-## 6. Fine regular gauge and the final frame
+## 6. Replaying the mixed features and recovering the frame
 
-Apply the regular full-column identity to the exact coarse gates (4):
+Take $`\Lambda=5/4`$ and $`\kappa=8/5`$, so
+$`\Lambda\kappa=2`$. The ideal row source first attenuates by
+$`D^\dagger/\Lambda`$, routes its failure to one bank, and applies
+the full mixed $`Q_0`$ on the shared sector. This is a contraction
+because $`|D|\lt1.002`$. For the column source put, at every nonzero
+detail label,
 
 ```math
-W_{\rm up}=D(W_0C+T_0A).
+x_v=C_v/\kappa,\qquad y_v=A_v/(\kappa l_v),\qquad
+\rho_v=(|x_v|^2+l_v|y_v|^2)^{1/2}.
+```
+
+At the root and zero nodes use $`x=C/\kappa`$, $`y=0`$, and omit
+all divisions by l and feature queries. Section 2 gives
+$`.6\lt\rho_v\lt.7`$ and $`|y_v|/\rho_v\lt1`$. For a cheap
+node the accepted scalar of $`U_v`$ is $`z_{0,v}=\bar z_v`$; for
+an expensive node use the very same fixed splitter, with
+$`z_{0,v}=r`$ and $`F_v=tI`$. In both cases
+$`2|z_{0,v}|\gt1`$.
+
+The [two-query replay identity](PRECISION_GAUGE_COMPILER.md#4-matching-arbitrary-dirty-rejection-and-recovering-the-frame)
+is a full-operator consequence of unitarity:
+
+```math
+U_v\begin{bmatrix}e^{i\phi_v}I&0\\0&I\end{bmatrix}U_v^\dagger|0\rangle
+=\begin{bmatrix}
+1+(e^{i\phi_v}-1)|z_{0,v}|^2\\
+(e^{i\phi_v}-1)\bar z_{0,v}F_v
+\end{bmatrix}.
+```
+
+Choose $`2|z_{0,v}|\,|\sin(\phi_v/2)|=|y_v|/\rho_v`$ and
+apply separate literal output-sector phases. This prepares the normalized
+pair $`(x_v/\rho_v,(y_v/\rho_v)F_v)`$ while retaining its actual
+dirty rejection. After an initial attenuation by $`\rho_v`$, its
+shared column is $`(x_v,y_vF_v)`$. Failure stays in the opposite
+bank from the row source.
+
+The chronology and fine-call count matter. Construct
+$`U_* = \bigoplus_v U_v`$ on the preserved original detail label and
+feature flag. Each cheap block replays the exact row scalar word on the
+exact same physical dirty wires. The midpoint-to-parent relabeling of
+the row bank, or its identical finite mask table indexed by the detail
+label, supplies that word. It is not replaced by a fresh synthesis
+having merely the same accepted scalar. The common cheap source width
+and physical source circuit were fixed before defining $`z_v,F_v`$.
+Expensive blocks likewise use the exact row splitter word. All root and
+zero blocks are identity.
+
+Execute all blocks of $`U_*^\dagger`$, then **one global** fine
+diagonal $`\Phi(j,b)`$, then all blocks of $`U_*`$, followed by the
+two output-sector phase banks. The algebraic middle word is
+$`U_*\Phi U_*^\dagger`$. Its chronological order is not reversed.
+After the initial attenuation, this entire replay and every phase bank
+are enabled only on its shared flag value. They are exactly identity on
+the attenuation-failure sector, on every feature and dirty input.
+Consequently column failure remains in its original $`a=1,b=0`$ bank.
+The detail labels are disjoint, so grouping the actual queries by their
+original depth changes no block. In particular there is no fine
+precision-N phase call inside each depth loop. The phase and attenuation
+banks use a separate initialized suffix compiler flag; no occupied
+attenuation flag is presumed clean. Certified approximate phase data
+can be chosen in amplitude norm also when a requested component vanishes.
+
+The ideal shared source columns are exactly
+
+```math
+\begin{gathered}
+P_{\rm shared}=\frac1\kappa
+\begin{bmatrix}C\\(A_vF_v/l_v)_v\end{bmatrix},\qquad
+Q_{\rm shared}=\frac1\Lambda
+\begin{bmatrix}W_B^\dagger D^\dagger\\
+(F_v(L_B^\dagger D^\dagger)_v)_v\end{bmatrix},\\
+Q^\dagger P=\frac12D(W_BC+L_BA)=W_{\rm up}/2.
+\end{gathered}
 \qquad\text{(21)}
 ```
 
-The relative bounds of Section 2 give the regular gauge's uniform
-contraction slack. At an exact-zero node, the coarse gate is identity,
-the two child gauges agree, and the local correction coefficients are
-$`\alpha=0`$, $`\beta=1`$. Its feature correction coefficient is zero,
-although its row-network splitter is retained. Thus the same full-column
-identity applies without dividing by a zero branch. With
-$`\Lambda=5/4`$ and $`\kappa=8/5`$, the
-ideal row source first attenuates by $`D^\dagger/\Lambda`$, routes its
-failure to one bank, and applies $`Q_0`$ on the shared sector. Its shared
-columns are
-
-```math
-\frac1\Lambda
-\begin{bmatrix}\Gamma W_0^\dagger D^\dagger\\
-\Omega T_0^\dagger D^\dagger\end{bmatrix}.
-```
-
-The column source has shared coefficients
-$`C_j/(\kappa\bar\gamma_j)`$ and
-$`A_{v,j}/(\kappa\bar\omega_v)`$, with the opposite failure bank.
-Their overlap is exactly $`W_{\rm up}/2`$ by (21). These are the
-existing regular-gauge fine banks, not a scalar replacement for an
-unknown dirty rejection operator.
+The zero-feature entries in this display are defined as zero without
+dividing by l. Its overlap uses $`F_v^\dagger F_v=l_vI`$ on all
+dirty inputs. Distinct features prevent cross-node dirty products. The
+shared bank has $`2N'-1`$ modes and the two failure banks have $`N'`$
+modes each, totaling $`4N'-1`$ within the feature and attenuation flags.
 
 The feature flag is the second external clean qubit. The row/column
-attenuation flag is a distinct active-suffix wire. The first external
-flag remains h throughout. All additional source, history, normalization,
-and compiler flags are separate active-suffix wires. In particular no
-occupied attenuation flag is reused as a clean source-preparation flag.
+attenuation flag and separate fine-compiler flag are active-suffix wires.
+The first external flag remains h throughout. Source, history,
+normalization, and preparation flags are distinct private suffix wires.
+Replace the ideal mixed row-network call by Section 5's approximation
+on all feature and dirty inputs, controlled on the shared attenuation
+value. Its other sector has target I. The inner work reflection excludes
+the arbitrary dirty input; it tests only its initialized private work.
 
-Replace the ideal row-network call by the full-unitary approximation of
-Section 5, controlled on the shared attenuation value. On its other
-value the target is I, as specified in Section 2. Compile the constant
-number of remaining fine banks at precision $`q=N+c_0`$, for a fixed
-sufficiently large $`c_0`$. An ordinary complete-isometry hybrid bounds
-these replacements. Approximate return in an earlier call is propagated
-unitarily; later calls are compared with their ideal inputs and no flag
-is reset. Apply the regular-gauge outer normalization-two recovery, with
-the conditional sign convention (20). Its reflection tests every
-initialized private and suffix wire and the feature flag; h is the
-preserved enable and is excluded from the zero-work test. It does not
-test any reduced logical or dirty input. Fixed error fractions give an
-upper-frame error below $`2^{-N}/2`$.
+Compile the constant number of remaining fine banks at
+$`q=N+c_0`$ for a fixed sufficiently large $`c_0`$. A complete-isometry
+hybrid bounds these replacements, propagating earlier leakage unitarily
+and using actual inverse words. Apply the outer normalization-two
+recovery with the conditional sign convention (20). Its reflection tests
+every initialized private and suffix wire and the feature flag; h is
+the preserved enable, excluded from the zero-work test. It does not test
+reduced logical or dirty input. Fixed error fractions give upper-frame
+error below $`2^{-N}/2`$.
 
 Finally reverse the upper-sector predicate and compose with the bottom
-compiler from (3), also at error below $`2^{-N}/2`$. This proves the
-complete error claim (1). The coarse mathematical gates are used to
-define computable gauge data; only their globally compiled row network
-is executed. There is no requirement that the carried-source word
-factor into exact native implementations of those local gates.
+compiler from (3), also at error below $`2^{-N}/2`$. This proves (1).
+The cheap native words themselves, including their dirty action, are
+executed as exact interlayers and exact replays. Only the expensive
+Cayley gates require the carried polynomial compiler. No approximately
+returned low-precision frame is used as an exact coarse layer.
 
 ## 7. Native count and literal workspace
 
@@ -568,7 +760,28 @@ T_{\rm kernels}
 The exactly native splitters have polynomial-length coarse descriptions.
 Their controlled matching tables and suffix predicates cost
 $`N'\mathrm{poly}(n)+\mathrm{poly}(n)`$, absorbed by a
-single sufficiently large choice of C. Source preparation and its
+single sufficiently large choice of C. The cheap/expensive/zero selector
+is an arbitrary node-type table. At a fixed depth it depends on the
+unchanged node prefix, excluding the pair target. Compute its constant
+number of bits, execute the selected carrier/feature word, and reverse
+that lookup. Each completed lookup returns its borrowed dirty selectors
+before the selected word runs. Its inverse lookup then works on the
+possibly changed arbitrary dirty state and returns its selectors exactly.
+A conservative total $`O(nN')`$ covers these type tables.
+
+The cheap row banks and all their column replays use the fixed
+$`q_{\rm ch}=2N/n+O(\log n)`$ source core and their actual finite
+masks. If $`S_d`$ counts addressed nodes at depth d, their combined
+native cost is
+
+```math
+T_{\rm cheap+replay}
+=O\left(\sum_d S_d+nq_{\rm ch}
+              +N'\mathrm{poly}(n)+\mathrm{poly}(n)\right)=O(N).
+```
+
+There are only a constant number of global fine phase banks in the
+replay, not one per depth. Source preparation and its
 inverse, global normalization, and all fine gauge banks each have
 $`O(N)`$ cost and occur a constant number of times, even after the two
 amplifications. Equation (3) charges the bottom part. This proves the
@@ -580,12 +793,14 @@ scratch, a multiplier and full-product register of $`O(\log n)`$
 bits, $`\log_2(8n)`$ rare bits, $`\lceil\log_2R\rceil`$ history
 bits, arithmetic/predicate scratch of $`O(\log n)`$ bits, and a fixed
 number of distinct scalar, underflow, preparation, normalization, and
-fine-gauge flags. This totals $`O(\log n)`$ with a fixed constant,
+fine-gauge flags, including the separate fine compiler and the returned
+node-type flags. This totals $`O(\log n)`$ with a fixed constant,
 covered by K. Long logical suffix predicates use the existing returned
 borrowed construction, not an n-bit clean register.
 
-At a fixed depth, carrier and splitter predicates require only the
-unchanged logical suffix and fixed flags. Quarter-turn and splitter controls
+At a fixed depth, carrier and splitter predicates use the unchanged
+logical suffix, fixed flags, and the returned node-type table just
+charged. Quarter-turn and splitter controls
 therefore use polynomially many exact gates and returned borrowed
 predicate work, rather than initialized logical-endpoint metadata.
 
@@ -599,10 +814,15 @@ wires for sufficiently large n. Coarse reflection routing uses
 $`O(\sqrt N+\mathrm{poly}(n))`$ dirty space instead, and the
 dyadic kernels use at most $`N/n+O_{A_\star}(n^3)`$ dirty source
 wires, which is below $`N/2`$ after enlarging the threshold.
+The cheap source uses $`2N/n+O(\log n)`$ wires, also below $`N/2`$.
 Their short-output metadata queries reuse returned selectors inside
 that core. These reservations are sequential and reuse the same pool.
 No active-suffix bit is also
 counted as dirty storage. Thus the literal maximum is $`N+n+7`$.
+The coefficient of K can be chosen universally: for each fixed
+$`A_\star`$, the $`O(\log A_\star)`$ metadata margin is at most
+$`O(\log n)`$ beyond an $`A_\star`$-dependent threshold. Only that
+threshold and the count constant depend on $`A_\star`$.
 
 All finitely many n below the chosen threshold have fixed dimension and
 fixed required accuracy. The existing direct determinant-one,
@@ -614,7 +834,7 @@ theorem, not a proposed practical crossover threshold.
 ## 8. Scope and verification
 
 **Nodewise square-root-window corollary.** The theorem covers arbitrary
-independent bins $`2N/n\le E_v\le N/\sqrt n`$ on a fully connected
+independent bins $`0\le E_v\le N/\sqrt n`$ on a fully connected
 tree, because $`\sqrt n\ge\log_2n`$ for the permitted n. This is
 the case $`A_\star=1`$.
 
@@ -629,12 +849,15 @@ the present circuit uses a common source and different local kernels.
 
 The exponentially small shift eigenvalue in (9) permits endpoint
 accuracy with only $`M=4n^2`$ initialized source modes. Nodewise scale
-changes are now encoded by the short multiplier $`a_v`$ and the charged
-dyadic remainder. The upper proof needs no class preservation. The
-lower endpoint $`2N/n`$ controls the Taylor order, and the upper endpoint
-$`A_\star N/\log_2n`$ pays for the bottom K depths. Smaller nonzero
-exponents and bottom forests with an uncontrolled precision trace remain
-outside this theorem.
+changes on expensive nodes are encoded by the short multiplier $`k_v`$
+and the charged dyadic remainder. The cheap nodes retain their actual
+native rejected operators in the same single-feature gauge. The upper
+proof needs no class preservation. The threshold $`2N/n`$ controls the
+expensive Taylor order and cheap source sum; it is no longer a lower
+endpoint of the theorem. The upper envelope
+$`A_\star N/\log_2n`$ pays for the bottom K depths. Frames whose
+remaining bottom precision trace is uncontrolled are outside this
+theorem.
 
 The [exact helper](../../compiler_robust_hopf/heterogeneous_precision_source.py)
 records finite source residuals, dyadic Cayley coefficients, and symbolic
@@ -643,11 +866,19 @@ ledger. The
 [focused tests](../../tests/test_heterogeneous_precision_source.py)
 check finite shift residuals including shifts beyond the cap, exact
 dyadic quotient/remainder coefficients, the retained linear precision
-charge, and truncated kernel columns. Full-input checks cover separate
-scalar/underflow flags, multiplier cleanup on occupied inputs, interleaved
-node scales, known-zero merge splitters, and no-wrap history with uniform
-attenuation and nontrivial dirty rejection. Earlier class-dependent
-source fixtures remain explicitly scoped to that earlier mechanism.
+charge, truncated kernel columns, and exact large-integer metadata.
+Full-input checks cover separate scalar/underflow flags, multiplier
+cleanup on occupied inputs, interleaved node scales, and no-wrap history
+with uniform attenuation. Mixed-chart fixtures compose the actual
+three-port row words with noncommuting dirty rejection operators,
+complex splitter phases, and an exact-zero variant. They check the
+mixed gauge, the common-source intertwiner on occupied features and
+dirty inputs, actual column replay, the P/Q overlap, and full recovery.
+Negative checks detect dropped splitter phase, scalarized rejection,
+reversed replay order, and a reflection that tests the arbitrary dirty
+register. Earlier class-dependent source fixtures and the all-node
+zero-splitter fixture remain scoped to their earlier charts. The mixed
+chart here uses $`B_v=I,F_v=0`$ and no splitter at exact-zero nodes.
 Those bounded checks verify the displayed interfaces; they do not
 establish the asymptotic count, replace the source-preparation charge,
 or constitute an unrestricted native frame emitter. The native theorem

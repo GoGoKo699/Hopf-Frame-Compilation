@@ -517,10 +517,12 @@ the [transformed masks and width-transition bodies](SOURCE_REUSE_LIMITS.md#2-fac
 to be compiled, so exterior cancellation does not supply a new ledger.
 This rescheduling route stops at (11a). The
 [heterogeneous-source compiler](HETEROGENEOUS_PRECISION_SOURCE.md) supplies
-a different native identity: a prepared geometric source with a tiny
-common ratio is carried through exact dyadic Cayley kernels with
-node-dependent integer shifts. Its nodewise exponent theorem includes
-this mixed-height family as a corollary, with preparation, actual inverses,
+a different native identity: a mixed local gauge combines the actual
+cheap scalar sources and their dirty rejection replay from Sections 3–4
+with a carried common geometric source for expensive Cayley kernels.
+Both node types use one correction feature. Its nodewise exponent theorem
+allows arbitrary mixing and includes this mixed-height family as a
+corollary, with source preparation, global fine replay, actual inverses,
 and full work return charged. It changes the sources and merge
 implementation, so it does not contradict the unchanged-bank proposition.
 The unrestricted endpoint question remains open.

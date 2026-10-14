@@ -261,10 +261,17 @@ test the finite geometric residual, exact exponent remainders and dyadic
 coefficient grids, saturated shifts, and exponent-only precision ledgers.
 Connected noncommuting planes share one source with retained failure
 history; occupied feature columns, zero-merge splitters, and pair-symmetric
-metadata return have independent checks and negative controls. The
-[nodewise common-source proof](../../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md)
-prices one prepared source, the complete row network, and final recovery
-for the stated exponent interval, including connected trees;
+metadata return have independent checks and negative controls. Mixed-chart
+fixtures check the full row word with noncommuting dirty rejection,
+complex splitter phases and known-zero nodes, then actual source replay,
+$`W/2`$ overlap and complete initialized-isometry recovery. Negative
+controls replace dirty rejection by its norm, reverse replay, drop a
+splitter phase or incorrectly include dirty inputs in the clean reflection.
+Exact integer metadata also has an overflow regression. The
+[mixed nodewise common-source proof](../../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md)
+prices one prepared source, the complete row network with actual cheap
+dirty-source action, global fine replay, and final recovery for the stated
+upper exponent envelope with arbitrary cheap/expensive mixing;
 these finite identities are not a variable-size native emitter. The
 [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact

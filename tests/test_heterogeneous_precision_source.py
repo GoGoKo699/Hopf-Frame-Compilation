@@ -20,6 +20,7 @@ from compiler_robust_hopf.heterogeneous_precision_source import (
     kernel_source_error_bound,
     small_ratio_parameters,
     source_shift_residual_squared,
+    splitter_gauge_coefficients,
 )
 
 
@@ -124,6 +125,130 @@ def _common_plane_kernel(size, left, right, beta, mantissa, multiplier, remainde
         result += float(probability * coefficient / order) * np.kron(
             _shift(length, multiplier * degree), local)
     return result
+
+
+def _embed_modes(count, modes, local, dirty_size=2):
+    result = np.eye(count * dirty_size, dtype=complex)
+    indices = [dirty_size * mode + dirty for mode in modes for dirty in range(dirty_size)]
+    result[np.ix_(indices, indices)] = local
+    return result
+
+
+def _mixed_chart_fixture(zero_left=False):
+    """Actual three-port unitaries and an independent scalar tree recursion."""
+    size, height, identity = 4, 2, np.eye(2)
+    eta = 1 / (1000 * height ** 2)
+    ell = np.array([1, -1j]) / np.sqrt(2)
+    eigenbasis = np.column_stack((ell, ell.conj()))
+    pair_basis = np.kron(_direct_sum((eigenbasis, np.ones((1, 1)))), identity)
+    polars = {1: np.array([[0, 1j], [1, 0]]), 2: np.diag([1, 1j])}
+    nodes, gauges = {}, {1: 1 + 0j}
+    target = np.eye(size, dtype=complex)
+    coarse = target.copy()
+    coefficients, corrections = np.ones(size, complex), np.zeros(size, complex)
+    for vertex, (left, detail, angle) in enumerate(((0, 2, .37), (0, 1, .49), (2, 3, .23)), 1):
+        if zero_left and vertex == 2:
+            angle = 0.
+        c, s = np.cos(angle), np.sin(angle)
+        rotation = np.array([[c, -s], [s, c]])
+        target[[left, detail]] = rotation @ target[[left, detail]]
+        node = dict(left=left, detail=detail, target=(c, s), gauge=gauges[vertex])
+        if angle == 0:
+            gate, feature = np.eye(2), np.zeros(2)
+            loss, accepted, rejected, scalar = 0., 1., np.zeros((2, 2)), np.eye(4)
+            local_word = np.eye(6)
+            gauges[2 * vertex] = gauges[2 * vertex + 1] = gauges[vertex]
+            coefficients[detail], corrections[detail] = 1 / gauges[vertex], 0
+        elif vertex != 3:
+            tau = eta * min(c, s) / 200
+            z = (1 - tau) * np.exp(2j * angle + 1j * tau / 200)
+            a, b = (1 + z) / 2, (z - 1) / (2j)
+            gate, feature = np.array([[a, -b], [b, a]]), ell
+            loss, accepted = 1 - abs(z) ** 2, z.conjugate()
+            rejected = np.sqrt(loss) * polars[vertex]
+            # Upper-right rejection is scalar, whereas the lower-left one is
+            # not. Reversing replay chronology therefore loses the dirty polar.
+            scalar = np.block([[accepted * identity, -np.sqrt(loss) * identity],
+                               [rejected, accepted.conjugate() * polars[vertex]]])
+            local_word = pair_basis @ _embed_modes(3, (0, 2), scalar) @ pair_basis.conj().T
+            gauges[2 * vertex] = gauges[vertex] * c / a
+            gauges[2 * vertex + 1] = gauges[vertex] * s / b
+            t = np.exp(2j * angle)
+            coefficients[detail] = (z - np.cos(2 * angle)) / (2j * gauges[vertex] * c * s)
+            corrections[detail] = -(z - t) * (z - t.conjugate()) / (
+                2 * np.sqrt(2) * gauges[vertex] * c * s)
+        else:
+            coarse_angle = angle + eta * s / 20
+            a, b = np.cos(coarse_angle), np.sin(coarse_angle)
+            loss = 1 / (1200 * height)
+            carrier = np.sqrt(1 - loss) * np.exp(.61j)
+            split = np.sqrt(loss) * np.exp(-.37j)
+            scalar = np.kron(np.array([[carrier, -split.conjugate()],
+                                      [split, carrier.conjugate()]]), identity)
+            real_gate = np.array([[a, -b], [b, a]])
+            gate, feature = real_gate @ np.diag([carrier.conjugate(), 1]), np.array([a, b])
+            accepted, rejected = carrier, split * identity
+            local_word = _embed_modes(3, (0, 2), scalar) @ _embed_modes(
+                3, (0, 1), np.kron(real_gate.T, identity))
+            gauges[2 * vertex] = gauges[vertex] * c / (carrier.conjugate() * a)
+            gauges[2 * vertex + 1] = gauges[vertex] * s / (carrier.conjugate() * b)
+            coefficients[detail], corrections[detail] = splitter_gauge_coefficients(
+                (c, s), (a, b), carrier, gauges[vertex])
+            node.update(carrier=carrier, coarse_pair=(a, b))
+        coarse[[left, detail]] = gate @ coarse[[left, detail]]
+        node.update(gate=gate, feature=feature, loss=loss, accepted=accepted,
+                    rejected=rejected, scalar=scalar, local_word=local_word)
+        nodes[vertex] = node
+    roots = {size + leaf: np.eye(size)[:, leaf] for leaf in range(size)}
+    injections, row_word = np.zeros((size, size), complex), np.eye(2 * size * 2, dtype=complex)
+    for vertex in (3, 2, 1):
+        node = nodes[vertex]
+        left, right = roots[2 * vertex], roots[2 * vertex + 1]
+        roots[vertex] = node['gate'][0, 0] * left + node['gate'][1, 0] * right
+        injections[:, node['detail']] = node['feature'][0] * left + node['feature'][1] * right
+        row_word = _embed_modes(2 * size, (node['left'], node['detail'], size + node['detail']),
+                                node['local_word']) @ row_word
+    return dict(nodes=nodes, target=target, coarse=coarse, coefficients=coefficients,
+                corrections=corrections, diagonal=np.array([gauges[size + j] for j in range(size)]),
+                injections=injections, row_word=row_word)
+
+
+def _mixed_source_words(fixture):
+    """Full four-bank words using actual scalar replay, not completed columns."""
+    size, identity, kappa, scale = 4, np.eye(2), 8 / 5, 5 / 4
+    pword = np.eye(4 * size * 2, dtype=complex)
+    detail_nodes = {node['detail']: node for node in fixture['nodes'].values()}
+    for label in range(size):
+        node = detail_nodes.get(label)
+        x = fixture['coefficients'][label] / kappa
+        y = (fixture['corrections'][label] / (kappa * node['loss'])
+             if node is not None and node['loss'] else 0j)
+        loss = node['loss'] if node is not None else 0.
+        radial = np.sqrt(abs(x) ** 2 + loss * abs(y) ** 2)
+        attenuation = np.array([[radial, -np.sqrt(1 - radial ** 2)],
+                                [np.sqrt(1 - radial ** 2), radial]])
+        pword = _embed_modes(4 * size, (label, 2 * size + label),
+                             np.kron(attenuation, identity)) @ pword
+        if y == 0:
+            replay = np.kron(np.diag([x / radial, 1]), identity)
+        else:
+            accepted, scalar = node['accepted'], node['scalar']
+            phase = np.exp(2j * np.arcsin(abs(y / radial) / (2 * abs(accepted))))
+            first = 1 + (phase - 1) * abs(accepted) ** 2
+            second = (phase - 1) * accepted.conjugate()
+            phases = np.exp(1j * np.angle([x / (radial * first), y / (radial * second)]))
+            replay = (np.kron(np.diag(phases), identity) @ scalar @
+                      np.kron(np.diag([phase, 1]), identity) @ scalar.conj().T)
+        pword = _embed_modes(4 * size, (label, size + label), replay) @ pword
+    qword = np.eye(4 * size * 2, dtype=complex)
+    for label, diagonal in enumerate(fixture['diagonal']):
+        value = diagonal.conjugate() / scale
+        reject = np.sqrt(1 - abs(value) ** 2)
+        attenuation = np.array([[value, -reject], [reject, value.conjugate()]])
+        qword = _embed_modes(4 * size, (label, 3 * size + label),
+                             np.kron(attenuation, identity)) @ qword
+    qword = _direct_sum((fixture['row_word'], np.eye(2 * size * 2))) @ qword
+    return pword, qword
 
 
 class HeterogeneousPrecisionSourceTests(unittest.TestCase):
@@ -393,7 +518,8 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
         self.assertEqual(np.linalg.norm(wrong[np.ix_(occupied, empty)], 2), 1.)
 
     def test_common_source_interleaved_scales_and_zero_merge_splitter_history(self):
-        # A connected four-label tree, occupied feature inputs, and a single
+        # The earlier UNIFORM-ATTENUATION chart, not the mixed local chart
+        # tested below: a connected tree, occupied features, and a single
         # geometric source. Different exponents occur on overlapping root
         # planes. A zero right-child merge STILL receives its splitter.
         beta, spacing, bits = Fraction(1, 2), 11, 10
@@ -436,7 +562,7 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
                                            source @ ideal, 2), float(total_bound) + ATOL)
         self.assertGreater(np.linalg.norm(no_history[:data_size] - compressed, 2), .01)
 
-        # Independently check why the identity-merge splitter must remain.
+        # In this uniform-attenuation chart the identity-merge splitter remains.
         # Q's complete leaf columns have top block Gamma W^T only with equal
         # child attenuation before the root merge.
         left_angle, root_angle, split_angle = .31, -.42, .23
@@ -456,6 +582,128 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
         gamma_rows = np.diag((attenuation ** 2, 1., attenuation, 1.))
         np.testing.assert_allclose(correct[:4, :4], gamma_rows @ coarse.T, atol=ATOL, rtol=0)
         self.assertGreater(np.linalg.norm(omitted[:4, :4] - gamma_rows @ coarse.T, 2), .02)
+
+    def test_mixed_local_charts_full_tree_phase_and_dirty_row_word(self):
+        identity = np.eye(2)
+        for zero_left in (False, True):
+            with self.subTest(zero_left=zero_left):
+                fixture = _mixed_chart_fixture(zero_left)
+                row_word, nodes = fixture['row_word'], fixture['nodes']
+                if not zero_left:
+                    first = nodes[1]['rejected'] / np.sqrt(nodes[1]['loss'])
+                    second = nodes[2]['rejected'] / np.sqrt(nodes[2]['loss'])
+                    self.assertGreater(np.linalg.norm(first @ second - second @ first, 2), 1.)
+                coarse, injected = fixture['coarse'], fixture['injections']
+                diagonal, coefficients, corrections = (fixture[key] for key in
+                                                       ('diagonal', 'coefficients', 'corrections'))
+                np.testing.assert_allclose(row_word.conj().T @ row_word, np.eye(16),
+                                           atol=ATOL, rtol=0)
+                np.testing.assert_allclose(row_word[:8, :8], np.kron(coarse.conj().T, identity),
+                                           atol=ATOL, rtol=0)
+                np.testing.assert_array_equal(row_word[8:10, :8], np.zeros((2, 8)))
+                for node in nodes.values():
+                    detail = node['detail']
+                    expected = node['rejected'] @ np.kron(injected[:, detail].conj()[None, :], identity)
+                    np.testing.assert_allclose(row_word[2 * (4 + detail):2 * (5 + detail), :8],
+                                               expected, atol=ATOL, rtol=0)
+                    np.testing.assert_allclose(np.eye(2) - node['gate'] @ node['gate'].conj().T,
+                                               node['loss'] * np.outer(node['feature'],
+                                                                       node['feature'].conj()),
+                                               atol=ATOL, rtol=0)
+                wanted = np.diag(diagonal) @ (coarse @ np.diag(coefficients) +
+                                              injected @ np.diag(corrections))
+                np.testing.assert_allclose(wanted, fixture['target'], atol=ATOL, rtol=0)
+                self.assertTrue(np.all((abs(diagonal) > .999) & (abs(diagonal) < 1.002)))
+                self.assertTrue(np.all((abs(coefficients) > .98) & (abs(coefficients) < 1.02)))
+                for vertex, node in nodes.items():
+                    if node['loss']:
+                        bound = 4.8 / 2 if vertex == 3 else .8
+                        self.assertLess(abs(corrections[node['detail']]) / node['loss'], bound)
+                if zero_left:
+                    zero = nodes[2]
+                    np.testing.assert_array_equal(zero['local_word'], np.eye(6))
+                    self.assertEqual(corrections[zero['detail']], 0)
+
+                # The actual row target includes dirty action on occupied
+                # feature columns. It cannot be replaced by a logical word
+                # tensored with identity on the dirty register.
+                dirty_z = np.kron(np.eye(8), np.diag([1, -1]))
+                self.assertGreater(np.linalg.norm(row_word @ dirty_z - dirty_z @ row_word, 2), .5)
+                source = np.kron(_source(Fraction(1, 4), 4)[:, None], np.eye(16))
+                np.testing.assert_allclose(np.kron(np.eye(4), row_word) @ source,
+                                           source @ row_word, atol=ATOL, rtol=0)
+
+                expensive = nodes[3]
+                wrong_c, wrong_a = splitter_gauge_coefficients(
+                    expensive['target'], expensive['coarse_pair'], abs(expensive['carrier']),
+                    expensive['gauge'])
+                bad_c, bad_a = coefficients.copy(), corrections.copy()
+                bad_c[expensive['detail']], bad_a[expensive['detail']] = wrong_c, wrong_a
+                phase_dropped = np.diag(diagonal) @ (coarse @ np.diag(bad_c) + injected @ np.diag(bad_a))
+                self.assertGreater(np.linalg.norm(phase_dropped - fixture['target'], 2), .5)
+
+    def test_mixed_actual_replay_overlap_and_recovery_excludes_dirty_reflection(self):
+        for zero_left in (False, True):
+            with self.subTest(zero_left=zero_left):
+                fixture = _mixed_chart_fixture(zero_left)
+                pword, qword = _mixed_source_words(fixture)
+                identity = np.eye(2)
+                for word in (pword, qword):
+                    np.testing.assert_allclose(word.conj().T @ word, np.eye(32), atol=ATOL, rtol=0)
+                psource, qsource = pword[:, :8], qword[:, :8]
+                np.testing.assert_allclose(psource[:8], np.kron(np.diag(fixture['coefficients'] / 1.6),
+                                                               identity), atol=ATOL, rtol=0)
+                wrong_source = psource.copy()
+                for vertex, node in fixture['nodes'].items():
+                    detail, loss = node['detail'], node['loss']
+                    rows, columns = slice(2 * (4 + detail), 2 * (5 + detail)), slice(2 * detail, 2 * detail + 2)
+                    expected = (fixture['corrections'][detail] * node['rejected'] / (1.6 * loss)
+                                if loss else np.zeros((2, 2)))
+                    np.testing.assert_allclose(psource[rows, columns], expected, atol=ATOL, rtol=0)
+                    if loss and vertex != 3:
+                        wrong_source[rows, columns] = (fixture['corrections'][detail] /
+                                                       (1.6 * np.sqrt(loss))) * identity
+                        scalar, accepted = node['scalar'], node['accepted']
+                        phase = np.exp(.83j)
+                        signal = np.kron(np.diag([phase, 1]), identity)
+                        replayed = (scalar @ signal @ scalar.conj().T)[:, :2]
+                        wanted = np.vstack(((1 + (phase - 1) * abs(accepted) ** 2) * identity,
+                                            (phase - 1) * accepted.conjugate() * node['rejected']))
+                        np.testing.assert_allclose(replayed, wanted, atol=ATOL, rtol=0)
+                        wrong_order = (scalar.conj().T @ signal @ scalar)[:, :2]
+                        self.assertGreater(np.linalg.norm(wrong_order - wanted, 2), 1e-4)
+                expected = np.kron(fixture['target'], identity)
+                np.testing.assert_allclose(qsource.conj().T @ psource, expected / 2, atol=ATOL, rtol=0)
+                # Replacing dirty rejection by its norm preserves column
+                # normalization but loses the required source overlap.
+                np.testing.assert_allclose(wrong_source.conj().T @ wrong_source, np.eye(8),
+                                           atol=ATOL, rtol=0)
+                self.assertGreater(np.linalg.norm(qsource.conj().T @ wrong_source - expected / 2, 2), 1e-8)
+                overlap = qword.conj().T @ pword
+                reflection = np.diag([-1] * 8 + [1] * 24)
+                recovered = (-overlap @ reflection @ overlap.conj().T @ reflection @ overlap)[:, :8]
+                full_target = np.vstack((expected, np.zeros((24, 8))))
+                np.testing.assert_allclose(recovered, full_target, atol=2 * ATOL, rtol=0)
+                # This projector illegally demands dirty=0 as well as clean
+                # flags=0. The correct projector includes every dirty column.
+                wrong_reflection = np.eye(32)
+                wrong_reflection[np.arange(0, 8, 2), np.arange(0, 8, 2)] = -1
+                wrong = (-overlap @ wrong_reflection @ overlap.conj().T @
+                         wrong_reflection @ overlap)[:, :8]
+                self.assertGreater(np.linalg.norm(wrong - full_target, 2), 1.)
+
+    def test_exact_integer_metadata_does_not_overflow_numpy_scalars(self):
+        for bits in (10, 64):
+            arguments = (Fraction(1, 2), Fraction(3, 4), 2, 4, Fraction(1, 64), bits)
+            expected = common_source_kernel_error_bound(*arguments, multiplier=2, remainder=1)
+            actual = common_source_kernel_error_bound(
+                Fraction(np.int64(1), np.int64(2)), Fraction(np.int64(3), np.int64(4)),
+                np.int64(2), np.int64(4), Fraction(np.int64(1), np.int64(64)), np.int64(bits),
+                multiplier=np.int64(2), remainder=np.int64(1))
+            self.assertEqual(actual, expected)
+            self.assertGreater(actual.denominator, 0)
+            self.assertEqual(kernel_source_error_bound(*arguments),
+                             kernel_source_error_bound(*arguments[:5], np.int64(bits)))
 
     def test_invalid_parameters_are_rejected_without_rounding(self):
         for height in (0, 1, 3, True, 2.0):
@@ -485,6 +733,8 @@ class HeterogeneousPrecisionSourceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             common_source_kernel_coefficients(Fraction(1, 2), 2, Fraction(1, 16), 8,
                                               multiplier=0, remainder=1)
+        with self.assertRaises(ValueError):
+            splitter_gauge_coefficients((1., 0.), (.8, .6), .99)
 
 
 if __name__ == "__main__":
