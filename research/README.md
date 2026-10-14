@@ -157,7 +157,7 @@ and $`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits,
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(\sqrt n\log_2^2(n+2)\right)=o(n).
+D_T=O_\eta\!\left(\sqrt n\log_2(n+2)\right)=o(n).
 ```
 
 The same circuit preserves the prescribed complete real frame in the
@@ -165,14 +165,27 @@ full initialized-isometry norm. The constant $`C_\eta`$ is sufficiently
 large and fixed. The result resolves the stated sublinear-depth existence
 question, while the optimal depth order remains open. The
 [uniform precision/workspace theorem](../docs/UNIFORM_PRECISION_DEPTH.md)
-retains its separate literal thresholds and matching intervals.
+retains its separate precision guarantees. At every
+$`b\ge17(L+n+7)`$, the fixed-accuracy extension gives
+$`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
+It extends simultaneous matching through
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$ on every
+nonempty interval above that lower threshold.
 
 | Current proof | Role |
 |---|---|
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
-| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, small calibration programs, and complete work/error contract |
+| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, parallel binary phase-gradient calibration, and complete work/error contract |
 | [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
 | [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
+
+The [entry-indexed encoding bound](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+proves sharp worst-case normalization $`\sqrt{n+1}`$ for that
+architecture using the balanced Haar frame. At operator error epsilon,
+the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
+channels and reweighting obey the same bound. It does not constrain
+unrestricted block encodings or establish a native T-depth lower bound.
 
 The following earlier studies isolate costs or restrict particular
 interfaces. They remain as mathematical results and records of the

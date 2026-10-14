@@ -82,11 +82,16 @@ These are worst-case bounds over prescribed complete real frames. No
 unrestricted lower bound for the additive n or nL is asserted. The
 large-width depth optimum remains open. A separate
 [fixed-accuracy construction](../research/depth/SUBLINEAR_T_DEPTH.md)
-now gives $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ at sufficient
+now gives $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ at sufficient
 $`b=\Theta_\eta(\sqrt N)`$, with two clean flags,
 $`T=O_\eta(\sqrt N)`$, and $`G=O_\eta(N)`$ on the same circuit.
-It resolves sublinear-depth existence without changing this theorem's
-precision-uniform constants, width threshold, or matching intervals. The separate
+Its fixed-accuracy width extension gives
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$ and
+$`T=O_\eta(\sqrt N+N/b)`$ for every $`b\ge17B_0`$, retaining
+$`G=O_\eta(N)`$. It extends simultaneous fixed-accuracy matching through
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, on every nonempty
+interval above the same lower threshold. The theorem on this page retains
+its precision-uniform constants and matching intervals. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 resolves the two-clean high-precision real-frame count endpoint at its
 stated literal allocation; the uniform theorem here retains nL in its

@@ -107,13 +107,17 @@ one complete real-frame circuit with
 
 ```math
 T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(\sqrt n\log_2^2(n+2)\right)=o(n).
+D_T=O_\eta\!\left(\sqrt n\log_2(n+2)\right)=o(n).
 ```
 
-The constant $`C_\eta`$ is sufficiently large and fixed. This resolves
-sublinear-depth existence at that width; optimal depth remains open.
-The uniform theorem retains its separate precision, literal-width and
-matching-interval guarantees.
+The constant $`C_\eta`$ is sufficiently large and fixed. For every
+$`b\ge17(L+n+7)`$, its width-sensitive extension gives
+$`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
+$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
+It extends simultaneous matching at fixed accuracy to
+$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, subject to the
+same lower threshold. Optimal depth beyond this range remains open.
+The uniform theorem retains its separate precision guarantees.
 
 The uniform proof has an early unary-group branch, an exact rectangular-query tail,
 and an all-precision fallback. The following chapters are mathematical
@@ -138,9 +142,14 @@ The fixed-accuracy improvement has a separate, shorter dependency chain:
 | Part of the sublinear-depth argument | Proof dependency and role |
 |---|---|
 | Complete early operator | [Sublinear T-depth](../research/depth/SUBLINEAR_T_DEPTH.md): orthogonal column sectors, dimension-independent source completion, literal-phase recovery, and early/tail resource closure |
-| Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, charged calibration, exact inactive identity, and full source-isometry error |
+| Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, parallel phase-gradient preparation, exact guarded arithmetic, and full source-isometry error |
 | Native early data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): private T-layer scheduling with shared read-only addresses, Boolean phase echoes, and guarded variable-suffix Hadamards |
 | Count-efficient final layers | [Nonuniform indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md) and [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision): linear indicator count/work, logarithmic address depth, and the retained complete-input layer error |
+
+The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+separately identifies the sharp worst-case square-root normalization cost
+of that source architecture, including operator-norm approximation. It is
+not an unrestricted circuit-depth lower bound or an input to the upper bound.
 
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count
