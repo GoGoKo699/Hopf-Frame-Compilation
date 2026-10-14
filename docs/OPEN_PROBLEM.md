@@ -4,7 +4,7 @@
 
 <a id="two-clean-count-theorems-and-remaining-depth-question"></a>
 
-# One-clean count frontier and remaining depth question
+# One-clean count frontier and sublinear large-width depth
 
 [Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
 
@@ -86,20 +86,30 @@ Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
 ## Large-width T-depth
 
 For complete real frames at fixed $`0\lt\eta\le1/64`$, two clean flags,
-and sufficient $`b=\Theta_\eta(\sqrt N)`$, the proved construction has
+and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
+[compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md)
+gives one circuit with
 
 ```math
-T=\Theta_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta(n).
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta(\sqrt n\,\log^2(n+2))=o(n).
 ```
 
-The unrestricted depth lower bound is $`\Omega(1)`$. The question is
-whether one circuit can attain $`D_T=o(n)`$ with the same count, Clifford,
-and workspace budgets. The explicit matching intervals at smaller widths
+The T-count remains worst-case optimal in order. The previously stated
+$`o(n)`$ existence question is resolved positively; the optimal depth
+order remains open, with unrestricted lower bound $`\Omega(1)`$.
+The proof prepares signed descendant columns coherently in orthogonal
+depth-and-prefix sectors, recovers the early complete unitary with
+$`O(\sqrt n)`$ amplification calls, and compiles the final
+polylogarithmically many layers by exact dirty queries. Its error includes
+all source leakage and workspace return. This fixed-accuracy theorem does
+not assert a precision-uniform improvement or efficient classical preprocessing.
+The explicit matching intervals at smaller widths
 are those of [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary).
 T-depth permits arbitrary Clifford interlayers and is distinct from total
 physical depth. The [depth results](../research/README.md#large-workspace-t-depth)
-separate source, predicate, query, and logical-transport costs.
+record the new complete construction and preserve the earlier component
+and interface results under their original hypotheses.
 
 ## Earlier endpoint constructions
 

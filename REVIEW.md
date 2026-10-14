@@ -269,8 +269,12 @@ count at every eligible width; it does not establish depth optimality there.
 This is a real-frame theorem, with no automatic complex extension.
 T-depth permits arbitrary Clifford interlayers; their gate count remains
 charged, but this is not total circuit depth. Earlier schedules remain
-useful at some smaller reservations or higher precisions. Later component
-refinements do not change these complete-frame orders.
+useful at some smaller reservations or higher precisions. The separate
+[compressed-column construction](research/depth/SUBLINEAR_T_DEPTH.md)
+improves fixed-accuracy large-width depth to
+$`O_\eta(\sqrt n\log^2(n+2))=o(n)`$ with the same optimal count
+order and linear elementary Clifford budget. It does not change the
+precision-uniform bounds or matching intervals above.
 
 <a id="6-operational-consequence-open-gaps-and-evidence"></a>
 
@@ -298,15 +302,16 @@ task-level result. Two additional resource points remain separate from C:
 | Resource point | Current guarantee |
 |---|---|
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 saves one dirty qubit for the complex frame at $`L=N`$. The
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
 gives its lower bound, also present in the complex magnitude family when
 all leaf phases are zero. The [resource statement](docs/OPEN_PROBLEM.md)
-and [research index](research/README.md) retain the large-width depth
-question and the hypotheses of earlier source and factorization restrictions.
+and [research index](research/README.md) distinguish the resolved sublinear-depth
+existence question from open optimality, and retain the hypotheses of
+earlier source and factorization restrictions.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

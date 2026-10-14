@@ -258,12 +258,27 @@ Result C also gives linear count for real frames at this dirty allocation;
 its complex reservation uses one more dirty qubit. Source-interface
 restrictions remain distinct from unrestricted lower bounds.
 
-At fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
-complete real-frame schedule attains $`T=\Theta_\eta(\sqrt N)`$ with
-$`D_T=O_\eta(n)`$. The unrestricted depth lower bound remains
-$`\Omega(1)`$. This large-width open problem is separate from the resolved
-one-clean count frontier. Result D retains its two-clean circuit and
-literal width threshold; C does not improve its depth.
+At every fixed $`0\lt\eta\le1/64`$, the separate
+[compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md)
+uses two external clean flags and sufficient
+$`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits to attain,
+on one complete-real-frame circuit,
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta(\sqrt n\log^2(n+2))=o(n).
+```
+
+The T-count remains worst-case optimal. The full initialized-isometry
+error is at most eta, including actual inverses and all work return.
+The coherent descendant source uses the Boolean-phase method of
+Gosset–Kothari–Wu, exact dirty queries, and a local certifiable selection
+rule. The complete-operator proof charges its column encoding, recovery,
+conditional workspace and late tail. Classical preprocessing is terminating,
+with no efficiency claim. This resolves the earlier sublinear-depth
+existence question; optimal depth remains an open problem, with unrestricted lower
+bound $`\Omega(1)`$. Result D retains its precision-uniform circuit,
+literal width threshold and matching intervals; C does not improve its depth.
 
 The [research catalogue](../research/README.md) preserves the endpoint
 dependencies and earlier linear-count native compilers for disjoint SU
@@ -303,6 +318,7 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C | [One-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using growing precision sources, [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md), exact dirty word banks, and the [layerwise one-clean baseline](../docs/ONE_CLEAN_COMPILER.md) |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
+| Fixed-accuracy large-width refinement | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md): coherent descendant sources, charged native dirty queries, complete-column recovery, and a polylogarithmic late tail |
 | Compiler corollaries and distinct allocations | [One-clean primitives](../docs/ONE_CLEAN_COMPILER.md), [operator sources](../docs/OPERATOR_SOURCE_COMPILER.md), [borrowed-workspace compiler](../docs/BORROWED_WORKSPACE_COMPILER.md), and [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); each keeps its literal reservation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |
