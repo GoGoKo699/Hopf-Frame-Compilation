@@ -25,11 +25,12 @@ uses an exact flag symmetry to obtain the layerwise real-frame bound with
 zero clean qubits. The separate
 [growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`T=O(N+L)`$, $`G=O(NL)`$, and one clean qubit for
-$`n\ge3`$ at these same respective dirty reservations. Its
+$`n\ge1`$ at these same respective dirty reservations. Its
 [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
 is matching for all $`L\ge6`$ once the corresponding dirty reservation
-is doubled. The source primitives and grouped bounds proved in this
-chapter retain their own statements below.
+is doubled. Result C uses this chapter's layerwise primitive and
+banked baseline at modest precision; it does not require the grouped
+construction. The grouped bounds retain their separate statements below.
 
 ## 1. Contract and addressed primitive
 
@@ -506,6 +507,67 @@ The weighted geometric sums and $`n^3=O(2^n)`$ give
 T=O(N+nL),\qquad G=O(NL).
 ```
 
+### Layerwise banked baseline
+
+Put $`B_0=L+n+7`$ and suppose $`b\ge2B_0`$. The same one-clean
+layerwise circuit, with the
+[exact dirty word-bank query](OPERATOR_SOURCE_COMPILER.md#7-trading-additional-dirty-banks-for-lookup-cost),
+has
+
+```math
+T=O\!\left(\sqrt{NL}+nL+\frac{NL}{b}\right),\qquad G=O(NL).
+```
+
+At depth d reserve $`m_d`$ core wires, d query selectors, and one
+predicate helper. Their total is exactly $`m_d+d+1=B_0`$.
+The additional pool has $`K=b-B_0\ge b/2\ge B_0\ge m_d`$ wires.
+For the $`S_d=2^d`$-row table, choose a power of two $`\mu_d`$
+within a factor two below
+
+```math
+\max\!\left\{1,\min\!\left(S_d,\sqrt{S_d/m_d},K/m_d\right)\right\}.
+```
+
+The $`\mu_dm_d`$ banks are separate from the core, selectors,
+and predicate helper. The X and Z mask queries use them sequentially;
+each completed query returns its banks and selectors exactly on
+every input. The entire mask therefore remains the original Pauli
+operator tensored with identity on the extra banks. This preserves
+the source, exact inactive action, actual inverses, and the layer error
+proved above, including correlated dirty inputs.
+
+The query cost $`O(S_d/\mu_d+\mu_dm_d)`$ and the source and
+predicate costs give
+
+```math
+\begin{aligned}
+T_d&=O\!\left(\sqrt{2^dm_d}+m_d+\frac{2^dm_d}{b}+n^2\right),\\
+G_d&=O(2^dm_d+m_d+n^2).
+\end{aligned}
+```
+
+If $`m_d\gt S_d`$, the choice $`\mu_d=1`$ is paid by the
+additive $`m_d`$ term. Otherwise rounding and either the square-root
+or capacity cutoff give the displayed query bound. For $`d=0`$ the
+fixed Pauli mask needs no lookup bank. With $`k=n-d`$,
+$`m_d=L+k+6`$, so the convergent geometric sums give
+
+```math
+\begin{aligned}
+\sum_{d=0}^{n-1}\sqrt{2^dm_d}&=O(\sqrt{NL}),\\
+\sum_{d=0}^{n-1}2^dm_d&=O(NL),\\
+\sum_{d=0}^{n-1}m_d&=O(nL+n^2).
+\end{aligned}
+```
+
+Also $`n^3=O(\sqrt N)`$ with a universal constant. Summing proves
+the baseline for every $`n\ge1,L\ge6`$. In particular, when
+$`L\le N/n^2`$, its extra precision charge satisfies
+$`nL\le\sqrt{NL}`$. This supplies the modest-precision part of
+the optimal banked frontier directly, without iterated grouping.
+
+### Retained grouped extension
+
 The [grouped proof](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
 improves this to
 
@@ -534,7 +596,7 @@ improves the one-clean real count to $`O(N+L)`$ with the same dirty
 reservation; at $`L=N`$ this is $`O(N)`$. Its
 [banked extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
 removes the iterated-logarithm factor from the displayed banked count
-for every $`n\ge3,L\ge6`$. Every frame column is preserved within
+for every $`n\ge1,L\ge6`$. Every frame column is preserved within
 the complete-input norm, so the existing
 [fixed-parameter QBP guarantee](QBP_APPROXIMATION.md) applies unchanged.
 
@@ -678,7 +740,7 @@ qubit. The separate
 [growing-source composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`O(N+L)`$ T-count at $`b\ge L+n+8`$, and its
 [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-is matching for all $`L\ge6,n\ge3`$ at $`b\ge2(L+n+8)`$.
+is matching for all $`L\ge6,n\ge1`$ at $`b\ge2(L+n+8)`$.
 Both retain one clean qubit and $`G=O(NL)`$.
 
 ## 9. A borrowed signal suffices for real rotations

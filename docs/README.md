@@ -3,10 +3,8 @@
 [Landing page](../README.md) · [Read the argument](../REVIEW.md) · [Publication scope](../manuscript/PUBLICATION_SCOPE.md)
 
 The selected compiler package has four principal results: exact compilation,
-sufficient-clean matching T-count, one-clean compilation, and simultaneous
-T-count/T-depth tradeoffs for complete real frames. Selected growing-source
-theorems add precision-uniform one-clean count and an optimal banked count
-frontier beside A–D, while retaining the earlier two-clean results.
+sufficient-clean matching T-count, the optimal one-clean banked count
+frontier, and simultaneous T-count/T-depth tradeoffs for complete real frames.
 Start with the landing page and `REVIEW.md`, then follow the
 relevant claim below.
 
@@ -54,20 +52,36 @@ they are not obtained by adding costs of particular source calls.
 
 ### C. One-clean compilation and its corollaries
 
-The [one-clean compiler](ONE_CLEAN_COMPILER.md) and
-[conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) establish the
-grouped real-frame bound and its banked refinement. The latter's Section 10
-extends the complete group construction to one initialized compiler flag.
-Conditional logical zeros are usable only on the active sector; the proofs
-also prove inactive identity on arbitrary inputs and the full return-error estimate.
-The selected [growing-source refinement](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-below improves the one-clean count while retaining these primitive proofs
-and their distinct corollaries.
+The [growing-source count theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ and $`G=O(NL)`$ for both frame families,
+every $`n\ge1`$, and integer $`L\ge6`$, with error $`2^{-L}`$
+and fixed $`a=1`$.
+The base dirty reservation is $`B=L+n+7`$ for real frames and
+$`B=L+n+8`$ for complex magnitude frames. At $`b\ge2B`$,
+the [banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+proves the matching frontier
 
-| Supporting proof | Why it remains in the package |
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
+```
+
+At exactly $`b=B`$, the unbanked count is matching when
+$`L\ge\max\{6,n\}`$. The proof chain is:
+
+1. [One-clean source and layerwise baseline](ONE_CLEAN_COMPILER.md#6-complete-real-frames-and-the-grouped-extension): exact conditioning, full-output amplification, the low-precision banked bound, and the bounded-dimension fallback.
+2. [Growing sources](../research/endpoint/GROWING_SOURCE_COMPILER.md): mixed local gauges, sealed modes, actual dirty replay, compensated overlap, and the high-precision regime.
+3. [Conjugate recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#2-lift-the-whole-high-level-word): borrow only the phase signal, retain the initialized anchor, and charge every native interlayer.
+4. [Banked block/source interfaces](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces), [literal diagonals](ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors), and the [existing lower bounds](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage): sum native costs, compose phases, and match at the stated widths.
+
+The low-precision baseline and high-precision source meet at
+$`L=N/n^2`$; their constants are uniform. Conditional logical work
+uses the [exact inactive guards](CONDITIONAL_SUFFIX_COMPILER.md#1-an-active-suffix-supplies-workspace-conditionally).
+The grouped theorem is a retained corollary, not a premise of this splice.
+
+| Supporting proof or corollary | Why it remains in the package |
 |---|---|
 | [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) | Full-input two-clean source, packed diagonal precision/workspace bound, amplification/error certificate, layerwise frame baseline, and separate multiplexor reservation |
-| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Residual columns, active logical work, iterated grouping, and banked one-clean composition |
+| [Conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md) | Exact conditional-work guards used by C; residual columns and the separately retained grouped count theorem |
 | [One-clean compiler](ONE_CLEAN_COMPILER.md) | Native one-clean primitive; literal diagonals, complete one-target U(2) multiplexors, phase-dressed magnitude frames, and the separate zero-clean real-frame corollary |
 | [Borrowed-workspace compiler](BORROWED_WORKSPACE_COMPILER.md) | Arbitrary clean/dirty allocations, exact dirty traversal, and the restricted matching splice |
 
@@ -131,50 +145,19 @@ optimality among all gradient algorithms or an end-to-end advantage.
 
 <a id="selected-endpoint-count-theorem-and-complex-magnitude-corollary"></a>
 <a id="selected-precision-uniform-two-clean-count-theorem"></a>
+<a id="selected-growing-source-count-theorems"></a>
 
-### Selected growing-source count theorems
+### Retained two-clean count corollaries
 
-The [one-clean growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every prescribed real or phase-dressed complex
-magnitude frame, with $`n\ge3`$, integer $`L\ge6`$, error $`2^{-L}`$,
-and one clean flag. The dirty reservation is $`b\ge L+n+7`$ for real
-frames and $`b\ge L+n+8`$ for complex magnitude frames. Its constants
-are independent of both n and L. The proof lifts complete sources into
-conjugate sectors of a borrowed signal, retains the initialized anchor
-marker, and includes all actual leakage in recovery. The earlier
-[two-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-remains valid.
-At exactly the respective base dirty widths and $`L\ge\max\{6,n\}`$,
-the existing finite-width lower bound gives worst-case
-$`T^\star=\Theta(N+L)`$.
-
-The [banked refinement](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-uses one clean flag and gives
-
-```math
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
-\qquad G=O(NL),
-```
-
-for every $`n\ge3`$ and integer $`L\ge6`$, at
-$`b\ge2(L+n+7)`$ for real frames or $`b\ge2(L+n+8)`$ for complex
-magnitude frames. The upper construction and retained width-sensitive
-lower bounds match throughout these displayed banked regimes.
-
-The [fixed endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-retains unrestricted $`\Theta(N)`$ worst-case T-count for complete real
-frames at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. Its
-[complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes the [packed literal diagonal](OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
-on the same workspace, with both factors and all return error included in
-the full-isometry bound. The lower bound is $`2N-1`$ for both families.
-The [research index](../research/README.md) maps its native dependencies,
-earlier promised families, and limits of specific source or factorization
-models. The [endpoint statement](OPEN_PROBLEM.md) records the remaining
-large-width depth question. These selected count claims preserve the
-statements of Results A–D and supply no new T-depth or general native-emitter
-guarantee. The complex endpoint at $`b=N+n+7`$ above still uses two
-clean flags; the one-clean complex theorem reserves $`N+n+8`$ there.
+Result C above is the authoritative one-clean count statement. The
+[two-clean precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+supplies its precision/mode separation. The [fixed complex endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+retains a distinct reservation: $`a=2,b=N+n+7,\eta=2^{-N},n\ge3`$,
+with worst-case $`T^\star=\Theta(N)`$ and lower bound $`2N-1`$.
+It saves one dirty qubit relative to C's one-clean complex reservation.
+The [research index](../research/README.md) maps supporting constructions
+and method-specific limits; the [endpoint statement](OPEN_PROBLEM.md)
+records the remaining large-width depth question.
 
 ### Completed changed-decoder supplement
 

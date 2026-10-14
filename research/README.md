@@ -2,11 +2,12 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-The growing-source count theorems below are selected alongside Results A–D,
-whose statements remain unchanged. They include precision-uniform one-clean
-count and its optimal banked frontier for complete real and phase-dressed
-complex magnitude frames, with literal dirty reservations. The large-width
-T-depth question remains open.
+The growing-source proofs below establish Result C's one-clean count
+frontier for complete real and phase-dressed complex magnitude frames.
+The [core proof map](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
+gives the minimal dependency chain; the remaining studies retain their
+own hypotheses and distinct resource points. The large-width T-depth
+question remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -21,13 +22,14 @@ uses a different decoder and has its own task-level guarantee.
 
 The [one-clean growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`T=O(N+L)`$ and $`G=O(NL)`$ with universal constants, for
-$`n\ge3`$, integer $`L\ge6`$, and error $`2^{-L}`$. It uses one clean flag and
+$`n\ge1`$, integer $`L\ge6`$, and error $`2^{-L}`$. It uses one clean flag and
 $`b\ge L+n+7`$ dirty qubits for real frames, or $`b\ge L+n+8`$
 for phase-dressed complex magnitude frames. The complete-source conjugate
 lift borrows the phase signal and retains the initialized anchor marker.
 The [two-clean theorem](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-supplies the precision/mode separation and regime splice; its statement
-remains valid.
+supplies the precision/mode separation. The one-clean layerwise baseline
+and growing-source interfaces meet at $`L=N/n^2`$; the same baseline
+covers bounded n, including $`n=1,2`$.
 Every logical input, dirty/reference correlation, literal phase, clean-work
 leakage, and actual inverse is included in the initialized-isometry guarantee.
 At exactly $`b=L+n+7`$ for real frames or $`b=L+n+8`$ for complex
@@ -46,7 +48,7 @@ T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
 \qquad G=O(NL),
 ```
 
-for all $`n\ge3`$ and integer $`L\ge6`$, at real
+for all $`n\ge1`$ and integer $`L\ge6`$, at real
 $`b\ge2(L+n+7)`$ or complex magnitude $`b\ge2(L+n+8)`$.
 The banked source masks return every bank and selector before the next
 operation. Summed native charges and the existing width-sensitive lower
@@ -73,9 +75,9 @@ T-depth bound, or a general native emitter.
 Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
 [disjoint-block compilation of the fixed bottom levels](endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
 and [disjoint source extensions](endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
-together with the linked conditional-suffix, scalar, and recovery primitives.
-Those earlier chapters remain proof dependencies even where their headline
-frame bounds have been superseded.
+together with the linked conditional-work guards, scalar, and recovery
+primitives. The conditional-suffix grouped count remains a separate
+corollary; C does not require its iterated grouping in the precision splice.
 
 The remaining tables catalogue earlier methods and their individual limits.
 An unconstructed source or fine step in one of these methods is not an
@@ -87,7 +89,7 @@ unresolved part of the growing-source theorem or a new work order.
 
 | Study | Result | Scope |
 |---|---|---|
-| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks; unbanked and banked high-precision block/state interfaces with full Clifford ledgers | High-precision forms require $`L>N/n`$ beyond their fixed dimension threshold; each interface retains its own clean allocation, literal phase, and complete return |
+| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks; unbanked and banked high-precision block/state interfaces with full Clifford ledgers | High-precision forms require $`L>N/n^2`$ beyond their fixed dimension threshold; each interface retains its own clean allocation, literal phase, and complete return |
 | [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
 | [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, real initialized-target and source-overlap lifts, zero-clean real reflection banks, and one-clean real blocks | The phase signal is borrowed outside every core; the initialized anchor marker and genuine logical recovery coordinates are retained; complementary-sector restrictions keep their original scope |
 | [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Full-input selected Pauli/source-axis rotations with two arbitrary helpers; jointly compiled raw rejection orientations at O(Q+q+ell) T-count | Literal query phases and shared-core width are charged; raw canonicalization does not compile transported logical prefixes |

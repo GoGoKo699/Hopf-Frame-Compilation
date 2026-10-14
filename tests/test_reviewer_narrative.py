@@ -233,7 +233,7 @@ class ReviewerNarrativeTests(unittest.TestCase):
             "## 1. Why the complete operator is the target",
             "## 2. Result A: exact schedules cover every clean budget",
             "## 3. Result B: pay fine precision once with sufficient clean work",
-            "## 4. Result C: operator precision and conditional suffix work",
+            "## 4. Result C: the optimal one-clean count frontier",
             "## 5. Result D: count and depth on the same circuit",
             "## 6. Operational consequence, endpoint status, and evidence",
         )
@@ -245,6 +245,8 @@ class ReviewerNarrativeTests(unittest.TestCase):
             "docs/FAULT_TOLERANT_COMPILER.md",
             "docs/ONE_CLEAN_COMPILER.md",
             "docs/CONDITIONAL_SUFFIX_COMPILER.md",
+            "research/endpoint/GROWING_SOURCE_COMPILER.md",
+            "research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md",
             "docs/UNIFORM_PRECISION_DEPTH.md",
             "docs/QBP_APPROXIMATION.md",
         ):
@@ -329,7 +331,8 @@ class ReviewerNarrativeTests(unittest.TestCase):
         self.assertIn("open problem", normalized)
         self.assertIn(r"2N-1\le T^\star\le O(N)", scope)
         self.assertIn("GROWING_SOURCE_COMPILER.md", scope)
-        self.assertIn("does not change Results A–D", scope)
+        self.assertIn("**C. Optimal one-clean count**", scope)
+        self.assertIn(r"b\ge2B", scope)
 
     def test_all_markdown_local_links_resolve(self) -> None:
         for page in markdown_pages():

@@ -1,186 +1,124 @@
-# Bounded audit of the selected compiler claims
+<a id="bounded-audit-of-the-selected-compiler-claims"></a>
 
-[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Verification](VERIFICATION.md) · [Source map](SOURCE_MAP.md) · [Research decision](../WORKSPACE.md#research-decision-and-stopping-rules)
+# Reconstruction of the one-clean count theorem
 
-**Decision, 3 October 2026:** no unresolved claim-level blocker was found in
-Results A–D and their retained compiler corollaries. Freeze the selected
-scientific scope. One exact-workspace sentence is corrected below; the
-theorem statements and resource frontiers are unchanged.
+[Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Proof roadmap](../REVIEW.md) · [Verification](VERIFICATION.md) · [Source map](SOURCE_MAP.md)
 
-The reviewed baseline is `67a4cf25be30ec0440dd6e63a85181ca9c38121d`.
-This bounded internal review read the proof arguments, checked the fragile
-algebra and resource sums, and verified load-bearing source interfaces.
-It is not formal proof certification, independent peer review, a new
-priority survey, or a proof supplied by passing tests. The separate
-state-based QBP theorem and later component refinements are not additional
-principal results of this audit.
+**Decision, 14 October 2026:** the reconstructed proof supports Result C
+with one clean qubit, its literal real/complex dirty reservations, and
+the full initialized-isometry contract. No unresolved proof objection
+remains from this bounded internal review. The reconstruction starts
+from `753bb86472340ff4f92fdfe8edf263bf9e48dbf3` and includes the
+shorter precision splice and small-dimension corollary below.
+
+The authoritative statement is
+[growing-source Section 11](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count),
+with its banked proof in Section 12. The
+[3 October audit](reference/CORE_CLAIM_AUDIT_2026_10_03.md)
+preserves the earlier A–D decisions, imported-interface checks, correction,
+baseline, and finite evidence. Its older Result C is a retained supporting
+construction. A, B, and D retain their distinct resource statements.
 
 ## Claim-to-proof decisions
 
-Notation and full statements are fixed in the
-[publication scope](../manuscript/PUBLICATION_SCOPE.md#four-principal-results).
-Here $`N=2^n`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$,
-$`h=1+\lceil\log_2(L+n+2)\rceil`$, $`q=n+a+b`$,
-$`B_0=L+n+7`$, and $`\ell_*(n)=1+\log_2^*(n+2)`$.
-Approximate results assume $`n\ge1`$ and $`0\lt\eta\le1/64`$.
-Upper bounds apply to every admitted parameter tuple; matching lower bounds
-are worst-case over the stated family.
+Write $`N=2^n`$, $`n\ge1`$, and integer $`L\ge6`$. Put
+$`B=L+n+7`$ for real frames and $`B=L+n+8`$ for complex
+magnitude frames. The claim fixes $`a=1`$ and error $`2^{-L}`$.
 
-| Result and decision | Proof homes | Checks and qualifications |
+| Resource point | Reconstructed conclusion | Matching qualification |
 |---|---|---|
-| **A: pass.** Exact size $`\Theta(N)`$, CNOT count $`\Theta(N)`$ for $`n\ge2`$, depth $`\Theta(n+N/(n+m))`$ | [Exact compiler](COMPILER_THEOREM.md), Sections 4–10 | Four-sector zero-work echo; decoder code-space preservation; copy erasure before flag reuse; coherent routing and actual unroute; maximal-cut splice for every $`m\ge0`$. Parameter count, CNOT slots with arbitrary ancillary width, and backward cones give the matching lower bounds. Literal complex phases compose as a complete multiplexor. CNOT count is zero at $`n=1`$. |
-| **B: pass.** $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, $`G=O(NL)`$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md), Sections 2–10 | Exact dirty-bank cancellation; logarithmic-width finite precision source; complete sparse residuals; retained-source shifts; compressed failure history; full-output amplification; count and Clifford sums. Requires $`a\ge C(n+h)`$ for a sufficiently large absolute constant. Real and phase-dressed complex magnitude families are separately covered. |
-| **C: pass.** One-clean real-frame $`T=O(N+L\ell_*(n))`$, $`G=O(NL)`$ | [One-clean compiler](ONE_CLEAN_COMPILER.md), Sections 2–6; [conditional-suffix compiler](CONDITIONAL_SUFFIX_COMPILER.md), Sections 1–10 | Paired-source signs, anticommutator identity, literal five-call amplification, disjoint residual columns, separate scalar/atom flags, inactive identity, suffix relocation, iterated grouping, and finite-size fallback. The literal reservation is $`a=1,b\ge B_0`$; no intermediate reset or renewed clean-input assumption is used. |
-| **D: pass.** Simultaneous uniform and low-precision T-count/T-depth bounds | [Uniform precision](UNIFORM_PRECISION_DEPTH.md), Sections 2–5; [blocked queries](BLOCKED_BILINEAR_LOOKUP.md); [unary groups](UNARY_PHASE_GRADIENT.md); [parallel lookup](PARALLEL_DIRTY_LOOKUP.md) | Rectangular power-of-two allocation, full-input bilinear cancellation, convergent weighted tail sums, uniform early cutoff, helper peaks, source preparation/return, and finite-size fallback all fit $`a=2,b\ge17B_0`$. Applies to complete real frames. The selected circuit meets its count and depth bounds simultaneously. |
+| $`b\ge B`$ | $`T=O(N+L)`$, $`G=O(NL)`$ | At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, $`T^\star=\Theta(N+L)`$ |
+| $`b\ge2B`$ | $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$, with constructive $`G=O(NL)`$ | Every $`n\ge1`$ and integer $`L\ge6`$, at the fixed one-clean allocation |
+
+This does not declare every width between B and $`2B`$ optimal.
+An arbitrary larger clean budget changes the lower-bound width to
+$`n+a+b`$. B therefore retains its sufficient-clean regime,
+including zero dirty work; D retains its simultaneous count/depth circuit.
 
 ### Fragile dependencies retained by the audit
 
-For A, the decoder inverse remains valid because the intervening Givens
-word preserves the complete one-hot code space. Routing preserves the
-prefix needed to erase coherent copies before those wires become flags.
-For the CNOT lower bound, at most twice the CNOT count ancillary wires
-participate; untouched wires contribute only a removable common phase.
-Fusing local gates leaves the stated finite-dimensional parameter bound.
-The exact arbitrary-one-qubit model is essential here.
+| Obligation | Retained proof and reconstruction |
+|---|---|
+| Exact native programming | [Dirty interpreter](BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter), [whole-word banks](OPERATOR_SOURCE_COMPILER.md#7-trading-additional-dirty-banks-for-lookup-cost): full-input XOR action, disjoint live core/selectors/banks, literal Pauli order, and actual inverse |
+| Conditioned native symbols | [Conditional-suffix Section 1](CONDITIONAL_SUFFIX_COMPILER.md#1-an-active-suffix-supplies-workspace-conditionally): returned predicate and phase echoes price controlled symbols; controlled T is not a free primitive |
+| Scalar and phase words | [One-clean Sections 2–5](ONE_CLEAN_COMPILER.md#2-an-exact-two-tail-source-and-its-dirty-masks): native weight-two loaders, scalar anticommutator, five-call error, and exact inactive identity |
+| Mixed source and full mode arena | [Heterogeneous sources](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md), [precision gauges](../research/endpoint/PRECISION_GAUGE_COMPILER.md), and [growing Sections 2–5](../research/endpoint/GROWING_SOURCE_COMPILER.md#2-a-polynomial-schedule-and-the-mixed-local-gauge): effective clipping, finite-shift estimate, normalized refinement, sealed rejection, same-core replay, and compensated overlap |
+| Independent block/source interfaces | [Disjoint compiler](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#2-exact-routing-and-coarse-words): dirty routing, exact logical coarse words, local charts, and constant fine slots; these do not invoke the growing theorem |
+| Borrowed signal and recovery | [Conjugate Sections 1–2](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#1-the-actual-finite-phase-word): full-operator phase error, every native interlayer lifted, genuine initialized anchor retained, arbitrary signal excluded from the reflection |
+| Uniform count and width | [Layerwise banked baseline](ONE_CLEAN_COMPILER.md#layerwise-banked-baseline), [banked interfaces](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces), and [growing Section 12](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier): rounded bank allocation and every fine, coarse, routing, predicate, inverse, and Clifford charge |
+| Phase dressing and lower bounds | [One-clean Section 8](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames), [complex diagonal subfamily](FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and-the-complex-magnitude-frame), and [real lower bounds](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage) |
 
-For B, the failure counter receives at most one increment per intermediate
-factor and cannot wrap. Its final zero sector therefore selects the intended
-product of accepted blocks. The independent normalization mode is excluded
-from those tests. The cubic accepted-block estimate is upgraded locally to
-a bound on the entire output, including rejected work. The clean reservation
-leaves a constant fraction of total width available for the lookup bank.
-The real final-layer subfamily contains arbitrary diagonals on one fewer
-qubit with a stabilizer target; the single-qubit case is handled separately.
-This permits the imported diagonal lower bound without confusing state and
-operator synthesis.
+## Reconstruction findings
 
-For C, every completed inactive subroutine is exactly identity even when
-the suffix is arbitrary. On the active sector the suffix supplies only its
-declared conditional clean work. Group errors and the one-clean tail fit
-the total error budget, and actual uncomputation carries existing leakage.
-The banked bound is
-$`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2B_0`$.
-It matches the inherited lower bound when $`L\ell_*^2(n)\le N`$ or
-$`b\le N/\ell_*(n)`$. Literal diagonals and complete U(2) multiplexors
-retain their own reservations. Splitting real-frame and diagonal error
-raises the complex magnitude thresholds to $`L+n+8`$ and $`2(L+n+8)`$.
-The zero-clean corollary is only the separately proved layerwise real-frame
-construction; it does not extend grouping or literal phase synthesis.
+The phase source's Hermitian off-diagonal operator satisfies
+$`B^2=(1-|z|^2)I`$. Its five-call error square is scalar on the
+entire signal/core space. Thus the flag-zero estimate genuinely supplies
+the full-operator bound on both arbitrary signal sectors. All S/T
+interlayers and actual inverses are lifted with literal phases retained.
 
-For D, the rectangular allocation bounds count and depth using the same
-query circuit. The weighted tail sums converge uniformly in precision.
-In the low-precision branch, the early cutoff has exponent
-$`9\log_2(3)/16\lt1`$, so its costs and
-helpers fit the claimed asymptotic allowances; the finitely many smaller
-dimensions admit one absolute fallback constant. At general precision,
+The borrowed signal remains outside every source core. Recovery retains
+the original initialized suffix and its marker h, but excludes that
+signal. Only the initialized final target must be real; the complementary
+action may be complex. The retained two-sector counterexample explains
+why the same argument cannot remove genuine recovery initialization.
 
-```math
-T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad
-D_T=O\!\left(\frac{NL}{b^2}+nL\right),\qquad G=O(NL).
-```
+Certified attenuation, state-chart, and replay data retain amplitude or
+source-column error bounds. Only native fine-slot replacements require
+full-operator bounds. Comparing independently initialized source columns
+controls the overlap without assuming inverse-source accuracy on arbitrary
+outputs. The recovery estimate includes the full rejected column.
 
-For $`6\le L\le\log_2(n+2)/16`$, the count drops its $`nL`$ term
-and the additive depth term becomes n. The matching intervals remain
-$`17B_0\le b\le\sqrt{N/n}`$ at general precision and
-$`17B_0\le b\le\sqrt{NL/n}`$ in that low-precision range, whenever
-nonempty. Dividing the count lower bound by physical width supplies the
-depth lower bound. Outside those intervals no unrestricted depth optimality
-is inferred. The sufficient condition $`L\le N/n^2`$ extends count
-optimality only. T-depth permits arbitrary Clifford interlayers and is
-not total physical depth.
+Choose the fixed anchor height first, then one universal dimension
+threshold. In the high regime $`L>N/n^2`$, rounded precision
+$`K\in[L,2L)`$ dominates every required polynomial in n. Dyadic
+integrality, multiplier bounds, finite-source error, self-borrowing, and
+fixed helper slack therefore hold uniformly in L and the target data.
+Coarse dirty work is $`o(N/n^2)`$; the fine core uses
+$`L+O(1)`$ wires. Since $`\sqrt{NL}>N/n`$, the charged coarse
+T-cost $`N^{3/4}\mathrm{poly}(n)`$ is absorbed. Coarse Clifford
+cost $`N\mathrm{poly}(n)`$ is $`O(NL)`$. Signed-normalization
+permutations use this same dirty routing ledger.
+
+Below the cutoff, the layerwise banked bound is
+$`O(\sqrt{NL}+nL+NL/b)`$, and $`nL\le\sqrt{NL}`$.
+Bounded n uses that baseline for arbitrary L with one universal constant.
+In particular, $`n=1,2`$ gives $`O(L)`$ at the original
+literal width; the canonical root-angle witness gives $`\Omega(L)`$.
+This removes iterated grouping from C's proof chain. The grouped theorem
+remains a standalone result, and its native conditioning lemma remains
+a necessary primitive.
+
+The complex lower bound uses arbitrary leaf phases with all magnitude
+angles zero. This diagonal subfamily lies inside the canonical complex
+domain. It replaces the overly broad claim that zero leaf phases embed
+the entire real-angle domain. The specific root-angle $`\pi/16`$
+witness belongs to both families.
 
 ## Shared operator and operational contract
 
-The [frame-safe proof](FRAME_SAFE_COMPILATION.md) and
-[QBP approximation proof](QBP_APPROXIMATION.md) use
+The initialized-isometry norm covers every logical column, arbitrary
+dirty/reference inputs, literal phases, and clean leakage. Actual inverses
+inherit the same estimate. Sequential reuse carries previous errors
+unitarily; approximate work is never assumed to reset between factors.
+Exact bank/selector return remains distinct from approximate operator-core
+return. QBP retains separate observable, interference-work, sampling, and
+classical-output charges.
 
-```math
-\left\|VJ_a-J_a(W\otimes I_D)\right\|\le\eta.
-```
+<a id="imported-premises-checked"></a>
+<a id="correction-evidence-and-stopping-decision"></a>
 
-This controls all logical inputs, arbitrary dirty work, external references,
-literal phases, and clean-work leakage. The actual adjoint satisfies the
-same initialized-isometry bound. Sequential reuse telescopes against ideal
-initialized embeddings while unitarity carries previous leakage; it does
-not assume that actual work becomes exactly zero after each approximate
-factor. Exact dirty return is a separate stronger promise for B and exact
-lookup/control components. One-clean operator-core return is approximate
-within this norm.
+## Evidence and stopping decision
 
-Fixed-decoder frame necessity retains its quantifiers: exact prepared state,
-regular nonzero coordinate amplitude, and every allowed observable force
-the prescribed marker columns up to common phase. Singular coordinates or
-one fixed observable do not. A common phase cancels between an actual word
-and its actual inverse; the literal compiler convention is stronger.
-The changed-decoder state-based result is a different interface.
+The [source map](SOURCE_MAP.md) identifies the imported synthesis and
+lower-bound premises; the [dated audit](reference/CORE_CLAIM_AUDIT_2026_10_03.md#imported-premises-checked)
+retains their earlier interface checks. No new external premise or
+priority claim is introduced. The [verification map](VERIFICATION.md)
+distinguishes native words, exact identities, supplied-matrix diagnostics,
+and analytic resource sums. The existing scientific tests and exact
+receipt hashes are retained.
 
-The QBP mean and gradient perturbation bounds follow from the same
-full-output contract. Dirty-bank reuse permits conditional means rather
-than independent shots, with fresh declared initialized inputs for each
-execution. The Hilbert martingale bound used for concentration allows
-bounded increments without independence or conditional symmetry. Sampling,
-observable work, initialized interference branch, supplied evaluators,
-and classical preprocessing remain charged separately. These facts imply
-no general end-to-end gradient advantage.
-
-## Imported premises checked
-
-These are source-interface checks, not a claim that all the resulting
-complete-frame arguments were already in the literature. The
-[source map](SOURCE_MAP.md) retains the full attribution.
-
-| Primary source and locator | Admitted premise and boundary |
-|---|---|
-| [Yuan–Zhang, v3](https://arxiv.org/html/2202.11302v3), Theorem 2; Lemmas 5, 6, 9; Section 2 | Exact state-preparation comparison and complete-unitary toolbox with returned clean work. The state theorem alone does not prescribe the remaining columns. The ancillary-free MCX primitive uses arbitrary exact one-qubit phases; it is not imported into the Clifford+T ledger. |
-| [Low–Kliuchnikov–Schaeffer, v2](https://arxiv.org/html/1812.00954v2), Eq. (8), Table 2, Fig. 1(d), Appendix C | Coherent dirty-bank cancellation and arbitrary-output XOR queries. Initialized selector/output work remains distinct from borrowed banks. |
-| [Gosset–Kothari–Wu, v3](https://arxiv.org/html/2411.04790v3), Lemma 2.3, Theorem 4.2, Lemma B.1 and Corollary B.2 | Logarithmic determinant-one synthesis, adaptive ancillary diagonal lower bound, and separately phase-correct complete multiplexor synthesis. The repository supplies its real-frame reduction and operator-to-channel comparison. |
-| [Khattar–Gidney, v1](https://arxiv.org/html/2407.17966v1), Sections 4, 5.4 and Fig. 6 | Logarithmic-depth MCX with exactly two arbitrary dirty helpers, returned coherently and disjoint from outer toggle controls. Exact-Toffoli substitution preserves the asymptotic bounds without measurement uncomputation. Section 5.4 becomes 5.5 in v2. |
-| [Low–Wiebe](https://arxiv.org/pdf/1805.00675), Appendix B Lemma 13; [Fang–Lin–Tong, v2](https://arxiv.org/html/2208.06941v2), Section 2.4 Lemma 3 and Appendix D | Logarithmic coherent product history retains private block workspace. The repository proves its own failure-counter convention and charges that work. |
-| [Berry et al.](https://arxiv.org/pdf/1412.4687), Eqs. (11)–(15) | Cubic oblivious amplification lineage. The complete initialized-isometry estimate, leakage, and literal signs are proved locally. |
-| [Bausch](https://arxiv.org/pdf/2009.10709), Eqs. (4), (6), Section 2.3.3 | Geometric weights and digit-source lineage. The logarithmic peak initialized width is an additional local construction. |
-| [Pinelis](https://arxiv.org/pdf/1208.2200), Theorem 3.5 | Hilbert-space bounded-increment martingale tail; the stated QBP increment bound gives denominator 32 in the exponent. The separate conditional-symmetry hypothesis of Theorem 3.6 is not needed. |
-
-## Correction, evidence, and stopping decision
-
-The exact compiler's Section 8 formerly called its displayed tail-work
-expression the peak. It is a conservative **upper bound**: at
-$`n=2,t=1,s=1`$, four work qubits suffice while the expression gives five.
-The enclosing eight-qubit reservation remains valid. Changing the sentence
-to “at most” fixes the overstatement without changing the theorem.
-No other claim-level repair was identified in this bounded review.
-
-The reviewed baseline passes 505 tests, four exact fault-tolerant receipt
-suites, and rendered-presentation checks. Those finite checks support their
-specified contracts; the decisions above rest on the proof arguments and
-source premises. This pass adds no circuit, simulation, or new theorem.
-The [verification map](VERIFICATION.md) continues to distinguish native
-small words, exact identities, illustrative ledgers, and asymptotic proofs.
-It does not promise a general grouped elementary emitter or useful numerical
-crossover constants for existential grouping thresholds.
-
-**Current-status postscript, 14 October 2026.** The complete-frame count theorems
-are now selected alongside the unchanged Results A–D. The
-[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [packed-diagonal corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-give worst-case $`T^\star=\Theta(N)`$ for complete real and phase-dressed
-complex magnitude frames at $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$.
-The [one-clean precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ and $`G=O(NL)`$ for integer $`L\ge6`$,
-with one clean flag and $`b\ge B`$, where $`B=L+n+7`$ for real
-or $`B=L+n+8`$ for complex magnitude frames. The existing lower
-bound makes this worst-case $`\Theta(N+L)`$ at exactly $`b=B`$
-when $`L\ge\max(6,n)`$. For every $`b\ge2B`$, the
-[one-clean banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-instead gives worst-case
-$`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ for all integer $`L\ge6`$,
-with $`G=O(NL)`$. The sharper complex $`L=N,b=N+n+7`$ result
-above still uses two clean flags.
-This selection does not amend the dated A–D audit or its recorded checks.
-The large-width depth gap remains open; these count and Clifford ledgers
-add no T-depth guarantee. A discovered defect reopens its repair;
-a new construction requires
-the native rule and symbolic resource,
-error, and cleanup recurrences in the
-[workspace gate](../WORKSPACE.md#reopening-research-requires-a-qualifying-mechanism).
-Manuscript writing remains on hold until requested. Further activity alone
-is not a reason to enlarge the scope or repeat finite fixtures.
+This is internal proof reconstruction, not external technical review or
+formal proof certification. The selected count package is ready for
+manuscript development when requested. Large-width T-depth remains a
+separate question requiring a qualifying native mechanism or unrestricted
+lower-bound invariant.

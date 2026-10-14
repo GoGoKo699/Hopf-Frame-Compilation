@@ -152,16 +152,12 @@ test coverage of each module.
 
 The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
 maps these supporting modules to their proofs, tests, and individual evidence
-boundaries. The [real and complex-magnitude endpoint theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [one-clean precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-supplement the unchanged Results A–D. The latter gives $`T=O(N+L)`$
-and $`G=O(NL)`$ for integer $`L\ge6,n\ge3`$ with one clean flag
-and dirty reservation
-$`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex magnitude
-frames. Its [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-is matching once that reservation is doubled. The sharper complex
-$`L=N,b=N+n+7`$ endpoint still uses two clean flags. Their native
-cost and workspace bounds are analytic.
+boundaries. These modules support
+[Result C's one-clean count theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and its banked frontier. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md#result-c-the-one-clean-count-theorem)
+states the all-dimension domain, literal reservations, and matching ranges;
+the native cost and workspace bounds are analytic. The sharper complex
+endpoint retains its separate two-clean allocation.
 
 - Growing-source diagnostics: [`growing_precision_source.py`](growing_precision_source.py)
   supplies exact rational refinement factors and symbolic scales. Optional

@@ -918,9 +918,8 @@ At the fixed endpoint $`L=N`$, the
 instead supplies $`T=O(N)`$ at $`a=2,b=N+n+7,n\ge3`$.
 It combines the real growing-source half-error guarantee with (38);
 the precision-uniform baseline and its reservation above are unchanged.
-The separate
-[one-clean growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ for $`n\ge3`$, with one clean flag,
+The [Result C theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ for $`n\ge1`$, with one clean flag,
 $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for (40).
 It retains the full-isometry contract and has its own $`G=O(NL)`$
 ledger. Its [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)

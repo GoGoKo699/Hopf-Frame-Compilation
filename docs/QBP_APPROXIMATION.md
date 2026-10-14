@@ -5,11 +5,10 @@
 At a **fixed parameter tuple**, a full initialized-isometry error bound for the
 prescribed frame controls the actual gradient measurement. Approximate work may
 remain coherent until the final measurement. No derivative of a compiled gate
-word is needed. The [one-clean compiler](ONE_CLEAN_COMPILER.md), including its
-[grouped and banked forms](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit),
-meets this contract for the real frame. Sequential literal-diagonal
-composition gives the [phase-dressed complex magnitude frame](ONE_CLEAN_COMPILER.md#8-phase-dressed-complex-magnitude-frames)
-with the same one-clean count bounds at its separate dirty threshold.
+word is needed. [Result C's one-clean compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+meet this contract for both the real and phase-dressed complex magnitude
+frames, at their separate dirty thresholds.
 The zero-clean layerwise real-frame corollary and earlier two-clean
 constructions also satisfy the contract under their stated allocations.
 These resource choices do not change the bias argument below.
@@ -282,11 +281,12 @@ work. These choices are corollaries of established compilers, not new bounds:
 | Frame allocation | Available $`t_F`$ bound |
 | --- | --- |
 | [Zero clean](BORROWED_WORKSPACE_COMPILER.md#1-contract-and-statements), arbitrary $`b_F\geq0`$ | $`O(NL/(n+b_F)+L\sqrt N)`$ |
-| [One clean](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit), $`b_F\geq L+n+7`$ | $`O(N+L\ell_*(n))`$ |
+| [One clean](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), $`b_F\geq L+n+7`$ | $`O(N+L)`$ |
+| [One clean, banked](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), $`b_F\geq2(L+n+7)`$ | $`O(\sqrt{NL}+L+NL/b_F)`$ |
 | [Sufficient clean](FAULT_TOLERANT_COMPILER.md#1-target-resources-and-theorem), $`a_F\geq C(n+h)`$ | $`O(\sqrt{NL}+L+NL/(n+a_F+b_F))`$ |
 
-Here $`h=1+\lceil\log_2(L+n+2)\rceil`$ and
-$`\ell_*(n)=1+\log_2^*(n+2)`$. Each choice has $`G_F=O(NL)`$.
+Here $`h=1+\lceil\log_2(L+n+2)\rceil`$. Each choice has
+$`G_F=O(NL)`$ and applies for every $`n\ge1`$.
 
 For fixed observable coefficient norm $`\Lambda`$ and fixed raw-gradient
 accuracy, [Section 10](#10-reflection-sums-and-finite-classical-weights)
@@ -420,14 +420,14 @@ deterministic bound. The sufficient-clean complex theorem gives
 
 when $`a_F\geq C(n+h)`$, with the frame reservation and $`h`$ defined in
 [Corollary 7](FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and-the-complex-magnitude-frame).
-The grouped one-clean complex compiler with
+Result C's [banked one-clean complex compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier) with
 $`a_F=1`$, $`b_F\geq2(L+n+8)`$ yields
 
 ```math
 \mathbb E\mathcal T_{\nabla,\mathbb C}
 =O\!\left(\frac{\Lambda^2[1+\log((n+1)/\delta)]}
 {\varepsilon_\infty^2}
-\left[\sqrt{NL}+L\ell_*(n)+\frac{NL}{b_F}+\overline t_O\right]\right).
+\left[\sqrt{NL}+L+\frac{NL}{b_F}+\overline t_O\right]\right).
 ```
 
 The quantum circuit does not coherently load the term label: each shot

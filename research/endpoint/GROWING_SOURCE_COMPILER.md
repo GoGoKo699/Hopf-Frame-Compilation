@@ -1,8 +1,22 @@
 <a id="a-growing-source-compiler-for-complete-real-hopf-frames"></a>
+<a id="a-growing-source-compiler-for-complete-hopf-frames"></a>
 
-# A growing-source compiler for complete Hopf frames
+# One-clean count frontier for complete Hopf frames
 
 [Mixed local gauges](HETEROGENEOUS_PRECISION_SOURCE.md#2-mixed-local-merges-with-one-feature-per-node) · [Exact dirty scalars](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger) · [Disjoint state extensions](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources)
+
+The authoritative statement of **Result C** is in
+[Section 11](#11-precision-uniform-one-clean-count): one clean qubit
+attains the uniform base-width count and the optimal banked count for
+both prescribed frame families. The proof uses the following chain.
+
+| Ingredient | Proof home and role |
+|---|---|
+| Native phase and exact guards | [One-clean primitive](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger), [controlled native words](../../docs/CONDITIONAL_SUFFIX_COMPILER.md#1-an-active-suffix-supplies-workspace-conditionally): literal phases, arbitrary dirty inputs, and exact inactive identity |
+| Growing real overlap | Sections 1–8: actual mixed gauges, source refinement, full-mode allocation, replay, and original-anchor recovery |
+| Dimension and precision | Section 10 and the [disjoint block/source interface](DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form): a universal high-precision construction |
+| One-clean recovery | Section 11 and [conjugate signals](CONJUGATE_SIGNAL_RECOVERY.md#lift-an-overlap-before-its-recovery): borrow the phase signal while retaining genuine initialized recovery work |
+| Count frontier | Section 12: exact banked queries and summed native costs, spliced with the [layerwise baseline](../../docs/ONE_CLEAN_COMPILER.md#layerwise-banked-baseline), followed by literal phase composition and the existing lower bounds |
 
 The carried source can grow as the bottom-up row network retires its
 detail and feature outputs. Fresh mode arenas supply the larger source
@@ -11,16 +25,8 @@ and every later completed word fixes it. An exact dyadic refinement
 changes the source ratio without another endpoint-precision synthesis.
 The resulting precision charges are summable. A single final column
 source compensates the known attenuation of each retired output.
-The real construction leaves a half-error margin; the
-[complex-magnitude corollary](#9-complex-magnitude-endpoint) uses it to
-append a literal diagonal within the same workspace and linear T-count.
-The [precision-uniform extension](#10-precision-uniform-two-clean-count)
-separates the logical dimension from the requested accuracy and gives
-$`O(N+L)`$ count with two clean qubits.
-The [one-clean extension](#11-precision-uniform-one-clean-count)
-borrows only the fine-phase signal, retaining the initialized recovery
-anchor. The [banked frontier](#12-optimal-banked-count-frontier)
-then matches the worst-case count lower bound at its stated dirty widths.
+The intermediate two-clean proofs remain constructive dependencies;
+Section 9 also retains a sharper complex endpoint reservation.
 
 ## 1. Statement, clipping, and the fixed anchor
 
@@ -926,10 +932,10 @@ V^\dagger J-J(DR)^\dagger
 =V^\dagger(JDR-VJ)(DR)^\dagger.
 ```
 
-The two T-counts add to $`O(N)`$. Setting $`D_\phi=I`$ includes
-the real family and its
-[root-angle witness](../../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness),
-so the lower bound $`2N-1`$ transfers without a new premise. ∎
+The two T-counts add to $`O(N)`$. Setting $`D_\phi=I`$ retains
+the canonical root-angle $`\pi/16`$ witness, whose other angles are zero.
+The [root-angle lower bound](../../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+therefore gives $`2N-1`$ without a new premise. ∎
 
 This corollary concerns the prescribed complex magnitude frame, not
 arbitrary complex unitaries. Leaf-phase derivatives keep their separate
@@ -967,7 +973,7 @@ Choose one universal threshold $`n_0`$, large enough for the estimates
 below and the fixed $`d_0`$ of Section 4. First suppose
 
 ```math
-n>n_0,\qquad L>N/n,\qquad K=2^{\lceil\log_2L\rceil},
+n>n_0,\qquad L>N/n^2,\qquad K=2^{\lceil\log_2L\rceil},
 \qquad L\le K\lt 2L.
 ```
 
@@ -979,8 +985,14 @@ q_d=K/P_d^2,\qquad \beta_d=2^{-q_d},\qquad
 \Delta_d=q_d+B_d,\qquad q_dM_d=4K.
 ```
 
-Since $`L>N/n=2^n/n`$, a single $`n_0`$ makes K dominate every
+Since $`L>N/n^2=2^n/n^2`$, a single $`n_0`$ makes K dominate every
 fixed polynomial needed here, uniformly over this whole regime.
+Choose $`d_0`$ first from the mode-volume and attenuation bounds,
+then choose this $`n_0`$ to absorb all constants of the resulting
+fixed bottom-block and source interfaces. Neither threshold depends
+on L or the target data. The cutoff $`N/n^2`$ also lets the
+layerwise banked construction cover the complementary regime in
+Section 12 without iterated grouping.
 Thus each $`q_d`$ is a positive integer, $`q_d\ge B_d`$, and the
 source ratios satisfy the rare-event bounds. At a jump of P, the same
 four exact binary refinements halve q and double M each time.
@@ -1026,7 +1038,7 @@ The finite-source and Cayley-tail bounds become
 e_n\le5n\,2^{-4K}\le\epsilon/192.
 ```
 
-The last inequality holds uniformly for $`L>N/n`$ after increasing
+The last inequality holds uniformly for $`L>N/n^2`$ after increasing
 $`n_0`$. The
 [high-precision disjoint-block and state-source interfaces](DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
 compile the fixed bottom blocks, initial source, and final tag
@@ -1063,10 +1075,10 @@ Thus the total is $`O(N+L)`$.
 For the literal workspace, enlarge the fixed $`d_0`$ and $`n_0`$
 once so that all cheap, coefficient, and refinement dirty cores are
 smaller than $`L/2`$. This follows from $`K\lt 2L`$, the displayed
-precision bounds, and $`\mathrm{poly}(n)=o(N/n)`$.
+precision bounds, and $`\mathrm{poly}(n)=o(N/n^2)`$.
 Their returned selectors and guard helpers have only polynomial-in-n
 size. Exact routing and coarse construction use
-$`O(\sqrt N+\mathrm{poly}(n))=o(N/n)\lt L`$ dirty work in separate
+$`O(\sqrt N+\mathrm{poly}(n))=o(N/n^2)\lt L`$ dirty work in separate
 stages. The fine core uses $`L+c_0+1`$ dirty wires; self-borrowing
 holds because $`L+c_0+1\ge2(n+1)`$. The remaining fixed helpers
 fit in $`n+6-c_0`$ wires, as in Section 8. Thus the peak is
@@ -1076,7 +1088,7 @@ storage.
 
 ### Splice the remaining regimes and compose phases
 
-For $`L\le N/n`$, the existing
+For $`L\le N/n^2`$, the existing
 [two-clean real baseline](../../docs/OPERATOR_SOURCE_COMPILER.md)
 uses $`b=L+n+7`$ and $`T=O(N+nL)=O(N)`$ at error $`2^{-L}`$.
 For every $`3\le n\le n_0`$ and every L, use that same baseline:
@@ -1112,7 +1124,10 @@ T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{q_{\rm phys}}\right)
 =\Omega(N+L),\qquad T^\star=\Theta(N+L).
 ```
 
-The complex family contains the real one by taking $`D_\phi=I`$.
+For the canonical complex magnitude family, set all magnitude angles
+to zero and vary the leaf phases. This gives every literal diagonal;
+the [diagonal-subfamily proof](../../docs/FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and-the-complex-magnitude-frame)
+supplies the same lower bound without enlarging the angle domain.
 The quoted lower bound already combines the fixed-width counting
 regime with its complementary square-root bound; no extra restriction
 on $`q_{\rm phys}^2/(NL)`$ is needed here. This matching statement
@@ -1128,7 +1143,7 @@ classical-efficiency, or native-emitter bound follows here.
 
 ## 11. Precision-uniform one-clean count
 
-Under the same certified-input contract, for every $`n\ge3`$ and
+**Result C.** Under the same certified-input contract, for every $`n\ge1`$ and
 integer $`L\ge6`$, both frame families have an effective coherent
 Clifford+T compiler satisfying
 
@@ -1141,6 +1156,22 @@ b\ge L+n+8\quad\text{(complex magnitude)}.
 \end{gathered}
 ```
 
+Write $`B=L+n+7`$ for the real family and $`B=L+n+8`$ for the
+complex magnitude family. With the same sole clean qubit and
+$`b\ge2B`$, the banked construction has $`G=O(NL)`$ and
+attains the worst-case minimum
+
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
+```
+
+At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the base-width
+count is likewise matching: $`T^\star=\Theta(N+L)`$. The lower
+bounds fix $`a=1`$; upper circuits may leave additional supplied
+clean or dirty wires untouched. For arbitrary requested
+$`0\lt\eta\le1/64`$, take
+$`L=\lceil\log_2(1/\eta)\rceil`$ and use error $`2^{-L}\le\eta`$.
+
 Constants are universal. The guarantee covers the complete operator on
 initialized clean work, arbitrary dirty and reference inputs, literal
 phases, and the actual inverse. It is the fine-phase flag c that is
@@ -1151,7 +1182,7 @@ Section 9 keeps its sharper $`N+n+7`$ width with one clean qubit.
 ### Lift before compiling the fine slots
 
 Work first in the high regime of Section 10: $`n>n_0`$ and
-$`L>N/n`$, after increasing a universal $`n_0`$ as needed. Keep
+$`L>N/n^2`$, after increasing a universal $`n_0`$ as needed. Keep
 its precision scale K, mode allocation, clipping, and actual cheap
 words. Before implementing the ideal fine diagonal slots, remove their
 compiler flag c from the high-level words. It is not a logical mode
@@ -1266,13 +1297,16 @@ of fine calls. Each such call is $`O(N+L)`$, so the total remains
 $`O(N+L)`$. The Clifford ledger in Section 12 below also applies
 with unbanked exact queries, giving $`G=O(NL)`$ at this base width.
 
-For $`L\le N/n`$, use the existing
+For $`L\le N/n^2`$, use the existing
 [one-clean real baseline](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger):
 $`T=O(N+nL)=O(N)`$, $`G=O(NL)`$, and $`b=L+n+7`$.
-For each $`3\le n\le n_0`$ and arbitrary L, that same baseline
+For each $`1\le n\le n_0`$ and arbitrary L, that same baseline
 has $`N+nL=O(N+L)`$ with one universal enlarged constant.
 This covers all dimensions without a finite-net fallback at variable
 precision.
+In particular, $`n=1,2`$ uses $`N\le4`$ and $`n\le2`$ in
+this baseline, giving $`T=O(L)=O(N+L)`$ with its original literal
+dirty reservation. No growing arena is used in these dimensions.
 
 For the complex magnitude frame, compose the real theorem at precision
 $`L+1`$ with the existing
@@ -1298,31 +1332,14 @@ base-width matching statement is not extended to arbitrary larger b.
 
 ## 12. Optimal banked count frontier
 
-For every $`n\ge3`$ and integer $`L\ge6`$, retain one clean
-qubit and allow
-
-```math
-b\ge2(L+n+7)\quad\text{(real)},\qquad
-b\ge2(L+n+8)\quad\text{(complex magnitude)}.
-```
-
-Under the same complete-input and certified-data contract there are
-effective compilers with
-
-```math
-T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad G=O(NL),
-\qquad \|VJ_1-J_1(W\otimes I_b)\|_{\rm op}\le2^{-L}.
-```
-
-These match the worst-case lower bound throughout the stated widths:
-
-```math
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
-```
+This section proves the banked clause of Result C in Section 11,
+including the Clifford ledger used by its base-width construction.
+The clean allocation remains exactly one qubit; additional arbitrary
+dirty work is available at $`b\ge2B`$.
 
 ### Bank exact native tables and sum their costs
 
-In the high regime $`n>n_0`$, $`L>N/n`$, retain the construction
+In the high regime $`n>n_0`$, $`L>N/n^2`$, retain the construction
 of Section 11. Use the
 [banked real block and source interfaces](CONJUGATE_SIGNAL_RECOVERY.md#banked-real-interfaces)
 for the fixed bottom blocks and constant source extensions. Their
@@ -1390,13 +1407,20 @@ splitter word once, and unload. The T-count per height is
 $`O(\sqrt{S_d}+1+S_d/b+\mathrm{poly}(d))`$; summing gives
 $`O(\sqrt N+N/b+\mathrm{poly}(n))`$, within the claimed frontier.
 Their Clifford cost is at most $`O(S_d\mathrm{poly}(d))`$ and
-sums to $`O(N)`$. Since $`L>N/n`$,
+sums to $`O(N)`$. Since $`L>N/n^2`$,
 
 ```math
 N^{3/4}\mathrm{poly}(n)=O(\sqrt{NL}),\qquad
 N\mathrm{poly}(n)=O(NL),\qquad
 \mathrm{poly}(n)=O(L).
 ```
+
+In particular, every signed-normalization permutation uses the exact
+[dirty-only routing word](DISJOINT_BLOCK_COMPILER.md#2-exact-routing-and-coarse-words)
+at $`O(\mathrm{poly}(n)\sqrt N)`$ T cost here; the endpoint's
+coarser $`O(N)`$ allowance is not used for this banked comparison.
+The absorption follows from $`\sqrt{NL}>N/n`$, uniformly beyond
+the single fixed threshold.
 
 Thus exact logical transport and the coarse compiler are charged, as
 well as every precision table. The lift sends $`T\mapsto O(T)`$
@@ -1412,29 +1436,29 @@ and $`G=O(NL)`$ without extra banks. The coarse ledger is identical.
 
 ### Splice, compose, and match the lower bound
 
-For $`L\le N/n`$, the existing one-clean grouped banked theorem
-in [the one-clean compiler](../../docs/ONE_CLEAN_COMPILER.md#6-complete-real-frames-and-the-grouped-extension)
+For $`L\le N/n^2`$, the
+[banked layerwise baseline](../../docs/ONE_CLEAN_COMPILER.md#layerwise-banked-baseline)
 gives
 
 ```math
-T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
-\qquad G=O(NL).
+T=O\!\left(\sqrt{NL}+nL+\frac{NL}{b}\right),
+\qquad G=O(NL),\qquad b\ge2(L+n+7).
 ```
 
-Here $`\ell_*(n)`$ is its iterated grouping overhead. Its ratio
-to $`\sqrt n`$ is bounded by a universal constant. Therefore
-$`L\ell_*(n)\le\sqrt{NL}\,\ell_*(n)/\sqrt n=O(\sqrt{NL})`$
-in this regime. For each remaining bounded $`3\le n\le n_0`$
-and arbitrary L, use the existing banked baseline with count
-$`O(\sqrt{NL}+nL+NL/b)`$. The factor n is uniformly bounded,
-so it gives the desired formula. Both routes use one clean qubit and
-the stated literal banked width, covering all regimes.
+Here $`nL\le\sqrt{NL}`$, so its repeated precision charge is
+already within the claimed frontier. For each remaining bounded
+$`1\le n\le n_0`$ and arbitrary L, the same baseline works:
+the factor n is uniformly bounded and $`nL=O(L)`$. This covers
+all regimes using only the layerwise construction and the growing
+source. The iterated grouped theorem is not a dependency of this splice.
 
 Compose the real result at $`L+1`$ with the banked one-clean literal
 diagonal at $`L+1`$. Their required dirty threshold is
 $`2(L+n+8)`$ and their counts add to the displayed complex bound.
 The half-error hybrid and actual-inverse identity are those of
-Section 11. Setting $`D_\phi=I`$ includes the real family.
+Section 11. For the complex lower bound use its arbitrary-diagonal
+subfamily, as in Section 10, rather than an inclusion of the entire
+real-angle domain.
 
 Finally the existing
 [complete-frame lower bound](../../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
@@ -1446,7 +1470,11 @@ T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{q_{\rm phys}}\right).
 
 At either stated banked threshold, $`q_{\rm phys}=\Theta(b)`$.
 The lower and upper bounds match, with universal constants, for both
-families. This is a count frontier at sufficient dirty width. It gives
+families. For $`n=1,2`$, the same conclusion also follows directly:
+$`N\le4`$ makes the displayed count expression $`\Theta(L)`$,
+the baseline supplies $`O(L)`$, and the canonical root-angle
+$`\pi/16`$ witness supplies $`\Omega(L)`$ at arbitrary width
+in both families. This is a count frontier at sufficient dirty width. It gives
 no new T-depth bound and makes no claim about the full transition
 between the base and doubled-base reservations. ∎
 

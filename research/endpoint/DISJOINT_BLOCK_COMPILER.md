@@ -32,7 +32,7 @@ $`n_0(\kappa,c)`$ such that, whenever
 
 ```math
 n\ge n_0(\kappa,c),\qquad L\in\mathbb Z,\quad L\ge6,
-\qquad L\gt N/n,
+\qquad L\gt N/n^2,
 ```
 
 the same target family has a two-clean compiler with
@@ -221,7 +221,7 @@ The alternative $`R_{(e-z_a)/\|e-z_a\|}`$ works when $`1-(z_a)_e`$ is bounded be
 **Precision-parametrized source interface.** For every fixed $`c\gt0`$,
 the same real reflection and real state-extension constructions have
 error at most $`2^{-L}/c`$, T-count $`O_c(N+L)`$, and at most
-$`L+n+7`$ dirty qubits when $`L\ge6`$, $`L\gt N/n`$, and n is
+$`L+n+7`$ dirty qubits when $`L\ge6`$, $`L\gt N/n^2`$, and n is
 above a fixed threshold depending only on c. They still use one clean
 compiler flag and four fine diagonal calls; the complex reflection uses
 six. This is a complete initialized-isometry guarantee on every mode
@@ -348,10 +348,10 @@ and $`O(\mathrm{poly}(n)\sqrt N)=O(N)`$ for the source interface.
 Their peak dirty requirement remains bounded by
 $`K_\kappa(\sqrt N+p(n))`$ for a fixed polynomial p and constant
 $`K_\kappa`$. Consequently, uniformly in
-$`L\gt N/n`$, increasing the fixed threshold on n ensures
+$`L\gt N/n^2`$, increasing the fixed threshold on n ensures
 
 ```math
-b_{\rm coarse}\le K_\kappa(\sqrt N+p(n))\le N/n\lt L,
+b_{\rm coarse}\le K_\kappa(\sqrt N+p(n))\le N/n^2\lt L,
 \qquad 2(n+1)\le q+1\le L+n+7.
 ```
 
@@ -360,6 +360,10 @@ the second permits self-borrowing for every fine address and fits its
 entire core into that same pool. The reservations are reused between
 completed subroutines, not added. The one-clean source statement has
 the same estimate, with its constants depending only on c.
+The cutoff $`N/n^2`$ still dominates every fixed polynomial in n.
+All constants and polynomial degrees are fixed before this threshold
+is chosen, so these inequalities hold uniformly over the entire
+stated precision range.
 
 All error comparisons remain full-isometry comparisons. Later actual
 unitaries propagate earlier leakage without amplification, and actual
@@ -376,7 +380,7 @@ theorem above strengthens to
 
 ```math
 \begin{gathered}
-L>N/n,\qquad L\ge6,\qquad B_0=L+n+7,\qquad b\ge2B_0,\\
+L\gt N/n^2,\qquad L\ge6,\qquad B_0=L+n+7,\qquad b\ge2B_0,\\
 a=2,\qquad
 T=O_{\kappa,c}\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
 \qquad G=O_{\kappa,c}(NL).
@@ -401,7 +405,7 @@ fixed number of separate predicate helpers. The slack
 $`B_0-m=n+6-c_0`$ can also reserve one further arbitrary signal
 wire outside every core, selector set, and bank, if needed by a
 subsequent real-source construction. Also
-$`m\ge2(n+1)`$ since $`L>N/n`$. For a mask on a k-bit address,
+$`m\ge2(n+1)`$ since $`L\gt N/n^2`$. For a mask on a k-bit address,
 $`k\le n+1`$, split the core into two balanced parts A and B,
 each of size at least k. Implement the query into A using k bits of B
 as selectors, then implement the query into B using k bits of A.
@@ -480,12 +484,12 @@ $`O_{\kappa,c}(N^{3/4}\mathrm{poly}(n))`$; source-only
 interfaces have the stronger square-root bound. In the present regime,
 
 ```math
-\sqrt{NL}>\frac{N}{\sqrt n},\qquad
+\sqrt{NL}\gt\frac{N}{n},\qquad
 N^{3/4}\mathrm{poly}(n)=O(\sqrt{NL}),\qquad
 N\mathrm{poly}(n)=O(NL).
 ```
 
-Each comparison is uniform over every $`L>N/n`$ after increasing one
+Each comparison is uniform over every $`L\gt N/n^2`$ after increasing one
 fixed n threshold. The coarse dirty reservation remains
 $`O_{\kappa,c}(\sqrt N+\mathrm{poly}(n))\lt L`$, as proved
 above, and reuses the base pool between completed fine calls. No

@@ -29,7 +29,7 @@ return, and resource accounting under the individual recorded contracts.
 |---|---|---|---|
 | A: exact complete frame | [Compiler theorem](COMPILER_THEOREM.md) | Exact-frame, strict-zero, decoder, router, and resource suites in §§2–8 below | UCG and multi-controlled-X elementary synthesis are imported |
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
-| C: one-clean frame and corollaries | [One-clean compiler](ONE_CLEAN_COMPILER.md), [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), one-clean word, amplification, grouped residual and bank-allocation fixtures | Small emitted words and matrices; operator-core return error is included in the joint norm |
+| C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
 
 <a id="endpoint-count-evidence"></a>
@@ -38,33 +38,18 @@ return, and resource accounting under the individual recorded contracts.
 
 ### One-clean count evidence
 
-The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-establish the linear T-count endpoint for prescribed complete real and
-phase-dressed complex magnitude frames with certified input data.
-Their common contract is $`n\ge3`$,
-$`N=2^n`$, error $`2^{-N}`$, two clean flags, and $`b=N+n+7`$ dirty
-qubits. The error includes every logical column, returned flags, arbitrary
-dirty inputs, and external references.
+Result C's [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+give the analytic count and workspace guarantees for both complete-frame
+families. Their complete initialized-isometry contract covers every logical
+column, literal phase, returned clean work, arbitrary dirty input and
+external reference. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md)
+states the exact base and doubled-base thresholds, matching ranges and
+the separate sharper two-clean complex endpoint.
 
-The [one-clean precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ for integer $`L\ge6`$ at error $`2^{-L}`$,
-with $`G=O(NL)`$, one clean flag, and dirty reservation
-$`B=L+n+7`$ for real frames or $`B=L+n+8`$ for complex magnitude
-frames. The upper bound applies at every $`b\ge B`$. At those
-exact base widths, the existing lower bound gives worst-case
-$`T^\star=\Theta(N+L)`$ when $`L\ge\max(6,n)`$. The
-[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-gives, for every $`b\ge2B`$ and integer $`L\ge6`$,
-
-```math
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
-\qquad G=O(NL),\qquad a=1.
-```
-
-The fixed $`L=N`$ complex endpoint retains the sharper reservation
-$`b=N+n+7`$ with two clean flags. These count results supplement
-Results A–D and do not settle general optimal T-depth.
+The all-size conclusions, including the small-dimension baseline, follow
+from the proofs. The following fixtures check specific source, recovery
+and composition identities; they do not certify an asymptotic compiler.
 
 The real [growing-source diagnostics](../tests/test_growing_precision_source.py) test
 normalized refinement, sealed occupied and entangled failures, retained

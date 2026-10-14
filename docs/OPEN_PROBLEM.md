@@ -17,50 +17,39 @@ admit terminating certified evaluation, including unequal and singular tuples.
 
 <a id="precision-uniform-two-clean-count"></a>
 
-## Precision-uniform one-clean count
+<a id="precision-uniform-one-clean-count"></a>
+<a id="optimal-banked-count"></a>
 
-For $`n\ge3`$ and every integer $`L\ge6`$, the
+## Result C: the one-clean count frontier
+
+For every $`n\ge1`$ and integer $`L\ge6`$, the
 [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives full-isometry error at most $`2^{-L}`$ and
+gives error at most $`2^{-L}`$, with one clean qubit and universal
+constants. Its base dirty reservation is $`B=L+n+7`$ for real frames
+or $`B=L+n+8`$ for phase-dressed complex magnitude frames:
 
-```math
-a=1,\qquad T=O(N+L),\qquad G=O(NL).
-```
+| Dirty allocation | T-count guarantee |
+|---|---|
+| Every $`b\ge B`$ | $`T=O(N+L)`$ |
+| Exactly $`b=B`$, with $`L\ge\max\{6,n\}`$ | Worst-case $`T^\star=\Theta(N+L)`$ |
+| Every $`b\ge2B`$ | Worst-case $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ |
 
-The base dirty reservation is $`B=L+n+7`$ for real frames and
-$`B=L+n+8`$ for phase-dressed complex magnitude frames; every
-$`b\ge B`$ is allowed. At exactly $`b=B`$ and
-$`L\ge\max\{6,n\}`$, the existing worst-case lower bound matches:
-$`T^\star=\Theta(N+L)`$. For $`L\lt n`$ the base-width statement
-is an upper bound.
+All upper constructions have $`G=O(NL)`$. The
+[banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+charges exact word-bank queries, growing sources, coarse interlayers, actual
+inverses, and all workspace return. A borrowed signal carries conjugate
+source sectors while the genuine initialized recovery anchor remains.
+The layerwise baseline covers low precision and bounded n; literal leaf
+phases reuse the sole clean flag afterward. Banks and selectors return
+exactly on arbitrary inputs, while source and signal return are included
+in the full-isometry norm.
 
-A borrowed signal implements the two conjugate source sectors and returns
-within the full-operator error because their recovered real target agrees.
-The existing one-clean baseline covers modest precision and bounded n.
-Literal leaf phases then use the sole clean compiler flag. All source
-construction, queries, actual inverses, and work return are charged.
-
-## Optimal banked count
-
-For the same two frame families, $`n\ge3`$, every integer $`L\ge6`$,
-and $`b\ge2B`$, the
-[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-is
-
-```math
-a=1,\qquad
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
-\qquad G=O(NL).
-```
-
-Exact word-bank queries replace the growing sources' coefficient masks;
-their weighted row and precision costs are summable. At modest precision,
-the existing grouped compiler already attains this count. Banks and
-selectors return exactly on arbitrary inputs, while source and signal
-return are included in the common error norm. This is a count theorem
-on its displayed dirty-width range, with no new depth guarantee.
-The [earlier two-clean proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-retains its independently established allocation and proof.
+The count frontier is proved on the displayed banked range. At base width
+and $`L\lt n`$, or throughout the transition $`B\lt b\lt2B`$,
+retain the stated upper bound without a general matching claim. The
+[publication scope](../manuscript/PUBLICATION_SCOPE.md#result-c-the-one-clean-count-theorem)
+records the complete hypotheses. Result B retains its sufficient-clean
+allocations, and Result D retains its distinct same-circuit depth guarantees.
 
 ## Constant-clean high-precision count
 
@@ -84,7 +73,7 @@ actual inverses, and complete workspace return. The
 [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 composes a packed literal leaf-phase diagonal on the same flags and dirty
 pool. Both factors' errors, including their work return, enter the complete
-initialized-isometry norm. The new one-clean theorem also gives linear
+initialized-isometry norm. Result C also gives linear
 count for real frames at this dirty allocation. The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 at root angle $`\pi/16`$ gives the lower bound even at unrestricted
 workspace width, retaining literal phases. Zero leaf phases include this
@@ -155,7 +144,7 @@ bound nor an uncharged native implementation of a different representation.
 
 Every compiler must charge source construction, tables, basis changes,
 queries, actual inverses, amplification, and workspace return on the same
-circuit. The selected one-clean count frontier also charges
+circuit. Result C also charges
 $`G=O(NL)`$ elementary Clifford gates. Certified classical preprocessing
 has no asserted uniform efficiency bound; the depth question retains its
 displayed Clifford budget. Neither permits QRAM, a supplied precision state,

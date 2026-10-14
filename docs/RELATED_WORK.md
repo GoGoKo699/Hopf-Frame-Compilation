@@ -8,8 +8,8 @@ contribution is the complete-operator construction and the resulting
 precision/workspace guarantees. The ingredients retain their established
 attribution; no priority claim follows from a bounded literature search.
 
-This page summarizes the lineage of Results A–D and the growing-source
-count theorems, including the precision-uniform one-clean banked frontier. The
+This page summarizes the lineage of Results A–D, including C's
+precision-uniform one-clean banked frontier. The
 [source catalogue](reference/SOURCE_CATALOGUE.md#extended-lineage-for-the-core-and-its-supporting-constructions)
 retains the detailed comparisons, precise locators, and bibliography.
 [Research comparisons](../research/RELATED_WORK.md) and the
@@ -107,50 +107,38 @@ separate leaf-phase gradient stream.
 |---|---|---|
 | A: exact frame | State-preparation UCGs, borrowed-wire cancellation, reversible routing, Hopf geometry | Prescribed columns, strict-zero echo, tree cut and routed all-workspace schedule |
 | B: sufficient-clean T count | Geometric bit sources, dirty lookup, compression, LCU/amplification, counting and diagonal lower bounds | Complete residual representation and shared-source composition, uniformly in precision |
-| C: one-clean compilation | Full-space loaders, Clifford overlap algebra, dirty queries, standard amplification | Conjugated scalar-source word, native head-and-two-tail source, grouped frame and literal-phase corollaries |
+| C: one-clean count frontier | Full-space loaders, Clifford overlap algebra, exact dirty word-bank queries, standard amplification, and existing width-sensitive lower bounds | Native one-clean source, growing precision sources, whole-source conjugate lift, retained-anchor recovery, summed native charges, and uniform regime composition |
 | D: count and T-depth | Returned dirty indicators, controlled Clifford circuits, phase synthesis, arithmetic, phase-reference reuse | Charged unary-source reuse, complete-input query words, rectangular width allocation and uniform frame composition |
 | Endpoint count | Dirty scalar and diagonal synthesis, disjoint-block/state interfaces, literal amplification | Growing precision sources, sealed rejection modes, compensated recovery and summable native charges; same-workspace phase dressing |
 | Precision-uniform two-clean count | The same native interfaces and the existing layerwise baseline | Separate logical mode and source-precision scales, uniform high-precision block/state interfaces, and low-precision/bounded-dimension splicing |
-| Precision-uniform one-clean count | The actual conjugate-phase word, same dirty sources, literal amplification, and one-clean diagonal primitive | Whole-source conjugate lift, recovery over the retained initialized anchor, and complete Clifford ledger |
-| Optimal banked one-clean count | Exact dirty word-bank queries, self-borrowed selectors, and the established width-sensitive lower bounds | Banked high-precision source interfaces, summed native charges, and uniform regime composition for complete frames |
 
 ## 8. Contribution at theorem level
 
 The [publication scope](../manuscript/PUBLICATION_SCOPE.md) gives Results
-A–D and the growing-source count theorems with their full reservations. A matches exact size and
-depth at every clean budget. B matches the precision-uniform T-count
-frontier under sufficient clean work. C reduces the clean allocation to
-one flag with its stated grouped upper bound. D gives simultaneous count
-and T-depth bounds for real frames and matches both on explicit ranges.
-The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its complex-magnitude corollary attain worst-case $`\Theta(N)`$
-T-count at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. Their proof composes
-the retained native interfaces; it adds no external synthesis premise.
-The [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-gives $`T=O(N+L)`$ for $`n\ge3`$, integer $`L\ge6`$, and
-error $`2^{-L}`$, with $`a=2`$ and dirty width $`b\ge L+n+7`$
-for real frames or $`b\ge L+n+8`$ for complex magnitude frames.
-Its constants are independent of n and L. This extension changes the
-precision allocation and the regime splice while retaining the established
-source, query, and amplification premises.
-At exactly the respective base dirty widths and $`L\ge\max\{6,n\}`$,
-the existing width-sensitive lower bound gives worst-case
-$`\Theta(N+L)`$. This is a specialization of the retained lower bounds,
-not a new lower-bound method or an optimum at every larger width.
+A–D with their full reservations. A matches exact size and depth at every
+clean budget. B matches the precision-uniform T-count frontier with
+sufficient clean work, including small dirty budgets. D gives simultaneous
+count and T-depth bounds for real frames and matches both on explicit ranges.
 
-The [one-clean extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-retains these uniform T-count and base dirty reservations with $`a=1`$
-and adds the full $`G=O(NL)`$ Clifford ledger. Its complete-source
-conjugate lift borrows the phase signal while retaining the initialized
-anchor marker and all required recovery coordinates. The
-[banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-then gives worst-case $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ with
-one clean flag, for real $`b\ge2(L+n+7)`$ or complex magnitude
-$`b\ge2(L+n+8)`$, throughout $`n\ge3`$ and integer $`L\ge6`$.
-Its lower bound is the retained counting/diagonal bound specialized to
-$`n+1+b=\Theta(b)`$. These extensions import no new premise or
-priority claim and give no new T-depth or general native-emitter guarantee.
-The sharper complex endpoint width $`N+n+7`$ remains a two-clean result.
+For every $`n\ge1`$ and integer $`L\ge6`$, C gives $`T=O(N+L)`$
+and $`G=O(NL)`$ at error $`2^{-L}`$, with fixed $`a=1`$ and base dirty reservation
+$`B=L+n+7`$ for real frames or $`B=L+n+8`$ for complex magnitude
+frames. Its [banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+matches $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at $`b\ge2B`$.
+At exactly $`b=B`$, $`\Theta(N+L)`$ is matching when
+$`L\ge\max\{6,n\}`$. These are specializations of the retained
+counting and diagonal lower bounds, not a new lower-bound method.
+
+The [growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+separates source precision from logical mode capacity and lifts whole
+sources into conjugate sectors while retaining the initialized anchor.
+Its high-precision banked interfaces meet the layerwise one-clean baseline
+at $`L=N/n^2`$; the bounded dimensions use that same baseline.
+The source, query and amplification premises retain their original
+attribution. The [two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+has the distinct complex reservation $`b=N+n+7`$ at $`L=N`$.
+Neither C nor these supporting corollaries supplies a new T-depth or
+general native-emitter guarantee.
 
 The [frame-safety proof](FRAME_SAFE_COMPILATION.md) and two-qubit
 counterexample explain why the completion matters. The
@@ -222,12 +210,11 @@ suffix work only in its selected sector and streams coarse programs. With
 the one-clean refinement it gives $`O(N+L\ell_*(n))`$ T gates at
 $b\ge L+n+7$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
 Its final conditional-work return error is included in the norm.
-The later [growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-improves the one-clean count to $`O(N+L)`$ with the same real dirty
-reservation and $`O(NL)`$ Clifford cost; its banked form removes the
-iterated-log precision term at the thresholds stated above. The original
-one-clean source identities and group interface remain attributed inputs
-to that construction.
+Result C uses the [growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and the layerwise banked baseline to obtain its stronger counts. The
+grouped estimate remains a proved corollary; its exact conditional-work
+guards remain local inputs, while the iterated grouping is no longer
+needed for C's precision splice.
 
 ## 12. Contemporary comparisons and the broader compiler contribution
 

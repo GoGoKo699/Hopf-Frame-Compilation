@@ -3,7 +3,7 @@
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
-precision-uniform one-clean count theorem, optimal banked count, the
+one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, and the remaining large-width depth gap. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
@@ -40,9 +40,9 @@ must be proved separately.
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
-Results A–D are the principal resource theorems. The selected
-precision-uniform one-clean count theorem, optimal banked count, and
-sharper two-clean endpoint stand beside them at their own literal allocations. Retained
+Results A–D are the principal resource theorems. Result C is the
+precision-uniform one-clean count theorem and its optimal banked frontier.
+The sharper two-clean complex endpoint has its own literal allocation. Retained
 diagonal, multiplexor, complex-magnitude, and borrowed-workspace corollaries keep their own literal
 reservations. Older proof components remain where a selected
 construction actually uses them; an older headline bound is not itself a
@@ -56,17 +56,25 @@ remain in their shared directories and continue to be verified.
 
 ## Research decision and stopping rules
 
-The selected scientific package has reached its stopping point. The
-[one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+The selected scientific package has reached its stopping point.
+[Result C](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every integer $`L\ge6`$
-and $`n\ge3`$, at base dirty reservation $`B=L+n+7`$ for real
+and $`n\ge1`$, at base dirty reservation $`B=L+n+7`$ for real
 frames or $`B=L+n+8`$ for complex magnitude frames. At $`b\ge2B`$,
 the [banked theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
 matches the full worst-case count frontier
 $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean qubit.
 The [sharp two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-keeps $`b=N+n+7`$ for both families at $`L=N`$. Their proof
-dependencies do not change A–D.
+keeps $`b=N+n+7`$ for both families at $`L=N,n\ge3`$.
+A, B, and D retain their separate resource statements.
+
+The [current proof reconstruction](docs/CORE_CLAIM_AUDIT.md) records
+the native contracts and minimal dependencies. The split at $`L=N/n^2`$
+uses the direct layerwise baseline below the cutoff and growing sources
+above it. Iterated grouping is a retained standalone result, not a
+dependency of C's current count proof. The conditioning lemma in its
+chapter remains necessary. Historical audits stay in the reference
+catalogue; current claims are stated in the publication scope.
 
 The large-width depth question remains parked until a qualifying mechanism
 is available. Closing it, building a general native emitter, studying

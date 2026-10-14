@@ -5,11 +5,10 @@ gradient decoder also uses designated coordinate-frame columns. This
 repository compiles that prescribed **complete operator**, with explicit
 costs for precision, initialized workspace, and borrowed workspace.
 
-The principal results are A–D below, accompanied by a precision-uniform
-one-clean count theorem, optimal banked count, and a sharper two-clean
-high-precision endpoint. Their
-hypotheses and retained corollaries are collected in the
-[publication scope](manuscript/PUBLICATION_SCOPE.md).
+The principal results are A–D below. They include optimal exact compilation,
+matching T-count frontiers with sufficient clean work or one clean qubit,
+and simultaneous count/depth guarantees. Their hypotheses and retained
+corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column; complete-frame compilation also preserves the designated coordinate-frame columns." />
@@ -17,7 +16,7 @@ hypotheses and retained corollaries are collected in the
 
 | Read next | Purpose |
 |---|---|
-| [Proof roadmap](REVIEW.md) | Follow A–D and the selected one-clean count frontier |
+| [Proof roadmap](REVIEW.md) | Follow the four claims and their proof mechanisms |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
 | [Count theorem and depth question](docs/OPEN_PROBLEM.md) | Read the one-clean count frontier, sharp endpoint, and remaining large-width depth target |
@@ -88,23 +87,28 @@ The [fault-tolerant proof](docs/FAULT_TOLERANT_COMPILER.md) shares one
 charged precision source across the complete residual-correction stream.
 The clean reservation is sufficient, not a clean-space lower bound.
 
-**C. One-clean compilation.** For real frames, $`a=1`$ and
-$`b\ge L+n+7`$ suffice for
+**C. Optimal one-clean count.** For every $`n\ge1`$ and $`L\ge6`$,
+one clean qubit suffices. Define the base dirty reservation B by
+
+| Family | Base dirty reservation B |
+|---|---|
+| Complete real frame | $`L+n+7`$ |
+| Phase-dressed complex magnitude frame | $`L+n+8`$ |
+
+The [one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ and $`G=O(NL)`$ at every $`b\ge B`$.
+At every $`b\ge2B`$, it attains the full worst-case count frontier:
 
 ```math
-T=O(N+L\ell_*(n)),\qquad \ell_*(n)=1+\log_2^*(n+2).
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
 ```
 
-Here the iterated logarithm counts base-two logs to at most one.
-The [one-clean proof](docs/ONE_CLEAN_COMPILER.md) and
-[conditional-suffix grouping](docs/CONDITIONAL_SUFFIX_COMPILER.md) also
-give a banked tradeoff. The separately proved complex magnitude extension
-requires $`b\ge L+n+8`$. Literal diagonals and one-target multiplexors
-have their own matching one-clean corollaries and reservations.
-For literal diagonals, the
-[packed two-clean compiler](docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
-uses only $`b\ge n+1+\lceil(L+4)/2\rceil`$ dirty qubits at
-$`T=O(N+L)`$ and $`G=O(NL)`$.
+At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the base-width count
+also matches: $`T^\star=\Theta(N+L)`$. Its proof charges growing
+precision sources, borrowed-signal recovery, exact dirty-bank queries, and
+the layerwise baseline covering low precision and bounded dimension.
+The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
+retain their own workspace reservations.
 
 **D. Simultaneous T-count and T-depth.** For complete real frames,
 $`a=2`$ and $`b\ge17(L+n+7)`$ give one circuit with absolute constants:
@@ -143,54 +147,27 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 
 <a id="two-clean-count-theorem-and-remaining-depth-gap"></a>
 
-## One-clean count frontier and remaining depth gap
+<a id="one-clean-count-frontier-and-remaining-depth-gap"></a>
 
-For $`n\ge3`$ and every integer $`L\ge6`$, the selected
-[precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-compiles both frame families to error $`2^{-L}`$ with one clean qubit
-and universal constants:
+## Additional resource points and remaining depth gap
 
-| Family | Base dirty reservation B | T-count at $`b\ge B`$ |
-|---|---|---|
-| Complete real frame | $`L+n+7`$ | $`O(N+L)`$ |
-| Phase-dressed complex magnitude frame | $`L+n+8`$ | $`O(N+L)`$ |
+Result C includes every column, literal phase, actual inverse, and workspace
+return in the common full-isometry contract. Its matching statements retain
+the displayed banked threshold and exact-base precision condition.
+The following distinct allocations remain useful:
 
-Both constructions have $`G=O(NL)`$ elementary Clifford gates.
-At exactly these base reservations and $`L\ge\max\{6,n\}`$,
-the count is worst-case optimal: $`T^\star=\Theta(N+L)`$.
-For every $`L\ge6`$ and $`b\ge2B`$, the
-[banked theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-attains the complete worst-case count frontier with the same one clean qubit:
-
-```math
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
-\qquad G=O(NL).
-```
-
-The growing-source proof separates precision from logical mode allocation.
-A borrowed signal carries conjugate source sectors; their recovery agrees
-on the real target. Exact word-bank queries reduce lookup cost while
-returning arbitrary dirty banks. Literal leaf phases compose afterward
-using the sole clean flag. Every column, phase, actual inverse, and
-workspace return is covered by the common full-isometry contract.
-
-| Separate resource point | Current guarantee |
+| Resource point | Current guarantee |
 |---|---|
-| Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the uniform complex allocation |
+| Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
-The [earlier two-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-and [sharper endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-retain their own allocations. These selected count results supplement the
-unchanged A–D statements. They establish no new T-depth guarantee or
-general native emitter, and the base-width upper bound is not an
-optimality claim at every smaller precision and dirty allocation.
-
-The [endpoint statement](docs/OPEN_PROBLEM.md) records the remaining
-large-width depth question. The [research index](research/README.md)
-preserves the earlier promised-family compilers and the limits of specific
-source, query, and factorization interfaces. Those restrictions retain
-their stated hypotheses.
+The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+uses a packed literal diagonal. Result B covers allocations with sufficient
+clean work even when Result C's dirty reservation is unavailable. Result D
+supplies simultaneous count/depth guarantees on its own circuit; C adds no
+T-depth bound. The [resource statement](docs/OPEN_PROBLEM.md) records the
+remaining large-width depth question, and the [research index](research/README.md)
+retains supporting constructions and the limits of specific interfaces.
 
 ## Operational consequence
 

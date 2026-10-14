@@ -358,6 +358,6 @@ At $`a=1,b=N+n+7,n\ge3`$, the separate
 attains $`O(N)`$ T-count at error $`2^{-N}`$. More generally it gives
 $`O(N+L)`$ at $`b\ge L+n+7`$ with $`G=O(NL)`$, and its
 [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-is matching for all $`L\ge6,n\ge3`$ at $`b\ge2(L+n+7)`$.
+is matching for all $`L\ge6,n\ge1`$ at $`b\ge2(L+n+7)`$.
 The zero-clean bound above remains separate; see the
 [endpoint status](OPEN_PROBLEM.md).

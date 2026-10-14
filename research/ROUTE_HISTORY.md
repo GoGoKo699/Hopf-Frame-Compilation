@@ -2,28 +2,14 @@
 
 # Historical endpoint route assessments
 
-The [growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md) resolves
-the unrestricted real-frame count endpoint at $`\eta=2^{-N}`$,
-$`a=2`$, $`b=N+n+7`$, and $`n\ge3`$. The same
-$`L=N`$ endpoint also covers the phase-dressed complex magnitude frame by
-the [packed-diagonal corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint).
-The [precision-uniform extension](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-also proves $`T=O(N+L)`$ for integer $`L\ge6`$, $`n\ge3`$,
-and error $`2^{-L}`$, with two clean flags and dirty width
-$`b\ge L+n+7`$ for real frames or $`b\ge L+n+8`$ for complex
-magnitude frames. These count theorems are selected alongside the unchanged
-Results A–D. At exactly those base dirty widths and
-$`L\ge\max\{6,n\}`$, the existing finite-width lower bound gives
-worst-case $`\Theta(N+L)`$. The
-[one-clean extension](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-now gives the same uniform count and base dirty widths with $`a=1`$
-and $`G=O(NL)`$. Its
-[banked form](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-matches $`\Theta(\sqrt{NL}+L+NL/b)`$ for every integer $`L\ge6`$
-and $`n\ge3`$, at real $`b\ge2(L+n+7)`$ or complex magnitude
-$`b\ge2(L+n+8)`$. The sharper complex endpoint $`b=N+n+7`$
-remains two-clean. This log preserves earlier route
-assessments, their derivations, and method-specific obstructions.
+The [growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and its [banked form](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+now constitute Result C. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md)
+states the uniform one-clean frontier for both frame families and all
+$`n\ge1`$, with its exact base and doubled-base reservations.
+The sharper complex endpoint $`b=N+n+7`$ at $`L=N`$ remains
+two-clean. This log preserves earlier route assessments, their derivations,
+and method-specific obstructions.
 References below to the best bound, an endpoint gap, or a next step describe
 the corresponding historical pass; they are not current work orders.
 
@@ -71,7 +57,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Affine/reverse assembly | [Two-flag proof](endpoint/RESIDUAL_ASSEMBLY.md): diagonal-plus-forward and inverse-based reverse blocks give normalization two, with controls/inverses charged; cost still contains $`nL`$ |
 | Full-port hierarchy | [Fusion audit](endpoint/RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths): recursively closed complete unitary, linear classical generators; faster native synthesis unproved |
 | Coupled completion | [Whole-residual boundary](endpoint/RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost): one-signal normalization-two recursion; a commutator implements the complete rank-at-most-four repair without normalizing transported differences; its child calls cancel to the original target wrappers, whose precision remains charged |
-| Grouped frame | Earlier general endpoint bound, with conditional suffix and core return in the complete error; superseded at two clean flags by the growing-source theorem |
+| Grouped frame | Earlier general endpoint bound, with conditional suffix and core return in the complete error; superseded in count by Result C, with its standalone proof retained |
 | Product-first residual coordinates | [Cayley recursion](endpoint/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) gives constant-size local data for the complex-coarse residual; the [four-mode native benchmark](endpoint/ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark) uses two one-target programs, while the eight-mode controlled coupling and general coherent conversion remain charged |
 | Source-width transport | [Reverse-order loader](endpoint/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): total boundary T-count $`2(m_{\max}-1)`$ with linear native loaders; transformed group bodies remain charged |
 | Joint source body | [Changing-target word](endpoint/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets) shares one fixed scalar conjugator and returns a borrowed signal through two parity boundaries; the eight-/sixteen-mode words are priced, but fair fixed-mask simplification leaves the same leading precision cost in both comparisons |

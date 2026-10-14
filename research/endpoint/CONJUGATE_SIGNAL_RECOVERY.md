@@ -272,7 +272,7 @@ sectors. The genuine mode/recovery flag has not been removed.
 ### Precision-parametrized real blocks and sources
 
 Fix $`\kappa,c\gt0`$. There is a threshold $`n_0(\kappa,c)`$
-such that, whenever $`n\gt n_0`$, $`L\ge6`$, and $`L\gt N/n`$,
+such that, whenever $`n\gt n_0`$, $`L\ge6`$, and $`L\gt N/n^2`$,
 the following full-contract bound holds for known disjoint real blocks:
 
 ```math
@@ -313,7 +313,7 @@ $`q+2`$ dirty wires: $`q+1`$ for its core and one separate r.
 Its address has at most $`n+1`$ bits, so self-borrowing needs
 $`q+1\ge2(n+1)`$. All other coarse work is
 $`O_\kappa(\sqrt N+\mathrm{poly}(n))`$ and is reused in separate
-stages. Since $`L\gt N/n`$, a single larger threshold makes that
+stages. Since $`L\gt N/n^2`$, a single larger threshold makes that
 coarse work, r, and any fixed returned helper fit within $`L+n+7`$,
 and ensures the fine self-borrowing inequality. This threshold is
 independent of L. No finite-net argument at unbounded precision is
