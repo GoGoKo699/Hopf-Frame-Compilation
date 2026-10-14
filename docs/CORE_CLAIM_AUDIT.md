@@ -169,9 +169,16 @@ The separate [R73 obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.m
 uses that same initialized-isometry contract for a constant lower bound.
 Its clean-projector sum contains $`2^a`$ full-space transfer entries, but
 the witness error remains $`2\eta`$. A bounded-normalization three-layer
-reduction and the cited polynomial-limit theorem yield a positive,
-unevaluated error gap for each fixed clean budget, hence at least four
-layers below that threshold. This does not close the growing-depth gap.
+reduction and the cited polynomial-limit theorem yield a positive error
+gap for each fixed clean budget. The elementary initialized-sector
+argument in [R74, Section 5.1](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
+now makes that threshold explicit without the limit premise. At four
+layers it gives minimum middle crossing rank $`\Omega_a(\sqrt L)`$.
+The separate [operator-rigidity theorem R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md)
+requires at least five layers for the zero-clean witness at integer
+$`L\ge3`$, with arbitrary dirty width. Its one-clean consequence is
+exact terminal clean-sector preservation only. These results do not
+close the growing-depth gap.
 
 The initialized-isometry norm covers every logical column, arbitrary
 dirty/reference inputs, literal phases, and clean leakage. Actual inverses

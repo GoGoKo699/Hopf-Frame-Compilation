@@ -138,17 +138,30 @@ R73, supplies constant lower bounds for arbitrary Clifford interlayers
 and dirty width. The explicit $`\cos(2\theta)=1/3`$ complete frame has
 exact zero-clean error floor $`c_0\approx0.169714`$ at T-depth at most
 three, attained by a Clifford. Thus integer $`L\ge3`$ requires at least
-four layers. Each fixed positive clean budget has a positive threshold
-that remains unevaluated. The separate explicit one-clean two-layer gap
+four layers. Each fixed positive clean budget has a positive threshold,
+made explicit by the R74 refinement below. The separate explicit
+one-clean two-layer gap
 forces at least three layers for integer $`L\ge8`$.
 
 The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, gives a positive error gap for this witness at each fixed clean
-budget and bound on the middle active symplectic crossing rank. Any
-four-layer sequence approaching zero error must therefore have minimum
-crossing rank tending to infinity, where the minimum is over all
-four-layer decompositions. This is a structural restriction, with no
-unrestricted five-layer lower bound or rate of rank growth.
+budget and bound on the middle active symplectic crossing rank. Its
+elementary initialized-observable proof gives an explicit
+$`2^{-O_a(r^2)}`$ rigidity gap, hence minimum crossing rank
+$`\Omega_a(\sqrt L)`$ at error $`2^{-L}`$, minimizing over all
+four-layer decompositions. The earlier polynomial-limit closure proof
+remains a separate argument.
+
+The [four-layer operator-rigidity theorem](research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, proves a width-independent operator-norm gap
+$`\rho=\sin(\pi/8)/\sqrt2`$ between distinct two-layer Pauli images.
+For the zero-clean witness this gives four-layer error at least
+$`\rho/2\approx0.135299`$: integer $`L\ge3`$ requires at least five
+layers, regardless of dirty width. With one clean qubit it forces exact
+terminal clean-sector preservation below $`\rho/2`$, but does not prove
+a five-layer lower bound. The unrestricted four-layer Hilbert--Schmidt
+identity-isolation question remains open; operator-norm rigidity does not
+settle that weaker metric.
 Optimal depth remains an open problem.
 
 ### Reopening research requires a qualifying mechanism

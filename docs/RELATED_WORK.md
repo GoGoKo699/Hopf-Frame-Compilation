@@ -259,10 +259,15 @@ retains the narrower intermediate comparisons and later optional studies.
 The separate [clean-aware lower bound](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
 R73, excludes arbitrarily accurate compilation with at most three T
 layers for every fixed clean budget, even with unbounded dirty width
-and arbitrary Clifford interlayers. Its positive accuracy floor is
-unevaluated; its explicit one-clean two-layer bound applies at
-$`L\ge8`$. This is a constant-depth obstruction, not a growing
-lower bound. The [literature comparison](../research/RELATED_WORK.md#29-constant-depth-obstructions-with-initialized-work)
+and arbitrary Clifford interlayers. Its explicit one-clean two-layer
+bound applies at $`L\ge8`$. The elementary refinement in
+[R74](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
+also makes the fixed-clean three-layer gap explicit and gives an
+$`\Omega_a(\sqrt L)`$ crossing-rank requirement at four layers.
+[R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md) uses operator
+norm and exact Pauli commutants to require five layers at $`L\ge3`$
+with no clean work and arbitrary dirty width. No additional external
+premise or literature-priority claim is made. The [literature comparison](../research/RELATED_WORK.md#29-constant-depth-obstructions-with-initialized-work)
 attributes the polynomial-limit and stabilizer premises (F43–F44) and
 distinguishes existing exact denominator results (F45).
 

@@ -200,15 +200,19 @@ The [constant-depth obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md
 R73, gives an exact zero-clean error floor $`c_0\approx0.169714`$ for an
 explicit complete frame at T-depth at most three, regardless of dirty
 width. A Clifford attains this floor; integer $`L\ge3`$ requires at least
-four layers. At every fixed positive clean budget, four layers remain
-necessary below a positive threshold that is not evaluated.
+four layers. The [four-layer operator-rigidity theorem](research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, strengthens the zero-clean conclusion: four layers have error at
+least $`\rho/2\approx0.135299`$, where
+$`\rho=\sin(\pi/8)/\sqrt2`$. Thus integer $`L\ge3`$ requires
+at least five layers, with arbitrary dirty width and Clifford interlayers.
 
 The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, shows that, at each fixed clean budget, four-layer approximations
-to the same witness with error tending to zero must have minimum middle
-active symplectic crossing rank tending to infinity. This structural
-restriction gives no unrestricted five-layer lower bound or rate of rank
-growth.
+to the same witness at error $`2^{-L}`$ require minimum middle active
+symplectic crossing rank $`\Omega_a(\sqrt L)`$. Its explicit elementary
+bound also supplies a fixed-clean three-layer accuracy threshold.
+With one clean qubit, R75 forces exact terminal clean-sector preservation
+below $`\rho/2`$; it does not establish a five-layer lower bound there.
 Optimal depth remains an open problem.
 
 ## Operational consequence

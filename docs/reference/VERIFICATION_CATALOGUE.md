@@ -520,17 +520,29 @@ witnesses, the explicit one-clean gap with an infinite-tail certificate,
 mod-eight residue events, a native three-layer counterexample to the
 two-layer alphabet, the sharp preserved-Pauli gap, the literal zero-clean
 Clifford attainer, and the one-clean terminal-sector identity and its
-occupied-sector limitation. The fixed-clean three-layer obstruction uses
-the cited polynomial-limit theorem and analytic compactness; its
-zero-clean refinement is elementary. These tests do not prove the imported
-theorem or evaluate the positive-clean gap. The separate
+occupied-sector limitation. The original fixed-clean three-layer proof
+uses the cited polynomial-limit theorem; R74's initialized-sector
+argument now supplies an independent elementary explicit threshold.
+These tests do not prove the imported theorem. The separate
 [four-layer proof](../../research/depth/FOUR_LAYER_CROSSING_RANK.md) has
-[four bounded checks](../../tests/test_four_layer_crossing_rank.py) of
+[bounded checks](../../tests/test_four_layer_crossing_rank.py) of
 the symplectic normal form with intersecting spans, native boundary words
 attaining the normalization bound, and the abstract cubic-bias family.
-The fixed-rank gap and minimum-rank divergence are analytic; no native
-realization of the abstract family or unrestricted five-layer obstruction
-is inferred from those checks.
+The elementary initialized-observable proof gives an explicit
+$`2^{-O_a(r^2)}`$ gap and minimum crossing rank
+$`\Omega_a(\sqrt L)`$. Its phase-digit and two-sided projector identities
+have finite checks in the same suite; the width-independent gap and
+rank bound are analytic. No native realization of the abstract scalar
+family is inferred.
+The [four-layer operator proof](../../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md)
+has [five finite audits](../../tests/test_four_layer_operator_rigidity.py):
+the exact one-qubit image orbit, a literal four-layer word and dirty
+extension, arbitrary Hermitian-Clifford boundaries, common active-axis
+commutants, and the distinction between rare-sector trace deficits and
+operator norm. The unrestricted zero-clean five-layer lower bound follows
+from the analytic commutant and phase-quantization proof, not from finite
+enumeration. Neither the tests nor that theorem establish a positive-clean
+five-layer bound or a uniform scalar gap.
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for
 prefix preparation, native controlled-H phases, actual inverse, scalar
