@@ -275,22 +275,23 @@ gives an absolute-constant refinement for $`6\le L\le cn`$, with
 some absolute $`c>0`$, at the same literal dirty threshold. Put
 
 ```math
-F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 It gives $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, and
 $`D_T=O(NL/b^2+F(n,L))`$ on one circuit. A
 [shared native phase gradient](research/depth/SHARED_GRADIENT_RECOVERY.md)
 is prepared and returned once across early recovery. The
-[grouped terminal compiler](research/depth/GROUPED_TERMINAL_DEPTH.md)
-prefetches complete coarse programs into conditional suffix work and uses
-one fine residual per group. Every arithmetic table, program query,
-predicate, and final layer remains charged. Count is optimal throughout
+[shared binary terminal compiler](research/depth/SHARED_BINARY_TERMINAL.md)
+uses a separate capped geometric source across its terminal stream,
+retains failure history, and recovers the stream once. A protected
+logarithmic bank holds its conditional work. Every arithmetic table,
+program query, predicate, and final layer remains charged. Count is optimal throughout
 the stated range, and depth also matches through
 $`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
 At sufficient square-root width, fixed accuracy retains
 $`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth; shrinking error
-$`2^{-L}`$ retains sublinear depth for $`L=o(n^{2/3})`$.
+$`2^{-L}`$ retains sublinear depth for $`L=o(n/\log(n+2))`$.
 The all-precision bounds above remain available outside this subrange.
 
 <a id="6-operational-consequence-open-gaps-and-evidence"></a>

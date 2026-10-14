@@ -264,7 +264,7 @@ $`6\le L\le cn`$, two external clean flags, and every
 $`b\ge17(L+n+7)`$. Define
 
 ```math
-F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 The theorem gives
@@ -280,17 +280,18 @@ optimal throughout this range. Count and depth match their inherited
 lower bounds through $`b\le\sqrt{NL/F(n,L)}`$, whenever the
 interval above the literal lower threshold is nonempty. At sufficient
 $`b=\Theta(\sqrt{NL})`$, depth remains sublinear for
-$`L=o(n^{2/3})`$.
+$`L=o(n/\log(n+2))`$.
 
 The coherent descendant source uses the Boolean-phase method of
 Gosset–Kothari–Wu, exact dirty queries, and a local certifiable selection
 rule. [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md)
 charges one native phase-source preparation and actual return across
 early recovery, including its arithmetic and coefficient tables.
-The [grouped terminal compiler](../research/depth/GROUPED_TERMINAL_DEPTH.md)
-prefetches complete coarse programs into conditional suffix work, uses
-one fine residual per group, and finishes with capped bottom layers.
-Its full ledger yields the $`L^{3/2}`$ precision contribution without
+The [shared binary terminal compiler](../research/depth/SHARED_BINARY_TERMINAL.md)
+uses a separate capped geometric source, retained failure history, and
+one recovery for the terminal stream. A protected logarithmic bank holds
+its conditional work; only logarithmically many capped bottom layers
+remain. Its full ledger gives the stated precision dependence without
 changing the count or Clifford budgets. Classical preprocessing terminates,
 with no efficiency claim.
 
@@ -347,7 +348,7 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C | [One-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using growing precision sources, [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md), exact dirty word banks, and the [layerwise one-clean baseline](../docs/ONE_CLEAN_COMPILER.md) |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
-| Precision-uniform large-width refinement | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision): coherent descendant sources, one charged shared gradient, native dirty queries, complete-column recovery, and [grouped terminal compilation](../research/depth/GROUPED_TERMINAL_DEPTH.md) |
+| Precision-uniform large-width refinement | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision): coherent descendant sources, one charged early gradient, native dirty queries, complete-column recovery, and a separate [shared binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) |
 | Compiler corollaries and distinct allocations | [One-clean primitives](../docs/ONE_CLEAN_COMPILER.md), [operator sources](../docs/OPERATOR_SOURCE_COMPILER.md), [borrowed-workspace compiler](../docs/BORROWED_WORKSPACE_COMPILER.md), and [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); each keeps its literal reservation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |

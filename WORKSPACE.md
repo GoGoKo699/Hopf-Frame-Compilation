@@ -85,24 +85,25 @@ $`2^{-L}`$ and simultaneous bounds
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
-D_T=O\!\left(NL/b^2+\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}\right).
+D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
 ```
 
 The [shared-gradient proof](research/depth/SHARED_GRADIENT_RECOVERY.md)
 pays native preparation and actual return once across early recovery.
 All arithmetic/coefficient tables, complete-column recovery, exact inactive
 guards, simultaneous conditional scratch, and the final tail are charged.
-The [grouped terminal proof](research/depth/GROUPED_TERMINAL_DEPTH.md)
-prefetches complete coarse programs and pays one fine residual per group;
-its final capped layers preserve the stated count and Clifford budgets.
+The [shared binary terminal proof](research/depth/SHARED_BINARY_TERMINAL.md)
+uses a separate capped geometric source, retained failure history, and
+one recovery for the terminal stream. A protected logarithmic bank and
+logarithmically many capped bottom layers preserve the same budgets.
 At sufficient
 $`b=\Theta(\sqrt{NL})`$, shrinking error retains sublinear depth
-when $`L=o(n^{2/3})`$. Count is optimal throughout the stated range;
+when $`L=o(n/\log(n+2))`$. Count is optimal throughout the stated range;
 depth also matches through $`b\le\sqrt{NL/F(n,L)}`$ whenever
 that interval is nonempty, where
 
 ```math
-F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 The retained all-precision D theorem covers
