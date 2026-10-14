@@ -2,8 +2,8 @@
 
 [← Verification](VERIFICATION.md) · [Complete narrative](../REVIEW.md) · [Related work →](RELATED_WORK.md)
 
-This is the claim-to-source map for the selected Results A–D and the
-growing-source count theorems, including the one-clean banked frontier. It separates
+This is the claim-to-source map for Results A–D, including C's
+one-clean banked frontier and its retained two-clean corollaries. It separates
 imported synthesis tools, inherited Hopf/QBP interfaces, and the operator
 constructions established here. The [source catalogue](reference/SOURCE_CATALOGUE.md)
 preserves the complete stable C/H/Q/F/R register and detailed contribution
@@ -89,12 +89,10 @@ worst-case statements over the specified family.
 |---|---|---|
 | **A. Exact complete frame**: size $\Theta(N)$ and depth $\Theta(n+N/(n+m))$ for every clean budget | [Compiler theorem](COMPILER_THEOREM.md): strict-zero echo, conditioned tree cut, decoder, explicit router, and local lower-bound reductions; R1–R11 | C1–C5 and H1–H9; real and phase-dressed complex magnitude frames; exact work return. CNOT count is $\Theta(N)$ for $n\ge2$ and zero for $n=1$. |
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
-| **C. One-clean real frame**: $`T=O(N+L\ell_*(n))`$ | [One-clean compiler](ONE_CLEAN_COMPILER.md) and [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit); operator-source baseline R17–R20 and one-clean refinement R25 | F2, F8–F11, F19–F20; $a=1$, $b\ge L+n+7$, $`\ell_*(n)=1+\log_2^*(n+2)`$; $O(NL)$ Clifford cost. R64–R65 below improve the count through the growing-source construction. |
+| **C. One-clean count frontier**: $`T=O(N+L)`$ at base width; $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at doubled base width | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R64–R65, with R25's small-dimension corollary | Every $`n\ge1`$, $`L\ge6`$, fixed $`a=1`$; base $`B=L+n+7`$ real, $`B=L+n+8`$ complex magnitude; banked match at $`b\ge2B`$; $`G=O(NL)`$. Exact-base matching at $`L\ge\max\{6,n\}`$. Existing F2–F5, F8–F9, F11, F19–F20 and R17/R20/R25/R62/R63 interfaces; full isometry, literal phases and actual inverses. |
 | **D. Same-circuit count and T-depth** | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md), with retained [unary source](UNARY_PHASE_GRADIENT.md) and dirty-query constructions; R43–R45 | Two clean flags and $b\ge17(L+n+7)$; complete real frames. Native sources, inverses, predicates, queries, and conditional work are charged. |
 | **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 | **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
-| **Precision-uniform one-clean count**: $`T=O(N+L)`$, $`G=O(NL)`$ | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count); R64 | Same $`n\ge3`$, integer $`L\ge6`$, and full error $`2^{-L}`$; $`a=1`$, real $`b\ge L+n+7`$, complex magnitude $`b\ge L+n+8`$. Whole-source conjugate lift and retained initialized-anchor recovery; matching $`\Theta(N+L)`$ at the exact base widths for $`L\ge\max\{6,n\}`$. |
-| **Optimal banked one-clean count**: $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$ | [Banked growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R65 | For every $`n\ge3`$ and integer $`L\ge6`$, $`a=1`$, error $`2^{-L}`$, real $`b\ge2(L+n+7)`$, complex magnitude $`b\ge2(L+n+8)`$. Existing banked queries and F3/F4 lower bounds; complete isometry, literal phases, and actual inverses. No new T-depth or emitter guarantee. |
 
 For D, the uniform upper bounds are
 
@@ -129,8 +127,8 @@ premise or literature-priority claim.
 R63 separates the dyadic source precision from the logical dimension:
 the retained arenas depend on N, while the source charges sum to $`O(L)`$.
 The [high-precision disjoint-block/state-source variant](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
-supplies the same complete native interfaces for $`L>N/n`$ beyond a
-universal dimension threshold. R17 supplies both the $`L\le N/n`$
+supplies the same complete native interfaces for $`L>N/n^2`$ beyond a
+universal dimension threshold. R17 supplies both the $`L\le N/n^2`$
 splice and the bounded-n, arbitrary-L fallback. For complex magnitude
 frames, precision $`L+1`$ in the real factor and R17's packed literal
 diagonal give the stated $`L+n+8`$ reservation. No additional external
@@ -154,8 +152,15 @@ returned banks implement the same complete masks. Their summed native
 charges remove the repeated precision term, and the full Clifford ledger
 is $`O(NL)`$. At the stated bank thresholds, $`q=n+1+b=\Theta(b)`$,
 so F3/F4's existing $`\Omega(\sqrt{NL}+L+NL/q)`$ bound matches the
-upper construction. R64–R65 introduce no new external synthesis or
-lower-bound premise, priority claim, or T-depth guarantee.
+upper construction. C uses R25's layerwise banked baseline for
+$`L\le N/n^2`$, where $`nL\le\sqrt{NL}`$, and for bounded n.
+The cases $`n=1,2`$ have $`N\le4`$, so that baseline costs $`O(L)`$
+and the root-angle witness supplies the matching $`\Omega(L)`$.
+R20's exact conditional-work guards remain a dependency; its grouped
+precision bound is a separate retained corollary. R64–R65 introduce no
+new external synthesis or lower-bound premise, priority claim, or
+T-depth guarantee. For complex magnitude frames, the arbitrary-diagonal
+subfamily supplies the lower bound even on the canonical angle domain.
 
 R17 includes the packed two-clean diagonal reservation. The endpoint
 [bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)

@@ -4,12 +4,12 @@
 
 The four principal results price the same prescribed operator in two gate
 models. Result A reaches the exact all-workspace size/depth frontier.
-Result B shares precision with sufficient clean work. Result C reduces the
-clean reservation to one qubit. Result D schedules count and T-depth on one
-complete real-frame circuit. The selected precision-uniform one-clean count
-theorem, optimal banked count, and sharper two-clean endpoint supplement A–D
-at their own literal allocations. This roadmap explains how the proofs connect; the linked
-chapters contain the constructions and estimates.
+Result B shares precision with sufficient clean work. Result C attains the
+count frontier with one clean qubit and explicit dirty reservations. Result D
+schedules count and T-depth on one complete real-frame circuit. A sharper
+two-clean complex endpoint retains its distinct allocation. This roadmap
+explains how the proofs connect; the linked chapters contain the constructions
+and estimates.
 
 ## 1. Why the complete operator is the target
 
@@ -168,49 +168,69 @@ The [complex extension](docs/FAULT_TOLERANT_COMPILER.md#92-literal-diagonals-and
 has its own literal-diagonal proof. Neither this clean reservation nor
 optimal T-depth follows as a necessity from Result B.
 
-## 4. Result C: operator precision and conditional suffix work
+<a id="4-result-c-operator-precision-and-conditional-suffix-work"></a>
 
-The [one-clean construction](docs/ONE_CLEAN_COMPILER.md) encodes binary
-weights in a Pauli operator on arbitrary dirty work. Paired Majorana
-sources and sign queries produce scalar overlaps proportional to the
-identity on that work. A conjugated scalar word combines two overlaps into
-a rotation; literal five-call amplification uses one clean signal flag.
-The source, programs, actual inverses, and rejected-output error are charged.
+## 4. Result C: the optimal one-clean count frontier
 
-Layerwise use gives an $`O(N+nL)`$ baseline. The
-[conditional-suffix argument](docs/CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
-reduces repeated precision charges. A group is active only on its declared
-zero-suffix sector. There that suffix supplies conditional clean workspace;
-on the complementary sector the completed subroutine is identity.
-Residual column forests become rank-one stars, and coarse programs stream
-one symbol at a time. Their small private work permits rapidly growing
-groups, with only $`O(\ell_*(n))`$ precision charges.
-
-The complete-input error includes final suffix-scratch and predicate return.
-It does not promote conditional zeros to globally initialized ancillas.
-For $`\ell_*(n)=1+\log_2^*(n+2)`$, the resulting real-frame bound is
+The [one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+uses $`a=1`$, for all $`n\ge1`$ and integer $`L\ge6`$.
+Set $`B=L+n+7`$ for real frames and $`B=L+n+8`$ for complex
+magnitude frames. At $`b\ge B`$ it gives $`T=O(N+L)`$; at
+$`b\ge2B`$ it gives
 
 ```math
-a=1,\quad b\ge L+n+7:\qquad T=O(N+L\ell_*(n)),\quad G=O(NL).
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O(NL).
 ```
 
-At $`b\ge2(L+n+7)`$, banked lookup gives
-$`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$. This is an upper bound, with
-matching subregimes specified in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
-A literal diagonal composes with the grouped frame using error $`\eta/2`$
-per factor; the separately proved complex magnitude thresholds become
-$`L+n+8`$ and $`2(L+n+8)`$.
+At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the base-width
+bound is also matching: $`T^\star=\Theta(N+L)`$. All constants are
+independent of n and L. The proof has three parts.
 
-The [diagonal and U(2) multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
-are complete-operator capabilities with their own reservations. The
-[packed two-clean diagonal source](docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
-places one geometric tail across both Majoranas of each dirty core qubit.
-It gives error $`2^{-\ell}`$ using
-$`b=n+1+\lceil(\ell+4)/2\rceil`$ and $`T=O(N+\ell)`$.
-The
-[zero-clean corollary](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
-is only the layerwise real-frame construction. Its borrowed signal does
-not make the grouped or literal-phase constructions zero-clean.
+**The source and recovery.** The [native one-clean primitive](docs/ONE_CLEAN_COMPILER.md)
+encodes binary weights in a Pauli operator on arbitrary dirty work. Paired
+Majorana sources and exact sign queries produce scalar overlaps, and a
+literal five-call word amplifies their fixed normalization. Growing sources
+then separate the precision scale from logical mode allocation. Private
+failure fields remain logical coordinates; sealed rejection modes, frozen
+source tags, and replay of the actual row word give the required overlap.
+
+The [conjugate-signal lift](research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#2-lift-the-whole-high-level-word)
+borrows the phase signal outside every dirty core. It lifts all native
+interlayers and fine slots consistently. The two sectors recover the same
+real frame, so the signal need not be initialized. The genuine initialized
+anchor and logical recovery coordinates remain. Full-operator slot errors
+control leakage and arbitrary dirty/reference inputs, and actual inverses
+carry that error through recovery. One external clean predicate remains.
+
+**The resource sums and splice.** The [banked proof](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+uses exact dirty word-bank queries, preserving the complete source masks
+and their rejection operators. Weighted square-root query charges sum to
+$`O(\sqrt{NL})`$, table volumes to $`O(NL)`$, and source precision
+to $`O(L)`$. Coarse interlayers and all Clifford gates are charged.
+For sufficiently large n and $`L>N/n^2`$, these estimates fit the
+literal reservation. For $`L\le N/n^2`$, the layerwise banked
+baseline's $`nL`$ term satisfies $`nL\le\sqrt{NL}`$; its unbanked
+baseline gives $`O(N+L)`$. Bounded n, including one and two qubits,
+uses the same baseline with $`nL=O(L)`$. This closes the theorem with
+universal constants without an iterated grouping premise.
+
+**Literal phases and lower bounds.** A one-clean literal diagonal composes
+after the real frame, using error $`2^{-L-1}`$ per factor and the same
+flag and dirty pool. The full-isometry hybrid includes the first factor's
+leakage. This accounts for the complex reservation's additional dirty qubit.
+At banked widths $`q=n+1+b=\Theta(b)`$, the retained family lower
+bound matches. At the exact base width and $`L\ge n`$, it instead
+has $`q=\Theta(L)`$, giving the stated $`\Theta(N+L)`$ corollary.
+
+The [conditional-suffix compiler](docs/CONDITIONAL_SUFFIX_COMPILER.md)
+retains its standalone grouped construction and the conditional-work
+interfaces used by other schedules. The
+[diagonal and U(2) multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors),
+[packed two-clean diagonal](docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames),
+and [zero-clean real baseline](docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations)
+have distinct literal reservations. Result C preserves those separate
+operator guarantees and establishes no new depth bound.
 
 ## 5. Result D: count and depth on the same circuit
 
@@ -273,44 +293,20 @@ optimality among all gradient algorithms is inferred.
 
 The completed [state-based QBP supplement](supplements/state_based_qbp/README.md)
 changes the decoder and avoids the fine complete frame. It is a distinct
-task-level result. The selected count frontier and remaining depth
-question are:
+task-level result. Two additional resource points remain separate from C:
 
-| Resource question | Current guarantee |
+| Resource point | Current guarantee |
 |---|---|
-| Every integer $`L\ge6`$, $`n\ge3`$, error $`2^{-L}`$, $`a=1`$ | $`T=O(N+L)`$ and $`G=O(NL)`$; real base $`B=L+n+7`$, complex magnitude base $`B=L+n+8`$, every $`b\ge B`$ |
-| Same families and precision range, $`a=1`$, $`b\ge2B`$ | $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$, with $`G=O(NL)`$ for the upper construction |
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-The [one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-uses the growing-source construction with a borrowed conjugate-sector signal.
-The source words may be complex, but the two recovered sectors have the same
-real target. This permits complete-input recovery without an initialized
-fine-source flag. One external clean predicate remains. The Clifford ledger
-charges the same coarse interlayers and fine queries. A one-clean baseline
-covers modest precision and bounded n; literal leaf phases reuse the sole
-clean flag after the real frame.
-
-The [banked proof](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-replaces coefficient queries by exact dirty-bank queries. Both their
-square-root row/precision costs and their table-volume costs are summable.
-The older grouped compiler supplies the complementary modest-precision
-regime. Its existing lower bound then matches throughout $`b\ge2B`$.
-At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the width-dependent
-lower bound instead gives $`T^\star=\Theta(N+L)`$.
-
-The [earlier two-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-and [fixed-precision corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-retain their separate guarantees; the latter saves one dirty qubit for the
-complex frame at $`L=N`$. These count results stand beside unchanged
-A–D and supply no new T-depth guarantee. The
+The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+saves one dirty qubit for the complex frame at $`L=N`$. The
 [literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
-gives the endpoint precision lower bound, also present in the complex
-magnitude family when all leaf phases are zero. The
-[resource statement](docs/OPEN_PROBLEM.md) and
-[research index](research/README.md) retain the large-width depth question
-and the hypotheses of earlier source and factorization restrictions.
+gives its lower bound, also present in the complex magnitude family when
+all leaf phases are zero. The [resource statement](docs/OPEN_PROBLEM.md)
+and [research index](research/README.md) retain the large-width depth
+question and the hypotheses of earlier source and factorization restrictions.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

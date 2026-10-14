@@ -14,7 +14,7 @@ not prove universal statements or asymptotic optimality.
 
 | Material | Entry point | Scope |
 |---|---|---|
-| Real and complex-magnitude one-clean count | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
+| C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -71,12 +71,9 @@ The bounded implementation pass stops here. No larger fixed fixture or
 general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The
-[growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [one-clean precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-establish $`O(N+L)`$ count and $`O(NL)`$ Clifford work for prescribed
-complete real and phase-dressed complex magnitude frames. Their
-[banked count frontier](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-is matching once the respective base dirty reservation is doubled;
+[Result C proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and its [banked frontier](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+establish the one-clean count guarantees at the [stated reservations](../../manuscript/PUBLICATION_SCOPE.md);
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
@@ -309,22 +306,14 @@ schedule, not a claim that the growing-source construction applies there.
 These are finite diagnostics, not emitted
 Clifford+T source words or a certificate of asymptotic arena capacity.
 The [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-supplies the full-space arena allocation, exact guards, summable native
-charges, literal dirty reservation, and unrestricted real-frame count
-theorem. Its [complex-magnitude corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-proves sequential phase dressing at the same endpoint allocation. The
-[one-clean precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-proves $`T=O(N+L)`$ and $`G=O(NL)`$ for integer
-$`L\ge6,n\ge3`$, one clean flag, and $`b\ge L+n+7`$ for real
-or $`b\ge L+n+8`$ for complex
-magnitude frames. At the exact base widths and
-$`L\ge\max(6,n)`$, the existing lower bound gives worst-case
-$`\Theta(N+L)`$. The [banked frontier](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-gives matching $`\Theta(\sqrt{NL}+L+NL/b)`$ for all
-$`L\ge6`$ once the respective dirty reservation is doubled, with
-one clean flag and $`G=O(NL)`$. The fixed $`L=N`$ complex theorem
-retains $`b=N+n+7`$ with two clean flags. All-size summability, fallback dispatch, and workspace
-feasibility come from these proofs, not the schedule tests.
+supplies the full-space arena allocation, exact guards, actual dirty replay,
+summable native charges and literal dirty reservation. Its
+[one-clean recovery](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and [banked composition](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+establish Result C; the [claim ledger](../../manuscript/PUBLICATION_SCOPE.md)
+retains its exact domains and the distinct two-clean endpoint.
+All-size summability, fallback dispatch and workspace feasibility come
+from these proofs, not the schedule tests.
 
 The same suite's separate composition fixture uses one logical bit, two
 arbitrary dirty-core bits, and two shared clean flags: a 32-dimensional

@@ -4,8 +4,8 @@
 
 This reference catalogue preserves the stable source and result identifiers
 and the detailed contribution boundaries behind the concise core maps.
-Its register includes selected Results A–D, the growing-source count
-theorems through the one-clean banked frontier, supporting constructions, separate state-based
+Its register includes Results A–D, the supporting growing-source count
+theorems now organized under C, supporting constructions, separate state-based
 QBP results, and research studies. Inclusion here is
 not selection as a principal result or a claim that every listed source is
 a premise of the current compiler.
@@ -249,6 +249,16 @@ extends R32 and R43 with the following component result.
 | R64 | precision-uniform one-clean frame count | [One-clean growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count): for every $`n\ge3`$, integer $`L\ge6`$, and full initialized-isometry error $`2^{-L}`$, $`a=1`$ gives $`T=O(N+L)`$, $`G=O(NL)`$, at real $`b\ge L+n+7`$ or phase-dressed complex magnitude $`b\ge L+n+8`$. The complete-source conjugate lift borrows the phase signal outside every core and retains the initialized anchor marker and logical recovery coordinates. Actual replay, guards, inverses, dirty/reference inputs, literal phases, and leakage are charged. The existing F3/F4 bounds give worst-case $`\Theta(N+L)`$ at exactly these base dirty widths for $`L\ge\max\{6,n\}`$. R25's one-clean diagonal supplies phase dressing; R62's tighter complex endpoint remains two-clean. Existing R17/R20/R25/R62/R63 interfaces and F2/F3/F4/F5/F8–F9/F11/F19–F20 suffice; no new imported premise, priority, T-depth, or emitter conclusion. |
 | R65 | optimal banked one-clean frame count | [Banked growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier): for every $`n\ge3`$, integer $`L\ge6`$, and error $`2^{-L}`$, $`a=1`$ gives worst-case $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ and constructive $`G=O(NL)`$ at real $`b\ge2(L+n+7)`$ or phase-dressed complex magnitude $`b\ge2(L+n+8)`$. Banked high-precision block/state interfaces, self-borrowed selectors, and exact dirty word-bank queries preserve complete native masks and return all bank work. Their summed charges and low-precision/bounded-n splice give universal upper constants. F3/F4's existing lower bound matches because $`n+1+b=\Theta(b)`$. R64 and R25 provide the one-clean recovery and literal phase composition. No new imported premise, lower-bound method, priority, T-depth, or general emitter guarantee. |
 
+**Result C consolidation.** R64–R65 retain their original $`n\ge3`$
+register statements. The canonical Result C includes $`n=1,2`$ by
+R25's one-clean baseline: $`N\le4`$ and $`L\ge6`$ give an $`O(L)`$
+upper bound, while the banked expression is $`\Theta(L)`$ and the existing
+root-angle witness supplies $`\Omega(L)`$. The current proof splices the layerwise banked baseline
+at $`L=N/n^2`$ with the high-precision growing-source interfaces.
+R20's exact conditional-work guards remain in the dependency chain;
+its grouped precision bound is a separate retained corollary. No new
+stable result ID or external premise is needed for this consolidation.
+
 The [Hopf error audit](../HOPF_ERROR_ACCUMULATION.md) derives a sharp ideal-angle
 stability recurrence and an exact finite relative-spectrum recursion from
 the inherited nested frame supports H8, using standard block-matrix
@@ -447,7 +457,7 @@ R63's [precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPI
 separates the source-precision scale from those logical modes and gives
 $`O(N+L)`$ for every integer $`L\ge6`$ and $`n\ge3`$. Its
 [disjoint-block/state-source variant](../../research/endpoint/DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
-handles $`L>N/n`$ beyond a fixed dimension threshold; R17's baseline
+handles $`L>N/n^2`$ beyond a fixed dimension threshold; R17's baseline
 handles the low-precision and bounded-n regimes uniformly in L. Real
 frames use $`b\ge L+n+7`$ and complex magnitude frames use
 $`b\ge L+n+8`$. At the exact respective base widths and
@@ -466,8 +476,9 @@ widths as R63. R65's
 use the same full-space masks with exact returned bank queries. At real
 $`b\ge2(L+n+7)`$ or complex magnitude $`b\ge2(L+n+8)`$, the
 resulting one-clean count matches
-$`\Theta(\sqrt{NL}+L+NL/b)`$ throughout $`n\ge3`$ and integer
-$`L\ge6`$, with $`G=O(NL)`$. The existing F3/F4 lower bound
+$`\Theta(\sqrt{NL}+L+NL/b)`$ throughout integer $`L\ge6`$,
+with $`G=O(NL)`$. Result C includes $`n=1,2`$ by the baseline
+corollary recorded above. The existing F3/F4 lower bound
 applies since $`n+1+b=\Theta(b)`$. No additional synthesis or
 lower-bound premise is imported; the full Clifford ledger is native
 gate accounting, and no new T-depth or general-emitter claim follows.
@@ -495,8 +506,8 @@ are separately compared with GKW and Yamazaki–Akibue–Sano in
 
 The following detailed comparisons retain their original section headings.
 The concise [core account](../RELATED_WORK.md) and [source map](../SOURCE_MAP.md)
-select their roles in Results A–D and R62–R65's growing-source count
-theorems. Earlier endpoint attempts and software boundaries
+select their roles in Results A–D, including R64–R65 under C and the
+retained two-clean R62–R63 statements. Earlier endpoint attempts and software boundaries
 remain supporting context.
 
 ## 1. Exact state preparation and the target frontier
@@ -880,18 +891,15 @@ Here $`\ell_*(n)=1+\log_2^*(n+2)`$, with repeated base-two logarithms
 stopping at a value at most one. Star residuals and streamed coarse programs
 use logical suffix qubits as clean work only in the active sector. At
 $`L=N`$, this construction has upper bound $`O(N\ell_*(n))`$.
-The [growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-separately attains the optimal-order $`\Theta(N)`$ count with two clean
-flags. Its [uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-gives $`O(N+L)`$ at the real reservation $`L+n+7`$ for
-$`n\ge3`$ and every integer $`L\ge6`$; the one-clean grouped bound
-remains valid. R64's [one-clean extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-attains that $`O(N+L)`$ count with one initialized flag, and its
-Clifford count is $`O(NL)`$.
+Result C's [growing-source construction](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`O(N+L)`$ T-count at the same real dirty reservation with one
+initialized flag and $`O(NL)`$ Clifford count. The grouped theorem
+remains valid; its exact conditional-work guards support C, while the
+layerwise banked baseline supplies C's low-precision splice.
 With $`b\ge2(L+n+7)`$, the grouped banked bound is
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, still with $`O(NL)`$ Clifford gates.
 R65's [banked refinement](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-removes the iterated-log factor in this real-frame regime for $`n\ge3`$,
+removes the iterated-log factor in this real-frame regime,
 giving matching $`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean flag
 and the same Clifford bound.
 These are explicitly charged constructions in their stated regimes;
@@ -1052,11 +1060,12 @@ separately settled at $`\Theta(N)`$ by the
 with two clean flags and $`N+n+7`$ dirty qubits. R63 extends the
 upper bound to $`O(N+L)`$ at arbitrary integer $`L\ge6`$, with
 worst-case matching at the exact real/complex base dirty widths when
-$`L\ge\max\{6,n\}`$. The broader scientific contribution
-now includes R64's one-clean uniform extension and R65's matching banked
-frontier for both complete-frame families. The latter requires real
+$`L\ge\max\{6,n\}`$. Result C combines R64's one-clean uniform
+extension and R65's matching banked frontier for both complete-frame
+families. The latter requires real
 $`b\ge2(L+n+7)`$ or complex magnitude $`b\ge2(L+n+8)`$, with
-$`n\ge3`$ and integer $`L\ge6`$. This does not claim a matched
+$`n\ge1`$ and integer $`L\ge6`$, including the bounded-dimension
+baseline corollary. This does not claim a matched
 frontier at every smaller dirty allocation or optimal T-depth.
 
 The same refinement covers **arbitrary complete one-target U(2)

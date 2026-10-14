@@ -5,10 +5,10 @@
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
 The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
-Results A–D, retained corollaries, and the selected precision-uniform
-one-clean count frontier and sharper two-clean endpoint, with literal workspace
-reservations and error contracts. Its source and verification maps identify the premises
-and executable evidence for each claim.
+Results A–D and retained corollaries, with literal workspace reservations
+and error contracts. Result C is the optimal one-clean count theorem; the
+sharper two-clean complex endpoint retains its separate allocation. The source
+and verification maps identify the premises and executable evidence for each claim.
 
 ## The argument to assemble
 
@@ -38,18 +38,15 @@ mechanisms and input/workspace contracts.
    lower bounds and the phase-dressed complex magnitude extension.
 4. Result B: matching sufficient-clean T-count through residual dictionaries,
    one shared geometric source, and retained failure history.
-5. Result C: one-clean rotations and conditional-suffix grouping, followed by
-   banked, diagonal, multiplexor, complex-magnitude, and zero-clean corollaries.
-   Compare the packed two-clean diagonal construction at its smaller dirty budget.
+5. Result C: the one-clean count frontier. Explain growing sources with
+   separate precision and dimension scales, borrowed conjugate-signal recovery,
+   exact dirty-bank queries, the layerwise regime splice, and the Clifford
+   ledger. Compose literal leaf phases under the shared-workspace error contract.
+   Retain diagonal, multiplexor, zero-clean, and sharper two-clean endpoint
+   corollaries at their distinct reservations.
 6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
    explicit precision/workspace matching intervals, and applicable fallbacks.
-7. The selected one-clean count frontier: growing sources with separate
-   precision and dimension scales, borrowed conjugate-signal recovery, and
-   exact dirty-bank queries. State the uniform base-width count, the optimal
-   banked tradeoff, and the Clifford ledger. Compose literal leaf phases
-   under the shared-workspace error contract; retain the sharper two-clean
-   fixed endpoint.
-8. Exact and approximate fixed-parameter QBP consequences, complete complex
+7. Exact and approximate fixed-parameter QBP consequences, complete complex
    gradients, charged executions and reconstruction, and the remaining
    large-width depth question and limits of the circuit model.
 
@@ -66,13 +63,12 @@ sector. T-depth allows arbitrary Clifford interlayers and differs from total
 depth. Only D claims simultaneous T-count/T-depth guarantees; its real
 frame theorem does not inherit the complex extensions of A–C automatically.
 
-The [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count),
-[optimal banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier),
-and [sharp two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-are selected at their own literal allocations beside unchanged A–D.
-The one-clean constructions include $`G=O(NL)`$; their matching
-statements retain the explicit base-width precision condition and banked
-width threshold. They add no depth or general native-emitter guarantee.
+Result C combines the [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier).
+Its matching statements retain the exact-base precision condition and banked
+width threshold. The [sharp two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+has a distinct complex dirty reservation. These count results include no
+new depth or general native-emitter guarantee.
 The [research catalogue](../research/README.md) preserves their dependencies,
 the remaining large-width depth question, and earlier attempts with their
 scoped findings. The completed

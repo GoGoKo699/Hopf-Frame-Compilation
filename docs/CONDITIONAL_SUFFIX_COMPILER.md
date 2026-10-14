@@ -5,6 +5,10 @@
 [Section 10](#10-the-grouped-bounds-need-only-one-external-clean-qubit) extends
 both count bounds to one external clean qubit. Sections 1–9 retain the
 original two-clean construction and supply the group proof it reuses.
+The stronger [Result C](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+uses this chapter's exact conditional-work guards. Its precision splice
+uses the layerwise banked baseline, so the grouped theorem below remains
+a standalone corollary rather than a required intermediate count bound.
 
 The logical suffix of a Hopf group is zero on the sector where that group
 acts. It can supply temporary initialized workspace when every actual
@@ -683,13 +687,12 @@ small numerical matrices do not prove it by themselves.
 This construction uses the existing operator source, dirty queries, and
 normalization-two amplification. Its changes are the ancestor-column
 residual representation, the streamed constant-size coarse-program
-buffer, and the conditional suffix allocation. They leave only an
-iterated-logarithmic multiplicity on the precision charge. The separate
-[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-settles the selected two-clean real-frame count endpoint. The
-full uniform-precision two-clean frontier and the one-clean endpoint
-remain separate questions. No optimal T-depth, optimal Clifford-count, or
-literature-priority claim is established by this note.
+buffer, and the conditional suffix allocation. They leave an
+iterated-logarithmic multiplicity on the precision charge in this
+construction. [Result C](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+supplies the stronger one-clean count frontier. This chapter retains the
+grouped proof and its own reservations; it establishes no optimal T-depth,
+optimal Clifford-count, or literature-priority claim.
 
 ## 10. The grouped bounds need only one external clean qubit
 
@@ -838,9 +841,10 @@ For the fixed one-clean budget $`a=1`$, total width is
 $`n+1+b=\Theta(b)`$ in the banked regime. The existing unrestricted
 lower bound therefore makes the banked upper bound matching under the
 same sufficient conditions $`L\ell_*(n)^2\leq N`$ or
-$`b\leq N/\ell_*(n)`$. This extends the clean-workspace range; it
-does not remove the iterated logarithm at $`L=N`$ or establish an optimal
-T-depth bound.
+$`b\leq N/\ell_*(n)`$. This grouped construction retains its
+iterated-logarithmic term. The stronger [banked Result C](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching throughout the stated banked width range; neither count
+proof establishes an optimal T-depth bound.
 
 The later exploratory material is preserved in
 [Canonical scalar completion in a grouped compiler](../research/endpoint/CANONICAL_SCALAR_COMPLETION.md).
