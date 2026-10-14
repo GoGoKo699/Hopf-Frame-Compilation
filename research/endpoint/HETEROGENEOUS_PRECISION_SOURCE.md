@@ -206,12 +206,13 @@ The spacing $`\Delta`$ is an integer. For sufficiently large n,
 $`0\lt\beta\le1/2`$. On an M-mode source register define
 
 ```math
+\begin{gathered}
 g_\beta=a_\beta\sum_{j=0}^{M-1}\beta^j|j\rangle,
 \qquad
-a_\beta=\sqrt{\frac{1-\beta^2}{1-\beta^{2M}}},
-\qquad
+a_\beta=\sqrt{\frac{1-\beta^2}{1-\beta^{2M}}},\\
 S_d=\sum_{j=d}^{M-1}|j-d\rangle\langle j|\quad(0\le d\lt M),
 \qquad S_d=0\quad(d\ge M).
+\end{gathered}
 \qquad\text{(8)}
 ```
 
