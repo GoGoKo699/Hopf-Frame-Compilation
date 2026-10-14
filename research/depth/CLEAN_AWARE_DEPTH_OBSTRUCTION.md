@@ -24,8 +24,11 @@ $`\varepsilon_a`$ therefore requires at least four T layers,
 independently of b. Zero leaf phases give the same witness in the
 phase-dressed complex magnitude family.
 
-For positive clean budgets, the constant is established by compactness
-and is not evaluated here. With no clean qubits, Section 4.2 sharpens
+For positive clean budgets, Section 4 establishes the constant by
+compactness. The elementary [initialized-sector proof in R74,
+Section 5.1](FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
+also gives an explicit, conservative threshold without the imported
+polynomial-limit premise. With no clean qubits, Section 4.2 sharpens
 the same witness to the exact error floor
 
 ```math
@@ -33,6 +36,9 @@ c_0=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}}\approx0.169714,
 ```
 
 so integer precision $`L\ge3`$ requires at least four T layers.
+The separate [four-layer operator theorem](FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, strengthens this zero-clean conclusion to at least five layers at
+the same precision, with arbitrary dirty width.
 A separate explicit one-clean witness with $`\cos(2\theta)=13/16`$
 has distance at least
 
@@ -557,7 +563,8 @@ density of three-layer coefficients.
 The two-layer bound is explicit at one clean qubit. The three-layer
 bound covers every fixed clean budget, including the one- and two-clean
 frame theorems. Its zero-clean threshold is explicit and sharp for the
-stated witness; positive clean budgets retain an unevaluated threshold.
+stated witness; R74 now supplies an explicit elementary threshold for
+positive clean budgets as well.
 Neither assumes a bound on T-count or Clifford count. Both permit all
 intermediate mixing with dirty work and cover the reference-stable
 return contract.
@@ -568,7 +575,11 @@ Clifford block. A path expansion of that block can introduce a
 normalization factor larger than one, depending on width. Small
 polynomial biases multiplied by growing factors are not controlled by
 Section 4's limiting-probability theorem. Bounding that factor, or
-replacing the scalar invariant, is an additional problem.
+replacing the scalar invariant, is an additional problem. R74 controls
+the middle crossing rank and gives a quantitative initialized-sector
+gap. R75 replaces the scalar invariant by operator norm, proving the
+unrestricted zero-clean five-layer obstruction. The corresponding
+positive-clean five-layer question remains open.
 
 A fixed lower bound of four implies no growth with dimension or precision,
 nor an additive cost per frame layer or source call. Measurements,

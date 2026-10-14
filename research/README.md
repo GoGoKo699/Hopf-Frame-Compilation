@@ -242,18 +242,29 @@ R73, applies to arbitrary coherent Clifford+T circuits. For the complete
 frame with $`\cos(2\theta)=1/3`$, the zero-clean error floor at T-depth
 at most three is exactly $`c_0\approx0.169714`$, attained by a Clifford
 and uniform in dirty width. Hence integer $`L\ge3`$ requires at least
-four layers. Every fixed positive clean budget also has a positive,
-unevaluated threshold. An explicit one-clean witness separately requires
+four layers. Every fixed positive clean budget also has a positive
+threshold, made explicit by the R74 refinement below. An explicit
+one-clean witness separately requires
 at least three layers for integer $`L\ge8`$. Zero leaf phases include
 both witnesses in the phase-dressed family.
 
 The [four-layer crossing-rank theorem](depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, proves a positive error gap for the $`1/3`$ witness at every fixed
 clean budget and fixed upper bound on the middle active symplectic
-crossing rank. In any four-layer sequence whose error tends to zero,
-the minimum crossing rank over its four-layer decompositions must tend
-to infinity. This is a structural obstruction; it gives neither an
-unrestricted five-layer lower bound nor a rate of rank growth.
+crossing rank. Its elementary initialized-observable rigidity proof gives
+an explicit gap $`2^{-O_a(r^2)}`$ and minimum crossing rank
+$`\Omega_a(\sqrt L)`$ for error $`2^{-L}`$, minimizing over all
+four-layer decompositions. This proof is independent of the polynomial-limit
+premise used by the retained qualitative closure argument.
+
+The [four-layer operator-rigidity theorem](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, proves a width-independent operator-norm gap
+$`\rho=\sin(\pi/8)/\sqrt2\approx0.270598`$ between distinct two-layer
+Pauli images. The zero-clean $`1/3`$ witness consequently has four-layer
+error at least $`\rho/2\approx0.135299`$, so $`L\ge3`$ requires five
+layers even with arbitrary dirty width. With one clean qubit, the same
+threshold forces exact terminal clean-sector preservation; it does not
+give a one-clean five-layer lower bound.
 Optimal depth remains an open problem.
 
 The following earlier studies isolate costs or restrict particular

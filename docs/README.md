@@ -176,10 +176,17 @@ not an unrestricted circuit-depth lower bound or an input to the upper bound.
 The separate [constant-depth obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
 R73, applies to arbitrary Clifford interlayers and dirty width. For every
 fixed clean budget, some complete frames require at least four T layers
-below a positive, unevaluated accuracy threshold, uniformly in dimension.
-Its explicit one-clean two-layer gap also gives a three-layer lower bound
-at $`L\ge8`$. These constant bounds do not establish asymptotic depth
-optimality. Optimal depth remains an open problem.
+below a positive accuracy threshold, uniformly in dimension. The
+[crossing-rank refinement](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, makes that threshold explicit by an elementary argument and forces
+minimum middle crossing rank $`\Omega_a(\sqrt L)`$ for four-layer
+approximations at error $`2^{-L}`$ and fixed clean budget a.
+R73's explicit one-clean two-layer gap also gives a three-layer lower bound
+at $`L\ge8`$. The [operator-rigidity theorem](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, gives a zero-clean five-layer lower bound at $`L\ge3`$, using the
+four-layer error floor $`\rho/2\approx0.135299`$. With one clean qubit,
+its conclusion is exact terminal-sector preservation below that error,
+not a five-layer lower bound. Optimal depth remains an open problem.
 
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count

@@ -173,20 +173,50 @@ c_0=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}}\approx0.169714
 at T-depth at most three, uniformly over n and dirty width b. A Clifford
 attains this floor, so integer $`L\ge3`$ requires at least four layers.
 For every fixed positive clean budget a, a positive threshold
-$`\varepsilon_a`$ still exists but is not evaluated. These statements
+$`\varepsilon_a`$ exists; R74's elementary refinement below makes it
+explicit. These statements
 allow arbitrary Clifford interlayers and dirty/reference inputs.
 Separately, an explicit one-clean witness requires at least three layers
 for integer $`L\ge8`$. Zero leaf phases put both witnesses in the complex
 magnitude family. These depth lower bounds are constant.
 
+The [four-layer operator-rigidity theorem](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, strengthens the zero-clean obstruction without restricting crossing
+rank. Distinct Pauli images under two-layer circuits have operator-norm
+distance at least
+
+```math
+\rho=\frac{\sin(\pi/8)}{\sqrt2}\approx0.270598.
+```
+
+The same complete frame therefore has error at least
+$`\rho/2\approx0.135299`$ at T-depth at most four, with zero clean qubits
+and arbitrary dirty width. Since $`1/8\lt\rho/2`$, every integer
+$`L\ge3`$ requires at least five layers. This lower bound does not claim
+that the four-layer error floor is sharp. With one initialized clean
+qubit, error below $`\rho/2`$ forces exact terminal clean-sector
+preservation, but does not establish a five-layer lower bound.
+
 The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, gives a positive error gap for the same $`1/3`$ witness for each
 fixed clean budget a and rank bound R, for circuits admitting a four-layer
 decomposition whose middle active symplectic crossing rank is at most R.
-Consequently, every four-layer sequence with error tending to zero must
-have minimum crossing rank tending to infinity, minimizing over all
-four-layer decompositions of each circuit. The theorem supplies neither
-an unrestricted five-layer lower bound nor a rate of rank growth.
+Its elementary initialized-observable argument strengthens this to an
+explicit rigidity gap $`2^{-O_a(r^2)}`$. Consequently, at error
+$`2^{-L}\lt c_0`$, every such approximation satisfies
+
+```math
+r_{\min}=\Omega_a(\sqrt L),
+```
+
+where the minimum is over all four-layer decompositions of the circuit.
+The proof supplies explicit constants for each fixed clean budget and
+also an explicit fixed-clean three-layer threshold. Its original
+polynomial-limit closure proof remains valid. With positive clean
+budget, this rank restriction permits four-layer circuits whose crossing
+rank grows with precision; it is not an unrestricted five-layer lower
+bound. The width-independent four-layer Hilbert--Schmidt gap remains
+unresolved, separately from R75's operator-norm result.
 Optimal depth remains an open problem.
 
 The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

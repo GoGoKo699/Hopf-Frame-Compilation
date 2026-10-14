@@ -138,18 +138,33 @@ The additive F and L terms have no unrestricted matching depth lower bound.
 The separate [clean-aware obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
 R73, gives constant lower bounds with arbitrary Clifford interlayers and
 dirty width. Each fixed clean budget has a positive three-layer error
-floor. With no clean work the witness's exact floor is approximately
+floor, now explicit by R74's independent
+[elementary initialized-sector proof](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector).
+With no clean work the witness's exact three-layer floor is approximately
 0.169714, attained by a Clifford; integer precision L ≥ 3 requires four
 layers. Its one-clean two-layer witness requires three layers for L ≥ 8.
-F35/F44 supply stabilizer facts and F43 the polynomial-limit premise.
+F35/F44 supply stabilizer facts. F43 supplies the retained scalar-closure
+proof, but is not needed for the elementary fixed-clean obstruction.
 
 The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
-R74, uses F44's symplectic realization and F43's same limit premise with
-a normalization bound controlled by the active middle crossing rank.
-At each fixed clean budget, a four-layer approximating sequence for the
-witness must have minimum crossing rank tending to infinity over all
-four-layer decompositions. This supplies no quantitative rank/error rate
-or unrestricted five-layer lower bound.
+R74, gives an explicit error floor at every fixed clean budget and middle
+crossing-rank bound. Its elementary initialized-sector proof requires
+minimum crossing rank $`\Omega_a(\sqrt L)`$ at error $`2^{-L}`$,
+over all native four-layer decompositions. F44 supplies symplectic
+realization and stabilizer coordinates; F43 remains a premise only of
+the retained scalar-closure proof. The rank condition does not exclude
+four layers with positive clean work and unbounded crossing rank.
+
+The [four-layer operator-rigidity theorem](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
+R75, gives a uniform operator-norm separation of approximately 0.270598
+between distinct two-layer Pauli images. It strengthens the zero-clean
+witness to a four-layer error floor of approximately 0.135299, with
+arbitrary returned dirty width: integer precision L ≥ 3 requires at least
+five T layers. Its proof uses F35/F44's stabilizer facts, R73's local phase
+gap and unit-circle arithmetic, and exact Pauli commutants. With one clean
+qubit it proves only terminal clean-Z preservation below that threshold.
+It does not establish a scalar four-layer transfer gap or a five-layer
+lower bound with positive clean work.
 
 The compressed-column refinement has a separate dependency chain. It
 retains the uniform theorem's literal threshold and improves its depth

@@ -2,11 +2,14 @@
 
 [Current frontier](../../docs/OPEN_PROBLEM.md) · [Three-layer obstruction](CLEAN_AWARE_DEPTH_OBSTRUCTION.md) · [Research index](../README.md)
 
-Four-layer approximation at fixed clean budget has a necessary structural
-condition: the two active middle T layers must have unbounded symplectic
-pairing rank as the error tends to zero for the complete-frame witness
-below. This result, R74, restricts a circuit class. It does not prove an
-unrestricted five-layer lower bound or a quantitative rank/error rate.
+Four-layer approximation at fixed clean budget has a quantitative structural
+condition: the minimum symplectic pairing rank of the two active middle
+T layers grows at least as the square root of the accuracy exponent for
+the complete-frame witness below. This result, R74, gives an explicit
+initialized-sector gap at each rank. The separate [operator-rigidity
+theorem](FOUR_LAYER_OPERATOR_RIGIDITY.md), R75, excludes four layers
+altogether in the zero-clean model at integer precision L at least three;
+a five-layer lower bound with positive clean work remains open.
 
 ## 1. Circuit class and theorem
 
@@ -49,17 +52,19 @@ W_n=I_{2^{n-1}}\otimes R_y(\theta),\qquad
 has initialized-isometry distance at least $`\varepsilon_{a,R}`$
 from every circuit **admitting** a four-layer decomposition with
 $`r\le R`$, at most a clean qubits, and arbitrary dirty width. The
-threshold is uniform in n and dirty width but is not evaluated.
+threshold is uniform in n and dirty width. Section 5.1 supplies an
+explicit value and a quantitative rank--precision consequence.
 Zero leaf phases give the same witness in the complex magnitude family.
 
 Consequently every sequence of at-most-four-layer approximations to
 these frames, with fixed clean budget and error tending to zero, has
 **minimum crossing rank tending to infinity**, where the minimum is
 over all four-layer decompositions. Both middle layers must then have
-diverging numbers of active T gates. The proof uses R73's imported
-polynomial-limit premise; its new step is the normalization bound
-$`\beta\le r`$ derived below. No supplied states, new initialized
-history, or additional circuit layers enter the analysis.
+diverging numbers of active T gates. Section 5 first proves the qualitative claim using R73's imported
+polynomial-limit premise and the normalization bound $`\beta\le r`$.
+Section 5.1 gives an independent elementary quantitative proof, using
+finite sums of affine phase states. No supplied states, new initialized
+history, or additional circuit layers enter either analysis.
 
 ## 2. Peeling the outer layers
 
@@ -251,9 +256,270 @@ If the minimum ranks of an approximating sequence failed to diverge,
 an infinite subsequence would admit rank at most some fixed R,
 contradicting this positive gap. Since
 $`r\le\min\{|J_2|,|J_3|\}`$, both active middle layer sizes diverge
-as well. This supplies no rate and no growth of the number of layers.
+as well. The following proof strengthens this divergence to an explicit
+rank--precision bound; it does not force more layers at positive clean
+budget.
 
-## 6. Growing normalization is a real remaining obstacle
+## 5.1. Quantitative rigidity on the initialized sector
+
+The bounded-rank obstruction also has an elementary quantitative proof.
+It uses the initialized observables themselves and does not require the
+polynomial-limit premise of Section 5. Fix a clean budget a, let
+$`\Pi=|0^a\rangle\langle0^a|\otimes I`$, and let P be a
+Hermitian Pauli on the remaining logical and dirty wires. Normalize
+
+```math
+E=\Pi P,\qquad O=2^{a/2}E,\qquad
+\|O\|_{2,\mathrm{tr}}=1,\qquad
+x_E(V)=\langle O,VOV^\dagger\rangle_{2,\mathrm{tr}}.
+```
+
+The normalized Hilbert--Schmidt inner product uses the full physical
+space. The scalar $`x_E`$ is real and at most one. In terms of ordinary
+transfer entries it is a sum of $`2^{2a}`$ terms with prefactor
+$`2^{-a}`$; it is different from Section 5's one-sided initialized
+transfer witness.
+
+**Initialized identity-isolation theorem.** Put
+
+```math
+K=2^{a+1},\qquad A=2(K^2-1),\qquad
+S_a=\frac{A^K-1}{A-1},
+```
+
+```math
+\mathcal T_a(r)=S_a\bigl[2Kr^2+(5K+8)r+7K+5a+5\bigr].
+```
+
+For every native four-layer decomposition of crossing rank r,
+
+```math
+\boxed{\qquad
+x_E(V)=1\quad\hbox{or}\quad
+1-x_E(V)\ge2^{-[\mathcal T_a(r)+1]}.
+\qquad}
+```
+
+The constants are conservative; their useful feature is
+$`\mathcal T_a(r)=O_a(r^2)`$. For one clean qubit they are explicitly
+
+```math
+\mathcal T_1(r)=27931(8r^2+28r+38).
+```
+
+### Conditional boundary states
+
+Expand $`O=2^{-a/2}\sum_s PZ^s`$, where s ranges over the a clean
+Z generators. Peeling the outer T layers as in Section 2 turns each
+summand into a Hermitian Clifford. Thus each Choi boundary is a sum of
+$`2^a`$ flat affine stabilizer states, with coefficient $`2^{-a/2}`$.
+Section 3 uses the same middle normal form for every summand. On doubled
+Choi coordinates it has diagonal weighted-cubic phases and a Hadamard
+transform on $`m=2r`$ active coordinates.
+
+The Choi discrepancy is consequently
+
+```math
+f=\sum_{i=1}^K s_i2^{-a/2}\xi_i,\qquad
+s_i\in\{1,-1\},\qquad
+\|f\|^2=2(1-x_E(V)).
+```
+
+A left state $`\xi_i`$ is flat on an affine support with a weighted
+phase; a right state has the same form followed by the common diagonal
+phases and active Hadamards. All are normalized. Their marginal on the
+untouched coordinates is uniform on an affine space $`T_i`$, of
+dimension $`h_i`$. Each nonempty active fiber is a normalized m-qubit
+state. The middle operations preserve these marginals.
+
+For nonempty intersections define
+
+```math
+d_{ij}=\frac{h_i+h_j}{2}-\dim(T_i\cap T_j),
+```
+
+and set $`d_{ij}=\infty`$ for disjoint supports. Cauchy--Schwarz inside
+the active fibers gives $`|\langle\xi_i,\xi_j\rangle|\le2^{-d_{ij}}`$.
+
+### A quantitative gap for one cluster
+
+Consider projected supports connected by edges $`d_{ij}\le t`$.
+Their affine hull H has codimension at most
+$`\ell=2(K-1)t`$ above every member. Indeed, root a spanning tree at
+that member. Adding a child support increases the hull dimension by at
+most $`h_{\rm child}-\dim(T_{\rm child}\cap T_{\rm parent})\le2t`$.
+A common intersection of all supports is unnecessary.
+
+Parameterize H by $`u\in\mathbb F_2^h`$ and put
+$`e_i=\mathrm{codim}_H T_i\le\ell`$. A cluster coordinate at
+active output z is $`2^{-h/2}\lambda_z(u)`$, where
+
+```math
+\lambda_z(u)=\sum_i s_i2^{(e_i-a)/2}
+\mathbf1_{T_i}(u)\,v_i(u,z).
+```
+
+Each $`v_i`$ is a normalized conditional m-qubit state. A left term is
+flat on an affine active fiber of dimension $`b_i\le m`$. A right term
+has the form
+
+```math
+v_i(u,z)=2^{-(b_i+m)/2}
+\sum_{w\in\mathbb F_2^{b_i}}\zeta_8^{q_i(u,w)},
+```
+
+with output phases included in the weighted-cubic polynomial $`q_i`$.
+Affine sections and their phases can be extended from $`T_i`$ to H
+by an affine retraction.
+
+Suppose the cluster is nonzero, and choose $`u_0,z_0`$ with a nonzero
+coordinate. Fix all projected-support membership bits to their values
+at $`u_0`$; this costs Boolean degree at most $`\sum_i e_i\le K\ell`$.
+For a left term, fix its active-fiber membership at $`z_0`$ using at
+most m affine constraints, and its phase residue using degree at most
+seven. For a right term, expand $`q_i(u,w)`$ in w. Its constant,
+linear-w, and quadratic-w coefficients have residue-event degrees at
+most seven, three, and one respectively; cubic-w coefficients are
+constant. Thus the per-term degree cost is at most
+
+```math
+d_m=7+3m+\binom m2\ge m+7.
+```
+
+These digit bounds follow from the weighted divisibilities: the three
+binary digits of a weighted-cubic polynomial modulo eight have Boolean
+degrees at most one, two, and four. Fixing one residue therefore costs
+degree at most seven. The lower coefficient classes have digit degrees
+one and two, or just one, respectively.
+To check the digit bound directly, express the integer polynomial as a
+sum of Boolean monomial tokens, including coefficient multiplicities.
+Its binary digit j is the coefficient of $`z^{2^j}`$ in the product
+of $`1+t z`$ over these tokens t, over the binary field. Quadratic
+tokens occur in even multiples and first contribute at $`z^2`$; cubic
+tokens occur in multiples of four and first contribute at $`z^4`$.
+Every resulting monomial in that coefficient has degree at most
+$`2^j`$. Constant shifts and the lower coefficient classes retain the
+stated bounds.
+
+The combined event contains $`u_0`$, preserves the chosen nonzero
+coordinate, and has Boolean degree at most $`K\ell+Kd_m`$. Its measure
+is at least $`2^{-K\ell-Kd_m}`$ by the minimum-weight bound for a
+nonzero Boolean polynomial.
+
+There is also a uniform arithmetic bound on that coordinate. With a
+common denominator $`(\sqrt2)^{a+2m}`$,
+
+```math
+y=|\lambda_{z_0}(u_0)|^2
+=\frac{u+v\sqrt2}{2^{a+2m}},\qquad u,v\in\mathbb Z.
+```
+
+The embedding $`\sigma(i)=i`$, $`\sigma(\sqrt2)=-\sqrt2`$ takes
+each conditional flat phase state to another normalized state and
+changes the active Hadamards only by a common sign. Therefore
+
+```math
+y'=\sigma(y)=|\sigma(\lambda_{z_0}(u_0))|^2
+\le K^2 2^{\ell-a}.
+```
+
+The nonzero algebraic norm $`yy'`$ is at least
+$`2^{-2(a+2m)}`$. Hence the chosen squared coordinate is at least
+$`2^{-a-4m-\ell}/K^2`$. Averaging over the event proves that every
+nonzero cluster has squared norm at least
+
+```math
+\delta(t)=\frac{2^{-(K+1)\ell-Kd_m-a-4m}}{K^2}
+=\frac{2^{-At-Kd_m-a-4m}}{K^2}.
+```
+
+### Separating clusters without cancellation
+
+Set
+
+```math
+C=Kd_m+a+4m+4\log_2K+1,\qquad
+t_0=0,\qquad t_{j+1}=At_j+C\quad(0\le j\lt K).
+```
+
+Form the graph with edges $`d_{ij}\le t_j`$. Its component partition
+can strictly merge at most $`K-1`$ times, so some two consecutive scales
+among $`t_0,\ldots,t_K`$ have the same partition. Use those components
+as clusters. Distinct clusters then have $`d_{ij}\gt t_{j+1}`$ for
+every cross pair. Their total interference in $`\|f\|^2`$ is at most
+
+```math
+K^2 2^{-t_{j+1}}\le\delta(t_j)/2.
+```
+
+If f is nonzero, some cluster is nonzero. It follows that
+
+```math
+\|f\|^2\ge\delta(t_j)/2\ge2^{-t_{j+1}}\ge2^{-t_K}.
+```
+
+Since $`m=2r`$, the recurrence gives $`t_K=\mathcal T_a(r)`$,
+proving the theorem.
+
+### Initialized return and a rank--precision bound
+
+Let J append the a clean zeros and suppose
+$`\|VJ-JU\|\le\eta`$, with U preserving the data Pauli P.
+For the isometries $`F=VJ`$, $`G=JU`$ on a d-dimensional data-plus-dirty
+space,
+
+```math
+\|FPF^\dagger-GPG^\dagger\|_F
+\le2\|F-G\|_F\le2\eta\sqrt d.
+```
+
+Normalizing by the full dimension $`2^a d`$ gives
+
+```math
+1-x_E(V)=\tfrac12\|VOV^\dagger-O\|_{2,\mathrm{tr}}^2
+\le2\eta^2.
+```
+
+Thus $`\eta\lt2^{-[\mathcal T_a(r)+2]/2}`$ forces exact preservation
+of $`\Pi P`$. Taking P=I first gives exact terminal preservation of
+the occupied clean sector. For the complete-frame witness, the
+spectator and dirty X,Z observables and the logical Y then force the
+unitary on that sector to be $`e^{i\phi}R_y(\alpha)\otimes I`$.
+Its initialized transfer entries belong to $`\mathbb Z[1/\sqrt2]`$,
+so R73's elementary unit-circle classification gives
+$`\alpha\in(\pi/8)\mathbb Z`$. No conclusion about the unused clean
+sectors or intermediate return is needed.
+
+The witness therefore has the explicit distance lower bound
+
+```math
+\min\left\{
+2^{-[\mathcal T_a(r)+2]/2},\quad
+c_0\right\},\qquad
+c_0=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}}.
+```
+
+In particular, a four-layer approximation with error $`2^{-L}\lt c_0`$
+must satisfy
+
+```math
+\boxed{\qquad \mathcal T_a(r)\ge2L-2.\qquad}
+```
+
+For every fixed clean budget this is a necessary
+$`r=\Omega_a(\sqrt L)`$ condition, valid for the minimum over all native
+four-layer representations. The same bound applies to each middle
+layer's number of active T gates. Idle padding handles fewer than a
+clean qubits. This does not bound unrestricted four-layer width or
+prove a five-layer obstruction for a positive clean budget.
+
+For three layers, peeling the two outer layers leaves a diagonal middle
+word, so the same argument applies with m=0. It supplies an elementary
+explicit fixed-clean obstruction with
+$`\mathcal T_a(0)=S_a(7K+5a+5)`$. R73's sharper explicit no-clean
+constant remains preferable in that case.
+
+## 6. Growing normalization and the remaining scalar question
 
 The bound $`\beta\le r`$ can be attained by actual native boundary
 data. In the peeled two-middle-layer expression, take
@@ -313,8 +579,11 @@ ring closure. **No native four-layer realization of this abstract
 family is claimed.** Its support and unitarity constraints would
 require a separate argument.
 
-An unrestricted extension must control the scaled bias as crossing
-rank grows, exploit the full logical-return condition, or find a
-different invariant. The zero-clean rigidity and one-clean terminal
-sector result in [R73, Sections 4.1–4.3](CLEAN_AWARE_DEPTH_OBSTRUCTION.md#41-a-sharp-gap-below-a-preserved-pauli)
-remain useful but do not settle this case. Optimal depth remains an open problem.
+An unrestricted scalar extension must control the scaled bias as
+crossing rank grows, with native support and unitarity retained.
+[R75](FOUR_LAYER_OPERATOR_RIGIDITY.md) instead uses operator norm and
+exact Pauli commutants to prove a zero-clean five-layer obstruction. It
+also reduces any near-one scalar pair to discrete phases in a common
+active-axis algebra, but does not decide whether native rare-sector
+phases realize a scalar counterexample. Positive-clean unrestricted
+five-layer rigidity remains open. Optimal depth remains an open problem.

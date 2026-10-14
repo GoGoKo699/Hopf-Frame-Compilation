@@ -1,19 +1,23 @@
 """Finite algebra audits for the four-layer crossing-rank obstruction.
 
-These check the symplectic reduction, literal native boundary matrices, and
-the abstract scaled-cubic-bias counterexample. They neither certify the
-imported polynomial-limit theorem nor realize the abstract bias as a native
-four-layer transfer coefficient.
+These check the symplectic reduction, literal native boundary matrices,
+weighted phase digits, initialized-observable normalization, and the
+quantitative cluster constants. They neither certify an infinite-width
+theorem numerically nor realize the abstract bias as a native coefficient.
 """
 from __future__ import annotations
 
 from decimal import Decimal, ROUND_FLOOR, localcontext
 from fractions import Fraction
+from itertools import combinations
 import unittest
 
 import numpy as np
 
-from tests.test_operator_source_compiler import ATOL, X, Z, _adjoint, _pauli, _word_matrix
+from tests.test_clean_aware_depth_obstruction import (
+    _degree, _f2_value, _integer_mobius, _phase_digits, _phase_events,
+)
+from tests.test_operator_source_compiler import ATOL, X, Y, Z, _adjoint, _pauli, _word_matrix
 
 
 def _binary_basis(rows):
@@ -122,7 +126,146 @@ def _cubic_bias(pair_count, blocks):
     return Fraction(sign_sum, 1 << width)
 
 
+def _affine_phase_table(coefficients, width, rng):
+    """Evaluate an actual invertible affine pullback, before interpolation."""
+    rows = [1 << bit for bit in range(width)]
+    for _ in range(4 * width):
+        first, second = rng.choice(width, 2, replace=False)
+        rows[first] ^= rows[second]
+    offset = int(rng.integers(1 << width))
+    values = []
+    for assignment in range(1 << width):
+        original = offset ^ sum(((assignment & row).bit_count() % 2) << bit
+                                for bit, row in enumerate(rows))
+        values.append(sum(value for mask, value in coefficients.items()
+                          if original & mask == mask) % 8)
+    return values
+
+
+def _weighted_phase_fixture(width, rng):
+    coefficients = {0: int(rng.integers(8))}
+    for degree in (1, 2, 3):
+        for support in combinations(range(width), degree):
+            mask = sum(1 << bit for bit in support)
+            coefficients[mask] = (int(rng.integers(8)) << (degree - 1)) % 8
+    return coefficients
+
+
 class FourLayerCrossingRankTests(unittest.TestCase):
+    def test_weighted_phase_digits_and_residues_after_affine_pullback(self):
+        width = 8
+        rng = np.random.default_rng(740751)
+        # The linear weight sum attains all three digit bounds and degree
+        # seven for a residue event; affine changes preserve those degrees.
+        fixtures = [{1 << bit: 1 for bit in range(width)}]
+        fixtures += [_weighted_phase_fixture(width, rng) for _ in range(5)]
+        for sample, coefficients in enumerate(fixtures):
+            values = _affine_phase_table(coefficients, width, rng)
+            pulled = _integer_mobius(values, width)
+            for mask, coefficient in pulled.items():
+                degree = mask.bit_count()
+                self.assertLessEqual(degree, 3)
+                if degree:
+                    self.assertEqual(coefficient % (1 << (degree - 1)), 0)
+            digits = _phase_digits(pulled)
+            events = _phase_events(digits)
+            self.assertTrue(all(_degree(digit) <= bound
+                                for digit, bound in zip(digits, (1, 2, 4))))
+            self.assertLessEqual(max(map(_degree, events)), 7)
+            if sample == 0:
+                self.assertEqual(list(map(_degree, digits)), [1, 2, 4])
+                self.assertEqual(max(map(_degree, events)), 7)
+            for assignment, value in enumerate(values):
+                self.assertEqual([_f2_value(digit, assignment) for digit in digits],
+                                 [(value >> bit) & 1 for bit in range(3)])
+                self.assertEqual([_f2_value(event, assignment) for event in events],
+                                 [int(value == residue) for residue in range(8)])
+
+    def test_fiber_phase_coefficient_events_have_degrees_seven_three_one(self):
+        # Three untouched variables t and three active fiber variables w.
+        # Integer interpolation follows an affine substitution mixing both.
+        rng = np.random.default_rng(740752)
+        attained = [0, 0, 0, 0]
+        for _ in range(10):
+            values = _affine_phase_table(_weighted_phase_fixture(6, rng), 6, rng)
+            pulled = _integer_mobius(values, 6)
+            for w_mask in range(8):
+                w_degree = w_mask.bit_count()
+                coefficient = {mask & 7: value for mask, value in pulled.items()
+                               if mask >> 3 == w_mask}
+                for t_mask, value in coefficient.items():
+                    total_degree = t_mask.bit_count() + w_degree
+                    self.assertLessEqual(total_degree, 3)
+                    if total_degree:
+                        self.assertEqual(value % (1 << (total_degree - 1)), 0)
+                events = _phase_events(_phase_digits(coefficient))
+                event_degree = max(map(_degree, events))
+                self.assertLessEqual(event_degree, (7, 3, 1, 0)[w_degree])
+                attained[w_degree] = max(attained[w_degree], event_degree)
+                for t in range(8):
+                    value = sum(c for mask, c in coefficient.items() if t & mask == mask) % 8
+                    self.assertEqual([_f2_value(event, t) for event in events],
+                                     [int(value == residue) for residue in range(8)])
+        self.assertEqual(attained[1:], [3, 1, 0])
+
+    def test_initialized_two_sided_observable_identity_includes_native_leakage(self):
+        # Logical wire 0, dirty wire 1, and clean wire 2. The four physical
+        # T layers form a commutator of rotations about entangling axes.
+        first_basis = [('CX', 1, 2), ('H', 2)]
+        second_basis = [('CX', 0, 2)]
+        first = _adjoint(first_basis) + [('T', 2)] + first_basis
+        second = _adjoint(second_basis) + [('T', 2)] + second_basis
+        word = first + second + _adjoint(first) + _adjoint(second)
+        self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in word), 4)
+        unitary = _word_matrix(3, word)
+        embedding = np.eye(8)[:, :4]
+        projector = embedding @ embedding.conj().T
+        isometry = unitary @ embedding
+        eta = np.linalg.norm(isometry - embedding, ord=2)
+        self.assertGreater(np.linalg.norm((np.eye(8) - projector) @ isometry, ord=2), 0.01)
+        self.assertLess(eta, 0.5)
+        clean_z = _pauli(3, {2: Z})
+        for factors in ({}, {0: Y}, {1: X}):
+            pauli = _pauli(3, factors)
+            observable = np.sqrt(2) * projector @ pauli
+            evolved = unitary @ observable @ unitary.conj().T
+            coefficient = np.trace(observable @ evolved) / 8
+            discrepancy = np.linalg.norm(evolved - observable, ord='fro') ** 2 / 8
+            self.assertLess(abs(coefficient.imag), ATOL)
+            self.assertAlmostEqual(np.trace(observable @ observable).real / 8, 1)
+            self.assertAlmostEqual(1 - coefficient.real, discrepancy / 2, places=12)
+            expanded = sum(np.trace(left @ unitary @ right @ unitary.conj().T) / 8
+                           for left in (pauli, pauli @ clean_z)
+                           for right in (pauli, pauli @ clean_z)) / 2
+            self.assertLess(abs(coefficient - expanded), ATOL)
+            self.assertLessEqual(1 - coefficient.real, 2 * eta ** 2 + ATOL)
+            if not factors:
+                # The one-sided identity witness is always one; this
+                # two-sided projector witness instead detects clean leakage.
+                self.assertAlmostEqual(np.trace(isometry.conj().T @ isometry).real / 4, 1)
+                self.assertLess(coefficient.real, 0.99)
+
+    def test_one_clean_scale_recurrence_pays_for_cross_cluster_interference(self):
+        clean, count = 1, 4
+        multiplier = 2 * (count ** 2 - 1)
+        for rank in (0, 1, 3, 8):
+            active = 2 * rank
+            degree = 7 + 3 * active + active * (active - 1) // 2
+            constant = count * degree + clean + 4 * active + 4 * 2 + 1
+            threshold = 0
+            for _ in range(count):
+                following = multiplier * threshold + constant
+                hull_codimension = 2 * (count - 1) * threshold
+                log_gap = (-(count + 1) * hull_codimension - count * degree
+                           - clean - 4 * active - 2 * 2)
+                log_cross_bound = 2 * 2 - following
+                self.assertEqual(log_cross_bound, log_gap - 1)
+                self.assertGreaterEqual(log_gap - 1, -following)
+                threshold = following
+            self.assertEqual(threshold, 27931 * (8 * rank ** 2 + 28 * rank + 38))
+            self.assertGreaterEqual(threshold, 27931 * 8 * rank ** 2)
+            self.assertLessEqual(threshold, 27931 * 38 * (rank + 1) ** 2)
+
     def test_exact_simultaneous_normal_form_including_common_axes(self):
         width = 4
         x = [1 << i for i in range(width)]
