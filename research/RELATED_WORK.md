@@ -506,17 +506,42 @@ rounded-angle errors remain charged over the actual recovery calls.
 The [uniform assembly](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 absorbs the arithmetic tables only in its stated small absolute
 linear-precision range and preserves the original dirty-width threshold.
-The [grouped terminal schedule](depth/GROUPED_TERMINAL_DEPTH.md) reuses the
-[conditional column-forest residual](../docs/CONDITIONAL_SUFFIX_COMPILER.md):
-whole coarse native words are prefetched into the protected suffix, and
-each group pays one fine scalar-source correction. Balancing group height
-against the deepest capped layers gives the $`L^{3/2}`$ precision term.
-The actual coarse words retain their literal phases and exactly returned
-work; their residual tables are computed only after those words are fixed.
-These are local
-native identities and resource/error composition results. They import no
-new arithmetic or synthesis premise and make no generic adder, phase-source
-reuse, or literature-priority claim. The separate
+The selected [terminal construction](depth/SHARED_BINARY_TERMINAL.md)
+uses a different retained source: R12's exact compact binary geometric
+preparation and R14's shared-source composition. Its geometric weights and
+address-and-digit oracle have the established F1 lineage. Its nonwrapping
+failure counter specializes the coherent product compression of F10,
+and its final normalization uses F11's LCU and oblivious amplification.
+These are the existing entries in the
+[source register](../docs/reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries),
+not new external premises.
+
+The local terminal proof uses a constant sixteen-type dictionary for
+each one-layer residual, preserves the source without intermediate
+projection, and charges its preparation once per complete stream.
+A logarithmic conditional-zero suffix holds the source and history.
+R20's [bounded-control native lemma](../docs/CONDITIONAL_SUFFIX_COMPILER.md#exact-conditioning-without-a-clifford-count-penalty)
+and retained whole-word coarse prefetch supply literal controls and
+exact unloading. The actual coarse words retain their phases and returned
+work; residual tables are evaluated after those words are fixed.
+The selected terminal kernel does not use grouped column-forest residuals.
+With the distinct early shared-gradient proof, the depth term becomes
+
+```math
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
+```
+
+At sufficient square-root width, the fixed-accuracy order persists through
+$`L=O(\sqrt n)`$ and the depth is sublinear for
+$`L=o(n/\log(n+2))`$, within the same absolute linear-precision range.
+The [grouped terminal schedule](depth/GROUPED_TERMINAL_DEPTH.md) remains
+a separate proved alternative: its conditional column-forest residuals
+and group-height balance give the earlier $`L^{3/2}`$ contribution.
+Its whole-word prefetch interface remains a dependency of the new schedule.
+
+These are local native interfaces and resource/error compositions. They
+make no generic adder, geometric-source, failure-history, source-reuse,
+or literature-priority claim. The separate
 [entry-indexed normalization limit](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 restricts its explicit factorization interface, not unrestricted block
 encodings or native T-depth.

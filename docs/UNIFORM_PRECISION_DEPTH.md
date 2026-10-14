@@ -92,15 +92,16 @@ T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad G=O(NL),
 
 ```math
 D_T=O\!\left(\frac{NL}{b^2}
- +\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}\right),
+ +\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right),
 ```
 
 at the same literal lower threshold $`b\ge17B_0`$, with two clean
 flags and full error at most $`2^{-L}`$. Its constants are absolute;
 the proof prices the shared gradient and its table-based arithmetic.
-Its [grouped terminal compiler](../research/depth/GROUPED_TERMINAL_DEPTH.md)
-prefetches complete coarse programs, uses one fine residual per group,
-and charges the capped bottom layers. The theorem on this page remains
+Its [shared binary terminal compiler](../research/depth/SHARED_BINARY_TERMINAL.md)
+uses a separate capped geometric source, retained failure history, and
+one recovery across the terminal stream, with a protected logarithmic
+bank and charged capped bottom layers. The theorem on this page remains
 the all-precision fallback and retains
 its own matching intervals. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)

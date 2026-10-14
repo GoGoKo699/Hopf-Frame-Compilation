@@ -10,17 +10,20 @@ This construction bypasses the successive early Hopf layers by encoding
 their complete columns into orthogonal depth-and-prefix sectors. A
 coherent real-state loader implements that encoding; a Clifford row
 isometry gives normalization $`O(\sqrt n)`$. Amplitude amplification
-recovers the whole early frame. The terminal layers use native residual
-groups and capped layerwise compilation, retaining their width penalty.
+recovers the whole early frame. The terminal layers share one binary
+geometric precision source with retained failure history, followed by
+capped layerwise compilation at the bottom. This retains the terminal
+width penalty.
 Selecting the retained compiler at smaller widths gives an
 all-eligible-width theorem.
 
 Sections 1–9 retain the fixed-accuracy construction. Section 10 proves
 an absolute-constant precision-uniform extension, using
 [one charged gradient across recovery](SHARED_GRADIENT_RECOVERY.md)
-and the [grouped terminal schedule](GROUPED_TERMINAL_DEPTH.md). The two constructions have
-separate gradient-reflection rules and share the same complete-input
-contract and native query lemmas.
+and the [shared binary terminal source](SHARED_BINARY_TERMINAL.md).
+The fixed-accuracy and uniform constructions have separate gradient
+reflection rules and share the same complete-input contract and native
+query lemmas.
 
 The construction uses the Boolean-phase state-preparation method of
 Gosset–Kothari–Wu, with a separately proved terminating selection rule,
@@ -600,7 +603,7 @@ Put
 
 ```math
 \ell=\log_2(n+2),\qquad p=L+\ell,\qquad
-F(n,L)=\min\{nL,\sqrt n\,\ell+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\ell\}.
 ```
 
 The same circuit satisfies
@@ -637,15 +640,19 @@ and gives
 
 ```math
 T=O(\sqrt{NL}),\qquad G=O(NL),\qquad
-D_T=O(\sqrt n\log_2(n+2)+L^{3/2}).
+D_T=O((\sqrt n+L)\log_2(n+2)).
 ```
 
-In particular, $`L=O(n^{1/3}[\log(n+2)]^{2/3})`$ retains the
-$`O(\sqrt n\log(n+2))`$ depth order, and $`L=o(n^{2/3})`$
-gives $`D_T=o(n)`$ at this allocation. These statements remain within
-$`L\le cn`$. This is a sufficient precision range, not a claim that
-the logical scratch allocation works at arbitrary L. The fixed-accuracy
-theorem and its proof above remain valid separately.
+In particular, $`L=O(\sqrt n)`$ retains the
+$`O(\sqrt n\log(n+2))`$ depth order, and
+$`L=o(n/\log(n+2))`$ gives $`D_T=o(n)`$ at this allocation.
+For example, $`L=\lceil\sqrt n\rceil`$ gives error at most
+$`2^{-\sqrt n}`$ while retaining that
+$`O(\sqrt n\log(n+2))`$ depth, for sufficiently large n.
+These statements remain within $`L\le cn`$. This is a sufficient
+precision range, not a claim that the logical scratch allocation works
+at arbitrary L. The fixed-accuracy theorem and its proof above remain
+valid separately.
 
 ### 10.1 An absolute source and query ledger
 
@@ -861,81 +868,60 @@ is used.
 
 <a id="103-the-uniform-tail-and-error-composition"></a>
 
-### 10.3 Group the terminal layers and compose the errors
+### 10.3 Share the terminal precision source and compose the errors
 
-The [grouped terminal-depth lemma](GROUPED_TERMINAL_DEPTH.md) replaces
-individual fine-precision compilation of all M final layers. Set
+Apply the [shared binary terminal lemma](SHARED_BINARY_TERMINAL.md)
+to the final M layers. It reserves
+$`R_0=\min\{M,\lceil A_0\ell\rceil\}`$ bottom logical bits for
+a sufficiently large absolute $`A_0`$. On their active zero sector,
+one logarithmic-width capped binary source serves all remaining terminal
+single layers. Each layer has a fixed sixteen-term matrix-unit residual.
+Its coefficient query reads preserved prefix and label bits, so it
+unloads exactly after the selected target operation.
 
-```math
-s=\lceil\sqrt p\rceil,\qquad
-R_0=\min\{M,\lceil A_0\ell+A_1s\rceil\},
-```
+A nonwrapping failure counter inserts the intermediate private-zero
+projections without projecting or preparing the source again. Uniform
+rare-mode rejection gives the same constant attenuation on locally
+inactive layers. Native preparation and actual inverse are paid once
+per complete stream; global normalization-two recovery uses only three
+stream appearances. Coarse programs and arithmetic have separate,
+exactly returned scratch, including on failed branches. The completed
+middle circuit is identity on the original inactive sector with arbitrary
+occupied work: the unconditional preparations cancel with their actual
+inverses around its guarded interior.
 
-for sufficiently large absolute constants $`A_0,A_1`$. Leave the deepest
-$`R_0`$ layers to the capped arbitrary-dirty source compiler. Partition
-the remaining terminal layers into consecutive groups of height at most s.
-Every such group has at least $`R_0`$ protected suffix bits. These hold
-its logarithmic residual label and an $`O(s)`$-bit coarse program buffer.
-
-The retained column-forest residual construction supplies a constant
-number of fine scalar-source calls per group. Each coarse one-qubit word
-has $`O(s)`$ native gates. Prefetching that entire word, interpreting it
-with exact bounded controls, and actually unquerying it gives group depth
-$`O(p+s^2+s\ell)`$. The coarse program's address excludes its rotation
-target, and every completed word is exactly identity on the inactive
-sector even with occupied program work. Coarse words preserve their
-literal phases and return all work exactly; their actual operators define
-the residual tables.
-
-The grouped tables have at most $`\mathrm{poly}(n)N2^{-R_0}`$ rows.
-The logarithmic part of $`R_0`$ absorbs their fixed polynomial query
-count and width overheads. Enlarging the same absolute $`n_0`$ from
-Section 10.2 makes these returned dirty pools fit whenever
-$`b\ge\sqrt{N/n}`$. The deepest layers retain the nonuniform-indicator
-query allocation, with its weighted width penalty. Thus the lemma gives
-one terminal circuit with absolute bounds
+The lemma's absolute width and count ledger fits
+$`b\ge\sqrt{N/n}`$ after enlarging the same absolute $`n_0`$
+from Section 10.2. Its deepest $`R_0`$ layers retain the capped
+arbitrary-dirty source and nonuniform-indicator query allocation.
+Together they give one terminal circuit with
 
 ```math
 T_T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
-G_T=O(NL),
+G_T=O(NL),\qquad
+D_{T,T}=O\!\left(\frac{NL}{b^2}+p\ell\right).
 ```
 
-```math
-D_{T,T}=O\!\left(\frac{NL}{b^2}+p^{3/2}+p\ell\right).
-```
-
-The terminal error is less than $`2^{-L}/2`$. The deepest layers
-contribute less than $`2^{-L}/4`$; the middle groups use
-$`m=L+\lceil\log_2(n+2)\rceil+10`$ scalar precision, whose summed
-full-isometry error is less than $`10\,2^{-L}/1024`$.
-The lemma also covers $`R_0=M`$, when there are no middle groups.
-Early and terminal dirty reservations are sequential, so their maximum
-is the required width.
-
+Its full-isometry error is less than $`2^{-L}/2`$, including
+the bottom-only case $`R_0=M`$. Early and terminal dirty pools
+are used sequentially, so their maximum is the required allocation.
 The shared-gradient early error is at most $`9\cdot2^{-L}/64`$.
-Full-isometry telescoping therefore gives total error less than
-$`2^{-L}`$, including source, gradient, flag and logical-work leakage
-and every dirty/reference correlation. Earlier leakage is propagated
-by the actual later unitaries; no intermediate reset is assumed.
-The combined depth on this branch is
+Full-isometry telescoping gives total error less than $`2^{-L}`$:
+actual later unitaries propagate earlier leakage, with no reset
+assumption and with all dirty/reference correlations retained.
+
+Adding the early depth gives
 
 ```math
-D_T=O\!\left(\frac{NL}{b^2}+L+\sqrt n\,\ell
-                         +p^{3/2}+p\ell\right).
+D_T=O\!\left(\frac{NL}{b^2}+L+\sqrt n\,\ell+p\ell\right)
+=O\!\left(\frac{NL}{b^2}+(\sqrt n+L)\ell\right).
 ```
 
-To simplify it, use
-
-```math
-p^{3/2}=O(L^{3/2}+\ell^{3/2}),\qquad
-L\ell\le L^{3/2}+\ell^3,\qquad
-\ell^3=O(\sqrt n\,\ell).
-```
-
-The middle inequality follows by splitting at $`L=\ell^2`$; the last
-has an absolute constant because $`\log_2^2(n+2)/\sqrt n`$ is bounded
-for $`n\ge1`$. The other logarithmic and linear terms are absorbed as
-well. Hence the additive depth is $`O(\sqrt n\,\ell+L^{3/2})`$.
+Here $`p\ell=L\ell+\ell^2`$, $`\ell\ge1`$,
+and $`\ell^2=O(\sqrt n\,\ell)`$ with an absolute constant.
+The earlier [grouped terminal proof](GROUPED_TERMINAL_DEPTH.md) remains
+a standalone three-halves-power bound and supplies the exact coarse
+word-prefetch interface reused by the new terminal construction.
 
 ### 10.4 Every eligible width and a uniform finite fallback
 
@@ -958,7 +944,7 @@ For $`n\lt n_0`$, use that same retained compiler at every eligible b.
 Its constants are already absolute. Moreover,
 
 ```math
-nL\le n_0L^{3/2},
+nL\le n_0L\ell,
 ```
 
 so its depth satisfies the new upper bound after increasing one absolute
@@ -988,10 +974,12 @@ interval. Choosing a sufficient absolute $`C_b`$ makes
 $`\lceil C_b\sqrt{NL}\rceil\ge17(L+n+7)`$ for every stated
 n and L: use $`L\ge6`$, $`L\le n`$, and boundedness of
 $`(2n+7)/2^{n/2}`$. Substitution proves the square-root-width
-corollaries, including sublinear depth when $`L=o(n^{2/3})`$.
+corollaries, including sublinear depth when
+$`L=o(n/\log(n+2))`$.
 
-The linear-precision restriction pays for simultaneously initialized
-program and gradient work inside the protected logical suffix. This
+The linear-precision restriction pays for the early simultaneously
+initialized program and gradient work inside the protected logical suffix.
+The terminal source and history use only logarithmic initialized work. This
 proof supplies no uniform extension to arbitrary precision, no optimal
 depth claim beyond inherited matching lower bounds, and no efficient
 classical preprocessing or general native-emitter guarantee.
@@ -1002,5 +990,9 @@ wrong-reflection/inverse controls. The
 [grouped-terminal checks](../../tests/test_grouped_terminal_depth.py)
 exercise native coarse program interpretation, actual unloading, occupied
 inactive work, and rounded group partitions.
-They support the native interfaces; the uniform degree, cutoff, and
-resource statements above are analytic proofs, not numerical extrapolations.
+The [shared-binary-terminal checks](../../tests/test_shared_binary_terminal.py)
+exercise the addressed matrix-unit kernels, retained failure history,
+final-only source return, and occupied inactive preparation boundaries.
+These checks support the native interfaces; the uniform degree, cutoff,
+and resource statements above are analytic proofs, not numerical
+extrapolations.

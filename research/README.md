@@ -11,7 +11,7 @@ own hypotheses and distinct resource points. The
 $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
 constant square-root dirty width. Its precision-uniform extension retains
 sublinear depth with shrinking error $`2^{-L}`$ for
-$`L=o(n^{2/3})`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
+$`L=o(n/\log(n+2))`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
 Optimal T-depth remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
@@ -160,7 +160,7 @@ two external clean flags and every $`b\ge17(L+n+7)`$.
 Define
 
 ```math
-F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 Then
@@ -187,17 +187,30 @@ D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}).
 
 At sufficient square-root dirty width it gives $`o(n)`$ depth.
 The uniform extension also gives sublinear depth for shrinking error
-when $`L=o(n^{2/3})`$ and $`b=\Theta(\sqrt{NL})`$ is
-sufficiently large. Optimal depth remains open.
+when $`L=o(n/\log(n+2))`$ and $`b=\Theta(\sqrt{NL})`$ is
+sufficiently large. For $`L=O(\sqrt n)`$ this retains the
+$`O(\sqrt n\log(n+2))`$ fixed-accuracy depth order. Optimal depth
+remains open.
 
 | Current proof | Role |
 |---|---|
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
-| [Grouped terminal-depth compilation](depth/GROUPED_TERMINAL_DEPTH.md) | Prefetch exact coarse words into a conditional suffix, share one fine residual per group, and balance group height against the deepest capped layers |
+| [Shared binary terminal source](depth/SHARED_BINARY_TERMINAL.md) | Retain one compact geometric source across single-layer residual kernels, record failures coherently, and recover the complete stream within logarithmic conditional workspace |
 | [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, native calibration, and complete work/error contract |
 | [Shared-gradient recovery](depth/SHARED_GRADIENT_RECOVERY.md) | One native phase-source preparation and actual return across early recovery, priced arithmetic and coefficient tables, and a reflection excluding the invariant live gradient |
 | [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
 | [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
+
+The terminal proof reuses the compact binary source and shared-source
+composition R12/R14, with the inherited geometric weights, coherent
+failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
+controls, and the [grouped terminal alternative](depth/GROUPED_TERMINAL_DEPTH.md)
+supplies the retained whole-word coarse-prefetch interface. That alternative
+keeps its proved $`L^{3/2}`$ contribution and column-forest residuals;
+the selected terminal kernel uses sixteen one-layer matrix-unit types.
+The early shared phase gradient and the terminal geometric source have
+separate paid preparations and return proofs. No new external premise
+or priority claim is introduced.
 
 The [entry-indexed encoding bound](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 proves sharp worst-case normalization $`\sqrt{n+1}`$ for that

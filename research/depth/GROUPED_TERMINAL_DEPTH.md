@@ -2,6 +2,13 @@
 
 [Precision-uniform frame theorem](SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) · [Conditional suffix groups](../../docs/CONDITIONAL_SUFFIX_COMPILER.md) · [Shallow dirty queries](SHALLOW_DIRTY_QUERIES.md)
 
+**Retained preceding construction.** The current precision-uniform
+theorem uses the [shared binary terminal source](SHARED_BINARY_TERMINAL.md),
+which replaces repeated fine-source preparation by one source and retained
+failure history. The three-halves-power bound below remains a standalone
+result. Its exact whole-word coarse interpreter is also a component of
+the current proof.
+
 Several terminal layers can share one fine-precision scalar source. The
 retained column-forest construction already provides that sharing. Its
 coarse circuit becomes shallower if each short native word is fetched

@@ -31,7 +31,7 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
-| Precision-uniform width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [grouped terminal schedule](../research/depth/GROUPED_TERMINAL_DEPTH.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), [shared-gradient checks](../tests/test_shared_gradient_recovery.py), [native coarse-program checks](../tests/test_grouped_terminal_depth.py), and retained query/indicator suites | Absolute constants in the stated linear-precision range; analytic source, invariant-sector recovery, uniform workspace splice and native schedule; finite checks are not a general compiler |
+| Precision-uniform width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), [shared-gradient checks](../tests/test_shared_gradient_recovery.py), [shared binary terminal checks](../tests/test_shared_binary_terminal.py), [native coarse-program checks](../tests/test_grouped_terminal_depth.py), and retained query/indicator suites | Absolute constants in the stated linear-precision range; analytic source, invariant-sector recovery, uniform workspace splice and native schedule; finite checks are not a general compiler |
 | Entry-indexed normalization barrier | [Encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) | Exact Haar spectrum, explicit optimal factorization and nuclear-norm dual witness | Analytic proof for the stated factorization contract; no unrestricted native-depth or recovery-query lower bound |
 
 <a id="endpoint-count-evidence"></a>
@@ -129,6 +129,21 @@ correction, a mutable query address and a missing activity guard. Integer
 checks cover rounded group sizes, execution order and the source/coarse
 balance. Their small column batches and illustrative allocation constants
 do not establish a scalable emitter or a numerical crossover.
+
+The [shared binary terminal checks](../tests/test_shared_binary_terminal.py)
+add an exact sparse two-stage, sixteen-type accepted product on every
+source/logical column. Noncommuting coarse words produce coherent prefix
+addresses for the next stage; failure amplitudes and literal complex phases
+are retained. The source is unprepared only at the final boundary. Missing
+history and intermediate source projection give different accepted blocks.
+This algebra fixture supplies coefficient-table actions and folds the local
+suffix predicate into atom rejection; it does not emit the full query or
+production-precision circuit. Separate native shift/history words check all
+occupied register inputs, dirty-helper return, literal phases and actual
+inverses. A native source/body/inverse word checks inactive cancellation on
+occupied coherent inputs. Wrong inverse ordering, a raw disabled source,
+and preparation substituted for its inverse have negative controls. The
+pinned generic source/shift/history receipts remain unchanged.
 
 These fixtures do not emit the derived Boolean tables or a complete native
 descendant loader. The existing native dirty-query, shared-control phase,

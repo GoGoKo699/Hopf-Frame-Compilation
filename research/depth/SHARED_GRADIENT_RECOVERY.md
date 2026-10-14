@@ -14,8 +14,9 @@ The recovery reflection omits the retained gradient. The full source
 comparison and recovery proof take place inside its invariant eigenspace;
 the native preparation and its actual inverse are charged once each at
 the two exterior boundaries. This is a source-preparation saving, not an
-improvement to the complete-column normalization. The final layers have their separately charged
-[grouped terminal schedule](GROUPED_TERMINAL_DEPTH.md).
+improvement to the complete-column normalization. The final layers have
+their separately charged
+[shared binary source and history](SHARED_BINARY_TERMINAL.md).
 
 ## 1. Registers and the early-segment contract
 
@@ -450,8 +451,8 @@ compiler splice in the complete-frame proof, with absolute constants.
 
 For $`L\le cn`$, the displayed early depth simplifies to
 $`O(L+\sqrt n\log(n+2))`$. The separate
-[grouped terminal construction](GROUPED_TERMINAL_DEPTH.md) supplies the
-remaining layers and their precision-dependent depth bound.
+[shared binary terminal construction](SHARED_BINARY_TERMINAL.md)
+supplies the remaining layers and their precision-dependent depth bound.
 The full theorem, width splice, and simultaneous count statements belong
 to the complete-frame assembly. No unrestricted precision range,
 efficient classical preprocessing, general native emitter, or optimal

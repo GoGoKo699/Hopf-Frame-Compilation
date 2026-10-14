@@ -93,7 +93,7 @@ available for every integer $`6\le L\le cn`$, two clean flags,
 and every $`b\ge17(L+n+7)`$. Define
 
 ```math
-F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 One circuit has error at most $`2^{-L}`$ in the full initialized-isometry
@@ -113,25 +113,25 @@ The inherited lower bounds also match depth on every nonempty interval
 ```
 
 At sufficient $`b=\Theta(\sqrt{NL})`$, precision
-$`L=O(n^{1/3}[\log(n+2)]^{2/3})`$ retains
-$`O(\sqrt n\log(n+2))`$ depth. For example,
-$`L=\lfloor\sqrt n\rfloor`$ gives $`O(n^{3/4})`$ depth
+$`L=O(\sqrt n)`$ retains $`O(\sqrt n\log(n+2))`$ depth.
+In particular, $`L=\lfloor\sqrt n\rfloor`$ has that depth
 and error at most $`2^{-\lfloor\sqrt n\rfloor}`$, for sufficiently
-large n. More generally $`L=o(n^{2/3})`$ gives sublinear depth.
+large n. More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
 The absolute constant c is an existence threshold, not a practical crossover.
 
 The [shared-gradient construction](../research/depth/SHARED_GRADIENT_RECOVERY.md)
 pays native phase-source preparation and actual return once over early
 recovery. Its exact arithmetic uses explicitly priced tables, and recovery
 reflects only the initialized work outside the live gradient. The
-[grouped terminal compiler](../research/depth/GROUPED_TERMINAL_DEPTH.md)
-prefetches each complete coarse program into conditional suffix work and
-uses one fine residual per group. With $`p=L+\log(n+2)`$,
-groups of height $`\Theta(\sqrt p)`$ and
-$`O(\sqrt p+\log(n+2))`$ capped bottom layers give terminal depth
-$`O(NL/b^2+p^{3/2}+p\log(n+2))`$. Absorbing the logarithmic
-terms gives the displayed $`L^{3/2}`$ contribution. Classical
-preprocessing terminates, with no efficiency claim.
+[shared binary terminal compiler](../research/depth/SHARED_BINARY_TERMINAL.md)
+uses a separate capped geometric source across the terminal stream.
+Retained failure history and one complete-stream recovery preserve all
+intermediate accepted-path projections. A protected logarithmic bank
+holds its conditional work, leaving only logarithmically many deepest
+layers to the capped compiler. With $`p=L+\log(n+2)`$, terminal
+depth is $`O(NL/b^2+p\log(n+2))`$, with the same count and
+Clifford budgets. Classical preprocessing terminates, with no efficiency
+claim.
 [Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
 retains its all-precision bounds outside this subrange.
 
