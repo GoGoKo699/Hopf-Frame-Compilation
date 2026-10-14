@@ -1,6 +1,6 @@
 # One-clean compilation of Hopf frames
 
-[Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Open endpoint](OPEN_PROBLEM.md)
+[Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Endpoint and depth status](OPEN_PROBLEM.md)
 
 One initialized flag suffices for an addressed real rotation with a
 precision-sized arbitrary dirty core. The construction conjugates one
@@ -23,7 +23,9 @@ $`b\ge L+n+8`$, by composing with a literal diagonal. These results
 reduce the sufficient clean allocation. [Section 9](#9-a-borrowed-signal-suffices-for-real-rotations)
 uses an exact flag symmetry to obtain the layerwise real-frame bound with
 zero clean qubits. The stronger grouped bound retains one clean qubit;
-the linear-T endpoint remains open.
+the linear-T endpoint with one clean qubit remains open. The
+[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+settles the real-frame count endpoint with two clean flags.
 
 ## 1. Contract and addressed primitive
 
@@ -663,7 +665,7 @@ The leaf-phase derivatives still use their separate direct signed one-hot
 stream; they are not additional frame columns. The result concerns the
 specified phase-dressed magnitude frame, not arbitrary complex unitaries.
 It does not extend the separately proved T-depth schedules to one clean
-qubit or close the linear-T endpoint.
+qubit or close the one-clean linear-T endpoint.
 
 ## 9. A borrowed signal suffices for real rotations
 

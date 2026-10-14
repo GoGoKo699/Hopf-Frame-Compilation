@@ -16,7 +16,10 @@ complete real-frame circuit with optimal-order $`T=O(\sqrt N)`$ and
 $`D_T=O(n\log\log(n+2))`$. Section 8 prices the entire schedule.
 Both ingredients are needed: retaining logarithmically many old late
 queries would retain the previous $`O(n\log(n+2))`$ depth allowance.
-Depth optimality and the high-precision endpoint remain open.
+Large-width depth optimality remains open. The separate
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+resolves the two-clean high-precision real-frame count endpoint at its
+stated literal allocation.
 
 The later [unary phase-source construction](UNARY_PHASE_GRADIENT.md#7-complete-frame-theorem-at-fixed-accuracy)
 changes the source interface and improves the fixed-accuracy depth to

@@ -1,6 +1,6 @@
 # Conditional suffix workspace and star residuals
 
-[Open endpoint](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Grouped residuals](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
+[Endpoint and depth status](OPEN_PROBLEM.md) · [Operator-source compiler](OPERATOR_SOURCE_COMPILER.md) · [Grouped residuals](FAULT_TOLERANT_COMPILER.md#6-grouped-dictionaries-and-an-exactly-clean-coarse-frame)
 
 [Section 10](#10-the-grouped-bounds-need-only-one-external-clean-qubit) extends
 both count bounds to one external clean qubit. Sections 1–9 retain the
@@ -684,10 +684,12 @@ This construction uses the existing operator source, dirty queries, and
 normalization-two amplification. Its changes are the ancestor-column
 residual representation, the streamed constant-size coarse-program
 buffer, and the conditional suffix allocation. They leave only an
-iterated-logarithmic multiplicity on the precision charge. The unrestricted
-matching two-clean frontier, including whether the selected endpoint
-admits $`O(N)`$ T gates, remains open. No optimal T-depth, optimal
-Clifford-count, or literature-priority claim is established by this note.
+iterated-logarithmic multiplicity on the precision charge. The separate
+[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+settles the selected two-clean real-frame count endpoint. The
+full uniform-precision two-clean frontier and the one-clean endpoint
+remain separate questions. No optimal T-depth, optimal Clifford-count, or
+literature-priority claim is established by this note.
 
 ## 10. The grouped bounds need only one external clean qubit
 

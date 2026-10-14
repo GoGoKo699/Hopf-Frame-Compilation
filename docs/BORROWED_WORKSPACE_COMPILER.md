@@ -352,5 +352,8 @@ improves this to $`O(N\log N)`$ even at $`a=0`$.
 The [grouped one-clean construction](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
 improves this to $`O(N\ell_*(n))`$ at $`a=1`$ and
 $`b\ge N+n+7`$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
-This stronger construction has its own dirty reservation; the remaining
-gap is recorded in the [open problem](OPEN_PROBLEM.md).
+These constructions retain their separate clean and dirty reservations.
+At $`a=2,b=N+n+7,n\ge3`$, the separate
+[growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+attains $`O(N)`$ T-count at error $`2^{-N}`$. This does not extend the
+zero- or one-clean bounds above; see the [endpoint status](OPEN_PROBLEM.md).

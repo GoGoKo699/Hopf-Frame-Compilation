@@ -1,6 +1,6 @@
 # The fault-tolerant compiler for the complete real frame
 
-[← Exact compiler](COMPILER_THEOREM.md) · [QBP consequence](QBP_CONSEQUENCE.md) · [Remaining constant-clean endpoint](OPEN_PROBLEM.md)
+[← Exact compiler](COMPILER_THEOREM.md) · [QBP consequence](QBP_CONSEQUENCE.md) · [Endpoint and depth status](OPEN_PROBLEM.md)
 
 The exact compiler counts arbitrary one-qubit gates and CNOTs. This chapter
 keeps the same prescribed Hopf frame and changes the gate set to Clifford+T.
@@ -112,7 +112,7 @@ The reservation on $`a`$ is sufficient, not a clean-space lower bound.
 For example, at $`L=N`$, sufficiently many $`O(n)`$ clean qubits and
 $`\Theta(N)`$ borrowed qubits give $`T=\Theta(N)`$. The case of only
 $`O(1)`$ clean qubits is treated separately in the
-[remaining-endpoint note](OPEN_PROBLEM.md).
+[endpoint note](OPEN_PROBLEM.md).
 
 We first establish three reusable primitives, then give the low- and
 high-precision constructions and the matching lower bound.
@@ -1219,8 +1219,8 @@ $`\eta=2^{-N}`$, the same proof excludes $`t=2N-2`$ as well as every
 smaller count, giving $`t\geq2N-1`$. No exact-return assumption was
 inserted: the chosen dirty-zero input is a permitted witness for the
 arbitrary-dirty contract. The result strengthens the explicit linear
-lower bound but does not decide the remaining uniform linear-T upper
-bound. ∎
+lower bound. The separate [growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+supplies the matching order at the two-clean real-frame endpoint. ∎
 
 ### 10.4 Rigidity of approximate workspace return
 
@@ -1318,9 +1318,9 @@ lower-bound machinery retain their original attribution. Proposition 6
 states the sufficient conditions for this composition independently of
 Hopf frames; Corollary 7 includes the phase-dressed complex magnitude
 frame with the same sufficient-clean asymptotics. The sufficient reservation
-$`a\geq C(n+h)`$ remains part of Theorem 1; the
-[constant-clean endpoint](OPEN_PROBLEM.md) is not
-settled by removing that hypothesis from the displayed formula. The
+$`a\geq C(n+h)`$ remains part of Theorem 1. The
+[two-clean real-frame endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+is proved by a separate construction, not by removing that reservation. The
 [one-clean and grouped results](ONE_CLEAN_COMPILER.md) have distinct
 reservations and matching subregimes. The earlier
 [operator-source proof](OPERATOR_SOURCE_COMPILER.md) remains their source
