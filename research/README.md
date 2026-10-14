@@ -2,10 +2,10 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-The endpoint count theorem and complex-magnitude corollary below are selected
-alongside Results A–D, whose statements remain unchanged. They resolve the
-two-clean high-precision count for complete real and phase-dressed complex
-magnitude frames. The large-width T-depth question remains open.
+The precision-uniform two-clean count theorem and its fixed endpoint below
+are selected alongside Results A–D, whose statements remain unchanged.
+They cover complete real and phase-dressed complex magnitude frames, with
+their literal dirty reservations. The large-width T-depth question remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -13,6 +13,24 @@ The [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
 ## Endpoint results
+
+### Precision-uniform two-clean count
+
+The [uniform growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives $`T=O(N+L)`$ with universal constants, for $`n\ge3`$, integer
+$`L\ge6`$, and error $`2^{-L}`$. It uses two clean flags and
+$`b\ge L+n+7`$ dirty qubits for real frames, or $`b\ge L+n+8`$
+for phase-dressed complex magnitude frames. Source precision varies with L
+while the logical mode allocation remains controlled by N. The existing
+layerwise baseline covers $`L\le N/n`$ and all L at bounded n;
+the precision-parametrized growing-source proof covers the remaining regime.
+Every logical input, dirty/reference correlation, literal phase, clean-work
+leakage, and actual inverse is included in the initialized-isometry guarantee.
+At exactly $`b=L+n+7`$ for real frames or $`b=L+n+8`$ for complex
+magnitude frames, and $`L\ge\max\{6,n\}`$, the existing finite-width
+lower bound gives worst-case $`T^\star=\Theta(N+L)`$. The upper bound
+allows additional dirty work; this matching corollary concerns the displayed
+base widths.
 
 ### Constant-clean high-precision count
 
@@ -27,7 +45,7 @@ The [complex-magnitude corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-
 composes the half-error real construction with the packed literal diagonal,
 covering $`D_\phi W_{\mathbb R}`$ at the same allocation and accuracy.
 The real witness at zero leaf phases gives the same $`2N-1`$ lower bound.
-These results make no additional one-clean, arbitrary-complex-unitary,
+The uniform and fixed-endpoint results make no additional one-clean, arbitrary-complex-unitary,
 Clifford-count, or T-depth claim.
 
 Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
@@ -47,7 +65,7 @@ unresolved part of the growing-source theorem or a new work order.
 
 | Study | Result | Scope |
 |---|---|---|
-| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear-count synthesis of disjoint SU blocks with a linear sum of squared dimensions; disjoint reflection corollary | Actual coarse mesh, fine sources, literal phase, and complete return are charged |
+| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks with a linear sum of squared dimensions; $`O(N+L)`$ high-precision form and disjoint state/reflection sources | The uniform form requires $`L>N/n`$ beyond its fixed dimension threshold; actual coarse mesh, fine sources, literal phase, and complete return are charged |
 | [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
 | [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, zero-clean real reflection banks, and one-clean real block refinements | The mode/recovery flag remains necessary for the stated accepted-block construction; exact native counterexample and balanced-sector bound |
 | [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Full-input selected Pauli/source-axis rotations with two arbitrary helpers; jointly compiled raw rejection orientations at O(Q+q+ell) T-count | Literal query phases and shared-core width are charged; raw canonicalization does not compile transported logical prefixes |

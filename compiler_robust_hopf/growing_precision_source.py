@@ -58,7 +58,7 @@ def refinement_parameters(beta: Fraction, rare_probability: Fraction) -> Refinem
 
 @dataclass(frozen=True)
 class GrowingSourceScale:
-    """Absolute-height schedule, storing log2(q) instead of q or 2**N."""
+    """Absolute-height schedule, storing log2(q) instead of a precision state."""
 
     endpoint_height: int
     absolute_height: int
@@ -69,30 +69,44 @@ class GrowingSourceScale:
     rescaling_bits: int
 
     @property
+    def source_precision_log2(self) -> int:
+        """Log2(K) in M*q=4K, independent of the logical mode count."""
+        return self.exponent_log2 + self.source_length.bit_length() - 3
+
+    @property
     def integral_exponent(self) -> bool:
-        """Small finite cases may require the theorem's separate fallback."""
+        """Nonintegral q requires a different compiler regime."""
         return self.exponent_log2 >= 0
 
     def refinement_steps_from(self, previous: GrowingSourceScale) -> int:
         """Number of q halvings, each doubling the source length."""
         if (self.endpoint_height != previous.endpoint_height or
+                self.source_precision_log2 != previous.source_precision_log2 or
                 self.absolute_height < previous.absolute_height):
-            raise ValueError("scales must advance within one endpoint")
+            raise ValueError("scales must advance within one logical height and source precision")
         return previous.exponent_log2 - self.exponent_log2
 
 
-def growing_source_scale(endpoint_height: int, absolute_height: int) -> GrowingSourceScale:
-    """Set P_d=2**(2 ceil(log2(d+1))), M_d=4P_d**2, q_d=N/P_d**2.
+def growing_source_scale(endpoint_height: int, absolute_height: int, *,
+                         precision_bits: int | None = None) -> GrowingSourceScale:
+    """Set P_d=2**(2 ceil(log2(d+1))), M_d=4P_d**2, q_d=K/P_d**2.
 
+    K is the least power of two at least precision_bits=L. If L is omitted,
+    retain the endpoint K=N=2**endpoint_height without constructing N.
     The common source has beta_d=2**(-q_d); coefficient spacing is q_d+B_d.
-    No logical padding or sufficient arena-allocation constant is inferred.
+    This is a symbolic schedule, including cases with nonintegral q. It does
+    not dispatch the low-precision/fixed-height fallback, establish the
+    theorem's large-height hypotheses, or certify sufficient arena capacity.
+    Rounding K changes source precision and does not pad the logical modes.
     """
     endpoint_height = _integer(endpoint_height, "endpoint_height", 1)
     absolute_height = _integer(absolute_height, "absolute_height")
     if absolute_height > endpoint_height:
         raise ValueError("absolute_height cannot exceed endpoint_height")
+    precision_log2 = (endpoint_height if precision_bits is None else
+                      (_integer(precision_bits, "precision_bits", 1) - 1).bit_length())
     logarithm = absolute_height.bit_length()
     order = 1 << (2 * logarithm)
     return GrowingSourceScale(endpoint_height, absolute_height, order, 4 * order ** 2,
-                              endpoint_height - 4 * logarithm, Fraction(1, 8 * order),
+                              precision_log2 - 4 * logarithm, Fraction(1, 8 * order),
                               6 + 4 * logarithm)

@@ -153,11 +153,18 @@ test coverage of each module.
 The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
 maps these supporting modules to their proofs, tests, and individual evidence
 boundaries. The [real and complex-magnitude endpoint theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-supplements the unchanged Results A–D; its native cost and workspace bounds
-are analytic.
+and its [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+supplement the unchanged Results A–D. The latter gives $`T=O(N+L)`$
+for integer $`L\ge6,n\ge3`$ with two clean flags and dirty reservation
+$`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex magnitude
+frames. Their native cost and workspace bounds are analytic.
 
 - Growing-source diagnostics: [`growing_precision_source.py`](growing_precision_source.py)
-  supplies exact rational refinement factors and symbolic scales. Its
+  supplies exact rational refinement factors and symbolic scales. Optional
+  requested precision rounds the source precision to a power of two, without
+  changing the logical mode schedule; exact boundary checks include
+  non-dyadic precision and $`L\gt N`$. The helper does not choose the
+  theorem's fallback regimes or certify arena feasibility. Its
   [tests](../tests/test_growing_precision_source.py) separately check a bounded
   real source/recovery architecture and phase dressing with native packed-diagonal
   blocks. The latter retains leakage through two reused flags and the same

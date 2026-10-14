@@ -8,8 +8,8 @@ contribution is the complete-operator construction and the resulting
 precision/workspace guarantees. The ingredients retain their established
 attribution; no priority claim follows from a bounded literature search.
 
-This page summarizes the lineage of Results A–D and the endpoint count
-theorem. The
+This page summarizes the lineage of Results A–D, the precision-uniform
+two-clean count theorem, and its fixed endpoint. The
 [source catalogue](reference/SOURCE_CATALOGUE.md#extended-lineage-for-the-core-and-its-supporting-constructions)
 retains the detailed comparisons, precise locators, and bibliography.
 [Research comparisons](../research/RELATED_WORK.md) and the
@@ -110,11 +110,12 @@ separate leaf-phase gradient stream.
 | C: one-clean compilation | Full-space loaders, Clifford overlap algebra, dirty queries, standard amplification | Conjugated scalar-source word, native head-and-two-tail source, grouped frame and literal-phase corollaries |
 | D: count and T-depth | Returned dirty indicators, controlled Clifford circuits, phase synthesis, arithmetic, phase-reference reuse | Charged unary-source reuse, complete-input query words, rectangular width allocation and uniform frame composition |
 | Endpoint count | Dirty scalar and diagonal synthesis, disjoint-block/state interfaces, literal amplification | Growing precision sources, sealed rejection modes, compensated recovery and summable native charges; same-workspace phase dressing |
+| Precision-uniform two-clean count | The same native interfaces and the existing layerwise baseline | Separate logical mode and source-precision scales, uniform high-precision block/state interfaces, and low-precision/bounded-dimension splicing |
 
 ## 8. Contribution at theorem level
 
 The [publication scope](../manuscript/PUBLICATION_SCOPE.md) gives Results
-A–D and the endpoint count theorem with their full reservations. A matches exact size and
+A–D and the two-clean count theorems with their full reservations. A matches exact size and
 depth at every clean budget. B matches the precision-uniform T-count
 frontier under sufficient clean work. C reduces the clean allocation to
 one flag with its stated grouped upper bound. D gives simultaneous count
@@ -123,6 +124,18 @@ The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 and its complex-magnitude corollary attain worst-case $`\Theta(N)`$
 T-count at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. Their proof composes
 the retained native interfaces; it adds no external synthesis premise.
+The [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives $`T=O(N+L)`$ for $`n\ge3`$, integer $`L\ge6`$, and
+error $`2^{-L}`$, with $`a=2`$ and dirty width $`b\ge L+n+7`$
+for real frames or $`b\ge L+n+8`$ for complex magnitude frames.
+Its constants are independent of n and L. This extension changes the
+precision allocation and the regime splice while retaining the established
+source, query, and amplification premises. It adds no Clifford-count or
+T-depth conclusion.
+At exactly the respective base dirty widths and $`L\ge\max\{6,n\}`$,
+the existing width-sensitive lower bound gives worst-case
+$`\Theta(N+L)`$. This is a specialization of the retained lower bounds,
+not a new lower-bound method or an optimum at every larger width.
 
 The [frame-safety proof](FRAME_SAFE_COMPILATION.md) and two-qubit
 counterexample explain why the completion matters. The
@@ -194,7 +207,7 @@ suffix work only in its selected sector and streams coarse programs. With
 the one-clean refinement it gives $`O(N+L\ell_*(n))`$ T gates at
 $b\ge L+n+7$, where $`\ell_*(n)=1+\log_2^*(n+2)`$.
 Its final conditional-work return error is included in the norm.
-The high-precision full-frame gap remains $\Omega(N)$ to
+With one clean flag, the high-precision full-frame gap remains $\Omega(N)$ to
 $`O(N\ell_*(n))`$.
 
 ## 12. Contemporary comparisons and the broader compiler contribution

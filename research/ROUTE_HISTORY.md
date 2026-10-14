@@ -7,8 +7,14 @@ the unrestricted real-frame count endpoint at $`\eta=2^{-N}`$,
 $`a=2`$, $`b=N+n+7`$, and $`n\ge3`$. The same
 $`L=N`$ endpoint also covers the phase-dressed complex magnitude frame by
 the [packed-diagonal corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint).
-The endpoint count theorem and complex-magnitude corollary are selected
-alongside the unchanged Results A–D. This log preserves earlier route
+The [precision-uniform extension](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+also proves $`T=O(N+L)`$ for integer $`L\ge6`$, $`n\ge3`$,
+and error $`2^{-L}`$, with two clean flags and dirty width
+$`b\ge L+n+7`$ for real frames or $`b\ge L+n+8`$ for complex
+magnitude frames. These count theorems are selected alongside the unchanged
+Results A–D. At exactly those base dirty widths and
+$`L\ge\max\{6,n\}`$, the existing finite-width lower bound gives
+worst-case $`\Theta(N+L)`$. This log preserves earlier route
 assessments, their derivations, and method-specific obstructions.
 References below to the best bound, an endpoint gap, or a next step describe
 the corresponding historical pass; they are not current work orders.

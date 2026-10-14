@@ -25,6 +25,30 @@ The constant is independent of the block entries and their conditioning. Classic
 
 The proof uses the existing [dirty reflection interpreter](../../docs/BORROWED_WORKSPACE_COMPILER.md#2-exact-dirty-table-and-reflection-interpreter), [logical-sector echo](../../docs/BORROWED_WORKSPACE_COMPILER.md#3-an-exact-echo-selects-a-logical-sector), and [literal diagonal primitive](../../docs/ONE_CLEAN_COMPILER.md#literal-diagonal-phases-use-the-same-flag). The new routing, source, and composition arguments are supplied below.
 
+### Precision-parametrized high-precision form
+
+For the same fixed $`\kappa,c\gt0`$, there is a threshold
+$`n_0(\kappa,c)`$ such that, whenever
+
+```math
+n\ge n_0(\kappa,c),\qquad L\in\mathbb Z,\quad L\ge6,
+\qquad L\gt N/n,
+```
+
+the same target family has a two-clean compiler with
+
+```math
+T=O_{\kappa,c}(N+L),\qquad b\le L+n+7,\qquad
+\|\widehat VJ-J(V\otimes I_b)\|\le2^{-L}/c.
+```
+
+The constant and threshold are independent of L and the target entries.
+The full-input, literal-phase, actual-inverse, and certified-input
+conventions are unchanged. The [precision replacement](#precision-replacement-in-the-high-regime)
+below proves this form using the same routing and coarse words. The
+finite-dimension fallback for the original $`L=N`$ theorem is not used
+to assert a bound uniform in arbitrary L.
+
 ## 2. Exact routing and coarse words
 
 ### Dirty-only routing and Boolean phases
@@ -186,6 +210,19 @@ V_z=R_{(e+z_a)/\|e+z_a\|}\,R_e,
 
 The alternative $`R_{(e-z_a)/\|e-z_a\|}`$ works when $`1-(z_a)_e`$ is bounded below. Overlapping certified tests choose one of the two charts without deciding equality. Both choices fix padding on their whole mode space, and require only four fine diagonals. A complex reflection follows by conjugating its real magnitude reflection with two literal phase diagonals, for six fine calls. At zero entries, compute rational coefficient approximants and assign phase zero to rational zero; the reflection perturbation is controlled in vector norm, not by continuity of an argument function.
 
+**Precision-parametrized source interface.** For every fixed $`c\gt0`$,
+the same real reflection and real state-extension constructions have
+error at most $`2^{-L}/c`$, T-count $`O_c(N+L)`$, and at most
+$`L+n+7`$ dirty qubits when $`L\ge6`$, $`L\gt N/n`$, and n is
+above a fixed threshold depending only on c. They still use one clean
+compiler flag and four fine diagonal calls; the complex reflection uses
+six. This is a complete initialized-isometry guarantee on every mode
+input, with all clean leakage included. Choose each fine precision
+$`q=L+O_c(1)`$, reserve a fixed share of the error for certified chart
+and phase data, and use the [shared-pool estimate](#precision-replacement-in-the-high-regime)
+below. The coarse word, packing, and interlayers are unchanged. No
+state-only contract or new initialized mode register is introduced.
+
 ## 5. Two sources for the coarse residual
 
 For each bin compute a rational complex matrix $`\widehat R`$ on every active block with
@@ -264,6 +301,64 @@ q+1\le N+n+7.
 The complete source reflections are controlled by their full-space unitary contract. No fine word is assumed ideal on an occupied compiler flag, and no flag is reset between operations. A unitary hybrid compares each actual circuit with its ideal action only on the initialized subspace; earlier leakage is propagated by the later actual unitaries. Actual inverse words satisfy the corresponding inverse-target error bound.
 
 All finitely many smaller dimensions have a uniform finite fallback. Direct two-level SU(2) decomposition reduces the target to Ry/Rz factors; determinant phases of intermediate chunks are transferred between pivots as above. Each controlled two-level factor uses the literal determinant-one echo and borrowed logical-sector construction from Section 2. Certified finite native nets at the fixed required tolerance cover the compact target class, without optimizing away a global phase or initializing another register. The available dirty pool suffices for direct sector-by-sector synthesis in each such fixed dimension. Taking the maximum T-to-$`N`$ ratio over these finitely many dimensions enlarges only the fixed constant. The trivial $`n=0`$ special-unitary target is identity. This completes the stated full-contract theorem.
+
+### Precision replacement in the high regime
+
+For the precision-parametrized forms, set $`\epsilon_L=2^{-L}/c`$.
+All exact routing estimates, bin capacities, coarse precision
+requirements, and local chart radii depend on N and the fixed
+block-entry budget, not L. Replace
+only the requested preliminary and residual accuracies by their
+$`\epsilon_L`$ versions, including
+$`\eta_L=\epsilon_L/(48H_\kappa)`$. Certified rational residual
+entries then need $`L+O_{\kappa,c}(n)`$ classical bits. These are
+classical computations, with no new coherent table oracle.
+
+The same at most $`C_\kappa=28H_\kappa`$ fine slots use
+
+```math
+q=L+\left\lceil\log_2(120cC_\kappa)\right\rceil.
+```
+
+Their total native initialized-isometry error is below
+$`\epsilon_L/4`$. Request the certified diagonal data so that each
+ideal diagonal differs from its computed unitary diagonal by at most
+$`\epsilon_L/(4C_\kappa)`$ in operator norm, allocating at most
+$`\epsilon_L/4`$ to all such data errors. Certified evaluation of the
+local charts and phases terminates at this tolerance; their required
+classical accuracy does not change the native fine precision q. The
+residual recovery and oversized-block preliminary approximation each
+contribute at most $`\epsilon_L/8`$ as before. These allocations sum
+to less than $`\epsilon_L`$. For a standalone reflection or state
+extension use its four (or six) fine slots and the same argument, with
+fixed fractions for input/chart evaluation and native realization.
+
+Every fine call costs $`O(N+q)=O_{\kappa,c}(N+L)`$. There are only
+constantly many calls. Coarse synthesis and routing still cost
+$`O_\kappa(\mathrm{poly}(n)N^{3/4})=O_\kappa(N)`$ for blocks,
+and $`O(\mathrm{poly}(n)\sqrt N)=O(N)`$ for the source interface.
+Their peak dirty requirement remains bounded by
+$`K_\kappa(\sqrt N+p(n))`$ for a fixed polynomial p and constant
+$`K_\kappa`$. Consequently, uniformly in
+$`L\gt N/n`$, increasing the fixed threshold on n ensures
+
+```math
+b_{\rm coarse}\le K_\kappa(\sqrt N+p(n))\le N/n\lt L,
+\qquad 2(n+1)\le q+1\le L+n+7.
+```
+
+The first inequality fits every coarse reservation into the dirty pool;
+the second permits self-borrowing for every fine address and fits its
+entire core into that same pool. The reservations are reused between
+completed subroutines, not added. The one-clean source statement has
+the same estimate, with its constants depending only on c.
+
+All error comparisons remain full-isometry comparisons. Later actual
+unitaries propagate earlier leakage without amplification, and actual
+inverse words inherit the inverse-target bound. In particular no step
+assumes that the shared clean flag is exactly zero after a previous
+approximate call. This proves the high-regime forms for every L above
+the stated threshold, without a finite-net argument at variable L.
 
 ## 7. Verification
 

@@ -918,6 +918,12 @@ At the fixed endpoint $`L=N`$, the
 instead supplies $`T=O(N)`$ at $`a=2,b=N+n+7,n\ge3`$.
 It combines the real growing-source half-error guarantee with (38);
 the precision-uniform baseline and its reservation above are unchanged.
+The separate
+[precision-uniform growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives $`T=O(N+L)`$ for $`n\ge3`$, with two clean flags,
+$`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for (40).
+It retains the full-isometry contract but does not inherit this chapter's
+$`O(NL)`$ Clifford bound.
 
 ### 8.1 General one-qubit multiplexors with two clean qubits
 

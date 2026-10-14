@@ -4,10 +4,10 @@
 
 The selected publication is **one full-length theoretical compiler paper**
 on prescribed Hopf differential frames. This is its canonical claim ledger:
-Results A–D, retained corollaries, and the selected endpoint count theorem
-and complex-magnitude corollary, with their resource and error contracts.
-The endpoint claim has its own fixed precision and literal allocation;
-it does not change A–D.
+Results A–D, retained corollaries, and the selected precision-uniform
+two-clean count theorem and sharp endpoint, with their resource and error
+contracts. The two-clean count claims have their own literal allocations;
+they do not change A–D.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -189,12 +189,43 @@ end-to-end application advantage.
 <a id="two-unresolved-resource-questions"></a>
 <a id="endpoint-research-and-the-remaining-depth-question"></a>
 
-## Selected endpoint count claim and the remaining depth question
+<a id="selected-endpoint-count-claim-and-the-remaining-depth-question"></a>
 
-The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-are selected beside A–D. At $`\eta=2^{-N}`$, each of the complete real
-and phase-dressed complex magnitude families has the worst-case count
+## Selected two-clean count theorem and the remaining depth question
+
+The [precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+is selected beside A–D. For every integer $`L\ge6`$ and $`n\ge3`$,
+its complete-input error is at most $`2^{-L}`$ (hence at most
+$`\eta`$ under the convention above), and it gives
+
+```math
+T=O(N+L),\qquad a=2.
+```
+
+| Family | Dirty reservation |
+|---|---|
+| Complete real frame | $`b\ge L+n+7`$ |
+| Phase-dressed complex magnitude frame | $`b\ge L+n+8`$ |
+
+At **exactly** these base reservations and $`L\ge\max\{6,n\}`$,
+the worst-case count matches:
+
+```math
+T^\star=\Theta(N+L).
+```
+
+Indeed, the physical width is $`q=L+2n+9`$ or $`L+2n+10`$,
+so $`q=\Theta(L)`$ and the
+[existing family lower bound](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+$`\Omega(L+NL/q)`$ is $`\Omega(N+L)`$. This matching claim
+does not extend to arbitrary larger width when $`L\lt N`$ or to
+$`L\lt n`$.
+
+The upper-bound constant is universal, independent of both n and L. The
+high-precision construction separates source precision from logical mode allocation; the
+existing $`O(N+nL)`$ baseline covers $`L\le N/n`$ and bounded n.
+At $`L=N`$, the [sharper complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+retains the real-frame allocation. Each family then has the worst-case count
 
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
@@ -207,8 +238,10 @@ retains rejected paths in disjoint logical modes, and returns all work by
 one final recovery. The complex-magnitude corollary composes a packed literal
 leaf-phase diagonal using the same two flags and dirty pool. Both factors'
 errors and all work return are included in the common full-isometry norm.
-This endpoint count claim does not change Results A–D or assert their
-precision-uniform, Clifford-count, one-clean, or T-depth guarantees.
+This two-clean count theorem does not change Results A–D or assert new
+Clifford-count, one-clean, or T-depth guarantees. Its uniform statement is an
+upper bound across all L; the matching corollaries have the narrower
+precision and workspace hypotheses just stated.
 For real frames at one clean qubit, Result C still gives
 $`T=O(N\ell_*(n))`$ and $`G=O(N^2)`$ at the displayed dirty allocation.
 The
@@ -220,7 +253,7 @@ not an arbitrary complex unitary; phase derivatives retain their separate
 measurement stream.
 
 The grouped precision charge is not claimed necessary for one-clean
-compilation, nor is the new endpoint theorem claimed for every linear
+compilation, nor are these count theorems claimed for every linear
 dirty prefactor.
 Source-interface restrictions do not supply additive full-frame lower bounds.
 
@@ -228,9 +261,9 @@ At fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
 complete real-frame schedule attains $`T=\Theta_\eta(\sqrt N)`$ with
 $`D_T=O_\eta(n)`$. The unrestricted depth lower bound remains
 $`\Omega(1)`$. This large-width open problem is separate from the resolved
-high-precision count endpoint. Result D's literal width threshold excludes the displayed
-endpoint allocation, and its unary-source mechanism does not scale to that
-precision.
+two-clean count theorem. Result D's literal width threshold excludes the
+displayed endpoint allocation, and its unary-source mechanism does not scale
+to that precision.
 
 The [research catalogue](../research/README.md) preserves the endpoint
 dependencies and earlier linear-count native compilers for disjoint SU
@@ -270,12 +303,12 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C and compiler corollaries | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md), [conditional-suffix Sections 1–10](../docs/CONDITIONAL_SUFFIX_COMPILER.md), and [operator-source primitives](../docs/OPERATOR_SOURCE_COMPILER.md); [borrowed-workspace proof](../docs/BORROWED_WORKSPACE_COMPILER.md) supplies queries, sector echoes, and the arbitrary-budget comparison |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
-| Selected endpoint count claim | [Growing-source theorem and complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint), with the [packed literal diagonal](../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames) and [root-angle lower bound](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness): linear count at the stated two-clean allocation |
+| Selected two-clean count theorem | [Precision-uniform growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count), with the [packed literal diagonal](../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames): $`O(N+L)`$ at the stated real and complex reservations; the [sharp endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint) and [root-angle lower bound](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness) give $`\Theta(N)`$ at $`L=N`$ and $`b=N+n+7`$ |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |
 
 The claim architecture follows the target, shared contract, Results A–D,
-compiler corollaries, selected endpoint count claim, and operational consequence.
+compiler corollaries, selected two-clean count theorem, and operational consequence.
 Technical
 appendices contain exact echo/decoder/router schedules, source preparation,
 dirty queries, residual composition, amplification, error and resource sums,

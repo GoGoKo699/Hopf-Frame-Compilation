@@ -5,9 +5,10 @@ gradient decoder also uses designated coordinate-frame columns. This
 repository compiles that prescribed **complete operator**, with explicit
 costs for precision, initialized workspace, and borrowed workspace.
 
-The principal results are A–D below, accompanied by a selected endpoint
-count theorem and complex-magnitude corollary. Their hypotheses and retained
-corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
+The principal results are A–D below, accompanied by a precision-uniform
+two-clean count theorem and its sharper high-precision endpoint. Their
+hypotheses and retained corollaries are collected in the
+[publication scope](manuscript/PUBLICATION_SCOPE.md).
 
 <p align="center">
   <img src="assets/state-vs-frame.svg" width="900" alt="State preparation fixes one column; complete-frame compilation also preserves the designated coordinate-frame columns." />
@@ -15,10 +16,10 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 
 | Read next | Purpose |
 |---|---|
-| [Proof roadmap](REVIEW.md) | Follow A–D and the selected endpoint count claim |
+| [Proof roadmap](REVIEW.md) | Follow A–D and the selected two-clean count theorem |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Endpoint theorem and depth question](docs/OPEN_PROBLEM.md) | Read the resolved high-precision count and remaining large-width depth target |
+| [Count theorem and depth question](docs/OPEN_PROBLEM.md) | Read the uniform two-clean count, sharp endpoint, and remaining large-width depth target |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 
 ## Target and resource contract
@@ -137,7 +138,23 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 <a id="two-open-resource-gaps"></a>
 <a id="linear-count-endpoint-and-remaining-depth-gap"></a>
 
-## Endpoint count claim and remaining depth gap
+<a id="endpoint-count-claim-and-remaining-depth-gap"></a>
+
+## Two-clean count theorem and remaining depth gap
+
+For $`n\ge3`$ and every integer $`L\ge6`$, the selected
+[precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+compiles both frame families to error $`2^{-L}`$ with universal constants:
+
+| Family | Clean qubits | Dirty reservation | T-count |
+|---|---|---|---|
+| Complete real frame | $`a=2`$ | $`b\ge L+n+7`$ | $`O(N+L)`$ |
+| Phase-dressed complex magnitude frame | $`a=2`$ | $`b\ge L+n+8`$ | $`O(N+L)`$ |
+
+At exactly these base reservations and $`L\ge\max\{6,n\}`$,
+the count is worst-case optimal: $`T^\star=\Theta(N+L)`$.
+The fixed endpoint retains a tighter complex allocation; the depth question
+has its own circuit and resource regime.
 
 | Question | Current bounds |
 |---|---|
@@ -148,16 +165,20 @@ An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-l
 gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
 Clifford interlayers and workspace, under the literal-phase contract.
 The [growing-source compiler](research/endpoint/GROWING_SOURCE_COMPILER.md)
-supplies the unrestricted real-frame upper bound. Source capacity grows
-as the number of live carriers shrinks; rejected paths remain in separate
-reserved modes until one final recovery. Native source refinements,
-packing, actual inverses, and dirty/reference return are all charged.
+supplies the unrestricted real-frame upper bound. Source precision can
+grow independently of logical dimension as the number of live carriers
+shrinks; rejected paths remain in separate reserved modes until one final
+recovery. A splice with the existing compiler covers modest precision and
+bounded n. Native source refinements, packing, actual inverses, and
+dirty/reference return are all charged.
 The [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 composes a packed literal leaf-phase diagonal on the same workspace, with
 both factors' return errors included in the full-isometry bound. Zero leaf
-phases retain the real-family lower bound. This selected endpoint claim
-supplements A–D at its fixed precision and literal allocation; it supplies
-no new precision-uniform, one-clean, Clifford-count, or T-depth guarantee.
+phases retain the real-family lower bound. The uniform theorem and sharper
+endpoint supplement A–D at their own literal allocations; they supply no
+new one-clean, Clifford-count, or T-depth guarantee. The uniform statement
+is an upper bound across all L, not an optimality claim at every precision
+and width.
 
 The [endpoint statement](docs/OPEN_PROBLEM.md) records the remaining
 large-width depth question. The [research index](research/README.md)

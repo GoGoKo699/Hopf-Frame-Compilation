@@ -14,6 +14,9 @@ source compensates the known attenuation of each retired output.
 The real construction leaves a half-error margin; the
 [complex-magnitude corollary](#9-complex-magnitude-endpoint) uses it to
 append a literal diagonal within the same workspace and linear T-count.
+The [precision-uniform extension](#10-precision-uniform-two-clean-count)
+separates the logical dimension from the requested accuracy and gives
+$`O(N+L)`$ count with two clean qubits.
 
 ## 1. Statement, clipping, and the fixed anchor
 
@@ -841,9 +844,10 @@ to be a practical crossover.
 The real endpoint construction uses exact refinement, full-space sealed
 arena allocation, compensated overlap, and the summable native ledger.
 The next corollary extends its count to the phase-dressed complex
-magnitude frame. Neither result supplies a precision-uniform frontier,
-an $`O(NL)`$ Clifford bound, an optimal depth bound, an efficient
-classical preprocessing algorithm, or a scalable native emitter.
+magnitude frame. Section 10 separately extends the count to arbitrary
+precision. These results supply no $`O(NL)`$ Clifford bound, optimal
+depth bound, efficient classical preprocessing algorithm, or scalable
+native emitter.
 
 ## 9. Complex-magnitude endpoint
 
@@ -927,15 +931,213 @@ arbitrary complex unitaries. Leaf-phase derivatives keep their separate
 measurement stream. It changes neither the one-clean reservations nor
 the real-frame count/depth guarantees of Result D.
 
-<a id="9-bounded-implementation-evidence"></a>
+## 10. Precision-uniform two-clean count
 
-## 10. Bounded implementation evidence
+Let $`n\ge3`$, $`N=2^n`$, and let L be any integer with $`L\ge6`$.
+The target data have the same certified-evaluation contract as above.
+Put $`\epsilon=2^{-L}`$.
+
+**Theorem.** Every prescribed complete real frame and every prescribed
+phase-dressed complex magnitude frame has an effective coherent
+Clifford+T circuit with two clean qubits and
+
+```math
+\begin{gathered}
+T=O(N+L),\qquad
+\|VJ_2-J_2(W\otimes I_b)\|_{\rm op}\le2^{-L},\\
+b\ge L+n+7\quad\text{(real)},\qquad
+b\ge L+n+8\quad\text{(complex magnitude)}.
+\end{gathered}
+```
+
+The constants are universal and independent of both n and L. The
+contract includes every logical column, literal phase, arbitrary dirty
+and reference input, and returned clean work. All inverses are actual
+emitted inverses. The fixed-precision corollary in Section 9 still gives
+the tighter complex reservation $`N+n+7`$ at $`L=N`$.
+
+### Separate dimension from precision
+
+Choose one universal threshold $`n_0`$, large enough for the estimates
+below and the fixed $`d_0`$ of Section 4. First suppose
+
+```math
+n>n_0,\qquad L>N/n,\qquad K=2^{\lceil\log_2L\rceil},
+\qquad L\le K\lt 2L.
+```
+
+Retain the logical dimension N, the same anchor, and the same
+$`P_d,M_d,p_d,B_d`$ from (2). Change only the precision scale:
+
+```math
+q_d=K/P_d^2,\qquad \beta_d=2^{-q_d},\qquad
+\Delta_d=q_d+B_d,\qquad q_dM_d=4K.
+```
+
+Since $`L>N/n=2^n/n`$, a single $`n_0`$ makes K dominate every
+fixed polynomial needed here, uniformly over this whole regime.
+Thus each $`q_d`$ is a positive integer, $`q_d\ge B_d`$, and the
+source ratios satisfy the rare-event bounds. At a jump of P, the same
+four exact binary refinements halve q and double M each time.
+Neither their identity nor their normalized attenuation depends on
+$`L=N`$.
+
+Apply the clipping convention with
+$`H=L+\lceil\log_2n\rceil+6`$. Its complete-frame error is at most
+$`\epsilon/16`$ and its retained certificates obey
+$`E_v\le L+\lceil\log_2n\rceil+5`$. The optional signed
+normalization has its separate $`\epsilon/16`$ budget. Declare a
+node cheap when $`E_v\lt 4K/P_d`$; keep the same relative tolerances
+and splitter losses. Use the same native-mask construction at the new
+precision, fixing each emitted word before computing its mixed local gauge.
+The cheap precision is now
+$`q_{{\rm ch},d}=\lceil4K/P_d\rceil+O(\log P_d)`$.
+
+For an expensive node write $`E_v=k_v\Delta_d+e_v`$.
+The same inequalities give $`2P_d\le k_v\le2P_d^2`$ beyond the
+universal threshold. Only this bounded multiplier is loaded. The
+remainder can require $`O(\log(L+2))`$ classical bits; it stays in
+the offline scalar masks, so it adds no logical mode register.
+Formula (8) and its dyadic scalar realization are unchanged, with
+
+```math
+q_{{\rm coef},d}\le K/P_d+O(P_d^3\log P_d).
+```
+
+The bound $`f_{v,\nu}\le1/4`$, exact full-space guards, dirty
+replay, and attenuation compensation depend on the unchanged
+$`P_d,p_d,B_d`$ and these multiplier bounds. Hence their original
+proofs apply on all occupied private inputs as well as initialized
+ones. In particular, large L adds dirty precision width, not private
+history or logical modes. The arena volume (12) and packing (13)
+remain functions of N and d alone.
+
+### Uniform error, native cost, and workspace
+
+The finite-source and Cayley-tail bounds become
+
+```math
+\delta_d\le5\,2^{-4K},\qquad
+e_n\le5n\,2^{-4K}\le\epsilon/192.
+```
+
+The last inequality holds uniformly for $`L>N/n`$ after increasing
+$`n_0`$. The
+[high-precision disjoint-block and state-source interfaces](DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
+compile the fixed bottom blocks, initial source, and final tag
+extensions at any fixed fraction of $`2^{-L}`$, with
+$`O(N+L)`$ T gates and $`L+n+7`$ dirty qubits. Their coarse words
+and mode dimensions still depend on N; their constant number of fine
+calls uses precision $`q=L+c_0`$, with fixed $`c_0`$.
+The same replacement applies to the attenuation and replay phase banks.
+Their certified data and actual fine words, including inverses, split
+the two source budgets exactly as in Section 6:
+$`\epsilon_P,\epsilon_Q\le\epsilon/384`$.
+Consequently the actual overlap has $`\delta\le\epsilon/96`$,
+and the same normalization-two recovery has full-output error at most
+$`\epsilon/8`$. Adding the bottom, clipping, and normalization errors
+again gives $`\epsilon/2`$. No new recovery or reset is introduced.
+
+All variable native charges remain explicit:
+
+```math
+\begin{aligned}
+\sum_{d>d_0}S_dP_d&=O(N),\\
+\sum_{d>d_0}q_{{\rm coef},d}
+&\le K\sum_{d>d_0}P_d^{-1}+\mathrm{poly}(n)=O(L+N),\\
+\sum_{d>d_0}q_{{\rm ch},d}&=O(L+\mathrm{poly}(n)),\\
+\sum_{\rm refinements}q_{\rm new}&\lt K/P_{d_0}^2.
+\end{aligned}
+```
+
+The exact routing and coarse state-source words still cost
+$`O(\mathrm{poly}(n)\sqrt N)=O(N)`$. There are a constant number
+of fine banks, each costing $`O(N+L)`$, and a single outer recovery.
+Thus the total is $`O(N+L)`$.
+
+For the literal workspace, enlarge the fixed $`d_0`$ and $`n_0`$
+once so that all cheap, coefficient, and refinement dirty cores are
+smaller than $`L/2`$. This follows from $`K\lt 2L`$, the displayed
+precision bounds, and $`\mathrm{poly}(n)=o(N/n)`$.
+Their returned selectors and guard helpers have only polynomial-in-n
+size. Exact routing and coarse construction use
+$`O(\sqrt N+\mathrm{poly}(n))=o(N/n)\lt L`$ dirty work in separate
+stages. The fine core uses $`L+c_0+1`$ dirty wires; self-borrowing
+holds because $`L+c_0+1\ge2(n+1)`$. The remaining fixed helpers
+fit in $`n+6-c_0`$ wires, as in Section 8. Thus the peak is
+$`L+n+7`$, independent of how far L exceeds N. Unused dirty wires
+are spectators. No logical arena coordinate is also counted as dirty
+storage.
+
+### Splice the remaining regimes and compose phases
+
+For $`L\le N/n`$, the existing
+[two-clean real baseline](../../docs/OPERATOR_SOURCE_COMPILER.md)
+uses $`b=L+n+7`$ and $`T=O(N+nL)=O(N)`$ at error $`2^{-L}`$.
+For every $`3\le n\le n_0`$ and every L, use that same baseline:
+$`N+nL\le\max\{1,n_0\}(N+L)`$. This is one universal
+constant. In particular, the endpoint's fixed-accuracy finite-net
+fallback is not extended to unbounded precision. These two regimes
+and the growing-source regime prove the real theorem.
+
+For the complex frame, invoke this uniform real theorem at precision
+$`L+1`$ on $`b=L+n+8`$ dirty qubits. Compose the packed literal
+diagonal at $`\ell=L+1`$, whose reservation is
+
+```math
+b_{\rm diag}=n+1+\left\lceil\frac{L+5}{2}\right\rceil
+\le L+n+8.
+```
+
+Both counts are $`O(N+L)`$. Their two half-error full-isometry
+bounds compose on the same two flags by the exact identity in
+Section 9, including prior leakage, dirty/reference correlations,
+literal phases, and the actual inverse. This proves the complex
+claim at the displayed allocation. ∎
+
+**Matching base-width corollary.** At the exact displayed reservations,
+the total physical width is $`q_{\rm phys}=L+2n+9`$ for real frames
+and $`q_{\rm phys}=L+2n+10`$ for complex magnitude frames.
+When $`L\ge\max\{6,n\}`$, each is $`\Theta(L)`$. The existing
+[worst-case lower bound](../../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+therefore gives
+
+```math
+T^\star=\Omega\!\left(\sqrt{NL}+L+\frac{NL}{q_{\rm phys}}\right)
+=\Omega(N+L),\qquad T^\star=\Theta(N+L).
+```
+
+The complex family contains the real one by taking $`D_\phi=I`$.
+The quoted lower bound already combines the fixed-width counting
+regime with its complementary square-root bound; no extra restriction
+on $`q_{\rm phys}^2/(NL)`$ is needed here. This matching statement
+concerns the exact base widths, not every larger dirty allocation.
+Separately the width-independent root-angle witness gives
+$`T^\star\ge2L-1`$, so the same order is optimal even at larger
+widths when $`L\ge N`$.
+
+For $`L\lt n`$ the uniform result is an upper bound. The existing
+banked and sufficient-clean frontiers retain their stronger applicable
+guarantees. No new Clifford-count, one-clean, depth,
+classical-efficiency, or native-emitter bound follows here.
+
+<a id="9-bounded-implementation-evidence"></a>
+<a id="10-bounded-implementation-evidence"></a>
+
+## 11. Bounded implementation evidence
 
 The [exact helper](../../compiler_robust_hopf/growing_precision_source.py)
-records the dyadic height schedule and normalized refinement factors.
+records the dyadic height schedule and normalized refinement factors,
+with an optional requested precision L and a separate rounded source
+scale K. Omitting L preserves the symbolic endpoint schedule.
 The [focused tests](../../tests/test_growing_precision_source.py) check
 the schedule identity $`M_dq_d=4N`$ and the four binary refinements at
-a factor-four P jump. A separate rare-event fixture uses an actual
+a factor-four P jump. Exact checks at non-dyadic precisions, including
+$`L>N`$, retain the same logical mode lengths and verify
+$`M_dq_d=4K`$ and refinement compatibility. Small-L symbolic schedules
+can have nonintegral q and do not certify a native construction; the
+uniform proof uses the baseline in that regime. A separate rare-event
+fixture uses an actual
 scalar flag, nontrivial dirty rejection, controlled X, and inverse
 rare preparation to check its full accepted operator.
 

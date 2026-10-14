@@ -449,6 +449,48 @@ class GrowingPrecisionSourceTests(unittest.TestCase):
             vector = np.kron(vector, _source(beta ** power, 2))
         np.testing.assert_allclose(vector, _source(beta, 16), atol=ATOL, rtol=0)
 
+    def test_requested_precision_changes_source_scale_without_logical_padding(self):
+        # Keep the physical height fixed while crossing source-precision
+        # boundaries below, at, and above L=N. These exact identities check
+        # the schedule, not the asymptotic arena or native resource theorem.
+        height = 64
+        cases = (((1 << 58) - 1, 58), (1 << 58, 58), ((1 << 58) + 1, 59),
+                 (1 << 64, 64), ((1 << 64) + 1, 65), ((1 << 80) + 17, 81))
+        for bits, rounded_log2 in cases:
+            with self.subTest(bits=bits):
+                rounded = 1 << rounded_log2
+                self.assertLess(rounded // 2, bits)
+                self.assertLessEqual(bits, rounded)
+                previous = None
+                for level in (7, 8, 31, 32, 63, 64):
+                    scale = growing_source_scale(height, level, precision_bits=bits)
+                    endpoint = growing_source_scale(height, level)
+                    self.assertEqual(scale.source_precision_log2, rounded_log2)
+                    self.assertEqual((scale.endpoint_height, scale.absolute_height,
+                                      scale.order, scale.source_length,
+                                      scale.rare_probability, scale.rescaling_bits),
+                                     (endpoint.endpoint_height, endpoint.absolute_height,
+                                      endpoint.order, endpoint.source_length,
+                                      endpoint.rare_probability, endpoint.rescaling_bits))
+                    self.assertTrue(scale.integral_exponent)
+                    exponent = 1 << scale.exponent_log2
+                    self.assertEqual(scale.source_length * exponent, 4 * rounded)
+                    if previous is not None:
+                        steps = scale.refinement_steps_from(previous)
+                        self.assertEqual(scale.source_length,
+                                         previous.source_length << steps)
+                        self.assertEqual(exponent << steps, 1 << previous.exponent_log2)
+                    previous = scale
+        same_source_before = growing_source_scale(height, 7, precision_bits=(1 << 58) - 1)
+        same_source_after = growing_source_scale(height, 8, precision_bits=1 << 58)
+        self.assertEqual(same_source_after.refinement_steps_from(same_source_before), 4)
+        changed_source = growing_source_scale(height, 8, precision_bits=(1 << 58) + 1)
+        with self.assertRaises(ValueError):
+            changed_source.refinement_steps_from(same_source_before)
+        # A valid symbolic schedule alone is not a valid growing-source
+        # construction: small precision can still give a nonintegral q.
+        self.assertFalse(growing_source_scale(height, height, precision_bits=3).integral_exponent)
+
 
 if __name__ == '__main__':
     unittest.main()
