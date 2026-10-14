@@ -6,9 +6,9 @@ The four principal results price the same prescribed operator in two gate
 models. Result A reaches the exact all-workspace size/depth frontier.
 Result B shares precision with sufficient clean work. Result C reduces the
 clean reservation to one qubit. Result D schedules count and T-depth on one
-complete real-frame circuit. A selected endpoint count theorem and
-complex-magnitude corollary supplement A–D at their literal high-precision
-allocation. This roadmap explains how the proofs connect; the linked
+complete real-frame circuit. A selected precision-uniform two-clean count
+theorem and sharper high-precision endpoint supplement A–D at their own
+literal allocations. This roadmap explains how the proofs connect; the linked
 chapters contain the constructions and estimates.
 
 ## 1. Why the complete operator is the target
@@ -273,20 +273,29 @@ optimality among all gradient algorithms is inferred.
 
 The completed [state-based QBP supplement](supplements/state_based_qbp/README.md)
 changes the decoder and avoids the fine complete frame. It is a distinct
-task-level result. The selected endpoint claim and remaining depth question are:
+task-level result. The selected two-clean count theorem and remaining depth
+question are:
 
 | Resource question | Current guarantee |
 |---|---|
+| Every integer $`L\ge6`$, $`n\ge3`$, error $`2^{-L}`$, $`a=2`$ | $`T=O(N+L)`$ with universal constants; real $`b\ge L+n+7`$, complex magnitude $`b\ge L+n+8`$ |
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
 | Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
-The [growing-source theorem](research/endpoint/GROWING_SOURCE_COMPILER.md)
-closes the two-clean real-frame count endpoint using summable precision
-costs, exact source refinements, and permanently separate rejection modes.
-The [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes the packed literal diagonal on the same workspace;
-the full-isometry error includes both factors and their work return.
-This selected count claim has its own fixed-precision scope beside A–D.
+The [precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+separates source precision from logical dimension. At high precision its
+summable native charges give $`O(N+L)`$; the existing $`O(N+nL)`$
+compiler covers $`L\le N/n`$ and bounded n. Exact source refinements
+and permanently separate rejection modes precede one final recovery.
+The complex construction composes a packed literal diagonal on the same
+workspace, including both factors' error and work return in the full-isometry
+norm. The [fixed-precision corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+retains the sharper complex allocation at $`L=N`$. At exactly the
+uniform theorem's base reservations and $`L\ge\max\{6,n\}`$,
+the existing width-dependent lower bound gives
+$`T^\star=\Theta(N+L)`$. These selected count claims stand beside
+A–D; they add no Clifford-count, one-clean, or depth guarantee, and do not
+assert optimality at every precision and width.
 The [endpoint statement](docs/OPEN_PROBLEM.md) and
 [research index](research/README.md) retain the large-width depth question
 and the hypotheses of earlier source and factorization restrictions.

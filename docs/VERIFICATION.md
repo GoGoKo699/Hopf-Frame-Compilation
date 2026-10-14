@@ -32,7 +32,9 @@ return, and resource accounting under the individual recorded contracts.
 | C: one-clean frame and corollaries | [One-clean compiler](ONE_CLEAN_COMPILER.md), [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), one-clean word, amplification, grouped residual and bank-allocation fixtures | Small emitted words and matrices; operator-core return error is included in the joint norm |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
 
-### Endpoint count evidence
+<a id="endpoint-count-evidence"></a>
+
+### Two-clean count evidence
 
 The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
@@ -41,14 +43,29 @@ phase-dressed complex magnitude frames with certified input data.
 Their common contract is $`n\ge3`$,
 $`N=2^n`$, error $`2^{-N}`$, two clean flags, and $`b=N+n+7`$ dirty
 qubits. The error includes every logical column, returned flags, arbitrary
-dirty inputs, and external references. This endpoint result supplements
-Results A–D; it does not settle general optimal T-depth.
+dirty inputs, and external references.
+
+The [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives $`T=O(N+L)`$ for integer $`L\ge6`$ at error $`2^{-L}`$,
+with two clean flags and dirty reservation $`b\ge L+n+7`$ for real
+frames or $`b\ge L+n+8`$ for complex magnitude frames. At those
+exact base widths, the existing lower bound gives worst-case
+$`T^\star=\Theta(N+L)`$ when $`L\ge\max(6,n)`$; no matching
+lower bound at every larger width is inferred. The fixed $`L=N`$
+endpoint retains its sharper common reservation $`b=N+n+7`$.
+These count results supplement Results A–D and do not settle general
+optimal T-depth.
 
 The real [growing-source diagnostics](../tests/test_growing_precision_source.py) test
 normalized refinement, sealed occupied and entangled failures, retained
 source tags, attenuation compensation, actual dirty replay, original-anchor
 recovery, and linear full-output error. Exact integer checks preserve the
-source-scale relation across refinements. The native arena allocation,
+source-scale relation across refinements. The optional requested precision
+uses the least power of two $`K\ge L`$ and checks $`q_dM_d=4K`$
+for non-dyadic values below and above $`L=N`$, without changing the
+logical mode schedule. Those symbolic checks also distinguish incompatible
+source precisions and schedules with nonintegral q; they do not certify the
+growing-source regime's hypotheses or dispatch its fallbacks. The native arena allocation,
 summable charges, and unrestricted count bound come from the proof. These
 finite diagnostics are neither a scalable native emitter nor independent
 external review.
@@ -60,7 +77,7 @@ checks every logical/dirty input column, literal phases, the actual inverse,
 and reference-entangled inputs. Discarded leakage, reversed factor order,
 and omitted common phase have counterchecks. Its addressed direct sum is
 supplied; it emits neither the growing-source compiler nor a general
-diagonal table. The endpoint precision and workspace bounds remain analytic.
+diagonal table. The precision and workspace bounds remain analytic.
 
 ### Detailed evidence records
 

@@ -158,14 +158,20 @@ small words, exact identities, illustrative ledgers, and asymptotic proofs.
 It does not promise a general grouped elementary emitter or useful numerical
 crossover constants for existential grouping thresholds.
 
-**Current-status postscript, 14 October 2026.** The endpoint count theorem and
-complex-magnitude corollary are now selected alongside the unchanged Results
-A–D. The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+**Current-status postscript, 14 October 2026.** The two-clean count theorems
+are now selected alongside the unchanged Results A–D. The
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 and its [packed-diagonal corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 give worst-case $`T^\star=\Theta(N)`$ for complete real and phase-dressed
 complex magnitude frames at $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$.
+The [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives $`T=O(N+L)`$ for integer $`L\ge6`$, with two clean flags and
+$`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex magnitude
+frames. The existing lower bound makes this worst-case $`\Theta(N+L)`$
+at those exact base widths when $`L\ge\max(6,n)`$; it does not imply
+matching count at every larger width.
 This selection does not amend the dated A–D audit or its recorded checks.
-The large-width depth gap remains open, and the endpoint adds no
+The large-width depth gap remains open, and these count results add no
 Clifford-count or T-depth guarantee. A discovered defect reopens its repair;
 a new construction requires
 the native rule and symbolic resource,

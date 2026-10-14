@@ -1,6 +1,8 @@
 <a id="two-resource-questions-for-complete-hopf-frames"></a>
 
-# Endpoint theorem and remaining depth question
+<a id="endpoint-theorem-and-remaining-depth-question"></a>
+
+# Two-clean count theorems and remaining depth question
 
 [Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
 
@@ -10,6 +12,30 @@ has $`a`$ initialized flags and $`b`$ arbitrary dirty qubits. Its full
 initialized-isometry contract includes all logical inputs, dirty/reference
 return, literal phases, and clean leakage. The supplied angles and leaf phases
 admit terminating certified evaluation, including unequal and singular tuples.
+
+## Precision-uniform two-clean count
+
+For $`n\ge3`$ and every integer $`L\ge6`$, the
+[precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+gives full-isometry error at most $`2^{-L}`$ and
+
+```math
+a=2,\qquad T=O(N+L),\qquad
+b\ge L+n+7\ \text{(real)},\qquad
+b\ge L+n+8\ \text{(complex magnitude)}.
+```
+
+The low-precision and bounded-dimension regimes use the existing baseline.
+At higher precision the source scale is rounded independently of the
+logical dimension, preserving the growing arenas and summable native
+charges. All table queries, source construction, actual inverses, literal
+phases, and work return remain charged.
+
+At the exact displayed base widths and $`L\ge\max\{6,n\}`$, the
+existing worst-case lower bound matches: $`T^\star=\Theta(N+L)`$.
+For $`L\lt n`$ this is an upper bound, and larger dirty allocations
+retain their separate banked tradeoffs. No new Clifford-count or depth
+guarantee is asserted by this theorem.
 
 ## Constant-clean high-precision count
 
@@ -40,9 +66,10 @@ The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower
 at root angle $`\pi/16`$ gives the lower bound even at unrestricted
 workspace width, retaining literal phases. Zero leaf phases include this
 real-family witness in the complex magnitude family. Both two-clean count
-endpoints are resolved at the displayed allocation. This is not arbitrary
-complex-unitary synthesis or a general-precision, one-clean, Clifford-count,
-or T-depth extension.
+endpoints are resolved at the displayed allocation. The complex endpoint
+saves one dirty qubit relative to the uniform corollary. These are prescribed
+frames; arbitrary complex-unitary synthesis, one-clean improvements,
+Clifford count, and T-depth retain their separate scopes.
 
 ## Large-width T-depth
 
@@ -105,7 +132,7 @@ bound nor an uncharged native implementation of a different representation.
 
 Every compiler must charge source construction, tables, basis changes,
 queries, actual inverses, amplification, and workspace return on the same
-circuit. The resolved count endpoint allows arbitrary finite Clifford work
+circuit. The two-clean count theorems allow arbitrary finite Clifford work
 and classical preprocessing; the depth question retains its displayed
 Clifford budget. Neither permits QRAM, a supplied precision state,
 measurement, reset, postselection, or uncharged coherent evaluator.

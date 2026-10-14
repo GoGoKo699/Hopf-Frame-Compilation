@@ -5,9 +5,9 @@
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
 The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
-Results A–D, retained corollaries, and the selected endpoint count theorem
-and complex-magnitude corollary, with literal workspace reservations and
-error contracts. Its source and verification maps identify the premises
+Results A–D, retained corollaries, and the selected precision-uniform
+two-clean count theorem and sharp endpoint, with literal workspace
+reservations and error contracts. Its source and verification maps identify the premises
 and executable evidence for each claim.
 
 ## The argument to assemble
@@ -43,9 +43,11 @@ mechanisms and input/workspace contracts.
    Compare the packed two-clean diagonal construction at its smaller dirty budget.
 6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
    explicit precision/workspace matching intervals, and applicable fallbacks.
-7. The selected endpoint count theorem and complex-magnitude corollary:
-   growing real-frame sources, packed literal leaf phases, the same-workspace
-   error contract, and the inherited lower bound at the fixed precision.
+7. The selected precision-uniform two-clean count theorem: growing real-frame
+   sources with separate precision and dimension scales, the baseline splice,
+   and packed literal leaf phases under the same-workspace error contract.
+   State the matching lower bound at the exact base widths, and retain the
+   sharper fixed endpoint.
 8. Exact and approximate fixed-parameter QBP consequences, complete complex
    gradients, charged executions and reconstruction, and the remaining
    large-width depth question and limits of the circuit model.
@@ -63,9 +65,11 @@ sector. T-depth allows arbitrary Clifford interlayers and differs from total
 depth. Only D claims simultaneous T-count/T-depth guarantees; its real
 frame theorem does not inherit the complex extensions of A–C automatically.
 
-The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-are selected at their fixed precision and literal allocation beside A–D.
+The [precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+and [sharp endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+are selected at their own literal allocations beside A–D. They add no
+Clifford-count, one-clean, or depth guarantee, and make no optimality claim
+at every precision and width.
 The [research catalogue](../research/README.md) preserves their dependencies,
 the remaining large-width depth question, and earlier attempts with their
 scoped findings. The completed

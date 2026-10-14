@@ -3,7 +3,7 @@
 [Core verification map](../VERIFICATION.md) · [Source catalogue](SOURCE_CATALOGUE.md) · [Tests](../../tests/README.md)
 
 This catalogue preserves detailed fixture contracts and software boundaries.
-The core map links Results A–D and the endpoint theorem to their proofs and
+The core map links Results A–D and the two-clean count theorems to their proofs and
 principal evidence; this page records the smaller input, precision,
 workspace, and gate-emission
 scopes of the individual checks. A research fixture's presence here does
@@ -14,7 +14,7 @@ not prove universal statements or asymptotic optimality.
 
 | Material | Entry point | Scope |
 |---|---|---|
-| Real and complex-magnitude count endpoint | [Endpoint evidence](../VERIFICATION.md#endpoint-count-evidence) | Real growing-source diagnostics and a separate bounded phase-dressing composition check |
+| Real and complex-magnitude two-clean count | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, and a separate bounded phase-dressing composition check |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -72,9 +72,9 @@ general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The
 [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [phase-dressing corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-establish the linear count endpoint for prescribed complete real and
-phase-dressed complex magnitude frames;
+and its [precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+establish $`O(N+L)`$ count for prescribed complete real and
+phase-dressed complex magnitude frames within their two-clean reservations;
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
@@ -298,13 +298,27 @@ source tags or selected dirty values, and replace the actual inverse.
 A separate perturbation check includes the rejected output and verifies
 linear full-isometry recovery error from an accepted-block error. Exact
 integer checks preserve $`q_dM_d=4N`$ across four binary refinements at
-each scale change. These are finite unitary diagnostics, not emitted
+each scale change. An optional precision argument sets K to the least power
+of two at least L. Exact checks at non-dyadic precision boundaries, including
+$`L\gt N`$, preserve $`q_dM_d=4K`$ and leave the logical mode
+schedule unchanged. Refinement accepts equal rounded source precision and
+rejects different rounded precision. A nonintegral q remains a symbolic
+schedule, not a claim that the growing-source construction applies there.
+These are finite diagnostics, not emitted
 Clifford+T source words or a certificate of asymptotic arena capacity.
 The [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
 supplies the full-space arena allocation, exact guards, summable native
 charges, literal dirty reservation, and unrestricted real-frame count
 theorem. Its [complex-magnitude corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-proves sequential phase dressing at the same endpoint allocation.
+proves sequential phase dressing at the same endpoint allocation. The
+[precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+proves $`T=O(N+L)`$ for integer $`L\ge6,n\ge3`$, two clean
+flags, and $`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex
+magnitude frames. At the exact base widths and
+$`L\ge\max(6,n)`$, the existing lower bound gives worst-case
+$`\Theta(N+L)`$. The fixed $`L=N`$ theorem retains $`b=N+n+7`$
+for both families. All-size summability, fallback dispatch, and workspace
+feasibility come from these proofs, not the schedule tests.
 
 The same suite's separate composition fixture uses one logical bit, two
 arbitrary dirty-core bits, and two shared clean flags: a 32-dimensional
@@ -317,7 +331,7 @@ the actual inverse, and a full-Schmidt reference input. Counterchecks discard
 intermediate leakage, reverse the factor order, or omit the common phase.
 The real factor is not emitted growing-source synthesis, and the addressed
 direct sum is not native table emission. This bounded check does not realize
-the endpoint precision or certify its all-size workspace bound. The fixtures
+the requested general precision or certify its all-size workspace bound. The fixtures
 and internal proof review do not constitute independent external review or
 a scalable native emitter.
 
