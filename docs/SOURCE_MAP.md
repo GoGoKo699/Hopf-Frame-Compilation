@@ -136,12 +136,20 @@ logarithm above under its two-clean assumption.
 The additive F and L terms have no unrestricted matching depth lower bound.
 
 The separate [clean-aware obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, gives a constant lower bound with arbitrary Clifford interlayers and
-dirty width. For every fixed clean budget, some complete frames require
-at least four T layers below a positive, unevaluated accuracy threshold;
-the explicit one-clean two-layer gap forces three layers for $`L\ge8`$.
-F35/F44 supply the stabilizer facts and F43 the fixed-degree polynomial
-limit theorem. These bounds do not grow with dimension or precision.
+R73, gives constant lower bounds with arbitrary Clifford interlayers and
+dirty width. Each fixed clean budget has a positive three-layer error
+floor. With no clean work the witness's exact floor is approximately
+0.169714, attained by a Clifford; integer precision L ≥ 3 requires four
+layers. Its one-clean two-layer witness requires three layers for L ≥ 8.
+F35/F44 supply stabilizer facts and F43 the polynomial-limit premise.
+
+The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, uses F44's symplectic realization and F43's same limit premise with
+a normalization bound controlled by the active middle crossing rank.
+At each fixed clean budget, a four-layer approximating sequence for the
+witness must have minimum crossing rank tending to infinity over all
+four-layer decompositions. This supplies no quantitative rank/error rate
+or unrestricted five-layer lower bound.
 
 The compressed-column refinement has a separate dependency chain. It
 retains the uniform theorem's literal threshold and improves its depth
@@ -236,7 +244,7 @@ these constructive reductions from the complete-frame upper bounds.
 | Product compression and amplification | Low–Wiebe Lemma 13; Fang–Lin–Tong Lemma 3/Appendix D; Berry et al. Eqs. (7)–(15); Brassard et al. Eq. (8); F10–F11/F20 | Failure history, LCU, and amplification; local complete-isometry error and literal-phase accounting |
 | Dirty-query depth and unary reuse | F29–F34/F36–F37 | Controlled Clifford circuits, grouped selection, phase synthesis, arithmetic, reusable references, and bilinear recursion; local all-dirty return and width allocation |
 
-The [complete F1–F45 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+The [complete F1–F46 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
 provides primary URLs, versions, exact locators, and comparison-only sources.
 The [related-work map](RELATED_WORK.md) separates established ingredients
 from the frame-specific construction; bounded source checking certifies

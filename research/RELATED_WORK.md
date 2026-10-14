@@ -550,25 +550,37 @@ encodings or native T-depth.
 ## 29. Constant-depth obstructions with initialized work
 
 The [clean-aware obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, proves a positive approximation floor for at most three T layers,
-for each fixed clean-qubit budget, with arbitrary Clifford interlayers
-and unbounded arbitrary-input dirty work. Its complete-frame witness has
-$`\cos(2\theta)=1/3`$. The floor may depend on the clean budget and
-is not evaluated. A separate one-clean, two-layer witness gives an
-explicit gap at integer precision $`L\ge8`$. Neither lower bound
-grows with dimension or precision.
+R73, proves a positive three-layer approximation floor for each fixed
+clean budget, uniformly in dimension and arbitrary dirty width. With no
+clean work, its complete-frame witness has exact floor approximately
+0.169714, attained by a Clifford; integer precision L ≥ 3 requires four
+layers. For circuits with at most three T layers, a sharp transfer gap gives
+preserved-Pauli rigidity and exact terminal clean-bit sectors with one
+clean qubit below error approximately 0.270598. The occupied sector
+remains uncontrolled. A separate explicit one-clean two-layer witness
+requires three layers for L ≥ 8.
 
-The additional arithmetic premise is [Khodabandeh–Shinkar,
-arXiv:2605.00995v1, Appendix A, Lemma A.6](https://arxiv.org/html/2605.00995v1#A1)
-(F43): convergent output probabilities of Boolean polynomials of fixed
-degree have dyadic limits, even as the number of input variables varies.
-R73 uses this limit theorem without importing a quantitative separation
-bound. [Dehaene–De Moor, arXiv:quant-ph/0304125v1, Section V,
-Theorem 5](https://arxiv.org/pdf/quant-ph/0304125) (F44) supplies flat
-affine support and quadratic relative phases for stabilizer states.
-The local argument supplies the one-T-layer overlap reduction, retained
-common phases, bounded-degree residue events, fixed-clean projector
-expansion, and initialized-isometry error comparison.
+The [four-layer crossing-rank theorem](depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, retains a positive floor when the clean budget and the symplectic
+pairing rank of the two active middle T-axis spans are fixed. Consequently,
+any four-layer sequence approaching zero error for the witness must have
+minimum crossing rank tending to infinity over all four-layer
+decompositions. No quantitative rate or unrestricted five-layer lower
+bound follows.
+
+The arithmetic premise for the compactness arguments is
+[Khodabandeh–Shinkar, arXiv:2605.00995v1, Appendix A,
+Lemma A.6](https://arxiv.org/html/2605.00995v1#A1) (F43): convergent
+output probabilities of fixed-degree Boolean polynomials have dyadic
+limits, even as input dimension varies. R73 and R74 use bounded
+phase-sum prefactors; no numerical separation constant is imported.
+[Dehaene–De Moor, arXiv:quant-ph/0304125](https://arxiv.org/pdf/quant-ph/0304125)
+(F44), Sections II and IV, supplies Clifford realization of binary
+symplectic maps; Section V, Theorem 5 supplies affine stabilizer support
+and quadratic relative phases. The local arguments establish the
+retained common phases, residue-degree bound, clean-projector error
+comparison, and the two-span reduction controlling R74's prefactor.
+R73's sharp gap and rigidity refinements do not use F43.
 
 [Masoudi, *The Channel Representation and Non-Clifford Resources*,
 2026 thesis, Chapter 5](https://theses.lib.sfu.ca/file/thesis/etd24540-kasrakasra-masoudi-the-channel-represen.pdf)
@@ -579,11 +591,16 @@ that argument does not compose to larger assisted depth. R73 instead
 proves a robust exclusion through depth three with fixed clean work and
 unbounded dirty width.
 
+[Nevin, arXiv:2511.17856, Theorem 6(M1)](https://arxiv.org/pdf/2511.17856)
+(F46) establishes #P-hard exact Pauli-transfer computation at depth
+three. This is an exact-computation comparison, not a robust synthesis
+lower bound.
+
 [Selinger, arXiv:1210.0974v2, Theorem 5.1](https://arxiv.org/pdf/1210.0974)
 already excludes exact T-depth-one implementation of THT with arbitrarily
 many initialized ancillas, even without their return. Kim's supplied
 nonstabilizer catalyst and its later refinements retain the different
 resource contracts described in [Section 16](#16-precision-depth-and-workspace-assumptions-2-october-2026).
-R73 does not settle constant-depth rotation synthesis for other fixed
-depths or growing clean budgets. These comparisons make no priority claim.
-Optimal depth remains an open problem.
+R73 and R74 do not settle constant-depth rotation synthesis with unbounded
+middle crossing rank or growing clean budgets. These comparisons make no
+priority claim. Optimal depth remains an open problem.

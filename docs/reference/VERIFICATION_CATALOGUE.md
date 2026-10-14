@@ -514,13 +514,23 @@ native source/controlled-source witnesses with arbitrary dirty extensions.
 Its robust constant lower bounds are analytic, not inferred from sampling
 the finite circuits. Initialized-clean isometries remain outside its scope.
 The separate [clean-aware proof](../../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md)
-has [seven bounded checks](../../tests/test_clean_aware_depth_obstruction.py)
+has [eleven bounded checks](../../tests/test_clean_aware_depth_obstruction.py)
 for the initialized-projector sum and robustness, exact complete-frame
 witnesses, the explicit one-clean gap with an infinite-tail certificate,
-mod-eight residue events, and a native three-layer counterexample to the
-two-layer alphabet. The fixed-clean three-layer obstruction instead uses
-the cited polynomial-limit theorem and analytic compactness. These tests
-neither prove that imported theorem nor evaluate its positive error gap.
+mod-eight residue events, a native three-layer counterexample to the
+two-layer alphabet, the sharp preserved-Pauli gap, the literal zero-clean
+Clifford attainer, and the one-clean terminal-sector identity and its
+occupied-sector limitation. The fixed-clean three-layer obstruction uses
+the cited polynomial-limit theorem and analytic compactness; its
+zero-clean refinement is elementary. These tests do not prove the imported
+theorem or evaluate the positive-clean gap. The separate
+[four-layer proof](../../research/depth/FOUR_LAYER_CROSSING_RANK.md) has
+[four bounded checks](../../tests/test_four_layer_crossing_rank.py) of
+the symplectic normal form with intersecting spans, native boundary words
+attaining the normalization bound, and the abstract cubic-bias family.
+The fixed-rank gap and minimum-rank divergence are analytic; no native
+realization of the abstract family or unrestricted five-layer obstruction
+is inferred from those checks.
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for
 prefix preparation, native controlled-H phases, actual inverse, scalar
