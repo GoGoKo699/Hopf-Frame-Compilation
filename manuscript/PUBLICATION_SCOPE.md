@@ -261,8 +261,13 @@ restrictions remain distinct from unrestricted lower bounds.
 The separate [compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 has absolute constants for some absolute $`c>0`$, every integer
 $`6\le L\le cn`$, two external clean flags, and every
-$`b\ge17(L+n+7)`$. With
-$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$, it gives
+$`b\ge17(L+n+7)`$. Define
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+The theorem gives
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
@@ -291,8 +296,12 @@ with no efficiency claim.
 
 For every fixed $`0\lt\eta\le1/64`$, the all-n statement retains
 $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$ at
-every eligible width. At sufficient square-root width it gives
+
+```math
+D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})
+```
+
+at every eligible width. At sufficient square-root width it gives
 $`o(n)`$ depth, while the unrestricted lower bound is $`\Omega(1)`$.
 Optimal depth remains an open problem. Result D retains its all-precision guarantees;
 C does not improve its depth. The separate

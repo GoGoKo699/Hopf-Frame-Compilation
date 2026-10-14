@@ -98,9 +98,14 @@ its final capped layers preserve the stated count and Clifford budgets.
 At sufficient
 $`b=\Theta(\sqrt{NL})`$, shrinking error retains sublinear depth
 when $`L=o(n^{2/3})`$. Count is optimal throughout the stated range;
-depth also matches through $`b\le\sqrt{NL/F(n,L)}`$, where
-$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$, whenever
-that interval is nonempty. The retained all-precision D theorem covers
+depth also matches through $`b\le\sqrt{NL/F(n,L)}`$ whenever
+that interval is nonempty, where
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+The retained all-precision D theorem covers
 other precisions; the fixed-accuracy statement covers every n.
 
 The [entry-indexed encoding bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

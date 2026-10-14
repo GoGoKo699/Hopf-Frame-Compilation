@@ -110,7 +110,13 @@ The [uniform extension](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-un
 gives complete real frames a circuit with two initialized flags, error
 at most $`2^{-L}`$, and absolute constants for every integer
 $`6\le L\le cn`$ and $`b\ge17(L+n+7)`$, for some absolute
-$`c>0`$. Writing $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$,
+$`c>0`$. Define
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+Then
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad

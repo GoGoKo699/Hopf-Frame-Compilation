@@ -157,7 +157,13 @@ proof chapters; they are not duplicated here.
 The [precision-uniform compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 gives, for some absolute $`c>0`$, every integer $`6\le L\le cn`$,
 two external clean flags and every $`b\ge17(L+n+7)`$.
-Put $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$. Then
+Define
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+Then
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
@@ -174,7 +180,11 @@ retains its guarantees outside this subrange.
 
 For every fixed $`0\lt\eta\le1/64`$, the separate all-n statement
 has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
-$`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
+
+```math
+D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}).
+```
+
 At sufficient square-root dirty width it gives $`o(n)`$ depth.
 The uniform extension also gives sublinear depth for shrinking error
 when $`L=o(n^{2/3})`$ and $`b=\Theta(\sqrt{NL})`$ is

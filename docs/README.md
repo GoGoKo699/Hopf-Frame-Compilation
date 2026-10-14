@@ -101,8 +101,13 @@ at sufficient square-root dirty width.
 
 The [compressed-column refinement](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 has absolute constants for $`6\le L\le cn`$, with some absolute
-$`c>0`$, two clean flags, and every $`b\ge17(L+n+7)`$. With
-$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$, it gives
+$`c>0`$, two clean flags, and every $`b\ge17(L+n+7)`$. Define
+
+```math
+F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}.
+```
+
+The theorem gives
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
