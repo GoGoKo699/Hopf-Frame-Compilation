@@ -90,7 +90,7 @@ worst-case statements over the specified family.
 | **A. Exact complete frame**: size $\Theta(N)$ and depth $\Theta(n+N/(n+m))$ for every clean budget | [Compiler theorem](COMPILER_THEOREM.md): strict-zero echo, conditioned tree cut, decoder, explicit router, and local lower-bound reductions; R1–R11 | C1–C5 and H1–H9; real and phase-dressed complex magnitude frames; exact work return. CNOT count is $\Theta(N)$ for $n\ge2$ and zero for $n=1$. |
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
 | **C. One-clean count frontier**: $`T=O(N+L)`$ at base width; $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at doubled base width | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R64–R65, with R25's small-dimension corollary | Every $`n\ge1`$, $`L\ge6`$, fixed $`a=1`$; base $`B=L+n+7`$ real, $`B=L+n+8`$ complex magnitude; banked match at $`b\ge2B`$; $`G=O(NL)`$. Exact-base matching at $`L\ge\max\{6,n\}`$. Existing F2–F5, F8–F9, F11, F19–F20 and R17/R20/R25/R62/R63 interfaces; full isometry, literal phases and actual inverses. |
-| **D. Same-circuit count and T-depth** | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md), with retained [unary source](UNARY_PHASE_GRADIENT.md) and dirty-query constructions; R43–R45 | Two clean flags and $b\ge17(L+n+7)$; complete real frames. Native sources, inverses, predicates, queries, and conditional work are charged. |
+| **D. All-precision optimal count and depth bounds** | [All-precision proof](../research/depth/ALL_PRECISION_DEPTH.md), [whole-frame binary stream](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), and [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md); R68–R70, using R45/R65/R66 | Every $`n\ge1`$, integer $`L\ge6`$, two clean flags and $`b\ge17(L+n+7)`$; complete real frames, full error $`2^{-L}`$. Native sources, actual inverses, predicates, queries and conditional work are charged. The high-precision schedule replaces completed real masks after the conjugate lift; no new external premise or unrestricted optimal-depth claim. |
 | **Precision-uniform large-width depth**: $`D_T=O(NL/b^2+F(n,L))`$ | [Compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [coherent descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md), [shared-gradient early recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md), and [shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md); R66 | Some absolute $`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every $`b\ge17(L+n+7)`$; complete real frames, error $`2^{-L}`$, and simultaneous $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, with absolute constants. F5 supplies the early Boolean-state premise. Terminal reuse combines R12/R14's compact binary source and shared-source interface with F1/F10/F11's geometric weights, coherent history and LCU recovery; R20 supplies exact bounded controls. Native loading, conditional storage, charged queries and recovery retain the full return contract. No new external premise or unrestricted optimal-depth claim. |
 | **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 | **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
@@ -109,19 +109,31 @@ The separate [entry-indexed encoding limit](../research/depth/ENTRY_INDEXED_ENCO
 (R67) gives a sharp square-root normalization barrier within its explicit
 row/column factorization contract. It is not a native-depth lower bound.
 
-For D, the uniform upper bounds are
+For D, let
 
 ```math
-T=O\!\left(\sqrt{NL}+\frac{NL}{b}+nL\right),\qquad
-D_T=O\!\left(\frac{NL}{b^2}+nL\right),\qquad G=O(NL).
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
-For $6\le L\le\log_2(n+2)/16$, replace the count's $nL$ term by zero
-and the depth's $nL$ term by $n$. Simultaneous worst-case matching holds on
-$17(L+n+7)\le b\le\sqrt{N/n}$ for every $L\ge6$, and on
-$17(L+n+7)\le b\le\sqrt{NL/n}$ in the stated slow-precision range,
-whenever the intervals are nonempty. Outside those ranges the upper bounds
-retain their actual precision terms; no general T-depth optimum is claimed.
+The all-precision same-circuit bounds are
+
+```math
+T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad
+D_T=O\!\left(\frac{NL}{b^2}+F(n,L)\right),\qquad G=O(NL).
+```
+
+Count is optimal throughout. For $`L>N/n^2`$, the stronger depth
+bound replaces F by L. Simultaneous worst-case count and depth matching
+holds on every nonempty interval
+
+```math
+17(L+n+7)\le b\le\sqrt{NL/F(n,L)}.
+```
+
+R45's [retained baseline](UNIFORM_PRECISION_DEPTH.md) keeps its original
+uniform and slow-precision statements and supplies the width/precision
+fallbacks. R66 retains the slightly stronger low-precision logarithm above.
+The additive F and L terms have no unrestricted matching depth lower bound.
 
 The compressed-column refinement has a separate dependency chain. It
 retains the uniform theorem's literal threshold and improves its depth

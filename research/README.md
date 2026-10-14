@@ -12,7 +12,10 @@ $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
 constant square-root dirty width. Its precision-uniform extension retains
 sublinear depth with shrinking error $`2^{-L}`$ for
 $`L=o(n/\log(n+2))`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
-Optimal T-depth remains open.
+The [all-precision depth theorem](depth/ALL_PRECISION_DEPTH.md) now combines
+that branch with a whole-frame binary stream and a high-precision query
+schedule, retaining optimal count for every precision. Optimal T-depth
+remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -154,29 +157,30 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The [precision-uniform compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-gives, for some absolute $`c>0`$, every integer $`6\le L\le cn`$,
-two external clean flags and every $`b\ge17(L+n+7)`$.
-Define
+The [all-precision theorem](depth/ALL_PRECISION_DEPTH.md) gives, for every
+$`n\ge1`$, integer $`L\ge6`$, two external clean flags and every
+$`b\ge17(L+n+7)`$,
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\},
 ```
 
-Then
-
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+F(n,L)).
 ```
 
 All constants are absolute. One circuit preserves the prescribed complete
 real frame with error at most $`2^{-L}`$ in the full initialized-isometry
-norm. Count is optimal throughout this range; count and depth match through
+norm. Count is optimal at every precision; count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$ on every nonempty interval above the
-literal lower threshold. The
-[all-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md)
-retains its guarantees outside this subrange.
+literal lower threshold. For $`L>N/n^2`$, the
+[high-precision schedule](depth/HIGH_PRECISION_DEPTH.md) gives the stronger
+additive L depth term. The
+[compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains the stronger logarithm $`\log_2(n+2)`$ for $`6\le L\le cn`$,
+with absolute c. The [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md)
+remains a necessary baseline in the precision and width splices.
 
 For every fixed $`0\lt\eta\le1/64`$, the separate all-n statement
 has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
@@ -194,6 +198,9 @@ remains open.
 
 | Current proof | Role |
 |---|---|
+| [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
+| [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Reuse the binary source above a logarithmic protected bank through exponentially growing precision, with explicit precision cardinality in every query charge |
+| [High-precision depth schedule](depth/HIGH_PRECISION_DEPTH.md) | Replace completed real masks after the signal lift, sum their rectangular-query depths, and serialize the separately bounded native remainder |
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
 | [Shared binary terminal source](depth/SHARED_BINARY_TERMINAL.md) | Retain one compact geometric source across single-layer residual kernels, record failures coherently, and recover the complete stream within logarithmic conditional workspace |
 | [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, native calibration, and complete work/error contract |

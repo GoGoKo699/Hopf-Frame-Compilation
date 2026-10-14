@@ -92,38 +92,40 @@ complex-unitary synthesis.
 
 ### D. Simultaneous real-frame T-count and T-depth
 
-Start with [uniform precision and depth](UNIFORM_PRECISION_DEPTH.md).
-Its theorem gives absolute-constant bounds on one circuit, with two clean
-flags and its literal dirty threshold. It proves simultaneous matching
-count and depth on explicit intervals, plus a stronger slowly growing
-precision range. Its fixed-accuracy specialization gives O(n) T-depth
-at sufficient square-root dirty width.
-
-The [compressed-column refinement](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-has absolute constants for $`6\le L\le cn`$, with some absolute
-$`c>0`$, two clean flags, and every $`b\ge17(L+n+7)`$. Define
+Start with the [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md).
+For every $`n\ge1`$, integer $`L\ge6`$, two clean flags, and
+$`b\ge17(L+n+7)`$, it gives one circuit with full error at most
+$`2^{-L}`$ and absolute constants. Define
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
-The theorem gives
+Then
 
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+F(n,L)).
 ```
 
-Count is optimal throughout this range. Count and depth match through
+Count is optimal at every eligible width. Count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$, subject to the same lower threshold.
-At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error
-$`2^{-L}`$ retains sublinear depth whenever $`L=o(n/\log(n+2))`$.
-The fixed-accuracy statement covers every n with accuracy-dependent
-constants and retains $`O_\eta(\sqrt n\log(n+2))`$ depth at
-sufficient square-root width. Optimal depth remains open; the all-precision
-theorem retains its guarantees outside the new subrange.
+For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
+The [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains $`\log_2(n+2)`$ in place of $`\log_2(n+L+2)`$ for
+$`6\le L\le cn`$, with some absolute $`c>0`$.
+At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
+sublinear depth for $`L=o(n/\log(n+2))`$; fixed accuracy retains
+$`O_\eta(\sqrt n\log(n+2))`$ depth. Optimal depth remains open.
 
-The uniform proof has an early unary-group branch, an exact rectangular-query tail,
+| Selected branch | Canonical proof and role |
+|---|---|
+| All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: simultaneous counts, literal widths, precision splice, and inherited matching bounds |
+| Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68: charged complete-frame schedule with precision-dependent source work |
+| High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69: $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with optimal count |
+| Retained baseline | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md): the $`nL`$ depth alternative, literal-width fallback, and earlier matching intervals |
+
+The retained uniform proof has an early unary-group branch, an exact rectangular-query tail,
 and an all-precision fallback. The following chapters are mathematical
 dependencies, not a sequence of research tasks to repeat.
 
@@ -141,7 +143,7 @@ dependencies, not a sequence of research tasks to repeat.
 | Native scheduling and depth bounds | [T-depth schedule](T_DEPTH_COMPILER.md): exact shared-control phase/Fredkin batches, routing, two-dirty predicates, and count-to-depth lower-bound transfer |
 | Angular approximation | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md), Section 1: full-frame square-sum bound for ideal angle perturbations |
 
-The compressed-column improvement has a separate dependency chain:
+The stronger linear-precision special case retains its separate dependency chain:
 
 | Part of the sublinear-depth argument | Proof dependency and role |
 |---|---|

@@ -87,24 +87,24 @@ Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
 
 ## Large-width T-depth
 
-For complete real frames, some absolute $`c>0`$ makes the
-[precision-uniform compressed-column theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-available for every integer $`6\le L\le cn`$, two clean flags,
-and every $`b\ge17(L+n+7)`$. Define
+The [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md)
+applies to complete real frames for every $`n\ge1`$, integer
+$`L\ge6`$, two clean flags, and every $`b\ge17(L+n+7)`$.
+Define
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
 One circuit has error at most $`2^{-L}`$ in the full initialized-isometry
 norm and simultaneous bounds with absolute constants:
 
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+F(n,L)).
 ```
 
-Count is worst-case optimal throughout this precision and width range.
+Count is worst-case optimal at every eligible precision and width.
 The inherited lower bounds also match depth on every nonempty interval
 
 ```math
@@ -112,28 +112,31 @@ The inherited lower bounds also match depth on every nonempty interval
 \qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
 ```
 
-At sufficient $`b=\Theta(\sqrt{NL})`$, precision
-$`L=O(\sqrt n)`$ retains $`O(\sqrt n\log(n+2))`$ depth.
-In particular, $`L=\lfloor\sqrt n\rfloor`$ has that depth
-and error at most $`2^{-\lfloor\sqrt n\rfloor}`$, for sufficiently
-large n. More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
-The absolute constant c is an existence threshold, not a practical crossover.
+The [high-precision branch](../research/depth/HIGH_PRECISION_DEPTH.md)
+gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$,
+with the same count, Clifford, and error bounds. The
+[whole-frame binary branch](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
+and the [retained baseline](UNIFORM_PRECISION_DEPTH.md) complete the
+all-precision splice without changing the literal dirty threshold.
+Every source preparation, query, actual inverse, and work-return error
+is charged. Classical preprocessing terminates, with no efficiency claim.
 
-The [shared-gradient construction](../research/depth/SHARED_GRADIENT_RECOVERY.md)
-pays native phase-source preparation and actual return once over early
-recovery. Its exact arithmetic uses explicitly priced tables, and recovery
-reflects only the initialized work outside the live gradient. The
-[shared binary terminal compiler](../research/depth/SHARED_BINARY_TERMINAL.md)
-uses a separate capped geometric source across the terminal stream.
-Retained failure history and one complete-stream recovery preserve all
-intermediate accepted-path projections. A protected logarithmic bank
-holds its conditional work, leaving only logarithmically many deepest
-layers to the capped compiler. With $`p=L+\log(n+2)`$, terminal
-depth is $`O(NL/b^2+p\log(n+2))`$, with the same count and
-Clifford budgets. Classical preprocessing terminates, with no efficiency
-claim.
-[Result D](UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
-retains its all-precision bounds outside this subrange.
+For some absolute $`c>0`$, the
+[compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains the stronger $`\log_2(n+2)`$ dependence on
+$`6\le L\le cn`$:
+
+```math
+D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
+```
+
+At sufficient $`b=\Theta(\sqrt{NL})`$, precision $`L=O(\sqrt n)`$
+retains $`O(\sqrt n\log(n+2))`$ depth. In particular,
+$`L=\lfloor\sqrt n\rfloor`$ has that depth and error at most
+$`2^{-\lfloor\sqrt n\rfloor}`$, for sufficiently large n.
+More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
+Its early phase-gradient source and terminal binary source are separately
+charged. The small absolute c is not a practical crossover estimate.
 
 The separate fixed-accuracy statement covers every $`n\ge1`$.
 For every fixed $`0\lt\eta\le1/64`$, put

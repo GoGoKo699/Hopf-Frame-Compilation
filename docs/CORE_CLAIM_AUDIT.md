@@ -21,10 +21,10 @@ baseline, and finite evidence. Its older Result C is a retained supporting
 construction. A, B, and D retain their distinct resource statements.
 
 A separate reconstruction below checks the
-[large-width depth construction](../research/depth/SUBLINEAR_T_DEPTH.md).
-It preserves C and the all-precision D theorem while establishing an
-absolute-constant refinement through a small linear-precision range.
-Its fixed-accuracy specialization gives sublinear depth at sufficiently
+[all-precision depth theorem](../research/depth/ALL_PRECISION_DEPTH.md),
+which gives Result D optimal count at every eligible precision and width.
+The compressed-column construction remains a stronger linear-precision
+special case; fixed accuracy retains sublinear depth at sufficiently
 large constant square-root dirty width.
 
 ## Claim-to-proof decisions
@@ -104,53 +104,54 @@ witness belongs to both families.
 
 <a id="fixed-accuracy-large-width-depth-audit"></a>
 
-## Precision-uniform large-width depth audit
+<a id="precision-uniform-large-width-depth-audit"></a>
 
-The [uniform extension](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+## All-precision count and depth audit
+
+The [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md)
 gives complete real frames a circuit with two initialized flags, error
-at most $`2^{-L}`$, and absolute constants for every integer
-$`6\le L\le cn`$ and $`b\ge17(L+n+7)`$, for some absolute
-$`c>0`$. Define
+at most $`2^{-L}`$, and absolute constants for every $`n\ge1`$,
+integer $`L\ge6`$, and $`b\ge17(L+n+7)`$. Define
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
 Then
 
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+F(n,L)).
 ```
 
 The bounds hold simultaneously in the full initialized-isometry contract.
-Count is optimal throughout this range; count and depth match through
-$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty. The
-fixed-accuracy all-n statement retains $`O_\eta(\sqrt n\log(n+2))`$
-depth at sufficient square-root width. Optimal depth remains open, and D
-retains its all-precision guarantee outside the new subrange.
+Count is optimal throughout; count and depth match through
+$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
+For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
+Optimal depth beyond the stated matching range remains open.
 
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
-| Imported state source | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3) supplies coarse Boolean-phase state approximation and LCU/amplification structure. Its ancillary allocation is not treated as a two-clean implementation. |
-| Effective coherent preparation | The [descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) uses a local strict residual search, a common geometric coefficient state, and source-label-dependent attenuation. It terminates at zero residuals without equality decisions. Orthogonal tag/prefix sectors prevent a dimension factor in source-isometry error. |
-| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. Exact arithmetic echoes give full-space inactive identity, including occupied programs and source registers. The baseline calibration remains separately available. |
-| Early shared precision source | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md) prepares the gradient once and applies its actual inverse after the full early word. Exact addition is computed, swapped, and uncomputed using explicitly charged tables; a short angle-sum table handles the coefficient bank. Every completed native macro preserves the ideal-gradient sector. |
-| Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. Recovery reflects initialized work outside the live gradient. A near-isometry completion within the ideal-gradient sector controls actual forward and inverse words; source-boundary error is charged globally. Guarded amplitude amplification retains its literal active-sector sign. |
-| Early resource budgets | A protected suffix of $`M=O(L+\log(n+2))`$ holds simultaneous conditional scratch. The cutoff explicitly absorbs the arithmetic tables' exponential precision dependence and the large queries' polynomial factors into the early count and width budgets. |
-| Shared binary terminal budget | The [terminal compiler](../research/depth/SHARED_BINARY_TERMINAL.md) shares a separate capped geometric source across the middle terminal layers. Retained failure history enforces intermediate accepted-path projections, and one recovery returns the complete stream. Its residual dictionary has sixteen fixed types; source, padding, labels, and history fit a protected logarithmic bank. Logarithmically many capped bottom layers finish the frame, giving $`O(NL/b^2+p\log(n+2))`$ terminal depth for $`p=L+\log(n+2)`$, with the stated count and Clifford budgets. |
-| Literal-width splice | Below $`b=\sqrt{N/n}`$, the retained compiler absorbs $`nL`$ into $`NL/b^2`$. Above it, early work fits uniformly in L after one absolute dimension cutoff. The retained compiler covers the finite exceptional dimensions with one absolute constant and supplies the alternative $`nL`$ depth term. |
-| Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) uses an explicit factorization contract and the balanced Haar frame. Its exact and approximate bounds concern normalization only; they supply no unrestricted native-depth lower bound. |
+| All-precision splice | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70, selects complete circuits while preserving optimal count, the elementary Clifford budget, full error, and the literal dirty threshold. |
+| Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68, charges its source, native queries, complete recovery, and simultaneous workspace without assuming supplied precision states. |
+| High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69, gives $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with the same count and Clifford bounds. Its proof covers the stated literal allocation and bounded dimensions. |
+| Alternative depth and literal-width fallback | The [retained uniform compiler](UNIFORM_PRECISION_DEPTH.md) supplies $`O(NL/b^2+nL)`$ depth. The all-precision proof controls its count when selecting this branch; its $`nL`$ count term is not dropped at arbitrary precision. |
+| Stronger linear-precision result | The [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) retains $`\log_2(n+2)`$ for $`6\le L\le cn`$. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) keep their own exact inactive guards, complete-column recovery, failure history, and source-return comparisons. |
+| Imported state source | GKW v3, Lemma 3.2 and Section 3.3, supplies the coarse Boolean-state premise used by the compressed-column construction. Its ancillary allocation is not imported as a two-clean implementation; local coherent source and native schedules remain necessary. |
+| Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) concerns normalization under its explicit row/column factorization contract. It supplies no unrestricted native-depth lower bound. |
 
-An occupied active angle program represents its XOR-offset word, so the
-audit does not identify initialized-program accuracy with a specified
-full-space row rotation. The recovery comparison instead includes the
-actual normalized source outputs and all scratch leakage. The original
-terminal-zero predicate is reversed only after source return; unitary
-telescoping covers its leakage and the following tail without a reset.
-The absolute linear-precision restriction and dimension cutoff enforce
-simultaneous conditional workspace and table budgets; they are not
-claims about practical crossover sizes.
+At sufficient $`b=\Theta(\sqrt{NL})`$, the linear-precision
+special case gives sublinear depth for $`L=o(n/\log(n+2))`$.
+The fixed-accuracy all-n statement retains
+$`O_\eta(\sqrt n\log(n+2))`$ depth at sufficient square-root width.
+
+Every selected branch includes source leakage, dirty/reference inputs,
+literal phases, and actual inverse words in its full comparison.
+Occupied programs are not silently identified with initialized programs.
+Original activity predicates are erased only after the corresponding
+protected work returns; unitary error composition never assumes a reset.
+Absolute cutoffs enforce resource bounds without making practical
+crossover claims. Complete arguments remain in the linked proof homes.
 
 ## Shared operator and operational contract
 
@@ -179,7 +180,6 @@ receipt hashes are retained.
 
 This is internal proof reconstruction, not external technical review or
 formal proof certification. The selected count package is ready for
-manuscript development when requested. The large-width construction
-establishes a precision-uniform large-width refinement and extends the
-matching width range. Optimal depth beyond the stated matching interval
-remains a separate question.
+manuscript development when requested. Result D now has all-precision
+optimal count and simultaneous depth bounds. Optimal depth beyond the
+stated matching intervals remains a separate question.

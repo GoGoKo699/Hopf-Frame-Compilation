@@ -234,65 +234,54 @@ operator guarantees and establishes no new depth bound.
 
 ## 5. Result D: count and depth on the same circuit
 
-The [uniform-precision theorem](docs/UNIFORM_PRECISION_DEPTH.md#1-the-uniform-theorem-and-its-stronger-low-precision-corollary)
-uses two external clean flags and $`b\ge17(L+n+7)`$ dirty qubits:
+The [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
+uses two external clean flags and $`b\ge17(L+n+7)`$ dirty qubits,
+for every $`n\ge1`$ and integer $`L\ge6`$. Define
 
 ```math
-T=O(\sqrt{NL}+NL/b+nL),\quad D_T=O(NL/b^2+nL),\quad G=O(NL).
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
-Its late groups use blocked bilinear queries. Unequal indicator widths
-preserve square-root precision dependence in count while retaining the
-query depth bound. The proof sums the capped-precision tails and fits the
-simultaneous helper peaks inside the literal reservation.
-
-For early groups, a charged unary-source schedule works through
-$`6\le L\le\log_2(n+2)/16`$. The explicit cutoff is uniformly
-sublinear in $`n`$, giving
+One complete real-frame circuit has full initialized-isometry error at
+most $`2^{-L}`$ and simultaneous bounds with absolute constants:
 
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad D_T=O(NL/b^2+n),\qquad G=O(NL).
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-At higher precision the existing hybrid's additional logarithmic term is
-absorbed by $`nL`$. A finite-size fallback keeps all constants absolute.
-This is an asymptotic sufficient range, not a practical crossover estimate.
+Count is worst-case optimal at every eligible width. Dividing the inherited
+count lower bound by physical width also matches depth throughout every
+nonempty interval ending at $`b=\sqrt{NL/F(n,L)}`$.
 
-The inherited count lower bound divided by physical width gives matching
-count and depth on $`17(L+n+7)\le b\le\sqrt{N/n}`$, extended to
-$`17(L+n+7)\le b\le\sqrt{NL/n}`$ in the low-precision range,
-whenever the relevant interval is nonempty. On those intervals,
-$`T^\star=\Theta(NL/b)`$ and $`D_T^\star=\Theta(NL/b^2)`$.
-The sufficient condition $`L\le N/n^2`$ also absorbs $`nL`$ in
-count at every eligible width; it does not establish depth optimality there.
+The proof combines a [whole-frame binary-source schedule](research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
+with a [high-precision schedule](research/depth/HIGH_PRECISION_DEPTH.md).
+The latter gives the stronger $`D_T=O(NL/b^2+L)`$ whenever
+$`L>N/n^2`$, with the same count and Clifford bounds. The
+[retained uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) supplies
+the $`nL`$ depth alternative and covers literal-width and bounded-dimension
+fallbacks. Each branch charges preparation, queries, predicates, actual
+inverses, and full work return; selecting a branch retains all three
+resource bounds on one circuit.
+
+For some absolute $`c>0`$, the
+[compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains the stronger $`\log_2(n+2)`$ dependence for
+$`6\le L\le cn`$:
+
+```math
+D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
+```
+
+Its early phase gradient and terminal binary source are separately charged.
+At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
+sublinear depth when $`L=o(n/\log(n+2))`$; fixed accuracy retains
+$`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth.
 
 This is a real-frame theorem, with no automatic complex extension.
 T-depth permits arbitrary Clifford interlayers; their gate count remains
-charged, but this is not total circuit depth. Earlier schedules remain
-useful at some smaller reservations or higher precisions. The separate
-[compressed-column construction](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-gives an absolute-constant refinement for $`6\le L\le cn`$, with
-some absolute $`c>0`$, at the same literal dirty threshold. Put
-
-```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
-```
-
-It gives $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, and
-$`D_T=O(NL/b^2+F(n,L))`$ on one circuit. A
-[shared native phase gradient](research/depth/SHARED_GRADIENT_RECOVERY.md)
-is prepared and returned once across early recovery. The
-[shared binary terminal compiler](research/depth/SHARED_BINARY_TERMINAL.md)
-uses a separate capped geometric source across its terminal stream,
-retains failure history, and recovers the stream once. A protected
-logarithmic bank holds its conditional work. Every arithmetic table,
-program query, predicate, and final layer remains charged. Count is optimal throughout
-the stated range, and depth also matches through
-$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
-At sufficient square-root width, fixed accuracy retains
-$`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth; shrinking error
-$`2^{-L}`$ retains sublinear depth for $`L=o(n/\log(n+2))`$.
-The all-precision bounds above remain available outside this subrange.
+charged, but this is not total circuit depth. Optimal depth beyond the
+stated matching intervals remains open.
 
 <a id="6-operational-consequence-open-gaps-and-evidence"></a>
 

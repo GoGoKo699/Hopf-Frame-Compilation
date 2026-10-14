@@ -289,6 +289,12 @@ lower bound.
 
 ## 6. The tail improves; the complete-frame frontier is unchanged
 
+This section records the effect of the indicator substitution alone.
+The later [all-precision construction](ALL_PRECISION_DEPTH.md) also
+changes the complete-frame schedule. In particular its
+[high-precision branch](HIGH_PRECISION_DEPTH.md) uses Section 5 on
+completed real masks, with a separate literal-width and native-depth proof.
+
 Use the uniform low-precision unary schedule with
 $`6\le L\le\log_2(n+2)/16`$, source parameter $`L'=L+2`$,
 and its natural cutoff M. Its proof gives

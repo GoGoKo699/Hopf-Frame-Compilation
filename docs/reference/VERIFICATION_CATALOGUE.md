@@ -77,7 +77,7 @@ establish the one-clean count guarantees at the [stated reservations](../../manu
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
-[uniform-precision construction](../UNIFORM_PRECISION_DEPTH.md). The existing
+[all-precision construction](../../research/depth/ALL_PRECISION_DEPTH.md). The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
 existing resource comparisons and classical baselines remain documented.
@@ -108,6 +108,19 @@ supply the all-size statements within their declared interfaces.
 | Completed-group resynthesis | [Source-program resynthesis §§5–6](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#5-completed-groups-admit-independent-gauges-without-connectors) | [source_group_resynthesis](../../compiler_robust_hopf/source_group_resynthesis.py); [tests](../../tests/test_source_group_resynthesis.py) | Exact rational coefficient/mask tables and raw-connector sign witness; bounded complete recovery/gauge words in faithful compact Clifford coordinates, retaining both central sectors and leakage. No large physical-core simulation or gate emitter. |
 
 ### Detailed finite checks
+
+The [all-precision depth theorem](../../research/depth/ALL_PRECISION_DEPTH.md)
+adds two analytic schedule proofs. The
+[whole-frame stream](../../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
+reuses the existing shared-binary-terminal native identities with an explicit
+growing source cardinality. The
+[high-precision schedule](../../research/depth/HIGH_PRECISION_DEPTH.md)
+uses exact equality of completed real masks after conjugate lifting,
+preserving their full rejected operators and actual replays. Existing
+shared-source, conjugate-recovery and blocked-query checks support those
+component contracts. They do not test the new asymptotic cutoffs or establish
+the all-precision theorem by extrapolation. No receipt is changed and no
+general native emitter is claimed.
 
 The [packed rejection-bank proof](../../research/endpoint/PACKED_REJECTION_BANKS.md)
 has [integer-routing and full-unitary diagnostics](../../compiler_robust_hopf/packed_rejection_banks.py)

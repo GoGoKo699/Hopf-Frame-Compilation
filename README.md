@@ -110,31 +110,34 @@ the layerwise baseline covering low precision and bounded dimension.
 The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
 retain their own workspace reservations.
 
-**D. Simultaneous T-count and T-depth.** For complete real frames,
-$`a=2`$ and $`b\ge17(L+n+7)`$ give one circuit with absolute constants:
+**D. Optimal T-count with all-precision T-depth bounds.** For every
+$`n\ge1`$, integer $`L\ge6`$, two clean flags, and
+$`b\ge17(L+n+7)`$, the [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
+gives one complete real-frame circuit with absolute constants. Define
 
 ```math
-T=O(\sqrt{NL}+NL/b+nL),\qquad D_T=O(NL/b^2+nL).
+F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 ```
 
-For $`6\le L\le\log_2(n+2)/16`$, the same theorem strengthens this to
+Then
 
 ```math
-T=O(\sqrt{NL}+NL/b),\qquad D_T=O(NL/b^2+n).
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
+D_T=O(NL/b^2+F(n,L)).
 ```
 
-Both resources match simultaneously on the following intervals, when nonempty:
+T-count is worst-case optimal at every eligible width. Count and depth
+match simultaneously through $`b\le\sqrt{NL/F(n,L)}`$, whenever
+the interval above the literal lower threshold is nonempty. In the
+high-precision regime $`L>N/n^2`$, the stronger depth bound is
+$`O(NL/b^2+L)`$, with the same count and Clifford budgets.
 
-| Precision regime | Matching dirty-width interval |
-|---|---|
-| Every $`L\ge6`$ | $`17(L+n+7)\le b\le\sqrt{N/n}`$ |
-| $`6\le L\le\log_2(n+2)/16`$ | $`17(L+n+7)\le b\le\sqrt{NL/n}`$ |
-
-There, $`T^\star=\Theta(NL/b)`$ and $`D_T^\star=\Theta(NL/b^2)`$.
-The [uniform-precision proof](docs/UNIFORM_PRECISION_DEPTH.md) charges
-source preparation, queries, and return on this same circuit. T-depth allows
-arbitrary Clifford interlayers and is distinct from total depth. No automatic
-complex extension or unrestricted depth optimality is claimed.
+The error is at most $`2^{-L}`$ in the full initialized-isometry norm.
+Source preparation, queries, actual inverses, and work return are charged.
+T-depth allows arbitrary Clifford interlayers and is distinct from total
+depth. No automatic complex extension or unrestricted depth optimality is
+claimed. The [retained baseline](docs/UNIFORM_PRECISION_DEPTH.md)
+supplies the alternative $`nL`$ depth term and literal-width fallbacks.
 
 All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
@@ -165,8 +168,8 @@ The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The separate [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-has an absolute-constant refinement: for some absolute $`c>0`$,
+T-depth bound. The [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+replaces the logarithm above by $`\log_2(n+2)`$: for some absolute $`c>0`$,
 $`6\le L\le cn`$ and every $`b\ge17(L+n+7)`$, two clean
 flags suffice for
 
