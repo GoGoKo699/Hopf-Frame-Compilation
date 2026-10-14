@@ -5,9 +5,9 @@
 The selected publication is **one full-length theoretical compiler paper**
 on prescribed Hopf differential frames. This is its canonical claim ledger:
 Results A–D, retained corollaries, and the selected precision-uniform
-two-clean count theorem and sharp endpoint, with their resource and error
-contracts. The two-clean count claims have their own literal allocations;
-they do not change A–D.
+one-clean count theorem, optimal banked count, and sharper two-clean endpoint,
+with their resource and error contracts. This selected frontier has its own
+literal allocations and does not change Results A–D.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -130,10 +130,10 @@ and matching banked bound at twice that reservation.
 
 | Corollary | Statement and placement |
 |---|---|
-| Dirty-bank refinement | With $`a=1`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. State beside C; give bank scheduling in the appendix. |
+| Grouped dirty-bank refinement | With $`a=1`$, $`b\ge2(L+n+7)`$, the grouped compiler gives $`T=O(\sqrt{NL}+L\ell_*(n)+NL/b)`$, $`G=O(NL)`$. It matches the existing lower bound if $`\ell_*(n)^2L\le N`$ or $`b\le N/\ell_*(n)`$, subject to that allocation. Retain its construction beside C as a dependency of the selected optimal banked theorem below; give scheduling in the appendix. |
 | Zero-clean real-frame baseline | The [signal-symmetry corollary](../docs/ONE_CLEAN_COMPILER.md#9-a-borrowed-signal-suffices-for-real-rotations) gives $`T=O(N+nL)`$, $`G=O(NL)`$, with $`a=0`$ and $`b\ge L+n+7`$. Its layerwise circuit borrows the signal qubit and includes its return error. This does not extend the grouped or literal-phase constructions to zero clean qubits. |
 | Literal diagonal synthesis | For $`\ell\ge6`$, error $`2^{-\ell}`$ and $`T=O(N+\ell)`$ use base dirty reservation $`B=\ell+n+7`$ with one clean flag, or $`B=n+1+\lceil(\ell+4)/2\rceil`$ with two. At $`b\ge2B`$, $`O(\sqrt{N\ell}+\ell+N\ell/b)`$ matches the diagonal lower bound; $`G=O(N\ell)`$. |
-| Complex magnitude frame | Compose the one-clean grouped real frame and literal diagonal, with separately supplied certified phases and error $`\eta/2`$ per factor. At $`a=1`$, this gives $`O(N+L\ell_*(n))`$ T gates at $`b\ge L+n+8`$, or $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$, with $`G=O(NL)`$. This compiles $`D_\phi W_{\mathbb R}`$; it is not arbitrary complex-unitary synthesis. |
+| Complex magnitude frame | Compose the one-clean grouped real frame and literal diagonal, with separately supplied certified phases and error $`\eta/2`$ per factor. At $`a=1`$, this gives $`O(N+L\ell_*(n))`$ T gates at $`b\ge L+n+8`$, or $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ at $`b\ge2(L+n+8)`$, with $`G=O(NL)`$. This earlier construction supports the selected one-clean theorem below. It compiles $`D_\phi W_{\mathbb R}`$; it is not arbitrary complex-unitary synthesis. |
 | Smaller clean/dirty allocations | For every $`a,b\ge0`$, the real-frame borrowed-workspace compiler gives $`T=O(NL/q+L\sqrt N)`$ and $`G=O(NL)`$. Its matching splice requires $`h+b\le c\sqrt N`$ for fixed $`c>0`$. Retain as an appendix comparison; it can beat the grouped bound at low precision. |
 | Fixed-parameter QBP robustness | Exact substitution preserves the global record. Magnitude bias is at most $`4\lvert a_j\rvert(\eta+\eta_O)`$; the separate phase-vector bias is at most $`4(\eta+\eta_O)`$. The full complex gradient, reflection-sum observables, rounded classical weights, and correlated dirty-bank reuse have explicit error and cost budgets. |
 
@@ -191,41 +191,62 @@ end-to-end application advantage.
 
 <a id="selected-endpoint-count-claim-and-the-remaining-depth-question"></a>
 
-## Selected two-clean count theorem and the remaining depth question
+<a id="selected-two-clean-count-theorem-and-the-remaining-depth-question"></a>
 
-The [precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-is selected beside A–D. For every integer $`L\ge6`$ and $`n\ge3`$,
-its complete-input error is at most $`2^{-L}`$ (hence at most
-$`\eta`$ under the convention above), and it gives
+## Selected one-clean count frontier and the remaining depth question
 
-```math
-T=O(N+L),\qquad a=2.
-```
+The [precision-uniform one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+and [optimal banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+are selected beside A–D. For every integer $`L\ge6`$ and $`n\ge3`$,
+their complete-input error is at most $`2^{-L}`$ (hence at most
+$`\eta`$ under the convention above). Define the base dirty reservation B by
 
-| Family | Dirty reservation |
+| Family | Base dirty reservation B |
 |---|---|
-| Complete real frame | $`b\ge L+n+7`$ |
-| Phase-dressed complex magnitude frame | $`b\ge L+n+8`$ |
+| Complete real frame | $`L+n+7`$ |
+| Phase-dressed complex magnitude frame | $`L+n+8`$ |
 
-At **exactly** these base reservations and $`L\ge\max\{6,n\}`$,
-the worst-case count matches:
+Both families have, with universal constants,
 
 ```math
-T^\star=\Theta(N+L).
+a=1,\qquad b\ge B,\qquad T=O(N+L),\qquad G=O(NL).
 ```
 
-Indeed, the physical width is $`q=L+2n+9`$ or $`L+2n+10`$,
-so $`q=\Theta(L)`$ and the
+At **exactly** $`b=B`$ and $`L\ge\max\{6,n\}`$, the worst-case
+count matches: $`T^\star=\Theta(N+L)`$. The physical width is now
+$`q=L+2n+8`$ or $`L+2n+9`$, so $`q=\Theta(L)`$ and the
 [existing family lower bound](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-$`\Omega(L+NL/q)`$ is $`\Omega(N+L)`$. This matching claim
-does not extend to arbitrary larger width when $`L\lt N`$ or to
-$`L\lt n`$.
+$`\Omega(L+NL/q)`$ is $`\Omega(N+L)`$. This base-width optimality
+statement does not assert a matching bound when $`L\lt n`$.
 
-The upper-bound constant is universal, independent of both n and L. The
-high-precision construction separates source precision from logical mode allocation; the
-existing $`O(N+nL)`$ baseline covers $`L\le N/n`$ and bounded n.
-At $`L=N`$, the [sharper complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-retains the real-frame allocation. Each family then has the worst-case count
+For every $`L\ge6`$ and $`b\ge2B`$, the count frontier is
+
+```math
+a=1,\qquad
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O(NL).
+```
+
+At these banked widths, $`q=\Theta(b)`$ and the same worst-case
+family lower bound matches. The upper circuit charges source construction,
+queries, coarse interlayers, actual inverses, and all workspace return.
+It does not supply an optimal T-depth or a joint count/depth theorem.
+
+The high-precision mechanism separates source precision from logical mode
+allocation. Lifting the native sources into two conjugate sectors permits
+an arbitrary borrowed signal: both recovered sectors agree on the real
+frame. One external clean predicate remains. Exact dirty-bank queries
+preserve the source words and their rejection operators while reducing
+lookup count. A baseline or grouped splice covers modest precision and
+bounded n. Literal leaf phases compose with the real frame at error
+$`2^{-L-1}`$ per factor using the same sole clean flag and dirty pool.
+The real and complex targets are prescribed frames; phase derivatives
+remain a separate measurement stream.
+
+The [earlier two-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+retains its independent proof. At $`L=N`$, its
+[sharper complex-magnitude endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+saves one dirty qubit relative to the uniform complex reservation:
 
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
@@ -233,37 +254,21 @@ a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
 ```
 
-The real-frame construction charges native source transitions and packing,
-retains rejected paths in disjoint logical modes, and returns all work by
-one final recovery. The complex-magnitude corollary composes a packed literal
-leaf-phase diagonal using the same two flags and dirty pool. Both factors'
-errors and all work return are included in the common full-isometry norm.
-This two-clean count theorem does not change Results A–D or assert new
-Clifford-count, one-clean, or T-depth guarantees. Its uniform statement is an
-upper bound across all L; the matching corollaries have the narrower
-precision and workspace hypotheses just stated.
-For real frames at one clean qubit, Result C still gives
-$`T=O(N\ell_*(n))`$ and $`G=O(N^2)`$ at the displayed dirty allocation.
-The
-[root-angle precision witness](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
-proves the displayed lower bound at arbitrary workspace width under the
-literal-phase contract. The complex magnitude family inherits it by taking
-all leaf phases to be zero. The target is $`D_{\rm ph}W_{\mathbb R}`$,
-not an arbitrary complex unitary; phase derivatives retain their separate
-measurement stream.
-
-The grouped precision charge is not claimed necessary for one-clean
-compilation, nor are these count theorems claimed for every linear
-dirty prefactor.
-Source-interface restrictions do not supply additive full-frame lower bounds.
+The [root-angle precision witness](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+proves this lower bound at arbitrary workspace width under the literal-phase
+contract; zero leaf phases include it in the complex magnitude family.
+The selected one-clean result also gives linear count for real frames at
+this dirty allocation. The older grouped precision charge is therefore
+not a necessary one-clean cost. None of these theorems asserts the same
+frontier for every linear dirty prefactor or every smaller dirty budget.
+Source-interface restrictions remain distinct from unrestricted lower bounds.
 
 At fixed accuracy and sufficient $`b=\Theta_\eta(\sqrt N)`$, the
 complete real-frame schedule attains $`T=\Theta_\eta(\sqrt N)`$ with
 $`D_T=O_\eta(n)`$. The unrestricted depth lower bound remains
 $`\Omega(1)`$. This large-width open problem is separate from the resolved
-two-clean count theorem. Result D's literal width threshold excludes the
-displayed endpoint allocation, and its unary-source mechanism does not scale
-to that precision.
+one-clean count frontier. Result D retains its two-clean circuit and
+literal width threshold; the new count theorem does not improve its depth.
 
 The [research catalogue](../research/README.md) preserves the endpoint
 dependencies and earlier linear-count native compilers for disjoint SU
@@ -303,12 +308,12 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C and compiler corollaries | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md), [conditional-suffix Sections 1–10](../docs/CONDITIONAL_SUFFIX_COMPILER.md), and [operator-source primitives](../docs/OPERATOR_SOURCE_COMPILER.md); [borrowed-workspace proof](../docs/BORROWED_WORKSPACE_COMPILER.md) supplies queries, sector echoes, and the arbitrary-budget comparison |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
-| Selected two-clean count theorem | [Precision-uniform growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count), with the [packed literal diagonal](../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames): $`O(N+L)`$ at the stated real and complex reservations; the [sharp endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint) and [root-angle lower bound](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness) give $`\Theta(N)`$ at $`L=N`$ and $`b=N+n+7`$ |
+| Selected one-clean count frontier | [Uniform one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md) and exact dirty word banks: $`O(N+L)`$ at the stated base reservations, optimal $`\Theta(\sqrt{NL}+L+NL/b)`$ at twice those reservations, and $`G=O(NL)`$; retain the [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint) |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |
 
 The claim architecture follows the target, shared contract, Results A–D,
-compiler corollaries, selected two-clean count theorem, and operational consequence.
+compiler corollaries, selected one-clean count frontier, and operational consequence.
 Technical
 appendices contain exact echo/decoder/router schedules, source preparation,
 dirty queries, residual composition, amplification, error and resource sums,

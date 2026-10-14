@@ -3,7 +3,7 @@
 [Core verification map](../VERIFICATION.md) · [Source catalogue](SOURCE_CATALOGUE.md) · [Tests](../../tests/README.md)
 
 This catalogue preserves detailed fixture contracts and software boundaries.
-The core map links Results A–D and the two-clean count theorems to their proofs and
+The core map links Results A–D and the complete-frame count theorems to their proofs and
 principal evidence; this page records the smaller input, precision,
 workspace, and gate-emission
 scopes of the individual checks. A research fixture's presence here does
@@ -14,7 +14,7 @@ not prove universal statements or asymptotic optimality.
 
 | Material | Entry point | Scope |
 |---|---|---|
-| Real and complex-magnitude two-clean count | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, and a separate bounded phase-dressing composition check |
+| Real and complex-magnitude one-clean count | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -72,9 +72,11 @@ general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The
 [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-establish $`O(N+L)`$ count for prescribed complete real and
-phase-dressed complex magnitude frames within their two-clean reservations;
+and its [one-clean precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+establish $`O(N+L)`$ count and $`O(NL)`$ Clifford work for prescribed
+complete real and phase-dressed complex magnitude frames. Their
+[banked count frontier](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching once the respective base dirty reservation is doubled;
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
@@ -96,7 +98,7 @@ supply the all-size statements within their declared interfaces.
 |---|---|---|---|
 | Joint source completion | [Original-tree residual §5](../../research/endpoint/ORIGINAL_TREE_RESIDUAL.md#5-shared-factors-contraction-slack-and-the-completion-gap) | [source_completions](../../compiler_robust_hopf/source_completions.py); [ordered-bank tests](../../tests/test_ordered_block_banks.py) | Regularized 4N-mode isometries, full-unitary extensions, cut/Gram bounds and rejected-space identities are finite matrix checks; the root-series obstruction is rational-exact. No fine source emitter. |
 | Ordered banks and native readout | [Ordered block banks](../../research/endpoint/ORDERED_BLOCK_BANKS.md) | [ordered_block_banks](../../compiler_robust_hopf/ordered_block_banks.py), [native_ordered_banks](../../compiler_robust_hopf/native_ordered_banks.py); [tests](../../tests/test_ordered_block_banks.py) | Exact integer schedules and rational witnesses; bounded source matrices; native right-readout and coarse-prefix words with small full dirty interpreters and occupied/entangled-vector checks. No fine left-source or endpoint emitter. |
-| Conjugate-sector recovery | [Conjugate signal recovery](../../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | [conjugate_recovery](../../compiler_robust_hopf/conjugate_recovery.py); [tests](../../tests/test_conjugate_recovery.py) | Exact native recovery counterexample and gate lifts; bounded full-sector recovery polynomials and phase-error matrices. Accepted-sector success alone does not certify dirty-signal return; no fine source is emitted. |
+| Conjugate-sector recovery | [Conjugate signal recovery](../../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | [conjugate_recovery](../../compiler_robust_hopf/conjugate_recovery.py); [tests](../../tests/test_conjugate_recovery.py) | Exact native recovery counterexample and gate lifts; bounded full-sector recovery and phase-error matrices; 16-dimensional initialized-real-target recovery excludes the borrowed signal from its projector and retains full-operator leakage, actual inverse, and dirty/reference inputs. Its source is supplied; no fine source is emitted. |
 | Boundary rank and forest deflation | [Rank-weighted compiler](../../research/endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md), [matching/leaf deflation](../../research/endpoint/MATCHING_LEAF_DEFLATION.md) | [boundary_refinement](../../compiler_robust_hopf/boundary_refinement.py); [tests](../../tests/test_boundary_refinement.py) | Finite residual-rank, reflection-LCU/recovery, boundary cancellation, transport and closed-forest checks; exact combinatorial matching/bin checks. Floating ranks do not supply a native compiler or endpoint error certificate. |
 | Paid logical encodings | [Paid encodings](../../research/endpoint/PAID_LOGICAL_ENCODINGS.md) | [paid_logical_encodings](../../compiler_robust_hopf/paid_logical_encodings.py); [tests](../../tests/test_paid_logical_encodings.py) | Complete Boolean permutations, exact six-bit native matrix, encoded controls and bounded frame/code diagnostics. Encoders act on all inputs; zero remainders require the stated code. No arbitrary-angle core is emitted. |
 | Center-phase reflection family | [Centered phase reflections](../../research/endpoint/CENTERED_PHASE_REFLECTIONS.md) | [centered_phase_reflections](../../compiler_robust_hopf/centered_phase_reflections.py); [tests](../../tests/test_centered_phase_reflections.py) | One five-qubit native member: exact initialized columns and full actual inverse, with 144 T appearances. Floating checks test optimized floors and real-family identities; they do not certify general endpoint synthesis. |
@@ -311,13 +313,17 @@ supplies the full-space arena allocation, exact guards, summable native
 charges, literal dirty reservation, and unrestricted real-frame count
 theorem. Its [complex-magnitude corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 proves sequential phase dressing at the same endpoint allocation. The
-[precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-proves $`T=O(N+L)`$ for integer $`L\ge6,n\ge3`$, two clean
-flags, and $`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex
+[one-clean precision-uniform extension](../../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+proves $`T=O(N+L)`$ and $`G=O(NL)`$ for integer
+$`L\ge6,n\ge3`$, one clean flag, and $`b\ge L+n+7`$ for real
+or $`b\ge L+n+8`$ for complex
 magnitude frames. At the exact base widths and
 $`L\ge\max(6,n)`$, the existing lower bound gives worst-case
-$`\Theta(N+L)`$. The fixed $`L=N`$ theorem retains $`b=N+n+7`$
-for both families. All-size summability, fallback dispatch, and workspace
+$`\Theta(N+L)`$. The [banked frontier](../../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+gives matching $`\Theta(\sqrt{NL}+L+NL/b)`$ for all
+$`L\ge6`$ once the respective dirty reservation is doubled, with
+one clean flag and $`G=O(NL)`$. The fixed $`L=N`$ complex theorem
+retains $`b=N+n+7`$ with two clean flags. All-size summability, fallback dispatch, and workspace
 feasibility come from these proofs, not the schedule tests.
 
 The same suite's separate composition fixture uses one logical bit, two
@@ -334,6 +340,21 @@ direct sum is not native table emission. This bounded check does not realize
 the requested general precision or certify its all-size workspace bound. The fixtures
 and internal proof review do not constitute independent external review or
 a scalable native emitter.
+
+The [conjugate-recovery suite](../../tests/test_conjugate_recovery.py)
+separately checks a 16-dimensional word on an arbitrary borrowed signal,
+an initialized mode suffix, one logical bit, and one dirty bit. Its
+supplied source has a real accepted target and a complex complementary
+action. A native coarse interlayer and its actual lifted inverse test
+the whole-word conjugate construction. The recovery projector includes
+the original mode suffix and excludes the borrowed signal; both signal
+sectors and all eight signal/logical/dirty input columns are checked.
+A perturbation mixes signal and suffix sectors while acting on the dirty
+bit; the test retains nonzero leakage and checks the full-operator
+three-call hybrid, the actual inverse, and an eight-label reference with
+full Schmidt support. Negative controls add the signal to the projector
+or leave the coarse interlayer unlifted. This fixture supplies neither a
+fine source emitter nor evidence of asymptotic optimality by simulation.
 
 The [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact

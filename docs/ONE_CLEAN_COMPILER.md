@@ -22,10 +22,14 @@ count bounds for the phase-dressed complex magnitude frame, with
 $`b\ge L+n+8`$, by composing with a literal diagonal. These results
 reduce the sufficient clean allocation. [Section 9](#9-a-borrowed-signal-suffices-for-real-rotations)
 uses an exact flag symmetry to obtain the layerwise real-frame bound with
-zero clean qubits. The stronger grouped bound retains one clean qubit;
-the linear-T endpoint with one clean qubit remains open. The
-[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-settles the real-frame count endpoint with two clean flags.
+zero clean qubits. The separate
+[growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$, $`G=O(NL)`$, and one clean qubit for
+$`n\ge3`$ at these same respective dirty reservations. Its
+[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching for all $`L\ge6`$ once the corresponding dirty reservation
+is doubled. The source primitives and grouped bounds proved in this
+chapter retain their own statements below.
 
 ## 1. Contract and addressed primitive
 
@@ -524,9 +528,14 @@ T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
 
 The banked matching regimes extend to the fixed allocation $`a=1`$.
 The existing T-depth and simultaneous count/depth schedules retain their
-separately proved two-clean assumptions. At $`L=N`$ and $`b=N+n+7`$,
-the one-clean upper bound is still $`O(N\ell_*(n))`$. Every frame column
-is preserved within the displayed complete-input norm, so the existing
+separately proved two-clean assumptions. The separate
+[growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+improves the one-clean real count to $`O(N+L)`$ with the same dirty
+reservation; at $`L=N`$ this is $`O(N)`$. Its
+[banked extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+removes the iterated-logarithm factor from the displayed banked count
+for every $`n\ge3,L\ge6`$. Every frame column is preserved within
+the complete-input norm, so the existing
 [fixed-parameter QBP guarantee](QBP_APPROXIMATION.md) applies unchanged.
 
 ## 7. Literal diagonals and complete one-target multiplexors
@@ -665,7 +674,12 @@ The leaf-phase derivatives still use their separate direct signed one-hot
 stream; they are not additional frame columns. The result concerns the
 specified phase-dressed magnitude frame, not arbitrary complex unitaries.
 It does not extend the separately proved T-depth schedules to one clean
-qubit or close the one-clean linear-T endpoint.
+qubit. The separate
+[growing-source composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`O(N+L)`$ T-count at $`b\ge L+n+8`$, and its
+[banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching for all $`L\ge6,n\ge3`$ at $`b\ge2(L+n+8)`$.
+Both retain one clean qubit and $`G=O(NL)`$.
 
 ## 9. A borrowed signal suffices for real rotations
 
@@ -862,7 +876,7 @@ same target throughout, so its existing fixed-parameter QBP guarantee
 continues to apply.
 
 At $`L=N`$ this zero-clean construction has $`T=O(N\log N)`$.
-The stronger grouped count bound remains proved with one clean qubit;
-its initialized active-suffix predicate has not been removed by this
+The stronger grouped and growing-source count bounds use one clean qubit;
+their initialized active-suffix predicate has not been removed by this
 symmetry argument. No optimality, new lower bound, grouped zero-clean
 extension, or T-depth improvement follows from this corollary.

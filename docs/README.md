@@ -4,9 +4,10 @@
 
 The selected compiler package has four principal results: exact compilation,
 sufficient-clean matching T-count, one-clean compilation, and simultaneous
-T-count/T-depth tradeoffs for complete real frames. A selected precision-uniform
-two-clean count theorem and its sharper fixed-precision endpoint sit beside
-A–D. Start with the landing page and `REVIEW.md`, then follow the
+T-count/T-depth tradeoffs for complete real frames. Selected growing-source
+theorems add precision-uniform one-clean count and an optimal banked count
+frontier beside A–D, while retaining the earlier two-clean results.
+Start with the landing page and `REVIEW.md`, then follow the
 relevant claim below.
 
 ## Proof chapters
@@ -59,6 +60,9 @@ grouped real-frame bound and its banked refinement. The latter's Section 10
 extends the complete group construction to one initialized compiler flag.
 Conditional logical zeros are usable only on the active sector; the proofs
 also prove inactive identity on arbitrary inputs and the full return-error estimate.
+The selected [growing-source refinement](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+below improves the one-clean count while retaining these primitive proofs
+and their distinct corollaries.
 
 | Supporting proof | Why it remains in the package |
 |---|---|
@@ -126,21 +130,36 @@ optimality among all gradient algorithms or an end-to-end advantage.
 <a id="separate-endpoint-theorem"></a>
 
 <a id="selected-endpoint-count-theorem-and-complex-magnitude-corollary"></a>
+<a id="selected-precision-uniform-two-clean-count-theorem"></a>
 
-### Selected precision-uniform two-clean count theorem
+### Selected growing-source count theorems
 
-The [precision-uniform growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-gives $`T=O(N+L)`$ for every prescribed real or phase-dressed complex
+The [one-clean growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every prescribed real or phase-dressed complex
 magnitude frame, with $`n\ge3`$, integer $`L\ge6`$, error $`2^{-L}`$,
-and two clean flags. The dirty reservation is $`b\ge L+n+7`$ for real
+and one clean flag. The dirty reservation is $`b\ge L+n+7`$ for real
 frames and $`b\ge L+n+8`$ for complex magnitude frames. Its constants
-are independent of both n and L. The proof separates source precision
-from logical mode allocation and splices the growing-source construction
-with the existing low-precision and bounded-n baseline.
+are independent of both n and L. The proof lifts complete sources into
+conjugate sectors of a borrowed signal, retains the initialized anchor
+marker, and includes all actual leakage in recovery. The earlier
+[two-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+remains valid.
 At exactly the respective base dirty widths and $`L\ge\max\{6,n\}`$,
 the existing finite-width lower bound gives worst-case
-$`T^\star=\Theta(N+L)`$. This matching statement does not cover every
-larger dirty allocation.
+$`T^\star=\Theta(N+L)`$.
+
+The [banked refinement](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+uses one clean flag and gives
+
+```math
+T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O(NL),
+```
+
+for every $`n\ge3`$ and integer $`L\ge6`$, at
+$`b\ge2(L+n+7)`$ for real frames or $`b\ge2(L+n+8)`$ for complex
+magnitude frames. The upper construction and retained width-sensitive
+lower bounds match throughout these displayed banked regimes.
 
 The [fixed endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 retains unrestricted $`\Theta(N)`$ worst-case T-count for complete real
@@ -152,9 +171,10 @@ the full-isometry bound. The lower bound is $`2N-1`$ for both families.
 The [research index](../research/README.md) maps its native dependencies,
 earlier promised families, and limits of specific source or factorization
 models. The [endpoint statement](OPEN_PROBLEM.md) records the remaining
-large-width depth question. These selected count claims are not dependencies
-of Results A–D and supply no new one-clean, Clifford-count, or T-depth
-guarantee.
+large-width depth question. These selected count claims preserve the
+statements of Results A–D and supply no new T-depth or general native-emitter
+guarantee. The complex endpoint at $`b=N+n+7`$ above still uses two
+clean flags; the one-clean complex theorem reserves $`N+n+8`$ there.
 
 ### Completed changed-decoder supplement
 

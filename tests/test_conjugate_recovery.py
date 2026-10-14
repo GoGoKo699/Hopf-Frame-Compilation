@@ -116,6 +116,72 @@ class NativeSignalTests(unittest.TestCase):
         for gate in ('t', 'tdg'):
             self.assertEqual(sum(g[0] in ('t', 'tdg') for g in lift_native_word([(gate, 0)], 1)), 2)
 
+    def test_borrowed_signal_recovery_reflects_only_the_original_mode_anchor(self):
+        # Four wires: arbitrary signal r=3, initialized mode suffix f=2,
+        # logical x=1, and arbitrary dirty d=0. The source is supplied as a
+        # diagnostic unitary; only the coarse interlayer is a native word.
+        # This checks the initialized-real-target contract, not an emitter.
+        logical = np.array([[3., -4.], [4., 3.]]) / 5
+        target = np.kron(logical, np.eye(2))
+        reject = numerical(exact_native([('h', 0), ('s', 1), ('cx', 0, 1)], 2))
+        source = two_sector_source(target, reject)
+        coarse_word = [('h', 0), ('t', 1), ('cx', 1, 2), ('s', 0)]
+        coarse = numerical(exact_native(coarse_word, 3))
+        lifted_coarse = numerical(exact_native(lift_native_word(coarse_word, 3), 4))
+        fine = conjugate_pair(coarse @ source)
+        lifted_source = lifted_coarse.conj().T @ fine
+        np.testing.assert_allclose(lifted_source, conjugate_pair(source), atol=2e-12, rtol=0)
+
+        mode_anchor = np.eye(8)[:, :4]
+        anchor = np.kron(np.eye(2), mode_anchor)
+        reflection = 2 * anchor @ anchor.conj().T - np.eye(16)
+        target_with_signal = np.kron(np.eye(2), target)
+        wanted = anchor @ target_with_signal
+
+        def recovery(word, reflected=reflection):
+            return -word @ reflected @ word.conj().T @ reflected @ word
+
+        recovered = recovery(lifted_source)
+        np.testing.assert_allclose(recovered @ anchor, wanted, atol=3e-12, rtol=0)
+        np.testing.assert_allclose(recovered, conjugate_pair(recover(source)), atol=3e-12, rtol=0)
+        self.assertGreater(np.linalg.norm(recovered.imag, 2), .5)
+        self.assertGreater(np.linalg.norm(recovered - np.kron(np.eye(2), recover(source)), 2), 1.)
+
+        # Including r in the anchor would silently initialize a borrowed bit.
+        wrong_reflection = 2 * anchor[:, :4] @ anchor[:, :4].conj().T - np.eye(16)
+        self.assertGreater(np.linalg.norm(recovery(lifted_source, wrong_reflection) @ anchor
+                                         - wanted, 2), 1.)
+        unlifted_coarse = np.kron(np.eye(2), coarse).conj().T @ fine
+        self.assertGreater(np.linalg.norm(recovery(unlifted_coarse) @ anchor - wanted, 2), .1)
+
+        # Model a complete fine-slot error that mixes both r sectors and the
+        # initialized suffix while acting on dirty d. Such leakage cannot be
+        # removed before composing the actual three-call recovery word.
+        x = np.array([[0., 1.], [1., 0.]])
+        perturbation = np.kron(x, np.kron(x, np.kron(np.diag([1., -1.]), x)))
+        coefficients = np.arange(1, 9) + 1j * np.arange(8, 0, -1)
+        coefficients /= np.linalg.norm(coefficients)
+        # Eight reference labels give full Schmidt support on all arbitrary
+        # signal/logical/dirty inputs, with only the original suffix fixed.
+        referenced_input = anchor * coefficients
+        for delta in (1 / 256, 1 / 1024):
+            perturbed_fine = (np.cos(delta) * np.eye(16)
+                              + 1j * np.sin(delta) * perturbation) @ fine
+            slot_error = np.linalg.norm(perturbed_fine - fine, 2)
+            actual = recovery(lifted_coarse.conj().T @ perturbed_fine)
+            np.testing.assert_allclose(actual.conj().T @ actual, np.eye(16), atol=4e-12, rtol=0)
+            self.assertLessEqual(np.linalg.norm(actual - recovered, 2), 3 * slot_error + 4e-12)
+            error = np.linalg.norm(actual @ anchor - wanted, 2)
+            self.assertLessEqual(error, 3 * slot_error + 4e-12)
+            self.assertGreater(np.linalg.norm((np.eye(16) - anchor @ anchor.conj().T)
+                                             @ actual @ anchor, 2), delta / 10)
+            self.assertLessEqual(np.linalg.norm(actual @ referenced_input - wanted * coefficients),
+                                 error + 4e-12)
+            np.testing.assert_allclose(actual.conj().T @ actual @ anchor, anchor, atol=4e-12, rtol=0)
+            self.assertLessEqual(np.linalg.norm(actual.conj().T @ anchor
+                                               - anchor @ target_with_signal.conj().T, 2),
+                                 error + 4e-12)
+
     def test_exact_recovery_counterexample(self):
         source, recovery = recovery_counterexample_words()
         self.assertEqual((len(source), len(recovery)), (51, 169))

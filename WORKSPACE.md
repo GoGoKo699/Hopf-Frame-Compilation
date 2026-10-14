@@ -3,8 +3,8 @@
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
-precision-uniform two-clean count theorem, its sharp real and complex
-magnitude endpoints, and the remaining large-width depth gap. The
+precision-uniform one-clean count theorem, optimal banked count, the
+sharper two-clean complex endpoint, and the remaining large-width depth gap. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -36,13 +36,13 @@ must be proved separately.
 | Which proof supports each claim | [Proof dependency map](docs/README.md) |
 | Evidence and limits | [Verification](docs/VERIFICATION.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
-| Two-clean count and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
+| One-clean count frontier and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
 Results A–D are the principal resource theorems. The selected
-precision-uniform two-clean count theorem and its sharper high-precision
-endpoint stand beside them at their own literal allocations. Retained
+precision-uniform one-clean count theorem, optimal banked count, and
+sharper two-clean endpoint stand beside them at their own literal allocations. Retained
 diagonal, multiplexor, complex-magnitude, and borrowed-workspace corollaries keep their own literal
 reservations. Older proof components remain where a selected
 construction actually uses them; an older headline bound is not itself a
@@ -57,15 +57,20 @@ remain in their shared directories and continue to be verified.
 ## Research decision and stopping rules
 
 The selected scientific package has reached its stopping point. The
-[precision-uniform theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-gives $`T=O(N+L)`$ for every integer $`L\ge6`$ and $`n\ge3`$,
-with two clean qubits and dirty reservations $`L+n+7`$ for real frames
-and $`L+n+8`$ for complex magnitude frames. The
-[sharp endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+[one-clean theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every integer $`L\ge6`$
+and $`n\ge3`$, at base dirty reservation $`B=L+n+7`$ for real
+frames or $`B=L+n+8`$ for complex magnitude frames. At $`b\ge2B`$,
+the [banked theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+matches the full worst-case count frontier
+$`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean qubit.
+The [sharp two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 keeps $`b=N+n+7`$ for both families at $`L=N`$. Their proof
-dependencies do not change A–D; the large-width depth gap remains explicit.
-Closing that gap, building a general native emitter, studying practical
-crossovers, and adding fixed fixtures are not default requirements.
+dependencies do not change A–D.
+
+The large-width depth question remains parked until a qualifying mechanism
+is available. Closing it, building a general native emitter, studying
+practical crossovers, and adding fixed fixtures are not default requirements.
 The internal audit does not replace external technical review.
 
 ### Reopening research requires a qualifying mechanism
@@ -74,9 +79,9 @@ Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
 recurrences must precede new fixtures. At large width, a complete improvement
 must reduce both the logical-transport and query allowances or bypass them.
-For two-clean count, the dirty reservation is literal and every repeated
-precision cost is charged. The uniform theorem does not supply new
-Clifford-count, one-clean, depth, or general emitter guarantees.
+The one-clean count frontier retains literal dirty reservations and charges
+every precision source and query. It supplies no new depth, efficient
+classical preprocessing, or general emitter guarantee.
 
 An unrestricted lower bound is also a legitimate resolution, but needs an
 invariant valid for the actual circuit model. Existing interface failures

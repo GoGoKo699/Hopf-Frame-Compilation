@@ -9,11 +9,15 @@ banks and one-clean real block compilers. The remaining mode/recovery flag
 has a different role: its initialization cannot be removed from an
 accepted-block guarantee alone.
 
-Throughout, $`N=2^n`$, $`n\ge3`$, and $`\eta=2^{-N}`$. Only T-count is
-optimized. Arbitrary dirty/reference inputs, literal phases, and leakage
-are included in every stated norm. No measurements, resets, supplied
-sources, or uncharged coherent operations are allowed. These are primitive
-and promised-family results, not a resolution of the unrestricted endpoint.
+The fixed-precision statements use $`N=2^n`$, $`n\ge3`$, and
+$`\eta=2^{-N}`$; the high-precision forms below use
+$`\epsilon=2^{-L}`$. Only T-count is optimized here. Arbitrary
+dirty/reference inputs, literal phases, and leakage are included in every
+stated norm. No measurements, resets, supplied sources, or uncharged
+coherent operations are allowed. The source-lifting interface identifies
+which signal can be borrowed in the
+[growing-source compiler](GROWING_SOURCE_COMPILER.md), while retaining its
+initialized anchor marker and original logical recovery space.
 
 ## 1. The actual finite phase word
 
@@ -89,6 +93,124 @@ gadget while pretending its original initialization disappeared.
 A full-unitary hybrid bounds the total native error by the sum of slot
 errors on arbitrary signal, data, dirty, and reference inputs.
 
+### A real initialized target is sufficient
+
+Let J be a real computational-basis initialization isometry, including
+identity on every arbitrary dirty input. Let W be a real unitary on its
+input space, and let V be any full unitary satisfying
+$`\|VJ-JW\|\le\delta`$. Extend $`\mathcal P_r`$ to rectangular
+matrices by the same two-sector formula. Then
+
+```math
+\begin{aligned}
+J_r&=I_r\otimes J,\\
+\mathcal P_r(V)J_r-J_r(I_r\otimes W)
+&=|0\rangle\langle0|_r\otimes(VJ-JW)
+ +|1\rangle\langle1|_r\otimes\overline{VJ-JW},\\
+\|\mathcal P_r(V)J_r-J_r(I_r\otimes W)\|
+&=\|VJ-JW\|.
+\end{aligned}
+```
+
+Complex conjugation preserves the singular values. This identity applies
+to arbitrary superpositions and entanglement of r, not only to its basis
+inputs. The full V, its coarse approximants, and its action on the
+complement of J need not be real. Only J and the specified initialized
+target W have to be real. Tensoring an external reference preserves the
+same operator norm.
+
+Suppose V is an ideal high-level word with literal diagonal slots and
+otherwise native Clifford+T interlayers. Remove the clean phase compiler
+signal before forming that word: it is not a data wire or a recovery
+coordinate of V. Lift every native interlayer, including all exact coarse
+words and actual inverses, and replace each lifted diagonal slot directly
+by the finite word of Section 1. If slot j has full-operator error
+$`\xi_j`$, the emitted word has initialized error at most
+$`\delta+\sum_j\xi_j`$. The interlayer lift at most doubles its
+T-count, introduces no initialized wire, and needs only the shared r.
+Intermediate T-lift gates may change r; the completed lift implements the
+stated two-sector operator exactly. The full-operator hybrid therefore
+remains valid even when earlier finite slots have mixed its sectors.
+
+For an unchanged real predicate h, use the
+[completed conditional phase word](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger).
+On $`h=0`$ its actual source loaders cancel with their inverses and
+its four signal reflections cancel, including on occupied r. On
+$`h=1`$ Section 1 gives the conjugate-phase estimate. Its full target
+is thus the lifted conditional diagonal, with zero inactive error.
+Lifting a completed guarded interlayer likewise preserves its exact
+inactive identity. An identity entry in a phase table alone does not
+supply this guard.
+
+### Lift an overlap before its recovery
+
+This form applies when the original fine signal was also tested by an
+outer reflection. Let $`J_A`$ initialize the genuine logical recovery
+coordinates and act as identity on arbitrary dirty inputs. Start with
+ideal high-level sources P and Q, with their fine diagonal slots still
+uncompiled and no phase-signal wire, such that
+
+```math
+\|J_A^\dagger Q^\dagger PJ_A-W/2\|\le\delta_0,
+\qquad W=\overline W.
+```
+
+Reserve r outside every source core for the entire construction. In
+particular lift the exact cheap scalar words and their replay on the
+same physical core, as well as the fine, attenuation, coarse, routing,
+and tag operations. Identical original replay words remain identical
+after lifting; their rejected dirty operators are conjugated on the
+same sector, not replaced by another word with the same scalar block.
+The exact lifted sources have accepted overlap
+$`\mathcal P_r(J_A^\dagger Q^\dagger PJ_A)`$ on
+$`J_r=I_r\otimes J_A`$. Its distance from
+$`(I_r\otimes W)/2`$ is at most $`\delta_0`$.
+
+Let $`\widehat P_r,\widehat Q_r`$ be the emitted sources. If all
+their fine replacements have total full-operator errors
+$`\sigma_P,\sigma_Q`$, respectively, the native unitary
+$`\widehat U_r=\widehat Q_r^\dagger\widehat P_r`$ obeys
+
+```math
+\left\|J_r^\dagger\widehat U_rJ_r
+ -\frac{I_r\otimes W}{2}\right\|
+\le\delta_0+\sigma_P+\sigma_Q=:\delta.
+```
+
+Certified-data errors may be included in $`\delta_0`$ or in these
+slot budgets, but are charged only once. Define
+
+```math
+R_r=I-2J_rJ_r^\dagger
+   =I_r\otimes(I-2J_AJ_A^\dagger).
+```
+
+The [normalization-two bound](../../docs/FAULT_TOLERANT_COMPILER.md#4-from-a-half-unitary-block-to-the-complete-output)
+then gives full initialized-output error at most $`12\delta`$ for
+$`-\widehat U_rR_r\widehat U_r^\dagger R_r\widehat U_r`$,
+including arbitrary r and all actual fine leakage. The reflection does
+not test r. It still tests every coordinate genuinely initialized by
+$`J_A`$; removing those tests is not licensed by the lift.
+
+For the growing source, $`J_A`$ initializes the original logical
+anchor suffix in the active sector. The external marker h remains
+initialized and records membership in that sector. Its literal
+conditional leading sign and recovery use
+
+```math
+Z_h\widehat U_{r,h}R_{r,h}\widehat U_{r,h}^{\dagger}
+ R_{r,h}\widehat U_{r,h},\qquad
+R_{r,h}=I-2\Pi_{h=1,\,x\in\mathcal A}\otimes I_r.
+```
+
+Every completed source and reflection is identity on $`h=0`$.
+After recovery, reversing the actual anchor predicate returns h on the
+ideal output; its leakage is covered by the same full-isometry bound.
+The removed c was the fine compiler signal, whereas the original
+logical suffix remains the recovery space. Section 3's unconstrained
+complementary-sector action therefore creates no obstruction: both
+sectors of the borrowed r are already inside the accepted input space.
+
 ### Zero-clean real reflection and state-extension banks
 
 Let real unit vectors have mutually disjoint known computational supports
@@ -146,6 +268,101 @@ T=O_{\kappa,c}(N),\quad a=1,\quad b\le N+n+7.
 This includes the squared-size real-block theorem and its promised fusion
 and matching corollaries. Complex final targets retain different conjugate
 sectors. The genuine mode/recovery flag has not been removed.
+
+### Precision-parametrized real blocks and sources
+
+Fix $`\kappa,c\gt0`$. There is a threshold $`n_0(\kappa,c)`$
+such that, whenever $`n\gt n_0`$, $`L\ge6`$, and $`L\gt N/n`$,
+the following full-contract bound holds for known disjoint real blocks:
+
+```math
+U_j\in\mathrm{SO}(m_j),\qquad \sum_jm_j^2\le\kappa N
+\quad\Longrightarrow\quad
+\begin{gathered}
+T=O_{\kappa,c}(N+L),\qquad a=1,\qquad b=L+n+7,\\
+\|\widehat UJ_1-J_1(U\otimes I_b)\|\le 2^{-L}/c.
+\end{gathered}
+```
+
+Use the
+[precision-parametrized disjoint-block word](DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
+before compiling its phase slots. Its single mode/recovery flag stays
+initialized. Its complete target U is real, though its coarse word and
+residual need not be. Apply the initialized-target lifting identity
+above to this complete high-level word. The original certified-data
+and representation errors retain their norms. A fixed number
+$`F_\kappa`$ of fine slots now uses the Section 1 full-operator
+primitive at
+
+```math
+q=L+\left\lceil\log_2\max\{1,120cF_\kappa\}\right\rceil.
+```
+
+Their native hybrid is below $`2^{-L}/(4c)`$, the same allocation
+as in the disjoint-block high-precision proof. Together with its
+certified-data and representation budgets, the total is at most
+$`2^{-L}/c`$. All native interlayers, actual inverses, and exact
+predicate signs are lifted; there is no assumption that the residual
+or an intermediate source is real. The arbitrary signal r is restored
+approximately as part of the final full-isometry error.
+
+The number of slots is independent of L. Each costs
+$`O(N+q)=O_{\kappa,c}(N+L)`$; lifting at most doubles the existing
+$`O_\kappa(N)`$ coarse/routing T-count. The fine reservation is
+$`q+2`$ dirty wires: $`q+1`$ for its core and one separate r.
+Its address has at most $`n+1`$ bits, so self-borrowing needs
+$`q+1\ge2(n+1)`$. All other coarse work is
+$`O_\kappa(\sqrt N+\mathrm{poly}(n))`$ and is reused in separate
+stages. Since $`L\gt N/n`$, a single larger threshold makes that
+coarse work, r, and any fixed returned helper fit within $`L+n+7`$,
+and ensures the fine self-borrowing inequality. This threshold is
+independent of L. No finite-net argument at unbounded precision is
+used.
+
+In the same regime, a real disjoint reflection or state-extension bank
+from the earlier source interface, on at most $`4N`$ modes, has
+$`T=O_c(N+L)`$, zero clean qubits, $`b=L+n+7`$, and full-operator
+error at most $`2^{-L}/c`$. Its final full-mode target is real, so
+the lift acts as identity on r in that target. The fixed number of
+fine slots, packing into two bins, exact treatment of arbitrary
+padding, and source charts are unchanged; only
+$`q=N+O_c(1)`$ becomes $`q=L+O_c(1)`$. At most $`n+2`$ address
+bits and the same $`q+2`$ reservation fit after the same type of
+threshold increase. These interfaces assert T-count and literal
+workspace; no additional Clifford-count or depth bound is inferred.
+
+### Banked real interfaces
+
+The independently charged
+[banked high-precision interfaces](DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces)
+also admit this signal replacement. In their high regime and for
+$`b\ge2(L+n+7)`$, the real squared-size block family above has
+
+```math
+a=1,\qquad
+T=O_{\kappa,c}\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O_{\kappa,c}(NL),
+```
+
+with the same error $`2^{-L}/c`$. Real reflection and state-extension
+banks have these counts with zero clean qubits and constants depending
+only on c.
+
+For this statement retain r inside the base pool and outside the fine
+core, selectors, and additional banks. The banked proof reserves this
+extra constant wire explicitly after increasing its fixed threshold.
+Each complete banked query is exactly the original XOR or Z mask on
+every input, tensored with identity on its banks. It therefore leaves
+the Section 1 full-operator phase calculation unchanged. Lift all
+remaining interlayers as above. An S lift adds one Clifford gate; a
+T lift uses two T gates and two CNOTs. Thus these lifts send
+$`T\mapsto O(T)`$ and $`G\mapsto O(G+T)`$, preserving the displayed
+Clifford bound as well as the banked T-count. Their error allocations
+are unchanged. For the source interface on up to $`4N`$ modes,
+there are at most $`n+2`$ address bits and $`4N`$ table rows;
+the same base slack and self-borrowing argument apply after increasing
+the threshold, and the extra factors are constant. This banked ledger
+does not imply any T-depth bound.
 
 ## 3. Recovery must be checked on both sectors
 

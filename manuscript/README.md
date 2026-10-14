@@ -6,7 +6,7 @@ Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frame
 
 The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
 Results A–D, retained corollaries, and the selected precision-uniform
-two-clean count theorem and sharp endpoint, with literal workspace
+one-clean count frontier and sharper two-clean endpoint, with literal workspace
 reservations and error contracts. Its source and verification maps identify the premises
 and executable evidence for each claim.
 
@@ -43,11 +43,12 @@ mechanisms and input/workspace contracts.
    Compare the packed two-clean diagonal construction at its smaller dirty budget.
 6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
    explicit precision/workspace matching intervals, and applicable fallbacks.
-7. The selected precision-uniform two-clean count theorem: growing real-frame
-   sources with separate precision and dimension scales, the baseline splice,
-   and packed literal leaf phases under the same-workspace error contract.
-   State the matching lower bound at the exact base widths, and retain the
-   sharper fixed endpoint.
+7. The selected one-clean count frontier: growing sources with separate
+   precision and dimension scales, borrowed conjugate-signal recovery, and
+   exact dirty-bank queries. State the uniform base-width count, the optimal
+   banked tradeoff, and the Clifford ledger. Compose literal leaf phases
+   under the shared-workspace error contract; retain the sharper two-clean
+   fixed endpoint.
 8. Exact and approximate fixed-parameter QBP consequences, complete complex
    gradients, charged executions and reconstruction, and the remaining
    large-width depth question and limits of the circuit model.
@@ -65,11 +66,13 @@ sector. T-depth allows arbitrary Clifford interlayers and differs from total
 depth. Only D claims simultaneous T-count/T-depth guarantees; its real
 frame theorem does not inherit the complex extensions of A–C automatically.
 
-The [precision-uniform theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-and [sharp endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-are selected at their own literal allocations beside A–D. They add no
-Clifford-count, one-clean, or depth guarantee, and make no optimality claim
-at every precision and width.
+The [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count),
+[optimal banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier),
+and [sharp two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+are selected at their own literal allocations beside unchanged A–D.
+The one-clean constructions include $`G=O(NL)`$; their matching
+statements retain the explicit base-width precision condition and banked
+width threshold. They add no depth or general native-emitter guarantee.
 The [research catalogue](../research/README.md) preserves their dependencies,
 the remaining large-width depth question, and earlier attempts with their
 scoped findings. The completed

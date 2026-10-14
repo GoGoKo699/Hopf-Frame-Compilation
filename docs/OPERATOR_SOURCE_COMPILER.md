@@ -919,11 +919,14 @@ instead supplies $`T=O(N)`$ at $`a=2,b=N+n+7,n\ge3`$.
 It combines the real growing-source half-error guarantee with (38);
 the precision-uniform baseline and its reservation above are unchanged.
 The separate
-[precision-uniform growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-gives $`T=O(N+L)`$ for $`n\ge3`$, with two clean flags,
+[one-clean growing-source extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+gives $`T=O(N+L)`$ for $`n\ge3`$, with one clean flag,
 $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for (40).
-It retains the full-isometry contract but does not inherit this chapter's
-$`O(NL)`$ Clifford bound.
+It retains the full-isometry contract and has its own $`G=O(NL)`$
+ledger. Its [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+matches $`\Theta(\sqrt{NL}+L+NL/b)`$ for every $`L\ge6`$ once
+the respective dirty reservation is doubled. The tighter fixed complex
+endpoint above continues to use two clean flags.
 
 ### 8.1 General one-qubit multiplexors with two clean qubits
 
@@ -1122,8 +1125,9 @@ At the explicit two-clean, $`L=N`$, $`N+n+7`$-dirty allocation,
 this chapter's baseline is $`O(N\log N)`$; the
 [grouped refinement](CONDITIONAL_SUFFIX_COMPILER.md) gives
 $`O(N\log_2^*N)`$ while preserving the complete frame. The separate
-[growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-settles this real-frame count endpoint at $`O(N)`$.
+[one-clean growing-source construction](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+settles this real-frame count endpoint at $`O(N)`$ using just one
+initialized flag at the same dirty allocation.
 
 ## 10. Classical table construction
 

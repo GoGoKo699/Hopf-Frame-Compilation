@@ -153,11 +153,15 @@ test coverage of each module.
 The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
 maps these supporting modules to their proofs, tests, and individual evidence
 boundaries. The [real and complex-magnitude endpoint theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-and its [precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+and its [one-clean precision-uniform extension](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 supplement the unchanged Results A–D. The latter gives $`T=O(N+L)`$
-for integer $`L\ge6,n\ge3`$ with two clean flags and dirty reservation
+and $`G=O(NL)`$ for integer $`L\ge6,n\ge3`$ with one clean flag
+and dirty reservation
 $`b\ge L+n+7`$ for real or $`b\ge L+n+8`$ for complex magnitude
-frames. Their native cost and workspace bounds are analytic.
+frames. Its [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is matching once that reservation is doubled. The sharper complex
+$`L=N,b=N+n+7`$ endpoint still uses two clean flags. Their native
+cost and workspace bounds are analytic.
 
 - Growing-source diagnostics: [`growing_precision_source.py`](growing_precision_source.py)
   supplies exact rational refinement factors and symbolic scales. Optional
@@ -172,7 +176,12 @@ frames. Their native cost and workspace bounds are analytic.
   matrices, not a growing-source or general table emitter.
 - Source geometry and recovery: [`source_completions.py`](source_completions.py),
   [`boundary_refinement.py`](boundary_refinement.py), and
-  [`conjugate_recovery.py`](conjugate_recovery.py).
+  [`conjugate_recovery.py`](conjugate_recovery.py). The latter's
+  [tests](../tests/test_conjugate_recovery.py) include a 16-dimensional
+  initialized-real-target diagnostic with a borrowed signal, lifted native
+  interlayer, original-mode projector, full-operator perturbation, and
+  actual inverse. The supplied source and retained leakage are diagnostic
+  matrices, not a new source emitter.
 - Ordered banks and native components: [`ordered_block_banks.py`](ordered_block_banks.py)
   and [`native_ordered_banks.py`](native_ordered_banks.py).
 - Encodings and reflection representations: [`paid_logical_encodings.py`](paid_logical_encodings.py),

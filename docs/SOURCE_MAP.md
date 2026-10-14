@@ -2,8 +2,8 @@
 
 [← Verification](VERIFICATION.md) · [Complete narrative](../REVIEW.md) · [Related work →](RELATED_WORK.md)
 
-This is the claim-to-source map for the selected Results A–D, the
-precision-uniform two-clean count theorem, and its fixed endpoint. It separates
+This is the claim-to-source map for the selected Results A–D and the
+growing-source count theorems, including the one-clean banked frontier. It separates
 imported synthesis tools, inherited Hopf/QBP interfaces, and the operator
 constructions established here. The [source catalogue](reference/SOURCE_CATALOGUE.md)
 preserves the complete stable C/H/Q/F/R register and detailed contribution
@@ -89,10 +89,12 @@ worst-case statements over the specified family.
 |---|---|---|
 | **A. Exact complete frame**: size $\Theta(N)$ and depth $\Theta(n+N/(n+m))$ for every clean budget | [Compiler theorem](COMPILER_THEOREM.md): strict-zero echo, conditioned tree cut, decoder, explicit router, and local lower-bound reductions; R1–R11 | C1–C5 and H1–H9; real and phase-dressed complex magnitude frames; exact work return. CNOT count is $\Theta(N)$ for $n\ge2$ and zero for $n=1$. |
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
-| **C. One-clean real frame**: $`T=O(N+L\ell_*(n))`$ | [One-clean compiler](ONE_CLEAN_COMPILER.md) and [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit); operator-source baseline R17–R20 and one-clean refinement R25 | F2, F8–F11, F19–F20; $a=1$, $b\ge L+n+7$, $`\ell_*(n)=1+\log_2^*(n+2)`$; $O(NL)$ Clifford cost. The separate [uniform count theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count) uses two clean qubits. |
+| **C. One-clean real frame**: $`T=O(N+L\ell_*(n))`$ | [One-clean compiler](ONE_CLEAN_COMPILER.md) and [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit); operator-source baseline R17–R20 and one-clean refinement R25 | F2, F8–F11, F19–F20; $a=1$, $b\ge L+n+7$, $`\ell_*(n)=1+\log_2^*(n+2)`$; $O(NL)$ Clifford cost. R64–R65 below improve the count through the growing-source construction. |
 | **D. Same-circuit count and T-depth** | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md), with retained [unary source](UNARY_PHASE_GRADIENT.md) and dirty-query constructions; R43–R45 | Two clean flags and $b\ge17(L+n+7)$; complete real frames. Native sources, inverses, predicates, queries, and conditional work are charged. |
 | **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 | **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
+| **Precision-uniform one-clean count**: $`T=O(N+L)`$, $`G=O(NL)`$ | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count); R64 | Same $`n\ge3`$, integer $`L\ge6`$, and full error $`2^{-L}`$; $`a=1`$, real $`b\ge L+n+7`$, complex magnitude $`b\ge L+n+8`$. Whole-source conjugate lift and retained initialized-anchor recovery; matching $`\Theta(N+L)`$ at the exact base widths for $`L\ge\max\{6,n\}`$. |
+| **Optimal banked one-clean count**: $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$ | [Banked growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R65 | For every $`n\ge3`$ and integer $`L\ge6`$, $`a=1`$, error $`2^{-L}`$, real $`b\ge2(L+n+7)`$, complex magnitude $`b\ge2(L+n+8)`$. Existing banked queries and F3/F4 lower bounds; complete isometry, literal phases, and actual inverses. No new T-depth or emitter guarantee. |
 
 For D, the uniform upper bounds are
 
@@ -138,6 +140,22 @@ magnitude), $`L\ge\max\{6,n\}`$ makes physical width $`q=\Theta(L)`$.
 The existing F3/F4 lower bound $`\Omega(NL/q+L)`$ therefore gives
 worst-case $`\Theta(N+L)`$ at these widths. The uniform upper bound
 also allows larger dirty allocations; this matching corollary does not.
+
+R64 uses the [whole-source conjugate lift](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#2-lift-the-whole-high-level-word)
+before outer recovery. The borrowed phase signal stays outside every core;
+the initialized anchor marker and logical recovery coordinates remain.
+The same real target is obtained in both conjugate sectors, with actual
+dirty replay and leakage included. R25's one-clean literal diagonal then
+composes the complex magnitude frame at precision $`L+1`$.
+
+R65 uses the [banked high-precision interfaces](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces)
+and the retained exact dirty word-bank query. Self-borrowed selectors and
+returned banks implement the same complete masks. Their summed native
+charges remove the repeated precision term, and the full Clifford ledger
+is $`O(NL)`$. At the stated bank thresholds, $`q=n+1+b=\Theta(b)`$,
+so F3/F4's existing $`\Omega(\sqrt{NL}+L+NL/q)`$ bound matches the
+upper construction. R64–R65 introduce no new external synthesis or
+lower-bound premise, priority claim, or T-depth guarantee.
 
 R17 includes the packed two-clean diagonal reservation. The endpoint
 [bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)

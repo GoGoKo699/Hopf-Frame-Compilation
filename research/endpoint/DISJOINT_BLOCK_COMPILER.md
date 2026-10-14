@@ -49,6 +49,14 @@ below proves this form using the same routing and coarse words. The
 finite-dimension fallback for the original $`L=N`$ theorem is not used
 to assert a bound uniform in arbitrary L.
 
+With additional dirty word banks, the
+[banked high-precision interface](#banked-high-precision-interfaces)
+improves the count to
+$`O_{\kappa,c}(\sqrt{NL}+L+NL/b)`$ at
+$`b\ge2(L+n+7)`$, with $`O_{\kappa,c}(NL)`$ elementary Clifford
+gates on that same circuit. The corresponding reflection and state
+interfaces retain their single clean compiler flag.
+
 ## 2. Exact routing and coarse words
 
 ### Dirty-only routing and Boolean phases
@@ -359,6 +367,138 @@ inverse words inherit the inverse-target bound. In particular no step
 assumes that the shared clean flag is exactly zero after a previous
 approximate call. This proves the high-regime forms for every L above
 the stated threshold, without a finite-net argument at variable L.
+
+### Banked high-precision interfaces
+
+Fix $`\kappa,c\gt0`$. After increasing the threshold on n by an
+amount depending only on these constants, the high-precision block
+theorem above strengthens to
+
+```math
+\begin{gathered}
+L>N/n,\qquad L\ge6,\qquad B_0=L+n+7,\qquad b\ge2B_0,\\
+a=2,\qquad
+T=O_{\kappa,c}\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
+\qquad G=O_{\kappa,c}(NL).
+\end{gathered}
+```
+
+The error is at most $`2^{-L}/c`$ in the same complete
+initialized-isometry norm. The real reflection and state-extension
+interfaces of Section 4 have these counts with $`a=1`$ and constants
+depending only on c; the complex reflection also retains one clean
+flag. The ambient mode dimension is still at most $`2N`$, with at
+most $`n+1`$ occupied address qubits. These are separate resource
+statements for the same respective target families, not a claim that
+the block compiler itself needs only one clean qubit.
+
+**Banked fine calls without an extra selector reservation.** Retain the
+same constant fine precision $`q=L+c_0`$, with $`c_0`$ fixed by
+the number of fine calls and their error allocation. Put $`m=q+1`$
+and reserve the same $`B_0`$-wire base pool. By increasing the fixed
+threshold on n, this pool fits the complete m-bit dirty core and the
+fixed number of separate predicate helpers. The slack
+$`B_0-m=n+6-c_0`$ can also reserve one further arbitrary signal
+wire outside every core, selector set, and bank, if needed by a
+subsequent real-source construction. Also
+$`m\ge2(n+1)`$ since $`L>N/n`$. For a mask on a k-bit address,
+$`k\le n+1`$, split the core into two balanced parts A and B,
+each of size at least k. Implement the query into A using k bits of B
+as selectors, then implement the query into B using k bits of A.
+Each completed query returns those selectors exactly on every input;
+the second therefore accepts the A output of the first. This is the
+[self-borrowed query](../../docs/OPERATOR_SOURCE_COMPILER.md#self-borrowed-whole-word-queries)
+with the
+[exact dirty word-bank query](../../docs/OPERATOR_SOURCE_COMPILER.md#7-trading-additional-dirty-banks-for-lookup-cost)
+used for each part.
+
+The additional bank pool has size $`K=b-B_0\ge b/2\ge B_0\ge m`$.
+For a table with $`S=2^k`$ rows choose a power of two $`\mu`$
+within a factor two below
+
+```math
+\max\!\left\{1,\min\!\left(S,\sqrt{S/m},K/m\right)\right\}.
+```
+
+Only $`\mu m`$ bank wires are reserved. The A and B queries use
+their corresponding portions of those banks sequentially; their
+selectors belong to the other core part, never to a bank being loaded
+or routed. Their combined complete operation is the original m-bit
+XOR query tensored with identity on the bank pool. Its counts are
+
+```math
+T_{\rm mask}=O\!\left(\sqrt{Sm}+m+\frac{Sm}{b}\right),
+\qquad G_{\rm mask}=O(Sm).
+```
+
+For $`k=0`$ the mask is a fixed Pauli word and needs no bank.
+Conjugation by core Hadamards gives the same Z mask with the same
+orders of cost. Every mask is unchanged as a full unitary, not merely
+on the initialized flag columns. The original source words, literal
+amplification signs, actual inverses, and complete inactive-sector
+guards therefore remain valid. Long source loaders remain
+unconditional; only their central gates acquire predicate controls.
+All bank and selector work returns before the next source gate.
+
+Since $`S\le2N`$ and $`m=L+O_{\kappa,c}(1)`$, a fine call,
+including its $`O(m)`$ source gates and polynomial-in-n predicates,
+costs
+
+```math
+T_{\rm fine}=O_{\kappa,c}\!\left(\sqrt{NL}+L+\frac{NL}{b}
+                                      +\mathrm{poly}(n)\right),
+\qquad
+G_{\rm fine}=O_{\kappa,c}(NL+\mathrm{poly}(n)).
+```
+
+There are only constantly many fine calls. Their precision and errors
+are unchanged, so their full-isometry hybrid is exactly the one above.
+The extra banks are returned spectators in each complete query, and
+are valid even when correlated with the core, mode flags, and an
+external reference.
+
+**Coarse Clifford and T counts.** The coarse word, routing, Walsh
+interlayers and Boolean center phases do not use endpoint-precision
+tables. They retain the dirty interpreter and the polynomial-in-n
+word lengths of Sections 2--4. An S-row native-symbol table has
+$`O(S)`$ elementary Clifford cost per symbol, including the dirty
+traversal and its actual reverse; its one-bit bank routes have no
+larger Clifford cost. For a block-size class B, there are $`O(B)`$
+mesh stages and $`S_B=O_\kappa(N/B)`$ rows per stage. Thus its
+Clifford count is $`O_\kappa(N\mathrm{poly}(n))`$. There
+are at most n such size classes and a fixed number of bins, which
+only enlarges the fixed polynomial. The one-time permutations have
+$`O(n)`$ matching tables each of size $`O(N)`$. The source-only
+coarse Hopf word and its variable-size Walsh transforms have at most
+$`O(n)`$ layers of at most $`2N`$ rows. Exact arithmetic, center
+phases, short native gates and predicate echoes contribute only the
+same bound. Consequently all coarse/interlayer Clifford work is
+$`O_{\kappa,c}(N\mathrm{poly}(n))`$.
+
+Their already proved total T count is
+$`O_{\kappa,c}(N^{3/4}\mathrm{poly}(n))`$; source-only
+interfaces have the stronger square-root bound. In the present regime,
+
+```math
+\sqrt{NL}>\frac{N}{\sqrt n},\qquad
+N^{3/4}\mathrm{poly}(n)=O(\sqrt{NL}),\qquad
+N\mathrm{poly}(n)=O(NL).
+```
+
+Each comparison is uniform over every $`L>N/n`$ after increasing one
+fixed n threshold. The coarse dirty reservation remains
+$`O_{\kappa,c}(\sqrt N+\mathrm{poly}(n))\lt L`$, as proved
+above, and reuses the base pool between completed fine calls. No
+bank or mode coordinate is simultaneously counted as this work.
+Adding the constant fine calls proves both displayed gate bounds at
+the literal bank threshold. All approximation and actual-inverse
+guarantees follow unchanged from the high-precision proof. The same
+Clifford ledger applies to the original high-precision interfaces at
+$`b\ge B_0`$: their unbanked fine masks also have $`O(Sm)`$
+Clifford cost, while all coarse words are unchanged. Thus those
+interfaces have $`T=O_{\kappa,c}(N+L)`$ and
+$`G=O_{\kappa,c}(NL)`$ on the same circuits and at their original
+clean allocations. ∎
 
 ## 7. Verification
 
