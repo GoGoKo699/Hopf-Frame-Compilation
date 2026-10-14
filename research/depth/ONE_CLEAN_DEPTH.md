@@ -125,8 +125,12 @@ D_{T,Q}=O\!\left(m+\frac{Qm}{B^2}+r\right).
 
 Indeed its raw costs are $`O(KmH+H+J)`$ T gates and
 $`O(Km+\log_2H+\log_2J)`$ T-depth. Power-of-two rounding gives
-$`KmH=Qm/J=O(m+\sqrt{Qm}+Qm/B)`$ and
-$`K=O(1+Q/B^2)`$. If $`Q=1`$, emit the fixed Clifford mask
+
+```math
+KmH=Qm/J=O(m+\sqrt{Qm}+Qm/B),\qquad K=O(1+Q/B^2).
+```
+
+If $`Q=1`$, emit the fixed Clifford mask
 without indicators. All Clifford coordinate changes and traversal
 words remain included in $`G_Q`$.
 
@@ -500,9 +504,11 @@ For $`b\ge b_c`$, select as follows.
 
 Each displayed additive term is $`O(F(n,L))`$ on its selected range:
 
-- In the first branch $`\ell\le\lambda`$, and
-  $`(\sqrt n+L)\ell/(nL)=\ell/(L\sqrt n)+\ell/n=O(1)`$.
-  Thus it is bounded by an absolute multiple of both entries of F.
+- In the first branch $`\ell\le\lambda`$. The ratio
+  $`(\sqrt n+L)\ell/(nL)`$ is the sum of
+  $`\ell/(L\sqrt n)`$ and $`\ell/n`$, both uniformly bounded.
+  Thus the additive depth is bounded by an absolute multiple of both
+  entries of F.
 - In the second branch $`n+L\le(1+c^{-1})L`$ and
   $`\lambda=O(n)`$. Its depth is at most an absolute multiple
   of $`(\sqrt n+L)\lambda`$ and of $`nL`$.
@@ -605,9 +611,13 @@ The real theorem is applied at its shifted precision in every case,
 including any crossing of its internal branch boundaries.
 
 If $`L\gt N/n^2`$, then $`\ell\gt N/n^2`$ and the real factor has
-depth $`O(N\ell/b^2+\ell)`$. Also
-$`\log_2(n+2)\le n+1=O(N/n^2+1)=O(L)`$ by boundedness of
-$`n^3/2^n`$. The diagonal therefore preserves the high-precision
+depth $`O(N\ell/b^2+\ell)`$. Boundedness of $`n^3/2^n`$ gives
+
+```math
+\log_2(n+2)\le n+1=O(N/n^2+1)=O(L).
+```
+
+The diagonal therefore preserves the high-precision
 clause with its stated condition on L. This proves the complex
 theorem. Actual inverses preserve the same error because, for
 $`W_0=W\otimes I_b`$,
