@@ -243,8 +243,8 @@ $`D_i=(1-\pi)C_i^\dagger W_i`$. Source replacement and digit rounding give
 The source term is at most $`\pi e_s`$ because there are KJ
 norm-at-most-one summands weighted by $`\pi/(KJ)`$. The second term
 is $`(1-\pi)K`$ times the coefficient rounding bound. Thus no number
-of prefixes or target entries multiplies this estimate. Both T_i
-and D_i are contractions, and $`\|D_i\|=1-\pi`$.
+of prefixes or target entries multiplies this estimate. Both $`T_i`$
+and $`D_i`$ are contractions, and $`\|D_i\|=1-\pi`$.
 
 After $`K_i`$ execute the actual coarse $`C_i`$. Its whole native word
 is prefetched into a separate zero program buffer, using address
@@ -318,7 +318,7 @@ $`\widetilde w`$ satisfying
 \le\eta_L/2048=:\epsilon_0.
 ```
 
-Here w_0 is an exactly specified rational number, since pi is dyadic.
+Here $`w_0`$ is an exactly specified rational number, since $`\pi`$ is dyadic.
 Its finite digits are computable exactly. Denote the actual source
 and digit preparation by $`B_{\rm pad}`$. It has O(L) count/depth
 and O(log L) initialized width, with its own exact scratch.
@@ -363,7 +363,7 @@ The saved H itself is excluded. Define $`R_H`$ to be identity on
 H zero and $`I-2J_0J_0^\dagger`$ on H one. The zero test includes
 source, padding, F, labels, history, and approximation work. It
 never tests arbitrary dirty inputs. Testing all Z is valid: actual
-source preparations have been inverted at the U_H boundary.
+source preparations have been inverted at the $`U_H`$ boundary.
 
 The exact word
 
