@@ -102,6 +102,17 @@ retained uniform baseline supplies the $`nL`$ depth alternative and
 literal-width fallbacks. Source preparation, coherent queries, actual
 inverses, conditional work, and external-reference error are all charged.
 
+The [phase-dressed extension](research/depth/COMPLEX_FRAME_DEPTH.md)
+(R71) gives the same simultaneous count, Clifford, and depth bounds for
+$`D_\phi W_{\mathbb R}`$ at $`b\ge17(L+n+8)`$ with two clean flags.
+Its literal-diagonal schedule has depth
+$`O(NL/b^2+L+\log_2(n+2))`$ and preserves the optimal count.
+Both half-error factors reuse the same flags and arbitrary dirty pool;
+their full-isometry hybrid includes prior leakage. The high-precision
+$`O(NL/b^2+L)`$ clause also holds for this complex magnitude family.
+Independently prescribed phases include zero-amplitude leaves. This is
+not arbitrary complex-unitary synthesis.
+
 For some absolute $`c>0`$, the
 [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains the stronger logarithm $`\log_2(n+2)`$ on
@@ -111,7 +122,8 @@ the fixed-accuracy all-n statement remains valid. Its early gradient and
 terminal binary source are separate resources. The grouped terminal
 proof and its exact coarse-program interface remain at their original paths.
 
-The all-precision extension is complete at the stated scope. Further
+The real and phase-dressed all-precision extensions are complete at the
+stated scope. Further
 research must address a concrete depth improvement or a valid unrestricted
 lower bound; producing more fixtures is not a default next step. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

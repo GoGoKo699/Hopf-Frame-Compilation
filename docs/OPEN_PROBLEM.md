@@ -87,10 +87,12 @@ Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
 
 ## Large-width T-depth
 
-The [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md)
-applies to complete real frames for every $`n\ge1`$, integer
-$`L\ge6`$, two clean flags, and every $`b\ge17(L+n+7)`$.
-Define
+The [real theorem](../research/depth/ALL_PRECISION_DEPTH.md) and
+[phase-dressed extension](../research/depth/COMPLEX_FRAME_DEPTH.md)
+apply for every $`n\ge1`$, integer $`L\ge6`$, and two clean flags.
+Put $`B_D=L+n+7`$ for complete real frames and $`B_D=L+n+8`$
+for phase-dressed complex magnitude frames $`D_\phi W_{\mathbb R}`$.
+At every $`b\ge17B_D`$, define
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
@@ -108,7 +110,7 @@ Count is worst-case optimal at every eligible precision and width.
 The inherited lower bounds also match depth on every nonempty interval
 
 ```math
-17(L+n+7)\le b\le\sqrt{NL/F(n,L)}:
+17B_D\le b\le\sqrt{NL/F(n,L)}:
 \qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
 ```
 
@@ -118,12 +120,16 @@ with the same count, Clifford, and error bounds. The
 [whole-frame binary branch](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
 and the [retained baseline](UNIFORM_PRECISION_DEPTH.md) complete the
 all-precision splice without changing the literal dirty threshold.
+The complex extension proves a separate literal-diagonal schedule with
+$`D_T=O(NL/b^2+L+\log_2(n+2))`$, then composes half-error factors
+on the same flags and dirty pool. Its stated threshold includes that
+precision increment; the high-precision bound applies to both families.
 Every source preparation, query, actual inverse, and work-return error
 is charged. Classical preprocessing terminates, with no efficiency claim.
 
 For some absolute $`c>0`$, the
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains the stronger $`\log_2(n+2)`$ dependence on
+retains the stronger real-frame $`\log_2(n+2)`$ dependence on
 $`6\le L\le cn`$:
 
 ```math

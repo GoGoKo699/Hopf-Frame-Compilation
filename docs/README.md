@@ -4,7 +4,8 @@
 
 The selected compiler package has four principal results: exact compilation,
 sufficient-clean matching T-count, the optimal one-clean banked count
-frontier, and simultaneous T-count/T-depth tradeoffs for complete real frames.
+frontier, and simultaneous T-count/T-depth tradeoffs for complete real and
+phase-dressed complex magnitude frames at their respective reservations.
 Start with the landing page and `REVIEW.md`, then follow the
 relevant claim below.
 
@@ -90,9 +91,11 @@ does not supersede every earlier resource point. The complex magnitude
 extension is a real frame followed by supplied leaf phases, not arbitrary
 complex-unitary synthesis.
 
-### D. Simultaneous real-frame T-count and T-depth
+<a id="d-simultaneous-real-frame-t-count-and-t-depth"></a>
 
-Start with the [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md).
+### D. Simultaneous frame T-count and T-depth
+
+For real frames, start with the [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md).
 For every $`n\ge1`$, integer $`L\ge6`$, two clean flags, and
 $`b\ge17(L+n+7)`$, it gives one circuit with full error at most
 $`2^{-L}`$ and absolute constants. Define
@@ -111,7 +114,15 @@ D_T=O(NL/b^2+F(n,L)).
 Count is optimal at every eligible width. Count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$, subject to the same lower threshold.
 For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
-The [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+
+The [complex extension](../research/depth/COMPLEX_FRAME_DEPTH.md) has these
+same guarantees for $`D_\phi W_{\mathbb R}`$ at
+$`b\ge17(L+n+8)`$, using two clean flags. Its literal diagonal depth
+ledger and half-error same-workspace composition preserve the full
+initialized-isometry contract. Matching depth retains the corresponding
+complex lower threshold; unrestricted optimal depth remains open.
+
+The real-frame [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains $`\log_2(n+2)`$ in place of $`\log_2(n+L+2)`$ for
 $`6\le L\le cn`$, with some absolute $`c>0`$.
 At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
@@ -121,6 +132,7 @@ $`O_\eta(\sqrt n\log(n+2))`$ depth. Optimal depth remains open.
 | Selected branch | Canonical proof and role |
 |---|---|
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: simultaneous counts, literal widths, precision splice, and inherited matching bounds |
+| Literal phase dressing | [Complex-frame depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71: charged diagonal depth and complete shared-workspace composition at the complex reservation |
 | Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68: charged complete-frame schedule with precision-dependent source work |
 | High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69: $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with optimal count |
 | Retained baseline | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md): the $`nL`$ depth alternative, literal-width fallback, and earlier matching intervals |
@@ -166,8 +178,9 @@ recurrence are needed by the later pipeline; the grouped selector schedule
 is needed by the unary source. Their proofs must not be replaced by a link
 to a stronger headline bound.
 
-D is a real complete-frame theorem. The complex extensions of A–C and the
-state-based protocol have separate contracts. T-depth allows arbitrary
+D covers complete real frames through R70 and phase-dressed complex
+magnitude frames through R71. The state-based protocol retains its separate
+decoder contract. T-depth allows arbitrary
 Clifford interlayers; their gate counts are charged, and their physical
 depth is not declared zero. The large-width depth optimum remains open.
 

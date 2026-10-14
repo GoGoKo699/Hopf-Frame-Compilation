@@ -77,7 +77,9 @@ establish the one-clean count guarantees at the [stated reservations](../../manu
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
-[all-precision construction](../../research/depth/ALL_PRECISION_DEPTH.md). The existing
+[real all-precision construction](../../research/depth/ALL_PRECISION_DEPTH.md)
+and its [phase-dressed extension](../../research/depth/COMPLEX_FRAME_DEPTH.md).
+The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
 existing resource comparisons and classical baselines remain documented.
@@ -121,6 +123,19 @@ shared-source, conjugate-recovery and blocked-query checks support those
 component contracts. They do not test the new asymptotic cutoffs or establish
 the all-precision theorem by extrapolation. No receipt is changed and no
 general native emitter is claimed.
+
+The [phase-dressed extension](../../research/depth/COMPLEX_FRAME_DEPTH.md)
+adds an analytic depth schedule for the packed literal diagonal, including
+the routed-indicator fallback at the stated workspace constant, and a
+half-error full-isometry composition. The retained
+[operator-source suite](../../tests/test_operator_source_compiler.py)
+checks literal diagonal phases, actual inverses, arbitrary core inputs,
+and shared-flag composition without discarding intermediate leakage.
+The [nonuniform indicator](../../tests/test_nonuniform_dirty_indicator.py)
+and [blocked-query](../../tests/test_blocked_bilinear_lookup.py) checks
+support the exact query substitutions. These component checks do not emit
+the complete complex circuit or establish its asymptotic bounds by testing.
+The existing native fixtures and immutable receipts remain unchanged.
 
 The [packed rejection-bank proof](../../research/endpoint/PACKED_REJECTION_BANKS.md)
 has [integer-routing and full-unitary diagnostics](../../compiler_robust_hopf/packed_rejection_banks.py)

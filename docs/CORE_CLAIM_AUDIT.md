@@ -130,9 +130,19 @@ $`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
 For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
 Optimal depth beyond the stated matching range remains open.
 
+The [phase-dressed theorem](../research/depth/COMPLEX_FRAME_DEPTH.md),
+R71, gives the same bounds for $`D_\phi W_{\mathbb R}`$ at
+$`b\ge17(L+n+8)`$. Its literal-diagonal depth is proved on the
+same optimal-count circuit. Both factors use precision $`L+1`$ and
+reuse the same two flags and dirty pool. The full-isometry hybrid propagates
+the real factor's earlier leakage unitarily; no intermediate reset or exact
+core return is assumed. The diagonal subclass with zero magnitude angles
+supplies the complex family's count and width-dependent depth lower bounds.
+
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
 | All-precision splice | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70, selects complete circuits while preserving optimal count, the elementary Clifford budget, full error, and the literal dirty threshold. |
+| Literal diagonal and complex composition | [Phase-dressed depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71, charges twelve completed XOR/Z queries and nine packed-source calls. Nonuniform indicators and the routed fallback respect the literal allocation. Ordered Pauli masks, actual inverses, the sine-branch phase, and the amplification scalar retain the entire operator. Half-error composition preserves the global F bound and the high-precision clause. |
 | Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68, charges its source, native queries, complete recovery, and simultaneous workspace without assuming supplied precision states. |
 | High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69, gives $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with the same count and Clifford bounds. Its proof covers the stated literal allocation and bounded dimensions. |
 | Alternative depth and literal-width fallback | The [retained uniform compiler](UNIFORM_PRECISION_DEPTH.md) supplies $`O(NL/b^2+nL)`$ depth. The all-precision proof controls its count when selecting this branch; its $`nL`$ count term is not dropped at arbitrary precision. |

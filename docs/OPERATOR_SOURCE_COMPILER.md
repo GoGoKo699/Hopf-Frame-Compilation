@@ -927,6 +927,14 @@ matches $`\Theta(\sqrt{NL}+L+NL/b)`$ for every $`L\ge6`$ once
 the respective dirty reservation is doubled. The tighter fixed complex
 endpoint above continues to use two clean flags.
 
+The [literal-diagonal depth schedule](../research/depth/COMPLEX_FRAME_DEPTH.md)
+replaces the complete mask queries in this section by rectangular dirty
+queries and proves their literal-width fallback. It gives simultaneous
+optimal count and $`O(N\ell/b^2+\ell+\log_2(n+2))`$ T-depth at
+$`b\ge17(\ell+n+7)`$ with two clean flags. Composing that schedule
+with the real all-precision theorem extends Result D to (40), at its
+separate threshold $`b\ge17(L+n+8)`$.
+
 ### 8.1 General one-qubit multiplexors with two clean qubits
 
 The same operator source compiles a family beyond the Hopf frame. A

@@ -10,6 +10,11 @@ already fits the logarithmic envelope. The combination introduces no new
 native primitive or source-state premise. Its stable result identifier is
 **R70**.
 
+The [phase-dressed extension](COMPLEX_FRAME_DEPTH.md), R71, separately
+proves a literal-diagonal depth schedule and composes it with this theorem.
+It covers complex magnitude frames at $`b\ge17(L+n+8)`$; the real
+reservation and proof below remain unchanged.
+
 ## 1. The uniform theorem
 
 Let $`n\ge1`$ and $`L\ge6`$ be integers, and put

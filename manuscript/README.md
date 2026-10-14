@@ -44,8 +44,9 @@ mechanisms and input/workspace contracts.
    ledger. Compose literal leaf phases under the shared-workspace error contract.
    Retain diagonal, multiplexor, zero-clean, and sharper two-clean endpoint
    corollaries at their distinct reservations.
-6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
-   explicit precision/workspace matching intervals, and applicable fallbacks.
+6. Result D: simultaneous T-count and T-depth, its two-clean real and
+   phase-dressed complex magnitude constructions, explicit family-specific
+   dirty reservations and matching intervals, and applicable fallbacks.
 7. Exact and approximate fixed-parameter QBP consequences, complete complex
    gradients, charged executions and reconstruction, and the remaining
    large-width depth question and limits of the circuit model.
@@ -60,8 +61,10 @@ Euler/diagonal details, lower bounds, and finite classical preprocessing.
 Distinguish exact dirty return from return included in the initialized-isometry
 error. A logical zero suffix supplies clean work only on its proved active
 sector. T-depth allows arbitrary Clifford interlayers and differs from total
-depth. Only D claims simultaneous T-count/T-depth guarantees; its real
-frame theorem does not inherit the complex extensions of A–C automatically.
+depth. Only D claims simultaneous T-count/T-depth guarantees. Its
+[complex extension](../research/depth/COMPLEX_FRAME_DEPTH.md) separately
+charges the literal diagonal depth and shared-workspace composition, keeping
+its dirty reservation distinct from the [real theorem](../research/depth/ALL_PRECISION_DEPTH.md).
 
 Result C combines the [one-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier).
