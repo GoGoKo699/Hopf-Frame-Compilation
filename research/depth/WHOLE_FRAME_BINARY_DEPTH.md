@@ -11,6 +11,11 @@ address is polynomial in n, while the paid source preparation is $`O(J)`$.
 The exact native kernel and recovery are reused from the binary terminal
 proof; the new work here is the uniform resource and width analysis.
 
+The later [one-clean theorem R72](ONE_CLEAN_DEPTH.md) relocates the
+padding-rejection bit into this protected logical bank and proves a
+one-clean bottom schedule and width splice. This chapter keeps its
+original two-clean theorem.
+
 ## 1. The claimed range and complete-circuit target
 
 There are absolute constants $`A_0,C,n_0`$ and

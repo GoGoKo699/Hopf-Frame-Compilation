@@ -11,6 +11,10 @@ constant number of linear-precision source words serially. A routed
 indicator fallback retains the literal dirty-width threshold when the
 shallow indicator's sufficient width constant does not fit.
 
+The [one-clean refinement](ONE_CLEAN_DEPTH.md), R72, retains these
+bounds and literal threshold with a different native diagonal word.
+This chapter preserves the two-clean packed construction and its proof.
+
 ## 1. Complete complex-frame theorem
 
 Let $`n\ge1`$ and $`L\ge6`$ be integers, put $`N=2^n`$, and define

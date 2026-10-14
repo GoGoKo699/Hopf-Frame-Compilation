@@ -77,9 +77,9 @@ dependency of C's current count proof. The conditioning lemma in its
 chapter remains necessary. Historical audits stay in the reference
 catalogue; current claims are stated in the publication scope.
 
-The reopened depth research now has an
-[all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md) (R70).
-For every $`n\ge1`$, integer $`L\ge6`$, two clean flags, and
+The selected depth result is the
+[one-clean all-precision theorem](research/depth/ONE_CLEAN_DEPTH.md), R72.
+For every $`n\ge1`$, integer $`L\ge6`$, one clean flag, and
 $`b\ge17(L+n+7)`$, one complete real-frame circuit has full
 initialized-isometry error at most $`2^{-L}`$ and absolute-constant bounds
 
@@ -94,35 +94,35 @@ F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
 
 Count is optimal at every eligible width; depth also matches through
 $`b\le\sqrt{NL/F(n,L)}`$ whenever that interval is nonempty.
-The [whole-frame binary schedule](research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
-and [high-precision schedule](research/depth/HIGH_PRECISION_DEPTH.md)
-provide the new branches. For $`L>N/n^2`$, depth strengthens to
-$`O(NL/b^2+L)`$ with the same count and Clifford budgets. The
-retained uniform baseline supplies the $`nL`$ depth alternative and
-literal-width fallbacks. Source preparation, coherent queries, actual
-inverses, conditional work, and external-reference error are all charged.
+For $`L>N/n^2`$, depth strengthens to $`O(NL/b^2+L)`$ with
+the same count and Clifford budgets. R72 prices native one-clean words,
+relocates the terminal rejection flag into the protected logical bank,
+and supplies its own width and precision splices, including bounded
+dimensions. Source preparation, coherent queries, actual inverses,
+conditional work, and external-reference error are all charged. The earlier
+[real theorem R70](research/depth/ALL_PRECISION_DEPTH.md) and
+[complex theorem R71](research/depth/COMPLEX_FRAME_DEPTH.md) retain their
+two-clean statements and remain supporting proofs.
 
-The [phase-dressed extension](research/depth/COMPLEX_FRAME_DEPTH.md)
-(R71) gives the same simultaneous count, Clifford, and depth bounds for
-$`D_\phi W_{\mathbb R}`$ at $`b\ge17(L+n+8)`$ with two clean flags.
-Its literal-diagonal schedule has depth
-$`O(NL/b^2+L+\log_2(n+2))`$ and preserves the optimal count.
-Both half-error factors reuse the same flags and arbitrary dirty pool;
-their full-isometry hybrid includes prior leakage. The high-precision
-$`O(NL/b^2+L)`$ clause also holds for this complex magnitude family.
+R72 gives the same simultaneous bounds for $`D_\phi W_{\mathbb R}`$
+at $`b\ge17(L+n+8)`$ with one clean flag. Its literal-diagonal
+schedule has depth $`O(NL/b^2+L+\log_2(n+2))`$ and preserves
+optimal count. Both half-error factors reuse the sole flag and arbitrary
+dirty pool; the full-isometry hybrid includes prior leakage. The stronger
+high-precision bound also holds for this complex magnitude family.
 Independently prescribed phases include zero-amplitude leaves. This is
 not arbitrary complex-unitary synthesis.
 
 For some absolute $`c>0`$, the
 [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains the stronger logarithm $`\log_2(n+2)`$ on
+retains its two-clean assumption and stronger logarithm $`\log_2(n+2)`$ on
 $`6\le L\le cn`$. At sufficient $`b=\Theta(\sqrt{NL})`$,
 shrinking error retains sublinear depth for $`L=o(n/\log(n+2))`$;
 the fixed-accuracy all-n statement remains valid. Its early gradient and
 terminal binary source are separate resources. The grouped terminal
 proof and its exact coarse-program interface remain at their original paths.
 
-The real and phase-dressed all-precision extensions are complete at the
+The one-clean real and phase-dressed all-precision extensions are complete at the
 stated scope. Further
 research must address a concrete depth improvement or a valid unrestricted
 lower bound; producing more fixtures is not a default next step. The

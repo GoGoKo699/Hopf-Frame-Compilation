@@ -30,6 +30,10 @@ Gosset–Kothari–Wu, with a separately proved terminating selection rule,
 coherent descendant labels, and arbitrary-dirty query implementations.
 It is not an invocation of an uncharged state-preparation oracle.
 
+The later [one-clean theorem R72](ONE_CLEAN_DEPTH.md) reuses the
+early circuit and relocates terminal rejection into protected logical
+work. The two-clean statements and proofs in this chapter remain intact.
+
 ## 1. Fixed-accuracy theorem
 
 For every fixed $`0\lt\eta\le1/64`$, put

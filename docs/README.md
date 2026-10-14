@@ -95,10 +95,10 @@ complex-unitary synthesis.
 
 ### D. Simultaneous frame T-count and T-depth
 
-For real frames, start with the [all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md).
-For every $`n\ge1`$, integer $`L\ge6`$, two clean flags, and
-$`b\ge17(L+n+7)`$, it gives one circuit with full error at most
-$`2^{-L}`$ and absolute constants. Define
+Start with the [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md),
+R72. For every $`n\ge1`$, integer $`L\ge6`$, one clean flag, and
+$`b\ge17(L+n+7)`$, it gives a complete real-frame circuit with
+full error at most $`2^{-L}`$ and absolute constants. Define
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
@@ -115,14 +115,14 @@ Count is optimal at every eligible width. Count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$, subject to the same lower threshold.
 For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
 
-The [complex extension](../research/depth/COMPLEX_FRAME_DEPTH.md) has these
-same guarantees for $`D_\phi W_{\mathbb R}`$ at
-$`b\ge17(L+n+8)`$, using two clean flags. Its literal diagonal depth
-ledger and half-error same-workspace composition preserve the full
-initialized-isometry contract. Matching depth retains the corresponding
-complex lower threshold; unrestricted optimal depth remains open.
+R72 also gives these guarantees for $`D_\phi W_{\mathbb R}`$ at
+$`b\ge17(L+n+8)`$, using one clean flag. Its native diagonal
+schedule and half-error same-workspace composition preserve the full
+initialized-isometry contract, including leakage from the first factor.
+Matching depth retains the corresponding complex lower threshold;
+unrestricted optimal depth remains open.
 
-The real-frame [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+The retained two-clean real-frame [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains $`\log_2(n+2)`$ in place of $`\log_2(n+L+2)`$ for
 $`6\le L\le cn`$, with some absolute $`c>0`$.
 At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
@@ -131,13 +131,14 @@ $`O_\eta(\sqrt n\log(n+2))`$ depth. Optimal depth remains open.
 
 | Selected branch | Canonical proof and role |
 |---|---|
-| All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: simultaneous counts, literal widths, precision splice, and inherited matching bounds |
-| Literal phase dressing | [Complex-frame depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71: charged diagonal depth and complete shared-workspace composition at the complex reservation |
+| One-clean count and depth | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
+| All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
+| Literal phase dressing | [Complex-frame depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71: retained two-clean packed diagonal depth and shared-workspace composition at the complex reservation |
 | Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68: charged complete-frame schedule with precision-dependent source work |
 | High-precision branch | [High-precision depth](../research/depth/HIGH_PRECISION_DEPTH.md), R69: $`O(NL/b^2+L)`$ depth for $`L>N/n^2`$ with optimal count |
 | Retained baseline | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md): the $`nL`$ depth alternative, literal-width fallback, and earlier matching intervals |
 
-The retained uniform proof has an early unary-group branch, an exact rectangular-query tail,
+The retained two-clean uniform proof has an early unary-group branch, an exact rectangular-query tail,
 and an all-precision fallback. The following chapters are mathematical
 dependencies, not a sequence of research tasks to repeat.
 
@@ -178,8 +179,9 @@ recurrence are needed by the later pipeline; the grouped selector schedule
 is needed by the unary source. Their proofs must not be replaced by a link
 to a stronger headline bound.
 
-D covers complete real frames through R70 and phase-dressed complex
-magnitude frames through R71. The state-based protocol retains its separate
+D covers complete real and phase-dressed complex magnitude frames with
+one clean qubit through R72; R70 and R71 retain their two-clean statements.
+The state-based protocol retains its separate
 decoder contract. T-depth allows arbitrary
 Clifford interlayers; their gate counts are charged, and their physical
 depth is not declared zero. The large-width depth optimum remains open.

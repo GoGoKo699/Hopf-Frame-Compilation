@@ -87,9 +87,9 @@ Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
 
 ## Large-width T-depth
 
-The [real theorem](../research/depth/ALL_PRECISION_DEPTH.md) and
-[phase-dressed extension](../research/depth/COMPLEX_FRAME_DEPTH.md)
-apply for every $`n\ge1`$, integer $`L\ge6`$, and two clean flags.
+The [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+applies to both families for every $`n\ge1`$, integer $`L\ge6`$,
+and one clean flag.
 Put $`B_D=L+n+7`$ for complete real frames and $`B_D=L+n+8`$
 for phase-dressed complex magnitude frames $`D_\phi W_{\mathbb R}`$.
 At every $`b\ge17B_D`$, define
@@ -114,22 +114,21 @@ The inherited lower bounds also match depth on every nonempty interval
 \qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
 ```
 
-The [high-precision branch](../research/depth/HIGH_PRECISION_DEPTH.md)
-gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$,
-with the same count, Clifford, and error bounds. The
-[whole-frame binary branch](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
-and the [retained baseline](UNIFORM_PRECISION_DEPTH.md) complete the
-all-precision splice without changing the literal dirty threshold.
-The complex extension proves a separate literal-diagonal schedule with
+The one-clean high-precision branch gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$,
+with the same count, Clifford, and error bounds. R72 supplies native
+one-clean layer schedules, protected terminal flag relocation, and its
+own width/precision splice without changing the literal dirty threshold.
+Its complex extension proves a one-clean literal-diagonal schedule with
 $`D_T=O(NL/b^2+L+\log_2(n+2))`$, then composes half-error factors
-on the same flags and dirty pool. Its stated threshold includes that
+on the same flag and dirty pool. Its stated threshold includes that
 precision increment; the high-precision bound applies to both families.
 Every source preparation, query, actual inverse, and work-return error
 is charged. Classical preprocessing terminates, with no efficiency claim.
 
-For some absolute $`c>0`$, the
+The retained two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains the stronger real-frame $`\log_2(n+2)`$ dependence on
+retains, for some absolute $`c>0`$, the stronger real-frame
+$`\log_2(n+2)`$ dependence on
 $`6\le L\le cn`$:
 
 ```math
@@ -144,10 +143,10 @@ More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
 Its early phase-gradient source and terminal binary source are separately
 charged. The small absolute c is not a practical crossover estimate.
 
-The separate fixed-accuracy statement covers every $`n\ge1`$.
+The one-clean fixed-accuracy consequence of R72 covers every $`n\ge1`$.
 For every fixed $`0\lt\eta\le1/64`$, put
-$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. At two clean
-flags and every $`b\ge17(L+n+7)`$, it gives
+$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. At one clean
+flag and every $`b\ge17(L+n+7)`$, it gives
 
 ```math
 T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad

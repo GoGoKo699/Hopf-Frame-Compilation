@@ -589,8 +589,11 @@ T=O\!\left(\sqrt{NL}+L\ell_*(n)+\frac{NL}{b}\right),
 ```
 
 The banked matching regimes extend to the fixed allocation $`a=1`$.
-The existing T-depth and simultaneous count/depth schedules retain their
-separately proved two-clean assumptions. The separate
+The earlier depth schedules retain their separately proved two-clean
+statements. The [one-clean depth refinement](../research/depth/ONE_CLEAN_DEPTH.md)
+now proves the simultaneous all-precision count/depth bounds at the
+separate thresholds $`17(L+n+7)`$ for real frames and
+$`17(L+n+8)`$ for complex magnitude frames. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 improves the one-clean real count to $`O(N+L)`$ with the same dirty
 reservation; at $`L=N`$ this is $`O(N)`$. Its
@@ -735,8 +738,9 @@ At a fixed parameter tuple, this complete-frame contract supplies the
 The leaf-phase derivatives still use their separate direct signed one-hot
 stream; they are not additional frame columns. The result concerns the
 specified phase-dressed magnitude frame, not arbitrary complex unitaries.
-It does not extend the separately proved T-depth schedules to one clean
-qubit. The separate
+This count proof alone supplies no T-depth bound; the separate
+[R72 schedule](../research/depth/ONE_CLEAN_DEPTH.md) proves one-clean
+count/depth guarantees at its stated wider allocation. The
 [growing-source composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
 gives $`O(N+L)`$ T-count at $`b\ge L+n+8`$, and its
 [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)

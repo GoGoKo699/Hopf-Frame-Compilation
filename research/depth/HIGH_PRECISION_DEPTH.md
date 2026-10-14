@@ -13,6 +13,10 @@ Its stable result identifier is **R69**; the
 [all-precision theorem](ALL_PRECISION_DEPTH.md) combines it with the
 lower-precision constructions.
 
+The later [one-clean theorem R72](ONE_CLEAN_DEPTH.md) retains this
+large-dimension circuit and replaces the bounded-dimension fallback
+by a one-clean native word. The two-clean theorem below remains valid.
+
 ## 1. High-precision theorem
 
 There is an absolute constant C such that, for every integer $`n\ge1`$,

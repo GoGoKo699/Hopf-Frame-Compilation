@@ -48,7 +48,7 @@ classical coefficient generation and preprocessing are excluded from gate counts
 | **A. Exact complete-frame compilation** | Total elementary size $`\Theta(N)`$, CNOT count $`\Theta(N)`$ for $`n\ge2`$, and depth $`\Theta(n+N/(n+m))`$ | Every integer $`m\ge0`$; real and phase-dressed complex magnitude frames; workspace returned exactly; CNOT count is zero for $`n=1`$ |
 | **B. Matching fault-tolerant frontier** | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, with $`O(NL)`$ Clifford cost for the upper construction | Real frame and, by Corollary 7, the phase-dressed complex magnitude frame; sufficient clean reservation $`a\ge C(n+h)`$ for a sufficiently large fixed $`C`$; literal-phase, complete-input error |
 | **C. Optimal one-clean count** | $`T=O(N+L)`$ at the base reservation; matching banked frontier stated below; $`G=O(NL)`$ | Real and phase-dressed complex magnitude frames; $`n\ge1`$, $`L\ge6`$, $`a=1`$; family-specific dirty reservations and full initialized-isometry error |
-| **D. Simultaneous T-count and T-depth** | All-precision optimal count and simultaneous depth bounds stated below | Real and phase-dressed complex magnitude frames; $`a=2`$; family-specific dirty thresholds, absolute constants, and the full initialized-isometry error contract |
+| **D. Simultaneous T-count and T-depth** | All-precision optimal count and simultaneous depth bounds stated below | Real and phase-dressed complex magnitude frames; $`a=1`$; family-specific dirty thresholds, absolute constants, and the full initialized-isometry error contract |
 
 Result A includes a separate CNOT lower bound with arbitrary one-qubit gates
 free: a circuit with $`K`$ CNOTs has at most $`n+4K`$ relevant one-qubit
@@ -106,9 +106,9 @@ The theorem supplies no new T-depth guarantee.
 
 ### Result D: the current count–depth tradeoff
 
-The [real theorem](../research/depth/ALL_PRECISION_DEPTH.md) and its
-[phase-dressed extension](../research/depth/COMPLEX_FRAME_DEPTH.md)
-apply for every $`n\ge1`$, integer $`L\ge6`$, and two clean flags.
+The [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+applies to both families for every $`n\ge1`$, integer $`L\ge6`$,
+and one clean flag.
 Write $`B_D`$ for the family-specific reservation:
 
 | Target | $`B_D`$ | Required dirty width |
@@ -141,17 +141,18 @@ simultaneously throughout every nonempty interval
 \qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
 ```
 
-For $`L>N/n^2`$, the [high-precision branch](../research/depth/HIGH_PRECISION_DEPTH.md)
-gives the stronger $`D_T=O(NL/b^2+L)`$ with the same count and
-Clifford bounds. The [whole-frame binary schedule](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md)
-and [retained uniform baseline](../docs/UNIFORM_PRECISION_DEPTH.md)
-complete the precision splice and literal-width fallback. The baseline's
-$`nL`$ count term is absorbed only in the regimes used by that splice.
+For $`L>N/n^2`$, the one-clean high-precision branch gives the
+stronger $`D_T=O(NL/b^2+L)`$ with the same count and Clifford
+bounds. R72 charges native one-clean layer words, places terminal rejection
+work inside the protected logical bank, and supplies explicit width and
+precision splices. The earlier [real](../research/depth/ALL_PRECISION_DEPTH.md)
+and [complex](../research/depth/COMPLEX_FRAME_DEPTH.md) two-clean proofs
+retain their original statements.
 
 D obeys the common full-input error contract below, with source preparation,
 queries, inverses, and conditional work charged. The complex extension
 separately proves the literal diagonal's depth schedule, then composes both
-factors at precision $`L+1`$ on the same flags and dirty pool. It preserves
+factors at precision $`L+1`$ on the same clean flag and dirty pool. It preserves
 the high-precision clause and includes earlier leakage without a reset.
 T-depth permits arbitrary Clifford interlayers and differs from total circuit
 depth. The sharper real linear-precision special case and fixed-accuracy
@@ -207,7 +208,7 @@ Earlier [depth-oriented schedules](../docs/T_DEPTH_COMPILER.md) and
 dependencies and alternative resource points, including smaller literal
 dirty reservations and distinct count/depth allocations. Present their
 applicable fallbacks in the appendices; Result D retains its stated
-two-clean allocation and literal dirty threshold.
+one-clean allocation and literal dirty threshold.
 
 The [operator-source baseline](../docs/OPERATOR_SOURCE_COMPILER.md) retains
 its source/digit primitives, dirty queries, amplification, and certified table
@@ -317,7 +318,8 @@ remain. Its full ledger gives the stated precision dependence without
 changing the count or Clifford budgets. Classical preprocessing terminates,
 with no efficiency claim.
 
-For every fixed $`0\lt\eta\le1/64`$, the all-n statement retains
+For every fixed $`0\lt\eta\le1/64`$, R72 also gives the one-clean
+all-n consequence
 $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 
 ```math
@@ -369,7 +371,7 @@ end-to-end speedups are outside the selected claims.
 | A | [Exact theorem](../docs/COMPILER_THEOREM.md): all clean budgets, size, CNOT-only count, and depth |
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C | [One-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using growing precision sources, [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md), exact dirty word banks, and the [layerwise one-clean baseline](../docs/ONE_CLEAN_COMPILER.md) |
-| D | [Real all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md) and [phase-dressed extension](../research/depth/COMPLEX_FRAME_DEPTH.md): optimal count and simultaneous depth with charged query schedules, full-isometry composition, and family-specific width |
+| D | [One-clean count and depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native one-clean words, protected logical work, width/precision splice, and full-isometry phase composition at family-specific widths; R70/R71 retain their two-clean proof roles |
 | Stronger linear-precision special case | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision): coherent descendant sources, one charged early gradient, native dirty queries, complete-column recovery, and a separate [shared binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) |
 | Compiler corollaries and distinct allocations | [One-clean primitives](../docs/ONE_CLEAN_COMPILER.md), [operator sources](../docs/OPERATOR_SOURCE_COMPILER.md), [borrowed-workspace compiler](../docs/BORROWED_WORKSPACE_COMPILER.md), and [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); each keeps its literal reservation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
