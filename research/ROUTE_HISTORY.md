@@ -1,8 +1,22 @@
-# Endpoint route assessments
+<a id="endpoint-route-assessments"></a>
 
-These are retained assessments from completed research passes. Their proposed next steps are historical, not current work orders. Consult the [research index](README.md) for outcomes and the [current gap statement](../docs/OPEN_PROBLEM.md) for the active boundary. Repeated frontier summaries and the completed state-based protocol history have been removed from this log; their authoritative homes are the selected claim ledger and the completed supplement.
+# Historical endpoint route assessments
 
-## A sufficient construction to seek
+The [growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md) resolves
+the unrestricted real-frame count endpoint at $`\eta=2^{-N}`$,
+$`a=2`$, $`b=N+n+7`$, and $`n\ge3`$. This log preserves earlier
+route assessments, their derivations, and method-specific obstructions.
+References below to the best bound, an endpoint gap, or a next step describe
+the corresponding historical pass; they are not current work orders.
+
+Use the [research index](README.md) for the current result hierarchy and
+the [endpoint statement](../docs/OPEN_PROBLEM.md) for the remaining
+large-width depth question. The [workspace guide](../WORKSPACE.md#research-decision-and-stopping-rules)
+sets the current scope and stopping rules.
+
+<a id="a-sufficient-construction-to-seek"></a>
+
+## The earlier sufficient construction target
 
 A sufficient endpoint construction is an actual unitary Q using two
 initialized flags and at most $`N+n+7`$ dirty qubits, satisfying
@@ -39,7 +53,7 @@ These are retained constructions; their linked proofs are the primary homes.
 | Affine/reverse assembly | [Two-flag proof](endpoint/RESIDUAL_ASSEMBLY.md): diagonal-plus-forward and inverse-based reverse blocks give normalization two, with controls/inverses charged; cost still contains $`nL`$ |
 | Full-port hierarchy | [Fusion audit](endpoint/RESIDUAL_ASSEMBLY.md#7-a-bounded-audit-of-fusion-across-tree-depths): recursively closed complete unitary, linear classical generators; faster native synthesis unproved |
 | Coupled completion | [Whole-residual boundary](endpoint/RESIDUAL_ASSEMBLY.md#8-a-coupled-completion-and-its-native-cost): one-signal normalization-two recursion; a commutator implements the complete rank-at-most-four repair without normalizing transported differences; its child calls cancel to the original target wrappers, whose precision remains charged |
-| Grouped frame | Best general endpoint bound, with conditional suffix and core return in the complete error |
+| Grouped frame | Earlier general endpoint bound, with conditional suffix and core return in the complete error; superseded at two clean flags by the growing-source theorem |
 | Product-first residual coordinates | [Cayley recursion](endpoint/ENDPOINT_TREE_TRANSPORT.md#6-small-products-suggest-a-cayley-representation) gives constant-size local data for the complex-coarse residual; the [four-mode native benchmark](endpoint/ENDPOINT_TREE_TRANSPORT.md#7-a-native-four-mode-benchmark) uses two one-target programs, while the eight-mode controlled coupling and general coherent conversion remain charged |
 | Source-width transport | [Reverse-order loader](endpoint/SOURCE_REUSE_LIMITS.md#6-changing-source-width-without-renewing-its-preparation): total boundary T-count $`2(m_{\max}-1)`$ with linear native loaders; transformed group bodies remain charged |
 | Joint source body | [Changing-target word](endpoint/ENDPOINT_TREE_TRANSPORT.md#10-a-shared-source-body-for-changing-targets) shares one fixed scalar conjugator and returns a borrowed signal through two parity boundaries; the eight-/sixteen-mode words are priced, but fair fixed-mask simplification leaves the same leading precision cost in both comparisons |
@@ -127,7 +141,7 @@ still charge those operations but may have a larger Clifford count.
 ## What the failure diagnostics actually rule out
 
 None of these statements makes separate source or mask costs additive for
-a jointly synthesized circuit or settles the unrestricted endpoint.
+a jointly synthesized circuit or obstructs the unrestricted endpoint theorem.
 
 | Shortcut | Established limit and scope |
 |---|---|
@@ -167,13 +181,14 @@ entrywise expansion of an h-level affine map has $`h2^h+1`$ generic
 nonzero entries. Neither linear classical storage nor dense expansion
 supplies the missing native synthesis by itself.
 
-## Revision decision and next bounded pass
+<a id="revision-decision-and-next-bounded-pass"></a>
+
+## Earlier revision decisions and proposed passes
 
 This section retains earlier source-carry decisions and their derivations.
 Their construction candidates remain conditional; later outcomes are mapped
-in the [research index](README.md). The current scope and stopping rules
-are in the [workspace guide](../WORKSPACE.md#research-decision-and-stopping-rules).
-The proposals below are historical, not current work orders.
+in the [research index](README.md). The proposals below retain the scope
+of their original passes.
 
 The coupled-merge passes have completed their structural task. The
 [commutator repair](endpoint/RESIDUAL_ASSEMBLY.md#9-a-repair-word-without-an-ill-conditioned-transported-basis)
@@ -479,5 +494,6 @@ complete transfer, dummy handling, port routing, and the path coefficient.
 This closes the unchanged-coin conversion as a bounded-call candidate.
 It does not establish a native T-count lower bound: global coefficient
 preprocessing, target-dependent interleaves, and shared native synthesis
-of many calls remain outside the query argument. The Hopf-specific
-representation is useful, but it has not narrowed the endpoint gap.
+of many calls remain outside the query argument. This representation did
+not improve the then-available endpoint count. The later growing-source
+theorem resolves the count question through a different construction.

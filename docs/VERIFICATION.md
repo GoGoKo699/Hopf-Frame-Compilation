@@ -31,29 +31,44 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean frame and corollaries | [One-clean compiler](ONE_CLEAN_COMPILER.md), [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), one-clean word, amplification, grouped residual and bank-allocation fixtures | Small emitted words and matrices; operator-core return error is included in the joint norm |
 | D: uniform count and T-depth | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md) | Unary-source, blocked-query, dirty-indicator, arithmetic, and uniform allocation suites | Same-circuit analytic schedule; finite fixtures do not emit every variable-size frame |
-| Packed literal diagonals | [Operator-source Section 8](OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames) | [Exact packed-source words](../tests/test_packed_diagonal.py), all small sign masks, accepted complex blocks and full-output amplification identities | Bounded exact native source/block checks; the precision/workspace theorem and banked bounds are analytic |
-| Fixed-tree endpoint reduction | [Tree Cayley proof](../research/endpoint/TREE_CAYLEY_REDUCTION.md) | [Exact phase/chart tests](../tests/test_tree_phase_chart.py): unequal and singular inputs, all small coarse patterns, resolvent, cut sums and Haar algebra | The all-angle reduction and an O(nN)-T fine core realization are proved; O(N)-T core synthesis remains a separate hypothesis |
-| Self-borrowed queries | [Source compiler](OPERATOR_SOURCE_COMPILER.md), [borrowed-signal contract](ONE_CLEAN_COMPILER.md) | [Native query tests](../tests/test_self_borrowed_query.py): every small input column, overlapping selectors, literal Pauli order, actual inverse and core helper | Output borrowing requires at least twice as many output bits as address bits; it supplies no initialized cache |
-| Boundary propagation and feedback | [Boundary propagation](../research/endpoint/BOUNDARY_PROPAGATION.md) | [Boundary tests](../tests/test_tree_boundary.py): independent edge products, all dilation ports, full entrance, chain reversal, one-encoder cancellation and repeated-call ledger | The native resource theorem is analytic; exact cancellation leaves one prefix encoder to synthesize |
-| Coarse prefix encoder | [Encoder proof](../research/endpoint/COARSE_PREFIX_ENCODER.md) | [Encoder tests](../tests/test_coarse_prefix_encoder.py): complete depth blocks, delimiter layout, Wold chains and full-operator error contract | Native coarse precision; auxiliary encoders retain their complete-operator contract |
-| Collective precision refinement | [Refinement proof](../research/endpoint/COLLECTIVE_PRECISION_REFINEMENT.md) | [Refinement tests](../tests/test_collective_precision.py): exact history, all-column tangent and midpoint actions, dirty-input purification and cubic resource reservations | Analytic fixed-order native construction; small operators and exact ledgers do not constitute a general circuit emitter |
-| Coupled all-order inverse | [Resolvent proof](../research/endpoint/COUPLED_TREE_RESOLVENT.md) | [Coupled-tree tests](../tests/test_coupled_tree_resolvent.py): graded tails and support, rank-one descendant data, complete complex scattering, and rejected prefix baseline | Ideal dilation and finite matrices; native precision cost and literal workspace reservation remain separate |
-| Disjoint native blocks | [Block compiler](../research/endpoint/DISJOINT_BLOCK_COMPILER.md) | [Block tests](../tests/test_disjoint_block_compiler.py): exact dirty clock, adjacent mesh, complex pair sources, full recovery and inactive inputs | Finite algebra checks; native counts and local source coverage follow from the proof |
-| Precision and forest compilers | [Precision gauges](../research/endpoint/PRECISION_GAUGE_COMPILER.md), [structured forests](../research/endpoint/STRUCTURED_FOREST_COMPILERS.md) | [Gauge tests](../tests/test_precision_gauge_compiler.py) and [forest tests](../tests/test_structured_forests.py): complex gauges, actual dirty rejection, Parseval source, exact component dressing, signed/corner cases and reversed-order regression | Restricted-family native theorems; these finite checks do not emit a general elementary compiler |
-| Heterogeneous precision source | [All-height clipped common-source theorem](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) | [Source checks](../tests/test_heterogeneous_precision_source.py): geometric residual, dyadic coefficients, retained history, mixed dirty replay and complete recovery; certified clipping, selected bottom trace, scalar-order padding and saturated shifts | Analytic cost O(N+B_K) charges the actual retained bottom trace, with no exponent promise on the upper tree; finite checks do not emit the compiler |
-| Growing precision source | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md) | [Separate growing-source checks](../tests/test_growing_precision_source.py): normalized refinement, sealed occupied failures, source tags, attenuation compensation, actual dirty replay, original-anchor recovery and linear full-output error | Analytic O(N) count for prescribed complete real frames with two clean flags and the literal dirty budget; finite diagnostics are not a scalable native emitter or independent external review |
-| Canonical-star oracle | [Star resolvent](../research/endpoint/CANONICAL_STAR_RESOLVENT.md) | [Star tests](../tests/test_canonical_star_resolvent.py): full complex stars, Cayley congruences, triangular inverse, midpoint completion and one-bin workspace | The local native oracle is priced; inverse recovery remains unresolved |
-| Schur source restriction | [Schur proof](../research/endpoint/SCALAR_SCHUR_LIMITS.md) | [Schur tests](../tests/test_scalar_schur_limits.py): complete complex gauge, supported minors, rational-complex determinants and robust finite gaps | Analytic bound extends to bounded, logical-label-preserving dirty-operator sources around one prescribed coarse call; finite tests cover the scalar identities |
-| Full-frame operator stability | [Interface Section 4.2](HOPF_INTERFACE.md#42-complete-frame-operator-stability) | [Stability tests](../tests/test_frame_operator_stability.py): independent product-rule tangent, PSD sum, sharp path, depth caps and isolated angle | Ideal frame perturbations; native source leakage has its own contract |
-| Dense and programmed-source restrictions | [Structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md), [source reuse](../research/endpoint/SOURCE_REUSE_LIMITS.md), [residual assembly](../research/endpoint/RESIDUAL_ASSEMBLY.md) | [Interface tests](../tests/test_endpoint_refinement_routes.py): four-mask XOR identity, unequal gauge transport, literal five-call inverse-pair source and dirty polar filter, lookup transport, and correlated history identities | Each theorem concerns its stated representation; source-witness reachability by the fixed global encoder is not established |
-| Native representation bounds | [Realification](../research/endpoint/NATIVE_REALIFICATION.md), [Spin decoding](../research/endpoint/SPIN_DECODING_LIMITS.md) | [Representation tests](../tests/test_native_representation_limits.py): exact native realification, full-isometry norms, ring-circle and marker gaps, and integer Spin multiplicities including the n=3 exception | Exact support and specified decoder architectures only; finite checks do not establish unrestricted circuit lower bounds |
-| Global Haar restrictions | [Global norm proof](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | [Exact Haar certificates](../tests/test_global_haar.py): common signed-path witnesses and absolute-matrix bounds | Arbitrary-order and stronger alternating lower bounds follow from the proofs; they do not cover arbitrary mixers |
+
+### Endpoint count evidence
+
+The separate [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+establishes the linear T-count endpoint for every prescribed complete real
+Hopf frame with certified rotation data. Its contract is $`n\ge3`$,
+$`N=2^n`$, error $`2^{-N}`$, two clean flags, and $`b=N+n+7`$ dirty
+qubits. The error includes every logical column, returned flags, arbitrary
+dirty inputs, and external references. This endpoint theorem is separate
+from the selected Results A–D; it does not settle general optimal T-depth.
+
+The [growing-source checks](../tests/test_growing_precision_source.py) test
+normalized refinement, sealed occupied and entangled failures, retained
+source tags, attenuation compensation, actual dirty replay, original-anchor
+recovery, and linear full-output error. Exact integer checks preserve the
+source-scale relation across refinements. The native arena allocation,
+summable charges, and unrestricted count bound come from the proof. These
+finite diagnostics are neither a scalable native emitter nor independent
+external review.
+
+### Detailed evidence records
 
 The [verification catalogue](reference/VERIFICATION_CATALOGUE.md) preserves
-the complete per-fixture descriptions, negative controls, and software
-boundaries, including separate [state-based QBP coverage](reference/VERIFICATION_CATALOGUE.md#state-based-qbp-coverage)
-and optional research diagnostics. Its detailed records are not additional
-claims of A–D.
+the per-fixture descriptions, negative controls, and software boundaries for
+the supporting constructions and earlier routes. Its
+[detailed finite checks](reference/VERIFICATION_CATALOGUE.md#detailed-finite-checks)
+cover packed diagonals, source borrowing, tree reductions, refinement and
+forest compilers, operator stability, and representation restrictions. The
+[endpoint source and representation map](reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
+links the additional source, bank, recovery, encoding, and reflection
+fixtures to their proof and module homes. These records retain their stated
+interface restrictions; they are not additional claims of A–D or unrestricted
+circuit lower bounds.
+
+The separate [state-based QBP coverage](reference/VERIFICATION_CATALOGUE.md#state-based-qbp-coverage)
+records its changed decoder and bounded native integration. Use the
+[test index](../tests/README.md) to find executable suites and
+[§9](#9-reproduce-the-checks) to reproduce the checks.
 
 ## 2. What is represented locally
 
