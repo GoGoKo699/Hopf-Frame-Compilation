@@ -1,6 +1,7 @@
 <a id="bounded-audit-of-the-selected-compiler-claims"></a>
+<a id="reconstruction-of-the-one-clean-count-theorem"></a>
 
-# Reconstruction of the one-clean count theorem
+# Reconstruction of the count and depth theorems
 
 [Publication scope](../manuscript/PUBLICATION_SCOPE.md) · [Proof roadmap](../REVIEW.md) · [Verification](VERIFICATION.md) · [Source map](SOURCE_MAP.md)
 
@@ -18,6 +19,11 @@ with its banked proof in Section 12. The
 preserves the earlier A–D decisions, imported-interface checks, correction,
 baseline, and finite evidence. Its older Result C is a retained supporting
 construction. A, B, and D retain their distinct resource statements.
+
+A separate reconstruction below checks the
+[fixed-accuracy large-width depth construction](../research/depth/SUBLINEAR_T_DEPTH.md).
+It preserves C and the uniform D theorem while establishing a sublinear
+depth upper bound at sufficiently large constant square-root dirty width.
 
 ## Claim-to-proof decisions
 
@@ -94,6 +100,40 @@ domain. It replaces the overly broad claim that zero leaf phases embed
 the entire real-angle domain. The specific root-angle $`\pi/16`$
 witness belongs to both families.
 
+## Fixed-accuracy large-width depth audit
+
+For every fixed $`0\lt\eta\le1/64`$, the
+[complete construction](../research/depth/SUBLINEAR_T_DEPTH.md) gives
+all prescribed real frames on $`n\ge1`$ qubits a circuit with two
+initialized flags and $`b=\lceil C_\eta\sqrt N\rceil`$ dirty qubits:
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta(\sqrt n\,\log^2(n+2))=o(n).
+```
+
+These are simultaneous bounds with the full initialized-isometry error
+at most eta. They settle the stated fixed-accuracy sublinear-depth
+existence question; they do not determine optimal depth or replace D's
+precision-uniform bounds and matching intervals.
+
+| Reconstructed obligation | Finding and proof boundary |
+|---|---|
+| Imported state source | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3) supplies coarse Boolean-phase state approximation and LCU/amplification structure. Its ancillary allocation is not treated as a two-clean implementation. |
+| Effective coherent preparation | The [descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md) uses a local strict residual search, a common geometric coefficient state, and source-label-dependent attenuation. It terminates at zero residuals without equality decisions. Orthogonal tag/prefix sectors prevent a dimension factor in source-isometry error. |
+| Native guards and live work | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md) expose private T-layer supports despite shared read-only addresses. Boolean phase and controlled-H echoes return arbitrary dirty work. Binary real-Y echoes replace any controlled-T interpreter; actual inverses give exact inactive identity even on occupied programs. |
+| Whole-operator recovery | The tag source and uniform row isometry encode the complete early frame with normalization $`\sqrt K`$, $`K=O(n)`$. A mathematical near-isometry completion controls actual forward and inverse source words in full operator norm, including leaked source scratch. Guarded amplitude amplification retains its literal active-sector sign. |
+| Same-circuit resource budgets | A terminal block of $`M=\lceil\log_2^2(n+2)\rceil`$ supplies the simultaneous $`O_\eta(\log(n+2))`$ conditional clean reservation. Early tables have $`2^{n-M}\mathrm{poly}_\eta(n)`$ rows. The [nonuniform dirty indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) keeps the final M layers within the count and Clifford budgets; they contribute only polylogarithmic depth. |
+
+An occupied active angle program represents its XOR-offset word, so the
+audit does not identify initialized-program accuracy with a specified
+full-space row rotation. The recovery comparison instead includes the
+actual normalized source outputs and all scratch leakage. The original
+terminal-zero predicate is reversed only after recovery; unitary
+telescoping covers its leakage and the following tail without a reset.
+Finite exceptional dimensions use the retained compiler with enlarged
+fixed-accuracy constants.
+
 ## Shared operator and operational contract
 
 The initialized-isometry norm covers every logical column, arbitrary
@@ -111,14 +151,16 @@ classical-output charges.
 
 The [source map](SOURCE_MAP.md) identifies the imported synthesis and
 lower-bound premises; the [dated audit](reference/CORE_CLAIM_AUDIT_2026_10_03.md#imported-premises-checked)
-retains their earlier interface checks. No new external premise or
-priority claim is introduced. The [verification map](VERIFICATION.md)
+retains their earlier interface checks. The count reconstruction imports
+no additional external premise. The depth extension uses the cited GKW
+state-preparation result with its local coherent and native realization;
+no literature-priority claim follows from this audit. The [verification map](VERIFICATION.md)
 distinguishes native words, exact identities, supplied-matrix diagnostics,
 and analytic resource sums. The existing scientific tests and exact
 receipt hashes are retained.
 
 This is internal proof reconstruction, not external technical review or
 formal proof certification. The selected count package is ready for
-manuscript development when requested. Large-width T-depth remains a
-separate question requiring a qualifying native mechanism or unrestricted
-lower-bound invariant.
+manuscript development when requested. The large-width construction
+establishes sublinear depth; its optimal order, lower bounds, and other
+width/precision regimes remain separate questions.

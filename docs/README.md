@@ -96,10 +96,26 @@ Start with [uniform precision and depth](UNIFORM_PRECISION_DEPTH.md).
 Its theorem gives absolute-constant bounds on one circuit, with two clean
 flags and its literal dirty threshold. It proves simultaneous matching
 count and depth on explicit intervals, plus a stronger slowly growing
-precision range. At fixed accuracy and sufficient square-root dirty width,
-optimal-order T-count accompanies an O(n) T-depth upper bound.
+precision range. Its fixed-accuracy specialization gives O(n) T-depth
+at sufficient square-root dirty width.
 
-The proof has an early unary-group branch, an exact rectangular-query tail,
+The [sublinear-depth construction](../research/depth/SUBLINEAR_T_DEPTH.md)
+sharpens that fixed-accuracy point. For every fixed
+$`0\lt\eta\le1/64`$, two clean flags and
+$`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits suffice for
+one complete real-frame circuit with
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(\sqrt n\log_2^2(n+2)\right)=o(n).
+```
+
+The constant $`C_\eta`$ is sufficiently large and fixed. This resolves
+sublinear-depth existence at that width; optimal depth remains open.
+The uniform theorem retains its separate precision, literal-width and
+matching-interval guarantees.
+
+The uniform proof has an early unary-group branch, an exact rectangular-query tail,
 and an all-precision fallback. The following chapters are mathematical
 dependencies, not a sequence of research tasks to repeat.
 
@@ -116,6 +132,15 @@ dependencies, not a sequence of research tasks to repeat.
 | General-precision hybrid | [Parallel dirty lookup](PARALLEL_DIRTY_LOOKUP.md): bilinear queries, dirty-counter primitives, and the hybrid used outside the low-precision branch |
 | Native scheduling and depth bounds | [T-depth schedule](T_DEPTH_COMPILER.md): exact shared-control phase/Fredkin batches, routing, two-dirty predicates, and count-to-depth lower-bound transfer |
 | Angular approximation | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md), Section 1: full-frame square-sum bound for ideal angle perturbations |
+
+The fixed-accuracy improvement has a separate, shorter dependency chain:
+
+| Part of the sublinear-depth argument | Proof dependency and role |
+|---|---|
+| Complete early operator | [Sublinear T-depth](../research/depth/SUBLINEAR_T_DEPTH.md): orthogonal column sectors, dimension-independent source completion, literal-phase recovery, and early/tail resource closure |
+| Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, charged calibration, exact inactive identity, and full source-isometry error |
+| Native early data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): private T-layer scheduling with shared read-only addresses, Boolean phase echoes, and guarded variable-suffix Hadamards |
+| Count-efficient final layers | [Nonuniform indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md) and [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision): linear indicator count/work, logarithmic address depth, and the retained complete-input layer error |
 
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count
@@ -157,7 +182,7 @@ with worst-case $`T^\star=\Theta(N)`$ and lower bound $`2N-1`$.
 It saves one dirty qubit relative to C's one-clean complex reservation.
 The [research index](../research/README.md) maps supporting constructions
 and method-specific limits; the [endpoint statement](OPEN_PROBLEM.md)
-records the remaining large-width depth question.
+records the remaining depth-optimality question.
 
 ### Completed changed-decoder supplement
 

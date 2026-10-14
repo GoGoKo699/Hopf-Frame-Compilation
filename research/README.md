@@ -6,8 +6,10 @@ The growing-source proofs below establish Result C's one-clean count
 frontier for complete real and phase-dressed complex magnitude frames.
 The [core proof map](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
 gives the minimal dependency chain; the remaining studies retain their
-own hypotheses and distinct resource points. The large-width T-depth
-question remains open.
+own hypotheses and distinct resource points. The
+[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) resolves
+$`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
+constant square-root dirty width. Optimal T-depth remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -149,9 +151,33 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The selected theorem gives linear-in-n depth at fixed accuracy and
-sufficient square-root dirty width. The following refinements isolate
-particular costs; they do not remove both remaining linear allowances.
+The [complete sublinear-depth theorem](depth/SUBLINEAR_T_DEPTH.md)
+gives, for every fixed $`0\lt\eta\le1/64`$, two external clean flags
+and $`b=\lceil C_\eta\sqrt N\rceil`$ arbitrary dirty qubits,
+
+```math
+T=O_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta\!\left(\sqrt n\log_2^2(n+2)\right)=o(n).
+```
+
+The same circuit preserves the prescribed complete real frame in the
+full initialized-isometry norm. The constant $`C_\eta`$ is sufficiently
+large and fixed. The result resolves the stated sublinear-depth existence
+question, while the optimal depth order remains open. The
+[uniform precision/workspace theorem](../docs/UNIFORM_PRECISION_DEPTH.md)
+retains its separate literal thresholds and matching intervals.
+
+| Current proof | Role |
+|---|---|
+| [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
+| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, small calibration programs, and complete work/error contract |
+| [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
+| [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
+
+The following earlier studies isolate costs or restrict particular
+interfaces. They remain as mathematical results and records of the
+previous grouped construction; their individual limits do not obstruct
+the complete-column source and recovery above.
 
 | Study | What survives | Limit of the result |
 |---|---|---|
@@ -159,19 +185,18 @@ particular costs; they do not remove both remaining linear allowances.
 | [Two-layer source obstruction](depth/SHALLOW_SOURCE_OBSTRUCTION.md) | Full-input source approximation gaps in the stated two-layer model | Does not rule out other source architectures or frame compilers |
 | [Source leakage](depth/SOURCE_LEAKAGE_DIAGNOSTICS.md) | Explicit common-precision source families with coherent leakage accumulation | Ideal-angle stability cannot simply be substituted for the full output error; other circuits remain eligible |
 | [Flag echoes](depth/HOPF_FLAG_ECHO.md) | Exact errors and a same-mask cancellation exception | Generic radial leakage survives these proposed echo words |
-| [Radial filter](depth/HOPF_RADIAL_FILTER.md) | A phase-correct filter with quadratic radial error and a smaller precision cap | Charged extra calls leave the asymptotic complete-frame frontier unchanged |
+| [Radial filter](depth/HOPF_RADIAL_FILTER.md) | A phase-correct filter with quadratic radial error and a smaller precision cap | Charged extra calls retain the earlier source schedule's depth order |
 | [Batched lookup](depth/BATCHED_DIRTY_LOOKUP.md) | A valid intermediate schedule and its distinct ledger | The selected proof uses the later self-contained amortized query; this schedule is retained as a predecessor |
 | [Common-source rearrangement](depth/COMMON_SOURCE_REUSE.md) | Exact conjugation and counterexamples to a stale success monitor or one-use fresh bank | The conjugated reflection or another work-return mechanism remains necessary |
-| [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth; a sublinear eligible late tail | Early logical stages and program queries still cost linear depth |
 | [Protected unary source](depth/PROTECTED_UNARY_SOURCE.md) | One source preparation/actual return across early groups, with a global error charge | Removes source-boundary overhead only |
 | [Windowed predicates](depth/WINDOWED_GROUP_PREDICATES.md) | Consumed activity caches with exact inactive cancellation | Predicate overhead becomes sublinear; logical transport and queries remain |
 | [Shared-prefix queries](depth/SHARED_PREFIX_QUERY_AUDIT.md) | Exact cache-capacity restrictions, charged refresh, and a fresh-query reduction | Special affine differences help only with an extra promise; generic correction is still charged |
 | [Retained-source fusion](depth/RETAINED_SOURCE_FUSION.md) | Exact factors and a two-shift, logarithmic-depth stabilizer completion | The complementary ordered transport remains linear in group height; the original full-group schedule is still retained |
 
-At fixed accuracy and sufficient width, logical transport and program
-query/unload each retain an O(n) allowance. Improving only one is a
-component milestone. A complete-frame improvement must reduce both or
-bypass them with one proved circuit, with work and error charged.
+The earlier grouped schedules separately charged O(n) logical transport
+and program query/unload. Their local refinements alone did not remove
+both allowances. The current construction bypasses those stages by
+recovering the complete early operator from its charged column source.
 
 ## Attribution and reproducibility
 

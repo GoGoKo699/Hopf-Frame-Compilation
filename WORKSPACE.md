@@ -4,7 +4,7 @@ The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
-sharper two-clean complex endpoint, and the remaining large-width depth gap. The
+sharper two-clean complex endpoint, and sublinear large-width T-depth. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -76,10 +76,16 @@ dependency of C's current count proof. The conditioning lemma in its
 chapter remains necessary. Historical audits stay in the reference
 catalogue; current claims are stated in the publication scope.
 
-The large-width depth question remains parked until a qualifying mechanism
-is available. Closing it, building a general native emitter, studying
-practical crossovers, and adding fixed fixtures are not default requirements.
-The internal audit does not replace external technical review.
+The user explicitly reopened large-width depth research. The resulting
+[compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md) resolves
+the fixed-accuracy sublinear-depth existence question: at two clean flags
+and sufficient square-root dirty width, it gives
+$`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ with optimal T-count order
+and linear elementary Clifford count. Its coherent descendant source,
+native queries, all-column recovery, exact inactive guards and final tail
+are charged in one proof. Optimal depth remains open. A general native
+emitter, practical crossovers and further fixed fixtures are not default
+requirements. The internal audit does not replace external technical review.
 
 ### Reopening research requires a qualifying mechanism
 

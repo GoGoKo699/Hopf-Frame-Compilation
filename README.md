@@ -19,7 +19,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Proof roadmap](REVIEW.md) | Follow the four claims and their proof mechanisms |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Count theorem and depth question](docs/OPEN_PROBLEM.md) | Read the one-clean count frontier, sharp endpoint, and remaining large-width depth target |
+| [Count and large-width depth](docs/OPEN_PROBLEM.md) | Read the one-clean count frontier, sharp endpoint, and sublinear-depth theorem |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 
 ## Target and resource contract
@@ -159,14 +159,16 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The [resource statement](docs/OPEN_PROBLEM.md) records the
-remaining large-width depth question, and the [research index](research/README.md)
+T-depth bound. The separate [compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md)
+resolves the fixed-accuracy sublinear-depth existence question. The
+[resource statement](docs/OPEN_PROBLEM.md) records the remaining optimal-depth
+question, and the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.
 
 ## Operational consequence

@@ -80,7 +80,13 @@ T^\star=\Theta(NL/b),\qquad D_T^\star=\Theta(NL/b^2).
 
 These are worst-case bounds over prescribed complete real frames. No
 unrestricted lower bound for the additive n or nL is asserted. The
-large-width depth optimum remains open. The separate
+large-width depth optimum remains open. A separate
+[fixed-accuracy construction](../research/depth/SUBLINEAR_T_DEPTH.md)
+now gives $`D_T=O_\eta(\sqrt n\log^2(n+2))=o(n)`$ at sufficient
+$`b=\Theta_\eta(\sqrt N)`$, with two clean flags,
+$`T=O_\eta(\sqrt N)`$, and $`G=O_\eta(N)`$ on the same circuit.
+It resolves sublinear-depth existence without changing this theorem's
+precision-uniform constants, width threshold, or matching intervals. The separate
 [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 resolves the two-clean high-precision real-frame count endpoint at its
 stated literal allocation; the uniform theorem here retains nL in its
