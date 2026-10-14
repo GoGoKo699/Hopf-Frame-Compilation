@@ -505,8 +505,15 @@ rounded-angle errors remain charged over the actual recovery calls.
 
 The [uniform assembly](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 absorbs the arithmetic tables only in its stated small absolute
-linear-precision range, preserves the original dirty-width threshold, and
-retains the quadratic precision cost of the final layers. These are local
+linear-precision range and preserves the original dirty-width threshold.
+The [grouped terminal schedule](depth/GROUPED_TERMINAL_DEPTH.md) reuses the
+[conditional column-forest residual](../docs/CONDITIONAL_SUFFIX_COMPILER.md):
+whole coarse native words are prefetched into the protected suffix, and
+each group pays one fine scalar-source correction. Balancing group height
+against the deepest capped layers gives the $`L^{3/2}`$ precision term.
+The actual coarse words retain their literal phases and exactly returned
+work; their residual tables are computed only after those words are fixed.
+These are local
 native identities and resource/error composition results. They import no
 new arithmetic or synthesis premise and make no generic adder, phase-source
 reuse, or literature-priority claim. The separate

@@ -14,8 +14,8 @@ The recovery reflection omits the retained gradient. The full source
 comparison and recovery proof take place inside its invariant eigenspace;
 the native preparation and its actual inverse are charged once each at
 the two exterior boundaries. This is a source-preparation saving, not an
-improvement to the complete-column normalization. The retained final
-layers still have their separately charged quadratic precision allowance.
+improvement to the complete-column normalization. The final layers have their separately charged
+[grouped terminal schedule](GROUPED_TERMINAL_DEPTH.md).
 
 ## 1. Registers and the early-segment contract
 
@@ -449,8 +449,9 @@ The finite-dimension and smaller-width cases require the retained
 compiler splice in the complete-frame proof, with absolute constants.
 
 For $`L\le cn`$, the displayed early depth simplifies to
-$`O(L+\sqrt n\log(n+2))`$. The retained M-layer tail still costs
-$`O((L+\log(n+2))^2+NL/b^2)`$; this note does not remove that term.
+$`O(L+\sqrt n\log(n+2))`$. The separate
+[grouped terminal construction](GROUPED_TERMINAL_DEPTH.md) supplies the
+remaining layers and their precision-dependent depth bound.
 The full theorem, width splice, and simultaneous count statements belong
 to the complete-frame assembly. No unrestricted precision range,
 efficient classical preprocessing, general native emitter, or optimal

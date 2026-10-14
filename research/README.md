@@ -11,7 +11,7 @@ own hypotheses and distinct resource points. The
 $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
 constant square-root dirty width. Its precision-uniform extension retains
 sublinear depth with shrinking error $`2^{-L}`$ for
-$`L=o(\sqrt n)`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
+$`L=o(n^{2/3})`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
 Optimal T-depth remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
@@ -157,7 +157,7 @@ proof chapters; they are not duplicated here.
 The [precision-uniform compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 gives, for some absolute $`c>0`$, every integer $`6\le L\le cn`$,
 two external clean flags and every $`b\ge17(L+n+7)`$.
-Put $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$. Then
+Put $`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$. Then
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
@@ -177,12 +177,13 @@ has $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 $`D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})`$.
 At sufficient square-root dirty width it gives $`o(n)`$ depth.
 The uniform extension also gives sublinear depth for shrinking error
-when $`L=o(\sqrt n)`$ and $`b=\Theta(\sqrt{NL})`$ is
+when $`L=o(n^{2/3})`$ and $`b=\Theta(\sqrt{NL})`$ is
 sufficiently large. Optimal depth remains open.
 
 | Current proof | Role |
 |---|---|
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
+| [Grouped terminal-depth compilation](depth/GROUPED_TERMINAL_DEPTH.md) | Prefetch exact coarse words into a conditional suffix, share one fine residual per group, and balance group height against the deepest capped layers |
 | [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, native calibration, and complete work/error contract |
 | [Shared-gradient recovery](depth/SHARED_GRADIENT_RECOVERY.md) | One native phase-source preparation and actual return across early recovery, priced arithmetic and coefficient tables, and a reflection excluding the invariant live gradient |
 | [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |

@@ -10,15 +10,15 @@ This construction bypasses the successive early Hopf layers by encoding
 their complete columns into orthogonal depth-and-prefix sectors. A
 coherent real-state loader implements that encoding; a Clifford row
 isometry gives normalization $`O(\sqrt n)`$. Amplitude amplification
-recovers the whole early frame. The remaining original layers use the
-retained native layerwise compiler. Keeping their width
-penalty and selecting the retained compiler at smaller widths gives an
+recovers the whole early frame. The terminal layers use native residual
+groups and capped layerwise compilation, retaining their width penalty.
+Selecting the retained compiler at smaller widths gives an
 all-eligible-width theorem.
 
 Sections 1–9 retain the fixed-accuracy construction. Section 10 proves
 an absolute-constant precision-uniform extension, using
 [one charged gradient across recovery](SHARED_GRADIENT_RECOVERY.md)
-and a precision-dependent terminal cutoff. The two constructions have
+and the [grouped terminal schedule](GROUPED_TERMINAL_DEPTH.md). The two constructions have
 separate gradient-reflection rules and share the same complete-input
 contract and native query lemmas.
 
@@ -600,7 +600,7 @@ Put
 
 ```math
 \ell=\log_2(n+2),\qquad p=L+\ell,\qquad
-F(n,L)=\min\{nL,\sqrt n\,\ell+L^2\}.
+F(n,L)=\min\{nL,\sqrt n\,\ell+L^{3/2}\}.
 ```
 
 The same circuit satisfies
@@ -637,11 +637,11 @@ and gives
 
 ```math
 T=O(\sqrt{NL}),\qquad G=O(NL),\qquad
-D_T=O(\sqrt n\log_2(n+2)+L^2).
+D_T=O(\sqrt n\log_2(n+2)+L^{3/2}).
 ```
 
-In particular, $`L=O(n^{1/4}\sqrt{\log(n+2)})`$ retains the
-$`O(\sqrt n\log(n+2))`$ depth order, and $`L=o(\sqrt n)`$
+In particular, $`L=O(n^{1/3}[\log(n+2)]^{2/3})`$ retains the
+$`O(\sqrt n\log(n+2))`$ depth order, and $`L=o(n^{2/3})`$
 gives $`D_T=o(n)`$ at this allocation. These statements remain within
 $`L\le cn`$. This is a sufficient precision range, not a claim that
 the logical scratch allocation works at arbitrary L. The fixed-accuracy
@@ -859,73 +859,83 @@ $`O(L+\sqrt n\,\ell)`$.
 No accuracy-dependent crossover or supplied phase-state reservation
 is used.
 
-### 10.3 The uniform tail and error composition
+<a id="103-the-uniform-tail-and-error-composition"></a>
 
-Use exactly the capped tail precision from Section 7:
+### 10.3 Group the terminal layers and compose the errors
 
-```math
-m_j=L+6+\min\{j,\lceil\log_2(8n)\rceil\},\qquad
-Q_j=4N2^{-j},\qquad 1\le j\le M.
-```
-
-The base reservation is still $`B_0'=L+n+9`$, and the source fits
-because $`m_j+r_j+1\le B_0'`$. On the large-dimension, large-width
-branch, $`L\le n`$ and the cutoff inequalities give
+The [grouped terminal-depth lemma](GROUPED_TERMINAL_DEPTH.md) replaces
+individual fine-precision compilation of all M final layers. Set
 
 ```math
-B=b-B_0'\ge b/2,\qquad B\ge16c_I(n+3).
+s=\lceil\sqrt p\rceil,\qquad
+R_0=\min\{M,\lceil A_0\ell+A_1s\rceil\},
 ```
 
-Apply the same exact nonuniform-indicator query. The geometric sums now
-retain their precision dependence with absolute constants:
+for sufficiently large absolute constants $`A_0,A_1`$. Leave the deepest
+$`R_0`$ layers to the capped arbitrary-dirty source compiler. Partition
+the remaining terminal layers into consecutive groups of height at most s.
+Every such group has at least $`R_0`$ protected suffix bits. These hold
+its logarithmic residual label and an $`O(s)`$-bit coarse program buffer.
 
-```math
-\sum_{j=1}^M Q_jm_j=O(NL),\qquad
-\sum_{j=1}^M\sqrt{Q_jm_j}=O(\sqrt{NL}),\qquad
-\sum_{j=1}^M m_j=O(Mp).
-```
+The retained column-forest residual construction supplies a constant
+number of fine scalar-source calls per group. Each coarse one-qubit word
+has $`O(s)`$ native gates. Prefetching that entire word, interpreting it
+with exact bounded controls, and actually unquerying it gives group depth
+$`O(p+s^2+s\ell)`$. The coarse program's address excludes its rotation
+target, and every completed word is exactly identity on the inactive
+sector even with occupied program work. Coarse words preserve their
+literal phases and return all work exactly; their actual operators define
+the residual tables.
 
-These follow from $`m_j\le L+6+j`$, $`L\ge6`$, and convergence
-of the corresponding geometric series. The native source words add
-$`O(Mp)`$ count and depth. Suffix predicates add
-$`O(M\log(n+2))`$ depth and at most $`O(M(n+2)^3)`$ count,
-using at most $`O((n+2)^3)`$ returned dirty helpers at a time.
-They borrow the pool only between completed queries. The local counts
-are polynomial in n because $`M\le n`$ and $`L\le n`$, and are
-absorbed by the exponential count budgets with absolute constants.
-Thus
+The grouped tables have at most $`\mathrm{poly}(n)N2^{-R_0}`$ rows.
+The logarithmic part of $`R_0`$ absorbs their fixed polynomial query
+count and width overheads. Enlarging the same absolute $`n_0`$ from
+Section 10.2 makes these returned dirty pools fit whenever
+$`b\ge\sqrt{N/n}`$. The deepest layers retain the nonuniform-indicator
+query allocation, with its weighted width penalty. Thus the lemma gives
+one terminal circuit with absolute bounds
 
 ```math
 T_T=O\!\left(\sqrt{NL}+\frac{NL}{b}\right),\qquad
-G_T=O(NL),\qquad
-D_{T,T}=O\!\left(\frac{NL}{b^2}+Mp\right).
+G_T=O(NL),
 ```
-
-Since $`L\le n`$, the chosen cutoff has $`M=O(p)`$. This gives
-$`D_{T,T}=O(NL/b^2+p^2)`$. The early and tail reservations are
-sequential, so their maximum, not their sum, is the required dirty width.
-
-The shared-gradient recovery gives early error at most
-$`9\cdot2^{-L}/64`$. The retained tail certificate gives error
-strictly less than $`2^{-L}/4`$. Composing them exactly as in Section 8
-therefore gives full initialized-isometry error less than $`2^{-L}`$,
-including gradient, source, flag, and logical-work leakage. Every reversal
-uses the actual native inverse, and the early lemma proves literal
-inactive identity before the final H erasure. Combining the two ledgers proves
 
 ```math
-D_T=O\!\left(\frac{NL}{b^2}+L+\sqrt n\,\ell+p^2\right)
+D_{T,T}=O\!\left(\frac{NL}{b^2}+p^{3/2}+p\ell\right).
 ```
 
-on this branch, with the theorem's simultaneous T and G bounds.
-Finally,
+The terminal error is less than $`2^{-L}/2`$. The deepest layers
+contribute less than $`2^{-L}/4`$; the middle groups use
+$`m=L+\lceil\log_2(n+2)\rceil+10`$ scalar precision, whose summed
+full-isometry error is less than $`10\,2^{-L}/1024`$.
+The lemma also covers $`R_0=M`$, when there are no middle groups.
+Early and terminal dirty reservations are sequential, so their maximum
+is the required width.
+
+The shared-gradient early error is at most $`9\cdot2^{-L}/64`$.
+Full-isometry telescoping therefore gives total error less than
+$`2^{-L}`$, including source, gradient, flag and logical-work leakage
+and every dirty/reference correlation. Earlier leakage is propagated
+by the actual later unitaries; no intermediate reset is assumed.
+The combined depth on this branch is
 
 ```math
-p^2\le2L^2+2\ell^2,\qquad
-\ell^2=O(\sqrt n\,\ell),\qquad L\le L^2,
+D_T=O\!\left(\frac{NL}{b^2}+L+\sqrt n\,\ell
+                         +p^{3/2}+p\ell\right).
 ```
 
-so its additive depth is $`O(\sqrt n\,\ell+L^2)`$.
+To simplify it, use
+
+```math
+p^{3/2}=O(L^{3/2}+\ell^{3/2}),\qquad
+L\ell\le L^{3/2}+\ell^3,\qquad
+\ell^3=O(\sqrt n\,\ell).
+```
+
+The middle inequality follows by splitting at $`L=\ell^2`$; the last
+has an absolute constant because $`\log_2^2(n+2)/\sqrt n`$ is bounded
+for $`n\ge1`$. The other logarithmic and linear terms are absorbed as
+well. Hence the additive depth is $`O(\sqrt n\,\ell+L^{3/2})`$.
 
 ### 10.4 Every eligible width and a uniform finite fallback
 
@@ -948,7 +958,7 @@ For $`n\lt n_0`$, use that same retained compiler at every eligible b.
 Its constants are already absolute. Moreover,
 
 ```math
-nL\le n_0L^2,
+nL\le n_0L^{3/2},
 ```
 
 so its depth satisfies the new upper bound after increasing one absolute
@@ -978,7 +988,7 @@ interval. Choosing a sufficient absolute $`C_b`$ makes
 $`\lceil C_b\sqrt{NL}\rceil\ge17(L+n+7)`$ for every stated
 n and L: use $`L\ge6`$, $`L\le n`$, and boundedness of
 $`(2n+7)/2^{n/2}`$. Substitution proves the square-root-width
-corollaries, including sublinear depth when $`L=o(\sqrt n)`$.
+corollaries, including sublinear depth when $`L=o(n^{2/3})`$.
 
 The linear-precision restriction pays for simultaneously initialized
 program and gradient work inside the protected logical suffix. This
@@ -988,6 +998,9 @@ classical preprocessing or general native-emitter guarantee.
 The [bounded shared-gradient checks](../../tests/test_shared_gradient_recovery.py)
 exercise exact addition, occupied inactive work, literal coefficient
 phases, preparation paid once, occupied-program damping, and
-wrong-reflection/inverse controls.
+wrong-reflection/inverse controls. The
+[grouped-terminal checks](../../tests/test_grouped_terminal_depth.py)
+exercise native coarse program interpretation, actual unloading, occupied
+inactive work, and rounded group partitions.
 They support the native interfaces; the uniform degree, cutoff, and
 resource statements above are analytic proofs, not numerical extrapolations.

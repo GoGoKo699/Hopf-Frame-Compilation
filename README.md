@@ -172,11 +172,11 @@ flags suffice for
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
-D_T=O\!\left(NL/b^2+\min\{nL,\sqrt n\log_2(n+2)+L^2\}\right).
+D_T=O\!\left(NL/b^2+\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}\right).
 ```
 
 At sufficient $`b=\Theta(\sqrt{NL})`$, this retains sublinear
-T-depth while error $`2^{-L}`$ shrinks, whenever $`L=o(\sqrt n)`$.
+T-depth while error $`2^{-L}`$ shrinks, whenever $`L=o(n^{2/3})`$.
 The [resource statement](docs/OPEN_PROBLEM.md) gives its matching interval
 and the remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.

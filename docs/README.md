@@ -102,7 +102,7 @@ at sufficient square-root dirty width.
 The [compressed-column refinement](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 has absolute constants for $`6\le L\le cn`$, with some absolute
 $`c>0`$, two clean flags, and every $`b\ge17(L+n+7)`$. With
-$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^2\}`$, it gives
+$`F(n,L)=\min\{nL,\sqrt n\log_2(n+2)+L^{3/2}\}`$, it gives
 
 ```math
 T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
@@ -112,7 +112,7 @@ D_T=O(NL/b^2+F(n,L)).
 Count is optimal throughout this range. Count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$, subject to the same lower threshold.
 At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error
-$`2^{-L}`$ retains sublinear depth whenever $`L=o(\sqrt n)`$.
+$`2^{-L}`$ retains sublinear depth whenever $`L=o(n^{2/3})`$.
 The fixed-accuracy statement covers every n with accuracy-dependent
 constants and retains $`O_\eta(\sqrt n\log(n+2))`$ depth at
 sufficient square-root width. Optimal depth remains open; the all-precision
@@ -144,7 +144,8 @@ The compressed-column improvement has a separate dependency chain:
 | Coherent descendant source | [Descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): certified Boolean-state selection, preserved tag/prefix sectors, exact guarded arithmetic, and full source-isometry error |
 | Shared precision source | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md): one native source preparation/actual return, priced arithmetic and coefficient tables, invariant gradient sector, and recovery reflection excluding the live core |
 | Native early data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): private T-layer scheduling with shared read-only addresses, Boolean phase echoes, and guarded variable-suffix Hadamards |
-| Count-efficient final layers | [Nonuniform indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md) and [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision): linear indicator count/work, logarithmic address depth, and the retained complete-input layer error |
+| Grouped terminal compilation | [Grouped terminal depth](../research/depth/GROUPED_TERMINAL_DEPTH.md): complete coarse programs prefetched into conditional suffix work, one fine residual per group, and capped bottom layers with a full resource/error ledger |
+| Native terminal queries | [Nonuniform indicators](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md) and [capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision): linear indicator count/work, logarithmic address depth, and retained complete-input layer error |
 
 The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 separately identifies the sharp worst-case square-root normalization cost
