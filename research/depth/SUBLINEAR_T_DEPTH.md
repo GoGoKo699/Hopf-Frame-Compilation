@@ -91,7 +91,7 @@ $`O_\eta(\log(n+2))`$, which fits M for sufficiently large n.
 Set
 
 ```math
-s=\lceil\log_2(h+1)\rceil,\qquad K=2^s<2(h+1).
+s=\lceil\log_2(h+1)\rceil,\qquad K=2^s\lt2(h+1).
 ```
 
 The s-bit tag D lies in Z. Give the state column j equal to zero tag zero.
@@ -292,7 +292,7 @@ $`\delta`$. Unitary telescoping, including actual inverse occurrences,
 therefore bounds the recovered early error by
 
 ```math
-(2k+1)(6\delta+\delta)=7\eta/64<\eta/2.
+(2k+1)(6\delta+\delta)=7\eta/64\lt\eta/2.
 ```
 
 Finally reverse the initial exact H predicate. The ideal active output
@@ -433,7 +433,7 @@ The early and tail dirty reservations are used sequentially. Enlarge
 $`C_\eta`$ to cover their maximum. Their errors compose in the full
 initialized-isometry norm: apply the actual tail unitary to the early
 error, then compare the tail on the ideal returned-work embedding.
-This gives total error less than $`\eta/2+\eta/4<\eta`$ and requires
+This gives total error less than $`\eta/2+\eta/4\lt\eta`$ and requires
 no physical reset after the approximate early circuit.
 
 The early depth dominates the tail because
