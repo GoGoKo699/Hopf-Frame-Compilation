@@ -165,6 +165,14 @@ crossover claims. Complete arguments remain in the linked proof homes.
 
 ## Shared operator and operational contract
 
+The separate [R73 obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md)
+uses that same initialized-isometry contract for a constant lower bound.
+Its clean-projector sum contains $`2^a`$ full-space transfer entries, but
+the witness error remains $`2\eta`$. A bounded-normalization three-layer
+reduction and the cited polynomial-limit theorem yield a positive,
+unevaluated error gap for each fixed clean budget, hence at least four
+layers below that threshold. This does not close the growing-depth gap.
+
 The initialized-isometry norm covers every logical column, arbitrary
 dirty/reference inputs, literal phases, and clean leakage. Actual inverses
 inherit the same estimate. Sequential reuse carries previous errors

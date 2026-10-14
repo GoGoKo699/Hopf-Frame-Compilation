@@ -13,6 +13,11 @@ at width at least four. These are constant-depth obstructions for
 full-input source primitives, not growing depth lower bounds or lower
 bounds for an initialized-clean complete-frame compiler.
 
+The later [clean-aware obstruction](CLEAN_AWARE_DEPTH_OBSTRUCTION.md)
+uses the transfer alphabet below inside the initialized-projector sum.
+It proves a one-clean frame gap and a separate three-layer obstruction
+for every fixed clean budget; those extensions have their own proof.
+
 The proof combines standard stabilizer overlap quantization with the
 source's exact Pauli-transfer coefficients. The overlap fact is given in
 [Aaronson–Gottesman, *Improved Simulation of Stabilizer Circuits*,
@@ -245,6 +250,11 @@ to the alphabet. Closeness on those initialized columns also does not
 imply full operator-norm closeness. The two clean flags in the complete
 frame compiler cannot be silently treated as dirty inputs to obtain a
 frame lower bound.
+
+The [clean-aware extension](CLEAN_AWARE_DEPTH_OBSTRUCTION.md#1-initialized-work-and-a-robust-transfer-witness)
+keeps this projector sum and proves robustness on initialized columns
+without making that full-space inference. Its fixed-clean frame bounds
+therefore do not change the scope of the source theorem above.
 
 The result does not establish source depth optimality, a lower bound for
 a source loader, an additive cost across source calls, or a growing

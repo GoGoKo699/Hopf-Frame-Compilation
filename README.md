@@ -196,6 +196,12 @@ The [resource statement](docs/OPEN_PROBLEM.md) gives its matching interval
 and the remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.
 
+The [constant-depth obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, shows that each fixed clean budget has a positive accuracy threshold
+below which some complete frames require at least four T layers, regardless
+of dirty width or Clifford interlayers. The threshold is not evaluated;
+the bound does not grow with dimension or precision. Optimal depth remains an open problem.
+
 ## Operational consequence
 
 A state-equivalent completion can change the decoded gradient. An

@@ -20,6 +20,7 @@ Restricted source lower bounds do not become unrestricted frame lower bounds.
 | Limits of external depth comparisons | [22](#22-scope-of-recent-depth-lower-bounds-3-october-2026) |
 | Nonuniform chunks, protected sources, and predicate caches | [23](#23-nonuniform-chunks-in-a-returned-dirty-indicator-3-october-2026), [24](#24-a-protected-source-across-early-groups-3-october-2026), [25](#25-cached-activity-predicates-across-group-windows-3-october-2026), [26](#26-exact-shared-prefix-cache-capacity-3-october-2026) |
 | Retained-source factors and invariant sectors | [27](#27-retained-source-factors-and-invariant-completion-sectors-3-october-2026) |
+| Constant-depth obstructions with initialized work | [29](#29-constant-depth-obstructions-with-initialized-work) |
 
 ## 16. Precision depth and workspace assumptions (2 October 2026)
 
@@ -545,3 +546,44 @@ or literature-priority claim. The separate
 [entry-indexed normalization limit](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 restricts its explicit factorization interface, not unrestricted block
 encodings or native T-depth.
+
+## 29. Constant-depth obstructions with initialized work
+
+The [clean-aware obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, proves a positive approximation floor for at most three T layers,
+for each fixed clean-qubit budget, with arbitrary Clifford interlayers
+and unbounded arbitrary-input dirty work. Its complete-frame witness has
+$`\cos(2\theta)=1/3`$. The floor may depend on the clean budget and
+is not evaluated. A separate one-clean, two-layer witness gives an
+explicit gap at integer precision $`L\ge8`$. Neither lower bound
+grows with dimension or precision.
+
+The additional arithmetic premise is [Khodabandeh–Shinkar,
+arXiv:2605.00995v1, Appendix A, Lemma A.6](https://arxiv.org/html/2605.00995v1#A1)
+(F43): convergent output probabilities of Boolean polynomials of fixed
+degree have dyadic limits, even as the number of input variables varies.
+R73 uses this limit theorem without importing a quantitative separation
+bound. [Dehaene–De Moor, arXiv:quant-ph/0304125v1, Section V,
+Theorem 5](https://arxiv.org/pdf/quant-ph/0304125) (F44) supplies flat
+affine support and quadratic relative phases for stabilizer states.
+The local argument supplies the one-T-layer overlap reduction, retained
+common phases, bounded-degree residue events, fixed-clean projector
+expansion, and initialized-isometry error comparison.
+
+[Masoudi, *The Channel Representation and Non-Clifford Resources*,
+2026 thesis, Chapter 5](https://theses.lib.sfu.ca/file/thesis/etd24540-kasrakasra-masoudi-the-channel-represen.pdf)
+(F45), Proposition 5.2, gives an exact denominator bound with a fixed
+total ancilla budget. Propositions 5.4–5.8 give an exact depth-one
+obstruction with arbitrary clean ancillas; Section 5.2.3 explains why
+that argument does not compose to larger assisted depth. R73 instead
+proves a robust exclusion through depth three with fixed clean work and
+unbounded dirty width.
+
+[Selinger, arXiv:1210.0974v2, Theorem 5.1](https://arxiv.org/pdf/1210.0974)
+already excludes exact T-depth-one implementation of THT with arbitrarily
+many initialized ancillas, even without their return. Kim's supplied
+nonstabilizer catalyst and its later refinements retain the different
+resource contracts described in [Section 16](#16-precision-depth-and-workspace-assumptions-2-october-2026).
+R73 does not settle constant-depth rotation synthesis for other fixed
+depths or growing clean budgets. These comparisons make no priority claim.
+Optimal depth remains an open problem.

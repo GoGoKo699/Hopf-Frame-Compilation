@@ -237,6 +237,16 @@ the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
 channels and reweighting obey the same bound. It does not constrain
 unrestricted block encodings or establish a native T-depth lower bound.
 
+The [clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
+R73, instead applies to arbitrary coherent Clifford+T circuits. For every
+fixed clean budget $`a\ge0`$, a complete real frame requires at least four
+T layers below some positive accuracy threshold $`\varepsilon_a`$,
+uniformly over dimension and dirty width. The threshold is not evaluated.
+An explicit one-clean witness separately requires at least three layers
+for integer $`L\ge8`$. Both witnesses also lie in the phase-dressed
+family with zero leaf phases. These are constant lower bounds, not bounds
+growing with dimension or precision. Optimal depth remains an open problem.
+
 The following earlier studies isolate costs or restrict particular
 interfaces. They remain as mathematical results and records of the
 previous grouped construction; their individual limits do not obstruct
