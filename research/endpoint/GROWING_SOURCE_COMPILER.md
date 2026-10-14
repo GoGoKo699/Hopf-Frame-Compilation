@@ -1,4 +1,6 @@
-# A growing-source compiler for complete real Hopf frames
+<a id="a-growing-source-compiler-for-complete-real-hopf-frames"></a>
+
+# A growing-source compiler for complete Hopf frames
 
 [Mixed local gauges](HETEROGENEOUS_PRECISION_SOURCE.md#2-mixed-local-merges-with-one-feature-per-node) · [Exact dirty scalars](../../docs/ONE_CLEAN_COMPILER.md#5-exact-conditioning-and-the-resource-ledger) · [Disjoint state extensions](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources)
 
@@ -9,6 +11,9 @@ and every later completed word fixes it. An exact dyadic refinement
 changes the source ratio without another endpoint-precision synthesis.
 The resulting precision charges are summable. A single final column
 source compensates the known attenuation of each retired output.
+The real construction leaves a half-error margin; the
+[complex-magnitude corollary](#9-complex-magnitude-endpoint) uses it to
+append a literal diagonal within the same workspace and linear T-count.
 
 ## 1. Statement, clipping, and the fixed anchor
 
@@ -59,9 +64,12 @@ Separate the bottom $`d_0`$ physical binary levels of the clipped frame:
 \widetilde W=W_{\rm bottom}W_{\rm upper}.
 ```
 
-The [precision-trace compiler](PRECISION_GAUGE_COMPILER.md#5-precision-trace-and-native-resource-bound)
-prices this fixed number of bottom levels in $`O(N)`$ T gates, since
-every retained exponent is $`N+O(\log n)`$ or smaller. The forward
+The bottom part is a direct sum of $`N/2^{d_0}`$ blocks in
+$`\mathrm{SU}(2^{d_0})`$, with sum of squared block dimensions
+$`2^{d_0}N`$. The [disjoint-block compiler](DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
+at its fixed constants $`\kappa=2^{d_0}`$ and $`c=4`$, therefore gives
+error at most $`\epsilon/4`$ and $`O(N)`$ T-count with the same
+two clean qubits and $`N+n+7`$ dirty pool. The forward
 frame circuit executes the upper compiler before this bottom compiler.
 Only the row-source construction inside the upper compiler runs
 bottom-up.
@@ -668,6 +676,17 @@ $`\widehat P`$ is assumed. From these column bounds,
 \qquad\text{(23)}
 ```
 
+The source budgets $`\epsilon_P,\epsilon_Q`$ include certified
+approximation of attenuation coefficients, tag states, local-chart
+parameters and replay phases, as well as native errors of every fine
+call and its actual inverse. The
+[disjoint-state chart](DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources)
+uses amplitude-norm approximation, including at zero components.
+Allocate half of each source budget to certified data and half to native
+realization. The exact mixed gauge already corrects the actual cheap
+scalars, mantissas and splitter losses; these are not additional final
+frame errors.
+
 Only a constant number of fine calls occurs in each source. Choose
 $`q=N+c_0`$ for one fixed sufficiently large $`c_0`$ so that the
 total fine hybrid errors satisfy
@@ -702,8 +721,16 @@ identity on $`h=0`$. The zero-work test is the original suffix and c;
 it never tests all of the later growing arena coordinates. Reversing
 the actual h predicate then returns both external qubits. Compose the
 bottom compiler at error at most $`\epsilon/4`$. Together with
-clipping and optional normalization, the total remains below
-$`\epsilon`$, proving the error assertion in (1).
+clipping and optional normalization, the complete error is at most
+
+```math
+\frac{\epsilon}{16}+\frac{\epsilon}{16}
++\frac{\epsilon}{8}+\frac{\epsilon}{4}
+=\frac{\epsilon}{2}.
+```
+
+Exact predicates, routing and their actual reversals add no error.
+This proves (1) with a half-error margin and the same literal workspace.
 
 ## 7. Summable native charges
 
@@ -806,19 +833,103 @@ The peak is therefore $`N+n+7`$.
 
 For the finitely many n below the universal threshold, the existing
 literal-phase determinant-one finite-net fallback compiles every frame
-at the required accuracy with the same two flags and dirty pool.
+at accuracy $`\epsilon/2`$ with the same two flags and dirty pool.
 The finite maximum of T/N is absorbed into the universal constant.
 Neither the fixed anchor size nor the asymptotic threshold is asserted
 to be a practical crossover.
 
-The theorem concerns the endpoint prescribed real-frame count. It does
-not assert an optimal depth bound, a complex-frame extension, an
-efficient classical preprocessing algorithm, or a scalable native
-emitter. Its mechanism is the exact refinement, the full-space sealed
-arena allocation, the compensated overlap, and the summable native
-ledger above.
+The real endpoint construction uses exact refinement, full-space sealed
+arena allocation, compensated overlap, and the summable native ledger.
+The next corollary extends its count to the phase-dressed complex
+magnitude frame. Neither result supplies a precision-uniform frontier,
+an $`O(NL)`$ Clifford bound, an optimal depth bound, an efficient
+classical preprocessing algorithm, or a scalable native emitter.
 
-## 9. Bounded implementation evidence
+## 9. Complex-magnitude endpoint
+
+Let $`n\ge3`$, $`N=2^n`$, and $`\epsilon=2^{-N}`$. In addition
+to the certified real rotation data, independently supply every unit
+diagonal entry of $`D_\phi`$ with terminating certified real and
+imaginary evaluation. This includes phases at zero-amplitude leaves;
+they are part of the prescribed operator and are not inferred from its
+state column.
+
+**Corollary.** For the complete phase-dressed magnitude frame
+$`W_{\mathbb C,\mathrm{mag}}=D_\phi W_{\mathbb R}`$, there is an
+effective coherent Clifford+T circuit V satisfying
+
+```math
+\begin{gathered}
+a=2,\qquad b=N+n+7,\qquad T(V)=O(N),\\
+\|VJ_2-J_2(W_{\mathbb C,\mathrm{mag}}\otimes I_b)\|_{\rm op}
+\le2^{-N}.
+\end{gathered}
+```
+
+The constant is universal. Every logical column, literal common and
+relative phase, dirty/reference input, and returned clean flag is
+covered. The worst-case minimum count for each of the real and complex
+magnitude families therefore obeys
+
+```math
+2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
+```
+
+**Proof.** Sections 6 and 8 give a real-frame circuit $`V_R`$ with
+error at most $`\epsilon/2`$ at this same allocation, including the
+finite-size fallback. For the
+[packed literal-diagonal compiler](../../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames),
+choose $`\ell=N+1`$. Since N is even,
+
+```math
+q_{\rm diag}=\left\lceil\frac{N+5}{2}\right\rceil=N/2+3,\qquad
+b_{\rm diag}=q_{\rm diag}+n+1=N/2+n+4\le N+n+7.
+```
+
+Its full-isometry error is at most $`2^{-\ell}=\epsilon/2`$.
+It preserves the literal diagonal phase and has the explicit count
+
+```math
+T(V_D)\le1344N+36q_{\rm diag}-18=1362N+90.
+```
+
+The remaining dirty wires are spectators; both circuits use the same
+two clean flags and the same dirty pool sequentially.
+
+Put $`J=J_2`$, $`R=W_{\mathbb R}\otimes I_b`$ and
+$`D=D_\phi\otimes I_b`$. For the actual emitted product
+$`V=V_DV_R`$,
+
+```math
+V_DV_RJ-JDR
+=V_D(V_RJ-JR)+(V_DJ-JD)R.
+```
+
+Unitarity bounds the norm by $`\epsilon/2+\epsilon/2=\epsilon`$.
+In particular, $`V_D`$ propagates the earlier clean leakage and dirty
+disturbance unitarily; its approximation guarantee is used only on
+$`JR`$. No intermediate reset or exact work return is assumed.
+Tensoring any reference preserves this operator-norm estimate. The
+actual inverse has the same initialized-isometry error, since
+
+```math
+V^\dagger J-J(DR)^\dagger
+=V^\dagger(JDR-VJ)(DR)^\dagger.
+```
+
+The two T-counts add to $`O(N)`$. Setting $`D_\phi=I`$ includes
+the real family and its
+[root-angle witness](../../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness),
+so the lower bound $`2N-1`$ transfers without a new premise. ∎
+
+This corollary concerns the prescribed complex magnitude frame, not
+arbitrary complex unitaries. Leaf-phase derivatives keep their separate
+measurement stream. It changes neither the one-clean reservations nor
+the real-frame count/depth guarantees of Result D.
+
+<a id="9-bounded-implementation-evidence"></a>
+
+## 10. Bounded implementation evidence
 
 The [exact helper](../../compiler_robust_hopf/growing_precision_source.py)
 records the dyadic height schedule and normalized refinement factors.
@@ -837,6 +948,13 @@ anchor projector. Negative checks expose a missing refinement
 normalization, reusing a rejection cell, and testing dirty or later
 source fields in the recovery reflection. A separate perturbed-overlap
 fixture checks the rejected column and the linear recovery error.
+
+The five-wire phase-dressing check composes a diagnostic real recovery
+with finite native packed-diagonal words, reusing both flags and the
+dirty core. It retains intermediate leakage and tests literal phases,
+the actual inverse and reference-entangled inputs. The addressed
+direct sum is supplied; this is a composition check, not a native
+growing-source or general table emitter.
 
 These fixtures use bounded dimensions and diagnostic dilations. They
 do not emit the asymptotic compiler or simulate its exponentially fine

@@ -3,8 +3,9 @@
 [Core verification map](../VERIFICATION.md) · [Source catalogue](SOURCE_CATALOGUE.md) · [Tests](../../tests/README.md)
 
 This catalogue preserves detailed fixture contracts and software boundaries.
-The core map links Results A–D to their proofs and principal evidence; this
-page records the smaller input, precision, workspace, and gate-emission
+The core map links Results A–D and the endpoint theorem to their proofs and
+principal evidence; this page records the smaller input, precision,
+workspace, and gate-emission
 scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
@@ -13,6 +14,7 @@ not prove universal statements or asymptotic optimality.
 
 | Material | Entry point | Scope |
 |---|---|---|
+| Real and complex-magnitude count endpoint | [Endpoint evidence](../VERIFICATION.md#endpoint-count-evidence) | Real growing-source diagnostics and a separate bounded phase-dressing composition check |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -70,7 +72,9 @@ general software API is selected. Further implementation should begin
 with a concrete Hopf-QBP use requirement and an input/output contract
 identifying the missing interface. The
 [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
-establishes the linear count endpoint for prescribed complete real frames;
+and its [phase-dressing corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+establish the linear count endpoint for prescribed complete real and
+phase-dressed complex magnitude frames;
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
@@ -299,8 +303,23 @@ Clifford+T source words or a certificate of asymptotic arena capacity.
 The [growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
 supplies the full-space arena allocation, exact guards, summable native
 charges, literal dirty reservation, and unrestricted real-frame count
-theorem. The fixtures and internal proof review do not constitute
-independent external review or a scalable native emitter.
+theorem. Its [complex-magnitude corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+proves sequential phase dressing at the same endpoint allocation.
+
+The same suite's separate composition fixture uses one logical bit, two
+arbitrary dirty-core bits, and two shared clean flags: a 32-dimensional
+full unitary with all eight logical/dirty input columns checked. An explicit
+diagnostic real recovery retains nonzero dirty-dependent leakage; the
+following packed-diagonal stage uses actual q=2 amplified native words in
+a supplied addressed direct sum. Unequal rational unit-circle phases and
+a common phase $`i`$ check literal composition, the full-output error sum,
+the actual inverse, and a full-Schmidt reference input. Counterchecks discard
+intermediate leakage, reverse the factor order, or omit the common phase.
+The real factor is not emitted growing-source synthesis, and the addressed
+direct sum is not native table emission. This bounded check does not realize
+the endpoint precision or certify its all-size workspace bound. The fixtures
+and internal proof review do not constitute independent external review or
+a scalable native emitter.
 
 The [structured-forest tests](../../tests/test_structured_forests.py) independently
 check computational degree counts and growth, stable star transfer, and exact

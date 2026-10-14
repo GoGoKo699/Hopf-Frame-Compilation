@@ -5,7 +5,8 @@ gradient decoder also uses designated coordinate-frame columns. This
 repository compiles that prescribed **complete operator**, with explicit
 costs for precision, initialized workspace, and borrowed workspace.
 
-The principal results are A–D below. Their hypotheses and retained
+The principal results are A–D below, accompanied by a selected endpoint
+count theorem and complex-magnitude corollary. Their hypotheses and retained
 corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOPE.md).
 
 <p align="center">
@@ -14,7 +15,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 
 | Read next | Purpose |
 |---|---|
-| [Proof roadmap](REVIEW.md) | Follow the mechanisms connecting the four claims |
+| [Proof roadmap](REVIEW.md) | Follow A–D and the selected endpoint count claim |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
 | [Endpoint theorem and depth question](docs/OPEN_PROBLEM.md) | Read the resolved high-precision count and remaining large-width depth target |
@@ -134,13 +135,14 @@ The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
 regimes, complex extensions, and older schedules useful at smaller reservations.
 
 <a id="two-open-resource-gaps"></a>
+<a id="linear-count-endpoint-and-remaining-depth-gap"></a>
 
-## Linear-count endpoint and remaining depth gap
+## Endpoint count claim and remaining depth gap
 
 | Question | Current bounds |
 |---|---|
-| High precision, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$, hence $`T^\star=\Theta(N)`$, for complete real frames |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | Optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
+| Selected high-precision endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$, hence $`T^\star=\Theta(N)`$, for complete real and phase-dressed complex magnitude frames |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, optimal count $`T=\Theta_\eta(\sqrt N)`$ is attained with $`D_T=O_\eta(n)`$; unrestricted depth lower bound remains $`\Omega(1)`$ |
 
 An [explicit single-angle witness](docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 gives $`T\ge2N-1`$ at the count endpoint, even with unrestricted
@@ -150,7 +152,12 @@ supplies the unrestricted real-frame upper bound. Source capacity grows
 as the number of live carriers shrinks; rejected paths remain in separate
 reserved modes until one final recovery. Native source refinements,
 packing, actual inverses, and dirty/reference return are all charged.
-This endpoint result is separate from the precision-uniform claims A–D.
+The [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+composes a packed literal leaf-phase diagonal on the same workspace, with
+both factors' return errors included in the full-isometry bound. Zero leaf
+phases retain the real-family lower bound. This selected endpoint claim
+supplements A–D at its fixed precision and literal allocation; it supplies
+no new precision-uniform, one-clean, Clifford-count, or T-depth guarantee.
 
 The [endpoint statement](docs/OPEN_PROBLEM.md) records the remaining
 large-width depth question. The [research index](research/README.md)

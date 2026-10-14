@@ -2,7 +2,8 @@
 
 [← Verification](VERIFICATION.md) · [Complete narrative](../REVIEW.md) · [Related work →](RELATED_WORK.md)
 
-This is the claim-to-source map for the selected Results A–D. It separates
+This is the claim-to-source map for the selected Results A–D and the
+endpoint count theorem and complex-magnitude corollary. It separates
 imported synthesis tools, inherited Hopf/QBP interfaces, and the operator
 constructions established here. The [source catalogue](reference/SOURCE_CATALOGUE.md)
 preserves the complete stable C/H/Q/F/R register and detailed contribution
@@ -90,6 +91,7 @@ worst-case statements over the specified family.
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
 | **C. One-clean real frame**: $`T=O(N+L\ell_*(n))`$ | [One-clean compiler](ONE_CLEAN_COMPILER.md) and [grouped extension](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit); operator-source baseline R17–R20 and one-clean refinement R25 | F2, F8–F11, F19–F20; $a=1$, $b\ge L+n+7$, $`\ell_*(n)=1+\log_2^*(n+2)`$; $O(NL)$ Clifford cost. The separate [linear endpoint theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md) uses two clean qubits. |
 | **D. Same-circuit count and T-depth** | [Uniform-precision theorem](UNIFORM_PRECISION_DEPTH.md), with retained [unary source](UNARY_PHASE_GRADIENT.md) and dirty-query constructions; R43–R45 | Two clean flags and $b\ge17(L+n+7)$; complete real frames. Native sources, inverses, predicates, queries, and conditional work are charged. |
+| **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 
 For D, the uniform upper bounds are
 
@@ -108,7 +110,18 @@ retain their actual precision terms; no general T-depth optimum is claimed.
 The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
 also records supporting corollaries, separate state-based QBP theorems, and
 research constructions. Their individual hypotheses are not suppressed by
-these four headline claims.
+the selected claims.
+
+R62 uses the [mixed local gauges](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
+[disjoint-block compilation of the fixed bottom levels](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
+and [disjoint state extensions](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
+together with R20's conditional-suffix interface and R25's actual dirty
+scalar words. The local proof supplies the growing arenas, exact source
+refinement, compensated overlap, and summable native charges. R17's packed
+literal diagonal gives the complex-magnitude corollary on the same wires;
+the [single-angle precision witness](FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+gives $`2N-1`$ for both families. This composition imports no new synthesis
+premise or literature-priority claim.
 
 R17 includes the packed two-clean diagonal reservation. The endpoint
 [bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
@@ -128,7 +141,7 @@ these constructive reductions from the complete-frame upper bounds.
 | Product compression and amplification | Low–Wiebe Lemma 13; Fang–Lin–Tong Lemma 3/Appendix D; Berry et al. Eqs. (7)–(15); Brassard et al. Eq. (8); F10–F11/F20 | Failure history, LCU, and amplification; local complete-isometry error and literal-phase accounting |
 | Dirty-query depth and unary reuse | F29–F34/F36–F37 | Controlled Clifford circuits, grouped selection, phase synthesis, arithmetic, reusable references, and bilinear recursion; local all-dirty return and width allocation |
 
-The [complete F1–F41 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+The [complete F1–F42 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
 provides primary URLs, versions, exact locators, and comparison-only sources.
 The [related-work map](RELATED_WORK.md) separates established ingredients
 from the frame-specific construction; bounded source checking certifies
@@ -158,7 +171,7 @@ studies and supply no additional premise for its uniform theorem.
 
 Analytic identities, explicit reversible schedules, imported elementary
 synthesis, and finite regression checks are distinct evidence levels.
-The [verification map](VERIFICATION.md) connects A–D to their checks; the
+The [verification map](VERIFICATION.md) connects the selected claims to their checks; the
 [fixture catalogue](reference/VERIFICATION_CATALOGUE.md) retains every
 individual input and software boundary. Matrix identities and receipt
 arithmetic expose convention, phase, cleanup, and resource errors without

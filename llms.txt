@@ -10,7 +10,7 @@ Canonical repository: https://github.com/GoGoKo699/Hopf-Frame-Compilation
 - T-count versus accuracy and clean/dirty workspace, including one-clean synthesis.
 - Simultaneous real-frame T-count/T-depth bounds in explicit precision/workspace regimes.
 - Literal diagonals, complete one-target multiplexors, and fixed-decoder Hopf QBP robustness.
-- Packed two-clean diagonal precision/workspace bounds and the proved linear-T real-frame endpoint.
+- Packed two-clean diagonal precision/workspace bounds and the proved linear-T real and complex magnitude endpoints.
 
 ## Selected claims
 
@@ -20,6 +20,7 @@ Start with manuscript/PUBLICATION_SCOPE.md for the complete hypotheses and formu
 - B: T*=Theta(sqrt(NL)+L+NL/q), G=O(NL), for real and complex magnitude frames with sufficient clean allocation a>=C(n+h), q=n+a+b, h=1+ceil(log2(L+n+2)).
 - C: One-clean real-frame T=O(N+L ell_*(n)), G=O(NL), at b>=L+n+7; banked and complex extensions have separately stated reservations.
 - D: Two-clean real-frame T=O(sqrt(NL)+NL/b+nL), D_T=O(NL/b^2+nL), G=O(NL), at b>=17(L+n+7). The low-precision corollary and explicit matching intervals are in the selected claim ledger.
+- Selected endpoint count theorem and complex-magnitude corollary: 2N-1<=T*<=O(N), hence T*=Theta(N), for complete real and phase-dressed complex magnitude frames at n>=3, eta=2^(-N), a=2 and b=N+n+7. This fixed-precision claim adds no new precision-uniform, Clifford-count, one-clean, or T-depth guarantee.
 
 Here 0<eta<=1/64 and L=max{6,ceil(log2(1/eta))}. Upper bounds hold for all admitted parameters; matching lower bounds are worst-case over the named family. T-depth permits arbitrary Clifford interlayers and is not total depth. Supplied parameters admit certified evaluation; classical preprocessing is separate from quantum gate counts.
 
@@ -27,20 +28,20 @@ The full initialized-isometry contract includes arbitrary logical and dirty/refe
 
 ## Read by purpose
 
-- [Claim-led argument](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): The problem, four claims, their mechanisms, and operational consequence.
+- [Claim-led argument](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md): The problem, A-D, the selected endpoint count claim, their mechanisms, and operational consequence.
 - [Selected claim ledger](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md): Canonical assumptions, formulas, retained corollaries, and limits.
-- [Proof dependencies](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/README.md): A-D and their supporting lemmas.
+- [Proof dependencies](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/README.md): A-D, the selected endpoint theorem and corollary, and their supporting lemmas.
 - [Verification](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/VERIFICATION.md): Evidence by claim, reproduction, and implementation boundaries.
 - [Source map](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/SOURCE_MAP.md): Imported premises and local contributions; stable detailed catalogue linked there.
-- [Resource questions](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): Resolved two-clean real-frame high-precision count and the remaining large-workspace depth question; exact targets and scoped reductions.
+- [Resource questions](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md): Resolved two-clean real and complex magnitude high-precision count and the remaining large-workspace real-frame depth question; exact targets and scoped reductions.
 - [Research results](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/README.md): The growing-source endpoint theorem and its dependencies, earlier restricted compilers, scoped representation limits, and preserved evidence. Consult this catalogue for individual research routes; their local open steps do not reopen the resolved endpoint.
 - [Packed diagonal compiler](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPERATOR_SOURCE_COMPILER.md): Section 8 gives error 2^(-ell), T=O(N+ell), G=O(N ell), two clean flags, and b=n+1+ceil((ell+4)/2); matching banked bound at twice that base reservation.
-- [Growing precision source](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/endpoint/GROWING_SOURCE_COMPILER.md): Unrestricted real-frame endpoint T=Theta(N) at error 2^(-N), two clean flags and b=N+n+7. Growing sources, sealed rejection modes, matched frozen output tags, actual dirty replay and complete recovery are charged. This does not extend the one-clean, complex-frame or T-depth bounds.
+- [Growing precision source and complex-magnitude corollary](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint): Unrestricted real-frame endpoint T=Theta(N) and its complex magnitude extension at error 2^(-N), two clean flags and b=N+n+7. Growing sources, sealed rejection modes, matched frozen output tags, actual dirty replay and complete recovery are charged. The corollary composes a packed literal leaf-phase diagonal on the same workspace with the complete initialized-isometry error bound.
 - [Finite-evidence catalogue](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/reference/VERIFICATION_CATALOGUE.md): Proof-to-module/test correspondence, exact finite native words, bounded matrix diagnostics, and their separate evidence limits.
 - [Completed state-based QBP supplement](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/supplements/state_based_qbp/README.md): Different-decoder results with their own proof, cost, and native-evidence map; not a fine complete-frame compiler or an application speedup claim.
 
 ## Status and attribution
 
-The real-frame high-precision count endpoint is 2N-1<=T*<=O(N), hence T*=Theta(N), for N=2^n, n>=3, eta=2^(-N), a=2 and b=N+n+7. GROWING_SOURCE_COMPILER supplies the unrestricted upper bound. FAULT_TOLERANT_COMPILER Section 10.3 proves the lower bound using root angle pi/16, unrestricted workspace and the literal-phase contract; Section 10.4 gives return rigidity below that threshold. Large-workspace T-depth remains open. Source- and query-specific obstructions remain distinct from unrestricted lower bounds. Internal review and finite tests are not external peer review, formal proof certification, or a general native emitter.
+The real and complex magnitude high-precision count endpoints are 2N-1<=T*<=O(N), hence T*=Theta(N), for N=2^n, n>=3, eta=2^(-N), a=2 and b=N+n+7. GROWING_SOURCE_COMPILER supplies the real upper bound and Section 9 its complex-magnitude corollary. FAULT_TOLERANT_COMPILER Section 10.3 proves the lower bound using root angle pi/16, unrestricted workspace and the literal-phase contract; zero leaf phases carry this witness into the complex magnitude family. Section 10.4 gives return rigidity below that threshold. Large-workspace T-depth remains open. Source- and query-specific obstructions remain distinct from unrestricted lower bounds. Internal review and finite tests are not external peer review, formal proof certification, or a general native emitter.
 
 Use the exact consulted commit and CITATION.cff for attribution. The repository is MIT licensed. Collaborations: gogoko699@gmail.com.

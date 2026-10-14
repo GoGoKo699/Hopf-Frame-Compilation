@@ -152,8 +152,17 @@ test coverage of each module.
 
 The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
 maps these supporting modules to their proofs, tests, and individual evidence
-boundaries. They are separate from the compiler proof chain for Results A–D.
+boundaries. The [real and complex-magnitude endpoint theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+supplements the unchanged Results A–D; its native cost and workspace bounds
+are analytic.
 
+- Growing-source diagnostics: [`growing_precision_source.py`](growing_precision_source.py)
+  supplies exact rational refinement factors and symbolic scales. Its
+  [tests](../tests/test_growing_precision_source.py) separately check a bounded
+  real source/recovery architecture and phase dressing with native packed-diagonal
+  blocks. The latter retains leakage through two reused flags and the same
+  arbitrary dirty core; its real recovery and addressed selection are diagnostic
+  matrices, not a growing-source or general table emitter.
 - Source geometry and recovery: [`source_completions.py`](source_completions.py),
   [`boundary_refinement.py`](boundary_refinement.py), and
   [`conjugate_recovery.py`](conjugate_recovery.py).

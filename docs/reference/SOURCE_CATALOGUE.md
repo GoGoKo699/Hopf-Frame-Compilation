@@ -4,8 +4,9 @@
 
 This reference catalogue preserves the stable source and result identifiers
 and the detailed contribution boundaries behind the concise core maps.
-Its register includes selected Results A–D, supporting constructions,
-separate state-based QBP results, and research studies. Inclusion here is
+Its register includes selected Results A–D, the endpoint count theorem and
+complex-magnitude corollary, supporting constructions, separate state-based
+QBP results, and research studies. Inclusion here is
 not selection as a principal result or a claim that every listed source is
 a premise of the current compiler.
 
@@ -16,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F42 and R12–R61: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
+| F1–F42 and R12–R62: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -243,6 +244,7 @@ extends R32 and R43 with the following component result.
 | R59 | all-order coupled tree inverse | [Proof](../../research/endpoint/COUPLED_TREE_RESOLVENT.md): graded power, tail and input-support bounds give inverse norm below $`43/18`$ and an ideal normalization-three scattering dilation. Rank-one descendant data, static feedback and the rejected-prefix baseline show which native costs remain. The direct realization retains O(N+nL) T-count; its workspace scaling does not certify the literal additive endpoint allocation. [Residual assembly](../../research/endpoint/RESIDUAL_ASSEMBLY.md) retains the selected affine interface and distinct damping restriction. |
 | R60 | native realification, marker supports and accepted scalar phases | [Proof](../../research/endpoint/NATIVE_REALIFICATION.md): realification doubles T-count at most and uses one extra clean or dirty qubit, preserving full-isometry error; the one-clean compiler supplies the spare flag. Exact ring-valued marker supports have a constant gap, without restricting approximate sparsity or work return. Section 4's cyclotomic argument gives $`\lvert\mathrm{Im}\alpha\rvert/\lvert\alpha\rvert\ge2^{-3t-1}`$ when the imaginary part is nonzero, for calibrated stabilizer-to-stabilizer amplitudes at arbitrary width and success probability. It restricts the stated scalar interface, not matrix-valued retained features or the unrestricted endpoint. |
 | R61 | doubled-Spin decoding restrictions | [Proof](../../research/endpoint/SPIN_DECODING_LIMITS.md): target-dependent inverse encoders and unrelated Clifford wrappers fail for one specified doubled spin lift at endpoint precision for $`n\ge4`$. Exact character and eigenvalue multiplicities charge all dirty spectators; $`n=3`$, approximate-lift perturbations, and broader native-wrapper architectures retain their stated limits. No unrestricted T-count lower bound follows. |
+| R62 | endpoint count theorem and complex-magnitude corollary | [Growing-source proof](../../research/endpoint/GROWING_SOURCE_COMPILER.md): exact source refinement, sealed full-mode arenas, actual dirty replay, compensated overlap, and summable native charges give $`O(N)`$ T-count for every prescribed real frame at $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. The [complex-magnitude corollary](../../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint) composes the half-error real construction with R17's packed literal diagonal on the same workspace. The [single-angle witness](../FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness), retained at zero leaf phases, gives $`2N-1`$ and hence worst-case $`\Theta(N)`$ for both families. Mixed gauges, disjoint-block bottom compilation, disjoint state extensions, R20 and R25 reuse F2/F5/F8–F9/F11/F19–F20; no new imported premise or priority claim. No arbitrary-complex-unitary, one-clean, Clifford-count, or T-depth conclusion. |
 
 The [Hopf error audit](../HOPF_ERROR_ACCUMULATION.md) derives a sharp ideal-angle
 stability recurrence and an exact finite relative-spectrum recursion from
@@ -435,8 +437,9 @@ grouping and its one-clean refinement give the endpoint upper bound
 $`O(N\ell_*(n))`$ for that construction. The separate
 [growing-source compiler](../../research/endpoint/GROWING_SOURCE_COMPILER.md)
 attains $`O(N)`$ with two clean flags at the literal
-[high-precision endpoint](../OPEN_PROBLEM.md), matching the existing
-$`\Omega(N)`$ lower bound in order.
+[high-precision endpoint](../OPEN_PROBLEM.md). R62's packed-diagonal
+corollary covers the phase-dressed complex magnitude frame at the same
+allocation; both families retain the $`2N-1`$ precision witness.
 At $`b\ge2(L+n+7)`$, the grouped compiler's banked form gives
 $`O(\sqrt{NL}+L\ell_*(n)+NL/b)`$ T gates and $`O(NL)`$ Clifford gates.
 
@@ -462,8 +465,10 @@ are separately compared with GKW and Yamazaki–Akibue–Sano in
 ## Extended lineage for the core and its supporting constructions
 
 The following detailed comparisons retain their original section headings.
-The concise [core account](../RELATED_WORK.md) selects their role in Results A–D;
-nearby endpoint attempts and software boundaries remain supporting context.
+The concise [core account](../RELATED_WORK.md) and [source map](../SOURCE_MAP.md)
+select their roles in Results A–D and R62's endpoint count theorem and
+complex-magnitude corollary. Earlier endpoint attempts and software boundaries
+remain supporting context.
 
 ## 1. Exact state preparation and the target frontier
 

@@ -2,10 +2,10 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-The two-clean high-precision real-frame count endpoint is resolved by the
-growing-source theorem below. The large-width T-depth question remains open.
-These results and the retained earlier constructions are separate from the
-proof chain for Results A–D.
+The endpoint count theorem and complex-magnitude corollary below are selected
+alongside Results A–D, whose statements remain unchanged. They resolve the
+two-clean high-precision count for complete real and phase-dressed complex
+magnitude frames. The large-width T-depth question remains open.
 Each result retains its mathematical hypotheses; a method-specific
 obstruction is not a lower bound for every compiler.
 
@@ -23,11 +23,15 @@ $`T=\Theta(N)`$ in the worst case at $`\eta=2^{-N}`$, $`n\ge3`$,
 with two clean flags and $`N+n+7`$ dirty qubits. Its upper bound covers
 every prescribed real frame. Growing sources, sealed rejection modes,
 frozen output tags, actual dirty replay, and final recovery are charged.
-The theorem makes no additional one-clean, complex-frame, Clifford-count,
-or T-depth claim.
+The [complex-magnitude corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+composes the half-error real construction with the packed literal diagonal,
+covering $`D_\phi W_{\mathbb R}`$ at the same allocation and accuracy.
+The real witness at zero leaf phases gives the same $`2N-1`$ lower bound.
+These results make no additional one-clean, arbitrary-complex-unitary,
+Clifford-count, or T-depth claim.
 
 Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
-[bottom-level precision bound](endpoint/PRECISION_GAUGE_COMPILER.md#5-precision-trace-and-native-resource-bound),
+[disjoint-block compilation of the fixed bottom levels](endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
 and [disjoint source extensions](endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
 together with the linked conditional-suffix, scalar, and recovery primitives.
 Those earlier chapters remain proof dependencies even where their headline
