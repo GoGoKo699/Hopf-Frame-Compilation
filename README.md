@@ -111,9 +111,15 @@ The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-
 retain their own workspace reservations.
 
 **D. Optimal T-count with all-precision T-depth bounds.** For every
-$`n\ge1`$, integer $`L\ge6`$, two clean flags, and
-$`b\ge17(L+n+7)`$, the [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
-gives one complete real-frame circuit with absolute constants. Define
+$`n\ge1`$ and integer $`L\ge6`$, two clean flags suffice at these
+family-specific dirty reservations:
+
+| Target | Dirty reservation | Proof |
+|---|---|---|
+| Complete real frame | $`b\ge17(L+n+7)`$ | [Real theorem](research/depth/ALL_PRECISION_DEPTH.md) |
+| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [Complex extension](research/depth/COMPLEX_FRAME_DEPTH.md) |
+
+Each theorem gives one circuit with absolute constants. Define
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
@@ -135,8 +141,9 @@ $`O(NL/b^2+L)`$, with the same count and Clifford budgets.
 The error is at most $`2^{-L}`$ in the full initialized-isometry norm.
 Source preparation, queries, actual inverses, and work return are charged.
 T-depth allows arbitrary Clifford interlayers and is distinct from total
-depth. No automatic complex extension or unrestricted depth optimality is
-claimed. The [retained baseline](docs/UNIFORM_PRECISION_DEPTH.md)
+depth. The complex extension charges its literal leaf-phase diagonal and
+composes both factors on the same workspace. Unrestricted depth optimality
+remains open. The [retained baseline](docs/UNIFORM_PRECISION_DEPTH.md)
 supplies the alternative $`nL`$ depth term and literal-width fallbacks.
 
 All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
@@ -168,7 +175,7 @@ The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+T-depth bound. The real-frame [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 replaces the logarithm above by $`\log_2(n+2)`$: for some absolute $`c>0`$,
 $`6\le L\le cn`$ and every $`b\ge17(L+n+7)`$, two clean
 flags suffice for

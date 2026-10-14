@@ -234,7 +234,7 @@ operator guarantees and establishes no new depth bound.
 
 ## 5. Result D: count and depth on the same circuit
 
-The [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
+For real frames, the [all-precision theorem](research/depth/ALL_PRECISION_DEPTH.md)
 uses two external clean flags and $`b\ge17(L+n+7)`$ dirty qubits,
 for every $`n\ge1`$ and integer $`L\ge6`$. Define
 
@@ -264,7 +264,17 @@ fallbacks. Each branch charges preparation, queries, predicates, actual
 inverses, and full work return; selecting a branch retains all three
 resource bounds on one circuit.
 
-For some absolute $`c>0`$, the
+The [complex extension](research/depth/COMPLEX_FRAME_DEPTH.md) gives the
+same bounds for the prescribed phase-dressed magnitude frame
+$`D_\phi W_{\mathbb R}`$, with two clean flags and
+$`b\ge17(L+n+8)`$. It separately prices a literal diagonal's native
+T-depth and composes it after the real factor at half error per factor.
+Both factors reuse the same workspace; the full-isometry hybrid carries
+earlier leakage through the second actual circuit. Common phase and actual
+inverses are retained. The stronger high-precision additive L term also
+holds at this complex reservation.
+
+For real frames and some absolute $`c>0`$, the
 [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains the stronger $`\log_2(n+2)`$ dependence for
 $`6\le L\le cn`$:
@@ -278,8 +288,9 @@ At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
 sublinear depth when $`L=o(n/\log(n+2))`$; fixed accuracy retains
 $`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth.
 
-This is a real-frame theorem, with no automatic complex extension.
-T-depth permits arbitrary Clifford interlayers; their gate count remains
+The complex theorem concerns the prescribed magnitude frame, with supplied
+leaf phases; it is not arbitrary complex-unitary synthesis. T-depth permits
+arbitrary Clifford interlayers; their gate count remains
 charged, but this is not total circuit depth. Optimal depth beyond the
 stated matching intervals remains open.
 

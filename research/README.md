@@ -12,7 +12,7 @@ $`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
 constant square-root dirty width. Its precision-uniform extension retains
 sublinear depth with shrinking error $`2^{-L}`$ for
 $`L=o(n/\log(n+2))`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
-The [all-precision depth theorem](depth/ALL_PRECISION_DEPTH.md) now combines
+The [real all-precision depth theorem](depth/ALL_PRECISION_DEPTH.md) now combines
 that branch with a whole-frame binary stream and a high-precision query
 schedule, retaining optimal count for every precision. Optimal T-depth
 remains open.
@@ -176,8 +176,17 @@ norm. Count is optimal at every precision; count and depth match through
 $`b\le\sqrt{NL/F(n,L)}`$ on every nonempty interval above the
 literal lower threshold. For $`L>N/n^2`$, the
 [high-precision schedule](depth/HIGH_PRECISION_DEPTH.md) gives the stronger
-additive L depth term. The
-[compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+additive L depth term.
+
+The [complex extension](depth/COMPLEX_FRAME_DEPTH.md) proves the same
+all-precision and high-precision bounds for the prescribed magnitude frame
+$`D_\phi W_{\mathbb R}`$, with two clean flags and
+$`b\ge17(L+n+8)`$. It charges the literal diagonal's native depth
+and composes half-error factors on the same workspace, including earlier
+leakage and common phase. Its depth matching interval has the corresponding
+complex lower threshold. Optimal large-width depth remains open.
+
+For real frames, the [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains the stronger logarithm $`\log_2(n+2)`$ for $`6\le L\le cn`$,
 with absolute c. The [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md)
 remains a necessary baseline in the precision and width splices.
@@ -199,6 +208,7 @@ remains open.
 | Current proof | Role |
 |---|---|
 | [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
+| [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
 | [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Reuse the binary source above a logarithmic protected bank through exponentially growing precision, with explicit precision cardinality in every query charge |
 | [High-precision depth schedule](depth/HIGH_PRECISION_DEPTH.md) | Replace completed real masks after the signal lift, sum their rectangular-query depths, and serialize the separately bounded native remainder |
 | [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |

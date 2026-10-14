@@ -108,7 +108,7 @@ separate leaf-phase gradient stream.
 | A: exact frame | State-preparation UCGs, borrowed-wire cancellation, reversible routing, Hopf geometry | Prescribed columns, strict-zero echo, tree cut and routed all-workspace schedule |
 | B: sufficient-clean T count | Geometric bit sources, dirty lookup, compression, LCU/amplification, counting and diagonal lower bounds | Complete residual representation and shared-source composition, uniformly in precision |
 | C: one-clean count frontier | Full-space loaders, Clifford overlap algebra, exact dirty word-bank queries, standard amplification, and existing width-sensitive lower bounds | Native one-clean source, growing precision sources, whole-source conjugate lift, retained-anchor recovery, summed native charges, and uniform regime composition |
-| D: count and T-depth | Returned dirty indicators, controlled Clifford circuits, phase synthesis, arithmetic, phase-reference reuse | Charged unary-source reuse, complete-input query words, rectangular width allocation and uniform frame composition |
+| D: count and T-depth | Returned dirty indicators, controlled Clifford circuits, phase synthesis, arithmetic, phase-reference reuse | Charged source reuse, complete-input queries, rectangular width allocation, all-precision real-frame composition, and separately charged literal phase dressing |
 | Endpoint count | Dirty scalar and diagonal synthesis, disjoint-block/state interfaces, literal amplification | Growing precision sources, sealed rejection modes, compensated recovery and summable native charges; same-workspace phase dressing |
 | Precision-uniform two-clean count | The same native interfaces and the existing layerwise baseline | Separate logical mode and source-precision scales, uniform high-precision block/state interfaces, and low-precision/bounded-dimension splicing |
 
@@ -118,7 +118,8 @@ The [publication scope](../manuscript/PUBLICATION_SCOPE.md) gives Results
 A–D with their full reservations. A matches exact size and depth at every
 clean budget. B matches the precision-uniform T-count frontier with
 sufficient clean work, including small dirty budgets. D gives simultaneous
-count and T-depth bounds for real frames and matches both on explicit ranges.
+count and T-depth bounds for real and phase-dressed complex magnitude frames,
+at distinct dirty reservations, and matches both on explicit ranges.
 
 For every $`n\ge1`$ and integer $`L\ge6`$, C gives $`T=O(N+L)`$
 and $`G=O(NL)`$ at error $`2^{-L}`$, with fixed $`a=1`$ and base dirty reservation
@@ -242,9 +243,14 @@ commuting-selection, phase-synthesis, arithmetic, and phase-reference ideas
 are credited individually in F29–F37. The local result composes charged
 native source boundaries and complete-input queries with a rectangular
 workspace allocation. Its error and resource constants are uniform in
-precision. It concerns real frames and T-depth with Clifford interlayers;
-standalone source obstructions and radial filters supply no additional
-premise for the current theorem. The [dated development record](../research/RELATED_WORK.md)
+precision. The [real all-precision theorem](../research/depth/ALL_PRECISION_DEPTH.md)
+keeps its dirty reservation $`17(L+n+7)`$. The
+[complex extension](../research/depth/COMPLEX_FRAME_DEPTH.md) separately
+charges the literal diagonal depth and half-error shared-workspace
+composition at $`17(L+n+8)`$, preserving the same count/depth envelope.
+Both concern T-depth with Clifford interlayers. Standalone source
+obstructions and radial filters supply no additional premise for these
+upper bounds. The [dated development record](../research/RELATED_WORK.md)
 retains the narrower intermediate comparisons and later optional studies.
 
 ## References highlighted here
