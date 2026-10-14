@@ -197,10 +197,19 @@ and the remaining optimal-depth question; the [research index](research/README.m
 retains supporting constructions and the limits of specific interfaces.
 
 The [constant-depth obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, shows that each fixed clean budget has a positive accuracy threshold
-below which some complete frames require at least four T layers, regardless
-of dirty width or Clifford interlayers. The threshold is not evaluated;
-the bound does not grow with dimension or precision. Optimal depth remains an open problem.
+R73, gives an exact zero-clean error floor $`c_0\approx0.169714`$ for an
+explicit complete frame at T-depth at most three, regardless of dirty
+width. A Clifford attains this floor; integer $`L\ge3`$ requires at least
+four layers. At every fixed positive clean budget, four layers remain
+necessary below a positive threshold that is not evaluated.
+
+The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, shows that, at each fixed clean budget, four-layer approximations
+to the same witness with error tending to zero must have minimum middle
+active symplectic crossing rank tending to infinity. This structural
+restriction gives no unrestricted five-layer lower bound or rate of rank
+growth.
+Optimal depth remains an open problem.
 
 ## Operational consequence
 

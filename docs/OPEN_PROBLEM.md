@@ -162,15 +162,31 @@ existence question is resolved; optimal large-width depth remains open,
 with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
 The [constant-depth obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, strengthens that constant at sufficiently small accuracy. For every
-fixed clean budget $`a\ge0`$, there is $`\varepsilon_a>0`$, uniform
-in n and dirty width b, such that a complete real frame requires at least
-four T layers whenever the full initialized-isometry error is strictly
-below $`\varepsilon_a`$. The proof allows arbitrary Clifford interlayers
-and dirty/reference inputs; the threshold is not evaluated. Separately,
-an explicit one-clean witness requires at least three T layers for
-integer $`L\ge8`$. Zero leaf phases put both witnesses in the complex
-magnitude family. Neither bound grows with n or L.
+R73, strengthens that constant. The complete frame
+$`W_n=I_{2^{n-1}}\otimes R_y(\theta)`$ with
+$`\theta=\tfrac12\arccos(1/3)`$ has exact zero-clean error floor
+
+```math
+c_0=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}}\approx0.169714
+```
+
+at T-depth at most three, uniformly over n and dirty width b. A Clifford
+attains this floor, so integer $`L\ge3`$ requires at least four layers.
+For every fixed positive clean budget a, a positive threshold
+$`\varepsilon_a`$ still exists but is not evaluated. These statements
+allow arbitrary Clifford interlayers and dirty/reference inputs.
+Separately, an explicit one-clean witness requires at least three layers
+for integer $`L\ge8`$. Zero leaf phases put both witnesses in the complex
+magnitude family. These depth lower bounds are constant.
+
+The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, gives a positive error gap for the same $`1/3`$ witness for each
+fixed clean budget a and rank bound R, for circuits admitting a four-layer
+decomposition whose middle active symplectic crossing rank is at most R.
+Consequently, every four-layer sequence with error tending to zero must
+have minimum crossing rank tending to infinity, minimizing over all
+four-layer decompositions of each circuit. The theorem supplies neither
+an unrestricted five-layer lower bound nor a rate of rank growth.
 Optimal depth remains an open problem.
 
 The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

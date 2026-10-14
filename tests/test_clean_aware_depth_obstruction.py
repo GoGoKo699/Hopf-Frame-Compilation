@@ -1,7 +1,8 @@
 """Finite algebra audits for the clean-aware shallow-depth obstruction.
 
 These checks cover initialized-projector normalization, actual complete-frame
-witnesses, the explicit two-layer gap, and mod-eight phase digit identities.
+witnesses, explicit shallow-depth gaps, terminal-sector rigidity, and
+mod-eight phase digit identities.
 They do not certify the imported polynomial-bias closure theorem or infer
 uniform infinite-width statements from finite matrices.
 """
@@ -253,6 +254,9 @@ class CleanAwareDepthObstructionTests(unittest.TestCase):
             coefficient = np.trace(commutator) / (1 << width)
             expected = (1 + 2 ** (-fanout_width / 2)) / 2
             self.assertLess(abs(coefficient - expected), ATOL)
+            if fanout_width == 1:
+                self.assertAlmostEqual(1 - coefficient.real,
+                                       (1 - 1 / np.sqrt(2)) / 2, places=12)
             if fanout_width == 4:
                 # Evaluate the disjoint tensor witness by trace factorization;
                 # no 4096-by-4096 dense tensor matrix is needed. Combining the
@@ -281,6 +285,129 @@ class CleanAwareDepthObstructionTests(unittest.TestCase):
         self.assertGreater(target - tail, single_gap)
         self.assertGreater(single_gap - tail, finite_gap)
         self.assertGreater(finite_gap, 0)
+
+    def test_weighted_phase_parity_strata_and_sharp_gap(self):
+        delta = (1 - 1 / np.sqrt(2)) / 2
+        width = 4
+        rng = np.random.default_rng(73074)
+        phases = [({}, 0), ({1: 1, 3: 6}, delta),
+                  ({3: 2}, 0.25), ({7: 4}, 0.25), ({0: 1}, 2 * delta)]
+        for _ in range(24):
+            coefficients = {0: int(rng.integers(8))}
+            for degree in (1, 2, 3):
+                for support in combinations(range(width), degree):
+                    mask = sum(1 << bit for bit in support)
+                    coefficients[mask] = ((1 << (degree - 1))
+                                          * int(rng.integers(8))) % 8
+            phases.append((coefficients, None))
+        for coefficients, expected_loss in phases:
+            values = np.array([sum(coefficient for mask, coefficient
+                                   in coefficients.items() if assignment & mask == mask) % 8
+                               for assignment in range(1 << width)])
+            loss = np.mean(1 - np.cos(np.pi * values / 4))
+            if expected_loss is not None:
+                self.assertAlmostEqual(loss, expected_loss, places=12)
+            if not np.any(values):
+                self.assertAlmostEqual(loss, 0)
+                continue
+            # Audit the three valuation strata, including the phase whose
+            # real expectation attains the sharp scalar upper bound.
+            for divisor, degree, support_bound in ((1, 1, 0.5),
+                                                    (2, 2, 0.25),
+                                                    (4, 3, 0.125)):
+                parity = (values // divisor) % 2
+                if np.any(parity):
+                    parity_coefficients = _integer_mobius(parity.tolist(), width)
+                    boolean_support = {mask for mask, value in parity_coefficients.items()
+                                       if value % 2}
+                    self.assertLessEqual(_degree(boolean_support), degree)
+                    self.assertGreaterEqual(np.mean(parity), support_bound)
+                    break
+                self.assertTrue(all(coefficient % (2 * divisor) == 0
+                                    for coefficient in coefficients.values()))
+            self.assertGreaterEqual(loss + ATOL, delta)
+
+    def test_native_three_layer_transfer_entries_have_isolated_unit_maximum(self):
+        rng = np.random.default_rng(73075)
+        upper = (1 + 1 / np.sqrt(2)) / 2
+        for width in range(2, 4):
+            paulis = np.array(_pauli_basis(width))
+            for _ in range(3):
+                word = _clifford_word(width, rng)
+                for _ in range(3):
+                    word += [('T' if rng.integers(2) else 'TDG', wire)
+                             for wire in range(width)] + _clifford_word(width, rng)
+                unitary = _word_matrix(width, word)
+                evolved = unitary @ paulis @ unitary.conj().T
+                transfer = np.einsum('pij,qji->pq', paulis, evolved) / (1 << width)
+                self.assertLess(np.max(np.abs(transfer.imag)), ATOL)
+                nonunit = transfer.real[np.abs(transfer.real - 1) > ATOL]
+                self.assertLessEqual(np.max(nonunit), upper + ATOL)
+
+    def test_zero_clean_sharp_floor_has_literal_complete_frame_attainer(self):
+        theta = 0.5 * np.arccos(1 / 3)
+        c0 = np.sqrt(2 - (2 + np.sqrt(2)) / np.sqrt(3))
+        rho = np.sqrt((1 - 1 / np.sqrt(2)) / 4)
+        self.assertLess(1 / 8, c0)
+        self.assertLess(c0, rho)
+        # PTM angle quantization permits alpha=k*pi/8 up to phase.
+        # Check that the nearest angle is pi/4, not the half-angle pi/8.
+        axial_distances = [2 * np.sin(abs((theta - k * np.pi / 8 + np.pi / 2)
+                                          % np.pi - np.pi / 2) / 2)
+                           for k in range(8)]
+        self.assertEqual(int(np.argmin(axial_distances)), 2)
+        self.assertAlmostEqual(min(axial_distances), c0, places=12)
+        for logical, dirty in product(range(1, 5), range(3)):
+            angles = np.zeros((1 << logical) - 1)
+            angles[(1 << (logical - 1)) - 1:] = theta
+            target = np.kron(np.eye(1 << dirty), real_frame_matrix(angles))
+            width = logical + dirty
+            # Chronological Z,H is literally HZ=Ry(pi/4), without a
+            # projective-phase adjustment. Every dirty input is retained.
+            attainer = _word_matrix(width, [('Z', 0), ('H', 0)])
+            expected = np.kron(np.eye(1 << (width - 1)), hopf_ry(np.pi / 4))
+            np.testing.assert_allclose(attainer, expected, atol=ATOL, rtol=0)
+            difference = attainer - target
+            self.assertAlmostEqual(np.linalg.norm(difference, ord=2), c0, places=12)
+            np.testing.assert_allclose(difference.conj().T @ difference,
+                                       c0 ** 2 * np.eye(1 << width), atol=ATOL, rtol=0)
+
+    def test_one_clean_block_norms_and_occupied_sector_caveat(self):
+        target = np.kron(I2, hopf_ry(0.271))
+        embedding = np.eye(8)[:, :4]
+        extension = np.zeros((8, 8), dtype=complex)
+        extension[:4, :4] = target
+        extension[4:, 4:] = _word_matrix(2, [('H', 1), ('CX', 1, 0), ('T', 0)])
+        clean_z = _pauli(3, {2: Z})
+        generator = _pauli(3, {0: Z, 2: X})
+        for angle in (0, 0.031, 0.19):
+            # These continuous perturbations audit the general block identity,
+            # not membership in the at-most-three-layer native circuit class.
+            perturbation = np.cos(angle) * np.eye(8) - 1j * np.sin(angle) * generator
+            unitary = perturbation @ extension
+            eta = np.linalg.norm(unitary @ embedding - embedding @ target, ord=2)
+            b_norm = np.linalg.norm(unitary[:4, 4:], ord=2)
+            c_norm = np.linalg.norm(unitary[4:, :4], ord=2)
+            self.assertAlmostEqual(b_norm, c_norm, places=12)
+            commutator = unitary @ clean_z - clean_z @ unitary
+            self.assertAlmostEqual(np.linalg.norm(commutator, ord=2), 2 * c_norm,
+                                   places=12)
+            self.assertLessEqual(c_norm, eta + ATOL)
+            transfer = np.trace(clean_z @ unitary @ clean_z @ unitary.conj().T) / 8
+            self.assertLessEqual(1 - transfer.real, 2 * eta ** 2 + ATOL)
+            self.assertAlmostEqual(1 - transfer.real,
+                                   np.linalg.norm(commutator, 'fro') ** 2 / 16, places=12)
+
+        # Exact initialized return does not imply global logical-Y
+        # conservation: the occupied clean sector may act differently.
+        controlled_x = _word_matrix(3, [('CX', 2, 0)])
+        np.testing.assert_allclose(controlled_x @ embedding, embedding, atol=ATOL, rtol=0)
+        np.testing.assert_allclose(controlled_x @ clean_z, clean_z @ controlled_x,
+                                   atol=ATOL, rtol=0)
+        logical_y = _pauli(3, {0: Y})
+        evolved_y = controlled_x.conj().T @ logical_y @ controlled_x
+        np.testing.assert_allclose(evolved_y, clean_z @ logical_y, atol=ATOL, rtol=0)
+        self.assertAlmostEqual(np.linalg.norm(evolved_y - logical_y, ord=2), 2)
 
     def test_phase_digits_after_affine_restriction_and_mod_eight_carries(self):
         rng = np.random.default_rng(73021)

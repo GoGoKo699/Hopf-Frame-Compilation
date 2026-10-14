@@ -134,12 +134,22 @@ Internal audits do not replace external technical review. Final manuscript
 drafting remains a separate task requiring the user's request.
 
 The [clean-aware obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, supplies a constant lower bound for arbitrary Clifford interlayers
-and dirty width: for each fixed clean budget, some complete frames require
-at least four T layers below a positive, unevaluated accuracy threshold,
-uniformly in dimension. The explicit one-clean two-layer gap separately
-forces at least three layers for integer $`L\ge8`$. These bounds do not
-grow with dimension or precision. Optimal depth remains an open problem.
+R73, supplies constant lower bounds for arbitrary Clifford interlayers
+and dirty width. The explicit $`\cos(2\theta)=1/3`$ complete frame has
+exact zero-clean error floor $`c_0\approx0.169714`$ at T-depth at most
+three, attained by a Clifford. Thus integer $`L\ge3`$ requires at least
+four layers. Each fixed positive clean budget has a positive threshold
+that remains unevaluated. The separate explicit one-clean two-layer gap
+forces at least three layers for integer $`L\ge8`$.
+
+The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, gives a positive error gap for this witness at each fixed clean
+budget and bound on the middle active symplectic crossing rank. Any
+four-layer sequence approaching zero error must therefore have minimum
+crossing rank tending to infinity, where the minimum is over all
+four-layer decompositions. This is a structural restriction, with no
+unrestricted five-layer lower bound or rate of rank growth.
+Optimal depth remains an open problem.
 
 ### Reopening research requires a qualifying mechanism
 

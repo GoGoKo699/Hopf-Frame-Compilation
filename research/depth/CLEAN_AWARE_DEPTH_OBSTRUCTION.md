@@ -24,7 +24,15 @@ $`\varepsilon_a`$ therefore requires at least four T layers,
 independently of b. Zero leaf phases give the same witness in the
 phase-dressed complex magnitude family.
 
-The constant is established by compactness and is not evaluated here.
+For positive clean budgets, the constant is established by compactness
+and is not evaluated here. With no clean qubits, Section 4.2 sharpens
+the same witness to the exact error floor
+
+```math
+c_0=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}}\approx0.169714,
+```
+
+so integer precision $`L\ge3`$ requires at least four T layers.
 A separate explicit one-clean witness with $`\cos(2\theta)=13/16`$
 has distance at least
 
@@ -305,6 +313,170 @@ initialized-isometry error is at least $`\varepsilon_a`$.
 This proves the theorem uniformly over n and b. The constant may depend
 on a; no uniform bound is asserted when a grows.
 
+### 4.1 A sharp gap below a preserved Pauli
+
+The phase polynomial in Section 3 has the stronger weighted form
+
+```math
+p(u)=c+\sum_i\ell_i u_i
++2\sum_{i\lt j}q_{ij}u_i u_j
++4\sum_{i\lt j\lt k}t_{ijk}u_i u_j u_k\pmod8.
+```
+
+The parity expansion, the factor two in stabilizer linear phases,
+and the factor four in quadratic signs establish these divisibilities.
+They survive affine restriction. Put
+
+```math
+\delta=\frac{1-1/\sqrt2}{2}.
+```
+
+Every full-space transfer entry x of a circuit with at most three
+T layers obeys the sharp alternative
+
+```math
+x=1\quad\text{or}\quad
+x\le1-\delta=\frac{1+1/\sqrt2}{2}.
+```
+
+Zero entries satisfy this alternative directly. For the normal form
+$`x=2^{-s/2}\mathbb E\zeta_8^{p}`$, the case
+$`s\ge1`$ gives the stronger bound $`x\le1/\sqrt2`$. For s=0,
+use $`1-x=\mathbb E[1-\cos(\pi p/4)]`$. If p modulo two is
+nonzero, it is affine and is one on at least half the inputs. Odd
+residues contribute loss at least $`1-1/\sqrt2`$, proving the bound.
+Otherwise all multilinear coefficients are even. If p/2 modulo two
+is nonzero, it has degree at most two and is one with probability
+at least 1/4; those inputs have $`p\equiv2\pmod4`$ and contribute
+loss one. Otherwise p/4 is a Boolean polynomial of degree at most
+three; if nonzero it is one with probability at least 1/8, contributing
+loss two. Both latter cases give loss at least 1/4. If all three
+reductions vanish, p is identically zero and x=1.
+
+The elementary support fact used here is that a nonzero Boolean
+polynomial of degree d is nonzero on at least a $`2^{-d}`$ fraction
+of the cube. Choose a maximal-degree monomial S: its iterated difference
+along S is the constant one, so every S-subcube contains a nonzero
+value. Multilinear coefficients are unique on the Boolean cube, which
+justifies division by two when the preceding parity vanishes. The
+native family in Section 5 at m=1 attains $`x=1-\delta`$.
+This gap does not use the polynomial-limit theorem.
+
+Suppose a target full-space unitary U preserves a Hermitian Pauli P
+and $`\|V-U\|\le\eta`$. With the normalized Hilbert--Schmidt norm,
+
+```math
+1-x_V(P,P)
+=\tfrac12\|V^\dagger PV-P\|_{2,\mathrm{tr}}^2
+\le2\eta^2.
+```
+
+Consequently, for
+
+```math
+\eta\lt\rho,\qquad
+\rho=\sqrt{\delta/2}
+=\frac{\sin(\pi/8)}{\sqrt2}\approx0.270598,
+```
+
+the circuit preserves P exactly. This applies simultaneously to any
+number of target-preserved Paulis, without a dimension or union-bound
+factor. A common global phase does not change the conclusion.
+
+### 4.2 Exact dirty return and the explicit zero-clean floor
+
+Take the theorem's target with $`\theta=\tfrac12\arccos(1/3)`$
+and no initialized clean work. Its initialized-isometry condition is
+then a full-space operator condition. It preserves Y on the final
+logical wire and X,Z on every spectator logical and dirty wire.
+At error below $`\rho`$, Section 4.1 forces V to preserve all these
+operators exactly. Commutation with the spectator Pauli algebra gives
+
+```math
+V=e^{i\varphi}R_y(\alpha)\otimes I_{\mathrm{spectators}}
+```
+
+with the tensor factors ordered as in the target. The two transfer
+entries $`c=\cos(2\alpha)`$, $`s=\sin(2\alpha)`$ lie in
+$`\mathbb Z[1/\sqrt2]`$ and satisfy $`c^2+s^2=1`$. These constraints
+force $`c+is`$ to be an eighth root of unity, hence
+$`\alpha\in(\pi/8)\mathbb Z`$ modulo a common phase.
+
+Here is an elementary proof of this unit-circle classification. Write
+
+```math
+c+is=\frac{(a+b\sqrt2)+i(e+f\sqrt2)}{2^{k/2}}
+```
+
+with integer coefficients. Unit norm gives
+
+```math
+a^2+e^2+2(b^2+f^2)=2^k,\qquad ab+ef=0.
+```
+
+The integer vectors $`(a,e)`$ and $`(b,f)`$ are perpendicular.
+Choose a primitive integer direction $`(p,q)`$ so these vectors
+are $`g(p,q)`$ and $`h(-q,p)`$, allowing g or h to vanish. Then
+
+```math
+(p^2+q^2)(g^2+2h^2)=2^k.
+```
+
+Primitivity and parity force $`p^2+q^2`$ to be one or two. Also,
+$`g^2+2h^2=2^j`$ forces g or h to vanish: for $`j\ge2`$ both
+are even, so divide by four until the immediate cases j=0 or j=1.
+Normalizing the remaining axial or diagonal vector gives exactly the
+eight roots. Using transfer entries keeps this argument independent
+of the circuit's common phase.
+
+The nearest allowed angle to $`\theta`$ is $`\pi/4`$. Even after
+optimizing a common phase, its operator distance is
+
+```math
+c_0=2\sin\!\left(\frac{\pi/4-\theta}{2}\right)
+=\sqrt{2-\frac{2+\sqrt2}{\sqrt3}},\qquad
+\frac18\lt c_0\lt\rho.
+```
+
+If a circuit had error below $`c_0`$, the preceding rigidity argument
+would quantize its angle and contradict this nearest-angle distance.
+Conversely the literal Clifford $`R_y(\pi/4)=HZ`$, tensored with
+identity on all other wires, attains $`c_0`$ on every column.
+Thus $`c_0`$ is the exact best error at at most three T layers in the
+zero-clean, arbitrary-dirty model. Every integer $`L\ge3`$ requires
+at least four layers for this complete-frame witness. This stronger
+explicit statement does not extend to a positive clean budget by
+ignoring its initialized-sector restriction.
+
+### 4.3 One clean qubit: exact preservation of the terminal sectors
+
+For one initialized clean qubit, write the circuit in its two clean-bit
+blocks as
+
+```math
+V=\begin{pmatrix}A&B\\C&D\end{pmatrix}.
+```
+
+The initialized-isometry error bound gives $`\|C\|\le\eta`$.
+Unitarity implies $`\|B\|=\|C\|`$: the matrices
+$`BB^\dagger=I-AA^\dagger`$ and $`C^\dagger C=I-A^\dagger A`$
+have the same eigenvalues. Hence
+
+```math
+\|[V,Z_C]\|\le2\eta,\qquad
+1-x_V(Z_C,Z_C)\le2\eta^2.
+```
+
+At at most three T layers and $`\eta\lt\rho`$, Section 4.1 forces
+$`[V,Z_C]=0`$ exactly. Both terminal clean-bit sectors are therefore
+invariant, even though approximation was required only on the zero
+sector. This does not assert intermediate clean return or control the
+logical unitary on the occupied sector. For example a CNOT from the
+clean wire to a logical wire is identity on the initialized sector,
+preserves $`Z_C`$, and does not preserve the logical Y globally.
+A controlled Pauli is Clifford rather than Pauli; applying Section 4.1
+to it would require an additional argument.
+
 ## 5. Why the two-layer alphabet does not extend
 
 Three-layer transfer coefficients can have nonzero accumulation points.
@@ -384,7 +556,8 @@ density of three-layer coefficients.
 
 The two-layer bound is explicit at one clean qubit. The three-layer
 bound covers every fixed clean budget, including the one- and two-clean
-frame theorems, but supplies an unevaluated positive accuracy threshold.
+frame theorems. Its zero-clean threshold is explicit and sharp for the
+stated witness; positive clean budgets retain an unevaluated threshold.
 Neither assumes a bound on T-count or Clifford count. Both permit all
 intermediate mixing with dirty work and cover the reference-stable
 return contract.
@@ -404,7 +577,8 @@ contracts, recorded in the [literature comparison](../RELATED_WORK.md#29-constan
 
 The [bounded checks](../../tests/test_clean_aware_depth_obstruction.py)
 audit the initialized-projector normalization, witness arithmetic,
-complete-frame embedding, binary carry identities, and the native
-three-layer counterexample. The uniform
+complete-frame embedding, binary carry identities, the weighted phase
+gap, the literal zero-clean attainer, terminal clean-sector rigidity,
+and the native three-layer counterexample. The uniform
 three-layer conclusion is analytic and uses the cited polynomial-limit
 theorem; finite circuits do not certify compactness or its error constant.

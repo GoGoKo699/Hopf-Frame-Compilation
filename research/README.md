@@ -238,14 +238,23 @@ channels and reweighting obey the same bound. It does not constrain
 unrestricted block encodings or establish a native T-depth lower bound.
 
 The [clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, instead applies to arbitrary coherent Clifford+T circuits. For every
-fixed clean budget $`a\ge0`$, a complete real frame requires at least four
-T layers below some positive accuracy threshold $`\varepsilon_a`$,
-uniformly over dimension and dirty width. The threshold is not evaluated.
-An explicit one-clean witness separately requires at least three layers
-for integer $`L\ge8`$. Both witnesses also lie in the phase-dressed
-family with zero leaf phases. These are constant lower bounds, not bounds
-growing with dimension or precision. Optimal depth remains an open problem.
+R73, applies to arbitrary coherent Clifford+T circuits. For the complete
+frame with $`\cos(2\theta)=1/3`$, the zero-clean error floor at T-depth
+at most three is exactly $`c_0\approx0.169714`$, attained by a Clifford
+and uniform in dirty width. Hence integer $`L\ge3`$ requires at least
+four layers. Every fixed positive clean budget also has a positive,
+unevaluated threshold. An explicit one-clean witness separately requires
+at least three layers for integer $`L\ge8`$. Zero leaf phases include
+both witnesses in the phase-dressed family.
+
+The [four-layer crossing-rank theorem](depth/FOUR_LAYER_CROSSING_RANK.md),
+R74, proves a positive error gap for the $`1/3`$ witness at every fixed
+clean budget and fixed upper bound on the middle active symplectic
+crossing rank. In any four-layer sequence whose error tends to zero,
+the minimum crossing rank over its four-layer decompositions must tend
+to infinity. This is a structural obstruction; it gives neither an
+unrestricted five-layer lower bound nor a rate of rank growth.
+Optimal depth remains an open problem.
 
 The following earlier studies isolate costs or restrict particular
 interfaces. They remain as mathematical results and records of the
