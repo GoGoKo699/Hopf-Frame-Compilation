@@ -4,8 +4,10 @@
 
 The selected publication is **one full-length theoretical compiler paper**
 on prescribed Hopf differential frames. This is its canonical claim ledger:
-Results A–D, retained corollaries, and their resource and error contracts.
-The separate endpoint research below is not a prerequisite for these results.
+Results A–D, retained corollaries, and the selected endpoint count theorem
+and complex-magnitude corollary, with their resource and error contracts.
+The endpoint claim has its own fixed precision and literal allocation;
+it does not change A–D.
 
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
@@ -185,11 +187,14 @@ gate word nor proves optimality among all gradient algorithms or an
 end-to-end application advantage.
 
 <a id="two-unresolved-resource-questions"></a>
+<a id="endpoint-research-and-the-remaining-depth-question"></a>
 
-## Endpoint research and the remaining depth question
+## Selected endpoint count claim and the remaining depth question
 
-The separate [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-resolves the two-clean high-precision real-frame count endpoint:
+The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+are selected beside A–D. At $`\eta=2^{-N}`$, each of the complete real
+and phase-dressed complex magnitude families has the worst-case count
 
 ```math
 a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
@@ -197,16 +202,22 @@ a=2,\qquad b=N+n+7,\qquad L=N,\qquad n\ge3,
 2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
 ```
 
-It charges native source transitions and packing, retains rejected paths
-in disjoint logical modes, and returns all work by one final recovery.
-This endpoint theorem does not change Results A–D or assert their
+The real-frame construction charges native source transitions and packing,
+retains rejected paths in disjoint logical modes, and returns all work by
+one final recovery. The complex-magnitude corollary composes a packed literal
+leaf-phase diagonal using the same two flags and dirty pool. Both factors'
+errors and all work return are included in the common full-isometry norm.
+This endpoint count claim does not change Results A–D or assert their
 precision-uniform, Clifford-count, one-clean, or T-depth guarantees.
-At one clean qubit, Result C still gives
+For real frames at one clean qubit, Result C still gives
 $`T=O(N\ell_*(n))`$ and $`G=O(N^2)`$ at the displayed dirty allocation.
 The
 [root-angle precision witness](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
 proves the displayed lower bound at arbitrary workspace width under the
-literal-phase contract.
+literal-phase contract. The complex magnitude family inherits it by taking
+all leaf phases to be zero. The target is $`D_{\rm ph}W_{\mathbb R}`$,
+not an arbitrary complex unitary; phase derivatives retain their separate
+measurement stream.
 
 The grouped precision charge is not claimed necessary for one-clean
 compilation, nor is the new endpoint theorem claimed for every linear
@@ -221,14 +232,15 @@ high-precision count endpoint. Result D's literal width threshold excludes the d
 endpoint allocation, and its unary-source mechanism does not scale to that
 precision.
 
-The [research results](../research/README.md) include linear-count native
-compilers for disjoint SU blocks with a linear squared-dimension budget,
+The [research catalogue](../research/README.md) preserves the endpoint
+dependencies and earlier linear-count native compilers for disjoint SU
+blocks with a linear squared-dimension budget,
 regular and specified scale-separated forests, and computational forests
 with certified sub-binary degree-window growth, or bounded exceptional path
 depth over a cheap or fixed-ratio base family. Canonical-star, scalar-source,
 and diagonal-stage theorems retain
-their explicit representation hypotheses. These are separate endpoint
-results, not additional principal claims or unrestricted lower bounds. The completed
+their explicit representation hypotheses. These supporting and earlier
+results are not additional principal claims or unrestricted lower bounds. The completed
 [state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
 changed decoder and remains a separate result; the fixed-decoder necessity
 claim here does not apply to every gradient algorithm.
@@ -258,11 +270,13 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C and compiler corollaries | [One-clean proof](../docs/ONE_CLEAN_COMPILER.md), [conditional-suffix Sections 1–10](../docs/CONDITIONAL_SUFFIX_COMPILER.md), and [operator-source primitives](../docs/OPERATOR_SOURCE_COMPILER.md); [borrowed-workspace proof](../docs/BORROWED_WORKSPACE_COMPILER.md) supplies queries, sector echoes, and the arbitrary-budget comparison |
 | D | [Uniform-precision theorem](../docs/UNIFORM_PRECISION_DEPTH.md) and its linked source/query schedules: same-circuit upper bounds and matching intervals |
+| Selected endpoint count claim | [Growing-source theorem and complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint), with the [packed literal diagonal](../docs/OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames) and [root-angle lower bound](../docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness): linear count at the stated two-clean allocation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
 | Attribution and evidence | [Related work](../docs/RELATED_WORK.md), [source map](../docs/SOURCE_MAP.md), [verification](../docs/VERIFICATION.md), and [internal audit](../docs/CORE_CLAIM_AUDIT.md) |
 
-The main text follows the target, shared contract, Results A–D, compiler
-corollaries, operational consequence, and separate endpoint research. Technical
+The claim architecture follows the target, shared contract, Results A–D,
+compiler corollaries, selected endpoint count claim, and operational consequence.
+Technical
 appendices contain exact echo/decoder/router schedules, source preparation,
 dirty queries, residual composition, amplification, error and resource sums,
 Euler/diagonal details, lower-bound reductions, and classical preprocessing.

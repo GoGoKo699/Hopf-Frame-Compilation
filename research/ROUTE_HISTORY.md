@@ -4,8 +4,12 @@
 
 The [growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md) resolves
 the unrestricted real-frame count endpoint at $`\eta=2^{-N}`$,
-$`a=2`$, $`b=N+n+7`$, and $`n\ge3`$. This log preserves earlier
-route assessments, their derivations, and method-specific obstructions.
+$`a=2`$, $`b=N+n+7`$, and $`n\ge3`$. The same
+$`L=N`$ endpoint also covers the phase-dressed complex magnitude frame by
+the [packed-diagonal corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint).
+The endpoint count theorem and complex-magnitude corollary are selected
+alongside the unchanged Results A–D. This log preserves earlier route
+assessments, their derivations, and method-specific obstructions.
 References below to the best bound, an endpoint gap, or a next step describe
 the corresponding historical pass; they are not current work orders.
 

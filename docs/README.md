@@ -4,8 +4,10 @@
 
 The selected compiler package has four principal results: exact compilation,
 sufficient-clean matching T-count, one-clean compilation, and simultaneous
-T-count/T-depth tradeoffs for complete real frames. Start with the landing
-page and `REVIEW.md`, then follow the relevant claim below.
+T-count/T-depth tradeoffs for complete real frames. A selected endpoint count
+theorem and complex-magnitude corollary have their own fixed-precision scope
+beside A–D. Start with the landing page and `REVIEW.md`, then follow the
+relevant claim below.
 
 ## Proof chapters
 
@@ -121,17 +123,22 @@ initialized protocol work, and classical output. They do not establish
 optimality among all gradient algorithms or an end-to-end advantage.
 
 <a id="separate-supplements-and-optional-research"></a>
+<a id="separate-endpoint-theorem"></a>
 
-### Separate endpoint theorem
+### Selected endpoint count theorem and complex-magnitude corollary
 
 The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 proves unrestricted $`\Theta(N)`$ worst-case T-count for complete real
-frames at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. The
-[research index](../research/README.md) maps its native dependencies,
+frames at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. Its
+[complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+composes the [packed literal diagonal](OPERATOR_SOURCE_COMPILER.md#8-literal-diagonal-unitaries-and-phase-dressed-frames)
+on the same workspace, with both factors and all return error included in
+the full-isometry bound. The lower bound is $`2N-1`$ for both families.
+The [research index](../research/README.md) maps its native dependencies,
 earlier promised families, and limits of specific source or factorization
 models. The [endpoint statement](OPEN_PROBLEM.md) records the remaining
-large-width depth question. These separate results are not dependencies
-of Results A–D.
+large-width depth question. This selected endpoint claim is not a dependency
+of Results A–D and supplies no new precision-uniform or T-depth guarantee.
 
 ### Completed changed-decoder supplement
 

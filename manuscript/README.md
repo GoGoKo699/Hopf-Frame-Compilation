@@ -5,9 +5,10 @@
 Working title: **Exact and Fault-Tolerant Compilation of Hopf Differential Frames**.
 
 The [publication scope](PUBLICATION_SCOPE.md) is the canonical ledger of
-Results A–D, retained corollaries, literal workspace reservations, and error
-contracts. Its source and verification maps identify the premises and
-executable evidence for each claim.
+Results A–D, retained corollaries, and the selected endpoint count theorem
+and complex-magnitude corollary, with literal workspace reservations and
+error contracts. Its source and verification maps identify the premises
+and executable evidence for each claim.
 
 ## The argument to assemble
 
@@ -42,10 +43,12 @@ mechanisms and input/workspace contracts.
    Compare the packed two-clean diagonal construction at its smaller dirty budget.
 6. Result D: simultaneous T-count and T-depth, its two-clean reservation,
    explicit precision/workspace matching intervals, and applicable fallbacks.
-7. Exact and approximate fixed-parameter QBP consequences, complete complex
-   gradients, and charged quantum executions and classical reconstruction.
-8. The separate linear-count endpoint result, remaining large-width depth
-   question, and limits of the circuit model.
+7. The selected endpoint count theorem and complex-magnitude corollary:
+   growing real-frame sources, packed literal leaf phases, the same-workspace
+   error contract, and the inherited lower bound at the fixed precision.
+8. Exact and approximate fixed-parameter QBP consequences, complete complex
+   gradients, charged executions and reconstruction, and the remaining
+   large-width depth question and limits of the circuit model.
 
 Keep the formula ledger in the scope and the technical proofs in their primary
 chapters. Appendices supply source preparation, echoes, decoders, routing,
@@ -60,12 +63,15 @@ sector. T-depth allows arbitrary Clifford interlayers and differs from total
 depth. Only D claims simultaneous T-count/T-depth guarantees; its real
 frame theorem does not inherit the complex extensions of A–C automatically.
 
-The [research archive](../research/README.md) records the growing-source
-resolution of the two-clean count endpoint, the remaining large-width
-depth question, and earlier attempts with their scoped findings. The completed
+The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+and [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+are selected at their fixed precision and literal allocation beside A–D.
+The [research catalogue](../research/README.md) preserves their dependencies,
+the remaining large-width depth question, and earlier attempts with their
+scoped findings. The completed
 [state-based QBP supplement](../supplements/state_based_qbp/README.md) uses a
-changed decoder and remains separate from the selected paper. Neither branch
-adds a default requirement for manuscript readiness.
+changed decoder and remains separate from the selected paper. Closing the
+depth gap or extending that supplement is not a manuscript-readiness requirement.
 
 Finite checks support fragile identities and resource ledgers; they do not
 replace asymptotic proofs, a scalable native emitter, or external peer review.

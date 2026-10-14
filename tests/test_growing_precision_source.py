@@ -17,6 +17,13 @@ from tests.test_heterogeneous_precision_source import (
     _embed_modes,
     _mixed_chart_fixture,
 )
+from tests.test_operator_source_compiler import (
+    _adjoint,
+    _embed_addressed_blocks,
+    _sign_word,
+    _word_matrix,
+)
+from tests.test_packed_diagonal import _diagonal_word, _reflection_word
 
 
 ATOL = 8e-13
@@ -337,6 +344,83 @@ class GrowingPrecisionSourceTests(unittest.TestCase):
                 self.assertGreater(np.linalg.norm(recovered[4:], 2), delta)
                 self.assertGreater(np.linalg.norm(recovered - wanted, 2),
                                    10 * np.linalg.norm(recovered[:4] - target, 2))
+
+    def test_phase_dressing_reuses_leaked_flags_and_dirty_core(self):
+        # Diagnostic real recovery followed by literal packed-diagonal words.
+        # The addressed direct sum is supplied, not a native table emitter;
+        # this checks composition, not the endpoint's precision or arena cost.
+        # Wires: dirty core 0,1; logical bit 2; shared clean flags 3,4.
+        logical = np.array([[np.cos(.37), -np.sin(.37)],
+                            [np.sin(.37), np.cos(.37)]])
+        real_target = np.kron(logical, np.eye(4))
+        polar = np.zeros((8, 8), dtype=complex)
+        polar[:4, :4] = np.kron(POLARS[0], X)
+        polar[4:, 4:] = np.kron(POLARS[1], H)
+        amplitude = .5 + 1 / 512
+        rejected = np.sqrt(1 - amplitude ** 2)
+        word = np.block([[amplitude * real_target,
+                          -rejected * real_target @ polar.conj().T],
+                         [rejected * polar, amplitude * np.eye(8)]])
+        reflection = np.diag([-1.] * 8 + [1.] * 8)
+        real = np.kron(np.eye(2), -word @ reflection @ word.conj().T @ reflection @ word)
+        embedding = np.eye(32)[:, :8]
+        np.testing.assert_allclose(real.conj().T @ real, np.eye(32), atol=ATOL, rtol=0)
+        real_output = real @ embedding
+        real_error = np.linalg.norm(real_output - embedding @ real_target, 2)
+        self.assertLess(real_error, .01)
+        projected = embedding @ embedding.conj().T @ real_output
+        self.assertGreater(np.linalg.norm(real_output - projected, 2), .005)
+
+        for phases in (((Fraction(3, 5), Fraction(4, 5)),
+                        (Fraction(-5, 13), Fraction(12, 13))),
+                       ((Fraction(0), Fraction(1)), (Fraction(0), Fraction(1)))):
+            with self.subTest(phases=phases):
+                blocks, inverses = [], []
+                for pair in phases:
+                    signs = [_sign_word(round((1 - value) * 4), 3) for value in pair]
+                    native = _diagonal_word(2, *signs)
+                    flag_reflection = _reflection_word(2)
+                    minus = [('X', 0), ('Z', 0), ('X', 0), ('Z', 0)]
+                    amplified = (native + flag_reflection + _adjoint(native)
+                                 + flag_reflection + native + minus)
+                    blocks.append(_word_matrix(4, amplified))
+                    inverses.append(_word_matrix(4, _adjoint(amplified)))
+                diagonal = _embed_addressed_blocks(
+                    5, [0, 1, 3, 4], lambda values: blocks[values[2]])
+                diagonal_inverse = _embed_addressed_blocks(
+                    5, [0, 1, 3, 4], lambda values: inverses[values[2]])
+                phases_matrix = np.diag([complex(float(c), float(s)) for c, s in phases])
+                diagonal_target = np.kron(phases_matrix, np.eye(4))
+                target = np.kron(phases_matrix @ logical, np.eye(4))
+                diagonal_error = np.linalg.norm(
+                    diagonal @ embedding - embedding @ diagonal_target, 2)
+                self.assertLess(diagonal_error, .25)
+                actual = diagonal @ real_output
+                error = np.linalg.norm(actual - embedding @ target, 2)
+                self.assertLessEqual(error, real_error + diagonal_error + 20 * ATOL)
+                self.assertGreater(np.linalg.norm(actual - diagonal @ projected, 2), .005)
+
+                inverse = real.conj().T @ diagonal_inverse
+                np.testing.assert_allclose(inverse @ actual, embedding, atol=20 * ATOL, rtol=0)
+                self.assertLessEqual(np.linalg.norm(
+                    inverse @ embedding - embedding @ target.conj().T, 2), error + 20 * ATOL)
+                # Eight reference labels give full Schmidt support on every
+                # logical/dirty input, retaining coherent flag leakage.
+                coefficients = np.arange(1, 9) + 1j * np.arange(8, 0, -1)
+                coefficients /= np.linalg.norm(coefficients)
+                self.assertLessEqual(np.linalg.norm(
+                    (actual - embedding @ target) * coefficients), error + 20 * ATOL)
+                if phases[0] != phases[1]:
+                    diagonal_output = diagonal @ embedding
+                    self.assertGreater(np.linalg.norm(
+                        diagonal_output - embedding @ embedding.conj().T @ diagonal_output, 2), .1)
+                    wrong_order = real @ diagonal @ embedding
+                    self.assertGreater(np.linalg.norm(actual - wrong_order, 2), .3)
+                else:
+                    # A common phase is part of the literal operator contract.
+                    np.testing.assert_allclose(diagonal @ embedding, 1j * embedding,
+                                               atol=20 * ATOL, rtol=0)
+                    self.assertGreater(np.linalg.norm(actual - embedding @ real_target, 2), 1.)
 
     def test_dyadic_schedule_refinement_conserves_source_precision_volume(self):
         for endpoint in (64, 257, (1 << 80) + 3):

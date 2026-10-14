@@ -913,6 +913,12 @@ $`T=O(\sqrt{NL}+nL+NL/b)`$, with the same Clifford count.
 This covers the full phase-dressed frame (40), not an arbitrary complex
 unitary and not only a prepared state.
 
+At the fixed endpoint $`L=N`$, the
+[growing-source complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+instead supplies $`T=O(N)`$ at $`a=2,b=N+n+7,n\ge3`$.
+It combines the real growing-source half-error guarantee with (38);
+the precision-uniform baseline and its reservation above are unchanged.
+
 ### 8.1 General one-qubit multiplexors with two clean qubits
 
 The same operator source compiles a family beyond the Hopf frame. A

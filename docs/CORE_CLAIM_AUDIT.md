@@ -158,11 +158,16 @@ small words, exact identities, illustrative ledgers, and asymptotic proofs.
 It does not promise a general grouped elementary emitter or useful numerical
 crossover constants for existential grouping thresholds.
 
-The scientific stopping gate is satisfied for the selected package.
-Subsequent optional research closes the two-clean high-precision count
-endpoint in the [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md),
-without changing this recorded A–D audit. The large-width depth gap remains
-open. A discovered defect reopens its repair; a new construction requires
+**Current-status postscript, 14 October 2026.** The endpoint count theorem and
+complex-magnitude corollary are now selected alongside the unchanged Results
+A–D. The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+and its [packed-diagonal corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+give worst-case $`T^\star=\Theta(N)`$ for complete real and phase-dressed
+complex magnitude frames at $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$.
+This selection does not amend the dated A–D audit or its recorded checks.
+The large-width depth gap remains open, and the endpoint adds no
+Clifford-count or T-depth guarantee. A discovered defect reopens its repair;
+a new construction requires
 the native rule and symbolic resource,
 error, and cleanup recurrences in the
 [workspace gate](../WORKSPACE.md#reopening-research-requires-a-qualifying-mechanism).

@@ -3,8 +3,8 @@
 The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [endpoint statement](docs/OPEN_PROBLEM.md) records the proved
-unrestricted linear-count real-frame endpoint and the remaining
-large-width depth gap. The [research index](research/README.md) groups native
+unrestricted linear-count real and complex magnitude endpoints and the
+remaining large-width depth gap. The [research index](research/README.md) groups native
 primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -40,9 +40,11 @@ must be proved separately.
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
-Results A–D are the principal claim package. Their retained diagonal,
-multiplexor, complex-magnitude, and borrowed-workspace corollaries keep their
-own literal reservations. Older proof components remain where a selected
+Results A–D are the principal resource theorems. The selected endpoint count
+theorem and complex-magnitude corollary stand beside them at their fixed
+precision and literal allocation. Retained diagonal, multiplexor,
+complex-magnitude, and borrowed-workspace corollaries keep their own literal
+reservations. Older proof components remain where a selected
 construction actually uses them; an older headline bound is not itself a
 reason to delete its lemmas.
 
@@ -56,11 +58,12 @@ remain in their shared directories and continue to be verified.
 
 The selected scientific package has reached its stopping point. The
 [growing-source theorem](research/endpoint/GROWING_SOURCE_COMPILER.md)
-closes the two-clean high-precision count endpoint; the large-width depth
-gap remains explicit. Neither endpoint research direction is a prerequisite
-for the selected paper. A general native emitter,
-practical crossover study, or additional fixed fixture is not a default
-requirement. The internal audit does not replace external technical review.
+and [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+close the selected two-clean high-precision count endpoints. Their own proof
+dependencies do not change A–D; the large-width depth gap remains explicit.
+Closing that gap, building a general native emitter, studying practical
+crossovers, and adding fixed fixtures are not default requirements.
+The internal audit does not replace external technical review.
 
 ### Reopening research requires a qualifying mechanism
 

@@ -8,7 +8,8 @@ contribution is the complete-operator construction and the resulting
 precision/workspace guarantees. The ingredients retain their established
 attribution; no priority claim follows from a bounded literature search.
 
-This page summarizes the lineage of Results A–D. The
+This page summarizes the lineage of Results A–D and the endpoint count
+theorem. The
 [source catalogue](reference/SOURCE_CATALOGUE.md#extended-lineage-for-the-core-and-its-supporting-constructions)
 retains the detailed comparisons, precise locators, and bibliography.
 [Research comparisons](../research/RELATED_WORK.md) and the
@@ -108,15 +109,20 @@ separate leaf-phase gradient stream.
 | B: sufficient-clean T count | Geometric bit sources, dirty lookup, compression, LCU/amplification, counting and diagonal lower bounds | Complete residual representation and shared-source composition, uniformly in precision |
 | C: one-clean compilation | Full-space loaders, Clifford overlap algebra, dirty queries, standard amplification | Conjugated scalar-source word, native head-and-two-tail source, grouped frame and literal-phase corollaries |
 | D: count and T-depth | Returned dirty indicators, controlled Clifford circuits, phase synthesis, arithmetic, phase-reference reuse | Charged unary-source reuse, complete-input query words, rectangular width allocation and uniform frame composition |
+| Endpoint count | Dirty scalar and diagonal synthesis, disjoint-block/state interfaces, literal amplification | Growing precision sources, sealed rejection modes, compensated recovery and summable native charges; same-workspace phase dressing |
 
 ## 8. Contribution at theorem level
 
-The [publication scope](../manuscript/PUBLICATION_SCOPE.md) gives the four
-principal results and their full reservations. A matches exact size and
+The [publication scope](../manuscript/PUBLICATION_SCOPE.md) gives Results
+A–D and the endpoint count theorem with their full reservations. A matches exact size and
 depth at every clean budget. B matches the precision-uniform T-count
 frontier under sufficient clean work. C reduces the clean allocation to
 one flag with its stated grouped upper bound. D gives simultaneous count
 and T-depth bounds for real frames and matches both on explicit ranges.
+The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+and its complex-magnitude corollary attain worst-case $`\Theta(N)`$
+T-count at $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$. Their proof composes
+the retained native interfaces; it adds no external synthesis premise.
 
 The [frame-safety proof](FRAME_SAFE_COMPILATION.md) and two-qubit
 counterexample explain why the completion matters. The

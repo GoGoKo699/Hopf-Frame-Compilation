@@ -8,8 +8,8 @@ Write $`N=2^n`$, $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$,
 and $`\ell_*(n)=1+\log_2^*(n+2)`$. The coherent Clifford+T model
 has $`a`$ initialized flags and $`b`$ arbitrary dirty qubits. Its full
 initialized-isometry contract includes all logical inputs, dirty/reference
-return, literal phases, and clean leakage. The supplied angles admit
-terminating certified evaluation, including unequal and singular tuples.
+return, literal phases, and clean leakage. The supplied angles and leaf phases
+admit terminating certified evaluation, including unequal and singular tuples.
 
 ## Constant-clean high-precision count
 
@@ -19,7 +19,8 @@ At the literal allocation
 a=2,\qquad \eta=2^{-N},\qquad L=N,\qquad b=N+n+7,\qquad n\ge3,
 ```
 
-the worst-case real-frame count is
+the selected worst-case count for each of the complete real and phase-dressed
+complex magnitude families is
 
 ```math
 2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
@@ -29,18 +30,24 @@ The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
 gives the upper bound for every prescribed real frame, including unequal
 and singular tuples. It charges source preparation, retained rejection,
 actual inverses, and complete workspace return. The
+[complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+composes a packed literal leaf-phase diagonal on the same flags and dirty
+pool. Both factors' errors, including their work return, enter the complete
+initialized-isometry norm. The
 [one-clean grouped compiler](CONDITIONAL_SUFFIX_COMPILER.md#10-the-grouped-bounds-need-only-one-external-clean-qubit)
-retains its separate $`O(N\ell_*(n))`$ bound with one clean flag.
+retains its separate real-frame $`O(N\ell_*(n))`$ bound with one clean flag.
 The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
 at root angle $`\pi/16`$ gives the lower bound even at unrestricted
-workspace width, retaining literal phases. Thus the two-clean real-frame
-count endpoint is resolved. The complex-frame, one-clean, and T-depth
-guarantees retain their separate scopes.
+workspace width, retaining literal phases. Zero leaf phases include this
+real-family witness in the complex magnitude family. Both two-clean count
+endpoints are resolved at the displayed allocation. This is not arbitrary
+complex-unitary synthesis or a general-precision, one-clean, Clifford-count,
+or T-depth extension.
 
 ## Large-width T-depth
 
-At fixed $`0\lt\eta\le1/64`$, two clean flags, and sufficient
-$`b=\Theta_\eta(\sqrt N)`$, the proved construction has
+For complete real frames at fixed $`0\lt\eta\le1/64`$, two clean flags,
+and sufficient $`b=\Theta_\eta(\sqrt N)`$, the proved construction has
 
 ```math
 T=\Theta_\eta(\sqrt N),\qquad G=O_\eta(N),\qquad

@@ -6,8 +6,10 @@ The four principal results price the same prescribed operator in two gate
 models. Result A reaches the exact all-workspace size/depth frontier.
 Result B shares precision with sufficient clean work. Result C reduces the
 clean reservation to one qubit. Result D schedules count and T-depth on one
-complete real-frame circuit. This roadmap explains how the proofs connect;
-the linked chapters contain the constructions and estimates.
+complete real-frame circuit. A selected endpoint count theorem and
+complex-magnitude corollary supplement A–D at their literal high-precision
+allocation. This roadmap explains how the proofs connect; the linked
+chapters contain the constructions and estimates.
 
 ## 1. Why the complete operator is the target
 
@@ -271,22 +273,26 @@ optimality among all gradient algorithms is inferred.
 
 The completed [state-based QBP supplement](supplements/state_based_qbp/README.md)
 changes the decoder and avoids the fine complete frame. It is a distinct
-task-level result. The compiler research has the following current status:
+task-level result. The selected endpoint claim and remaining depth question are:
 
 | Resource question | Current guarantee |
 |---|---|
-| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real frames |
-| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
+| Fixed accuracy, $`a=2`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, $`T=\Theta_\eta(\sqrt N)`$ with $`D_T=O_\eta(n)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [growing-source theorem](research/endpoint/GROWING_SOURCE_COMPILER.md)
-closes the two-clean count endpoint using summable precision costs, exact
-source refinements, and permanently separate rejection modes. Its full
-native ledger and final recovery are independent of the selected A–D
-package. The [endpoint statement](docs/OPEN_PROBLEM.md) and
+closes the two-clean real-frame count endpoint using summable precision
+costs, exact source refinements, and permanently separate rejection modes.
+The [complex-magnitude corollary](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+composes the packed literal diagonal on the same workspace;
+the full-isometry error includes both factors and their work return.
+This selected count claim has its own fixed-precision scope beside A–D.
+The [endpoint statement](docs/OPEN_PROBLEM.md) and
 [research index](research/README.md) retain the large-width depth question
 and the hypotheses of earlier source and factorization restrictions.
 The count lower bound follows from the
-[literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness).
+[literal-phase root witness](docs/FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness),
+also present in the complex magnitude family when all leaf phases are zero.
 
 Use the [verification map](docs/VERIFICATION.md) for proof-to-code coverage,
 exact receipts, and reproduction commands. Finite checks test indexing,

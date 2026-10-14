@@ -34,15 +34,17 @@ return, and resource accounting under the individual recorded contracts.
 
 ### Endpoint count evidence
 
-The separate [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-establishes the linear T-count endpoint for every prescribed complete real
-Hopf frame with certified rotation data. Its contract is $`n\ge3`$,
+The [growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md)
+and its [complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+establish the linear T-count endpoint for prescribed complete real and
+phase-dressed complex magnitude frames with certified input data.
+Their common contract is $`n\ge3`$,
 $`N=2^n`$, error $`2^{-N}`$, two clean flags, and $`b=N+n+7`$ dirty
 qubits. The error includes every logical column, returned flags, arbitrary
-dirty inputs, and external references. This endpoint theorem is separate
-from the selected Results A–D; it does not settle general optimal T-depth.
+dirty inputs, and external references. This endpoint result supplements
+Results A–D; it does not settle general optimal T-depth.
 
-The [growing-source checks](../tests/test_growing_precision_source.py) test
+The real [growing-source diagnostics](../tests/test_growing_precision_source.py) test
 normalized refinement, sealed occupied and entangled failures, retained
 source tags, attenuation compensation, actual dirty replay, original-anchor
 recovery, and linear full-output error. Exact integer checks preserve the
@@ -50,6 +52,15 @@ source-scale relation across refinements. The native arena allocation,
 summable charges, and unrestricted count bound come from the proof. These
 finite diagnostics are neither a scalable native emitter nor independent
 external review.
+
+The same suite separately checks phase dressing of a diagnostic recovered
+real factor with nonzero leakage by finite packed-diagonal native words.
+The five-wire fixture reuses two flags and two arbitrary dirty-core bits,
+checks every logical/dirty input column, literal phases, the actual inverse,
+and reference-entangled inputs. Discarded leakage, reversed factor order,
+and omitted common phase have counterchecks. Its addressed direct sum is
+supplied; it emits neither the growing-source compiler nor a general
+diagonal table. The endpoint precision and workspace bounds remain analytic.
 
 ### Detailed evidence records
 

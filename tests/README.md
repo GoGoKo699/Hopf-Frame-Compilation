@@ -57,6 +57,7 @@ theorem by numerical extrapolation.
 | [`test_frame_operator_stability.py`](test_frame_operator_stability.py) | Independent full-product derivatives, tangent PSD sum, sharp path factor, depth-cap equality, finite bounds and isolated-angle precision |
 | [`test_disjoint_block_compiler.py`](test_disjoint_block_compiler.py) | Exact dirty clock phase, adjacent SU mesh, full complex pair sources and accepted/rejected recovery |
 | [`test_precision_gauge_compiler.py`](test_precision_gauge_compiler.py) | Complete complex gauges, exact Parseval source, actual dirty rejection replay, source overlap and full amplification |
+| [`test_growing_precision_source.py`](test_growing_precision_source.py) | Real growing-source refinement, sealed failures, source tags, dirty replay, and complete recovery diagnostics; separate five-wire phase-dressing composition with native packed-diagonal blocks, reused flags/core, literal phases, actual inverse, and retained leakage; no scalable emitter |
 | [`test_structured_forests.py`](test_structured_forests.py) | Degree-window counts, stable star transfer, complete signed/corner component dressing, and incorrect-order negative control |
 | [`test_canonical_star_resolvent.py`](test_canonical_star_resolvent.py) | Full stars, Cayley and triangular identities, midpoint oracle, support padding and literal-width checks |
 | [`test_scalar_schur_limits.py`](test_scalar_schur_limits.py) | Complex all-column gauge, support-forced exact completion determinants and robust fixed-minor bounds |
