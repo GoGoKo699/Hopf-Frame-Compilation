@@ -126,6 +126,20 @@ uses retained native identities with a new prefix-uniform resource proof;
 it adds no primitive or cutoff-certifying fixture. Existing immutable
 receipts are unchanged.
 
+The [affine orientation R83](../../research/depth/AFFINE_ORIENTATION_DEPTH.md)
+and [deterministic frame R84](../../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
+proofs have five [orientation fixtures](../../tests/test_orientation_depth.py):
+affine marker correction with outside-prefix dependence; the complete
+shared-tag circuit with actual complex native factors; a literal
+Clifford+T guarded affine map; signed deterministic source and
+last-deviation cleanup; and the failed simultaneous dirty update.
+Expected frames use independent path products. Occupied inactive tags,
+all small dirty columns, negative corners, and marker phases are retained.
+Queries use their complete reversible truth-table action; the native
+query schedule, all-width recurrences, and asymptotic bounds remain
+analytic. R82's affine-reference extension reuses the proved reference
+core and adds no supplied frame oracle or new immutable receipt.
+
 The [bounded-density theorem R82](../../research/depth/BOUNDED_DENSITY_DEPTH.md)
 has six [finite fixtures](../../tests/test_weighted_haar_depth.py):
 

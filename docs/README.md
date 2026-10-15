@@ -95,7 +95,16 @@ together with the [bounded-density theorem](../research/depth/BOUNDED_DENSITY_DE
 are supporting research results. They do not replace the general
 statement of D. Their [session record](../research/depth/JOINT_DEPTH_SESSION_RESULT.md)
 separates the complete restricted-family circuits from the remaining
-general decoder question.
+general decoder question. The later
+[branch-orientation session](../research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+adds [R83's affine-orientation compiler](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
+with fixed-accuracy logarithmic depth and
+[R84's exact deterministic-frame compiler](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
+with log-times-iterated-log depth at square-root dirty width. Both keep
+one clean qubit and the count budgets. R83's paid leaf and marker maps
+also supply the [positive affine-reference extension of R82](../research/depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension).
+These proof homes retain their separate promises and literal allocations;
+arbitrary nonlinear permutations are not supplied as free oracles.
 
 Start with the [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md),
 R79. It combines optimal count with the improved all-precision depth bound

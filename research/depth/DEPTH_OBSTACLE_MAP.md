@@ -16,6 +16,15 @@ improved general terminal separately. It also records the remaining early-decode
 cost and exact cache/fingerprint counterexamples. The unrestricted
 square-logarithmic upper bound remains R79's.
 
+The subsequent [branch-orientation session](BRANCH_ORIENTATION_SESSION_RESULT.md)
+proves fixed-accuracy logarithmic depth for affine branch choices (R83)
+and exact log-times-iterated-log depth for arbitrary signed corners (R84),
+with one clean qubit and the same count budgets. R83 also supplies the
+priced positive affine reference in R82's extension. Its
+[remaining mechanism](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point)
+is the current constructive stopping point; this map preserves the
+earlier preparation history below.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
@@ -220,9 +229,17 @@ proof/evidence links.
 | [Dirty-query scheduling](NONUNIFORM_DIRTY_INDICATOR.md#6-the-tail-improves-the-complete-frame-frontier-is-unchanged) | The width penalty is already constant here; the logarithmic local query bound is only an upper bound | Improve queries in the current complete recovery schedule, or change global query reuse |
 | [Precision streams](SHARED_BINARY_TERMINAL.md#8-bottom-and-terminal-composition) and [one-clean relocation](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary) | These constructions are completed; terminal savings and high-precision splices do not remove fixed-accuracy early recovery | Change early recovery or the full large-width schedule |
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
+| [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | Cheap parallel XOR queries do not return a dirty output word after in-place conversion; protecting a long clean output leaves square-logarithmic depth; the corner output-tag eraser fails for overlapping positive descendants | A priced nonlinear in-place leaf/marker map or a direct complete word for the oriented frame, beyond the affine and corner cases |
 | [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
 ## 5. What the next research plan must decide
+
+Start from the [branch session's remaining interface](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point):
+compile arbitrary nonlinear branch orientation with the complete native
+permutation/recovery and return costs, or supply a different qualifying
+mechanism. Its proved affine and corner circuits and scoped failures
+should not be repeated as unresolved tasks. R79 remains the selected
+general bound.
 
 For the asymptotic benchmark, the most direct constructive target is the
 **encoding/recovery mechanism and its repeated large queries**. A lower-bound

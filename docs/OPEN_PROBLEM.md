@@ -25,6 +25,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
+| Supporting depth results | [R80–R84](#large-width-t-depth) give restricted-family circuits and a general terminal improvement with one clean qubit and the count budgets; the [branch-orientation session](../research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) records the current constructive gap |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
@@ -188,8 +189,10 @@ identifies the remaining native mechanism and scoped failed routes.
 The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
 also improves the complete circuit when root probabilities have fixed
 positive upper and lower ratios to a classically specified positive
-product reference. With fixed accuracy and ratio bounds, the same count
-and literal width guarantees hold, with
+product or affine-oriented reference. The latter uses the priced R83
+reference core, including its leaf and marker corrections. With fixed
+accuracy and ratio bounds, the same count and literal width guarantees
+hold, with
 
 ```math
 D_T=O\!\left(N/b^2+\log_2(n+2)(1+\log^*(n+2))\right).
@@ -200,6 +203,28 @@ correction replaces repeated early threshold comparisons; every
 recursive stage still pays for its global-prefix queries. This covers
 nonhomogeneous magnitudes under the stated promise, including the
 uniform-reference case, and leaves the unrestricted frontier unchanged.
+
+The [affine-orientation theorem R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
+extends R80's logarithmic depth and count orders to depth-dependent
+unordered magnitude pairs whose branch choices are affine functions of
+the node prefix. Node signs, zeros, and supplied leaf phases are allowed.
+Both R83 and the R82 extension retain, for fixed $`L\ge6`$, the literal
+widths $`b\ge17(L+n+7)`$ for real frames and $`b\ge17(L+n+8)`$ for
+the prescribed phase-dressed complex completion, with error at most
+$`2^{-L}`$. Their constants may depend on L, and R82's also on the
+fixed density bounds; these are not new all-precision claims.
+
+The [deterministic-frame theorem R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
+instead permits arbitrary node-dependent signed quarter turns and is
+exact. For every $`b\ge17(n+13)`$, it has one clean qubit,
+$`T=O(\sqrt N+N/b)`$, $`G=O(N)`$, and the same displayed
+log-times-iterated-log depth order as R82, with absolute constants. Its
+classical output-depth query erases the tag because every column is a
+signed basis leaf. The
+[branch-orientation session](../research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+keeps the general frontier separate: arbitrary nonlinear orientations at
+interior bias still require a native in-place permutation or a complete recovery word;
+the factorization alone does not pay for either.
 
 ## Constant-depth frontier
 

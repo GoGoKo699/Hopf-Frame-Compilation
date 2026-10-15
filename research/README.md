@@ -208,6 +208,21 @@ sparse native sources and iterated-logarithmic recursion retain the
 one-clean allocation and count budgets. The constants depend on fixed
 accuracy and density bounds, so this is also a promised-family result.
 
+The later [branch-orientation session](depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+adds [R83](depth/AFFINE_ORIENTATION_DEPTH.md): logarithmic depth at fixed
+accuracy when each depth has a common unordered magnitude pair and its
+branch choices are affine functions of the prefix. The leaf map and
+signed marker correction are both implemented natively. It also proves
+[R84](depth/DETERMINISTIC_FRAME_DEPTH.md), an exact compiler for arbitrary
+signed corner rotations with
+$`O(\log(n+2)(1+\log^*n))`$ depth at square-root width. Both preserve
+one clean qubit, square-root T-count, and linear Clifford count. The
+[R82 reference extension](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension)
+uses R83's priced conditional core to admit positive affine-oriented
+references with unchanged fixed-density bounds. The branch report is
+the current constructive stopping point: arbitrary nonlinear leaf and
+marker permutations remain unpaid, and R79 remains the general theorem.
+
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded

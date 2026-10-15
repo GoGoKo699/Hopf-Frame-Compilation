@@ -42,6 +42,7 @@ must be proved separately.
 | Executed research design and outcome | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md), [session result](research/depth/RESEARCH_SESSION_RESULT.md) |
 | Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
 | Joint decoder/terminal follow-up | [Common-flag depth](research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md), [recursive terminal](research/depth/RECURSIVE_TERMINAL_DEPTH.md), [bounded-density depth](research/depth/BOUNDED_DENSITY_DEPTH.md), [session outcome](research/depth/JOINT_DEPTH_SESSION_RESULT.md) |
+| Branch-orientation follow-up and current constructive gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -76,7 +77,7 @@ a supporting theorem's clean allocation to the selected construction.
 ### Current depth frontier
 
 Use [the resource statement](docs/OPEN_PROBLEM.md#constant-depth-frontier)
-as the authoritative frontier. The latest upper result is
+as the authoritative frontier. The selected general upper result is
 [R79, uniform subtree depth](research/depth/UNIFORM_SUBTREE_DEPTH.md).
 For all integer $`n\ge1,L\ge6`$, one clean qubit suffices for
 both prescribed frame families, with absolute constants in
@@ -112,6 +113,20 @@ A general improvement still needs a cheaper complete early
 decoder or native query. The session records exact failures of generic
 dirty-cache hoisting and row-wise fingerprint substitution, with explicit
 limits on those arguments.
+
+The later [branch-orientation session](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+proves R83's fixed-accuracy logarithmic depth when the unordered magnitude
+pair depends only on depth and each branch choice is affine in the node
+prefix. Its leaf and marker permutations have complete native circuits.
+R84 gives exact $`O(\log(n+2)(1+\log^*n))`$ depth for arbitrary
+node-dependent signed corner rotations. Both retain one clean qubit,
+square-root T-count, and linear Clifford count at square-root dirty width.
+R82 now also permits a supplied positive affine-oriented reference, with
+the same fixed-density bounds and literal allocations. The current
+constructive gap is arbitrary nonlinear orientation at interior bias:
+the factorization $`W=P W_0 Q`$ still needs priced in-place leaf and marker maps, or a
+direct complete-word construction. A parallel XOR lookup alone does not
+supply them. The branch session records the precise reopening condition.
 
 The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
