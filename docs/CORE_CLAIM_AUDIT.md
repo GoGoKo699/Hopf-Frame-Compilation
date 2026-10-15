@@ -184,8 +184,12 @@ has a Pauli encoded clean observable, hence five layers at $`L\ge3`$
 in that subclass. A Hermitian-Clifford midpoint gives a positive explicit
 threshold with unrestricted dirty width and crossing rank. Its
 finite-boundary argument and compressed-commutant lift retain the full
-initialized-sector contract. The non-Clifford midpoint freezing step
-and the growing-depth gap remain open.
+initialized-sector contract. The [inner clean-spread extension R77](../research/depth/ONE_CLEAN_INNER_SPREAD.md)
+freezes the non-Clifford midpoint conjugations whenever either two-layer
+encoder has bounded inner clean spread. Its explicit gap requires minimum
+spread $`\Omega(\log\log L)`$ at error $`2^{-L}`$. The unrestricted
+freezing step with growing spread in both encoders and the growing-depth
+gap remain open.
 
 The initialized-isometry norm covers every logical column, arbitrary
 dirty/reference inputs, literal phases, and clean leakage. Actual inverses

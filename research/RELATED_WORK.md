@@ -565,22 +565,28 @@ R74, retains a positive floor when the clean budget and the symplectic
 pairing rank of the two active middle T-axis spans are fixed. Consequently,
 any four-layer sequence approaching zero error for the witness must have
 minimum crossing rank tending to infinity over all four-layer
-decompositions. No quantitative rate or unrestricted five-layer lower
-bound follows.
+decompositions. That qualitative closure argument supplies no quantitative
+rate. The independent elementary proof in [R74, Section 5.1](depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
+gives an explicit gap $`2^{-O_a(r^2)}`$ and minimum crossing rank
+$`\Omega_a(\sqrt L)`$ for error $`2^{-L}`$. It does not use the
+polynomial-limit premise below or establish an unrestricted five-layer
+lower bound with positive clean work.
 
 The arithmetic premise for the compactness arguments is
 [Khodabandeh–Shinkar, arXiv:2605.00995v1, Appendix A,
 Lemma A.6](https://arxiv.org/html/2605.00995v1#A1) (F43): convergent
 output probabilities of fixed-degree Boolean polynomials have dyadic
-limits, even as input dimension varies. R73 and R74 use bounded
-phase-sum prefactors; no numerical separation constant is imported.
+limits, even as input dimension varies. The retained qualitative arguments
+in R73 and R74 use bounded phase-sum prefactors; no numerical separation
+constant is imported.
 [Dehaene–De Moor, arXiv:quant-ph/0304125](https://arxiv.org/pdf/quant-ph/0304125)
 (F44), Sections II and IV, supplies Clifford realization of binary
 symplectic maps; Section V, Theorem 5 supplies affine stabilizer support
 and quadratic relative phases. The local arguments establish the
 retained common phases, residue-degree bound, clean-projector error
 comparison, and the two-span reduction controlling R74's prefactor.
-R73's sharp gap and rigidity refinements do not use F43.
+R73's sharp gap and rigidity refinements and R74's elementary quantitative
+proof do not use F43.
 
 [Masoudi, *The Channel Representation and Non-Clifford Resources*,
 2026 thesis, Chapter 5](https://theses.lib.sfu.ca/file/thesis/etd24540-kasrakasra-masoudi-the-channel-represen.pdf)

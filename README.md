@@ -19,7 +19,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Proof roadmap](REVIEW.md) | Follow the four claims and their proof mechanisms |
 | [Documentation map](docs/README.md) | Find authoritative proofs and their dependencies |
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
-| [Count and large-width depth](docs/OPEN_PROBLEM.md) | Read the one-clean count frontier, sharp endpoint, and sublinear-depth theorem |
+| [Current depth frontier](docs/OPEN_PROBLEM.md) | Locate the proved resource bounds and the remaining one-clean question |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 
 ## Target and resource contract
@@ -196,37 +196,17 @@ The [resource statement](docs/OPEN_PROBLEM.md) gives its matching interval
 and the remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.
 
-The [constant-depth obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, gives an exact zero-clean error floor $`c_0\approx0.169714`$ for an
-explicit complete frame at T-depth at most three, regardless of dirty
-width. A Clifford attains this floor; integer $`L\ge3`$ requires at least
-four layers. The [four-layer operator-rigidity theorem](research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
-R75, strengthens the zero-clean conclusion: four layers have error at
-least $`\rho/2\approx0.135299`$, where
-$`\rho=\sin(\pi/8)/\sqrt2`$. Thus integer $`L\ge3`$ requires
-at least five layers, with arbitrary dirty width and Clifford interlayers.
+The depth lower bounds distinguish the available clean workspace:
 
-The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
-R74, shows that, at each fixed clean budget, four-layer approximations
-to the same witness at error $`2^{-L}`$ require minimum middle active
-symplectic crossing rank $`\Omega_a(\sqrt L)`$. Its explicit elementary
-bound also supplies a fixed-clean three-layer accuracy threshold.
-With one clean qubit, R75 forces exact terminal clean-sector preservation
-below $`\rho/2`$. The [one-clean midpoint theorem](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
-R76, gives the same error floor when a four-layer circuit admits a
-two-plus-two split whose encoded clean observable is Pauli, hence five
-layers are required at $`L\ge3`$ in that subclass. A Hermitian-Clifford
-midpoint gives a positive explicit threshold without a crossing-rank
-bound. The [inner clean-spread theorem](research/depth/ONE_CLEAN_INNER_SPREAD.md),
-R77, also covers non-Clifford midpoints whenever either encoder's first
-T layer has boundedly many axes anticommuting with its input clean Pauli.
-Any four-layer one-clean approximation sequence for this witness with
-error tending to zero
-must have all four layer sizes diverging: the outer layers require
-$`\Omega(\log\log L)`$ clean-active axes and the middle layers require
-$`\Omega(\sqrt L)`$ active axes. These are necessary size conditions;
-the unrestricted one-clean four-layer question remains open.
-Optimal depth remains an open problem.
+| Clean workspace | Current obstruction for an explicit complete frame |
+|---|---|
+| Zero clean qubits | At error $`2^{-L}`$ with integer $`L\ge3`$, at least five T layers are necessary, at arbitrary dirty width |
+| One clean qubit | Four layers are excluded at sufficiently small error for Pauli or Hermitian-Clifford midpoints, or bounded inner clean spread; the unrestricted case remains open |
+
+The [depth frontier](docs/OPEN_PROBLEM.md#constant-depth-frontier) gives the
+precise thresholds, proof links, and necessary growth of all four layer
+sizes in any hypothetical arbitrarily accurate one-clean sequence.
+These obstructions do not settle optimal large-width depth.
 
 ## Operational consequence
 

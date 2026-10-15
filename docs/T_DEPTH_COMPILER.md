@@ -380,7 +380,11 @@ For a fixed initialized clean budget, the
 R73, gives a stronger constant independently of dirty width. For every
 fixed $`a\ge0`$, some complete real frames require at least four T layers
 at initialized-isometry error strictly below a positive
-$`\varepsilon_a`$, uniform in n and b. This threshold is not evaluated.
+$`\varepsilon_a`$, uniform in n and b. The elementary refinement in
+[R74, Section 5.1](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
+makes this threshold explicit. The [current depth frontier](OPEN_PROBLEM.md#constant-depth-frontier)
+also records the stronger zero-clean five-layer bound and the restricted
+one-clean four-layer obstructions.
 For one clean qubit, a separate explicit witness has error at least
 $`(3-2\sqrt2)/32>2^{-8}`$ against every circuit with at most two
 T layers, giving a three-layer worst-case lower bound at $`L\ge8`$.
