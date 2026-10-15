@@ -219,9 +219,15 @@ $`O(\log(n+2)(1+\log^*n))`$ depth at square-root width. Both preserve
 one clean qubit, square-root T-count, and linear Clifford count. The
 [R82 reference extension](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension)
 uses R83's priced conditional core to admit positive affine-oriented
-references with unchanged fixed-density bounds. The branch report is
-the current constructive stopping point: arbitrary nonlinear leaf and
-marker permutations remain unpaid, and R79 remains the general theorem.
+references with unchanged fixed-density bounds. The subsequent
+[in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+stopped without a qualifying general construction. It records a unary
+relabeling identity with an unpaid recursive selector, scoped four-shear
+and exact encoding restrictions, and a limited corner-word obstruction.
+These do not exclude general native circuits. Arbitrary nonlinear
+orientation remains open, and R79 remains the general theorem. The
+checkpoint gives the reopening condition and the decision to move to
+independent review absent a new mechanism.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent

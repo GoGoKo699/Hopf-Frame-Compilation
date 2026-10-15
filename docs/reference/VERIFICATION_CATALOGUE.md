@@ -140,6 +140,15 @@ query schedule, all-width recurrences, and asymptotic bounds remain
 analytic. R82's affine-reference extension reuses the proved reference
 core and adds no supplied frame oracle or new immutable receipt.
 
+The [permutation checkpoint](../../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+has two [boundary fixtures](../../tests/test_permutation_bridge_limits.py):
+the exact four-shear one-clean order-eight word on all allowed inputs,
+with a triangular order-sixteen contrast, and explicit linear Clifford
+cycles with approximate spectral embeddings. The latter checks both the
+isometry and its operator-norm intertwining error. These bounded examples
+guard the scope of the analytic restrictions; the dense encoder is not a
+supplied native primitive. No general depth claim or receipt is added.
+
 The [bounded-density theorem R82](../../research/depth/BOUNDED_DENSITY_DEPTH.md)
 has six [finite fixtures](../../tests/test_weighted_haar_depth.py):
 

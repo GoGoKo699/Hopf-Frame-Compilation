@@ -20,10 +20,11 @@ The subsequent [branch-orientation session](BRANCH_ORIENTATION_SESSION_RESULT.md
 proves fixed-accuracy logarithmic depth for affine branch choices (R83)
 and exact log-times-iterated-log depth for arbitrary signed corners (R84),
 with one clean qubit and the same count budgets. R83 also supplies the
-priced positive affine reference in R82's extension. Its
-[remaining mechanism](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point)
-is the current constructive stopping point; this map preserves the
-earlier preparation history below.
+priced positive affine reference in R82's extension. The later
+[in-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
+stopped without a qualifying construction and preserves that general
+frontier. Its scoped obstructions and reopening condition are the current
+decision record; this map preserves the earlier preparation history below.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -230,16 +231,19 @@ proof/evidence links.
 | [Precision streams](SHARED_BINARY_TERMINAL.md#8-bottom-and-terminal-composition) and [one-clean relocation](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary) | These constructions are completed; terminal savings and high-precision splices do not remove fixed-accuracy early recovery | Change early recovery or the full large-width schedule |
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
 | [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | Cheap parallel XOR queries do not return a dirty output word after in-place conversion; protecting a long clean output leaves square-logarithmic depth; the corner output-tag eraser fails for overlapping positive descendants | A priced nonlinear in-place leaf/marker map or a direct complete word for the oriented frame, beyond the affine and corner cases |
+| [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | A new complete conversion or recovery identity with a full resource and return proof; otherwise proceed to independent review |
 | [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
 ## 5. What the next research plan must decide
 
-Start from the [branch session's remaining interface](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point):
-compile arbitrary nonlinear branch orientation with the complete native
-permutation/recovery and return costs, or supply a different qualifying
-mechanism. Its proved affine and corner circuits and scoped failures
-should not be repeated as unresolved tasks. R79 remains the selected
-general bound.
+The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
+closed the bounded conversion search without a general improvement.
+Reopening requires a new mechanism for arbitrary nonlinear orientation
+with complete native permutation/recovery and return costs, or an
+invariant for the unrestricted model. The proved affine and corner
+circuits and scoped failures should not be repeated as unresolved tasks.
+Absent such a mechanism, proceed to independent technical review of the
+proved package. R79 remains the selected general bound.
 
 For the asymptotic benchmark, the most direct constructive target is the
 **encoding/recovery mechanism and its repeated large queries**. A lower-bound

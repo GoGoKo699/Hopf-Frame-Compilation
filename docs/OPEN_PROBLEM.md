@@ -25,7 +25,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
-| Supporting depth results | [R80–R84](#large-width-t-depth) give restricted-family circuits and a general terminal improvement with one clean qubit and the count budgets; the [branch-orientation session](../research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) records the current constructive gap |
+| Supporting depth results | [R80–R84](#large-width-t-depth) give restricted-family circuits and a general terminal improvement with one clean qubit and the count budgets; the [permutation checkpoint](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md) leaves the arbitrary-orientation gap open |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
@@ -225,6 +225,14 @@ signed basis leaf. The
 keeps the general frontier separate: arbitrary nonlinear orientations at
 interior bias still require a native in-place permutation or a complete recovery word;
 the factorization alone does not pay for either.
+
+The [bounded in-place conversion session](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+stopped at its mechanism checkpoint. Its exact word and encoding
+restrictions apply to specified architectures, not unrestricted native
+circuits. They supply no new general upper or lower bound. The sufficient
+whole-register reduction and the remaining recovery/return obligation are
+recorded there; arbitrary node-dependent magnitudes remain a broader
+question.
 
 ## Constant-depth frontier
 
