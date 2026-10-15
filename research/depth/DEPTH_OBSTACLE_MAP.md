@@ -25,8 +25,14 @@ priced positive affine reference in R82's extension. The later
 stopped without a qualifying construction and preserves that general
 frontier. Its scoped obstructions inform the continuing search; the
 [current mandate](../../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the general construction as the destination. This map preserves
-the earlier preparation history below.
+keeps the general construction as the destination. The later
+[joint orientation session](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+proves [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md), with log-times-log-log
+depth for arbitrary nonlinear orientations of shared unordered depth
+magnitudes. Geometric-band unloading exposes the clean output space
+needed for local orientation conversion. This bypasses the standalone
+permutation interface, while the unrestricted R79 frontier remains
+unchanged. This map preserves the earlier preparation history below.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -232,27 +238,28 @@ proof/evidence links.
 | [Dirty-query scheduling](NONUNIFORM_DIRTY_INDICATOR.md#6-the-tail-improves-the-complete-frame-frontier-is-unchanged) | The width penalty is already constant here; the logarithmic local query bound is only an upper bound | Improve queries in the current complete recovery schedule, or change global query reuse |
 | [Precision streams](SHARED_BINARY_TERMINAL.md#8-bottom-and-terminal-composition) and [one-clean relocation](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary) | These constructions are completed; terminal savings and high-precision splices do not remove fixed-accuracy early recovery | Change early recovery or the full large-width schedule |
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
-| [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | Cheap parallel XOR queries do not return a dirty output word after in-place conversion; protecting a long clean output leaves square-logarithmic depth; the corner output-tag eraser fails for overlapping positive descendants | A priced nonlinear in-place leaf/marker map or a direct complete word for the oriented frame, beyond the affine and corner cases |
+| [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | A standalone dirty-output conversion was unpaid; a long initially protected output retained square-logarithmic depth | [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) bypasses that interface: geometric-band unloading exposes local clean output, reaching log-times-log-log depth; constant-source-layer coarse recovery remains open |
 | [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | Discover a conversion or joint recovery mechanism beyond these restrictions, then establish its full resource and return proof |
 | [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
 ## 5. What the next research plan must decide
 
 The [joint orientation/recovery prompt](JOINT_ORIENTATION_RECOVERY_PROMPT.md)
-is the next executable design. It develops the two representations and
-the discovery, reformulation, and certification checkpoints described here.
+has been executed. Its [outcome](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+is R85's complete arbitrary-orientation construction under shared unordered
+depth magnitudes, with log-times-log-log depth and the retained budgets.
 
 The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
 ended that bounded conversion search without a general improvement.
-Arbitrary nonlinear orientation remains an active constructive target.
-The next design step is mechanism discovery: examine which costs belong
-to the full operator and which arise from separate permutation/recovery
-factors, and seek a native identity that changes the latter. A complete
-resource and return proof is required to claim success, while partial
-identities with named gaps can guide exploration. The proved affine and
-corner circuits and scoped failures should not be repeated as unresolved
-tasks. Independent technical review can accompany the search. R79 remains
-the selected general bound.
+R85 subsequently changes the complete source/recovery interface. The next
+local question is a constant-source-layer eraser for its coarse band,
+which would remove the early recovery comparison factor. Logarithmic total
+depth also requires logarithmic terminal and routing schedules. The broader magnitude
+question needs a local flag transporter beyond the homogeneous product
+reference. Complete native resource and return proofs remain the criterion
+for either improvement. Proved affine, corner, and R85 circuits should
+not be repeated as unresolved tasks. R79 remains the selected general
+all-precision bound.
 
 For the asymptotic benchmark, the most direct constructive target is the
 **encoding/recovery mechanism and its repeated large queries**. A lower-bound

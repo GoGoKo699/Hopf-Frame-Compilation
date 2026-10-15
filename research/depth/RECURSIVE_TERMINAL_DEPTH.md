@@ -2,8 +2,8 @@
 
 [Subtree decoder](SUBTREE_PROJECTOR_DECODER.md) · [Uniform frame theorem](UNIFORM_SUBTREE_DEPTH.md) · [One-clean primitives](ONE_CLEAN_DEPTH.md) · [Common-flag family](HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 
-**Local result R81.** The final logarithmically many layers of an arbitrary
-Hopf frame admit a recursive subtree-decoder construction. A preserved
+**Local result R81.** Any number of final layers of an arbitrary real
+Hopf frame admits a recursive subtree-decoder construction. A preserved
 external prefix selects the local frame. Its table rows retain that
 prefix, while its initialized work and other polynomial costs depend only
 on the local frame height. The sharp dirty query removes the global
@@ -18,17 +18,17 @@ that mechanism is not assumed here.
 
 ## 1. Fixed-accuracy terminal theorem
 
-Fix an integer $`L\ge6`$ and a constant $`C_0>0`$. Put
+Fix an integer $`L\ge6`$. For every integer $`n\ge1`$, put
 
 ```math
 N=2^n,\qquad \eta=2^{-L},\qquad \ell=\log_2(n+2).
 ```
 
 Let $`W_{\mathrm{tail}}`$ be the prescribed product of the deepest M
-layers of a complete real Hopf frame, where
+layers of a complete real Hopf frame, where M is an integer and
 
 ```math
-0\le M\le\min\{n,C_0\ell\}.
+0\le M\le n.
 ```
 
 For every integer $`b\ge17(L+n+7)`$, one coherent Clifford+T circuit
@@ -41,26 +41,53 @@ qubits, and satisfies
 ```
 
 ```math
-T=O_{L,C_0}\!\left(\sqrt N+\frac Nb\right),\qquad
-G=O_{L,C_0}(N),
+T=O_L\!\left(\sqrt N+\frac Nb\right),\qquad
+G=O_L(N),
 ```
 
 ```math
-D_T=O_{L,C_0}\!\left(
-\frac N{b^2}+\ell\log_2(\ell+2)\right).
+D_T=O_L\!\left(
+\frac N{b^2}+\ell\log_2(M+2)\right).
 ```
 
 All bounds hold on the same circuit. The norm includes every logical
 column, literal phases, source leakage and work return, arbitrary dirty
 inputs, and external references. Unused supplied wires remain untouched.
-The constants may depend on the fixed L and $`C_0`$; this is not an
-absolute all-precision theorem.
+The constants may depend on the fixed L, but not on n, M, b, or the angle
+tuple. This is not an absolute all-precision theorem. For $`M=0`$,
+the target and circuit are identity.
 
 The angle interface is the existing terminating certified evaluation
 interface, including signed, unequal, and singular angles. Classical
 preprocessing has no efficiency claim. Every query, preparation, actual
 inverse, and guard is charged. No QRAM, measurement, reset, supplied
 precision state, or free coherent evaluator is used.
+
+**Logarithmic-height corollary.** For every fixed $`C_0>0`$, the
+previous range $`M\le\min\{n,C_0\ell\}`$ retains
+
+```math
+D_T=O_{L,C_0}\!\left(N/b^2+\ell\log_2(\ell+2)\right)
+```
+
+with the same count, workspace, and error guarantees.
+
+**Subpolynomial protected-bank corollary.** Let $`M=M(n)\le n`$
+satisfy $`\log_2(M+2)=o(\ell)`$. At sufficient square-root dirty
+width, the terminal circuit then has $`D_T=o(\ell^2)`$ while
+retaining $`T=O_L(\sqrt N)`$ and $`G=O_L(N)`$. Examples are
+
+| Protected logical suffix M | Terminal T-depth at square-root dirty width |
+|---|---|
+| $`\lceil C\ell^c\rceil`$, fixed $`C>0,c\ge1`$ | $`O_{L,C,c}(\ell\log_2(\ell+2))`$ |
+| $`\lceil2^{\sqrt\ell}\rceil`$ | $`O_L(\ell^{3/2})`$ |
+| $`\lceil n^{1/\log_2\ell}\rceil`$ | $`O_L(\ell^2/\log_2\ell)`$ |
+
+Cap each displayed M by n in finite dimensions. This prices the tail
+left by an early construction that uses M logical suffix bits as
+conditional initialized work. That early construction must still prove
+its own native action, inactive identity, resource bounds, and work return;
+the corollary does not supply an early decoder.
 
 ## 2. A decoder with a preserved external prefix
 
@@ -222,10 +249,12 @@ r(m)\le m/2,\qquad
 \log_2(r(m)+2)\le\tfrac12\log_2(m+2).
 ```
 
-Such a height exists because $`r(m)=O_L(\log m)`$. Stop when
+Such a height exists because $`r(m)=O_L(\log m)`$; choose it once,
+independently of n and M. Stop when
 $`m_k\le m_*`$. At every preceding stage
 $`h_i=m_i-r_i\ge m_i/2`$, and the protected bank fits all three
 records and the fresh source work.
+If $`M\le m_*`$, omit recursion and use the final bottom directly.
 
 The stage errors satisfy
 
@@ -267,11 +296,12 @@ $`K_i=O_L(m_i+2)`$, so
 
 ```math
 \sum_iK_i^{10}4^{l_i}\le C_L(M+2)^{12}
-=O_{L,C_0}(\sqrt N).
+\le C_L(n+2)^{12}=O_L(\sqrt N).
 ```
 
-The same terms fit $`O_{L,C_0}(N)`$ Clifford gates. There is no
-unpaid iterated-logarithm count factor.
+The polynomial-versus-exponential comparison is uniform over every
+$`M\le n`$. The same terms fit $`O_L(N)`$ Clifford gates. There
+is no unpaid iterated-logarithm count factor.
 
 The stronger logarithmic contraction gives
 
@@ -283,9 +313,16 @@ The stronger logarithmic contraction gives
 \sum_i\log_2^2(m_i+2)=O_L(\log_2^2(M+2)).
 ```
 
-Since $`M\le n`$, the total recursive depth is
-$`O_L(N/b^2+\ell\log_2(M+2))`$. The final constant-height bottom
-has
+Since $`l_i\le L+\log_2(m_i+2)+5`$, the complete recursive depth
+is bounded by
+
+```math
+O_L\!\left(N/b^2+\ell\log_2(M+2)+\log_2^2(M+2)\right).
+```
+
+The square-logarithmic term is included in this sum. It is absorbed by
+$`\ell\log_2(M+2)`$ because $`M\le n`$. The final constant-height
+bottom has
 
 ```math
 \begin{aligned}
@@ -295,13 +332,13 @@ D_{T,\mathrm{bottom}}&=O_L(N/b^2+\ell).
 \end{aligned}
 ```
 
-Use $`n^2=O(\sqrt N)`$ and $`M\le C_0\ell`$ to obtain
-the theorem's simultaneous bounds.
+Use $`n^2=O(\sqrt N)`$ and $`\log_2(M+2)\ge1`$ to obtain
+the theorem's simultaneous bounds, uniformly in M.
 
 ## 6. All dirty widths at the literal threshold
 
-For sufficiently large n, depending only on the fixed L, $`C_0`$,
-and native constants, split at
+For sufficiently large n, depending only on the fixed L and native
+constants, split at
 
 ```math
 b_c=\sqrt N/n.
@@ -309,10 +346,14 @@ b_c=\sqrt N/n.
 
 When $`b\ge b_c`$, reserve $`B=b/4`$ for each sequential large
 query. A separate $`b/4`$ allocation suffices for every local
-polynomial-in-M mask and helper pool. The query addresses have
-$`n+O_L(\log(M+2))`$ bits. Exponential dominance therefore
-ensures the sharp query condition
-$`B\ge16c_I(\lceil\log_2R\rceil+2)`$ and all local reservations.
+polynomial-in-M mask and helper pool. Uniformly over the recursion,
+$`m_i\le M\le n`$, $`l_i=O_L(\log(n+2))`$, and
+$`K_i=O_L(n+2)`$. Thus one fixed polynomial in n bounds all local
+dirty work. The query addresses have
+$`n+O_L(\log(M+2))=O_L(n)`$ bits. Exponential dominance gives
+one dimension cutoff, independent of M, at which the local pool fits
+and the sharp query condition
+$`B\ge16c_I(\lceil\log_2R\rceil+2)`$ holds.
 The final bottom also satisfies $`b/2\ge16c_I(n+2)`$, as required
 for its shallow query schedule. The pools are arbitrary dirty work,
 disjoint from live addresses, targets, and protected logical work.
@@ -334,8 +375,18 @@ B=b-B'_0\ge16b/17-2\ge b/2.
 Thus the routed query fits. This is the proved smaller-error
 reservation; it is not an invocation of the generic theorem with L
 replaced by $`L+2`$ and a larger dirty-width threshold. Its error is
-below $`\eta/4`$, its T and Clifford bounds are the required ones,
-and its depth is at most
+below $`\eta/4`$. The weighted query sums over $`1\le j\le M`$
+are bounded by their convergent infinite sums:
+
+```math
+\sum_{j=1}^M\sqrt{N2^{-j}(L+j+8)}=O_L(\sqrt N),\qquad
+\sum_{j=1}^MN2^{-j}(L+j+8)=O_L(N).
+```
+
+The standalone source and predicate terms are $`O_L(nM+M^2)`$,
+at most $`O_L(n^2)=O_L(\sqrt N)`$. Thus the same routed word
+has $`T=O_L(\sqrt N+N/b)`$ and $`G=O_L(N)`$ uniformly in M.
+Its depth is at most
 
 ```math
 O_L(N/b^2+nM+M^2)=O_L(N/b^2),
@@ -344,9 +395,13 @@ O_L(N/b^2+nM+M^2)=O_L(N/b^2),
 because $`M\le n`$ and $`b\lt b_c`$ imply $`N/b^2>n^2`$.
 
 For the finitely many n below the dimension cutoff, use the same routed
-fallback. With fixed L, its finite depths are absorbed by
-$`O_{L,C_0}(\ell\log_2(\ell+2))`$, even when b is arbitrarily
-large. This completes the literal all-width statement.
+fallback for every b. The cutoff depends only on L and native constants,
+so there are finitely many pairs $`(n,M)`$ with $`0\le M\le n`$
+below it. The routed count inequalities still hold for every b; the
+bounded remaining depth is absorbed by
+$`O_L(\ell\log_2(M+2))`$, uniformly over those pairs and the
+angle tuple, even as b grows arbitrarily large. Extra supplied wires may
+remain unused. This completes the literal all-width statement.
 
 ## 7. Scope of the improvement
 

@@ -9,11 +9,16 @@ search stopped early after its independent lanes exhausted the identified
 candidates without a qualifying circuit. Verification and integration
 then preserved the outcome.
 
-**Outcome: the arbitrary-orientation problem remains open.** No new
+**Outcome at this checkpoint: the arbitrary-orientation problem remained open.** No new
 general compiler, improved depth bound, or unrestricted lower bound is
 claimed. R79 remains the selected general theorem; R80–R84 retain their
 existing scopes. The restricted obstructions below explain why particular
 conversions fail. They are not substitutes for the session's target.
+
+The later [joint orientation/recovery session](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+reaches the sub-square-logarithmic target under shared unordered depth
+magnitudes through R85's complete recovery word. This historical conversion
+checkpoint does not describe the current frontier.
 
 **Continuing direction, revised on 16 October 2026 (Asia/Shanghai):**
 the session ended, while the general constructive objective remains

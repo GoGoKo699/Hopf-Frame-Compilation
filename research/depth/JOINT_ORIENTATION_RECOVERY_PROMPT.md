@@ -2,12 +2,13 @@
 
 [Continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer) · [Current frontier](../../docs/OPEN_PROBLEM.md) · [Permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
 
-**Status: designed, not executed.** The design baseline is main commit
-`ed5597e`, after the user reaffirmed the general constructive destination.
-This is the next session design. The [older five-hour prompt](RESEARCH_SESSION_PROMPT.md)
-records the already-executed R78 search and is not the current work order.
-At execution, read the current workspace mandate, record the actual
-starting commit and time, and account for any intervening results.
+**Status: executed.** The [session outcome](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+records R85's geometric-band construction, its reviews, and verification.
+The design baseline was main commit `ed5597e`; execution began from
+`d6259c2` on 15 October 2026 at 22:04:30 UTC, after the design was merged.
+This document preserves the executed instructions. The
+[older five-hour prompt](RESEARCH_SESSION_PROMPT.md) records the separate
+R78 search.
 
 ## 1. Destination and the change of method
 

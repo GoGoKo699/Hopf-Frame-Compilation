@@ -122,9 +122,10 @@ on heterogeneous signed/singular trees. The bounded query action is a
 supplied exact XOR fixture. Native query synthesis, recursive workspace,
 all-width bounds and fixed-accuracy asymptotics remain analytic.
 The [terminal theorem R81](../../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
-uses retained native identities with a new prefix-uniform resource proof;
-it adds no primitive or cutoff-certifying fixture. Existing immutable
-receipts are unchanged.
+uses retained native identities with a prefix-uniform resource proof.
+The uniform terminal-height extension to all $`0\le M\le n`$ is
+analytic; it adds no primitive or cutoff-certifying fixture. Existing
+immutable receipts are unchanged.
 
 The [affine orientation R83](../../research/depth/AFFINE_ORIENTATION_DEPTH.md)
 and [deterministic frame R84](../../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
@@ -139,6 +140,25 @@ Queries use their complete reversible truth-table action; the native
 query schedule, all-width recurrences, and asymptotic bounds remain
 analytic. R82's affine-reference extension reuses the proved reference
 core and adds no supplied frame oracle or new immutable receipt.
+
+The [geometric-band theorem R85](../../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
+has six [orientation-recovery fixtures](../../tests/test_geometric_band_orientation.py):
+integer geometric capacities and bin counts; all eligible truncated-frame
+columns and local last-one bands on a four-qubit nonlinear tree; the
+physical save/query/swap/inverse-query/restore word, its actual inverse,
+external dirty return even on occupied tails, and inactive identity;
+coherent fine-tag clear/reload across bins with zero pairs, node signs,
+leaf phases, and a dirty system entangled with a reference; complete
+coarse search/XOR/reverse on every column of a five-qubit frame with five
+zero-based bins and a
+padded-threshold countercheck; and occupied inactive protected records.
+Expected frames use independent path products. Rotations are bounded
+ideal matrices, and queries are exact basis permutations. The coarse
+fixture reuses R78's literal Hadamard/reflection/complement search, with
+projectors reconstructed from descendant scaling columns. Native
+synthesis, full source-error and dirty-reference guarantees, finite
+cutoffs, and resource bounds follow from the analytic proof; no scalable
+emitter or scientific receipt is added.
 
 The [permutation checkpoint](../../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../../tests/test_permutation_bridge_limits.py):
