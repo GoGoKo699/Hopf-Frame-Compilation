@@ -39,6 +39,7 @@ must be proved separately.
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
 | One-clean count frontier and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
 | Current depth costs, proof gap, and routes worth reopening | [Depth preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) |
+| Runnable design for the next research session | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
