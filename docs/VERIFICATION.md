@@ -125,6 +125,21 @@ workspace, asymptotic resources, and bias-independent constants follow
 from the proof rather than these finite checks. No scalable emitter or
 new scientific receipt is supplied; R79 remains the general frontier.
 
+The [affine-orientation theorem R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
+and [exact deterministic theorem R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
+have five [focused checks](../tests/test_orientation_depth.py). Independent
+path-product columns are compared with complete packed-tag circuits,
+including actual complex native one-qubit words, affine marker signs,
+outside-prefix dependence, signed deterministic continuations, arbitrary
+dirty inputs, and occupied inactive tags. A guarded affine-map fixture
+expands its Toffolis into literal Clifford+T words; a negative control
+exhibits the changed-address dirty-update failure. Lookup actions in these
+bounded checks are reversible truth-table fixtures. Native query synthesis,
+parallel T supports, recursion, literal widths, and asymptotic bounds are
+proved in the chapters. R82's affine-reference extension uses these
+reference-core identities with its unchanged weighted-source geometry.
+No additional scientific receipt or general emitter is introduced.
+
 The [precision-uniform theorem R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 uses the unchanged R78 decoder identities below. Its new work is analytic:
 retain the original source's explicit precision factors, enlarge the

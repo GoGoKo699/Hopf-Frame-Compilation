@@ -1,20 +1,25 @@
-# Bounded-density compilation against a positive product reference
+# Bounded-density compilation against a positive structured reference
 
 [Retained gauge identity](../endpoint/PRECISION_GAUGE_COMPILER.md) ·
 [Native sources](COHERENT_DESCENDANT_LOADER.md) ·
 [Common-flag core](HOMOGENEOUS_MAGNITUDE_DEPTH.md) ·
+[Affine-oriented core](AFFINE_ORIENTATION_DEPTH.md) ·
 [Recursive terminal](RECURSIVE_TERMINAL_DEPTH.md)
 
 **Local result R82.** A positive density bounded above and below relative to
-an effectively supplied positive product distribution admits a
+an effectively supplied positive product distribution, or a positive
+affine-oriented reference from Section 12, admits a
 complete-frame compiler of fixed-accuracy T-depth $`O(\log n\,(1+\log^*n))`$
 at square-root dirty width. The reference is finite classical input to
-preprocessing, not a supplied quantum state. Its one-bit probabilities may
-be arbitrarily biased. The constants depend on the relative density bounds
-and accuracy, not on those biases.
+preprocessing, not a supplied quantum state. Its depth-dependent branch
+probabilities may be arbitrarily biased. The constants depend on the
+relative density bounds and accuracy, not on those biases or the supplied
+affine masks.
 
 The proof first treats the uniform reference, then derives the
-product-reference version in Section 12. Its main mechanism is a bounded
+product-reference version and its affine-oriented extension in Section 12.
+The latter uses the explicitly priced [R83 core](AFFINE_ORIENTATION_DEPTH.md),
+not an arbitrary reference-frame compiler. The main mechanism is a bounded
 positive correction to a charged common-flag frame, implemented by sparse
 row/column sources and constant-normalization recovery. The generic
 complete-frame frontier remains [R79](UNIFORM_SUBTREE_DEPTH.md).
@@ -62,8 +67,10 @@ This is a supporting-family theorem, not a generic improvement. It allows
 node-dependent magnitudes under a complementary bounded-density promise. The
 uniform-reference and level-homogeneous families overlap; neither generally
 contains the other. The product-reference corollary below unifies their
-strictly positive parts. Constants are permitted to depend on $`L,c,C`$;
-there is no all-precision claim.
+strictly positive parts; its affine-oriented extension admits the concrete
+reference family of R83 as well. The same displayed resource and norm
+bounds apply to these supplied-reference promises. Constants are permitted
+to depend on $`L,c,C`$; there is no all-precision claim.
 
 ## 2. Signs and uniform conditional density bounds
 
@@ -924,11 +931,159 @@ unchanged.
 This proves the product-reference version with the same stage, error, count,
 and literal-width bounds.
 
+### Affine-oriented reference extension
+
+The same R82 bounds hold for the following larger, concretely supplied
+reference family. At global position j, supply certified strictly positive
+$`a_j,b_j`$ with $`a_j^2+b_j^2=1`$, and finite affine orientation data
+
+```math
+r_j(v)=\rho_j+\sum_{k\lt j}A_{jk}v_k
+\quad\text{over }\mathbb F_2.
+```
+
+The positive reference tree has node pair $`(a_j,b_j)`$ when
+$`r_j(v)=0`$ and $`(b_j,a_j)`$ otherwise. Let q be its root probability
+distribution and $`W_q`$ its complete positive frame. Promise, as before,
+
+```math
+c\le\mu_x/q_x\le C,\qquad \mu_x=|\psi_x|^2.
+```
+
+This reference is supplied by its certified magnitudes and binary affine
+masks; no search for a suitable reference is asserted. The constants depend
+only on fixed $`L,c,C`$, not on the masks, branch biases, or smallest q atom.
+Reference zeros remain excluded. Product references are included by taking
+every orientation mask zero. The complete native reference factor is the
+[direct shared-tag core of R83](AFFINE_ORIENTATION_DEPTH.md#6-a-complete-early-frame-using-one-shared-tag),
+whose exact leaf/marker maps and guarded implementation are proved there.
+This extension does not import an arbitrary reference-frame oracle.
+
+**Conditioning and coarsening.** Let P be a preserved prefix of length a,
+let m bottom bits remain, protect r of them, and put $`h=m-r`$. Define
+the normalized h-bit distributions by descendant masses:
+
+```math
+\mu_{P,h}(x)=\frac{\mu(Px)}{\mu(P)},\qquad
+q_{P,h}(x)=\frac{q(Px)}{q(P)}.
+```
+
+With the original global $`w=\mu/q`$,
+
+```math
+\frac{\mu_{P,h}(x)}{q_{P,h}(x)}
+=\frac{\mathbb E_q[w\mid Px]}{\mathbb E_q[w\mid P]}
+\in[c/C,C/c].
+```
+
+These are the same fixed $`w_-,w_+`$ used throughout the proof. The local
+reference orientation at position j is
+
+```math
+r_{a+j}(Pu)=\rho_{a+j}
++\sum_{k\le a}A_{a+j,k}P_k
++\sum_{k\lt j}A_{a+j,a+k}u_k.
+```
+
+It remains affine in the local prefix u, with constants affine in unchanged
+P. Summing descendants leaves the earlier normalized branch probabilities
+unchanged. Thus every conditional, coarsened reference has exactly the
+outside-prefix interface supported by the direct R83 core. Strict
+positivity and the lower density-ratio bound also make every target branch
+nonzero, so the exact target sign tables are certified computable without
+a uniform minimum-amplitude assumption.
+
+**The weighted correction is unchanged.** In the preceding gauge formula,
+let $`a_v,b_v`$ be the actual reference child amplitudes at the node,
+including its orientation, and let $`l_v,r_v`$ be the two child conditional
+means of the local density ratio. The two-child calculation still gives
+
+```math
+W_\mu=D[W_qC-U_qA],\qquad
+C_v=\frac{g_v}{\sqrt{l_vr_v}},\qquad
+A_v=\frac{a_vb_v(r_v-l_v)}{g_v\sqrt{l_vr_v}},
+\qquad g_v^2=a_v^2l_v+b_v^2r_v.
+```
+
+The bounds on D,C,A and the finite q-weighted variance identity use only
+these conditional probabilities, not independence of the reference bits.
+Therefore $`\lambda_v=A_v^2q(I_v)`$ has the same Carleson constant
+$`(w_+-w_-)^2/w_-^3`$, and
+$`\|U_q|A|\|\le2(w_+-w_-)w_-^{-3/2}`$. The positive Schur resolvent,
+orthogonal failure flags, and sparse leaf/depth overlap are unchanged.
+All q-dependent row and column vectors are still prepared by the charged
+generic source. The reference changes their classical table contents,
+not their coherent label count or support.
+
+**One dedicated tag, with no inner clean signal.** Replace the reference
+factor inside Section 7's SELECT by the direct local R83 core. It uses the
+same dedicated short tag inside the outer protected logical bank Z, first
+for its signed marker permutation and then for its common-flag word. Both
+parts return the tag exactly. It uses no recursive whole-frame call or
+additional initialized activity flag. Its effective enable is the saved H
+and a constant-size branch condition; the bounded-arity native guards in
+R83 include that condition directly and remain identity on occupied work
+when disabled. All attenuation, Schur-source, branch, and damping banks
+remain disjoint as in Section 7.
+
+For local tolerance $`\delta_{\rm src}`$, use the same actual native
+single-qubit factors in the reference source and its common conjugator.
+The exact native leaf/marker maps surround that word. It returns its tag
+and dirty work exactly and differs from $`W_{q_{P,h}}`$ by
+$`O(\delta_{\rm src})`$ in operator norm, uniformly over P. Keep the exact
+q in D,C,K and all source tables. Since $`\|C/c_0\|\le1`$, this reference
+approximation adds only $`O(\delta_{\rm src})`$ to the accepted-block
+error. The same fixed-round recovery and linear full-isometry comparison
+then apply. There is no assumption of exact return by the other
+approximate source factors.
+
+**The additional standalone cost.** R83's short-tag-selected quadratic
+phases may contain individual outside-prefix bits. They have addresses
+$`(T,E,z_j,P_i)`$, so their physical T-depth is local even though their
+number depends polynomially on the original n. A sufficient per-reference
+call allowance is
+
+```math
+T_{\rm ref},G_{\rm ref}
+=O\!\left((n+2)^4+(h+1)[l+\log_2(h+2)]\right),\qquad
+w_{\rm ref}\le C_1(n+2)^4,
+```
+
+```math
+D_{T,\rm ref}=O(\log_2(h+2)+l).
+```
+
+Here $`C_1`$ is an absolute native width constant, and
+$`\delta_{\rm src}=2^{-l}/C_\kappa`$ as in Section 7; fixed density
+constants are absorbed in the displayed count and depth constants.
+Single-qubit synthesis is ancilla-free. The shared tag still requires only
+$`O(\log(h+2))`$ conditional clean bits.
+
+Append these standalone terms to (8). They are not purely local-height
+costs. The large source/calibration/anchor volumes and their constant
+multiplicity are unchanged. Under Section 9's recursion the additional
+count sum is a fixed polynomial in n, hence
+$`O_{L,c,C}(\sqrt N)`$ T gates and $`O_{L,c,C}(N)`$ Clifford gates.
+Its depth is already covered by the additive $`l+\log(m+2)`$ in (8).
+At $`b\ge\sqrt N/n`$, the polynomial dirty pool fits beside the large-query
+pools above a fixed dimension cutoff. Reuse it only after actual return.
+Below that width, and in the finite small-dimension range, Section 10's
+original-precision R79 fallback is unchanged. The real literal threshold
+therefore remains $`17(L+n+7)`$, with the same one-clean full-norm theorem.
+
+The direct R83 theorem is sharper when the target is itself the supplied
+affine-oriented reference: it gives logarithmic depth. This corollary
+allows arbitrary node-dependent perturbations within the fixed density
+ratios and retains R82's iterated-logarithmic factor. For arbitrary
+orientations the leaf map need not be affine and the marker correction
+need not be a polynomial collection of short-address quadratic phases;
+the priced reference interface above cannot be omitted.
+
 
 ## 13. Prescribed complex phases on the same one clean qubit
 
 For the prescribed phase-dressed completion $`D_\phi W_{\mathbb R}`$, assume
-either real magnitude promise above. Run the real theorem at precision
+any of the real reference promises above. Run the real theorem at precision
 $`L+1`$ and the retained
 [one-clean literal diagonal](ONE_CLEAN_DEPTH.md#7-a-one-clean-diagonal-and-complex-composition)
 at that same precision. Both fit
@@ -981,9 +1136,15 @@ resources follow from the native table-volume, physical-support, recursion,
 and all-width arguments above; finite fixtures do not establish them or
 constitute an emitted large native compiler.
 
+The affine-oriented extension additionally uses the complete native
+leaf/marker and shared-tag identities proved in
+[R83](AFFINE_ORIENTATION_DEPTH.md). Its new outside-prefix standalone
+polynomial costs and direct reference-core interface are charged in
+Section 12; the large weighted-source table ledger is unchanged.
+
 The density promise excludes arbitrarily concentrated magnitude tables
-unless they remain within fixed factors of a supplied positive product
-reference. No claim of an efficient classical test for that promise or an
-efficient search for the reference is made. The unrestricted growing-depth
+unless they remain within fixed factors of a supplied positive product or
+affine-oriented reference. No claim of an efficient classical test for that
+promise or an efficient search for the reference is made. The unrestricted growing-depth
 lower-bound and generic fixed-accuracy improvement remain separate open
 tasks.
