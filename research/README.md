@@ -238,10 +238,12 @@ Signs, zeros, balanced pairs, and prescribed leaf phases are included.
 
 R79 remains the general all-precision theorem for arbitrary magnitudes.
 The [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the general construction as the destination. The next local question
-is whether the remaining coarse-band search can be replaced by a constant
-number of native source layers. R85's local tensor-product reference
-does not yet cover arbitrary node-dependent magnitude pairs.
+keeps the general construction as the destination. The
+[next five-hour design](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), not
+yet executed, targets arbitrary node-dependent magnitudes by replacing
+R85's local tensor-product reference with a general label eraser using
+the exposed clean suffix. Logarithmic depth for the R85 family remains
+secondary and also requires improved terminal and routing schedules.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
