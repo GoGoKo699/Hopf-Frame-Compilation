@@ -251,12 +251,15 @@ depth magnitudes, with log-times-log-log depth and the retained budgets.
 
 The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
 ended that bounded conversion search without a general improvement.
-R85 subsequently changes the complete source/recovery interface. The next
-local question is a constant-source-layer eraser for its coarse band,
-which would remove the early recovery comparison factor. Logarithmic total
-depth also requires logarithmic terminal and routing schedules. The broader magnitude
-question needs a local flag transporter beyond the homogeneous product
-reference. Complete native resource and return proofs remain the criterion
+R85 subsequently changes the complete source/recovery interface. The
+[next five-hour design](GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), not yet
+executed, prioritizes the broader magnitude question: a general local
+flag-label eraser using the clean suffix exposed by unloading a band.
+Its two opening lanes seek a faster contraction of the unresolved flag
+or a richer joint label encoding. A constant-source-layer eraser for
+R85's coarse band remains secondary; logarithmic total depth would also
+require logarithmic terminal and routing schedules.
+Complete native resource and return proofs remain the criterion
 for either improvement. Proved affine, corner, and R85 circuits should
 not be repeated as unresolved tasks. R79 remains the selected general
 all-precision bound.

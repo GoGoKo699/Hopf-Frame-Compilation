@@ -52,6 +52,7 @@ A failed route or an ended session does not retire the objective.
 | Branch-orientation follow-up and historical gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
 | Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
 | Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
+| Next research session | [General-magnitude recovery design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md): use exposed clean space to remove the depth-shared magnitude promise; designed, not executed |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -209,12 +210,13 @@ technical review; final manuscript drafting requires the user's request.
 
 R85 reaches the sub-square-logarithmic target for arbitrary nonlinear
 branch orientation with a shared unordered magnitude pair at each depth.
-The next local question is whether its remaining coarse-band label can
-be erased with a constant number of native source layers. This would
-remove the repeated-comparison cost in early recovery; logarithmic total
-depth would also require compatible logarithmic terminal and routing
-schedules. Arbitrary node-dependent magnitudes and optimal
-unrestricted depth remain broader questions. Preserve one clean qubit,
+The [next five-hour design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
+prioritizes arbitrary node-dependent magnitudes: use the exposed clean
+suffix to replace the local tensor-product flag transporter. Its primary
+target is a complete general frame below square-logarithmic depth.
+Logarithmic depth for the R85 family remains secondary; it requires
+compatible improvements in coarse recovery, terminal processing, and
+routing. Optimal unrestricted depth remains open. Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
 contract throughout. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
 remains sufficient, but is not required by R85's complete recovery word.
@@ -226,9 +228,9 @@ lead when its missing step is explicit. Before claiming an improvement,
 complete the native identity and resource, error, and return proof.
 The joint session's successful change was to use workspace exposed on
 the reached spectral band, and to prove return for the complete word.
-The next design should ask whether that same freedom can remove the
-remaining coarse search or replace the local product reference for
-unequal node-dependent magnitudes. Neither further saving is established.
+The next design uses that same freedom to seek a general local label
+eraser, allowing intermediate within-band mixing and correlated work.
+Neither that primitive nor a further depth saving is established.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
