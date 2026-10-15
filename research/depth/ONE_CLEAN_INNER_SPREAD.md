@@ -53,10 +53,10 @@ Let a native two-layer encoder be
 U=C_2D_2C_1D_1C_0.
 ```
 
-Each Dj is a physical T/T-dagger layer and each Cj is Clifford. For
+Each $`D_j`$ is a physical T/T-dagger layer and each $`C_j`$ is Clifford. For
 the physical clean Pauli $`Z_C`$, put $`P_0=C_0Z_CC_0^\dagger`$.
-Among the active axes of D1, let $`a_1,\ldots,a_t`$ be those
-anticommuting with P0. These axes are independent and isotropic.
+Among the active axes of $`D_1`$, let $`a_1,\ldots,a_t`$ be those
+anticommuting with $`P_0`$. These axes are independent and isotropic.
 
 Write the resulting clean image as
 
@@ -88,7 +88,7 @@ inner-layer coordinates its symplectic action satisfies
 F_J(v)=v+\sum_i\langle a_i,v\rangle a_i.
 ```
 
-If M has the independent columns ai and $`\Omega`$ is the
+If M has the independent columns $`a_i`$ and $`\Omega`$ is the
 symplectic form, then $`F_J-I=M M^{\mathsf T}\Omega`$.
 The first map M is injective and $`M^{\mathsf T}\Omega`$ is
 surjective onto $`\mathbb F_2^t`$. Therefore
@@ -119,7 +119,7 @@ B=E_BK_BE_B^\dagger,
 \qquad S=E_BJ_BE_B^\dagger.
 ```
 
-All four cores are Hermitian Cliffords, and EA,EB are Clifford
+All four cores are Hermitian Cliffords, and $`E_A`$,$`E_B`$ are Clifford
 conjugates of physical T layers. Let $`Q=(I+S)/2`$ and let t be
 the inner clean spread of the A encoder. With the constants above,
 
@@ -138,14 +138,14 @@ when the stated flat Pauli expansion of the inner core is supplied.
 
 ### A finite Clifford expansion of the midpoint
 
-Let $`L_A`$ be the isotropic axis space of EA and take any Hermitian
+Let $`L_A`$ be the isotropic axis space of $`E_A`$ and take any Hermitian
 Pauli $`R\in L_A^\perp`$. Put
 
 ```math
 G=ARA,\qquad H=BRB.
 ```
 
-Since R commutes with EA, the Pauli $`P_R=K_ARK_A`$ gives
+Since R commutes with $`E_A`$, the Pauli $`P_R=K_ARK_A`$ gives
 
 ```math
 G=E_AP_RE_A^\dagger.
@@ -167,7 +167,7 @@ S=2^{-t/2}\sum_{j=1}^{2^t}\sigma_jC_j,
 \qquad C_j=E_AP_jE_A^\dagger.
 ```
 
-Every Cj is a Hermitian Clifford. Independently,
+Every $`C_j`$ is a Hermitian Clifford. Independently,
 
 ```math
 H=E_BK_RE_B^\dagger,
@@ -196,7 +196,7 @@ K_R+J_BK_R+K_RJ_B+J_BK_RJ_B.
 ```
 
 All left boundaries are bare Cliffords. The four right boundaries
-share the single outer phase EB. There are six terms with coefficient
+share the single outer phase $`E_B`$. There are six terms with coefficient
 magnitude $`1/4`$ and $`2^{t+1}`$ terms with coefficient magnitude
 $`2^{-(t+4)/2}`$. Non-Hermitian products are allowed: they are
 fixed ring-valued Clifford representatives with eighth-root common
@@ -223,8 +223,8 @@ N_t=6\,2^{\lceil t/2\rceil}+2^{t+1}
 \le K_t=2^{t+3}.
 ```
 
-Both counts are even. Pad to Kt with cancelling pairs if needed.
-After Clifford-diagonalizing EB, the normalized Choi discrepancy is
+Both counts are even. Pad to $`K_t`$ with cancelling pairs if needed.
+After Clifford-diagonalizing $`E_B`$, the normalized Choi discrepancy is
 exactly the [finite-boundary form of R74](FOUR_LAYER_CROSSING_RANK.md#finite-boundary-form)
 with
 
@@ -252,16 +252,16 @@ Thus a nonzero discrepancy satisfies
 \ge2^{-\mathcal M_t}.
 ```
 
-The norm uses normalized trace on the full physical space. For t=0,
+The norm uses normalized trace on the full physical space. For $`t=0`$,
 the parameters are $`K_0=8`$, $`a_0=126`$, $`c_0=73`$, and
 the exponent is exactly the eight-boundary exponent of R76. This
-recovers its constant on the t=0 subfamily: a Clifford midpoint can
+recovers its constant on the $`t=0`$ subfamily: a Clifford midpoint can
 also have positive inner spread in a displayed representation.
 
 ## 3. Freezing and occupied phases
 
 Put $`\epsilon=\|(A-B)Q\|`$. The restrictions of A and B to
-QH are unitaries, and $`\|QRQ\|\le1`$. Therefore
+$`Q\mathcal H`$ are unitaries, and $`\|QRQ\|\le1`$. Therefore
 
 ```math
 \|Q(ARA-BRB)Q\|\le2\epsilon.
@@ -273,15 +273,15 @@ There is no union bound over the tested Paulis.
 
 The [compressed commutant lift of R76](ONE_CLEAN_MIDPOINT_RIGIDITY.md#lifting-the-compressed-commutant)
 does not require S to be Clifford. Applied to $`Y=BA|_{Q\mathcal H}`$,
-it gives a unitary D0 in the abelian Pauli algebra on LA with
+it gives a unitary $`D_0`$ in the abelian Pauli algebra on $`L_A`$ with
 
 ```math
 BAQ=D_0Q=QD_0.
 ```
 
-In Clifford coordinates diagonalizing LA, D0 acts by unit scalars
+In Clifford coordinates diagonalizing $`L_A`$, $`D_0`$ acts by unit scalars
 $`\lambda_z`$ on its occupied blocks. The same coordinates make
-EA diagonal with eighth-root entries up to an irrelevant common
+$`E_A`$ diagonal with eighth-root entries up to an irrelevant common
 phase. Every nonzero entry of $`S=E_AJ_AE_A^\dagger`$ is a
 flat Clifford entry times an eighth root. Hence it is a unit of
 $`\mathcal R=\mathbb Z[i,1/\sqrt2]`$.
@@ -300,7 +300,7 @@ A nonidentity occupied scalar would imply
 \|BAQ-Q\|\ge\sqrt{2-\sqrt2},
 ```
 
-contradicting $`\epsilon\lt\kappa_t`$. Thus BAQ=Q, proving
+contradicting $`\epsilon\lt\kappa_t`$. Thus $`BAQ=Q`$, proving
 the compressed-image theorem. The freezing step is where the bound
 on inner clean spread is used.
 
@@ -383,9 +383,9 @@ t_{\min}
 -O(\log_2\log_2\log_2 L).
 ```
 
-In a displayed four-layer native circuit, tA counts clean-active
+In a displayed four-layer native circuit, $`t_A`$ counts clean-active
 axes in the first layer. The encoder $`V_2^\dagger`$ reads the
-second half backwards, so tB counts them in the last layer. Together
+second half backwards, so $`t_B`$ counts them in the last layer. Together
 with R74 this gives the following necessary growth in a hypothetical
 arbitrarily accurate sequence:
 
@@ -406,7 +406,7 @@ on one qubit $`U=THT`$ sends X to
 UXU^\dagger=\frac Z{\sqrt2}+\frac{X-Y}{2}.
 ```
 
-This is not a Hermitian Clifford, and the inner layer has t=1.
+This is not a Hermitian Clifford, and the inner layer has $`t=1`$.
 An input Clifford can relabel the clean Z as X; identity spectators
 retain the same t at arbitrary width.
 
@@ -430,7 +430,7 @@ C_A=(SH)_a\otimes H_b,
 \qquad C_B=(SH)_a\otimes I_b,
 ```
 
-where the single-qubit S in CA,CB is the phase Clifford. Define
+where the single-qubit S in $`C_A`$,$`C_B`$ is the phase Clifford. Define
 
 ```math
 U_A=(R_{IY}R_{ZY}^\dagger)
@@ -443,8 +443,8 @@ U_B=(R_{IZ}^\dagger R_{ZZ}^\dagger)
 ```
 
 Operators act right to left. Each displayed pair has commuting,
-independent axes. Thus UA has two native T layers and four T-type
-gates; UB has two native layers and three T-type gates. Physical
+independent axes. Thus $`U_A`$ has two native T layers and four T-type
+gates; $`U_B`$ has two native layers and three T-type gates. Physical
 routing is given below.
 
 For the input data Pauli $`P=IZ`$, exact multiplication gives the
@@ -532,7 +532,7 @@ two-dimensional sector. The sector traces therefore give
 =\sqrt{3\pm1/\sqrt2}.
 ```
 
-For a variant with a smaller occupied defect, replace UB by
+For a variant with a smaller occupied defect, replace $`U_B`$ by
 $`U_B'=U_B(IX)`$. This only changes its initial Clifford and
 gives $`B'=-B`$, with the same S and native layer counts. The
 exact-return circuit $`V'=U_B'^\dagger U_A`$ satisfies
@@ -600,8 +600,8 @@ R_{IZ}^\dagger R_{ZZ}^\dagger
 
 For each conjugated phase layer, apply the inverse routing list,
 the indicated simultaneous T/T-dagger gates, then the routing list.
-The input Clifford CA has list H(a), S(a), H(b), and CB has
-H(a), S(a). The signed variant prepends X(b) to the CB list. No
+The input Clifford $`C_A`$ has list H(a), S(a), H(b), and $`C_B`$ has
+H(a), S(a). The signed variant prepends X(b) to the $`C_B`$ list. No
 additional clean or dirty qubits are used.
 
 ## 6. Verification and scope
