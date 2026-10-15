@@ -238,6 +238,10 @@ proof/evidence links.
 
 ## 5. What the next research plan must decide
 
+The [joint orientation/recovery prompt](JOINT_ORIENTATION_RECOVERY_PROMPT.md)
+is the next executable design. It develops the two representations and
+the discovery, reformulation, and certification checkpoints described here.
+
 The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
 ended that bounded conversion search without a general improvement.
 Arbitrary nonlinear orientation remains an active constructive target.
