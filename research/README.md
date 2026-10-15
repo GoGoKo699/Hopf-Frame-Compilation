@@ -2,24 +2,20 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
 
-The growing-source proofs below establish Result C's one-clean count
-frontier for complete real and phase-dressed complex magnitude frames.
-The [core proof map](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
-gives the minimal dependency chain; the remaining studies retain their
-own hypotheses and distinct resource points. The
-[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) resolves
-$`o(n)`$ T-depth existence at fixed accuracy and sufficiently large
-constant square-root dirty width. Its precision-uniform extension retains
-sublinear depth with shrinking error $`2^{-L}`$ for
-$`L=o(n/\log(n+2))`$ at sufficient $`b=\Theta(\sqrt{NL})`$.
-The [one-clean depth theorem](depth/ONE_CLEAN_DEPTH.md) combines
-that branch with a whole-frame binary stream and a high-precision query
-schedule, retaining optimal count for every precision for both frame
-families. Optimal T-depth remains open.
-Each result retains its mathematical hypotheses; a method-specific
-obstruction is not a lower bound for every compiler.
+This catalogue separates selected proof dependencies, retained special
+cases, earlier methods, and scoped obstructions. The
+[core proof map](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
+gives the minimal dependency chain. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md)
+states the resource formulas and literal reservations; the
+[resource frontier](../docs/OPEN_PROBLEM.md) states the remaining questions.
+A method-specific obstruction is not a lower bound for every compiler.
 
-The [state-based QBP supplement](../supplements/state_based_qbp/README.md)
+The selected growing-source count theorem and
+[one-clean depth theorem](depth/ONE_CLEAN_DEPTH.md) cover complete real
+and phase-dressed complex magnitude frames. The
+[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) retains a
+stronger two-clean linear-precision special case. The
+[state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
 ## Endpoint results
@@ -29,55 +25,38 @@ uses a different decoder and has its own task-level guarantee.
 ### Precision-uniform one-clean count
 
 The [one-clean growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ and $`G=O(NL)`$ with universal constants, for
-$`n\ge1`$, integer $`L\ge6`$, and error $`2^{-L}`$. It uses one clean flag and
-$`b\ge L+n+7`$ dirty qubits for real frames, or $`b\ge L+n+8`$
-for phase-dressed complex magnitude frames. The complete-source conjugate
-lift borrows the phase signal and retains the initialized anchor marker.
-The [two-clean theorem](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-supplies the precision/mode separation. The one-clean layerwise baseline
-and growing-source interfaces meet at $`L=N/n^2`$; the same baseline
-covers bounded n, including $`n=1,2`$.
-Every logical input, dirty/reference correlation, literal phase, clean-work
-leakage, and actual inverse is included in the initialized-isometry guarantee.
-At exactly $`b=L+n+7`$ for real frames or $`b=L+n+8`$ for complex
-magnitude frames, and $`L\ge\max\{6,n\}`$, the existing finite-width
-lower bound gives worst-case $`T^\star=\Theta(N+L)`$. The upper bound
-allows additional dirty work; this matching corollary concerns the displayed
-base widths.
+is the proof home for Result C's unbanked count. Its
+[two-clean predecessor](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
+supplies the precision/mode separation. The one-clean lift borrows the
+phase signal while retaining the initialized anchor marker; the layerwise
+baseline covers low precision and bounded dimension.
+
+The [claim ledger](../manuscript/PUBLICATION_SCOPE.md) records each family's
+base dirty reservation and the matching qualification at that exact width.
+The guarantee includes every logical input, dirty/reference correlation,
+literal phase, clean-work leakage, and actual inverse.
 
 ### Optimal banked count frontier
 
 The [banked growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-gives, with one clean flag and error $`2^{-L}`$,
-
-```math
-T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),
-\qquad G=O(NL),
-```
-
-for all $`n\ge1`$ and integer $`L\ge6`$, at real
-$`b\ge2(L+n+7)`$ or complex magnitude $`b\ge2(L+n+8)`$.
-The banked source masks return every bank and selector before the next
-operation. Summed native charges and the existing width-sensitive lower
-bounds establish matching throughout these banked regimes.
+proves Result C's optimal count frontier throughout the stated doubled-base
+width regimes. Banked source masks return every bank and selector before
+the next operation. Summed native charges and the existing width-sensitive
+lower bounds establish matching; the theorem's Clifford budget and
+real/complex reservations remain distinct obligations.
 
 ### Constant-clean high-precision count
 
-The target is the complete prescribed frame at the literal allocation in
-the [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count).
-The [growing-source compiler](endpoint/GROWING_SOURCE_COMPILER.md) attains
-$`T=\Theta(N)`$ in the worst case at $`\eta=2^{-N}`$, $`n\ge3`$,
-with two clean flags and $`N+n+7`$ dirty qubits. Its upper bound covers
-every prescribed real frame. Growing sources, sealed rejection modes,
-frozen output tags, actual dirty replay, and final recovery are charged.
+The [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count)
+and [growing-source compiler](endpoint/GROWING_SOURCE_COMPILER.md) retain
+the two-clean high-precision theorem for complete prescribed real frames.
 The [complex-magnitude corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes the half-error real construction with the packed literal diagonal,
-covering $`D_\phi W_{\mathbb R}`$ at the same allocation and accuracy.
-The real witness at zero leaf phases gives the same $`2N-1`$ lower bound.
-This sharper complex reservation remains a two-clean result; the one-clean
-complex theorem uses $`N+n+8`$ dirty qubits at $`L=N`$. None of the
-selected count theorems claims arbitrary-complex-unitary synthesis, a new
+composes the half-error real construction with the packed literal diagonal.
+Its sharper complex reservation saves one dirty qubit relative to the
+one-clean theorem at this endpoint. The real zero-phase witness supplies
+the same lower bound. Growing sources, sealed rejection modes, frozen
+output tags, actual dirty replay, and final recovery are charged. These
+count results do not claim arbitrary-complex-unitary synthesis, a new
 T-depth bound, or a general native emitter.
 
 Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
@@ -157,53 +136,20 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The [one-clean theorem](depth/ONE_CLEAN_DEPTH.md), R72, gives, for every
-$`n\ge1`$, integer $`L\ge6`$, one external clean flag and every
-$`b\ge17(L+n+7)`$,
+The [one-clean theorem](depth/ONE_CLEAN_DEPTH.md), R72, is the selected
+simultaneous count/depth proof for both frame families. Its precision splice,
+literal widths, matching interval, and fixed-accuracy and shrinking-error
+special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.md).
+The full initialized-isometry guarantee includes common phase, earlier
+leakage, arbitrary dirty inputs, and their references. Optimal large-width
+depth remains open.
 
-```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\},
-```
-
-```math
-T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
-D_T=O(NL/b^2+F(n,L)).
-```
-
-All constants are absolute. One circuit preserves the prescribed complete
-real frame with error at most $`2^{-L}`$ in the full initialized-isometry
-norm. Count is optimal at every precision; count and depth match through
-$`b\le\sqrt{NL/F(n,L)}`$ on every nonempty interval above the
-literal lower threshold. For $`L>N/n^2`$, the stronger depth has
-additive L in place of F.
-
-R72 proves the same bounds for the prescribed magnitude frame
-$`D_\phi W_{\mathbb R}`$, with one clean flag and
-$`b\ge17(L+n+8)`$. It charges the native one-clean literal diagonal
-and composes half-error factors on the same workspace, including earlier
-leakage and common phase. Its depth matching interval has the corresponding
-complex lower threshold. Optimal large-width depth remains open. The
-[real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
+The [real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
 [complex R71 theorem](depth/COMPLEX_FRAME_DEPTH.md) retain their two-clean
-statements and supporting proofs.
-
-For real frames with two clean flags, the retained [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains the stronger logarithm $`\log_2(n+2)`$ for $`6\le L\le cn`$,
-with absolute c. The [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md)
-retains its role in the two-clean precision and width splices.
-
-For every fixed $`0\lt\eta\le1/64`$, R72 gives the one-clean all-n bounds $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
-
-```math
-D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}).
-```
-
-At sufficient square-root dirty width it gives $`o(n)`$ depth.
-The uniform extension also gives sublinear depth for shrinking error
-when $`L=o(n/\log(n+2))`$ and $`b=\Theta(\sqrt{NL})`$ is
-sufficiently large. For $`L=O(\sqrt n)`$ this retains the
-$`O(\sqrt n\log(n+2))`$ fixed-accuracy depth order. Optimal depth
-remains open.
+statements. The two-clean [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains the stronger logarithm through linear precision. The
+[older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md) still
+supplies the two-clean precision and width splices.
 
 | Current proof | Role |
 |---|---|
@@ -237,51 +183,22 @@ the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
 channels and reweighting obey the same bound. It does not constrain
 unrestricted block encodings or establish a native T-depth lower bound.
 
-The [clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, applies to arbitrary coherent Clifford+T circuits. For the complete
-frame with $`\cos(2\theta)=1/3`$, the zero-clean error floor at T-depth
-at most three is exactly $`c_0\approx0.169714`$, attained by a Clifford
-and uniform in dirty width. Hence integer $`L\ge3`$ requires at least
-four layers. Every fixed positive clean budget also has a positive
-threshold, made explicit by the R74 refinement below. An explicit
-one-clean witness separately requires
-at least three layers for integer $`L\ge8`$. Zero leaf phases include
-both witnesses in the phase-dressed family.
+The following obstruction branch is independent of the constructive proof
+chain. The [resource frontier](../docs/OPEN_PROBLEM.md) gives the exact
+witnesses, thresholds, and remaining one-clean question. Zero leaf phases
+place the witnesses in the phase-dressed family as well.
 
-The [four-layer crossing-rank theorem](depth/FOUR_LAYER_CROSSING_RANK.md),
-R74, proves a positive error gap for the $`1/3`$ witness at every fixed
-clean budget and fixed upper bound on the middle active symplectic
-crossing rank. Its elementary initialized-observable rigidity proof gives
-an explicit gap $`2^{-O_a(r^2)}`$ and minimum crossing rank
-$`\Omega_a(\sqrt L)`$ for error $`2^{-L}`$, minimizing over all
-four-layer decompositions. This proof is independent of the polynomial-limit
-premise used by the retained qualitative closure argument.
+| Proof | Established obstruction | Scope that remains open |
+|---|---|---|
+| [Clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md), R73 | Fixed-clean error floors at three layers, uniform in dimension and dirty width; explicit zero-clean optimum and separate one-clean two-layer gap | Arbitrary Clifford interlayers are allowed; these are constant-depth bounds |
+| [Four-layer crossing rank](depth/FOUR_LAYER_CROSSING_RANK.md), R74 | Elementary explicit rigidity gap and necessary middle-rank growth, minimized over all four-layer decompositions | Crossing rank may grow with precision; the qualitative polynomial-limit argument remains separately valid |
+| [Four-layer operator rigidity](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md), R75 | Width-independent gap between distinct two-layer Pauli images; zero-clean five-layer bound and exact one-clean terminal-sector preservation below the gap | Terminal-sector preservation alone does not settle one-clean four-layer approximation |
+| [One-clean midpoint rigidity](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md), R76 | Pauli and Hermitian-Clifford midpoint floors using phase discreteness, finite Clifford boundaries, and compressed-commutant lifting | Unrestricted non-Clifford midpoints need an additional rigidity argument |
+| [Inner clean spread](depth/ONE_CLEAN_INNER_SPREAD.md), R77 | Bounded-spread non-Clifford extension; both outer layers must grow in every accurate representation; exact example excludes a common sign-compatible sector flip even among arbitrary unitaries | Unbounded inner spread remains eligible; the counterexample does not refute the remaining gap conjecture |
 
-The [four-layer operator-rigidity theorem](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
-R75, proves a width-independent operator-norm gap
-$`\rho=\sin(\pi/8)/\sqrt2\approx0.270598`$ between distinct two-layer
-Pauli images. The zero-clean $`1/3`$ witness consequently has four-layer
-error at least $`\rho/2\approx0.135299`$, so $`L\ge3`$ requires five
-layers even with arbitrary dirty width. With one clean qubit, the same
-threshold forces exact terminal clean-sector preservation.
-
-The [one-clean midpoint theorem](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
-R76, gives the same floor for four-layer realizations admitting a
-two-plus-two split whose encoded clean observable is Pauli, so integer
-$`L\ge3`$ requires five layers within that subclass. A Hermitian-Clifford
-midpoint gives a positive explicit threshold with unrestricted dirty
-width and crossing rank. Its proof combines phase-polynomial descent,
-a finite Clifford-boundary gap, and compressed-commutant lifting.
-The [inner clean-spread extension](depth/ONE_CLEAN_INNER_SPREAD.md),
-R77, freezes those conjugations for non-Clifford midpoints whenever
-either encoder's first T layer has boundedly many clean-active axes.
-Its explicit gap forces minimum spread $`\Omega(\log\log L)`$
-at error $`2^{-L}`$, over both encoders and all representations.
-Together with R74, every layer of an arbitrarily accurate four-layer
-one-clean sequence for this witness must grow. R77 also gives an exact native example
-with no common sign-compatible sector flip, even among arbitrary
-unitaries. The unrestricted case with growing inner spread remains open.
-Optimal depth remains an open problem.
+Together R74 and R77 force all four layers to grow in any hypothetical
+arbitrarily accurate one-clean sequence for this witness. Optimal depth
+remains open.
 
 The following earlier studies isolate costs or restrict particular
 interfaces. They remain as mathematical results and records of the

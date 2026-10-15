@@ -57,123 +57,51 @@ remain in their shared directories and continue to be verified.
 
 ## Research decision and stopping rules
 
-The selected count package has reached its stopping point.
-[Result C](research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-gives $`T=O(N+L)`$ and $`G=O(NL)`$ for every integer $`L\ge6`$
-and $`n\ge1`$, at base dirty reservation $`B=L+n+7`$ for real
-frames or $`B=L+n+8`$ for complex magnitude frames. At $`b\ge2B`$,
-the [banked theorem](research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-matches the full worst-case count frontier
-$`\Theta(\sqrt{NL}+L+NL/b)`$ with one clean qubit.
-The [sharp two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-keeps $`b=N+n+7`$ for both families at $`L=N,n\ge3`$.
-A, B, and D retain their separate resource statements.
+The selected count package has reached its stopping point. The
+[publication scope](manuscript/PUBLICATION_SCOPE.md) is the canonical
+statement of A–D, literal workspace reservations, matching intervals,
+and retained corollaries. In particular, C proves the one-clean count
+frontier; D is the one-clean all-precision count/depth theorem R72 for
+both frame families. The sharper two-clean complex count endpoint and
+the two-clean linear-precision depth refinement keep their distinct
+allocations. The [core audit](docs/CORE_CLAIM_AUDIT.md) reconstructs these
+proofs and their minimal dependencies. Do not reopen resolved count
+questions or transfer a supporting theorem's clean allocation to R72.
 
-The [current proof reconstruction](docs/CORE_CLAIM_AUDIT.md) records
-the native contracts and minimal dependencies. The split at $`L=N/n^2`$
-uses the direct layerwise baseline below the cutoff and growing sources
-above it. Iterated grouping is a retained standalone result, not a
-dependency of C's current count proof. The conditioning lemma in its
-chapter remains necessary. Historical audits stay in the reference
-catalogue; current claims are stated in the publication scope.
+### Current depth frontier
 
-The selected depth result is the
-[one-clean all-precision theorem](research/depth/ONE_CLEAN_DEPTH.md), R72.
-For every $`n\ge1`$, integer $`L\ge6`$, one clean flag, and
-$`b\ge17(L+n+7)`$, one complete real-frame circuit has full
-initialized-isometry error at most $`2^{-L}`$ and absolute-constant bounds
+Use [the resource statement](docs/OPEN_PROBLEM.md#constant-depth-frontier)
+as the authoritative frontier. The current research result is
+[R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
+For the explicit complete frame with $`\cos(2\theta)=1/3`$:
 
-```math
-T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
-D_T=O(NL/b^2+F(n,L)),
-```
+- R75 proves a zero-clean five-layer lower bound for integer $`L\ge3`$,
+  at arbitrary dirty width. With one clean qubit, sufficiently small
+  error forces exact terminal clean-sector preservation.
+- R76 excludes Pauli and Hermitian-Clifford encoded midpoints under its
+  stated thresholds. R77 also excludes non-Clifford midpoints when
+  either two-layer encoder has bounded inner clean spread.
+- R74 and R77 force both middle crossing rank and both encoder spreads
+  to grow in any hypothetical arbitrarily accurate four-layer one-clean
+  sequence. These necessary size conditions do not exclude such a sequence.
 
-```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
-```
+The unrestricted one-clean five-layer lower bound remains open. The
+remaining compressed-conjugation freezing problem must allow growing
+inner spread and crossing rank. Commutant lifting and phase discreteness
+already hold; terminal return alone does not finish the proof. R77's exact
+native counterexample rules out a universal common compatible sector flip,
+not the remaining gap conjecture. Its occupied defect is a positive constant.
+The separate four-layer Hilbert–Schmidt identity-isolation question also
+remains open; R75's operator-norm rigidity does not settle that weaker metric.
 
-Count is optimal at every eligible width; depth also matches through
-$`b\le\sqrt{NL/F(n,L)}`$ whenever that interval is nonempty.
-For $`L>N/n^2`$, depth strengthens to $`O(NL/b^2+L)`$ with
-the same count and Clifford budgets. R72 prices native one-clean words,
-relocates the terminal rejection flag into the protected logical bank,
-and supplies its own width and precision splices, including bounded
-dimensions. Source preparation, coherent queries, actual inverses,
-conditional work, and external-reference error are all charged. The earlier
-[real theorem R70](research/depth/ALL_PRECISION_DEPTH.md) and
-[complex theorem R71](research/depth/COMPLEX_FRAME_DEPTH.md) retain their
-two-clean statements and remain supporting proofs.
-
-R72 gives the same simultaneous bounds for $`D_\phi W_{\mathbb R}`$
-at $`b\ge17(L+n+8)`$ with one clean flag. Its literal-diagonal
-schedule has depth $`O(NL/b^2+L+\log_2(n+2))`$ and preserves
-optimal count. Both half-error factors reuse the sole flag and arbitrary
-dirty pool; the full-isometry hybrid includes prior leakage. The stronger
-high-precision bound also holds for this complex magnitude family.
-Independently prescribed phases include zero-amplitude leaves. This is
-not arbitrary complex-unitary synthesis.
-
-For some absolute $`c>0`$, the
-[compressed-column theorem](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains its two-clean assumption and stronger logarithm $`\log_2(n+2)`$ on
-$`6\le L\le cn`$. At sufficient $`b=\Theta(\sqrt{NL})`$,
-shrinking error retains sublinear depth for $`L=o(n/\log(n+2))`$;
-the fixed-accuracy all-n statement remains valid. Its early gradient and
-terminal binary source are separate resources. The grouped terminal
-proof and its exact coarse-program interface remain at their original paths.
-
-The one-clean real and phase-dressed all-precision extensions are complete at the
-stated scope. Further
-research must address a concrete depth improvement or a valid unrestricted
-lower bound; producing more fixtures is not a default next step. The
+Optimal large-width depth is the broader unresolved question. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-remains an architecture-specific normalization bound, not an unrestricted
-native-depth lower bound. Optimal depth remains open. No practical
-crossover, efficient preprocessing, or general native emitter is claimed.
-Internal audits do not replace external technical review. Final manuscript
-drafting remains a separate task requiring the user's request.
-
-The [clean-aware obstruction](research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, supplies constant lower bounds for arbitrary Clifford interlayers
-and dirty width. The explicit $`\cos(2\theta)=1/3`$ complete frame has
-exact zero-clean error floor $`c_0\approx0.169714`$ at T-depth at most
-three, attained by a Clifford. Thus integer $`L\ge3`$ requires at least
-four layers. Each fixed positive clean budget has a positive threshold,
-made explicit by the R74 refinement below. The separate explicit
-one-clean two-layer gap
-forces at least three layers for integer $`L\ge8`$.
-
-The [four-layer crossing-rank theorem](research/depth/FOUR_LAYER_CROSSING_RANK.md),
-R74, gives a positive error gap for this witness at each fixed clean
-budget and bound on the middle active symplectic crossing rank. Its
-elementary initialized-observable proof gives an explicit
-$`2^{-O_a(r^2)}`$ rigidity gap, hence minimum crossing rank
-$`\Omega_a(\sqrt L)`$ at error $`2^{-L}`$, minimizing over all
-four-layer decompositions. The earlier polynomial-limit closure proof
-remains a separate argument.
-
-The [four-layer operator-rigidity theorem](research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
-R75, proves a width-independent operator-norm gap
-$`\rho=\sin(\pi/8)/\sqrt2`$ between distinct two-layer Pauli images.
-For the zero-clean witness this gives four-layer error at least
-$`\rho/2\approx0.135299`$: integer $`L\ge3`$ requires at least five
-layers, regardless of dirty width. With one clean qubit it forces exact
-terminal clean-sector preservation below $`\rho/2`$.
-The [one-clean midpoint theorem](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
-R76, extends the same floor to four-layer circuits admitting a two-plus-two
-split with a Pauli encoded clean observable, so this subclass requires
-five layers at $`L\ge3`$. A Hermitian-Clifford midpoint gives a positive
-explicit threshold with arbitrary dirty width and crossing rank.
-
-The current unrestricted target is the
-[compressed-conjugation freezing step](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question)
-for a non-Clifford encoded midpoint. Commutant lifting and phase
-discreteness already hold in that general case; terminal return alone
-does not make the remaining Clifford-boundary argument applicable.
-The separate four-layer Hilbert--Schmidt identity-isolation question
-also remains open; operator-norm rigidity does not settle that weaker
-metric.
-Optimal depth remains an open problem.
+restricts one encoding architecture, not arbitrary native circuits.
+Further research must supply a concrete depth improvement or an invariant
+valid for the unrestricted circuit model. More finite fixtures alone are
+not a next step. No practical crossover, efficient preprocessing, or
+general native emitter is claimed. Internal audits do not replace external
+technical review; final manuscript drafting requires the user's request.
 
 ### Reopening research requires a qualifying mechanism
 

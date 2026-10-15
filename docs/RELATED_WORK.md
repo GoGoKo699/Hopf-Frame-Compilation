@@ -278,7 +278,12 @@ middle crossing rank. Its phase-polynomial descent, finite-boundary
 argument and compressed-commutant lift reuse the preceding local proofs.
 A complementary cyclotomic norm proof excludes finite-projective-order
 occupied blocks. These restricted results add no imported premise or
-priority claim and leave the unrestricted one-clean four-layer question open.
+priority claim. The [inner clean-spread extension R77](../research/depth/ONE_CLEAN_INNER_SPREAD.md)
+also freezes non-Clifford midpoint conjugations when either two-layer
+encoder has bounded inner clean spread, with no new imported premise.
+Its explicit gap requires minimum spread $`\Omega(\log\log L)`$ at
+error $`2^{-L}`$. The unrestricted one-clean four-layer question remains
+open when the spread grows in both encoders.
 
 ## References highlighted here
 

@@ -6,7 +6,9 @@
 
 <a id="one-clean-count-frontier-and-remaining-depth-question"></a>
 
-# One-clean count frontier and sublinear large-width depth
+<a id="one-clean-count-frontier-and-sublinear-large-width-depth"></a>
+
+# Resource frontiers and the remaining depth question
 
 [Compiler claims](../manuscript/PUBLICATION_SCOPE.md) · [Proof map](README.md) · [Research results](../research/README.md)
 
@@ -16,6 +18,22 @@ has $`a`$ initialized flags and $`b`$ arbitrary dirty qubits. Its full
 initialized-isometry contract includes all logical inputs, dirty/reference
 return, literal phases, and clean leakage. The supplied angles and leaf phases
 admit terminating certified evaluation, including unequal and singular tuples.
+
+## Current status
+
+| Question | Status and reading route |
+|---|---|
+| Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
+| Count and depth on one circuit | [Result D](#large-width-t-depth) is proved with one clean qubit for both frame families; optimal large-width depth remains open |
+| Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
+
+The immediate lower-bound question is whether four T layers with one clean
+qubit can approximate the explicit witness arbitrarily well when dirty
+width, inner clean spread, and middle crossing rank all grow. The
+[bounded-spread result](#one-clean-inner-spread) rules out fixed spread,
+and its common-flip counterexample rules out that universal shortcut.
+Neither settles the unrestricted question. All statements below concern
+the complete initialized-isometry contract, not one state column.
 
 <a id="precision-uniform-two-clean-count"></a>
 
@@ -36,22 +54,13 @@ or $`B=L+n+8`$ for phase-dressed complex magnitude frames:
 | Exactly $`b=B`$, with $`L\ge\max\{6,n\}`$ | Worst-case $`T^\star=\Theta(N+L)`$ |
 | Every $`b\ge2B`$ | Worst-case $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ |
 
-All upper constructions have $`G=O(NL)`$. The
-[banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-charges exact word-bank queries, growing sources, coarse interlayers, actual
-inverses, and all workspace return. A borrowed signal carries conjugate
-source sectors while the genuine initialized recovery anchor remains.
-The layerwise baseline covers low precision and bounded n; literal leaf
-phases reuse the sole clean flag afterward. Banks and selectors return
-exactly on arbitrary inputs, while source and signal return are included
-in the full-isometry norm.
-
-The count frontier is proved on the displayed banked range. At base width
-and $`L\lt n`$, or throughout the transition $`B\lt b\lt2B`$,
-retain the stated upper bound without a general matching claim. The
+All upper constructions have $`G=O(NL)`$ and charge sources, queries,
+actual inverses, and work return. The
 [publication scope](../manuscript/PUBLICATION_SCOPE.md#result-c-the-one-clean-count-theorem)
-records the complete hypotheses. Result B retains its sufficient-clean
-allocations, and Result D retains its distinct same-circuit depth guarantees.
+is the complete statement; the [proof map](README.md#c-one-clean-compilation-and-its-corollaries)
+gives its dependencies. At base width with $`L\lt n`$, or in the
+transition $`B\lt b\lt2B`$, retain the upper bound without a general
+matching claim. These count results add no depth guarantee.
 
 ## Constant-clean high-precision count
 
@@ -68,22 +77,12 @@ complex magnitude families is
 2N-1\le T^\star\le O(N),\qquad T^\star=\Theta(N).
 ```
 
-The [growing-source compiler](../research/endpoint/GROWING_SOURCE_COMPILER.md)
-gives the upper bound for every prescribed real frame, including unequal
-and singular tuples. It charges source preparation, retained rejection,
-actual inverses, and complete workspace return. The
-[complex-magnitude corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes a packed literal leaf-phase diagonal on the same flags and dirty
-pool. Both factors' errors, including their work return, enter the complete
-initialized-isometry norm. Result C also gives linear
-count for real frames at this dirty allocation. The [explicit single-angle witness](FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-at root angle $`\pi/16`$ gives the lower bound even at unrestricted
-workspace width, retaining literal phases. Zero leaf phases include this
-real-family witness in the complex magnitude family. Both two-clean count
-endpoints are resolved at the displayed allocation. The complex endpoint
-saves one dirty qubit relative to the uniform corollary. These are prescribed
-frames; the one-clean complex theorem uses one additional dirty qubit.
-Arbitrary complex-unitary synthesis and T-depth retain their separate scopes.
+The [growing-source construction and literal phase composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+give the upper bounds under the full return contract. The
+[literal-phase root witness](FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
+gives the lower bound even at unrestricted width. This allocation saves
+one dirty qubit for the complex family relative to C; the one-clean
+complex theorem uses $`N+n+8`$ dirty qubits at $`L=N`$.
 
 ## Large-width T-depth
 
@@ -161,6 +160,10 @@ interval above the literal lower threshold is nonempty. The sublinear-depth
 existence question is resolved; optimal large-width depth remains open,
 with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
+## Constant-depth frontier
+
+### Zero-clean error floors and fixed-clean thresholds
+
 The [constant-depth obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
 R73, strengthens that constant. The complete frame
 $`W_n=I_{2^{n-1}}\otimes R_y(\theta)`$ with
@@ -197,6 +200,8 @@ that the four-layer error floor is sharp. With one initialized clean
 qubit, error below $`\rho/2`$ forces exact terminal clean-sector
 preservation.
 
+### One-clean midpoint restrictions
+
 The [one-clean midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
 R76, gives two further error floors with arbitrary dirty width and
 crossing rank. For a split $`V=V_2V_1`$ with each half of T-depth at
@@ -216,6 +221,8 @@ the exactly returned occupied block has finite projective order; in
 particular, four-layer full circuits of finite projective order are
 excluded at $`L\ge18`$. Generic Clifford+T circuits need not satisfy
 that condition.
+
+### One-clean inner spread
 
 The [inner clean-spread theorem](../research/depth/ONE_CLEAN_INNER_SPREAD.md),
 R77, extends the compressed rigidity argument to non-Clifford midpoints.
@@ -240,6 +247,8 @@ the separate encoder flips cannot always be replaced by one common
 sign-compatible flip, even allowing an arbitrary unitary flip. Its
 occupied defect is a positive constant, so it does not refute the
 remaining gap conjecture.
+
+### Middle crossing rank and the remaining gap
 
 The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, gives a positive error gap for the same $`1/3`$ witness for each
@@ -280,36 +289,17 @@ Their method-specific open steps are alternatives to the resolved endpoint,
 not gaps in the growing-source theorem. Unique proofs, negative results,
 and executable evidence remain at their original paths.
 
-### Proved linear-count families
+<a id="proved-linear-count-families"></a>
+<a id="bounded-diagonal-factorization"></a>
+<a id="a-regular-fixed-tree-cayley-family"></a>
+<a id="source-program-resynthesis"></a>
 
-The [native primitives and promised families](../research/README.md#native-primitives-and-promised-families)
-include disjoint and rank-weighted blocks, precision gauges, heterogeneous
-sources, structured forests, and sparse updates. Several are dependencies
-of the growing-source proof; their separate clean/dirty reservations and
-stronger promises remain explicit in their own statements.
-
-### Bounded diagonal factorization
-
-[Bounded diagonal coverage](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-is a sufficient route with terminating certified selection. The
-[structural limits](../research/endpoint/STRUCTURAL_COMPILATION_LIMITS.md)
-apply to specified mixers and regularity assumptions, not arbitrary compilers.
-
-### A regular fixed-tree Cayley family
-
-The [full-frame reductions](../research/README.md#full-frame-reductions-and-remaining-native-steps)
-preserve Cayley, prefix, scattering, residual, and ordered-bank constructions.
-Each distinguishes its priced native operations from its remaining recovery
-or fine-source step. Small rank, bounded conditioning, and compact storage
-alone do not certify native cost.
-
-### Source-program resynthesis
-
-The [source programs and encodings](../research/README.md#source-programs-and-encodings)
-and [diagonal and reflection architectures](../research/README.md#diagonal-and-reflection-architectures)
-record paid fusion rules and restrictions on particular source, history,
-and query interfaces. They supply neither an additive unrestricted lower
-bound nor an uncharged native implementation of a different representation.
+| Retained route | Catalogue and boundary |
+|---|---|
+| Linear-count promised families | [Native primitives and promised families](../research/README.md#native-primitives-and-promised-families): distinct promises and workspace reservations; several support C |
+| Fixed-tree, Cayley, scattering, residual, and ordered-bank reductions | [Full-frame reductions](../research/README.md#full-frame-reductions-and-remaining-native-steps): compact representation and conditioning alone do not price native recovery |
+| Source-program resynthesis | [Source programs and encodings](../research/README.md#source-programs-and-encodings): paid fusion rules and scoped history/query restrictions |
+| Bounded diagonal and reflection factorizations | [Diagonal and reflection architectures](../research/README.md#diagonal-and-reflection-architectures): certified selection and restrictions retain their stated mixers and regularity assumptions |
 
 ## Full-circuit requirement
 
