@@ -41,6 +41,7 @@ must be proved separately.
 | Current depth costs, proof gap, and routes worth reopening | [Depth preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) |
 | Executed research design and outcome | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md), [session result](research/depth/RESEARCH_SESSION_RESULT.md) |
 | Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
+| Joint decoder/terminal follow-up | [Common-flag depth](research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md), [recursive terminal](research/depth/RECURSIVE_TERMINAL_DEPTH.md), [bounded-density depth](research/depth/BOUNDED_DENSITY_DEPTH.md), [session outcome](research/depth/JOINT_DEPTH_SESSION_RESULT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -95,6 +96,22 @@ At $`L=\Theta(\log n)`$ and $`b=\Theta(\sqrt{NL})`$, depth is
 $`O(\log^2 n)`$ with inverse-polynomial error in n. At fixed accuracy,
 optimal square-root-width depth remains between a constant lower bound
 and $`O_\eta(\log^2 n)`$.
+
+The subsequent [joint-depth session](research/depth/JOINT_DEPTH_SESSION_RESULT.md)
+leaves that general frontier unchanged. At fixed accuracy and square-root
+width, R80 proves logarithmic depth for
+depth-homogeneous angle magnitudes with arbitrary node signs and supplied
+leaf phases; its signed balanced real case is exact. R81 improves only
+the deepest logarithmically many general layers to a log-times-log-log
+contribution. At that same accuracy and width scale, R82 gives a complete
+sub-square-logarithmic circuit when
+the target density has fixed positive bounds relative to a classically
+specified positive product reference. Its constant-normalization
+weighted correction and recursive source schedule are priced in full.
+A general improvement still needs a cheaper complete early
+decoder or native query. The session records exact failures of generic
+dirty-cache hoisting and row-wise fingerprint substitution, with explicit
+limits on those arguments.
 
 The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).

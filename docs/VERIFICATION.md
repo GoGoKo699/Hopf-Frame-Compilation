@@ -92,6 +92,39 @@ growing-source circuit or establish the all-size banked resource bound.
 
 ### Subtree-projector decoder evidence
 
+The [structured common-flag theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+has four [bounded algebra checks](../tests/test_homogeneous_depth.py).
+Independent guarded-layer and literal-column constructions test general
+complex one-qubit factors. Actual native conjugators test the two separate
+involution echoes on every small dirty/tag column, including padded tags.
+The complete tag word checks exact dirty return and inactive occupied
+tags. Exact rational tree products check the retained sign factorization,
+including markers below zero incoming edges. These tests distinguish
+general unitary geometry from the narrower native factorization used to
+approximate real rotations. They do not establish the recursive resource
+bound or emit a general compiler.
+
+The [recursive terminal theorem R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
+is an analytic extension of retained source/query interfaces to a preserved
+prefix, with summable errors and an explicit width splice. It adds no
+separate native primitive or numerical test of asymptotic cutoffs.
+
+The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
+has six [bounded fixtures](../tests/test_weighted_haar_depth.py): independent
+weighted-frame/gauge reconstruction with vanishing corrections; exact
+rational subtree variance and Carleson bounds; single-leaf/depth row and
+column sources with separate failure padding; a biased product-reference
+gauge, weighted energy and overlap check; the complete three-branch LCU
+and literal amplification with all-work return and inactive occupied
+work; and a perturbed source using its actual inverse with nonzero
+leakage retained. The product-reference fixture checks exact reference
+geometry, not its native approximation. Source-unitary completions and
+bounded matrices are verification fixtures, not supplied native oracles.
+Native table synthesis, arbitrary dirty/reference guarantees, recursive
+workspace, asymptotic resources, and bias-independent constants follow
+from the proof rather than these finite checks. No scalable emitter or
+new scientific receipt is supplied; R79 remains the general frontier.
+
 The [precision-uniform theorem R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 uses the unchanged R78 decoder identities below. Its new work is analytic:
 retain the original source's explicit precision factors, enlarge the

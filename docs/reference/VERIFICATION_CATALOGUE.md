@@ -113,6 +113,51 @@ supply the all-size statements within their declared interfaces.
 
 ### Detailed finite checks
 
+The [homogeneous-magnitude theorem R80](../../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+has four [operator fixtures](../../tests/test_homogeneous_depth.py):
+independent layer and marker-column frames for complex local unitaries;
+literal native conjugator/involution echoes on all dirty and tag inputs;
+complete tag return and inactive occupied work; and rational sign gauges
+on heterogeneous signed/singular trees. The bounded query action is a
+supplied exact XOR fixture. Native query synthesis, recursive workspace,
+all-width bounds and fixed-accuracy asymptotics remain analytic.
+The [terminal theorem R81](../../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
+uses retained native identities with a new prefix-uniform resource proof;
+it adds no primitive or cutoff-certifying fixture. Existing immutable
+receipts are unchanged.
+
+The [bounded-density theorem R82](../../research/depth/BOUNDED_DENSITY_DEPTH.md)
+has six [finite fixtures](../../tests/test_weighted_haar_depth.py):
+
+1. Independently normalized weighted-frame columns agree with the retained
+   Haar gauge, including uniform weights and zero correction columns.
+2. Exact rational subtree variance equals the sum of martingale energies,
+   and the corresponding finite Carleson bound holds.
+3. Row and column sources share one leaf/depth label, have orthonormal
+   columns and the prescribed Schur overlap, and retain separate failure
+   padding, including the full state-input failure column.
+4. A biased positive product reference checks the relative-density gauge,
+   exact rational weighted variance and Carleson identities, and both
+   signed correction-source overlaps. It tests reference geometry, not
+   native synthesis of that reference frame.
+5. A complete small three-branch LCU retains source, branch, product-factor
+   and damping flags through literal amplitude amplification. Its active
+   initialized columns return all work; arbitrary occupied work and
+   complex amplitudes on the inactive branch see literal identity.
+6. A perturbed source is paired with its actual inverse. The complete
+   initialized-isometry error obeys the finite hybrid bound, while
+   nonzero final leakage is retained and column normalization is checked.
+
+The variance tests use exact rational arithmetic; frame, source-overlap,
+and recovery comparisons are bounded floating-point checks. Source
+completions are supplied verification matrices, not native source
+oracles. These fixtures establish neither the general arbitrary-dirty/
+reference contract nor asymptotic count, T-depth, workspace, precision,
+all-width, or bias-independent constants. Those follow from the chapter's
+native synthesis and analytic ledger. No large native emitter, efficient
+reference search, or new immutable scientific receipt is asserted. The
+supporting-family result leaves R79's generic frontier unchanged.
+
 The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 reuses R78's decoder and R72's one-clean terminal and fallback words.
 The upgrade retains the source's explicit precision factors, chooses an

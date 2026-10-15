@@ -167,6 +167,40 @@ $`T^\star=\Theta_\eta(N/b)`$ and $`D_T^\star=\Theta_\eta(N/b^2)`$.
 Optimal large-width depth remains open,
 with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
+The later [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+attains logarithmic depth when angle magnitudes depend only on tree depth,
+including arbitrary node signs and supplied leaf phases. At the same
+fixed-accuracy reservations it gives
+
+```math
+T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad
+D_T=O_\eta(N/b^2+\log_2(n+2)).
+```
+
+The signed balanced real subfamily has an exact version. This is a
+restricted-family result, not a replacement for R79. The separate
+[recursive terminal lemma R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
+improves only the last logarithmically many general layers; the early
+decoder still determines the general square-logarithmic bound. The
+[joint session record](../research/depth/JOINT_DEPTH_SESSION_RESULT.md)
+identifies the remaining native mechanism and scoped failed routes.
+
+The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
+also improves the complete circuit when root probabilities have fixed
+positive upper and lower ratios to a classically specified positive
+product reference. With fixed accuracy and ratio bounds, the same count
+and literal width guarantees hold, with
+
+```math
+D_T=O\!\left(N/b^2+\log_2(n+2)(1+\log^*(n+2))\right).
+```
+
+The constants may depend on those fixed bounds. A native weighted
+correction replaces repeated early threshold comparisons; every
+recursive stage still pays for its global-prefix queries. This covers
+nonhomogeneous magnitudes under the stated promise, including the
+uniform-reference case, and leaves the unrestricted frontier unchanged.
+
 ## Constant-depth frontier
 
 ### Zero-clean error floors and fixed-clean thresholds

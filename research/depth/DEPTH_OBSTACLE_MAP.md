@@ -8,6 +8,14 @@
 [executed session](RESEARCH_SESSION_RESULT.md) replaced overlap recovery
 with native subtree-projector decoding and proved polylogarithmic depth.
 
+At fixed accuracy and square-root width, the later
+[joint-depth session](JOINT_DEPTH_SESSION_RESULT.md) proves
+logarithmic depth for a structured magnitude family, a complete
+sub-square-logarithmic circuit under bounded relative density, and an
+improved general terminal separately. It also records the remaining early-decoder
+cost and exact cache/fingerprint counterexamples. The unrestricted
+square-logarithmic upper bound remains R79's.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
