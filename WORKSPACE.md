@@ -38,6 +38,7 @@ must be proved separately.
 | Evidence and limits | [Verification](docs/VERIFICATION.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
 | One-clean count frontier and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
+| Current depth costs, proof gap, and routes worth reopening | [Depth preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -95,6 +96,10 @@ The separate four-layer Hilbert–Schmidt identity-isolation question also
 remains open; R75's operator-norm rigidity does not settle that weaker metric.
 
 Optimal large-width depth is the broader unresolved question. The
+[preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
+current recovery/query costs and the compressed freezing gap. It also
+explains why the spectator-padded witness has constant depth at fixed
+accuracy: a dimension-growing lower bound needs a different witness. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 restricts one encoding architecture, not arbitrary native circuits.
 Further research must supply a concrete depth improvement or an invariant
@@ -107,8 +112,11 @@ technical review; final manuscript drafting requires the user's request.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
-recurrences must precede new fixtures. At large width, a complete improvement
-must reduce both the logical-transport and query allowances or bypass them.
+recurrences must precede new fixtures. At large width, price the complete
+recovery, query, arithmetic, and terminal ledger in the preparation map.
+The older grouped route must reduce both its logical-transport and query
+allowances or bypass that interface; the current column construction
+already bypasses it.
 The one-clean count frontier retains literal dirty reservations and charges
 every precision source and query. It supplies no new depth, efficient
 classical preprocessing, or general emitter guarantee.
