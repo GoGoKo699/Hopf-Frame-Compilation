@@ -425,6 +425,14 @@ phase layer can have unbounded crossing rank, so the zero-active-coordinate
 finite-boundary argument does not apply. Pairwise R75 separation does
 not establish a gap for this correlated sum.
 
+The [inner clean-spread extension R77](ONE_CLEAN_INNER_SPREAD.md)
+does freeze these conjugations when either encoder's first layer has
+bounded clean-active spread t. The inner clean Clifford has a flat
+$`2^t`$-term Pauli expansion, turning SG and GS into finite sums of
+bare Clifford boundaries; G and SGS are already Clifford. This gives
+an explicit positive gap even when S is non-Clifford. The unrestricted
+step remains open when that spread grows in both encoders.
+
 Terminal clean return alone supplies no Pauli or Clifford decoder for
 that intermediate code. Scalar overlaps approaching one, or a rare
 sector with an order-one defect, also do not refute the operator-norm
@@ -448,9 +456,12 @@ S separately supplies a Hermitian Clifford flip: in the inner phase
 coordinates the input clean Pauli cannot lie in the active isotropic
 span, since that would leave only a one-layer Pauli image. Symplectic
 duality supplies an anticommuting Pauli in that span's centralizer.
-Its inner layer cancels, and its outer image is Clifford. What is not
-proved is a common flip with the required sign actions for both encoders.
-Individual flips cannot silently be identified with each other.
+Its inner layer cancels, and its outer image is Clifford. A common flip
+with both sign actions need not exist:
+[R77's exact two-qubit example](ONE_CLEAN_INNER_SPREAD.md#5-a-common-compatible-flip-need-not-exist)
+has unequal absolute product traces on the two sectors, excluding even
+an arbitrary sector-exchanging unitary with those actions. The sufficient
+certificate remains valid when a common flip is available.
 
 ## 7. Verification and dependency boundary
 

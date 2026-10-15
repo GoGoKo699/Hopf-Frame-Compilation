@@ -190,8 +190,14 @@ The [midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
 R76, gives the same one-clean floor when a two-plus-two split has a Pauli
 encoded clean observable, hence five layers at $`L\ge3`$ in that
 subclass. A Hermitian-Clifford midpoint gives a positive explicit
-threshold without restricting crossing rank. The unrestricted
-non-Clifford midpoint case remains open.
+threshold without restricting crossing rank. The
+[inner clean-spread extension](../research/depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, gives a positive explicit floor even for non-Clifford midpoints
+when either encoder has bounded inner clean spread. At error
+$`2^{-L}`$, both outer layers must have
+$`\Omega(\log\log L)`$ clean-active axes in every four-layer
+representation. R74 already forces the middle layers to grow.
+The unrestricted one-clean four-layer question remains open.
 Optimal depth remains an open problem.
 
 Older constructions remain where they supply a primitive, error certificate,

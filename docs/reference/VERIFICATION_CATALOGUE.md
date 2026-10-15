@@ -554,6 +554,19 @@ allow arbitrary dirty width and crossing rank. The width-independent
 gaps and complementary finite-projective-order obstruction are analytic;
 the finite fixtures do not prove the unrestricted one-clean conjecture or
 infer a midpoint condition from terminal clean return.
+The [inner clean-spread proof](../../research/depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, has [finite audits](../../tests/test_one_clean_inner_spread.py)
+of flat inner Pauli expansions, their outer Clifford images, the
+compressed finite-boundary expansion, and eighth-root coefficient
+homogenization. Exact arithmetic in $`\mathbb Q(\sqrt2)`$ verifies
+the unequal sector product traces of a native two-qubit counterexample
+to a common sign-compatible flip. Literal physical layers independently
+check its non-Clifford midpoint, one clean-active inner axis in each
+encoder, exact clean return, arbitrary dirty extension, and occupied
+versus full-space norms. The width-independent gap and asymptotic
+spread condition are analytic; the counterexample's positive constant
+defect is not an asymptotic failure of rigidity.
+
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for
 prefix preparation, native controlled-H phases, actual inverse, scalar
