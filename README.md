@@ -111,18 +111,20 @@ The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-
 retain their own workspace reservations.
 
 **D. Optimal T-count with all-precision T-depth bounds.** For every
-$`n\ge1`$ and integer $`L\ge6`$, [one clean qubit suffices](research/depth/ONE_CLEAN_DEPTH.md) at these
+$`n\ge1`$ and integer $`L\ge6`$, [one clean qubit suffices](research/depth/UNIFORM_SUBTREE_DEPTH.md) at these
 family-specific dirty reservations:
 
 | Target | Dirty reservation | Proof |
 |---|---|---|
-| Complete real frame | $`b\ge17(L+n+7)`$ | [One-clean theorem](research/depth/ONE_CLEAN_DEPTH.md) |
-| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [One-clean phase dressing](research/depth/ONE_CLEAN_DEPTH.md) |
+| Complete real frame | $`b\ge17(L+n+7)`$ | [Uniform subtree-depth theorem, R79](research/depth/UNIFORM_SUBTREE_DEPTH.md) |
+| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [R79 with literal phase composition](research/depth/UNIFORM_SUBTREE_DEPTH.md) |
 
-Each theorem gives one circuit with absolute constants. Define
+R79 gives one circuit with absolute constants.
+
+With $`\ell=\log_2(n+2)`$ and $`\lambda=\log_2(n+L+2)`$, put
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
+F(n,L)=\min\{nL,(L+\ell)\lambda\}.
 ```
 
 Then
@@ -143,22 +145,25 @@ Source preparation, queries, actual inverses, and work return are charged.
 T-depth allows arbitrary Clifford interlayers and is distinct from total
 depth. The complex extension charges its literal leaf-phase diagonal and
 composes both factors on the same workspace. Unrestricted depth optimality
-remains open. R72 charges native one-clean words, moves terminal rejection
-work into the protected logical bank, and proves its own width and precision
-splices. The earlier [real](research/depth/ALL_PRECISION_DEPTH.md) and
+remains open. R79 makes the native subtree-projector decoder's source costs
+uniform in precision and combines it with the retained
+[one-clean terminal and fallback schedules, R72](research/depth/ONE_CLEAN_DEPTH.md).
+The earlier [real](research/depth/ALL_PRECISION_DEPTH.md) and
 [complex](research/depth/COMPLEX_FRAME_DEPTH.md) two-clean theorems retain
-their stated proofs and allocations; their
-[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) keeps its separate
-precision bounds and matching intervals.
+their stated proofs and allocations; the
+[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) retains its supporting
+query and precision schedules.
 
-At every fixed $`0\lt\eta\le1/64`$, the
-[subtree-projector decoder, R78](research/depth/SUBTREE_PROJECTOR_DECODER.md),
-improves both families to
-$`D_T=O_\eta(N/b^2+\log^2(n+2))`$ at the same dirty thresholds,
-with optimal $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$ on
-the same circuit. Count and depth match through
+At every fixed $`0\lt\eta\le1/64`$, this recovers
+$`D_T=O_\eta(N/b^2+\log^2(n+2))`$, with optimal
+$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$ at the same dirty
+thresholds. The original [fixed-accuracy result, R78](research/depth/SUBTREE_PROJECTOR_DECODER.md),
+remains its proof home for native subtree reflections and coherent label
+erasure. Count and depth match through
 $`b\le\sqrt N/\log_2(n+2)`$ when the eligible interval is nonempty.
-Its constants may depend on accuracy; R72 remains the all-precision theorem.
+R79 also gives $`O(\log^2 n)`$ depth at $`b=\Theta(\sqrt{NL})`$
+for $`L=\Theta(\log n)`$, so the error may decrease as an inverse
+polynomial in n.
 
 The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
@@ -189,20 +194,12 @@ The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The retained two-clean real-frame [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-replaces the logarithm above by $`\log_2(n+2)`$: for some absolute $`c>0`$,
-$`6\le L\le cn`$ and every $`b\ge17(L+n+7)`$, two clean
-flags suffice for
-
-```math
-T=O(\sqrt{NL}+NL/b),\qquad G=O(NL),\qquad
-D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
-```
-
-At sufficient $`b=\Theta(\sqrt{NL})`$, this retains sublinear
-T-depth while error $`2^{-L}`$ shrinks, whenever $`L=o(n/\log(n+2))`$.
-The [resource statement](docs/OPEN_PROBLEM.md) gives its matching interval
-and the remaining optimal-depth question; the [research index](research/README.md)
+T-depth bound. The earlier two-clean real-frame
+[compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains its source and recovery proofs. R79 supersedes its resource bound
+with one clean flag and an absolute precision-dependent ledger.
+The [resource statement](docs/OPEN_PROBLEM.md) gives the matching intervals
+and remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.
 
 The depth lower bounds distinguish the available clean workspace:

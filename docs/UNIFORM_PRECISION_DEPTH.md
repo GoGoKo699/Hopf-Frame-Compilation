@@ -3,7 +3,7 @@
 [Blocked bilinear query](BLOCKED_BILINEAR_LOOKUP.md) · [Unary group compiler](UNARY_PHASE_GRADIENT.md) · [Existing all-precision hybrid](PARALLEL_DIRTY_LOOKUP.md#every-eligible-width-and-precision) · [Capped source precision](AMORTIZED_DIRTY_LOOKUP.md#capping-the-source-precision)
 
 The selected Result D is now the
-[one-clean all-precision theorem](../research/depth/ONE_CLEAN_DEPTH.md).
+[precision-uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79.
 It has optimal T-count at every precision and a stronger depth envelope,
 at the same literal dirty allocation and full return contract. This page
 retains the two-clean baseline used by

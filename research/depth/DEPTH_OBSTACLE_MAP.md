@@ -3,7 +3,8 @@
 [Current frontier](../../docs/OPEN_PROBLEM.md) · [Research index](../README.md) · [Continuing workspace](../../WORKSPACE.md)
 
 **Historical baseline, superseded at fixed accuracy by
-[R78](SUBTREE_PROJECTOR_DECODER.md).** The
+[R78](SUBTREE_PROJECTOR_DECODER.md) and uniformly in precision by
+[R79](UNIFORM_SUBTREE_DEPTH.md).** The
 [executed session](RESEARCH_SESSION_RESULT.md) replaced overlap recovery
 with native subtree-projector decoding and proved polylogarithmic depth.
 

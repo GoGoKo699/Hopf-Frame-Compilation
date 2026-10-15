@@ -5,7 +5,7 @@ The repository is organized around the
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
-and polylogarithmic fixed-accuracy depth. The
+and precision-uniform subtree depth. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -40,6 +40,7 @@ must be proved separately.
 | One-clean count frontier and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
 | Current depth costs, proof gap, and routes worth reopening | [Depth preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) |
 | Executed research design and outcome | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md), [session result](research/depth/RESEARCH_SESSION_RESULT.md) |
+| Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -63,25 +64,37 @@ The selected count package has reached its stopping point. The
 [publication scope](manuscript/PUBLICATION_SCOPE.md) is the canonical
 statement of A–D, literal workspace reservations, matching intervals,
 and retained corollaries. In particular, C proves the one-clean count
-frontier; D is the one-clean all-precision count/depth theorem R72 for
-both frame families. The sharper two-clean complex count endpoint and
-the two-clean linear-precision depth refinement keep their distinct
-allocations. The [core audit](docs/CORE_CLAIM_AUDIT.md) reconstructs these
-proofs and their minimal dependencies. Do not reopen resolved count
-questions or transfer a supporting theorem's clean allocation to R72.
+frontier; D is the one-clean all-precision count/depth theorem R79 for
+both frame families. The sharper two-clean complex count endpoint keeps
+its distinct allocation. The older two-clean linear-precision depth
+construction retains its supporting source and recovery proofs. The
+[core audit](docs/CORE_CLAIM_AUDIT.md) reconstructs these proofs and their
+minimal dependencies. Do not reopen resolved count questions or transfer
+a supporting theorem's clean allocation to the selected construction.
 
 ### Current depth frontier
 
 Use [the resource statement](docs/OPEN_PROBLEM.md#constant-depth-frontier)
 as the authoritative frontier. The latest upper result is
-[R78, subtree-projector decoding](research/depth/SUBTREE_PROJECTOR_DECODER.md).
-For fixed accuracy it gives one-clean
-$`D_T=O_\eta(N/b^2+\log^2(n+2))`$ for both prescribed frame
-families, with optimal $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
-Its literal real/complex width thresholds remain those of R72.
-The all-precision R72 theorem remains separate; no uniform precision
-improvement follows from R78. Optimal depth at square-root width remains
-between a constant lower bound and $`O_\eta(\log^2 n)`$.
+[R79, uniform subtree depth](research/depth/UNIFORM_SUBTREE_DEPTH.md).
+For all integer $`n\ge1,L\ge6`$, one clean qubit suffices for
+both prescribed frame families, with absolute constants in
+
+```math
+D_T=O\!\left(NL/b^2+\min\{nL,(L+\log_2(n+2))\log_2(n+L+2)\}\right),
+```
+
+optimal $`T=O(\sqrt{NL}+L+NL/b)`$, and $`G=O(NL)`$ on the same
+circuit. Literal widths remain $`b\ge17(L+n+7)`$ for real and
+$`b\ge17(L+n+8)`$ for complex magnitude frames. The stronger
+$`L\gt N/n^2`$ depth $`O(NL/b^2+L)`$ is retained.
+R78 supplies the decoder geometry and full-mode error proof; R72 supplies
+the one-clean terminal, fallback, and phase circuits. R79 explicitly
+absorbs the exponential precision costs of the original per-call source.
+At $`L=\Theta(\log n)`$ and $`b=\Theta(\sqrt{NL})`$, depth is
+$`O(\log^2 n)`$ with inverse-polynomial error in n. At fixed accuracy,
+optimal square-root-width depth remains between a constant lower bound
+and $`O_\eta(\log^2 n)`$.
 
 The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
@@ -110,7 +123,9 @@ Optimal large-width depth is the broader unresolved question. The
 [preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 recovery/query costs and the compressed freezing gap. The
 [executed session](research/depth/RESEARCH_SESSION_RESULT.md) records how
-native subtree reflections replaced the old overlap recovery. The map also
+native subtree reflections replaced the old overlap recovery. The
+[uniform follow-up](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md)
+records the absolute-precision extension and its independent audits. The map also
 explains why the spectator-padded witness has constant depth at fixed
 accuracy: a dimension-growing lower bound needs a different witness. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

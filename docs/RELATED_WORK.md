@@ -259,7 +259,12 @@ Its native subtree reflections and coherent spectral-label erasure use the
 existing descendant-state loader and dirty-query interfaces, followed by
 the retained one-clean terminal and phase composition. It adds no imported
 premise or external priority claim; its constants may depend on accuracy.
-R72 remains the all-precision theorem. These results concern T-depth with
+The later [precision-uniform extension R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
+exposes the source's exponential precision costs, absorbs them with a
+larger protected suffix, and uses R72's one-clean terminal and fallback
+circuits. It gives absolute constants in the improved depth bound at
+the same widths and count budgets, with no new imported premise.
+These results concern T-depth with
 Clifford interlayers. Standalone source
 obstructions and radial filters supply no additional premise for these
 upper bounds. The [dated development record](../research/RELATED_WORK.md)

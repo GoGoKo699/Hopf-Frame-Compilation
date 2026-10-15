@@ -11,12 +11,14 @@ states the resource formulas and literal reservations; the
 A method-specific obstruction is not a lower bound for every compiler.
 
 The selected growing-source count theorem and
-[one-clean depth theorem](depth/ONE_CLEAN_DEPTH.md) cover complete real
-and phase-dressed complex magnitude frames. The
-[subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) improves
-their fixed-accuracy depth to polylogarithmic at square-root dirty width.
-The [sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) retains a
-stronger two-clean linear-precision special case. The
+[precision-uniform subtree depth theorem](depth/UNIFORM_SUBTREE_DEPTH.md)
+cover complete real and phase-dressed complex magnitude frames with one
+clean qubit. The depth theorem combines the
+[subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) with the
+terminal and fallback interfaces of the retained
+[one-clean predecessor](depth/ONE_CLEAN_DEPTH.md). The
+[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) keeps its
+two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
@@ -138,11 +140,21 @@ proof chapters; they are not duplicated here.
 
 ### Large-workspace T-depth
 
-The [one-clean theorem](depth/ONE_CLEAN_DEPTH.md), R72, is the selected
-all-precision simultaneous count/depth proof for both frame families.
-The [subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md), R78,
-adds $`D_T=O_\eta(N/b^2+\log^2(n+2))`$ at fixed accuracy, retaining
-optimal count, $`G=O_\eta(N)`$, and the same family-specific thresholds.
+The [precision-uniform subtree theorem](depth/UNIFORM_SUBTREE_DEPTH.md),
+R79, is the selected all-precision simultaneous count/depth proof for both
+frame families. With absolute constants, one clean qubit and the retained
+family-specific dirty thresholds, it gives optimal
+$`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, and
+
+```math
+D_T=O\!\left(NL/b^2+
+\min\{nL,(L+\log_2(n+2))\log_2(n+L+2)\}\right).
+```
+
+At sufficient $`b=\Theta(\sqrt{NL})`$, depth is
+$`O(\log^2(n+2))`$ for $`L=O(\log(n+2))`$, including
+inverse-polynomial error in n. R78's fixed-accuracy theorem remains a
+corollary; R72's stronger high-precision clause is retained.
 The precision splice, literal widths, matching intervals, and shrinking-error
 special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.md).
 The full initialized-isometry guarantee includes common phase, earlier
@@ -158,14 +170,15 @@ earlier method-specific limits.
 The [real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
 [complex R71 theorem](depth/COMPLEX_FRAME_DEPTH.md) retain their two-clean
 statements. The two-clean [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains the stronger logarithm through linear precision. The
+retains its original linear-precision statement and source interfaces. The
 [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md) still
 supplies the two-clean precision and width splices.
 
 | Current proof | Role |
 |---|---|
-| [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | Fixed-accuracy R78: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
-| [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retain both families' simultaneous bounds using native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
+| [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
+| [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 decoder proof and fixed-accuracy corollary: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
+| [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retained R72 predecessor and selected proof interfaces: native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
 | [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
 | [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Retained two-clean theorem: charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
 | [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Reuse the binary source above a logarithmic protected bank through exponentially growing precision, with explicit precision cardinality in every query charge |
@@ -196,7 +209,8 @@ the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
 channels and reweighting obey the same bound. It does not constrain
 unrestricted block encodings or establish a native T-depth lower bound.
 R78 replaces that overlap recovery with explicitly priced spectral-label
-erasure; the normalization theorem remains unchanged.
+erasure; R79 makes the resulting resource bound uniform in precision.
+The normalization theorem remains unchanged.
 
 The following obstruction branch is independent of the constructive proof
 chain. The [resource frontier](../docs/OPEN_PROBLEM.md) gives the exact
