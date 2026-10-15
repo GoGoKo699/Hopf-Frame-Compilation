@@ -232,6 +232,12 @@ keeps the general construction as the active destination. The next task
 is mechanism discovery; a pause or a failed candidate does not retire
 the question. Independent review can accompany that work.
 
+The next [five-hour session design](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
+targets joint orientation and recovery through two representations:
+the relative frame operator and coherent depth-band recovery. It permits
+mechanism discovery before certification and reserves time to reformulate
+the opening hypotheses. The design has not yet been executed.
+
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
