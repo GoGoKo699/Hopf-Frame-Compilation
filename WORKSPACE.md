@@ -158,10 +158,21 @@ $`\rho=\sin(\pi/8)/\sqrt2`$ between distinct two-layer Pauli images.
 For the zero-clean witness this gives four-layer error at least
 $`\rho/2\approx0.135299`$: integer $`L\ge3`$ requires at least five
 layers, regardless of dirty width. With one clean qubit it forces exact
-terminal clean-sector preservation below $`\rho/2`$, but does not prove
-a five-layer lower bound. The unrestricted four-layer Hilbert--Schmidt
-identity-isolation question remains open; operator-norm rigidity does not
-settle that weaker metric.
+terminal clean-sector preservation below $`\rho/2`$.
+The [one-clean midpoint theorem](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, extends the same floor to four-layer circuits admitting a two-plus-two
+split with a Pauli encoded clean observable, so this subclass requires
+five layers at $`L\ge3`$. A Hermitian-Clifford midpoint gives a positive
+explicit threshold with arbitrary dirty width and crossing rank.
+
+The current unrestricted target is the
+[compressed-conjugation freezing step](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question)
+for a non-Clifford encoded midpoint. Commutant lifting and phase
+discreteness already hold in that general case; terminal return alone
+does not make the remaining Clifford-boundary argument applicable.
+The separate four-layer Hilbert--Schmidt identity-isolation question
+also remains open; operator-norm rigidity does not settle that weaker
+metric.
 Optimal depth remains an open problem.
 
 ### Reopening research requires a qualifying mechanism

@@ -195,7 +195,27 @@ and arbitrary dirty width. Since $`1/8\lt\rho/2`$, every integer
 $`L\ge3`$ requires at least five layers. This lower bound does not claim
 that the four-layer error floor is sharp. With one initialized clean
 qubit, error below $`\rho/2`$ forces exact terminal clean-sector
-preservation, but does not establish a five-layer lower bound.
+preservation.
+
+The [one-clean midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives two further error floors with arbitrary dirty width and
+crossing rank. For a split $`V=V_2V_1`$ with each half of T-depth at
+most two, let $`S=V_1Z_CV_1^\dagger`$ be the encoded clean observable.
+
+| A four-layer realization admits | One-clean consequence for the same witness |
+|---|---|
+| A split with S Pauli | Error at least $`\tau=\rho/2`$; integer $`L\ge3`$ requires five layers in this subclass |
+| A split with S Hermitian Clifford | Error at least an explicit positive $`\eta_C`$, independent of width and crossing rank; the proof gives a very conservative constant |
+
+Terminal return does not imply either midpoint hypothesis. R76's
+[remaining question](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question)
+is freezing the compressed conjugations for a non-Clifford midpoint;
+commutant lifting and phase discreteness already extend to that case.
+A separate spectral argument gives error at least $`1/196608`$ when
+the exactly returned occupied block has finite projective order; in
+particular, four-layer full circuits of finite projective order are
+excluded at $`L\ge18`$. Generic Clifford+T circuits need not satisfy
+that condition.
 
 The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, gives a positive error gap for the same $`1/3`$ witness for each

@@ -271,6 +271,15 @@ premise or literature-priority claim is made. The [literature comparison](../res
 attributes the polynomial-limit and stabilizer premises (F43–F44) and
 distinguishes existing exact denominator results (F45).
 
+[R76](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md) extends the
+one-clean obstruction to realizations with a Pauli or Hermitian-Clifford
+encoded clean observable at a two-layer midpoint, without bounding
+middle crossing rank. Its phase-polynomial descent, finite-boundary
+argument and compressed-commutant lift reuse the preceding local proofs.
+A complementary cyclotomic norm proof excludes finite-projective-order
+occupied blocks. These restricted results add no imported premise or
+priority claim and leave the unrestricted one-clean four-layer question open.
+
 ## References highlighted here
 
 - Exact toolkit: P. Yuan and S. Zhang; historical predecessor: X. Sun and coauthors.

@@ -212,7 +212,12 @@ to the same witness at error $`2^{-L}`$ require minimum middle active
 symplectic crossing rank $`\Omega_a(\sqrt L)`$. Its explicit elementary
 bound also supplies a fixed-clean three-layer accuracy threshold.
 With one clean qubit, R75 forces exact terminal clean-sector preservation
-below $`\rho/2`$; it does not establish a five-layer lower bound there.
+below $`\rho/2`$. The [one-clean midpoint theorem](research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives the same error floor when a four-layer circuit admits a
+two-plus-two split whose encoded clean observable is Pauli, hence five
+layers are required at $`L\ge3`$ in that subclass. A Hermitian-Clifford
+midpoint gives a positive explicit threshold without a crossing-rank
+bound. The unrestricted non-Clifford midpoint case remains open.
 Optimal depth remains an open problem.
 
 ## Operational consequence

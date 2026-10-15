@@ -287,6 +287,14 @@ Paulis on the occupied sector. The unoccupied sector has no specified
 logical action, and the preceding zero-clean argument cannot be
 applied to it. No one-clean five-layer lower bound follows here.
 
+The [midpoint theorem R76](ONE_CLEAN_MIDPOINT_RIGIDITY.md) proves such
+a bound under a further hypothesis on a two-plus-two split. A Pauli
+encoded clean midpoint gives the same error floor tau; a Hermitian
+Clifford midpoint gives a smaller explicit positive threshold, with no
+crossing-rank bound. R76 also shows that the operator-rigidity proof
+extends to commuting phase-polynomial layers with dependent axes. The
+unrestricted one-clean case still permits a non-Clifford midpoint.
+
 ## 7. What remains open for scalar overlaps
 
 Let $`x=2^{-q}\mathrm{Tr}(AB)`$ for two two-layer Hermitian

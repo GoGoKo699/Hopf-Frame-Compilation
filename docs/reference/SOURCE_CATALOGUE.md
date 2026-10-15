@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F46 and R12–R75: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
+| F1–F46 and R12–R76: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -262,6 +262,7 @@ extends R32 and R43 with the following component result.
 | R73 | constant T-depth obstructions with initialized clean work | [Clean-aware proof](../../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md): for every fixed clean budget, the complete-frame witness requires at least four T layers below a positive threshold, uniformly in dimension and dirty width; R74 Section 5.1 supplies an independent elementary proof with an explicit threshold. With no clean work the exact three-layer error floor is approximately 0.169714, attained by a Clifford; R75 strengthens the zero-clean obstruction to five required layers for integer precision L ≥ 3. The one-clean two-layer witness requires three layers for L ≥ 8. The sharp three-layer transfer gap gives preserved-Pauli rigidity and exact terminal clean-bit sectors with one clean qubit below approximately 0.270598, without controlling the occupied sector. F35/F44 supply stabilizer facts; F43 remains a premise only of the retained scalar-closure proof. No growing depth lower bound or unrestricted-clean conclusion. |
 | R74 | quantitative four-layer obstruction at bounded middle crossing rank | [Crossing-rank proof](../../research/depth/FOUR_LAYER_CROSSING_RANK.md): at each fixed clean budget a and bound on the symplectic pairing rank of the active middle T-axis spans, the R73 witness has an explicit positive error floor, uniformly in dimension and dirty width. Section 5.1's elementary initialized-sector proof gives necessary minimum crossing rank $`\Omega_a(\sqrt L)`$ at error $`2^{-L}`$, over all native four-layer decompositions. F44 supplies Clifford realization and stabilizer coordinates. F43 is used only in the retained scalar-closure proof, where the local symplectic reduction bounds normalization by crossing rank. No five-layer obstruction with positive clean work and unbounded crossing rank. |
 | R75 | four-layer operator rigidity and zero-clean five-layer obstruction | [Operator-rigidity proof](../../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md): distinct two-layer Hermitian Pauli images have operator-norm separation at least $`\rho\approx0.270598`$, uniformly in width. The R73 complete-frame witness has four-layer error at least $`\tau=\rho/2\approx0.135299`$ with no clean work and arbitrary returned dirty width, even after optimizing common phase; integer precision L ≥ 3 therefore requires at least five T layers. With one clean qubit, error below tau forces only terminal clean-Z preservation. F35/F44 supply stabilizer facts; R73's local phase gap and unit-circle arithmetic combine with exact Pauli commutants. No scalar four-layer transfer gap, positive-clean five-layer bound or growing depth lower bound. |
+| R76 | one-clean midpoint rigidity and finite-projective-order obstruction | [Midpoint proof](../../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md): four-layer one-clean realizations with a Pauli encoded clean midpoint have error floor tau, and Hermitian-Clifford midpoints have an explicit positive floor, with arbitrary dirty width and no middle crossing-rank bound. Two-layer descent and R75's phase-polynomial extension give the Pauli case; R74's finite-boundary form and a local compressed-commutant lift give the Clifford case. A separate cyclotomic norm proof gives error floor $`1/196608`$ for exactly returned occupied blocks of finite projective order. Existing F35/F44 facts and local phase arithmetic suffice, with no new imported premise. Terminal return implies neither midpoint restriction nor finite projective order, so the unrestricted one-clean four-layer question remains open. |
 
 For R70, R71 and R72, the all-precision envelope is
 
@@ -400,8 +401,14 @@ operator-norm isolation of two-layer Pauli images and the zero-clean
 four-layer error floor $`\tau\approx0.135299`$, requiring at least five
 layers for L ≥ 3 with arbitrary returned dirty width. At one clean qubit
 it forces terminal clean-Z preservation only. Neither a scalar four-layer
-transfer gap nor a positive-clean five-layer obstruction follows. These
-obstructions do not match the growing large-width upper bounds.
+transfer gap nor an unrestricted positive-clean five-layer obstruction follows.
+The [one-clean midpoint theorem](../../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives restricted five-layer obstructions with a Pauli or
+Hermitian-Clifford encoded clean midpoint and unrestricted crossing rank.
+Its descent and compressed-commutant proofs reuse R74's finite-boundary
+form and R75's phase-polynomial extension. Its finite-projective-order
+complement uses a local cyclotomic norm proof. No imported premise is
+added, and these obstructions do not match the growing large-width upper bounds.
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 instead supplies an explicit reversible prefix preparation and its
 active-suffix block-encoding contract, using the existing exact lookup,
