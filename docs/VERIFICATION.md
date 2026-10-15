@@ -140,6 +140,16 @@ proved in the chapters. R82's affine-reference extension uses these
 reference-core identities with its unchanged weighted-source geometry.
 No additional scientific receipt or general emitter is introduced.
 
+The [in-place permutation checkpoint](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+has two [boundary fixtures](../tests/test_permutation_bridge_limits.py).
+One exhausts all permitted clean/dirty inputs of the four-shear order-eight
+example and checks the order-sixteen triangular witness. The other builds
+explicit binary-linear Clifford permutations and dense spectral isometries
+to check why an exact encoding-order restriction does not extend to fixed
+error. Neither fixture supplies a native encoder, a general conversion,
+or an asymptotic proof. The scoped proofs and the unchanged general
+frontier are stated in the checkpoint; scientific receipts are unchanged.
+
 The [precision-uniform theorem R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 uses the unchanged R78 decoder identities below. Its new work is analytic:
 retain the original source's explicit precision factors, enlarge the

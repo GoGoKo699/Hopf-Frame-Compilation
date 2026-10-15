@@ -43,6 +43,7 @@ must be proved separately.
 | Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
 | Joint decoder/terminal follow-up | [Common-flag depth](research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md), [recursive terminal](research/depth/RECURSIVE_TERMINAL_DEPTH.md), [bounded-density depth](research/depth/BOUNDED_DENSITY_DEPTH.md), [session outcome](research/depth/JOINT_DEPTH_SESSION_RESULT.md) |
 | Branch-orientation follow-up and current constructive gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
+| Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): stopped without a qualifying general construction; scoped conversion limits and reopening condition |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -127,6 +128,18 @@ constructive gap is arbitrary nonlinear orientation at interior bias:
 the factorization $`W=P W_0 Q`$ still needs priced in-place leaf and marker maps, or a
 direct complete-word construction. A parallel XOR lookup alone does not
 supply them. The branch session records the precise reopening condition.
+
+The [bounded permutation follow-up](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+did not pass its new-mechanism checkpoint and stopped construction early.
+It retains a valid unary-bank relabeling identity whose recursive selected
+permutation remains unpaid, and restrictions on four XOR shears, exact
+encoded Clifford actions, and corner words with limited interleavers.
+None is an unrestricted native lower bound; an explicit approximate
+encoding also prevents extending the exact Clifford-order argument by
+continuity. R79 and the arbitrary-orientation frontier are unchanged.
+Without a new qualifying mechanism, the next phase is independent
+technical review of the proved results, rather than another automatic
+construction session. Final manuscript drafting remains separate.
 
 The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).

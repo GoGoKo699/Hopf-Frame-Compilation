@@ -372,6 +372,10 @@ column has constant error.
 
 ## 7. Remaining mechanism and stopping point
 
+The subsequent [bounded permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
+tested this interface and stopped without a qualifying general compiler.
+It is the current decision record; the gap described below remains open.
+
 The exact bipartite phase/XOR interface in Section 2 is already within
 the desired count and depth budgets. What remains missing is a native
 conversion to an arbitrary in-place triangular permutation with one
