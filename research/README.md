@@ -144,6 +144,12 @@ The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
 depth remains open.
 
+The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
+current fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
+the assumptions a new route must change. It separates dimension-growing
+depth from the next constant-depth obstruction and preserves the scope of
+earlier method-specific limits.
+
 The [real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
 [complex R71 theorem](depth/COMPLEX_FRAME_DEPTH.md) retain their two-clean
 statements. The two-clean [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)

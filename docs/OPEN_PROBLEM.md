@@ -35,6 +35,12 @@ and its common-flip counterexample rules out that universal shortcut.
 Neither settles the unrestricted question. All statements below concern
 the complete initialized-isometry contract, not one state column.
 
+The [preparation map](../research/depth/DEPTH_OBSTACLE_MAP.md) separates
+that precision-dependent obstruction from the dimension-growing depth
+question. It reconstructs the current upper costs and lower proof gap;
+the present spectator-padded witness itself has constant depth at fixed
+accuracy by the existing one-qubit compiler.
+
 <a id="precision-uniform-two-clean-count"></a>
 
 <a id="precision-uniform-one-clean-count"></a>
