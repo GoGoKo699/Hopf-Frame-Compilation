@@ -15,6 +15,13 @@ claimed. R79 remains the selected general theorem; R80–R84 retain their
 existing scopes. The restricted obstructions below explain why particular
 conversions fail. They are not substitutes for the session's target.
 
+**Continuing direction, revised on 16 October 2026 (Asia/Shanghai):**
+the session ended, while the general constructive objective remains
+active. The user's revision supersedes the recommendation to make
+independent review the default next phase. Discovering a new mechanism
+is itself part of the work; its absence at this checkpoint is not a
+reason to retire the question. See the [continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer).
+
 ## 1. The sufficient target and its scope
 
 Let $`N=2^n`$. A binary tree automorphism has a triangular leaf map
@@ -533,18 +540,26 @@ for unrestricted operations.
 ## 8. Decision and verification boundary
 
 The early checkpoint did not produce a native identity with a complete
-sub-square-logarithmic resource and return proof. The construction phase
-therefore stops here. The scoped statements in sections 4–6 record
+sub-square-logarithmic resource and return proof. That session's
+construction phase stopped here. The scoped statements in sections 4–6 record
 failed conversion architectures; they neither rule out the target nor
 improve R79. More subclasses or additional finite searches do not count
 as crossing this session's finish line.
 
-Reopening requires a new complete in-place conversion, a direct recovery
-word for arbitrary orientations, or a lower-bound invariant applicable
-to the actual unrestricted native model. Each must price its changing
-addresses, encodings, actual inverses, clean workspace, and full return.
-Absent such a mechanism, the next project phase is independent technical
-review of the proved results. Final manuscript drafting remains separate.
+The continuing constructive goal is a complete in-place conversion or
+a direct recovery word for arbitrary orientations. Discovery can begin
+with a partial identity or a reformulation and an explicit missing step;
+a finished compiler is the success criterion, not the entry requirement.
+To establish an improvement, price changing addresses, encodings, actual
+inverses, clean workspace, and full return. An applicable unrestricted
+lower bound would also answer the corresponding target question, but
+the restrictions here do not provide one.
+
+The initial recommendation to move to independent review absent a new
+mechanism is superseded by the user's continuing direction above.
+Review of proved results can accompany constructive research. A pause
+should preserve the destination and name the next unresolved question.
+Final manuscript drafting remains separate.
 
 The [two bounded fixtures](../../tests/test_permutation_bridge_limits.py)
 check the exact one-clean four-shear sharpness example on every allowed

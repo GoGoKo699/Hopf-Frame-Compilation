@@ -226,8 +226,11 @@ relabeling identity with an unpaid recursive selector, scoped four-shear
 and exact encoding restrictions, and a limited corner-word obstruction.
 These do not exclude general native circuits. Arbitrary nonlinear
 orientation remains open, and R79 remains the general theorem. The
-checkpoint gives the reopening condition and the decision to move to
-independent review absent a new mechanism.
+checkpoint preserves those findings, while the
+[continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
+keeps the general construction as the active destination. The next task
+is mechanism discovery; a pause or a failed candidate does not retire
+the question. Independent review can accompany that work.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent

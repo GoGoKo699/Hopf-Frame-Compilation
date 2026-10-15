@@ -23,8 +23,10 @@ with one clean qubit and the same count budgets. R83 also supplies the
 priced positive affine reference in R82's extension. The later
 [in-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
 stopped without a qualifying construction and preserves that general
-frontier. Its scoped obstructions and reopening condition are the current
-decision record; this map preserves the earlier preparation history below.
+frontier. Its scoped obstructions inform the continuing search; the
+[current mandate](../../WORKSPACE.md#continuing-toward-the-general-answer)
+keeps the general construction as the destination. This map preserves
+the earlier preparation history below.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -231,19 +233,22 @@ proof/evidence links.
 | [Precision streams](SHARED_BINARY_TERMINAL.md#8-bottom-and-terminal-composition) and [one-clean relocation](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary) | These constructions are completed; terminal savings and high-precision splices do not remove fixed-accuracy early recovery | Change early recovery or the full large-width schedule |
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
 | [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | Cheap parallel XOR queries do not return a dirty output word after in-place conversion; protecting a long clean output leaves square-logarithmic depth; the corner output-tag eraser fails for overlapping positive descendants | A priced nonlinear in-place leaf/marker map or a direct complete word for the oriented frame, beyond the affine and corner cases |
-| [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | A new complete conversion or recovery identity with a full resource and return proof; otherwise proceed to independent review |
+| [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | Discover a conversion or joint recovery mechanism beyond these restrictions, then establish its full resource and return proof |
 | [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
 ## 5. What the next research plan must decide
 
 The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
-closed the bounded conversion search without a general improvement.
-Reopening requires a new mechanism for arbitrary nonlinear orientation
-with complete native permutation/recovery and return costs, or an
-invariant for the unrestricted model. The proved affine and corner
-circuits and scoped failures should not be repeated as unresolved tasks.
-Absent such a mechanism, proceed to independent technical review of the
-proved package. R79 remains the selected general bound.
+ended that bounded conversion search without a general improvement.
+Arbitrary nonlinear orientation remains an active constructive target.
+The next design step is mechanism discovery: examine which costs belong
+to the full operator and which arise from separate permutation/recovery
+factors, and seek a native identity that changes the latter. A complete
+resource and return proof is required to claim success, while partial
+identities with named gaps can guide exploration. The proved affine and
+corner circuits and scoped failures should not be repeated as unresolved
+tasks. Independent technical review can accompany the search. R79 remains
+the selected general bound.
 
 For the asymptotic benchmark, the most direct constructive target is the
 **encoding/recovery mechanism and its repeated large queries**. A lower-bound
@@ -252,9 +257,11 @@ one-clean constant-depth obstruction is a separate valid target, with the
 freezing step above precisely localized; it should be selected for that
 purpose rather than described as closing the dimension-growth gap.
 
-Before investing in a candidate, state the old assumption it changes,
-its exact native identity or encoding, its domain of valid inputs, and
-symbolic depth/count/width/error/return recurrences. Price basis changes,
+At the start of a bounded exploration, state the question, the assumption
+or representation it changes, and the uncertainty to resolve. Before
+claiming an improvement or expanding finite validation, supply the exact
+native identity or encoding, its domain of valid inputs, and symbolic
+depth/count/width/error/return recurrences. Price basis changes,
 all table access, actual inverses, recovery multiplicity, inactive occupied
 work, and the terminal tail. For a lower-bound candidate, state all
 quantifiers, the norm, native-realizability conditions, and whether its
@@ -262,6 +269,8 @@ consequence grows with n, with L, or only strengthens a constant.
 Stop if the proposed gain leaves the old leading order, imports unpriced
 clean history, or fails work return. A finite example should test a
 specific surviving premise after this analysis, not substitute for it.
+A pause records what was learned and the next unresolved question;
+failure of that candidate does not end the general research objective.
 
 The preparation audit found no defect in the inspected resource composition
 or the R75–R77 proof chain. It reconstructed their interfaces and the

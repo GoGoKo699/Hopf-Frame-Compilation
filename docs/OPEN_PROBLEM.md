@@ -234,6 +234,13 @@ whole-register reduction and the remaining recovery/return obligation are
 recorded there; arbitrary node-dependent magnitudes remain a broader
 question.
 
+The [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
+keeps arbitrary orientation as the next constructive target within the
+broader depth problem. Discovering a mechanism is part of that work;
+the completed circuit and its full resource and return proof remain
+the criterion for an improved upper bound. A session checkpoint does
+not change the status of the mathematical question.
+
 ## Constant-depth frontier
 
 ### Zero-clean error floors and fixed-clean thresholds
