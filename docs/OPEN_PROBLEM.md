@@ -24,7 +24,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Question | Status and reading route |
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
-| Count and depth on one circuit | [Result D](#large-width-t-depth) is proved with one clean qubit for both frame families; optimal large-width depth remains open |
+| Count and depth on one circuit | [Result D](#large-width-t-depth) gives all-precision bounds and fixed-accuracy polylogarithmic depth with one clean qubit for both frame families; optimal large-width depth remains open |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
@@ -37,7 +37,7 @@ the complete initialized-isometry contract, not one state column.
 
 The [preparation map](../research/depth/DEPTH_OBSTACLE_MAP.md) separates
 that precision-dependent obstruction from the dimension-growing depth
-question. It reconstructs the current upper costs and lower proof gap;
+question. It reconstructs the pre-R78 upper costs and lower proof gap;
 the present spectator-padded witness itself has constant depth at fixed
 accuracy by the existing one-qubit compiler.
 
@@ -148,22 +148,32 @@ More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
 Its early phase-gradient source and terminal binary source are separately
 charged. The small absolute c is not a practical crossover estimate.
 
-The one-clean fixed-accuracy consequence of R72 covers every $`n\ge1`$.
+The [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
+R78, improves fixed-accuracy depth for every $`n\ge1`$.
 For every fixed $`0\lt\eta\le1/64`$, put
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. At one clean
-flag and every $`b\ge17(L+n+7)`$, it gives
+flag, every $`b\ge17(L+n+7)`$ for real frames, and every
+$`b\ge17(L+n+8)`$ for phase-dressed complex magnitude frames, it gives
 
 ```math
 T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad
-D_T=O_\eta\!\left(N/b^2+\min\{n,\sqrt n\log_2(n+2)\}\right).
+D_T=O_\eta\!\left(N/b^2+\log_2^2(n+2)\right).
 ```
 
+The same circuit has full initialized-isometry error at most eta. Native
+subtree reflections compute and erase the source's spectral label, replacing
+early amplitude amplification. Source calls, actual inverses, all predicates,
+the one-clean terminal schedule, and literal phase composition are charged.
+The constants may depend on the fixed accuracy; R72's all-precision statement
+and its high-precision clause remain unchanged.
+
 At sufficient $`b=\Theta_\eta(\sqrt N)`$, this is optimal-order
-T-count with $`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth. Both count
+T-count with $`O_\eta(\log^2(n+2))`$ depth. Both count
 and depth match through
-$`b\le\sqrt N/[n^{1/4}\sqrt{\log_2(n+2)}]`$, whenever the
-interval above the literal lower threshold is nonempty. The sublinear-depth
-existence question is resolved; optimal large-width depth remains open,
+$`b\le\sqrt N/\log_2(n+2)`$, whenever the
+interval above the family's literal lower threshold is nonempty: there
+$`T^\star=\Theta_\eta(N/b)`$ and $`D_T^\star=\Theta_\eta(N/b^2)`$.
+Optimal large-width depth remains open,
 with unrestricted lower bound $`\Omega(1)`$ at square-root width.
 
 ## Constant-depth frontier
@@ -279,9 +289,10 @@ unresolved, separately from R75's operator-norm result.
 Optimal depth remains an open problem.
 
 The [entry-indexed encoding bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-shows that the current source architecture needs worst-case normalization
+shows that the entry-indexed overlap architecture needs worst-case normalization
 $`\Omega(\sqrt n)`$, even at fixed operator error. That is a bound
 on this encoding method, with no unrestricted native-depth consequence.
+R78 uses native spectral-label erasure instead of that overlap recovery.
 T-depth permits arbitrary Clifford interlayers and is distinct from total
 physical depth. The [depth results](../research/README.md#large-workspace-t-depth)
 record the new complete construction and preserve the earlier component

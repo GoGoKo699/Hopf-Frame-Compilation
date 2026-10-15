@@ -113,6 +113,19 @@ supply the all-size statements within their declared interfaces.
 
 ### Detailed finite checks
 
+The [subtree-projector decoder R78](../../research/depth/SUBTREE_PROJECTOR_DECODER.md)
+adds fixed-accuracy polylogarithmic depth with one external clean qubit.
+Its five [focused tests](../../tests/test_subtree_projector_decoder.py)
+check exact rational signed/singular marker geometry, nested projector
+bands, reversible label extraction, padded thresholds, literal phases,
+occupied inactive work, guarded tag XOR, and leaked-source full-projector
+bounds with arbitrary unitary completions. Wrong signs, padding, guards,
+and inverse substitutions are rejected by counterchecks. Native source
+realization, query costs, polynomial workspace absorption, all-width
+composition and asymptotic depth remain analytic; the bounded completions
+are verification fixtures, not source emitters. Existing exact receipts
+are unchanged.
+
 The [one-clean count/depth theorem](../../research/depth/ONE_CLEAN_DEPTH.md),
 R72, adds an analytic native schedule, protected terminal flag relocation,
 a width/precision splice, and one-clean literal phase composition. The

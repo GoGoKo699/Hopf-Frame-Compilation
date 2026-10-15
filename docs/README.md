@@ -90,12 +90,20 @@ complex-unitary synthesis.
 ### D. Simultaneous frame T-count and T-depth
 
 Start with the [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md),
-R72. It combines optimal count and the selected depth bounds on one circuit
+R72. It combines optimal count and the all-precision depth bounds on one circuit
 for both frame families, with their separate literal dirty reservations.
 The [claim ledger](../manuscript/PUBLICATION_SCOPE.md) gives the precision
 splice, matching interval, and large-width special cases. Literal diagonal
 composition retains the full initialized-isometry error, including leakage
 from the first factor.
+
+At fixed accuracy, the [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
+R78, strengthens the depth bound to $`O_\eta(N/b^2+\log^2(n+2))`$
+for both families, with the same literal dirty thresholds and optimal count.
+Its native subtree reflections and coherent label erasure use the original
+descendant loader, with the one-clean terminal and width/phase composition
+retained. Constants may depend on accuracy; R72 remains the all-precision
+statement.
 
 The two-clean [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains a stronger logarithm through linear precision. Its dependency chain
@@ -104,6 +112,7 @@ Unrestricted optimal depth remains open.
 
 | Selected branch | Canonical proof and role |
 |---|---|
+| Fixed-accuracy polylogarithmic depth | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
 | One-clean count and depth | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
 | Literal phase dressing | [Complex-frame depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71: retained two-clean packed diagonal depth and shared-workspace composition at the complex reservation |
@@ -165,7 +174,8 @@ is needed by the unary source. Their proofs must not be replaced by a link
 to a stronger headline bound.
 
 D covers complete real and phase-dressed complex magnitude frames with
-one clean qubit through R72; R70 and R71 retain their two-clean statements.
+one clean qubit through R72 and its fixed-accuracy refinement R78;
+R70 and R71 retain their two-clean statements.
 The state-based protocol retains its separate
 decoder contract. T-depth allows arbitrary
 Clifford interlayers; their gate counts are charged, and their physical

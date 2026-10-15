@@ -288,8 +288,20 @@ D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
 
 Its early phase gradient and terminal binary source are separately charged.
 At sufficient $`b=\Theta(\sqrt{NL})`$, shrinking error retains
-sublinear depth when $`L=o(n/\log(n+2))`$; fixed accuracy retains
-$`O_\eta(\sqrt n\log(n+2))=o(n)`$ depth.
+sublinear depth when $`L=o(n/\log(n+2))`$.
+
+At every fixed $`0\lt\eta\le1/64`$, the
+[subtree-projector decoder](research/depth/SUBTREE_PROJECTOR_DECODER.md), R78,
+gives both complete-frame families
+$`D_T=O_\eta(N/b^2+\log^2(n+2))`$ at the same one-clean dirty
+thresholds, with optimal $`T=O_\eta(\sqrt N+N/b)`$ and
+$`G=O_\eta(N)`$ on the same circuit. Native reflections about nested
+subtree spaces compute and erase the source's spectral label, replacing
+early amplitude amplification. Source calls, actual inverses, conditional
+work, the retained terminal schedule, and literal phase composition are
+charged. Count and depth match through $`b\le\sqrt N/\log_2(n+2)`$
+when the eligible interval is nonempty. Constants may depend on accuracy;
+R72 remains the all-precision theorem.
 
 The complex theorem concerns the prescribed magnitude frame, with supplied
 leaf phases; it is not arbitrary complex-unitary synthesis. T-depth permits
@@ -323,7 +335,7 @@ task-level result. Two additional resource points remain separate from C:
 | Resource point | Current guarantee |
 |---|---|
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
-| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R78](research/depth/SUBTREE_PROJECTOR_DECODER.md) gives both complete-frame families worst-case optimal count with $`D_T=O_\eta(\log^2(n+2))`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 saves one dirty qubit for the complex frame at $`L=N`$. The

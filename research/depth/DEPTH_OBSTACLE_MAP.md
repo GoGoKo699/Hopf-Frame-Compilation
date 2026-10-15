@@ -2,8 +2,13 @@
 
 [Current frontier](../../docs/OPEN_PROBLEM.md) · [Research index](../README.md) · [Continuing workspace](../../WORKSPACE.md)
 
+**Historical baseline, superseded at fixed accuracy by
+[R78](SUBTREE_PROJECTOR_DECODER.md).** The
+[executed session](RESEARCH_SESSION_RESULT.md) replaced overlap recovery
+with native subtree-projector decoding and proved polylogarithmic depth.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
-It reconstructs the current upper-bound costs, isolates the lower-bound
+It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
 from main commit `b5d22d8`; linked chapters remain the proof homes.
 
@@ -232,7 +237,8 @@ The preparation audit found no defect in the inspected resource composition
 or the R75–R77 proof chain. It reconstructed their interfaces and the
 critical imported lemmas; it did not independently reprove every synthesis
 premise, construct a general emitter, or establish a new asymptotic bound.
-The [runnable research prompt](RESEARCH_SESSION_PROMPT.md) designs the next
-attack from this map. Its preferred hypothesis is native depth-label erasure
+The [research prompt](RESEARCH_SESSION_PROMPT.md) designed the subsequent
+attack from this map. Its preferred hypothesis was native depth-label erasure
 through nested subtree projectors, with an independent query-cost reserve
-and explicit qualification gates. That design has not yet been executed.
+and explicit qualification gates. The [execution result](RESEARCH_SESSION_RESULT.md)
+records the proved construction and the reserve routes that did not qualify.

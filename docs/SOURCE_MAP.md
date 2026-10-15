@@ -3,7 +3,8 @@
 [← Verification](VERIFICATION.md) · [Complete narrative](../REVIEW.md) · [Related work →](RELATED_WORK.md)
 
 This is the claim-to-source map for Results A–D, including C's
-one-clean banked frontier and the precision-uniform large-width depth refinement. It separates
+one-clean banked frontier, all-precision depth bounds, and the fixed-accuracy
+polylogarithmic refinement. It separates
 imported synthesis tools, inherited Hopf/QBP interfaces, and the operator
 constructions established here. The [source catalogue](reference/SOURCE_CATALOGUE.md)
 preserves the complete stable C/H/Q/F/R register and detailed contribution
@@ -91,6 +92,7 @@ worst-case statements over the specified family.
 | **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
 | **C. One-clean count frontier**: $`T=O(N+L)`$ at base width; $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at doubled base width | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R64–R65, with R25's small-dimension corollary | Every $`n\ge1`$, $`L\ge6`$, fixed $`a=1`$; base $`B=L+n+7`$ real, $`B=L+n+8`$ complex magnitude; banked match at $`b\ge2B`$; $`G=O(NL)`$. Exact-base matching at $`L\ge\max\{6,n\}`$. Existing F2–F5, F8–F9, F11, F19–F20 and R17/R20/R25/R62/R63 interfaces; full isometry, literal phases and actual inverses. |
 | **D. One-clean optimal count and depth bounds** | [One-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72, using native one-clean words, protected source/recovery schedules and the retained R70/R71 proofs | Every $`n\ge1`$, integer $`L\ge6`$, one clean flag; real $`b\ge17(L+n+7)`$, phase-dressed complex magnitude $`b\ge17(L+n+8)`$; full error $`2^{-L}`$. The native baseline, terminal flag relocation, width/precision splice, one-clean diagonal, actual inverses and work return are charged. Half-error factors share the sole flag and dirty pool; no new external premise or unrestricted optimal-depth claim. |
+| **Fixed-accuracy refinement of D**: $`D_T=O_\eta(N/b^2+\log^2(n+2))`$ | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: native transported reflections and coherent spectral-label erasure replace early amplitude amplification | Every fixed $`0\lt\eta\le1/64`$, all $`n\ge1`$, one clean flag, and R72's family-specific dirty thresholds; optimal $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and full initialized-isometry error. Existing descendant loaders, shallow dirty queries, terminal source and one-clean width/phase composition supply the premises. Constants may depend on accuracy; no new import or unrestricted optimal-depth claim. |
 | **Precision-uniform large-width depth**: $`D_T=O(NL/b^2+F(n,L))`$ | [Compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [coherent descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md), [shared-gradient early recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md), and [shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md); R66 | Some absolute $`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every $`b\ge17(L+n+7)`$; complete real frames, error $`2^{-L}`$, and simultaneous $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, with absolute constants. F5 supplies the early Boolean-state premise. Terminal reuse combines R12/R14's compact binary source and shared-source interface with F1/F10/F11's geometric weights, coherent history and LCU recovery; R20 supplies exact bounded controls. Native loading, conditional storage, charged queries and recovery retain the full return contract. No new external premise or unrestricted optimal-depth claim. |
 | **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
 | **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
@@ -102,14 +104,14 @@ F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
 ```
 
 At sufficient $`b=\Theta(\sqrt{NL})`$, $`L=O(\sqrt n)`$ retains
-the fixed-accuracy depth order, and $`L=o(n/\log(n+2))`$ gives
+$`O(\sqrt n\log(n+2))`$ depth, and $`L=o(n/\log(n+2))`$ gives
 sublinear depth within the stated precision range.
 
 The separate [entry-indexed encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 (R67) gives a sharp square-root normalization barrier within its explicit
 row/column factorization contract. It is not a native-depth lower bound.
 
-For D, let
+For D's all-precision R72 branch, let
 
 ```math
 F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.

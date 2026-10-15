@@ -24,8 +24,9 @@ A separate reconstruction below checks the
 [one-clean depth theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
 which gives Result D optimal count at every eligible precision and width.
 The compressed-column construction remains a stronger linear-precision
-special case; fixed accuracy retains sublinear depth at sufficiently
-large constant square-root dirty width.
+special case. The [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
+R78, separately improves fixed-accuracy depth to polylogarithmic at
+sufficient square-root dirty width.
 
 ## Claim-to-proof decisions
 
@@ -147,13 +148,20 @@ supplies the complex family's count and width-dependent depth lower bounds.
 | High-precision branch | The unbounded-dimension [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) already leaves its second clean flag unused. R72 supplies a one-clean bounded-dimension fallback and charges the completed-mask replacements and native remainder, giving $`O(NL/b^2+L)`$ for $`L>N/n^2`$. |
 | Retained two-clean proofs | [R70](../research/depth/ALL_PRECISION_DEPTH.md) and [R71](../research/depth/COMPLEX_FRAME_DEPTH.md) retain their original statements. The [uniform baseline](UNIFORM_PRECISION_DEPTH.md), [whole-frame stream](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), and [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) remain separately scoped supporting proofs; their two-clean assumptions are not transferred without the R72 arguments above. |
 | Stronger linear-precision result | The retained two-clean [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) retains $`\log_2(n+2)`$ for $`6\le L\le cn`$. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) keep their own exact inactive guards, complete-column recovery, failure history, and source-return comparisons. |
+| Fixed-accuracy refinement | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: source-isometry error bounds transported projectors in full operator norm; a reversible binary search erases the spectral tag with logarithmic conditional work. Original per-call loaders, exact guarded predicates, actual inverses, the retained one-clean terminal, width splice, and literal phase composition are charged. Constants may depend on accuracy. |
 | Imported state source | GKW v3, Lemma 3.2 and Section 3.3, supplies the coarse Boolean-state premise used by the compressed-column construction. Its ancillary allocation is not imported as a two-clean implementation; local coherent source and native schedules remain necessary. |
 | Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) concerns normalization under its explicit row/column factorization contract. It supplies no unrestricted native-depth lower bound. |
 
 At sufficient $`b=\Theta(\sqrt{NL})`$, the linear-precision
 special case gives sublinear depth for $`L=o(n/\log(n+2))`$.
-R72 independently gives the one-clean fixed-accuracy all-n consequence
-$`O_\eta(\sqrt n\log(n+2))`$ at sufficient square-root width.
+For every fixed $`0\lt\eta\le1/64`$, R78 gives both families
+$`D_T=O_\eta(N/b^2+\log^2(n+2))`$, with
+$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$, for every
+$`n\ge1`$ at R72's family-specific dirty thresholds. Count remains
+optimal throughout; depth also matches through
+$`b\le\sqrt N/\log_2(n+2)`$ when the eligible interval is nonempty.
+R72 retains its all-precision and high-precision claims. R67's overlap
+normalization bound does not constrain this spectral-label recovery.
 
 Every selected branch includes source leakage, dirty/reference inputs,
 literal phases, and actual inverse words in its full comparison.

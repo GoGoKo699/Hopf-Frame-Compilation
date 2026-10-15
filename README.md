@@ -151,7 +151,16 @@ their stated proofs and allocations; their
 [uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) keeps its separate
 precision bounds and matching intervals.
 
-All upper constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
+At every fixed $`0\lt\eta\le1/64`$, the
+[subtree-projector decoder, R78](research/depth/SUBTREE_PROJECTOR_DECODER.md),
+improves both families to
+$`D_T=O_\eta(N/b^2+\log^2(n+2))`$ at the same dirty thresholds,
+with optimal $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$ on
+the same circuit. Count and depth match through
+$`b\le\sqrt N/\log_2(n+2)`$ when the eligible interval is nonempty.
+Its constants may depend on accuracy; R72 remains the all-precision theorem.
+
+The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
 regimes, complex extensions, and older schedules useful at smaller reservations.
 
@@ -174,7 +183,7 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | For complete real frames, worst-case optimal count is attained with $`D_T=O_\eta(\sqrt n\log(n+2))=o(n)`$ and $`G=O_\eta(N)`$; optimal depth remains open |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R78](research/depth/SUBTREE_PROJECTOR_DECODER.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log^2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient

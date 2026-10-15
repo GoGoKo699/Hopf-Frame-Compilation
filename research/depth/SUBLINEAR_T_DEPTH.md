@@ -33,6 +33,11 @@ It is not an invocation of an uncharged state-preparation oracle.
 The later [one-clean theorem R72](ONE_CLEAN_DEPTH.md) reuses the
 early circuit and relocates terminal rejection into protected logical
 work. The two-clean statements and proofs in this chapter remain intact.
+The later [subtree-projector decoder R78](SUBTREE_PROJECTOR_DECODER.md)
+reuses the original column source but replaces its overlap recovery,
+giving polylogarithmic fixed-accuracy depth with one external clean qubit.
+Its constants may depend on accuracy; the precision-uniform extension
+in Section 10 retains its separate role.
 
 ## 1. Fixed-accuracy theorem
 
