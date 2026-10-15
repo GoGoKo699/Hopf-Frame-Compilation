@@ -1,7 +1,9 @@
 # Coherent signed descendant preparation with conditional workspace
 
 This chapter supplies the state-source part of the
-[sublinear-depth theorem](SUBLINEAR_T_DEPTH.md). Its native
+[sublinear-depth theorem](SUBLINEAR_T_DEPTH.md) and the transported
+reflections of the [subtree-projector decoder](SUBTREE_PROJECTOR_DECODER.md).
+Its native
 resource statement uses the separately charged
 [shallow dirty-query construction](SHALLOW_DIRTY_QUERIES.md). It is not
 an unrestricted T-depth lower bound or, by itself, a complete-frame

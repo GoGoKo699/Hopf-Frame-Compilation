@@ -2,12 +2,16 @@
 
 [Preparation map](DEPTH_OBSTACLE_MAP.md) · [Current frontier](../../docs/OPEN_PROBLEM.md) · [Workspace mandate](../../WORKSPACE.md)
 
-**Status: designed, not yet executed.** This prompt starts a new research
-session when the user asks to run it. Its baseline is main commit
+**Status: executed on 2026-10-15.** The user authorized the run; its
+[outcome](RESEARCH_SESSION_RESULT.md) is the fixed-accuracy
+[subtree-projector theorem R78](SUBTREE_PROJECTOR_DECODER.md).
+The design below is retained as the original decision process, not a
+request to rerun superseded routes. Its design baseline is main commit
 `321101d`, containing the independently reviewed preparation map. Check
 for subsequent changes before execution; a later result may supersede a
-route or its starting bound. This document proposes attacks and decision
-rules. It establishes no new mathematical claim.
+route or its starting bound. The execution started from main `aab766b`.
+This document proposes attacks and decision rules; the linked proof,
+not the prompt itself, establishes the mathematical claim.
 
 ## 1. Mission and success criteria
 

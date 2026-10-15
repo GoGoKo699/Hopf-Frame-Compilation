@@ -4,8 +4,8 @@ The repository is organized around the
 [claims selected for the manuscript](manuscript/PUBLICATION_SCOPE.md).
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
-sharper two-clean complex endpoint, and all-precision count/depth bounds
-with sublinear large-width special cases. The
+sharper two-clean complex endpoint, all-precision count/depth bounds,
+and polylogarithmic fixed-accuracy depth. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -39,7 +39,7 @@ must be proved separately.
 | Imported premises and attribution | [Source map](docs/SOURCE_MAP.md), [related work](docs/RELATED_WORK.md) |
 | One-clean count frontier and what remains unresolved | [Resource questions](docs/OPEN_PROBLEM.md) |
 | Current depth costs, proof gap, and routes worth reopening | [Depth preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) |
-| Runnable design for the next research session | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md) |
+| Executed research design and outcome | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md), [session result](research/depth/RESEARCH_SESSION_RESULT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -73,7 +73,17 @@ questions or transfer a supporting theorem's clean allocation to R72.
 ### Current depth frontier
 
 Use [the resource statement](docs/OPEN_PROBLEM.md#constant-depth-frontier)
-as the authoritative frontier. The current research result is
+as the authoritative frontier. The latest upper result is
+[R78, subtree-projector decoding](research/depth/SUBTREE_PROJECTOR_DECODER.md).
+For fixed accuracy it gives one-clean
+$`D_T=O_\eta(N/b^2+\log^2(n+2))`$ for both prescribed frame
+families, with optimal $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$.
+Its literal real/complex width thresholds remain those of R72.
+The all-precision R72 theorem remains separate; no uniform precision
+improvement follows from R78. Optimal depth at square-root width remains
+between a constant lower bound and $`O_\eta(\log^2 n)`$.
+
+The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
 For the explicit complete frame with $`\cos(2\theta)=1/3`$:
 
@@ -98,7 +108,9 @@ remains open; R75's operator-norm rigidity does not settle that weaker metric.
 
 Optimal large-width depth is the broader unresolved question. The
 [preparation map](research/depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
-current recovery/query costs and the compressed freezing gap. It also
+pre-R78 recovery/query costs and the compressed freezing gap. The
+[executed session](research/depth/RESEARCH_SESSION_RESULT.md) records how
+native subtree reflections replaced the old overlap recovery. The map also
 explains why the spectator-padded witness has constant depth at fixed
 accuracy: a dimension-growing lower bound needs a different witness. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)

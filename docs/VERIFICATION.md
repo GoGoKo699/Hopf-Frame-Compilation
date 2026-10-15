@@ -32,6 +32,7 @@ return, and resource accounting under the individual recorded contracts.
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: one-clean optimal count and T-depth | [One-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), with retained [real](../research/depth/ALL_PRECISION_DEPTH.md) and [complex](../research/depth/COMPLEX_FRAME_DEPTH.md) two-clean proofs | [One-clean native words](../tests/test_one_clean_compiler.py) and retained shared-binary-source, conjugate-recovery, blocked-query, dirty-indicator, and uniform-allocation suites | Analytic native schedule, flag relocation, width/precision splice, and full-isometry composition; finite fixtures do not certify unbounded precision, asymptotic cutoffs, or emit every variable-size frame |
 | Precision-uniform width-sensitive sublinear depth | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), [shared-gradient checks](../tests/test_shared_gradient_recovery.py), [shared binary terminal checks](../tests/test_shared_binary_terminal.py), [native coarse-program checks](../tests/test_grouped_terminal_depth.py), and retained query/indicator suites | Absolute constants in the stated linear-precision range; analytic source, invariant-sector recovery, uniform workspace splice and native schedule; finite checks are not a general compiler |
+| Fixed-accuracy polylogarithmic depth | [Subtree-projector decoder, R78](../research/depth/SUBTREE_PROJECTOR_DECODER.md) | [Exact subtree and bounded spectral-decoder checks](../tests/test_subtree_projector_decoder.py), plus retained source/query/one-clean suites | Analytic full-mode reflection, reversible search, native ledger and width splice; finite fixtures do not emit a native descendant loader or prove asymptotics |
 | Entry-indexed normalization barrier | [Encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) | Exact Haar spectrum, explicit optimal factorization and nuclear-norm dual witness | Analytic proof for the stated factorization contract; no unrestricted native-depth or recovery-query lower bound |
 | Zero-clean five-layer obstruction | [Operator rigidity, R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md) | [Exact image orbit, native split words, Clifford boundaries, and common-commutant audits](../tests/test_four_layer_operator_rigidity.py) | Uniform operator-norm theorem, arbitrary dirty width; unrestricted positive-clean five-layer and scalar-gap questions remain open |
 | Fixed-clean four-layer rank requirement | [Initialized-sector rigidity, R74](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector) | [Symplectic, weighted-phase, and initialized-projector audits](../tests/test_four_layer_crossing_rank.py) | Explicit analytic minimum-rank bound $`\Omega_a(\sqrt L)`$; no unrestricted four-layer exclusion with positive clean work |
@@ -88,6 +89,25 @@ and a full-operator perturbation that leaves nonzero recovery leakage.
 Negative controls incorrectly initialize the borrowed signal or omit an
 interlayer lift. Its source is a supplied matrix; it does not emit a
 growing-source circuit or establish the all-size banked resource bound.
+
+### Subtree-projector decoder evidence
+
+The [fixed-accuracy theorem R78](../research/depth/SUBTREE_PROJECTOR_DECODER.md)
+has five [focused checks](../tests/test_subtree_projector_decoder.py).
+Exact rational path products independently reconstruct signed, unequal and
+singular frame columns and verify their nested projectors and marker bands.
+Small physical Hadamard/reflection words check coherent search, padded
+thresholds, every occupied old tag, and literal phases. An entire small
+occupied-work space checks inactive cancellation and actual inverse use.
+Leaked source columns with deliberately different unitary completions test
+the full-space projector bound and the complete decoder error, retaining
+nonzero returned-work leakage. Missing signs, incorrect padding, an unguarded
+tag XOR, and a substituted inverse have explicit counterchecks.
+
+These are finite algebraic fixtures. The source/query native schedules,
+all-size polynomial absorption, literal one-clean allocation, terminal
+composition, and width splice are proved analytically in R78. The suite
+emits neither a native descendant loader nor a scalable frame compiler.
 
 ### Sublinear-depth evidence
 

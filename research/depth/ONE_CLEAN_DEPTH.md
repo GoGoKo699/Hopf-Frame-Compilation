@@ -11,6 +11,11 @@ the uniform fallback using the existing one-clean layerwise primitive.
 No clean-to-dirty substitution or inference of depth from an optimal
 total count is used.
 
+The later [subtree-projector decoder R78](SUBTREE_PROJECTOR_DECODER.md)
+improves fixed-accuracy depth to
+$`O_\eta(N/b^2+\log^2(n+2))`$ at the same family-specific widths.
+Its accuracy-dependent constants do not replace this all-precision theorem.
+
 ## 1. The one-clean theorem
 
 Let $`n\ge1`$ and $`L\ge6`$ be integers, and define

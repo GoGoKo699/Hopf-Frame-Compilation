@@ -13,7 +13,9 @@ A method-specific obstruction is not a lower bound for every compiler.
 The selected growing-source count theorem and
 [one-clean depth theorem](depth/ONE_CLEAN_DEPTH.md) cover complete real
 and phase-dressed complex magnitude frames. The
-[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) retains a
+[subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) improves
+their fixed-accuracy depth to polylogarithmic at square-root dirty width.
+The [sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) retains a
 stronger two-clean linear-precision special case. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
@@ -137,15 +139,18 @@ proof chapters; they are not duplicated here.
 ### Large-workspace T-depth
 
 The [one-clean theorem](depth/ONE_CLEAN_DEPTH.md), R72, is the selected
-simultaneous count/depth proof for both frame families. Its precision splice,
-literal widths, matching interval, and fixed-accuracy and shrinking-error
+all-precision simultaneous count/depth proof for both frame families.
+The [subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md), R78,
+adds $`D_T=O_\eta(N/b^2+\log^2(n+2))`$ at fixed accuracy, retaining
+optimal count, $`G=O_\eta(N)`$, and the same family-specific thresholds.
+The precision splice, literal widths, matching intervals, and shrinking-error
 special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.md).
 The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
 depth remains open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
-current fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
+pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing
 depth from the next constant-depth obstruction and preserves the scope of
 earlier method-specific limits.
@@ -159,6 +164,7 @@ supplies the two-clean precision and width splices.
 
 | Current proof | Role |
 |---|---|
+| [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | Fixed-accuracy R78: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
 | [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retain both families' simultaneous bounds using native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
 | [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
 | [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Retained two-clean theorem: charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
@@ -178,8 +184,9 @@ controls, and the [grouped terminal alternative](depth/GROUPED_TERMINAL_DEPTH.md
 supplies the retained whole-word coarse-prefetch interface. That alternative
 keeps its proved $`L^{3/2}`$ contribution and column-forest residuals;
 the selected terminal kernel uses sixteen one-layer matrix-unit types.
-The early shared phase gradient and the terminal geometric source have
-separate paid preparations and return proofs. No new external premise
+In the retained compressed-column proof, the early shared phase gradient
+and the terminal geometric source have separate paid preparations and return
+proofs. No new external premise
 or priority claim is introduced.
 
 The [entry-indexed encoding bound](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
@@ -188,6 +195,8 @@ architecture using the balanced Haar frame. At operator error epsilon,
 the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
 channels and reweighting obey the same bound. It does not constrain
 unrestricted block encodings or establish a native T-depth lower bound.
+R78 replaces that overlap recovery with explicitly priced spectral-label
+erasure; the normalization theorem remains unchanged.
 
 The following obstruction branch is independent of the constructive proof
 chain. The [resource frontier](../docs/OPEN_PROBLEM.md) gives the exact

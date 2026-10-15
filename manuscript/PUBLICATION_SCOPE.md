@@ -48,7 +48,7 @@ classical coefficient generation and preprocessing are excluded from gate counts
 | **A. Exact complete-frame compilation** | Total elementary size $`\Theta(N)`$, CNOT count $`\Theta(N)`$ for $`n\ge2`$, and depth $`\Theta(n+N/(n+m))`$ | Every integer $`m\ge0`$; real and phase-dressed complex magnitude frames; workspace returned exactly; CNOT count is zero for $`n=1`$ |
 | **B. Matching fault-tolerant frontier** | $`T^\star=\Theta(\sqrt{NL}+L+NL/q)`$, with $`O(NL)`$ Clifford cost for the upper construction | Real frame and, by Corollary 7, the phase-dressed complex magnitude frame; sufficient clean reservation $`a\ge C(n+h)`$ for a sufficiently large fixed $`C`$; literal-phase, complete-input error |
 | **C. Optimal one-clean count** | $`T=O(N+L)`$ at the base reservation; matching banked frontier stated below; $`G=O(NL)`$ | Real and phase-dressed complex magnitude frames; $`n\ge1`$, $`L\ge6`$, $`a=1`$; family-specific dirty reservations and full initialized-isometry error |
-| **D. Simultaneous T-count and T-depth** | All-precision optimal count and simultaneous depth bounds stated below | Real and phase-dressed complex magnitude frames; $`a=1`$; family-specific dirty thresholds, absolute constants, and the full initialized-isometry error contract |
+| **D. Simultaneous T-count and T-depth** | All-precision optimal count and simultaneous depth bounds, with the fixed-accuracy polylogarithmic refinement below | Real and phase-dressed complex magnitude frames; $`a=1`$; family-specific dirty thresholds and the full initialized-isometry error contract; R72 has absolute constants and R78 permits accuracy-dependent constants |
 
 Result A includes a separate CNOT lower bound with arbitrary one-qubit gates
 free: a circuit with $`K`$ CNOTs has at most $`n+4K`$ relevant one-qubit
@@ -155,8 +155,8 @@ separately proves the literal diagonal's depth schedule, then composes both
 factors at precision $`L+1`$ on the same clean flag and dirty pool. It preserves
 the high-precision clause and includes earlier leakage without a reset.
 T-depth permits arbitrary Clifford interlayers and differs from total circuit
-depth. The sharper real linear-precision special case and fixed-accuracy
-consequence are retained below.
+depth. The sharper real linear-precision special case and the fixed-accuracy
+refinement R78 are stated below.
 
 ## A compiler capability beyond Hopf frames
 
@@ -318,20 +318,29 @@ remain. Its full ledger gives the stated precision dependence without
 changing the count or Clifford budgets. Classical preprocessing terminates,
 with no efficiency claim.
 
-For every fixed $`0\lt\eta\le1/64`$, R72 also gives the one-clean
-all-n consequence
+For every fixed $`0\lt\eta\le1/64`$, the
+[subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78,
+gives both complete-frame families a one-clean circuit for every $`n\ge1`$,
+at $`b\ge17(L+n+7)`$ for real frames and $`b\ge17(L+n+8)`$ for
+phase-dressed complex magnitude frames, with
 $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and
 
 ```math
-D_T=O_\eta(N/b^2+\min\{n,\sqrt n\log_2(n+2)\})
+D_T=O_\eta(N/b^2+\log_2^2(n+2)).
 ```
 
-at every eligible width. At sufficient square-root width it gives
-$`o(n)`$ depth, while the unrestricted lower bound is $`\Omega(1)`$.
-Optimal depth remains an open problem. Result C does not improve D's
-depth guarantee. The separate
+Its full initialized-isometry error is at most eta. Count remains worst-case
+optimal at every eligible width; count and depth match through
+$`b\le\sqrt N/\log_2(n+2)`$ whenever the interval above the literal
+threshold is nonempty. Native subtree reflections and coherent label erasure
+replace the early amplitude-amplification recovery, with the one-clean tail,
+width splice, and literal phase composition charged. Constants may depend
+on the fixed accuracy; this does not replace R72's all-precision theorem.
+At sufficient square-root width, depth is $`O_\eta(\log^2(n+2))`$,
+while the unrestricted lower bound remains $`\Omega(1)`$.
+Optimal depth remains an open problem. The separate
 [entry-indexed normalization bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-is restricted to that state-source architecture and is not an
+is restricted to its overlap architecture and is not an
 unrestricted native-depth lower bound.
 
 The [research catalogue](../research/README.md) preserves the endpoint
@@ -372,6 +381,7 @@ end-to-end speedups are outside the selected claims.
 | B | [Fault-tolerant theorem](../docs/FAULT_TOLERANT_COMPILER.md): shared precision source, residual dictionaries, failure history, full error, complex extension, lower bounds |
 | C | [One-clean theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), using growing precision sources, [conjugate-signal recovery](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md), exact dirty word banks, and the [layerwise one-clean baseline](../docs/ONE_CLEAN_COMPILER.md) |
 | D | [One-clean count and depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native one-clean words, protected logical work, width/precision splice, and full-isometry phase composition at family-specific widths; R70/R71 retain their two-clean proof roles |
+| Fixed-accuracy refinement of D | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: native transported reflections, coherent spectral-label erasure, and the retained one-clean terminal and width/phase composition; constants may depend on accuracy |
 | Stronger linear-precision special case | [Sublinear-depth theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision): coherent descendant sources, one charged early gradient, native dirty queries, complete-column recovery, and a separate [shared binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) |
 | Compiler corollaries and distinct allocations | [One-clean primitives](../docs/ONE_CLEAN_COMPILER.md), [operator sources](../docs/OPERATOR_SOURCE_COMPILER.md), [borrowed-workspace compiler](../docs/BORROWED_WORKSPACE_COMPILER.md), and [sharper two-clean endpoint](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); each keeps its literal reservation |
 | QBP consequence | [Exact record and costs](../docs/QBP_CONSEQUENCE.md), [approximation budgets](../docs/QBP_APPROXIMATION.md) |
