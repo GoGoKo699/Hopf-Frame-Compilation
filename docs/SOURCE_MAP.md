@@ -285,8 +285,13 @@ giving exact tag/work return. Its common-angle certified perturbation
 preserves the structured promise. The
 [recursive terminal R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
 uses R78's full-mode decoder and the sharp rectangular query with an
-unchanged external prefix. Both add local proofs rather than new external
-premises. Neither replaces R79's general all-precision statement.
+unchanged external prefix. Its uniform-height extension covers every
+$`0\le M\le n`$ with terminal depth
+$`O_L(N/b^2+\ell\log_2(M+2))`$, where $`\ell=\log_2(n+2)`$,
+at the same one-clean reservation and count orders. The extension proves
+the resource sums uniformly in M; it introduces no new source premise.
+Both add local proofs rather than new external premises. Neither replaces
+R79's general all-precision statement.
 
 The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
 combines the retained precision gauge, native real-vector source, R80's
@@ -302,6 +307,28 @@ are independent of the reference biases; reference zeros and an efficient
 search for a suitable reference are outside the statement. This is a
 fixed-accuracy supporting-family compiler. R79 remains the general
 frontier.
+
+[R83's affine orientations](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
+combine the existing sign gauge and native queries with a triangular
+affine leaf map and a short-tag-selected marker correction.
+[R84's deterministic frames](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
+use exact selected involutions, signed string sources, and the
+last-deviation inverse for arbitrary signed corner rotations. Their
+separate promises and fixed-accuracy/exact contracts remain in their proof
+homes; neither imports a free in-place permutation primitive.
+
+The [R85 geometric-band theorem](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
+reuses the GKW-based descendant-source interface, R78's transported
+reflections, exact native XOR/phase queries and dirty echoes, the existing
+sign gauge and phase composition, and the logarithmic-height R81 terminal.
+Its local additions are geometric coarse bins, the upper-frame unloading
+identity, a local flag transporter, and a returned dirty output word made
+temporarily clean by parking it in the exposed logical tail. This gives
+the fixed-L depth $`O_L(N/b^2+\ell\log_2(\ell+2))`$ for
+arbitrary orientations of depth-shared unordered magnitude pairs, with
+the existing count orders and literal one-clean widths. There is no new external premise, claim
+for arbitrary node-dependent magnitudes, uniform-precision extension,
+efficient preprocessing, or general emitter.
 
 | Premise | Primary locator | Imported role and local specialization |
 |---|---|---|

@@ -49,9 +49,9 @@ A failed route or an ended session does not retire the objective.
 | Executed research design and outcome | [Five-hour depth prompt](research/depth/RESEARCH_SESSION_PROMPT.md), [session result](research/depth/RESEARCH_SESSION_RESULT.md) |
 | Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
 | Joint decoder/terminal follow-up | [Common-flag depth](research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md), [recursive terminal](research/depth/RECURSIVE_TERMINAL_DEPTH.md), [bounded-density depth](research/depth/BOUNDED_DENSITY_DEPTH.md), [session outcome](research/depth/JOINT_DEPTH_SESSION_RESULT.md) |
-| Branch-orientation follow-up and current constructive gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
+| Branch-orientation follow-up and historical gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
 | Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
-| Next five-hour session design | [Joint orientation and recovery](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md): whole-operator compilation and band-label recovery, with a reserved reformulation phase |
+| Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -113,9 +113,9 @@ The subsequent [joint-depth session](research/depth/JOINT_DEPTH_SESSION_RESULT.m
 leaves that general frontier unchanged. At fixed accuracy and square-root
 width, R80 proves logarithmic depth for
 depth-homogeneous angle magnitudes with arbitrary node signs and supplied
-leaf phases; its signed balanced real case is exact. R81 improves only
-the deepest logarithmically many general layers to a log-times-log-log
-contribution. At that same accuracy and width scale, R82 gives a complete
+leaf phases; its signed balanced real case is exact. R81 gives a uniform
+terminal-height bound, with a log-times-log-log contribution for a
+logarithmic protected suffix. At that same accuracy and width scale, R82 gives a complete
 sub-square-logarithmic circuit when
 the target density has fixed positive bounds relative to a classically
 specified positive product reference. Its constant-normalization
@@ -133,11 +133,22 @@ R84 gives exact $`O(\log(n+2)(1+\log^*n))`$ depth for arbitrary
 node-dependent signed corner rotations. Both retain one clean qubit,
 square-root T-count, and linear Clifford count at square-root dirty width.
 R82 now also permits a supplied positive affine-oriented reference, with
-the same fixed-density bounds and literal allocations. The current
-constructive gap is arbitrary nonlinear orientation at interior bias:
-the factorization $`W=P W_0 Q`$ still needs priced in-place leaf and marker maps, or a
-direct complete-word construction. A parallel XOR lookup alone does not
-supply them. The branch session records the remaining construction task.
+the same fixed-density bounds and literal allocations. At that checkpoint,
+arbitrary nonlinear orientation at interior bias remained unresolved:
+the factorization alone did not price its in-place leaf and marker maps.
+A parallel XOR lookup alone still does not supply those whole-register maps.
+
+The later [joint orientation session](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+proves [R85](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md): arbitrary
+nonlinear orientations with shared unordered depth magnitudes admit
+fixed-accuracy $`O_L(N/b^2+\ell\log_2(\ell+2))`$ T-depth, where
+$`\ell=\log_2(n+2)`$, with the same one-clean count budgets and literal
+real/complex widths. A coarse geometric band determines a subtree
+unloader that exposes enough clean suffix for the local orientation
+conversion. Only the coarse band then needs spectral search. The proof
+includes arbitrary signs, zeros, supplied leaf phases, and full work
+return. Logarithmic depth for this family and a corresponding improvement
+for arbitrary node-dependent magnitudes remain open.
 
 The [bounded permutation follow-up](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 did not pass its new-mechanism checkpoint and stopped construction early.
@@ -146,9 +157,9 @@ permutation remains unpaid, and restrictions on four XOR shears, exact
 encoded Clifford actions, and corner words with limited interleavers.
 None is an unrestricted native lower bound; an explicit approximate
 encoding also prevents extending the exact Clifford-order argument by
-continuity. R79 and the arbitrary-orientation frontier are unchanged.
-The next constructive task is to discover a mechanism that escapes these
-specific restrictions. It need not arrive with its proof already finished.
+continuity. R85 subsequently bypasses that conversion interface through
+joint recovery; it does not give a general whole-register permutation
+compiler. The unrestricted R79 frontier is unchanged.
 Independent technical review can strengthen the proved results alongside
 that search. It does not replace the general objective. Final manuscript
 drafting remains separate.
@@ -196,24 +207,28 @@ technical review; final manuscript drafting requires the user's request.
 
 ### Continuing toward the general answer
 
-The immediate constructive goal remains arbitrary nonlinear branch
-orientation with a shared unordered magnitude pair at each depth: at
-fixed accuracy and square-root dirty width, seek sub-square-logarithmic
-T-depth, ideally logarithmic, with one clean qubit and the existing
-square-root T-count and linear Clifford-count budgets. Arbitrary
-node-dependent magnitudes and optimal unrestricted depth remain broader
-questions. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
-is sufficient; a direct complete-frame construction is equally welcome.
+R85 reaches the sub-square-logarithmic target for arbitrary nonlinear
+branch orientation with a shared unordered magnitude pair at each depth.
+The next local question is whether its remaining coarse-band label can
+be erased with a constant number of native source layers. This would
+remove the repeated-comparison cost in early recovery; logarithmic total
+depth would also require compatible logarithmic terminal and routing
+schedules. Arbitrary node-dependent magnitudes and optimal
+unrestricted depth remain broader questions. Preserve one clean qubit,
+square-root T-count, linear Clifford count, and the complete operator
+contract throughout. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
+remains sufficient, but is not required by R85's complete recovery word.
 
 Separate discovery from certification. Begin a bounded exploration with
 a question, a changed assumption or representation, and the uncertainty
 it aims to resolve. An unfinished identity can be a useful research
 lead when its missing step is explicit. Before claiming an improvement,
 complete the native identity and resource, error, and return proof.
-The next design step should ask which costs are forced by the complete
-operator and which arise from separately compiling its factors, with
-particular attention to joint orientation and recovery. This is a
-question to investigate, not an established saving.
+The joint session's successful change was to use workspace exposed on
+the reached spectral band, and to prove return for the complete word.
+The next design should ask whether that same freedom can remove the
+remaining coarse search or replace the local product reference for
+unequal node-dependent magnitudes. Neither further saving is established.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup

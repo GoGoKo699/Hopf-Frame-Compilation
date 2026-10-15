@@ -106,6 +106,25 @@ also supply the [positive affine-reference extension of R82](../research/depth/B
 These proof homes retain their separate promises and literal allocations;
 arbitrary nonlinear permutations are not supplied as free oracles.
 
+The [R85 geometric-band theorem](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
+removes the affine-orientation restriction while retaining a shared
+unordered magnitude pair at each depth, arbitrary signs and zeros, and
+supplied leaf phases. Its fixed-L depth is
+$`O_L(N/b^2+\ell\log_2(\ell+2))`$, where
+$`\ell=\log_2(n+2)`$, with one clean qubit, the existing T/Clifford
+count orders, and the real/complex reservations
+$`17(L+n+7)`$/$`17(L+n+8)`$. The joint recovery unloads a selected
+geometric band to expose logical zeros, uses them for a local orientation
+permutation, restores them, and erases only the coarse bin. It does not
+assume an initialized full output word or a separately supplied global
+permutation.
+The [R81 terminal proof](../research/depth/RECURSIVE_TERMINAL_DEPTH.md#1-fixed-accuracy-terminal-theorem)
+now treats every $`0\le M\le n`$ uniformly, at depth
+$`O_L(N/b^2+\ell\log_2(M+2))`$. R85 needs only the original
+$`M=O_L(\ell)`$ terminal case. R85 does not address arbitrary
+node-dependent magnitude pairs; R81's terminal remains general. Neither
+adds an absolute all-precision statement or a scalable emitter.
+
 Start with the [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md),
 R79. It combines optimal count with the improved all-precision depth bound
 on one circuit, with absolute constants, for both frame families with one

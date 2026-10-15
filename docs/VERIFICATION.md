@@ -106,7 +106,8 @@ bound or emit a general compiler.
 
 The [recursive terminal theorem R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
 is an analytic extension of retained source/query interfaces to a preserved
-prefix, with summable errors and an explicit width splice. It adds no
+prefix, with summable errors and an explicit width splice. Its uniform
+terminal-height bound for all $`0\le M\le n`$ is analytic and adds no
 separate native primitive or numerical test of asymptotic cutoffs.
 
 The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
@@ -140,6 +141,19 @@ proved in the chapters. R82's affine-reference extension uses these
 reference-core identities with its unchanged weighted-source geometry.
 No additional scientific receipt or general emitter is introduced.
 
+The [geometric-band orientation theorem R85](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
+has six [bounded checks](../tests/test_geometric_band_orientation.py):
+integer bin capacities; independently reconstructed truncated flags and
+local bands; the physical dirty-buffer word and its actual inverse;
+coherent fine-tag erasure/reload with nonlinear orientations, zero pairs,
+signs, leaf phases, and a dirty reference; five-bin coarse search/XOR/reverse
+with padded thresholds; and inactive fine-word identity with occupied
+protected records. The tests use ideal matrices and exact basis
+permutations. The coarse check reuses R78's literal spectral-search word.
+The complete native schedule, source-error composition, literal widths,
+and asymptotic resources remain analytic. These fixtures emit no general
+native compiler and introduce no scientific receipt.
+
 The [in-place permutation checkpoint](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../tests/test_permutation_bridge_limits.py).
 One exhausts all permitted clean/dirty inputs of the four-shear order-eight
@@ -147,8 +161,8 @@ example and checks the order-sixteen triangular witness. The other builds
 explicit binary-linear Clifford permutations and dense spectral isometries
 to check why an exact encoding-order restriction does not extend to fixed
 error. Neither fixture supplies a native encoder, a general conversion,
-or an asymptotic proof. The scoped proofs and the unchanged general
-frontier are stated in the checkpoint; scientific receipts are unchanged.
+or an asymptotic proof. The checkpoint records its scoped restrictions
+and the frontier at that stage; scientific receipts are unchanged.
 
 The [precision-uniform theorem R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 uses the unchanged R78 decoder identities below. Its new work is analytic:

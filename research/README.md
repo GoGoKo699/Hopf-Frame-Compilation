@@ -196,8 +196,9 @@ theorem. At fixed accuracy and square-root width,
 [R80](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md) gives logarithmic
 depth for depth-homogeneous magnitudes with arbitrary signs, using one
 common product conjugator and exact tag return. Its signed balanced real
-case is exact. [R81](depth/RECURSIVE_TERMINAL_DEPTH.md) recursively improves
-the general logarithmic terminal to a log-times-log-log contribution;
+case is exact. [R81](depth/RECURSIVE_TERMINAL_DEPTH.md) gives a uniform
+terminal-height bound, including a log-times-log-log contribution for
+the general logarithmic terminal;
 the general early decoder still has square-logarithmic depth. Their
 full contracts, all-width splices, and scope restrictions have separate
 proof homes. At the same accuracy and width scale,
@@ -224,19 +225,23 @@ references with unchanged fixed-density bounds. The subsequent
 stopped without a qualifying general construction. It records a unary
 relabeling identity with an unpaid recursive selector, scoped four-shear
 and exact encoding restrictions, and a limited corner-word obstruction.
-These do not exclude general native circuits. Arbitrary nonlinear
-orientation remains open, and R79 remains the general theorem. The
-checkpoint preserves those findings, while the
-[continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the general construction as the active destination. The next task
-is mechanism discovery; a pause or a failed candidate does not retire
-the question. Independent review can accompany that work.
+These do not exclude general native circuits. The subsequent
+[joint orientation session](depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+executes its [five-hour design](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
+and proves [R85](depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md): arbitrary
+nonlinear orientations with shared unordered depth magnitudes have
+$`O_L(\log(n+2)\log\log(n+4))`$ depth at square-root dirty width,
+with one clean qubit and the existing count budgets. A geometric coarse
+band selects an unloader that exposes clean suffix space for a local
+orientation permutation. Only the coarse tag needs spectral recovery.
+Signs, zeros, balanced pairs, and prescribed leaf phases are included.
 
-The next [five-hour session design](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
-targets joint orientation and recovery through two representations:
-the relative frame operator and coherent depth-band recovery. It permits
-mechanism discovery before certification and reserves time to reformulate
-the opening hypotheses. The design has not yet been executed.
+R79 remains the general all-precision theorem for arbitrary magnitudes.
+The [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
+keeps the general construction as the destination. The next local question
+is whether the remaining coarse-band search can be replaced by a constant
+number of native source layers. R85's local tensor-product reference
+does not yet cover arbitrary node-dependent magnitude pairs.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
