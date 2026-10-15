@@ -15,7 +15,7 @@ not prove universal statements or asymptotic optimality.
 | Material | Entry point | Scope |
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
-| D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | Analytic native schedule and flag relocation; existing one-clean, source, recovery and dirty-query checks retain their finite scopes |
+| D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -78,9 +78,9 @@ establish the one-clean count guarantees at the [stated reservations](../../manu
 the general T-depth frontier remains an
 [active research question](../OPEN_PROBLEM.md#full-circuit-requirement).
 Count and depth match in explicit accuracy/workspace ranges by the
-[one-clean theorem](../../research/depth/ONE_CLEAN_DEPTH.md), R72, for
-both frame families. The earlier real and complex theorems retain their
-two-clean proof scopes.
+[precision-uniform subtree theorem](../../research/depth/UNIFORM_SUBTREE_DEPTH.md),
+R79, for both frame families. R72 retains its earlier one-clean statement;
+the earlier real and complex theorems retain their two-clean proof scopes.
 The existing
 state-based result does not require the remaining questions' resolution.
 Application-level advantage is outside the current research scope; the
@@ -113,8 +113,18 @@ supply the all-size statements within their declared interfaces.
 
 ### Detailed finite checks
 
+The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)
+reuses R78's decoder and R72's one-clean terminal and fallback words.
+The upgrade retains the source's explicit precision factors, chooses an
+enlarged protected bank, and proves an absolute cutoff and all-precision
+composition analytically. It adds no circuit identity or finite fixture.
+The five decoder checks below and the retained source, terminal and query
+suites keep their existing contracts; they do not certify an unbounded
+precision range or the asymptotic absorption inequalities. No receipt or
+native-emitter guarantee changes.
+
 The [subtree-projector decoder R78](../../research/depth/SUBTREE_PROJECTOR_DECODER.md)
-adds fixed-accuracy polylogarithmic depth with one external clean qubit.
+retains its fixed-accuracy polylogarithmic theorem with one external clean qubit.
 Its five [focused tests](../../tests/test_subtree_projector_decoder.py)
 check exact rational signed/singular marker geometry, nested projector
 bands, reversible label extraction, padded thresholds, literal phases,

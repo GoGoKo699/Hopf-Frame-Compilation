@@ -62,10 +62,12 @@ Euler/diagonal details, lower bounds, and finite classical preprocessing.
 Distinguish exact dirty return from return included in the initialized-isometry
 error. A logical zero suffix supplies clean work only on its proved active
 sector. T-depth allows arbitrary Clifford interlayers and differs from total
-depth. D's [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+depth. D's [uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79,
 gives simultaneous T-count/T-depth guarantees for both families. Its complex
 extension separately charges literal diagonal depth and shared-workspace
-composition at the complex dirty reservation. The earlier
+composition at the complex dirty reservation. The retained
+[one-clean baseline R72](../research/depth/ONE_CLEAN_DEPTH.md) supplies
+terminal, fallback, and phase schedules. The earlier
 [real](../research/depth/ALL_PRECISION_DEPTH.md) and
 [complex](../research/depth/COMPLEX_FRAME_DEPTH.md) two-clean theorems retain
 their supporting proofs and original allocations.

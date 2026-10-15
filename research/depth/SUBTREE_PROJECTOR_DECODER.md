@@ -11,6 +11,12 @@ supplies each reflection; the target frame is never supplied as an oracle.
 The resulting one-clean compiler has polylogarithmic T-depth at fixed
 accuracy and retains the optimal T-count and linear Clifford budget.
 
+The later [precision-uniform theorem R79](UNIFORM_SUBTREE_DEPTH.md)
+tracks this decoder's absolute source costs and uses a larger protected
+suffix with the one-clean terminal stream. It extends the depth improvement
+to all precision. This chapter retains the original fixed-accuracy theorem
+and the decoder's geometry, native words, and error proof.
+
 ## 1. Fixed-accuracy theorem and scope
 
 Fix $`0\lt\eta\le1/64`$, and set
@@ -76,7 +82,7 @@ phases at zero amplitudes. Classical preprocessing may be expensive;
 no running-time bound is added. Every query, source preparation, actual
 inverse, guard, and reflection is charged. There is no QRAM, measurement,
 reset, supplied precision state, or free coherent evaluator. This is a
-fixed-accuracy refinement, not a precision-uniform replacement for R72.
+fixed-accuracy theorem; its precision-uniform extension is proved in R79.
 
 ## 2. The literal nested subtree spaces
 
@@ -596,8 +602,9 @@ The mechanism does not improve the entry-indexed normalization in
 recovery architecture with target-dependent, natively compiled
 projector queries. It also does not infer cheap recovery from a
 general compressor definition: Sections 3–7 construct and price the
-entire decoder. The count theorem, all-precision R72, and the separate
-R74–R77 constant-layer obstructions retain their scopes.
+entire decoder. The count theorem, retained all-precision baseline R72,
+and the separate R74–R77 constant-layer obstructions retain their scopes.
+R79 separately establishes the precision-uniform resource improvement.
 
 ## 9. Evidence and proof dependencies
 

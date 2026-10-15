@@ -24,7 +24,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Question | Status and reading route |
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
-| Count and depth on one circuit | [Result D](#large-width-t-depth) gives all-precision bounds and fixed-accuracy polylogarithmic depth with one clean qubit for both frame families; optimal large-width depth remains open |
+| Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
@@ -92,15 +92,17 @@ complex theorem uses $`N+n+8`$ dirty qubits at $`L=N`$.
 
 ## Large-width T-depth
 
-The [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+The [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79,
 applies to both families for every $`n\ge1`$, integer $`L\ge6`$,
 and one clean flag.
 Put $`B_D=L+n+7`$ for complete real frames and $`B_D=L+n+8`$
 for phase-dressed complex magnitude frames $`D_\phi W_{\mathbb R}`$.
-At every $`b\ge17B_D`$, define
+At every $`b\ge17B_D`$, use the following bound.
+
+With $`\ell=\log_2(n+2)`$ and $`\lambda=\log_2(n+L+2)`$, put
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
+F(n,L)=\min\{nL,(L+\ell)\lambda\}.
 ```
 
 One circuit has error at most $`2^{-L}`$ in the full initialized-isometry
@@ -120,36 +122,31 @@ The inherited lower bounds also match depth on every nonempty interval
 ```
 
 The one-clean high-precision branch gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$,
-with the same count, Clifford, and error bounds. R72 supplies native
-one-clean layer schedules, protected terminal flag relocation, and its
-own width/precision splice without changing the literal dirty threshold.
-Its complex extension proves a one-clean literal-diagonal schedule with
+with the same count, Clifford, and error bounds. R79 charges the native
+subtree decoder's precision-dependent source calls and all-work predicates.
+Its protected suffix allocation absorbs their table volumes with absolute
+constants. The retained [one-clean baseline, R72](../research/depth/ONE_CLEAN_DEPTH.md),
+supplies the terminal flag relocation, width and precision fallbacks, and
+literal phase composition at the original dirty thresholds.
+
+The complex extension uses the one-clean literal-diagonal schedule with
 $`D_T=O(NL/b^2+L+\log_2(n+2))`$, then composes half-error factors
 on the same flag and dirty pool. Its stated threshold includes that
 precision increment; the high-precision bound applies to both families.
 Every source preparation, query, actual inverse, and work-return error
 is charged. Classical preprocessing terminates, with no efficiency claim.
 
-The retained two-clean
+At sufficient $`b=\Theta(\sqrt{NL})`$ and $`L=\Theta(\log n)`$,
+R79 gives $`O(\log^2 n)`$ depth with error inverse polynomial in n.
+More generally, $`L=o(n/\log(n+2))`$ gives sublinear depth.
+The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains, for some absolute $`c>0`$, the stronger real-frame
-$`\log_2(n+2)`$ dependence on
-$`6\le L\le cn`$:
-
-```math
-D_T=O\!\left(NL/b^2+\min\{nL,(\sqrt n+L)\log_2(n+2)\}\right).
-```
-
-At sufficient $`b=\Theta(\sqrt{NL})`$, precision $`L=O(\sqrt n)`$
-retains $`O(\sqrt n\log(n+2))`$ depth. In particular,
-$`L=\lfloor\sqrt n\rfloor`$ has that depth and error at most
-$`2^{-\lfloor\sqrt n\rfloor}`$, for sufficiently large n.
-More generally $`L=o(n/\log(n+2))`$ gives sublinear depth.
-Its early phase-gradient source and terminal binary source are separately
-charged. The small absolute c is not a practical crossover estimate.
+retains its original source and recovery proofs; R79 supersedes its
+resource bound.
 
 The [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
-R78, improves fixed-accuracy depth for every $`n\ge1`$.
+R78, is the proof home for native subtree reflections and coherent spectral
+label erasure. Its fixed-accuracy theorem is now a corollary of R79.
 For every fixed $`0\lt\eta\le1/64`$, put
 $`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$. At one clean
 flag, every $`b\ge17(L+n+7)`$ for real frames, and every
@@ -160,13 +157,7 @@ T=O_\eta(\sqrt N+N/b),\qquad G=O_\eta(N),\qquad
 D_T=O_\eta\!\left(N/b^2+\log_2^2(n+2)\right).
 ```
 
-The same circuit has full initialized-isometry error at most eta. Native
-subtree reflections compute and erase the source's spectral label, replacing
-early amplitude amplification. Source calls, actual inverses, all predicates,
-the one-clean terminal schedule, and literal phase composition are charged.
-The constants may depend on the fixed accuracy; R72's all-precision statement
-and its high-precision clause remain unchanged.
-
+The same circuit has full initialized-isometry error at most eta.
 At sufficient $`b=\Theta_\eta(\sqrt N)`$, this is optimal-order
 T-count with $`O_\eta(\log^2(n+2))`$ depth. Both count
 and depth match through

@@ -11,10 +11,12 @@ the uniform fallback using the existing one-clean layerwise primitive.
 No clean-to-dirty substitution or inference of depth from an optimal
 total count is used.
 
-The later [subtree-projector decoder R78](SUBTREE_PROJECTOR_DECODER.md)
-improves fixed-accuracy depth to
-$`O_\eta(N/b^2+\log^2(n+2))`$ at the same family-specific widths.
-Its accuracy-dependent constants do not replace this all-precision theorem.
+The later [uniform subtree-depth theorem R79](UNIFORM_SUBTREE_DEPTH.md)
+improves the all-precision additive depth at the same family-specific
+widths. This chapter retains the baseline theorem and
+the one-clean terminal, fallback, diagonal, and high-precision proofs
+used by R79. The [R78 decoder](SUBTREE_PROJECTOR_DECODER.md) remains
+the proof home for its nested-projector construction.
 
 ## 1. The one-clean theorem
 

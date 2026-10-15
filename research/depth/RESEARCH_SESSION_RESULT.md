@@ -2,6 +2,10 @@
 
 [Session design](RESEARCH_SESSION_PROMPT.md) · [Preparation map](DEPTH_OBSTACLE_MAP.md) · [R78 proof](SUBTREE_PROJECTOR_DECODER.md) · [Current resource statement](../../docs/OPEN_PROBLEM.md)
 
+This records the original fixed-accuracy session. Its later
+[precision-uniform follow-up](UNIFORM_PRECISION_SESSION_RESULT.md)
+proved R79; the original decisions and evidence below are retained.
+
 **Started:** 2026-10-15 10:44:44 UTC. **Execution baseline:** main
 `aab766b`. The authorized budget was at most five hours; it was a ceiling,
 not a requirement to continue after a qualified result. The design's earlier
@@ -218,6 +222,7 @@ both required resource ledgers also passed. The integrating pull request
 records the exact reviewed tree and remote CI gates.
 
 No external literature theorem is imported by this execution record.
-The unrestricted growing-depth lower bound at
-square-root width, precision-uniform improvements beyond R72, practical
-crossover, and a general native emitter remain unresolved.
+At the end of this session, precision-uniform improvements beyond R72
+remained open; the later R79 follow-up resolves that upper-bound step.
+The unrestricted growing-depth lower bound at square-root width,
+practical crossover, and a general native emitter remain unresolved.

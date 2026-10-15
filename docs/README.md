@@ -89,31 +89,32 @@ complex-unitary synthesis.
 
 ### D. Simultaneous frame T-count and T-depth
 
-Start with the [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md),
-R72. It combines optimal count and the all-precision depth bounds on one circuit
-for both frame families, with their separate literal dirty reservations.
-The [claim ledger](../manuscript/PUBLICATION_SCOPE.md) gives the precision
-splice, matching interval, and large-width special cases. Literal diagonal
-composition retains the full initialized-isometry error, including leakage
-from the first factor.
+Start with the [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md),
+R79. It combines optimal count with the improved all-precision depth bound
+on one circuit, with absolute constants, for both frame families with one
+clean qubit and their separate literal dirty reservations. The
+[claim ledger](../manuscript/PUBLICATION_SCOPE.md) gives the matching interval
+and stronger high-precision clause. Literal diagonal composition retains
+full initialized-isometry error, including leakage from the first factor.
 
-At fixed accuracy, the [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
-R78, strengthens the depth bound to $`O_\eta(N/b^2+\log^2(n+2))`$
-for both families, with the same literal dirty thresholds and optimal count.
-Its native subtree reflections and coherent label erasure use the original
-descendant loader, with the one-clean terminal and width/phase composition
-retained. Constants may depend on accuracy; R72 remains the all-precision
-statement.
+R79 prices the original [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
+R78, uniformly in precision and combines it with the terminal and fallback
+schedules of [R72](../research/depth/ONE_CLEAN_DEPTH.md). R78's native
+subtree reflections and coherent label erasure retain their own proof home.
+Its fixed-accuracy $`O_\eta(N/b^2+\log^2(n+2))`$ depth is a corollary;
+R79 also gives $`O(\log^2 n)`$ at $`L=\Theta(\log n)`$ and sufficient
+$`b=\Theta(\sqrt{NL})`$.
 
-The two-clean [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains a stronger logarithm through linear precision. Its dependency chain
-is listed separately below; R72 does not erase that distinct resource point.
-Unrestricted optimal depth remains open.
+The earlier two-clean
+[compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+retains its source and recovery proofs, though R79 supersedes its resource
+bound. Unrestricted optimal depth remains open.
 
 | Selected branch | Canonical proof and role |
 |---|---|
-| Fixed-accuracy polylogarithmic depth | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
-| One-clean count and depth | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
+| All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
+| Native decoder and fixed-accuracy corollary | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
+| Retained one-clean baseline and terminal | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
 | Literal phase dressing | [Complex-frame depth](../research/depth/COMPLEX_FRAME_DEPTH.md), R71: retained two-clean packed diagonal depth and shared-workspace composition at the complex reservation |
 | Whole-frame binary schedule | [Whole-frame binary depth](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), R68: charged complete-frame schedule with precision-dependent source work |
@@ -138,7 +139,7 @@ dependencies, not a sequence of research tasks to repeat.
 | Native scheduling and depth bounds | [T-depth schedule](T_DEPTH_COMPILER.md): exact shared-control phase/Fredkin batches, routing, two-dirty predicates, and count-to-depth lower-bound transfer |
 | Angular approximation | [Hopf error accumulation](HOPF_ERROR_ACCUMULATION.md), Section 1: full-frame square-sum bound for ideal angle perturbations |
 
-The stronger linear-precision special case retains its separate dependency chain:
+The earlier linear-precision construction retains its source and recovery chain:
 
 | Part of the sublinear-depth argument | Proof dependency and role |
 |---|---|
@@ -174,7 +175,8 @@ is needed by the unary source. Their proofs must not be replaced by a link
 to a stronger headline bound.
 
 D covers complete real and phase-dressed complex magnitude frames with
-one clean qubit through R72 and its fixed-accuracy refinement R78;
+one clean qubit through R79, using the native decoder of R78 and the
+terminal and fallback schedules of R72;
 R70 and R71 retain their two-clean statements.
 The state-based protocol retains its separate
 decoder contract. T-depth allows arbitrary

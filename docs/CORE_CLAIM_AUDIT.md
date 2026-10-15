@@ -20,13 +20,14 @@ preserves the earlier A–D decisions, imported-interface checks, correction,
 baseline, and finite evidence. Its older Result C is a retained supporting
 construction. A, B, and D retain their distinct resource statements.
 
-A separate reconstruction below checks the
-[one-clean depth theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
-which gives Result D optimal count at every eligible precision and width.
-The compressed-column construction remains a stronger linear-precision
-special case. The [subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
-R78, separately improves fixed-accuracy depth to polylogarithmic at
-sufficient square-root dirty width.
+A separate reconstruction below records the
+[precision-uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md),
+R79, which gives Result D optimal count and improved simultaneous depth at
+every eligible precision and width. It combines the
+[subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md),
+R78, with the terminal and fallback interfaces of the retained
+[one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72.
+The compressed-column construction remains a supporting predecessor.
 
 ## Claim-to-proof decisions
 
@@ -109,30 +110,30 @@ witness belongs to both families.
 
 ## All-precision count and depth audit
 
-The [one-clean theorem](../research/depth/ONE_CLEAN_DEPTH.md), R72,
+The [precision-uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79,
 gives complete real frames a circuit with one initialized flag, error
 at most $`2^{-L}`$, and absolute constants for every $`n\ge1`$,
 integer $`L\ge6`$, and $`b\ge17(L+n+7)`$. Define
 
 ```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+L+2)\}.
+F_{79}(n,L)=\min\{nL,(L+\log_2(n+2))\log_2(n+L+2)\}.
 ```
 
 Then
 
 ```math
 T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
-D_T=O(NL/b^2+F(n,L)).
+D_T=O(NL/b^2+F_{79}(n,L)).
 ```
 
 The bounds hold simultaneously in the full initialized-isometry contract.
 Count is optimal throughout; count and depth match through
-$`b\le\sqrt{NL/F(n,L)}`$ when the interval is nonempty.
+$`b\le\sqrt{NL/F_{79}(n,L)}`$ when the interval is nonempty.
 For $`L>N/n^2`$, the stronger depth bound is $`O(NL/b^2+L)`$.
 Optimal depth beyond the stated matching range remains open.
 
-R72 gives the same bounds for $`D_\phi W_{\mathbb R}`$ at
-$`b\ge17(L+n+8)`$. Its literal-diagonal depth is proved on the
+R79 gives the same bounds for $`D_\phi W_{\mathbb R}`$ at
+$`b\ge17(L+n+8)`$. R72's literal-diagonal depth is proved on the
 same optimal-count circuit. Both factors use precision $`L+1`$ and
 reuse the same clean flag and dirty pool. The full-isometry hybrid propagates
 the real factor's earlier leakage unitarily; no intermediate reset or exact
@@ -141,27 +142,32 @@ supplies the complex family's count and width-dependent depth lower bounds.
 
 | Reconstructed obligation | Finding and proof boundary |
 |---|---|
+| Uniform descendant-source cost | [R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md) retains R78's original per-call loader at $`\delta=2^{-L}/[64(s+1)]`$, where s is the decoder's comparison count. Its native ledger keeps the $`\delta^{-1}`$ T/work and $`\delta^{-2}`$ Clifford factors before choosing $`M=\lceil A[L+\log_2(n+L+2)]\rceil`$. A fixed large A, small positive c and absolute dimension cutoff absorb both query-dependent and standalone terms for $`6\le L\le cn`$; no accuracy-dependent constant is reused. |
+| Spectral decoder and terminal | R78's full-mode projector estimate and reversible search remain unchanged. Their early depth is $`O((L+\log(n+2))\log(n+2))`$. R72's one-clean shared-binary middle stream and deepest $`O(\log n)`$ native layers retain that order, full return error, and optimal count; directly compiling every enlarged terminal layer is not the selected schedule. |
 | One-clean native baseline | [R72](../research/depth/ONE_CLEAN_DEPTH.md) schedules the existing one-clean source word with complete rectangular queries and returned predicate helpers. Its uncapped depth is $`O(NL/b^2+n(L+n))`$; the extra term is charged before the width split, not discarded. |
-| Width and precision splices | R72 splits at $`b_c=\sqrt{NL/[n(L+n)]}`$: below it the width term absorbs the uncapped remainder; above it the protected native schedules fit after a fixed dimension cutoff. The proof checks optimal count, elementary Clifford cost, full error, and bounded dimensions on each selected complete circuit. |
-| Terminal flag and recovery | The early shared-gradient construction uses one external activity flag. Terminal padding rejection moves into the protected logical bank, is included in the recovery reflection, and is returned before erasing the original predicate. The inactive full-space identity and source-return comparison are retained. |
-| Literal diagonal and complex composition | R72 charges twenty completed mask queries and forty-five native source appearances for the one-clean phase word. Nonuniform indicators and the routed fallback respect the literal allocation. The source has precision $`q=\ell+5`$ and core width $`\ell+6`$; ordered masks, actual inverses, and literal phases retain the full operator. Half-error composition on the sole clean flag preserves the global F bound and high-precision clause. |
+| Width and precision splices | R79 retains R72's split at $`b_c=\sqrt{NL/[n(L+n)]}`$: below it the width term absorbs the uncapped remainder; above it the enlarged protected source schedule fits after one absolute dimension cutoff. R72's whole-frame stream, high-precision branch and bounded-dimension fallback cover the other precisions. Each selected complete circuit retains optimal count, elementary Clifford cost and full error. |
+| Terminal flag and recovery | The spectral decoder uses one external activity flag. Terminal padding rejection moves into the protected logical bank, is included in the recovery reflection, and is returned before erasing the original predicate. R72's inactive full-space identity and source-return comparison are retained. |
+| Literal diagonal and complex composition | R72 charges twenty completed mask queries and forty-five native source appearances for the one-clean phase word. Nonuniform indicators and the routed fallback respect the literal allocation. At half-error precision $`k=L+1`$, the source has $`q=k+5`$ and core width $`k+6`$; ordered masks, actual inverses, and literal phases retain the full operator. Composition on the sole clean flag preserves the global $`F_{79}`$ bound and high-precision clause. |
 | High-precision branch | The unbounded-dimension [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) already leaves its second clean flag unused. R72 supplies a one-clean bounded-dimension fallback and charges the completed-mask replacements and native remainder, giving $`O(NL/b^2+L)`$ for $`L>N/n^2`$. |
 | Retained two-clean proofs | [R70](../research/depth/ALL_PRECISION_DEPTH.md) and [R71](../research/depth/COMPLEX_FRAME_DEPTH.md) retain their original statements. The [uniform baseline](UNIFORM_PRECISION_DEPTH.md), [whole-frame stream](../research/depth/WHOLE_FRAME_BINARY_DEPTH.md), and [high-precision schedule](../research/depth/HIGH_PRECISION_DEPTH.md) remain separately scoped supporting proofs; their two-clean assumptions are not transferred without the R72 arguments above. |
-| Stronger linear-precision result | The retained two-clean [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) retains $`\log_2(n+2)`$ for $`6\le L\le cn`$. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) keep their own exact inactive guards, complete-column recovery, failure history, and source-return comparisons. |
-| Fixed-accuracy refinement | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: source-isometry error bounds transported projectors in full operator norm; a reversible binary search erases the spectral tag with logarithmic conditional work. Original per-call loaders, exact guarded predicates, actual inverses, the retained one-clean terminal, width splice, and literal phase composition are charged. Constants may depend on accuracy. |
+| Retained linear-precision predecessor | The two-clean [compressed-column proof](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), R66, keeps its own statement. Its [descendant source](../research/depth/COHERENT_DESCENDANT_LOADER.md), [early shared gradient](../research/depth/SHARED_GRADIENT_RECOVERY.md), and separate [binary terminal stream](../research/depth/SHARED_BINARY_TERMINAL.md) retain their exact inactive guards, complete-column recovery, failure history, and source-return comparisons. R79 uses the original per-call descendant loader, without the shared-gradient refinement. |
+| Fixed-accuracy corollary and decoder proof | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: source-isometry error bounds transported projectors in full operator norm; a reversible binary search erases the spectral tag with logarithmic conditional work. Its fixed-accuracy theorem remains valid, and its unchanged decoder algebra supports R79's absolute-constant precision upgrade. |
 | Imported state source | GKW v3, Lemma 3.2 and Section 3.3, supplies the coarse Boolean-state premise used by the compressed-column construction. Its ancillary allocation is not imported as a two-clean implementation; local coherent source and native schedules remain necessary. |
 | Scoped normalization barrier | The [entry-indexed bound](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) concerns normalization under its explicit row/column factorization contract. It supplies no unrestricted native-depth lower bound. |
 
-At sufficient $`b=\Theta(\sqrt{NL})`$, the linear-precision
-special case gives sublinear depth for $`L=o(n/\log(n+2))`$.
-For every fixed $`0\lt\eta\le1/64`$, R78 gives both families
+At sufficient $`b=\Theta(\sqrt{NL})`$, R79 gives
+$`O(\log^2(n+2))`$ depth for $`L=O(\log(n+2))`$, including
+inverse-polynomial error in n. This accuracy is distinct from
+inverse-polynomial error in $`N=2^n`$. For every fixed
+$`0\lt\eta\le1/64`$, the retained R78 corollary gives both families
 $`D_T=O_\eta(N/b^2+\log^2(n+2))`$, with
 $`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$, for every
 $`n\ge1`$ at R72's family-specific dirty thresholds. Count remains
 optimal throughout; depth also matches through
 $`b\le\sqrt N/\log_2(n+2)`$ when the eligible interval is nonempty.
-R72 retains its all-precision and high-precision claims. R67's overlap
-normalization bound does not constrain this spectral-label recovery.
+R72 retains its earlier all-precision theorem; its stronger high-precision
+clause is included in R79. R67's overlap normalization bound does not
+constrain this spectral-label recovery.
 
 Every selected branch includes source leakage, dirty/reference inputs,
 literal phases, and actual inverse words in its full comparison.
@@ -219,8 +225,10 @@ no additional external premise. The depth extension uses the cited GKW
 state-preparation result with its local coherent and native realization;
 no literature-priority claim follows from this audit. The [verification map](VERIFICATION.md)
 distinguishes native words, exact identities, supplied-matrix diagnostics,
-and analytic resource sums. The existing scientific tests and exact
-receipt hashes are retained.
+and analytic resource sums. R79 changes precision allocation and analytic
+resource bounds without adding a circuit identity or an imported premise.
+The existing scientific tests and exact receipt hashes are retained;
+finite tests do not certify its absolute cutoff or unbounded precision.
 
 This is internal proof reconstruction, not external technical review or
 formal proof certification. The selected count package is ready for
