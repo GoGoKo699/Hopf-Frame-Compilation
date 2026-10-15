@@ -217,7 +217,15 @@ R76, gives the same error floor when a four-layer circuit admits a
 two-plus-two split whose encoded clean observable is Pauli, hence five
 layers are required at $`L\ge3`$ in that subclass. A Hermitian-Clifford
 midpoint gives a positive explicit threshold without a crossing-rank
-bound. The unrestricted non-Clifford midpoint case remains open.
+bound. The [inner clean-spread theorem](research/depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, also covers non-Clifford midpoints whenever either encoder's first
+T layer has boundedly many axes anticommuting with its input clean Pauli.
+Any four-layer one-clean approximation sequence for this witness with
+error tending to zero
+must have all four layer sizes diverging: the outer layers require
+$`\Omega(\log\log L)`$ clean-active axes and the middle layers require
+$`\Omega(\sqrt L)`$ active axes. These are necessary size conditions;
+the unrestricted one-clean four-layer question remains open.
 Optimal depth remains an open problem.
 
 ## Operational consequence

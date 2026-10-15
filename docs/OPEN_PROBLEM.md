@@ -217,6 +217,30 @@ particular, four-layer full circuits of finite projective order are
 excluded at $`L\ge18`$. Generic Clifford+T circuits need not satisfy
 that condition.
 
+The [inner clean-spread theorem](../research/depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, extends the compressed rigidity argument to non-Clifford midpoints.
+In either two-layer encoder, let t count the first layer's axes that
+anticommute with the incoming clean Pauli after its initial Clifford.
+For every fixed t there is an explicit positive error floor, independent
+of dirty width and middle crossing rank. The proof expands the midpoint
+into $`2^t`$ Clifford terms and applies R74's finite-boundary argument
+without crossing phases. Define $`t_{\min}(V)`$ by minimizing over
+both encoders and every native four-layer representation. At error
+$`2^{-L}`$, its explicit inequality implies
+
+```math
+t_{\min}(V)=\Omega(\log\log L).
+```
+
+Thus the first and last T layers must each have diverging clean-active
+size. Together with R74 below, all four layers must grow in any
+hypothetical arbitrarily accurate one-clean sequence. This does not
+exclude unbounded spread. An exact two-qubit example also shows that
+the separate encoder flips cannot always be replaced by one common
+sign-compatible flip, even allowing an arbitrary unitary flip. Its
+occupied defect is a positive constant, so it does not refute the
+remaining gap conjecture.
+
 The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
 R74, gives a positive error gap for the same $`1/3`$ witness for each
 fixed clean budget a and rank bound R, for circuits admitting a four-layer

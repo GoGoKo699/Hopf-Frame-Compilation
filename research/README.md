@@ -272,9 +272,15 @@ $`L\ge3`$ requires five layers within that subclass. A Hermitian-Clifford
 midpoint gives a positive explicit threshold with unrestricted dirty
 width and crossing rank. Its proof combines phase-polynomial descent,
 a finite Clifford-boundary gap, and compressed-commutant lifting.
-The unrestricted non-Clifford midpoint case remains open: the lifting
-and phase-discreteness arguments already extend, but the compressed
-conjugations have not been frozen.
+The [inner clean-spread extension](depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, freezes those conjugations for non-Clifford midpoints whenever
+either encoder's first T layer has boundedly many clean-active axes.
+Its explicit gap forces minimum spread $`\Omega(\log\log L)`$
+at error $`2^{-L}`$, over both encoders and all representations.
+Together with R74, every layer of an arbitrarily accurate four-layer
+one-clean sequence for this witness must grow. R77 also gives an exact native example
+with no common sign-compatible sector flip, even among arbitrary
+unitaries. The unrestricted case with growing inner spread remains open.
 Optimal depth remains an open problem.
 
 The following earlier studies isolate costs or restrict particular

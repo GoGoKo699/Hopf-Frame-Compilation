@@ -176,6 +176,17 @@ excludes finite-projective-order occupied blocks below error $`1/196608`$.
 These proofs add no imported premise. Terminal return alone does not
 imply either restriction; the unrestricted one-clean question remains open.
 
+The [inner clean-spread theorem](../research/depth/ONE_CLEAN_INNER_SPREAD.md),
+R77, uses a flat Pauli expansion of the inner clean Clifford core to
+extend R76 to non-Clifford midpoints at bounded inner spread. R74's
+existing equal-coefficient finite-boundary theorem supplies the gap;
+R76 supplies compressed-commutant lifting and phase discreteness.
+It forces minimum clean-active spread $`\Omega(\log\log L)`$
+in both outer layers, independently of middle crossing rank. Its exact
+two-qubit counterexample rules out a universal common-sign-flip
+certificate, not the unrestricted rigidity conjecture. No new external
+premise or compiler upper bound is introduced.
+
 The compressed-column refinement has a separate dependency chain. It
 retains the uniform theorem's literal threshold and improves its depth
 bound on the stated subrange:
