@@ -28,6 +28,13 @@ phases, actual inverses, work return, and external references are essential.
 A logical suffix is clean only on its active sector; inactive behavior
 must be proved separately.
 
+The general construction remains the research destination. The user's
+direction, reaffirmed on 16 October 2026 (Asia/Shanghai), is to pursue it
+with confidence and curiosity, allowing pauses to consolidate what has
+been learned. The beauty of the question motivates the search; whether
+the conjectured improvement is true remains a mathematical question.
+A failed route or an ended session does not retire the objective.
+
 ## Read by claim
 
 | Need | Authoritative starting point |
@@ -43,7 +50,7 @@ must be proved separately.
 | Precision-uniform follow-up | [R79 proof](research/depth/UNIFORM_SUBTREE_DEPTH.md), [session record](research/depth/UNIFORM_PRECISION_SESSION_RESULT.md) |
 | Joint decoder/terminal follow-up | [Common-flag depth](research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md), [recursive terminal](research/depth/RECURSIVE_TERMINAL_DEPTH.md), [bounded-density depth](research/depth/BOUNDED_DENSITY_DEPTH.md), [session outcome](research/depth/JOINT_DEPTH_SESSION_RESULT.md) |
 | Branch-orientation follow-up and current constructive gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
-| Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): stopped without a qualifying general construction; scoped conversion limits and reopening condition |
+| Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -63,7 +70,9 @@ remain in their shared directories and continue to be verified.
 
 ## Research decision and stopping rules
 
-The selected count package has reached its stopping point. The
+These rules distinguish completed claims and individual candidate stops
+from the continuing general research objective. The selected count
+package has reached its stopping point. The
 [publication scope](manuscript/PUBLICATION_SCOPE.md) is the canonical
 statement of A–D, literal workspace reservations, matching intervals,
 and retained corollaries. In particular, C proves the one-clean count
@@ -127,7 +136,7 @@ the same fixed-density bounds and literal allocations. The current
 constructive gap is arbitrary nonlinear orientation at interior bias:
 the factorization $`W=P W_0 Q`$ still needs priced in-place leaf and marker maps, or a
 direct complete-word construction. A parallel XOR lookup alone does not
-supply them. The branch session records the precise reopening condition.
+supply them. The branch session records the remaining construction task.
 
 The [bounded permutation follow-up](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 did not pass its new-mechanism checkpoint and stopped construction early.
@@ -137,9 +146,11 @@ encoded Clifford actions, and corner words with limited interleavers.
 None is an unrestricted native lower bound; an explicit approximate
 encoding also prevents extending the exact Clifford-order argument by
 continuity. R79 and the arbitrary-orientation frontier are unchanged.
-Without a new qualifying mechanism, the next phase is independent
-technical review of the proved results, rather than another automatic
-construction session. Final manuscript drafting remains separate.
+The next constructive task is to discover a mechanism that escapes these
+specific restrictions. It need not arrive with its proof already finished.
+Independent technical review can strengthen the proved results alongside
+that search. It does not replace the general objective. Final manuscript
+drafting remains separate.
 
 The latest obstruction result is
 [R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
@@ -175,13 +186,33 @@ explains why the spectator-padded witness has constant depth at fixed
 accuracy: a dimension-growing lower bound needs a different witness. The
 [entry-indexed bound](research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 restricts one encoding architecture, not arbitrary native circuits.
-Further research must supply a concrete depth improvement or an invariant
-valid for the unrestricted circuit model. More finite fixtures alone are
-not a next step. No practical crossover, efficient preprocessing, or
+Success requires a concrete depth improvement or an invariant valid for
+the unrestricted circuit model. Mechanism discovery, reformulation, and
+resolving a named proof gap are legitimate steps toward that success;
+more finite fixtures alone do not establish it. No practical crossover, efficient preprocessing, or
 general native emitter is claimed. Internal audits do not replace external
 technical review; final manuscript drafting requires the user's request.
 
-### Reopening research requires a qualifying mechanism
+### Continuing toward the general answer
+
+The immediate constructive goal remains arbitrary nonlinear branch
+orientation with a shared unordered magnitude pair at each depth: at
+fixed accuracy and square-root dirty width, seek sub-square-logarithmic
+T-depth, ideally logarithmic, with one clean qubit and the existing
+square-root T-count and linear Clifford-count budgets. Arbitrary
+node-dependent magnitudes and optimal unrestricted depth remain broader
+questions. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
+is sufficient; a direct complete-frame construction is equally welcome.
+
+Separate discovery from certification. Begin a bounded exploration with
+a question, a changed assumption or representation, and the uncertainty
+it aims to resolve. An unfinished identity can be a useful research
+lead when its missing step is explicit. Before claiming an improvement,
+complete the native identity and resource, error, and return proof.
+The next design step should ask which costs are forced by the complete
+operator and which arise from separately compiling its factors, with
+particular attention to joint orientation and recovery. This is a
+question to investigate, not an established saving.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
@@ -199,8 +230,12 @@ invariant valid for the actual circuit model. Existing interface failures
 are not unrestricted lower bounds. Stop a candidate that retains its old
 asymptotic cost, needs unpriced clean history, or cannot return its work.
 
-Reopen for a concrete qualifying idea, a discovered defect, or an explicit
-change of scope. Do not restart exploration merely to keep activity going.
+At a checkpoint, decide whether to continue, reformulate, or pause that
+candidate. Record what was learned, the exact unresolved step, and a
+question from which work can resume. Exhausting the current list of
+ideas is a session outcome, not evidence that the target is unattainable.
+Use bounded sessions to learn and avoid repeating unchanged failures;
+discovering the next idea remains part of the authorized research.
 Final writing begins only when requested.
 
 ## Refurnishing policy

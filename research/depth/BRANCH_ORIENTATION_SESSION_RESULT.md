@@ -374,7 +374,10 @@ column has constant error.
 
 The subsequent [bounded permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
 tested this interface and stopped without a qualifying general compiler.
-It is the current decision record; the gap described below remains open.
+It records that session's outcome. The
+[continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer)
+keeps the gap below as an active constructive target; the checkpoint
+ended a search session, not the pursuit of the general answer.
 
 The exact bipartite phase/XOR interface in Section 2 is already within
 the desired count and depth budgets. What remains missing is a native
