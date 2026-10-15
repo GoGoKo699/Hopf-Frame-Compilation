@@ -166,6 +166,16 @@ qubit it proves only terminal clean-Z preservation below that threshold.
 It does not establish a scalar four-layer transfer gap or a five-layer
 lower bound with positive clean work.
 
+The [one-clean midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives a five-layer obstruction when a four-layer realization admits
+a Pauli or Hermitian-Clifford encoded clean observable at its two-layer
+midpoint, with unrestricted dirty width and middle crossing rank. It uses
+R75's phase-polynomial extension, R74's finite-boundary argument, and a
+local compressed-commutant lift. A separate cyclotomic norm argument
+excludes finite-projective-order occupied blocks below error $`1/196608`$.
+These proofs add no imported premise. Terminal return alone does not
+imply either restriction; the unrestricted one-clean question remains open.
+
 The compressed-column refinement has a separate dependency chain. It
 retains the uniform theorem's literal threshold and improves its depth
 bound on the stated subrange:

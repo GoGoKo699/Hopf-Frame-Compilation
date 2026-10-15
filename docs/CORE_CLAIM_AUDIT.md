@@ -177,8 +177,15 @@ layers it gives minimum middle crossing rank $`\Omega_a(\sqrt L)`$.
 The separate [operator-rigidity theorem R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md)
 requires at least five layers for the zero-clean witness at integer
 $`L\ge3`$, with arbitrary dirty width. Its one-clean consequence is
-exact terminal clean-sector preservation only. These results do not
-close the growing-depth gap.
+exact terminal clean-sector preservation. The
+[one-clean midpoint theorem R76](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md)
+then gives the same four-layer error floor when a two-plus-two split
+has a Pauli encoded clean observable, hence five layers at $`L\ge3`$
+in that subclass. A Hermitian-Clifford midpoint gives a positive explicit
+threshold with unrestricted dirty width and crossing rank. Its
+finite-boundary argument and compressed-commutant lift retain the full
+initialized-sector contract. The non-Clifford midpoint freezing step
+and the growing-depth gap remain open.
 
 The initialized-isometry norm covers every logical column, arbitrary
 dirty/reference inputs, literal phases, and clean leakage. Actual inverses

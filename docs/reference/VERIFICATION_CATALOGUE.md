@@ -541,8 +541,19 @@ extension, arbitrary Hermitian-Clifford boundaries, common active-axis
 commutants, and the distinction between rare-sector trace deficits and
 operator norm. The unrestricted zero-clean five-layer lower bound follows
 from the analytic commutant and phase-quantization proof, not from finite
-enumeration. Neither the tests nor that theorem establish a positive-clean
+enumeration. Neither the tests nor that theorem establish an unrestricted positive-clean
 five-layer bound or a uniform scalar gap.
+The [one-clean midpoint proof](../../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, has [bounded checks](../../tests/test_one_clean_midpoint_rigidity.py)
+of dependent-axis phase layers, diagonal Clifford extraction, native
+two-layer return after intermediate mixing, a non-Pauli Clifford midpoint,
+compressed-commutant lifting, the eight-boundary recurrence with its
+independent coefficient scale, and bounded cyclotomic orbits, polynomial
+constants and phase cancellation. Its Pauli and Clifford midpoint bounds
+allow arbitrary dirty width and crossing rank. The width-independent
+gaps and complementary finite-projective-order obstruction are analytic;
+the finite fixtures do not prove the unrestricted one-clean conjecture or
+infer a midpoint condition from terminal clean return.
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for
 prefix preparation, native controlled-H phases, actual inverse, scalar

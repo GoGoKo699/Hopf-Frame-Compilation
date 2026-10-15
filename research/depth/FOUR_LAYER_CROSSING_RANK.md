@@ -461,6 +461,32 @@ If f is nonzero, some cluster is nonzero. It follows that
 Since $`m=2r`$, the recurrence gives $`t_K=\mathcal T_a(r)`$,
 proving the theorem.
 
+### Finite-boundary form
+
+The same proof applies to any sum of K normalized conditional boundary
+states of the displayed form, with coefficients $`\pm2^{-b/2}`$,
+where $`K\ge2`$ and the nonnegative integer b are independent.
+Neither $`K=2^{a+1}`$ nor unit norm of an entire boundary sum is used
+in the cluster argument. With
+
+```math
+A=2(K^2-1),\qquad d_m=7+3m+\binom m2,\qquad
+C=Kd_m+b+4m+4\log_2K+1,
+```
+
+every nonzero such sum f satisfies
+
+```math
+\|f\|^2\ge2^{-T},\qquad
+T=C\frac{A^K-1}{A-1}.
+```
+
+The Choi states of non-Hermitian Clifford products are also allowed
+when their common phases are eighth roots. Fixed ring-valued Clifford
+representatives have this property. Arbitrarily chosen continuous scalar
+phases are not allowed. The [one-clean midpoint theorem](ONE_CLEAN_MIDPOINT_RIGIDITY.md#3-a-clifford-midpoint-with-unrestricted-crossing-rank)
+uses this form at K=8, b=4, m=0 for an eight-term compressed discrepancy.
+
 ### Initialized return and a rank--precision bound
 
 Let J append the a clean zeros and suppose

@@ -263,8 +263,18 @@ $`\rho=\sin(\pi/8)/\sqrt2\approx0.270598`$ between distinct two-layer
 Pauli images. The zero-clean $`1/3`$ witness consequently has four-layer
 error at least $`\rho/2\approx0.135299`$, so $`L\ge3`$ requires five
 layers even with arbitrary dirty width. With one clean qubit, the same
-threshold forces exact terminal clean-sector preservation; it does not
-give a one-clean five-layer lower bound.
+threshold forces exact terminal clean-sector preservation.
+
+The [one-clean midpoint theorem](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives the same floor for four-layer realizations admitting a
+two-plus-two split whose encoded clean observable is Pauli, so integer
+$`L\ge3`$ requires five layers within that subclass. A Hermitian-Clifford
+midpoint gives a positive explicit threshold with unrestricted dirty
+width and crossing rank. Its proof combines phase-polynomial descent,
+a finite Clifford-boundary gap, and compressed-commutant lifting.
+The unrestricted non-Clifford midpoint case remains open: the lifting
+and phase-discreteness arguments already extend, but the compressed
+conjugations have not been frozen.
 Optimal depth remains an open problem.
 
 The following earlier studies isolate costs or restrict particular

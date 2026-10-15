@@ -185,8 +185,14 @@ R73's explicit one-clean two-layer gap also gives a three-layer lower bound
 at $`L\ge8`$. The [operator-rigidity theorem](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
 R75, gives a zero-clean five-layer lower bound at $`L\ge3`$, using the
 four-layer error floor $`\rho/2\approx0.135299`$. With one clean qubit,
-its conclusion is exact terminal-sector preservation below that error,
-not a five-layer lower bound. Optimal depth remains an open problem.
+it forces exact terminal-sector preservation below that error.
+The [midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
+R76, gives the same one-clean floor when a two-plus-two split has a Pauli
+encoded clean observable, hence five layers at $`L\ge3`$ in that
+subclass. A Hermitian-Clifford midpoint gives a positive explicit
+threshold without restricting crossing rank. The unrestricted
+non-Clifford midpoint case remains open.
+Optimal depth remains an open problem.
 
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count
