@@ -232,4 +232,7 @@ The preparation audit found no defect in the inspected resource composition
 or the R75–R77 proof chain. It reconstructed their interfaces and the
 critical imported lemmas; it did not independently reprove every synthesis
 premise, construct a general emitter, or establish a new asymptotic bound.
-The next step is to choose and design the research attack from this map.
+The [runnable research prompt](RESEARCH_SESSION_PROMPT.md) designs the next
+attack from this map. Its preferred hypothesis is native depth-label erasure
+through nested subtree projectors, with an independent query-cost reserve
+and explicit qualification gates. That design has not yet been executed.
