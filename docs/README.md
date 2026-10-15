@@ -89,6 +89,14 @@ complex-unitary synthesis.
 
 ### D. Simultaneous frame T-count and T-depth
 
+The later [structured logarithmic-depth theorem](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+and [recursive terminal lemma](../research/depth/RECURSIVE_TERMINAL_DEPTH.md),
+together with the [bounded-density theorem](../research/depth/BOUNDED_DENSITY_DEPTH.md),
+are supporting research results. They do not replace the general
+statement of D. Their [session record](../research/depth/JOINT_DEPTH_SESSION_RESULT.md)
+separates the complete restricted-family circuits from the remaining
+general decoder question.
+
 Start with the [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md),
 R79. It combines optimal count with the improved all-precision depth bound
 on one circuit, with absolute constants, for both frame families with one

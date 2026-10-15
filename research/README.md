@@ -190,6 +190,24 @@ supplies the two-clean precision and width splices.
 | [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
 | [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
 
+The [joint decoder/terminal session](depth/JOINT_DEPTH_SESSION_RESULT.md)
+adds three supporting results while keeping R79 as the selected general
+theorem. At fixed accuracy and square-root width,
+[R80](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md) gives logarithmic
+depth for depth-homogeneous magnitudes with arbitrary signs, using one
+common product conjugator and exact tag return. Its signed balanced real
+case is exact. [R81](depth/RECURSIVE_TERMINAL_DEPTH.md) recursively improves
+the general logarithmic terminal to a log-times-log-log contribution;
+the general early decoder still has square-logarithmic depth. Their
+full contracts, all-width splices, and scope restrictions have separate
+proof homes. At the same accuracy and width scale,
+[R82](depth/BOUNDED_DENSITY_DEPTH.md) supplies a complete
+sub-square-logarithmic circuit for density bounded relative to a positive
+product reference. Its weighted correction has constant normalization;
+sparse native sources and iterated-logarithmic recursion retain the
+one-clean allocation and count budgets. The constants depend on fixed
+accuracy and density bounds, so this is also a promised-family result.
+
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded

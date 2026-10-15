@@ -276,6 +276,33 @@ these constructive reductions from the complete-frame upper bounds.
 
 ## 5. Fault-tolerant sources and contribution boundaries
 
+The later [structured common-flag theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+uses the existing one-qubit synthesis, read-only conjunction and dirty-query
+interfaces, the [quadrant-sign gauge](../research/endpoint/PRECISION_GAUGE_COMPILER.md#1-contract-and-effective-normalization),
+and R72/R79's literal fallback and phase composition. Its new circuit
+identity uses the same actual product factors in source and conjugator,
+giving exact tag/work return. Its common-angle certified perturbation
+preserves the structured promise. The
+[recursive terminal R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
+uses R78's full-mode decoder and the sharp rectangular query with an
+unchanged external prefix. Both add local proofs rather than new external
+premises. Neither replaces R79's general all-precision statement.
+
+The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
+combines the retained precision gauge, native real-vector source, R80's
+common-flag word, sharp dirty queries, and R66's
+[dimension-free isometry extension](../research/depth/SUBLINEAR_T_DEPTH.md#4-from-a-source-error-to-an-honest-unitary-comparison).
+Its finite variance and Carleson argument is proved within the chapter;
+the sparse Schur row/column sources, constant-normalization recovery, and
+recursive relative-density ledger add no new external premise. The
+[product-reference corollary](../research/depth/BOUNDED_DENSITY_DEPTH.md#12-positive-product-reference-corollary)
+requires an effectively supplied strictly positive classical product
+distribution and fixed upper/lower density-ratio bounds. Its constants
+are independent of the reference biases; reference zeros and an efficient
+search for a suitable reference are outside the statement. This is a
+fixed-accuracy supporting-family compiler. R79 remains the general
+frontier.
+
 | Premise | Primary locator | Imported role and local specialization |
 |---|---|---|
 | Dirty lookup and finite-width counting | LKS, Section 2, Eq. (8), Appendices B.2/C, Section 5; F2–F3 | Exact dirty-bank echo and counting method; local literal interpreters and frame reductions |
