@@ -83,7 +83,7 @@ fixed catalogue factors. Exact dirty program queries and XOR slot
 translations retain the unknown program input; a commutator on two
 disjoint borrowed arrays cancels their unwanted actions. The proof
 charges native local synthesis, selected-factor error, catalogue volume,
-and the original-width splice. R79 remains the absolute all-precision
+and the original-width splice. R79 remains the selected manuscript
 theorem; optimal general depth remains open.
 
 The [precision-terminal follow-up](PRECISION_TERMINAL_SESSION_RESULT.md)
@@ -113,13 +113,18 @@ catalogue absorbs the resulting fixed-polynomial exponential local costs.
 This bypasses the proposed fine full-flag compression; it does not prove
 that arbitrary fine product coins admit a small exact compression.
 
-The [next precision-bridge design](BORROWED_PRECISION_BRIDGE_PROMPT.md)
-asks whether that same depth law extends through $`L\le n^{1/4}`$.
-Its new obligation is a sharp global-prefix ledger for the small-workspace
-early stage. The existing local exponential allowance does not supply it.
-The proposed finite reductions would leave $`O(\log L)`$ layers and
-permit a constant number of R79 high-precision catalogue entries.
-The design is unexecuted; the proved frontier remains R95.
+The [executed precision bridge](BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+proves [R96](ALL_PRECISION_LINEAR_DEPTH.md), the same depth law at all
+precisions. Its first bridge through $`L\le n^{3/4}`$ already exceeds
+the designed quarter-power target. The new global stage has separated
+reserve $`O(\log l+\log^3m)`$ and standalone size $`2^{O(\log l+\log^3m)}`$;
+every long local-data table belongs to the suppressed global query bill.
+Fast reference truncation permits starting at the original height.
+The remaining catalogue-size restriction is removed by the
+[direct-prefix terminal](DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md):
+fine masks retain their common grammar and a shorter native coarse word
+is programmed explicitly. Optimal general depth remains the destination;
+the upper law no longer has a precision-window restriction.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -371,11 +376,12 @@ accuracy; it does not prove that depth optimal. R92 and R93 subsequently
 give absolute growing-precision refinements. R94 reaches the
 $`O(\ell\log_2(\ell+2))`$ benchmark, and R95 reaches $`O(\ell)`$
 on $`6\le L\le2\ell`$.
-Optimal general depth, broader precision ranges and dimension-growing
-lower bounds remain open. Complete native resource and return
-proofs remain the criterion. Proved affine, corner, and R85–R95 circuits
-should not be repeated as unresolved tasks. R79 remains the absolute
-general all-precision bound.
+R96 subsequently extends that depth law to all precisions. Optimal
+general depth and dimension-growing lower bounds remain open. Complete
+native resource and return proofs remain the criterion. Proved affine,
+corner, and R85–R96 circuits should not be repeated as unresolved tasks.
+R79 remains the selected manuscript statement; R96 is the stronger
+research upper bound.
 
 The fixed-L constants and unbounded classical preprocessing in R90 must
 be retained when considering shrinking error or an effective compiler.

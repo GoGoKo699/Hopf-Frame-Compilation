@@ -189,6 +189,21 @@ with larger dirty counts, which R94's complete-workspace transfer absorbs
 globally. Optimal general depth remains open; the selected all-precision
 Result D stays R79.
 
+The [all-precision theorem R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
+extends $`O(NL/b^2+L+\ell)`$ to every precision, with the same optimal
+counts, original one-clean widths and full error. Its
+[global stage](../research/depth/GLOBAL_BORROWED_PRECISION_STAGE.md)
+separates initialized precision scratch from coarse geometry, and its
+[fast reference](../research/depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md)
+has a full-space comparison to the original flag. Three contractions give
+a [polynomial-precision bridge](../research/depth/POLYNOMIAL_PRECISION_DEPTH.md).
+The [direct-prefix terminal](../research/depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md)
+then removes the catalogue restriction by retaining a fixed fine-mask
+sequence and explicitly programming the shorter native coarse word.
+The final proof prices all controls, native gates, global queries,
+simultaneous pools and original-width precision cases. Optimal depth
+remains open; selected Result D stays R79.
+
 The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains its source and recovery proofs, though R79 supersedes its resource
@@ -197,6 +212,7 @@ bound. Unrestricted optimal depth remains open.
 | Selected branch | Canonical proof and role |
 |---|---|
 | All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
+| Stronger all-precision research bound | [All-precision linear depth](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md), R96: globally priced borrowed precision, fast references, direct prefix programming, original-width composition and full returned-state error |
 | Fixed-accuracy general depth | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), R90: fixed-number R89 coarse reduction, zero-clean local catalogue factors, exact dirty selection and two-array return, and the original-width splice |
 | Absolute catalogue precision | [Uniform catalogue precision](../research/depth/UNIFORM_CATALOGUE_PRECISION.md), R92: an explicit exponential precision envelope and a slowly growing logarithmic-depth window |
 | Inverse-polynomial accuracy | [Logarithmic precision depth](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), R95: coarse flags and sparse correction, local compilation with relaxed counts, complete-workspace transfer, and original-width composition |

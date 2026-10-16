@@ -173,7 +173,7 @@ including arbitrary node-dependent signed magnitudes, zeros, prescribed
 leaf phases, and the full initialized-isometry contract. Three R89 coarse
 reductions leave a small terminal; a complete rounded program selects
 fixed local factors on two borrowed arrays whose unwanted actions cancel
-in a commutator. R79 remains the absolute all-precision result. R90
+in a commutator. R79 remains the selected manuscript result. R90
 does not assert depth optimality or constants uniform in growing L.
 
 The [R92 absolute precision envelope](depth/UNIFORM_CATALOGUE_PRECISION.md)
@@ -207,11 +207,14 @@ correction. Borrowed real rotations reduce a local source's initialized
 scratch to logarithmic size; exact compact references and two explicit
 local reductions then give depth $`O(h+\kappa)`$ with much larger
 allowed local dirty resources. R94's full-payload catalogue absorbs them.
-Optimal general depth and broader precision ranges remain open.
-The [next five-hour design](depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
-targets the same depth law through $`L\le n^{1/4}`$, contingent on a
-new global resource ledger for the small-workspace early stage. It is
-designed, not executed, and does not change the proved frontier.
+The [executed precision bridge](depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+establishes [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md): the same bound
+for every $`n\ge1,L\ge6`$, with absolute constants and the original
+count, width and complete-error guarantees. The globally priced stage
+separates logarithmic precision scratch from geometric metadata; a
+shorter exact cap speeds the original reference. A directly programmed
+terminal then avoids the full final-accuracy catalogue. Optimal general
+depth and matching dimension-growing lower bounds remain open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -234,6 +237,11 @@ supplies the two-clean precision and width splices.
 | [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope and a slow unbounded precision window with logarithmic depth; retains R79's other regimes |
 | [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision improvement: local early decoder, whole noncommuting coarse groups, shared matrix-unit residual source, and the original one-clean width/phase splices |
 | [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 growing-precision bound: carry the entire local R79 workspace through dirty selection, compile larger groups directly to final accuracy, and return borrowed arrays exactly with parallel R91 queries and routing |
+| [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96: $`O(NL/b^2+L+\ell)`$ for all $`n\ge1,L\ge6`$, with optimal counts, one clean bit, original literal widths and full initialized-isometry error |
+| [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | Separated $`O(\log l+\log^3m)`$ reserve, actual global-prefix addresses, explicit standalone costs and full recovery |
+| [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | Shorter exact geometric cap, full-space comparison to the original reference, complete augmented flags and actual-inverse cancellation |
+| [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Independently closed intermediate theorem through $`L\le n^{3/4}`$, using three fast stages and R94's complete-payload catalogue |
+| [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | Fixed fine-mask grammar with global-prefix queries and a paid native coarse instruction schedule; original conditional flags, literal controls and complete work return |
 | [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95: uniform $`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$, with optimal counts, one clean bit, original literal widths and full-isometry error |
 | [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: coarse geometric precision, final-accuracy shared-gradient references, a small absolute residual norm, signed Schur sources and complete recovery |
 | [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Logarithmic initialized source scratch via borrowed real calibration; approximate dirty-core return is retained in a whole-physical-space comparison |
@@ -367,10 +375,12 @@ inside each larger catalogue entry and R91 for parallel selection. Its
 complete workspace transfer removes the residual correction and permits
 a constant number of groups at final accuracy. R95 improves both its
 opening and local depth, reaching logarithmic depth at inverse-polynomial
-accuracy while preserving the global count and width contracts. The
+accuracy while preserving the global count and width contracts.
+R96 then extends $`O(NL/b^2+L+\ell)`$ to all precisions through a
+global borrowed-work stage and directly programmed terminal. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains optimal general depth, broader precision ranges, and
-dimension-growing lower bounds as open questions. Full work return and
+retains optimal general depth and dimension-growing lower bounds as
+open questions. Full work return and
 simultaneous count/width bounds remain part of any further improvement. The finite
 catalogue gives no efficient classical preprocessing, practical crossover,
 or scalable native emitter guarantee.

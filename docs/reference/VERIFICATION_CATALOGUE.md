@@ -19,6 +19,7 @@ not prove universal statements or asymptotic optimality.
 | Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
 | Precision-terminal refinements R91–R93 | [Detailed finite checks](#detailed-finite-checks) | Seven exact reader fixtures and four grouped residual fixtures; R92's uniform envelope and R93's native resource/error and width splices remain analytic |
 | Portable workspace catalogue R94 | [Detailed finite checks](#detailed-finite-checks) | Six bounded full-operator checks for transfer, initialized leakage, current selectors and guard return; the simultaneous native bounds and uniform width/precision splices are analytic |
+| All-precision general depth R96 | [Detailed finite checks](#detailed-finite-checks), [all-precision proof](../../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Four bounded capped-reference fixtures check exact overlap/cutoff, full-space completion, all original bands and occupied actual-inverse cancellation; retained native controls, source/recovery and query suites support their existing interfaces. Global addresses, common fine grammar, coarse support, precision and width splices remain analytic |
 | Logarithmic-precision general depth R95 | [Detailed finite checks](#detailed-finite-checks) | Four bounded sparse-correction checks for live root and signed Schur sources, complete-work recovery, actual inverses and leakage; retained native/source, R91 and R94 fixtures support the inherited interfaces, while the asymptotic proof is analytic |
 | Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
@@ -371,6 +372,61 @@ query sums, the full error hybrid, constant bottom, and original-width
 real/complex splices are analytic and independently reviewed. The
 [bootstrap session record](../../research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
 records validation and integration; no immutable receipt is regenerated.
+
+The [R96 all-precision theorem](../../research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
+has [four bounded capped-reference fixtures](../../tests/test_fast_capped_geometric_reference.py)
+for its [fast geometric reference component](../../research/depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md):
+
+1. Original cap sizes from 2 through 128 and every smaller power-of-two
+   cap check the literal overlap, squared-distance formula, exact equal-cap
+   case, and precision cutoff. Renormalizing a truncated prefix instead of
+   using the exact capped column gives a different vector.
+2. One augmented reference block checks the analysis-only plane rotation,
+   its full-operator distance, the transported initialized anchor, and its
+   identity on occupied private scratch. Uniform-column factors and equal
+   cap dimensions are included.
+3. Two original eight-level coins test all 64 root/marker columns and all
+   four incoming label values. The ideal comparison uses every private
+   scratch bit and every original high coin bit in its augmented nonzero
+   test. The actual shortened references obey the full-output sandwich
+   bound. Omitting either set of coordinates fails. The original positive
+   tail weights also distinguish the unchanged mathematical matching from
+   the shortened native preparation.
+4. Coherent active/inactive inputs include occupied private work, a dirty
+   bit and an external reference bit. The actual inverse gives exact
+   inactive cancellation and the active full-output error bound. Replacing
+   it with the comparison inverse breaks that cancellation.
+
+These are dense finite verification matrices with deliberately varied
+unspecified completion columns. They are not emitted reference-source
+oracles. The plane correction is analysis-only; its existence is not
+priced as an available native gate. The exact recursive Gray-path
+source and the full-space error argument have their analytic proof homes.
+
+The complete R96 proof also uses the
+[global stage](../../research/depth/GLOBAL_BORROWED_PRECISION_STAGE.md),
+[polynomial-precision bridge](../../research/depth/POLYNOMIAL_PRECISION_DEPTH.md),
+and [direct-prefix terminal](../../research/depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md).
+The retained [native grouped-terminal fixtures](../../tests/test_grouped_terminal_depth.py)
+check literal H/T/T-dagger control words, phase corrections, actual
+unloading, and occupied inactive programs and helpers. They support
+bounded native-control interfaces, not the new unbounded program schedule.
+Existing [growing-source diagnostics](../../tests/test_growing_precision_source.py),
+[conjugate recovery](../../tests/test_conjugate_recovery.py),
+[one-clean native words](../../tests/test_one_clean_compiler.py),
+[R91 queries](../../tests/test_parallel_bilinear_word_query.py), and
+[R94 complete-payload transfers](../../tests/test_portable_workspace_catalogue.py)
+retain their separate finite contracts.
+
+The common fine skeleton across immutable prefixes, exact completed-mask
+substitution and actual gauge replay, the precision-independent coarse
+support, every global table factor, simultaneous dirty pools, absolute
+cutoffs and all-precision initialized-isometry composition are analytic.
+The full law applies to every $`n\ge1,L\ge6`$ with one external clean
+qubit and the original real/complex widths; finite tests do not certify
+its asymptotic bounds or unrestricted depth optimality. No scientific
+receipt, new external premise or general native emitter is added.
+Selected manuscript Result D remains R79.
 
 The [R95 logarithmic-precision theorem](../../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
 has [four bounded fixtures](../../tests/test_coarse_flag_sparse_correction.py)

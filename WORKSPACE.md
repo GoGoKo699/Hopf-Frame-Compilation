@@ -6,7 +6,7 @@ The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
 precision-uniform subtree depth, and the fixed-accuracy general
-logarithmic-depth theorem R90, and the growing-precision refinements R92–R95. The
+logarithmic-depth theorem R90, and the precision refinements R92–R96. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -36,8 +36,9 @@ been learned. R90 reaches logarithmic general depth at fixed accuracy;
 R92 extends a slow unbounded precision range, R94 reaches
 $`O(\ell\log_2(\ell+2))`$, and R95 reaches $`O(\ell)`$ at
 inverse-polynomial accuracy.
-Optimal general depth and a broader precision range remain mathematical
-questions.
+R96 extends the depth law $`O(NL/b^2+L+\ell)`$ to all precisions.
+Optimal general depth and matching dimension-growing lower bounds remain
+mathematical questions.
 A failed route or an ended session does not retire the objective.
 
 ## Read by claim
@@ -62,7 +63,7 @@ A failed route or an ended session does not retire the objective.
 | Executed precision-terminal session | [Design](research/depth/PRECISION_TERMINAL_PROMPT.md), [outcome](research/depth/PRECISION_TERMINAL_SESSION_RESULT.md): R91's parallel reader, R92's absolute precision envelope, and R93's grouped-terminal improvement |
 | Executed catalogue bootstrap session | [Design](research/depth/CATALOGUE_BOOTSTRAP_PROMPT.md), [R94 proof](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), [outcome](research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md): carrying the full local workspace through selection permits a constant number of groups compiled directly to final accuracy |
 | Executed full-flag and local-precision session | [Design](research/depth/FULL_FLAG_DEPTH_PROMPT.md), [R95 proof](research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [outcome](research/depth/FULL_FLAG_DEPTH_SESSION_RESULT.md): coarse flags with sparse correction and a faster local compiler give uniform logarithmic depth through inverse-polynomial accuracy |
-| Next designed precision bridge | [Five-hour prompt](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md): seek the same depth law through $`L\le n^{1/4}`$ by globally pricing borrowed-precision sources and shrinking the terminal to logarithmic precision height; designed, not executed |
+| Executed precision bridge and direct terminal | [Design](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md), [R96 proof](research/depth/ALL_PRECISION_LINEAR_DEPTH.md), [outcome](research/depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md): a global borrowed-precision stage, fast references and directly programmed terminal give $`O(NL/b^2+L+\ell)`$ at every precision |
 | Executed whole-terminal session | [Borrowed-work design](research/depth/TERMINAL_SOURCE_GAUGE_PROMPT.md): a fixed number of R89 reductions and dirty catalogue commutators replace the remaining recursive terminal |
 | Retained causal compact-coin construction | [R89 proof](research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) and [continuation record](research/depth/COIN_CONTINUATION_SESSION_RESULT.md); its coarse reduction supports R90 |
 | Retained product-coin construction | [R87 proof](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
@@ -136,7 +137,7 @@ leave a small terminal whose complete rounded program selects a finite
 catalogue through arbitrary dirty registers. A commutator on two disjoint
 borrowed arrays returns both arrays exactly. At fixed accuracy, optimal
 square-root-width depth is now between a constant lower bound and
-$`O_L(\ell)`$. R79 remains the absolute all-precision theorem;
+$`O_L(\ell)`$. R79 remains the selected manuscript theorem;
 R90 does not claim constants uniform in growing L.
 
 The later [R92 envelope](research/depth/UNIFORM_CATALOGUE_PRECISION.md)
@@ -179,9 +180,20 @@ the original real/complex literal widths, and full initialized-isometry
 error with absolute constants. Its coarse-frame sparse correction removes
 the opening's repeated spectral search. Its local compiler uses only
 logarithmic initialized source scratch and much larger dirty resources;
-R94's complete-payload catalogue absorbs those local costs. Optimal depth
-and a broader precision range remain open. The selected manuscript Result D
-remains R79.
+R94's complete-payload catalogue absorbs those local costs.
+
+The subsequent [R96 theorem](research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
+proves that same bound for all integer $`n\ge1,L\ge6`$. Its
+[global stage](research/depth/GLOBAL_BORROWED_PRECISION_STAGE.md) reserves
+only $`O(\log L+\log^3m)`$ original logical zeros and prices every
+long-address table against the original global prefix. A shorter exact
+geometric source approximates the original reference with a full-space
+comparison. Three reductions leave $`O(\log L)`$ layers where needed;
+a [directly programmed terminal](research/depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md)
+uses fine masks and a paid finite native-gate schedule without enumerating
+precision programs. The literal one-clean widths, optimal counts and full
+error contract are unchanged. Optimal depth remains open. The selected
+manuscript Result D remains R79.
 
 The retained [R88 terminal theorem](research/depth/PREFIX_SELECTED_COIN_TERMINAL.md)
 handles every real terminal height $`0\le M\le n`$, with a preserved
@@ -331,14 +343,16 @@ signed sparse correction. The local word replaces precision-sized clean
 source work by borrowed real rotations, uses exact compact reference
 coins, and contracts twice before a constant number of high-precision
 R79 groups. Its larger local dirty costs fit the complete-payload catalogue.
-Optimal general depth, a broader precision range, and dimension-growing
-lower bounds remain open. The
-[next five-hour design](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
-targets the same depth law through $`L\le n^{1/4}`$. Its main unproved
-interface is a globally priced early stage with logarithmic initialized
-precision scratch; two such stages would leave a logarithmic-precision
-tail for R79's high-precision entries. This is a design, not a new result.
-Do not repeat the now-resolved R94 opening or local-precision questions.
+The [executed precision bridge](research/depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+then establishes [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md),
+the same depth law for every precision. Its first qualified bridge reaches
+$`L\le n^{3/4}`$; direct prefix programming then removes the catalogue
+restriction. Fine precision masks share a fixed local grammar, and only
+the shorter coarse native word is read instruction by instruction.
+All controls, original conditional zeros, dirty pools and actual inverses
+are paid. Optimal general depth and matching dimension-growing lower
+bounds remain open. The precision restriction in this upper law is now
+resolved; do not repeat it or the earlier R94 opening/local questions.
 No efficient preprocessing, practical crossover, or scalable native emitter is claimed.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
