@@ -154,6 +154,16 @@ R90's [session record](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md
 and [finite checks](../tests/test_dirty_catalogue_terminal.py) retain their
 separate scopes. R79 remains the absolute all-precision statement of D.
 
+The later [R92 precision envelope](../research/depth/UNIFORM_CATALOGUE_PRECISION.md)
+charges R90's constants uniformly, while
+[R93 grouped catalogues](../research/depth/GROUPED_CATALOGUE_PRECISION.md)
+improve the inverse-polynomial-in-n benchmark to
+$`O(\log^2 n/\log\log n)`$ depth. R93 combines one uniform R89
+stage, a prefix-selected R78/R79 early decoder, small R90 catalogues,
+the shared binary residual source, and R72's one-clean recovery and
+width/phase splices. [R91](../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md)
+is an independent exact word-query improvement, not a premise of R92 or R93.
+
 The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains its source and recovery proofs, though R79 supersedes its resource
@@ -163,6 +173,8 @@ bound. Unrestricted optimal depth remains open.
 |---|---|
 | All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
 | Fixed-accuracy general depth | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), R90: fixed-number R89 coarse reduction, zero-clean local catalogue factors, exact dirty selection and two-array return, and the original-width splice |
+| Absolute catalogue precision | [Uniform catalogue precision](../research/depth/UNIFORM_CATALOGUE_PRECISION.md), R92: an explicit exponential precision envelope and a slowly growing logarithmic-depth window |
+| Inverse-polynomial accuracy | [Grouped catalogue precision](../research/depth/GROUPED_CATALOGUE_PRECISION.md), R93: whole-group coarse catalogues and a shared matrix-unit residual stream, with current-prefix queries and full one-clean return |
 | Native decoder and fixed-accuracy corollary | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
 | Retained one-clean baseline and terminal | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
@@ -179,6 +191,7 @@ dependencies, not a sequence of research tasks to repeat.
 |---|---|
 | Uniform composition | [Uniform precision and depth](UNIFORM_PRECISION_DEPTH.md): rectangular allocation, uniform cutoff, weighted sums, literal-width fallback, and matching inequalities |
 | Selected table queries | [Blocked bilinear lookup](BLOCKED_BILINEAR_LOOKUP.md): controlled bilinear helper echo, selected-block dirty traversal, four-call cancellation, and fixed-accuracy composition |
+| Parallel word-query refinement | [Parallel bilinear word query](../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md), R91: private-target phase echo, controlled word operation, output batching, and full arbitrary-dirty return |
 | Charged early source | [Unary phase-source groups](UNARY_PHASE_GRADIENT.md): exact selected cyclic shifts, conditional work, source preparation/actual inverse, and complete group error |
 | Program and selector lifetime | [Grouped program prefetch](GROUPED_PROGRAM_PREFETCH.md), especially Section 10: preserved programs, incremental prefix selectors, and consume-before-change suffix enables |
 | Geometric predecessor | [Conditional geometric source](CONDITIONAL_GEOMETRIC_SOURCE.md): the complete conditional-source interface used by the retained geometric grouped construction |

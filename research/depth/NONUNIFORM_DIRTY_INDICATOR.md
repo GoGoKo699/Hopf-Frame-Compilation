@@ -4,6 +4,10 @@
 by the [one-clean Result D](ONE_CLEAN_DEPTH.md) and its earlier depth
 constructions. The standalone indicator statements retain their own
 hypotheses; historical proposals below are not current work orders.
+The later [R91 parallel word query](PARALLEL_BILINEAR_WORD_QUERY.md)
+retains this indicator and replaces the serial bilinear output schedule,
+removing its additive output-length count and depth terms. Earlier
+constructions that use Section 5 retain their stated ledgers.
 
 
 [Dirty tree and echoes](../../docs/CHUNKED_DIRTY_INDICATOR.md) · [Read-only conjunction](../../docs/DIRTY_SUM_COMPRESSION.md#6-indicator-and-complete-frame-consequences) · [Rectangular blocked allocation](../../docs/UNIFORM_PRECISION_DEPTH.md#2-an-unequal-indicator-allocation-preserves-the-block-depth-bound) · [Research scope and stopping rules](../../WORKSPACE.md#research-decision-and-stopping-rules)

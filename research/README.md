@@ -176,6 +176,16 @@ fixed local factors on two borrowed arrays whose unwanted actions cancel
 in a commutator. R79 remains the absolute all-precision result. R90
 does not assert depth optimality or constants uniform in growing L.
 
+The [R92 absolute precision envelope](depth/UNIFORM_CATALOGUE_PRECISION.md)
+and [R93 grouped terminal](depth/GROUPED_CATALOGUE_PRECISION.md)
+subsequently refine growing-precision depth. R93 gives
+$`O(\ell^2/\log_2(\ell+2))`$ at $`L=\Theta(\ell)`$ within
+$`6\le L\le2\ell`$ and square-root dirty width, with the original
+one-clean optimal T-count, Clifford budget, literal widths and full operator contract.
+The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
+gives both complete bounds. The stronger inverse-polynomial-accuracy
+target remains open.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing
@@ -193,6 +203,9 @@ supplies the two-clean precision and width splices.
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
 | [Dirty catalogue terminal](depth/DIRTY_CATALOGUE_TERMINAL.md) | Current R90 fixed-accuracy general bound: three R89 reductions and a zero-clean catalogue commutator give $`O_L(N/b^2+\ell)`$ depth, with original count budgets, literal widths, and the complete operator contract |
+| [Parallel bilinear word query](depth/PARALLEL_BILINEAR_WORD_QUERY.md) | R91 independent exact component: private phase targets parallelize arbitrary output words, removing additive q depth with no clean work |
+| [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope and a slow unbounded precision window with logarithmic depth; retains R79's other regimes |
+| [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision improvement: local early decoder, whole noncommuting coarse groups, shared matrix-unit residual source, and the original one-clean width/phase splices |
 | [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Retained R89 theorem and coarse-reduction interface: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; its original preserved-prefix recursion has an iterated-logarithmic overhead |
 | [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
 | [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
@@ -311,15 +324,16 @@ factor error, rather than the number of catalogue slots, controls the
 complete operator error. The proof includes a zero-clean local synthesis
 ledger and the original-width splice.
 
-R79 remains the absolute all-precision theorem. The
-[next five-hour design](depth/PRECISION_TERMINAL_PROMPT.md), not yet
-executed, targets the precision-dependent terminal: a structured returned
-program must remove both repeated long-prefix queries and serial program
-reading. It seeks a strict improvement at inverse-polynomial error in n,
-with a bounded audit of R90's slowly growing precision range. No new
-theorem is asserted by that design. The
+R79 remains the selected all-precision theorem. The
+[executed precision-terminal design](depth/PRECISION_TERMINAL_PROMPT.md)
+and [session record](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+give R91–R93. Small complete groups share long-prefix reads while a paid
+shared source corrects each actual coarse operator. R93 strictly improves
+the inverse-polynomial-accuracy benchmark; R92 independently makes a
+slowly growing precision range uniform. The exact R91 query component
+does not by itself supply the missing large-group interpreter. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains optimal general depth, a precision-uniform extension, and
+retains optimal general depth, the stronger growing-precision benchmark, and
 dimension-growing lower bounds as open directions. Full work return and
 simultaneous count/width bounds remain part of that target. The finite
 catalogue gives no efficient classical preprocessing, practical crossover,

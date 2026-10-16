@@ -4,6 +4,12 @@
 [Previous general bound R89](CAUSAL_COMPACT_COIN_DEPTH.md) ·
 [Executed design](TERMINAL_SOURCE_GAUGE_PROMPT.md)
 
+The later [R92 envelope](UNIFORM_CATALOGUE_PRECISION.md) makes an
+absolute precision cost explicit for this construction.
+[R93](GROUPED_CATALOGUE_PRECISION.md) instead uses small catalogues for
+whole groups and a shared residual source to improve the
+inverse-polynomial-accuracy benchmark. This page retains R90's fixed-L theorem.
+
 **Local result R90.** Fix integers $`n\ge1,L\ge6`$, put
 $`N=2^n`$, $`\ell=\log_2(n+2)`$, and $`\eta=2^{-L}`$.
 For every prescribed complete real frame W and every
