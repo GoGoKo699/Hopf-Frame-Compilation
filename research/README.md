@@ -197,6 +197,9 @@ accuracy, with its complete local workspace carried through selected
 transfer. R91 supplies parallel queries and paired routing; no residual
 endpoint labels are needed. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
 retains the other precision ranges and the open optimal-depth question.
+The [next five-hour design](depth/FULL_FLAG_DEPTH_PROMPT.md) seeks
+uniform logarithmic depth by replacing both the opening spectral search
+and the local precision cost. It is a proposed session, not a new result.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

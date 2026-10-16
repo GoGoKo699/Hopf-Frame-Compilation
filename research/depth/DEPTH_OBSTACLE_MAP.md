@@ -101,6 +101,14 @@ The opening binary search and local R79 compilation retain the
 $`\ell\log_2(\ell+2)`$ allowance; these are costs of the proved
 construction, not unrestricted lower bounds.
 
+The [next designed session](FULL_FLAG_DEPTH_PROMPT.md) attacks both costs:
+a complete flag dilation would replace serial spectral search, while a
+local one-clean compiler may trade much larger dirty counts for depth
+inside the affordable catalogue. The target is uniform
+$`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$.
+Neither interface is proved by the design, and improving only one leaves
+the R94 headline order unchanged.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
