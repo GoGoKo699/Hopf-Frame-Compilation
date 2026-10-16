@@ -165,6 +165,14 @@ R79 also gives $`O(\log^2 n)`$ depth at $`b=\Theta(\sqrt{NL})`$
 for $`L=\Theta(\log n)`$, so the error may decrease as an inverse
 polynomial in n.
 
+The later fixed-accuracy [dirty catalogue theorem R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+improves the general depth to $`O_L(N/b^2+\log_2(n+2))`$ with
+$`T=O_L(\sqrt N+N/b)`$ and $`G=O_L(N)`$, at the same one-clean
+allocation and original literal widths. It covers both complete-frame
+families, including arbitrary magnitudes, signs, zeros, and leaf phases.
+Its constants may depend on fixed L; R79 remains the all-precision
+statement of D. Optimal large-width depth remains open.
+
 The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
 regimes, complex extensions, and older schedules useful at smaller reservations.
@@ -188,7 +196,7 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R78](research/depth/SUBTREE_PROJECTOR_DECODER.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log^2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log_2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient

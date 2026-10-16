@@ -16,7 +16,8 @@ not prove universal statements or asymptotic optimality.
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
-| Fixed-accuracy general depth R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic |
+| Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
+| Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
 | Retained terminal R88 and contiguous routing | [Detailed finite checks](#detailed-finite-checks) | Three selected-terminal matrix fixtures and three logical interval-routing fixtures; R88's sharp-query and fallback interfaces support R89's stronger terminal theorem |
 | Interval-dilation predecessor R86 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded interval-dilation fixtures; the normalization, native implementation, full dirty/reference contract, and resource bounds are analytic |
@@ -282,6 +283,35 @@ queries. The simultaneous resource envelope, prefix recursion, summable
 errors, arbitrary dirty/reference guarantee, and literal-width splice
 are proved in R89.
 
+The [dirty catalogue theorem R90](../../research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+has [bounded fixtures](../../tests/test_dirty_catalogue_terminal.py):
+
+1. A complete selected commutator uses different noncommuting H/S/T
+   words at two catalogue slots, retains their actual inverse words, and
+   checks every logical, prefix, program, and array input with literal phase.
+2. A coherent prefix and an explicit dirty/reference Bell pair retain
+   their full joint return contract.
+3. Reusing one array leaves the predicted nontrivial dirty commutator;
+   two disjoint arrays cancel that residue.
+4. An independently constructed four-column real Hopf frame is recovered
+   by explicitly computed unitary commutator factors. This spectral
+   calculation is a bounded numerical fixture, not a native compiler.
+5. A nonlinear two-bit program tests the dirty XOR translation echo,
+   actual inverse, and selected swap on every basis input.
+6. A shared-control CCZ phase-polynomial identity checks the literal
+   common-control contribution used by the native Fredkin batching lemma.
+
+The fixtures use small matrices, explicit basis permutations, and literal
+native factors. They do not emit arbitrary catalogue factors or establish
+the asymptotic allocation. The fixed-number R89 reduction, zero-clean
+local synthesis, selected-factor error bound, program/catalogue/query
+resource absorption, full-isometry composition, and literal-width splice
+are proved in R90. No efficient classical preprocessing, practical
+crossover, depth optimality, scalable native emitter, or new immutable
+scientific receipt is asserted. The
+[session outcome](../../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+records review and integration separately.
+
 The [compact fixed-coin support](../../research/depth/COMPACT_COIN_FLAGS.md)
 has [seven bounded checks](../../tests/test_compact_coin_flags.py):
 universal finite atom partitions; exact mass and acyclicity of two-outcome
@@ -340,7 +370,7 @@ all-width, or bias-independent constants. Those follow from the chapter's
 native synthesis and analytic ledger. No large native emitter, efficient
 reference search, or new immutable scientific receipt is asserted. The
 supporting-family result does not itself improve the unrestricted
-frontier; R86, R87, and R89 supply the later fixed-accuracy general
+frontier; R86, R87, R89, and R90 supply the later fixed-accuracy general
 improvements.
 
 The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)

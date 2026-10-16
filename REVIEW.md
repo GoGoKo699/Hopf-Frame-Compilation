@@ -296,6 +296,14 @@ inverse polynomial in n. It supersedes the resource bound of the earlier
 [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision),
 whose separately charged early and terminal source proofs remain available.
 
+At fixed accuracy, [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+gives $`D_T=O_L(N/b^2+\log_2(n+2))`$ with the same one-clean
+allocation, literal widths, and optimal T-count. Three R89 reductions
+leave a small terminal; dirty program queries select local catalogue
+factors whose commutator returns two borrowed arrays. R79 remains the
+all-precision statement of D. R90 claims neither efficient preprocessing
+nor a scalable emitter.
+
 The complex theorem concerns the prescribed magnitude frame, with supplied
 leaf phases; it is not arbitrary complex-unitary synthesis. T-depth permits
 arbitrary Clifford interlayers; their gate count remains
@@ -328,7 +336,7 @@ task-level result. Two additional resource points remain separate from C:
 | Resource point | Current guarantee |
 |---|---|
 | $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for complete real and phase-dressed complex magnitude frames |
-| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R78](research/depth/SUBTREE_PROJECTOR_DECODER.md) gives both complete-frame families worst-case optimal count with $`D_T=O_\eta(\log^2(n+2))`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
+| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives both complete-frame families worst-case optimal count with $`D_T=O_\eta(\log_2(n+2))`$ and $`G=O_\eta(N)`$; unrestricted depth lower bound $`\Omega(1)`$ |
 
 The [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 saves one dirty qubit for the complex frame at $`L=N`$. The

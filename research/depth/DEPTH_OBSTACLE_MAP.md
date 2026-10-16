@@ -61,7 +61,7 @@ R87's $`O_L(N/b^2+\ell\log_2(\ell+2))`$ complete bound unchanged.
 The subsequent [R89 theorem](CAUSAL_COMPACT_COIN_DEPTH.md) removes the
 serial coarse search through compact fixed coins, causal local matchings,
 and parallel reference transforms. Its prefix-selected recursion gives
-the current general fixed-accuracy bound
+the general fixed-accuracy bound at that checkpoint
 
 ```math
 D_T=O_L\!\left(N/b^2+\ell(1+\log_2^*(n+2))\right),
@@ -73,6 +73,18 @@ counts repeated base-two logarithms until the value is at most 2.
 For a real terminal of height M, R89 gives
 $`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$. R87's fine decoder and
 R88's sharp-query and fallback interfaces remain proof dependencies.
+
+The [whole-terminal session](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+then proves [R90](DIRTY_CATALOGUE_TERMINAL.md), with general fixed-L
+depth $`O_L(N/b^2+\ell)`$ and the same one-clean allocation, literal
+widths, count budgets, and full operator contract. Three R89 coarse
+reductions leave a small terminal whose complete rounded program selects
+fixed catalogue factors. Exact dirty program queries and XOR slot
+translations retain the unknown program input; a commutator on two
+disjoint borrowed arrays cancels their unwanted actions. The proof
+charges native local synthesis, selected-factor error, catalogue volume,
+and the original-width splice. R79 remains the absolute all-precision
+theorem; optimal general depth remains open.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -317,19 +329,21 @@ flag-preserving. Parallel reference sources include their entire
 initialized work in the nonzero-block test. Prefix recursion applies
 the resulting logarithmic early decoder to successively smaller tails.
 
-A next plan must target logarithmic general depth, a precision-uniform
-extension, or a dimension-growing lower bound. The early coarse decoder
-and contiguous router already have $`O_L(\ell)`$ depth. The remaining
-iterated-logarithmic factor comes from serial prefix-recursion episodes.
-Complete native resource and return proofs remain the criterion. Proved
-affine, corner, and R85–R89 circuits should not be repeated as unresolved
-tasks. R79 remains the absolute general all-precision bound.
+The [whole-terminal session](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+subsequently replaces the unbounded recursive terminal with R90's dirty
+catalogue commutator. This reaches logarithmic general depth at fixed
+accuracy; it does not prove that depth optimal. A next plan must target
+optimal general depth, a precision-uniform extension, or a
+dimension-growing lower bound. Complete native resource and return
+proofs remain the criterion. Proved affine, corner, and R85–R90 circuits
+should not be repeated as unresolved tasks. R79 remains the absolute
+general all-precision bound.
 
-For the asymptotic benchmark, a further constructive gain must improve
-R89's **serial prefix-recursion ledger**, or replace its mechanism.
-Those global-prefix-dependent source episodes cannot be declared
-constant in number. Their paid amortization or a construction avoiding
-the recursion would need its own complete return and resource proof.
+The fixed-L constants and unbounded classical preprocessing in R90 must
+be retained when considering shrinking error or an effective compiler.
+No practical crossover or scalable native emitter follows from the
+finite catalogue. A further constructive gain needs a new complete
+operator identity and resource proof.
 A lower-bound attack on dimension growth first needs a different witness. The next
 one-clean constant-depth obstruction is a separate valid target, with the
 freezing step above precisely localized; it should be selected for that

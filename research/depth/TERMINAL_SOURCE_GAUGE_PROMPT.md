@@ -5,13 +5,18 @@
 [Previous outcome](COIN_CONTINUATION_SESSION_RESULT.md) ·
 [Shared-prefix audit](SHARED_PREFIX_QUERY_AUDIT.md)
 
-**Status: designed; not executed.** The scientific baseline is main commit
+**Status: executed.** The [session outcome](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+records R90's logarithmic fixed-accuracy general depth. Execution began
+at 04:44:19 UTC on 16 October 2026, with a five-hour ceiling of
+09:44:19 UTC. This document preserves the design used for that session.
+The scientific baseline was main commit
 `eb4bde054ba310dec225e1d42881a5ab3d9d6a01`, integrated in
 [PR #152](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/152).
-The next execution may use at most five elapsed hours, including review,
-validation, tool waits, and integration. Record its start and deadline
-when execution begins. Designing this session does not establish any
-new compiler. R89 remains the current fixed-accuracy frontier.
+The design allowed at most five elapsed hours, including review,
+validation, tool waits, and integration. R89 was the fixed-accuracy
+frontier at the start; the separate
+[R90 proof](DIRTY_CATALOGUE_TERMINAL.md) contains the completed new
+compiler and its resource and return argument.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge remain authorized. Preserve the separation between research

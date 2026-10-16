@@ -141,6 +141,19 @@ Its fixed-accuracy $`O_\eta(N/b^2+\log^2(n+2))`$ depth is a corollary;
 R79 also gives $`O(\log^2 n)`$ at $`L=\Theta(\log n)`$ and sufficient
 $`b=\Theta(\sqrt{NL})`$.
 
+The later fixed-accuracy [dirty catalogue theorem R90](../research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+gives $`D_T=O_L(N/b^2+\log_2(n+2))`$ for both general frame
+families, retaining one clean qubit, the original literal widths,
+$`T=O_L(\sqrt N+N/b)`$, and $`G=O_L(N)`$. Three
+[R89 coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md)
+shrink the tail enough for a complete rounded-program catalogue. Exact
+dirty word queries, XOR slot translations, and a commutator on two
+disjoint borrowed arrays return all borrowed work. Native local synthesis,
+selected-factor errors, and the width splice are part of the proof.
+R90's [session record](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+and [finite checks](../tests/test_dirty_catalogue_terminal.py) retain their
+separate scopes. R79 remains the absolute all-precision statement of D.
+
 The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains its source and recovery proofs, though R79 supersedes its resource
@@ -149,6 +162,7 @@ bound. Unrestricted optimal depth remains open.
 | Selected branch | Canonical proof and role |
 |---|---|
 | All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
+| Fixed-accuracy general depth | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), R90: fixed-number R89 coarse reduction, zero-clean local catalogue factors, exact dirty selection and two-array return, and the original-width splice |
 | Native decoder and fixed-accuracy corollary | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
 | Retained one-clean baseline and terminal | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
