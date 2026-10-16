@@ -18,6 +18,7 @@ not prove universal statements or asymptotic optimality.
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
 | Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
 | Precision-terminal refinements R91–R93 | [Detailed finite checks](#detailed-finite-checks) | Seven exact reader fixtures and four grouped residual fixtures; R92's uniform envelope and R93's native resource/error and width splices remain analytic |
+| Portable workspace catalogue R94 | [Detailed finite checks](#detailed-finite-checks) | Six bounded full-operator checks for transfer, initialized leakage, current selectors and guard return; the simultaneous native bounds and uniform width/precision splices are analytic |
 | Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
 | Retained terminal R88 and contiguous routing | [Detailed finite checks](#detailed-finite-checks) | Three selected-terminal matrix fixtures and three logical interval-routing fixtures; R88's sharp-query and fallback interfaces support R89's stronger terminal theorem |
@@ -346,6 +347,29 @@ local decoder, full error, simultaneous widths, geometric resources and
 real/complex splices are proved analytically and independently reviewed.
 The [precision session record](../../research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
 records validation and integration. No immutable receipt is regenerated.
+
+The [R94 portable-workspace catalogue](../../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md)
+has [six bounded fixtures](../../tests/test_portable_workspace_catalogue.py).
+Complete native H/S/T/CNOT words check full-payload extraction, coherent
+selection between noncommuting entries, literal phase, and actual inverse.
+A complete controlled Hopf matrix checks every marker column and the
+forward branch; an explicit leaking extension checks the initialized
+inverse estimate and twice-error commutator bound. A partial-routing
+counterexample leaves a dirty-slot residue. A changing-prefix example
+rejects a frozen selector. The guard fixture distinguishes exact
+restoration of its original value from arbitrary-input tensor independence,
+and detects failure when its predicate reads changing payload bits.
+All operators have at most 256 rows and columns.
+
+The last interfaces use small abstract operators where stated; they do
+not emit the full R79 local compiler or a general frame circuit. R91's
+retained fixtures cover dirty-program echoes and the complete paired
+router. Exact array return and initialized logical approximation are
+distinct contracts in the proof. Uniform catalogue absorption, geometric
+query sums, the full error hybrid, constant bottom, and original-width
+real/complex splices are analytic and independently reviewed. The
+[bootstrap session record](../../research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
+records validation and integration; no immutable receipt is regenerated.
 
 The [compact fixed-coin support](../../research/depth/COMPACT_COIN_FLAGS.md)
 has [seven bounded checks](../../tests/test_compact_coin_flags.py):

@@ -5,14 +5,18 @@
 [Previous session](PRECISION_TERMINAL_SESSION_RESULT.md) ·
 [Local compiler R79](UNIFORM_SUBTREE_DEPTH.md)
 
-**Status: designed; not executed.** Prepared on 16 October 2026 after
+**Status: executed.** The [session result](CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
+records R94's portable-workspace construction, which reaches the primary
+benchmark below. The session began on 16 October 2026 at **07:56:34 UTC**,
+with a five-hour ceiling of **12:56:34 UTC**, including review and integration.
+The design was prepared on 16 October 2026 after
 [PR #156](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/156),
 with scientific baseline main commit
 `b07e5902cfca633012677b5a3ce78b29b781c052`.
-The five-hour execution clock starts with the next instruction to run
-this design. Planning and preliminary algebraic reviews do not establish
-the proposed theorem. Keep R93 and every other retained claim unchanged
-until a separate proof and independent audit justify an update.
+Planning and preliminary algebraic reviews alone do not establish the
+proposed theorem. The separate [R94 proof](PORTABLE_WORKSPACE_CATALOGUE.md)
+and independent audit support the new result; older theorem statements
+remain retained.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge remain authorized. This is research, separate from final

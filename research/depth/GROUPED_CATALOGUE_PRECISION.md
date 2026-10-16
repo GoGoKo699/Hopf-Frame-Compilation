@@ -5,6 +5,12 @@
 [Dirty catalogue identity](DIRTY_CATALOGUE_TERMINAL.md) ·
 [Executed design](PRECISION_TERMINAL_PROMPT.md)
 
+The later [portable-workspace theorem R94](PORTABLE_WORKSPACE_CATALOGUE.md)
+reaches $`O(NL/b^2+\ell\log_2(\ell+2))`$ on this same precision
+range by compiling larger groups directly to final accuracy. This page
+retains R93's independent theorem and proof; its final bottleneck discussion
+describes that earlier construction.
+
 **Local result R93.** Small complete groups can share a long-prefix
 query even when their constituent logical layers do not commute. A
 dirty catalogue executes the group's coarse operator. One shared binary
