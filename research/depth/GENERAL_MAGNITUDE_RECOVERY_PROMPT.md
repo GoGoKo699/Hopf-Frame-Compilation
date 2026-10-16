@@ -2,10 +2,14 @@
 
 [Continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer) · [R85 proof](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) · [Previous session](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md) · [General frontier](../../docs/OPEN_PROBLEM.md#large-width-t-depth)
 
-**Status: designed, not executed.** The design baseline is main commit
-`d52efbc`, containing the reviewed R85 result. Record the actual execution
-baseline and start time when this prompt is run. This document is a
-research plan; none of its proposed primitives is an established theorem.
+**Status: executed; R86 proved and internally reviewed.** The design baseline was
+main commit `d52efbc`, containing the reviewed R85 result. Execution began
+on 15 October 2026 at 23:41:06 UTC from main commit `97c18da`, with a
+five-hour ceiling of 04:41:06 UTC on 16 October. The
+[session result](GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md) records the
+interval-dilation construction and its checks. The proposed mechanisms
+below remain the historical design; the proved statement has its own
+[R86 proof home](INTERVAL_DILATION_DEPTH.md).
 
 ## 1. Priority and destination
 

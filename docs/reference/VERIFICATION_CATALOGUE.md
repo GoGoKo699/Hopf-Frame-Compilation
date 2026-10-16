@@ -16,6 +16,7 @@ not prove universal statements or asymptotic optimality.
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
+| Fixed-accuracy general depth R86 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded interval-dilation fixtures; the normalization, native implementation, full dirty/reference contract, and resource bounds are analytic |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -160,6 +161,37 @@ synthesis, full source-error and dirty-reference guarantees, finite
 cutoffs, and resource bounds follow from the analytic proof; no scalable
 emitter or scientific receipt is added.
 
+The [interval-dilation theorem R86](../../research/depth/INTERVAL_DILATION_DEPTH.md)
+has seven [bounded fixtures](../../tests/test_interval_dilation_depth.py):
+
+1. Integer atom intervals and the isometric embedding preserve every
+   prescribed subtree scaling and marker column of a small weighted tree.
+2. The rectangular overlap reconstructs the full frame, keeps the root
+   scaling column and literal signs, and has the expected per-scale
+   sparsity; its norm check is a finite diagnostic.
+3. Membership XOR erases the original leaf label, and the actual inverse
+   has the required accepted block on every atom input, independently
+   of the chosen source completion.
+4. The square anchor has the required accepted frame block while
+   retaining old-label, failure, and source-work rejection coordinates.
+5. Calibrated amplification preserves literal phase; a perturbed source
+   and its actual inverse retain final leakage within the finite hybrid
+   bound.
+6. Fine-tag erasure covers every local band, with an occupied-work
+   perturbation and coherent reference inputs.
+7. The guarded balanced-frame word permits variable active widths and
+   is exactly identity on occupied inactive tag and padding registers.
+
+These use bounded ideal matrices, explicit basis permutations, and
+independent tree-column formulas. They do not emit the variable-size
+native compiler or prove the universal Haar norm, arbitrary dirty/reference
+contract, global rounding, resource bounds, or all-width splice. Those
+are analytic in R86 and its
+[selected-routing support](../../research/depth/SELECTED_DIRTY_ROUTING.md).
+No new immutable scientific receipt is added. The
+[session record](../../research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md#5-verification-and-integration)
+records the separate full-validation and presentation checks.
+
 The [permutation checkpoint](../../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../../tests/test_permutation_bridge_limits.py):
 the exact four-shear one-clean order-eight word on all allowed inputs,
@@ -199,7 +231,8 @@ reference contract nor asymptotic count, T-depth, workspace, precision,
 all-width, or bias-independent constants. Those follow from the chapter's
 native synthesis and analytic ledger. No large native emitter, efficient
 reference search, or new immutable scientific receipt is asserted. The
-supporting-family result leaves R79's generic frontier unchanged.
+supporting-family result does not itself improve the unrestricted
+frontier; R86 supplies the later fixed-accuracy general improvement.
 
 The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 reuses R78's decoder and R72's one-clean terminal and fallback words.

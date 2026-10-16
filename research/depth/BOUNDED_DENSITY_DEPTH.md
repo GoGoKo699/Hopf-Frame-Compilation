@@ -21,8 +21,10 @@ product-reference version and its affine-oriented extension in Section 12.
 The latter uses the explicitly priced [R83 core](AFFINE_ORIENTATION_DEPTH.md),
 not an arbitrary reference-frame compiler. The main mechanism is a bounded
 positive correction to a charged common-flag frame, implemented by sparse
-row/column sources and constant-normalization recovery. The generic
-complete-frame frontier remains [R79](UNIFORM_SUBTREE_DEPTH.md).
+row/column sources and constant-normalization recovery. The later
+[R86 theorem](INTERVAL_DILATION_DEPTH.md) gives a fixed-accuracy general
+improvement; this chapter retains its stronger promised-family bound.
+[R79](UNIFORM_SUBTREE_DEPTH.md) remains the absolute all-precision theorem.
 
 All logarithms below are binary except in elementary trigonometric
 expressions.
@@ -1145,6 +1147,9 @@ Section 12; the large weighted-source table ledger is unchanged.
 The density promise excludes arbitrarily concentrated magnitude tables
 unless they remain within fixed factors of a supplied positive product or
 affine-oriented reference. No claim of an efficient classical test for that
-promise or an efficient search for the reference is made. The unrestricted growing-depth
-lower-bound and generic fixed-accuracy improvement remain separate open
-tasks.
+promise or an efficient search for the reference is made. The later
+[R86 interval-dilation theorem](INTERVAL_DILATION_DEPTH.md) improves
+general fixed-accuracy depth without this density promise. Optimal
+general depth and a dimension-growing unrestricted lower bound remain
+open; the theorem proved here retains its own promise and sharper depth
+order.

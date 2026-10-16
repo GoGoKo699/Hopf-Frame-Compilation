@@ -14,7 +14,7 @@ logarithmic depth for a structured magnitude family, a complete
 sub-square-logarithmic circuit under bounded relative density, and an
 improved general terminal separately. It also records the remaining early-decoder
 cost and exact cache/fingerprint counterexamples. The unrestricted
-square-logarithmic upper bound remains R79's.
+square-logarithmic upper bound at that checkpoint was R79's.
 
 The subsequent [branch-orientation session](BRANCH_ORIENTATION_SESSION_RESULT.md)
 proves fixed-accuracy logarithmic depth for affine branch choices (R83)
@@ -22,17 +22,26 @@ and exact log-times-iterated-log depth for arbitrary signed corners (R84),
 with one clean qubit and the same count budgets. R83 also supplies the
 priced positive affine reference in R82's extension. The later
 [in-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md)
-stopped without a qualifying construction and preserves that general
+stopped without a qualifying construction and preserved that general
 frontier. Its scoped obstructions inform the continuing search; the
 [current mandate](../../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the general construction as the destination. The later
+keeps optimal general depth as the destination. The later
 [joint orientation session](JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
 proves [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md), with log-times-log-log
 depth for arbitrary nonlinear orientations of shared unordered depth
 magnitudes. Geometric-band unloading exposes the clean output space
 needed for local orientation conversion. This bypasses the standalone
-permutation interface, while the unrestricted R79 frontier remains
-unchanged. This map preserves the earlier preparation history below.
+permutation interface and retained R79's general frontier at that
+checkpoint. The later
+[general-magnitude session](GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+proves [R86](INTERVAL_DILATION_DEPTH.md): for fixed $`L\ge6`$,
+$`D_T=O_L(N/b^2+\ell^{3/2})`$, where $`\ell=\log_2(n+2)`$,
+for arbitrary node-dependent magnitudes, signs, zeros, and prescribed
+complex leaf phases. One clean qubit, the original literal widths,
+$`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$, and the full initialized
+contract are retained. R79 remains the absolute all-precision theorem;
+R85 remains stronger on its promised family. This map preserves the
+earlier preparation history below.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -74,14 +83,16 @@ The tag basis, entry-indexed factorization, amplitude-amplification word,
 early/tail split, and choice of lower-bound witness are **method choices**.
 They may change while the full contract remains fixed.
 
-## 2. Where the current upper bound spends depth
+<a id="2-where-the-current-upper-bound-spends-depth"></a>
+
+## 2. Where the pre-R78 upper bound spent depth
 
 The applicable branch is [R66 §10](SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision),
 as adapted by [R72 §5](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary).
 Write $`\ell=\log_2(n+2)`$. It protects
 $`M=\lceil A[L+\log_2(n+L+2)]\rceil=\Theta(\log n)`$
 terminal bits and compiles $`h=n-M=\Theta(n)`$ early levels together.
-This is the current split; R66's earlier fixed-accuracy exposition used a
+This was the audited split; R66's earlier fixed-accuracy exposition used a
 different, larger protected suffix.
 
 | Component | Fixed-accuracy allowance | Multiplicity and reason |
@@ -143,7 +154,7 @@ $`\epsilon\lt1`$ implies
 
 Reweighting and adding entry-local interference channels cannot improve
 this normalization order. For exact encoding of the balanced instance,
-the current tag construction is within a factor below $`\sqrt2`$ of
+the pre-R78 tag construction is within a factor below $`\sqrt2`$ of
 the architecture's optimum. R67 supplies **neither a
 recovery-query lower bound nor an unrestricted native-depth lower bound**.
 A coherent matrix-basis change, non-entry-indexed preparation, different
@@ -251,22 +262,25 @@ depth magnitudes, with log-times-log-log depth and the retained budgets.
 
 The [permutation checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md#8-decision-and-verification-boundary)
 ended that bounded conversion search without a general improvement.
-R85 subsequently changes the complete source/recovery interface. The
-[next five-hour design](GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), not yet
-executed, prioritizes the broader magnitude question: a general local
-flag-label eraser using the clean suffix exposed by unloading a band.
-Its two opening lanes seek a faster contraction of the unresolved flag
-or a richer joint label encoding. A constant-source-layer eraser for
-R85's coarse band remains secondary; logarithmic total depth would also
-require logarithmic terminal and routing schedules.
-Complete native resource and return proofs remain the criterion
-for either improvement. Proved affine, corner, and R85 circuits should
-not be repeated as unresolved tasks. R79 remains the selected general
-all-precision bound.
+R85 subsequently changed the complete source/recovery interface. The
+[general-magnitude design](GENERAL_MAGNITUDE_RECOVERY_PROMPT.md) has also
+been executed; its [outcome](GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+is R86's complete local frame compiler through interval dilation.
+The balanced-Haar conversion has $`O_L(\sqrt\ell)`$ normalization,
+and paid recovery yields the $`O_L(\ell^{3/2})`$ general depth term.
+Its [routing support](SELECTED_DIRTY_ROUTING.md) prices selected physical
+wires and variable-size query families. A next plan must target a
+further gain in this complete ledger, a precision-uniform extension, or
+a dimension-growing lower bound. A constant-source-layer eraser for
+R85's coarse band remains another possible target; logarithmic total
+depth would also require logarithmic terminal and routing schedules.
+Complete native resource and return proofs remain the criterion. Proved
+affine, corner, R85, and R86 circuits should not be repeated as unresolved
+tasks. R79 remains the absolute general all-precision bound.
 
-For the asymptotic benchmark, the most direct constructive target is the
-**encoding/recovery mechanism and its repeated large queries**. A lower-bound
-attack on dimension growth first needs a different witness. The next
+For the asymptotic benchmark, a further constructive gain must improve
+R86's **paid basis conversion and recovery**, or replace that mechanism.
+A lower-bound attack on dimension growth first needs a different witness. The next
 one-clean constant-depth obstruction is a separate valid target, with the
 freezing step above precisely localized; it should be selected for that
 purpose rather than described as closing the dimension-growth gap.

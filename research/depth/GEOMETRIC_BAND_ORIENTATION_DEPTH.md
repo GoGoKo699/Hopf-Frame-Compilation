@@ -700,7 +700,11 @@ node-dependent magnitude pairs that local factor is no longer a tensor
 product of fixed one-qubit rotations. No analogous bound for that broader
 family is asserted here. The fixed-L dependence is also essential to
 the stated resource constants; no absolute all-precision theorem is
-inferred by substituting a growing L.
+inferred by substituting a growing L. The later
+[R86 interval-dilation theorem](INTERVAL_DILATION_DEPTH.md) gives
+$`O_L(N/b^2+\ell^{3/2})`$ for arbitrary node-dependent magnitudes.
+The present $`O_L(N/b^2+\ell\log_2(\ell+2))`$ bound remains
+stronger within its shared-unordered-pair promise.
 
 The six [bounded mechanism tests](../../tests/test_geometric_band_orientation.py)
 check geometric capacity, the full truncated-band identity, local flag

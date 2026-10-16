@@ -5,7 +5,8 @@ The repository is organized around the
 The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
-and precision-uniform subtree depth. The
+precision-uniform subtree depth, and the fixed-accuracy general depth
+improvement R86. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -28,11 +29,11 @@ phases, actual inverses, work return, and external references are essential.
 A logical suffix is clean only on its active sector; inactive behavior
 must be proved separately.
 
-The general construction remains the research destination. The user's
+Optimal general depth remains the research destination. The user's
 direction, reaffirmed on 16 October 2026 (Asia/Shanghai), is to pursue it
 with confidence and curiosity, allowing pauses to consolidate what has
-been learned. The beauty of the question motivates the search; whether
-the conjectured improvement is true remains a mathematical question.
+been learned. R86 establishes a general fixed-accuracy improvement;
+further improvements and optimal depth remain mathematical questions.
 A failed route or an ended session does not retire the objective.
 
 ## Read by claim
@@ -52,7 +53,7 @@ A failed route or an ended session does not retire the objective.
 | Branch-orientation follow-up and historical gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
 | Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
 | Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
-| Next research session | [General-magnitude recovery design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md): use exposed clean space to remove the depth-shared magnitude promise; designed, not executed |
+| General-magnitude recovery | [Executed design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), [session outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md), [interval-dilation theorem R86](research/depth/INTERVAL_DILATION_DEPTH.md), and [selected dirty routing](research/depth/SELECTED_DIRTY_ROUTING.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -88,7 +89,7 @@ a supporting theorem's clean allocation to the selected construction.
 
 ### Current depth frontier
 
-Use [the resource statement](docs/OPEN_PROBLEM.md#constant-depth-frontier)
+Use [the resource statement](docs/OPEN_PROBLEM.md#large-width-t-depth)
 as the authoritative frontier. The selected general upper result is
 [R79, uniform subtree depth](research/depth/UNIFORM_SUBTREE_DEPTH.md).
 For all integer $`n\ge1,L\ge6`$, one clean qubit suffices for
@@ -106,13 +107,24 @@ R78 supplies the decoder geometry and full-mode error proof; R72 supplies
 the one-clean terminal, fallback, and phase circuits. R79 explicitly
 absorbs the exponential precision costs of the original per-call source.
 At $`L=\Theta(\log n)`$ and $`b=\Theta(\sqrt{NL})`$, depth is
-$`O(\log^2 n)`$ with inverse-polynomial error in n. At fixed accuracy,
-optimal square-root-width depth remains between a constant lower bound
-and $`O_\eta(\log^2 n)`$.
+$`O(\log^2 n)`$ with inverse-polynomial error in n. The later fixed-accuracy
+[R86 interval-dilation theorem](research/depth/INTERVAL_DILATION_DEPTH.md)
+gives, for arbitrary node-dependent magnitudes and the same literal widths,
+
+```math
+T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
+D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+```
+
+It covers signed and zero coefficients and the prescribed complex leaf
+phases in full initialized-isometry norm. At fixed accuracy, optimal
+square-root-width depth is now between a constant lower bound and
+$`O_L(\ell^{3/2})`$. R79 remains the absolute all-precision theorem;
+R86 does not claim constants uniform in growing L.
 
 The subsequent [joint-depth session](research/depth/JOINT_DEPTH_SESSION_RESULT.md)
-leaves that general frontier unchanged. At fixed accuracy and square-root
-width, R80 proves logarithmic depth for
+left the general frontier at R79 at that checkpoint. At fixed accuracy
+and square-root width, R80 proves logarithmic depth for
 depth-homogeneous angle magnitudes with arbitrary node signs and supplied
 leaf phases; its signed balanced real case is exact. R81 gives a uniform
 terminal-height bound, with a log-times-log-log contribution for a
@@ -121,9 +133,8 @@ sub-square-logarithmic circuit when
 the target density has fixed positive bounds relative to a classically
 specified positive product reference. Its constant-normalization
 weighted correction and recursive source schedule are priced in full.
-A general improvement still needs a cheaper complete early
-decoder or native query. The session records exact failures of generic
-dirty-cache hoisting and row-wise fingerprint substitution, with explicit
+The early-decoder cost remained unresolved in that session, which records
+exact failures of generic dirty-cache hoisting and row-wise fingerprint substitution, with explicit
 limits on those arguments.
 
 The later [branch-orientation session](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
@@ -148,8 +159,9 @@ real/complex widths. A coarse geometric band determines a subtree
 unloader that exposes enough clean suffix for the local orientation
 conversion. Only the coarse band then needs spectral search. The proof
 includes arbitrary signs, zeros, supplied leaf phases, and full work
-return. Logarithmic depth for this family and a corresponding improvement
-for arbitrary node-dependent magnitudes remain open.
+return. Its $`O_L(\ell\log_2(\ell+2))`$ term remains stronger
+than R86 on this promised family. Logarithmic depth for the R85 family
+remains open.
 
 The [bounded permutation follow-up](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 did not pass its new-mechanism checkpoint and stopped construction early.
@@ -160,8 +172,11 @@ None is an unrestricted native lower bound; an explicit approximate
 encoding also prevents extending the exact Clifford-order argument by
 continuity. R85 subsequently bypasses that conversion interface through
 joint recovery; it does not give a general whole-register permutation
-compiler. The unrestricted R79 frontier is unchanged.
-Independent technical review can strengthen the proved results alongside
+compiler. The subsequent
+[general-magnitude session](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+proves R86 through a positive interval embedding, a balanced-Haar change
+of basis, and paid recovery with exposed clean work. Independent
+technical review can strengthen the proved results alongside
 that search. It does not replace the general objective. Final manuscript
 drafting remains separate.
 
@@ -208,15 +223,16 @@ technical review; final manuscript drafting requires the user's request.
 
 ### Continuing toward the general answer
 
-R85 reaches the sub-square-logarithmic target for arbitrary nonlinear
-branch orientation with a shared unordered magnitude pair at each depth.
-The [next five-hour design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
-prioritizes arbitrary node-dependent magnitudes: use the exposed clean
-suffix to replace the local tensor-product flag transporter. Its primary
-target is a complete general frame below square-logarithmic depth.
-Logarithmic depth for the R85 family remains secondary; it requires
-compatible improvements in coarse recovery, terminal processing, and
-routing. Optimal unrestricted depth remains open. Preserve one clean qubit,
+The [executed general-magnitude design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
+and its [outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+advance the complete general frame to $`O_L(\ell^{3/2})`$ depth at
+square-root width. R86 replaces the local tensor-product transporter
+with interval dilation and a paid balanced-Haar conversion. The next
+questions are a further general depth improvement, a precision-uniform
+version of that gain, and a dimension-growing lower bound. Logarithmic
+depth for the R85 family also remains open; it requires compatible
+improvements in coarse recovery, terminal processing, and routing.
+Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
 contract throughout. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
 remains sufficient, but is not required by R85's complete recovery word.
@@ -228,9 +244,10 @@ lead when its missing step is explicit. Before claiming an improvement,
 complete the native identity and resource, error, and return proof.
 The joint session's successful change was to use workspace exposed on
 the reached spectral band, and to prove return for the complete word.
-The next design uses that same freedom to seek a general local label
-eraser, allowing intermediate within-band mixing and correlated work.
-Neither that primitive nor a further depth saving is established.
+R86 uses that same freedom for a complete local frame compiler, then
+erases the fine label through its actual inverse and forward word.
+Its normalization bound and native recovery are proved together; a
+further saving must improve their complete ledger or change the mechanism.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
