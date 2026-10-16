@@ -1,17 +1,20 @@
 # Five-hour design: read the complete flag and pay precision once
 
 [Continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer) ·
-[Current theorem R94](PORTABLE_WORKSPACE_CATALOGUE.md) ·
+[Session baseline R94](PORTABLE_WORKSPACE_CATALOGUE.md) ·
 [Previous session](CATALOGUE_BOOTSTRAP_SESSION_RESULT.md) ·
 [Causal flag construction R89](CAUSAL_COMPACT_COIN_DEPTH.md)
 
-**Status: designed, not executed.** Prepared on 16 October 2026 after
+**Status: executed; [outcome and validation](FULL_FLAG_DEPTH_SESSION_RESULT.md).**
+Prepared on 16 October 2026 after
 [PR #158](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/158),
 from scientific baseline main commit
 `6302418330eef6901b06154c5ccb0aeb9386a286`.
-The user's renewed five-hour offer is the execution budget. Record the
-actual start and ceiling when execution is requested; planning does not
-start a background session. Nothing proposed below is a new theorem.
+Execution began on 16 October 2026 at 09:39:11 UTC from main
+`5833a19fc0faf58b74c7795664636d2cb3e28a77`, with ceiling 14:39:11 UTC.
+The original design below is retained as the work order. Its supported
+outcome is [R95](LOGARITHMIC_PRECISION_DEPTH.md); proposed routes below
+are not independently promoted to theorems.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**.
 Repository modification and merge remain authorized. Final manuscript

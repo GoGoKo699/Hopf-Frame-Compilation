@@ -173,12 +173,15 @@ families, including arbitrary magnitudes, signs, zeros, and leaf phases.
 Its constants may depend on fixed L; R79 remains the all-precision
 statement of D. Optimal large-width depth remains open.
 
-The [portable-workspace theorem R94](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md)
-gives growing-precision depth $`O(NL/b^2+\ell\log_2(\ell+2))`$
+The [logarithmic-depth theorem R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+gives growing-precision depth $`O(NL/b^2+L+\ell)`$
 uniformly on $`6\le L\le2\ell`$, where
 $`\ell=\log_2(n+2)`$. At sufficient square-root dirty width, this gives
-$`O(\ell\log_2(\ell+2))`$ T-depth with the same optimal T-count, Clifford budget,
-one clean qubit, and original literal widths. Its constants are absolute. The
+$`O(\ell)`$ T-depth with the same optimal T-count, Clifford budget,
+one clean qubit, and original literal widths. Its constants are absolute.
+It combines a coarse-frame sparse correction with a faster local compiler
+inside [R94's portable workspace catalogue](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md).
+The
 [R92 precision envelope](research/depth/UNIFORM_CATALOGUE_PRECISION.md)
 also gives logarithmic depth on a slower unbounded precision range.
 These are research refinements; the selected manuscript statement D remains R79.
@@ -207,7 +210,7 @@ The following distinct allocations remain useful:
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
 | Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log_2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
-| Inverse-polynomial error in n, $`a=1`$, $`L=\lceil\log_2(n+2)\rceil\ge6`$, sufficient $`b=\Theta(\sqrt{NL})`$ | [R94](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) gives absolute $`D_T=O(\log n\log\log n)`$, optimal T-count, and $`G=O(NL)`$ for both frame families |
+| Inverse-polynomial error in n, $`a=1`$, $`L=\lceil\log_2(n+2)\rceil\ge6`$, sufficient $`b=\Theta(\sqrt{NL})`$ | [R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md) gives absolute $`D_T=O(\log n)`$, optimal T-count, and $`G=O(NL)`$ for both frame families |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient

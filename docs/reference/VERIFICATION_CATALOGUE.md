@@ -19,6 +19,7 @@ not prove universal statements or asymptotic optimality.
 | Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
 | Precision-terminal refinements R91–R93 | [Detailed finite checks](#detailed-finite-checks) | Seven exact reader fixtures and four grouped residual fixtures; R92's uniform envelope and R93's native resource/error and width splices remain analytic |
 | Portable workspace catalogue R94 | [Detailed finite checks](#detailed-finite-checks) | Six bounded full-operator checks for transfer, initialized leakage, current selectors and guard return; the simultaneous native bounds and uniform width/precision splices are analytic |
+| Logarithmic-precision general depth R95 | [Detailed finite checks](#detailed-finite-checks) | Four bounded sparse-correction checks for live root and signed Schur sources, complete-work recovery, actual inverses and leakage; retained native/source, R91 and R94 fixtures support the inherited interfaces, while the asymptotic proof is analytic |
 | Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
 | Retained terminal R88 and contiguous routing | [Detailed finite checks](#detailed-finite-checks) | Three selected-terminal matrix fixtures and three logical interval-routing fixtures; R88's sharp-query and fallback interfaces support R89's stronger terminal theorem |
@@ -370,6 +371,45 @@ query sums, the full error hybrid, constant bottom, and original-width
 real/complex splices are analytic and independently reviewed. The
 [bootstrap session record](../../research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
 records validation and integration; no immutable receipt is regenerated.
+
+The [R95 logarithmic-precision theorem](../../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+has [four bounded fixtures](../../tests/test_coarse_flag_sparse_correction.py)
+for its [coarse-frame sparse correction](../../research/depth/COARSE_FLAG_SPARSE_CORRECTION.md):
+
+1. Frames of heights one through four include singular branches and negative
+   coefficients. Their complete signed columns, permitted residual support,
+   live root/state-column residual, and absolute residual norm bound are
+   checked against an independent frame construction.
+2. Single-leaf signed Schur row and column sources at heights one through
+   three have the claimed overlap, including zero residual columns and the
+   root tag. Replacing the root by pure failure or dropping the coefficient
+   signs gives explicit failures.
+3. A height-two normalization-two recovery retains all source and branch
+   work, the literal leading minus, actual inverse, and full initialized-work
+   reflection anchor. Omitting the sign or a source tag from the anchor fails.
+   Occupied-work inactive identity and coherent dirty/reference inputs are
+   checked separately.
+4. A perturbed height-two source completion retains nonzero final-work
+   leakage within the full-output error bound and remains an isometry.
+   Substituting the stale ideal inverse for the actual inverse changes the
+   output.
+
+These are small dense matrix audits. Their source completions are verification
+objects, not emitted native source oracles. The retained
+[one-clean native words](../../tests/test_one_clean_compiler.py),
+[operator-source checks](../../tests/test_operator_source_compiler.py),
+[conjugate recovery](../../tests/test_conjugate_recovery.py),
+[shared binary sources](../../tests/test_shared_binary_terminal.py),
+[R91 exact queries](../../tests/test_parallel_bilinear_word_query.py), and
+[R94 complete-payload transfers](../../tests/test_portable_workspace_catalogue.py)
+retain their individual scopes. The
+[small-workspace source](../../research/depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md),
+[two-stage local compiler](../../research/depth/RELAXED_COUNT_LOCAL_DEPTH.md),
+native schedules, full-isometry error, catalogue absorption, and uniform
+width/precision resource bounds are proved analytically. No new scientific
+receipt, external primitive, general native emitter, or experimentally
+certified asymptotic cutoff is added. Selected manuscript Result D remains
+R79.
 
 The [compact fixed-coin support](../../research/depth/COMPACT_COIN_FLAGS.md)
 has [seven bounded checks](../../tests/test_compact_coin_flags.py):
