@@ -177,6 +177,38 @@ protected work returns; unitary error composition never assumes a reset.
 Absolute cutoffs enforce resource bounds without making practical
 crossover claims. Complete arguments remain in the linked proof homes.
 
+## Fixed-accuracy logarithmic-depth audit
+
+The later [dirty catalogue theorem R90](../research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+gives, for fixed integer $`L\ge6`$ and $`\ell=\log_2(n+2)`$,
+
+```math
+T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
+D_T=O_L(N/b^2+\ell).
+```
+
+It retains one clean qubit, error at most $`2^{-L}`$ in the complete
+initialized-isometry norm, and the original real/complex thresholds
+$`b\ge17(L+n+7)`$/$`b\ge17(L+n+8)`$. R79 remains the
+absolute all-precision statement of D. The
+[session record](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+records the separate R90 review; the present summary does not extend
+the scope of the earlier dated audits.
+
+| R90 obligation | Proof boundary |
+|---|---|
+| A fixed number of reductions | Three R89 coarse stages leave a terminal small enough that its complete rounded program and catalogue fit within the charged asymptotic work/count envelope; no unbounded serial prefix recursion remains. |
+| Exact dirty program selection | A complete XOR word query and commuting XOR slot translations cancel the arbitrary initial program value. The preserved address excludes the changing logical target and both live arrays. |
+| Complete operator and work return | Two disjoint borrowed arrays transfer two selected factors to the logical target. Their commutator cancels both unwanted array factors exactly, for arbitrary dirty inputs and references. Literal determinant-one factors and actual inverse words retain phase. |
+| Local native synthesis and error | Fixed special-unitary factors have zero-clean Clifford+T synthesis. Unselected catalogue factors cancel using their actual inverses, so error depends on the selected factors, not the number of catalogue slots. |
+| Counts, widths, and complex phases | The complete ledger charges both arrays, program/query helpers, catalogue gates, and translations. Retained narrow-width and bounded-dimension fallbacks preserve literal thresholds; the existing literal diagonal supplies complex leaf phases. |
+
+The [bounded catalogue fixtures](../tests/test_dirty_catalogue_terminal.py)
+test the exact identities and complete dirty/reference return. They do not prove
+asymptotic catalogue absorption or supply a scalable native emitter.
+No efficient classical preprocessing, practical crossover, precision-uniform
+constants, or optimal-depth conclusion is asserted by R90.
+
 ## Shared operator and operational contract
 
 The separate [R73 obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md)

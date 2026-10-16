@@ -31,7 +31,8 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: one-clean optimal count and T-depth | [Precision-uniform subtree theorem, R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and [R72's one-clean interfaces](../research/depth/ONE_CLEAN_DEPTH.md) | [Exact subtree and bounded spectral-decoder checks](../tests/test_subtree_projector_decoder.py), [one-clean native words](../tests/test_one_clean_compiler.py), and retained shared-binary-source, conjugate-recovery, blocked-query, dirty-indicator, and uniform-allocation suites | Analytic absolute precision ledger, enlarged protected bank, terminal and width/precision splices, and full-isometry composition; no new circuit identity or fixture. Finite checks do not certify unbounded precision, asymptotic cutoffs, or emit every variable-size frame |
-| Fixed-accuracy general depth R89 | [Causal compact-coin proof](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md), with compact coins and subset primitives | [Four bounded causal-batching fixtures](../tests/test_causal_compact_coin_depth.py), [seven compact-coin checks](../tests/test_compact_coin_flags.py), and [two subset-routing checks](../tests/test_short_label_subset_routing.py), plus retained source, query, routing, and terminal evidence | Analytic catalogue existence, complete coarse flags, native simultaneous ledger, prefix recursion, full-isometry error, and literal-width splice; fixed-L constants. Finite matrices do not prove asymptotics or emit a general compiler |
+| Fixed-accuracy logarithmic general depth R90 | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), using R89 coarse reductions | [Bounded catalogue checks](../tests/test_dirty_catalogue_terminal.py) of dirty program selection, two-array commutator return, literal native factors, reference inputs, and the one-array failure, plus retained coarse/query evidence | Analytic fixed-number reduction, zero-clean local synthesis, selected-factor error, catalogue absorption and literal-width splice; fixed-L constants. No efficient preprocessing, depth optimality, or scalable native emitter is certified by these finite checks |
+| Retained causal compact-coin theorem R89 | [Causal compact-coin proof](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md), with compact coins and subset primitives | [Four bounded causal-batching fixtures](../tests/test_causal_compact_coin_depth.py), [seven compact-coin checks](../tests/test_compact_coin_flags.py), and [two subset-routing checks](../tests/test_short_label_subset_routing.py), plus retained source, query, routing, and terminal evidence | Analytic catalogue existence, complete coarse flags, native simultaneous ledger, prefix recursion, full-isometry error, and literal-width splice; fixed-L constants. Its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Product-coin proof](../research/depth/COIN_DILATION_DEPTH.md), using retained rounding and selected routing | [Seven bounded coin-dilation fixtures](../tests/test_coin_dilation_depth.py), plus retained source, query, coarse-recovery, and terminal checks | Analytic product partition, spectral-band readout, paid source and actual inverse, full-isometry error, and original literal-width splice; fixed-L constants. Its fine decoder supports R89 |
 | Retained terminal R88 and contiguous routing | [Prefix-selected terminal proof](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), [contiguous-layout specialization](../research/depth/SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals) | [Three bounded selected-terminal fixtures](../tests/test_prefix_selected_coin_terminal.py) and [three logical routing fixtures](../tests/test_interval_barrel_routing.py) | Analytic recursive errors, native query/source and routing ledgers, literal-width splice, and arbitrary dirty/reference contract; sharp queries and fallback support R89's stronger terminal bound |
 | Interval-dilation predecessor R86 | [Interval-dilation proof](../research/depth/INTERVAL_DILATION_DEPTH.md), with [selected dirty routing](../research/depth/SELECTED_DIRTY_ROUTING.md) | [Seven bounded interval-dilation fixtures](../tests/test_interval_dilation_depth.py), plus retained source, query, recovery, and terminal checks | Analytic absolute-norm Haar estimate, paid local compiler, global sign/zero rounding, full-isometry composition, and literal-width splice; fixed-L constants. Bounded matrices do not emit the general native compiler or prove asymptotics |
@@ -129,7 +130,7 @@ Native table synthesis, arbitrary dirty/reference guarantees, recursive
 workspace, asymptotic resources, and bias-independent constants follow
 from the proof rather than these finite checks. No scalable emitter or
 new scientific receipt is supplied. R79 retains its absolute all-precision
-scope; R86, R87, and R89 successively improve general fixed-accuracy depth.
+scope; R86, R87, R89, and R90 successively improve general fixed-accuracy depth.
 
 The [affine-orientation theorem R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
 and [exact deterministic theorem R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
@@ -174,7 +175,7 @@ resource bounds follow from the analytic proof. Its fixed-L general
 $`O_L(N/b^2+\log^{3/2}(n+2))`$ depth does not replace R79's
 absolute all-precision theorem. R87 subsequently improves the general
 bound to the same depth order as R85's promised-family result; R89
-improves it further.
+and R90 improve it further.
 The [catalogue](reference/VERIFICATION_CATALOGUE.md) records the individual
 fixture boundaries. No general emitter or new scientific receipt is added.
 
@@ -233,6 +234,25 @@ R89's full arbitrary dirty/reference guarantee, simultaneous native
 resources, signed/zero rounding, complex phases, recursive errors, and
 all-width composition remain analytic. No general emitter or new
 scientific receipt is added.
+
+The [dirty catalogue theorem R90](../research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+has [bounded operator checks](../tests/test_dirty_catalogue_terminal.py)
+for exact dirty program translation and selected swaps; a complete
+two-array commutator built from literal H/S/T words and their actual
+inverses; coherent prefix and dirty/reference return; the nontrivial
+dirty commutator left by reusing one array; an independently specified
+four-column real frame and its computed commutator factors; and shared
+control phase-polynomial algebra. Nonlinear two-bit programs are checked
+on every basis input. Matrix comparisons retain literal phase and all
+dirty columns. The generic factor calculation is a bounded numerical
+check, not native synthesis.
+
+The fixed-number R89 reduction, zero-clean local synthesis, selected-factor
+approximation bound, asymptotic catalogue/query allocation, full-isometry
+composition, complex phases, and original-width splice are analytic.
+The [session record](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+records integration and review. No general emitter, practical crossover,
+efficient preprocessing, or new scientific receipt is added.
 
 The [in-place permutation checkpoint](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../tests/test_permutation_bridge_limits.py).

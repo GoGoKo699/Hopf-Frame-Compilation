@@ -160,20 +160,21 @@ special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.m
 The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
 depth remains open. At fixed integer $`L\ge6`$, the later
-[causal compact-coin theorem R89](depth/CAUSAL_COMPACT_COIN_DEPTH.md)
+[dirty catalogue theorem R90](depth/DIRTY_CATALOGUE_TERMINAL.md)
 improves the general bound to
 
 ```math
 T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L\!\left(N/b^2+\ell(1+\log_2^*(n+2))\right),\qquad \ell=\log_2(n+2).
+D_T=O_L(N/b^2+\ell),\qquad \ell=\log_2(n+2).
 ```
 
 It retains one clean qubit and the original literal real/complex widths,
 including arbitrary node-dependent signed magnitudes, zeros, prescribed
-leaf phases, and the full initialized-isometry contract. The notation
-$`\log_2^*x`$ counts repeated base-two logarithms until the value is at
-most 2. R79 remains
-the absolute all-precision result.
+leaf phases, and the full initialized-isometry contract. Three R89 coarse
+reductions leave a small terminal; a complete rounded program selects
+fixed local factors on two borrowed arrays whose unwanted actions cancel
+in a commutator. R79 remains the absolute all-precision result. R90
+does not assert depth optimality or constants uniform in growing L.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -191,7 +192,8 @@ supplies the two-clean precision and width splices.
 | Current proof | Role |
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
-| [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Current R89 fixed-accuracy general bound: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; preserved-prefix recursion gives the full iterated-logarithmic overhead |
+| [Dirty catalogue terminal](depth/DIRTY_CATALOGUE_TERMINAL.md) | Current R90 fixed-accuracy general bound: three R89 reductions and a zero-clean catalogue commutator give $`O_L(N/b^2+\ell)`$ depth, with original count budgets, literal widths, and the complete operator contract |
+| [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Retained R89 theorem and coarse-reduction interface: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; its original preserved-prefix recursion has an iterated-logarithmic overhead |
 | [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
 | [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
 | [Compact fixed coins](depth/COMPACT_COIN_FLAGS.md) | Exact finite atom partitions, acyclic two-outcome columns, and whole coarse flags; a compact representation alone does not supply an in-place native source |
@@ -293,23 +295,29 @@ compression word and causal local matchings realize the compact-coin
 embedding; parallel reference transforms read the coarse band directly.
 The last-nonzero test includes each reference source's initialized work.
 Preserved-prefix recursion gives the stronger arbitrary-height real
-terminal bound $`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$ and the stated
-complete real/complex frontier. Every source and actual inverse is paid.
+terminal bound $`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$ and the
+complete real/complex frontier at that checkpoint. Here $`\log_2^*x`$
+counts repeated base-two logarithms until the value is at most 2. Every
+source and actual inverse is paid.
+
+The [executed whole-terminal design](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md)
+and [session outcome](depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+give [R90](depth/DIRTY_CATALOGUE_TERMINAL.md). Three coarse reductions
+replace the unbounded recursive tail by a sufficiently small complete
+rounded program. An exact dirty word query and XOR slot translations
+select local catalogue factors. Two disjoint borrowed arrays transfer
+their commutator to the logical target and return exactly. The selected
+factor error, rather than the number of catalogue slots, controls the
+complete operator error. The proof includes a zero-clean local synthesis
+ledger and the original-width splice.
 
 R79 remains the absolute all-precision theorem. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains logarithmic general depth, a precision-uniform extension, and
-dimension-growing lower bounds as open directions. A further upper
-improvement must address R89's serial prefix-recursion episodes or
-replace that schedule; the early decoder and contiguous routing already
-have logarithmic depth. Full work return and simultaneous count/width
-bounds remain part of that target.
-
-The [next five-hour design](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md) targets
-the repeated global-address setup in that recursion. Its two unproved
-routes transport borrowed-work correlations through the complete terminal
-or replace clean coin expansion by a full-basis completion. The design
-does not change R89's frontier and has not yet been executed.
+retains optimal general depth, a precision-uniform extension, and
+dimension-growing lower bounds as open directions. Full work return and
+simultaneous count/width bounds remain part of that target. The finite
+catalogue gives no efficient classical preprocessing, practical crossover,
+or scalable native emitter guarantee.
 
 The retained binary-source terminal proof reuses the compact source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent

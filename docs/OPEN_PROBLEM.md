@@ -25,8 +25,8 @@ admit terminating certified evaluation, including unequal and singular tuples.
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
-| Fixed-accuracy general depth | [R89 causal compact coins](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) gives $`O_L(N/b^2+\ell(1+\log_2^*(n+2)))`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets |
-| Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder and [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md) support R89's stronger prefix-selected terminal recursion |
+| Fixed-accuracy general depth | [R90 dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives $`O_L(N/b^2+\ell)`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets; optimal depth remains open |
+| Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
@@ -200,11 +200,28 @@ is at most 2. Its compact fixed coins, causally batched local matchings,
 and parallel reference transforms erase the coarse label in
 $`O_L(\ell)`$ depth. Preserved-prefix recursion supplies the remaining
 iterated-logarithmic factor. Every source, actual inverse, reference-work
-zero test, and query is charged. At square-root dirty width the general
-upper bound is now $`O_L(\ell(1+\log_2^*(n+2)))`$, while the
-unrestricted lower bound remains $`\Omega(1)`$. Logarithmic and optimal
-depth remain open. R79 retains its absolute all-precision scope; R89's
-constants depend on fixed L.
+zero test, and query is charged.
+
+The later [dirty catalogue theorem R90](../research/depth/DIRTY_CATALOGUE_TERMINAL.md)
+retains those counts, literal widths, and complete real/complex guarantees,
+and removes the iterated-logarithmic factor:
+
+```math
+T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
+D_T=O_L(N/b^2+\ell).
+```
+
+Three R89 coarse reductions leave a small terminal. Its complete rounded
+program selects local catalogue factors through an exact arbitrary-dirty
+word query and XOR slot translations. A commutator using two disjoint
+borrowed arrays cancels their unwanted actions exactly; the local factors
+need no initialized ancilla. The selected-factor approximation, full
+initialized-isometry error, and original-width splice are proved together.
+At square-root dirty width, the general upper bound is now $`O_L(\ell)`$,
+while the unrestricted lower bound remains $`\Omega(1)`$. Optimal depth
+remains open. R79 retains its absolute all-precision scope; R90's constants
+depend on fixed L. The finite catalogue implies no efficient classical
+preprocessing, practical crossover, or scalable native emitter guarantee.
 
 The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
@@ -311,9 +328,9 @@ every column, literal phases, actual inverses, leakage, dirty inputs,
 and references. This reaches sub-square-logarithmic depth for the
 arbitrary-orientation promise, without a general whole-register
 permutation compiler. R87 subsequently matched its asymptotic depth for
-arbitrary magnitudes, and R89 improves the general bound further;
-R85's promised-family proof remains valid.
-Logarithmic depth remains open.
+arbitrary magnitudes, and R89 improves the general bound further.
+R90 reaches logarithmic depth for arbitrary magnitudes, including this
+promised family; R85's independent proof remains valid.
 
 The [bounded in-place conversion session](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 stopped at its mechanism checkpoint. Its exact word and encoding
@@ -330,14 +347,14 @@ records R86 and its reserve routes. The
 [factorization session](../research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
 then proves R87 through product-coin spectral readout. The
 [continuation](../research/depth/COIN_CONTINUATION_SESSION_RESULT.md)
-proves R89 through compact coins, causal batching, and prefix recursion. The
+proves R89 through compact coins, causal batching, and prefix recursion.
+The [whole-terminal session](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+proves R90 through fixed-number coarse reduction and dirty catalogue
+commutators. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-now includes logarithmic general depth and extending the fixed-accuracy
-gain uniformly in precision. The early coarse decoder and contiguous
-router now have logarithmic depth. The remaining iterated-logarithmic
-overhead comes from serial prefix-recursion episodes; removing or
-amortizing those episodes must retain the full native return and resource
-contract.
+now targets optimal general depth, a precision-uniform extension of the
+fixed-accuracy gain, and dimension-growing lower bounds. All further
+improvements must retain the full native return and resource contract.
 
 ## Constant-depth frontier
 

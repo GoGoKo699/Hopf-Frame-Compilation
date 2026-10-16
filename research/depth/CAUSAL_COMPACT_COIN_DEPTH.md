@@ -6,6 +6,11 @@
 [Native family sources](COHERENT_DESCENDANT_LOADER.md) ·
 [Coin terminal](PREFIX_SELECTED_COIN_TERMINAL.md)
 
+The later [dirty-catalogue theorem R90](DIRTY_CATALOGUE_TERMINAL.md)
+uses at most three local stages from Section 10 and a new complete
+terminal. It removes the iterated-logarithm factor at fixed accuracy.
+This chapter retains the R89 theorem and its supporting local stage.
+
 **Local result R89.** At fixed accuracy, the general complete-frame
 compiler has depth
 $`O_L(N/b^2+\ell(1+\log_2^*(n+2)))`$, with the retained T-count,
@@ -815,7 +820,9 @@ by $`O_L(\ell(1+\log_2^*(M+2)))`$. Thus (17) holds at the stated
 literal width, and the final complete-frame theorem (1) follows.
 
 This refinement still has an unbounded iterated-logarithm stage count.
-An $`O_L(\ell)`$ general compiler and optimal depth remain open.
+At this checkpoint an $`O_L(\ell)`$ general compiler and optimal
+depth remained open. R90 subsequently proves the logarithmic upper
+bound; optimal depth remains unresolved.
 
 ## 11. Bounded evidence
 
