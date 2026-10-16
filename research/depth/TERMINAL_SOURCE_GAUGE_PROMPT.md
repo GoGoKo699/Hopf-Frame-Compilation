@@ -200,8 +200,12 @@ The small binary alias example with probabilities one quarter and
 three quarters already has positive fiber sizes one and five in an
 eight-dimensional padded space. With $`D=2,K=4`$, a fiber-preserving
 completion fails the support test. Reconstruct that example first.
-A candidate may use signed weight-class-preserving permutations that
-cross fibers, provided both source words remain explicitly compilable.
+For this embedding, the small fiber is a single maximum-weight atom
+whose weight class has only two atoms. Even gauges preserving each
+weight-class subspace cannot supply four orthogonal images. Seek
+structured gauges allowing cross-weight mixing, or a different embedding
+that passes the complete syndrome Gram conditions, while keeping both
+source words explicitly compilable.
 An arbitrary lookup over every syndrome value can add an unpaid
 factor K to the table volume.
 
