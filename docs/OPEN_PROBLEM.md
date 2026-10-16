@@ -25,6 +25,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
+| Fixed-accuracy general depth | [R86 interval dilation](../research/depth/INTERVAL_DILATION_DEPTH.md) gives $`O_L(N/b^2+\log^{3/2}(n+2))`$ for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets |
 | Supporting depth results | [R80–R85](#large-width-t-depth) give promised-family circuits and a general terminal improvement with one clean qubit and the count budgets; R85 reaches sub-square-logarithmic depth for arbitrary orientations of shared unordered depth magnitudes |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
@@ -165,10 +166,29 @@ and depth match through
 $`b\le\sqrt N/\log_2(n+2)`$, whenever the
 interval above the family's literal lower threshold is nonempty: there
 $`T^\star=\Theta_\eta(N/b)`$ and $`D_T^\star=\Theta_\eta(N/b^2)`$.
-Optimal large-width depth remains open,
-with unrestricted lower bound $`\Omega(1)`$ at square-root width.
+The later [interval-dilation theorem R86](../research/depth/INTERVAL_DILATION_DEPTH.md)
+improves the fixed-accuracy general bound. For every fixed integer
+$`L\ge6`$, every n, and every original eligible real or complex dirty
+allocation, one clean qubit gives
 
-The later [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+```math
+T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
+D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+```
+
+It covers arbitrary node-dependent magnitudes, signs, zeros, and the
+prescribed leaf phases, with initialized-isometry error at most
+$`2^{-L}`$. Global finite rounding makes a positive weighted tree;
+interval dilation and a balanced-Haar change of basis give a smaller
+recovery normalization, with every source and work register charged.
+The [selected-routing lemma](../research/depth/SELECTED_DIRTY_ROUTING.md)
+supplies its physical routing and variable-size query interfaces.
+At square-root dirty width the general upper bound is therefore
+$`O_L(\ell^{3/2})`$, while the unrestricted lower bound remains
+$`\Omega(1)`$. Optimal depth remains open. R79 retains its absolute
+all-precision scope; R86's constants depend on fixed L.
+
+The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
 including arbitrary node signs and supplied leaf phases. At the same
 fixed-accuracy reservations it gives
@@ -184,8 +204,8 @@ restricted-family result, not a replacement for R79. The separate
 now covers every terminal height $`0\le M\le n`$, with depth
 $`O_L(N/b^2+\ell\log_2(M+2))`$, where $`\ell=\log_2(n+2)`$.
 A logarithmic protected suffix contributes only log-times-log-log depth;
-the unrestricted early decoder still determines the general
-square-logarithmic bound. The
+the unrestricted early decoder still determined the square-logarithmic
+bound at that checkpoint. The
 [joint session record](../research/depth/JOINT_DEPTH_SESSION_RESULT.md)
 identifies the remaining native mechanism and scoped failed routes.
 
@@ -205,7 +225,8 @@ The constants may depend on those fixed bounds. A native weighted
 correction replaces repeated early threshold comparisons; every
 recursive stage still pays for its global-prefix queries. This covers
 nonhomogeneous magnitudes under the stated promise, including the
-uniform-reference case, and leaves the unrestricted frontier unchanged.
+uniform-reference case. It does not require or establish an unrestricted
+general improvement.
 
 The [affine-orientation theorem R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
 extends R80's logarithmic depth and count orders to depth-dependent
@@ -247,24 +268,26 @@ band needs spectral search. The initialized-isometry proof includes
 every column, literal phases, actual inverses, leakage, dirty inputs,
 and references. This reaches sub-square-logarithmic depth for the
 arbitrary-orientation promise, without a general whole-register
-permutation compiler. Logarithmic depth for this family and an improved
-bound for arbitrary node-dependent magnitudes remain open.
+permutation compiler. R85 remains stronger than R86 on this promised
+family; logarithmic depth for it remains open.
 
 The [bounded in-place conversion session](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 stopped at its mechanism checkpoint. Its exact word and encoding
 restrictions apply to specified architectures, not unrestricted native
 circuits. They supply no new general upper or lower bound. The sufficient
 whole-register reduction and the remaining recovery/return obligation are
-recorded there; arbitrary node-dependent magnitudes remain a broader
-question.
+recorded there. R86 subsequently obtains a general improvement through
+interval dilation rather than that standalone permutation interface.
 
 The [joint orientation session](../research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
-records the mechanism's discovery and review. The
+records R85's discovery and review. The later
+[general-magnitude session](../research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+records R86 and its reserve routes. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the broader general construction as the destination. The next
-local question is whether coarse-band recovery can use a constant number
-of native source layers. The new promised-family theorem does not
-replace R79's unrestricted all-precision result.
+now includes improving the $`\ell^{3/2}`$ general bound and extending
+the gain uniformly in precision. Constant-source-layer coarse recovery
+is a separate remaining local question; total logarithmic depth would
+also require compatible terminal and routing schedules.
 
 ## Constant-depth frontier
 

@@ -159,7 +159,19 @@ The precision splice, literal widths, matching intervals, and shrinking-error
 special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.md).
 The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
-depth remains open.
+depth remains open. At fixed integer $`L\ge6`$, the later
+[interval-dilation theorem R86](depth/INTERVAL_DILATION_DEPTH.md)
+improves the general bound to
+
+```math
+T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
+D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+```
+
+It retains one clean qubit and the original literal real/complex widths,
+including arbitrary node-dependent signed magnitudes, zeros, prescribed
+leaf phases, and the full initialized-isometry contract. R79 remains
+the absolute all-precision result.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -177,6 +189,8 @@ supplies the two-clean precision and width splices.
 | Current proof | Role |
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
+| [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 fixed-accuracy general improvement: positive interval embedding, a bounded absolute-norm Haar conversion, paid local recovery, and the original all-width splice |
+| [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) | Supporting exact selected wire permutations with arbitrary dirty controls, variable-size query families, and exposed clean-window geometry |
 | [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 decoder proof and fixed-accuracy corollary: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
 | [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retained R72 predecessor and selected proof interfaces: native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
 | [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
@@ -191,15 +205,15 @@ supplies the two-clean precision and width splices.
 | [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
 
 The [joint decoder/terminal session](depth/JOINT_DEPTH_SESSION_RESULT.md)
-adds three supporting results while keeping R79 as the selected general
-theorem. At fixed accuracy and square-root width,
+added three supporting results while keeping R79 as the general
+frontier at that checkpoint. At fixed accuracy and square-root width,
 [R80](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md) gives logarithmic
 depth for depth-homogeneous magnitudes with arbitrary signs, using one
 common product conjugator and exact tag return. Its signed balanced real
 case is exact. [R81](depth/RECURSIVE_TERMINAL_DEPTH.md) gives a uniform
 terminal-height bound, including a log-times-log-log contribution for
 the general logarithmic terminal;
-the general early decoder still has square-logarithmic depth. Their
+the general early decoder still had square-logarithmic depth then. Their
 full contracts, all-width splices, and scope restrictions have separate
 proof homes. At the same accuracy and width scale,
 [R82](depth/BOUNDED_DENSITY_DEPTH.md) supplies a complete
@@ -236,14 +250,20 @@ band selects an unloader that exposes clean suffix space for a local
 orientation permutation. Only the coarse tag needs spectral recovery.
 Signs, zeros, balanced pairs, and prescribed leaf phases are included.
 
-R79 remains the general all-precision theorem for arbitrary magnitudes.
-The [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-keeps the general construction as the destination. The
-[next five-hour design](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), not
-yet executed, targets arbitrary node-dependent magnitudes by replacing
-R85's local tensor-product reference with a general label eraser using
-the exposed clean suffix. Logarithmic depth for the R85 family remains
-secondary and also requires improved terminal and routing schedules.
+The [executed general-magnitude design](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
+and [session outcome](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+advance the fixed-accuracy general frontier through R86. A rounded
+weighted tree is embedded in consecutive uniform intervals; the
+balanced-Haar overlap has absolute norm $`O_L(\sqrt\ell)`$. Its
+paid recovery uses the exposed suffix and
+[selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md), then erases
+the fine label with the local frame compiler and its actual inverse.
+R85's log-times-log-log bound remains stronger on its promised family.
+R79 remains the absolute all-precision theorem. The
+[continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
+retains further general depth improvement, a precision-uniform extension,
+and dimension-growing lower bounds as open directions. Logarithmic depth
+for the R85 family also requires improved terminal and routing schedules.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
