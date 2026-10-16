@@ -160,12 +160,12 @@ special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.m
 The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
 depth remains open. At fixed integer $`L\ge6`$, the later
-[interval-dilation theorem R86](depth/INTERVAL_DILATION_DEPTH.md)
+[product-coin theorem R87](depth/COIN_DILATION_DEPTH.md)
 improves the general bound to
 
 ```math
 T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+D_T=O_L(N/b^2+\ell\log_2(\ell+2)),\qquad \ell=\log_2(n+2).
 ```
 
 It retains one clean qubit and the original literal real/complex widths,
@@ -189,7 +189,8 @@ supplies the two-clean precision and width splices.
 | Current proof | Role |
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
-| [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 fixed-accuracy general improvement: positive interval embedding, a bounded absolute-norm Haar conversion, paid local recovery, and the original all-width splice |
+| [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Current R87 fixed-accuracy general bound: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
+| [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 intermediate general bound: positive interval embedding, a bounded absolute-norm Haar conversion, and paid local recovery; its rounding and geometric allocation are retained by R87 |
 | [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) | Supporting exact selected wire permutations with arbitrary dirty controls, variable-size query families, and exposed clean-window geometry |
 | [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 decoder proof and fixed-accuracy corollary: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
 | [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retained R72 predecessor and selected proof interfaces: native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
@@ -252,25 +253,28 @@ Signs, zeros, balanced pairs, and prescribed leaf phases are included.
 
 The [executed general-magnitude design](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
 and [session outcome](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
-advance the fixed-accuracy general frontier through R86. A rounded
+advanced the fixed-accuracy general frontier through R86. A rounded
 weighted tree is embedded in consecutive uniform intervals; the
 balanced-Haar overlap has absolute norm $`O_L(\sqrt\ell)`$. Its
 paid recovery uses the exposed suffix and
 [selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md), then erases
 the fine label with the local frame compiler and its actual inverse.
-R85's log-times-log-log bound remains stronger on its promised family.
+The subsequent
+[executed factorization design](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+and [session outcome](depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+prove R87 through a different local representation. Independent coin
+words encode the branch decisions; tensor Hadamards make the last
+nonzero coin block equal the marker depth. The paid source and its
+actual inverse erase the fine tag without R86's interval-overlap
+amplification. R87 matches R85's depth order for arbitrary magnitudes;
+R85 retains its independent promised-family proof.
+
 R79 remains the absolute all-precision theorem. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains further general depth improvement, a precision-uniform extension,
-and dimension-growing lower bounds as open directions. Logarithmic depth
-for the R85 family also requires improved terminal and routing schedules.
-
-The [next five-hour design](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
-targets the general recovery normalization through whole weighted-chain
-conversions and a logarithmic-imbalance reduction. Its main unresolved
-lemma is a global schedule for boundary repairs; a reached-space
-transport is the reserve. This is an unexecuted design, with no change
-to the proved frontier.
+retains logarithmic general depth, a precision-uniform extension, and
+dimension-growing lower bounds as open directions. A further upper
+improvement must account for coarse recovery, terminal processing, and
+routing together.
 
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent

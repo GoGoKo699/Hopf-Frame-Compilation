@@ -16,7 +16,8 @@ not prove universal statements or asymptotic optimality.
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
-| Fixed-accuracy general depth R86 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded interval-dilation fixtures; the normalization, native implementation, full dirty/reference contract, and resource bounds are analytic |
+| Fixed-accuracy general depth R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; native synthesis, full dirty/reference contract, global rounding, and all-width resources remain analytic |
+| Interval-dilation predecessor R86 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded interval-dilation fixtures; the normalization, native implementation, full dirty/reference contract, and resource bounds are analytic |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
 | Detailed construction fixtures | [Detailed finite checks](#detailed-finite-checks) | Core ingredients, supporting schedules, and research diagnostics, with individual limitations |
@@ -192,6 +193,34 @@ No new immutable scientific receipt is added. The
 [session record](../../research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md#5-verification-and-integration)
 records the separate full-validation and presentation checks.
 
+The [product-coin theorem R87](../../research/depth/COIN_DILATION_DEPTH.md)
+has seven [bounded fixtures](../../tests/test_coin_dilation_depth.py):
+
+1. Heterogeneous coin rectangles partition the full coin space, form an
+   isometric embedding, and preserve every prescribed subtree scaling flag.
+2. Every marker has its literal mean-zero split coin and uniform future
+   coin blocks, with unit norm.
+3. Tensor Hadamards place every complete-frame column in exactly its
+   last-nonzero-coin-block sector, including the zero root label.
+4. The physical source and membership XOR realize the embedding, and
+   the actual inverse returns the initial column for distinct source
+   completions.
+5. The full word clears the fine tag on every column with literal phase at zero
+   and nonzero offsets, including coherent external reference inputs.
+6. A perturbed source retains nonzero final leakage within the complete
+   initialized-output norm bound, including reference correlations.
+7. On the inactive sector the whole word cancels exactly on occupied
+   source, coin, and tag work with an external reference.
+
+These checks use bounded ideal matrices and explicit basis permutations.
+They test the product-coin identities and cleanup interfaces; they do
+not emit the native family source or prove arbitrary-size resource,
+rounding, dirty/reference, or all-width guarantees. Those follow from
+the analytic R87 proof and its retained premises. No new immutable
+scientific receipt is added. The
+[session record](../../research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+records review and integration separately.
+
 The [permutation checkpoint](../../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../../tests/test_permutation_bridge_limits.py):
 the exact four-shear one-clean order-eight word on all allowed inputs,
@@ -232,7 +261,8 @@ all-width, or bias-independent constants. Those follow from the chapter's
 native synthesis and analytic ledger. No large native emitter, efficient
 reference search, or new immutable scientific receipt is asserted. The
 supporting-family result does not itself improve the unrestricted
-frontier; R86 supplies the later fixed-accuracy general improvement.
+frontier; R86 and then R87 supply the later fixed-accuracy general
+improvements.
 
 The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 reuses R78's decoder and R72's one-clean terminal and fallback words.

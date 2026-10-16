@@ -6,7 +6,7 @@ The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
 precision-uniform subtree depth, and the fixed-accuracy general depth
-improvement R86. The
+improvement R87. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -32,7 +32,7 @@ must be proved separately.
 Optimal general depth remains the research destination. The user's
 direction, reaffirmed on 16 October 2026 (Asia/Shanghai), is to pursue it
 with confidence and curiosity, allowing pauses to consolidate what has
-been learned. R86 establishes a general fixed-accuracy improvement;
+been learned. R87 advances the general fixed-accuracy bound;
 further improvements and optimal depth remain mathematical questions.
 A failed route or an ended session does not retire the objective.
 
@@ -53,8 +53,8 @@ A failed route or an ended session does not retire the objective.
 | Branch-orientation follow-up and historical gap | [Affine orientations](research/depth/AFFINE_ORIENTATION_DEPTH.md), [exact deterministic frames](research/depth/DETERMINISTIC_FRAME_DEPTH.md), [session outcome](research/depth/BRANCH_ORIENTATION_SESSION_RESULT.md) |
 | Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
 | Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
-| General-magnitude recovery | [Executed design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), [session outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md), [interval-dilation theorem R86](research/depth/INTERVAL_DILATION_DEPTH.md), and [selected dirty routing](research/depth/SELECTED_DIRTY_ROUTING.md) |
-| Next general-depth session | [Interval-recovery factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md): whole-chain conversions, logarithmic-imbalance reduction, and a reached-space reserve; not yet executed |
+| General-magnitude recovery checkpoint | [Executed design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), [session outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md), [interval-dilation theorem R86](research/depth/INTERVAL_DILATION_DEPTH.md), and [selected dirty routing](research/depth/SELECTED_DIRTY_ROUTING.md) |
+| Current fixed-accuracy general depth | [Product-coin theorem R87](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -109,19 +109,19 @@ the one-clean terminal, fallback, and phase circuits. R79 explicitly
 absorbs the exponential precision costs of the original per-call source.
 At $`L=\Theta(\log n)`$ and $`b=\Theta(\sqrt{NL})`$, depth is
 $`O(\log^2 n)`$ with inverse-polynomial error in n. The later fixed-accuracy
-[R86 interval-dilation theorem](research/depth/INTERVAL_DILATION_DEPTH.md)
+[R87 product-coin theorem](research/depth/COIN_DILATION_DEPTH.md)
 gives, for arbitrary node-dependent magnitudes and the same literal widths,
 
 ```math
 T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+D_T=O_L(N/b^2+\ell\log_2(\ell+2)),\qquad \ell=\log_2(n+2).
 ```
 
 It covers signed and zero coefficients and the prescribed complex leaf
 phases in full initialized-isometry norm. At fixed accuracy, optimal
 square-root-width depth is now between a constant lower bound and
-$`O_L(\ell^{3/2})`$. R79 remains the absolute all-precision theorem;
-R86 does not claim constants uniform in growing L.
+$`O_L(\ell\log_2(\ell+2))`$. R79 remains the absolute all-precision
+theorem; R87 does not claim constants uniform in growing L.
 
 The subsequent [joint-depth session](research/depth/JOINT_DEPTH_SESSION_RESULT.md)
 left the general frontier at R79 at that checkpoint. At fixed accuracy
@@ -160,9 +160,9 @@ real/complex widths. A coarse geometric band determines a subtree
 unloader that exposes enough clean suffix for the local orientation
 conversion. Only the coarse band then needs spectral search. The proof
 includes arbitrary signs, zeros, supplied leaf phases, and full work
-return. Its $`O_L(\ell\log_2(\ell+2))`$ term remains stronger
-than R86 on this promised family. Logarithmic depth for the R85 family
-remains open.
+return. R87 now attains the same depth order for arbitrary magnitudes;
+R85 retains its independent promised-family proof. Logarithmic depth
+remains open for both.
 
 The [bounded permutation follow-up](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 did not pass its new-mechanism checkpoint and stopped construction early.
@@ -176,8 +176,11 @@ joint recovery; it does not give a general whole-register permutation
 compiler. The subsequent
 [general-magnitude session](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
 proves R86 through a positive interval embedding, a balanced-Haar change
-of basis, and paid recovery with exposed clean work. Independent
-technical review can strengthen the proved results alongside
+of basis, and paid recovery with exposed clean work. The later
+[factorization session](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+proves R87: a product of coin words and tensor Hadamards exposes the
+marker depth directly, removing R86's interval-overlap amplification.
+Independent technical review can strengthen the proved results alongside
 that search. It does not replace the general objective. Final manuscript
 drafting remains separate.
 
@@ -224,15 +227,16 @@ technical review; final manuscript drafting requires the user's request.
 
 ### Continuing toward the general answer
 
-The [executed general-magnitude design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
-and its [outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
-advance the complete general frame to $`O_L(\ell^{3/2})`$ depth at
-square-root width. R86 replaces the local tensor-product transporter
-with interval dilation and a paid balanced-Haar conversion. The next
-questions are a further general depth improvement, a precision-uniform
-version of that gain, and a dimension-growing lower bound. Logarithmic
-depth for the R85 family also remains open; it requires compatible
-improvements in coarse recovery, terminal processing, and routing.
+The [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+and its [outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+advance the complete general frame to
+$`O_L(\ell\log_2(\ell+2))`$ depth at square-root width. R87
+uses a product-coin embedding to read the fine band directly, then
+returns all work with the actual source inverse. The next questions
+are logarithmic general depth, a precision-uniform extension of the
+fixed-accuracy gain, and a dimension-growing lower bound. A further
+upper improvement must account for coarse recovery, terminal processing,
+and routing together.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
 contract throughout. The [whole-register reduction](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md#1-the-sufficient-target-and-its-scope)
@@ -247,14 +251,13 @@ The joint session's successful change was to use workspace exposed on
 the reached spectral band, and to prove return for the complete word.
 R86 uses that same freedom for a complete local frame compiler, then
 erases the fine label through its actual inverse and forward word.
-Its normalization bound and native recovery are proved together; a
-further saving must improve their complete ledger or change the mechanism.
-The [next five-hour design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
-targets a short sequence of interval-basis conversions. A whole weighted
-chain is its concrete opening primitive; the central missing step is a
-global imbalance-reduction schedule with paid boundary repairs. It keeps
-the weaker reached-space transport as a reserve. The design is not a
-new theorem and has not been executed.
+Its normalization bound and native recovery were proved together.
+The subsequent [factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+has been executed. Its weighted-chain route is retained separately in
+the [session record](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md);
+R87 instead uses spectral readout on the embedded logical image.
+The interval-overlap normalization is no longer a cost of the current
+general circuit.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup
