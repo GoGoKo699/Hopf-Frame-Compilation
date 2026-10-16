@@ -273,6 +273,7 @@ and the unrestricted one-clean four-layer question.
 | [Operator rigidity](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md), R75 | Zero-clean five-layer lower bound and exact one-clean terminal-sector preservation below the stated gap |
 | [Midpoint rigidity](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md), R76 | One-clean error floors for Pauli or Hermitian-Clifford encoded midpoints; terminal return alone does not supply either hypothesis |
 | [Inner clean spread](../research/depth/ONE_CLEAN_INNER_SPREAD.md), R77 | Extends rigidity to bounded inner spread with non-Clifford midpoints and forces both outer layers to grow; unbounded spread remains eligible |
+| [Outer-overlap rigidity](../research/depth/OUTER_OVERLAP_RIGIDITY.md), R97 | Positive gap at bounded misalignment of the common intersection relative to either physical outer-axis list; zero misalignment gives R76's uniform floor, while unbounded misalignment on both sides remains eligible |
 
 Older constructions remain where they supply a primitive, error certificate,
 or fallback with a distinct reservation. The masked compressor and its count

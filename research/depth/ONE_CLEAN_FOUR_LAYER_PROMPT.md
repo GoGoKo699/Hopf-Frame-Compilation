@@ -5,19 +5,26 @@
 [Inner-spread theorem R77](ONE_CLEAN_INNER_SPREAD.md) ·
 [Continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer)
 
-**Status: designed, not executed.** Prepared on 16 October 2026 from
+**Status: executed; unrestricted target remains open.** The
+[session outcome](ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md) proves
+[R97 outer-overlap rigidity](OUTER_OVERLAP_RIGIDITY.md), strengthened to
+bounded misalignment relative to either physical outer-axis list, and
+records the remaining dependent-axis interface. The original design
+below was prepared on 16 October 2026 from
 main `7f9d52ef970b703dde06f6de351069edecf37cea`, after
 [PR #162](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/162).
-The five-hour research clock starts when this prompt is executed.
-Record the actual starting commit, start time, 90-minute qualification
-time and five-hour ceiling. The ceiling includes review, validation,
-CI and integration.
+Execution began at 13:02:47 UTC from main
+`539ba460299c7ced94cf68752641bc3d2fcbb490`; the planned qualification
+gate was 14:32:47 UTC and the integration ceiling 18:02:47 UTC.
+The supported research claim was frozen early at 13:50:31 UTC.
+The ceiling includes review, validation, CI and integration.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Modification and merge
 remain authorized. Final manuscript
 drafting is separate. Preserve R96, the selected manuscript Result D
-(R79), and all retained scientific receipts. This document proposes a
-proof strategy; it establishes no new depth lower bound.
+(R79), and all retained scientific receipts. The design is retained as
+the work order; the linked proof and outcome state what the execution
+actually established.
 
 ## 1. Decision and measurable target
 

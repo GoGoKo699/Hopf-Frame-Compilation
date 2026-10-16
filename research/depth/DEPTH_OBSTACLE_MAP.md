@@ -126,13 +126,15 @@ fine masks retain their common grammar and a shorter native coarse word
 is programmed explicitly. Optimal general depth remains the destination;
 the upper law no longer has a precision-window restriction.
 
-The [next five-hour design](ONE_CLEAN_FOUR_LAYER_PROMPT.md) turns to the
-unrestricted one-clean four-layer gap. It keeps the joint inner clean/data
-algebra and its center explicit, then tests whether the shared clean image
-controls the two outer phase layers. The controlled-Pauli reformulation
-was already known; the proposed compatibility estimate is the missing
-work. Success would give a constant five-layer obstruction, not a
-dimension-growing lower bound. This design has not been executed.
+The [executed four-layer design](ONE_CLEAN_FOUR_LAYER_PROMPT.md) proves
+[outer-overlap rigidity, R97](OUTER_OVERLAP_RIGIDITY.md): a positive floor
+at bounded misalignment relative to either physical outer-axis list,
+including a uniform R76 floor when the intersection is aligned with one
+list. The [session outcome](ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
+retains the remaining unbounded misalignment on both sides and exact
+limits of proposed descent and center reductions. The unrestricted
+five-layer target remains open and is a constant-depth question,
+separate from a dimension-growing lower bound.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -254,7 +256,7 @@ its entire native implementation must be priced.
 
 ## 3. The lower-bound route and its exact missing step
 
-The R75–R77 route uses
+The R75–R77 and R97 route uses
 $`W_n=I_{2^{n-1}}\otimes R_y(\theta)`$ with
 $`\theta=\tfrac12\arccos(1/3)`$. The following stages have distinct scope.
 
@@ -262,7 +264,7 @@ $`\theta=\tfrac12\arccos(1/3)`$. The following stages have distinct scope.
 |---|---|
 | Terminal clean return | [R75 §6](FOUR_LAYER_OPERATOR_RIGIDITY.md#6-one-clean-qubit-terminal-sectors-only): initialized error below $`\tau=\sin(\pi/8)/(2\sqrt2)`$ forces an at-most-four-layer circuit to preserve the clean sectors exactly. The unused sector's target action remains unspecified. |
 | Correlated midpoint compression | Split into two native encoders with at most two layers each. They send the same input clean Pauli to S and the same data/dirty Pauli to A and B; $`Q=(I+S)/2`$ and $`\|(A-B)Q\|\le2\eta`$. These are actual shared-input encoder images, not arbitrary commuting involutions. |
-| Freeze compressed conjugations | **Open for unrestricted native non-Clifford midpoints.** For every test Pauli R centralizing the first outer axis space, small occupied error must force $`Q(ARA-BRB)Q=0`$. R76 proves this for Clifford S; R77 handles bounded inner clean spread. |
+| Freeze compressed conjugations | **Open for unrestricted native non-Clifford midpoints.** For every test Pauli R centralizing the first outer axis space, small occupied error must force $`Q(ARA-BRB)Q=0`$. R76 proves this for Clifford S; R77 handles bounded inner clean spread; R97 handles bounded outer-axis misalignment relative to either physical list. |
 | Lift the compressed commutant | [R76](ONE_CLEAN_MIDPOINT_RIGIDITY.md#lifting-the-compressed-commutant): after freezing, $`BAQ=D_0Q=QD_0`$ for an abelian-algebra unitary $`D_0`$. This already allows non-Clifford S and growing spread. |
 | Discrete occupied phases | [R76](ONE_CLEAN_MIDPOINT_RIGIDITY.md#discrete-occupied-phases): native entry arithmetic forces occupied scalars to eighth roots. Small enough error forces identity; target symmetries then exclude the witness. No additional spread restriction enters here. |
 
@@ -276,6 +278,16 @@ as t grows. The missing estimate must control cancellation in this
 Renaming t as support size, boundary count, or crossing rank does not
 remove the unbounded quantity. Pairwise full-space separation alone does
 not provide that estimate.
+
+[R97](OUTER_OVERLAP_RIGIDITY.md) uses the shared clean image to constrain
+physical-axis permutations, then obtains a finite Clifford expansion
+depending only on $`r=\min\{\mu_A,\mu_B\}`$. Each misalignment
+dimension is $`\dim(L_A\cap L_B)`$ minus the number of individual axes
+from that physical list lying in the intersection. Bounded overlap is a
+consequence; $`r=0`$ gives R76's uniform floor even at unbounded overlap.
+The intermediate phase-polynomial layers are explicitly allowed by R76;
+they are not asserted to be physical one-layer implementations. The
+unresolved estimate must allow both misalignment dimensions to grow.
 
 The sufficient invariant is a width-independent $`c>0`$ such that, for
 native $`D_T(V)\le4`$, the initialized projector $`\Pi`$, and a
@@ -297,12 +309,21 @@ be a compiler for the witness.
 disproves a universal sign-compatible sector-flip shortcut. Its occupied
 defect is the fixed constant $`\sqrt{1-1/\sqrt2}`$; padding does not
 shrink operator norm. Neither that example nor a small scalar trace deficit
-disproves the positive operator gap. The necessary growth conditions
+disproves the positive operator gap. Its tensor extensions have growing
+displayed overlap and center mixing, but an exact alternative
+Pauli-preserving three-layer representation. They cannot rule out an
+existential change of native split. Conversely, an exact determinant
+obstruction in the [representation limits](FOUR_LAYER_REPRESENTATION_LIMITS.md)
+rules out unrestricted same-space phase-polynomial descent, including
+one extra dirty wire; it does not rule out descent with more workspace.
+The necessary growth conditions
 $`r_{\min}=\Omega(\sqrt L)`$ and
 $`t_{\min}=\Omega(\log\log L)`$ concern increasing precision L,
 not increasing n at fixed accuracy. Here $`r_{\min}`$ minimizes over
 native four-layer representations, and $`t_{\min}`$ minimizes both encoder
-spreads over all compatible representations and splits.
+spreads over all compatible representations and splits. R97 adds that
+both outer-axis misalignment dimensions must diverge in every such
+representation.
 
 ### Why this witness cannot establish dimension-growing depth
 
@@ -342,7 +363,7 @@ proof/evidence links.
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
 | [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | A standalone dirty-output conversion was unpaid; a long initially protected output retained square-logarithmic depth | [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) bypasses that interface with geometric-band unloading; [R89](CAUSAL_COMPACT_COIN_DEPTH.md) later gives logarithmic early coarse recovery for arbitrary magnitudes through causal batching |
 | [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | Discover a conversion or joint recovery mechanism beyond these restrictions, then establish its full resource and return proof |
-| [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
+| [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question), [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes), and [outer overlap](OUTER_OVERLAP_RIGIDITY.md) | Both inner spread and outer-axis misalignment must grow; a universal common flip and unrestricted same-space descent are false; displayed center mixing can disappear after resplitting | Uniform compressed freezing on that remaining native class, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
 ## 5. What the next research plan must decide
 

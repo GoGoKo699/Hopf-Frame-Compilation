@@ -6,7 +6,8 @@ The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
 precision-uniform subtree depth, and the fixed-accuracy general
-logarithmic-depth theorem R90, and the precision refinements R92–R96. The
+logarithmic-depth theorem R90, the precision refinements R92–R96, and
+R97's outer-overlap obstruction. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -64,7 +65,7 @@ A failed route or an ended session does not retire the objective.
 | Executed catalogue bootstrap session | [Design](research/depth/CATALOGUE_BOOTSTRAP_PROMPT.md), [R94 proof](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), [outcome](research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md): carrying the full local workspace through selection permits a constant number of groups compiled directly to final accuracy |
 | Executed full-flag and local-precision session | [Design](research/depth/FULL_FLAG_DEPTH_PROMPT.md), [R95 proof](research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [outcome](research/depth/FULL_FLAG_DEPTH_SESSION_RESULT.md): coarse flags with sparse correction and a faster local compiler give uniform logarithmic depth through inverse-polynomial accuracy |
 | Executed precision bridge and direct terminal | [Design](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md), [R96 proof](research/depth/ALL_PRECISION_LINEAR_DEPTH.md), [outcome](research/depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md): a global borrowed-precision stage, fast references and directly programmed terminal give $`O(NL/b^2+L+\ell)`$ at every precision |
-| Next bounded research design | [One-clean four-layer gap](research/depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md): test a joint symplectic normal form and the shared clean image; seek a uniform occupied-sector gap or an exact native counterexample |
+| Executed one-clean four-layer session | [Design](research/depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md), [R97 proof](research/depth/OUTER_OVERLAP_RIGIDITY.md), [outcome](research/depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md): bounded outer-axis misalignment has a positive error floor; alignment with either physical axis list gives the uniform R76 floor; the unrestricted gap remains open |
 | Executed whole-terminal session | [Borrowed-work design](research/depth/TERMINAL_SOURCE_GAUGE_PROMPT.md): a fixed number of R89 reductions and dirty catalogue commutators replace the remaining recursive terminal |
 | Retained causal compact-coin construction | [R89 proof](research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) and [continuation record](research/depth/COIN_CONTINUATION_SESSION_RESULT.md); its coarse reduction supports R90 |
 | Retained product-coin construction | [R87 proof](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
@@ -277,7 +278,7 @@ that search. It does not replace the general objective. Final manuscript
 drafting remains separate.
 
 The latest obstruction result is
-[R77, inner clean-spread rigidity](research/depth/ONE_CLEAN_INNER_SPREAD.md).
+[R97, outer-overlap rigidity](research/depth/OUTER_OVERLAP_RIGIDITY.md).
 For the explicit complete frame with $`\cos(2\theta)=1/3`$:
 
 - R75 proves a zero-clean five-layer lower bound for integer $`L\ge3`$,
@@ -288,14 +289,23 @@ For the explicit complete frame with $`\cos(2\theta)=1/3`$:
   either two-layer encoder has bounded inner clean spread.
 - R74 and R77 force both middle crossing rank and both encoder spreads
   to grow in any hypothetical arbitrarily accurate four-layer one-clean
-  sequence. These necessary size conditions do not exclude such a sequence.
+  sequence.
+- R97 gives a positive floor depending only on the smaller outer-axis
+  misalignment dimension: the intersection dimension minus the number
+  of individual axes from that list lying in the intersection. Bounded
+  intersection is a consequence; alignment with either physical list
+  gives R76's uniform floor at arbitrary intersection dimension.
 
 The unrestricted one-clean five-layer lower bound remains open. The
 remaining compressed-conjugation freezing problem must allow growing
-inner spread and crossing rank. Commutant lifting and phase discreteness
-already hold; terminal return alone does not finish the proof. R77's exact
+inner spread and crossing rank, with diverging outer-axis misalignment
+on both sides in every admissible native representation. Commutant lifting
+and phase discreteness already hold; terminal return alone does not finish the proof. R77's exact
 native counterexample rules out a universal common compatible sector flip,
 not the remaining gap conjecture. Its occupied defect is a positive constant.
+Its tensor extensions have growing displayed overlap and center mixing,
+but an alternative Pauli-preserving three-layer realization; they do not
+exclude a different native split.
 The separate four-layer Hilbert–Schmidt identity-isolation question also
 remains open; R75's operator-norm rigidity does not settle that weaker metric.
 
@@ -354,14 +364,15 @@ All controls, original conditional zeros, dirty pools and actual inverses
 are paid. Optimal general depth and matching dimension-growing lower
 bounds remain open. The precision restriction in this upper law is now
 resolved; do not repeat it or the earlier R94 opening/local questions.
-The [next five-hour design](research/depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md)
-targets the unrestricted one-clean four-layer gap. It tests whether a
-joint description of the inner clean/data algebra can control the two
-outer phase layers through their shared clean image. The 90-minute gate
-requires a uniform estimate, not another spread-dependent expansion.
-A successful five-layer obstruction would remain a constant lower bound;
-the dimension-growing depth question stays separate. The design is not
-yet executed.
+The [executed four-layer design](research/depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md)
+produces [R97](research/depth/OUTER_OVERLAP_RIGIDITY.md): a gap at bounded
+outer-axis misalignment and a uniform gap when the intersection is aligned
+with either physical axis list. The
+[session outcome](research/depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
+records the remaining unbounded misalignment on both sides and the exact
+limits of proposed descent and center reductions. The unrestricted
+five-layer obstruction remains open; it is a constant lower-bound target,
+separate from dimension-growing depth.
 No efficient preprocessing, practical crossover, or scalable native emitter is claimed.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
