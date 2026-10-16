@@ -90,10 +90,16 @@ The [precision-terminal follow-up](PRECISION_TERMINAL_SESSION_RESULT.md)
 proves R91's parallel word query, R92's absolute catalogue envelope, and
 R93's growing-precision group theorem. At inverse-polynomial accuracy in n,
 R93 improves the square-root-width bound to $`O(\ell^2/\log\ell)`$.
-Its next bottleneck is the number of long-prefix group reads. Larger
-groups must improve both local native execution and the initialized
-matrix-unit labels or the retained bottom schedule. These are costs of
-the proved construction, not unrestricted lower bounds.
+The [catalogue bootstrap](CATALOGUE_BOOTSTRAP_SESSION_RESULT.md) then proves
+[R94](PORTABLE_WORKSPACE_CATALOGUE.md): its bound is
+$`O(NL/b^2+\ell\log_2(\ell+2))`$ uniformly on
+$`6\le L\le2\ell`$, with the original one-clean counts and widths.
+Moving R79's entire local workspace through selection permits larger
+groups compiled directly to final accuracy. This bypasses R93's residual
+endpoint labels and reduces the number of long-prefix reads to a constant.
+The opening binary search and local R79 compilation retain the
+$`\ell\log_2(\ell+2)`$ allowance; these are costs of the proved
+construction, not unrestricted lower bounds.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -342,10 +348,11 @@ The [whole-terminal session](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
 subsequently replaces the unbounded recursive terminal with R90's dirty
 catalogue commutator. This reaches logarithmic general depth at fixed
 accuracy; it does not prove that depth optimal. R92 and R93 subsequently
-give absolute growing-precision refinements. A next plan must target
-optimal general depth, the stronger growing-precision benchmark, or a
-dimension-growing lower bound. Complete native resource and return
-proofs remain the criterion. Proved affine, corner, and R85–R93 circuits
+give absolute growing-precision refinements. R94 reaches the stronger
+$`O(\ell\log_2(\ell+2))`$ benchmark on $`6\le L\le2\ell`$.
+Optimal general depth, broader precision ranges and dimension-growing
+lower bounds remain open. Complete native resource and return
+proofs remain the criterion. Proved affine, corner, and R85–R94 circuits
 should not be repeated as unresolved tasks. R79 remains the absolute
 general all-precision bound.
 

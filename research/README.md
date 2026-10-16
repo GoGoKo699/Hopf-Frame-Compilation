@@ -178,19 +178,25 @@ does not assert depth optimality or constants uniform in growing L.
 
 The [R92 absolute precision envelope](depth/UNIFORM_CATALOGUE_PRECISION.md)
 and [R93 grouped terminal](depth/GROUPED_CATALOGUE_PRECISION.md)
-subsequently refine growing-precision depth. R93 gives
-$`O(\ell^2/\log_2(\ell+2))`$ at $`L=\Theta(\ell)`$ within
-$`6\le L\le2\ell`$ and square-root dirty width, with the original
-one-clean optimal T-count, Clifford budget, literal widths and full operator contract.
-The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
-gives both complete bounds. The stronger inverse-polynomial-accuracy
-target remains open.
+give independent growing-precision refinements. The later
+[portable-workspace theorem R94](depth/PORTABLE_WORKSPACE_CATALOGUE.md)
+proves, uniformly on $`6\le L\le2\ell`$,
 
-The next [catalogue bootstrap session](depth/CATALOGUE_BOOTSTRAP_PROMPT.md)
-is **designed, not executed**. It tests whether R79 can compile larger
-catalogue groups directly to final accuracy when every local workspace
-wire travels with the selected payload. The target is
-$`O(\ell\log_2(\ell+2))`$ benchmark depth; the design is not a new result.
+```math
+D_T=O\!\left(NL/b^2+\ell\log_2(\ell+2)\right),
+```
+
+with the original one-clean optimal T-count, Clifford budget, literal
+real/complex widths and full operator contract. At $`L=\Theta(\ell)`$
+and square-root dirty width, it reaches the
+$`O(\ell\log_2(\ell+2))`$ benchmark. The
+[executed design](depth/CATALOGUE_BOOTSTRAP_PROMPT.md) and
+[session outcome](depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md) record the
+bootstrap: R79 compiles a constant number of larger groups directly to final
+accuracy, with its complete local workspace carried through selected
+transfer. R91 supplies parallel queries and paired routing; no residual
+endpoint labels are needed. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
+retains the other precision ranges and the open optimal-depth question.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -209,9 +215,10 @@ supplies the two-clean precision and width splices.
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
 | [Dirty catalogue terminal](depth/DIRTY_CATALOGUE_TERMINAL.md) | Current R90 fixed-accuracy general bound: three R89 reductions and a zero-clean catalogue commutator give $`O_L(N/b^2+\ell)`$ depth, with original count budgets, literal widths, and the complete operator contract |
-| [Parallel bilinear word query](depth/PARALLEL_BILINEAR_WORD_QUERY.md) | R91 independent exact component: private phase targets parallelize arbitrary output words, removing additive q depth with no clean work |
+| [Parallel bilinear word query](depth/PARALLEL_BILINEAR_WORD_QUERY.md) | R91 exact component used by R94: private phase targets parallelize arbitrary output words, removing additive q depth with no clean work; independent of R92 and R93 |
 | [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope and a slow unbounded precision window with logarithmic depth; retains R79's other regimes |
 | [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision improvement: local early decoder, whole noncommuting coarse groups, shared matrix-unit residual source, and the original one-clean width/phase splices |
+| [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 growing-precision bound: carry the entire local R79 workspace through dirty selection, compile larger groups directly to final accuracy, and return borrowed arrays exactly with parallel R91 queries and routing |
 | [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Retained R89 theorem and coarse-reduction interface: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; its original preserved-prefix recursion has an iterated-logarithmic overhead |
 | [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
 | [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
@@ -336,11 +343,15 @@ and [session record](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
 give R91–R93. Small complete groups share long-prefix reads while a paid
 shared source corrects each actual coarse operator. R93 strictly improves
 the inverse-polynomial-accuracy benchmark; R92 independently makes a
-slowly growing precision range uniform. The exact R91 query component
-does not by itself supply the missing large-group interpreter. The
+slowly growing precision range uniform. R94 uses R79's proved compiler
+inside each larger catalogue entry and R91 for parallel selection. Its
+complete workspace transfer removes the residual correction and permits
+a constant number of groups at final accuracy. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains optimal general depth, the stronger growing-precision benchmark, and
-dimension-growing lower bounds as open directions. Full work return and
+retains optimal general depth, broader precision ranges, and
+dimension-growing lower bounds as open questions. The opening binary
+search and local R79 entries retain an $`\ell\log_2(\ell+2)`$
+depth allowance. Full work return and
 simultaneous count/width bounds remain part of that target. The finite
 catalogue gives no efficient classical preprocessing, practical crossover,
 or scalable native emitter guarantee.

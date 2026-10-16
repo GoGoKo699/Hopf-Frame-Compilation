@@ -164,6 +164,17 @@ the shared binary residual source, and R72's one-clean recovery and
 width/phase splices. [R91](../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md)
 is an independent exact word-query improvement, not a premise of R92 or R93.
 
+The [portable-workspace theorem R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md)
+improves that benchmark to $`O(\log n\log\log n)`$, uniformly on
+$`6\le L\le2\ell`$. It retains R93's opening reduction and decoder,
+then compiles a constant number of larger groups directly to final
+accuracy with R79. Every local workspace wire
+travels through R90's selected transfer; R91 supplies parallel program
+queries and paired routing. The borrowed arrays return exactly, and the
+full-isometry hybrid retains local clean leakage. Native counts,
+simultaneous width, constant-height bottom layers and complex phases are
+charged at the original literal reservations.
+
 The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains its source and recovery proofs, though R79 supersedes its resource
@@ -174,7 +185,8 @@ bound. Unrestricted optimal depth remains open.
 | All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
 | Fixed-accuracy general depth | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), R90: fixed-number R89 coarse reduction, zero-clean local catalogue factors, exact dirty selection and two-array return, and the original-width splice |
 | Absolute catalogue precision | [Uniform catalogue precision](../research/depth/UNIFORM_CATALOGUE_PRECISION.md), R92: an explicit exponential precision envelope and a slowly growing logarithmic-depth window |
-| Inverse-polynomial accuracy | [Grouped catalogue precision](../research/depth/GROUPED_CATALOGUE_PRECISION.md), R93: whole-group coarse catalogues and a shared matrix-unit residual stream, with current-prefix queries and full one-clean return |
+| Inverse-polynomial accuracy | [Portable workspace catalogue](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), R94: complete local workspace transfer, final-accuracy R79 entries, parallel R91 selection, and a constant number of groups |
+| Retained grouped correction | [Grouped catalogue precision](../research/depth/GROUPED_CATALOGUE_PRECISION.md), R93: whole-group coarse catalogues and a shared matrix-unit residual stream, with current-prefix queries and full one-clean return |
 | Native decoder and fixed-accuracy corollary | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
 | Retained one-clean baseline and terminal | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |
 | All-precision composition | [All-precision depth](../research/depth/ALL_PRECISION_DEPTH.md), R70: retained two-clean simultaneous counts, literal widths, precision splice, and inherited matching bounds |
