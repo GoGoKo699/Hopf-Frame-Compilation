@@ -216,6 +216,12 @@ shorter exact cap speeds the original reference. A directly programmed
 terminal then avoids the full final-accuracy catalogue. Optimal general
 depth and matching dimension-growing lower bounds remain open.
 
+The [next five-hour design](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md), not yet
+executed, targets the unrestricted one-clean four-layer gap. It tests a
+joint inner-algebra normal form against the shared clean-image condition,
+with an early uniformity gate and a parallel native counterexample lane.
+Its potential five-layer obstruction is a constant lower bound.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing

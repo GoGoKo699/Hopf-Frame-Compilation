@@ -126,6 +126,14 @@ fine masks retain their common grammar and a shorter native coarse word
 is programmed explicitly. Optimal general depth remains the destination;
 the upper law no longer has a precision-window restriction.
 
+The [next five-hour design](ONE_CLEAN_FOUR_LAYER_PROMPT.md) turns to the
+unrestricted one-clean four-layer gap. It keeps the joint inner clean/data
+algebra and its center explicit, then tests whether the shared clean image
+controls the two outer phase layers. The controlled-Pauli reformulation
+was already known; the proposed compatibility estimate is the missing
+work. Success would give a constant five-layer obstruction, not a
+dimension-growing lower bound. This design has not been executed.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
