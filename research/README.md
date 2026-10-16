@@ -208,6 +208,10 @@ scratch to logarithmic size; exact compact references and two explicit
 local reductions then give depth $`O(h+\kappa)`$ with much larger
 allowed local dirty resources. R94's full-payload catalogue absorbs them.
 Optimal general depth and broader precision ranges remain open.
+The [next five-hour design](depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
+targets the same depth law through $`L\le n^{1/4}`$, contingent on a
+new global resource ledger for the small-workspace early stage. It is
+designed, not executed, and does not change the proved frontier.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

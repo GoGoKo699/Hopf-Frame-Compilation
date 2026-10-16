@@ -113,6 +113,14 @@ catalogue absorbs the resulting fixed-polynomial exponential local costs.
 This bypasses the proposed fine full-flag compression; it does not prove
 that arbitrary fine product coins admit a small exact compression.
 
+The [next precision-bridge design](BORROWED_PRECISION_BRIDGE_PROMPT.md)
+asks whether that same depth law extends through $`L\le n^{1/4}`$.
+Its new obligation is a sharp global-prefix ledger for the small-workspace
+early stage. The existing local exponential allowance does not supply it.
+The proposed finite reductions would leave $`O(\log L)`$ layers and
+permit a constant number of R79 high-precision catalogue entries.
+The design is unexecuted; the proved frontier remains R95.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
