@@ -5,13 +5,15 @@
 [R79 uniform theorem](UNIFORM_SUBTREE_DEPTH.md) ·
 [Previous outcome](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
 
-**Status: designed; not executed.** This is the next bounded research
-session after R90, designed on 16 October 2026. Its scientific baseline
+**Status: executed.** The [session result](PRECISION_TERMINAL_SESSION_RESULT.md)
+records R91's exact reader, R92's absolute precision envelope, and R93's
+grouped-terminal improvement. Execution began on 16 October 2026 at
+06:19:12 UTC, with an 11:19:12 UTC ceiling including integration.
+The stronger primary benchmark below remains open. This design's scientific baseline
 is main commit `aca1e24289743e06d0580996400f03f232d3b283`, integrated in
 [PR #154](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/154).
-No theorem below is claimed by this design. Start the five-hour elapsed
-clock when execution begins; include derivation, tool waits, review,
-validation, and integration. Finishing a sound result earlier is allowed.
+No proposed target below is claimed merely by this design. The proved
+results have separate proof homes linked from the session record.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge remain authorized. Preserve the separation between research

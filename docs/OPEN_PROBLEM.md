@@ -26,6 +26,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
 | Fixed-accuracy general depth | [R90 dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives $`O_L(N/b^2+\ell)`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets; optimal depth remains open |
+| Growing-precision refinements | [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) gives an absolute catalogue-precision envelope; [R93](../research/depth/GROUPED_CATALOGUE_PRECISION.md) improves the $`L=\Theta(\ell)`$ benchmark to $`O(\ell^2/\log\ell)`$ depth at square-root width, with the original one-clean counts and widths |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
@@ -223,6 +224,43 @@ remains open. R79 retains its absolute all-precision scope; R90's constants
 depend on fixed L. The finite catalogue implies no efficient classical
 preprocessing, practical crossover, or scalable native emitter guarantee.
 
+The [precision-terminal session](../research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+adds two absolute-constant frame refinements. Put
+
+```math
+F_{79}(n,L)=\min\{nL,(L+\ell)\log_2(n+L+2)\}.
+```
+
+[R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) proves, for all
+$`n\ge1,L\ge6`$ and an absolute $`C_*`$,
+
+```math
+D_T=O\!\left(NL/b^2+
+\min\{F_{79}(n,L),\ell+2^{C_*(L+1)^3}\}\right).
+```
+
+In particular, logarithmic depth holds for the unbounded precision window
+$`6\le L\le c[\log_2(\ell+2)]^{1/3}`$, with one absolute positive c.
+The independent [grouped-catalogue theorem R93](../research/depth/GROUPED_CATALOGUE_PRECISION.md)
+proves, on $`6\le L\le2\ell`$,
+
+```math
+D_T=O\!\left(NL/b^2+\ell\log_2(\ell+2)
+                     +\frac{L\ell}{\log_2(\ell+2)}\right).
+```
+
+Both retain optimal $`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$,
+one clean qubit, the original family-specific literal widths, and the full
+initialized-isometry contract. Select a complete circuit to take the best
+available depth bound; R79's stronger high-precision clause is retained.
+At $`L=\Theta(\ell)`$ in R93's range and
+$`b=\Theta(\sqrt{NL})`$, the new depth is
+$`O(\ell^2/\log_2(\ell+2))`$. The stronger
+$`O(\ell\log_2(\ell+2))`$ benchmark remains open.
+The separate [R91 word-query lemma](../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md)
+removes additive output-length depth from a dirty rectangular query;
+neither frame refinement depends on it.
+
 The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
 including arbitrary node signs and supplied leaf phases. At the same
@@ -350,10 +388,11 @@ then proves R87 through product-coin spectral readout. The
 proves R89 through compact coins, causal batching, and prefix recursion.
 The [whole-terminal session](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
 proves R90 through fixed-number coarse reduction and dirty catalogue
-commutators. The
+commutators. The [precision follow-up](../research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+then proves R91–R93, including a strict growing-precision improvement. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-now targets optimal general depth, a precision-uniform extension of the
-fixed-accuracy gain, and dimension-growing lower bounds. All further
+now targets optimal general depth, the stronger growing-precision
+benchmark, and dimension-growing lower bounds. All further
 improvements must retain the full native return and resource contract.
 
 ## Constant-depth frontier

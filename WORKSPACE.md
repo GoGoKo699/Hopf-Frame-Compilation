@@ -6,7 +6,7 @@ The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
 precision-uniform subtree depth, and the fixed-accuracy general
-logarithmic-depth theorem R90. The
+logarithmic-depth theorem R90, and the growing-precision refinements R92–R93. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -33,7 +33,9 @@ Optimal general depth remains the research destination. The user's
 direction, reaffirmed on 16 October 2026 (Asia/Shanghai), is to pursue it
 with confidence and curiosity, allowing pauses to consolidate what has
 been learned. R90 reaches logarithmic general depth at fixed accuracy;
-optimal depth and a precision-uniform extension remain mathematical questions.
+R92 extends a slow unbounded precision range and R93 improves the
+inverse-polynomial-accuracy benchmark. Optimal depth and the stronger
+growing-precision target remain mathematical questions.
 A failed route or an ended session does not retire the objective.
 
 ## Read by claim
@@ -55,7 +57,7 @@ A failed route or an ended session does not retire the objective.
 | Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
 | General-magnitude recovery checkpoint | [Executed design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), [session outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md), [interval-dilation theorem R86](research/depth/INTERVAL_DILATION_DEPTH.md), and [selected dirty routing](research/depth/SELECTED_DIRTY_ROUTING.md) |
 | Current fixed-accuracy general depth | [Dirty catalogue terminal R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) and [session outcome](research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md) |
-| Next designed session, not yet executed | [Precision-dependent terminal](research/depth/PRECISION_TERMINAL_PROMPT.md): test shared long-prefix work at inverse-polynomial accuracy, with a bounded absolute-precision audit |
+| Executed precision-terminal session | [Design](research/depth/PRECISION_TERMINAL_PROMPT.md), [outcome](research/depth/PRECISION_TERMINAL_SESSION_RESULT.md): R91's parallel reader, R92's absolute precision envelope, and R93's grouped-terminal improvement |
 | Executed whole-terminal session | [Borrowed-work design](research/depth/TERMINAL_SOURCE_GAUGE_PROMPT.md): a fixed number of R89 reductions and dirty catalogue commutators replace the remaining recursive terminal |
 | Retained causal compact-coin construction | [R89 proof](research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) and [continuation record](research/depth/COIN_CONTINUATION_SESSION_RESULT.md); its coarse reduction supports R90 |
 | Retained product-coin construction | [R87 proof](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
@@ -131,6 +133,27 @@ borrowed arrays returns both arrays exactly. At fixed accuracy, optimal
 square-root-width depth is now between a constant lower bound and
 $`O_L(\ell)`$. R79 remains the absolute all-precision theorem;
 R90 does not claim constants uniform in growing L.
+
+The later [R92 envelope](research/depth/UNIFORM_CATALOGUE_PRECISION.md)
+makes the catalogue precision charge absolute, giving an additive
+$`\ell+2^{C_*(L+1)^3}`$ alternative to R79 for all L.
+[R93](research/depth/GROUPED_CATALOGUE_PRECISION.md) proves, uniformly on
+$`6\le L\le2\ell`$,
+
+```math
+D_T=O\!\left(NL/b^2+\ell\log_2(\ell+2)
+                        +L\ell/\log_2(\ell+2)\right),
+```
+
+with the same optimal T-count, Clifford budget, one clean qubit,
+literal real/complex widths,
+and full-isometry guarantee. Its square-root-width benchmark at
+$`L=\Theta(\ell)`$ improves to $`O(\ell^2/\log\ell)`$.
+The stronger $`O(\ell\log\ell)`$ target remains open. The separate
+[R91 word query](research/depth/PARALLEL_BILINEAR_WORD_QUERY.md) removes
+additive output-length depth, but does not supply a compact noncommuting
+program interpreter. R92 and R93 do not rely on that query improvement.
+The selected manuscript Result D remains R79.
 
 The retained [R88 terminal theorem](research/depth/PREFIX_SELECTED_COIN_TERMINAL.md)
 handles every real terminal height $`0\le M\le n`$, with a preserved
@@ -265,9 +288,13 @@ catalogue factors require no clean ancilla; their approximation error is
 the maximum over the selected factors. The complete proof prices the
 catalogue, queries, routing, actual inverses, and full work return.
 R87 supplies the fine decoder and R88 the sharp queries and literal-width
-fallback used through R89. The next questions are optimal general depth,
-a precision-uniform extension of the fixed-accuracy gain, and a
-dimension-growing lower bound. No efficient preprocessing, practical
+fallback used through R89. The [precision-terminal follow-up](research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+proves R91–R93. Its grouped coarse operator and shared correction stream
+reduce repeated long-prefix reads, with exact dirty return and an explicit
+conditional-work ledger. The next questions are optimal general depth,
+the stronger growing-precision benchmark, and a dimension-growing lower
+bound. Enlarging groups must address both their native execution and the
+initialized residual labels or the bottom compiler. No efficient preprocessing, practical
 crossover, or scalable native emitter is claimed.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator

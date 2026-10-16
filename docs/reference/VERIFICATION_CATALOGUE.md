@@ -17,6 +17,7 @@ not prove universal statements or asymptotic optimality.
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
 | Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
+| Precision-terminal refinements R91–R93 | [Detailed finite checks](#detailed-finite-checks) | Seven exact reader fixtures and four grouped residual fixtures; R92's uniform envelope and R93's native resource/error and width splices remain analytic |
 | Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
 | Retained terminal R88 and contiguous routing | [Detailed finite checks](#detailed-finite-checks) | Three selected-terminal matrix fixtures and three logical interval-routing fixtures; R88's sharp-query and fallback interfaces support R89's stronger terminal theorem |
@@ -311,6 +312,40 @@ crossover, depth optimality, scalable native emitter, or new immutable
 scientific receipt is asserted. The
 [session outcome](../../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
 records review and integration separately.
+
+The [R91 parallel word query](../../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md)
+has [seven bounded fixtures](../../tests/test_parallel_bilinear_word_query.py).
+Integer phases modulo eight and explicit basis permutations test the
+literal private-target bilinear echo, actual inverses, controlled
+arbitrary-dirty action, and four-corner cancellation. A separate native
+H/CNOT/T matrix checks the shared-control Toffoli substitution. The
+allocation checks cover balanced, blocked, wide-output and full-indicator
+regimes. A native sparse shear and a composed masked-program selected
+swap check the paired router, distinguishing its temporarily permuted
+auxiliary array from exact return in the full conjugation. These fixtures
+do not prove the asymptotic allocation or query optimality.
+
+The [R93 grouped terminal](../../research/depth/GROUPED_CATALOGUE_PRECISION.md)
+has [four bounded fixtures](../../tests/test_grouped_catalogue_precision.py).
+The actual nine-wire Clifford+T matrix-unit dilation is checked on all
+512 columns, with arbitrary labels, rejection flag and helper, exact
+inactive identity, literal phase and actual inverse. An explicit
+64-type, four-digit SELECT contracts to the stated accepted kernel;
+independent source and atom rejection flags, common normalization, and
+inactive G/H behavior are checked separately. A two-group noncommuting
+example changes the later prefix. Negative controls freeze that address,
+merge failure flags, or project the shared source too early. These checks
+stop at the bounded operator boundaries; retained shared-source tests
+cover history, padding and recovery. The finite fixture parameters do
+not assert the theorem's precision schedule or emit a general circuit.
+
+[R92](../../research/depth/UNIFORM_CATALOGUE_PRECISION.md) changes the
+uniform analytic ledger for existing circuit words and needs no new
+operator fixture. Its absolute cutoffs and precision window, and R93's
+local decoder, full error, simultaneous widths, geometric resources and
+real/complex splices are proved analytically and independently reviewed.
+The [precision session record](../../research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+records validation and integration. No immutable receipt is regenerated.
 
 The [compact fixed-coin support](../../research/depth/COMPACT_COIN_FLAGS.md)
 has [seven bounded checks](../../tests/test_compact_coin_flags.py):
