@@ -54,6 +54,7 @@ A failed route or an ended session does not retire the objective.
 | Bounded in-place conversion checkpoint | [Permutation session](research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md): no qualifying general construction; scoped conversion limits and continuing direction |
 | Joint orientation and recovery | [Executed design](research/depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md), [session outcome](research/depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md), and [geometric-band compiler](research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) |
 | General-magnitude recovery | [Executed design](research/depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md), [session outcome](research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md), [interval-dilation theorem R86](research/depth/INTERVAL_DILATION_DEPTH.md), and [selected dirty routing](research/depth/SELECTED_DIRTY_ROUTING.md) |
+| Next general-depth session | [Interval-recovery factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md): whole-chain conversions, logarithmic-imbalance reduction, and a reached-space reserve; not yet executed |
 | Endpoint compiler, reductions, and scoped limits | [Research results](research/README.md) |
 | Completed changed-decoder work | [State-based QBP supplement](supplements/state_based_qbp/README.md) |
 
@@ -248,6 +249,12 @@ R86 uses that same freedom for a complete local frame compiler, then
 erases the fine label through its actual inverse and forward word.
 Its normalization bound and native recovery are proved together; a
 further saving must improve their complete ledger or change the mechanism.
+The [next five-hour design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+targets a short sequence of interval-basis conversions. A whole weighted
+chain is its concrete opening primitive; the central missing step is a
+global imbalance-reduction schedule with paid boundary repairs. It keeps
+the weaker reached-space transport as a reserve. The design is not a
+new theorem and has not been executed.
 
 Use the [full-circuit contract](docs/OPEN_PROBLEM.md#full-circuit-requirement):
 a native identity or encoding rule and symbolic resource, error, and cleanup

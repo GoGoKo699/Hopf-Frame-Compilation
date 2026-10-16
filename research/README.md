@@ -265,6 +265,13 @@ retains further general depth improvement, a precision-uniform extension,
 and dimension-growing lower bounds as open directions. Logarithmic depth
 for the R85 family also requires improved terminal and routing schedules.
 
+The [next five-hour design](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+targets the general recovery normalization through whole weighted-chain
+conversions and a logarithmic-imbalance reduction. Its main unresolved
+lemma is a global schedule for boundary repairs; a reached-space
+transport is the reserve. This is an unexecuted design, with no change
+to the proved frontier.
+
 The terminal proof reuses the compact binary source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
