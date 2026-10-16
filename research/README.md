@@ -312,6 +312,12 @@ complete operator error. The proof includes a zero-clean local synthesis
 ledger and the original-width splice.
 
 R79 remains the absolute all-precision theorem. The
+[next five-hour design](depth/PRECISION_TERMINAL_PROMPT.md), not yet
+executed, targets the precision-dependent terminal: a structured returned
+program must remove both repeated long-prefix queries and serial program
+reading. It seeks a strict improvement at inverse-polynomial error in n,
+with a bounded audit of R90's slowly growing precision range. No new
+theorem is asserted by that design. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
 retains optimal general depth, a precision-uniform extension, and
 dimension-growing lower bounds as open directions. Full work return and
