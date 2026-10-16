@@ -190,6 +190,20 @@ two-qubit counterexample rules out a universal common-sign-flip
 certificate, not the unrestricted rigidity conjecture. No new external
 premise or compiler upper bound is introduced.
 
+The [outer-overlap theorem](../research/depth/OUTER_OVERLAP_RIGIDITY.md),
+R97, derives a physical-axis normalizer, shared-image compatibility and a
+bounded Clifford expansion from actual native encoder pairs. Removing
+individual axes inside the common intersection and extracting a
+simultaneous diagonal Clifford extend the gap to bounded misalignment
+relative to either physical list. R74 supplies the finite-boundary
+estimate; R76 supplies phase-polynomial closure, compressed-commutant
+lifting and occupied phase discreteness; R77 supplies the flat-expansion
+argument. Zero misalignment gives R76's uniform floor. No new external
+premise, compiler upper bound or unrestricted one-clean gap is claimed.
+The [representation limits](../research/depth/FOUR_LAYER_REPRESENTATION_LIMITS.md)
+separate the exact same-space descent obstruction from the
+representation-dependent center-mixing examples.
+
 The retained R66 compressed-column predecessor has a separate dependency
 chain. Its improvement over R45 retains that earlier uniform theorem's
 literal threshold on the stated subrange:

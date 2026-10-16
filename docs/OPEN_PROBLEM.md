@@ -28,15 +28,16 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Fixed-accuracy general depth | [R90 dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives $`O_L(N/b^2+\ell)`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets; optimal depth remains open |
 | Stronger all-precision research bound | [R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ for every $`n\ge1,L\ge6`$, with optimal counts, one clean qubit, original literal widths and full error; [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) retain their independent narrower constructions |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
-| Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
+| Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
 
 The immediate lower-bound question is whether four T layers with one clean
 qubit can approximate the explicit witness arbitrarily well when dirty
-width, inner clean spread, and middle crossing rank all grow. The
-[bounded-spread result](#one-clean-inner-spread) rules out fixed spread,
-and its common-flip counterexample rules out that universal shortcut.
-Neither settles the unrestricted question. All statements below concern
-the complete initialized-isometry contract, not one state column.
+width, inner clean spread, middle crossing rank and both outer-axis
+misalignment dimensions all grow. The
+[bounded-spread result](#one-clean-inner-spread) rules out fixed spread;
+[R97](#outer-axis-overlap) rules out bounded misalignment on either side,
+even at unbounded outer-intersection dimension. All statements below
+concern the complete initialized-isometry contract, not one state column.
 
 The [preparation map](../research/depth/DEPTH_OBSTACLE_MAP.md) separates
 that precision-dependent obstruction from the dimension-growing depth
@@ -542,6 +543,34 @@ the separate encoder flips cannot always be replaced by one common
 sign-compatible flip, even allowing an arbitrary unitary flip. Its
 occupied defect is a positive constant, so it does not refute the
 remaining gap conjecture.
+
+### Outer-axis overlap
+
+The [outer-overlap theorem](../research/depth/OUTER_OVERLAP_RIGIDITY.md),
+R97, gives a positive initialized-isometry error floor depending only on
+$`r=\min\{\mu_A,\mu_B\}`$. Here $`I=L_A\cap L_B`$ is the
+intersection of the two native outer axis spaces, and $`\mu_A`$ is
+$`\dim I`$ minus the number of individual A axes lying in I; define
+$`\mu_B`$ similarly. The physical lists are independent, so these are
+nonnegative dimensions. Both inner clean spreads, crossing rank, dirty
+width and the full intersection dimension may grow while this floor
+remains fixed.
+
+At $`r=0`$, the intersection is spanned by a subset of either physical
+list and the floor is R76's uniform Clifford-midpoint threshold. Literal
+matching between the lists is unnecessary. An arbitrarily accurate
+four-layer sequence must have both misalignment dimensions diverge in
+every admissible native representation. That unbounded case remains
+open. These are constant-depth obstructions, not matching
+dimension-growing lower bounds for R96.
+
+The [representation limits](../research/depth/FOUR_LAYER_REPRESENTATION_LIMITS.md)
+retain two distinct conclusions. Exact clean return does not guarantee an
+exact same-space phase-polynomial descent, even with one additional dirty
+wire. Growing center mixing in the displayed R77 tensor family also does
+not obstruct an alternative native split: that family has a
+Pauli-preserving three-layer realization. Neither example refutes the
+remaining occupied-sector gap.
 
 ### Middle crossing rank and the remaining gap
 

@@ -20,6 +20,7 @@ not prove universal statements or asymptotic optimality.
 | Precision-terminal refinements R91–R93 | [Detailed finite checks](#detailed-finite-checks) | Seven exact reader fixtures and four grouped residual fixtures; R92's uniform envelope and R93's native resource/error and width splices remain analytic |
 | Portable workspace catalogue R94 | [Detailed finite checks](#detailed-finite-checks) | Six bounded full-operator checks for transfer, initialized leakage, current selectors and guard return; the simultaneous native bounds and uniform width/precision splices are analytic |
 | All-precision general depth R96 | [Detailed finite checks](#detailed-finite-checks), [all-precision proof](../../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Four bounded capped-reference fixtures check exact overlap/cutoff, full-space completion, all original bands and occupied actual-inverse cancellation; retained native controls, source/recovery and query suites support their existing interfaces. Global addresses, common fine grammar, coarse support, precision and width splices remain analytic |
+| Outer-overlap rigidity R97 | [Detailed finite checks](#detailed-finite-checks), [outer-overlap proof](../../research/depth/OUTER_OVERLAP_RIGIDITY.md) | Nine exact fixtures check native axis compatibility, transverse gauge, displayed overlap and center mixing, a distinct three-layer resplitting, and the same-space descent obstruction. The bounded-misalignment gap and its uniform aligned case remain analytic |
 | Logarithmic-precision general depth R95 | [Detailed finite checks](#detailed-finite-checks) | Four bounded sparse-correction checks for live root and signed Schur sources, complete-work recovery, actual inverses and leakage; retained native/source, R91 and R94 fixtures support the inherited interfaces, while the asymptotic proof is analytic |
 | Retained causal compact-coin theorem R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic; its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
@@ -1004,6 +1005,27 @@ encoder, exact clean return, arbitrary dirty extension, and occupied
 versus full-space norms. The width-independent gap and asymptotic
 spread condition are analytic; the counterexample's positive constant
 defect is not an asymptotic failure of rigidity.
+
+The [outer-overlap proof](../../research/depth/OUTER_OVERLAP_RIGIDITY.md),
+R97, and the [representation limits](../../research/depth/FOUR_LAYER_REPRESENTATION_LIMITS.md)
+have [nine exact fixtures](../../tests/test_outer_overlap_rigidity.py).
+They reuse the retained $`\mathbb Q(\sqrt2)`$ Pauli arithmetic and
+$`\mathbb Q(\sqrt2,i)`$ native-amplitude ring. Signed permutations are
+checked with T inverses, inactive wires and changed Clifford coordinates;
+an orthogonal nonpermutation checks that pair-overlap conditions alone
+do not suffice. A three-qubit non-Clifford midpoint verifies literal
+physical routing, shared clean images and a common gauge with exact gate
+cancellation. Small R77 tensor families verify one-clean parity encoding,
+growing displayed overlap and crossing rank, center sign changes and
+complete projector-mixing identities. A literal alternative three-layer
+word retains its exact scalar and shows that this displayed complexity
+does not obstruct resplitting. A separate four-wire native circuit checks
+every occupied entry, zero leakage and determinant $`-i`$, including the
+obstruction after one added dirty wire and its disappearance after two.
+These are checks of specific signs and scope, not numerical evidence for
+an infinite-width gap. The physical normalizer, simultaneous Clifford
+extraction, bounded-misalignment estimate and aligned uniform floor are
+proved analytically.
 
 The [conditional geometric source](../CONDITIONAL_GEOMETRIC_SOURCE.md)
 has [separate checks](../../tests/test_conditional_geometric_source.py) for

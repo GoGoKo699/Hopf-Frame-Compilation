@@ -216,11 +216,16 @@ shorter exact cap speeds the original reference. A directly programmed
 terminal then avoids the full final-accuracy catalogue. Optimal general
 depth and matching dimension-growing lower bounds remain open.
 
-The [next five-hour design](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md), not yet
-executed, targets the unrestricted one-clean four-layer gap. It tests a
-joint inner-algebra normal form against the shared clean-image condition,
-with an early uniformity gate and a parallel native counterexample lane.
-Its potential five-layer obstruction is a constant lower bound.
+The [executed four-layer session](depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
+establishes [outer-overlap rigidity, R97](depth/OUTER_OVERLAP_RIGIDITY.md).
+A positive error floor depends only on the smaller outer-axis misalignment
+dimension: intersection dimension minus the number of individual axes
+from that list lying in it. An intersection spanned by a subset of either
+physical list gives R76's uniform floor at any dimension. The unrestricted
+gap remains open when both misalignment dimensions grow.
+The [executed design](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md) and outcome
+retain the exact descent and center-mixing limits. This is a constant
+lower-bound branch; the upper theorem and selected Result D are unchanged.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -425,10 +430,12 @@ place the witnesses in the phase-dressed family as well.
 | [Four-layer operator rigidity](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md), R75 | Width-independent gap between distinct two-layer Pauli images; zero-clean five-layer bound and exact one-clean terminal-sector preservation below the gap | Terminal-sector preservation alone does not settle one-clean four-layer approximation |
 | [One-clean midpoint rigidity](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md), R76 | Pauli and Hermitian-Clifford midpoint floors using phase discreteness, finite Clifford boundaries, and compressed-commutant lifting | Unrestricted non-Clifford midpoints need an additional rigidity argument |
 | [Inner clean spread](depth/ONE_CLEAN_INNER_SPREAD.md), R77 | Bounded-spread non-Clifford extension; both outer layers must grow in every accurate representation; exact example excludes a common sign-compatible sector flip even among arbitrary unitaries | Unbounded inner spread remains eligible; the counterexample does not refute the remaining gap conjecture |
+| [Outer-overlap rigidity](depth/OUTER_OVERLAP_RIGIDITY.md), R97 | Positive floor at bounded misalignment relative to either physical outer-axis list; uniform R76 floor at zero misalignment, without bounding inner spread or crossing rank | Both misalignment dimensions must grow; exact same-space descent fails, and displayed center mixing does not exclude another native split |
 
 Together R74 and R77 force all four layers to grow in any hypothetical
-arbitrarily accurate one-clean sequence for this witness. Optimal depth
-remains open.
+arbitrarily accurate one-clean sequence for this witness. R97 additionally
+forces both outer-axis misalignment dimensions to diverge in every
+admissible native representation. Optimal depth remains open.
 
 The following earlier studies isolate costs or restrict particular
 interfaces. They remain as mathematical results and records of the
