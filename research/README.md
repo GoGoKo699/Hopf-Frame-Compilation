@@ -305,6 +305,12 @@ replace that schedule; the early decoder and contiguous routing already
 have logarithmic depth. Full work return and simultaneous count/width
 bounds remain part of that target.
 
+The [next five-hour design](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md) targets
+the repeated global-address setup in that recursion. Its two unproved
+routes transport borrowed-work correlations through the complete terminal
+or replace clean coin expansion by a full-basis completion. The design
+does not change R89's frontier and has not yet been executed.
+
 The retained binary-source terminal proof reuses the compact source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
