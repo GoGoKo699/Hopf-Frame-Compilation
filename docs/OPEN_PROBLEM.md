@@ -25,7 +25,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 |---|---|
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
-| Fixed-accuracy general depth | [R86 interval dilation](../research/depth/INTERVAL_DILATION_DEPTH.md) gives $`O_L(N/b^2+\log^{3/2}(n+2))`$ for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets |
+| Fixed-accuracy general depth | [R87 product-coin dilation](../research/depth/COIN_DILATION_DEPTH.md) gives $`O_L(N/b^2+\ell\log_2(\ell+2))`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets |
 | Supporting depth results | [R80–R85](#large-width-t-depth) give promised-family circuits and a general terminal improvement with one clean qubit and the count budgets; R85 reaches sub-square-logarithmic depth for arbitrary orientations of shared unordered depth magnitudes |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
@@ -166,27 +166,31 @@ and depth match through
 $`b\le\sqrt N/\log_2(n+2)`$, whenever the
 interval above the family's literal lower threshold is nonempty: there
 $`T^\star=\Theta_\eta(N/b)`$ and $`D_T^\star=\Theta_\eta(N/b^2)`$.
-The later [interval-dilation theorem R86](../research/depth/INTERVAL_DILATION_DEPTH.md)
-improves the fixed-accuracy general bound. For every fixed integer
+The [interval-dilation theorem R86](../research/depth/INTERVAL_DILATION_DEPTH.md)
+first improved the fixed-accuracy general bound to an additive
+$`O_L(\ell^{3/2})`$. The later
+[product-coin theorem R87](../research/depth/COIN_DILATION_DEPTH.md)
+removes its overlap-amplification factor. For every fixed integer
 $`L\ge6`$, every n, and every original eligible real or complex dirty
 allocation, one clean qubit gives
 
 ```math
 T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L(N/b^2+\ell^{3/2}),\qquad \ell=\log_2(n+2).
+D_T=O_L(N/b^2+\ell\log_2(\ell+2)),\qquad \ell=\log_2(n+2).
 ```
 
 It covers arbitrary node-dependent magnitudes, signs, zeros, and the
 prescribed leaf phases, with initialized-isometry error at most
-$`2^{-L}`$. Global finite rounding makes a positive weighted tree;
-interval dilation and a balanced-Haar change of basis give a smaller
-recovery normalization, with every source and work register charged.
+$`2^{-L}`$. Retained global finite rounding makes a positive weighted
+tree. A product-coin embedding followed by tensor Hadamards exposes
+the fine marker depth through the last nonzero coin block. The paid
+source and its actual inverse erase the tag and restore the work.
 The [selected-routing lemma](../research/depth/SELECTED_DIRTY_ROUTING.md)
 supplies its physical routing and variable-size query interfaces.
 At square-root dirty width the general upper bound is therefore
-$`O_L(\ell^{3/2})`$, while the unrestricted lower bound remains
+$`O_L(\ell\log_2(\ell+2))`$, while the unrestricted lower bound remains
 $`\Omega(1)`$. Optimal depth remains open. R79 retains its absolute
-all-precision scope; R86's constants depend on fixed L.
+all-precision scope; R87's constants depend on fixed L.
 
 The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
@@ -268,8 +272,9 @@ band needs spectral search. The initialized-isometry proof includes
 every column, literal phases, actual inverses, leakage, dirty inputs,
 and references. This reaches sub-square-logarithmic depth for the
 arbitrary-orientation promise, without a general whole-register
-permutation compiler. R85 remains stronger than R86 on this promised
-family; logarithmic depth for it remains open.
+permutation compiler. R87 now gives the same asymptotic depth for
+arbitrary magnitudes; R85's promised-family proof remains valid.
+Logarithmic depth remains open.
 
 The [bounded in-place conversion session](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 stopped at its mechanism checkpoint. Its exact word and encoding
@@ -283,11 +288,13 @@ The [joint orientation session](../research/depth/JOINT_ORIENTATION_RECOVERY_SES
 records R85's discovery and review. The later
 [general-magnitude session](../research/depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
 records R86 and its reserve routes. The
+[factorization session](../research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+then proves R87 through product-coin spectral readout. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-now includes improving the $`\ell^{3/2}`$ general bound and extending
-the gain uniformly in precision. Constant-source-layer coarse recovery
-is a separate remaining local question; total logarithmic depth would
-also require compatible terminal and routing schedules.
+now includes logarithmic general depth and extending the fixed-accuracy
+gain uniformly in precision. Constant-source-layer coarse recovery
+remains a local question; total logarithmic depth would also require
+compatible terminal and routing schedules.
 
 ## Constant-depth frontier
 

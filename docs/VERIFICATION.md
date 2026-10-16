@@ -31,7 +31,8 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: one-clean optimal count and T-depth | [Precision-uniform subtree theorem, R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and [R72's one-clean interfaces](../research/depth/ONE_CLEAN_DEPTH.md) | [Exact subtree and bounded spectral-decoder checks](../tests/test_subtree_projector_decoder.py), [one-clean native words](../tests/test_one_clean_compiler.py), and retained shared-binary-source, conjugate-recovery, blocked-query, dirty-indicator, and uniform-allocation suites | Analytic absolute precision ledger, enlarged protected bank, terminal and width/precision splices, and full-isometry composition; no new circuit identity or fixture. Finite checks do not certify unbounded precision, asymptotic cutoffs, or emit every variable-size frame |
-| Fixed-accuracy general depth R86 | [Interval-dilation proof](../research/depth/INTERVAL_DILATION_DEPTH.md), with [selected dirty routing](../research/depth/SELECTED_DIRTY_ROUTING.md) | [Seven bounded interval-dilation fixtures](../tests/test_interval_dilation_depth.py), plus retained source, query, recovery, and terminal checks | Analytic absolute-norm Haar estimate, paid local compiler, global sign/zero rounding, full-isometry composition, and literal-width splice; fixed-L constants. Bounded matrices do not emit the general native compiler or prove asymptotics |
+| Fixed-accuracy general depth R87 | [Product-coin proof](../research/depth/COIN_DILATION_DEPTH.md), using retained rounding and selected routing | [Seven bounded coin-dilation fixtures](../tests/test_coin_dilation_depth.py), plus retained source, query, coarse-recovery, and terminal checks | Analytic product partition, spectral-band readout, paid source and actual inverse, full-isometry error, and original literal-width splice; fixed-L constants. No general native emitter or asymptotic inference from finite matrices |
+| Interval-dilation predecessor R86 | [Interval-dilation proof](../research/depth/INTERVAL_DILATION_DEPTH.md), with [selected dirty routing](../research/depth/SELECTED_DIRTY_ROUTING.md) | [Seven bounded interval-dilation fixtures](../tests/test_interval_dilation_depth.py), plus retained source, query, recovery, and terminal checks | Analytic absolute-norm Haar estimate, paid local compiler, global sign/zero rounding, full-isometry composition, and literal-width splice; fixed-L constants. Bounded matrices do not emit the general native compiler or prove asymptotics |
 | Retained linear-precision depth predecessor | [Complete construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md) | [Bounded all-column recovery](../tests/test_sublinear_depth_recovery.py), [native calibration](../tests/test_phase_gradient_calibration.py), [shared-gradient checks](../tests/test_shared_gradient_recovery.py), [shared binary terminal checks](../tests/test_shared_binary_terminal.py), [native coarse-program checks](../tests/test_grouped_terminal_depth.py), and retained query/indicator suites | Absolute constants in the stated linear-precision range; analytic source, invariant-sector recovery, uniform workspace splice and native schedule; finite checks are not a general compiler |
 | Fixed-accuracy polylogarithmic corollary | [Subtree-projector decoder, R78](../research/depth/SUBTREE_PROJECTOR_DECODER.md) | [Exact subtree and bounded spectral-decoder checks](../tests/test_subtree_projector_decoder.py), plus retained source/query/one-clean suites | Analytic full-mode reflection, reversible search, native ledger and width splice; retained as the decoder proof and fixed-accuracy consequence of R79. Finite fixtures do not emit a native descendant loader or prove asymptotics |
 | Entry-indexed normalization barrier | [Encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) | Exact Haar spectrum, explicit optimal factorization and nuclear-norm dual witness | Analytic proof for the stated factorization contract; no unrestricted native-depth or recovery-query lower bound |
@@ -126,7 +127,7 @@ Native table synthesis, arbitrary dirty/reference guarantees, recursive
 workspace, asymptotic resources, and bias-independent constants follow
 from the proof rather than these finite checks. No scalable emitter or
 new scientific receipt is supplied. R79 retains its absolute all-precision
-scope; the later R86 result improves general fixed-accuracy depth.
+scope; R86 and then R87 improve general fixed-accuracy depth.
 
 The [affine-orientation theorem R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
 and [exact deterministic theorem R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
@@ -169,9 +170,24 @@ The universal norm estimate, native source and routing implementation,
 global rounding, arbitrary dirty/reference guarantee, and all-width
 resource bounds follow from the analytic proof. Its fixed-L general
 $`O_L(N/b^2+\log^{3/2}(n+2))`$ depth does not replace R79's
-absolute all-precision theorem or R85's stronger promised-family bound.
+absolute all-precision theorem. R87 subsequently improves the general
+bound to the same depth order as R85's promised-family result.
 The [catalogue](reference/VERIFICATION_CATALOGUE.md) records the individual
 fixture boundaries. No general emitter or new scientific receipt is added.
+
+The [product-coin theorem R87](../research/depth/COIN_DILATION_DEPTH.md)
+has seven [bounded checks](../tests/test_coin_dilation_depth.py):
+rectangle partition and every scaling flag; literal mean-zero marker
+coins and uniform suffixes; last-nonzero-coin support for every column;
+the physical source/membership word and actual inverse; complete fine-tag
+erasure with zero and nonzero offsets and reference inputs; full-output
+source leakage; and exact inactive cancellation on occupied work.
+The fixtures use small ideal source completions and explicit basis
+permutations. Native source synthesis, routing, global sign/zero rounding,
+the arbitrary dirty/reference contract, and asymptotic resource and
+all-width bounds remain analytic. The
+[catalogue](reference/VERIFICATION_CATALOGUE.md) records their finite
+boundaries. These tests add no scalable native emitter or scientific receipt.
 
 The [in-place permutation checkpoint](../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../tests/test_permutation_bridge_limits.py).

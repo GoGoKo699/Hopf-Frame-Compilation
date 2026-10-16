@@ -39,8 +39,12 @@ $`D_T=O_L(N/b^2+\ell^{3/2})`$, where $`\ell=\log_2(n+2)`$,
 for arbitrary node-dependent magnitudes, signs, zeros, and prescribed
 complex leaf phases. One clean qubit, the original literal widths,
 $`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$, and the full initialized
-contract are retained. R79 remains the absolute all-precision theorem;
-R85 remains stronger on its promised family. This map preserves the
+contract are retained. The subsequent
+[factorization session](INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+proves [R87](COIN_DILATION_DEPTH.md), improving the general depth to
+$`O_L(N/b^2+\ell\log_2(\ell+2))`$ through product-coin spectral
+readout. It matches R85's order without that magnitude promise. R79
+remains the absolute all-precision theorem. This map preserves the
 earlier preparation history below.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
@@ -269,17 +273,24 @@ is R86's complete local frame compiler through interval dilation.
 The balanced-Haar conversion has $`O_L(\sqrt\ell)`$ normalization,
 and paid recovery yields the $`O_L(\ell^{3/2})`$ general depth term.
 Its [routing support](SELECTED_DIRTY_ROUTING.md) prices selected physical
-wires and variable-size query families. A next plan must target a
-further gain in this complete ledger, a precision-uniform extension, or
-a dimension-growing lower bound. A constant-source-layer eraser for
-R85's coarse band remains another possible target; logarithmic total
-depth would also require logarithmic terminal and routing schedules.
-Complete native resource and return proofs remain the criterion. Proved
-affine, corner, R85, and R86 circuits should not be repeated as unresolved
+wires and variable-size query families. The subsequent
+[factorization design](INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md) has
+also been executed. Its [outcome](INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+is R87's product-coin readout: a paid embedding, tensor Hadamards,
+and a last-nonzero-block XOR erase the fine tag with the actual source
+inverse. The old interval-overlap amplification is absent.
+
+A next plan must target logarithmic general depth, a precision-uniform
+extension, or a dimension-growing lower bound. Constant-source-layer
+coarse recovery remains a possible local target; logarithmic total
+depth also requires compatible terminal and routing schedules. Complete
+native resource and return proofs remain the criterion. Proved affine,
+corner, R85, R86, and R87 circuits should not be repeated as unresolved
 tasks. R79 remains the absolute general all-precision bound.
 
 For the asymptotic benchmark, a further constructive gain must improve
-R86's **paid basis conversion and recovery**, or replace that mechanism.
+R87's **complete coarse recovery, routing, and terminal ledger**, or
+replace its mechanism.
 A lower-bound attack on dimension growth first needs a different witness. The next
 one-clean constant-depth obstruction is a separate valid target, with the
 freezing step above precisely localized; it should be selected for that

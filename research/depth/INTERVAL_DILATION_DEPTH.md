@@ -22,6 +22,12 @@ It does not assert an efficient classical preprocessing algorithm or a
 scalable native emitter. Finite matrix checks support its identities;
 the asymptotic statement is analytic.
 
+The later [R87 coin-dilation theorem](COIN_DILATION_DEPTH.md) improves
+the general fixed-accuracy depth to
+$`O_L(N/b^2+\ell\log(\ell+2))`$ by a direct spectral-depth readout.
+This chapter retains its interval mechanism, rounding proof, and outer
+allocation as supporting and independently valid results.
+
 ## 1. Theorem and the local interface
 
 Fix an integer $`L\ge6`$, put $`N=2^n`$ and

@@ -703,8 +703,10 @@ the stated resource constants; no absolute all-precision theorem is
 inferred by substituting a growing L. The later
 [R86 interval-dilation theorem](INTERVAL_DILATION_DEPTH.md) gives
 $`O_L(N/b^2+\ell^{3/2})`$ for arbitrary node-dependent magnitudes.
-The present $`O_L(N/b^2+\ell\log_2(\ell+2))`$ bound remains
-stronger within its shared-unordered-pair promise.
+The subsequent [R87 coin-dilation theorem](COIN_DILATION_DEPTH.md)
+reaches the present $`O_L(N/b^2+\ell\log_2(\ell+2))`$ order
+for that general family. This chapter retains its distinct promised-family
+transporter and the outer recovery interfaces reused by both later proofs.
 
 The six [bounded mechanism tests](../../tests/test_geometric_band_orientation.py)
 check geometric capacity, the full truncated-band identity, local flag

@@ -2,12 +2,15 @@
 
 [Continuing mandate](../../WORKSPACE.md#continuing-toward-the-general-answer) · [R86 proof](INTERVAL_DILATION_DEPTH.md) · [Previous outcome](GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md) · [Selected routing](SELECTED_DIRTY_ROUTING.md)
 
-**Status: designed; not executed.** The baseline is main commit
+**Status: executed; see the [session outcome](INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md).**
+The design baseline is main commit
 `4f0fc7347965991230e3aaec95183f597dc02223`, containing R86.
 The next execution may use at most five elapsed hours, including review,
 validation, waits, and integration. Its clock starts when execution
-begins. This design's preliminary calculations are opening checks, not
-a new general-depth theorem or a new numbered result.
+begins. This design's preliminary calculations were opening checks,
+not themselves a new general-depth theorem. Execution produced the
+separate [R87 coin-dilation proof](COIN_DILATION_DEPTH.md) and
+[weighted-chain factorization](WEIGHTED_CHAIN_FACTORIZATION.md).
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge remain authorized. Preserve the distinction between research
