@@ -62,6 +62,7 @@ A failed route or an ended session does not retire the objective.
 | Executed precision-terminal session | [Design](research/depth/PRECISION_TERMINAL_PROMPT.md), [outcome](research/depth/PRECISION_TERMINAL_SESSION_RESULT.md): R91's parallel reader, R92's absolute precision envelope, and R93's grouped-terminal improvement |
 | Executed catalogue bootstrap session | [Design](research/depth/CATALOGUE_BOOTSTRAP_PROMPT.md), [R94 proof](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), [outcome](research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md): carrying the full local workspace through selection permits a constant number of groups compiled directly to final accuracy |
 | Executed full-flag and local-precision session | [Design](research/depth/FULL_FLAG_DEPTH_PROMPT.md), [R95 proof](research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [outcome](research/depth/FULL_FLAG_DEPTH_SESSION_RESULT.md): coarse flags with sparse correction and a faster local compiler give uniform logarithmic depth through inverse-polynomial accuracy |
+| Next designed precision bridge | [Five-hour prompt](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md): seek the same depth law through $`L\le n^{1/4}`$ by globally pricing borrowed-precision sources and shrinking the terminal to logarithmic precision height; designed, not executed |
 | Executed whole-terminal session | [Borrowed-work design](research/depth/TERMINAL_SOURCE_GAUGE_PROMPT.md): a fixed number of R89 reductions and dirty catalogue commutators replace the remaining recursive terminal |
 | Retained causal compact-coin construction | [R89 proof](research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) and [continuation record](research/depth/COIN_CONTINUATION_SESSION_RESULT.md); its coarse reduction supports R90 |
 | Retained product-coin construction | [R87 proof](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
@@ -331,8 +332,13 @@ source work by borrowed real rotations, uses exact compact reference
 coins, and contracts twice before a constant number of high-precision
 R79 groups. Its larger local dirty costs fit the complete-payload catalogue.
 Optimal general depth, a broader precision range, and dimension-growing
-lower bounds remain open. The next research design should start from R95,
-not repeat the now-resolved R94 opening or local-precision questions.
+lower bounds remain open. The
+[next five-hour design](research/depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
+targets the same depth law through $`L\le n^{1/4}`$. Its main unproved
+interface is a globally priced early stage with logarithmic initialized
+precision scratch; two such stages would leave a logarithmic-precision
+tail for R79's high-precision entries. This is a design, not a new result.
+Do not repeat the now-resolved R94 opening or local-precision questions.
 No efficient preprocessing, practical crossover, or scalable native emitter is claimed.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator
