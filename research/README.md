@@ -186,6 +186,12 @@ The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
 gives both complete bounds. The stronger inverse-polynomial-accuracy
 target remains open.
 
+The next [catalogue bootstrap session](depth/CATALOGUE_BOOTSTRAP_PROMPT.md)
+is **designed, not executed**. It tests whether R79 can compile larger
+catalogue groups directly to final accuracy when every local workspace
+wire travels with the selected payload. The target is
+$`O(\ell\log_2(\ell+2))`$ benchmark depth; the design is not a new result.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing
