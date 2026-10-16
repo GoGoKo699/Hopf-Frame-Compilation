@@ -26,7 +26,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
 | Fixed-accuracy general depth | [R90 dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives $`O_L(N/b^2+\ell)`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets; optimal depth remains open |
-| Growing-precision refinements | [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ uniformly on $`6\le L\le2\ell`$, with the original one-clean counts and widths; [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) retains the complete-workspace transfer construction and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) its absolute precision envelope |
+| Stronger all-precision research bound | [R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ for every $`n\ge1,L\ge6`$, with optimal counts, one clean qubit, original literal widths and full error; [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) retain their independent narrower constructions |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
@@ -292,9 +292,27 @@ supports a [local compiler](../research/depth/RELAXED_COUNT_LOCAL_DEPTH.md)
 with depth linear in height plus precision and much larger dirty counts.
 R94's complete-payload transfer absorbs those local costs globally.
 Thus inverse-polynomial accuracy in n has $`O(\ell)`$ depth at
-$`b=\Theta(\sqrt{NL})`$. Optimal general depth and extension beyond
-the stated precision range remain open. The selected manuscript Result D
-remains R79.
+$`b=\Theta(\sqrt{NL})`$.
+
+The subsequent [all-precision theorem R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
+removes that range restriction:
+
+```math
+D_T=O(NL/b^2+L+\ell),\qquad n\ge1,\quad L\ge6.
+```
+
+It preserves $`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, one external
+initialized qubit, real width $`17(L+n+7)`$, complex width
+$`17(L+n+8)`$, and full initialized-isometry error $`2^{-L}`$.
+All constants are absolute. A globally priced borrowed-precision stage
+and fast capped references give a constant number of height reductions.
+A directly programmed high-precision terminal uses the original global
+prefix in every fine mask and coarse instruction query. It does not
+allocate a catalogue of all precision programs. At sufficient width
+$`b=\Theta(\sqrt{NL}+L+n)`$, its depth is $`O(L+\ell)`$ for every
+precision. No efficient preprocessing, practical crossover or scalable
+native emitter is claimed. Optimal general depth remains open; the
+selected manuscript Result D remains R79.
 
 The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
@@ -428,10 +446,13 @@ then proves R91–R93. The [catalogue bootstrap](../research/depth/CATALOGUE_BOO
 proves R94 and reaches its growing-precision benchmark. The
 [R95 construction](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
 then reaches logarithmic depth at inverse-polynomial accuracy through
-coarse flags, sparse correction and local compilation with relaxed counts. The
+coarse flags, sparse correction and local compilation with relaxed counts.
+The [precision bridge](../research/depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+then proves R96's all-precision upper law through globally priced sources,
+fast references and a directly programmed terminal. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains optimal general depth, broader precision ranges,
-and dimension-growing lower bounds as open questions. All further
+retains optimal general depth and dimension-growing lower bounds as open
+questions. All further
 improvements must retain the full native return and resource contract.
 
 ## Constant-depth frontier

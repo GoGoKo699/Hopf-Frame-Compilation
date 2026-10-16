@@ -5,11 +5,28 @@
 [Previous outcome](FULL_FLAG_DEPTH_SESSION_RESULT.md) ·
 [Small-workspace sources](SMALL_WORKSPACE_DESCENDANT_SOURCE.md)
 
-**Status: designed, not executed.** Prepared on 16 October 2026 from
+**Status: executed; R96 established.** Prepared on 16 October 2026 from
 main commit `67b7d724854fc46310104c8404ae2b9fb895bd3e`, after
 [PR #160](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/160).
-The proposed statements below are research targets, not additional
-theorems. No result identifier is assigned.
+The original targets below are preserved as the design record. The
+[execution outcome](BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md) records
+R96, proved in [the all-precision assembly](ALL_PRECISION_LINEAR_DEPTH.md).
+
+Execution began on **16 October 2026 at 11:02:53 UTC**, from main
+`fd815938d7c4c73fb0460be22615a133f83103a3`, tree
+`5f7926a90493137c4e1225f09be601eefd91de91`, after design PR #161.
+The qualification checkpoint is 12:32:53 UTC and the integration ceiling
+is 16:02:53 UTC. The work branch is
+`research/borrowed-precision-bridge-session`.
+
+The primary qualification gate passed early: the global stage, fast
+reference substitution, and a stronger three-stage assembly through
+$`L\le n^{3/4}`$ have complete independent audits, including a fresh
+adversarial reconstruction. The separate
+directly programmed terminal also passed independent and fresh adversarial
+review, extending the depth law to every precision. The scientific claim
+is frozen; the execution outcome records validation and the associated
+pull request records integration.
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Modification and merge
 remain authorized. Final manuscript drafting is separate. The execution

@@ -165,26 +165,27 @@ R79 also gives $`O(\log^2 n)`$ depth at $`b=\Theta(\sqrt{NL})`$
 for $`L=\Theta(\log n)`$, so the error may decrease as an inverse
 polynomial in n.
 
-The later fixed-accuracy [dirty catalogue theorem R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md)
-improves the general depth to $`O_L(N/b^2+\log_2(n+2))`$ with
-$`T=O_L(\sqrt N+N/b)`$ and $`G=O_L(N)`$, at the same one-clean
-allocation and original literal widths. It covers both complete-frame
-families, including arbitrary magnitudes, signs, zeros, and leaf phases.
-Its constants may depend on fixed L; R79 remains the all-precision
-statement of D. Optimal large-width depth remains open.
+The stronger research [theorem R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
+gives, for every integer $`n\ge1,L\ge6`$ and $`\ell=\log_2(n+2)`$,
 
-The [logarithmic-depth theorem R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
-gives growing-precision depth $`O(NL/b^2+L+\ell)`$
-uniformly on $`6\le L\le2\ell`$, where
-$`\ell=\log_2(n+2)`$. At sufficient square-root dirty width, this gives
-$`O(\ell)`$ T-depth with the same optimal T-count, Clifford budget,
-one clean qubit, and original literal widths. Its constants are absolute.
-It combines a coarse-frame sparse correction with a faster local compiler
-inside [R94's portable workspace catalogue](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md).
-The
-[R92 precision envelope](research/depth/UNIFORM_CATALOGUE_PRECISION.md)
-also gives logarithmic depth on a slower unbounded precision range.
-These are research refinements; the selected manuscript statement D remains R79.
+```math
+D_T=O(NL/b^2+L+\ell),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL).
+```
+
+It preserves one clean qubit, original real/complex widths, and full
+initialized-isometry error, including signs, zeros, phases and dirty/reference
+inputs. Borrowed-precision sources, fast references and direct prefix
+programming remove the precision restriction. Optimal depth remains open; selected manuscript Result D
+remains R79.
+
+Earlier refinements remain available:
+[R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) for fixed accuracy,
+[R92](research/depth/UNIFORM_CATALOGUE_PRECISION.md) for an absolute
+catalogue envelope, [R94](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md)
+for workspace transfer, and
+[R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md) for logarithmic depth
+at inverse-polynomial accuracy.
 
 The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
@@ -210,6 +211,7 @@ The following distinct allocations remain useful:
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
 | Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log_2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
+| All precisions, $`a=1`$, $`L\ge6`$, sufficient $`b=\Theta(\sqrt{NL}+L+n)`$ | [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives absolute $`D_T=O(L+\log_2(n+2))`$, optimal T-count and $`G=O(NL)`$ for both frame families; optimal depth remains open |
 | Inverse-polynomial error in n, $`a=1`$, $`L=\lceil\log_2(n+2)\rceil\ge6`$, sufficient $`b=\Theta(\sqrt{NL})`$ | [R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md) gives absolute $`D_T=O(\log n)`$, optimal T-count, and $`G=O(NL)`$ for both frame families |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
