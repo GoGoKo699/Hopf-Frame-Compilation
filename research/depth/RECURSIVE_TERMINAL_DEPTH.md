@@ -9,9 +9,16 @@ prefix, while its initialized work and other polynomial costs depend only
 on the local frame height. The sharp dirty query removes the global
 address polynomial that would otherwise prevent recursion.
 
-This improves a terminal component. The generic complete-frame frontier
-remains [R79](UNIFORM_SUBTREE_DEPTH.md): its first decoder still has
-sequential spectral comparisons on the full early frame. The
+This improves a terminal component. At this result's original checkpoint,
+the generic complete-frame frontier remained [R79](UNIFORM_SUBTREE_DEPTH.md).
+The later [R87 product-coin theorem](COIN_DILATION_DEPTH.md) improves
+the fixed-accuracy general bound, and
+[R88](PREFIX_SELECTED_COIN_TERMINAL.md) sharpens the terminal-height
+dependence proved here. The later
+[R89 causal recursion](CAUSAL_COMPACT_COIN_DEPTH.md)
+improves both the general and terminal bounds to an iterated-logarithm
+overhead. The retained R81 proof supplies the recursive factorization
+and original literal-width fallback used by both refinements. The
 [level-homogeneous construction](HOMOGENEOUS_MAGNITUDE_DEPTH.md) has a
 different common-flag mechanism that also removes those comparisons;
 that mechanism is not assumed here.

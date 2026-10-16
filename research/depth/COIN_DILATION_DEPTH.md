@@ -4,7 +4,7 @@
 [Geometric recovery](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) ·
 [Native family sources](COHERENT_DESCENDANT_LOADER.md) ·
 [Selected routing](SELECTED_DIRTY_ROUTING.md) ·
-[Recursive terminal](RECURSIVE_TERMINAL_DEPTH.md) ·
+[Coin terminal](PREFIX_SELECTED_COIN_TERMINAL.md) ·
 [Session outcome](INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
 
 **Local result R87.** At fixed accuracy, arbitrary node-dependent
@@ -18,6 +18,12 @@ block gives the marker depth exactly. A paid source and its actual
 inverse turn this identity into fine-tag erasure.
 
 This is the unique proof home for the product-coin mechanism.
+The later [causal compact-coin theorem R89](CAUSAL_COMPACT_COIN_DEPTH.md)
+replaces its final coarse search and recursively improves the general
+fixed-accuracy depth to
+$`O_L(N/b^2+\ell(1+\log_2^*(n+2)))`$.
+The proof below remains the fine-decoder dependency of that construction;
+its own displayed bound is retained.
 The [interval-dilation theorem R86](INTERVAL_DILATION_DEPTH.md)
 supplies the finite global rounding and the outer geometric allocation.
 Its interval-overlap amplification is replaced here. No efficient
@@ -336,7 +342,7 @@ square-block output, damping flag, or repeated overlap-amplification
 anchor is needed. Constant-factor thinner bins from the design would
 also work; (14) is the already proved allocation used here.
 
-The [selected-routing lemma](SELECTED_DIRTY_ROUTING.md) moves local
+The [contiguous-interval routing specialization](SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals) moves local
 data into a fixed external leaf bank and donor zeros into the active
 coin prefix. Former arbitrary bank values are parked in the original
 local/donor slots. One completed layout surrounds the entire word
@@ -399,8 +405,12 @@ D_{\rm loc}=O_L(\ell).
 This includes both source appearances, membership, the fine query,
 returned predicates, and all actual inverses. The two tensor Hadamard
 layers have zero T-depth and O(n) charged Clifford gates. The boundaries
-of the episode add the selected-router depth
-$`O_L(\ell\log\log(\ell+4))`$. Source precision need not pay for
+of the episode add $`O_L(\ell)`$ depth using loaded interval
+parameters and guarded barrel rotations. The four parameter words
+require another $`O_L(\ell)`$ conditional clean metadata bits,
+reserved before choosing the independent protected margin. The
+general selected-network lemma remains available for other layouts.
+Source precision need not pay for
 one approximation per coin or tree level: (12) is one entire family
 source estimate.
 
@@ -499,19 +509,25 @@ Use this wide construction beyond a fixed L-dependent dimension cutoff
 and when $`b\ge\sqrt N/n`$. Equation (20) fits the entire early
 dirty peak into a fixed fraction of b. The same rounded frame has
 the retained exact early/terminal factorization, with terminal height
-$`M=O_L(\ell)`$. The [R81 terminal theorem](RECURSIVE_TERMINAL_DEPTH.md),
+$`M=O_L(\ell)`$. The [R88 coin terminal theorem](PREFIX_SELECTED_COIN_TERMINAL.md),
 at error $`\eta/4`$, gives
 
 ```math
 T_T=O_L(\sqrt N+N/b),\qquad G_T=O_L(N),\qquad
 D_T^{\rm terminal}
-=O_L\!\left(N/b^2+\ell\log(M+2)\right).
+=O_L\!\left(N/b^2+\ell\log_2\log_2(M+4)\right).
 \qquad(21)
 ```
 
 Its reservation fits beyond the chosen cutoff, and it reuses the
 returned dirty pool. Initialized-isometry composition with actual
 unitaries does not assume perfect actual intermediate work return.
+R88 rederives the local stage in Sections 2–6 with a preserved
+external prefix and stage-dependent precision; it does not invoke
+this whole theorem's terminal step. There is no circular dependency.
+The original R81 terminal also suffices for the displayed general
+bound (1). The stronger terminal and routing refinements leave that
+bound unchanged because coarse-label search still dominates.
 
 The exact finite sign gauges are retained Boolean phase tables, with
 $`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$, and
@@ -536,8 +552,9 @@ fixed cutoff, absorbed by L-dependent constants. No stricter internal
 tolerance is substituted into this fallback reservation.
 
 This completes the general fixed-accuracy theorem. R79 remains the
-absolute all-precision result. At square-root dirty width, the current
-general upper depth is $`O_L(\ell\log(\ell+2))`$; a
+absolute all-precision result. At square-root dirty width, this
+construction gives $`O_L(\ell\log(\ell+2))`$. R89 subsequently
+improves that bound; a
 dimension-growing unrestricted lower bound and optimal general depth
 remain open.
 

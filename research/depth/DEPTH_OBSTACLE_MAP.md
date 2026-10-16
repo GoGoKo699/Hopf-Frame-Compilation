@@ -47,6 +47,33 @@ readout. It matches R85's order without that magnitude promise. R79
 remains the absolute all-precision theorem. This map preserves the
 earlier preparation history below.
 
+The later [terminal refinement R88](PREFIX_SELECTED_COIN_TERMINAL.md)
+handles arbitrary real deepest-M layers selected by a preserved external
+prefix, with one clean qubit, the original real width, the same count
+budgets, and full initialized-isometry error. For every $`0\le M\le n`$,
+its depth is $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$.
+A logarithmic terminal contributes
+$`O_L(\ell\log_2\log_2(\ell+4))`$, and the
+[contiguous coin layout](SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals)
+now routes in $`O(\ell)`$ depth. These component gains initially left
+R87's $`O_L(N/b^2+\ell\log_2(\ell+2))`$ complete bound unchanged.
+
+The subsequent [R89 theorem](CAUSAL_COMPACT_COIN_DEPTH.md) removes the
+serial coarse search through compact fixed coins, causal local matchings,
+and parallel reference transforms. Its prefix-selected recursion gives
+the current general fixed-accuracy bound
+
+```math
+D_T=O_L\!\left(N/b^2+\ell(1+\log_2^*(n+2))\right),
+```
+
+with the same one-clean allocation, real/complex literal widths, count
+budgets, and full initialized-isometry contract. Here $`\log_2^*x`$
+counts repeated base-two logarithms until the value is at most 2.
+For a real terminal of height M, R89 gives
+$`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$. R87's fine decoder and
+R88's sharp-query and fallback interfaces remain proof dependencies.
+
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
 proof gap, and records what a new mechanism must change. The audit starts
@@ -253,7 +280,7 @@ proof/evidence links.
 | [Dirty-query scheduling](NONUNIFORM_DIRTY_INDICATOR.md#6-the-tail-improves-the-complete-frame-frontier-is-unchanged) | The width penalty is already constant here; the logarithmic local query bound is only an upper bound | Improve queries in the current complete recovery schedule, or change global query reuse |
 | [Precision streams](SHARED_BINARY_TERMINAL.md#8-bottom-and-terminal-composition) and [one-clean relocation](ONE_CLEAN_DEPTH.md#5-refined-circuits-above-a-new-width-boundary) | These constructions are completed; terminal savings and high-precision splices do not remove fixed-accuracy early recovery | Change early recovery or the full large-width schedule |
 | [Entry-indexed columns](ENTRY_INDEXED_ENCODING_LIMIT.md#5-relation-to-the-current-tag-construction-and-the-remaining-freedom) | Reweighting and entry-local channels cannot improve normalization order | Change the support/factorization contract or replace recovery, with a full native ledger |
-| [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | A standalone dirty-output conversion was unpaid; a long initially protected output retained square-logarithmic depth | [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) bypasses that interface: geometric-band unloading exposes local clean output, reaching log-times-log-log depth; constant-source-layer coarse recovery remains open |
+| [Arbitrary branch orientations](BRANCH_ORIENTATION_SESSION_RESULT.md#7-remaining-mechanism-and-stopping-point) | A standalone dirty-output conversion was unpaid; a long initially protected output retained square-logarithmic depth | [R85](GEOMETRIC_BAND_ORIENTATION_DEPTH.md) bypasses that interface with geometric-band unloading; [R89](CAUSAL_COMPACT_COIN_DEPTH.md) later gives logarithmic early coarse recovery for arbitrary magnitudes through causal batching |
 | [In-place conversion checkpoint](PERMUTATION_BRIDGE_SESSION_RESULT.md) | Unary relabeling needs a recursively selected permutation; four-shear and exact Clifford-encoding shortcuts have scoped obstructions, with no unrestricted native conclusion | Discover a conversion or joint recovery mechanism beyond these restrictions, then establish its full resource and return proof |
 | [Midpoint rigidity](ONE_CLEAN_MIDPOINT_RIGIDITY.md#6-the-remaining-one-clean-question) and [inner spread](ONE_CLEAN_INNER_SPREAD.md#4-precision-and-the-four-layer-sizes) | Unbounded spread escapes present constants; a universal common flip is false; the witness has fixed-accuracy constant depth | Uniform native compressed freezing, a native vanishing-defect counterexample, or a dimension-sensitive witness/invariant |
 
@@ -280,17 +307,29 @@ is R87's product-coin readout: a paid embedding, tensor Hadamards,
 and a last-nonzero-block XOR erase the fine tag with the actual source
 inverse. The old interval-overlap amplification is absent.
 
+The [continuation](COIN_CONTINUATION_SESSION_RESULT.md) first improves
+the terminal and contiguous router, then proves R89's complete bound.
+[Compact fixed coins](COMPACT_COIN_FLAGS.md) preserve every coarse flag;
+[subset primitives](SHORT_LABEL_SUBSET_ROUTING.md) supply selected
+compressions and matchings. A causal batched word realizes the embedding
+without treating an arbitrary global weight-preserving permutation as
+flag-preserving. Parallel reference sources include their entire
+initialized work in the nonzero-block test. Prefix recursion applies
+the resulting logarithmic early decoder to successively smaller tails.
+
 A next plan must target logarithmic general depth, a precision-uniform
-extension, or a dimension-growing lower bound. Constant-source-layer
-coarse recovery remains a possible local target; logarithmic total
-depth also requires compatible terminal and routing schedules. Complete
-native resource and return proofs remain the criterion. Proved affine,
-corner, R85, R86, and R87 circuits should not be repeated as unresolved
+extension, or a dimension-growing lower bound. The early coarse decoder
+and contiguous router already have $`O_L(\ell)`$ depth. The remaining
+iterated-logarithmic factor comes from serial prefix-recursion episodes.
+Complete native resource and return proofs remain the criterion. Proved
+affine, corner, and R85–R89 circuits should not be repeated as unresolved
 tasks. R79 remains the absolute general all-precision bound.
 
 For the asymptotic benchmark, a further constructive gain must improve
-R87's **complete coarse recovery, routing, and terminal ledger**, or
-replace its mechanism.
+R89's **serial prefix-recursion ledger**, or replace its mechanism.
+Those global-prefix-dependent source episodes cannot be declared
+constant in number. Their paid amortization or a construction avoiding
+the recursion would need its own complete return and resource proof.
 A lower-bound attack on dimension growth first needs a different witness. The next
 one-clean constant-depth obstruction is a separate valid target, with the
 freezing step above precisely localized; it should be selected for that

@@ -443,3 +443,212 @@ These lemmas establish routing and resource interfaces. The interval
 normalization bound, rectangular-to-square local block, amplification
 error and whole-frame recovery are proved in the
 [interval-dilation construction](INTERVAL_DILATION_DEPTH.md).
+
+## 7. A logarithmic-depth specialization for contiguous intervals
+
+Section 1 handles arbitrary selected wire permutations. The layout used
+by the [product-coin construction](COIN_DILATION_DEPTH.md) has additional
+structure: it exchanges two contiguous intervals with fixed external
+banks. Loading the interval parameters once gives an exact router of
+T-depth $`O(\log(n+2))`$. This specialization does not improve the depth
+claimed for an arbitrary selected permutation in Section 1.
+
+### Physical array, loaded parameters and arbitrary padding
+
+Write $`\ell=\log_2(n+2)`$ and concatenate the early data and the free
+protected reserve into one physical array
+
+```math
+A=X[1:h]\mathbin\Vert Z_{\mathrm{free}}[1:m_0],
+\qquad L=h+m_0=O(n).
+```
+
+Use zero-based half-open intervals in this subsection. For selected bin
+$`(a,b]`$, put $`q=b-a`$ and $`r=q\tau`$. The local data occupy
+$`A[a:b]`$; on the ideal unloaded image, $`A[b:L]`$ is zero. The thin-bin
+condition in Section 3 implies $`b+r\le L`$. The array excludes H, R,
+the old fine tag, all source banks and every other persistent metadata
+wire. Allocate fixed external arbitrary dirty banks $`X_{\mathrm{loc}}`$
+and $`Z_{\mathrm{coin}}`$ of capacities $`q_{\max}`$ and $`r_{\max}`$,
+respectively. They are disjoint from A and all metadata.
+
+Pad A to $`W=2^{\lceil\log_2\max\{L,2\}\rceil}`$ sites with arbitrary
+dirty wires, obtaining $`\widetilde A`$. The padding may move during a
+barrel rotation; every completed interval exchange fixes it. No padding
+wire is assumed clean.
+
+Reserve four parameter words, each of $`O(\ell)`$ bits, outside the free
+reserve: the two starts a,b and the two lengths q,r. These words are zero
+on the ideal H=1 input and may be arbitrary on H=0. An exact
+parallel-output lookup of the preserved short label (R,H) loads them.
+The lookup has zero output on H=0 and invalid R. Thus active parameters
+are ordinary binary words, while inactive parameter contents remain
+arbitrary. Preserve these words throughout routing, the complete local
+body and unrouting, then reverse the actual parameter-load word. This
+is a paid lookup, not a free selected control word. Reserve its extra
+$`O(\ell)`$ conditional clean metadata before choosing the independent
+$`M-m_0`$ suppression margin.
+
+### Guarded barrel rotation with constant depth per parameter bit
+
+Let $`\mathrm{Rot}_s`$ rotate $`\widetilde A`$ left by the binary
+parameter s modulo W. For each bit $`s_j`$, a rotation by $`2^j`$ is a
+fixed permutation. Every fixed permutation is a product of two
+matchings. To see this, index a cycle modulo its length and compose the
+involutions $`i\mapsto-i`$ and $`i\mapsto1-i`$: their chronological
+composition is $`i\mapsto i+1`$. Orient the cycles according to the
+desired rotation and take the two involutions over all cycles. Fixed
+points need no swaps.
+
+Guard each matching by $`g=H\land s_j`$. Query g into one private
+arbitrary dirty control per swap pair, and use Section 1's exact word
+
+```math
+Q_g,\quad \prod_t\mathrm{SWAP}_t^{c_t},\quad
+Q_g^\dagger,\quad \prod_t\mathrm{SWAP}_t^{c_t}.
+```
+
+The query address consists of only H and $`s_j`$, not the entire selector
+or parameter word. Each output has private indicators and helpers,
+disjoint from all routed sites, padding, external banks and metadata.
+The public address enters only as read-only Clifford controls. The
+two-address-bit query has constant T-depth and O(W) count and dirty
+width. Each disjoint literal Fredkin bank has at most four T layers by
+the [native schedule](../../docs/T_DEPTH_COMPILER.md#a-shared-control-fredkin-batch-has-at-most-four-t-layers).
+Consequently each parameter-bit stage has constant T-depth. Execute
+the $`\log_2 W`$ stages sequentially, reusing returned private pools:
+
+```math
+D_{\mathrm{rot}}=O(\log W),\qquad
+T_{\mathrm{rot}},G_{\mathrm{rot}}=O(W\log W),\qquad
+w_{\mathrm{rot}}=O(W).
+```
+
+The actual reversed native word implements the inverse rotation.
+Every completed matching echo is literally identity for H=0, even
+when parameters, routed values and private controls are arbitrary or
+reference-entangled. Its phase is one; no relative-phase Fredkin is
+substituted.
+
+### Guarded variable-prefix exchange
+
+For an external bank B of fixed capacity $`B_{\max}\le W`$ and preserved
+length $`\lambda`$, query
+
+```math
+f_j(H,\lambda)=H[j\lt \lambda],\qquad 0\le j\lt B_{\max},
+```
+
+into private arbitrary dirty controls. On valid active parameters
+$`0\le\lambda\le B_{\max}`$. Use the same query/Fredkin/unquery/Fredkin
+echo on the disjoint pairs $`(\widetilde A[j],B[j])`$. This exchanges
+exactly the selected prefix, fixes the rest of B, and returns every
+control and helper. When H=0 it is identity for arbitrary length words.
+Only the bank's actual fixed capacity is emitted; there are no extra
+targets borrowed from another bank. All inactive output masks are false.
+
+A length word has $`O(\log W)`$ bits and O(W) possible values. Including
+H changes the row count only by a constant. Section 1's parallel-output
+query bound, with at most W outputs and private pools for each, gives
+the conservative simultaneous estimates
+
+```math
+D_{\mathrm{prefix}}=O(\log(\ell+2)),\qquad
+T_{\mathrm{prefix}},w_{\mathrm{prefix}}
+=O\!\left(W^{3/2}\log^3(W+2)\right),
+```
+
+```math
+G_{\mathrm{prefix}}
+=O\!\left(W^2+W^{3/2}\log^3(W+2)\right).
+```
+
+The two Fredkin banks add O(W) count and constant depth. These bounds
+charge an ordinary finite truth table; no unpriced comparator or
+initialized comparison-output bank is required.
+
+### Complete interval exchanges and the selected coin layout
+
+For a valid interval $`[s,s+\lambda)\subseteq[0,L)`$, execute
+
+```math
+\mathrm{Rot}_s^H,\qquad
+\mathrm{PrefixSwap}_{\lambda}^{H}(\widetilde A,B),\qquad
+\bigl(\mathrm{Rot}_s^H\bigr)^\dagger.
+```
+
+The complete effect is the pairwise exchange
+$`A[s:s+\lambda]\leftrightarrow B[0:\lambda]`$, fixing all other sites.
+There is no wrap because $`s+\lambda\le L\le W`$. Padding returns
+exactly although intermediate rotations move it. On H=0 the whole
+word is identity on the full occupied input space. Empty intervals
+are permitted. The actual reverse word is always the inverse.
+
+Apply this exchange first to $`(a,q,X_{\mathrm{loc}})`$ and then to
+$`(b,r,Z_{\mathrm{coin}})`$. The source intervals $`[a,b)`$ and
+$`[b,b+r)`$ are disjoint. Each exchange fully unrotates the physical
+array before the next begins. Thus the original prefix $`A[0:a]`$ is
+restored at their boundary; old external-bank contents are parked only
+in their respective intervals. The second exchange can temporarily
+move the first parked values but returns them to their parked sites.
+
+Keep this layout fixed around the entire fine-erasure word. Its selected
+queries read their relevant original prefix and active external-bank
+subsets, with targets disjoint from the union of public addresses as
+in Section 2. The body must leave parked values unchanged and tensor
+the identity on inactive external-bank positions. Reverse the actual
+layout word and then the parameter load. On the ideal active source
+subspace, the local output returns to its original data sites and the
+zero coin output returns to its donor sites; the original arbitrary
+external-bank contents, padding, parameters and query work return
+exactly. On H=0 every layout macro is exactly identity, independent of
+the occupied metadata contents.
+
+Routing makes no clean-input assertion about an actual leaked state.
+It is an exact unitary on the full space, so the caller's ideal-image
+operator-norm comparison propagates unchanged through it. Source
+leakage is routed back into the same donor sites and is included in
+that comparison. The extra parameter words are never borrowed by the
+unloader or the coin source.
+
+### Joint ledger and scope
+
+For $`p=O(\ell^2)`$ bins, the one-time parameter lookup has
+$`O(\ell)`$ output bits, O(p) rows and $`O(\log\ell)`$ address bits.
+Its depth is $`O(\log\log(\ell+4))`$ and its counts and simultaneous
+dirty width are polynomial in $`\ell`$. Only a constant number of
+interval exchanges and their inverses occur. Therefore
+
+```math
+D_{\mathrm{layout+unlayout}}=O(\ell),\qquad
+w_{\mathrm{conditional\ clean\ metadata}}=O(\ell),
+```
+
+```math
+T,w_{\mathrm{dirty,peak}}
+=O\!\left(n^{3/2}\ell^3+n\ell+\mathrm{poly}(\ell)\right),
+\qquad
+G=O\!\left(n^2+n^{3/2}\ell^3+n\ell+
+\mathrm{poly}(\ell)\right).
+```
+
+The fixed external banks and barrel padding add O(n) arbitrary dirty
+wires, included in the displayed envelope. Returned prefix-query pools
+are reused between exchanges; rotation-query pools are reused between
+bit stages. These are simultaneous physical-resource bounds, not a
+claim of free coherent routing or free classical controls.
+
+In the sufficiently wide branch $`b\ge\sqrt N/n`$, these fixed
+polynomials fit the retained width/count allowance after a fixed
+dimension cutoff. The separate metadata reservation still has size
+$`O(\ell)`$; the independent margin argument in Section 6 absorbs the
+polynomial overhead of any sources on that enlarged metadata. The
+original finite-size and narrow-width splices remain available.
+
+This specialization removes the selected-layout depth overhead for the
+contiguous coin layout. It does not itself reduce the coarse spectral
+search or terminal-compilation depth. The bounded logical permutation
+fixtures in [test_interval_barrel_routing.py](../../tests/test_interval_barrel_routing.py)
+check variable intervals, occupied padding, dirty-control return and
+actual inverse words; they do not constitute a native emitter or a
+proof of the asymptotic resource bounds.
