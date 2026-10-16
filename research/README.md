@@ -160,17 +160,19 @@ special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.m
 The full initialized-isometry guarantee includes common phase, earlier
 leakage, arbitrary dirty inputs, and their references. Optimal large-width
 depth remains open. At fixed integer $`L\ge6`$, the later
-[product-coin theorem R87](depth/COIN_DILATION_DEPTH.md)
+[causal compact-coin theorem R89](depth/CAUSAL_COMPACT_COIN_DEPTH.md)
 improves the general bound to
 
 ```math
 T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L(N/b^2+\ell\log_2(\ell+2)),\qquad \ell=\log_2(n+2).
+D_T=O_L\!\left(N/b^2+\ell(1+\log_2^*(n+2))\right),\qquad \ell=\log_2(n+2).
 ```
 
 It retains one clean qubit and the original literal real/complex widths,
 including arbitrary node-dependent signed magnitudes, zeros, prescribed
-leaf phases, and the full initialized-isometry contract. R79 remains
+leaf phases, and the full initialized-isometry contract. The notation
+$`\log_2^*x`$ counts repeated base-two logarithms until the value is at
+most 2. R79 remains
 the absolute all-precision result.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
@@ -189,9 +191,13 @@ supplies the two-clean precision and width splices.
 | Current proof | Role |
 |---|---|
 | [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
-| [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Current R87 fixed-accuracy general bound: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
+| [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Current R89 fixed-accuracy general bound: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; preserved-prefix recursion gives the full iterated-logarithmic overhead |
+| [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
+| [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
+| [Compact fixed coins](depth/COMPACT_COIN_FLAGS.md) | Exact finite atom partitions, acyclic two-outcome columns, and whole coarse flags; a compact representation alone does not supply an in-place native source |
+| [Short-label subset routing](depth/SHORT_LABEL_SUBSET_ROUTING.md) | Finite dense-set matching and staged-shear compression with reversible query words; neither primitive is a prescribed arbitrary-permutation compiler or a frame eraser on its own |
 | [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 intermediate general bound: positive interval embedding, a bounded absolute-norm Haar conversion, and paid local recovery; its rounding and geometric allocation are retained by R87 |
-| [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) | Supporting exact selected wire permutations with arbitrary dirty controls, variable-size query families, and exposed clean-window geometry |
+| [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) | Supporting exact selected wire permutations with arbitrary dirty controls, variable-size query families, and exposed clean-window geometry; [contiguous coin layouts](depth/SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals) have $`O(\ell)`$ routing depth |
 | [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 decoder proof and fixed-accuracy corollary: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
 | [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retained R72 predecessor and selected proof interfaces: native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
 | [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
@@ -266,17 +272,40 @@ prove R87 through a different local representation. Independent coin
 words encode the branch decisions; tensor Hadamards make the last
 nonzero coin block equal the marker depth. The paid source and its
 actual inverse erase the fine tag without R86's interval-overlap
-amplification. R87 matches R85's depth order for arbitrary magnitudes;
+amplification. R87 matched R85's depth order for arbitrary magnitudes;
 R85 retains its independent promised-family proof.
+
+The subsequent [terminal refinement R88](depth/PREFIX_SELECTED_COIN_TERMINAL.md)
+compiles arbitrary deepest-M real-frame layers selected by a preserved
+external prefix, including signed and singular tuples. It retains the
+one-clean allocation, original real width, full initialized-isometry
+contract, and count budgets, with depth
+$`O_L(N/b^2+\ell\log_2\log_2(M+4))`$ for every $`0\le M\le n`$.
+A logarithmic terminal therefore contributes only
+$`O_L(\ell\log_2\log_2(\ell+4))`$. The contiguous-layout routing
+specialization has $`O(\ell)`$ depth. At that checkpoint R87's complete
+bound was unchanged because coarse recovery still contributed
+$`O_L(\ell\log_2(\ell+2))`$.
+
+The [continuation record](depth/COIN_CONTINUATION_SESSION_RESULT.md)
+then gives [R89](depth/CAUSAL_COMPACT_COIN_DEPTH.md). One global
+compression word and causal local matchings realize the compact-coin
+embedding; parallel reference transforms read the coarse band directly.
+The last-nonzero test includes each reference source's initialized work.
+Preserved-prefix recursion gives the stronger arbitrary-height real
+terminal bound $`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$ and the stated
+complete real/complex frontier. Every source and actual inverse is paid.
 
 R79 remains the absolute all-precision theorem. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
 retains logarithmic general depth, a precision-uniform extension, and
 dimension-growing lower bounds as open directions. A further upper
-improvement must account for coarse recovery, terminal processing, and
-routing together.
+improvement must address R89's serial prefix-recursion episodes or
+replace that schedule; the early decoder and contiguous routing already
+have logarithmic depth. Full work return and simultaneous count/width
+bounds remain part of that target.
 
-The terminal proof reuses the compact binary source and shared-source
+The retained binary-source terminal proof reuses the compact source and shared-source
 composition R12/R14, with the inherited geometric weights, coherent
 failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
 controls, and the [grouped terminal alternative](depth/GROUPED_TERMINAL_DEPTH.md)

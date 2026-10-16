@@ -16,7 +16,9 @@ not prove universal statements or asymptotic optimality.
 |---|---|---|
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
-| Fixed-accuracy general depth R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; native synthesis, full dirty/reference contract, global rounding, and all-width resources remain analytic |
+| Fixed-accuracy general depth R89 | [Detailed finite checks](#detailed-finite-checks) | Four causal-batching fixtures, seven compact-coin fixtures, and two subset-routing fixtures; catalogue existence, native resources, prefix recursion, full-isometry error, and all-width composition remain analytic |
+| Retained product-coin theorem R87 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded product-coin fixtures; its fine decoder supports R89, and native synthesis, full dirty/reference contract, rounding, and all-width resources remain analytic |
+| Retained terminal R88 and contiguous routing | [Detailed finite checks](#detailed-finite-checks) | Three selected-terminal matrix fixtures and three logical interval-routing fixtures; R88's sharp-query and fallback interfaces support R89's stronger terminal theorem |
 | Interval-dilation predecessor R86 | [Detailed finite checks](#detailed-finite-checks) | Seven bounded interval-dilation fixtures; the normalization, native implementation, full dirty/reference contract, and resource bounds are analytic |
 | Separate state-based QBP result | [Coverage and software boundary](#state-based-qbp-coverage) | State/reference preparation with a changed decoder |
 | Endpoint source and representation fixtures | [Proof/module/test map](#endpoint-source-and-representation-checks) | Joint completions, ordered banks, recovery, boundary structure, encodings, reflections, and source resynthesis |
@@ -221,6 +223,83 @@ scientific receipt is added. The
 [session record](../../research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
 records review and integration separately.
 
+The [prefix-selected terminal theorem R88](../../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md)
+has three [bounded fixtures](../../tests/test_prefix_selected_coin_terminal.py):
+
+1. Independently constructed complete selected-frame columns agree with
+   ordered layer factors for signed and singular tuples; the early
+   factor is identity on occupied protected sectors, and nonzero
+   external prefixes select genuinely different frames.
+2. Successive stages may use different positive dyadic denominators on
+   their own layers. Their product preserves the complete rounded-frame
+   target, and its error obeys the sum of the individual stage bounds,
+   including prescribed descendants below zero incoming amplitudes.
+3. The full operator error is the maximum over the preserved prefix
+   sectors, also after coherent prefix mixing and tensoring a reference.
+
+The [contiguous-layout router](../../research/depth/SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals)
+has three [logical permutation fixtures](../../tests/test_interval_barrel_routing.py):
+
+1. Variable intervals, including empty intervals, exchange exactly the
+   selected bank prefix and return arbitrary padding and dirty controls.
+2. Inactive routing is identity for arbitrary parameter words, including
+   lengths and starts that would be invalid on the active sector.
+3. Two disjoint interval exchanges preserve parked external-bank values;
+   a nontrivial active body followed by the actual inverse layout returns
+   every bank, padding wire, and control.
+
+The terminal fixtures use small real matrices and the routing fixtures
+use explicit logical permutations. They do not emit the native family
+sources, sharp queries, or Fredkin T-layer schedule. The recursive
+error and resource sums, arbitrary dirty/reference guarantees, and
+all-width allocation are analytic. R88's terminal theorem and the
+contiguous router initially left R87's complete-frame order unchanged;
+R89 subsequently improves the complete and terminal bounds. R79's
+absolute all-precision scope remains unchanged. No new immutable
+scientific receipt is added.
+
+The [causal compact-coin theorem R89](../../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md)
+has four [bounded fixtures](../../tests/test_causal_compact_coin_depth.py):
+
+1. Batched compression clears all High fields with prefix-dependent
+   metadata and genuine staged-hash collisions; the actual inverse
+   returns every logical child and metadata field.
+2. The global short-shift word implements the causal local matchings
+   injectively and clears its selector using the inverse selector.
+   The fixture's chosen complete local permutations also permit bounded
+   off-image checks; no general off-image matching contract is inferred.
+3. Every complete-frame column lies in its prescribed last-nonzero-block
+   band. The complete coarse-tag XOR and actual inverses retain literal
+   phases, arbitrary old tag values, and an external reference.
+4. An explicit reference-source completion places an orthogonal marker
+   in source work while its coin remains zero, showing why the block
+   predicate must test all initialized reference-source work as well.
+
+These fixtures use explicit finite matching catalogues, logical reversible
+words, and small ideal matrices. They do not establish polynomial
+catalogue existence or synthesize the variable-size native sources and
+queries. The simultaneous resource envelope, prefix recursion, summable
+errors, arbitrary dirty/reference guarantee, and literal-width splice
+are proved in R89.
+
+The [compact fixed-coin support](../../research/depth/COMPACT_COIN_FLAGS.md)
+has [seven bounded checks](../../tests/test_compact_coin_flags.py):
+universal finite atom partitions; exact mass and acyclicity of two-outcome
+columns; a heavy-fiber obstruction to a short label-preserving rank source;
+an equal-weight swap that fixes the root but changes a coarse flag;
+every coarse scaling vector; whole coarse flags for different fixed-coin
+completions; and full tag return with reference inputs. The two negative
+examples delimit interfaces, not unrestricted native circuits.
+
+The [short-label subset support](../../research/depth/SHORT_LABEL_SUBSET_ROUTING.md)
+has [two logical fixtures](../../tests/test_short_label_subset_routing.py):
+the dense-set shift word with its full guarded extension and actual
+inverse, and staged-shear compression with collisions and return on
+reached codes. These chosen matchings and codes are not prescribed
+arbitrary permutations or standalone frame erasers. Catalogue existence
+and native query costs remain analytic. No new immutable scientific
+receipt or general native emitter is added.
+
 The [permutation checkpoint](../../research/depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 has two [boundary fixtures](../../tests/test_permutation_bridge_limits.py):
 the exact four-shear one-clean order-eight word on all allowed inputs,
@@ -261,7 +340,7 @@ all-width, or bias-independent constants. Those follow from the chapter's
 native synthesis and analytic ledger. No large native emitter, efficient
 reference search, or new immutable scientific receipt is asserted. The
 supporting-family result does not itself improve the unrestricted
-frontier; R86 and then R87 supply the later fixed-accuracy general
+frontier; R86, R87, and R89 supply the later fixed-accuracy general
 improvements.
 
 The [precision-uniform subtree theorem R79](../../research/depth/UNIFORM_SUBTREE_DEPTH.md)
