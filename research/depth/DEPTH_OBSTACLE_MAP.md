@@ -101,13 +101,17 @@ The opening binary search and local R79 compilation retain the
 $`\ell\log_2(\ell+2)`$ allowance; these are costs of the proved
 construction, not unrestricted lower bounds.
 
-The [next designed session](FULL_FLAG_DEPTH_PROMPT.md) attacks both costs:
-a complete flag dilation would replace serial spectral search, while a
-local one-clean compiler may trade much larger dirty counts for depth
-inside the affordable catalogue. The target is uniform
-$`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$.
-Neither interface is proved by the design, and improving only one leaves
-the R94 headline order unchanged.
+The [executed full-flag session](FULL_FLAG_DEPTH_SESSION_RESULT.md)
+improves both costs and proves [R95](LOGARITHMIC_PRECISION_DEPTH.md):
+uniform $`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$, retaining
+the count, literal width and complete-operator guarantees.
+Its opening uses a coarse exact frame compiled to final accuracy and a
+signed sparse correction. Its local compiler uses logarithmic initialized
+source scratch, exact compact references and two decreasing reductions,
+with a deliberately larger dirty budget. R94's complete-workspace
+catalogue absorbs the resulting fixed-polynomial exponential local costs.
+This bypasses the proposed fine full-flag compression; it does not prove
+that arbitrary fine product coins admit a small exact compression.
 
 This is a research decision aid, not a new theorem or a manuscript draft.
 It reconstructs the pre-session upper-bound costs, isolates the lower-bound
@@ -356,11 +360,12 @@ The [whole-terminal session](TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
 subsequently replaces the unbounded recursive terminal with R90's dirty
 catalogue commutator. This reaches logarithmic general depth at fixed
 accuracy; it does not prove that depth optimal. R92 and R93 subsequently
-give absolute growing-precision refinements. R94 reaches the stronger
-$`O(\ell\log_2(\ell+2))`$ benchmark on $`6\le L\le2\ell`$.
+give absolute growing-precision refinements. R94 reaches the
+$`O(\ell\log_2(\ell+2))`$ benchmark, and R95 reaches $`O(\ell)`$
+on $`6\le L\le2\ell`$.
 Optimal general depth, broader precision ranges and dimension-growing
 lower bounds remain open. Complete native resource and return
-proofs remain the criterion. Proved affine, corner, and R85–R94 circuits
+proofs remain the criterion. Proved affine, corner, and R85–R95 circuits
 should not be repeated as unresolved tasks. R79 remains the absolute
 general all-precision bound.
 

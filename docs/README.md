@@ -175,6 +175,20 @@ full-isometry hybrid retains local clean leakage. Native counts,
 simultaneous width, constant-height bottom layers and complex phases are
 charged at the original literal reservations.
 
+The [logarithmic-precision theorem R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+improves this to $`O(NL/b^2+L+\ell)`$ on the same
+$`6\le L\le2\ell`$ range, hence $`O(\log n)`$ at the
+inverse-polynomial-accuracy, square-root-width benchmark. It retains one
+clean qubit, the original real/complex widths, optimal T-count,
+$`G=O(NL)`$, and the full initialized-isometry guarantee.
+Its [coarse flags and sparse correction](../research/depth/COARSE_FLAG_SPARSE_CORRECTION.md)
+remove repeated opening comparisons. Its
+[small-workspace descendant source](../research/depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md)
+supports [local linear-depth compilation](../research/depth/RELAXED_COUNT_LOCAL_DEPTH.md)
+with larger dirty counts, which R94's complete-workspace transfer absorbs
+globally. Optimal general depth remains open; the selected all-precision
+Result D stays R79.
+
 The earlier two-clean
 [compressed-column special case](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
 retains its source and recovery proofs, though R79 supersedes its resource
@@ -185,7 +199,8 @@ bound. Unrestricted optimal depth remains open.
 | All-precision subtree depth | [Uniform subtree depth](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79: absolute source/predicate costs, precision-dependent suffix allocation, and all-width composition |
 | Fixed-accuracy general depth | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), R90: fixed-number R89 coarse reduction, zero-clean local catalogue factors, exact dirty selection and two-array return, and the original-width splice |
 | Absolute catalogue precision | [Uniform catalogue precision](../research/depth/UNIFORM_CATALOGUE_PRECISION.md), R92: an explicit exponential precision envelope and a slowly growing logarithmic-depth window |
-| Inverse-polynomial accuracy | [Portable workspace catalogue](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), R94: complete local workspace transfer, final-accuracy R79 entries, parallel R91 selection, and a constant number of groups |
+| Inverse-polynomial accuracy | [Logarithmic precision depth](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), R95: coarse flags and sparse correction, local compilation with relaxed counts, complete-workspace transfer, and original-width composition |
+| Retained portable transfer | [Portable workspace catalogue](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), R94: complete local workspace transfer, final-accuracy R79 entries, parallel R91 selection, and a constant number of groups |
 | Retained grouped correction | [Grouped catalogue precision](../research/depth/GROUPED_CATALOGUE_PRECISION.md), R93: whole-group coarse catalogues and a shared matrix-unit residual stream, with current-prefix queries and full one-clean return |
 | Native decoder and fixed-accuracy corollary | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: complete nested-subspace geometry, native transported reflections, coherent spectral-label erasure, and charged one-clean early/tail composition |
 | Retained one-clean baseline and terminal | [One-clean depth](../research/depth/ONE_CLEAN_DEPTH.md), R72: native layer words, protected terminal flag relocation, explicit width/precision splice, and one-clean literal phase composition |

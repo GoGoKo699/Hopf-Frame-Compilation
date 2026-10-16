@@ -26,7 +26,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Count at the selected clean/dirty allocations | Resolved by [Results B–C](../manuscript/PUBLICATION_SCOPE.md#four-principal-results); the exact-base and banked ranges remain distinct |
 | Count and depth on one circuit | [Result D](#large-width-t-depth), R79, gives absolute all-precision bounds and polylogarithmic depth through $`L=\Theta(\log n)`$ with one clean qubit for both frame families; optimal large-width depth remains open |
 | Fixed-accuracy general depth | [R90 dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md) gives $`O_L(N/b^2+\ell)`$, with $`\ell=\log_2(n+2)`$, for arbitrary magnitudes, retaining one clean qubit, the original literal widths, and the count budgets; optimal depth remains open |
-| Growing-precision refinements | [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) gives $`O(NL/b^2+\ell\log_2(\ell+2))`$ uniformly on $`6\le L\le2\ell`$, with the original one-clean counts and widths; [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) retains its absolute catalogue-precision envelope |
+| Growing-precision refinements | [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ uniformly on $`6\le L\le2\ell`$, with the original one-clean counts and widths; [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) retains the complete-workspace transfer construction and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) its absolute precision envelope |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; the unrestricted one-clean five-layer bound remains open |
 
@@ -272,10 +272,29 @@ the selected transfer makes the borrowed slot action cancel exactly,
 without initialized residual labels. A constant number of groups uses
 the [R91 parallel word query and paired router](../research/depth/PARALLEL_BILINEAR_WORD_QUERY.md).
 R92 and R93 remain independent of R91. R94 reaches the
-$`O(\ell\log_2(\ell+2))`$ square-root-width benchmark; its opening
-binary search and local R79 compilation retain that allowance. Optimal
-general depth and extending this improvement beyond the stated precision
-range remain open. The selected manuscript Result D remains R79.
+$`O(\ell\log_2(\ell+2))`$ square-root-width benchmark.
+
+The [logarithmic-precision theorem R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+removes the remaining logarithmic factor:
+
+```math
+D_T=O(NL/b^2+L+\ell),\qquad 6\le L\le2\ell.
+```
+
+Its constants are absolute, and it preserves the optimal T-count,
+Clifford budget, original real/complex literal widths, one initialized
+qubit and full error contract. The
+[coarse-flag construction](../research/depth/COARSE_FLAG_SPARSE_CORRECTION.md)
+implements a coarse mathematical frame to final accuracy and adds a
+constant-normalization sparse correction. The
+[small-workspace source](../research/depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md)
+supports a [local compiler](../research/depth/RELAXED_COUNT_LOCAL_DEPTH.md)
+with depth linear in height plus precision and much larger dirty counts.
+R94's complete-payload transfer absorbs those local costs globally.
+Thus inverse-polynomial accuracy in n has $`O(\ell)`$ depth at
+$`b=\Theta(\sqrt{NL})`$. Optimal general depth and extension beyond
+the stated precision range remain open. The selected manuscript Result D
+remains R79.
 
 The [structured theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 attains logarithmic depth when angle magnitudes depend only on tree depth,
@@ -406,7 +425,10 @@ The [whole-terminal session](../research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RES
 proves R90 through fixed-number coarse reduction and dirty catalogue
 commutators. The [precision follow-up](../research/depth/PRECISION_TERMINAL_SESSION_RESULT.md)
 then proves R91–R93. The [catalogue bootstrap](../research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
-proves R94 and reaches the stronger growing-precision benchmark. The
+proves R94 and reaches its growing-precision benchmark. The
+[R95 construction](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+then reaches logarithmic depth at inverse-polynomial accuracy through
+coarse flags, sparse correction and local compilation with relaxed counts. The
 [continuing research mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
 retains optimal general depth, broader precision ranges,
 and dimension-growing lower bounds as open questions. All further

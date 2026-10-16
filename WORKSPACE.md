@@ -6,7 +6,7 @@ The [resource statement](docs/OPEN_PROBLEM.md) records the proved
 one-clean count theorem in Result C, its optimal banked count, the
 sharper two-clean complex endpoint, all-precision count/depth bounds,
 precision-uniform subtree depth, and the fixed-accuracy general
-logarithmic-depth theorem R90, and the growing-precision refinements R92–R94. The
+logarithmic-depth theorem R90, and the growing-precision refinements R92–R95. The
 [research index](research/README.md) groups native primitives and promised families, full-frame reductions, source programs,
 and representation limits. The [evidence catalogue](docs/reference/VERIFICATION_CATALOGUE.md)
 links their implementations and checks. Each result has one proof home;
@@ -33,8 +33,9 @@ Optimal general depth remains the research destination. The user's
 direction, reaffirmed on 16 October 2026 (Asia/Shanghai), is to pursue it
 with confidence and curiosity, allowing pauses to consolidate what has
 been learned. R90 reaches logarithmic general depth at fixed accuracy;
-R92 extends a slow unbounded precision range and R94 reaches the
-inverse-polynomial-accuracy target $`O(\ell\log_2(\ell+2))`$.
+R92 extends a slow unbounded precision range, R94 reaches
+$`O(\ell\log_2(\ell+2))`$, and R95 reaches $`O(\ell)`$ at
+inverse-polynomial accuracy.
 Optimal general depth and a broader precision range remain mathematical
 questions.
 A failed route or an ended session does not retire the objective.
@@ -60,7 +61,7 @@ A failed route or an ended session does not retire the objective.
 | Current fixed-accuracy general depth | [Dirty catalogue terminal R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) and [session outcome](research/depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md) |
 | Executed precision-terminal session | [Design](research/depth/PRECISION_TERMINAL_PROMPT.md), [outcome](research/depth/PRECISION_TERMINAL_SESSION_RESULT.md): R91's parallel reader, R92's absolute precision envelope, and R93's grouped-terminal improvement |
 | Executed catalogue bootstrap session | [Design](research/depth/CATALOGUE_BOOTSTRAP_PROMPT.md), [R94 proof](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md), [outcome](research/depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md): carrying the full local workspace through selection permits a constant number of groups compiled directly to final accuracy |
-| Next designed session | [Complete flag and local precision](research/depth/FULL_FLAG_DEPTH_PROMPT.md): seek uniform logarithmic depth by changing both the opening decoder and the portable local compiler; not yet executed |
+| Executed full-flag and local-precision session | [Design](research/depth/FULL_FLAG_DEPTH_PROMPT.md), [R95 proof](research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [outcome](research/depth/FULL_FLAG_DEPTH_SESSION_RESULT.md): coarse flags with sparse correction and a faster local compiler give uniform logarithmic depth through inverse-polynomial accuracy |
 | Executed whole-terminal session | [Borrowed-work design](research/depth/TERMINAL_SOURCE_GAUGE_PROMPT.md): a fixed number of R89 reductions and dirty catalogue commutators replace the remaining recursive terminal |
 | Retained causal compact-coin construction | [R89 proof](research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) and [continuation record](research/depth/COIN_CONTINUATION_SESSION_RESULT.md); its coarse reduction supports R90 |
 | Retained product-coin construction | [R87 proof](research/depth/COIN_DILATION_DEPTH.md), [executed factorization design](research/depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md), and [session outcome](research/depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md) |
@@ -165,7 +166,21 @@ the entire local workspace travels with the selected payload and its
 borrowed slot action cancels exactly. A constant number of groups uses
 the [R91 parallel word query and paired router](research/depth/PARALLEL_BILINEAR_WORD_QUERY.md).
 R91 remains independent of R92 and R93, whose proofs do not use it.
-The selected manuscript Result D remains R79.
+The subsequent [R95 theorem](research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+improves that same range to
+
+```math
+D_T=O\!\left(NL/b^2+L+\ell\right).
+```
+
+It retains optimal T-count, $`G=O(NL)`$, one external clean bit,
+the original real/complex literal widths, and full initialized-isometry
+error with absolute constants. Its coarse-frame sparse correction removes
+the opening's repeated spectral search. Its local compiler uses only
+logarithmic initialized source scratch and much larger dirty resources;
+R94's complete-payload catalogue absorbs those local costs. Optimal depth
+and a broader precision range remain open. The selected manuscript Result D
+remains R79.
 
 The retained [R88 terminal theorem](research/depth/PREFIX_SELECTED_COIN_TERMINAL.md)
 handles every real terminal height $`0\le M\le n`$, with a preserved
@@ -307,15 +322,17 @@ conditional-work ledger. The [catalogue bootstrap](research/depth/CATALOGUE_BOOT
 then proves R94 by carrying R79's complete local workspace through selected
 transfer and compiling each group directly to final accuracy. Its constant
 number of groups bypasses the old residual labels and repeated prefix reads.
-The remaining $`\ell\log_2(\ell+2)`$ allowance comes from the
-opening binary search and local R79 compilation. Optimal general depth,
-a broader precision range, and dimension-growing lower bounds remain open.
-The [next five-hour design](research/depth/FULL_FLAG_DEPTH_PROMPT.md)
-targets $`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$.
-Its two lanes seek a complete flag decoder with a linear precision reserve
-and a faster one-clean local word allowed much larger dirty resources.
-Both costs must improve before claiming a stronger complete-frame bound.
-This is a research target, not an established result; the design awaits execution.
+The [executed full-flag session](research/depth/FULL_FLAG_DEPTH_SESSION_RESULT.md)
+then improves both remaining costs and proves R95's
+$`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$.
+The opening implements a coarse exact frame at final accuracy and adds a
+signed sparse correction. The local word replaces precision-sized clean
+source work by borrowed real rotations, uses exact compact reference
+coins, and contracts twice before a constant number of high-precision
+R79 groups. Its larger local dirty costs fit the complete-payload catalogue.
+Optimal general depth, a broader precision range, and dimension-growing
+lower bounds remain open. The next research design should start from R95,
+not repeat the now-resolved R94 opening or local-precision questions.
 No efficient preprocessing, practical crossover, or scalable native emitter is claimed.
 Preserve one clean qubit,
 square-root T-count, linear Clifford count, and the complete operator

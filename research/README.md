@@ -197,9 +197,17 @@ accuracy, with its complete local workspace carried through selected
 transfer. R91 supplies parallel queries and paired routing; no residual
 endpoint labels are needed. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
 retains the other precision ranges and the open optimal-depth question.
-The [next five-hour design](depth/FULL_FLAG_DEPTH_PROMPT.md) seeks
-uniform logarithmic depth by replacing both the opening spectral search
-and the local precision cost. It is a proposed session, not a new result.
+The [executed full-flag design](depth/FULL_FLAG_DEPTH_PROMPT.md) and
+[session outcome](depth/FULL_FLAG_DEPTH_SESSION_RESULT.md) establish
+[R95](depth/LOGARITHMIC_PRECISION_DEPTH.md):
+$`D_T=O(NL/b^2+L+\ell)`$ on the same range, with the same simultaneous
+count, width and full-isometry guarantees. A coarse mathematical frame
+implemented to final accuracy admits a constant-normalization sparse
+correction. Borrowed real rotations reduce a local source's initialized
+scratch to logarithmic size; exact compact references and two explicit
+local reductions then give depth $`O(h+\kappa)`$ with much larger
+allowed local dirty resources. R94's full-payload catalogue absorbs them.
+Optimal general depth and broader precision ranges remain open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
@@ -222,6 +230,10 @@ supplies the two-clean precision and width splices.
 | [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope and a slow unbounded precision window with logarithmic depth; retains R79's other regimes |
 | [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision improvement: local early decoder, whole noncommuting coarse groups, shared matrix-unit residual source, and the original one-clean width/phase splices |
 | [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 growing-precision bound: carry the entire local R79 workspace through dirty selection, compile larger groups directly to final accuracy, and return borrowed arrays exactly with parallel R91 queries and routing |
+| [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95: uniform $`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$, with optimal counts, one clean bit, original literal widths and full-isometry error |
+| [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: coarse geometric precision, final-accuracy shared-gradient references, a small absolute residual norm, signed Schur sources and complete recovery |
+| [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Logarithmic initialized source scratch via borrowed real calibration; approximate dirty-core return is retained in a whole-physical-space comparison |
+| [Local frame depth with relaxed counts](depth/RELAXED_COUNT_LOCAL_DEPTH.md) | One-clean depth $`O(h+\kappa)`$ with fixed-polynomial exponential local count/dirty allowance; exact reference coins, decreasing two-stage construction and complete-payload prefix slots |
 | [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Retained R89 theorem and coarse-reduction interface: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; its original preserved-prefix recursion has an iterated-logarithmic overhead |
 | [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
 | [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
@@ -349,13 +361,13 @@ the inverse-polynomial-accuracy benchmark; R92 independently makes a
 slowly growing precision range uniform. R94 uses R79's proved compiler
 inside each larger catalogue entry and R91 for parallel selection. Its
 complete workspace transfer removes the residual correction and permits
-a constant number of groups at final accuracy. The
+a constant number of groups at final accuracy. R95 improves both its
+opening and local depth, reaching logarithmic depth at inverse-polynomial
+accuracy while preserving the global count and width contracts. The
 [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
 retains optimal general depth, broader precision ranges, and
-dimension-growing lower bounds as open questions. The opening binary
-search and local R79 entries retain an $`\ell\log_2(\ell+2)`$
-depth allowance. Full work return and
-simultaneous count/width bounds remain part of that target. The finite
+dimension-growing lower bounds as open questions. Full work return and
+simultaneous count/width bounds remain part of any further improvement. The finite
 catalogue gives no efficient classical preprocessing, practical crossover,
 or scalable native emitter guarantee.
 

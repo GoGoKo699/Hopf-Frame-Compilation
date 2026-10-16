@@ -31,6 +31,7 @@ return, and resource accounting under the individual recorded contracts.
 | B: sufficient-clean matching T count | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md) | [Four exact receipt suites](../verification/fault_tolerant/README.md), resource ledgers, and full-input approximation checks | Finite kernels and analytic resource proxies; no general native frame emitter |
 | C: one-clean count frontier | [Growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count), [banked frontier](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), [one-clean baseline](ONE_CLEAN_COMPILER.md) | [Operator-source checks](../tests/test_operator_source_compiler.py), native phase and query checks; bounded growing-source, conjugate-recovery and bank-allocation diagnostics | Finite emitted components and supplied diagnostic matrices; no general native frame emitter; full joint return error is included |
 | D: one-clean optimal count and T-depth | [Precision-uniform subtree theorem, R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and [R72's one-clean interfaces](../research/depth/ONE_CLEAN_DEPTH.md) | [Exact subtree and bounded spectral-decoder checks](../tests/test_subtree_projector_decoder.py), [one-clean native words](../tests/test_one_clean_compiler.py), and retained shared-binary-source, conjugate-recovery, blocked-query, dirty-indicator, and uniform-allocation suites | Analytic absolute precision ledger, enlarged protected bank, terminal and width/precision splices, and full-isometry composition; no new circuit identity or fixture. Finite checks do not certify unbounded precision, asymptotic cutoffs, or emit every variable-size frame |
+| Logarithmic-precision general depth R95 | [Full-flag depth theorem](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), using [sparse correction](../research/depth/COARSE_FLAG_SPARSE_CORRECTION.md), [small-workspace sources](../research/depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md), and [the relaxed-count local compiler](../research/depth/RELAXED_COUNT_LOCAL_DEPTH.md) | [Four bounded sparse-correction checks](../tests/test_coarse_flag_sparse_correction.py) for the live root, signed Schur sources, complete-work recovery, actual inverses and leakage; retained native/source, R91 query and R94 payload tests | Dense source completions are verification objects. Native source scheduling, the two-stage local construction, catalogue absorption, full-isometry composition and uniform resource bounds remain analytic; no general native emitter or new scientific receipt |
 | Fixed-accuracy logarithmic general depth R90 | [Dirty catalogue terminal](../research/depth/DIRTY_CATALOGUE_TERMINAL.md), using R89 coarse reductions | [Bounded catalogue checks](../tests/test_dirty_catalogue_terminal.py) of dirty program selection, two-array commutator return, literal native factors, reference inputs, and the one-array failure, plus retained coarse/query evidence | Analytic fixed-number reduction, zero-clean local synthesis, selected-factor error, catalogue absorption and literal-width splice; fixed-L constants. No efficient preprocessing, depth optimality, or scalable native emitter is certified by these finite checks |
 | Retained causal compact-coin theorem R89 | [Causal compact-coin proof](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md), with compact coins and subset primitives | [Four bounded causal-batching fixtures](../tests/test_causal_compact_coin_depth.py), [seven compact-coin checks](../tests/test_compact_coin_flags.py), and [two subset-routing checks](../tests/test_short_label_subset_routing.py), plus retained source, query, routing, and terminal evidence | Analytic catalogue existence, complete coarse flags, native simultaneous ledger, prefix recursion, full-isometry error, and literal-width splice; fixed-L constants. Its coarse reductions support R90 |
 | Retained product-coin theorem R87 | [Product-coin proof](../research/depth/COIN_DILATION_DEPTH.md), using retained rounding and selected routing | [Seven bounded coin-dilation fixtures](../tests/test_coin_dilation_depth.py), plus retained source, query, coarse-recovery, and terminal checks | Analytic product partition, spectral-band readout, paid source and actual inverse, full-isometry error, and original literal-width splice; fixed-L constants. Its fine decoder supports R89 |
@@ -263,6 +264,30 @@ to check why an exact encoding-order restriction does not extend to fixed
 error. Neither fixture supplies a native encoder, a general conversion,
 or an asymptotic proof. The checkpoint records its scoped restrictions
 and the frontier at that stage; scientific receipts are unchanged.
+
+The [logarithmic-precision theorem R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md)
+has four [bounded algebra checks](../tests/test_coarse_flag_sparse_correction.py)
+for its coarse-frame sparse correction. Signed and singular frames test
+the absolute residual bound and the live root/state-column correction.
+The signed Schur row and column sources include zero residual columns;
+counterchecks detect an omitted root correction and lost coefficient signs.
+Normalization-two recovery tests the literal leading minus, the complete
+initialized-work anchor, occupied-work inactive identity, and coherent
+dirty/reference inputs. Perturbed source completions retain final leakage
+and distinguish the actual inverse from a stale ideal inverse.
+
+These fixtures use bounded dense matrix completions, not native source
+oracles. The retained [one-clean native words](../tests/test_one_clean_compiler.py),
+[source checks](../tests/test_operator_source_compiler.py),
+[conjugate recovery](../tests/test_conjugate_recovery.py),
+[shared binary sources](../tests/test_shared_binary_terminal.py),
+[R91 query checks](../tests/test_parallel_bilinear_word_query.py), and
+[R94 complete-payload checks](../tests/test_portable_workspace_catalogue.py)
+support their existing component contracts. The small-workspace source
+comparison, local two-stage construction, native schedules, catalogue and
+width bounds, and full-isometry composition are analytic. The fixtures do
+not certify asymptotic cutoffs or supply a scalable native frame emitter.
+Selected manuscript Result D remains R79; R95 has its separate proof home.
 
 The [precision-uniform theorem R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
 uses the unchanged R78 decoder identities below. Its new work is analytic:
