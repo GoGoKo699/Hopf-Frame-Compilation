@@ -29,8 +29,28 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Stronger all-precision research bound | [R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ for every $`n\ge1,L\ge6`$, with optimal counts, one clean qubit, original literal widths and full error; [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) retain their independent narrower constructions |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
+| Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact read-only dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
 
-The immediate lower-bound question is whether four T layers with one clean
+The current [research checkpoint](../research/depth/DIRTY_QUERY_SESSION_RESULT.md)
+targets complete dirty Boolean queries. A robust growing query lower bound
+would transfer to a legal deepest-layer real-frame subfamily with two
+calls, the same clean/dirty allocation, and at most doubled error and
+resources. A faster exact multi-output query with R91's native read-only
+interface would, by conditional R98, give
+
+```math
+D_T=O_L\!\left(N/b^2+d(2n+10)+\log_2\log_2(n+4)\right)
+```
+
+for both complete frame families at their original one-clean thresholds.
+Here d is the hypothetical query's additive address-depth bound.
+R91 supplies logarithmic d; no smaller d has been proved. These upper
+and lower transfers have distinct query hypotheses. The
+[Gaussian inverse repair](../research/depth/GAUSSIAN_INVERSE_EXTRACTION.md)
+gives a paid identity and an affine-round obstruction, not an unrestricted
+query or frame depth lower bound. R96's unconditional frontier is unchanged.
+
+The separate constant-layer question is whether four T layers with one clean
 qubit can approximate the explicit witness arbitrarily well when dirty
 width, inner clean spread, middle crossing rank and both outer-axis
 misalignment dimensions all grow. The

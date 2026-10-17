@@ -144,6 +144,12 @@ seed preparation and arbitrary Clifford+T circuits are not covered.
 
 ## 5. Reopening condition
 
+The [subsequent inverse-extraction analysis](GAUSSIAN_INVERSE_EXTRACTION.md)
+gives an exact dirty-work Pauli commutator, including controlled query
+extraction and a native baseline. It pays for the in-place affine map
+whose inverse entry contains f. A tight affine-symplectic round bound
+limits that particular repair; direct scalar extraction remains open.
+
 The Gauss-sum route needs a native conversion from the affine-quadratic
 encoding to the scalar table phase, returning every arbitrary work
 wire, with the same count envelope and sublogarithmic address T-depth.
