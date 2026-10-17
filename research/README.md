@@ -243,6 +243,21 @@ obstruction for its in-place map. It does not obstruct direct scalar
 extraction or unrestricted T-depth. R96 remains the strongest
 unconditional upper law, and R79 remains selected Result D.
 
+The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
+closes that specific scalar escape: the
+[Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
+bounds the extracted sign's Boolean degree by $`4r+2`$ for r actual
+affine quadratic phase rounds, with fixed Clifford interlayers and even
+initialized helpers. Its marker/path-sum proof detects central phases;
+the bound is on completed rounds, not unrestricted native T-depth.
+The separate [two-layer read-only theorem](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md)
+gives robust initialized-work degree and polar-rank restrictions, with
+an explicit unrestricted two-layer Toffoli falsifying a broader claim.
+The [multiway cost audit](depth/MULTIWAY_QUERY_COST_BARRIER.md) stops
+termwise tensor splitting, rank-deficient bucket toggles and cyclic
+borrowed-slot substitutes under their respective hypotheses. No improved
+unconditional frame bound or growing native depth lower bound is claimed.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing

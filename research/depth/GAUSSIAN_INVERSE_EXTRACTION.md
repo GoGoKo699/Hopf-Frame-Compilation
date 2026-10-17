@@ -228,6 +228,14 @@ the desired scalar $`(-1)^{f(x)}I`$, whose symplectic matrix is the
 identity for every f. A different scalar extractor that avoids the
 in-place inverse map remains possible.
 
+The subsequent [scalar-loop obstruction](GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
+addresses that missing central phase with a different invariant. For
+actual affine quadratic phase rounds and fixed Clifford interlayers,
+zero-column return already forces $`\deg f\le4r+2`$. It includes
+initialized helpers and a fixed error threshold. It does not hold merely
+from specifying affine symplectic matrices with arbitrary scalar lifts,
+and it remains distinct from a general native T-depth lower bound.
+
 ## 5. Evidence and resumption question
 
 [Exact bounded fixtures](../../tests/test_gaussian_inverse_extraction.py)

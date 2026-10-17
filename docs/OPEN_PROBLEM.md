@@ -30,8 +30,9 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
 | Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact read-only dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
+| Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 
-The current [research checkpoint](../research/depth/DIRTY_QUERY_SESSION_RESULT.md)
+The current [research checkpoint](../research/depth/RETURNED_QUERY_SESSION_RESULT.md)
 targets complete dirty Boolean queries. A robust growing query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and
@@ -48,7 +49,15 @@ R91 supplies logarithmic d; no smaller d has been proved. These upper
 and lower transfers have distinct query hypotheses. The
 [Gaussian inverse repair](../research/depth/GAUSSIAN_INVERSE_EXTRACTION.md)
 gives a paid identity and an affine-round obstruction, not an unrestricted
-query or frame depth lower bound. R96's unconditional frontier is unchanged.
+query or frame depth lower bound. The new
+[scalar-loop proof](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
+also detects the central sign, closing bounded-round extraction by actual
+affine quadratic phase primitives. General native work interference is
+outside that architecture. The
+[multiway cost audit](../research/depth/MULTIWAY_QUERY_COST_BARRIER.md)
+rules out a termwise separated-reader shortcut at the square-root count
+envelope; it does not lower-bound joint native synthesis.
+R96's unconditional frontier is unchanged.
 
 The separate constant-layer question is whether four T layers with one clean
 qubit can approximate the explicit witness arbitrarily well when dirty

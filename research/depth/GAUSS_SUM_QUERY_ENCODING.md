@@ -148,7 +148,13 @@ The [subsequent inverse-extraction analysis](GAUSSIAN_INVERSE_EXTRACTION.md)
 gives an exact dirty-work Pauli commutator, including controlled query
 extraction and a native baseline. It pays for the in-place affine map
 whose inverse entry contains f. A tight affine-symplectic round bound
-limits that particular repair; direct scalar extraction remains open.
+limits that particular repair. The later
+[scalar-loop theorem](GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) also limits
+direct scalar extraction by r actual affine Gaussian phase rounds:
+the returned sign has degree at most $`4r+2`$. Its path-sum and Pauli
+marker invariant sees the phase that the work symplectic matrix misses.
+This is still a round-architecture restriction; general native scalar
+extraction remains open.
 
 The Gauss-sum route needs a native conversion from the affine-quadratic
 encoding to the scalar table phase, returning every arbitrary work
