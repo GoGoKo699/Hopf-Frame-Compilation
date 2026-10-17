@@ -15,6 +15,30 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
+## Current checkpoint: dirty-query reformulation
+
+The 18 October 2026 round recovered main at `6134f329` and established
+[the conditional query-depth transfer R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md).
+An exact read-only dirty word query with R91's count envelope and
+sublogarithmic address depth would give sublogarithmic general-frame
+depth at fixed accuracy. [Paired permutation wrappers](research/depth/PAIRED_PERMUTATION_ROUTING.md)
+remove a residual routing cost; the paid remaining depth is
+$`O_L(\log\log(n+4))`$ plus the hypothetical query depth and width penalty.
+This is conditional: R96 remains the strongest unconditional general
+upper law, and R79 remains selected Result D.
+
+The [two-call corner-frame/query reduction](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
+separately transfers lower bounds for arbitrary native Boolean queries,
+preserving the clean/dirty allocation and full error contract.
+The [Gaussian inverse repair](research/depth/GAUSSIAN_INVERSE_EXTRACTION.md)
+is fully priced but does not improve R91; its affine-symplectic round
+obstruction is architecture-specific. The
+[session outcome](research/depth/DIRTY_QUERY_SESSION_RESULT.md)
+records the revision, stopped candidate, and exact resumption question.
+Continue with complete dirty queries or an invariant valid under every
+native representation. Optimal depth and unrestricted one-clean
+four-layer rigidity remain open.
+
 ## Mandate
 
 Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification

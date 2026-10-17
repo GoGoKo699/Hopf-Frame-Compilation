@@ -227,6 +227,22 @@ The [executed design](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md) and outcome
 retain the exact descent and center-mixing limits. This is a constant
 lower-bound branch; the upper theorem and selected Result D are unchanged.
 
+The [dirty-query round](depth/DIRTY_QUERY_SESSION_RESULT.md) establishes
+[conditional R98](depth/QUERY_DEPTH_FRAME_TRANSFER.md): an improved exact
+read-only word-query interface transfers to general fixed-accuracy depth,
+with a fully paid $`O_L(\log\log(n+4))`$ residual. The
+[paired permutation wrapper](depth/PAIRED_PERMUTATION_ROUTING.md) is an
+unconditional native component. The
+[corner-frame/query reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
+separately transfers lower bounds for arbitrary native Boolean queries
+with two calls and the same clean/dirty allocation. These two query
+interfaces have different hypotheses. The
+[Gaussian inverse extraction](depth/GAUSSIAN_INVERSE_EXTRACTION.md)
+prices a candidate repair and proves a tight affine-symplectic round
+obstruction for its in-place map. It does not obstruct direct scalar
+extraction or unrestricted T-depth. R96 remains the strongest
+unconditional upper law, and R79 remains selected Result D.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing
