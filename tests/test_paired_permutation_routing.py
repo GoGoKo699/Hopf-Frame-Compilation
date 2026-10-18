@@ -3,8 +3,10 @@
 The native phase-grid fixture reuses R91's gate evaluator and checks every
 occupied input. The paired-array tests include noninvolutive permutations,
 inactive/padded selectors, actual inverse words, and a negative selector-
-mutation example. Exact full-basis identities imply reference compatibility;
-these fixtures do not provide a scalable emitter or a frame-depth theorem.
+mutation example. The returned-address checks allow internal selector
+changes and pack ragged addresses before a full dirty-output echo. Exact
+full-basis identities imply reference compatibility; these fixtures do not
+provide a scalable emitter or a frame-depth theorem.
 """
 from __future__ import annotations
 
@@ -119,6 +121,82 @@ class PairedPermutationRoutingTests(unittest.TestCase):
         # The actual control-dependent inverse then uses the new value.
         after = _shear_word(*routed, identity, reverse=True)
         self.assertNotEqual(after[1], e)
+
+    def test_boundary_return_suffices_after_native_selector_and_address_changes(self):
+        # Wires: selector=0, packed A=1,2,3, private query output=4,
+        # final output=5. This actual Clifford word temporarily changes both
+        # the selector and A_0, but completes the XOR c += r + A_0 + A_1.
+        query = [('CX', 2, 1), ('CX', 1, 0), ('CX', 0, 4),
+                 ('CX', 1, 0), ('CX', 2, 1)]
+        echo = [('CX', 4, 5)]
+        body = query + echo + _inverse(query) + echo
+        inputs = np.arange(1 << 6, dtype=np.int64)
+        images, phases = _monomial(body, 6)
+        target = (inputs & 1) ^ ((inputs >> 1) & 1) ^ ((inputs >> 2) & 1)
+        np.testing.assert_array_equal(images, inputs ^ (target << 5))
+        np.testing.assert_array_equal(phases, np.zeros_like(inputs))
+        during, _ = _monomial(query[:2], 6)
+        self.assertTrue(np.any((during ^ inputs) & 1))
+        self.assertTrue(np.any((during ^ inputs) & 2))
+
+        permutations = ((0, 1, 2), (1, 2, 0))
+        for label, a, e, private, output in itertools.product(
+                range(2), range(8), range(8), range(2), range(2)):
+            permutation = permutations[label]
+            routed_a, routed_e = _shear_word(a, e, permutation)
+            body_input = label | (routed_a << 1) | (private << 4) | (output << 5)
+            body_output = int(images[body_input])
+            actual_label = body_output & 1
+            actual_a = (body_output >> 1) & 7
+            # Use the actual selector at the inverse boundary, as a circuit
+            # does; intermediate selector values need not equal this one.
+            restored_a, restored_e = _shear_word(
+                actual_a, routed_e, permutations[actual_label], reverse=True)
+            selected = label ^ ((a >> permutation[0]) & 1) ^ ((a >> permutation[1]) & 1)
+            self.assertEqual((actual_label, restored_a, restored_e), (label, a, e))
+            self.assertEqual((body_output >> 4) & 1, private)
+            self.assertEqual((body_output >> 5) & 1, output ^ selected)
+
+    def test_ragged_packing_full_dirty_output_echo_and_all_selector_rows(self):
+        # Three physical address sites are needed in the union, but at most
+        # two in any row. The common P bit is not part of the routed array.
+        addresses = ((2,), (0, 1), (1,), ())
+        # Explicit total two-output tables, first indexed by selector, then P.
+        # Label 2 represents a malformed legacy row with a nonzero extension;
+        # label 3 is an explicitly defined invalid zero row. Neither can be
+        # dropped as an initialized-input case. H=0 separately specifies zero.
+        tables = (((0, 3), (1, 2)),
+                  ((2, 1, 3, 0), (3, 0, 2, 1)),
+                  ((1, 2), (3, 0)),
+                  ((0,), (0,)))
+        self.assertEqual(len(set().union(*map(set, addresses))), 3)
+        self.assertEqual(max(map(len, addresses)), 2)
+
+        for label, active, prefix, a, e, private, output in itertools.product(
+                range(4), range(2), range(2), range(8), range(8), range(4), range(4)):
+            address = addresses[label] if active else ()
+            permutation = address + tuple(j for j in range(3) if j not in address)
+            routed_a, routed_e = _shear_word(a, e, permutation)
+            packed_row = routed_a & ((1 << len(address)) - 1)
+            loaded = tables[label][prefix][packed_row] if active else 0
+
+            # Complete query/CNOT/actual-unquery/CNOT, retaining the unknown
+            # two-bit output of the query. The premise supplies this exact
+            # table XOR; this fixture checks its surrounding physical packing.
+            actual_private = private ^ loaded
+            actual_output = output ^ actual_private
+            actual_private ^= loaded
+            actual_output ^= actual_private
+            restored_a, restored_e = _shear_word(
+                routed_a, routed_e, permutation, reverse=True)
+
+            original_row = sum(((a >> wire) & 1) << j
+                               for j, wire in enumerate(addresses[label]))
+            expected = tables[label][prefix][original_row] if active else 0
+            self.assertEqual((restored_a, restored_e, actual_private), (a, e, private))
+            self.assertEqual(actual_output, output ^ expected)
+            if not active or label == 3:
+                self.assertEqual((routed_a, routed_e, actual_output), (a, e, output))
 
 
 if __name__ == '__main__':

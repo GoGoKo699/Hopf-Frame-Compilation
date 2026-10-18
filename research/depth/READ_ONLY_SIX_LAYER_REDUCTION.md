@@ -590,3 +590,77 @@ elementary ledgers, the necessity of the literal address phase, the actual
 normal-form comparison, both order-three calculations and the persistent
 non-Pauli differences. The identities above establish the claim without
 restricting any input or discarding any logical column.
+
+## 9. Full return supplies no source-wide inverse coverage
+
+There is a second, independent failure of a source-wide inference. In the
+six-slot convention of section 2, use one arbitrary work/output qubit,
+leave every address wire untouched, and take
+
+| Index | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|---|
+| Clifford $`C_j`$ | H | H | I | H | H | I | I |
+| Band $`D_j`$ | — | $`T^\dagger`$ | $`T^\dagger`$ | T | T | T | $`T^\dagger`$ |
+
+Every T slot is nonempty. Literal multiplication, with rightmost factors
+acting first, gives
+
+```math
+V=T^\dagger T\,H T H\,T T^\dagger\,H T^\dagger H=I,
+\qquad \mathcal F=C_5D_5C_4D_4C_3D_3=THTHT.
+```
+
+The specified source must be extracted before simplifying the whole word.
+All address-dependent Pauli factors and scalar phases in the native
+normal forms are identity. Consequently its actual comparison is
+$`L_x=K_x=I`$ for every x. Complete return only tests conjugation of
+identity by this source.
+
+Put $`\alpha=(2-\sqrt2)/4`$, $`\beta=(2+\sqrt2)/4`$, and
+$`h=1/\sqrt2`$. The exact Bloch matrix of the specified source is
+
+```math
+R_{\mathcal F}=\begin{pmatrix}
+\alpha&-\beta&1/2\\
+\beta&-\alpha&-1/2\\
+1/2&1/2&h
+\end{pmatrix}.
+```
+
+Every entry is nonzero, so its exact input and output Pauli domains
+are $`E=E'=\{0\}`$. The residual output space $`E'^\perp`$ is
+therefore the entire one-qubit label space. None of its three nonzero
+Paulis has a Clifford inverse image. Indeed, writing
+$`B_P=\mathcal F^\dagger P\mathcal F`$, direct multiplication gives
+
+```math
+\begin{aligned}
+B_X Z B_X&=\alpha X-\beta Y-\tfrac12 Z,\\
+B_Y Z B_Y&=-\beta X+\alpha Y-\tfrac12 Z,\\
+B_Z X B_Z&=-\tfrac12 X+\tfrac12 Y+hZ.
+\end{aligned}
+```
+
+Each image has three nonzero Pauli coefficients. The same test on the
+forward X image shows that $`\mathcal F`$ is not C3. The C3-free
+[support-coset criterion](CONTROLLED_PAULI_TRANSPORT.md#10-an-intrinsic-criterion-and-a-strict-c3-boundary)
+also fails: its zero radical would require singleton support. Full
+return thus implies neither the C3 premise nor residual inverse-Clifford
+basis coverage nor scalar-Pauli coordinates for the specified source.
+
+The executed word has six T gates, four H gates, six specified T slots,
+zero clean qubits and zero extra helpers. Its actual reversed adjoint has
+the same ledger. Source and actual source inverse each cost three T and
+two H. The full operator error and leakage are zero on every column,
+including arbitrary dirty inputs and external references. The fairly
+simplified baseline is the identity circuit with zero gates and depth;
+this example makes no resource improvement or minimal-depth claim.
+
+The [three exact checks](../../tests/test_returned_six_layer_no_source_coverage.py)
+use arithmetic in $`\mathbb Q(\sqrt2,i)`$ to verify both native words,
+the actual comparison, both Pauli domains and all inverse witnesses.
+This is a counterexample to a source-wide inference, not to a general
+query lower bound: the target has Boolean degree zero. A successful
+argument may constrain the actual comparison family directly, or prove
+a justified alternative extraction. Source coverage cannot be assumed
+from complete return alone.

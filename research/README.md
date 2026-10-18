@@ -229,7 +229,7 @@ lower-bound branch; the upper theorem and selected Result D are unchanged.
 
 The [dirty-query round](depth/DIRTY_QUERY_SESSION_RESULT.md) establishes
 [conditional R98](depth/QUERY_DEPTH_FRAME_TRANSFER.md): an improved exact
-read-only word-query interface transfers to general fixed-accuracy depth,
+restored-address word-query interface transfers to general fixed-accuracy depth,
 with a fully paid $`O_L(\log\log(n+4))`$ residual. The
 [paired permutation wrapper](depth/PAIRED_PERMUTATION_ROUTING.md) is an
 unconditional native component. The
@@ -242,6 +242,18 @@ prices a candidate repair and proves a tight affine-symplectic round
 obstruction for its in-place map. It does not obstruct direct scalar
 extraction or unrestricted T-depth. R96 remains the strongest
 unconditional upper law, and R79 remains selected Result D.
+
+The [restored-address revision](depth/RESTORED_ADDRESS_SESSION_RESULT.md)
+removes gatewise read-only access from R98's sufficient hypothesis.
+Joint common-bank queries and paid selected-address packing replace the
+shared-address parallel schedule. Every address and helper must return
+at the completed query boundary; internal address mixing is allowed.
+The conditional bound is unchanged, and no improved arbitrary-table
+primitive or unrestricted lower bound is inferred. The
+[six-layer source counterexample](depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
+separately rules out inferring source-wide C3 or inverse-Clifford coverage
+from full return. The main next question is a faster complete query with
+all simultaneous budgets, not another representation identity alone.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
@@ -360,7 +372,7 @@ coupled nonzero-character incidence. When every zero-character B axis
 commutes with C, the full involution defect and native A isotropy force
 all interacting classes to be isolated two-axis pairs. Exact C3/native
 hypotheses remain essential; the certificate gives 78/26 transport at
-arbitrary overlap. The [current round](depth/ZERO_CHARACTER_SESSION_RESULT.md)
+arbitrary overlap. The [zero-character round](depth/ZERO_CHARACTER_SESSION_RESULT.md)
 adds [commutation-cover and certified-stripping results](depth/NATIVE_BAND_SOURCE_STRUCTURE.md):
 if each B axis commutes with an entire outer band, the source is diagonal
 C3, including arbitrary bad-zero-only interactions. Good middle axes can
@@ -408,7 +420,7 @@ arbitrary auxiliary inputs. The new exact commuting-pivot inversion
 identity has cubic native counts and linear depth, with returned arbitrary
 helpers and no clean work. Whole-pivot commutativity does not eliminate
 cross-pivot gate dependencies. This in-place circuit does not provide the
-native read-only inverse query needed for a complete-frame improvement.
+completed XOR query within the budgets needed for a complete-frame improvement.
 
 The balanced block construction now gives a complete structured
 inverse-word query and phase source with logarithmic T-depth, cubic
@@ -418,8 +430,9 @@ until the actual compute/readout/uncompute finishes. Direct controlled
 readouts borrow that same work and return it exactly. This leaves the
 scoped frozen-coefficient determinant obstruction intact; it does not
 supply returned-work in-place inversion. Coefficient inputs change
-internally, so native read-only access and arbitrary-table encoding
-within R98's budgets remain missing. The full cycle conjunction's
+internally; strengthened R98 now allows this at complete query boundaries.
+Paid arbitrary-table coefficient access and extraction within its
+count/work/depth budgets remain missing. The full cycle conjunction's
 transport and faster fair baseline are unchanged.
 
 The [inverse-query cost audit](depth/GAUSS_SUM_QUERY_ENCODING.md) identifies
@@ -431,7 +444,7 @@ bounds. A full read-only interpolation repair cancels the offset, but
 its repeated source evaluations lose to direct read-only path propagation.
 Sparse native specialization, coupled masks and nonlinear work remain open.
 
-The next source question is whether native three-band structure forces
+The remaining component source question is whether native three-band structure forces
 the intrinsic tableau product to vanish in the remaining mixed cases.
 This would give 174/58 transport without demanding diagonalization.
 Alternative native syntheses must be tested before treating a

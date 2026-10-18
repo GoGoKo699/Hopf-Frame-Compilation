@@ -1204,8 +1204,11 @@ the imported
 has $`T,G=O(d)`$ and $`D_T=O(\log(d+1))`$. That paragraph does not
 establish that the original controls occur only as native Clifford
 controls throughout, so it must not be substituted for (14) when comparing
-the stricter R98 interface. Both comparisons show that the cycle word is
-not a better conjunction circuit.
+the strictly read-only interface. The strengthened R98 transfer now
+requires only exact completed address return, so this gate-level
+restriction is no longer part of its sufficient query premise. Its
+arbitrary-table count/work/depth budgets still have to be met. Both
+comparisons show that the cycle word is not a better conjunction circuit.
 
 For $`Q=2^d`$, the cycle word's polynomial work eventually fits below
 square-root Q, but producing one high-degree function does not give a
