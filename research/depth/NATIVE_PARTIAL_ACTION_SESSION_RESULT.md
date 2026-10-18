@@ -152,3 +152,10 @@ resource ledger. Independent mathematical audits checked all four result
 packages. Finite enumeration supports the analytic arguments and does not
 extrapolate in width. Validation and presentation results are recorded with
 the merge on the reviewed tree.
+
+## Subsequent checkpoint
+
+The [returned-relations round](RETURNED_RELATIONS_SESSION_RESULT.md), starting
+at main `fe45d5a`, extends the native-axis subcase, proves robust diagonal-echo
+rigidity, and tests the proposed operator-word and scalar-factor shortcuts.
+The next-step discussion above is the historical handoff to that round.

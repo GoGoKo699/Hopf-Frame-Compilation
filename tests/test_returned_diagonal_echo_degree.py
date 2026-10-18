@@ -6,7 +6,9 @@ all possible source truth tables in a bounded linear-algebra calculation.
 """
 from __future__ import annotations
 
+from cmath import exp
 from fractions import Fraction
+from math import pi
 from itertools import combinations
 import unittest
 
@@ -108,6 +110,42 @@ def _phase_echo_column(source, left, right, z):
     phase += source[z]
     z ^= left
     return z, phase % 1
+
+
+def _ring_add(*terms):
+    """Integer group ring of translations; unlike Counter, retain negatives."""
+    result = {}
+    for scale, word in terms:
+        for shift, coefficient in word.items():
+            result[shift] = result.get(shift, 0) + scale * coefficient
+    return {shift: value for shift, value in result.items() if value}
+
+
+def _ring_product(*words):
+    result = {0: 1}
+    for word in words:
+        next_result = {}
+        for left, a in result.items():
+            for right, b in word.items():
+                shift = left ^ right
+                next_result[shift] = next_result.get(shift, 0) + a * b
+        result = {shift: value for shift, value in next_result.items() if value}
+    return result
+
+
+def _ring_delta(shift):
+    return _ring_add((1, {shift: 1}), (-1, {0: 1}))
+
+
+def _ring_norm(word):
+    return sum(abs(coefficient) for coefficient in word.values())
+
+
+def _four_cube_row(directions):
+    row = 0
+    for bits in range(16):
+        row ^= 1 << _linear(directions, bits)
+    return row
 
 
 class ReturnedDiagonalEchoDegreeTests(unittest.TestCase):
@@ -228,6 +266,131 @@ class ReturnedDiagonalEchoDegreeTests(unittest.TestCase):
             for z in range(4):
                 self.assertEqual(_phase_echo_column(quarter_parity, shift, shift, z),
                                  (z, Fraction(shift & 1, 2)))
+
+    def test_robust_four_direction_certificate_in_integer_group_ring(self):
+        # Every source truth table is covered by equality in the translation
+        # group ring, not by a selected or initialized work column.
+        pairs = ((1, 2), (4, 8), (3, 5), (9, 10), (6, 12),
+                 (14, 13), (11, 7))
+        self.assertEqual(sorted(value for pair in pairs for value in pair),
+                         list(range(1, 15)))
+        maps = (((1, 2, 4, 8), (16, 32, 64, 128)),
+                ((1, 2, 3, 0), (3, 2, 1, 4)),
+                ((1, 1, 0, 2), (1, 0, 1, 2)))
+        for left, right in maps:
+            a = [_ring_delta(shift) for shift in left]
+            b = [_ring_delta(shift) for shift in right]
+            c = [_ring_delta(l ^ r) for l, r in zip(left, right)]
+            d = [_ring_product(aa, bb) for aa, bb in zip(a, b)]
+            sums = [_ring_add((1, aa), (1, bb)) for aa, bb in zip(a, b)]
+            overlap = _ring_add((1, _ring_product(*c)),
+                                (-1, _ring_product(*sums)))
+            telescoping = {}
+            overlap_charge = 0
+            for i in range(4):
+                residual = _ring_product(*sums[:i], *c[i + 1:])
+                self.assertEqual(sum(residual.values()), 0)
+                overlap_charge += _ring_norm(residual)
+                telescoping = _ring_add((1, telescoping),
+                                        (1, _ring_product(residual, d[i])))
+            self.assertEqual(telescoping, overlap)
+            self.assertLessEqual(overlap_charge, 120)
+            if left == (1, 2, 4, 8):
+                self.assertEqual(overlap_charge, 120)
+            certificate = overlap
+            for first, second in pairs:
+                i = (first & ~second).bit_length() - 1
+                j = (second & ~first).bit_length() - 1
+                self.assertEqual(first ^ second, (1 << i) | (1 << j))
+                residual = _ring_product(*[a[k] if first >> k & 1 else b[k]
+                                            for k in range(4) if k not in (i, j)])
+                self.assertEqual(sum(residual.values()), 0)
+                self.assertLessEqual(_ring_norm(residual), 4)
+                middle = _ring_product(_ring_delta(left[i] ^ left[j]),
+                                       _ring_delta(right[i] ^ right[j]))
+                shift_i = {left[j] ^ right[j]: 1}
+                shift_j = _ring_add((1, {left[i]: 1}),
+                                    (1, {right[i]: 1}), (-1, {0: 1}))
+                rhs = _ring_add((1, middle),
+                                (-1, _ring_product(shift_i, d[i])),
+                                (-1, _ring_product(shift_j, d[j])))
+                cross = _ring_add((1, _ring_product(a[i], b[j])),
+                                  (1, _ring_product(a[j], b[i])))
+                self.assertEqual(rhs, cross)
+                self.assertLessEqual(_ring_norm(residual)
+                                     * (1 + _ring_norm(shift_i)
+                                        + _ring_norm(shift_j)), 20)
+                certificate = _ring_add((1, certificate),
+                                        (1, _ring_product(residual, rhs)))
+            # Independent Moebius construction of the fourth coefficient.
+            fourth = {}
+            for x in range(1, 16):
+                source = _ring_product(_ring_delta(_linear(left, x)),
+                                       _ring_delta(_linear(right, x)))
+                fourth = _ring_add((1, fourth),
+                                  ((-1) ** (4 - x.bit_count()), source))
+            self.assertEqual(certificate, fourth)
+        self.assertEqual(120 + 7 * 20 + 15, 275)
+
+    def test_four_direction_tests_through_zero_also_exclude_fifth_degree(self):
+        # Six exact parity constraints cover all 2**32 Boolean truth tables
+        # on five bits: their kernel is precisely degree at most three.
+        directions = list(combinations((1, 2, 4, 8, 16), 4))
+        directions.append((3, 4, 8, 16))
+        pivots = {}
+
+        def reduce(row):
+            while row:
+                high = row.bit_length() - 1
+                if high not in pivots:
+                    break
+                row ^= pivots[high]
+            return row
+
+        for frame in directions:
+            row = reduce(_four_cube_row(frame))
+            if row:
+                pivots[row.bit_length() - 1] = row
+        self.assertEqual(len(pivots), 6)
+        for mask in range(32):
+            anf_row = 1  # Empty subset contributes f(0).
+            for subset in _subsets(mask):
+                anf_row ^= 1 << subset
+            self.assertEqual(reduce(anf_row) == 0, mask.bit_count() >= 4)
+        # A fifth-degree monomial vanishes on each coordinate four-plane,
+        # but the mixed direction catches it, so those planes alone fail.
+        quintic = 1 << 31
+        self.assertTrue(all((quintic & _four_cube_row(frame)).bit_count() % 2 == 0
+                            for frame in directions[:-1]))
+        self.assertEqual((quintic & _four_cube_row(directions[-1])).bit_count() % 2, 1)
+
+    def test_positive_error_perturbation_retains_literal_inverse_contract(self):
+        # Identity-level phases only; no native synthesis of an arbitrary
+        # denominator is claimed. Every work column is retained.
+        source = []
+        source_error = 0.0
+        for z in range(64):
+            p = [(z >> i) & 1 for i in range(3)]
+            q = [(z >> (i + 3)) & 1 for i in range(3)]
+            cubic = (p[0] * q[1] * q[2] ^ p[1] * q[0] * q[2]
+                     ^ p[2] * q[0] * q[1])
+            perturbation = Fraction(((z * z + 3 * z) >> 1) % 7, 10**6)
+            source.append(Fraction(cubic, 2) + perturbation)
+            source_error = max(source_error,
+                               abs(exp(2j * pi * float(perturbation)) - 1))
+        maximum_error = 0.0
+        for x in range(8):
+            target = (-1) ** int(x == 7)
+            differences = _additive_delta(_additive_delta(source, x), x << 3)
+            for z in range(64):
+                returned, phase = _phase_echo_column(source, x, x << 3, z)
+                self.assertEqual(returned, z)
+                self.assertEqual(phase, -differences[z] % 1)
+                maximum_error = max(maximum_error,
+                                    abs(exp(2j * pi * float(phase)) - target))
+        self.assertGreater(maximum_error, 0)
+        self.assertLessEqual(maximum_error, 4 * source_error + 1e-12)
+        self.assertLess(maximum_error, 2 / 275)
 
     def test_all_returned_truth_tables_have_no_quartic_coefficient(self):
         # Unknowns are all h(p,q) and q(x) entries, with no source-degree

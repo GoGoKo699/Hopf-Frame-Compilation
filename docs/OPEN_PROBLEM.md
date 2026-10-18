@@ -34,23 +34,32 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+The current [research checkpoint](../research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
 retains the five-layer partial-normalizer cocycle. The
 [five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
 gives degree at most seven (four for a visible outer shear) when the
 specified middle representation is Clifford-valued, at error below
 $`\sqrt2/12`$. A separate Pauli-valued comparison subcase gives degree
-at most two below $`\sqrt2/12`$, even with a non-Clifford middle.
-The general five-layer case remains open. A
-[one-band theorem](../research/depth/ONE_BAND_AXIS_MATCHING.md) matches
-individual native T axes, but intermediate non-Clifford cancellation
-prevents its automatic iteration. The next question is whether a bounded
-relation extends the new cube argument to non-Pauli Clifford comparisons.
-[Hybrid phase relocation](../research/depth/READ_ONLY_PHASE_RELOCATION.md)
-attains scalar CCZ in four layers with 64 T gates, 218 Cliffords and
-17 dirty helpers, while the [returned diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-forces scalar Boolean degree at most three for arbitrary unit-circle source
-phases. Neither mechanism improves the complete-frame asymptotic law.
+at most two at the same radius, even with a non-Clifford middle.
+The new outer-axis-normalizer subcase permits non-Pauli comparisons and a
+non-Clifford middle: degree is at most 244, or 41 when the original target
+shear is invisible. These are conservative finite bounds under the explicit
+individual-axis permutation hypothesis. The general five-layer case remains
+open. Preserving the axis span alone is the next unresolved degree branch:
+its projective cocycle is now exact below error $`\sqrt2/24`$, but its
+third-level right action has no proved finite feature law.
+
+A [baseline-word obstruction](../research/depth/BASELINE_WORD_OBSTRUCTION.md)
+rules out cancelling every independent native baseline while retaining a
+central Boolean target in a fixed word. An
+[exact four-factor scalar construction](../research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
+realizes arbitrary Boolean phases using paid sources of growing native
+cost. Neither an abstract representation count nor baseline cancellation
+alone controls general depth; the shared native source and return equations
+must be retained. The [diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+still forces degree at most three below full operator error $`2/275`$,
+even with arbitrary unit-circle source phases. These results do not improve
+the complete-frame asymptotic upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and
@@ -172,7 +181,7 @@ The inherited lower bounds also match depth on every nonempty interval
 \qquad T^\star=\Theta(NL/b),\quad D_T^\star=\Theta(NL/b^2).
 ```
 
-The one-clean high-precision branch gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L>N/n^2`$,
+The one-clean high-precision branch gives the stronger $`D_T=O(NL/b^2+L)`$ whenever $`L\gt N/n^2`$,
 with the same count, Clifford, and error bounds. R79 charges the native
 subtree decoder's precision-dependent source calls and all-work predicates.
 Its protected suffix allocation absorbs their table volumes with absolute
