@@ -178,6 +178,91 @@ class IsolatedNativeCoreStructure(unittest.TestCase):
             count += 1
         self.assertEqual(count, 8)
 
+    def test_coupled_rows_localize_all_involutory_corrections(self):
+        rows = [0b001111, 0b111100]
+        b_width = 6
+        reduced = []
+        for row in rows:
+            for pivot, old in reduced:
+                if row >> pivot & 1:
+                    row ^= old
+            reduced.append(((row & -row).bit_length() - 1, row))
+        free = [j for j in range(b_width)
+                if j not in [pivot for pivot, _ in reduced]]
+        width = len(free)
+
+        def project(word):
+            for pivot, row in reduced:
+                if word >> pivot & 1:
+                    word ^= row
+            return sum(((word >> p) & 1) << j for j, p in enumerate(free))
+
+        beta = [project(1 << j) << width for j in range(b_width)]
+        c = [sum(((row >> p) & 1) << j for j, p in enumerate(free))
+             for row in rows]
+        self.assertEqual(_rank(beta), b_width - len(rows))
+        self.assertTrue(all(_pair(c[j], beta[i], width) == (rows[j] >> i & 1)
+                            for i in range(b_width) for j in range(len(rows))))
+        identity = tuple(1 << j for j in range(2 * width))
+
+        def image(matrix, value):
+            result = 0
+            for j, column in enumerate(matrix):
+                if value >> j & 1:
+                    result ^= column
+            return result
+
+        def product(left, right):
+            return tuple(image(left, column) for column in right)
+
+        def transvection(axis):
+            return tuple(e ^ (axis if _pair(axis, e, width) else 0)
+                         for e in identity)
+
+        active_count = correction_count = uniform_count = even_count = 0
+        for u in range(1 << b_width):
+            active = [j for j, row in enumerate(rows) if (u & row).bit_count() % 2]
+            p = q = identity
+            for j in active:
+                p = product(transvection(c[j]), p)
+            for i, axis in enumerate(beta):
+                if u >> i & 1:
+                    q = product(transvection(axis), q)
+            base = product(p, q)
+            ws = []
+            for j in active:
+                w = 0
+                for i, axis in enumerate(beta):
+                    if (u & rows[j]) >> i & 1:
+                        w ^= axis
+                ws.append(w)
+            square = product(base, base)
+            self.assertEqual(_rank([a ^ b for a, b in zip(square, identity)]),
+                             2 * _rank(ws))
+            if not active:
+                continue
+            active_count += 1
+            c_sum = 0
+            for j in active:
+                c_sum ^= c[j]
+            for h in range(1 << (2 * width)):
+                corrected = product(base, transvection(h))
+                if product(corrected, corrected) != identity:
+                    continue
+                correction_count += 1
+                even_count += len(active) % 2 == 0
+                self.assertEqual(_rank(ws), 1)
+                self.assertNotEqual(h, 0)
+                self.assertIn(h, (ws[0], c_sum, ws[0] ^ c_sum))
+                # Native A isotropy requires one bit across the whole class.
+                pairings = {_pair(h, axis, width) for axis in beta}
+                if len(pairings) == 1 and h != ws[0]:
+                    uniform_count += 1
+        self.assertEqual(active_count, 48)
+        self.assertEqual(correction_count, 104)
+        self.assertGreater(even_count, 0)
+        self.assertEqual(uniform_count, 0)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,47 +15,48 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: unbounded paired cores and controlled-Pauli transport
+## Current checkpoint: coupled incidence and a complete inverse query
 
-The [current round](research/depth/UNBOUNDED_CONTROL_SESSION_RESULT.md)
-began at verified main `ad67843` (PR #178). The
-[isolated-core theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
-removes the bound on the number of isolated paired cores in an exact
-three-native-band C3 source. Commuting control-X images force the fixed
-target-axis signs to be affine. Checkable activation conditions therefore
-certify diagonal C3 sources at arbitrary total overlap, retaining the
-six-layer degree bounds **78/26** below full error $`\sqrt2/8`$.
-This extends the earlier [overlap-two theorem](research/depth/TWO_OVERLAP_SOURCE_STRUCTURE.md);
-it also excludes a lone wider orbit containing all B/C noncommutation.
-Coupled growing relation components remain open.
+The [current round](research/depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
+began at verified main `b7646d3` (PR #179). The
+[native source theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+now closes arbitrary overlapping nonzero-character incidence: if every
+zero-character B axis commutes with C, exact full-space C3 forces each
+interacting class to be an isolated two-axis pair. Native A-band
+commutation supplies the restriction missing from a rank-only argument.
+The resulting diagonal-C3 certificate retains six-layer degree bounds
+**78/26** below full error $`\sqrt2/8`$. Bad zero-character interactions
+remain outside this extension.
 
-A separate [controlled-Pauli transport theorem](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
-gives width-independent bounds **174/58** for general/visible target
-degree at the same radius. It assumes an exact C3 source with
-controlled-Pauli blocks and its stated exact Pauli-domain or fiber
-compatibility condition. C3 derives quadratic block labels and a bounded
-literal phase form, including a necessary quartic term. The known
-Gottesman–Mochon example satisfies this source hypothesis and is not
-diagonal C3 in fixed Clifford coordinates. Its paid native realization
-is a source fixture, not a returned six-layer query. Neither source
-certificate is inferred from workspace return.
+The [controlled-Pauli theorem](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
+no longer needs a separate Pauli-domain or fiber-compatibility premise.
+A signed fixed-Clifford normalization derives the canonical domain for
+every scalar-Pauli computational-block source. If that source is C3,
+the existing uniform **174/58** general/visible degree bounds apply at
+the same radius. This includes the known non-semi-Clifford source;
+neither this block form nor C3 membership follows from workspace return.
 
-The [cycle-source proof](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-now records the exact block-pivot identity and a constant-depth product
-XOR. Their proposed conversion to an in-place dirty update leaves an
-inverse action on the helper and repeats child inversions. A determinant
-invariant excludes repair using only the stated frozen-coefficient
-whole-array shears. This is an interface obstruction; the general native
-construction question remains open. The retained cycle schedule still
-has cubic counts and linear depth.
+The [cycle proof](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+now supplies an exact complete unitriangular-inverse word query and phase
+source with **logarithmic T-depth**, cubic T/Clifford counts, cubic
+arbitrary dirty workspace, and no clean work. The computation leaves
+helper garbage temporarily, reads the helper-independent principal
+inverse, then applies its actual inverse to return every wire. Direct
+controlled versions are charged too. This resolves the earlier balanced
+recurrence for the completed query, while preserving the scoped
+frozen-coefficient obstruction to a returned in-place subroutine.
+The coefficient inputs change internally; native read-only access and
+an arbitrary-table encoding within R98's budgets remain unproved.
+The full cycle conjunction's separate transport cost is unchanged.
 
-The next question is **how full C3 membership constrains overlapping
-orbit-incidence components of an actual three-native-band source**.
-Many isolated controls are now covered; interacting even-incidence rows
-remain the structural issue. Seek a width-independent signed transport
-bound, or an actual native countermechanism, while testing alternative
-representations. General non-C3 prefixes, one-clean work, address mixing
-and a robust recurrence for growing depth remain separate gaps.
+The next source question is **whether bad zero-character interactions
+in an exact three-native-band C3 source admit scalar-Pauli block
+coordinates, or another width-independent signed transport invariant**.
+The new normalization makes that weaker structural target sufficient
+for 174/58 transport even when diagonalization fails. An alternative
+native representation must be checked before any structural parameter
+is promoted to a depth lower bound. General non-C3 prefixes, one-clean
+work, address mixing and a robust growing-depth recurrence remain gaps.
 
 R96 remains the strongest unconditional complete-frame upper law; R79
 remains selected Result D, R97 remains scoped, and R98 remains conditional.

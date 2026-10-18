@@ -11,14 +11,17 @@ for a controlled source, read-only-address transport, both actual inverses,
 and arbitrary-output XOR. Thus the logarithmic character-degree bound for
 commutative coefficient algebras does not extend to this representation.
 
-This is a representation escape, not a query improvement. The demonstrated
+The character commutator is a representation escape; its demonstrated
 output is a single conjunction. The explicit parallel native word has
 $`T,G=O(d^3)`$, extra dirty width $`d^2+d`$, and
 $`D_T\le64(d-1)`$. The retained strictly read-only conjunction already
 has logarithmic depth with smaller polynomial count and width; the ordinary
 completed-circuit MCX baseline is smaller still. Section 6 gives their
 distinct contracts. No arbitrary-table reader, sublogarithmic depth law,
-or R91/R96/R98 improvement follows.
+or R91/R96/R98 improvement follows. Section 5d separately gives the
+structured inverse-word query and cycle source logarithmic T-depth, with
+cubic count and arbitrary dirty width. Its matrix inputs change internally,
+and the full conjunction's separate transport cost remains unchanged.
 
 ## 1. The algebra and a nonlinear Boolean character
 
@@ -491,7 +494,7 @@ to the controlled inverse-word query, adding $`2r`$ Clifford gates.
 
 ### What this duality does not supply
 
-Neither (13b) nor (13e) reduces the currently established source depth.
+Neither (13b) nor (13e) alone reduces the source depth.
 It identifies the exact owed operation: a faster source is a faster
 complete unitriangular inverse-word query in another basis. Ordinary
 clean-scratch matrix algorithms do not automatically realize it.
@@ -512,8 +515,10 @@ four-corner product echo repeats the recursive queries. Those identities
 alone give no logarithmic-depth recurrence. This is the same distinction
 between a cheap doubled shear and a paid in-place map exposed by the
 [Gaussian inverse analysis](GAUSSIAN_INVERSE_EXTRACTION.md#2-the-cheap-gaussian-shear-does-not-supply-the-inverse-map).
-The new source equivalence supplies neither a faster complete circuit
-nor an unrestricted depth lower bound.
+The source equivalence alone supplies neither a faster complete circuit
+nor an unrestricted depth lower bound. Section 5d supplies the additional
+native construction by retaining helper counter-actions until the final
+readout and actual uncompute.
 
 ## 5b. Exact inversion by commuting quadratic pivots
 
@@ -680,11 +685,13 @@ fair comparisons in Section 6 are unchanged. This identity provides
 neither a faster complete reader nor an unrestricted native depth
 lower bound.
 
-## 5c. The remaining dirty in-place block step
+## 5c. The isolated dirty in-place block boundary
 
 A balanced block continuation exposes a precise helper-return failure.
 The exact block formula and the scoped array-shear invariant below
 identify it without giving a new native-depth upper or lower bound.
+This is the historical boundary for a returned in-place subroutine;
+Section 5d bypasses that interface for the completed query.
 
 ### What a contiguous block of commuting pivots does
 
@@ -874,14 +881,305 @@ The existing native pivot word uses such coordinate operations and is
 not obstructed. Keeping helper counter-actions across a larger algorithm
 with different coefficient operators is also not ruled out here.
 
-The attempted balanced recurrence therefore stops at (13p). A useful
-constructive continuation must supply the in-place block map with full
-return, or leave this move set through a fully charged coordinate or
-interference construction. The cubic-count, linear-depth cycle source
-and both conjunction comparisons in Section 6 remain unchanged. A
-faster structured inverse-word query would also need a separate
-arbitrary-table encoding and the complete R98 ledger before supplying a
-general reader.
+This attempted balanced recurrence therefore stops at (13p). Section 5d
+instead keeps the helper action live until after a readout, with one
+diagonal-inversion position per level and a final actual uncompute. That
+completed-query construction leaves the isolated returned-helper move
+set of this invariant. The linear-depth, smaller-work construction in
+Section 5b and both conjunction comparisons in Section 6 remain valid.
+Even a faster structured inverse-word query needs a separate arbitrary-table
+encoding and the complete R98 ledger before supplying a general reader.
+
+## 5d. A logarithmic-depth complete inverse-word query
+
+The two-shear block step below computes the desired inverse coordinates
+independently of its arbitrary helpers, while leaving an invertible
+counter-action on those helpers. Keeping that counter-action until an
+actual compute/readout/uncompute completes gives a valid full-return
+inverse-word query. It avoids the failed three-child-call recurrence in
+Section 5c. It does not give returned-work in-place inversion by itself,
+or native read-only use of the matrix coefficients.
+Here $`n=d\ge1`$ is the matrix order of the cycle representation.
+
+### The two-shear block identity
+
+For a unit upper input matrix, write
+
+```math
+X=\begin{pmatrix}A&B\\0&C\end{pmatrix},\qquad
+N(E)=AEC.
+```
+
+The matrices A,C are unit upper of orders a,c; their unit diagonals are
+constants, not initialized qubits. B and a separate helper E are arbitrary
+a-by-c arrays. Execute, in chronological order:
+
+1. $`B\mathrel{+}=AEC`$, using the original diagonal coefficients.
+2. Recursively invert A and C in parallel, allowing private helper
+   garbage but requiring their principal inverse coordinates to be
+   independent of all those helper inputs.
+3. $`E\mathrel{+}=A^{-1}BC^{-1}`$, using the now-inverted diagonal coefficients.
+4. Swap B and E entrywise.
+
+The first shear gives $`B_1=B_0+N(E_0)`$. The second gives
+
+```math
+E_1=E_0+N^{-1}(B_1)=N^{-1}(B_0).
+```
+
+Thus the completed principal block is the correct inverse and the
+parent helper has the explicit action
+
+```math
+B_{\rm out}=A^{-1}B_0C^{-1},\qquad
+E_{\rm out}=B_0+A E_0 C.                              \qquad(13s)
+```
+
+The child helpers undergo their own recursive counter-actions. Neither
+child computation touches B or E. In particular, the second shear never
+needs the original coefficient blocks again. There is only one recursive
+inversion position, rather than an inversion, its reversal, and another
+inversion.
+
+### Exact all-input computation, with garbage kept live
+
+Recursively split every vertex interval into balanced consecutive halves.
+At every internal node v, reserve a distinct $`a_v\times c_v`$ arbitrary
+array $`E_v`$. The total number of these permanent block-helper bits is
+
+```math
+\sum_v a_vc_v=\binom n2=:q.
+```
+
+Every original coefficient appears in exactly one off-diagonal block $`B_v`$.
+For fixed original X, the helper action at that node is
+$`E_v\mapsto B_v+A_vE_vC_v`$, with the original diagonal submatrices
+$`A_v,C_v`$.
+Each is an invertible affine map. Temporary native work is returned by
+every completed product shear. Starting with $`V_1=I`$, the block identity
+and induction therefore give the exact native word
+
+```math
+\begin{aligned}
+V_n|U,e\rangle&=|\mathrm{Inv}(U),g_U(e)\rangle,\\
+\mathrm{Inv}(U)&=(I+U)^{-1}-I.
+\end{aligned}                                        \qquad(13t)
+```
+
+on every principal strict upper word U and every helper input e, with
+literal phase plus one. Here $`g_U`$ is a permutation on the entire helper
+fiber; permanent helper components have the node formula above, and
+unused temporary components return. No helper is assumed initialized.
+This is an all-column unitary statement, hence includes arbitrary
+external references. The helpers in (13t) deliberately have not returned.
+
+The actual inverse of $`V_n`$ reverses the native gate order and adjoints
+every gate. It restores exactly the input U,e from each output in (13t).
+An independently chosen inversion routine is not substituted for that inverse.
+
+### Native resources and simultaneous work
+
+Use the paid two-sided XOR shear from Section 5c for each of the two
+parent shears. For a node with sizes a,c, put
+
+```math
+\tau=c\binom a2+a\binom c2
+     =\binom{a+c}3-\binom a3-\binom c3.
+```
+
+One shear has $`T=16\tau`$, $`G\le40\tau+4ac`$, T-depth at most 32, and
+extra arbitrary work
+
+```math
+W_S=ac+\max\{c\binom a2,a\binom c2\}.
+```
+
+This work includes its arbitrary product accumulator and private phase
+helpers. Shared product targets use a single enclosing Hadamard per
+target, with distinct phase helpers for the constituent products. All
+source matrices enter that shear only as native Clifford controls.
+The diagonal blocks are changed by their recursive inversions between
+the two shears; the complete $`V_n`$ is not native read-only in U.
+
+The two shears plus ac swaps therefore cost $`32\tau`$ T gates and at most
+$`80\tau+11ac`$ elementary Cliffords. Summing over the recursion tree gives
+
+```math
+T_V=32\binom n3,\qquad
+G_V\le80\binom n3+11\binom n2.                       \qquad(13u)
+```
+
+The actual inverse has the same counts: $`V_n`$ uses only H,CNOT,T and
+$`T^\dagger`$, so every Clifford in the native word is self-adjoint.
+
+The two children use disjoint principal blocks and private work pools,
+so their T bands run in parallel. Parent shears precede and follow both
+children. Nodes of size at most two have no T gates. Hence, with
+
+```math
+h_n=\max\{\lceil\log_2 n\rceil-1,0\},
+\qquad D_T(V_n)\le64h_n.                             \qquad(13v)
+```
+
+For the simultaneous work allocation, set $`W(1)=0`$ and, for the balanced
+split $`a=\lfloor n/2\rfloor`$, $`c=\lceil n/2\rceil`$, reserve the parent E
+separately from a pool used in three successive stages: the first shear,
+the parallel children, and the second shear. This gives the exact reservation
+
+```math
+W(n)=ac+\max\{W(a)+W(c),W_S\}.                       \qquad(13w)
+```
+
+The pool may contain child garbage at the second shear. This is valid:
+the shear's arbitrary-work contract returns that current state exactly,
+including its correlations, and $`V_n`$'s later actual inverse will undo the
+child garbage. B and the parent E remain outside that pool throughout.
+
+For the balanced split, (13w) has the closed form
+
+```math
+W(n)=\frac{ac(c+3)}2.                                \qquad(13x)
+```
+
+One way to check local dominance is to inductively use
+$`W(m)\le m^2(m+7)/16`$. For $`c\in\{a,a+1\}`$ and $`a\ge1`$,
+
+```math
+\frac{a^2(a+7)+c^2(c+7)}{16}
+ \le\frac{ac(c+1)}2=W_S.
+```
+
+The claimed closed form also satisfies that induction bound by the two
+parity cases for m. Thus the shear pool dominates the simultaneous child
+pools, proving (13x) for $`n\ge2`$. The base case $`n=1`$ is separate.
+At $`n=2`$, the principal inverse is already the input, but this literal schedule still runs its
+Clifford-only two-shear recursion and reserves $`W(2)=2`$. It deliberately
+keeps that helper counter-action, rather than replacing $`V_2`$ by identity.
+In particular, $`W(n)\ge q`$: all permanent node arrays coexist, but may
+also serve as returned scratch at another recursion stage. There are zero
+clean bits.
+
+### A complete inverse-word query
+
+Let L be an arbitrary lower word of size $`r=n(n+1)/2`$. After $`V_n`$, copy each
+strict upper principal output $`U'_{ij}`$ by CNOT into $`L_{ji}`$, and apply X
+to each diagonal $`L_{ii}`$. Then execute the actual $`V_n`$ inverse. The middle
+word changes only L, so every principal and helper coordinate required
+by that inverse is still exactly the output from (13t). The result is
+
+```math
+\begin{aligned}
+|U,L,e\rangle&\longmapsto|U,L\mathbin\oplus\mathcal R(U),e\rangle,\\
+\mathcal R(U)_{ji}&=[(I+U)^{-1}]_{ij}.
+\end{aligned}                                        \qquad(13y)
+```
+
+This is a literal full-input query with every helper returned. Its
+resources, excluding the q matrix inputs and r arbitrary output bits,
+are
+
+```math
+\begin{aligned}
+T_Q&=64\binom n3,\\
+G_Q&\le160\binom n3+23q+4n,\\
+D_T(Q)&\le128h_n,\\
+W_Q&=W(n).
+\end{aligned}                                        \qquad(13z)
+```
+
+Here X is expanded as $`HS^2H`$. The actual reversed query has the same
+T-count and depth; if every $`S^\dagger`$ is expanded as $`S^3`$, its displayed
+elementary Clifford bound is $`160\binom n3+23q+8n`$. These are literal-word
+counts; no free inverse normalization is assumed.
+
+There is also a direct controlled query. At the middle readout, replace
+the q CNOTs by Toffolis controlled on h and $`U'_{ij}`$, and the n diagonal
+X gates by CNOTs from h. Use q existing work bits as the private phase
+helpers for those Toffolis. $`W(n)\ge q`$, and their current garbage values
+are permitted by the exact private-helper echo. Each returns its current
+value before $`V_n^\dagger`$ begins. All q products run in eight T layers.
+Thus the controlled full-word query has
+
+```math
+\begin{aligned}
+T_{Q_h}&\le64\binom n3+8q,\\
+G_{Q_h}&\le160\binom n3+42q+n,\\
+D_T(Q_h)&\le128h_n+8,\\
+W_{Q_h}&=W(n).
+\end{aligned}                                        \qquad(13aa)
+```
+
+Its actual inverse has the same displayed ledger. The control h is
+used only as a native Clifford control. On the h-zero sector the entire
+completed operation is identity, including all helper garbage. The
+matrix inputs U return only at completion and are not native read-only.
+
+### Cycle source and precise scope
+
+Alternatively put the inverse-pairing phase between $`V_n`$ and its actual
+inverse: $`\mathrm{CZ}(U'_{ij},L_{ji})`$ for $`i\lt j`$ and $`Z(L_{ii})`$
+on the diagonal. This gives the full cycle source
+$`D_\chi|U,L,e\rangle=(-1)^{\chi(U,L)}|U,L,e\rangle`$, with
+
+```math
+\begin{aligned}
+T_{D_\chi}&=64\binom n3,\\
+G_{D_\chi}&\le160\binom n3+25q+2n,\\
+D_T(D_\chi)&\le128h_n,\qquad W_{D_\chi}=W(n).
+\end{aligned}                                        \qquad(13ab)
+```
+
+Each CZ costs three elementary Cliffords, and $`Z=S^2`$ costs two.
+The actual inverse changes the last Clifford term from $`2n`$ to $`6n`$
+under the same H,S,CNOT convention. This agrees with the existing
+phase/query duality, though the direct readout (13y) cancels unnecessary
+Hadamards.
+
+The controlled source is equally direct. Between the same computation
+and its actual inverse, use $`\mathrm{CCZ}(h,U'_{ij},L_{ji})`$ on each
+strict upper coefficient and $`\mathrm{CZ}(h,L_{ii})`$ on each diagonal.
+The former use the phase form of the same private-helper echo, with no
+target Hadamards: eight T gates and eighteen CNOTs per coefficient.
+Its q helpers are borrowed from the current $`V_n`$ work and restored
+before uncomputation, just as in (13aa). Thus
+
+```math
+\begin{aligned}
+D_{\chi,h}|h,U,L,e\rangle
+ &=(-1)^{h\chi(U,L)}|h,U,L,e\rangle,\\
+T_{D_{\chi,h}}&\le64\binom n3+8q,\\
+G_{D_{\chi,h}}&\le160\binom n3+40q+3n,\\
+D_T(D_{\chi,h})&\le128h_n+8,\qquad W_{D_{\chi,h}}=W(n).
+\end{aligned}                                        \qquad(13ac)
+```
+
+The control h occurs only as a native Clifford control, including in
+the diagonal CZ realization. All its work returns on both control
+sectors. Its actual inverse has the same displayed ledger, since this
+word contains no S gates. No fresh lower array or controlled invocation
+of $`V_n`$ is needed. The unconditional middle readout in (13ab) has the
+same full-return property; phase entanglement with L or an external
+reference does not change the all-input inverse identity.
+
+Every stated circuit is exact. If a substitute V approximates its entire
+garbage-output permutation (13t) in full operator norm by $`\delta`$, using
+its actual inverse around any of these exact readouts gives error at most
+$`2\delta`$, including the work-return error and external references.
+The readout remains a full-space unitary when it borrows the computation's
+dirty work, so the same two-term operator-norm estimate applies. A guarantee
+only on principal coordinates would not suffice. No approximate subroutine
+is used in the exact construction above.
+
+This is a logarithmic-depth structured inverse-word query and phase
+source with cubic T/G count and cubic arbitrary-work width. It is not a
+returned-work in-place inversion interface, a native-read-only-U query,
+or an arbitrary R98 table reader. The unchanged cycle transport $`P_x`$
+still has the previously retained linear-depth schedule, so improving
+the source alone does not improve the full cycle conjunction circuit.
+The same conjunction already has the logarithmic-depth read-only dirty
+baseline with smaller polynomial count/work, and the ordinary completed
+MCX baseline is smaller still. No improvement over those comparisons or
+the general R91/R96 frontier is claimed.
 
 ## 6. Fair comparison and the remaining depth question
 
@@ -920,9 +1218,10 @@ path contains the distinguished edge, fixing the starting factor in delta.
 Each nonempty vertex subset consequently appears once. There are
 $`2^d-1`$ such monomials. The factorization is a polynomial-size way of
 evaluating this source; expanding every monomial in parallel is not a
-square-root-Q resource construction. A determinant or block-doubling
-algorithm would still need a full-input native realization with arbitrary
-scratch and its complete return proof.
+square-root-Q resource construction. Section 5d now supplies a full-input
+native block construction for this structured source, with arbitrary
+scratch and complete return at cubic width. It still supplies neither
+an arbitrary-table encoding nor a faster complete conjunction transport.
 
 There is a precise limitation on accelerating this transport by ordinary
 reversible arithmetic. Its inverse coordinate is
@@ -997,7 +1296,13 @@ physical column of the eight-wire native inversion, both pivot orders
 and their actual inverses, and the compute-pair-uncompute source phase.
 The block checks retain the contiguous partial-closure formula, the
 actual helper counter-action, a literal native two-sided XOR shear, and
-the full finite group of two-array shears over the dual-number ring. The
+the full finite group of two-array shears over the dual-number ring.
+The recursive checks exhaust the native two- and three-vertex computation
+on all helper columns and its actual inverse, check a shared product target,
+and verify the parallel native count/depth schedule through nine vertices.
+They also check independent back substitution and the explicit parent
+helper action with live nonlinear child garbage, all columns of the direct
+and controlled small word query, and the cycle-source readout pairing. The
 [commutative tests](../../tests/test_nonlinear_character_transport.py)
 also check affine-cube products in a genuinely multivariate nilpotent
 algebra. These are bounded evidence; the proofs above and in the
