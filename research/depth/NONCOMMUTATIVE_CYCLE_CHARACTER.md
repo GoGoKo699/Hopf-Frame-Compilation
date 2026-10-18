@@ -515,6 +515,171 @@ between a cheap doubled shear and a paid in-place map exposed by the
 The new source equivalence supplies neither a faster complete circuit
 nor an unrestricted depth lower bound.
 
+## 5b. Exact inversion by commuting quadratic pivots
+
+There is a full-input in-place realization of the inverse needed in
+Section 5a whose completed quadratic pivots commute. This gives an exact
+path identity and a cubic-count, linear-depth native source. It does not
+reduce the established asymptotic depth or establish native read-only U.
+
+Use the strictly upper triangular U of Section 5a, with indices from zero
+through d minus one. For each internal vertex $`1\le k\le d-2`$, define
+
+```math
+[T_k(U)]_{ij}=
+\begin{cases}
+U_{ij}+U_{ik}U_{kj},&i\lt k\lt j,\\
+U_{ij},&\text{otherwise}.
+\end{cases}                                               \qquad(13f)
+```
+
+The source coordinates lie in column k above its diagonal and row k to
+its right. Neither set meets the target rectangle $`i\lt k\lt j`$.
+Thus all updates in one pivot use unchanged sources, commute as Boolean
+Toffolis, and make $`T_k`$ an involution on every upper matrix word.
+
+### Path formula and commutation
+
+For a set S of internal vertices, apply each pivot in S once in any order.
+The resulting coordinate is
+
+```math
+[T_S(U)]_{ij}
+ =\sum_{\substack{i=v_0\lt v_1\lt\cdots\lt v_m=j\\
+                 \{v_1,\ldots,v_{m-1}\}\subseteq S}}
+       \prod_{a=0}^{m-1}U_{v_a,v_{a+1}},                   \qquad(13g)
+```
+
+where every edge coefficient on the right is an original input bit.
+The direct-edge path is included, and all arithmetic is over
+$`\mathbb F_2`$. For empty S this is U. Suppose the formula holds for S
+and add a pivot k outside S. Existing paths avoid k. The product of the
+current entries at $`(i,k)`$ and $`(k,j)`$ enumerates exactly the paths
+through k whose other internal vertices are in S: their prefix vertices
+are strictly below k and their suffix vertices strictly above k. The two
+pieces have no common internal vertex, and every path through k has one
+such decomposition. The added product therefore supplies precisely the
+missing paths, proving the formula by induction for every pivot order.
+
+In particular, the completed maps $`T_k`$ commute pairwise. Together
+with involutivity, they satisfy $`T_ST_{S'}=T_{S\mathbin\triangle S'}`$.
+For all internal vertices the path sum is the finite geometric series:
+
+```math
+\mathrm{Inv}(U)
+ :=\left(\prod_{k=1}^{d-2}T_k\right)(U)
+ =U+U^2+\cdots+U^{d-1}=(I+U)^{-1}-I.                  \qquad(13h)
+```
+
+For d equal to one or two the product is empty and the same formula
+holds. In particular $`\mathrm{Inv}^2=I`$ as a permutation of
+upper matrix words; this is distinct from an inverse word query into a
+separate arbitrary output array.
+
+### A literal zero-clean native schedule
+
+Pivot k has $`m_k=k(d-1-k)`$ product updates. Give every update its own
+arbitrary helper and use the private-dirty echo from Section 4. Its
+relative-phase subwords act on the corresponding row coefficient,
+target coefficient and private helper; its translation is the CNOT
+from the column coefficient to that helper. Across a pivot the source
+sets and target set are disjoint, the targets are distinct, and all
+phase targets are private helpers. Each of the four relative-phase
+bands therefore groups into one physical T layer, including when row
+or column sources are shared. The two relative-phase words and the two
+translations implement all $`m_k`$ products in eight T layers, with
+$`8m_k`$ T gates and $`20m_k`$ elementary Cliffords. Every helper returns
+exactly for every input; no initialized copy of a row, column or product
+is used.
+
+Execute these pivots sequentially, in any fixed order, reusing the
+helper pool only after each pivot returns it. Since
+$`\sum_k m_k=\binom d3`$ and
+$`\max_k m_k=\lfloor(d-1)^2/4\rfloor`$, the resulting literal native
+word V has
+
+```math
+T_V=8\binom d3,\qquad G_V=20\binom d3,\qquad
+D_T(V)\le8\max\{d-2,0\},\qquad
+W_V=\left\lfloor\frac{(d-1)^2}{4}\right\rfloor.          \qquad(13i)
+```
+
+Empty sums and the helper maximum are zero when d is at most two.
+Here $`G`$ uses the same elementary Clifford convention as Section 4,
+and $`W_V`$ counts extra arbitrary helpers, excluding the
+$`q=d(d-1)/2`$ matrix bits. The exact full-space action is
+
+```math
+V|U,e\rangle=|\mathrm{Inv}(U),e\rangle
+\quad\text{for every }U\in\mathbb F_2^q,
+\ e\in\mathbb F_2^{W_V}.                               \qquad(13j)
+```
+
+All phases are literal plus one. By linearity this includes arbitrary
+superpositions and external references. Its actual gate-by-gate inverse
+has the same T, G and depth ledger and implements the same ideal
+involution. An implementation must still use that actual inverse when
+a surrounding word calls for $`V^\dagger`$; commutation of the completed
+pivots does not license dropping an inverse or a native relative phase.
+The approximation error here is zero.
+
+For completeness, this supplies a second uncontrolled cycle source.
+Execute V on U, then CZ between $`U_{ij}`$ and $`L_{ji}`$ for all
+$`i\lt j`$ and Z on each diagonal $`L_{ii}`$, then the actual
+$`V^\dagger`$. Equation (13h) and the inverse-pairing identity (13a)
+give exactly $`(-1)^{\chi(U,L)}`$, returning U, L and all helpers.
+With CZ implemented by H, CNOT, H and forward Z by $`S^2`$, its ledger is
+
+```math
+T_D=16\binom d3,\quad
+G_D=40\binom d3+3q+2d,\quad
+D_T(D)\le16\max\{d-2,0\},\quad W_D=W_V.                \qquad(13k)
+```
+
+The $`q+r=d^2`$ U,L wires coexist with the helper pool. In an elementary
+H,S,CNOT convention with $`S^\dagger=S^3`$, the actual inverse has
+$`G_{D^\dagger}=40\binom d3+3q+6d`$; its T-count and depth agree with
+the forward word. This keeps literal inverse accounting distinct even
+though the ideal phase source is self-adjoint. Applying the controlled
+wrapper (13d) still owes all of (13e), including its fresh r-bit array
+and the simultaneous allocation $`r+\max\{W_D,r\}`$; (13k) is not a
+free controlled source.
+
+### Why this does not give parallel inversion
+
+Commutation here concerns completed pivots, not every Toffoli or native
+subword across pivots. For d equal to four, put
+```math
+\begin{aligned}
+a&=U_{01},& b&=U_{12},& c&=U_{23},\\
+p&=U_{02},& q'&=U_{13},& s&=U_{03}.
+\end{aligned}
+```
+The two pivots update
+
+```math
+T_1:\ (p,s)\mapsto(p+ab,s+aq'),\qquad
+T_2:\ (q',s)\mapsto(q'+bc,s+pc).
+```
+
+Either order gives $`s\mapsto s+aq'+pc+abc`$. Individual updates to
+p and updates controlled by p do not commute; the other cross-pair
+produces the matching cubic term in the reverse pivot order. A single
+simultaneous evaluation of every quadratic update on original U would
+instead give $`U+U^2`$, missing $`U^3`$ on a three-edge chain. Thus the
+path identity alone does not put overlapping native pivots in one T
+band or give a balanced-block depth recurrence. The demonstrated bound
+in (13i), and hence (13k), remains linear in d.
+
+Moreover V changes matrix-coordinate wires by nonlinear updates.
+The resulting source returns U only at completion; it does not keep U
+restricted to native Clifford controls. The word-query equivalence
+(13b) therefore inherits no strict read-only-U guarantee from this
+implementation. The original read-only conjunction circuit and its
+fair comparisons in Section 6 are unchanged. This identity provides
+neither a faster complete reader nor an unrestricted native depth
+lower bound.
+
 ## 6. Fair comparison and the remaining depth question
 
 For the **same strictly read-only-address interface**, the retained
@@ -621,7 +786,12 @@ order and actual inverse, all-column commutator return, and one complete
 native arbitrary-output query with its literal resource counts. Separate
 checks cover the shared-control four-layer phase word and colored pivot
 ordering, the inverse-pairing identity and Fourier word-query equivalence,
-and the complete dirty controlled-source wrapper. The
+and the complete dirty controlled-source wrapper. The commuting-pivot
+checks exhaust small partial path sets and group actions, compare the full
+inversion with independent back substitution, and detect the missing
+cubic path in simultaneous quadratic updates. They also check every
+physical column of the eight-wire native inversion, both pivot orders
+and their actual inverses, and the compute-pair-uncompute source phase. The
 [commutative tests](../../tests/test_nonlinear_character_transport.py)
 also check affine-cube products in a genuinely multivariate nilpotent
 algebra. These are bounded evidence; the proofs above and in the
