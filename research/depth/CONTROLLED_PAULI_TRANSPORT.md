@@ -804,6 +804,368 @@ noncommuting section target labels, essential literal sign corrections,
 and a degenerate target-domain direction promoted to a control. Its
 different left and right endpoint coordinates preserve an exact Clifford
 endpoint and the actual inverse, including a nonreal scalar. These
-bounded fixtures support the explicit mechanisms; the degree bounds and
-source-uniform radius follow from the proof above.
+checks are supplemented by the intrinsic criterion in section 10: exact
+bitmaps check all 32,768 physical columns of the fifteen-wire HRT source
+and its actual inverse, its signed Clifford generator images, complete
+Pauli domain from a common fixed space, and a failing symplectic product.
+No fifteen-wire dense matrix is used. These bounded fixtures support the
+explicit mechanisms; the degree bounds and source-uniform radius follow
+from the proof above.
 
+## 10. An intrinsic criterion and a strict C3 boundary
+
+The source hypothesis can be recognized without guessing computational
+controls or fixed endpoint Cliffords. This also separates the theorem
+from unrestricted C3 membership.
+
+### A signed support criterion
+
+For an arbitrary unitary U on n wires, let E be its exact Pauli-preserving
+domain. Write its actual signed action as
+
+```math
+U\tau(e)U^\dagger=(-1)^{s(e)}\tau(\varphi(e)),\qquad e\in E.
+```
+
+The binary map $`\varphi:E\to E'`$ is a symplectic isomorphism onto
+its image. Set $`R=E\cap E^\perp`$ and
+$`R'=\varphi(R)=E'\cap E'^\perp`$. Here orthogonality uses the binary
+symplectic pairing, and Pauli support means the labels of nonzero
+coefficients in the Hermitian Pauli expansion. The complex coefficients
+remain literal.
+
+**Intrinsic criterion.** U is fixed-left/right-Clifford equivalent to
+scalar-Pauli computational blocks if and only if
+
+```math
+\mathrm{Supp}(U\tau(p)U^\dagger)
+\subseteq a_p+R'\quad\text{for every }p\in E^\perp
+```
+
+for some support label $`a_p`$. Equivalently, any two support labels of
+the same image differ by an element of $`R'`$. If
+$`\dim E=2s+r`$, $`\dim R=r`$, and $`q=n-s-r`$, only the $`2q`$
+representatives of a symplectic basis of $`E^\perp/R`$ need checking.
+No C3 assumption is needed for this equivalence.
+
+To prove sufficiency, first extend the condition to all $`p\in R^\perp`$.
+Indeed, $`R^\perp=E+E^\perp`$, and multiplying by the singleton-support
+image of an E Pauli only translates support. Products also show that
+basis representatives suffice. Every such image commutes $`\tau(R')`$,
+so its support is contained in $`R'^\perp`$. Its coset defines a map
+
+```math
+\Phi:R^\perp/R\longrightarrow R'^\perp/R',
+\qquad p+R\longmapsto a_p+R'.
+```
+
+Adding an R label does not change this output coset. Multiplication of
+the actual images makes $`\Phi`$ additive. Write an image as
+$`\tau(a_p)D_p`$, where $`D_p`$ belongs to the algebra spanned by
+$`\tau(R')`$. All these algebra factors commute with all representatives.
+The exact commutation relation of two input Paulis therefore gives
+
+```math
+\langle\Phi(p),\Phi(t)\rangle=\langle p,t\rangle.
+```
+
+The two quotient spaces are nondegenerate of the same dimension, so
+$`\Phi`$ is a symplectic isomorphism. On $`E/R`$ it agrees with
+$`\varphi`$ modulo $`R'`$.
+
+Choose a complement of $`E/R`$ in $`R^\perp/R`$ and lift the images
+of its basis arbitrarily to $`R'^\perp`$. Together with the entire
+prescribed map $`\varphi`$ on E, these lifts give an isometry
+$`R^\perp\to R'^\perp`$: pairings depend only on quotient classes,
+and radical images pair trivially with all lifts. Symplectic completion
+extends it to the full Pauli space. Choose a Clifford C implementing
+that extension. Its signs on E differ from U's by a character, since
+their label maps and Pauli multiplication cocycles agree. An output
+Pauli corrects this character, making C match U literally on E.
+
+Then $`C^\dagger U`$ fixes E and has each relevant image supported
+in $`p+R`$. Conjugate by a fixed Clifford taking E to
+$`\mathcal P_S\oplus Z_R`$. The result has the exact full-operator
+decomposition
+
+```math
+H=I_S\otimes\sum_z|z\rangle\langle z|\otimes H_z.
+```
+
+For every residual target Pauli p, the support condition becomes
+$`H\tau(p)H^\dagger=\tau(p)D_p(Z_R)`$. Hermiticity and unitarity
+give $`D_p(z)\in\{1,-1\}`$. At each z, the exact Pauli multiplication
+law makes these signs a character of the entire target label space.
+Represent that character by a target Pauli $`P(z)`$. Then
+$`\tau(P(z))^\dagger H_z`$ commutes the full target algebra and is
+its actual scalar $`\lambda_z`$. Thus
+$`H_z=\lambda_z\tau(P(z))`$ literally, with no sector phase discarded.
+
+Conversely, section 1 normalizes every scalar-Pauli source while
+preserving its class. In its canonical coordinates an element of
+$`R^\perp`$ has no control-X component; its image is its unchanged
+spectator/target Pauli times a sign function of the controls. Its support
+lies in one coset of $`Z_R`$. Independent fixed endpoint Cliffords map
+Pauli support and both exact domains by their binary symplectic maps,
+preserving the criterion. This proves necessity in the original
+coordinates, including different input and output frames.
+
+### Closure under commuting phase gadgets on domain axes
+
+This closure is independent of C3. Let G be any commuting list of actual
+signed Pauli phase gadgets, including its literal scalar and arbitrary
+rotation angles. If every gadget axis belongs to $`E_U`$, then
+
+```math
+U\text{ has scalar-Pauli block form up to fixed endpoint Cliffords}
+\quad\Longleftrightarrow\quad UG\text{ does}.
+```
+
+For the forward implication, normalize $`H=AUB`$ by section 1. The
+transformed right factor $`G'=B^\dagger GB`$ has axes in
+$`E_H=\mathcal P_S\oplus Z_R`$. Each is a spectator Pauli times a
+control Z Pauli. Their spectator components commute, because the full
+axes commute and their control-Z components pair trivially. A fixed
+spectator Clifford diagonalizes this isotropic list while leaving H
+unchanged. Promote the involved spectator Z directions to controls.
+Every block of $`G'`$ is now a scalar phase, so multiplying it into H
+preserves scalar-Pauli blocks, with all signs and phases retained.
+
+For the reverse implication, G commutes with each of its actual axes.
+Thus U and UG have exactly the same signed action on those axes; they
+also belong to $`E_{UG}`$. Apply the forward implication to UG and the
+actual inverse $`G^\dagger`$. No angle restriction was used.
+
+There is an analogous left equivalence for GU when the gadget axes
+belong to the output domain $`E'_U`$. Pulling the axes back through U
+gives commuting signed input Paulis and reduces to the right statement.
+The converse again uses the unchanged signed action on the gadget axes.
+
+In the [native good-middle elimination](NATIVE_BAND_SOURCE_STRUCTURE.md#62-removing-good-middle-axes-in-a-general-c3-source),
+the certified identities are
+
+```math
+F=V E_{A_1},\qquad V=E_{B_g}W.
+```
+
+W fixes the $`B_g`$ axes literally, while $`A_1\subseteq E_V`$.
+Apply the left closure to $`W\to V`$ and the right closure to
+$`V\to F`$. Therefore F has scalar-Pauli block form up to fixed
+endpoint Cliffords if and only if W does. This uses the two successive
+domains; it does not require $`A_1\subseteq E_W`$. The native reduction
+supplies the memberships and exact C3 statements separately. All these
+operations are analytical: no physical gadget, source, inverse, depth,
+count, or workspace is removed from the resource ledger.
+
+### The exact C3 tableau test
+
+For a Clifford D, its Pauli support is exactly one affine coset of
+$`\mathrm{im}(S_D-I)`$. To see this, a fixed label
+$`v\in\ker(S_D-I)`$ constrains every support label a by
+$`\langle v,a\rangle=\kappa_D(v)`$. These constraints put support in
+one coset of $`\ker(S_D-I)^\perp=\mathrm{im}(S_D-I)`$.
+The identity $`D\tau(v)=\pm\tau(S_Dv)D`$ also makes support invariant
+under each translation $`(S_D-I)v`$, so the entire coset occurs.
+
+For $`U\in\mathcal C_3`$, put
+
+```math
+J_p=U\tau(p)U^\dagger,\qquad S_p=S_{J_p},\qquad N_p=S_p-I.
+```
+
+The intrinsic criterion is precisely
+
+```math
+\mathrm{im}(N_p)\subseteq R'
+```
+
+for the $`2q`$ residual generators. This is the image of the **full**
+symplectic deviation on all Pauli labels. Merely being identity on a
+target quotient modulo controls is weaker: a controlled-X Clifford has
+that quotient action but maps its control X to a Pauli with a target-X
+component.
+
+There is an equivalent multiplication test. The matrices $`S_p`$ form
+an elementary abelian group G, and
+
+```math
+\mathrm{Fix}(G)=E'.
+```
+
+The forward inclusion of $`E'`$ in the fixed space follows from the
+exact Pauli commutation relations. Conversely, a common fixed label v
+has $`J_p\tau(v)J_p^\dagger=\chi(p)\tau(v)`$ for a sign character
+$`\chi`$. Thus $`U^\dagger\tau(v)U`$ is a simultaneous eigenoperator
+of conjugation by every input Pauli. Such eigenspaces are the individual
+Pauli lines, so this Hermitian unitary is a signed Pauli. Therefore
+$`v\in E'`$.
+
+Every $`S_p`$ fixes $`E'`$, whence
+$`\mathrm{im}(N_p)\subseteq E'^\perp`$ automatically. Requiring that
+this image also be fixed by G is exactly its containment in $`R'`$.
+Since the matrices commute, the criterion is equivalently
+
+```math
+N_pN_t=0\quad\text{for every }p\in E^\perp
+                    \text{ and every Pauli label }t.
+```
+
+It suffices to test the residual p generators and a full Pauli basis
+for t. A single nonzero product is a coordinate-independent obstruction.
+The binary test omits signs only for the support difference space;
+the sufficiency proof retains the support offset, signed E action,
+and all sector scalars.
+
+Every semi-Clifford source passes automatically: E contains a Pauli
+Lagrangian, so $`E^\perp\subseteq E`$ and all relevant deviations
+vanish. For a native three-band source not covered by the existing
+classification, this gives a precise remaining identity to prove.
+C3 alone yields the weaker containment in $`E'^\perp`$, not the
+required containment in its intersection with $`E'`$.
+
+### Equivalent partial inverse-C3 criterion
+
+For an exact C3 source U, the criterion is also equivalent to
+
+```math
+U^\dagger\tau(c)U\in\mathcal C_2
+\quad\text{for every }c\in E'^\perp.
+```
+
+Only representatives of a symplectic basis of $`E'^\perp/R'`$ need
+checking. This is a partial inverse condition, not a premise that the
+whole inverse is C3.
+
+First suppose $`H_c=U^\dagger\tau(c)U`$ happens to be Clifford, for
+any c. For an input Pauli p, the product
+$`D_p=\tau(p)H_c\tau(p)H_c^\dagger`$ is a Pauli, possibly with a
+nonreal scalar. Its label is $`(S_{H_c}-I)p`$. Because $`J_p`$ is
+Clifford,
+
+```math
+UD_pU^\dagger=J_p\tau(c)J_p^\dagger\tau(c)
+```
+
+is also Pauli. Stripping only its known scalar when identifying the
+Hermitian label shows $`\mathrm{im}(S_{H_c}-I)\subseteq E`$.
+Furthermore, $`H_c`$ fixes each E label: conjugating its Pauli image
+under U by $`\tau(c)`$ changes only the sign. Symplecticity therefore
+also puts this deviation image in $`E^\perp`$. Hence
+
+```math
+\mathrm{im}(S_{H_c}-I)\subseteq R.
+```
+
+If the displayed inverse-Clifford condition holds on the residual
+generators, the intrinsic support criterion applies to $`U^\dagger`$:
+its exact input/output domains are $`E',E`$, and the relevant supports
+are cosets of R. Thus $`U^\dagger`$ has scalar-Pauli block form. This
+class is closed under actual inverses, block by block and with endpoint
+Cliffords reversed, so U has the same property.
+
+Conversely, normalize a scalar-Pauli C3 source to H as in section 1.
+For a Pauli in $`E_H^\perp`$ there is no control-X or spectator
+component. Conjugation by a scalar Pauli block and by its actual inverse
+agree on that probe. Therefore
+$`H^\dagger\tau(c)H=H\tau(c)H^\dagger`$ is Clifford by forward C3.
+Restoring the two fixed coordinate changes proves necessity for U.
+
+This gives a precise native resumption target: inverse Pauli images
+known to be Clifford must cover the residual output quotient
+$`E'^\perp/R'`$. The available singleton-C inverse images do not yet
+establish that spanning statement, nor justify stripping an arbitrary
+singleton phase gadget.
+
+### HRT sources outside scalar-Pauli block form
+
+Use the subset-algebra family of He, Robitaille and Tan,
+[*Characterization of permutation gates in the third level of the
+Clifford hierarchy*](https://arxiv.org/html/2510.04993v1), Definition 5.1
+and Lemma 5.7. This is the same family already used in the
+[hierarchy-only transport obstruction](NATIVE_CLIFFORD_TRANSPORT.md#7-third-level-membership-alone-does-not-bound-tableau-degree).
+The source is known; the following calculation applies the intrinsic
+criterion to its exact domain.
+
+Index its $`2^k-1`$ wires by nonempty subsets of $`[k]`$. In the binary
+algebra $`e_Ae_B=e_{A\cup B}`$ for disjoint A,B and zero otherwise, its
+literal forward permutation is
+
+```math
+f(c)=\prod_{A\ne\varnothing}(1+c_Ae_A)-1.
+```
+
+Its inverse has quadratic coordinates
+
+```math
+g(y)_S=y_S+\sum_{A\sqcup B=S}y_Ay_B,
+```
+
+where the sum is over unordered nonempty two-block partitions. The
+identity $`f(c+x)=f(c)+f(x)+f(c)f(x)`$ gives the literal X-image
+
+```math
+U_kX^xU_k^\dagger|y\rangle
+=|y+f(x)+yf(x)\rangle.
+```
+
+This is affine, and the Z-image phase is $`(-1)^{v\cdot g(y)}`$,
+which is quadratic. Thus all generator images are Clifford on every
+work column, without initializing any coordinate.
+
+The X-image is a Pauli precisely when multiplication by $`f(x)`$
+vanishes. The algebra annihilator is the top line
+$`\mathrm{span}\{e_{[k]}\}`$: any nonzero coefficient on a proper
+subset A gives a nonzero top coefficient after multiplication by
+$`e_{[k]\setminus A}`$. Since f fixes that line, the X-domain is
+$`\mathrm{span}\{X_{[k]}\}`$. For a Z-label v, the phase
+$`v\cdot g(y)`$ is affine only when v is supported on singleton wires.
+Indeed, each quadratic monomial belongs to the unique coordinate
+$`A\cup B`$, so nonlinear parts of different coordinates cannot cancel.
+A mixed Pauli cannot repair a nontranslation permutation. Hence,
+literally for $`k\ge2`$,
+
+```math
+E=E'=R=\mathrm{span}\{X_{[k]},Z_{\{1\}},\ldots,Z_{\{k\}}\}.
+```
+
+At $`k=4`$, take $`p=X_{\{1,2\}}\in E^\perp`$. Suppressing braces
+in wire labels, its exact image is
+
+```math
+\begin{aligned}
+U_4X_{12}U_4^\dagger
+={}&X_{12}\,\mathrm{CX}(3;123)\,\mathrm{CX}(4;124)\\
+&\quad\cdot\mathrm{CX}(34;1234).
+\end{aligned}
+```
+
+Every factor has its literal positive permutation phase. Its deviation
+sends $`X_3`$ to $`X_{123}`$, which is outside R. Therefore $`U_4`$
+has no scalar-Pauli block representation under any fixed endpoint
+Cliffords. Equivalently, the multiplication witness is
+
+```math
+N_{X_{12}}N_{X_4}X_3=N_{X_{12}}X_{34}=X_{1234}\ne0.
+```
+
+The same witness works for every $`k\ge4`$ because 123 is
+then not the top wire. By contrast, the six residual generators at
+$`k=3`$ pass the criterion; HRT Section 5.3 explicitly identifies
+$`U_3`$ with the Gottesman–Mochon source up to Clifford conjugation.
+
+For $`k=4`$, the retained Toffoli staircase has 25 gates. Its literal
+native implementation and actual reversed inverse each have the paid
+serial upper ledger
+
+```math
+\begin{aligned}
+T&=175,\qquad G=300,\qquad D_T\le125,\\
+\text{work width}&=15,\qquad\text{extra helpers}=\text{clean helpers}=0.
+\end{aligned}
+```
+
+This uses the already verified seven-T, twelve-Clifford Toffoli word.
+There is no certified three-native-band implementation here and no
+returned-query or resource-improvement claim. The obstruction separates
+scalar-Pauli sources from generic C3, leaving the remaining actual
+three-band source question intact.

@@ -114,7 +114,7 @@ T-gadget list with r binary relations following a diagonal-C3 source has
 a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
 These explicit source hypotheses are not consequences of return.
 
-The [current round](../research/depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
+The [preceding round](../research/depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
 extends the [native source theorem](../research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
 to arbitrary overlapping nonzero-character incidence. If every
 zero-character B axis commutes with C, exact full-space C3 forces each
@@ -122,8 +122,16 @@ interacting class to consist of one isolated two-axis B/C pair. The
 full involution defect localizes each isolated A probe; native A
 isotropy forces its B-neighborhood to be uniform on each activation
 class. This closes coupled wider rows without bounding total overlap
-and certifies the existing 78/26 transport bounds. Bad zero-character
-interactions remain outside this extension.
+and certifies the existing 78/26 transport bounds. The
+[current round](../research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
+adds two complementary certificates. The
+[commutation-cover theorem](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+closes every exact native three-band C3 source whose B axes each commute
+with all of A or all of C, including arbitrarily many bad zero-character
+axes. The [paired-orbit extension](../research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+proves that all zero-character axes are good if every singleton C orbit
+is good. It uses character nonvanishing where the earlier diagonal Gram
+bit can vanish. Both conclusions retain 78/26 transport at the same radius.
 
 The separate [controlled-Pauli theorem](../research/depth/CONTROLLED_PAULI_TRANSPORT.md)
 now assumes only an exact C3 source with scalar-Pauli computational
@@ -136,7 +144,13 @@ scalar phase degrees, retaining the weighted quartic term and all
 Hermitian-section carries. The known non-semi-Clifford Gottesman–Mochon
 source and its tensor powers satisfy the block hypothesis. Their paid
 realization does not supply a native three-band source or a returned
-query. Arbitrary C3 membership alone still does not imply this theorem.
+query. The same proof home now gives a necessary-and-sufficient intrinsic
+criterion: if E is the exact Pauli input domain and
+$`N_p=S_{F\tau(p)F^\dagger}-I`$, scalar-Pauli coordinates exist exactly
+when $`N_pN_q=0`$ for every $`p\in E^\perp`$ and every q.
+This criterion includes literal signed normalization. A known C3
+permutation fails it, so arbitrary C3 membership alone does not imply
+the transport theorem. That source is not a native-three-band counterexample.
 
 A separate [uniform transport theorem](../research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 uses the intrinsic codimension k of the source's exact Pauli-preserving
@@ -194,16 +208,24 @@ quadratic work. It avoids the former repeated-child-inversion cost;
 the determinant obstruction remains valid for its narrower returned
 in-place, frozen-coefficient interface. The matrix inputs change
 internally, so native read-only access and an arbitrary-table encoding
-within R98's budgets remain missing. The complete cycle conjunction's
+within R98's budgets remain missing. The [representation audit](../research/depth/GAUSS_SUM_QUERY_ENCODING.md)
+clarifies that inverse-entry encodings already exist, but generic
+substitution has excessive count/work and affine dirty loading leaves
+offsets. Its completed-oracle counting boundary is scoped to affine
+wiring and the retained generic circuit costs. An exact finite-field
+interpolation repair returns all work with native read-only access,
+but repeated evaluations lose to the direct path-propagation baseline.
+Sparse specialization, coupled-mask extraction and quantum interference
+remain outside those boundaries. The complete cycle conjunction's
 separate transport and fair baseline are unchanged.
 
 The next lower-bound question remains a **native degree-versus-depth
 recurrence**. For exact three-native-band C3 sources, the immediate
-remaining structural issue is bad zero-character B/C interaction.
-Does that interaction admit scalar-Pauli block coordinates, or another
-width-independent signed transport invariant? The new normalization
-makes scalar-Pauli coordinates sufficient for 174/58 transport without
-requiring diagonalization. A representation-dependent parameter is
+remaining structural issue contains both a bad singleton C axis and
+a middle B axis interacting with both outer bands. Does the native
+factorization force $`N_pN_q=0`$ for $`p\in E^\perp`$ and arbitrary q?
+The intrinsic criterion makes this sufficient for 174/58 transport
+without requiring diagonalization. A representation-dependent parameter is
 not an unrestricted depth invariant. General non-C3 prefixes, robust
 radii for growing depth, one-clean work and address mixing remain
 additional gaps. None of these results changes the complete-frame upper law.

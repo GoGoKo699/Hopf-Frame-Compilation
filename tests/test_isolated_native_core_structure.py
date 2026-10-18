@@ -263,6 +263,64 @@ class IsolatedNativeCoreStructure(unittest.TestCase):
         self.assertGreater(even_count, 0)
         self.assertEqual(uniform_count, 0)
 
+    def test_zero_axis_incidence_with_zero_diagonal_gram_pairing(self):
+        width = 3
+        # H=(1,1,0) gives one paired nonzero class and a zero B axis.
+        # K=(1,1,1) also makes that zero axis touch both C members.
+        beta = [1 << width, 1 << width, 1 << (width + 1)]
+        c = 0b011
+        identity = tuple(1 << j for j in range(2 * width))
+
+        def image(matrix, value):
+            result = 0
+            for j, column in enumerate(matrix):
+                if value >> j & 1:
+                    result ^= column
+            return result
+
+        def product(left, right):
+            return tuple(image(left, column) for column in right)
+
+        def transvection(axis):
+            return tuple(e ^ (axis if _pair(axis, e, width) else 0)
+                         for e in identity)
+
+        spectators = (identity, transvection(1 << (width + 2)))
+        active_count = correction_count = zero_diagonal_count = compatible_count = 0
+        for spectator in spectators:
+            self.assertTrue(all(image(spectator, axis) == axis
+                                for axis in beta + [c]))
+            for u in range(8):
+                if (u & 0b011).bit_count() % 2 == 0:
+                    continue
+                active_count += 1
+                q, w = identity, 0
+                for j, axis in enumerate(beta):
+                    if u >> j & 1:
+                        q = product(transvection(axis), q)
+                        w ^= axis
+                self.assertNotEqual(w, 0)
+                base = product(transvection(c), q)
+                inverse_base = product(q, transvection(c))
+                self.assertEqual(_rank([a ^ b for a, b in zip(base, inverse_base)]), 2)
+                diagonal_pairing = _pair(c, w, width)
+                for h in range(1 << (2 * width)):
+                    corrected = product(product(base, transvection(h)), spectator)
+                    if product(corrected, corrected) != identity:
+                        continue
+                    correction_count += 1
+                    zero_diagonal_count += diagonal_pairing == 0
+                    self.assertNotEqual(h, 0)
+                    self.assertIn(h, (w, c, w ^ c))
+                    # h=w has a nonzero class character and is excluded
+                    # separately. Other native A images must fix zero B.
+                    if h != w and _pair(h, beta[-1], width) == 0:
+                        compatible_count += 1
+        self.assertEqual(active_count, 8)
+        self.assertEqual(correction_count, 20)
+        self.assertEqual(zero_diagonal_count, 8)
+        self.assertEqual(compatible_count, 0)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,9 +13,11 @@ even when activation matching initially permits coupled wider orbits.
 
 The proof first handles arbitrarily many isolated pairs using exact native
 phases and commuting control-X images. Section 10A then derives that pair
-structure from the weaker zero-character condition. Bad zero-character
-interactions remain outside this classification; complete workspace return
-alone does not establish the required C3 source premise.
+structure from the weaker zero-character condition. Section 10B also
+allows putative zero-axis interactions on paired C orbits: if every
+activation-singleton C axis is good, full C3 forces those zero interactions
+to vanish. Complete workspace return alone does not establish the required
+C3 source premise.
 
 ## 1. Exact native theorem
 
@@ -833,14 +835,237 @@ controls and mutually orthogonal core spaces. Every remaining B/C phase
 centralizes them and one another. The isolated-core theorem in sections 1–6
 applies, proving that F is diagonal C3 in fixed Clifford coordinates.
 
+## 10B. Zero-axis interactions on paired C orbits
+
+**Good-singleton certificate.** Let $`F=E_CE_BE_A`$ be exactly C3 on the
+full Hilbert space, with independent isotropic native A, B and C lists and
+all actual signed phases retained. Suppose every singleton C axis under
+the native activation action commutes with every B axis. Then every
+zero-character B axis is good, so section 10A makes F diagonal C3 in fixed
+Clifford coordinates.
+
+This permits an arbitrarily large zero class and arbitrary putative zero
+incidence on paired C orbits. Its conclusion rules out that incidence.
+The activation action here is the action from the complete code in section
+8, whose C orbits have size one or two. A singleton commutes with every
+nonzero-character B axis but may initially anticommute with zero axes.
+No source-inverse C3, prepared controls or source resynthesis is assumed.
+
+### 10B.1. Separate the displacement and full incidence matrices
+
+Index the paired C orbits by j, and write them as
+$`\{c_j,c_j+r_j\}`$. Split B into nonzero-character and zero-character
+coordinates. Let H be the nonzero-character incidence matrix of the
+representatives, padded by zero columns on zero B coordinates. Thus
+
+```math
+r_j=\sum_iH_{ji}b_i\in U_A,
+\qquad \mathrm{rank}(H)=m,\qquad HH^T=0.
+```
+
+Let Z have only the zero-coordinate incidences of the same C representatives,
+and set $`K=H+Z`$. This K is the full C-representative/B incidence matrix.
+Each H row is a nonempty even subset of one nonzero character class.
+The Z incidence is the same for both members of a C pair, because every
+zero B axis commutes with $`r_j`$.
+
+The label space $`R=\mathrm{span}\{r_j\}`$ centralizes every A, B and
+C axis. It has dimension m. Choose an A axis $`a_l`$ and a Pauli p
+isolating it in the full native A list. Put
+
+```math
+u_i=\langle p,b_i\rangle,
+\qquad v_j=\langle p,r_j\rangle=(Hu)_j.
+```
+
+Only columns with $`v\ne0`$ need consideration. Choose control coordinates
+for R with $`p=X^v`$. Project the B labels to $`\beta_i`$ and the paired
+C representatives to $`\bar c_j`$ on the remaining symplectic space.
+The B projection has kernel R, so its coefficient relation code is exactly
+the row span of H. In particular it has no relation involving a zero B
+coordinate. The complete pairings are
+
+```math
+\langle\bar c_j,\beta_i\rangle=K_{ji}.
+```
+
+The C representative span intersects the B span trivially. Indeed any
+intersection vector pairs trivially with B, while K has full row rank:
+its restriction to the nonzero columns is H of full row rank.
+
+### 10B.2. Exact source blocks still supply one half-angle correction
+
+Use the entire B band in its sector restrictions $`B_z`$. Use only paired
+C factors in $`C_z`$. Let G contain the singleton C factors. The certificate
+hypothesis makes G commute with the entire B band and all paired C factors.
+Thus this is exactly the factor partition needed by the coupled
+relative-block calculation in section 10A.2. In sectors $`z,t=z+v`$,
+
+```math
+Q=B_tB_z^\dagger,
+\qquad S_Q=\prod_{i:u_i=1}T_{\beta_i},
+\qquad P=S_{C_z^\dagger C_t}
+       =\prod_{j:v_j=1}T_{\bar c_j}.
+```
+
+The B sectors need not be Clifford. Their ratio Q is Clifford because its
+native sign changes are literal quarter-turns. Each paired C sector is
+Clifford, including all its eighth-root scalars. The ratio
+$`D=G_tG_z^\dagger`$ is Clifford; its binary map $`D_0`$ is involutory
+and fixes every $`\beta_i,\bar c_j`$.
+
+Write $`a_l=a_*+a_{\mathrm{control}}`$. The actual isolating A ratio is
+$`e^{\pm i\pi\tau(a_*)/4}`$, with no omitted native scalar. The full
+residual block of $`FpF^\dagger`$ is literally
+
+```math
+V=C_tQ
+ \bigl[B_zG_t e^{\pm i\pi\tau(a_*)/4}
+       G_t^\dagger B_z^\dagger\bigr]C_z^\dagger D.
+```
+
+Full C3 membership makes V Clifford, with an involutory binary action on
+all remaining inputs. The trace-only half-angle lemma makes
+$`H_*=B_zG_t\tau(a_*)G_t^\dagger B_z^\dagger`$ a signed Pauli when
+$`a_*\ne0`$. A scalar half-angle is excluded by the rank calculation
+below. Conjugating by the actual Clifford $`C_z^\dagger`$ gives
+
+```math
+S=P S_QT_hD_0,\qquad S^2=I,
+```
+
+where h is the label of $`H_*`$. Every scalar in the source is still
+present in the operator equality; only this displayed consequence is binary.
+
+### 10B.3. Character nonvanishing replaces the old diagonal Gram bit
+
+For active rows define
+
+```math
+w_j=\sum_i u_iK_{ji}\beta_i\qquad(v_j=1).
+```
+
+Now $`\langle\bar c_j,w_j\rangle=(Ku)_j`$ need not equal one. The old
+argument using that diagonal bit cannot be reused. Nevertheless each
+$`w_j`$ is nonzero: its original B sum has restricted activation character
+equal to the nonzero character of its row's class. Indeed its nonzero-class
+subset is odd because $`(Hu)_j=1`$, while all additional zero B terms have
+zero character. A zero projection would put that sum in R and therefore
+$`U_A`$, contradicting the nonzero character.
+
+Put $`M=P S_Q`$. The independent active C span and the B span are disjoint,
+and direct multiplication gives
+
+```math
+M+M^{-1}
+=\sum_{j:v_j=1}
+ \bigl(\bar c_j\ell_{w_j}+w_j\ell_{\bar c_j}\bigr),
+\qquad
+\mathrm{rank}(M+M^{-1})
+=2\,\mathrm{rank}\{w_j:v_j=1\}.
+```
+
+This rank identity does not use the diagonal Gram bits. Set
+$`L=MD_0`$ and $`g=D_0h`$, so $`S=LT_g`$. The map $`D_0`$ fixes all
+the displayed vectors and their symplectic covectors, hence
+
+```math
+L+L^{-1}=M+M^{-1}
+ =(Lg)\ell_g+g\ell_{Lg}.
+```
+
+The last equality follows from $`S=S^{-1}`$. Its right side has rank at
+most two. Since all active $`w_j`$ are nonzero, they must coincide with
+one nonzero w. Put $`q=\sum_{j:v_j=1}\bar c_j`$. The left side is now
+$`q\ell_w+w\ell_q`$ of rank two. Equality of the rank-two images gives
+
+```math
+\mathrm{span}\{g,Lg\}=\mathrm{span}\{q,w\},
+\qquad h=g\in\mathrm{span}\{q,w\}\setminus\{0\}.
+```
+
+Here $`D_0`$ fixes the final plane. This also excludes the scalar
+half-angle. The proof works for both parities of the number of active rows
+and does not assume that their residual target plane is symplectic.
+
+### 10B.4. Zero-axis commutation removes every paired zero incidence
+
+All active rows must have the same nonzero character: equality of their
+w labels would otherwise equate two different restricted activation
+characters, since their B sums differ only by R. Call the common class J.
+The option h=w is impossible. Both $`B_z`$ and $`G_t`$ fix w, so its
+pullback would express $`a_l`$ as an odd B sum from J, plus zero B terms
+and an element of R. Its character is nonzero, contradicting $`a_l\in U_A`$.
+Thus h is q or $`q+w`$.
+
+Every A axis commutes with every zero B axis individually, because those
+axes lie in $`U_A`$. Within each nonzero class, every A axis has constant
+commutation with B, because pair differences lie in $`U_A`$. The operators
+$`B_zG_t`$ commute with each $`\beta_i`$, so these pairings pass unchanged
+to h. As h has q component and w commutes with B, this gives
+
+```math
+H^Tv=1_J,
+\qquad Z^Tv=0.
+```
+
+The first vector is nonzero by independence of the H rows. Injectivity of
+$`H^T`$ permits at most one nonzero v for each character class. As the
+isolated A coordinate ranges over the A list, the v columns span the
+full orbit-control space. Consequently every interacting nonzero class
+has exactly one orbit, whose H row is its entire class indicator.
+
+For that one-row block an activating column is $`v=e_j`$. The second
+displayed equation then says that row j of Z is zero. This holds for every
+paired C orbit. Hence all paired C axes commute with all zero B axes.
+The singleton C axes already did by hypothesis, proving that every zero
+B axis is good. Apply the arbitrary-overlap good-zero theorem in section 10A.
+
 ## 11. Scope and six-layer consequence
 
-Section 10A classifies all nonzero-character B/C interactions under the
-good-zero-character premise, including coupled wider incidence patterns.
-The remaining source boundary is a zero-character B axis that anticommutes
-with C. This proof does not classify arbitrary such bad-zero interactions.
-It does not infer exact or approximate source C3 membership from a returned
-query, and it does not require source-inverse C3 membership.
+Section 10A classifies all nonzero-character B/C interactions when
+zero-character axes are good. Section 10B closes the complementary
+paired-orbit certificate: if every singleton C axis is good, full C3
+membership forces all zero axes to be good as well.
+
+Together with the [commutation-cover theorem](NATIVE_BAND_SOURCE_STRUCTURE.md#61-commutation-cover-theorem),
+these tests leave only specified sources containing both a B axis that
+interacts with A and C and a bad singleton C axis, hence a bad zero B axis.
+They can also be applied after the
+[certified removal of good middle axes](NATIVE_BAND_SOURCE_STRUCTURE.md#62-removing-good-middle-axes-in-a-general-c3-source),
+which preserves diagonal-C3 equivalence; activation must be recomputed for
+the reduced native lists.
+This does not prove that the two features lie in one connected component.
+A native A axis can couple different B/C components, and shared radical
+directions need not supply a tensor factorization. A componentwise closure
+would require an additional factorization or stripping argument.
+
+The precise failure in the current relative-block method is a bad singleton
+C phase. Its sector restriction can remain a native T phase, so it cannot
+be put in the centralizing G factor or cancelled by a known Clifford.
+
+There is nevertheless a useful inverse-image fact. A singleton c
+commutes with all nonzero-character B axes. Write $`B_z`$ for the
+zero-character subset only in this paragraph and set $`D=E_{B_z}E_A`$.
+All factors of D commute, since $`B_z\subseteq U_A`$. Cancellation
+of the other actual factors gives the literal identity
+
+```math
+F^\dagger\tau(c)F=D^\dagger\tau(c)D\in\mathcal C_2.
+```
+
+The final membership follows because the inverse of this commuting
+diagonal-C3 phase source is also C3. It does not assert that the image
+is Pauli. The [partial inverse criterion](CONTROLLED_PAULI_TRANSPORT.md#equivalent-partial-inverse-c3-criterion)
+would suffice if known Clifford inverse images covered the residual
+output quotient of the full exact Pauli domain. Singleton axes alone
+have not been shown to provide that coverage, so they cannot yet be
+stripped as arbitrary native phase gadgets.
+Neither the trace-only half-angle conclusion nor the rank-two localization
+has been established after that step. This is not a discarded scalar or a
+bound on the zero-class size. No unrestricted diagonal-C3 or scalar-Pauli
+block representation is inferred. Exact or approximate source C3 membership
+is not inferred from return, and no source-inverse C3 premise is used.
 
 The weighted Gram matrix alone would not close the coupled case: the
 rank calculation constrains its active part. The additional restriction is
@@ -849,7 +1074,7 @@ axes in one character class. This distinction is why the binary incidence
 examples in section 9 are not counterexamples to the theorem.
 
 Under the [actual six-layer query contract](READ_ONLY_SIX_LAYER_REDUCTION.md),
-an exactly C3 specified prefix satisfying either source certificate above
+an exactly C3 specified prefix covered by a source certificate above
 satisfies the retained
 [diagonal-source transport hypothesis](NATIVE_CLIFFORD_TRANSPORT.md#5-consequence-for-the-actual-six-layer-query).
 At full operator error $`\eta\lt\sqrt2/8`$, the necessary
@@ -881,6 +1106,14 @@ for 48 active probes and 104 involutory corrections, including even
 activation. None of the non-B corrections has the uniform same-class
 commutation required by native A isotropy. This is a check of the coupled
 obstruction, not a census substituted for the arbitrary-overlap proof.
+
+A separate paired-orbit check adds a zero B axis touching both C members.
+It tests eight active probe/spectator cases and all 64 remaining-space
+Pauli corrections in each case, including a nonidentity spectator
+Clifford. Of 20 involutory corrections, eight have zero diagonal Gram
+pairing while the required active vector is nonzero. Every correction
+localizes to the proved two-dimensional span, and none of the non-B
+corrections commutes with the zero B axis as native A isotropy requires.
 
 An exact three-core fixture uses six arbitrary wires, zero helpers and
 overlap three. Literal CZ words attach the parity of both other controls

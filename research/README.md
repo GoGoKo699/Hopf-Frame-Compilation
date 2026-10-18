@@ -354,13 +354,21 @@ has a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
 Monomial localization keeps the wide phase diagonal. This does not make
 the coordinate changes or dependent gadget list a free native band.
 
-The [current round](depth/COUPLED_INCIDENCE_SESSION_RESULT.md) extends
+The [preceding round](depth/COUPLED_INCIDENCE_SESSION_RESULT.md) extends
 [source certification](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) to arbitrary
 coupled nonzero-character incidence. When every zero-character B axis
 commutes with C, the full involution defect and native A isotropy force
 all interacting classes to be isolated two-axis pairs. Exact C3/native
 hypotheses remain essential; the certificate gives 78/26 transport at
-arbitrary overlap. Bad zero-character interactions remain open.
+arbitrary overlap. The [current round](depth/ZERO_CHARACTER_SESSION_RESULT.md)
+adds [commutation-cover and certified-stripping results](depth/NATIVE_BAND_SOURCE_STRUCTURE.md):
+if each B axis commutes with an entire outer band, the source is diagonal
+C3, including arbitrary bad-zero-only interactions. Good middle axes can
+be removed after certified A-axis stripping, preserving C3. The
+[paired-orbit extension](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) also
+proves that zero-character interactions cannot occur only on paired C
+orbits when every singleton C axis is good. Both certificates retain
+78/26 transport; mixed cases remain.
 The [controlled-Pauli transport proof](depth/CONTROLLED_PAULI_TRANSPORT.md)
 now derives its canonical exact Pauli domain by signed fixed-Clifford
 normalization, removing the former compatibility premise. Every exact
@@ -368,7 +376,13 @@ C3 scalar-Pauli block source has uniform 174/58 bounds below
 $`\sqrt2/8`$. Its necessary weighted quartic term and both endpoint
 coordinate changes are retained. The known Gottesman–Mochon source
 shows this class need not be semi-Clifford; its charged source schedule
-is not a returned three-band query.
+is not a returned three-band query. The same proof home now characterizes
+scalar-Pauli form intrinsically: for exact input domain E and
+$`N_p=S_{F\tau(p)F^\dagger}-I`$, it is equivalent to
+$`N_pN_q=0`$ for all $`p\in E^\perp`$ and all q. The criterion
+keeps signed normalization and is invariant under fixed endpoint
+Cliffords. The known four-generator HRT source fails it, separating this
+class from generic C3 without asserting a native-three-band counterexample.
 
 The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 controls approximate transport through arbitrary sources with bounded
@@ -408,10 +422,19 @@ internally, so native read-only access and arbitrary-table encoding
 within R98's budgets remain missing. The full cycle conjunction's
 transport and faster fair baseline are unchanged.
 
-The next source question is width-independent signed transport through
-bad zero-character interactions in exact three-native-band C3 sources.
-Scalar-Pauli block coordinates would now suffice even if diagonalization
-fails. Alternative native syntheses must be tested before treating a
+The [inverse-query cost audit](depth/GAUSS_SUM_QUERY_ENCODING.md) identifies
+the remaining constructive cost: arbitrary-table inverse-entry encodings
+already exist, but generic query substitution exceeds the count/work
+envelope and dirty loading retains unknown offsets. Affine embeddings
+and fixed completed generic-query compositions have scoped capacity
+bounds. A full read-only interpolation repair cancels the offset, but
+its repeated source evaluations lose to direct read-only path propagation.
+Sparse native specialization, coupled masks and nonlinear work remain open.
+
+The next source question is whether native three-band structure forces
+the intrinsic tableau product to vanish in the remaining mixed cases.
+This would give 174/58 transport without demanding diagonalization.
+Alternative native syntheses must be tested before treating a
 source parameter as a depth invariant. General non-C3, one-clean and
 address-mixing lower bounds and optimal complete-frame depth remain open.
 The [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps
