@@ -34,12 +34,20 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
-resolves the four-layer zero-clean case after the three-layer one-clean
-question, within the read-only interface. The next target is a uniform
-degree-growth law across arbitrary physical T depth. Five layers are
-the first unclosed test: the comparison target can leave the Clifford
-class on which the present defect argument relies.
+The current [research checkpoint](../research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
+reformulates the five-layer question as a partial Clifford-normalizer
+cocycle. Under the additional condition that its specified middle Pauli
+representation is Clifford-valued, [the new proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
+bounds XOR degree by seven (four for a visible outer shear) at error
+below $`\sqrt2/12`$. The general five-layer case remains open.
+[Phase relocation](../research/depth/READ_ONLY_PHASE_RELOCATION.md)
+makes the four-layer scalar degree-three boundary sharp, while a
+[returned diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+cannot extract degree above three from an arbitrary Boolean source.
+Neither mechanism changes the complete-frame upper law. The next
+invariant must control the binary-tableau action of a two-T-dressed
+Pauli on the Clifford family it normalizes, without assuming that the
+conjugator is itself Clifford.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and

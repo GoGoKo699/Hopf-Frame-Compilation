@@ -15,51 +15,47 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: shallow-query degree rigidity
+## Current checkpoint: the five-layer normalizer gap
 
-The three-layer continuation, merged in main `3b7c603` (PR #167),
-began at `3913263` (PR #166). Its
-[new proof](research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) resolves
-the [preceding round's](research/depth/RETURNED_QUERY_SESSION_RESULT.md)
-three-layer question: at error below $`\sqrt2/6`$, read-only XOR queries
-with one clean qubit have Boolean degree at most four, independent of
-dirty width. With zero clean qubits, three layers force affineness.
-Intermediate code excursions are allowed and controlled through their
-signed Pauli orbit and nonzero stabilizer intersections. Every completed
-Clifford interlayer must preserve the address; physical T gates act on work.
+The [current round](research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
+began at verified main `e2f33dc` (PR #168). The
+[five-layer reduction](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
+keeps its target comparison Clifford-valued and isolates conjugation by a
+two-T-dressed Pauli family B. If that specified family is Clifford-valued,
+zero-clean read-only XOR queries have degree at most seven at error below
+$`\sqrt2/12`$; a visible outer shear improves the bound to four.
+The extra hypothesis is not automatic, even with literal full return.
+The general five-layer case remains open.
 
-The [four-layer follow-up](research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
-proves that zero-clean XOR queries with four layers have degree at most
-two at error below $`\sqrt2/12`$. Conjugating away the outer layer
-changes the comparison target to a Clifford; an auxiliary Pauli cocycle
-handles the case invisible to its symplectic action. This remains a
-constant-layer, preserved-address theorem, not a general frame lower bound.
+The preceding sharp zero-clean bounds remain affine at three T layers
+and degree at most two at four layers. One clean qubit permits degree at
+most four at three layers; exact two-layer one-clean queries are affine.
+Every completed Clifford interlayer must preserve the address and every
+physical T gate acts on work. These are scoped query statements, not
+unrestricted frame lower bounds.
 
-Exact native AND queries use four layers with zero clean qubits and
-three with one clean qubit. A two-layer relative-phase candidate retains
-a controlled-S correction cost. A separate
-[literal-phase proof](research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine)
-forces exact one-clean two-layer queries to be affine. Thus both AND
-thresholds are sharp within this interface, with a positive error radius
-proved only for the zero-clean threshold. The retained unrestricted
-two-layer dirty Toffoli prevents dropping the address hypothesis.
+The [new phase relocation](research/depth/READ_ONLY_PHASE_RELOCATION.md)
+attains scalar CCZ in four layers using 105 T gates, 346 elementary
+Cliffords and 28 arbitrary dirty helpers, making the scalar degree-three
+boundary sharp. A null phase identity defeats a proposed rank invariant
+of one fixed parity list. The cheaper retained AND fixture is unchanged.
+A separate [returned diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+forces scalar degree at most three even when its fixed Boolean source
+has arbitrary degree. Both proofs retain literal phases and full return.
 
-The [current outcome](research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
-and [preceding round](research/depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
-record the proofs, native ledgers and next question: does query degree
-grow at most exponentially with physical T depth, independently of dirty
-width, or can a different exact interference mechanism escape? The first
-unclosed test is five layers: further conjugation can leave the Clifford
-comparison class, so the present symplectic and Pauli defects do not
-supply a recurrence.
-Start with R98's zero-clean query interface, while retaining the separate
-fixed-error and unrestricted-address obligations for a frame lower bound.
+The next question is whether a two-T-dressed Pauli's partial action on
+Clifford tableaus has a width-independent Boolean degree bound, with the
+five-layer cocycle retained. This would address the new normalizer gap;
+a non-diagonal constructive escape remains an alternative. The
+[current outcome](research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
+records the failed candidates, exact ledgers, and resumption question.
+A uniform degree-versus-depth law, growing-depth error robustness, and
+unrestricted address mixing remain separate obligations.
 
-[Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) remains
-conditional. R96 remains the strongest unconditional upper law, R79
-remains selected Result D, and optimal general depth and unrestricted
-one-clean four-layer rigidity remain open. The prior Gaussian scalar-loop
-and multiway cost obstructions keep their own hypotheses.
+R96 remains the strongest unconditional complete-frame upper law, R79
+remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+remains conditional. Optimal general depth and unrestricted one-clean
+four-layer rigidity remain open. Final manuscript drafting is separate.
 
 ## Mandate
 

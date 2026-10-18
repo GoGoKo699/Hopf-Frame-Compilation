@@ -1066,7 +1066,11 @@ physical width, clean/dirty helper allocation and error are unchanged.
 There is no prepared output or free controlled-query call. Each
 coordinate derivative of g has degree at most two, giving the stated
 scalar bound. No sharpness or universal construction is asserted for
-this scalar corollary.
+this scalar corollary in the original argument. The subsequent
+[phase-relocation construction](READ_ONLY_PHASE_RELOCATION.md) attains
+scalar CCZ with four layers and zero clean work, making the scalar
+bound sharp; it does not synthesize every cubic phase at the same
+count or width.
 
 The proof exploits native one-T axes twice, including when the target
 is invisible to the outer symplectic action. It therefore resolves
@@ -1075,16 +1079,6 @@ invariant. It still requires address-preserving Clifford boundaries
 and zero initialized work. It does not supply a one-clean four-layer
 bound, a recurrence for arbitrary T-depth, or an unrestricted
 complete-frame lower bound.
-
-The [three bounded four-layer checks](../../tests/test_read_only_four_layer_rigidity.py)
-retain literal phases and the actual inverse in a five-band native word
-with eight T gates, depth four, 101 elementary Cliffords, zero clean
-qubits and two arbitrary work wires. A second native fixture has
-commuting inner and outer shears with nonzero cross-products and a
-genuinely quadratic Pauli defect; it checks the image condition (45).
-An exhaustive three-variable check tests the codimension-one derivative
-step. These are finite identity checks, not an extrapolation to
-arbitrary width or a complete-frame compiler.
 
 The [four-layer evidence tests](../../tests/test_read_only_four_layer_rigidity.py)
 check the literal five-band normalization and actual inverse on all

@@ -76,6 +76,11 @@ radius. Pauli-label comparisons also fit that error budget. The proof
 retains scalar phases where they affect the target and uses projective
 equalities only for necessary label invariants.
 
+The [subsequent five-layer round](FIVE_LAYER_QUERY_SESSION_RESULT.md)
+reformulates the next case as a partial-normalizer question and supplies
+a native four-layer scalar CCZ attaining this scalar boundary. Its
+conditional five-layer result does not close the general case below.
+
 ## 3. What is unchanged and what to ask next
 
 The count package remains settled under its stated hypotheses. For
