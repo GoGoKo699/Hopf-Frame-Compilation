@@ -34,6 +34,9 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Unrestricted two-layer Boolean degree | [Joint native diagonal rigidity](../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) proves degree at most two for exact Boolean XOR with at most one clean qubit. Every nonquadratic query has full initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$, uniformly in arity and dirty width, with arbitrary Clifford/address mixing. Both clean-midpoint branches and the six-bit cubic bent query are covered. Complex occupied diagonal action alone need not be C3; no complete-frame frontier changes |
 | Unrestricted zero-clean three-layer degree | [Joint native structure](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) proves Boolean XOR degree at most four with zero clean qubits, and the same uniform error floor for higher-degree queries. All intermediate Clifford mixing is allowed. The one-clean extension remains open; a projected-band component and a failed shared-clean-flip inference identify its current gap |
 | Exact finite one-clean query | The [paid third-band correction](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md#8-paying-the-third-band-an-exact-cubic-xor-query) realizes AND3 with 18 T, three layers, 99 elementary Cliffords, one clean and one dirty helper; its actual inverse has 109 Cliffords after reduction. Depth three is optimal at this allocation, while a 16-T/34-Clifford/six-layer baseline has smaller counts. This does not improve the general frame bound |
+| Exact quadratic queries | The [complete native construction](../research/depth/QUADRATIC_NATIVE_QUERY.md) gives optimal depth two for every nonaffine quadratic XOR with zero clean and one returned arbitrary dirty helper. Polar rank r gives $`2r+4`$ T gates and $`O(m^2+r)`$ elementary Cliffords on m addresses, including coordinate changes and actual inverses. This one-output construction is not a simultaneous arbitrary-table query |
+| Clean-code structural component | [Clifford restriction rigidity](../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md) gives an exact pointwise stabilizer, a literal comparison gap and a common native logical defect space. A correlated encoder counterexample disproves blanket full-space Clifford extension. Unbounded clean pair count occurs for a one-layer target, so it is not an unrestricted hardness parameter |
+| Paid high-degree algebra source | The [balanced HRT construction](../research/depth/BALANCED_ALGEBRA_PERMUTATION.md) and actual inverse have depth $`O(\log r)`$ with $`O(3^r)`$ T-count, elementary Clifford count and returned dirty work, zero clean, on all $`2^r-1`$ coefficient inputs. It improves the fair $`O(r)`$ source baseline; its returned degree-r query still has growing depth and is not a general R98 primitive |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
@@ -60,7 +63,7 @@ the new diagonal theorem goes beyond their scalar witnesses and resolves
 the unrestricted one-clean bent-query exclusion. No dimension-growing
 depth bound is inferred from this constant-layer result.
 
-The [current continuation](../research/depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+The [three-layer continuation](../research/depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
 resolves the unrestricted zero-clean three-layer degree question with
 degree at most four for XOR predicates and a fixed error floor. It also
 pays the earlier complex phase correction in a third native band,
@@ -72,6 +75,28 @@ code or be refuted by a complete unbounded-degree native query family.
 The growing-arity quartic-sign construction retains an unpaid address
 phase in its larger query conversion. R96 and the complete-frame lower
 frontier are unchanged.
+
+The [current clean-code and algebra revision](../research/depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+pays two formerly missing constructive operations: an optimal-depth
+quadratic Boolean query with one dirty helper, and the in-place algebra
+multiplier needed for a balanced HRT source. The proposed quartic-phase
+echo loses to the new cubic baseline at the same depth and allocation.
+The lower analysis proves rigidity for actual Clifford restrictions and
+localizes native probes, but a new exact counterexample shows why a
+two-band logical image need not extend as that Clifford on the unused
+sector. A growing clean-pair count also survives a one-layer full-target
+simplification. The next lower question therefore concerns the complete
+occupied logical family modulo this unused-sector freedom, not those
+representation parameters alone. A uniform one-clean three-layer Boolean
+degree bound or a full unbounded-degree native family would resolve that
+test. Neither component construction changes R96 or supplies the missing
+arbitrary-table query within R98's complete budgets. The refined multiplier
+uses six completed calls in five stages, giving source depth at most
+$`40\lceil\log_2r\rceil`$ with the same asymptotic count and dirty
+allocation. The [Boolean rounding corollary](../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md#63-boolean-approximation-reduces-to-the-exact-occupied-action)
+of R74 reduces sufficiently accurate one-clean three-layer Boolean
+approximation to exact occupied action. The unresolved degree bound
+therefore has no separate approximation-closure gap at that radius.
 
 The earlier [restored-address revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
 weakens R98's sufficient premise from gatewise read-only access to exact

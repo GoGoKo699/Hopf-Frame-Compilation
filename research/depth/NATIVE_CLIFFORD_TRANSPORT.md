@@ -528,3 +528,12 @@ refuting native three-band transport. The
 [bounded checks](../../tests/test_c3_transport_scope.py) verify the algebra,
 actual inverse, growing degrees and a literal native source on every
 small work column.
+
+The later [balanced native construction](BALANCED_ALGEBRA_PERMUTATION.md)
+improves this source's depth to $`O(\log r)`$ with $`O(3^r)`$
+T-count, elementary Clifford count and additional arbitrary returned
+dirty work. It pays the in-place multiplier and compares with a
+cardinality-batched $`O(r)`$ baseline. Its separate returned degree-r
+query treats every coefficient as address data. It still supplies
+neither a three-band source nor a bounded-depth unbounded-degree query;
+the zero-extra-helper serial ledger above keeps its distinct allocation.

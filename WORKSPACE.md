@@ -15,53 +15,61 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: three-layer native structure and a paid cubic query
+## Current checkpoint: clean-code rigidity and paid algebra recovery
 
-The [current round](research/depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
-began at verified main `7cae235` (PR #184). R96 remains the strongest
-unconditional general upper law; R79 remains selected Result D and R97
-remains scoped. The count package is settled under its stated hypotheses.
-The large-width additive depth remains the general destination.
+The [current round](research/depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+began at verified main `c1daf7d` (PR #185). R96 remains the strongest
+unconditional general upper law: all-precision depth
+$`O(NL/b^2+L+\log_2(n+2))`$ with optimal T-count, $`G=O(NL)`$,
+one clean qubit and the original literal widths. R79 remains selected
+Result D, R97 remains scoped, and the count package is settled under its
+stated hypotheses. The complete-frame frontier is unchanged.
 
-The new [three-layer theorem](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md)
-proves that zero-clean Boolean XOR queries have degree at most four.
-Higher-degree queries have full operator error at least
-$`\sin(\pi/8)/(2\sqrt2)`$, independently of dirty width and arbitrary
-intermediate Clifford mixing. The joint preserved algebra forces native
-pair orbits and correlated signs; a separate argument proves the required
-commuting-source remainder instead of assuming C3. This is a zero-clean
-constant-layer theorem, not the unresolved one-clean extension.
+The [clean-code theorem](research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md)
+classifies actual Cliffords fixing a non-Pauli one-band clean code:
+only I and its clean involution S, except for a two-axis Klein four
+case. Native probes then localize the complete logical comparison
+family. They do not make a two-band logical image Clifford on the
+unused sector. A new correlated encoder counterexample disproves that
+blanket extension inference. Another family has arbitrarily many
+clean-permuted axis pairs and no shared Pauli clean flip, yet its full
+target simplifies to one layer. Pair count is not a target lower bound.
 
-The previous [at-most-one-clean two-layer theorem](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
-remains in force, including its nonquadratic error floor and the six-bit
-bent-query exclusion. A paid third band now corrects the earlier complex
-phase and gives a literal three-control AND query: 18 T, three layers,
-99 elementary Cliffords, one clean and one arbitrary dirty qubit. Its
-actual inverse costs 109 Cliffords after explicit reduction. Depth three
-is optimal for this finite query at that allocation; count is not claimed
-optimal. A fairly simplified baseline has 16 T, 34 Cliffords and six
-displayed layers. A growing-arity quartic-sign family retains a nontrivial
-address phase when converted into a larger XOR query.
+The [quadratic construction](research/depth/QUADRATIC_NATIVE_QUERY.md)
+settles exact depth for every nonaffine quadratic Boolean XOR at zero
+clean and one returned dirty helper: depth two, $`2r+4`$ T gates for
+polar rank r, and $`G=O(m^2+r)`$ on m addresses. Native coordinate
+changes, phases and actual inverses are paid. A better six-band cubic
+baseline stops the proposed quartic-phase echo as an improvement.
+These one-output bands cannot be shared across R91's rows for free.
 
-A [projected-band component](research/depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
-recovers native axes through one Pauli stabilizer quotient except for
-one three-dimensional ambiguity. A separate fully paid example shows
-why the old shared-Pauli clean-removal inference fails for an arbitrary
-one-band/two-band split; its target has a one-layer simplification. This
-limits that proof mechanism, not alternative native representations.
+The [balanced algebra construction](research/depth/BALANCED_ALGEBRA_PERMUTATION.md)
+pays the previously missing in-place multiplication using six
+completed bilinear queries in five native stages. Its refined source
+depth is at most $`40\lceil\log_2r\rceil`$. It compiles the historical HRT permutation
+on $`2^r-1`$ arbitrary coefficient inputs and its actual inverse in
+$`O(\log r)`$ depth, with $`O(3^r)`$ T-count, Clifford count and
+extra returned dirty work, and zero clean qubits. The fair batched
+baseline has $`O(r)`$ depth. The resulting degree-r query has growing
+depth and uses every coefficient as its address; it is not an arbitrary-
+table primitive or a borrowed-work implementation of r-input AND.
 
-The next lower question is whether the complete logical Pauli algebra
-on a non-Pauli intermediate clean code admits a degree bound independent
-of arity and dirty width at three native layers, without assuming that
-failed shared flip. A full unbounded-degree native query family would
-also resolve this test. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-still needs a faster exact restored-address arbitrary-table query within
-all simultaneous count, inverse and workspace budgets. Complete operator
-action, literal phases, references, leakage and work return remain mandatory.
-The complete-frame resource frontier is unchanged.
+The [at-most-one-clean two-layer degree bound](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
+and [zero-clean three-layer degree bound](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md)
+remain proved, including their uniform error floors. The next lower
+question is a uniform Boolean degree bound for **one-clean three-layer**
+queries, using the whole logical family while handling unused-sector
+freedom. The retained R74 identity-isolation theorem reduces sufficiently
+accurate Boolean approximation to exact occupied action; the missing
+degree invariant is therefore an exact-synthesis question. A fully paid
+unbounded-degree family would resolve the test
+in the opposite direction. The constructive alternative is to apply
+the new in-place recovery mechanism to a faster arbitrary-table query
+within [R98's simultaneous budgets](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md).
 Optimal general depth, unrestricted one-clean four-layer rigidity and
-dimension-growing lower bounds remain open. Final manuscript drafting
-remains separate.
+dimension-growing lower bounds remain open. Every column, literal
+phase, reference, inverse, leakage and work-return requirement remains
+in force. Final manuscript drafting is separate.
 
 ## Mandate
 
