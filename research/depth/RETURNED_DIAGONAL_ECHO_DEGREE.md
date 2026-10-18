@@ -1,18 +1,177 @@
-# Fully returned diagonal translation echoes have cubic Boolean phase
+# Returned diagonal source words have bounded Boolean degree
 
 [Current frontier](../../docs/OPEN_PROBLEM.md) ·
 [Read-only layer results](READ_ONLY_THREE_LAYER_RIGIDITY.md)
 
-This is a width-independent theorem for a scalar translation echo with an
-arbitrary diagonal unitary source, with a fixed positive error radius for
-approximation to a prescribed Boolean scalar phase. Source phases may have arbitrary
-precision, including irrational multiples of pi; they need not be Boolean
-signs. It does not constrain non-diagonal fixed conjugators or arbitrary
-products of four Pauli representations, and it does not prove a T-depth
-recurrence. The sharp native example below is a scope witness, not a resource
-improvement.
+A fixed number of arbitrary diagonal work sources cannot expose an
+arbitrarily high-degree Boolean scalar phase through affine transport of
+fully arbitrary work. The theorem permits distinct sources, arbitrary
+unit-circle phases, fixed invertible affine work mixing, and all literal
+monomial-Clifford phases between source calls. It has a positive full-operator
+error radius independent of address length, dirty width and source precision.
+The earlier double-translation echo is the four-source special case: its
+cubic degree bound now holds below error $`2\sin(\pi/32)`$.
 
-## Statement
+The number of source occurrences is not native T-depth. Every source and
+actual inverse must still be synthesized and charged, and a fused native
+word may leave this architecture. This result gives no unrestricted native
+T-depth recurrence. The explicit cubic native example below is a scope
+witness, not a resource improvement.
+
+## General diagonal source words
+
+Let the address $`x\in\mathbb F_2^a`$ be read-only and let all
+$`w`$ physical work bits be arbitrary, with zero initialized helpers.
+Consider a word with $`q\ge0`$ occurrences of fixed work-diagonal sources
+
+```math
+D_j|z\rangle=e^{2\pi i h_j(z)}|z\rangle,
+\qquad h_j:\mathbb F_2^w\longrightarrow\mathbb R/\mathbb Z,
+\qquad 1\le j\le q.
+```
+
+Sources may differ, and may ignore some work bits. Their phases may be
+irrational. They do not depend directly on the address: address dependence
+enters through the intervening affine transformations of dirty work.
+An actual inverse occurrence has its own position in q, with phase
+$`-h_j`$ if it is the inverse of an earlier source.
+
+Before, between and after the sources, allow completed read-only monomial
+Clifford intervals. On computational columns each interval has the form
+
+```math
+|x,z\rangle\longmapsto
+ e^{2\pi i c_j(x,z)}|x,M_jz+L_jx+b_j\rangle,
+\qquad M_j\in\mathrm{GL}(w,\mathbb F_2).
+```
+
+Here the matrices and offsets are fixed. Literal monomial-Clifford phases,
+including S phases, CZ phases and address-work cross phases, are retained.
+A completed interval may be synthesized in any exact native way, but its
+net action must have this form. Nonmonomial completed intervals and nonlinear
+work permutations are outside this statement.
+
+Write $`W_x`$ for the resulting work operator. For a prescribed Boolean
+function f, put
+
+```math
+r=\max\{q,3\},\qquad
+\rho_r=2\sin\!\left(\frac{\pi}{2^{r+1}}\right).
+```
+
+**Theorem.** If
+
+```math
+\max_x\|W_x-(-1)^{f(x)}I_W\|_{\mathrm{op}}\le\varepsilon,
+\qquad \varepsilon\lt\rho_r,
+```
+
+then the completed affine work permutation is exactly the identity and
+
+```math
+\deg_{\mathbb F_2}f\le r-1=\max\{2,q-1\}.
+```
+
+Exact full scalar return to a prescribed Boolean phase is included by taking
+$`\varepsilon=0`$. In particular, a target of degree $`d\ge3`$ requires at
+least $`q\ge d+1`$ source occurrences in this architecture. The degree-two
+allowance is necessary: an address CZ is already an allowed monomial
+Clifford with no diagonal work source. The theorem does not assert that an
+arbitrary returned scalar phase must be Boolean; that additional fact holds
+for the specific echo below.
+
+The norm is on the complete physical space, with every dirty input retained.
+It includes coherent address superpositions and tensoring with arbitrary
+external reference systems. There is no initialized-subspace promise,
+measurement, reset, leakage allowance or intermediate return assumption.
+
+## Proof by joint address-work translations
+
+Following every computational column through the word gives
+
+```math
+W_x|z\rangle=e^{2\pi i\Phi(x,z)}|R(x,z)\rangle,
+\qquad
+\Phi(x,z)=c_{\mathrm{Cl}}(x,z)
+ +\sum_{j=1}^q h_j(A_jz+B_jx+b_j)
+ \quad\text{in }\mathbb R/\mathbb Z.                 (1)
+```
+
+Each $`A_j`$ is the product of the preceding invertible work blocks and is
+therefore invertible. The offsets are unrestricted. The final map R is
+likewise an affine permutation of work for each address.
+
+The accumulated Clifford phase $`c_{\mathrm{Cl}}`$ has zero third additive
+differences in the joint variables $`(x,z)`$. To see this directly, a
+monomial Clifford phase is a sum of a constant, quarter-integer multiples
+of affine Boolean parities, and half-integer multiples of products of two
+affine parities. An affine parity divided by four has zero third differences
+modulo one: any nonzero difference changes its sign with a factor of two
+at each subsequent difference, so the third difference is integral.
+A product of two affine parities divided by two has zero third differences
+because its Boolean degree is at most two. These facts include repeated,
+zero and dependent directions. Substitution of any affine prefix map leaves
+this description unchanged, so it applies to the accumulated phase in (1).
+
+Choose arbitrary address directions $`u_1,\ldots,u_r`$. Assign to each
+source its own joint direction
+
+```math
+v_j=(u_j,A_j^{-1}B_ju_j)\quad(1\le j\le q),
+\qquad v_j=(u_j,0)\quad(q\lt j\le r).
+```
+
+Translation by $`v_j`$ leaves the argument of source j unchanged. With
+$`\Delta_v\Phi(y)=\Phi(y+v)-\Phi(y)`$, the additive differences commute.
+Each source term is killed by its assigned factor, and the Clifford phase
+is killed because $`r\ge3`$. Thus at every joint base point,
+
+```math
+\Delta_{v_1}\cdots\Delta_{v_r}\Phi(x,z)=0
+                       \quad\text{in }\mathbb R/\mathbb Z.       (2)
+```
+
+This is a joint-cube identity on all work inputs. It does not fix work to a
+prepared state or assume that any source is inexpensive.
+
+Since $`\rho_r\lt\sqrt2`$, the operator error hypothesis first forces
+$`R(x,z)=z`$ for every column. Otherwise the actual and target output basis
+vectors are orthogonal and their difference has norm exactly $`\sqrt2`$,
+regardless of their phases. The completed word is therefore diagonal.
+Define its error phase relative to the literal Boolean target by
+
+```math
+E(x,z)=e^{2\pi i\Phi(x,z)}(-1)^{f(x)},\qquad
+|E(x,z)-1|\le\varepsilon.
+```
+
+Its principal argument $`\theta(x,z)`$ satisfies
+
+```math
+|\theta(x,z)|\le2\arcsin(\varepsilon/2).
+```
+
+Only the error ratio is given a local principal argument; no real lift of
+an arbitrary source phase is chosen. Exponentiating (2), the signed product
+of the actual word phases on this r-cube equals one. If the Boolean
+r-fold derivative of f in the address directions were one, the corresponding
+target phase product would equal minus one. The signed product of the error
+phases would then equal minus one, so the sum of their signed principal
+arguments would be an odd multiple of pi. Consequently
+
+```math
+\pi\le2^r\,2\arcsin(\varepsilon/2),
+\qquad
+\varepsilon\ge2\sin\!\left(\frac{\pi}{2^{r+1}}\right),
+```
+
+contrary to the hypothesis. Every r-fold Boolean derivative of f vanishes
+at every base address. This is exactly the algebraic-degree condition
+$`\deg f\le r-1`$. The proof is independent of width and all source phase
+denominators. The radius is a sufficient analytic bound; no optimality of
+that radius is asserted.
+
+## A translation echo has Boolean scalar phase
 
 Let $`h:\mathbb F_2^w\to\mathbb R/\mathbb Z`$ be arbitrary and let
 $`L,M:\mathbb F_2^a\to\mathbb F_2^w`$ be linear. Write
@@ -29,21 +188,7 @@ U_x=A_x(D_hB_xD_h^\dagger)A_x^\dagger
                      (D_hB_x^\dagger D_h^\dagger).
 ```
 
-Every work input is arbitrary. Suppose for every x the complete work operator
-is a scalar phase,
-
-```math
-U_x=\lambda(x)I_W,\qquad |\lambda(x)|=1.
-```
-
-Then the phase is necessarily Boolean: $`\lambda(x)=(-1)^{q(x)}`$ for a
-Boolean q satisfying $`q(0)=0`$ and $`\deg_{\mathbb F_2}q\le3`$.
-This bound is independent of address length, dirty width, phase precision and
-the complexity of h. The conclusion is exact and includes complete work
-return with arbitrary superpositions and external references.
-
-For the additive difference $`\Delta_vh(z)=h(z+v)-h(z)`$ in
-$`\mathbb R/\mathbb Z`$, direct action on every basis column gives
+Direct action on every basis column gives
 
 ```math
 U_x|z\rangle
@@ -52,270 +197,110 @@ U_x|z\rangle
 
 The minus sign follows from the actual right-to-left order of the displayed
 commutator; the two source calls have positive phases and both actual inverse
-calls have negative phases. Scalar return is therefore equivalent to
-$`\Delta_{Lx}\Delta_{Mx}h(z)=c(x)`$ independent of z.
+calls have negative phases. If $`U_x=\lambda(x)I_W`$, then
+$`\Delta_{Lx}\Delta_{Mx}h(z)=c(x)`$ is independent of z.
 Translation by Lx negates this difference, since Lx has order at most two.
 Thus $`2c(x)=0`$ in $`\mathbb R/\mathbb Z`$, including the case Lx is zero,
-and uniquely $`c(x)=q(x)/2`$ with Boolean q. The sign in the exponential then
-makes no difference. No initialized state, measurement, scalar convention or
+and uniquely $`c(x)=f(x)/2`$ with Boolean f. Hence
+$`\lambda(x)=(-1)^{f(x)}`$, and $`f(0)=0`$ because $`U_0=I`$.
+
+The echo has four diagonal source occurrences, including both actual
+inverses. The general theorem with $`q=r=4`$ now gives $`\deg f\le3`$.
+This includes overlapping or dependent translation images, arbitrary
+superpositions, and external references. No scalar convention or
 intermediate work return is used.
-
-## Proof in the additive derivative algebra
-
-All operators below act on the abelian group of
-$`\mathbb R/\mathbb Z`$-valued functions of z. For the standard address basis
-$`e_i`$ define
-
-```math
-a_i=\Delta_{Le_i},\qquad b_i=\Delta_{Me_i}.
-```
-
-They commute and satisfy $`a_i^2=-2a_i`$ and $`b_i^2=-2b_i`$.
-They are not assumed square-zero. The argument below only uses commutativity
-and the scalar-return equations, and remains valid for overlapping images of
-L and M or linearly dependent images. For sets A and B write
-$`a_A=\prod_{i\in A}a_i`$ and $`b_B=\prod_{i\in B}b_i`$, with empty product I.
-Expanding the translations as products of $`I+a_i`$ and $`I+b_i`$ gives the
-unique multilinear expansion in the Boolean address coordinates:
-
-```math
-\Delta_{Lx}\Delta_{Mx}
-  =\sum_{\varnothing\ne S\subseteq[a]}x^S E_S,
-\qquad
-E_S=\sum_{\substack{\varnothing\ne A,B\subseteq S\\A\cup B=S}}
-                    a_A b_B.
-```
-
-The union allows A and B to overlap: $`x_i^2=x_i`$ on Boolean inputs.
-Multilinear coefficients exist over any abelian group by signed Moebius
-inversion. Scalar return says each $`E_Sh`$ is a constant function of z.
-Consequently every nonempty derivative word R in the $`a_i,b_i`$ obeys
-
-```math
-R E_S h=0.                                                   (1)
-```
-
-First, if $`A\cap B`$ is nonempty and $`|A\cup B|\ge2`$, then
-$`a_Ab_Bh=0`$. Choose i in the intersection. Since
-$`E_{\{i\}}=a_ib_i`$, the monomial is $`E_{\{i\}}`$ multiplied by a nonempty
-remaining derivative word, and (1) applies. This disposes of all
-terms with overlapping indices below.
-
-Fix a set S of $`n\ge3`$ distinct indices. For nonempty proper A subset S put
-
-```math
-v_A=a_A b_{S\setminus A}h.
-```
-
-For $`i\in A`$ and $`j\in S\setminus A`$ multiply $`E_{\{i,j\}}`$ by
-
-```math
-R=a_{A\setminus\{i\}}b_{S\setminus(A\cup\{j\})}.
-```
-
-R is nonempty because $`n\ge3`$. The only terms in $`E_{\{i,j\}}`$ without
-an overlapping index are $`a_ib_j`$ and $`a_jb_i`$; its other terms vanish
-by the preceding paragraph after multiplication by R. Equation (1) gives
-
-```math
-v_A=-v_{(A\setminus\{i\})\cup\{j\}}.                    (2)
-```
-
-The minus sign matters for non-Boolean sources. The graph of k-element
-subsets joined by one exchange is connected and contains a triangle for
-$`1\le k\le n-1`$ and $`n\ge3`$. For $`k\le n-2`$, fix k-1 members and
-choose the remaining member in three ways; for $`k=n-1`$, use complements
-of three singletons. Applying (2) around a triangle gives $`v_A=-v_A`$.
-Connectivity propagates this identity, so every $`v_A`$ is two-torsion and
-all values with $`|A|=k`$ agree. Denote their common value by $`v_k`$.
-
-Now let $`n\ge4`$. Choose three indices T subset S. For each integer
-$`0\le r\le n-3`$, choose R to contain one derivative on every index of
-$`S\setminus T`$, with r of them a derivatives and $`n-3-r`$ of them b
-derivatives. R is nonempty. In $`RE_Th=0`$ all terms with overlapping indices
-vanish. There are three remaining terms having one a derivative on T and
-three having two. Hence
-
-```math
-0=3v_{r+1}+3v_{r+2}=v_{r+1}+v_{r+2}.
-```
-
-The last equality uses two-torsion. Thus all $`v_1,\ldots,v_{n-1}`$ agree.
-The coefficient $`E_Sh`$ is the sum of one $`v_A`$ for each nonempty proper
-subset A, with overlapping terms zero:
-
-```math
-E_Sh=\sum_{\varnothing\ne A\subsetneq S}v_{|A|}
-     =(2^n-2)v_1=0.
-```
-
-Every additive multilinear coefficient of c of degree at least four therefore
-vanishes. The identification $`c=q/2`$ identifies this two-torsion subgroup
-with $`\mathbb F_2`$ and its signed coefficients with the Boolean ANF
-coefficients of q. This proves the theorem without a rank, sparsity,
-phase-denominator or finite-width constant.
 
 ## Robust return at a width-independent error radius
 
-The same degree conclusion survives a nonzero complete operator error. Let
-f be a prescribed Boolean function and retain the literal echo above. If
+For a prescribed Boolean f, the same echo satisfies
 
 ```math
-\max_x\|U_x-(-1)^{f(x)}I_W\|_{\rm op}\le\eta,
-\qquad \eta\lt\frac{2}{275},
+\max_x\|U_x-(-1)^{f(x)}I_W\|_{\mathrm{op}}\le\eta,
+\qquad \eta\lt2\sin(\pi/32)
+\quad\Longrightarrow\quad f(0)=0,\quad\deg f\le3.
 ```
 
-then $`f(0)=0`$ and $`\deg f\le3`$. The constant is a convenient analytic
-bound, with no optimality claim. It is independent of work width, address
-length, source precision and the size of a native source implementation.
-All work inputs, including correlations with external references, remain
-covered. No assumption of exact scalar return, an initialized work state,
-or a rational phase denominator is used. The echo is diagonal on work and
-block diagonal in the unchanged address, so the full operator error is the
-maximum of these phase errors. Tensoring with an external reference does not
-change that norm.
-
-Here is a bounded four-direction proof. For an additive phase function v,
-write, with $`T_u`$ denoting translation by u,
-
-```math
-\nu(v)=\sup_z|e^{2\pi i v(z)}-1|.
-```
-
-This quantity is subadditive and invariant under translation. If v is
-within eta of a constant in this phase metric, applying a nonempty product
-of k translation differences gives phase norm at most $`2^k\eta`$.
-More generally, an integer translation polynomial P with zero coefficient
-sum gives the bound $`\|P\|_1\eta`$, where $`\|P\|_1`$ is the sum of
-absolute coefficients. These follow by multiplying unit complex numbers
-and telescoping; they do not require choosing a real logarithm of a phase.
-
-Restrict the address to any four directions, allowing dependence and zero
-directions. Use their coordinates 1 through 4, and retain the operators
-$`a_i,b_i,E_S`$ from the exact proof. Put
-
-```math
-d_x=\Delta_{Lx}\Delta_{Mx}h,\qquad d_i=a_i b_i h,
-\qquad c_i=a_i+b_i+a_i b_i=T_{Le_i+Me_i}-I.
-```
-
-The target comparison is $`\nu(d_x-f(x)/2)\le\eta`$: reversing the
-literal negative sign of the echo preserves this bound because the target
-phase is Boolean. Also $`U_0=I`$, so $`f(0)=0`$ at the stated error.
-Signed Moebius inversion gives
-
-```math
-\nu\!\left(E_Sh-\sum_{\varnothing\ne X\subseteq S}
-                    (-1)^{|S|-|X|}\frac{f(X)}2\right)
-\le(2^{|S|}-1)\eta.                                      (3)
-```
-
-For the four-direction coefficient, separate the disjoint terms
-$`v_A=a_A b_{[4]\setminus A}h`$ from the terms with an index present in
-both factors. Their overlap sum is exactly
-
-```math
-O h=\left[\prod_{i=1}^4c_i-\prod_{i=1}^4(a_i+b_i)\right]h
- =\sum_{i=1}^4
-   \left[\prod_{j\lt i}(a_j+b_j)\prod_{j\gt i}c_j\right]d_i.
-```
-
-Every bracket annihilates constants. Since $`\|a_j+b_j\|_1\le4`$
-and $`\|c_j\|_1\le2`$, the full-input comparison for each d_i gives
-
-```math
-\nu(Oh)\le(8+16+32+64)\eta=120\eta.                    (4)
-```
-
-Next pair two proper nonempty subsets A and B of [4] that differ by
-exchanging i in A with j outside A. Their monomial sum is R times
-$`a_i b_j+a_j b_i`$, where R contains the two remaining differences.
-The exact translation identity is
-
-```math
-(a_i b_j+a_j b_i)h
- =d_{e_i+e_j}-T_{Le_j+Me_j}d_i
-             -(T_{Le_i}+T_{Me_i}-I)d_j.                  (5)
-```
-
-The nonempty R kills each constant comparison phase and has coefficient
-norm at most four. Equation (5) therefore gives
-$`\nu(v_A+v_B)\le4(1+1+3)\eta=20\eta`$.
-The fourteen proper nonempty subsets admit seven such pairs:
-
-| Subset size | Pairs, with concatenated indices denoting a subset |
-|---|---|
-| 1 | (1,2), (3,4) |
-| 2 | (12,13), (14,24), (23,34) |
-| 3 | (234,134), (124,123) |
-
-Consequently $`\nu(E_{[4]}h)\le120\eta+7(20\eta)=260\eta`$.
-By (3), its distance from the Boolean fourth-difference target is at most
-$`15\eta`$. A nonzero fourth difference would require
-$`2\le275\eta`$, which contradicts the hypothesis.
-
-Thus every four-direction Boolean derivative of f at zero vanishes. This
-also excludes all higher algebraic degrees, not only a degree-four ANF
-coefficient on one chosen coordinate set. In characteristic two the
-Boolean difference operators obey
-
-```math
-\delta_u\delta_v=\delta_{u+v}+\delta_u+\delta_v.
-```
-
-A derivative of order greater than four reduces by this identity to sums
-of four-direction derivatives at zero. In particular every ANF coefficient
-of degree at least four is zero. This completes the robust proof without a
-width-dependent continuity estimate or intermediate work-return assumption.
-
-The relation is an analytic constraint on the actual echo. It adds no
-physical calls, clean work or dirty work to a construction. If the source
-is implemented natively, all source appearances, actual inverses and
-translations retain their own full resource charges; the theorem does not
-supply such an implementation for an arbitrary U(1) source.
-
+The radius is approximately $`0.196034`$. The degree conclusion is the
+four-source case of the joint-cube proof, and the value at zero follows
+from $`U_0=I`$. This improves the earlier sufficient radius $`2/275`$ and
+allows a wider source-word architecture, while preserving the full operator
+contract. The exact cubic example below shows that the degree conclusion
+cannot be lowered for four sources; it does not assert that the error
+radius is sharp.
 
 ### Approximate native sources remain charged
 
-Suppose an actual fixed native source $`\widetilde D`$ approximates
-$`D_h\otimes I`$ within delta in full operator norm on all its physical
-work wires. Any additional source wires are arbitrary, included in that
-norm, and included simultaneously in its allocation; an initialized-only
-promise is not substituted here. Use the actual inverse of this same native
-word at both dagger positions. Its inverse error is also at most delta.
-Four-term unitary telescoping gives
+For the general word, suppose the actual native occurrence
+$`\widetilde D_j`$ approximates $`D_j`$ within $`\delta_j`$ in full operator
+norm on all physical work. Any extra source helpers are arbitrary, included
+in that norm and in the simultaneous allocation, and have ideal identity
+action. Initialized-only accuracy is insufficient. Every actual inverse
+occurrence is included separately; the inverse of a source word has the
+same full-operator error as the forward word.
+
+Unitary telescoping between the ideal and compiled completed words gives
 
 ```math
-\|\widetilde U-U\|_{\rm op}\le4\delta.
+\|\widetilde W-W\|_{\mathrm{op}}\le\sum_{j=1}^q\delta_j.
 ```
 
-Thus if the completed native echo approximates $`(-1)^{f(x)}I`$ with
-full operator error epsilon and
+Thus completed native target error epsilon gives the same degree conclusion
+whenever
 
 ```math
-\varepsilon+4\delta\lt\frac{2}{275},
+\varepsilon+\sum_{j=1}^q\delta_j\lt\rho_r.
 ```
 
-then f still has degree at most three. The comparison includes every source
-input, every actual inverse, all returned work and all reference systems.
-There is no reset, measurement or uncharged recovery.
+This is a forward error ledger from explicit source accuracy; small error
+of a fused completed word alone does not imply accurate individual sources.
+All controls, phases, returns and reference systems remain included.
 
-If one source word has counts $`T_D,G_D`$, T-depth $`d_D`$, and total
-physical arbitrary-work allocation W, the displayed echo has the upper
-ledger
+For native occurrence counts $`T_j,G_j`$ and T-depths $`d_j`$, the displayed
+sequential source word has the charged upper ledger
+
+```math
+T\le\sum_{j=1}^qT_j,\qquad
+D_T\le\sum_{j=1}^qd_j,\qquad
+G\le\sum_{j=1}^qG_j+G_{\mathrm{intervals}}.
+```
+
+Here the monomial Clifford intervals are implemented as exact Clifford
+words and $`G_{\mathrm{intervals}}`$ charges every elementary gate in them.
+All simultaneously present work wires, including any source helpers, are
+arbitrary and counted; there are zero clean helpers. This ledger does not
+claim that a general arbitrary-phase source has an exact finite native
+implementation. When it requires approximation, the displayed error budget
+applies. Sources are sequential occurrences in this architecture; this is
+not a lower bound on a different fused implementation.
+
+In particular, if one native echo source $`\widetilde D`$ approximates
+$`D_h\otimes I`$ within delta and its actual inverse is used at both dagger
+positions, then
+
+```math
+\|\widetilde U-U\|_{\mathrm{op}}\le4\delta,
+\qquad
+\varepsilon+4\delta\lt2\sin(\pi/32)
+\quad\Longrightarrow\quad\deg f\le3.
+```
+
+If that source has T-count $`T_D`$, T-depth $`d_D`$, total physical
+arbitrary-work allocation W, and the actual forward and inverse words have
+elementary Clifford counts $`G_D`$ and $`G_{D^\dagger}`$, the literal echo has
 
 ```math
 T\le4T_D,\qquad D_T\le4d_D,\qquad
-G\le4G_D+2\mathrm{nnz}(L)+2\mathrm{nnz}(M).
+G\le2G_D+2G_{D^\dagger}+2\mathrm{nnz}(L)+2\mathrm{nnz}(M).
 ```
 
-Here nnz counts entries equal to one in the displayed binary translation
-matrices: one CNOT per entry implements a translation. Both translation
-families occur twice, and all four source calls occur chronologically on
-the same W wires. The simultaneous allocation is W arbitrary work and zero
-clean work, excluding the read-only address. These are charged upper bounds
-for this word, with no count or depth improvement over a simplified native
-query baseline asserted.
+The actual inverse has the same T/T-dagger count and reversed T-layer
+schedule, but its elementary Clifford count can differ in the native
+alphabet: for example, an S-dagger may require three S gates. Both counts
+are therefore charged separately. Each nonzero translation-matrix entry
+costs one address-controlled CNOT. Both translation families occur twice. All four source calls, including
+actual inverses, use the same W arbitrary wires; the simultaneous allocation
+is W arbitrary work and zero clean work, excluding the read-only address.
+There is no reset, measurement or uncharged recovery.
 
 ## Sharp cubic example, and a literal native ledger
 
@@ -384,31 +369,48 @@ must not be misreported as four physical T layers.
 
 ## Scope and precise unresolved step
 
-This closes the proposed mechanism of hiding arbitrarily high degree in an
-arbitrary diagonal $`D_h`$ and trying to expose it with one fully returned
-double-translation commutator. Its resulting phase is necessarily Boolean
-and remains cubic even when the source has arbitrary U(1) phases and its
-native cost is temporarily ignored. Charging a native $`D_h`$ can only add costs.
+This closes a broader version of the diagonal-source fusion candidate:
+hiding arbitrary table complexity in a fixed number of diagonal work sources
+and exposing it by affine dirty-work transport cannot produce Boolean degree
+above $`\max\{2,q-1\}`$, even when the source costs are temporarily ignored.
+For the double-translation echo, four source occurrences can expose cubic
+phase, but cannot expose higher degree below the stated error. Native
+synthesis charges can only add to the displayed word's costs.
 
-The theorem does not address non-diagonal fixed conjugators or arbitrary
-products of four representation factors. It applies to the displayed echo
-with two linear translation families. The robust statement covers approximation to a prescribed Boolean scalar
-phase below $`2/275`$ in full operator norm. It gives no query-degree bound
-at five layers or general-frame lower bound.
+The theorem does not constrain nonmonomial completed Clifford intervals,
+nonlinear work permutations, a source that directly accepts the address, or
+arbitrary products of Pauli representations. In particular, it does not
+identify q with native T-depth, prove a six-layer query obstruction, or
+improve the R91/R96 complete-circuit upper laws. The sufficient radius
+$`\rho_r`$ decreases with q, so the robust statement is not a fixed-error
+bound for an unbounded number of source calls. A successful constructive
+continuation must implement a mechanism outside this affine diagonal-source
+architecture while paying the table-loading cost, all sources and actual
+inverses, and full dirty-work recovery. The concrete unresolved question is
+whether nonmonomial interference or a returned nonlinear intermediate can
+remove the R91 address-indicator depth without moving that cost into source
+synthesis or recovery.
 
-The [bounded evidence checks](../../tests/test_returned_diagonal_echo_degree.py)
-include the complete native word and actual inverse on every physical basis
-input, the derivative expansion with overlapping and dependent maps, and
-linear-algebra elimination for disjoint L,M with $`a=1,\ldots,4`$.
-The elimination imposes every full-work return equation on arbitrary Boolean
-truth tables h and q, rather than sampling h. In that Boolean calculation,
-the maximum possible q degrees are 1,2,3,3; all degree-at-least-four coefficient
-functionals belong to the equation row span. Further checks retain signed
-additive derivatives, actual inverse phases, overlapping and dependent maps,
-and a returned cubic source with non-Boolean phases of several denominators.
-Further exact integer group-ring checks verify the bounded four-direction
-identity and its error coefficient, including overlapping and dependent
-translations. A five-address-bit kernel check verifies that four-direction
-tests through zero exclude fifth degree as well as fourth degree. A perturbed
-non-Boolean source exercises positive full-input error and the literal
-inverse order. These checks support, and are not the proof of, the theorem.
+The [general source-word checks](../../tests/test_diagonal_source_word.py)
+verify joint-cube annihilation with distinct rational sources and invertible
+affine work mixing, literal Clifford phases including cross terms and
+repeated directions, and the operator-return and circular-error thresholds.
+The [earlier echo checks](../../tests/test_returned_diagonal_echo_degree.py)
+retain the complete native cubic word and actual inverse on all physical
+columns, dependent and overlapping translations, non-Boolean rational source
+phases, exact full-return elimination for all Boolean sources through four
+address bits, and a perturbed source with positive full-input error. These
+checks are bounded evidence, not the proof of the theorem.
+
+### Historical four-direction certificate
+
+The earlier proof expanded the fourth echo coefficient in the integer
+translation group ring. Its overlapping terms cost at most 120 phase-error
+units, seven paired disjoint terms cost at most 20 each, and comparison to
+the Boolean fourth difference cost 15, giving $`120+7(20)+15=275`$ and the
+older sufficient radius $`2/275`$. Its exact polynomial identities, including
+signed additive differences and dependent translations, remain checked in
+the earlier test file. A five-bit kernel check there also verifies that
+four-direction tests through zero exclude fifth degree. This evidence is
+retained for reproducibility; the current theorem and stronger radius use
+the single joint-translation proof above.

@@ -4,6 +4,9 @@
 [Authoritative proof](READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound) ·
 [Previous checkpoint](SPAN_PRESERVING_SESSION_RESULT.md)
 
+[Subsequent checkpoint](SIX_LAYER_TRANSPORT_SESSION_RESULT.md): the six-layer
+Pauli-comparison case is now bounded; the general six-layer question remains open.
+
 This round began on 18 October 2026 at verified main
 `6e20eb47bc7d857f88f4a4da8577b3a23457419e` (PR #172).
 It addressed target extraction outside the outer-axis span and tested a
