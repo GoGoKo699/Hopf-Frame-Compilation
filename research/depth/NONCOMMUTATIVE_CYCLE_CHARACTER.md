@@ -330,6 +330,191 @@ return exactly. The control, source, inverse, and reference guarantees
 are those of the sequential construction. This alternate schedule gives
 no sublogarithmic depth result.
 
+## 5a. The cycle source is a unitriangular inverse word query
+
+The full source has a stronger interpretation than its conjunction
+restriction. Cut the directed cycle between vertices $`d-1`$ and zero,
+and divide its coefficients into a strictly upper-triangular matrix U
+and a lower-triangular matrix L:
+
+```math
+U_{ij}=z_{i,j-i}\quad(i\lt j),\qquad
+L_{ij}=z_{i,d+j-i}\quad(i\ge j).
+```
+
+U contains the nonwrapping paths; L contains the wrapping paths,
+including the d full cycles on its diagonal. Together they contain
+exactly the original $`d^2`$ coefficient bits. Put
+
+```math
+R(U)=(I+U)^{-1}=I+U+\cdots+U^{d-1},\qquad
+q=\frac{d(d-1)}2,\qquad r=\frac{d(d+1)}2.
+```
+
+The character is the inverse pairing
+
+```math
+\chi(1+z)=\mathrm{tr}(R(U)L)
+ =\sum_iL_{ii}+\sum_{i\lt j}L_{ji}R(U)_{ij}.              \qquad(13a)
+```
+
+To prove it, one may distinguish the wrap edge in the derivation (2).
+This leaves chi unchanged: every distinguished edge gives a character
+that is zero on $`1+e_{i,k}`$ for $`k\lt d`$ and one for k equal to d;
+the ordered factorization shows these basis units generate the group.
+In the expansion of $`\delta(u)u^{-1}`$, the differentiated path now
+wraps once. A contributing length-d closed path can have no further
+wrap, so all subsequent factors follow nonwrapping paths. A wrapping
+path from j to i therefore contributes $`L_{ji}R(U)_{ij}`$, including
+the length-d path when i equals j. Summing those terms proves (13a).
+
+Let $`\mathcal R(U)`$ be the r-bit lower-triangular word whose
+$`(j,i)`$ entry is $`R(U)_{ij}`$ for $`i\le j`$. Its diagonal
+entries are the known bit one. Equation (13a) makes the source
+
+```math
+D_\chi|U,L\rangle=(-1)^{\langle\mathcal R(U),L\rangle}|U,L\rangle.
+```
+
+With Hadamards on all r lower-coordinate wires, the exact identity is
+
+```math
+H_LD_\chi H_L:
+  |U,L\rangle\longmapsto|U,L\oplus\mathcal R(U)\rangle.  \qquad(13b)
+```
+
+Thus the uncontrolled cycle source and the complete arbitrary-output
+unitriangular inverse word query are Clifford equivalent. In either
+direction, T-count, T-depth, extra-helper width and full operator error
+are unchanged; elementary Clifford count increases by exactly $`2r`$
+Hadamards. All output values and arbitrary helper inputs are retained,
+so the statement includes arbitrary external references. This is not
+an initialized matrix-inversion oracle or a matrix-element encoding.
+
+The matrix input U is preserved by the **completed** source or query.
+The equivalence preserves native read-only use of U only if the supplied
+implementation already restricts it to Clifford controls throughout.
+The factorization F in Section 3 does not establish that stronger
+property for these coefficient wires. Calling U an address does not
+make those native operations read-only. The original conjunction word
+(6) separately retains its proved read-only property for x.
+
+### A single inverse entry needs no controlled source
+
+For $`i\le j`$, let $`C_{h,ji}`$ be the CNOT from a separate
+arbitrary bit h to $`L_{ji}`$. Execute chronologically
+
+```math
+D_\chi,\quad C_{h,ji},\quad D_\chi^\dagger,\quad C_{h,ji}.
+```
+
+The phase difference is $`hR(U)_{ij}`$ and L returns exactly.
+Conjugating this word by $`H_h`$ gives the complete XOR query
+$`h\mapsto h\oplus R(U)_{ij}`$. Suppose a supplied zero-clean
+native source has T-count $`T_D`$, T-depth $`d_D`$, elementary
+Clifford counts $`G_D,G_{D^\dagger}`$ for its forward word and
+actual inverse, and $`W_D`$ extra arbitrary helpers. This entry
+query has
+
+```math
+T\le2T_D,\qquad G\le G_D+G_{D^\dagger}+4,
+\qquad D_T\le2d_D,\qquad B=r+W_D.                       \qquad(13c)
+```
+
+B excludes the q matrix-input bits and the one output h. It includes
+the whole arbitrary L register. The only source control is the explicit
+CNOT translation; no controlled source or prepared one-hot L is assumed.
+Full source error $`\delta_D`$, including helper identity action,
+gives completed query error at most $`2\delta_D`$. Native read-only
+use of U again depends on the supplied source.
+
+### A fully charged controlled source from an uncontrolled source
+
+A different wrapper realizes the **whole controlled source**
+$`(-1)^{h\chi(U,L)}`$ while preserving both U and L. Reserve a fresh
+arbitrary r-bit lower array E, separate from U, L and h. The same source
+on U,E has phase $`\langle\mathcal R(U),E\rangle`$. Let
+
+```math
+S_h:(h,L,E)\longmapsto(h,L,E\oplus hL),
+```
+
+where hL means componentwise multiplication by h. Execute chronologically
+
+```math
+D_\chi(U,E),\quad S_h,\quad D_\chi(U,E)^\dagger,
+\quad S_h^\dagger.                                     \qquad(13d)
+```
+
+The difference between the two source phases is
+$`h\langle\mathcal R(U),L\rangle`$, and E returns. This is exact
+identity on the h-zero sector for arbitrary U,L,E and helpers. It is
+not an inference that an uncontrolled source can be controlled for free.
+
+For each of the r products $`E_k\mapsto E_k+hL_k`$, use the
+private-dirty echo from Section 4, with its own arbitrary helper.
+All r products run in eight T layers; the helpers are distinct and
+every use of h and L is a Clifford control. One shear has exactly
+$`8r`$ T gates and $`20r`$ elementary Cliffords, and its actual
+inverse has the same counts. For the supplied source ledger above,
+the controlled wrapper has
+
+```math
+\begin{aligned}
+T&\le2T_D+16r,\\
+G&\le G_D+G_{D^\dagger}+40r,\\
+D_T&\le2d_D+16,\\
+B_{\rm extra}&=r+\max\{W_D,r\}.
+\end{aligned}                                          \qquad(13e)
+```
+
+Here extra work excludes the caller's q-bit U, r-bit L and control h.
+It includes E and a separate pool large enough for either the source's
+$`W_D`$ helpers or the shear's r private helpers. That pool is reused
+only after each completed source or shear has returned it. E cannot
+be merged with the pool: it carries its live arbitrary value through
+both source positions. There are zero clean helpers. The literal
+inverse Clifford count remains separate because a new source may use
+native S gates whose inverse has a different elementary count.
+
+If the supplied uncontrolled source approximates
+$`D_\chi\otimes I_{W_D}`$ on its complete physical space within
+$`\delta_D`$, the actual-inverse wrapper error is at most
+$`2\delta_D`$. The shears here are exact. This provides a controlled
+source accuracy guarantee by an explicit circuit; it does not assume
+one from the uncontrolled guarantee alone. All identities hold with
+arbitrary reference correlations. For an approximate source, helper
+return is correspondingly approximate; reusing the pool remains valid
+because its source guarantee is on the full physical space, including
+any residual helper correlations. Hadamards on L also convert (13d)
+to the controlled inverse-word query, adding $`2r`$ Clifford gates.
+
+### What this duality does not supply
+
+Neither (13b) nor (13e) reduces the currently established source depth.
+It identifies the exact owed operation: a faster source is a faster
+complete unitriangular inverse-word query in another basis. Ordinary
+clean-scratch matrix algorithms do not automatically realize it.
+
+For example, block inversion gives
+
+```math
+\begin{pmatrix}A&B\\0&C\end{pmatrix}^{-1}
+ =\begin{pmatrix}A^{-1}&A^{-1}BC^{-1}\\0&C^{-1}\end{pmatrix}.
+```
+
+After inverting the diagonal blocks in place, one still owes the
+reversible action $`B\mapsto A^{-1}BC^{-1}`$ on its arbitrary existing
+block. A product-accumulation shear into a second dirty array is not
+that in-place action. Alternatively, inverse blocks accumulated into
+dirty arrays retain unknown offsets; removing them by the ordinary
+four-corner product echo repeats the recursive queries. Those identities
+alone give no logarithmic-depth recurrence. This is the same distinction
+between a cheap doubled shear and a paid in-place map exposed by the
+[Gaussian inverse analysis](GAUSSIAN_INVERSE_EXTRACTION.md#2-the-cheap-gaussian-shear-does-not-supply-the-inverse-map).
+The new source equivalence supplies neither a faster complete circuit
+nor an unrestricted depth lower bound.
+
 ## 6. Fair comparison and the remaining depth question
 
 For the **same strictly read-only-address interface**, the retained
@@ -435,7 +620,9 @@ character identity, even- and odd-length conjunctions, factorization
 order and actual inverse, all-column commutator return, and one complete
 native arbitrary-output query with its literal resource counts. Separate
 checks cover the shared-control four-layer phase word and colored pivot
-ordering. The [commutative tests](../../tests/test_nonlinear_character_transport.py)
+ordering, the inverse-pairing identity and Fourier word-query equivalence,
+and the complete dirty controlled-source wrapper. The
+[commutative tests](../../tests/test_nonlinear_character_transport.py)
 also check affine-cube products in a genuinely multivariate nilpotent
 algebra. These are bounded evidence; the proofs above and in the
 commutative theorem establish the arbitrary-size statements. No finite

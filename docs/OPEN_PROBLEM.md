@@ -90,13 +90,16 @@ membership alone only rounds nearby endpoints and cannot bound tableau
 degree; the charged known permutation-family stress test is not a
 three-band returned query.
 
-The [current checkpoint](../research/depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
-adds [native source certificates](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md).
-For a three-band C3 prefix with first/middle span overlap t, at most 2t
-middle axes fail to commute with the outer band. Zero overlap, or either
-adjacent two-band partial source being C3, certifies the diagonal class
-and hence the existing 78/26 bounds. C3 membership is an extra hypothesis,
-and overlap is a property of the specified physical representation.
+The [current checkpoint](../research/depth/ONE_OVERLAP_SESSION_RESULT.md)
+closes the first positive-overlap case. The
+[overlap-one source theorem](../research/depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
+proves that a three-band C3 prefix with first/middle span overlap at most
+one is diagonal C3 in fixed Clifford coordinates, even when neither
+adjacent partial source is C3. It therefore certifies the existing 78/26
+bounds. The [earlier source theorem](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+still confines middle/outer noncommutation to at most 2t middle axes for
+general overlap t. C3 membership is an extra hypothesis, and overlap is a
+property of the specified physical representation.
 
 A separate [uniform transport theorem](../research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 uses the intrinsic codimension k of the source's exact Pauli-preserving
@@ -116,14 +119,23 @@ depth at most $`64(d-1)`$, $`d^2+d`$ dirty qubits and no clean work.
 The retained conjunction circuits are faster. Thus the width obstruction
 is not representation-independent, but no improved general reader follows.
 
+The cycle source now has an exact reformulation as the complete word query
+for every entry of a binary unitriangular inverse, with only Hadamard
+basis changes on the lower-triangular coefficient register. Its new
+controlled-source wrapper prices two source calls, the actual inverse and
+all simultaneous dirty helpers. This identifies the native inversion cost
+rather than removing it; no improved complete circuit follows.
+
 The next lower-bound question is a **native degree-versus-depth recurrence**,
-with bounded-overlap three-band transport as a concrete next case.
-The 2t exceptional middle axes can still couple to an arbitrarily wide
-diagonal part and inner band; no small residual subsystem has been proved.
-Start with t equal to one, retaining the actual inner-family and return
-constraints. General non-C3 prefixes, literal sign and error control,
-one-clean work and address mixing remain additional gaps. None of these
-results changes the complete-frame upper law.
+with overlap-two three-band C3 transport as a concrete next case. The
+one-overlap proof removes its exceptional core's spectator coupling and
+extracts common full-space Clifford coordinates. At overlap two, no such
+classification or signed transport bound is proved. A bounded number of
+exceptional middle axes alone is insufficient. Retain the actual inner
+family and return constraints, and test alternative native representations.
+General non-C3 prefixes, literal sign and error control, one-clean work and
+address mixing remain additional gaps. None of these results changes the
+complete-frame upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, at most doubled error, T-count and

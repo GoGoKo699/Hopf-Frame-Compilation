@@ -195,6 +195,61 @@ def _shared_ccz_layers(control, pairs):
     return layers
 
 
+def _triangular_pairs(degree):
+    return ([(i, j) for i in range(degree) for j in range(i + 1, degree)],
+            [(i, j) for i in range(degree) for j in range(i + 1)])
+
+
+def _cycle_from_triangular(algebra, upper, lower):
+    upper, lower = int(upper), int(lower)
+    upper_pairs, lower_pairs = _triangular_pairs(algebra.degree)
+    result = sum(((upper >> bit) & 1) << algebra.index[(i, j - i)]
+                 for bit, (i, j) in enumerate(upper_pairs))
+    result |= sum(((lower >> bit) & 1) << algebra.index[(i, algebra.degree + j - i)]
+                  for bit, (i, j) in enumerate(lower_pairs))
+    return result
+
+
+def _upper_inverse(degree, upper):
+    upper_pairs, _ = _triangular_pairs(degree)
+    matrix = np.eye(degree, dtype=np.int64)
+    for bit, (i, j) in enumerate(upper_pairs):
+        matrix[i, j] = upper >> bit & 1
+    inverse = np.eye(degree, dtype=np.int64)
+    # Independent binary back substitution, not cycle-algebra factorization.
+    for i in range(degree - 1, -1, -1):
+        for j in range(i + 1, degree):
+            inverse[i, j] = sum(matrix[i, k] * inverse[k, j]
+                                for k in range(i + 1, j + 1)) % 2
+    return matrix, inverse
+
+
+def _inverse_lower_word(inverse):
+    _, lower_pairs = _triangular_pairs(len(inverse))
+    return sum(int(inverse[j, i]) << bit for bit, (i, j) in enumerate(lower_pairs))
+
+
+def _parallel_lower_shear(control, lower, extra, helpers):
+    """Private-helper phase schedule, with simultaneous T targets explicit."""
+    individual = [_relative_grid([source], [target], [[helper]])[1]
+                  for source, target, helper in zip(lower, extra, helpers)]
+    layers = []
+    for index in range(4):
+        before, phases, after = [], [], []
+        for schedule in individual:
+            layer = schedule[index]
+            position = next(i for i, gate in enumerate(layer) if gate[0] == 'T')
+            before += layer[:position]
+            phases.append(layer[position])
+            after += layer[position + 1:]
+        layers.append(before + phases + after)
+    relative = [gate for layer in layers for gate in layer]
+    linear = [('CX', control, helper) for helper in helpers]
+    phase = _inverse(relative) + linear + relative + _inverse(linear)
+    hadamards = [('H', target) for target in extra]
+    return hadamards + phase + hadamards, phase, layers
+
+
 class NoncommutativeCycleCharacterTests(unittest.TestCase):
     def test_path_algebra_derivation_cyclic_trace_and_nilpotence(self):
         rng = Random(4107)
@@ -400,6 +455,155 @@ class NoncommutativeCycleCharacterTests(unittest.TestCase):
                 self.assertEqual(_reconstruct(algebra, factors, order), word)
                 self.assertEqual(_apply_factor(factors, list(reversed(gates))), word)
                 self.assertEqual(algebra.trace(factors), algebra.character(word))
+
+    def test_source_is_upper_inverse_lower_pairing(self):
+        rng = Random(3901)
+        for degree in range(1, 9):
+            algebra = _CycleAlgebra(degree)
+            upper_pairs, lower_pairs = _triangular_pairs(degree)
+            upper_width, lower_width = len(upper_pairs), len(lower_pairs)
+            samples = (((upper, lower) for upper in range(1 << upper_width)
+                        for lower in range(1 << lower_width)) if degree <= 3
+                       else [(rng.getrandbits(upper_width), rng.getrandbits(lower_width))
+                             for _ in range(200)])
+            for upper, lower in samples:
+                matrix, inverse = _upper_inverse(degree, upper)
+                identity = np.eye(degree, dtype=np.int64)
+                np.testing.assert_array_equal(matrix @ inverse % 2, identity)
+                np.testing.assert_array_equal(inverse @ matrix % 2, identity)
+                lower_matrix = np.zeros_like(matrix)
+                for bit, (i, j) in enumerate(lower_pairs):
+                    lower_matrix[i, j] = lower >> bit & 1
+                expected = int(np.trace(inverse @ lower_matrix) % 2)
+                word = _cycle_from_triangular(algebra, upper, lower)
+                self.assertEqual(algebra.character(word), expected)
+                self.assertEqual(expected, (lower & _inverse_lower_word(inverse)).bit_count() % 2)
+
+    def test_fourier_source_is_complete_inverse_word_query(self):
+        # U is preserved by the completed diagonal source. This says nothing
+        # about gate-level read-only U access inside a native implementation.
+        hadamard = np.array([[1., 1.], [1., -1.]]) / np.sqrt(2)
+        for degree in range(1, 4):
+            algebra = _CycleAlgebra(degree)
+            upper_pairs, lower_pairs = _triangular_pairs(degree)
+            lower_width = len(lower_pairs)
+            fourier = np.array([[1.]])
+            for _ in range(lower_width):
+                fourier = np.kron(fourier, hadamard)
+            for upper in range(1 << len(upper_pairs)):
+                _, inverse = _upper_inverse(degree, upper)
+                inverse_word = _inverse_lower_word(inverse)
+                source = np.array([algebra.character(_cycle_from_triangular(algebra, upper, lower))
+                                   for lower in range(1 << lower_width)])
+                diagonal = 1 - 2 * source
+                actual = (fourier * diagonal) @ fourier
+                expected = np.zeros_like(actual)
+                for column in range(1 << lower_width):
+                    expected[column ^ inverse_word, column] = 1
+                np.testing.assert_allclose(actual, expected, rtol=0, atol=2e-14)
+                # H D^dagger H is the actual reversed ideal word. The literal
+                # native inverse is checked separately in the eight-wire test.
+                actual_inverse = (fourier * diagonal.conj()) @ fourier
+                np.testing.assert_allclose(actual_inverse, expected.conj().T,
+                                           rtol=0, atol=2e-14)
+
+    def test_dirty_lower_array_echo_controls_the_uncontrolled_source(self):
+        for degree in range(1, 4):
+            algebra = _CycleAlgebra(degree)
+            upper_pairs, lower_pairs = _triangular_pairs(degree)
+            lower_width = len(lower_pairs)
+            lower_values = np.arange(1 << lower_width, dtype=np.int64)
+            offsets = lower_values.copy()
+            missing_return_detected = missing_offset_cancellation_detected = False
+            for upper in range(1 << len(upper_pairs)):
+                source = np.array([algebra.character(_cycle_from_triangular(algebra, upper, extra))
+                                   for extra in offsets])
+                for lower in lower_values:
+                    expected_phase = source[lower]
+                    for output in range(2):
+                        # Chronological D(U,E), S_h, D(U,E)^dagger, S_h^dagger.
+                        phase = 4 * source[offsets]
+                        current = offsets ^ (lower if output else 0)
+                        phase -= 4 * source[current]
+                        before_return = current.copy()
+                        current ^= lower if output else 0
+                        np.testing.assert_array_equal(current, offsets)
+                        np.testing.assert_array_equal(phase % 8,
+                                                       np.full_like(offsets, 4 * output * expected_phase))
+                        missing_return_detected |= bool(np.any(before_return != offsets))
+                        # Omitting the first source leaves the unknown E offset
+                        # in the phase; omitting the last shear leaves E changed.
+                        wrong_phase = (-4 * source[before_return]) % 8
+                        missing_offset_cancellation_detected |= bool(np.any(
+                            wrong_phase != 4 * output * expected_phase))
+            self.assertTrue(missing_return_detected)
+            self.assertTrue(missing_offset_cancellation_detected)
+
+    def test_single_inverse_entry_xor_needs_no_controlled_source(self):
+        hadamard = np.array([[1., 1.], [1., -1.]]) / np.sqrt(2)
+        for degree in range(1, 4):
+            algebra = _CycleAlgebra(degree)
+            upper_pairs, lower_pairs = _triangular_pairs(degree)
+            for upper in range(1 << len(upper_pairs)):
+                _, inverse = _upper_inverse(degree, upper)
+                source = [algebra.character(_cycle_from_triangular(algebra, upper, lower))
+                          for lower in range(1 << len(lower_pairs))]
+                for bit, (row, column) in enumerate(lower_pairs):
+                    entry = int(inverse[column, row])
+                    expected = np.eye(2)[:, [entry, 1 ^ entry]]
+                    for lower in range(1 << len(lower_pairs)):
+                        phases = []
+                        for output in range(2):
+                            # D, CX(h->L_bit), D^dagger, CX(h->L_bit).
+                            # Only the translation is controlled: no extra E.
+                            phase = 4 * source[lower]
+                            current = lower ^ (output << bit)
+                            phase -= 4 * source[current]
+                            current ^= output << bit
+                            self.assertEqual(current, lower)
+                            self.assertEqual(phase % 8, 4 * output * entry)
+                            phases.append(1 if phase % 8 == 0 else -1)
+                        actual = (hadamard * np.array(phases)) @ hadamard
+                        np.testing.assert_allclose(actual, expected, rtol=0, atol=2e-14)
+        # The added word is two CX gates and two output Hadamards. Source
+        # and actual-source-inverse costs must be charged separately in general.
+
+    def test_private_lower_shear_native_word_parallel_depth_and_actual_inverse(self):
+        for count in range(1, 4):
+            control = 0
+            lower = list(range(1, count + 1))
+            extra = list(range(count + 1, 2 * count + 1))
+            helpers = list(range(2 * count + 1, 3 * count + 1))
+            word, phase, layers = _parallel_lower_shear(control, lower, extra, helpers)
+            self.assertEqual(sum(gate[0] == 'T' for gate in word), 8 * count)
+            self.assertEqual(sum(gate[0] != 'T' for gate in word), 20 * count)
+            self.assertEqual(_serial_t_depth(word), 8)
+            self.assertTrue(all(gate[1] in helpers for gate in word if gate[0] == 'T'))
+            for layer in layers:
+                targets = [gate[1] for gate in layer if gate[0] == 'T']
+                self.assertEqual(set(targets), set(helpers))
+                self.assertEqual(len(targets), len(set(targets)))
+            width = 3 * count + 1
+            values = np.arange(1 << width)
+            images, exponents = _monomial(phase, width)
+            expected = np.zeros_like(values)
+            for first, second in zip(lower, extra):
+                expected ^= ((values >> first) & 1) & ((values >> second) & 1)
+            expected *= 4 * (values & 1)
+            np.testing.assert_array_equal(images, values)
+            np.testing.assert_array_equal(exponents, expected)
+            returned, cancelled = _monomial(phase + _inverse(phase), width)
+            np.testing.assert_array_equal(returned, values)
+            np.testing.assert_array_equal(cancelled, np.zeros_like(values))
+            if count == 1:
+                native = _native_matrix(word, width)
+                expected_matrix = np.zeros_like(native)
+                for value in values:
+                    target = value ^ (((value & 1) & ((value >> lower[0]) & 1)) << extra[0])
+                    expected_matrix[target, value] = 1
+                np.testing.assert_allclose(native, expected_matrix, rtol=0, atol=2e-14)
+                np.testing.assert_allclose(_native_matrix(_inverse(word), width),
+                                           expected_matrix.conj().T, rtol=0, atol=2e-14)
 
 
 if __name__ == '__main__':
