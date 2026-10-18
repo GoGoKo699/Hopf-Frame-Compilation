@@ -294,8 +294,8 @@ loading claim.
 ## 7. An exact read-only repair with a losing sequential ledger
 
 There is an exact way to remove a common dirty matrix offset. It does
-not improve the retained read-only query baseline. Let n be the matrix
-order, $`p=2^b\ge n`$ the smallest such power, and
+not improve the retained read-only query baseline. For matrix order
+$`n\ge2`$, let $`p=2^b\ge n`$ be the smallest such power and
 $`K=\mathbb F_p`$, in a fixed binary basis containing one. For a binary
 strict-upper U and an arbitrary K-valued dirty strict-upper E, define
 
@@ -326,6 +326,8 @@ evaluation. Repeating over all t with the **same** initial E and toggling
 the known diagonal ones once gives the full inverse-word XOR query.
 U occurs only as a native Clifford control. Every identity holds on
 arbitrary work, outputs and external references.
+At n=1 the query is just the known diagonal output X, with no field,
+T gate or helper; its actual inverse is charged in the fixed alphabet.
 
 The field version has a complete native substitution. One field product
 is b-squared binary products, each contributing a fixed linear form to
