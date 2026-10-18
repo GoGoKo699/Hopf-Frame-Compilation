@@ -7,8 +7,10 @@
 A five-layer read-only query admits a useful reformulation: its target
 comparison can remain Clifford-valued, while a two-layer Pauli image
 acts by conjugation on that comparison family. The latter conjugation
-need not preserve the full Pauli group. This is the remaining general
-obstruction, rather than an assumed closure of the Clifford hierarchy.
+need not preserve the full Pauli group. Shared native prefixes nevertheless
+give bounded-degree intrinsic comparison features. The remaining general
+obstacle is extracting the Boolean target relative to its outer native
+baseline; no closure of the Clifford hierarchy is assumed.
 
 This note proves a **conditional** five-layer degree bound. If the
 specified middle two-layer Pauli representation is Clifford-valued,
@@ -24,6 +26,15 @@ is assumed for a general approximate query. A further native subcase, where
 K permutes the outer active axes, has a conservative degree bound of 244
 (or 41 for an invisible target shear). It allows both non-Pauli K and
 non-Clifford B; its extra hypothesis remains explicit.
+The weaker condition that K preserves the outer axis **span** now also has
+a finite degree bound: **112**, at the smaller error radius
+$`\eta\lt\sqrt2/24`$. Section 5.4 constructs intrinsic group-algebra
+features from the native comparison subgroup. The earlier stronger bounds
+and the larger-radius axis-normalizer theorem remain available under their
+own hypotheses. Section 5.5 proves faithful degree-four intrinsic comparison
+features without a span hypothesis below $`\sqrt2/40`$. Combined with span
+preservation, these improve the output bound to **21** at that smaller radius.
+Target extraction without span preservation remains open.
 
 ## 1. Native contract and an exact one-band reduction
 
@@ -777,7 +788,8 @@ $`\mathcal L_D`$ of D's active axes, while possibly mixing individual
 axes. Under this weaker additional hypothesis, at
 $`\eta\lt\sqrt2/24`$ the same peeled cocycle (24) becomes exact
 projectively. Its comparisons C need only lie in the third level of the
-Clifford hierarchy. **No Boolean degree bound follows here.**
+Clifford hierarchy. This reduction supplies the exact cocycle used by the
+degree theorem in section 5.4 below.
 
 Let $`G_{\mathcal L_D}`$ be the Clifford group that preserves this
 axis span. For any member K,
@@ -821,20 +833,504 @@ the intermediate C Clifford. Already a CNOT on two active T wires
 preserves their Z span but mixes individual axes: its D-dagger conjugate
 is third-level and non-Clifford.
 
-The remaining step in this branch is a finite feature law for this
-specified third-level subgroup under the **actual** partial conjugation
-by A' and right multiplication by C_y. Section 5.2's Clifford feature
-space does not establish such a law when C_y is third-level. Abstract
-partial normalization cannot replace the native structure, by the
+Section 5.2's Clifford tableau features do not close when C_y is
+third-level. Section 5.4 resolves this branch by using a truncated group
+algebra of the actual comparison subgroup instead. Its bounded native
+degree depends on the two specified one-T baseline families. Abstract
+partial normalization alone remains insufficient, by the
 [counterexample](ONE_BAND_AXIS_MATCHING.md#5-an-abstract-normalizer-can-have-arbitrarily-high-tableau-degree).
-This sharper reduction preserves the general depth objective without
-claiming a solution to it.
 
 The argument adds no native gate or workspace and retains the original
 full operator contract. The commuting rotations in (29) are a structural
 factorization, not a free compiler call. The
 [axis-span fixture](../../tests/test_outer_axis_normalizer.py) checks every
 Pauli image of the mixed-axis example, including its non-Clifford nature.
+
+### 5.4 Span-preserving comparisons: a finite degree bound
+
+**Span-preserving theorem.** In the native setting of section 1, suppose
+that every specified K preserves the binary span $`\mathcal L_D`$ of
+the active D axes, after the same fixed analytical coordinate change.
+If $`\eta\lt\sqrt2/24`$, then
+
+```math
+\deg_{\mathbb F_2} f\le112.
+```
+
+The constant is conservative and independent of dirty width. Individual
+axes may mix, the comparisons may be non-Pauli, and B may be non-Clifford.
+This is an additional native hypothesis, not a consequence of full return.
+The degree-two Pauli-comparison theorem and the earlier conditional bounds
+remain stronger in their own subcases. The axis-normalizer bound 244 also
+retains its larger error radius $`\sqrt2/12`$.
+
+The feature space below is an analytical invariant. Its dimension may grow
+with work width; its **native polynomial degree** does not. No group-algebra
+coordinate is supplied to a physical compiler as free workspace or a source.
+
+#### Separating the native baseline from the target
+
+Set $`g(x)=f(x)+f(0)`$. If g is affine the conclusion already holds.
+Otherwise work projectively and write the formal comparison as
+
+```math
+K(x,t)=A_x^{-1}P_xN_xQ^t,\qquad
+K_x=K(x,g(x)),\qquad K_x^0=K(x,0).                    \qquad(31)
+```
+
+Here A and N are the two specified native one-T Pauli-image families,
+P has linear Pauli labels, and $`Q=W_5^\dagger X_tW_5`$ is the fixed
+nonidentity target image. The use of t as a formal Boolean variable in
+$`K(x,t)`$ is separate from the physical output-wire subscript in Q.
+N and Q share the outer one-T conjugator: their projective labels form
+a Pauli representation, and their symplectic increments have a common
+isotropic image space $`\mathcal M`$ and multiply pairwise to zero.
+All operators are understood in the fixed coordinates of this section.
+The zero values are $`A_0=P_0=N_0=I`$ and $`Q^0=I`$;
+Q itself remains nonidentity.
+
+Write $`\mathcal L=\mathcal L_D`$. The symplectic A family fixes
+$`\mathcal L`$ pointwise, and P has identity symplectic action. The
+quotient obstruction to N followed by $`Q^{g(x)}`$ preserving
+$`\mathcal L`$ is therefore linear in x plus g times a fixed matrix.
+If an entry of that fixed matrix were nonzero, span preservation for all x
+would force g linear. Since g is nonaffine, both terms vanish separately.
+Thus **every N_x and Q preserves $`\mathcal L`$ individually**.
+No span property is inferred at a counterfactual t without this argument.
+
+Let $`\mathsf H`$ be the finite projective Clifford subgroup generated
+by all address-generator images of A, P, N, together with Q. It contains
+every formal $`K(x,t)`$ and both native baselines. Let
+$`\mathsf G=\langle K_x:x\in\mathbb F_2^a\rangle`$. These groups
+need not be equal. Only $`\mathsf G`$ is asserted to be normalized
+by the actual B family.
+
+#### A native matrix algebra of nilpotency index at most four
+
+Denote A-family symplectic increments by h and N/Q-family increments by n.
+For any choices of these increments,
+
+```math
+\begin{gathered}
+hh'=0,\qquad nn'=0,\qquad
+\mathrm{im}\,h\subseteq\mathcal L,\quad h(\mathcal L)=0,\\
+\mathrm{im}\,n\subseteq\mathcal M,\quad n(\mathcal M)=0,
+\qquad n(\mathcal L)\subseteq\mathcal L\cap\mathcal M.
+\end{gathered}                                            \qquad(32)
+```
+
+In particular $`hnh'=0`$. A possible nonzero word $`nhn'`$ has image
+in $`\mathcal L\cap\mathcal M`$, annihilated on the left by every
+h and n. All words of length four vanish. Hence the nonunital binary
+matrix algebra $`\mathcal J`$ generated by these increments satisfies
+
+```math
+\mathcal J^4=0,\qquad S(\mathsf H)\subseteq1+\mathcal J.
+                                                               \qquad(33)
+```
+
+For the lower central series $`\gamma_i(\mathsf H)`$, commutators
+of algebra units give $`S(\gamma_i(\mathsf H))\subseteq1+\mathcal J^i`$.
+Thus $`\gamma_4(\mathsf H)`$ is projective Pauli. A commutator of
+a Pauli label v with h has label $`(S_h-I)v`$ up to the immaterial choice
+of commutator convention. Subsequent lower-central label spaces lie in
+$`\mathcal J V_{\rm label},\mathcal J^2 V_{\rm label},\mathcal J^3 V_{\rm label}`$,
+and then zero. Consequently $`\gamma_8(\mathsf H)=1`$.
+
+Also every element of $`\mathsf H`$ has fourth power in the projective
+Pauli kernel, while every element of $`\gamma_2(\mathsf H)`$ or
+$`\gamma_3(\mathsf H)`$ has square in that kernel. Therefore
+
+```math
+\begin{aligned}
+\mathrm{exp}\,\mathsf H&\mid8,\\
+\mathrm{exp}\,\gamma_2(\mathsf H),\quad
+\mathrm{exp}\,\gamma_3(\mathsf H)&\mid4,\\
+\mathrm{exp}\,\gamma_i(\mathsf H)&\mid2\quad(4\le i\le7).
+\end{aligned}                                             \qquad(34)
+```
+
+The finite symplectic quotient lies in the finite 2-group
+$`1+\mathcal J`$ and the projective Pauli kernel is elementary abelian.
+Thus $`\mathsf H`$ is a finite 2-group.
+
+#### Augmentation features and a subgroup extension lemma
+
+For a finite 2-group F, let $`I_F`$ be the augmentation ideal of its
+binary group algebra $`\mathbb F_2[F]`$. We use two classical
+Jennings–Lazard facts:
+
+```math
+\mathfrak D_r(F)=F\cap(1+I_F^r)
+ =\prod_{i2^j\ge r}\gamma_i(F)^{2^j};                    \qquad(35)
+```
+
+and the weighted basis obtained by choosing representatives of bases of
+$`\mathfrak D_i(F)/\mathfrak D_{i+1}(F)`$. Ordered products of the
+corresponding $`(u-1)`$, each used zero or one times, form a basis of the
+group algebra; the products of total weight at least r form a basis of
+$`I_F^r`$. The weight of u is i. These are imported algebraic facts,
+attributed to Jennings and Lazard; an accessible primary reference is
+[Usefi, *Identifications in modular group algebras*](https://www.math.mun.ca/~usefi/papers/JPAA.pdf),
+the dimension-subgroup formula on page 2, Theorem 3.1 and Corollary 3.4.
+Its Lemma 5.1 also treats the subgroup-induced filtration used below.
+The weighted basis is explicitly stated in
+[Sakurai, Theorem 3.5](https://arxiv.org/pdf/1701.03799).
+
+Equations (34)–(35) imply
+
+```math
+\mathfrak D_8(\mathsf H)=1.                              \qquad(36)
+```
+
+For example, terms of (35) with i equal to one require an eighth power;
+i equal to two or three require a fourth power; i from four through seven
+require a square; and all larger lower-central terms are trivial. Every
+Jennings generator of $`\mathsf H`$ therefore has weight at most seven.
+Equation (36) means that distinct group elements remain distinct in
+$`\mathbb F_2[\mathsf H]/I_{\mathsf H}^8`$. It does **not** assert
+that the whole augmentation ideal has nilpotency index eight.
+
+We need the following subgroup extension, because the actual normalizer
+acts on $`\mathsf G`$ while the native factors lie in $`\mathsf H`$.
+If $`G\le H`$, $`\mathfrak D_{w+1}(H)=1`$, and $`m\ge1`$, then
+
+```math
+\mathbb F_2[G]\cap I_H^{w(m-1)+1}\subseteq I_G^m.
+                                                               \qquad(37)
+```
+
+To prove it, at every weight i choose a basis for the image of
+$`G\cap\mathfrak D_i(H)`$ in
+$`\mathfrak D_i(H)/\mathfrak D_{i+1}(H)`$ and extend it to a full
+basis. Choose the first representatives inside G. Descending through the
+induced filtration gives unique ordered binary product normal forms for G.
+The augmentation monomials in those selected representatives form a basis
+of $`\mathbb F_2[G]`$ that is a subset of the full Jennings basis of
+$`\mathbb F_2[H]`$. A selected monomial of weight at least
+$`w(m-1)+1`$ has at least m factors, since each weight is at most w.
+It belongs to $`I_G^m`$. Expansion in this common basis proves (37).
+
+It follows that every linear functional on $`\mathbb F_2[G]/I_G^m`$
+extends to a linear functional on
+$`\mathbb F_2[H]/I_H^{w(m-1)+1}`$. This is a **linear extension**,
+not an asserted algebra embedding between these two truncated quotients.
+
+#### Exact translation action and bounded native degree
+
+By section 5.3, the cocycle is exact projectively. In the original
+comparison coordinates it reads
+
+```math
+K_{x+y}=\phi_y(K_x)K_y\quad\hbox{in }\mathsf G,
+\qquad \phi_y(K)=B_yKB_y^\dagger.                        \qquad(38)
+```
+
+Conjugation is an automorphism of $`\mathsf G`$: the cocycle proves
+inclusion on its generators, and the projective involution B_y proves
+equality. Define the intrinsic feature vector
+
+```math
+v(x)=[K_x]\in\mathcal V
+ :=\mathbb F_2[\mathsf G]/I_{\mathsf G}^8.               \qquad(39)
+```
+
+An automorphism of $`\mathsf G`$ preserves its augmentation powers.
+Right multiplication by K_y also preserves the quotient. Thus (38) acts
+linearly on $`\mathcal V`$, and its coordinate-function span is
+translation invariant. No normalization of the larger $`\mathsf H`$
+is needed.
+
+Apply (37) with $`w=7,m=8`$. Every feature functional extends to
+$`\mathbb F_2[\mathsf H]/I_{\mathsf H}^{50}`$. Each family in
+(31) is a projective Pauli representation, hence an ordered product of
+its fixed address-generator images to binary powers. In the group algebra,
+
+```math
+u^{x_i}=1+x_i(u-1).
+```
+
+Expand the native word $`A_x^{-1}P_xN_xQ^t`$ in these factors.
+Every term containing at least 50 augmentation factors vanishes in this
+quotient. Each coordinate of v therefore has a Boolean polynomial
+representative in x and the fresh t of total degree at most 49, evaluated
+at $`t=g(x)`$. Repeated address variables can only reduce multilinear
+degree. The counterfactual word need not belong to $`\mathsf G`$;
+the linear extension just proved is precisely what permits this calculation.
+
+#### Detecting the target and bounding its degree
+
+The natural group-algebra map induces a linear map
+
+```math
+\mathcal V\longrightarrow
+\mathbb F_2[\mathsf H]/I_{\mathsf H}^8,
+```
+
+because $`I_{\mathsf G}^8`$ maps into $`I_{\mathsf H}^8`$.
+In that ambient quotient,
+
+```math
+[(K_x^0)^{-1}][K_x]
+ =[Q]^{g(x)}=1+g(x)([Q]-1).                             \qquad(40)
+```
+
+The native inverse baseline has polynomial degree at most seven in x in
+this quotient, by the same augmentation expansion, with every inverse
+in its actual reversed order. The target Q is nonidentity projectively,
+so (36) gives $`[Q]-1\ne0`$. Choose a binary linear functional taking
+value one on this difference. Applying it to (40) plus 1 extracts g.
+
+Let $`\mathcal W`$ be the span of degree-at-most-seven x monomials
+times feature coordinates from (39). It includes constants, is translation
+invariant, and contains g. The native degree calculation gives
+
+```math
+g\in\mathcal W\subseteq\mathcal P_{56}+g\mathcal P_{55}.
+                                                               \qquad(41)
+```
+
+If $`d=\deg g`$, restrict to the d variables of a highest-degree
+monomial. Its translates span all $`2^d`$ Boolean functions, whereas
+the right side of (41) has dimension at most
+
+```math
+\sum_{j=0}^{56}\binom dj+\sum_{j=0}^{55}\binom dj,
+```
+
+strictly less than $`2^d`$ for $`d\ge113`$. This is the same
+translation-space argument used in section 5.2. Hence $`\deg g\le112`$,
+which proves the theorem.
+
+This necessary invariant adds no T gate, elementary Clifford gate, source
+call, inverse call or workspace. T-count, elementary Clifford count and
+finite dirty width remain unrestricted within the lower-bound statement.
+Its fixed error radius comes entirely from the original full-operator
+cocycle reduction, including every logical column, literal signs and phases,
+arbitrary dirty and reference inputs, leakage and complete work return.
+The proof uses projective groups only after that reduction; it does not
+replace the original literal target by a phase-relaxed specification.
+
+The [bounded evidence](../../tests/test_span_preserving_augmentation.py)
+checks a native mixed-axis shear with nonzero cubic products, the fourth-power
+nilpotence mechanism, the distinction between subgroup and ambient
+augmentation filtrations, a nonabelian finite group and the degree threshold.
+These checks support the analytic proof and do not extrapolate from finite
+width. General comparisons need not preserve $`\mathcal L_D`$;
+the general five-layer and complete-frame depth questions remain open.
+
+### 5.5 Shared-prefix comparisons: a robust quadratic group map
+
+There is an unconditional structural restriction on the **actual**
+comparison family, even when it does not preserve the outer axis span.
+It uses the common native prefix of B and J, which the independently
+chosen baselines in the
+[baseline-word counterexample](BASELINE_WORD_OBSTRUCTION.md) do not retain.
+
+**Shared-prefix theorem.** In the native setting of section 1, suppose
+
+```math
+\eta\lt\frac{\sqrt2}{40}.
+```
+
+Then the projective group $`\mathsf G=\langle K_x\rangle`$ has
+nilpotency class at most two, exponent dividing four, and commutator
+subgroup of exponent dividing two. In particular,
+$`\mathfrak D_3(\mathsf G)=1`$. The comparison family is a
+quadratic group-valued function of the address, in the explicit sense
+proved below. Its intrinsic features in
+$`\mathbb F_2[\mathsf G]/I_{\mathsf G}^3`$ distinguish group
+elements and have Boolean polynomial degree at most four in x.
+
+This does not yet bound the Boolean output f. The formal outer baseline
+and target Q need not lie in this group, or in a common ambient group
+with a bounded dimension-subgroup filtration. Section 5.4 establishes
+that additional bridge under span preservation; it is missing in general.
+
+#### The common prefix places the exact native products in a small-class group
+
+Retain every fixed Clifford and actual inverse, and define
+
+```math
+\mathcal F=C_4(0)D_4C_3(0)D_3,\qquad E=C_2(0)D_2,
+```
+
+```math
+Y_x=EP_1(x)E^\dagger,\qquad
+H_x=P_2(x)Y_x,\qquad
+\widehat K_x=B_xJ_x=\mathcal F H_x\mathcal F^\dagger.
+                                                               \qquad(42)
+```
+
+The equality is an exact identity of the specified native operators;
+no independent replacement source is introduced. Equation (3) gives
+$`\|K_x-\widehat K_x\|\le2\eta`$ on the full work space.
+
+Let $`\mathsf H_{\rm in}`$ be the projective group generated by
+the P_2 and Y address-generator images. Each of these two families
+commutes internally projectively, since it is a fixed-unitary image
+of a linear-label Pauli representation. Each generator is an involution
+projectively. A cross commutator of a Pauli P with Y is again a Pauli,
+whose binary label is $`(S_Y-I)p`$. This label lies in the fixed
+isotropic native-axis span
+
+```math
+\mathcal M=C_2(0)\mathrm{span}_{\mathbb F_2}
+ \{Z_j:D_2\text{ is active on }j\}.
+```
+
+Here C_2 acts on binary Pauli labels. Every Y shear fixes M pointwise,
+and every Pauli has trivial symplectic action. Thus all cross
+commutators are central projectively. The two families generate a
+class-at-most-two group whose commutators are Pauli involutions.
+Products have fourth power one projectively. Therefore
+$`\mathsf H_{\rm in}`$ has exponent dividing four.
+Conjugation by the possibly non-Clifford F preserves these intrinsic
+group statements exactly.
+
+For exact return, (42) already proves the group assertion for G.
+In particular, no comparison value, nor any product of comparison
+values, can have nontrivial odd projective order. The earlier independent
+baseline source with arbitrary odd symplectic order cannot be an actual
+five-layer returned comparison family. This is an obstruction to that
+proposed counterexample, not a new restriction on freely chosen baselines.
+
+#### A bounded word freezes the quadratic address law under full error
+
+Work projectively for the group identities in this paragraph. For the
+native pullbacks, define the ordered defect
+
+```math
+Z_H(x,y)=H_{x+y}H_y^{-1}H_x^{-1}.
+```
+
+Using the two exact projective representation laws and the centrality
+just proved gives
+
+```math
+Z_H(x,y)=[Y_x,P_2(y)].                                  \qquad(43)
+```
+
+The choice of inverse commutator convention does not affect (43): the
+commutator is a projective involution. It is central, has square one,
+and is multiplicative under address addition in each variable.
+Conjugating by F gives the same statements for the native products
+$`\widehat K`$.
+
+Now define the actual Clifford defect
+
+```math
+Z(x,y)=K_{x+y}K_y^{-1}K_x^{-1}.
+```
+
+The following relations are words in actual K values and their actual
+inverses. Their lengths count every occurrence before cancellation:
+
+| Relation | Word length |
+|---|---:|
+| $`[Z(x,y),K_z]=1`$ | 8 |
+| $`Z(x,y)^2=1`$ | 6 |
+| $`Z(x+y,z)=Z(x,z)Z(y,z)`$ | 9 |
+| $`Z(x,y+z)=Z(x,y)Z(x,z)`$ | 9 |
+
+Replacing each K by its native product changes a length-l word by at
+most $`2l\eta`$ in full operator norm. The native word is scalar
+by (43). The actual word is Clifford up to scalar. The projective
+Clifford separation gap $`1/\sqrt2`$ therefore freezes every
+displayed relation exactly projectively at the stated error radius.
+No arbitrary approximate normalizer is rounded, and no error grows
+with dirty width or address dimension.
+
+Since $`K_0=I`$, the diagonal relation
+$`Z(x,x)=K_x^{-2}`$ gives $`K_x^4=1`$ projectively.
+Interchanging x and y in the defining defect relation shows that
+$`[K_x,K_y]`$ is a product of two central involutions. Hence
+the generators have fourth power one, their commutators are central
+involutions, and G has class at most two and exponent dividing four.
+It is finite because it is a subgroup of the finite projective
+Clifford group on the given finite work space. It is a 2-group.
+The dimension-subgroup formula (35) now gives
+
+```math
+\mathfrak D_3(\mathsf G)
+ =\mathsf G^4\,\gamma_2(\mathsf G)^2\,\gamma_3(\mathsf G)
+ =1.                                                    \qquad(44)
+```
+
+Thus intrinsic filtration depth is bounded even without an outer-span
+hypothesis. This statement does not mean that the whole augmentation
+ideal has nilpotency index three.
+
+#### A degree-four intrinsic address feature, and its missing target detector
+
+Let e_i denote the address coordinate vectors, with an arbitrary fixed
+ordering. The central, bilinear defect law gives the ordered normal form
+
+```math
+K_x=
+\left(\prod_i K_{e_i}^{x_i}\right)
+\left(\prod_{i\lt j}Z(e_i,e_j)^{x_i x_j}\right)
+\quad\text{in }\mathsf G.                              \qquad(45)
+```
+
+In the group algebra each binary power has the expansion
+$`u^b=1+b(u-1)`$. Modulo $`I_{\mathsf G}^3`$, terms with
+three augmentation factors vanish. Each retained factor contributes
+an address monomial of degree at most two in (45). Therefore every
+coordinate of the faithful intrinsic feature
+
+```math
+v(x)=[K_x]\in\mathbb F_2[\mathsf G]/I_{\mathsf G}^3
+```
+
+has Boolean degree at most four. This conclusion uses the actual
+comparison group; there is no unjustified extension to an independent
+outer baseline. It also does not make the symplectic tableau entries
+linear functions of these intrinsic coordinates.
+
+The same expansion shows, for every integer m at least one, that every
+coordinate of $`[K_x]`$ modulo $`I_{\mathsf G}^m`$ has degree at
+most $`2(m-1)`$. Only terms with fewer than m augmentation factors
+survive. No faithfulness claim is needed for this degree calculation.
+
+The remaining general question is now sharper: can one detect the fixed
+target factor in $`K_x=(K_x^0)Q^{g(x)}`$ from these bounded-degree
+intrinsic features together with bounded-degree native baseline data?
+One must construct that detector, or a bounded ambient extension for
+the actual baseline and Q, while retaining their shared sources. The
+independent-baseline odd-order example rules out assuming such an ambient
+extension for arbitrary pairs. Bounded intrinsic filtration of G itself
+is no longer the missing invariant.
+
+**Smaller-error span-preserving corollary.** Combining this degree
+calculation with section 5.4 gives
+
+```math
+\deg f\le21
+\quad\text{if K preserves the outer axis span and }
+\eta\lt\sqrt2/40.
+```
+
+Indeed, take m equal to eight. The intrinsic features have degree at
+most 14. Their natural linear map to the span-preserving ambient quotient
+$`\mathbb F_2[\mathsf H]/I_{\mathsf H}^8`$ is well defined,
+because $`I_{\mathsf G}^8`$ maps into $`I_{\mathsf H}^8`$.
+The actual inverse baseline has degree at most seven there, and the
+nonzero target difference $`[Q]-1`$ is detected as in (40).
+The detector therefore expresses g as a polynomial of degree at most
+14 plus seven. The degree-112 bound remains valid at its larger radius
+$`\sqrt2/24`$; neither constant is claimed sharp.
+
+This proof adds no native gate, source, control, inverse or workspace.
+T-count, elementary Clifford count and finite dirty width remain
+unrestricted in this structural lower-bound statement. The error refers
+to the original literal full-operator query, including arbitrary output,
+dirty and external-reference inputs, actual inverses, leakage and complete
+workspace return. Projective group analysis does not relax that contract.
+The [bounded evidence](../../tests/test_shared_prefix_comparison.py)
+checks the native pullback, noncommutative group law, ordered defects,
+robust word lengths and faithful intrinsic features. No general Boolean
+degree bound or complete-frame improvement is claimed here.
 
 ## 6. Full return does not force a Clifford middle
 
@@ -899,21 +1395,26 @@ changes under resynthesis.
 
 ## 7. The missing general invariant and scope
 
-For an exact five-layer query, equations (1)--(5) remain valid without
-the additional Clifford-middle condition. They move the unresolved step
-into the action of a native two-layer Pauli image B on a particular
-Clifford subgroup. Unitary conjugation is linear over the complex
-operator space; this does not make its action linear, or of bounded
-Boolean degree, on binary Clifford tableaus. Sections 3 and 5 need the
-latter structure. Section 5.1 bypasses it only for a Pauli-valued comparison,
-using native Clifford separation and independent-axis control of the
-quadratic baseline coefficients.
-Section 5.2 handles the further case where K permutes the outer active
-axes, by a finite Clifford feature space after native peeling. Its conservative
-constant does not supply the missing arbitrary-comparison action. Section 5.3
-freezes the wider span-preserving case in a specified third-level subgroup,
-without a finite feature law or degree bound. A growing-depth recurrence
-cannot assume a general extension.
+The native reduction retains the actual middle action on a particular
+Clifford comparison group. Sections 5.1 and 5.2 resolve Pauli comparisons
+and individual-axis permutations. Sections 5.3–5.4 resolve the broader
+span-preserving branch at a fixed full-error radius, by an intrinsic
+augmentation feature space and a bounded ambient extension.
+
+Section 5.5 now supplies a structural invariant **without** span preservation:
+the actual comparison group is class at most two of exponent dividing four,
+and its address map has faithful degree-four intrinsic features. This holds
+below error $`\sqrt2/40`$. Unitary conjugation still need not act with
+bounded Boolean degree on ordinary Clifford tableaus, and faithful intrinsic
+features do not make every operator observable a low-degree feature functional.
+
+The remaining step is to detect g in $`K_x=K_x^0Q^{g(x)}`$ with bounded-degree
+native baseline data. The baseline and Q need not lie in the actual group.
+An arbitrary ambient group generated by independent one-T baselines can have
+odd order, so the span-preserving proof's ambient filtration cannot simply be
+assumed. A general detector or compatibility identity for the actual shared
+sources is required before a five-layer Boolean degree theorem, and much more
+before a growing-depth recurrence.
 
 The conditional theorem retains every logical column and literal target
 phase, arbitrary output and dirty inputs with external references, the

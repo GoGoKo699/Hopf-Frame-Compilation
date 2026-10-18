@@ -381,6 +381,18 @@ D retains [dirty-sum compression](DIRTY_SUM_COMPRESSION.md),
 Standalone source-depth bounds and radial filtering are optional research
 studies and supply no additional premise for its uniform theorem.
 
+### Research-only group-algebra premise
+
+The [span-preserving five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
+uses the classical Jennings dimension-subgroup formula and weighted
+augmentation basis for finite 2-groups. The precise statements are reproduced
+at their point of use and verified against H. Usefi,
+[Identifications in Modular Group Algebras](https://www.math.mun.ca/~usefi/papers/JPAA.pdf),
+p. 2 and Corollary 3.4; Lemma 5.1 also verifies the subgroup-adapted basis
+construction. The filtration-extension bound, native nilpotence and Boolean
+degree argument are proved locally. These algebraic premises add no circuit
+oracle or resource assumption and are not premises of selected Results A–D.
+
 ## 6. Evidence classification
 
 Analytic identities, explicit reversible schedules, imported elementary

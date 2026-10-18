@@ -15,47 +15,46 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: native axes and returned operator relations
+## Current checkpoint: span-preserving comparisons and source costs
 
-The [current round](research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
-began at verified main `fe45d5a` (PR #170). The
-[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#52-an-outer-axis-normalizer-comparison-a-finite-degree-bound)
-now covers comparisons that permute the individual active outer T axes,
-allowing both non-Pauli comparisons and a non-Clifford middle. At error below
-$`\sqrt2/12`$, its conservative degree bound is 244, or 41 for an invisible
-outer target shear. The stronger existing Pauli-comparison bound remains
-two, and the Clifford-middle bounds remain seven/four. General five-layer
-rigidity is still open.
+The [current round](research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
+began at verified main `b8ecbfb` (PR #171). The
+[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
+now bounds Boolean degree by 112 when the specified comparison preserves
+the outer native T-axis span, at full operator error below $`\sqrt2/24`$.
+Individual axes may mix, the comparison need not be Pauli, and the middle
+need not be Clifford. An intrinsic group-algebra feature space handles the
+actual conjugation and right action. This closes the previous checkpoint's
+span-preserving branch; the bound improves to 21 below $`\sqrt2/40`$.
+General five-layer rigidity is still open.
 
-A [baseline-word obstruction](research/depth/BASELINE_WORD_OBSTRUCTION.md)
-shows why a generic reordering of the cube cannot finish the argument:
-a word cancelling every independent native baseline also loses a separate
-central target. A [four-factor construction](research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
-can realize arbitrary Boolean scalar phases with full return if fixed
-conjugating sources are unrestricted. Its sources have explicitly growing
-native costs. Abstract factor count is therefore not a depth invariant.
+The [scalar-source cost theorem](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#5-a-source-cost-barrier-survives-pauli-carrier-compression)
+shows that compressing the four-factor construction's Pauli carriers cannot
+remove its source cost. For a full-degree a-bit table, every source in the
+specified Clifford-translation mechanism needs at least $`2^{a-1}`$ T gates
+and that many carrier qubits, even with additional arbitrary returned helpers.
+The small full-source approximation regime retains the integer count bound.
+This excludes separately paid source calls from R91's square-root count
+envelope; fusion or a different synthesis of the whole returned word remains
+open. It is not a general query-depth lower bound.
 
-The [diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md#robust-return-at-a-width-independent-error-radius)
-now retains its cubic bound at full operator error below $`2/275`$, for
-arbitrary unit-circle source phases and arbitrary dirty inputs. An approximate
-native source contributes all four source/inverse errors. Increasing source
-precision or slightly relaxing return does not bypass this obstruction.
-
-The next concrete question is the **span-preserving but axis-mixing
-five-layer comparison**: can the native cocycle bound degree when K preserves
-the outer axis span but maps individual axes to their products? This is the
-first branch beyond the new theorem. The peeled comparison then has a
-native diagonal phase correction rather than a Clifford correction. Its
-projective cocycle is now exact below error $`\sqrt2/24`$; a finite feature
-law for its actual conjugation and right action is still missing. The
-[current outcome](research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
-records the precise gap and why the two source-free shortcuts fail.
+A [shared-prefix invariant](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
+now holds without span preservation, below error $`\sqrt2/40`$: the actual
+comparison group is class two with exponent dividing four, and has faithful
+intrinsic features of degree at most four. The next question is **extracting
+the Boolean target from those features and the outer native baseline**.
+The baseline need not lie in the actual group; historical odd-order examples
+prevent giving the entire ambient group the same filtration. The
+[current outcome](research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
+records this precise remaining step and the constructive alternative.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. Optimal general depth, dimension-growing unrestricted
-lower bounds and unrestricted one-clean four-layer rigidity remain open.
-Final manuscript drafting is separate.
+remains conditional. The earlier degree-two Pauli-comparison, degree-seven/four
+Clifford-middle, and degree-244/41 individual-axis results retain their own
+hypotheses and error radii. Optimal general depth, dimension-growing
+unrestricted lower bounds and unrestricted one-clean four-layer rigidity
+remain open. Final manuscript drafting is separate.
 
 ## Mandate
 

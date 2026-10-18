@@ -216,10 +216,218 @@ and helpers fit in the a+Q work budget. This baseline has
 $`T=O(\sqrt Q)`$, G=O(Q), and
 $`D_T=O(\log_2(a+2))`$, with exact return, zero clean qubits and
 both queries charged. Thus (8) supplies evidence about the failed
-invariant, not a resource saving. No lower bound against a better
-native synthesis of U or the final scalar is asserted.
+invariant, not a resource saving. The displayed source synthesis is not
+claimed optimal. Section 5 supplies a mechanism-specific source lower
+bound; no lower bound on the final scalar is asserted.
 
-## 5. Consequence for the general depth question
+## 5. A source-cost barrier survives Pauli-carrier compression
+
+The source cost in (7) is not solely a defect of its gate-by-gate
+implementation. A rank obstruction applies to every **Clifford
+translation source with Pauli carriers** of the following form. Allow w
+arbitrary carrier qubits, Hermitian Pauli operators gamma_u satisfying
+(1), and a literal Clifford representation C_x satisfying (4). They need
+not use the bank embedding in Section 1. Retain the coherent source U in
+(5), on a arbitrary selector qubits and these w carriers. Extra arbitrary
+helpers are allowed if the full source returns them as identity. There
+are zero initialized helpers. The Clifford hypothesis applies to C_x on
+the entire carrier space, not only to its action on the listed gamma_u.
+
+Let F be the binary Q by Q matrix, and P_x the permutation matrix,
+defined by
+
+```math
+F_{uv}=f(u+v),\qquad P_x e_u=e_{u+x}.
+```
+
+For every such source and every nonzero x,
+
+```math
+\begin{aligned}
+w&\ge\frac{\mathrm{rank}_{\mathbb F_2}F}{2},\\
+T(U)&\ge\mathrm{rank}_{\mathbb F_2}\bigl(F(P_x+I)\bigr).
+\end{aligned}
+                                                               \qquad(9)
+```
+
+These are lower bounds for this specified source mechanism. They are not
+lower bounds on synthesizing the final scalar, or on general returned
+queries. In particular, they do not charge independent source calls
+after a compiler has replaced the entire word by a different mechanism.
+
+### 5.1 Binary commutation rank and displacement
+
+Write the binary Pauli labels as columns of a matrix Gamma with 2w
+rows, and let J be the nondegenerate binary symplectic form. Equation
+(1), including its signs, gives
+
+```math
+F=\Gamma^{\mathsf T}J\Gamma.
+```
+
+This proves the width bound. If S_x is the symplectic action of C_x,
+the translation identity gives
+
+```math
+\begin{aligned}
+S_x\Gamma&=\Gamma P_x,\\
+F(P_x+I)&=\Gamma^{\mathsf T}J(S_x-I)\Gamma.
+\end{aligned}
+```
+
+Consequently
+
+```math
+\mathrm{rank}(S_x-I)
+ \ge\mathrm{rank}\bigl(F(P_x+I)\bigr).              \qquad(10)
+```
+
+Literal Pauli signs and Clifford phases do not alter these binary
+equalities. They remain part of the source and returned-word identities;
+no phase is discarded from the implemented operator.
+
+### 5.2 A physical T gate can at most double Pauli support
+
+A Clifford V with symplectic action S has exactly
+$`2^r`$ nonzero Pauli coefficients, all of magnitude
+$`2^{-r/2}`$, where $`r=\mathrm{rank}(S-I)`$.
+Here the Pauli basis is orthonormal in normalized Hilbert--Schmidt norm.
+For completeness, Paulis fixed by S impose affine sign constraints on
+the support of V. Its support is therefore contained in one coset of
+$`(\ker(S-I))^\perp=\mathrm{im}(S-I)`$.
+The relation between V P and its Clifford image times V translates
+coefficients by every vector in this image and preserves their
+magnitudes. A nonzero coefficient thus fills that entire coset.
+Normalization gives the stated equal magnitudes.
+
+In contrast, conjugating a Pauli by a circuit with t physical T or
+T-dagger gates produces at most $`2^t`$ Pauli terms. Clifford gates
+permute terms; each T conjugation fixes a commuting term or splits an
+anticommuting term into two. This is a count statement, independent of
+how many wires or T layers the circuit uses.
+
+The specified full source obeys
+
+```math
+U(X_z^x\otimes I)U^\dagger=X_z^x\otimes C_x.
+```
+
+The right side is Clifford, with displacement rank
+$`\mathrm{rank}(S_x-I)`$. Its exact Pauli support and the
+doubling bound prove $`T(U)\ge\mathrm{rank}(S_x-I)`$,
+and hence (9). Appending returned arbitrary helpers tensors both sides
+with identity and changes neither rank nor support. An initialized-only
+source approximation is not covered by this argument.
+
+The bound is robust when a native source is supplied in full operator
+norm. If a unitary circuit V, with t T gates and the same arbitrary
+workspace contract, satisfies
+
+```math
+\|V-U\otimes I_{\rm helpers}\|_{\rm op}\le\delta\lt\frac12,
+```
+
+then its conjugated Pauli is within $`2\delta`$ of the displayed
+Clifford. Projection onto at most $`2^t`$ Pauli terms leaves squared
+normalized Hilbert--Schmidt error at least
+$`1-2^{t-r}`$ whenever t is less than r. Thus
+
+```math
+\begin{aligned}
+t&\ge r+\log_2(1-4\delta^2),\\
+r&=\mathrm{rank}(S_x-I).
+\end{aligned}                                          \qquad(11)
+```
+
+In particular, the integer lower bound $`t\ge r`$ is unchanged for
+$`\delta\lt1/(2\sqrt2)`$. This hypothesis concerns each approximated
+source itself; a small error of the completed scalar word does not imply
+it. When eight such source or actual-inverse calls approximate the eight
+specified exact calls, their errors add to at most $`8\delta`$ by
+telescoping. No reverse implication is used.
+
+With h simultaneous arbitrary returned helpers, the source has a+w+h
+physical wires. A T layer contains at most that many T gates, giving the
+elementary count-to-width consequence
+
+```math
+D_T(U)\ge
+\left\lceil
+\frac{\mathrm{rank}(F(P_x+I))}{a+w+h}
+\right\rceil.
+```
+
+The same consequence holds for the small full-source approximation
+regime above. It is only a count-to-width bound. In particular, (12)
+already requires width of order Q, so this argument supplies no
+dimension-growing depth lower bound at large width. No independent
+elementary Clifford-count lower bound is claimed.
+
+### 5.3 Full-degree tables cannot enter the R91 count envelope this way
+
+Over the binary field, the translation matrix satisfies
+
+```math
+F^2=(\mathrm{wt}(f)\bmod2)I.
+```
+
+For an off-diagonal entry the summands pair under translation by its
+nonzero difference; the diagonal entry is the parity of the table.
+If wt(f) is odd, F is invertible. Every nonzero translation P_x is Q/2
+disjoint transpositions, so (9) becomes
+
+```math
+w\ge Q/2,\qquad T(U)\ge Q/2.                            \qquad(12)
+```
+
+Odd weight is exactly the condition that the coefficient of the
+degree-a monomial in the algebraic normal form of f is one. Thus (12)
+applies to every full-degree table, not only to a sparse example.
+
+More generally, if f has Boolean degree d at least one, restrict F to
+the subgroup supported on a degree-d monomial. The restricted table has
+odd weight, so that principal submatrix has full rank $`2^d`$.
+For a coordinate e_i in that monomial, the derivative
+$`\Delta_{e_i}f`$ has degree d minus one. The same argument applies
+to its translation matrix $`F(P_{e_i}+I)`$. Therefore
+
+```math
+w\ge2^{d-1},\qquad T(U)\ge2^{d-1}.                      \qquad(13)
+```
+
+For the original uncompressed Q-qubit bank there is an additional
+implementation-specific bound $`T(U)\ge Q`$, even when f is zero.
+For nonzero x the Clifford C_x is a quadratic diagonal phase followed
+by a fixed-point-free bank permutation. Its symplectic displacement has
+both diagonal blocks P_x-I, so its rank is at least Q. Since C_x is an
+involution, its displacement squares to zero in dimension 2Q, giving
+rank at most Q. Its rank is consequently exactly Q. This illustrates
+why an expensive source can persist even when the final scalar is
+trivial.
+
+Multiplying U by the fixed Pauli gamma_0, or taking its actual inverse,
+does not change its minimum T-count: the inverse transformation is Clifford
+multiplication or native circuit reversal, respectively. The same statement
+holds for full-operator source approximation.
+
+If the eight source calls in (8) are implemented separately, (12)
+forces at least $`4Q`$ T gates for any full-degree table, including
+compressed carriers and the small source-approximation regime above.
+Increasing dirty width cannot reduce that count. R91 at dirty width
+of order Q implements the final scalar with $`O(\sqrt Q)`$ T
+gates, G=O(Q), and logarithmic address depth. The source-call mechanism
+therefore cannot provide the general simultaneous count envelope needed
+by R98, regardless of a faster schedule for those same sources.
+
+This does not forbid cancellation or a different native synthesis of
+the **whole** scalar word. Such a synthesis is exactly the necessary
+constructive change: it must avoid separately paying for the full
+Clifford translation source. It must also retain literal return, price
+every control and inverse, and meet the T-count, Clifford-count, depth
+and simultaneous-width bounds together. No lower bound here excludes
+non-Clifford carriers, different source structures, or general queries.
+
+## 6. Consequence for the general depth question
 
 A scalar obtained by commuting a returned XOR query with a fixed probe
 can indeed be written as a bounded product of Pauli representations.
