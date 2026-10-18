@@ -1,4 +1,4 @@
-# Three-layer rigidity with a preserved address
+# Three- and four-layer rigidity with a preserved address
 
 [Two-layer proof and Clifford normal form](READ_ONLY_TWO_LAYER_RIGIDITY.md) ·
 [Exact dirty queries](PARALLEL_BILINEAR_WORD_QUERY.md) ·
@@ -13,6 +13,9 @@ they do not cover arbitrary circuits that return the address only at
 the end. Section 6 establishes a separate one-clean conclusion:
 three layers force Boolean XOR-query degree at most four at the same
 approximation radius, and literal Boolean scalar degree at most five.
+Section 8 proves that four layers with zero clean qubits force XOR-query
+degree at most two at the smaller radius $`\sqrt2/12`$, and literal
+Boolean scalar degree at most three. Its degree-two XOR bound is sharp.
 
 ## 1. Statement and exact four-band form
 
@@ -783,3 +786,314 @@ within this one-clean read-only interface can complete a literal AND
 query in two T layers. It does not establish an approximation floor for
 that initialized problem. The exact fixture retains the candidate's
 phase and verifies the actual inverse and the full c=1 extension as well.
+
+## 8. Four layers with zero clean qubits: degree at most two
+
+The four-layer case needs an additional invariant because its
+normalized middle is no longer a product of only two dressed Pauli
+representations. Peeling its outer one-T band produces a Clifford
+target family; an auxiliary Pauli cocycle then handles the case in
+which the target is invisible to that family's symplectic action.
+
+**Theorem (zero clean, four T layers).** Let every Clifford interlayer
+preserve the computational address, every T gate act on work, and all
+work inputs be arbitrary. If
+
+```math
+V=C_4D_4C_3D_3C_2D_2C_1D_1C_0,\qquad
+\|V-Q_f\otimes I_{\rm dirty}\|_{\rm op}
+\le\eta\lt\rho_4=\frac{\sqrt2}{12},
+```
+
+then $`\deg_{\mathbb F_2}f\le2`$. The error and conclusion hold on
+the complete operator, including arbitrary dirty inputs and external
+references. T-count, elementary Clifford count and finite dirty width
+are unrestricted. The degree bound is sharp: section 7 supplies an
+exact degree-two query using four layers. This does not say that every
+quadratic query has such a compiler, or give a growing depth bound.
+There is no one-clean four-layer conclusion here.
+
+### 8.1 Peeling the outer band and quantizing a Clifford cocycle
+
+Use (2) at all five interlayers. Put
+$`W_4=C_4(0)D_4`$,
+$`R_x=C_0(0)^\dagger P_0(x)C_0(0)`$ and
+$`\lambda(x)=\prod_{j=0}^4\lambda_j(x)`$. The exact factorization is
+
+```math
+U_x=\lambda(x)P_4(x)W_4P_3(x)A_xB_xW_4^\dagger U_0R_x,
+```
+
+where
+
+```math
+A_x=C_3(0)D_3P_2(x)D_3^\dagger C_3(0)^\dagger,
+```
+
+```math
+B_x=C_3(0)D_3C_2(0)D_2P_1(x)D_2^\dagger C_2(0)^\dagger
+D_3^\dagger C_3(0)^\dagger.
+```
+
+A and B are exact projective Pauli representations, and A is a
+one-T Clifford family. For $`F_x=X_t^{f(x)}\otimes I`$, define
+
+```math
+M_x=P_3(x)^\dagger W_4^\dagger
+ [\lambda(x)^{-1}P_4(x)^\dagger F_xR_x^\dagger F_0^\dagger]W_4.
+                                                               \qquad(34)
+```
+
+Solving the factorization and replacing $`U_x`$ and its actual
+zero-address inverse gives
+$`\|A_xB_x-M_x\|\le2\eta`$. Each M is a scalar times a Clifford,
+since the bracket in (34) is a Pauli and the only non-Clifford
+conjugation in $`W_4`$ is one physical T layer. The exact
+representation laws, followed by three such replacements, give
+
+```math
+\|M_{x+y}-\zeta(x,y)A_yM_xA_y^\dagger M_y\|\le6\eta,
+                                                               \qquad(35)
+```
+
+where zeta is a unit scalar fixed by those laws.
+
+Cliffords with different symplectic actions have projective operator
+distance at least $`1/\sqrt2`$: their conjugations of some Pauli
+have different projective labels, separated by $`\sqrt2`$, while
+conjugation changes by at most twice the original operator distance.
+Thus $`6\eta\lt1/\sqrt2`$ forces the symplectic cocycle exactly.
+After that, the quotient of the two sides in (35) is a scalar times
+a Pauli. A nonzero Pauli label would again have distance at least
+$`\sqrt2`$ from any scalar identity. Equation (35) therefore also
+forces the corresponding Pauli-displacement cocycle exactly. This
+does not assert equality of the remaining scalar phases.
+
+### 8.2 A target visible in the outer shear has degree at most two
+
+Put $`g(x)=f(x)+f(0)`$. The bracket Pauli in (34) has label
+linear(x) plus $`e_{X_t}g(x)`$. After the fixed Clifford
+$`C_4(0)^\dagger`$, its X components on active $`D_4`$ wires
+determine the symplectic action
+
+```math
+S_M(x)=I+H(x),\qquad H(x)=L(x)+E g(x).                    \qquad(36)
+```
+
+Here L is linear, E is fixed, and the entire outer shear space has
+pairwise zero matrix products. The left factor $`P_3^\dagger`$
+has no symplectic effect. Write $`\mathcal C_y`$ for conjugation
+of matrices by $`S_A(y)`$. The exact symplectic cocycle becomes
+
+```math
+H(x+y)+H(y)=\mathcal C_yH(x),
+```
+
+```math
+E[g(x+y)+g(x)+g(y)]
+=(\mathcal C_y-I)L(x)+(\mathcal C_yE-E)g(x).              \qquad(37)
+```
+
+If $`E\ne0`$ and $`\deg g\ge2`$, comparison of the
+highest-degree x coefficients gives $`\mathcal C_yE=E`$ for
+every y. Equation (37) then makes every derivative of g affine.
+Hence $`\deg g\le2`$. Affine g already satisfies the conclusion.
+
+### 8.3 Vanishing outer shear and an auxiliary Pauli cocycle
+
+Suppose now that $`E=0`$. The target Pauli after
+$`C_4(0)^\dagger`$ commutes with every active $`D_4`$ axis.
+Consequently $`H=W_4^\dagger X_tW_4`$ is a fixed nonidentity
+physical Pauli, with label v. Choose a linear-label
+Pauli family $`T_x`$, independent of g, so that projectively
+
+```math
+M_x\doteq Q_xH^{g(x)},\qquad
+Q_x=P_xN_x,\qquad P_x=P_3(x)^\dagger,\qquad
+N_x=D_4^\dagger T_xD_4.                                 \qquad(38)
+```
+
+The label of $`T_x`$ includes the fixed $`C_4(0)^\dagger`$
+coordinate change and the linear endpoint labels. Scalars depending
+on x or g are retained in the actual target and may be ignored only
+in this necessary projective invariant. N is an exact one-T Clifford
+Pauli representation; Q need not be a representation. Write
+
+```math
+p(x)=\mathrm{lab}P_x,\qquad
+S_N(x)=S_Q(x)=I+L(x),\qquad L(x)L(y)=0.                  \qquad(39)
+```
+
+Both p and L are linear. The symplectic cocycle, now independent of
+g, implies
+
+```math
+[S_A(y),S_N(x)]=0\quad\text{for every }x,y.               \qquad(40)
+```
+
+Fix y and abbreviate $`A=A_y`$. The operator
+
+```math
+C_x=N_x^\dagger A N_x A^\dagger
+```
+
+is a scalar times a Pauli by (40). The family
+$`N'_x=A N_xA^\dagger=N_xC_x`$ is another exact projective
+representation with the same multiplication factors as N. Comparing
+their laws gives
+
+```math
+c(x+z)=S_N(z)^{-1}c(x)+c(z),\qquad
+c(x)=\mathrm{lab}C_x,\quad c(0)=0.                       \qquad(41)
+```
+
+Section 3's independent physical-axis argument applies to (41).
+The axes here belong to $`D_4`$, and their binary action is
+$`(a,b)\mapsto(a,b+u(z)\odot a)`$. The diagonal and symmetric
+cocycle equations force each active product
+$`u_i(z)c_{X,i}(x)`$ to vanish. Therefore c is additive, hence
+linear in x. This step does not assume a quadratic phase function for
+arbitrary Clifford tableaus.
+
+### 8.4 The remaining Pauli defect is quadratic
+
+For the fixed y, put $`K_y=I+S_A(y)`$. The commutator of Q
+with A has Pauli label
+
+```math
+k_y(x)=\mathrm{lab}(Q_x^\dagger A Q_xA^\dagger)
+      =S_N(x)K_y p(x)+c(x),                             \qquad(42)
+```
+
+because its full operator factors as
+
+```math
+Q_x^\dagger A Q_xA^\dagger
+=N_x^\dagger[P_x^\dagger A P_xA^\dagger]N_x\, C_x.
+```
+
+Thus k has degree at most two in x. Separately,
+
+```math
+Q_xQ_y\doteq P_{L(x)p(y)}Q_{x+y},\qquad
+\mathrm{lab}(Q_{x+y}^\dagger Q_xQ_y)=L(x)p(y),             \qquad(43)
+```
+
+where $`P_l`$ denotes a Pauli of label l. The second identity
+uses $`L(x+y)L(x)=0`$. The full baseline defect is the Pauli
+
+```math
+D_{x,y}=Q_{x+y}^\dagger A_yQ_xA_y^\dagger Q_y,
+```
+
+```math
+d(x,y)=\mathrm{lab}D_{x,y}
+      =L(x)p(y)+S_N(y)^{-1}k_y(x).                       \qquad(44)
+```
+
+For each fixed y, d has degree at most two in x, independently of
+width. Moreover, its degree-two coefficient vectors lie in
+$`\mathrm{im}K_y`$. Its only possible quadratic contribution is
+
+```math
+\bigl[S_N(y)^{-1}L(x)K_y p(x)\bigr]^{[2]}.               \qquad(45)
+```
+
+Equation (40) makes $`K_y`$ commute with every $`L(x)`$
+and with $`S_N(y)`$, so the expression in (45) is in that image.
+
+### 8.5 Independent inner axes exclude cubic degree
+
+Substitute (38) into the exact Pauli-displacement cocycle from (35).
+It gives
+
+```math
+v[g(x+y)+g(x)+g(y)]
+=d(x,y)+[S_N(y)^{-1}S_A(y)v+v]g(x).                     \qquad(46)
+```
+
+If $`\deg g\ge3`$, highest-degree x coefficients force the
+bracket multiplying g to vanish for every y, since d is at most
+quadratic and translation lowers degree. Then every derivative has
+degree at most two, so $`\deg g\le3`$.
+
+It remains to exclude degree exactly three. Since $`E=0`$,
+the target label v has no X component on an active outer axis;
+hence $`S_N(x)v=v`$ for every x. Together with (40), the
+vanishing bracket also gives $`S_A(y)v=v`$. Taking the
+degree-two x parts of (46) and using (45) yields
+
+```math
+v\,(\Delta_y g)^{[2]}
+\in\mathrm{im}(I+S_A(y))
+\quad\text{coefficientwise for every }y.                \qquad(47)
+```
+
+In the fixed physical-axis coordinates of the one-T family A,
+
+```math
+S_A(y)(a,b)=(a,b+u(y)\odot a),\qquad
+\mathrm{im}(I+S_A(y))
+=\mathrm{span}\{z_i:u_i(y)=1\},                         \qquad(48)
+```
+
+with independent axes $`z_i`$ and linear functions $`u_i`$.
+If v is outside the span of all axes with nonzero $`u_i`$,
+(47) forces all derivatives to be affine. Otherwise choose a nonzero
+axis coefficient of v, say its i-th coefficient. For every
+$`y\in\ker u_i`$, v lies outside the image in (48), again making
+$`\Delta_y g`$ affine. This is a codimension-one subspace of
+directions. In coordinates adapted to it, a cubic monomial involving
+a subspace coordinate has a quadratic derivative, while a monomial
+using only the one quotient coordinate cannot be cubic. Thus cubic
+degree is impossible, completing the degree-two proof.
+
+### 8.6 Scalar corollary and scope
+
+The projective proof also permits a specified phase-decorated target
+$`e^{i\theta(x)}X_t^{f(x)}`$: its literal phases enter the scalar
+in (38), without changing the Pauli-label comparisons. Consequently
+a literal zero-clean scalar phase $`P_g=(-1)^{g(x,t)}I`$ at
+four layers has Boolean degree at most three. Treat one address bit
+t as an arbitrary output and use
+
+```math
+H_tP_gH_t=(-1)^{g(x,0)}X_t^{g(x,0)+g(x,1)}.
+```
+
+The two Hadamards add two elementary Cliffords; T-count, T-depth,
+physical width, clean/dirty helper allocation and error are unchanged.
+There is no prepared output or free controlled-query call. Each
+coordinate derivative of g has degree at most two, giving the stated
+scalar bound. No sharpness or universal construction is asserted for
+this scalar corollary.
+
+The proof exploits native one-T axes twice, including when the target
+is invisible to the outer symplectic action. It therefore resolves
+that degeneracy rather than treating a visible shear as a general
+invariant. It still requires address-preserving Clifford boundaries
+and zero initialized work. It does not supply a one-clean four-layer
+bound, a recurrence for arbitrary T-depth, or an unrestricted
+complete-frame lower bound.
+
+The [three bounded four-layer checks](../../tests/test_read_only_four_layer_rigidity.py)
+retain literal phases and the actual inverse in a five-band native word
+with eight T gates, depth four, 101 elementary Cliffords, zero clean
+qubits and two arbitrary work wires. A second native fixture has
+commuting inner and outer shears with nonzero cross-products and a
+genuinely quadratic Pauli defect; it checks the image condition (45).
+An exhaustive three-variable check tests the codimension-one derivative
+step. These are finite identity checks, not an extrapolation to
+arbitrary width or a complete-frame compiler.
+
+The [four-layer evidence tests](../../tests/test_read_only_four_layer_rigidity.py)
+check the literal five-band normalization and actual inverse on all
+address fibres of a native eight-T, four-layer word with 101 elementary
+Cliffords, zero clean qubits and two arbitrary work qubits. A second
+native fixture has commuting inner and outer shears with nonzero shear
+products; it verifies the auxiliary additive cocycle, a genuinely
+quadratic defect and the image constraint. Those matrix checks use
+floating arithmetic with explicit residual tolerances. A third test
+exhausts all three-variable Boolean tables and codimension-one
+direction spaces for the derivative step. These finite checks support
+the analytic, width-independent theorem; they do not replace it.
