@@ -301,6 +301,27 @@ three-layer degree bound remains open because an intermediate code may
 be non-Pauli; the old shared-clean-flip construction is not automatic.
 No general complete-frame frontier or publication claim changes.
 
+The [clean-code and algebra round](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+then gives three supported components. [Clifford code rigidity](depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md)
+classifies literal pointwise stabilizers and localizes the complete native
+logical comparison family. Exact examples disprove blanket full-space
+Clifford extension and show that arbitrarily many clean-paired axes can
+have a one-layer full target. [Quadratic queries](depth/QUADRATIC_NATIVE_QUERY.md)
+have optimal depth two with zero clean and one returned dirty helper,
+with paid coordinates and actual inverses. A fair six-band cubic baseline
+stops the quartic-phase echo as a saving. The
+[balanced HRT source](depth/BALANCED_ALGEBRA_PERMUTATION.md) pays in-place
+recovery by splitting an algebra generator and returning a dirty
+correction bank; six calls occupy five native stages per merge. Its
+source and inverse have $`O(\log r)`$ depth and
+$`O(3^r)`$ counts and dirty allocation on $`2^r-1`$ arbitrary inputs,
+improving the fair $`O(r)`$ depth baseline. Its degree-r returned query
+still has growing depth. The next unrestricted lower question is the
+one-clean three-layer degree bound after handling unused-sector freedom.
+The retained R74 theorem already reduces sufficiently accurate Boolean
+approximation to exact occupied action at a uniform small radius;
+a faster general R98 query remains open, and R96 is unchanged.
+
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
 [Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
