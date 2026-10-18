@@ -26,6 +26,14 @@ are not asserted. The proof freezes an eight-factor Clifford product. It
 does not promote an arbitrary intermediate of a three-band conjugation to
 a Clifford.
 
+A separate [native transport theorem](NATIVE_CLIFFORD_TRANSPORT.md)
+handles general Clifford-valued K when the specified shared prefix is
+diagonal third-level in fixed Clifford coordinates. It gives degree at
+most 78 (26 for visible outer shear) below $`\sqrt2/8`$, without a
+monomial inner-family hypothesis. This source restriction and the
+Pauli-comparison restriction above are distinct; neither is inferred
+from full return. The general six-layer question remains open.
+
 ## 1. Native contract and the phase-retaining comparison
 
 Let x be an a-bit address and W contain the arbitrary output t and all

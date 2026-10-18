@@ -114,6 +114,27 @@ class BooleanQueryFrameReductionTests(unittest.TestCase):
             self.assertEqual([row[column] for row in incorrect],
                              [sign * row[column] for row in correct])
 
+    def test_actual_inverse_has_separate_elementary_clifford_charge(self):
+        # S on initialized clean work preserves the frame contract, but its
+        # literal inverse costs three S gates in the fixed H,S,CX alphabet.
+        address, target, output, clean, width = 0, 1, 2, 3, 4
+        frame = [('H', target), ('CX', address, target),
+                 ('H', target), ('CX', address, target)]
+        forward = frame + [('S', clean)]
+        inverse = [('S', clean)] * 3 + list(reversed(frame))
+        self.assertEqual(native_columns(width, inverse),
+                         native_columns(width, _adjoint(forward)))
+        self.assertEqual((len(forward), len(inverse)), (5, 7))
+        self.assertLessEqual(len(inverse), 3 * len(forward))
+        cnot = [('CX', target, output)]
+        reduced = inverse + cnot + forward + cnot
+        self.assertEqual(len(reduced), 14)
+        self.assertGreater(len(reduced), 2 * len(forward) + 2)
+        self.assertEqual(native_columns(width, reduced),
+                         _expected_query([0, 1], 1, output, width))
+        # This supplied-word audit includes every clean/dirty basis column;
+        # it is not a claim that the deliberately padded source is minimal.
+
     def test_scalar_phase_and_explicit_controlled_table_conversions(self):
         address_bits, target, width = 2, 2, 4
         for table_code in range(16):

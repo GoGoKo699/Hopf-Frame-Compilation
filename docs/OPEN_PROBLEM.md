@@ -65,7 +65,7 @@ bound for fused whole-word synthesis. Fusion removes irrelevant carrier
 motion but leaves the table-bit loading task; the retained implementation
 uses R91's logarithmic-depth dirty indicators. No improved reader is proved.
 
-The [current checkpoint](../research/depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
+The [preceding checkpoint](../research/depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
 adds a [six-layer Pauli-comparison theorem](../research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md):
 degree at most 51 below $`\sqrt2/64`$, independently of dirty width.
 It does not cover general Clifford-valued comparisons. An actual fully
@@ -82,19 +82,37 @@ counts. The four-call echo radius improves to $`2\sin(\pi/32)`$.
 This is a source-architecture bound, with a radius decreasing in q; it is
 not a general native T-depth lower bound or a faster reader.
 
+The [current checkpoint](../research/depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
+adds [signed transport through a diagonal third-level source in fixed Clifford
+coordinates](../research/depth/NATIVE_CLIFFORD_TRANSPORT.md). For the specified
+six-layer prefix, this additional hypothesis gives degree at most 78,
+or 26 for visible outer target shear, below $`\sqrt2/8`$. The inner
+Clifford need not be monomial. General third-level membership gives robust
+exactness of a nearby Clifford endpoint, but does not give bounded tableau
+degree: the same proof home records a charged permutation-family stress test.
+That example is not a three-band returned query.
+
+A [nonlinear unit-group character construction](../research/depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+escapes the fixed-affine source architecture with exact dirty return and paid
+native controls. Its output degree is at most $`1+\lfloor\log_2 w\rfloor`$
+on w coefficient wires. A degree-a output needs $`w\ge2^{a-1}`$,
+excluding this representation from R98's square-root-width target even
+before charging source synthesis. This is not a general query lower bound.
+
 The next lower-bound question is a **native degree-versus-depth recurrence**,
-with six layers as the first concrete case. Its shared-source defect has a
-Clifford pullback through three T bands, but that pullback need not be Pauli;
-intermediate Clifford membership is no longer automatic. Before this prefix,
-the inner defect has symplectic degree at most four and sign degree at most
-eighteen on degree-two probes; the missing invariant bounds their native transport.
-Any recurrence must control literal probe signs and error as well as symplectic labels,
-independently of dirty width. One-clean work and address mixing remain
-additional gaps. None of these results changes the complete-frame upper law.
+beginning with three-band transport outside the fixed diagonal source class.
+The actual inner family and full-return compatibility must supply information
+absent from arbitrary third-level conjugation. Intermediate Clifford
+membership cannot be assumed. A recurrence must control literal probe signs
+and error as well as symplectic labels, independently of dirty width.
+One-clean work and address mixing remain additional gaps. None of these
+results changes the complete-frame upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
-calls, the same clean/dirty allocation, and at most doubled error and
-resources. A faster exact multi-output query with R91's native read-only
+calls, the same clean/dirty allocation, at most doubled error, T-count and
+T-depth, and elementary Clifford budget $`G(V)+G(V^\dagger)+2\le4G(V)+2`$.
+The actual inverse is charged in the fixed H, S, CNOT alphabet.
+A faster exact multi-output query with R91's native read-only
 interface would, by conditional R98, give
 
 ```math

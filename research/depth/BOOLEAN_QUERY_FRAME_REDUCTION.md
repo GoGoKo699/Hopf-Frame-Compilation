@@ -112,11 +112,16 @@ input-dependent target phase has been discarded.
 If V has simultaneous resources $`(T,G,D_T)`$, this construction has
 
 ```math
-T'\le2T,\qquad G'\le2G+2,\qquad D_T'\le2D_T.          \qquad(5)
+T'\le2T,\qquad
+G'\le G(V)+G(V^\dagger)+2\le4G+2,\qquad
+D_T'\le2D_T.                                         \qquad(5)
 ```
 
-The inverse has the same T-count, elementary Clifford count, T-depth and
-width. The two extra gates are ordinary CNOTs. For target error
+The inverse has the same T-count, T-depth and width. Its elementary
+Clifford count is charged separately: in the fixed H, S, CNOT alphabet,
+$`S^\dagger=S^3`$, so reversing the supplied word gives
+$`G(V^\dagger)\le3G(V)`$. The two extra gates are ordinary CNOTs.
+For target error
 $`2^{-L}`$, it is enough to invoke the frame compiler at precision
 $`L+1`$. Its literal width threshold must be checked at that precision;
 the reduction does not erase this increment.
@@ -133,8 +138,9 @@ because $`H X^f H=Z^f`$ and $`X^fZ^f=K^f`$ for f=0,1.
 The chronological word is $`H_t,Q_f^{(t)},H_t,Q_f^{(t)}`$.
 Two calls reuse the same dirty pool. If the exact query needs no clean
 work, neither does this frame construction; one designated clean wire
-may be left untouched. Its simultaneous resources obey the same factors
-as (5). An approximate query with the complete initialized-isometry
+may be left untouched. Both calls are forward calls, so its simultaneous
+resources satisfy $`T'\le2T(Q_f)`$, $`G'\le2G(Q_f)+2`$ and
+$`D_T'\le2D_T(Q_f)`$. An approximate query with the complete initialized-isometry
 contract also gives error at most twice its query error, by the same
 two-call hybrid.
 
@@ -165,7 +171,9 @@ Q_f^{(t)}Z_t(Q_f^{(t)})^\dagger Z_t=P_f\otimes I_t.      \qquad(8)
 The chronological word is $`Z_t,(Q_f^{(t)})^\dagger,Z_t,Q_f^{(t)}`$.
 It uses two actual query calls and two Pauli Z operations (four S gates
 in the stated elementary alphabet), with error at most twice the query
-error. No target state is prepared. The
+error. Thus $`T'\le2T(Q_f)`$, $`D_T'\le2D_T(Q_f)`$ and
+$`G'\le G(Q_f)+G(Q_f^\dagger)+4\le4G(Q_f)+4`$; the inverse
+is charged in the same native alphabet. No target state is prepared. The
 physical register set is unchanged: viewed as an s-bit scalar-phase
 problem, the former XOR output t is one additional arbitrary returned
 dirty wire.
@@ -193,7 +201,8 @@ XOR-query T-depth at least d at error $`2\eta_0`$ with one clean and
 b dirty qubits, then its legal real frame (1) requires T-depth at least
 $`d/2`$ at error $`\eta_0`$ with that same allocation. If the query
 lower bound imposes count budgets, it must allow the doubled T-count
-and $`2G+2`$ Clifford budget in (5). This statement quantifies over
+and the $`G(V)+G(V^\dagger)+2\le4G(V)+2`$ Clifford budget in (5).
+This statement quantifies over
 every native representation with arbitrary Clifford interlayers.
 
 Consequently a robust dimension-growing lower bound for arbitrary
