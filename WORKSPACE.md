@@ -15,44 +15,48 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: general five-layer read-only degree bound
+## Current checkpoint: six-layer comparisons and diagonal sources
 
-The [current round](research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
-began at verified main `6e20eb4` (PR #172). The
-[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
-now bounds Boolean degree by **14** for every zero-clean read-only five-layer
-XOR query at full operator error below $`\sqrt2/24`$, independently of dirty
-width. An invisible outer target shear gives degree at most 11. No extra
-span, axis-permutation, Pauli-comparison or Clifford-middle hypothesis is
-needed. A native Pauli pullback of the ordered comparison defect lets
-one-band matching control its tableau and literal probe signs. This resolves
-the preceding checkpoint's target-extraction gap. The sharp degree is open.
+The [current round](research/depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
+began at verified main `67d886b` (PR #173). The general zero-clean
+read-only [five-layer degree bound](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+remains **14** below full operator error $`\sqrt2/24`$ (11 for invisible
+outer target shear), independently of dirty width and without an extra
+comparison hypothesis.
 
-The new [returned affine fixture](research/depth/BASELINE_WORD_OBSTRUCTION.md#5-a-returned-affine-query-can-have-an-odd-order-outer-baseline)
-shows why an ambient-group shortcut remains invalid even under full return:
-the actual comparison group has order two, while its outer baseline has
-arbitrarily large odd symplectic order. The successful detector uses the
-shared native defect instead. The [fusion diagnosis](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#6-whole-word-fusion-removes-carrier-motion-but-leaves-the-table-bit)
-removes unused carrier motion but leaves the original table-bit loading
-problem and R91's logarithmic dirty-indicator depth. The retained
-[source-cost theorem](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#5-a-source-cost-barrier-survives-pauli-carrier-compression)
-still excludes separately paid Clifford-translation sources from R91's
-square-root count envelope; it does not lower-bound fused whole-word synthesis.
+The new [six-layer proof home](research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md)
+proves degree at most **51** below $`\sqrt2/64`$ when the specified
+comparison is Pauli-valued. An eight-factor cube cancels its quadratic
+label baseline and exposes a fixed target; the general Clifford-valued
+comparison remains open. An exact fully returned identity circuit in the
+same proof home has an actual comparison and defect of odd projective
+order. Repeated multiplicative differences stay non-Pauli, so full return
+does not justify the proposed Pauli-return recurrence. Its fairly simplified
+baseline has zero gates; it supplies no depth saving.
 
-The next mathematical question is **a width-independent degree bound at
-six layers, using its shared-source ordered defect**. The pullback is now
-Clifford rather than necessarily Pauli and has a three-band conjugator;
-an intermediate Clifford cannot be assumed. A successful invariant should
-suggest a depth-dependent recurrence. One-clean work and unrestricted
-address mixing remain separate gaps before a general frame lower bound.
+The [diagonal-source theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+now covers q occurrences of arbitrary diagonal work sources joined by
+read-only monomial Clifford intervals. It bounds Boolean scalar degree by
+$`\max(2,q-1)`$ below error $`2\sin(\pi/2^{\max(q,3)+1})`$.
+The four-call echo radius improves to $`2\sin(\pi/32)`$.
+Source occurrence count is not native T-depth, and the radius decreases with q.
+The fixed-source fusion candidate remains blocked within the stated
+architecture and error radius. A faster fully charged reader remains open;
+fusion alone has not removed R91's logarithmic dirty-indicator depth.
+
+The next mathematical question is **bounded signed-tableau transport of the
+six-layer native defect through its shared three-band prefix**. Before that
+prefix its symplectic degree is at most four and its sign degree on degree-two
+probes is at most eighteen. The new proof isolates the sufficient output bounds;
+intermediate Clifford membership cannot be assumed. Success would settle
+a genuinely open zero-clean read-only six-layer question and give a concrete
+step toward a depth recurrence. One-clean work, address mixing and a suitable
+error radius remain further gaps before a growing general-frame lower bound.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. Earlier five-layer subcases keep their sharper bounds
-or larger error radii where applicable. The span-preserving degree-112/21
-bounds are superseded by the new general bound; their structural proofs
-remain useful. Optimal general depth, dimension-growing unrestricted lower
-bounds and unrestricted one-clean four-layer rigidity remain open.
+remains conditional. Optimal general depth, dimension-growing unrestricted
+lower bounds and unrestricted one-clean four-layer rigidity remain open.
 Final manuscript drafting is separate.
 
 ## Mandate

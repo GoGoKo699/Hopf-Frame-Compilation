@@ -193,10 +193,13 @@ displayed equalities are exact full-operator equalities, with zero
 leakage. They supply a failure of an inference, not a resource
 improvement.
 
-The remaining general five-layer question is how the two passages
-in (4) can cancel when neither can separately be treated as a
-Clifford passage. The theorem does not supply a width-independent
-degree law for that action on binary Clifford tableaus.
+The [general five-layer theorem](READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+subsequently resolves the output-degree question by applying this matching
+lemma to a native Pauli defect. It does not prove a general degree law for
+arbitrary two-band action on Clifford tableaus. The current
+[six-layer question](READ_ONLY_SIX_LAYER_REDUCTION.md#6-a-conditional-defect-detector-for-the-general-comparison)
+has a Clifford defect and three-band prefix, with intermediate Clifford
+membership still unavailable.
 
 No auxiliary qubit or physical operation is introduced by this proof.
 The inequalities concern full operators on arbitrary inputs,

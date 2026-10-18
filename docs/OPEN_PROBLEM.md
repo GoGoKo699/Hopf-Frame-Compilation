@@ -34,7 +34,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
+The preceding [native-defect round](../research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
 resolves the general **zero-clean read-only five-layer XOR degree** question:
 [Section 5.6](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
 proves degree at most **14** at full operator error below $`\sqrt2/24`$,
@@ -65,11 +65,30 @@ bound for fused whole-word synthesis. Fusion removes irrelevant carrier
 motion but leaves the table-bit loading task; the retained implementation
 uses R91's logarithmic-depth dirty indicators. No improved reader is proved.
 
+The [current checkpoint](../research/depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
+adds a [six-layer Pauli-comparison theorem](../research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md):
+degree at most 51 below $`\sqrt2/64`$, independently of dirty width.
+It does not cover general Clifford-valued comparisons. An actual fully
+returned six-slot identity circuit has odd-order comparisons and persistent
+non-Pauli multiplicative defects, ruling out that proposed recurrence even
+under full return. Merging its empty slots changes the specified comparison;
+its fair circuit baseline is identity.
+
+A separate [diagonal-source theorem](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+bounds Boolean scalar degree by $`\max(2,q-1)`$ for q arbitrary diagonal
+work-source occurrences joined by read-only monomial Clifford intervals,
+at error below $`2\sin(\pi/2^{\max(q,3)+1})`$. Every inverse occurrence
+counts. The four-call echo radius improves to $`2\sin(\pi/32)`$.
+This is a source-architecture bound, with a radius decreasing in q; it is
+not a general native T-depth lower bound or a faster reader.
+
 The next lower-bound question is a **native degree-versus-depth recurrence**,
 with six layers as the first concrete case. Its shared-source defect has a
 Clifford pullback through three T bands, but that pullback need not be Pauli;
-intermediate Clifford membership is no longer automatic. Any recurrence
-must control literal probe signs and error as well as symplectic labels,
+intermediate Clifford membership is no longer automatic. Before this prefix,
+the inner defect has symplectic degree at most four and sign degree at most
+eighteen on degree-two probes; the missing invariant bounds their native transport.
+Any recurrence must control literal probe signs and error as well as symplectic labels,
 independently of dirty width. One-clean work and address mixing remain
 additional gaps. None of these results changes the complete-frame upper law.
 A robust growing **unrestricted native** query lower bound

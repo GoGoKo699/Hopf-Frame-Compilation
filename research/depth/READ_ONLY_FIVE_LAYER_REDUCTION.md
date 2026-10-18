@@ -1645,7 +1645,7 @@ The next issue is whether native defects admit a bounded-degree recurrence
 as the number of layers grows, at an error radius independent of dirty width.
 The five-layer Pauli pullback is a special structural input, not an induction
 hypothesis already proved at greater depth. The
-[current checkpoint](NATIVE_DEFECT_SESSION_RESULT.md) specifies that gap and
+[current checkpoint](SIX_LAYER_TRANSPORT_SESSION_RESULT.md) specifies that gap and
 the separate constructive cost. Address mixing and initialized work remain
 additional obstacles to a general complete-frame lower bound.
 
@@ -1659,56 +1659,19 @@ of R98 are unchanged.
 
 ### 7.1 The six-layer native boundary
 
-For the next read-only circuit $`V=C_6D_6\cdots C_0`$, peel the outer
-one-band image of $`P_4(x)`$ as in section 1. The three remaining exact
-Pauli-image families B, J and O have the common-prefix factorization
+The six-layer factorization and its scope now have one authoritative home:
+[Six-layer native reduction](READ_ONLY_SIX_LAYER_REDUCTION.md).
+Its shared-prefix pullback is a product of two one-band Pauli images and a
+Pauli, hence Clifford-valued. The ordered defect need not be Pauli. The
+new home retains the [original boundary checks](../../tests/test_six_layer_defect_boundary.py)
+and adds a fully returned query with actual odd-order comparison defects.
+It also proves the degree-51 Pauli-comparison subcase below $`\sqrt2/64`$.
 
-```math
-\begin{aligned}
-S&=C_3(0)D_3,\\
-E_{\rm in}&=C_2(0)D_2,\\
-F&=C_5(0)D_5C_4(0)D_4S,\\
-L_x&=(S^\dagger P_3(x)S)\,P_2(x)\,
-                  (E_{\rm in}P_1(x)E_{\rm in}^\dagger),\\
-B_xJ_xO_x&=F L_x F^\dagger.
-\end{aligned}
-```
-
-This is an exact native identity with actual inverses, before replacing
-any fibre by its target. Each factor of L is Clifford: its outer factors
-are one-band Pauli images, with potentially different native axes.
-Consequently the ordered defect of L is Clifford, but it need not be
-Pauli. For example, on one arbitrary work wire let
-
-```math
-A=T^\dagger XT,\qquad Y=HTXT^\dagger H,\qquad
-L_{(u,v)}=A^uY^v.
-```
-
-For $`x=(0,1),y=(1,0)`$ the ordered defect is AYAY. Its symplectic
-matrix in X,Z coordinates is
-
-```math
-\begin{pmatrix}0&1\\1&1\end{pmatrix},
-```
-
-of order three, so it is not Pauli. The displayed controlled inner family
-uses four T gates, four elementary Cliffords and four T layers, with zero
-clean and no additional dirty helpers; its one work wire is arbitrary.
-Its actual inverse has the same charges. At the fixed branch used for the
-defect, AYAY is itself Clifford; the bounded fixture supplies a literal
-12-elementary-Clifford, zero-T baseline, without an optimality claim.
-This is an inner-family diagnostic, **not** a returned six-layer query,
-a resource improvement or a lower bound for every compiler.
-
-The three-band prefix F can send this Clifford defect through non-Clifford
-intermediates. Full return could impose additional compatibility, but that
-has not been proved. The precise missing step is a width-independent bound
-on the signed tableau of the returned defect after this specified prefix,
-or a replacement invariant that detects the target without assuming those
-intermediates are Clifford. Any depth recurrence must also track its error
-radius. The [boundary checks](../../tests/test_six_layer_defect_boundary.py)
-verify the exact factorization and non-Pauli example.
+For general comparisons, the unresolved step is bounded signed-tableau
+transport through the common three-band prefix. Intermediate operators
+need not be Clifford. The new home states the conditional detector and
+its native degree-four/eighteen input; it does not assert the missing
+transport bound or a general six-layer theorem.
 
 ### 7.2 Bounded evidence
 

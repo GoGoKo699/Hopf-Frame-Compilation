@@ -313,13 +313,24 @@ source. Whole-word synthesis remains outside this source-call bound.
 A further [shared-prefix invariant](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
 gives faithful degree-four actual-group features without span preservation,
 below error $`\sqrt2/40`$. With span preservation it sharpens the output
-bound to 21 at that smaller radius. The [current native-defect round](depth/NATIVE_DEFECT_SESSION_RESULT.md)
+bound to 21 at that smaller radius. The [native-defect round](depth/NATIVE_DEFECT_SESSION_RESULT.md)
 resolves the missing target extraction: [Section 5.6](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
 proves the general zero-clean read-only five-layer degree bound **14**
 (**11** for an invisible target shear) below $`\sqrt2/24`$, with no extra
 comparison hypothesis. The defect's native Pauli pullback permits one-band
 matching and bounded-degree signed tableau transport. This supersedes the
 span-preserving degree bounds but preserves their structural proofs.
+The [current round](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md) proves a
+[six-layer Pauli-comparison bound](depth/READ_ONLY_SIX_LAYER_REDUCTION.md)
+of degree 51 below $`\sqrt2/64`$. The same home contains a fully returned
+identity fixture with actual odd-order comparisons and persistent non-Pauli
+defects; repeated Pauli-return cannot be the general invariant. The
+[diagonal-source proof](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md) now covers q
+arbitrary diagonal sources with affine monomial-Clifford transport, giving
+degree at most $`\max(2,q-1)`$ below its explicit q-dependent radius.
+Its four-call echo radius improves to $`2\sin(\pi/32)`$.
+Neither result improves R96 or supplies the missing R98 query.
+
 The next question is a native degree-versus-depth recurrence, beginning with
 the six-layer Clifford defect whose three-band conjugator need not have
 Clifford intermediate stages. One-clean/address-mixing lower bounds and
