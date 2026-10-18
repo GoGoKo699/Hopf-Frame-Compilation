@@ -3,7 +3,8 @@
 The proof supplies the width-independent degree theorem. These fixtures
 retain Hermitian-section carries, the known Gottesman--Mochon example,
 its actual native inverse, paid tensor-copy allocation, and signed
-normalization with mixed translations and radical promotion. They do not
+normalization with mixed translations and radical promotion. A symbolic
+15-wire check separates the source class from arbitrary C3. These do not
 assert a three-native-band realization or construct a returned query.
 Seven-qubit Pauli-domain checks use monomial bitmaps, not a dense Pauli
 basis; the only full matrices are the 128 native input columns.
@@ -16,6 +17,11 @@ import unittest
 
 import numpy as np
 
+from tests.test_c3_transport_scope import (
+    _inverse as _hrt_inverse,
+    _native_schedule as _hrt_native_schedule,
+    _toffolis as _hrt_toffolis,
+)
 from tests.test_nonlinear_character_transport import _anf
 from tests.test_outer_axis_normalizer import _tau
 from tests.test_parallel_bilinear_word_query import _inverse as _native_inverse
@@ -157,6 +163,67 @@ def _pair_five_wire_labels(first, second):
 
 def _five_wire_target_label(label):
     return ((label >> 4) & 1) | (((label >> 9) & 1) << 1)
+
+
+def _hrt_maps(k):
+    """All columns from subset multiplication and the quadratic inverse."""
+    width = (1 << k) - 1
+    values = np.arange(1 << width, dtype=np.uint32)
+    forward = np.zeros_like(values)
+    for subset in range(1, 1 << k):
+        selected = (values >> (subset - 1)) & 1
+        product = np.zeros_like(values)
+        for other in range(1, 1 << k):
+            if not subset & other:
+                product ^= ((forward >> (other - 1)) & 1) << ((subset | other) - 1)
+        forward ^= selected * ((1 << (subset - 1)) ^ product)
+    inverse = values.copy()
+    for first, second, target in _hrt_toffolis(k):
+        inverse ^= (((values >> first) & 1) * ((values >> second) & 1)) << target
+    return values, forward, inverse
+
+
+def _hrt_generator_deviations(k):
+    """Binary columns of S_(U X_A U†)-I, then S_(U Z_A U†)-I."""
+    width = (1 << k) - 1
+    result = []
+    for subset in range(1, 1 << k):
+        columns = [0] * (2 * width)
+        for other in range(1, 1 << k):
+            if not subset & other:
+                union = subset | other
+                columns[other - 1] ^= 1 << (union - 1)
+                columns[width + union - 1] ^= 1 << (width + other - 1)
+        result.append(columns)
+    for subset in range(1, 1 << k):
+        columns = [0] * (2 * width)
+        for part in range(1, subset):
+            if part & subset == part:
+                columns[part - 1] ^= 1 << (width + (subset ^ part) - 1)
+        result.append(columns)
+    return result
+
+
+def _binary_rank(rows):
+    pivots = {}
+    for row in rows:
+        while row:
+            pivot = row.bit_length() - 1
+            if pivot in pivots:
+                row ^= pivots[pivot]
+            else:
+                pivots[pivot] = row
+                break
+    return len(pivots)
+
+
+def _binary_apply(columns, value):
+    result = 0
+    while value:
+        bit = value & -value
+        result ^= columns[bit.bit_length() - 1]
+        value ^= bit
+    return result
 
 
 class ControlledPauliTransport(unittest.TestCase):
@@ -523,6 +590,88 @@ class ControlledPauliTransport(unittest.TestCase):
         self.assertFalse(np.array_equal(transformed_inverse[1], transformed[1]))
         _assert_monomial_equal(_compose(transformed_inverse, transformed), identity)
         _assert_monomial_equal(_conjugate(left, endpoint), _conjugate(canonical, transformed))
+
+
+
+    def test_intrinsic_domain_criterion_on_hrt_sources(self):
+        for k in (3, 4):
+            width = (1 << k) - 1
+            values, forward, inverse = _hrt_maps(k)
+            np.testing.assert_array_equal(forward[inverse], values)
+            np.testing.assert_array_equal(inverse[forward], values)
+
+            # Every physical column of both actual Toffoli words, with no
+            # initialized inputs; their native decompositions are retained.
+            triples = _hrt_toffolis(k)
+            for gates, expected in ((triples, inverse), (list(reversed(triples)), forward)):
+                actual = values.copy()
+                for first, second, target in gates:
+                    actual ^= (((actual >> first) & 1) * ((actual >> second) & 1)) << target
+                np.testing.assert_array_equal(actual, expected)
+
+            # Literal X images are affine permutations. Literal Z images
+            # have only the displayed Z/CZ phases; every column is checked.
+            for subset in range(1, 1 << k):
+                expected = values ^ (1 << (subset - 1))
+                for other in range(1, 1 << k):
+                    if not subset & other:
+                        expected ^= ((values >> (other - 1)) & 1) << ((subset | other) - 1)
+                np.testing.assert_array_equal(forward[inverse ^ (1 << (subset - 1))], expected)
+                phase = (values >> (subset - 1)) & 1
+                for first, second, target in triples:
+                    if target == subset - 1:
+                        phase ^= ((values >> first) & 1) * ((values >> second) & 1)
+                np.testing.assert_array_equal((inverse >> (subset - 1)) & 1, phase)
+
+            deviations = _hrt_generator_deviations(k)
+            singleton_mask = sum(1 << ((1 << j) - 1) for j in range(k))
+            radical_mask = (1 << (width - 1)) | (singleton_mask << width)
+            radical_basis = [1 << bit for bit in range(2 * width) if radical_mask >> bit & 1]
+            self.assertEqual(len(radical_basis), k + 1)
+            for generator in deviations:
+                for label in radical_basis:
+                    self.assertEqual(_binary_apply(generator, label), 0)
+            rows = [sum(((generator[column] >> row) & 1) << column
+                        for column in range(2 * width))
+                    for generator in deviations for row in range(2 * width)]
+            # Fix(G)=E' proves completeness of this domain without trying
+            # all 4^15 Paulis. The fixed domain images have literal sign +1.
+            self.assertEqual(2 * width - _binary_rank(rows), k + 1)
+            top = 1 << (width - 1)
+            np.testing.assert_array_equal(forward[inverse ^ top], values ^ top)
+            for j in range(k):
+                position = (1 << j) - 1
+                np.testing.assert_array_equal((inverse >> position) & 1,
+                                              (values >> position) & 1)
+
+            residual = [subset - 1 for subset in range(1, 1 << k)
+                        if 2 <= subset.bit_count() < k]
+            residual += [width + label for label in residual]
+            self.assertEqual(len(residual), 2 * (width - k - 1))
+            failed = [label for label in residual
+                      if any(column & ~radical_mask for column in deviations[label])]
+            if k == 3:
+                self.assertFalse(failed)  # The Clifford-equivalent GM case.
+            else:
+                p, t, probe = 3 - 1, 8 - 1, 1 << (4 - 1)  # X_12, X_4, X_3.
+                self.assertIn(p, failed)
+                self.assertEqual(_binary_apply(deviations[p], probe), 1 << (7 - 1))
+                self.assertNotEqual((1 << (7 - 1)) & ~radical_mask, 0)
+                self.assertEqual(_binary_apply(deviations[p],
+                                               _binary_apply(deviations[t], probe)), top)
+
+            count = len(triples)
+            schedule = _hrt_native_schedule(triples)  # Actual inverse computes g.
+            for actual in (schedule, _hrt_inverse(schedule)):
+                word = [gate for _, gates in actual for gate in gates]
+                counts = Counter(gate[0] for gate in word)
+                self.assertEqual(counts['T'] + counts['TDG'], 7 * count)
+                self.assertEqual(counts['CX'] + counts['H'], 12 * count)
+                self.assertEqual(sum(kind == 'T' for kind, _ in actual), 5 * count)
+                self.assertEqual({wire for gate in word for wire in gate[1:]}, set(range(width)))
+            if k == 4:
+                self.assertEqual((width, count, 7 * count, 12 * count, 5 * count),
+                                 (15, 25, 175, 300, 125))
 
 
 

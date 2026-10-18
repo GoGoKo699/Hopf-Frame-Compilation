@@ -15,48 +15,49 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: coupled incidence and a complete inverse query
+## Current checkpoint: zero-character certificates and intrinsic transport
 
-The [current round](research/depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
-began at verified main `b7646d3` (PR #179). The
-[native source theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
-now closes arbitrary overlapping nonzero-character incidence: if every
-zero-character B axis commutes with C, exact full-space C3 forces each
-interacting class to be an isolated two-axis pair. Native A-band
-commutation supplies the restriction missing from a rank-only argument.
-The resulting diagonal-C3 certificate retains six-layer degree bounds
-**78/26** below full error $`\sqrt2/8`$. Bad zero-character interactions
-remain outside this extension.
+The [current round](research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
+began at verified main `5e53931` (PR #180). Two source certificates
+extend the retained six-layer **78/26** bounds at full error below
+$`\sqrt2/8`$. The [commutation-cover theorem](research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+handles every exact three-native-band C3 source whose middle axes each
+commute with at least one entire outer band, including all bad-zero-only
+interactions at arbitrary width. The [paired-orbit theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+shows that zero-character interactions cannot survive on paired C orbits
+alone when every singleton C axis is good. Certified Pauli-image stripping
+and native A commutation supply the two distinct mechanisms.
 
-The [controlled-Pauli theorem](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
-no longer needs a separate Pauli-domain or fiber-compatibility premise.
-A signed fixed-Clifford normalization derives the canonical domain for
-every scalar-Pauli computational-block source. If that source is C3,
-the existing uniform **174/58** general/visible degree bounds apply at
-the same radius. This includes the known non-semi-Clifford source;
-neither this block form nor C3 membership follows from workspace return.
+Certified stripping also removes all good middle axes in a general
+native three-band C3 source, preserving both diagonal-C3 and scalar-Pauli
+classification. The reduced lists need their activation recomputed;
+the original rotations remain charged.
 
-The [cycle proof](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-now supplies an exact complete unitriangular-inverse word query and phase
-source with **logarithmic T-depth**, cubic T/Clifford counts, cubic
-arbitrary dirty workspace, and no clean work. The computation leaves
-helper garbage temporarily, reads the helper-independent principal
-inverse, then applies its actual inverse to return every wire. Direct
-controlled versions are charged too. This resolves the earlier balanced
-recurrence for the completed query, while preserving the scoped
-frozen-coefficient obstruction to a returned in-place subroutine.
-The coefficient inputs change internally; native read-only access and
-an arbitrary-table encoding within R98's budgets remain unproved.
-The full cycle conjunction's separate transport cost is unchanged.
+The [controlled-Pauli proof](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
+now gives an intrinsic necessary-and-sufficient test for scalar-Pauli
+coordinates. For an exact C3 source, let E be its exact input Pauli
+domain and $`N_p=S_{F\tau(p)F^\dagger}-I`$. The test is
+$`N_pN_q=0`$ for every $`p\in E^\perp`$ and every q.
+If it holds, the existing **174/58** signed/visible transport bounds
+apply. A known C3 permutation fails the test in all fixed Clifford
+coordinates; no native-three-band realization is asserted for it.
 
-The next source question is **whether bad zero-character interactions
-in an exact three-native-band C3 source admit scalar-Pauli block
-coordinates, or another width-independent signed transport invariant**.
-The new normalization makes that weaker structural target sufficient
-for 174/58 transport even when diagonalization fails. An alternative
-native representation must be checked before any structural parameter
-is promoted to a depth lower bound. General non-C3 prefixes, one-clean
-work, address mixing and a robust growing-depth recurrence remain gaps.
+The [query audit](research/depth/GAUSS_SUM_QUERY_ENCODING.md) confirms
+that arbitrary-table inverse-entry representations already exist.
+Generic inverse-query substitution exceeds R98's count/work budgets,
+and dirty coefficient loading does not prepare the required matrix.
+An exact read-only interpolation repair returns all work, but its
+repeated evaluations lose to the direct read-only baseline. The retained
+[logarithmic-depth structured query](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+is unchanged. Sparse specialization, coupled masks and nonlinear work
+remain possible routes to a better complete query.
+
+The next source question is **whether the remaining native three-band
+C3 sources force the intrinsic product above to vanish**. Uncovered
+cases must include both a bad singleton C axis and a B axis interacting
+with both outer bands; independent component factorization is not proved.
+General non-C3 prefixes, one-clean work, address mixing and robust
+growing-depth bounds remain further gaps.
 
 R96 remains the strongest unconditional complete-frame upper law; R79
 remains selected Result D, R97 remains scoped, and R98 remains conditional.

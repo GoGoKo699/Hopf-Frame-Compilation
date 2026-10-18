@@ -3,6 +3,8 @@
 The full graph work is arbitrary in the exhaustive two-bit fixtures. Integer
 phases retain the scalar sign; reversed edge words are actual inverses. These
 tests do not establish a general query-depth lower bound or scalable emitter.
+The field fixtures check the dirty-offset interpolation interface, not a
+native implementation of a finite-field multiplier.
 """
 from __future__ import annotations
 
@@ -96,6 +98,75 @@ def _anf_degree(values):
                default=-1)
 
 
+def _gf4_mul(a, b):
+    """F_2[t]/(t^2+t+1), with bit zero the coordinate of one."""
+    out = 0
+    while b:
+        if b & 1:
+            out ^= a
+        b >>= 1
+        a <<= 1
+        if a & 4:
+            a ^= 7
+    return out
+
+
+def _gf4_pow(a, exponent):
+    out = 1  # In particular, the interpolation endpoint uses 0**0 = 1.
+    for _ in range(exponent):
+        out = _gf4_mul(out, a)
+    return out
+
+
+def _upper_pairs(order):
+    return [(i, j) for i in range(order) for j in range(i + 1, order)]
+
+
+def _field_upper_inverse(order, coefficients):
+    """Independent unit-upper back substitution over F4."""
+    upper = [[0] * order for _ in range(order)]
+    for (i, j), value in zip(_upper_pairs(order), coefficients):
+        upper[i][j] = value
+    inverse = [[int(i == j) for j in range(order)] for i in range(order)]
+    for i in range(order - 1, -1, -1):
+        for j in range(i + 1, order):
+            for k in range(i + 1, j + 1):
+                inverse[i][j] ^= _gf4_mul(upper[i][k], inverse[k][j])
+    return tuple(inverse[i][j] for i, j in _upper_pairs(order))
+
+
+def _binary_path_inverse(order, coefficients):
+    """Binary expected output by direct enumeration of increasing paths."""
+    upper = dict(zip(_upper_pairs(order), coefficients))
+    out = 0
+    for bit, (i, j) in enumerate(_upper_pairs(order)):
+        value = 0
+        for mask in range(1 << (j - i - 1)):
+            vertices = [i] + [k for k in range(i + 1, j)
+                              if mask & (1 << (k - i - 1))] + [j]
+            product = 1
+            for source, target in zip(vertices, vertices[1:]):
+                product &= upper[source, target]
+            value ^= product
+        out |= value << bit
+    return out
+
+
+def _graded_readout(order, coefficients, mask, output):
+    """Load/query/unload with one common arbitrary F4 coefficient mask."""
+    pairs = _upper_pairs(order)
+    for point in range(4):
+        load = tuple(_gf4_mul(_gf4_pow(point, j - i), value)
+                     for (i, j), value in zip(pairs, coefficients))
+        mask = tuple(value ^ offset for value, offset in zip(mask, load))
+        inverse = _field_upper_inverse(order, mask)
+        for bit, ((i, j), value) in enumerate(zip(pairs, inverse)):
+            weight = _gf4_pow(point, 3 - (j - i))
+            output ^= (_gf4_mul(weight, value) & 1) << bit
+        mask = tuple(value ^ offset for value, offset in zip(mask, load))
+    return output, mask
+
+
 class GaussianInverseExtractionTests(unittest.TestCase):
     def test_all_two_bit_tables_full_dirty_work_and_literal_phase(self):
         for table_word in range(16):
@@ -172,6 +243,68 @@ class GaussianInverseExtractionTests(unittest.TestCase):
             self.assertEqual(inverse_entry, table)
             self.assertEqual(_anf_degree(inverse_entry), address_bits)
             self.assertLessEqual(_anf_degree(direct_entry), 1)
+
+    def test_dirty_translation_echo_retains_mask_terms(self):
+        for u, v, w, x, y in itertools.product((0, 1), repeat=5):
+            before = _field_upper_inverse(3, (u, w, v))[1]
+            after = _field_upper_inverse(3, (u ^ x, w, v ^ y))[1]
+            self.assertEqual(before ^ after, (x & v) ^ (y & u) ^ (x & y))
+        # At x=y=1 the desired scalar is -1, but this occupied mask gives +1.
+        before = _field_upper_inverse(3, (1, 0, 0))[1]
+        after = _field_upper_inverse(3, (0, 0, 1))[1]
+        self.assertEqual(before ^ after, 0)
+        self.assertEqual(abs((1 - 2 * (before ^ after)) - (-1)), 2)
+
+    def test_graded_field_readout_all_small_dirty_columns(self):
+        for coefficients in itertools.product((0, 1), repeat=3):
+            expected = _binary_path_inverse(3, coefficients)
+            for mask in itertools.product(range(4), repeat=3):
+                for output in range(8):
+                    actual, returned = _graded_readout(3, coefficients, mask,
+                                                      output)
+                    self.assertEqual(actual, output ^ expected)
+                    self.assertEqual(returned, mask)
+
+        # Order four reaches k=|F4|-1, including the t=0, exponent-zero case.
+        masks = [(value,) * 6 for value in range(4)]
+        masks += [tuple(int(i == j) for i in range(6)) for j in range(6)]
+        masks += [(0, 1, 2, 3, 1, 2), (3, 0, 2, 1, 3, 1)]
+        for coefficients in itertools.product((0, 1), repeat=6):
+            expected = _binary_path_inverse(4, coefficients)
+            for mask in masks:
+                for output in (0, 21, 63):
+                    actual, returned = _graded_readout(4, coefficients, mask,
+                                                      output)
+                    self.assertEqual(actual, output ^ expected)
+                    self.assertEqual(returned, mask)
+
+    def test_no_short_fixed_field_linear_coefficient_extractor(self):
+        # pi(weight * value) exhausts all four binary-linear F4 readouts.
+        readouts = {tuple(_gf4_mul(weight, value) & 1 for value in range(4))
+                    for weight in range(4)}
+        self.assertEqual(len(readouts), 4)
+        for degree in (2, 3):
+            def valid(points, weights):
+                for power in range(degree + 1):
+                    # Lower coefficients are arbitrary F4; the leading
+                    # coefficient of the binary-U family is only binary.
+                    for coefficient in ((1, 2) if power < degree else (1,)):
+                        actual = 0
+                        for point, weight in zip(points, weights):
+                            value = _gf4_mul(coefficient,
+                                            _gf4_pow(point, power))
+                            actual ^= _gf4_mul(weight, value) & 1
+                        expected = int(power == degree) * (coefficient & 1)
+                        if actual != expected:
+                            return False
+                return True
+
+            for points in itertools.combinations(range(4), degree):
+                self.assertFalse(any(valid(points, weights) for weights in
+                                     itertools.product(range(4), repeat=degree)))
+            points = tuple(range(4))
+            weights = tuple(_gf4_pow(point, 3 - degree) for point in points)
+            self.assertTrue(valid(points, weights))
 
 
 if __name__ == "__main__":

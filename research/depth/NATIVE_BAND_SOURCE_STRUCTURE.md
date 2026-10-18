@@ -11,7 +11,10 @@ of a diagonal third-level source cannot leave that source class while
 remaining third-level. For three bands, the overlap of the first two axis
 spans limits how many middle axes can fail to commute with the outer band.
 In particular, zero overlap certifies the source hypothesis of the retained
-six-layer degree-78/26 theorem.
+six-layer degree-78/26 theorem. A further commutation-cover certificate
+allows arbitrarily many bad zero-character middle axes: if each middle
+axis commutes with the entire first list or the entire last list, an exact
+C3 source is diagonal C3 in fixed Clifford coordinates.
 
 These are properties of the **specified native factorization**, not
 invariants of the implemented unitary. They do not infer third-level
@@ -161,6 +164,39 @@ form modulo eight, and $`E_A`$ contributes ordinary T parity phases.
 Thus $`HE_A`$, and consequently $`UE_A=GHE_A`$, has the stated form.
 All signed corrections are retained.
 
+### Certified native stripping
+
+**Stripping lemma.** Suppose W is C3, $`E_L`$ is a commuting native
+phase band, and $`WPW^\dagger`$ is a signed Hermitian Pauli for every
+actual active axis P of $`E_L`$. Then $`WE_L^\dagger`$ is C3.
+
+Use the actual signed-axis convention
+
+```math
+N_e(P)=e^{ie\pi/8}e^{-ie\pi P/8},\qquad e\in\{1,-1\}.
+```
+
+For any Hermitian Pauli p the exact inverse-band derivative is
+
+```math
+E_L^\dagger pE_Lp
+=\prod_{P\in L:\langle P,p\rangle=1}e^{ie_P\pi P/4}.
+```
+
+The native scalars cancel in this derivative, while remaining in the
+actual band and its inverse. Conjugation by W turns the displayed product
+into Pauli quarter-turns, hence a Clifford. Therefore
+
+```math
+(WE_L^\dagger)p(WE_L^\dagger)^\dagger
+=W(E_L^\dagger pE_Lp)W^\dagger\,WpW^\dagger
+```
+
+is Clifford for every p. This proves the lemma without assuming
+$`W^\dagger`$ is C3. Independence is not needed for this implication;
+the use below strips an actual independent subset of A. A native band
+is removed only after its complete signed Pauli images have been proved.
+
 ## 4. Native left extension without an inverse-C3 premise
 
 **Left-extension lemma.** Suppose U is C3, $`E_C`$ is native and
@@ -291,6 +327,8 @@ C3 source is diagonal C3 in fixed Clifford coordinates:
    all B axes commute with all C axes; again use right extension.
 3. The specified inner two-band source $`E_BE_A`$ is C3, equivalently
    all A axes commute with all B axes; use left extension.
+4. Every B axis commutes with the entire A list or the entire C list;
+   use the [commutation-cover theorem](#61-commutation-cover-theorem) below.
 
 No condition makes both adjacent partial sources Clifford. For example,
 on one arbitrary work qubit the literal source
@@ -312,7 +350,7 @@ form, and left extension supplies induction. The same holds for a sequence
 built by successive right extensions. No inverse-C3 premise is used.
 
 For the actual [six-layer comparison](READ_ONLY_SIX_LAYER_REDUCTION.md),
-any of the three certificates above therefore verifies the source hypothesis
+any of these certificates therefore verifies the source hypothesis
 of the [native transport theorem](NATIVE_CLIFFORD_TRANSPORT.md#5-consequence-for-the-actual-six-layer-query).
 Under the original full operator error
 
@@ -324,6 +362,178 @@ the Boolean output has degree at most **78**, or **26** when the outer
 target shear is visible. This is a new sufficient test for the existing
 source class, with its existing error radius; it is not an unrestricted
 six-layer degree theorem.
+
+### 6.1 Commutation-cover theorem
+
+**Theorem.** Suppose $`F=E_CE_BE_A`$ is exactly C3 and every middle
+axis commutes with the entire A list or with the entire C list. Then F
+is diagonal C3 in fixed Clifford coordinates, with no bound on width,
+overlap or relation count. In particular this covers every source whose
+bad B axes all have zero activation character: such axes lie in $`U_A`$
+and therefore commute with A.
+
+Let $`B_0`$ be exactly the B axes that fail to commute with some C axis,
+and let $`B_g`$ be the remaining B axes. The hypothesis makes $`B_0`$
+commute with all of A; $`B_g`$ commutes with all of C by definition.
+Set
+
+```math
+U=E_CE_{B_g},\qquad E=E_{B_0}E_A,\qquad F=UE.
+```
+
+Every phase in U commutes with every other phase in U, and the same is
+true of E. Both are diagonal C3 sources by the parity expansion in
+section 2. Relations between their component lists are allowed; neither
+merged list is declared to be one physical band. Every A axis commutes
+with E, while every $`g\in B_g`$ commutes with U and with $`B_0`$.
+
+Choose an actual A axis $`a_i`$ and a Hermitian Pauli p isolating it
+among the entire independent A list. With the signed phase convention
+above, the exact left derivative is
+
+```math
+K_i=EpE^\dagger p
+=e^{-ie_i\pi a_i/4}
+ \prod_{b_j\in B_0:\langle p,b_j\rangle=1}
+ e^{-i\delta_j\pi b_j/4}.
+```
+
+Here $`e_i,\delta_j\in\{1,-1\}`$ are the actual orientations.
+Since F and U are C3, their complete Pauli images are Cliffords, and
+
+```math
+J_i=(FpF^\dagger)(UpU^\dagger)^\dagger=UK_iU^\dagger
+```
+
+is Clifford with its literal scalar retained. Suppose $`a_i`$
+anticommutes with some $`g\in B_g`$. All selected $`B_0`$
+quarter-turns fix g. Consequently
+
+```math
+K_igK_i^\dagger=-ie_i a_i g,\qquad
+J_igJ_i^\dagger=-ie_i(Ua_iU^\dagger)g.
+```
+
+The second identity uses $`UgU^\dagger=g`$ literally. Its left side
+is a signed Pauli, so multiplication by g and the displayed scalar proves
+that $`Ua_iU^\dagger`$ is a signed Hermitian Pauli. Because E fixes
+$`a_i`$, this is also $`Fa_iF^\dagger`$.
+
+Let $`A_1`$ consist of the actual A axes that anticommute with at least
+one $`B_g`$ axis, and put $`A_0=A\setminus A_1`$. The preceding
+argument certifies every $`A_1`$ image as Pauli. The stripping lemma
+therefore proves that
+
+```math
+V=FE_{A_1}^\dagger=E_CE_BE_{A_0}
+```
+
+is C3. This cancellation uses the actual inverse, including the native
+scalar. Every $`A_0`$ axis commutes with $`B_g`$ by definition and
+with $`B_0`$ by hypothesis. Thus $`D=E_BE_{A_0}`$ is a commuting
+diagonal-C3 source. The outer $`E_C`$ remains an independent native
+band. The diagonal left-extension corollary applied to $`V=E_CD`$
+makes V diagonal C3. Finally $`F=VE_{A_1}`$ is C3 and $`E_{A_1}`$
+is an actual native subset, so the diagonal right-extension corollary
+makes F diagonal C3 too.
+
+No original adjacent prefix is assumed C3, and no inverse-C3 hypothesis
+enters. This is an exact source certificate. It does not extend the
+all-Pauli robust source promises in section 7, nor infer source membership
+from return. Its six-layer consequence is the existing 78/26 bound above;
+it changes no physical gate, coordinate, inverse or workspace charge.
+
+### 6.2 Removing good middle axes in a general C3 source
+
+The certified stripping argument also gives a reduction without the
+commutation-cover hypothesis. Let $`B_g`$ contain every middle axis
+commuting with the entire C list, and put $`B_0=B\setminus B_g`$.
+Let $`A_1`$ contain every A axis that anticommutes with some $`B_g`$
+axis, and put $`A_0=A\setminus A_1`$. For any exact native three-band
+C3 source F, define the actual reduced source
+
+```math
+W=E_CE_{B_0}E_{A_0}.
+```
+
+**Good-middle elimination.** W is C3, and
+
+```math
+F=E_{B_g}WE_{A_1}
+```
+
+literally. Moreover F is diagonal C3 in fixed Clifford coordinates if
+and only if W is. Every remaining middle axis is bad relative to the
+unchanged C list. This is an analytical reduction; the removed rotations
+remain in the displayed factorization and in every original resource ledger.
+
+Again set $`U=E_CE_{B_g}`$ and $`E=E_{B_0}E_A`$. U is diagonal
+C3, but E is now allowed to lie outside C3. For p isolating $`a_i`$,
+write
+
+```math
+R_i=E_ApE_A^\dagger p=e^{-ie_i\pi a_i/4},\qquad
+K_B=E_{B_0}pE_{B_0}^\dagger p.
+```
+
+The exact derivative and the Clifford comparison are
+
+```math
+K_i=EpE^\dagger p
+   =(E_{B_0}R_iE_{B_0}^\dagger)K_B,\qquad
+J_i=UK_iU^\dagger=(FpF^\dagger)(UpU^\dagger)^\dagger.
+```
+
+Every $`g\in B_g`$ commutes with $`E_{B_0}`$ and is fixed by
+$`K_B`$ and U. If $`a_i`$ anticommutes with g, these exact identities
+give
+
+```math
+J_igJ_i^\dagger=-ie_i(Fa_iF^\dagger)g.
+```
+
+Since $`J_i`$ is Clifford, $`Fa_iF^\dagger`$ is a signed Pauli.
+Thus every $`A_1`$ axis has a certified image even though E need not
+be C3. Stripping $`E_{A_1}`$ gives the C3 source
+
+```math
+V=FE_{A_1}^\dagger=E_CE_BE_{A_0}.
+```
+
+The source V fixes every $`B_g`$ axis literally: these axes commute
+with C, B and $`A_0`$. A second application of the stripping lemma
+therefore makes
+
+```math
+VE_{B_g}^\dagger=E_CE_{B_0}E_{A_0}=W
+```
+
+C3. Commuting $`E_{B_g}`$ through the unchanged outer and reduced
+inner factors proves the stated literal factorization of F.
+
+If W is diagonal C3, the native left-extension corollary gives
+$`V=E_{B_g}W`$ diagonal C3, and native right extension restores
+$`F=VE_{A_1}`$. Conversely, if F is diagonal C3, native right
+extension by the actual inverse band $`E_{A_1}^\dagger`$ gives V
+diagonal C3 because V is already proved C3; extension by
+$`E_{B_g}^\dagger`$ then gives W diagonal C3. This proves the
+equivalence.
+
+The companion [domain-axis phase closure](CONTROLLED_PAULI_TRANSPORT.md#closure-under-commuting-phase-gadgets-on-domain-axes)
+also makes scalar-Pauli block form in fixed input/output Clifford
+coordinates equivalent for F and W. Apply it in the two actual stages:
+$`W\mapsto V=E_{B_g}W`$ uses the fixed $`B_g`$ axes in W's exact
+output domain; $`V\mapsto F=VE_{A_1}`$ uses the certified $`A_1`$
+axes in V's exact input domain. Their Pauli images persist under the
+respective phase factors, giving the converse too. No assertion that
+$`A_1`$ lies in W's input domain is needed. The companion proof retains
+the ordered phases and both endpoint coordinates.
+
+The reduction can remove axes from the first span, so activation
+characters must be recomputed for $`A_0,B_0`$. It does not remove a
+mixed core in which every remaining B axis interacts with C and some
+also interact with $`A_0`$. In particular it supplies no argument that
+a bad singleton C factor in such a core has Clifford sector restrictions.
 
 ## 7. Robust source certification requires all Pauli probes
 
@@ -432,8 +642,11 @@ nonzero classes to be isolated pairs. A separate
 [hybrid theorem](HYBRID_DIAGONAL_CORE_TRANSPORT.md) supplies transport for
 a wide diagonal C3 part coupled to a bounded quantum core, and localizes
 commuting lists with bounded relation count. Thus the former t-at-least-two
-next step is historical. Bad zero-character interactions remain the
-structural source gap after the nonzero-class closure. The general
+next step is historical. The commutation-cover theorem above now closes
+the case where every bad B axis commutes with A, including arbitrarily
+many bad zero-character axes. Genuinely mixed components, containing bad
+zero-character axes and middle axes that interact with both A and C,
+remain outside this certificate. The general
 native three-band transport, its error radius outside C3, and the general
 returned six-layer theorem remain open.
 
@@ -456,3 +669,11 @@ signed left/right axis transport, half-angle rigidity, the overlap action and
 relation budget, strict source-certification fixtures, and the fully charged
 dependent-axis Toffoli counterexample. The arbitrary-width results follow
 from the proofs above, not from finite enumeration.
+The [commutation-cover checks](../../tests/test_native_commutation_cover.py)
+use a five-wire, overlap-four fixture with four composite bad zero-character
+axes, a good B axis outside $`U_A`$, and a certified A axis to strip.
+They retain all columns, literal phases and the actual inverse, and check
+C3 membership before and after stripping. This bounded axis fixture makes
+no synthesis-cost or optimal-depth claim. A separate three-wire fixture
+checks good-middle elimination when the intermediate $`E_{B_0}E_A`$
+is outside C3, retaining the literal two-sided factorization.
