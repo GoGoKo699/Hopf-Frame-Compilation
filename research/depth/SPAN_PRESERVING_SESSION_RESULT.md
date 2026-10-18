@@ -4,6 +4,10 @@
 [Five-layer proof home](READ_ONLY_FIVE_LAYER_REDUCTION.md) ·
 [Previous checkpoint](RETURNED_RELATIONS_SESSION_RESULT.md)
 
+The [subsequent native-defect round](NATIVE_DEFECT_SESSION_RESULT.md) resolves
+this checkpoint's target-extraction gap and proves a general five-layer
+read-only degree bound of 14. The questions below record this earlier round.
+
 This round began at verified main
 `b8ecbfbe37856f4d67a1cc479b1b5ba9317d4426` (PR #171), on 18 October
 2026. It addressed the previous checkpoint's missing right-action invariant

@@ -15,46 +15,45 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: span-preserving comparisons and source costs
+## Current checkpoint: general five-layer read-only degree bound
 
-The [current round](research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
-began at verified main `b8ecbfb` (PR #171). The
-[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
-now bounds Boolean degree by 112 when the specified comparison preserves
-the outer native T-axis span, at full operator error below $`\sqrt2/24`$.
-Individual axes may mix, the comparison need not be Pauli, and the middle
-need not be Clifford. An intrinsic group-algebra feature space handles the
-actual conjugation and right action. This closes the previous checkpoint's
-span-preserving branch; the bound improves to 21 below $`\sqrt2/40`$.
-General five-layer rigidity is still open.
+The [current round](research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
+began at verified main `6e20eb4` (PR #172). The
+[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+now bounds Boolean degree by **14** for every zero-clean read-only five-layer
+XOR query at full operator error below $`\sqrt2/24`$, independently of dirty
+width. An invisible outer target shear gives degree at most 11. No extra
+span, axis-permutation, Pauli-comparison or Clifford-middle hypothesis is
+needed. A native Pauli pullback of the ordered comparison defect lets
+one-band matching control its tableau and literal probe signs. This resolves
+the preceding checkpoint's target-extraction gap. The sharp degree is open.
 
-The [scalar-source cost theorem](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#5-a-source-cost-barrier-survives-pauli-carrier-compression)
-shows that compressing the four-factor construction's Pauli carriers cannot
-remove its source cost. For a full-degree a-bit table, every source in the
-specified Clifford-translation mechanism needs at least $`2^{a-1}`$ T gates
-and that many carrier qubits, even with additional arbitrary returned helpers.
-The small full-source approximation regime retains the integer count bound.
-This excludes separately paid source calls from R91's square-root count
-envelope; fusion or a different synthesis of the whole returned word remains
-open. It is not a general query-depth lower bound.
+The new [returned affine fixture](research/depth/BASELINE_WORD_OBSTRUCTION.md#5-a-returned-affine-query-can-have-an-odd-order-outer-baseline)
+shows why an ambient-group shortcut remains invalid even under full return:
+the actual comparison group has order two, while its outer baseline has
+arbitrarily large odd symplectic order. The successful detector uses the
+shared native defect instead. The [fusion diagnosis](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#6-whole-word-fusion-removes-carrier-motion-but-leaves-the-table-bit)
+removes unused carrier motion but leaves the original table-bit loading
+problem and R91's logarithmic dirty-indicator depth. The retained
+[source-cost theorem](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#5-a-source-cost-barrier-survives-pauli-carrier-compression)
+still excludes separately paid Clifford-translation sources from R91's
+square-root count envelope; it does not lower-bound fused whole-word synthesis.
 
-A [shared-prefix invariant](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
-now holds without span preservation, below error $`\sqrt2/40`$: the actual
-comparison group is class two with exponent dividing four, and has faithful
-intrinsic features of degree at most four. The next question is **extracting
-the Boolean target from those features and the outer native baseline**.
-The baseline need not lie in the actual group; historical odd-order examples
-prevent giving the entire ambient group the same filtration. The
-[current outcome](research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
-records this precise remaining step and the constructive alternative.
+The next mathematical question is **a width-independent degree bound at
+six layers, using its shared-source ordered defect**. The pullback is now
+Clifford rather than necessarily Pauli and has a three-band conjugator;
+an intermediate Clifford cannot be assumed. A successful invariant should
+suggest a depth-dependent recurrence. One-clean work and unrestricted
+address mixing remain separate gaps before a general frame lower bound.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. The earlier degree-two Pauli-comparison, degree-seven/four
-Clifford-middle, and degree-244/41 individual-axis results retain their own
-hypotheses and error radii. Optimal general depth, dimension-growing
-unrestricted lower bounds and unrestricted one-clean four-layer rigidity
-remain open. Final manuscript drafting is separate.
+remains conditional. Earlier five-layer subcases keep their sharper bounds
+or larger error radii where applicable. The span-preserving degree-112/21
+bounds are superseded by the new general bound; their structural proofs
+remain useful. Optimal general depth, dimension-growing unrestricted lower
+bounds and unrestricted one-clean four-layer rigidity remain open.
+Final manuscript drafting is separate.
 
 ## Mandate
 

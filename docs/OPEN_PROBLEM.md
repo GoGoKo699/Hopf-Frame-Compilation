@@ -34,49 +34,44 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
-closes the span-preserving branch of the
-[five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound).
-For a zero-clean read-only five-layer XOR query, if the specified comparison
-K preserves the outer native T-axis span, then Boolean degree is at most 112
-at full operator error below $`\sqrt2/24`$, independently of dirty width.
-K may mix individual axes and need not be Pauli; the middle B may be
-non-Clifford. Below $`\sqrt2/40`$, the combined shared-prefix argument
-improves this span-preserving output bound to 21. The proof uses a bounded
-native nilpotent algebra, an intrinsic comparison-group feature space and a proved subgroup-extension lemma. It
-does not assume that B normalizes the larger ambient Clifford group.
+The current [research checkpoint](../research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
+resolves the general **zero-clean read-only five-layer XOR degree** question:
+[Section 5.6](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+proves degree at most **14** at full operator error below $`\sqrt2/24`$,
+independently of dirty width. An invisible outer target shear gives degree
+at most 11. No comparison-span, axis-permutation, Pauli-comparison or
+Clifford-middle hypothesis is added. A native Pauli pullback makes one-band
+matching applicable to the ordered defect; its bounded tableau and sign
+degrees then detect the Boolean output. The sharp degree remains open.
 
 The earlier subcases retain their larger error radius $`\sqrt2/12`$:
 Clifford-valued middle gives degree seven (four for a visible outer shear),
 Pauli-valued comparison gives degree two, and individual-axis permutation
-gives degree 244 (41 for an invisible target shear). These are conditional
-bounds, not a theorem for general five-layer queries. Comparisons moving the
-outer span remain outside the degree theorem. A separate
-[shared-prefix invariant](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
-holds for every such five-layer comparison at error below $`\sqrt2/40`$:
-the actual group is class two of exponent dividing four, its address map
-has central bilinear defect, and its faithful third-augmentation features
-have degree at most four. The missing general step is detecting the target
-relative to the outer native baseline, which need not lie in that group.
+gives degree 244 (41 for an invisible target shear). The span-preserving
+112/21 bounds are superseded by the new general theorem at their radii.
+The [shared-prefix invariant](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
+still supplies class-two, exponent-four comparison structure and faithful
+degree-four intrinsic features below $`\sqrt2/40`$. Target extraction no
+longer requires putting the outer baseline into that group. A
+[returned affine counterexample](../research/depth/BASELINE_WORD_OBSTRUCTION.md#5-a-returned-affine-query-can-have-an-odd-order-outer-baseline)
+shows why such an ambient-group inference would fail.
 
 The [scalar representation construction](../research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
-still returns arbitrary Boolean phases in four abstract factors, but now has
-a source-cost lower bound surviving Pauli-carrier compression. Within its
-Clifford-translation source mechanism, a degree-d table forces at least
-$`2^{d-1}`$ carrier qubits and T gates per full source. At full address degree,
-eight separately implemented calls cost at least four times the table size,
-versus R91's square-root count at comparable width. The robust bound concerns
-approximating each full source; it is not inferred from final-word accuracy.
-Whole-word fusion, other sources and general queries are not lower-bounded.
+still realizes arbitrary Boolean phases in four abstract factors. Its
+Clifford-translation source mechanism needs at least $`2^{d-1}`$ carrier
+qubits and T gates per full source for a degree-d table, even after carrier
+compression and at the stated small full-source error. This is not a lower
+bound for fused whole-word synthesis. Fusion removes irrelevant carrier
+motion but leaves the table-bit loading task; the retained implementation
+uses R91's logarithmic-depth dirty indicators. No improved reader is proved.
 
-The [baseline-word obstruction](../research/depth/BASELINE_WORD_OBSTRUCTION.md)
-and [robust diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-retain their earlier scopes. Abstract factor count and arbitrary ambient-group
-nilpotence fail without the shared native return equations. The next lower-bound
-question is target extraction from the new actual-group features when K moves
-the outer span; the constructive alternative must avoid paying the full translation
-source while meeting R91's simultaneous resource envelope. None of these
-results changes the complete-frame asymptotic upper law.
+The next lower-bound question is a **native degree-versus-depth recurrence**,
+with six layers as the first concrete case. Its shared-source defect has a
+Clifford pullback through three T bands, but that pullback need not be Pauli;
+intermediate Clifford membership is no longer automatic. Any recurrence
+must control literal probe signs and error as well as symplectic labels,
+independently of dirty width. One-clean work and address mixing remain
+additional gaps. None of these results changes the complete-frame upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and
