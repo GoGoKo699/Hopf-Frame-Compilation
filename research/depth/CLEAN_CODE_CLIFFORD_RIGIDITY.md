@@ -538,3 +538,10 @@ literal returned queries. Consequently a uniform exact one-clean
 three-layer degree obstruction would immediately have this explicit
 width-independent approximation floor. The exact degree obstruction
 itself remains open.
+
+The later [occupied logical transport proof](OCCUPIED_LOGICAL_TRANSPORT.md)
+obtains full-space identities from native pair differences instead of
+extending occupied Cliffords. It gives a paid common diagonal pair-center
+normal form and a stronger counterexample: every logical generator can
+remain non-Clifford off-code at arbitrarily high clean rank, even with
+no pairs and no shared clean flip. The target is still occupied identity.

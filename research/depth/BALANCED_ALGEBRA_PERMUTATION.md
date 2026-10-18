@@ -35,6 +35,12 @@ literal dirty-register echoes. No external synthesis-priority claim is
 made. The source algebra and balanced native construction are proved
 below without an uncharged inverse or initialized coefficient bank.
 
+A [separate fast subset-product compilation](ALGEBRA_QUERY_EXTRACTION.md#5-a-smaller-count-complete-hrt-source)
+retains this recovery identity while reducing asymptotic T/G count to
+$`O(r^2 2^r\log r)`$ and extra dirty width to $`O(r^2 2^r)`$.
+Its larger depth constant and mask allocation have their own ledger.
+The $`40\lceil\log_2r\rceil`$ construction below remains a distinct option.
+
 ## 1. Algebra and the in-place multiplier
 
 Let $`s\ge1`$ and let

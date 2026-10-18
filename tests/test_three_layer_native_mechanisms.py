@@ -112,6 +112,36 @@ def _relative_toffoli(a, b, target):
 
 
 class ThreeLayerNativeMechanismTests(unittest.TestCase):
+    def test_pair_phase_degree_survives_affine_parity_coordinates(self):
+        def integer_degree(values):
+            coefficients = list(values)
+            width = (len(values) - 1).bit_length()
+            for bit in range(width):
+                for mask in range(1 << width):
+                    if mask & (1 << bit):
+                        coefficients[mask] = (
+                            coefficients[mask]
+                            - coefficients[mask ^ (1 << bit)]) % 8
+            return max((mask.bit_count()
+                        for mask, value in enumerate(coefficients) if value),
+                       default=0)
+
+        # This triangular affine coordinate change is invertible:
+        # y0=x0 xor x5 xor x6, and yi=xi otherwise. Generic integer
+        # degree five can become seven, while the native pair's
+        # coefficient divisibilities eliminate its apparent degree six.
+        generic, equal, opposite = [], [], []
+        for column in range(128):
+            xs = [(column >> bit) & 1 for bit in range(7)]
+            u = xs[0] ^ xs[5] ^ xs[6]
+            h = (xs[1] * xs[2]) ^ (xs[3] * xs[4])
+            generic.append(u * xs[1] * xs[2] * xs[3] * xs[4])
+            equal.append((u + 2 * (1 - u) * h) % 8)
+            opposite.append((-u + 2 * u * h) % 8)
+        self.assertEqual(integer_degree(generic), 7)
+        self.assertEqual(integer_degree(equal), 5)
+        self.assertEqual(integer_degree(opposite), 5)
+
     def test_correction_independent_rows_and_exact_occupied_phase(self):
         basis, word = _quartic_correction()
         rows = _basis_rows(6, basis)

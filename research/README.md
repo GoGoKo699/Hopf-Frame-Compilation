@@ -322,6 +322,29 @@ The retained R74 theorem already reduces sufficiently accurate Boolean
 approximation to exact occupied action at a uniform small radius;
 a faster general R98 query remains open, and R96 is unchanged.
 
+The [occupied-transport revision](depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
+gives a new [full-space pair transport](depth/OCCUPIED_LOGICAL_TRANSPORT.md).
+Its affine Boolean derivatives remove only a quadratic part; paid
+endpoint Cliffords put all remaining pair differences into globally
+preserved computational parities at the same T-depth and width.
+A complete-family counterexample retains non-Clifford unused action at
+arbitrarily high clean rank even with zero pairs. The pair-free C3
+subcase needs its explicit diagonal silent-band premise.
+The [returned algebra query](depth/ALGEBRA_QUERY_EXTRACTION.md) removes
+the coefficient-zero promise through eight source calls. Its fast native
+subset-product compiler improves the source to
+$`O(r^2 2^r\log r)`$ T/G and $`O(r^2 2^r)`$ extra dirty width,
+still at $`O(\log r)`$ depth. Neither that table query nor the scoped
+arithmetic compression limits change the full-frame frontier.
+The [Pauli-boundary theorem](depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
+closes one substantial subcase: actual Pauli clean images at every band
+boundary force sign degree at most 2048, and query degree at most 2047,
+even with arbitrary Clifford/address mixing. It retains the exceptional
+four-axis relation and bounds the phase dependence of an unbounded
+central register through a five-qubit quantum core. The next lower
+question concerns non-Pauli intermediate codes, with joint parity-control
+phases, silent endpoint bands and unused-sector freedom still present.
+
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
 [Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
