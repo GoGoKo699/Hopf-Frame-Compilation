@@ -32,12 +32,14 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact read-only dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
+| Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
-resolves the previously open three-layer, one-clean degree question within
-the read-only interface. The next target is a degree-growth law across
-arbitrary physical T depth, beginning with the four-layer zero-clean case;
-the present projective-representation identity does not iterate there.
+The current [research checkpoint](../research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+resolves the four-layer zero-clean case after the three-layer one-clean
+question, within the read-only interface. The next target is a uniform
+degree-growth law across arbitrary physical T depth. Five layers are
+the first unclosed test: the comparison target can leave the Clifford
+class on which the present defect argument relies.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and

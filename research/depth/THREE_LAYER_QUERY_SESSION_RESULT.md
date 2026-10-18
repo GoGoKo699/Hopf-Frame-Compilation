@@ -143,6 +143,13 @@ intermediate-boundary hypothesis automatically.
 
 ## 4. Precise remaining step and next question
 
+**Subsequent resolution:** the
+[four-layer follow-up](FOUR_LAYER_QUERY_SESSION_RESULT.md) proves
+zero-clean XOR degree at most two at error below $`\sqrt2/12`$.
+The four-layer test below is therefore resolved. The uniform
+degree-growth question remains current, with five layers its first
+unclosed test; the following passage records this round's handoff.
+
 The most useful next question is a **degree-growth law for exact
 zero-clean read-only queries as the number of physical T layers grows**:
 is there an absolute C such that every such d-layer XOR query satisfies

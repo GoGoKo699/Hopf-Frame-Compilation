@@ -274,6 +274,17 @@ is degree growth with the number of layers, while fixed-error robustness
 and arbitrary address mixing remain separate requirements for a general
 frame lower bound. The complete-frame upper frontier is unchanged.
 
+The [four-layer follow-up](depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+closes the first case of that handoff. In
+[section 8 of the same proof home](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two),
+zero-clean read-only four-layer XOR queries have degree at most two
+below error $`\sqrt2/12`$, independently of dirty width. Clifford
+comparison targets and an auxiliary Pauli cocycle handle the vanished
+symplectic contribution as well. The exact AND fixture makes this
+degree bound sharp. Uniform growth with T depth remains open; at five
+layers the comparison target can leave the Clifford class. There is
+no new unrestricted or one-clean four-layer conclusion.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing

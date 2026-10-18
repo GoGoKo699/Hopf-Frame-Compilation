@@ -15,9 +15,10 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: three-layer query rigidity
+## Current checkpoint: shallow-query degree rigidity
 
-This continuation recovered main at `3913263` (PR #166). The
+The three-layer continuation, merged in main `3b7c603` (PR #167),
+began at `3913263` (PR #166). Its
 [new proof](research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) resolves
 the [preceding round's](research/depth/RETURNED_QUERY_SESSION_RESULT.md)
 three-layer question: at error below $`\sqrt2/6`$, read-only XOR queries
@@ -26,6 +27,13 @@ dirty width. With zero clean qubits, three layers force affineness.
 Intermediate code excursions are allowed and controlled through their
 signed Pauli orbit and nonzero stabilizer intersections. Every completed
 Clifford interlayer must preserve the address; physical T gates act on work.
+
+The [four-layer follow-up](research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+proves that zero-clean XOR queries with four layers have degree at most
+two at error below $`\sqrt2/12`$. Conjugating away the outer layer
+changes the comparison target to a Clifford; an auxiliary Pauli cocycle
+handles the case invisible to its symplectic action. This remains a
+constant-layer, preserved-address theorem, not a general frame lower bound.
 
 Exact native AND queries use four layers with zero clean qubits and
 three with one clean qubit. A two-layer relative-phase candidate retains
@@ -36,12 +44,14 @@ thresholds are sharp within this interface, with a positive error radius
 proved only for the zero-clean threshold. The retained unrestricted
 two-layer dirty Toffoli prevents dropping the address hypothesis.
 
-The [session outcome](research/depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
-records the proofs, native ledgers and next question: does query degree
+The [current outcome](research/depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+and [preceding round](research/depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
+record the proofs, native ledgers and next question: does query degree
 grow at most exponentially with physical T depth, independently of dirty
-width, or can a different exact interference mechanism escape? At four
-layers the product of two remaining dressed families need not remain a
-projective representation; the current cocycle does not iterate.
+width, or can a different exact interference mechanism escape? The first
+unclosed test is five layers: further conjugation can leave the Clifford
+comparison class, so the present symplectic and Pauli defects do not
+supply a recurrence.
 Start with R98's zero-clean query interface, while retaining the separate
 fixed-error and unrestricted-address obligations for a frame lower bound.
 
