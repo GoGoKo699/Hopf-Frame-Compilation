@@ -34,20 +34,23 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-reformulates the five-layer question as a partial Clifford-normalizer
-cocycle. Under the additional condition that its specified middle Pauli
-representation is Clifford-valued, [the new proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
-bounds XOR degree by seven (four for a visible outer shear) at error
-below $`\sqrt2/12`$. The general five-layer case remains open.
-[Phase relocation](../research/depth/READ_ONLY_PHASE_RELOCATION.md)
-makes the four-layer scalar degree-three boundary sharp, while a
-[returned diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-cannot extract degree above three from an arbitrary Boolean source.
-Neither mechanism changes the complete-frame upper law. The next
-invariant must control the binary-tableau action of a two-T-dressed
-Pauli on the Clifford family it normalizes, without assuming that the
-conjugator is itself Clifford.
+The current [research checkpoint](../research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+retains the five-layer partial-normalizer cocycle. The
+[five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
+gives degree at most seven (four for a visible outer shear) when the
+specified middle representation is Clifford-valued, at error below
+$`\sqrt2/12`$. A separate Pauli-valued comparison subcase gives degree
+at most two below $`\sqrt2/12`$, even with a non-Clifford middle.
+The general five-layer case remains open. A
+[one-band theorem](../research/depth/ONE_BAND_AXIS_MATCHING.md) matches
+individual native T axes, but intermediate non-Clifford cancellation
+prevents its automatic iteration. The next question is whether a bounded
+relation extends the new cube argument to non-Pauli Clifford comparisons.
+[Hybrid phase relocation](../research/depth/READ_ONLY_PHASE_RELOCATION.md)
+attains scalar CCZ in four layers with 64 T gates, 218 Cliffords and
+17 dirty helpers, while the [returned diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+forces scalar Boolean degree at most three for arbitrary unit-circle source
+phases. Neither mechanism improves the complete-frame asymptotic law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and

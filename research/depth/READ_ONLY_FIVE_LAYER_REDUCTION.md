@@ -1,4 +1,4 @@
-# Five-layer reduction and a Clifford-middle conditional bound
+# Five-layer reduction and conditional degree bounds
 
 [Current depth frontier](../../docs/OPEN_PROBLEM.md) ·
 [Three- and four-layer proof](READ_ONLY_THREE_LAYER_RIGIDITY.md) ·
@@ -16,6 +16,11 @@ then the Boolean XOR output has degree at most seven, independently of
 dirty width. A visible outer target shear improves this to degree at
 most four. The condition is additional; full workspace return does not
 supply it. Neither bound is claimed sharp or sufficient for synthesis.
+A separate subcase needs no Clifford-valued middle: if the comparison K
+is Pauli-valued, degree is at most two at error below $`\sqrt2/12`$.
+Native peeling freezes that subgroup action exactly projectively;
+independent inner axes then exclude cubic degree. No exact normalizer
+is assumed for a general approximate query.
 
 ## 1. Native contract and an exact one-band reduction
 
@@ -359,6 +364,196 @@ which is impossible. Thus $`\deg g\le7`$. If its degree was
 already at most six, the conclusion holds directly. Together with
 section 3, this proves the conditional theorem.
 
+## 5.1. A Pauli-valued comparison: robust quadratic bound
+
+**Pauli-comparison theorem.** In the native setting of section 1, suppose
+that every specified comparison $`K_x`$ in (2) is a scalar times a Pauli.
+If $`\eta\lt\sqrt2/12`$, then $`\deg f\le2`$, independently of dirty
+width. The family B may be non-Clifford. This is a different additional
+hypothesis from section 2; neither hypothesis is inferred from full return.
+Attainability within this comparison subcase is not asserted.
+
+Let $`g(x)=f(x)+f(0)`$. If g is affine there is nothing to prove. Otherwise
+$`S_K(x)=I`$ and (7), multiplied on the left by $`I+H(x)`$, give
+
+```math
+L(x)+E g(x)=H(x).
+```
+
+The two matrix-valued functions L and H are linear. A nonzero entry of E
+would make g linear, so $`E=0`$ and $`H=L`$. The factorization (11) becomes
+
+```math
+K_x\doteq A_x^\dagger P_xN_xQ^{g(x)},
+\qquad S_A(x)=S_N(x)=I+H(x).
+```
+
+A and N are exact projective linear-label Pauli representations conjugated
+by one physical T layer and fixed Cliffords. Consequently
+$`C_x=A_x^\dagger N_x`$ is Pauli-valued. Its binary label c obeys
+
+```math
+c(x+y)=(I+H(y))c(x)+c(y),\qquad c(0)=0.
+```
+
+This follows from the two exact representation laws, as in (8) of the
+[three-layer proof](READ_ONLY_THREE_LAYER_RIGIDITY.md#2-a-robust-pauli-label-cocycle).
+The independent physical axes of A force $`H(y)c(x)=0`$ for all x,y:
+in native coordinates, setting y=x and reversing x,y give, on each active
+axis, $`u_j(x)p_j(x)=0`$ and
+$`u_j(y)p_j(x)=u_j(x)p_j(y)`$. Choosing y with $`u_j(y)=1`$ makes
+$`p_j`$ vanish; a zero $`u_j`$ contributes nothing. Hence c is linear.
+
+Write p for the linear Pauli label of P and v for the fixed nonzero label
+of Q. Conjugating P by A gives the full comparison label
+
+```math
+m(x)=r(x)+v g(x),\qquad
+r(x)=(I+H(x))p(x)+c(x),\qquad \deg r\le2.                 \qquad(18)
+```
+
+The quadratic coefficient vectors of r lie in the fixed span of A's
+physical T axes, since its only quadratic term is $`H(x)p(x)`$.
+
+### Native peeling freezes the Pauli cocycle
+
+Make the fixed analytical change of Pauli coordinates by
+$`C_4(0)^\dagger`$, and use the same letters for the conjugated operators
+and their labels. Put
+
+```math
+D=D_4,\qquad
+A'_y=C_3(0)D_3P_2(y)D_3^\dagger C_3(0)^\dagger.
+```
+
+Then $`B_y=D A'_yD^\dagger`$, and A' is an exact native one-T
+Clifford Pauli family. The axes whose span contains the quadratic
+coefficients in (18) are precisely the active axes of D. Denote their
+label span by $`\mathcal L_D`$. This coordinate change adds no physical
+gate or resource.
+
+For every z,y, right-multiply (4) by $`K_y^\dagger`$. This gives
+
+```math
+\|K_{z+y}K_y^\dagger-\zeta(z,y)B_yK_zB_y^\dagger\|
+\le6\eta.                                               \qquad(19)
+```
+
+Conjugate this comparison by $`D^\dagger`$. Its two sides are
+
+```math
+D^\dagger K_{z+y}K_y^\dagger D,
+\qquad
+\zeta(z,y)A'_y(D^\dagger K_zD)A_y'^\dagger.
+```
+
+Both are scalar times Cliffords, because the input to each D-conjugation
+is a Pauli. Their distance is at most $`6\eta\lt1/\sqrt2`$. The retained
+Clifford gap first forces equal symplectic actions. Their quotient is
+then a scalar times a Pauli; a nonidentity quotient would have
+projective distance at least $`\sqrt2`$, so its Pauli label also vanishes.
+Undoing the conjugation proves (19) exactly **projectively**. The
+remaining literal scalar need not be equal.
+
+Thus each B_y exactly normalizes the projective Pauli group generated
+by all K_x, even though it need not normalize the full physical Pauli
+group. Let W be that subgroup's binary label span, and let T_y be its
+induced invertible linear action on W. The exact label cocycle is
+
+```math
+m(x+y)=T_y m(x)+m(y).                                    \qquad(20)
+```
+
+No intermediate Clifford property was assumed for a general K. Here
+it follows specifically from the Pauli-valued comparison hypothesis.
+
+### A cubic is the only remaining possibility
+
+The quadratic baseline in (18) sums to zero on any three-dimensional
+address cube. Multiplying the eight exact projective versions of (19)
+in a fixed order cancels adjacent $`B_y^\dagger B_y`$ on one side and
+cancels the eight Pauli factors $`K_y^\dagger`$ projectively on the other.
+For $`d(x)=\Delta_{h_1}\Delta_{h_2}\Delta_{h_3}g(x)`$, this gives
+
+```math
+Q^{d(x+y)}\doteq B_yQ^{d(x)}B_y^\dagger.
+```
+
+Identity cannot be conjugate to a nonidentity Pauli up to scalar.
+Hence every third Boolean derivative of g is translation invariant,
+so $`\deg g\le3`$. Equivalently, this follows by comparing the highest
+coefficients in (20) and then taking one Boolean derivative. Only
+binary labels and necessary projective equalities are used; the
+original literal error target has not changed.
+
+### Inner independent axes exclude cubic degree
+
+Suppose for contradiction that g has degree three. A cubic coefficient
+of m is v, so $`v\in W`$. Comparing that coefficient in (20) gives
+$`T_yv=v`$ for every y. Every quadratic coefficient vector w of r also
+lies in W: subtract $`v g_{ij}`$ from the corresponding coefficient
+of m. As observed after (18), it also lies in $`\mathcal L_D`$.
+
+For any $`w\in W\cap\mathcal L_D`$, its Pauli commutes with D.
+The image under $`B_y=D A'_yD^\dagger`$ is again a Pauli by the
+exact subgroup normalization. Therefore
+
+```math
+D(A'_y\tau(w)A_y'^\dagger)D^\dagger
+```
+
+is Pauli. Independence of D's active axes implies that a Pauli has a
+Pauli image under D only if it commutes with every active axis: otherwise
+its expansion has at least two nonzero coefficients, as proved in the
+[one-band matching theorem](ONE_BAND_AXIS_MATCHING.md#2-recovering-the-axis-list-from-pauli-coefficient-norms).
+Consequently D leaves this Pauli label unchanged, and
+
+```math
+T_yw=S_{A'}(y)w\quad\text{for every }w\in W\cap\mathcal L_D.
+                                                               \qquad(21)
+```
+
+Taking quadratic coefficients in (20), using (18), $`T_yv=v`$
+and (21), yields
+
+```math
+v(\Delta_y g)^{[2]}
+=(I+S_{A'}(y))r^{[2]}
+\quad\text{coefficientwise}.                            \qquad(22)
+```
+
+The independent native axes of A' have labels a_j and linear activation
+functions u_j(y), so
+
+```math
+(I+S_{A'}(y))w=\sum_j u_j(y)\langle a_j,w\rangle a_j.
+```
+
+A nonzero cubic has a nonzero derivative quadratic part. Equation (22)
+therefore places v in the span of these independent axes. Choose an
+axis coordinate k with coefficient one in v. For every quadratic
+coefficient w_ij of r, its corresponding coefficient in the derivative
+must satisfy
+
+```math
+(\Delta_y g)_{ij}=u_k(y)\langle a_k,w_{ij}\rangle.          \qquad(23)
+```
+
+Thus the linear map sending y to the entire quadratic part of
+$`\Delta_y g`$ has rank at most one. But a nonzero cubic has contraction
+rank at least three: choose a nonzero coefficient of $`x_i x_j x_k`$;
+restrict the directions to i,j,k and the output coordinates to the
+pairs jk,ik,ij. The resulting matrix is the three-by-three identity.
+This contradiction excludes cubic degree, proving $`\deg f\le2`$.
+
+The proof uses full operators and the same fixed approximation radius
+as the retained four-layer bound. It adds no gate or workspace, assumes
+no intermediate work return, and retains arbitrary output, dirty and
+reference inputs, leakage and the actual inverse in the original norm.
+It rounds a specified conjugation action on the generated Pauli subgroup;
+it does not round B itself to a Clifford. Non-Pauli K still leaves the
+general five-layer problem open.
+
 ## 6. Full return does not force a Clifford middle
 
 A literal native affine query already falsifies that implication. On
@@ -428,7 +623,10 @@ into the action of a native two-layer Pauli image B on a particular
 Clifford subgroup. Unitary conjugation is linear over the complex
 operator space; this does not make its action linear, or of bounded
 Boolean degree, on binary Clifford tableaus. Sections 3 and 5 need the
-latter structure. A growing-depth recurrence cannot assume it.
+latter structure. Section 5.1 bypasses it only for a Pauli-valued comparison,
+using native Clifford separation and independent-axis control of the
+quadratic baseline coefficients.
+A growing-depth recurrence cannot assume a general extension.
 
 The conditional theorem retains every logical column and literal target
 phase, arbitrary output and dirty inputs with external references, the
@@ -444,3 +642,11 @@ returned-query counterexample and its ledger, the full-degree translation
 rank against the dimension bound, and the Hermitian Clifford sign formulas.
 These finite identity checks support the analytic proof; they do not
 establish an unrestricted degree law by enumeration.
+
+The five [Pauli-comparison checks](../../tests/test_pauli_comparison_cubic.py)
+verify native-axis label cancellation, the quadratic-baseline cube product,
+the peeled Clifford comparison, a non-Clifford middle's exact partial
+Pauli action, and cubic contraction rank. The cube-error fixture also
+retains the weaker direct product estimate from the initial derivation;
+the theorem uses the stronger native separation step. These finite checks
+do not enumerate or prove the unrestricted five-layer case.

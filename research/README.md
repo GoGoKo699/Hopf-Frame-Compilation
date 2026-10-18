@@ -285,20 +285,24 @@ degree bound sharp. There is no new unrestricted or one-clean four-layer
 conclusion.
 
 The [five-layer continuation](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-keeps the comparison target Clifford and identifies a partial-normalizer
-gap. Its [conditional proof](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
-gives degree at most seven, or four for a visible outer shear, when the
-specified middle representation is Clifford-valued. The error radius is
-$`\sqrt2/12`$; the general case remains open. A literal native affine
-query falsifies deriving that extra condition from full return alone.
-[Phase relocation](depth/READ_ONLY_PHASE_RELOCATION.md) attains scalar
-CCZ in four layers and demonstrates why a fixed parity list's work rank
-is not a representation-invariant lower bound. The
-[returned diagonal echo theorem](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-separately limits that proposed source-extraction mechanism to cubic
-phase, independently of source complexity and dirty width. The current
-resumption question concerns the binary-tableau action of native partial
-normalizers; no asymptotic complete-frame statement changes.
+keeps the comparison Clifford and identifies the partial-normalizer gap.
+Its [proof home](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md) gives degree at
+most seven, or four for a visible shear, under the additional
+Clifford-middle condition at error below $`\sqrt2/12`$. The
+[current follow-up](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md) adds
+an independent Pauli-comparison subcase: degree at most two below
+$`\sqrt2/12`$, without a Clifford middle. Native band peeling and the
+independent inner axes bypass the tableau action only in that subcase.
+[One-band matching](depth/ONE_BAND_AXIS_MATCHING.md) recovers native axes
+at fixed error, while exact cancellation and an abstract high-degree
+normalizer show why additional inferences fail.
+[Hybrid phase relocation](depth/READ_ONLY_PHASE_RELOCATION.md) attains
+scalar CCZ in four layers with 64 T gates, 218 Cliffords and 17 dirty
+helpers. The [returned diagonal echo theorem](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+now covers arbitrary unit-circle phases, still forcing Boolean scalar
+degree at most three. General five-layer queries and optimal complete-frame
+depth remain open. The current resumption question concerns bounded-length
+relations for the non-Pauli comparisons, retaining the native conjugator.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

@@ -1,9 +1,9 @@
 """Exact integer checks for four-layer phase relocation to dirty work.
 
 The native words act on every dirty input, retain literal phases, and
-reverse every actual CNOT computation. The seven-bank CCZ check uses
-factorization of verified full-space diagonal words, not an initialized
-state or a numerical matrix on 31 qubits.
+reverse every actual CNOT computation. The scalar CCZ checks factor
+verified diagonal words on arbitrary private banks; no initialized
+work state or large dense numerical matrix is used.
 """
 from itertools import product
 import unittest
@@ -68,6 +68,60 @@ def _native_phase(address, support, constant, dirty, sign):
                     word ^= ((address >> control) & 1) << target
                     cliffords += 1
     return word, exponent % 8, t_count, cliffords
+
+
+def _hybrid_ccz(address, shared, dirty_banks, c_support=(2,)):
+    """Actual four-layer 64T word, including shared-w control ordering."""
+    moved = (((), -1), ((0,), 1), ((1,), 1), (c_support, 1))
+    retained = (((0, 1), -1), ((0,) + c_support, -1),
+                ((1,) + c_support, -1), ((0, 1) + c_support, 1))
+    banks = list(dirty_banks)
+    exponent = t_count = cliffords = 0
+    layers = []
+    for layer, (basis, active, mask) in enumerate(LAYERS):
+        original = (shared, tuple(banks))
+        # All bank computations read the original shared w.
+        for bank, (support, _) in enumerate(moved):
+            for wire in range(4):
+                if mask >> wire & 1:
+                    banks[bank] ^= shared << wire
+                    cliffords += 1
+                    for control in support:
+                        banks[bank] ^= ((address >> control) & 1) << wire
+                        cliffords += 1
+            for control, target in basis:
+                banks[bank] = _cnot(banks[bank], control, target)
+                cliffords += 1
+        retained_support, retained_sign = retained[layer]
+        for control in retained_support:
+            shared ^= address >> control & 1
+            cliffords += 1
+        # Physical wire 0 is w; four private banks begin at wire 1.
+        targets = [0]
+        exponent += retained_sign * shared
+        t_count += 1
+        for bank, (_, sign) in enumerate(moved):
+            exponent -= sign * sum(banks[bank] >> wire & 1 for wire in active)
+            t_count += len(active)
+            targets.extend(1 + 4 * bank + wire for wire in active)
+        # Reverse the entire actual preparation, starting with w return.
+        for control in reversed(retained_support):
+            shared ^= address >> control & 1
+            cliffords += 1
+        for bank in reversed(range(4)):
+            support, _ = moved[bank]
+            for control, target in reversed(basis):
+                banks[bank] = _cnot(banks[bank], control, target)
+                cliffords += 1
+            for wire in reversed(range(4)):
+                if mask >> wire & 1:
+                    for control in reversed(support):
+                        banks[bank] ^= ((address >> control) & 1) << wire
+                        cliffords += 1
+                    banks[bank] ^= shared << wire
+                    cliffords += 1
+        layers.append((original, (shared, tuple(banks)), tuple(targets)))
+    return shared, tuple(banks), exponent % 8, t_count, cliffords, layers
 
 
 class ReadOnlyPhaseRelocationTests(unittest.TestCase):
@@ -147,6 +201,49 @@ class ReadOnlyPhaseRelocationTests(unittest.TestCase):
             targets = [4 * bank + wire for bank in range(7)
                        for wire in LAYERS[layer][1]]
             self.assertEqual(len(targets), len(set(targets)))
+
+    def test_hybrid_scalar_ccz_native_ordering_and_simultaneous_ledger(self):
+        for address, shared in product(range(8), range(2)):
+            # Each bank phase is additive and each bank returns at every
+            # layer. Varying each bank through all16 values therefore
+            # checks the factorized full-space identity, not just a
+            # prepared-work subspace. Shared w is also arbitrary.
+            for bank, dirty in product(range(4), range(16)):
+                banks = [0] * 4
+                banks[bank] = dirty
+                out_w, out_banks, phase, count, gates, layers = _hybrid_ccz(
+                    address, shared, banks)
+                self.assertEqual((out_w, out_banks), (shared, tuple(banks)))
+                self.assertEqual(phase, 4 * int(address == 7))
+                self.assertEqual((count, gates), (64, 218))
+                self.assertEqual(len(layers), 4)
+                for before, after, targets in layers:
+                    self.assertEqual(before, after)
+                    self.assertEqual(len(targets), len(set(targets)))
+                    self.assertTrue(all(0 <= target < 17 for target in targets))
+                self.assertEqual([len(item[2]) for item in layers],
+                                 [13, 17, 17, 17])
+
+    def test_hybrid_linear_row_and_r91_clifford_charge(self):
+        for row_size in (0, 1, 3):
+            c_support = tuple(range(2, 2 + row_size))
+            for address, shared in product(range(1 << (2 + row_size)), range(2)):
+                banks = (0, 5, 10, 15)
+                out_w, out_banks, phase, count, gates, _ = _hybrid_ccz(
+                    address, shared, banks, c_support)
+                c = sum(address >> wire & 1 for wire in c_support) % 2
+                expected = 4 * (address & 1) * (address >> 1 & 1) * c
+                self.assertEqual(phase, expected)
+                self.assertEqual((out_w, out_banks), (shared, banks))
+                self.assertEqual((count, gates), (64, 196 + 22 * row_size))
+        for terms in (1, 2, 5):
+            for layer in range(4):
+                local = [0] + [1 + 4 * bank + wire for bank in range(4)
+                               for wire in LAYERS[layer][1]]
+                targets = [17 * term + wire for term in range(terms)
+                           for wire in local]
+                self.assertEqual(len(targets), len(set(targets)))
+                self.assertTrue(all(target < 17 * terms for target in targets))
 
 
 if __name__ == '__main__':

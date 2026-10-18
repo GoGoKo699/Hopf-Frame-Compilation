@@ -15,41 +15,38 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: the five-layer normalizer gap
+## Current checkpoint: native partial conjugation and cube relations
 
-The [current round](research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-began at verified main `e2f33dc` (PR #168). The
-[five-layer reduction](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
-keeps its target comparison Clifford-valued and isolates conjugation by a
-two-T-dressed Pauli family B. If that specified family is Clifford-valued,
-zero-clean read-only XOR queries have degree at most seven at error below
-$`\sqrt2/12`$; a visible outer shear improves the bound to four.
-The extra hypothesis is not automatic, even with literal full return.
-The general five-layer case remains open.
+The [current round](research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+began at verified main `d484d25` (PR #169). The
+[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
+now bounds zero-clean read-only XOR degree by two at error below $`\sqrt2/12`$ when its
+comparison K is Pauli-valued, without requiring a Clifford-valued middle B.
+Native band peeling freezes the projective cocycle; independent inner
+axes then exclude a cubic target after the quadratic baseline is isolated. The older Clifford-middle subcase remains degree
+at most seven, or four for a visible shear, below $`\sqrt2/12`$.
+These additional hypotheses are explicit; general five-layer rigidity is open.
 
-The preceding sharp zero-clean bounds remain affine at three T layers
-and degree at most two at four layers. One clean qubit permits degree at
-most four at three layers; exact two-layer one-clean queries are affine.
-Every completed Clifford interlayer must preserve the address and every
-physical T gate acts on work. These are scoped query statements, not
-unrestricted frame lower bounds.
+A [one-band matching theorem](research/depth/ONE_BAND_AXIS_MATCHING.md)
+recovers the individual native T axes at fixed error. It cannot be iterated
+through an intermediate operator that need not be Clifford. An abstract
+partial normalizer can have unbounded full-tableau degree, so the native
+constraint and address cocycle are essential to the unresolved step.
 
-The [new phase relocation](research/depth/READ_ONLY_PHASE_RELOCATION.md)
-attains scalar CCZ in four layers using 105 T gates, 346 elementary
-Cliffords and 28 arbitrary dirty helpers, making the scalar degree-three
-boundary sharp. A null phase identity defeats a proposed rank invariant
-of one fixed parity list. The cheaper retained AND fixture is unchanged.
-A separate [returned diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-forces scalar degree at most three even when its fixed Boolean source
-has arbitrary degree. Both proofs retain literal phases and full return.
+The [hybrid scalar CCZ](research/depth/READ_ONLY_PHASE_RELOCATION.md)
+uses 64 T gates, 218 elementary Cliffords and 17 arbitrary dirty helpers
+in four layers, improving the earlier constants with exact full return.
+The [returned diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+now covers arbitrary unit-circle source phases: exact scalar return still
+forces Boolean degree at most three. Neither result improves the asymptotic
+complete-frame upper law.
 
-The next question is whether a two-T-dressed Pauli's partial action on
-Clifford tableaus has a width-independent Boolean degree bound, with the
-five-layer cocycle retained. This would address the new normalizer gap;
-a non-diagonal constructive escape remains an alternative. The
-[current outcome](research/depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-records the failed candidates, exact ledgers, and resumption question.
-A uniform degree-versus-depth law, growing-depth error robustness, and
+The next question is whether a bounded-length relation can cancel the two
+native baselines for non-Pauli Clifford comparisons, extending the working
+cube proof with an error budget independent of width. The
+[current outcome](research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+records the failed inferences, charged source counterexample and precise gap.
+A uniform degree-versus-depth law, growing-depth error robustness and
 unrestricted address mixing remain separate obligations.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
