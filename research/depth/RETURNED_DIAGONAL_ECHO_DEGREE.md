@@ -3,8 +3,9 @@
 [Current frontier](../../docs/OPEN_PROBLEM.md) ·
 [Read-only layer results](READ_ONLY_THREE_LAYER_RIGIDITY.md)
 
-This is an exact, width-independent theorem for a scalar translation echo
-with an arbitrary diagonal unitary source. Source phases may have arbitrary
+This is a width-independent theorem for a scalar translation echo with an
+arbitrary diagonal unitary source, with a fixed positive error radius for
+approximation to a prescribed Boolean scalar phase. Source phases may have arbitrary
 precision, including irrational multiples of pi; they need not be Boolean
 signs. It does not constrain non-diagonal fixed conjugators or arbitrary
 products of four Pauli representations, and it does not prove a T-depth
@@ -154,6 +155,168 @@ with $`\mathbb F_2`$ and its signed coefficients with the Boolean ANF
 coefficients of q. This proves the theorem without a rank, sparsity,
 phase-denominator or finite-width constant.
 
+## Robust return at a width-independent error radius
+
+The same degree conclusion survives a nonzero complete operator error. Let
+f be a prescribed Boolean function and retain the literal echo above. If
+
+```math
+\max_x\|U_x-(-1)^{f(x)}I_W\|_{\rm op}\le\eta,
+\qquad \eta\lt\frac{2}{275},
+```
+
+then $`f(0)=0`$ and $`\deg f\le3`$. The constant is a convenient analytic
+bound, with no optimality claim. It is independent of work width, address
+length, source precision and the size of a native source implementation.
+All work inputs, including correlations with external references, remain
+covered. No assumption of exact scalar return, an initialized work state,
+or a rational phase denominator is used. The echo is diagonal on work and
+block diagonal in the unchanged address, so the full operator error is the
+maximum of these phase errors. Tensoring with an external reference does not
+change that norm.
+
+Here is a bounded four-direction proof. For an additive phase function v,
+write, with $`T_u`$ denoting translation by u,
+
+```math
+\nu(v)=\sup_z|e^{2\pi i v(z)}-1|.
+```
+
+This quantity is subadditive and invariant under translation. If v is
+within eta of a constant in this phase metric, applying a nonempty product
+of k translation differences gives phase norm at most $`2^k\eta`$.
+More generally, an integer translation polynomial P with zero coefficient
+sum gives the bound $`\|P\|_1\eta`$, where $`\|P\|_1`$ is the sum of
+absolute coefficients. These follow by multiplying unit complex numbers
+and telescoping; they do not require choosing a real logarithm of a phase.
+
+Restrict the address to any four directions, allowing dependence and zero
+directions. Use their coordinates 1 through 4, and retain the operators
+$`a_i,b_i,E_S`$ from the exact proof. Put
+
+```math
+d_x=\Delta_{Lx}\Delta_{Mx}h,\qquad d_i=a_i b_i h,
+\qquad c_i=a_i+b_i+a_i b_i=T_{Le_i+Me_i}-I.
+```
+
+The target comparison is $`\nu(d_x-f(x)/2)\le\eta`$: reversing the
+literal negative sign of the echo preserves this bound because the target
+phase is Boolean. Also $`U_0=I`$, so $`f(0)=0`$ at the stated error.
+Signed Moebius inversion gives
+
+```math
+\nu\!\left(E_Sh-\sum_{\varnothing\ne X\subseteq S}
+                    (-1)^{|S|-|X|}\frac{f(X)}2\right)
+\le(2^{|S|}-1)\eta.                                      (3)
+```
+
+For the four-direction coefficient, separate the disjoint terms
+$`v_A=a_A b_{[4]\setminus A}h`$ from the terms with an index present in
+both factors. Their overlap sum is exactly
+
+```math
+O h=\left[\prod_{i=1}^4c_i-\prod_{i=1}^4(a_i+b_i)\right]h
+ =\sum_{i=1}^4
+   \left[\prod_{j\lt i}(a_j+b_j)\prod_{j\gt i}c_j\right]d_i.
+```
+
+Every bracket annihilates constants. Since $`\|a_j+b_j\|_1\le4`$
+and $`\|c_j\|_1\le2`$, the full-input comparison for each d_i gives
+
+```math
+\nu(Oh)\le(8+16+32+64)\eta=120\eta.                    (4)
+```
+
+Next pair two proper nonempty subsets A and B of [4] that differ by
+exchanging i in A with j outside A. Their monomial sum is R times
+$`a_i b_j+a_j b_i`$, where R contains the two remaining differences.
+The exact translation identity is
+
+```math
+(a_i b_j+a_j b_i)h
+ =d_{e_i+e_j}-T_{Le_j+Me_j}d_i
+             -(T_{Le_i}+T_{Me_i}-I)d_j.                  (5)
+```
+
+The nonempty R kills each constant comparison phase and has coefficient
+norm at most four. Equation (5) therefore gives
+$`\nu(v_A+v_B)\le4(1+1+3)\eta=20\eta`$.
+The fourteen proper nonempty subsets admit seven such pairs:
+
+| Subset size | Pairs, with concatenated indices denoting a subset |
+|---|---|
+| 1 | (1,2), (3,4) |
+| 2 | (12,13), (14,24), (23,34) |
+| 3 | (234,134), (124,123) |
+
+Consequently $`\nu(E_{[4]}h)\le120\eta+7(20\eta)=260\eta`$.
+By (3), its distance from the Boolean fourth-difference target is at most
+$`15\eta`$. A nonzero fourth difference would require
+$`2\le275\eta`$, which contradicts the hypothesis.
+
+Thus every four-direction Boolean derivative of f at zero vanishes. This
+also excludes all higher algebraic degrees, not only a degree-four ANF
+coefficient on one chosen coordinate set. In characteristic two the
+Boolean difference operators obey
+
+```math
+\delta_u\delta_v=\delta_{u+v}+\delta_u+\delta_v.
+```
+
+A derivative of order greater than four reduces by this identity to sums
+of four-direction derivatives at zero. In particular every ANF coefficient
+of degree at least four is zero. This completes the robust proof without a
+width-dependent continuity estimate or intermediate work-return assumption.
+
+The relation is an analytic constraint on the actual echo. It adds no
+physical calls, clean work or dirty work to a construction. If the source
+is implemented natively, all source appearances, actual inverses and
+translations retain their own full resource charges; the theorem does not
+supply such an implementation for an arbitrary U(1) source.
+
+
+### Approximate native sources remain charged
+
+Suppose an actual fixed native source $`\widetilde D`$ approximates
+$`D_h\otimes I`$ within delta in full operator norm on all its physical
+work wires. Any additional source wires are arbitrary, included in that
+norm, and included simultaneously in its allocation; an initialized-only
+promise is not substituted here. Use the actual inverse of this same native
+word at both dagger positions. Its inverse error is also at most delta.
+Four-term unitary telescoping gives
+
+```math
+\|\widetilde U-U\|_{\rm op}\le4\delta.
+```
+
+Thus if the completed native echo approximates $`(-1)^{f(x)}I`$ with
+full operator error epsilon and
+
+```math
+\varepsilon+4\delta\lt\frac{2}{275},
+```
+
+then f still has degree at most three. The comparison includes every source
+input, every actual inverse, all returned work and all reference systems.
+There is no reset, measurement or uncharged recovery.
+
+If one source word has counts $`T_D,G_D`$, T-depth $`d_D`$, and total
+physical arbitrary-work allocation W, the displayed echo has the upper
+ledger
+
+```math
+T\le4T_D,\qquad D_T\le4d_D,\qquad
+G\le4G_D+2\mathrm{nnz}(L)+2\mathrm{nnz}(M).
+```
+
+Here nnz counts entries equal to one in the displayed binary translation
+matrices: one CNOT per entry implements a translation. Both translation
+families occur twice, and all four source calls occur chronologically on
+the same W wires. The simultaneous allocation is W arbitrary work and zero
+clean work, excluding the read-only address. These are charged upper bounds
+for this word, with no count or depth improvement over a simplified native
+query baseline asserted.
+
 ## Sharp cubic example, and a literal native ledger
 
 Use six arbitrary work bits $`p_1,p_2,p_3,q_1,q_2,q_3`$, and three read-only
@@ -229,9 +392,9 @@ native cost is temporarily ignored. Charging a native $`D_h`$ can only add costs
 
 The theorem does not address non-diagonal fixed conjugators or arbitrary
 products of four representation factors. It applies to the displayed echo
-with two linear translation families. It also assumes exact scalar return.
-No positive approximation radius, query-degree bound at five layers, or general-frame
-lower bound is inferred.
+with two linear translation families. The robust statement covers approximation to a prescribed Boolean scalar
+phase below $`2/275`$ in full operator norm. It gives no query-degree bound
+at five layers or general-frame lower bound.
 
 The [bounded evidence checks](../../tests/test_returned_diagonal_echo_degree.py)
 include the complete native word and actual inverse on every physical basis
@@ -243,4 +406,9 @@ the maximum possible q degrees are 1,2,3,3; all degree-at-least-four coefficient
 functionals belong to the equation row span. Further checks retain signed
 additive derivatives, actual inverse phases, overlapping and dependent maps,
 and a returned cubic source with non-Boolean phases of several denominators.
-These checks support, and are not the proof of, the theorem.
+Further exact integer group-ring checks verify the bounded four-direction
+identity and its error coefficient, including overlapping and dependent
+translations. A five-address-bit kernel check verifies that four-direction
+tests through zero exclude fifth degree as well as fourth degree. A perturbed
+non-Boolean source exercises positive full-input error and the literal
+inverse order. These checks support, and are not the proof of, the theorem.

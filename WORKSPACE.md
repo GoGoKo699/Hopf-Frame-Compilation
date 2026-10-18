@@ -15,44 +15,47 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: native partial conjugation and cube relations
+## Current checkpoint: native axes and returned operator relations
 
-The [current round](research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
-began at verified main `d484d25` (PR #169). The
-[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
-now bounds zero-clean read-only XOR degree by two at error below $`\sqrt2/12`$ when its
-comparison K is Pauli-valued, without requiring a Clifford-valued middle B.
-Native band peeling freezes the projective cocycle; independent inner
-axes then exclude a cubic target after the quadratic baseline is isolated. The older Clifford-middle subcase remains degree
-at most seven, or four for a visible shear, below $`\sqrt2/12`$.
-These additional hypotheses are explicit; general five-layer rigidity is open.
+The [current round](research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
+began at verified main `fe45d5a` (PR #170). The
+[five-layer proof](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#52-an-outer-axis-normalizer-comparison-a-finite-degree-bound)
+now covers comparisons that permute the individual active outer T axes,
+allowing both non-Pauli comparisons and a non-Clifford middle. At error below
+$`\sqrt2/12`$, its conservative degree bound is 244, or 41 for an invisible
+outer target shear. The stronger existing Pauli-comparison bound remains
+two, and the Clifford-middle bounds remain seven/four. General five-layer
+rigidity is still open.
 
-A [one-band matching theorem](research/depth/ONE_BAND_AXIS_MATCHING.md)
-recovers the individual native T axes at fixed error. It cannot be iterated
-through an intermediate operator that need not be Clifford. An abstract
-partial normalizer can have unbounded full-tableau degree, so the native
-constraint and address cocycle are essential to the unresolved step.
+A [baseline-word obstruction](research/depth/BASELINE_WORD_OBSTRUCTION.md)
+shows why a generic reordering of the cube cannot finish the argument:
+a word cancelling every independent native baseline also loses a separate
+central target. A [four-factor construction](research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
+can realize arbitrary Boolean scalar phases with full return if fixed
+conjugating sources are unrestricted. Its sources have explicitly growing
+native costs. Abstract factor count is therefore not a depth invariant.
 
-The [hybrid scalar CCZ](research/depth/READ_ONLY_PHASE_RELOCATION.md)
-uses 64 T gates, 218 elementary Cliffords and 17 arbitrary dirty helpers
-in four layers, improving the earlier constants with exact full return.
-The [returned diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-now covers arbitrary unit-circle source phases: exact scalar return still
-forces Boolean degree at most three. Neither result improves the asymptotic
-complete-frame upper law.
+The [diagonal echo theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md#robust-return-at-a-width-independent-error-radius)
+now retains its cubic bound at full operator error below $`2/275`$, for
+arbitrary unit-circle source phases and arbitrary dirty inputs. An approximate
+native source contributes all four source/inverse errors. Increasing source
+precision or slightly relaxing return does not bypass this obstruction.
 
-The next question is whether a bounded-length relation can cancel the two
-native baselines for non-Pauli Clifford comparisons, extending the working
-cube proof with an error budget independent of width. The
-[current outcome](research/depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
-records the failed inferences, charged source counterexample and precise gap.
-A uniform degree-versus-depth law, growing-depth error robustness and
-unrestricted address mixing remain separate obligations.
+The next concrete question is the **span-preserving but axis-mixing
+five-layer comparison**: can the native cocycle bound degree when K preserves
+the outer axis span but maps individual axes to their products? This is the
+first branch beyond the new theorem. The peeled comparison then has a
+native diagonal phase correction rather than a Clifford correction. Its
+projective cocycle is now exact below error $`\sqrt2/24`$; a finite feature
+law for its actual conjugation and right action is still missing. The
+[current outcome](research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
+records the precise gap and why the two source-free shortcuts fail.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. Optimal general depth and unrestricted one-clean
-four-layer rigidity remain open. Final manuscript drafting is separate.
+remains conditional. Optimal general depth, dimension-growing unrestricted
+lower bounds and unrestricted one-clean four-layer rigidity remain open.
+Final manuscript drafting is separate.
 
 ## Mandate
 

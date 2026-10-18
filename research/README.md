@@ -80,7 +80,7 @@ unresolved part of the growing-source theorem or a new work order.
 
 | Study | Result | Scope |
 |---|---|---|
-| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks; unbanked and banked high-precision block/state interfaces with full Clifford ledgers | High-precision forms require $`L>N/n^2`$ beyond their fixed dimension threshold; each interface retains its own clean allocation, literal phase, and complete return |
+| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks; unbanked and banked high-precision block/state interfaces with full Clifford ledgers | High-precision forms require $`L\gt N/n^2`$ beyond their fixed dimension threshold; each interface retains its own clean allocation, literal phase, and complete return |
 | [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
 | [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, real initialized-target and source-overlap lifts, zero-clean real reflection banks, and one-clean real blocks | The phase signal is borrowed outside every core; the initialized anchor marker and genuine logical recovery coordinates are retained; complementary-sector restrictions keep their original scope |
 | [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Full-input selected Pauli/source-axis rotations with two arbitrary helpers; jointly compiled raw rejection orientations at O(Q+q+ell) T-count | Literal query phases and shared-core width are charged; raw canonicalization does not compile transported logical prefixes |
@@ -287,22 +287,28 @@ conclusion.
 The [five-layer continuation](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
 keeps the comparison Clifford and identifies the partial-normalizer gap.
 Its [proof home](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md) gives degree at
-most seven, or four for a visible shear, under the additional
-Clifford-middle condition at error below $`\sqrt2/12`$. The
-[current follow-up](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md) adds
-an independent Pauli-comparison subcase: degree at most two below
-$`\sqrt2/12`$, without a Clifford middle. Native band peeling and the
-independent inner axes bypass the tableau action only in that subcase.
-[One-band matching](depth/ONE_BAND_AXIS_MATCHING.md) recovers native axes
-at fixed error, while exact cancellation and an abstract high-degree
-normalizer show why additional inferences fail.
-[Hybrid phase relocation](depth/READ_ONLY_PHASE_RELOCATION.md) attains
-scalar CCZ in four layers with 64 T gates, 218 Cliffords and 17 dirty
-helpers. The [returned diagonal echo theorem](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-now covers arbitrary unit-circle phases, still forcing Boolean scalar
-degree at most three. General five-layer queries and optimal complete-frame
-depth remain open. The current resumption question concerns bounded-length
-relations for the non-Pauli comparisons, retaining the native conjugator.
+most seven, or four for a visible shear, under the Clifford-middle condition
+at error below $`\sqrt2/12`$. The
+[previous follow-up](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md) adds
+the Pauli-comparison bound of two without a Clifford middle, independent-axis
+matching, and the four-layer scalar CCZ word with 64 T gates, 218 Cliffords
+and 17 dirty helpers. These results keep their own hypotheses and ledgers.
+
+The [current follow-up](depth/RETURNED_RELATIONS_SESSION_RESULT.md) extends
+the five-layer argument to comparisons that permute the individual outer
+native axes, with conservative degree bound 244, or 41 for an invisible
+target shear, at the same error radius. It also establishes a
+[baseline-word obstruction](depth/BASELINE_WORD_OBSTRUCTION.md) and an
+[arbitrary-degree four-factor scalar construction](depth/SCALAR_REPRESENTATION_PRODUCT.md)
+with growing native source costs. The
+[returned diagonal echo](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md) now has a
+robust cubic bound below error $`2/275`$, including arbitrary source phases.
+These checks rule out source-free shortcuts without ruling out general
+native work interference. The next branch is a comparison preserving the
+outer axis span while mixing its individual axes. That branch now has an
+exact projective third-level cocycle below error $`\sqrt2/24`$; controlling
+its right action remains open. General five-layer queries and optimal
+complete-frame depth remain open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

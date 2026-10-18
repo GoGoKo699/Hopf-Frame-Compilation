@@ -20,7 +20,10 @@ A separate subcase needs no Clifford-valued middle: if the comparison K
 is Pauli-valued, degree is at most two at error below $`\sqrt2/12`$.
 Native peeling freezes that subgroup action exactly projectively;
 independent inner axes then exclude cubic degree. No exact normalizer
-is assumed for a general approximate query.
+is assumed for a general approximate query. A further native subcase, where
+K permutes the outer active axes, has a conservative degree bound of 244
+(or 41 for an invisible target shear). It allows both non-Pauli K and
+non-Clifford B; its extra hypothesis remains explicit.
 
 ## 1. Native contract and an exact one-band reduction
 
@@ -554,6 +557,285 @@ It rounds a specified conjugation action on the generated Pauli subgroup;
 it does not round B itself to a Clifford. Non-Pauli K still leaves the
 general five-layer problem open.
 
+## 5.2. An outer-axis-normalizer comparison: a finite degree bound
+
+**Axis-normalizer theorem.** In the native setting of section 1, make the
+fixed analytical change of coordinates by $`C_4(0)^\dagger`$ and put
+$`D=D_4`$. Suppose every specified comparison K maps D's individual active
+binary Pauli axes bijectively to themselves, allowing signs. At
+$`\eta\lt\sqrt2/12`$, the Boolean output has degree at most **244**,
+independently of dirty width. If the original outer target shear is
+$`E=0`$, the bound improves to **41**. If also $`D^\dagger QD`$ is Pauli,
+it improves to **31**. These conservative constants are not sharpness
+claims. The stronger degree-two theorem of section 5.1 still applies
+when K itself is Pauli.
+
+This is an additional native hypothesis, not a consequence of full return.
+It permits both non-Pauli K and non-Clifford B. The returned affine fixture
+in section 6 has $`D=T`$ and comparison $`K_1=Z(T^\dagger XT)`$.
+This comparison is non-Pauli but maps Z to minus Z; its displayed B is
+non-Clifford. Thus the new hypothesis is not subsumed by either previously
+proved subcase. The fixture remains a deliberately expensive realization
+of a single CNOT, with no resource improvement.
+
+### Peeling and a finite Clifford feature space
+
+The [one-band matching theorem](ONE_BAND_AXIS_MATCHING.md) makes
+$`C_x=D^\dagger K_xD`$ Clifford. Axis permuters form a group, so
+$`D^\dagger K_{x+y}K_y^\dagger D`$ is Clifford too. Right-multiply (4)
+by $`K_y^\dagger`$ before peeling D. Both resulting sides are Clifford;
+the same separation argument as section 5.1 freezes the equality
+projectively:
+
+```math
+C_{x+y}\doteq A'_y C_x A_y'^\dagger C_y,
+\qquad B_y=D A'_yD^\dagger.                              \qquad(24)
+```
+
+A' is the native inner one-T Clifford Pauli family. Thus translating x
+acts by fixed left and right Clifford multiplication on C. No claim is
+made that B itself is Clifford.
+
+For a Clifford C let S be its binary symplectic matrix and let h list its
+Hermitian generator signs. Define its feature vector $`\mathcal V(C)`$
+to contain 1, all monomials of degree at most four in entries of S, and
+the entries of h. Fixed left or right Clifford multiplication acts linearly
+on the span of these features. The degree four here needs a different
+argument from the fixed-Clifford sign lemma in section 4.
+
+For a fixed probe q and a varying Clifford C, its sign is linear in h
+plus a polynomial of degree at most four in S. To prove this, order X
+generators before Z generators and write $`S e_j=(p_j,r_j)`$.
+Let $`p'=\sum_jq_jp_j`$ and $`r'=\sum_jq_jr_j`$ be binary sums.
+Beyond the generator signs, the conjugation phase is half the following
+even quantity modulo four; the dot products displayed here are integer:
+
+```math
+\begin{aligned}
+F={}&q_X\cdot q_Z+\sum_jq_j(p_j\cdot r_j)\\
+ &+2\sum_{j\lt k}q_jq_k(r_j\cdot p_k)-p'\cdot r'.
+\end{aligned}                                             \qquad(25)
+```
+
+A binary parity modulo four is its integer linear sum minus twice the
+sum of pairwise products. Expanding (25), odd-coefficient monomials have
+degree at most two in S and even-coefficient monomials degree at most
+three. The high bit of a sum modulo four is the sum of the summands'
+high bits plus pairwise products of their low bits. It therefore has
+degree at most four. This argument works even though F is guaranteed
+even only on the symplectic domain; it does not divide odd polynomial
+coefficients by two.
+
+For fixed Cliffords L and R, the symplectic matrix of LCR is linear in S.
+Its generator signs use the varying-Clifford sign just proved, together
+with the fixed-Clifford cubic sign evaluated on a label linear in S.
+They are consequently linear in h plus degree-four polynomials in S.
+This proves the feature-space assertion. Tensor powers of the features
+also transform linearly.
+
+### A polynomial formula on the axis-normalizer domain
+
+Use D's physical Pauli coordinates, so its active axes are unsigned Z
+operators and its T orientations retain every native axis sign. Choose
+dual labels to these axes. The permutation entry
+$`\pi_{ji}`$ of C on those axes is a pairing with $`S_Ca_i`$, hence
+linear in S. Its sign $`\epsilon_i=\kappa_C(a_i)`$ belongs to the
+feature span just defined. Let $`\sigma_j`$ record the orientation of
+D's T or T-dagger on axis j. Up to scalar, the correcting Clifford in
+$`DCD^\dagger C^\dagger`$ is a product of S or S-dagger rotations
+about these independent axes, with activations
+
+```math
+\delta_j=\sigma_j+\sum_i\pi_{ji}(\sigma_i+\epsilon_i).
+                                                               \qquad(26)
+```
+
+Its orientation on each axis is fixed by D. All terms in (26) are binary.
+Thus delta is degree at most two in $`\mathcal V(C)`$, and
+
+```math
+S_{DCD^\dagger}
+ =\left(I+\sum_j\delta_j N_j\right)S_C                 \qquad(27)
+```
+
+is degree at most three in those features. Here N_j is the fixed
+transvection increment for axis j. The same statements hold with D and
+its actual inverse exchanged. They are polynomial formulas on the
+axis-normalizer domain; outside it they are only polynomial expressions,
+not asserted physical tableaus.
+
+For later degree accounting, a conservative generator-sign bound is nine
+in the features: the incoming Pauli label has degree one, the independent
+S rotations give a label of degree at most three, and a fixed output
+coordinate Clifford contributes its cubic sign. The intermediate local
+sign has degree at most four. This bound allows arbitrary fixed Pauli
+coordinates and does not charge an analytical coordinate change as a gate.
+
+### The visible-target bound
+
+Temporarily replace $`g(x)=f(x)+f(0)`$ by a fresh Boolean variable t in
+the native comparison. Projectively it has the form
+
+```math
+K(x,t)=A_x^\dagger P_x N_{(x,t)}.
+```
+
+P has linear Pauli labels; N is a fixed-Clifford conjugate of a one-T
+image of a linear-label Pauli family. This defines a Clifford for every
+pair x,t. Its symplectic entries have total degree at most two, and its
+sign on every fixed probe has degree at most six. The latter is exactly
+the direct calculation in section 5, allowing t among N's affine input
+variables. It does not assume axis normalization at the other value of t.
+
+Apply the polynomial expressions (26)--(27) to this formal family.
+Permutation coordinates have degree at most two, and axis signs have
+degree at most six, so delta has degree at most eight. The resulting
+symplectic entries have degree at most ten. Generator signs have degree
+at most thirty: a fixed coordinate Clifford's cubic sign is evaluated
+on a label of degree at most ten. Therefore the features of
+$`C_x=D^\dagger K_xD`$ have representatives of total degree at most
+forty in x,t, evaluated at $`t=g(x)`$. Only at this actual value are they
+claimed to be physical tableaus.
+
+Suppose $`E\ne0`$. Write $`K_x\doteq K_x^0Q^{g(x)}`$ with the fixed
+Clifford $`Q=W_5^\dagger X_tW_5`$. The baseline symplectic matrix S_0
+and its inverse have degree at most two in x; symplectic inversion is a
+fixed transpose-linear operation. A nonzero entry of
+$`S_0^{-1}S_K-I`$ extracts g. C also permutes these same active axes,
+because D commutes with them. Recover S_K from C by (27), of degree at
+most three in its features. Consequently g belongs to the space
+$`\mathcal W`$ spanned by degree-at-most-two monomials in x times
+feature monomials of degree at most three. Equation (24) makes this
+space translation invariant. Its functions have formal total degree at
+most 122 in x,t, and hence
+
+```math
+g\in\mathcal W\subseteq\mathcal P_{122}+g\mathcal P_{121}.
+                                                               \qquad(28)
+```
+
+For completeness, if a translation-invariant space contains g and is
+contained in $`\mathcal P_d+g\mathcal P_{d-1}`$, then
+$`\deg g\le2d`$. Restrict to the n variables of a highest-degree
+monomial, where $`n=\deg g`$. Its translates span all $`2^n`$ Boolean
+functions, as in section 3. But the containing space has dimension at most
+
+```math
+\sum_{j=0}^{d}\binom nj+\sum_{j=0}^{d-1}\binom nj,
+```
+
+strictly smaller than $`2^n`$ when $`n\ge2d+1`$. Applying this to (28)
+proves the bound 244.
+
+### The invisible-target improvement
+
+If $`E=0`$, Q is a fixed nonidentity Pauli. Pauli multiplication changes
+axis signs without changing their permutation, so the baseline $`K^0`$ also
+normalizes D's axes. Thus
+
+```math
+C_x\doteq C_x^0(Q')^{g(x)},\qquad
+C_x^0=D^\dagger K_x^0D,\qquad Q'=D^\dagger QD
+```
+
+are Cliffords. The preceding native calculation, now with no formal t,
+gives degree at most ten for the symplectic entries of $`C^0`$, and at most
+thirty for its sign on every fixed probe.
+
+If Q' is non-Pauli, a nonzero entry of $`S_{C^0}^{-1}S_C-I`$ extracts g.
+Take the span of degree-at-most-ten x monomials times the symplectic
+entries of C and the constant. It is translation invariant by (24) and
+lies in $`\mathcal P_{20}+g\mathcal P_{20}`$. Its dimension is too small
+to contain all translates of a full-degree polynomial on 42 or more
+variables, giving degree at most 41.
+
+If Q' is Pauli, the symplectic matrix of C is independent of g and has
+degree at most ten. Its sign on a fixed probe q is
+$`p_q(x)+\langle v',q\rangle g(x)`$, where v' is Q's transformed
+nonzero label and $`\deg p_q\le30`$. Apply (24) to a probe detecting v'.
+The fixed conjugator's cubic sign on a degree-ten label has degree at most
+thirty. As in (15)--(16), this yields
+$`g(x+y)=\epsilon_y g(x)+h_y(x)`$ with $`\deg h_y\le30`$.
+If g has degree greater than thirty, every $`\epsilon_y=1`$ and every
+first derivative has degree at most thirty. Hence $`\deg g\le31`$.
+This completes the stated bounds.
+
+The proof adds no native operation or workspace. The original full operator
+error includes every logical column, literal target phase, arbitrary dirty
+and reference input, leakage, the actual inverse and complete work return.
+T-count, elementary Clifford count and finite dirty width remain unrestricted
+in this necessary invariant. The general comparison may fail the additional
+axis-normalizer hypothesis; the general five-layer and complete-frame depth
+questions remain open. The [bounded checks](../../tests/test_outer_axis_normalizer.py)
+test the varying-tableau sign polynomial, signed band formula, exact returned
+nonredundancy witness and dimension thresholds.
+
+## 5.3. Preserving the axis span freezes a third-level cocycle
+
+There is a further reduction when K preserves the binary span
+$`\mathcal L_D`$ of D's active axes, while possibly mixing individual
+axes. Under this weaker additional hypothesis, at
+$`\eta\lt\sqrt2/24`$ the same peeled cocycle (24) becomes exact
+projectively. Its comparisons C need only lie in the third level of the
+Clifford hierarchy. **No Boolean degree bound follows here.**
+
+Let $`G_{\mathcal L_D}`$ be the Clifford group that preserves this
+axis span. For any member K,
+
+```math
+D^\dagger KD=\left[D^\dagger(KDK^\dagger)\right]K.
+                                                               \qquad(29)
+```
+
+All Pauli axes of the two bands in brackets belong to the same isotropic
+span, so they commute. Their product is a collection of commuting T or
+T-dagger Pauli rotations, with signs retained. Conjugating any Pauli by
+this product gives that Pauli times commuting S or S-dagger Pauli
+rotations, hence a Clifford. The bracket therefore lies in the third
+hierarchy level, denoted $`\mathcal C_3`$. Multiplication by K preserves
+this level. Consequently
+
+```math
+D^\dagger G_{\mathcal L_D}D\subseteq\mathcal C_3.          \qquad(30)
+```
+
+The left side is an actual group, because it is a conjugate of a group.
+This asserts closure only for this specified subgroup; the full third
+hierarchy level is not being treated as a group.
+
+Two third-level unitaries at projective operator distance less than
+$`\sqrt2/4`$ are projectively equal. Indeed, conjugating any Hermitian
+Pauli by the two operators gives Cliffords at distance less than
+$`1/\sqrt2`$. The retained Clifford separation makes those images equal
+projectively. Their Hermiticity allows only a residual sign, and the same
+strict distance excludes the minus sign. The images are therefore equal
+literally on every Pauli, so the original operators differ only by scalar.
+This gap is independent of work width.
+
+Now right-multiply (4) by $`K_y^\dagger`$ and peel D. The left comparison
+$`C_{x+y}C_y^\dagger`$ lies in the subgroup (30). The right comparison
+$`A'_y C_x A_y'^\dagger`$ lies in $`\mathcal C_3`$ by fixed Clifford
+conjugation. Their distance is at most $`6\eta\lt\sqrt2/4`$, so the
+gap proves (24) projectively. It neither rounds B to a Clifford nor makes
+the intermediate C Clifford. Already a CNOT on two active T wires
+preserves their Z span but mixes individual axes: its D-dagger conjugate
+is third-level and non-Clifford.
+
+The remaining step in this branch is a finite feature law for this
+specified third-level subgroup under the **actual** partial conjugation
+by A' and right multiplication by C_y. Section 5.2's Clifford feature
+space does not establish such a law when C_y is third-level. Abstract
+partial normalization cannot replace the native structure, by the
+[counterexample](ONE_BAND_AXIS_MATCHING.md#5-an-abstract-normalizer-can-have-arbitrarily-high-tableau-degree).
+This sharper reduction preserves the general depth objective without
+claiming a solution to it.
+
+The argument adds no native gate or workspace and retains the original
+full operator contract. The commuting rotations in (29) are a structural
+factorization, not a free compiler call. The
+[axis-span fixture](../../tests/test_outer_axis_normalizer.py) checks every
+Pauli image of the mixed-axis example, including its non-Clifford nature.
+
 ## 6. Full return does not force a Clifford middle
 
 A literal native affine query already falsifies that implication. On
@@ -626,7 +908,12 @@ Boolean degree, on binary Clifford tableaus. Sections 3 and 5 need the
 latter structure. Section 5.1 bypasses it only for a Pauli-valued comparison,
 using native Clifford separation and independent-axis control of the
 quadratic baseline coefficients.
-A growing-depth recurrence cannot assume a general extension.
+Section 5.2 handles the further case where K permutes the outer active
+axes, by a finite Clifford feature space after native peeling. Its conservative
+constant does not supply the missing arbitrary-comparison action. Section 5.3
+freezes the wider span-preserving case in a specified third-level subgroup,
+without a finite feature law or degree bound. A growing-depth recurrence
+cannot assume a general extension.
 
 The conditional theorem retains every logical column and literal target
 phase, arbitrary output and dirty inputs with external references, the
