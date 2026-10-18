@@ -302,3 +302,109 @@ The [scope checks](../../tests/test_partial_normalizer_scope.py) verify the
 full-tableau degree, exact permutation identities and native Fredkin word
 in bounded instances. The arbitrary-width conclusion follows from the
 displayed product formula, not from enumeration.
+
+## 6. A projected band with one relation
+
+Restricting an independent physical band to a one-stabilizer code can
+create at most one binary relation among its projected axes. The
+following extension recovers the individual axes except for one explicit
+three-dimensional ambiguity. It is an invariant of the projected band,
+not a general one-clean three-layer query theorem.
+
+Let E contain commuting nonzero projected axis labels
+$`a_1,\ldots,a_m`$ with at most one relation. Keep all axis signs,
+T orientations and native scalar phases. A projected identity contributes
+only its actual scalar. A relation of length two combines its two equal
+axes into an exact commuting Clifford or scalar; absorb that factor
+into the adjacent Clifford before applying the result below.
+
+For a Pauli label p define
+
+```math
+k(p)=\#\{i:\langle a_i,p\rangle=1\},\qquad
+w_E(p)=2\log_2\|E\tau(p)E^\dagger\|_{P,1}.
+```
+
+An independent active subset has the usual flat expansion, so w=k.
+Let R be the unique relation's support, of length r. The only dependent
+active subset contains all of R. This can happen only when r is even:
+pairing the relation with p makes its number of active members even.
+In the expansion, subsets S and their symmetric difference with R
+give the same Pauli label. Their coefficient ratio is a fixed sign
+times $`(-1)^{|S\cap R|}`$. Since r is even, this parity is well
+defined on each paired class; exactly half the classes cancel and
+half double. Thus there are $`2^{k-2}`$ surviving terms of magnitude
+$`2^{-(k-2)/2}`$. Consequently
+
+```math
+\begin{gathered}
+w_E(p)=k(p)-2I_R(p),\\
+I_R(p)=\mathbf1[\langle a_i,p\rangle=1\text{ for all }i\in R]
+                                                               \qquad(6.1)
+\end{gathered}
+```
+
+for an even relation. For an odd relation w=k everywhere. This proof
+does not assume that a dependent expansion has the independent support
+or normalization.
+
+Put $`\chi_v(p)=(-1)^{\langle v,p\rangle}`$. For even r,
+
+```math
+I_R=2^{-r}\prod_{i\in R}(1-\chi_{a_i}).
+```
+
+Every label in $`L_R=\mathrm{span}\{a_i:i\in R\}`$ has
+exactly two subset representations, differing by R. Their common
+cardinality parity is denoted pi(v). The Fourier coefficient of I_R
+at v is $`2^{1-r}(-1)^{\pi(v)}`$. Since
+$`k=m/2-\tfrac12\sum_i\chi_{a_i}`$, setting
+$`\delta_r=2^{2-r}`$ gives the nonconstant coefficients of w:
+
+| Character label | Coefficient |
+| --- | --- |
+| An axis outside $`L_R`$ | $`-1/2`$ |
+| A relation axis | $`-1/2+\delta_r`$ |
+| Another nonzero label in $`L_R`$ | $`-\delta_r(-1)^{\pi(v)}`$ |
+| Any other label | Zero |
+
+No outside axis lies in $`L_R`$, since that would create a second
+relation. For $`r\ge6`$, coefficients of magnitude strictly greater
+than 1/4 therefore recover exactly the individual axes. Independent
+lists and odd relations retain the original coefficient -1/2 recovery.
+
+The sole non-Clifford exception is r=4. Its relation span has dimension
+three. Its odd coset consists exactly of the four relation axes; all
+seven nonzero labels in the span have coefficient -1/4. The profile
+recovers this span, but not the original four-axis subset. All outside
+axes still have coefficient -1/2 and are recovered individually.
+
+**Matching consequence.** Suppose D,E are two such projected bands and
+C,C' are Clifford on the quotient. If
+
+```math
+DC=\gamma C'E,
+```
+
+then $`w_D(F_Cp)=w_E(p)`$ for every p. Therefore C matches the
+individual axes, except that a length-four relation supplies only a
+matched three-dimensional span. The profile distinguishes that exception
+from the independent, odd-relation and longer-even-relation cases.
+Span matching in the exceptional case is necessary, not claimed
+sufficient for the displayed Clifford equality.
+
+The same necessary conclusion holds if the displayed products are at
+operator distance strictly below $`\sqrt2/4`$, optimizing gamma. Each
+projected phase-polynomial band still sends Paulis to Cliffords. The
+symplectic gap from Section 3 makes the compared images have equal
+symplectic actions; they differ by a scalar Pauli and hence have equal
+coefficient l1 norms exactly. No width-dependent l1 continuity estimate
+is used.
+
+The [exact fixtures](../../tests/test_projected_band_matching.py)
+check dependent Pauli expansions and the exceptional Fourier spectra.
+The component controls a band that really restricts to a Pauli
+stabilizer code. It supplies no such restriction for a non-Pauli
+intermediate code and does not turn a general dependent phase polynomial
+into a native band. That remaining distinction is essential in the
+[three-layer continuation](THREE_LAYER_NATIVE_STRUCTURE.md).
