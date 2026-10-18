@@ -543,8 +543,13 @@ E_X=H_tE_ZH_t,\qquad A=H_tS_t^\dagger H_t,\qquad K=S_tA,
 On the clean-zero sector let
 
 ```math
-b=(0,x_1,x_2,x_3,x_4,x_1+x_2+x_3+x_4),\qquad
-p_0=\sum_i b_i\quad\text{as an integer},\qquad
+b=(0,x_1,x_2,x_3,x_4,x_1+x_2+x_3+x_4).
+```
+
+Define the integer sum and its quadratic half-parity by
+
+```math
+p_0=\sum_i b_i,\qquad
 q(x)=p_0/2\pmod2=\sum_i x_i+\sum_{i\lt j}x_ix_j.
 ```
 
