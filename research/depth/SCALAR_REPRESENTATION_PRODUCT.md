@@ -105,9 +105,9 @@ A_x=U(X_z^x\otimes I)U^\dagger=X_z^x\otimes C_x,
 ```
 
 ```math
+U_\gamma=(I\otimes\gamma_0)U,\qquad
 B_x=(I\otimes\gamma_0)A_x(I\otimes\gamma_0)
-   =[(I\otimes\gamma_0)U](X_z^x\otimes I)
-      [(I\otimes\gamma_0)U]^\dagger.                     \qquad(5)
+   =U_\gamma(X_z^x\otimes I)U_\gamma^\dagger.             \qquad(5)
 ```
 
 Thus both A and B are fixed-unitary conjugates of the same canonical
