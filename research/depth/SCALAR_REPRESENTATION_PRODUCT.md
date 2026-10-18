@@ -427,7 +427,47 @@ every control and inverse, and meet the T-count, Clifford-count, depth
 and simultaneous-width bounds together. No lower bound here excludes
 non-Clifford carriers, different source structures, or general queries.
 
-## 6. Consequence for the general depth question
+## 6. Whole-word fusion removes carrier motion but leaves the table bit
+
+The source lower bound in Section 5 cannot be transferred to an arbitrary
+resynthesis of the completed word. Indeed, the selector Pauli factors
+cancel exactly, and (6) reduces to
+
+```math
+\bigl(C_x\gamma_0C_x^\dagger\gamma_0\bigr)^2
+ =(\gamma_x\gamma_0)^2=(-1)^{f(x)}I.
+```
+
+Since $`\gamma_0=X_0`$, only the Z_0 coefficient of gamma_x
+affects this commutator. That coefficient is exactly f(x), including
+x equal to zero because f(0)=0. The selected X factor and every other
+Z factor commute with gamma_0 and disappear from the completed phase.
+Thus fusion can legitimately eliminate the unused carrier motion; it
+leaves the task of loading f(x) into the surviving probe coefficient.
+Treating that coefficient as already available would omit the query.
+
+For example, splitting the address as x=(u,v) expresses the table as
+
+```math
+f(x)=e_u^{\mathsf T}D e_v.
+```
+
+The retained native way to supply those one-hot coordinates is precisely
+the [R91 dirty-indicator construction](PARALLEL_BILINEAR_WORD_QUERY.md).
+Its exact returned scalar implementation, with both queries charged,
+has $`O(\sqrt Q)`$ T gates, G=O(Q), and
+$`O(\log_2(a+2))`$ T-depth at dirty width of order Q. The source
+and whole-word count bounds are therefore consistent. The proposed
+algebraic fusion alone does not replace the logarithmic address step.
+
+A constructive improvement needs an explicit native probe-transport or
+table-bit loading identity that avoids that step while retaining the
+simultaneous count, elementary Clifford and dirty-width envelope. No such
+replacement was obtained in this attempt. This diagnoses the candidate;
+it is not a lower bound against a different fused synthesis, and it adds
+no circuit, uncharged source, approximation or workspace assumption.
+
+## 7. Consequence for the general depth question
 
 A scalar obtained by commuting a returned XOR query with a fixed probe
 can indeed be written as a bounded product of Pauli representations.
@@ -436,10 +476,11 @@ information: (6) realizes every truth table within precisely that
 abstract class. A successful invariant must use more than factor count,
 even with literal gauges and exact full return.
 
-The next question is whether the **shared native prefix structure** of
-the representations obtained from a depth-d circuit imposes a relation
-that the independently supplied, growing-cost sources in (5) do not
-satisfy. This counterexample does not give a five-layer realization,
+The [native-defect theorem](READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+now uses the shared prefix structure to bound five-layer read-only XOR
+degree. A depth-dependent recurrence remains the next invariant question;
+the independently supplied, growing-cost sources in (5) cannot replace
+that native structure. This counterexample does not give a five-layer realization,
 does not improve R96, and does not change the scoped R97 obstruction.
 
 The [bounded checks](../../tests/test_scalar_representation_product.py)

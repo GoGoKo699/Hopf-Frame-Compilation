@@ -300,7 +300,7 @@ target), the [baseline-word obstruction](depth/BASELINE_WORD_OBSTRUCTION.md),
 the [four-factor scalar construction](depth/SCALAR_REPRESENTATION_PRODUCT.md),
 and the [robust diagonal-echo bound](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md).
 Its proposed span-preserving continuation is now resolved by the
-[current round](depth/SPAN_PRESERVING_SESSION_RESULT.md):
+[span-preserving round](depth/SPAN_PRESERVING_SESSION_RESULT.md):
 [Section 5.4](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
 gives degree at most 112 below error $`\sqrt2/24`$, allowing axis mixing,
 non-Pauli comparisons and a non-Clifford middle. Intrinsic augmentation
@@ -313,9 +313,17 @@ source. Whole-word synthesis remains outside this source-call bound.
 A further [shared-prefix invariant](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
 gives faithful degree-four actual-group features without span preservation,
 below error $`\sqrt2/40`$. With span preservation it sharpens the output
-bound to 21 at that smaller radius. The next lower-bound question is target extraction
-relative to the outer native baseline, which may lie outside the actual group. General five-layer queries and optimal complete-frame
-depth remain open.
+bound to 21 at that smaller radius. The [current native-defect round](depth/NATIVE_DEFECT_SESSION_RESULT.md)
+resolves the missing target extraction: [Section 5.6](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+proves the general zero-clean read-only five-layer degree bound **14**
+(**11** for an invisible target shear) below $`\sqrt2/24`$, with no extra
+comparison hypothesis. The defect's native Pauli pullback permits one-band
+matching and bounded-degree signed tableau transport. This supersedes the
+span-preserving degree bounds but preserves their structural proofs.
+The next question is a native degree-versus-depth recurrence, beginning with
+the six-layer Clifford defect whose three-band conjugator need not have
+Clifford intermediate stages. One-clean/address-mixing lower bounds and
+optimal complete-frame depth remain open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

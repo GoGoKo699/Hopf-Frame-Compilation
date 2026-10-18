@@ -1,40 +1,30 @@
-# Five-layer reduction and conditional degree bounds
+# Five-layer read-only rigidity and native defects
 
 [Current depth frontier](../../docs/OPEN_PROBLEM.md) ·
 [Three- and four-layer proof](READ_ONLY_THREE_LAYER_RIGIDITY.md) ·
 [Read-only Clifford normal form](READ_ONLY_TWO_LAYER_RIGIDITY.md)
 
-A five-layer read-only query admits a useful reformulation: its target
-comparison can remain Clifford-valued, while a two-layer Pauli image
-acts by conjugation on that comparison family. The latter conjugation
-need not preserve the full Pauli group. Shared native prefixes nevertheless
-give bounded-degree intrinsic comparison features. The remaining general
-obstacle is extracting the Boolean target relative to its outer native
-baseline; no closure of the Clifford hierarchy is assumed.
+A zero-clean read-only XOR query with at most five physical T layers has
+Boolean degree at most **14** at full operator error below $`\sqrt2/24`$,
+independently of dirty width. [Section 5.6](#56-native-defects-a-general-five-layer-degree-bound)
+proves this without an extra comparison or middle-layer hypothesis; an
+invisible outer target shear improves the bound to **11**. The ordered
+comparison defect has a native Pauli pullback. One-band axis matching
+then bounds its tableau degree and detects the target even when the outer
+baseline lies outside the actual comparison group. No Clifford-hierarchy
+closure is assumed. These constants are conservative, not sharpness or
+synthesis-sufficiency claims.
 
-This note proves a **conditional** five-layer degree bound. If the
-specified middle two-layer Pauli representation is Clifford-valued,
-then the Boolean XOR output has degree at most seven, independently of
-dirty width. A visible outer target shear improves this to degree at
-most four. The condition is additional; full workspace return does not
-supply it. Neither bound is claimed sharp or sufficient for synthesis.
-A separate subcase needs no Clifford-valued middle: if the comparison K
-is Pauli-valued, degree is at most two at error below $`\sqrt2/12`$.
-Native peeling freezes that subgroup action exactly projectively;
-independent inner axes then exclude cubic degree. No exact normalizer
-is assumed for a general approximate query. A further native subcase, where
-K permutes the outer active axes, has a conservative degree bound of 244
-(or 41 for an invisible target shear). It allows both non-Pauli K and
-non-Clifford B; its extra hypothesis remains explicit.
-The weaker condition that K preserves the outer axis **span** now also has
-a finite degree bound: **112**, at the smaller error radius
-$`\eta\lt\sqrt2/24`$. Section 5.4 constructs intrinsic group-algebra
-features from the native comparison subgroup. The earlier stronger bounds
-and the larger-radius axis-normalizer theorem remain available under their
-own hypotheses. Section 5.5 proves faithful degree-four intrinsic comparison
-features without a span hypothesis below $`\sqrt2/40`$. Combined with span
-preservation, these improve the output bound to **21** at that smaller radius.
-Target extraction without span preservation remains open.
+Earlier subcases retain useful stronger bounds or larger error radii.
+Below $`\sqrt2/12`$, a Clifford-valued middle gives degree seven (four
+for a visible shear), a Pauli-valued comparison gives degree two, and an
+individual-axis-permuting comparison gives degree 244 (41 for an invisible
+shear). Sections 5.4–5.5 retain the span-preserving augmentation proof
+and the general shared-prefix group invariant. Their degree-112 and
+degree-21 span bounds are superseded by section 5.6 at their respective
+error radii. The native constructions and invariants remain useful proof
+components. Arbitrary depth, initialized work and address mixing require
+further arguments.
 
 ## 1. Native contract and an exact one-band reduction
 
@@ -565,8 +555,8 @@ as the retained four-layer bound. It adds no gate or workspace, assumes
 no intermediate work return, and retains arbitrary output, dirty and
 reference inputs, leakage and the actual inverse in the original norm.
 It rounds a specified conjugation action on the generated Pauli subgroup;
-it does not round B itself to a Clifford. Non-Pauli K still leaves the
-general five-layer problem open.
+it does not round B itself to a Clifford. Non-Pauli K lies outside this
+subcase; section 5.6 supplies the general five-layer degree bound.
 
 ## 5.2. An outer-axis-normalizer comparison: a finite degree bound
 
@@ -1117,7 +1107,8 @@ nilpotence mechanism, the distinction between subgroup and ambient
 augmentation filtrations, a nonabelian finite group and the degree threshold.
 These checks support the analytic proof and do not extrapolate from finite
 width. General comparisons need not preserve $`\mathcal L_D`$;
-the general five-layer and complete-frame depth questions remain open.
+section 5.6 resolves their degree bound by a different native invariant.
+Optimal complete-frame depth remains open.
 
 ### 5.5 Shared-prefix comparisons: a robust quadratic group map
 
@@ -1332,6 +1323,239 @@ checks the native pullback, noncommutative group law, ordered defects,
 robust word lengths and faithful intrinsic features. No general Boolean
 degree bound or complete-frame improvement is claimed here.
 
+### 5.6 Native defects: a general five-layer degree bound
+
+The missing target detector can be obtained directly from the native
+**ordered defect**, without extending the actual comparison group to an
+independently chosen baseline group.
+
+**General five-layer theorem.** In the native zero-clean, read-only setting
+of section 1, if
+
+```math
+\eta\lt\frac{\sqrt2}{24},
+```
+
+then $`\deg f\le14`$, independently of dirty width. If the outer target
+shear is invisible, meaning $`E=0`$ in (7), then $`\deg f\le11`$.
+No extra Pauli-comparison, Clifford-middle, axis-permutation or
+axis-span-preservation hypothesis is imposed. The constants are
+conservative, and no sharpness or synthesis-sufficiency claim is made.
+
+This is a fixed-depth obstruction within the stated native query model.
+It is not yet a uniform law for arbitrary depth, an address-mixing lower
+bound, an unrestricted one-clean obstruction, or a dimension-growing
+complete-frame depth lower bound.
+
+#### A Pauli pullback of the actual ordered defect
+
+Make the same fixed analytical coordinate change by $`C_4(0)^\dagger`$
+for **every** comparison, baseline and target. Drop bars for the changed
+operators. Thus $`D=D_4`$ is physical and the common prefix in (42) becomes
+
+```math
+\mathcal F'=DC_3(0)D_3,
+\qquad \widehat K_x=\mathcal F'H_x\mathcal F'^\dagger.
+```
+
+All norms and actual inverse identities are unchanged. The native
+symplectic degree-two and fixed-probe sign degree-six baseline bounds also
+survive this fixed coordinate change: any extra fixed-Clifford sign is
+cubic on a label of degree at most two.
+
+Define, with the actual inverses,
+
+```math
+\begin{aligned}
+Z(x,y)&=K_{x+y}K_y^{-1}K_x^{-1},\\
+\widehat Z(x,y)&=\widehat K_{x+y}\widehat K_y^{-1}
+                         \widehat K_x^{-1}.
+\end{aligned}                                             \qquad(46)
+```
+
+Three uses of (3) give $`\|Z-\widehat Z\|\le6\eta`$ in full operator
+norm. The exact native calculation (43), which does not require the
+smaller-error freezing theorem of section 5.5, gives a Pauli pullback.
+Write $`S_Y(x)=I+N(x)`$ and let $`p_2(y)`$ be the binary label of
+$`P_2(y)`$. Both N and $`p_2`$ are linear in their arguments. The
+commutator label is
+
+```math
+p(x,y)=N(x)p_2(y).                                       \qquad(47)
+```
+
+It is bilinear, hence linear in x for each fixed y. Retaining the actual
+commutator scalar in $`\omega(x,y)`$, the native defect is
+
+```math
+\begin{aligned}
+\widehat Z(x,y)&=\omega(x,y)DA(p(x,y))D^\dagger,\\
+A(p)&=C_3(0)D_3\tau(p)D_3^\dagger C_3(0)^\dagger.
+\end{aligned}                                             \qquad(48)
+```
+
+For **every** Pauli label p, A(p) is Clifford: its inner passage begins
+with a Pauli and contains only one physical T layer. This is precisely
+what distinguishes this argument from the failed inference that an
+arbitrary intermediate $`D^\dagger KD`$ is Clifford.
+
+#### Matching freezes the defect and supplies its native tableau
+
+Right-multiply the norm comparison by D and retain the scalar in (48):
+
+```math
+\|DA(p(x,y))-\omega(x,y)^{-1}Z(x,y)D\|
+ \le6\eta\lt\frac{\sqrt2}{4}.                           \qquad(49)
+```
+
+Both A(p) and the actual Z are Clifford up to scalar. The
+[robust one-band matching theorem](ONE_BAND_AXIS_MATCHING.md)
+therefore forces A(p(x,y)) to permute the individual active binary axes
+of D, allowing signs. Its converse makes $`DA(p)D^\dagger`$ exactly
+Clifford up to scalar. Clifford separation then gives
+
+```math
+Z(x,y)\doteq DA(p(x,y))D^\dagger,
+\qquad K_{x+y}=Z(x,y)K_xK_y.                            \qquad(50)
+```
+
+The second equality is the literal defining identity (46); only the
+first uses projective notation. The residual scalar does not change
+conjugation signs of Hermitian Pauli probes. No approximate arbitrary
+normalizer is rounded, and no accumulated error depends on work width.
+
+Fix y. The family p(x,y) is linear in x, so A(p) has symplectic entries
+of degree at most one and signs on fixed probes of degree at most three.
+Apply the native axis-normalizer formula (26): its permutation entries
+have degree at most one, its axis signs at most three, and its correcting
+S-layer activations $`\delta_j(x)`$ therefore have degree at most four.
+Consequently
+
+```math
+\deg_x S_Z(x,y)\le5.                                    \qquad(51)
+```
+
+Here and below a matrix degree means the largest degree of an entry.
+The correcting S or S-dagger rotations act on distinct physical D wires;
+their orientations are fixed by D.
+
+A moving-probe sign bound will also be needed. Suppose the input Pauli
+label r(x) has degree at most two. Compute its image through
+$`Z\doteq S_\delta A(p)`$ in the fixed coordinates already chosen:
+
+| Passage | Sign degree | Outgoing label degree |
+|---|---:|---:|
+| Fixed $`C_3(0)^\dagger`$ | 6 | 2 |
+| Native $`D_3\tau(p)D_3^\dagger`$ | 5 | 3 |
+| Fixed $`C_3(0)`$ | 9 | 3 |
+| Physical correcting $`S_\delta`$ | 10 | 7 |
+
+The first and third rows use the fixed-Clifford cubic sign lemma. For
+the second, the local family label $`(u,w)`$ is linear and the incoming
+probe $`(a,b)`$ has degree at most two. Formula (13) has degree at most
+five, and its output label has degree at most three. In the last row,
+the sign is $`\delta ab`$ or $`\delta a(1+b)`$, of degree at most
+$`4+3+3=10`$. There is no final fixed $`C_4`$ in this table: it was
+removed once, for the entire argument, by the initial analytical
+coordinate change. Adding the signs proves
+
+```math
+\deg_x\kappa_{Z(x,y)}(r(x))\le10
+\quad\text{when }\deg r\le2.                           \qquad(52)
+```
+
+This calculation retains the literal signs of the Hermitian Pauli
+images; it does not identify a signed Pauli only projectively.
+
+#### Visible target: degree at most fourteen
+
+Assume $`E\ne0`$. The fixed-coordinate version of (7) still reads
+
+```math
+S_K(x)=(I+H(x))(I+L(x)+E g(x)).
+```
+
+The fixed linear extractor from section 3 is valid in these coordinates.
+Indeed, for a nonzero column v of E, every $`H(x)v`$ belongs to the
+native axis span $`\mathcal L_D`$, on which every H vanishes. If v
+belongs to that span, all $`H(x)v`$ vanish. Otherwise a linear
+functional annihilating that span can take value one on v. Thus a fixed
+linear functional on the corresponding matrix column extracts g up to
+a polynomial of degree at most two.
+
+For fixed y, (50) and (51) express $`S_K(x+y)`$ as a degree-five
+matrix in x times $`S_K(x)`$ times a constant matrix. Replace g(x)
+by a fresh formal bit t in the native expression for $`S_K(x)`$;
+its total degree is at most two. The product therefore has total degree
+at most seven in x,t. Applying the fixed extractor and adding its
+quadratic correction at x+y gives
+
+```math
+g(x+y)\in\mathcal P_7+g\mathcal P_6
+\quad\text{for every fixed }y.                          \qquad(53)
+```
+
+If $`d=\deg g`$, restrict to the d variables of a highest-degree
+monomial. Its translates span all $`2^d`$ Boolean functions, whereas
+the containing space in (53) has dimension at most
+
+```math
+\sum_{j=0}^{7}\binom dj+\sum_{j=0}^{6}\binom dj,
+```
+
+strictly less than $`2^d`$ when $`d\ge15`$. Hence
+$`\deg g\le14`$. The explicit fixed-y formula supplies the same
+containing space for every translate; no additional closed feature-space
+assumption is needed.
+
+#### Invisible target: degree at most eleven
+
+If $`E=0`$, the fixed target Q is a nonidentity Pauli up to scalar,
+with binary label v. Equations (11)--(14) remain valid in the fixed
+coordinates: $`S_K(x)`$ is independent of g and has degree at most
+two, while for every fixed probe q,
+
+```math
+\kappa_{K_x}(q)=p_q(x)+\langle v,q\rangle g(x),
+\qquad\deg p_q\le6.
+```
+
+Choose q with $`\langle v,q\rangle=1`$. In (50), the fixed
+$`K_y`$ first sends q to $`q_y=S_K(y)q`$. Then K_x sends it to
+$`r(x)=S_K(x)q_y`$, a degree-two label independent of g. The last
+Z sign is bounded by (52). Comparing with the sign on the left gives
+
+```math
+g(x+y)=\epsilon_y g(x)+h_y(x),\qquad
+\epsilon_y=\langle v,q_y\rangle,\qquad\deg h_y\le10.
+                                                               \qquad(54)
+```
+
+If g has degree greater than ten, every $`\epsilon_y`$ must equal
+one, because translation preserves degree. Thus all first derivatives
+have degree at most ten. A monomial of degree at least twelve would
+have a coordinate derivative of degree at least eleven, a contradiction.
+Therefore $`\deg g\le11`$; lower-degree g already satisfies this
+bound. Together with the visible branch this proves the theorem.
+
+The proof introduces no T gate, elementary Clifford, source, control,
+inverse or workspace. T-count, elementary Clifford count and finite dirty
+width remain unrestricted within this necessary lower-bound statement.
+The original error includes every logical column, literal target phase,
+arbitrary output, dirty and reference input, leakage, actual inverses and
+complete work return. The analytical coordinate change is not a free
+native compiler operation. The theorem establishes a width-independent
+Boolean degree bound for five layers; the sharp degree remains open.
+It does not establish optimal general depth for the complete differential frame.
+
+The seven [bounded checks](../../tests/test_five_layer_native_defect.py)
+verify the bilinear native pullback and actual inverse order, a Clifford
+defect with a non-Clifford middle, the one-band matching gap, signed axis
+permutation with opposite T orientations, literal signs on quadratic
+moving probes, and the translation-space threshold. These finite checks
+support the native identities and degree accounting; the proof supplies
+the arbitrary-width conclusion.
+
 ## 6. Full return does not force a Clifford middle
 
 A literal native affine query already falsifies that implication. On
@@ -1393,7 +1617,7 @@ resource saving; it proves that full return alone cannot justify the
 extra hypothesis in section 2. Its selected middle representation also
 changes under resynthesis.
 
-## 7. The missing general invariant and scope
+## 7. The remaining general-depth invariant and scope
 
 The native reduction retains the actual middle action on a particular
 Clifford comparison group. Sections 5.1 and 5.2 resolve Pauli comparisons
@@ -1408,15 +1632,24 @@ below error $`\sqrt2/40`$. Unitary conjugation still need not act with
 bounded Boolean degree on ordinary Clifford tableaus, and faithful intrinsic
 features do not make every operator observable a low-degree feature functional.
 
-The remaining step is to detect g in $`K_x=K_x^0Q^{g(x)}`$ with bounded-degree
-native baseline data. The baseline and Q need not lie in the actual group.
-An arbitrary ambient group generated by independent one-T baselines can have
-odd order, so the span-preserving proof's ambient filtration cannot simply be
-assumed. A general detector or compatibility identity for the actual shared
-sources is required before a five-layer Boolean degree theorem, and much more
-before a growing-depth recurrence.
+Section 5.6 resolves target extraction by bounding the native ordered defect
+itself. Its first T-band passage starts with a Pauli, so the intermediate
+operator is provably Clifford and one-band matching applies to the second.
+The resulting general degree bound is 14 (11 for an invisible target shear)
+below $`\sqrt2/24`$. The proof never puts the outer baseline and target into
+the actual group. Indeed, the [returned affine fixture](BASELINE_WORD_OBSTRUCTION.md)
+shows odd order in that larger ambient group even for a fully returned query.
+An abstract group invariant alone does not supply the tableau bound.
 
-The conditional theorem retains every logical column and literal target
+The next issue is whether native defects admit a bounded-degree recurrence
+as the number of layers grows, at an error radius independent of dirty width.
+The five-layer Pauli pullback is a special structural input, not an induction
+hypothesis already proved at greater depth. The
+[current checkpoint](NATIVE_DEFECT_SESSION_RESULT.md) specifies that gap and
+the separate constructive cost. Address mixing and initialized work remain
+additional obstacles to a general complete-frame lower bound.
+
+The theorem retains every logical column and literal target
 phase, arbitrary output and dirty inputs with external references, the
 actual inverse, leakage and complete workspace return. It does not
 provide a new native query compiler, a smaller complete-frame upper
@@ -1424,12 +1657,67 @@ bound, unrestricted one-clean rigidity, or a dimension-growing general
 frame lower bound. R96, selected Result D R79, and the conditional status
 of R98 are unchanged.
 
+### 7.1 The six-layer native boundary
+
+For the next read-only circuit $`V=C_6D_6\cdots C_0`$, peel the outer
+one-band image of $`P_4(x)`$ as in section 1. The three remaining exact
+Pauli-image families B, J and O have the common-prefix factorization
+
+```math
+\begin{aligned}
+S&=C_3(0)D_3,\\
+E_{\rm in}&=C_2(0)D_2,\\
+F&=C_5(0)D_5C_4(0)D_4S,\\
+L_x&=(S^\dagger P_3(x)S)\,P_2(x)\,
+                  (E_{\rm in}P_1(x)E_{\rm in}^\dagger),\\
+B_xJ_xO_x&=F L_x F^\dagger.
+\end{aligned}
+```
+
+This is an exact native identity with actual inverses, before replacing
+any fibre by its target. Each factor of L is Clifford: its outer factors
+are one-band Pauli images, with potentially different native axes.
+Consequently the ordered defect of L is Clifford, but it need not be
+Pauli. For example, on one arbitrary work wire let
+
+```math
+A=T^\dagger XT,\qquad Y=HTXT^\dagger H,\qquad
+L_{(u,v)}=A^uY^v.
+```
+
+For $`x=(0,1),y=(1,0)`$ the ordered defect is AYAY. Its symplectic
+matrix in X,Z coordinates is
+
+```math
+\begin{pmatrix}0&1\\1&1\end{pmatrix},
+```
+
+of order three, so it is not Pauli. The displayed controlled inner family
+uses four T gates, four elementary Cliffords and four T layers, with zero
+clean and no additional dirty helpers; its one work wire is arbitrary.
+Its actual inverse has the same charges. At the fixed branch used for the
+defect, AYAY is itself Clifford; the bounded fixture supplies a literal
+12-elementary-Clifford, zero-T baseline, without an optimality claim.
+This is an inner-family diagnostic, **not** a returned six-layer query,
+a resource improvement or a lower bound for every compiler.
+
+The three-band prefix F can send this Clifford defect through non-Clifford
+intermediates. Full return could impose additional compatibility, but that
+has not been proved. The precise missing step is a width-independent bound
+on the signed tableau of the returned defect after this specified prefix,
+or a replacement invariant that detects the target without assuming those
+intermediates are Clifford. Any depth recurrence must also track its error
+radius. The [boundary checks](../../tests/test_six_layer_defect_boundary.py)
+verify the exact factorization and non-Pauli example.
+
+### 7.2 Bounded evidence
+
 The four bounded [five-layer checks](../../tests/test_read_only_five_layer_reduction.py)
 verify the literal six-band normal form and actual inverse, the native
 returned-query counterexample and its ledger, the full-degree translation
 rank against the dimension bound, and the Hermitian Clifford sign formulas.
 These finite identity checks support the analytic proof; they do not
-establish an unrestricted degree law by enumeration.
+establish a degree law by enumeration.
 
 The five [Pauli-comparison checks](../../tests/test_pauli_comparison_cubic.py)
 verify native-axis label cancellation, the quadratic-baseline cube product,
@@ -1437,4 +1725,8 @@ the peeled Clifford comparison, a non-Clifford middle's exact partial
 Pauli action, and cubic contraction rank. The cube-error fixture also
 retains the weaker direct product estimate from the initial derivation;
 the theorem uses the stronger native separation step. These finite checks
-do not enumerate or prove the unrestricted five-layer case.
+do not enumerate or prove the general five-layer case.
+
+The [native-defect checks](../../tests/test_five_layer_native_defect.py)
+exercise the Pauli pullback, matching, signed moving-probe calculation and
+translation-dimension argument. The width-independent theorem is analytic.
