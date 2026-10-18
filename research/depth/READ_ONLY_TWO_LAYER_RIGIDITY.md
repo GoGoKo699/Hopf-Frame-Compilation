@@ -403,7 +403,9 @@ The bound $`\deg f\le2c`$ can also be read as a clean-width
 requirement within this two-layer interface. It supplies no
 dimension-growing T-depth bound at fixed c: the argument controls
 exactly three Pauli-control bands and has not been extended to an
-arbitrary number of T layers. Moreover, it does not apply when address
+arbitrary number of T layers. The [subsequent three-layer theorem](READ_ONLY_THREE_LAYER_RIGIDITY.md#6-one-clean-qubit-degree-at-most-four)
+separately proves degree at most four with one clean qubit. Neither
+argument applies when address
 wires participate in physical T layers or are restored only at the
 end. The unrestricted two-layer example in section 3 remains a decisive
 test against such a scope enlargement.
@@ -432,3 +434,212 @@ unitary, the physical T-layer flat Pauli expansion, and the unrestricted
 two-layer dirty Toffoli on all sixteen occupied inputs. The latter test
 also records its physical T gates on address wires, the precise reason
 it lies outside this chapter's hypotheses.
+
+<a id="5-exact-one-clean-queries-are-affine"></a>
+
+## 5. Exact literal XOR queries with one clean qubit are affine
+
+The initialized theorem in section 4 has an additional exact-case
+restriction coming from the physical T axes and literal phase.
+
+**Theorem (one clean, two T layers, exact).** In the native
+preserved-address interface of section 4, suppose one initialized
+clean qubit returns exactly and
+
+```math
+VJ=J(Q_f\otimes I_{\rm dirty}).
+```
+
+Then f is affine. The conclusion permits arbitrary finite dirty width,
+T-count and elementary Clifford count, and includes all occupied inputs
+and external references. It also holds componentwise for an XOR word
+query. This strengthening is **exact only**: the argument below does
+not establish a positive approximation radius. The robust degree and
+polar-rank conditions of section 4 remain the approximate conclusions.
+
+### 5.1 Phase-retaining normal form and a two-address witness
+
+Use the three-band form from section 4,
+
+```math
+U_x=\lambda(x)P(x)A(x)WR(x),\qquad
+A(x)=V_*S(x)V_*^\dagger,\qquad V_*=CD,
+```
+
+where D is one physical T layer on work, C is a fixed work Clifford,
+and P,S,R have linear Pauli labels. Choose ordered Hermitian Pauli
+generators for each address coordinate in every family. The residual
+scalar is a diagonal address Clifford. On a two-dimensional linear
+address restriction, this gives
+
+```math
+U_{ab}=\lambda_{ab}P_a^aP_b^b A_a^aA_b^b W R_a^aR_b^b,
+\quad \lambda_{00}=1,\quad
+\lambda_{10},\lambda_{01}\in\{1,i,-1,-i\},\quad
+\frac{\lambda_{11}}{\lambda_{10}\lambda_{01}}\in\{1,-1\}.
+                                                               \qquad(18)
+```
+
+Each A generator is a Hermitian involution. Its conjugation origin
+also makes it Clifford: a physical T layer conjugates a work Pauli
+to a tensor product of one-qubit Clifford operators, followed here
+by a fixed Clifford conjugation. No closure assertion about products
+of arbitrary Clifford-hierarchy levels is used.
+
+Write $`\alpha=s_P`$ and $`\beta=s_R`$ for the endpoint
+clean-flip syndrome functionals. The exact version of section 4's
+slope argument gives
+$`f(x)=\alpha(x)m(x)+\ell(x)`$ for linear m and affine ell;
+if alpha vanishes, f is affine. Apply that same general three-band
+argument to the actual inverse using
+
+```math
+U_x^\dagger
+=\overline{\lambda(x)}R(x)^\dagger
+  \bigl(W^\dagger A(x)^\dagger W\bigr)W^\dagger P(x)^\dagger.
+```
+
+The new conjugator may be unrestricted; section 4 explicitly permits
+that in its three-band invariant. The inverse returns the initialized
+sector and has endpoint syndromes beta and alpha. Thus beta is also
+a linear factor of the quadratic part, and beta zero again forces
+affineness.
+
+If alpha and beta are independent, the only possible nonzero quadratic
+part is their product, modulo affine terms. If they coincide, a
+nonzero quadratic part is $`\alpha m`$ with m independent of
+alpha. Remove the affine target XOR by a charged Clifford of T-depth
+zero; it does not change either endpoint clean syndrome. A hypothetical
+nonaffine query consequently has a two-address witness with occupied
+actions
+
+```math
+U_{00}=U_{10}=U_{01}=I,\qquad U_{11}=X_t,
+```
+
+and either $`(\alpha,\beta)=(a,b)`$ or $`(a,a)`$.
+The restriction substitutes $`x=av+bw`$ directly in the Clifford
+block normal form on the **same work register**; omitted address
+wires are discarded from this family description, not made available
+as extra initialized helpers.
+These are occupied-sector equalities, not assertions on the clean
+complement. Exact unitarity gives
+$`W=\mathrm{diag}(I,K)`$ in the clean sectors for some
+arbitrary unitary K. For a word query, the same restriction instead
+gives a nonidentity Hermitian logical Pauli at 11, and the following
+argument is unchanged.
+
+### 5.2 Independent endpoint clean syndromes
+
+When $`\alpha=a,\beta=b`$, write the endpoint generators as
+
+```math
+P_a=\begin{pmatrix}0&p^\dagger\\p&0\end{pmatrix},\quad
+P_b=\mathrm{diag}(p_0,p_1),\quad
+R_a=\mathrm{diag}(r_0,r_1),\quad
+R_b=\begin{pmatrix}0&r^\dagger\\r&0\end{pmatrix}.
+```
+
+Here p,r are phases times logical Paulis, while p_0,r_0 are Hermitian
+logical Paulis and $`p_1=\pm p_0`$, $`r_1=\pm r_0`$.
+The occupied equalities at 10 and 01 force A_a,A_b to exchange the
+two clean sectors. A unitary taking one of these half-dimensional
+sectors onto the other exchanges both. Let their lower-left blocks
+be F,G. The same two occupied equalities give
+
+```math
+F=\lambda_{10}^{-1}p r_0,\qquad
+G^\dagger K r=\lambda_{01}^{-1}p_0.
+```
+
+The occupied 11 block is therefore
+
+```math
+\lambda_{11}p^\dagger p_1F G^\dagger K r_1r
+=\pm\frac{\lambda_{11}}{\lambda_{10}\lambda_{01}}
+       p_0r_0p_0r_0.                                  \qquad(19)
+```
+
+This uses the physical-Pauli relations
+$`r_1r=\pm r r_0`$ and $`p^\dagger p_1p=\pm p_0`$.
+The result is scalar, contradicting the nonidentity target at 11.
+No one-T-layer property is needed in this case; the arbitrary
+complement K has canceled explicitly.
+
+### 5.3 Common endpoint syndrome and the unavoidable phase
+
+When $`\alpha=\beta=a`$, use
+
+```math
+P_a=\begin{pmatrix}0&p^\dagger\\p&0\end{pmatrix},\quad
+R_a=\begin{pmatrix}0&r^\dagger\\r&0\end{pmatrix},\quad
+P_b=\mathrm{diag}(p_0,p_1),\quad
+R_b=\mathrm{diag}(r_0,r_1).
+```
+
+The occupied equalities at 10 and 01 now force both A generators to
+preserve the clean sectors. Write
+$`A_a=\mathrm{diag}(A_0,A_1)`$ and
+$`A_b=\mathrm{diag}(B_0,B_1)`$. They give
+
+```math
+B_0=\lambda_{01}^{-1}p_0r_0,\qquad
+K=\lambda_{10}^{-1}A_1 p r^\dagger.
+```
+
+The first block B_0 is a Hermitian logical Pauli. Since A_b is
+Clifford and preserves the clean sectors, the address-preserving
+Clifford normal form of section 1, with the clean bit now its
+mathematical address, implies B_1 is a phase times a Pauli as well.
+Hermiticity of A_b makes B_1 a Hermitian Pauli. This is a proof use
+of the normal form, not permission to assume intermediate clean
+initialization in a compiler.
+
+The A generators commute or anticommute, so
+$`A_1B_1A_1=\pm B_1`$. Eliminating the actual complement K in
+the occupied 11 block gives
+
+```math
+\lambda_{11}p^\dagger p_1A_1B_1K r r_0
+=\pm\frac{\lambda_{11}}{\lambda_{10}\lambda_{01}}
+        p_0B_1B_0p_0.                                 \qquad(20)
+```
+
+All suppressed signs here are real Pauli commutation signs; replacing
+$`\lambda_{01}`$ by its inverse also changes only a real sign
+because $`\lambda_{01}^2=\pm1`$. By (18), the complete scalar
+outside the displayed conjugated product is real. A conditional
+$`i^{ab}`$ phase has not been discarded.
+
+If B_0 and B_1 have the same Pauli label, (20) is scalar. Otherwise
+A_b has exactly four nonzero Pauli expansion terms, proportional to
+
+```math
+I_c\otimes B_0,\quad Z_c\otimes B_0,\quad
+I_c\otimes B_1,\quad Z_c\otimes B_1.
+```
+
+These four terms cannot all commute. Indeed conjugating a Pauli by
+one physical T layer with k active anticommuting axes produces exactly
+$`2^k`$ distinct terms, and for every $`k\ge1`$ a pair
+differing on one active axis anticommutes. A subsequent Clifford
+conjugation preserves that relation. Here four terms force k=2.
+If B_0 and B_1 commuted, every pair in the displayed support would
+commute, a contradiction. Thus B_0 and B_1 anticommute.
+
+Their product B_1B_0 is consequently anti-Hermitian. Its conjugate by
+p_0, and either real-sign multiple, remains anti-Hermitian. Equation
+(20) cannot equal the Hermitian target X_t. This excludes the last
+nonaffine case and proves the exact theorem.
+
+The native [three-layer one-clean AND construction](READ_ONLY_THREE_LAYER_RIGIDITY.md#7-native-layer-fixtures-and-the-clean-qubit-distinction)
+therefore has optimal **exact** T-depth within this interface. Its
+two-layer relative-phase candidate illustrates precisely the missing
+conditional phase. This exact conclusion does not improve the stated
+approximation radius or yield a dimension-growing lower bound.
+
+The bounded [phase and block tests](../../tests/test_read_only_two_layer_exact_phase.py)
+check the physical one-T support restriction and a literal abstract
+three-band AND that fails that physical restriction. They keep the
+distinction between a general conjugated Pauli family and an actual
+one-T-layer conjugation explicit.

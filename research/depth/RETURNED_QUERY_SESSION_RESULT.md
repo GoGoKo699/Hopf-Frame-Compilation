@@ -143,6 +143,13 @@ native interference and other representations available.
 
 ## 5. Precise unresolved step and resumption question
 
+**Subsequent resolution:** the
+[three-layer continuation](THREE_LAYER_QUERY_SESSION_RESULT.md) proves
+degree at most four with one clean qubit at error below $`\sqrt2/6`$,
+within precisely the interface asked about below. It also sharpens the
+zero-clean conclusion to affineness. The following question records this
+round's historical handoff; the later checkpoint gives the current one.
+
 The most useful immediate question is whether **three native T layers**
 with preserved address boundaries and one clean qubit can implement
 returned Boolean queries of unbounded degree as dirty width grows.

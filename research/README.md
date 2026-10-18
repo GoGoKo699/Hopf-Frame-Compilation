@@ -258,6 +258,22 @@ termwise tensor splitting, rank-deficient bucket toggles and cyclic
 borrowed-slot substitutes under their respective hypotheses. No improved
 unconditional frame bound or growing native depth lower bound is claimed.
 
+The [three-layer continuation](depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
+answers the next native query question. Its
+[proof home](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) shows that, below
+error $`\sqrt2/6`$, three work-only T layers with preserved address
+boundaries force affine XOR outputs with zero clean qubits and degree at
+most four with one clean qubit, independently of dirty width. A signed
+Pauli orbit controls intermediate clean-code excursions. Exact native
+AND fixtures use four zero-clean layers or three one-clean layers; a
+two-layer candidate retains a non-Clifford branch phase. The
+[exact one-clean two-layer phase argument](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine)
+also forces affineness, making the one-clean three-layer AND depth exactly
+optimal in this interface; no robust affine radius is asserted. The next issue
+is degree growth with the number of layers, while fixed-error robustness
+and arbitrary address mixing remain separate requirements for a general
+frame lower bound. The complete-frame upper frontier is unchanged.
+
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
 the assumptions a new route must change. It separates dimension-growing
