@@ -265,9 +265,25 @@ and AND arity $`a\ge4`$ floor $`2^{-a}`$. Exact nonaffine queries
 must have relative distance at least 1/4 from every affine function.
 The same proof home gives an exact rational-target Galois constraint and
 native counterexamples to its two-clean and C3 extensions. A six-bit
-cubic bent XOR passes the whole scalar alphabet, so an arbitrary-width
-degree theorem still needs a joint invariant. No complete-frame bound
-or selected publication claim changes.
+cubic bent XOR passes the whole scalar alphabet, demonstrating why the
+subsequent degree theorem needs a joint invariant. No complete-frame
+bound or selected publication claim changes.
+
+The [joint diagonal round](depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+then proves the [unrestricted two-layer Boolean degree bound](depth/TWO_LAYER_DIAGONAL_RIGIDITY.md):
+with at most one clean qubit, every exact XOR query has degree at most two,
+and every nonquadratic query has uniform initialized-isometry error floor
+$`\sin(\pi/8)/(2\sqrt2)`$. Arbitrary dirty width and intermediate
+address mixing are allowed. The proof combines full-space diagonal C3
+rigidity, explicit clean removal for a non-Pauli image, and native
+quotient-row cancellation for a Pauli image. It excludes the six-bit
+bent query. A 12-T, two-layer, 44-Clifford one-clean complex diagonal
+counterexample still disproves the blanket occupied-C3 extension; its
+input-dependent phase cannot receive a free correction in the same
+native layers. A paid ten-layer bent-query baseline gives no improved
+upper frontier. The next lower question is an arity- and width-independent
+Boolean degree bound at three unrestricted layers; R98's faster complete
+query remains the parallel constructive target.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

@@ -15,49 +15,52 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: unrestricted two-layer query constraints
+## Current checkpoint: unrestricted two-layer Boolean degree bound
 
-The [current round](research/depth/JOINT_TRANSFER_SESSION_RESULT.md)
-began at verified main `1ac16c4` (PR #182). R96 remains the strongest
+The [current round](research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+began at verified main `3c0fc62` (PR #183). R96 remains the strongest
 unconditional general upper law; R79 remains selected Result D and R97
 remains scoped. The count package is settled under its stated hypotheses.
 The large-width additive depth remains the general destination.
 
-The new [correlated-axis theorem](research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md)
-proves that exact one-clean return at two native T layers confines every
-occupied Pauli-transfer coefficient to a single Clifford-overlap alphabet.
-It permits arbitrary Clifford/address mixing and arbitrary dirty width.
-Combined with R75's clean-return rounding, three-control AND has full
-initialized-isometry error at least $`(3-2\sqrt2)/8`$ at two layers;
-AND on a controls, for $`a\ge4`$, has floor $`2^{-a}`$. Exact
-nonaffine Boolean queries must be at relative distance at least 1/4
-from every affine function. No growing-degree or growing-depth conclusion
-is inferred.
+The new [diagonal and Boolean theorems](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
+prove that every exact native two-layer Boolean XOR query with at most
+one clean qubit has degree at most two. Every nonquadratic query has full
+initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$ at this
+depth, independently of address arity and dirty width, with arbitrary
+intermediate Clifford/address mixing. This excludes the six-bit cubic
+bent query despite its passing the entire earlier scalar alphabet.
 
-The same proof home gives an exact rational-target invariant
-$`V^\dagger\sigma(V)\in\{I,Z_c\}`$, with native signs retained.
-Two clean qubits invalidate it, and rational two-layer unitaries need
-not lie in C3. These scope boundaries have complete native fixtures.
-The full operator contract, literal phases, references, leakage and
-simultaneous resource accounting remain unchanged.
+The proof retains the whole preserved Pauli algebra and the native
+relations in both bands. A non-Pauli clean image permits an explicit
+Clifford removal of initialization; the Pauli branch needs a separate
+signed quotient analysis and native row cancellation. Both branches are
+now covered. Complete operator action, literal phases, references,
+leakage, actual inverses and work return remain mandatory.
 
-The constructive candidates were simplified fairly: sparse inverse
-extraction reproduces R91's bilinear indicators; address Hadamards give
-a quadratic shear whose fixed table phase commutes with it; coherent
-mask correction still contains paid target phases. None improves the
-complete-frame ledger. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-continues to accept completed restored-address queries, including internal
-address changes, with all query counts, inverses and simultaneous pools
-charged. A faster qualifying primitive remains missing.
+A native 12-T, two-layer, 44-Clifford counterexample has one-clean occupied
+diagonal action outside C3. Its input-dependent phase prevents treating
+it as a literal higher-degree XOR. A formal C3 correction can make a
+real quartic sign, but the new native row constraint excludes realizing
+that correction within the same two physical layers and one clean qubit.
+Thus occupied diagonal action alone does not imply C3; literal Boolean
+return supplies an essential additional constraint.
 
-The next concrete lower question is the six-bit cubic bent query
-$`f(x,y)=x\cdot y+x_1x_2x_3`$. Its entire scalar transfer matrix
-passes the new alphabet. Does the correlated native encoding exclude it,
-or can a full one-clean two-layer circuit be constructed? This tests a
-joint invariant beyond marginal coefficients. The parallel upper target
-is a sublogarithmic restored-address arbitrary-table query within R98's
-budgets. Optimal general depth, unrestricted one-clean four-layer rigidity
-and dimension-growing lower bounds remain open. Final manuscript drafting
+The constructive bent-query identity has a paid 40-T, 90-Clifford,
+ten-layer baseline using only arbitrary existing logical wires. It
+provides no faster general query. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+still needs an exact restored-address arbitrary-table primitive with
+all simultaneous count, inverse and workspace budgets.
+
+The next lower question is whether three unrestricted native T layers
+with at most one clean qubit impose a Boolean degree bound independent
+of address arity and dirty width. The argument must preserve correlations
+between the actual bands; the two-layer theorem cannot simply be iterated.
+The parallel upper target remains a faster complete query within R98's
+simultaneous budgets. These are steps toward a growing-depth invariant
+or a better construction; the complete-frame resource frontier is unchanged.
+Optimal general depth, unrestricted one-clean four-layer rigidity and
+dimension-growing lower bounds remain open. Final manuscript drafting
 remains separate.
 
 ## Mandate

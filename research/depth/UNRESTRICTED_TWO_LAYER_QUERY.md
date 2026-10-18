@@ -21,6 +21,15 @@ retain the weaker joint-row argument that led to the correlated-axis
 theorem in Section 4; the later theorem supersedes their exact and
 robust query bounds.
 
+The subsequent [joint diagonal theorem](TWO_LAYER_DIAGONAL_RIGIDITY.md)
+uses the whole preserved Pauli algebra and the actual native quotient
+relations to exclude every nonquadratic two-layer XOR with at most one
+clean qubit. Its uniform full-isometry floor
+$`\sin(\pi/8)/(2\sqrt2)`$ strengthens the scalar query floors below
+and resolves the six-bit bent-query question. A complex occupied diagonal
+non-C3 counterexample remains valid; literal Boolean return is essential.
+The scalar theorem remains a proof component of the stronger result.
+
 ## 1. Model and the joint row constraint
 
 Let S contain all logical inputs and outputs, D contain b arbitrary dirty
@@ -662,12 +671,16 @@ $`a=0`$, proves that every transfer entry has magnitude in
 
 This is an exact boundary certificate, **not** a native two-layer
 construction. Applying the scalar alphabet separately to every entry
-cannot exclude this cubic candidate. The concrete resumption question
-is whether its full XOR permutation admits correlated one-band encoders
-with the same returned clean code, or whether a simultaneous encoder
-invariant excludes it. A resolution must retain physical independence
-and the full occupied action; rationality alone does not imply C3, and
-arbitrary dependent phase-polynomial descent loses native information.
+cannot exclude this cubic candidate. The subsequent
+[joint diagonal theorem](TWO_LAYER_DIAGONAL_RIGIDITY.md) supplies the
+missing correlated invariant and excludes it with at most one clean
+qubit, at uniform full-isometry error below
+$`\sin(\pi/8)/(2\sqrt2)`$. That proof retains physical independence,
+the sole clean-code relation and the full occupied action. Rationality
+alone does not imply C3, and arbitrary dependent phase-polynomial descent
+loses the native information required for the conclusion. The current
+lower question moves to Boolean degree at three unrestricted T layers,
+independently of address arity and dirty width.
 
 The [joint-transfer tests](../../tests/test_joint_transfer_two_layer.py)
 check the coefficient normalization, same-row norm restriction, bounded
