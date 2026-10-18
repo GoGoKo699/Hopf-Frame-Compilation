@@ -36,7 +36,8 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Exact finite one-clean query | The [paid third-band correction](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md#8-paying-the-third-band-an-exact-cubic-xor-query) realizes AND3 with 18 T, three layers, 99 elementary Cliffords, one clean and one dirty helper; its actual inverse has 109 Cliffords after reduction. Depth three is optimal at this allocation, while a 16-T/34-Clifford/six-layer baseline has smaller counts. This does not improve the general frame bound |
 | Exact quadratic queries | The [complete native construction](../research/depth/QUADRATIC_NATIVE_QUERY.md) gives optimal depth two for every nonaffine quadratic XOR with zero clean and one returned arbitrary dirty helper. Polar rank r gives $`2r+4`$ T gates and $`O(m^2+r)`$ elementary Cliffords on m addresses, including coordinate changes and actual inverses. This one-output construction is not a simultaneous arbitrary-table query |
 | Clean-code structural component | [Clifford restriction rigidity](../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md) gives an exact pointwise stabilizer, a literal comparison gap and a common native logical defect space. A correlated encoder counterexample disproves blanket full-space Clifford extension. Unbounded clean pair count occurs for a one-layer target, so it is not an unrestricted hardness parameter |
-| Paid high-degree algebra source | The [balanced HRT construction](../research/depth/BALANCED_ALGEBRA_PERMUTATION.md) and actual inverse have depth $`O(\log r)`$ with $`O(3^r)`$ T-count, elementary Clifford count and returned dirty work, zero clean, on all $`2^r-1`$ coefficient inputs. It improves the fair $`O(r)`$ source baseline; its returned degree-r query still has growing depth and is not a general R98 primitive |
+| Paid high-degree algebra source | The [balanced HRT construction](../research/depth/BALANCED_ALGEBRA_PERMUTATION.md) and actual inverse have depth $`O(\log r)`$, zero clean work and full return. The [fast returned subset-product variant](../research/depth/ALGEBRA_QUERY_EXTRACTION.md#5-a-smaller-count-complete-hrt-source) improves T/G count to $`O(r^2 2^r\log r)`$ and extra dirty width to $`O(r^2 2^r)`$ at a larger depth constant. Its arbitrary-table extraction is now fully paid but still misses R98's count, width and depth requirements |
+| Occupied logical transport | [Full pair transports and paid normalization](../research/depth/OCCUPIED_LOGICAL_TRANSPORT.md) remove quadratic directions and reduce the exact one-clean three-layer question to globally preserved diagonal pair parities. High clean rank and whole-family agreement still do not force full-space Clifford images, even with no pairs; the exact witness has an easy identity target. No uniform one-clean degree theorem or unrestricted hardness claim follows |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
@@ -76,7 +77,7 @@ The growing-arity quartic-sign construction retains an unpaid address
 phase in its larger query conversion. R96 and the complete-frame lower
 frontier are unchanged.
 
-The [current clean-code and algebra revision](../research/depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+The [preceding clean-code and algebra revision](../research/depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
 pays two formerly missing constructive operations: an optimal-depth
 quadratic Boolean query with one dirty helper, and the in-place algebra
 multiplier needed for a balanced HRT source. The proposed quartic-phase
@@ -97,6 +98,18 @@ allocation. The [Boolean rounding corollary](../research/depth/CLEAN_CODE_CLIFFO
 of R74 reduces sufficiently accurate one-clean three-layer Boolean
 approximation to exact occupied action. The unresolved degree bound
 therefore has no separate approximation-closure gap at that radius.
+
+The [current occupied-transport revision](../research/depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
+replaces the failed extension with full operator Pauli transports and a
+paid common normal form. The first remaining lower inference would
+discard sector-dependent Clifford phases or apply one-relation matching
+after conditioning many pair parities; pair-free silent bands and
+non-Pauli unused action also remain. Its constructive branch pays an
+arbitrary-table scalar extraction and compiles fast subset convolution
+with returned dirty masks, improving structured-source counts without
+improving the general query interface. The inverse-degree and
+coefficient-quotient limitations proved there concern specific
+arithmetic representations, not unrestricted native circuits.
 
 The earlier [restored-address revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
 weakens R98's sufficient premise from gatewise read-only access to exact

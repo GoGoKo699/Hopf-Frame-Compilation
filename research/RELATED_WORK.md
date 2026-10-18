@@ -610,3 +610,15 @@ resource contracts described in [Section 16](#16-precision-depth-and-workspace-a
 R73 and R74 do not settle constant-depth rotation synthesis with unbounded
 middle crossing rank or growing clean budgets. These comparisons make no
 priority claim. Optimal depth remains an open problem.
+
+## 30. Ranked subset convolution in a returned-work source
+
+Björklund, Husfeldt, Kaski and Koivisto,
+[*Fourier Meets Möbius: Fast Subset Convolution*](https://arxiv.org/html/cs/0611101v1),
+Sections 2.3–2.4 (STOC 2007), supply the ranked subset-convolution
+factorization. The [local native construction](depth/ALGEBRA_QUERY_EXTRACTION.md)
+pays its linear transforms with arbitrary temporary inputs and cancels
+three dirty masks through a literal CCZ phase word. The HRT permutation
+family keeps its [original attribution](depth/NATIVE_CLIFFORD_TRANSPORT.md#7-third-level-membership-alone-does-not-bound-tableau-degree).
+These component improvements do not replace the general R98 query budget
+or imply optimal full-frame depth.

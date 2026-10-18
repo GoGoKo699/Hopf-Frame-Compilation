@@ -14,8 +14,8 @@ is specified only on a clean-zero sector.
 ## 1. Exact statement and conventions
 
 Let V be diagonal on its entire q-qubit physical space and have native
-T-depth at most three. Then, after one invertible affine change of its
-computational coordinates, its diagonal entries have the form
+T-depth at most three. In its original computational coordinates, its
+diagonal entries have the form
 
 ```math
 V|x\rangle=\omega^{p(x)}|x\rangle,\qquad
@@ -25,7 +25,7 @@ V|x\rangle=\omega^{p(x)}|x\rangle,\qquad
 where p is an integer multilinear polynomial modulo eight of ordinary
 degree at most five. An irrelevant common native scalar can instead be
 kept outside this expression. The assertion is an ordinary degree bound
-in the stated common coordinates, not a diagonal-hierarchy
+in any invertible affine computational coordinates, not a diagonal-hierarchy
 classification or a weighted-degree-five assertion.
 
 Consequently, if V is projectively a Boolean sign operation
@@ -290,7 +290,7 @@ because both V_0 and the peeled factor are diagonal. Products of
 diagonal C3 operations are diagonal C3, so **V_0 is diagonal C3**.
 This proves the required closure without a missing source premise.
 
-## 6. Exact pair phases and the common coordinate bound
+## 6. Exact pair phases and the original-coordinate degree bound
 
 For a paired orbit choose its signed Hermitian difference to be
 $`R=BD`$; the commuting B,D make this literal equality unambiguous.
@@ -331,9 +331,11 @@ All pair-difference labels r_j are independent. Therefore one common
 invertible affine change of the input coordinates makes every signed
 parity bit u_j a distinct coordinate. For each j the restriction of H
 above is still Clifford in these same coordinates, so h_j is quadratic
-in the remaining coordinates. This common choice is essential:
-ordinary integer phase degree is not invariant under arbitrary parity
-substitution modulo eight.
+in the remaining coordinates. This is a convenient way to construct
+the h_j. Returning to the original coordinates keeps each u_j affine
+Boolean and each h_j quadratic Boolean. The particular divisibilities
+in (17) preserve the degree-five bound under this substitution, although
+an arbitrary integer degree-five polynomial need not retain its degree.
 
 For a Boolean quadratic h, write its algebraic normal form as an XOR
 of monomials of degree at most two, including a possible constant.
@@ -344,12 +346,29 @@ h=\sum_\alpha m_\alpha
  -2\sum_{\alpha\lt\beta}m_\alpha m_\beta\pmod4.
 ```
 
-Thus its integer multilinear degree modulo four is at most four.
-Equation (17) has integer multilinear degree at most five modulo
-eight in the common coordinates. The residual V_0 and the peeled
+More explicitly, for an affine Boolean v and a quadratic Boolean h in
+any affine coordinates, their integer lifts have the forms
+
+```math
+v=L_1-2L_2\pmod4,\qquad h=H_2-2H_4\pmod4,
+```
+
+where each subscript bounds the ordinary degree of its integer
+polynomial. Constants are allowed. Therefore
+
+```math
+2vh=2L_1H_2-4(L_2H_2+L_1H_4)\pmod8
+```
+
+has degree at most five. The apparent degree-six product has coefficient
+eight and vanishes. An affine Boolean u itself has integer degree at
+most three modulo eight. Applying these facts to v=u or v=1-u in (17)
+proves degree at most five in the original coordinates, and in every
+invertible affine coordinate system. The residual V_0 and the peeled
 silent-A phase are diagonal C3; their standard phase polynomials have
 linear coefficients modulo eight, quadratic coefficients divisible
 by two, cubic coefficients divisible by four, and no higher terms.
+This weighted cubic property is preserved by affine coordinate changes.
 Adding these exponents and all (17) proves the claimed degree-five
 bound.
 
@@ -357,9 +376,8 @@ If the final diagonal is a common scalar times $`(-1)^g`$, subtract
 its value at the zero string. Its exponent is $`4(g(x)+g(0))`$
 modulo eight. Multilinear coefficients over $`\mathbb Z/8\mathbb Z`$
 are unique by Boolean Möbius inversion. Hence every coefficient of
-g above degree five vanishes over $`\mathbb F_2`$. Boolean degree is
-invariant under invertible affine substitution, so the bound returns
-to the original coordinates and proves (1).
+g above degree five vanishes over $`\mathbb F_2`$ in the original
+coordinates, proving (1).
 
 ## 7. Fixed-error zero-clean consequence
 
