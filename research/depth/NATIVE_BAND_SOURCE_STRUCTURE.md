@@ -423,14 +423,17 @@ closes t equal to one, certifying the diagonal C3 class and its existing
 78/26 endpoint-degree bounds. It also proves a separate diagonal-source
 extension lemma for a commuting T list with exactly one binary dependency;
 that conclusion does not restore individual-axis preservation in Section 8.
-For t at least two, the overlap theorem limits the middle/outer
-noncommutation to at most 2t middle axes but does not yet give a signed
-endpoint-degree bound depending only on t. The surrounding diagonal phase can still couple
-these observables to unboundedly many other axes, and the inner native band
-can share further commutation data. A decomposition into a bounded active
-subsystem plus a diagonal source has not been proved. The general native
-three-band transport, its error radius outside C3, and the general returned
-six-layer theorem remain open.
+The later [overlap-two theorem](TWO_OVERLAP_SOURCE_STRUCTURE.md) closes
+all t at most two. The [isolated-core extension](ISOLATED_NATIVE_CORE_STRUCTURE.md)
+then removes the total-overlap bound for arbitrarily many isolated paired
+cores and its checkable activation classes. A separate
+[hybrid theorem](HYBRID_DIAGONAL_CORE_TRANSPORT.md) supplies transport for
+a wide diagonal C3 part coupled to a bounded quantum core, and localizes
+commuting lists with bounded relation count. Thus the former t-at-least-two
+next step is historical. Overlapping growing relation components and
+general zero-character interactions remain structural gaps. The general
+native three-band transport, its error radius outside C3, and the general
+returned six-layer theorem remain open.
 
 All source axes and overlaps refer to the specified physical factorization.
 A different resynthesis can change them and change which partial sources

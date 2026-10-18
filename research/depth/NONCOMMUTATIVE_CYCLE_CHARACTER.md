@@ -680,6 +680,209 @@ fair comparisons in Section 6 are unchanged. This identity provides
 neither a faster complete reader nor an unrestricted native depth
 lower bound.
 
+## 5c. The remaining dirty in-place block step
+
+A balanced block continuation exposes a precise helper-return failure.
+The exact block formula and the scoped array-shear invariant below
+identify it without giving a new native-depth upper or lower bound.
+
+### What a contiguous block of commuting pivots does
+
+Partition the vertices into consecutive sets L,K,R, and write the
+strictly upper input as
+
+```math
+U=\begin{pmatrix}P&B&D\\0&A&C\\0&0&Q\end{pmatrix},
+\qquad R_A=(I+A)^{-1}.
+```
+
+The product of exactly the pivots whose vertices lie in K has the
+complete coordinate action
+
+```math
+(A,B,C,D)\longmapsto
+(R_A-I,\ B R_A,\ R_A C,\ D+B R_A C),                 \qquad(13l)
+```
+
+and leaves P,Q unchanged. No further input coefficient is promised zero. To prove
+this, use the existing partial-path formula: a path internal to K gives
+the inverse series $`R_A`$; a path from L to K has one initial B edge; a
+path from K to R has one terminal C edge; and a path from L to R either
+uses its direct D edge or one B edge, a K-internal path, and one C edge.
+No internal vertex in L or R is permitted, so P,Q play no role.
+
+This is also a direct all-input involution. After one application the
+new internal inverse series is $`R_A^{-1}=I+A`$. Applying (13l) twice
+restores B,C and adds $`B R_A C`$ twice to D. Thus (13l) is a full permutation identity,
+including arbitrary external references, rather than an initialized
+Schur-complement computation.
+
+The important missing operation is not the cross-block XOR alone.
+Even after inverting A, (13l) still changes its arbitrary incident blocks
+by $`B\mapsto BR_A`$ and $`C\mapsto R_AC`$. A product accumulator into a
+second dirty array does not implement these in-place changes.
+
+### The two-sided XOR has a complete native ledger
+
+For unit upper matrices A of order a and C of order c, define the
+invertible linear operator M on arbitrary a-by-c arrays by $`M(B)=ABC`$.
+The XOR shear $`E\mapsto E+M(B)`$ has an exact zero-clean native implementation.
+Their unit diagonals are fixed constants, not initialized physical
+registers: only the strict upper coefficients are input wires. Reserve
+an arbitrary a-by-c F, and execute chronologically
+
+```math
+P:F\mathrel{+}=AB,\quad
+Q:E\mathrel{+}=FC,\quad P^\dagger,\quad Q^\dagger.  \qquad(13m)
+```
+
+The two Q uses add $`(F+AB)C`$ and FC, so E gains ABC and F returns. A,C,B
+are preserved throughout, and A,C,B enter the product shears only as
+native Clifford controls. All phases are plus one and every private
+phase helper returns on every input. The last two words are the actual
+native inverses, not independently chosen replacements.
+
+Put
+
+```math
+\tau_A=c\binom a2,\qquad\tau_C=a\binom c2.
+```
+
+P contains ac Clifford identity loads and $`\tau_A`$ nonlinear products;
+Q similarly has ac identity loads and $`\tau_C`$ products. The retained
+private-helper phase schedule permits shared targets: conjugate the
+whole commuting product family by one Hadamard per target, and use a
+distinct arbitrary phase helper per nonlinear product. Each family has
+eight T layers. Using a harmless upper bound of twenty elementary
+Cliffords per product, (13m) has
+
+```math
+T_S=16(\tau_A+\tau_C),\quad
+G_S\le40(\tau_A+\tau_C)+4ac,\quad D_S\le32,\quad
+W_S=ac+\max(\tau_A,\tau_C).                         \qquad(13n)
+```
+
+$`W_S`$ excludes A,C,B,E and includes F plus the largest private phase
+pool. That pool is reused only after each complete shear returns it;
+F cannot be merged with it. The bounds remain valid at small dimensions
+where a nonlinear family is empty. This is a complete out-of-place XOR
+interface, not an in-place multiplication result.
+
+### Three shears leave a counter-action on arbitrary work
+
+Suppose both $`S_M`$ and $`S_{M^{-1}}`$ are available with all their own helpers
+returned. On two arbitrary arrays B,E, execute
+
+```math
+E\mathrel{+}=MB,\quad
+B\mathrel{+}=M^{-1}E,\quad
+E\mathrel{+}=MB,\quad \mathrm{SWAP}(B,E).       \qquad(13o)
+```
+
+The first three operations map $`(B,E)`$ to $`(M^{-1}E,MB)`$; hence the exact
+completed result is
+
+```math
+(B,E)\longmapsto(MB,M^{-1}E).                         \qquad(13p)
+```
+
+No phase is missing, but the arbitrary helper has not returned. Setting
+E to zero would hide this failure; arbitrary E has no such promise.
+Returning E now requires the in-place map $`E\mapsto ME`$, the same type of
+operation that the proposed conversion was supposed to supply.
+
+For balanced inversion, the live diagonal blocks after their recursive
+inversions are A,C, and the desired off-diagonal map is precisely ABC.
+The middle shear in (13o) requires the original $`A^{-1},C^{-1}`$. They are
+not free second copies. If native in-place diagonal inversion words
+$`V_A,V_C`$ are supplied, one honest implementation of that middle shear
+uses their actual inverses in parallel, then the polynomial XOR shear
+with the restored diagonal coefficients, then $`V_A,V_C`$ in parallel.
+
+Write the simultaneous diagonal costs as
+$`T_I=T_A+T_C`$, $`D_I=\max(D_A,D_C)`$, and $`W_I=W_A+W_C`$.
+Keeping the actual forward/inverse Clifford counts separate, (13o) therefore obeys
+
+```math
+\begin{aligned}
+T&\le3T_S+2T_I,\\
+G&\le3G_S+G_A+G_{A^\dagger}+G_C+G_{C^\dagger}+3ac,\\
+D_T&\le3D_S+2D_I,\\
+W_{\rm extra}&=ac+\max(W_S,W_I).
+\end{aligned}                                         \qquad(13q)
+```
+
+The ac term outside the maximum is E, which stays live; B is the caller's
+output block. The two diagonal work pools coexist when those inversions
+run in parallel. The returned S work and diagonal work may otherwise
+share a pool. The first and last shears use the live A,C; only the middle
+one changes them internally. Thus (13q) is an explicitly paid circuit
+for (13p), not a ledger for an imaginary returned-helper primitive.
+The diagonal inversion calls also prevent this implementation from
+establishing native read-only use of the matrix-input coefficients.
+
+Including the initial diagonal inversions, this particular black-box
+schedule has three sequential diagonal-inversion positions along its
+critical path. It therefore does not even justify the proposed
+$`D(d)=D(d/2)+O(1)`$ recurrence: its call accounting would read
+$`3D(d/2)+O(1)`$, before the still-missing helper return. This is not a
+complete inversion upper bound, nor a lower bound on other schedules.
+
+If all building blocks are exact, all these statements are exact. More
+generally, full-space errors add across the three shear calls and the
+two diagonal-inversion positions. A valid bound, including the actual
+inverse errors, is $`3\varepsilon_S+2(\varepsilon_A+\varepsilon_C)`$. It
+compares to (13p), not to the unimplemented $`(MB,E)`$ map.
+
+### A scoped invariant for the array-only repair
+
+There is a precise reason that adding more of the same kind of
+whole-array shear need not repair (13p). Fix a nonidentity unipotent
+binary operator M with nilpotence index $`\nu`$ for $`M-I`$. Let
+
+```math
+\mathcal R=\mathbb F_2[t]/(t^\nu),\qquad t\mapsto M-I.
+```
+
+This is a faithful representation: the minimal polynomial of $`M-I`$ is
+$`t^\nu`$, so no nonzero residue of degree below $`\nu`$ acts as zero. Grant any
+number s of arbitrary equal-size arrays and any operations
+
+```math
+E_i\mathrel{+}=p(M)E_j\quad(i\ne j),
+```
+
+for arbitrary polynomials p, together with whole-array swaps and
+whole-array CNOTs. The coefficients are frozen. Each operation is an
+s-by-s matrix over the commutative ring $`\mathcal R`$ and has determinant one.
+For swaps, the usual determinant sign is also one in characteristic
+two. Thus every finite word in this move set has determinant one.
+
+The sought full-return action $`(MB,E_2,\ldots,E_s)`$ would instead have array
+matrix $`\mathrm{diag}(1+t,1,\ldots,1)`$, whose determinant is
+$`1+t\ne1`$. Faithfulness means that equality on all physical input columns would imply equality
+of these ring matrices, a contradiction. In comparison, the paired
+action $`\mathrm{diag}(M,M^{-1})`$ in (13p) has determinant one, as it must.
+
+This excludes a returned-helper conversion using only these uniform
+polynomial array shears, even if every polynomial-coefficient shear is
+granted at no cost. It is a limitation of that proposed interface, not
+a gate-count or T-depth lower bound. Within-array coordinate changes,
+coefficient mutations outside the fixed coefficient algebra, nonuniform
+coordinate operations, and Hadamards are all outside this move set.
+The existing native pivot word uses such coordinate operations and is
+not obstructed. Keeping helper counter-actions across a larger algorithm
+with different coefficient operators is also not ruled out here.
+
+The attempted balanced recurrence therefore stops at (13p). A useful
+constructive continuation must supply the in-place block map with full
+return, or leave this move set through a fully charged coordinate or
+interference construction. The cubic-count, linear-depth cycle source
+and both conjunction comparisons in Section 6 remain unchanged. A
+faster structured inverse-word query would also need a separate
+arbitrary-table encoding and the complete R98 ledger before supplying a
+general reader.
+
 ## 6. Fair comparison and the remaining depth question
 
 For the **same strictly read-only-address interface**, the retained
@@ -791,7 +994,10 @@ checks exhaust small partial path sets and group actions, compare the full
 inversion with independent back substitution, and detect the missing
 cubic path in simultaneous quadratic updates. They also check every
 physical column of the eight-wire native inversion, both pivot orders
-and their actual inverses, and the compute-pair-uncompute source phase. The
+and their actual inverses, and the compute-pair-uncompute source phase.
+The block checks retain the contiguous partial-closure formula, the
+actual helper counter-action, a literal native two-sided XOR shear, and
+the full finite group of two-array shears over the dual-number ring. The
 [commutative tests](../../tests/test_nonlinear_character_transport.py)
 also check affine-cube products in a genuinely multivariate nilpotent
 algebra. These are bounded evidence; the proofs above and in the

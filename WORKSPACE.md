@@ -15,54 +15,53 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: overlap-two source closure and hybrid transport
+## Current checkpoint: unbounded paired cores and controlled-Pauli transport
 
-The [current round](research/depth/TWO_OVERLAP_SESSION_RESULT.md)
-began at verified main `d2ecebf` (PR #177). The
-[overlap-two theorem](research/depth/TWO_OVERLAP_SOURCE_STRUCTURE.md)
-proves that an actual three-band C3 source with independent physical axes
-and first/middle span overlap at most two is diagonal C3 in fixed Clifford
-coordinates. Neither adjacent partial source needs to be C3. Full-space
-control involutions resolve the coupled-pair and zero-character cases,
-with literal phases and remaining inner axes retained. The six-layer
-query degree bounds **78/26** therefore apply below full error
-$`\sqrt2/8`$ throughout this enlarged source class.
+The [current round](research/depth/UNBOUNDED_CONTROL_SESSION_RESULT.md)
+began at verified main `ad67843` (PR #178). The
+[isolated-core theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+removes the bound on the number of isolated paired cores in an exact
+three-native-band C3 source. Commuting control-X images force the fixed
+target-axis signs to be affine. Checkable activation conditions therefore
+certify diagonal C3 sources at arbitrary total overlap, retaining the
+six-layer degree bounds **78/26** below full error $`\sqrt2/8`$.
+This extends the earlier [overlap-two theorem](research/depth/TWO_OVERLAP_SOURCE_STRUCTURE.md);
+it also excludes a lone wider orbit containing all B/C noncommutation.
+Coupled growing relation components remain open.
 
-A separate [hybrid transport theorem](research/depth/HYBRID_DIAGONAL_CORE_TRANSPORT.md)
-controls a wide diagonal C3 source multiplied on either side by a bounded
-quantum core, when the full source is C3. Its explicit degree bound depends
-only on core size, even with unbounded Pauli deficiency; its error radius
-is the same $`\sqrt2/8`$. At most four fixed control blocks recover each output label coordinate;
-the literal sign follows with the modulo-four carry retained. The same home
-turns a commuting gadget list with r relations into a hybrid core of at
-most $`4(2^r-1)`$ qubits under its stated C3 hypothesis. These are source
-certificates and transport bounds, not source synthesis savings.
+A separate [controlled-Pauli transport theorem](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
+gives width-independent bounds **174/58** for general/visible target
+degree at the same radius. It assumes an exact C3 source with
+controlled-Pauli blocks and its stated exact Pauli-domain or fiber
+compatibility condition. C3 derives quadratic block labels and a bounded
+literal phase form, including a necessary quartic term. The known
+Gottesman–Mochon example satisfies this source hypothesis and is not
+diagonal C3 in fixed Clifford coordinates. Its paid native realization
+is a source fixture, not a returned six-layer query. Neither source
+certificate is inferred from workspace return.
 
 The [cycle-source proof](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-now gives exact commuting pivots for unitriangular inversion. Their fully
-charged native schedule has cubic counts, linear T-depth, no clean work
-and returned arbitrary helpers. Whole-pivot commutativity does not
-parallelize overlapping native gates. The map changes matrix inputs
-internally and supplies no faster native read-only word query.
+now records the exact block-pivot identity and a constant-depth product
+XOR. Their proposed conversion to an in-place dirty update leaves an
+inverse action on the helper and repeats child inversions. A determinant
+invariant excludes repair using only the stated frozen-coefficient
+whole-array shears. This is an interface obstruction; the general native
+construction question remains open. The retained cycle schedule still
+has cubic counts and linear depth.
 
-The next question is **whether the actual six-layer inner family has a
-width-independent signed transport bound through any three-native-band
-C3 source, without bounding its first/middle overlap**. The bounded-core
-transport step is now available; growing native relation components are
-the structural gap. Test components with at least three independent
-relation directions and alternative native representations. A bound
-that only grows with displayed overlap is insufficient for a general
-native depth obstruction. Full return alone still does not imply C3.
+The next question is **how full C3 membership constrains overlapping
+orbit-incidence components of an actual three-native-band source**.
+Many isolated controls are now covered; interacting even-incidence rows
+remain the structural issue. Seek a width-independent signed transport
+bound, or an actual native countermechanism, while testing alternative
+representations. General non-C3 prefixes, one-clean work, address mixing
+and a robust recurrence for growing depth remain separate gaps.
 
-R96 remains the strongest unconditional complete-frame upper law, R79
-remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. The general zero-clean read-only five-layer bound
-**14**, six-layer Pauli-comparison bound **51**, and
-[bounded-deficiency theorem](research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
-retain their scopes. Optimal general depth, dimension-growing unrestricted
-lower bounds and unrestricted one-clean four-layer rigidity remain open.
-General non-C3 prefixes, one-clean work and address mixing are separate
-gaps. Final manuscript drafting remains separate.
+R96 remains the strongest unconditional complete-frame upper law; R79
+remains selected Result D, R97 remains scoped, and R98 remains conditional.
+Optimal general depth, dimension-growing unrestricted lower bounds and
+unrestricted one-clean four-layer rigidity remain open. Final manuscript
+drafting remains separate.
 
 ## Mandate
 
