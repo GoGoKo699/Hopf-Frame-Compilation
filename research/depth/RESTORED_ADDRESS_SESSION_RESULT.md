@@ -147,7 +147,10 @@ to fuse table-specific coefficient access and inverse-entry extraction
 into one returned native word, rather than invoke the generic full inverse
 oracle. The first unpaid operation is removal or coherent cancellation
 of the dirty coefficient mask within the square-root T budget and linear
-Clifford budget, with no repeated-source depth loss.
+Clifford budget, with no repeated-source depth loss. Even that would not
+suffice alone: generic inversion of the existing table representation
+has O(a) address-depth guarantee, worse than R91's O(log(a+2)). A fused
+construction must also replace that depth cost.
 
 Any such candidate must beat the fairly simplified R91 baseline and
 return every address/output/helper column with literal phase. The current

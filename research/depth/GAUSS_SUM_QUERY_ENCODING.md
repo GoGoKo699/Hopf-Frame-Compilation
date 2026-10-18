@@ -172,7 +172,10 @@ unitriangular coefficient word. It returns arbitrary work, with cubic
 T-count, Clifford count and dirty width, and logarithmic T-depth in m.
 Its coefficient wires change internally. This removes the matrix-element
 extraction issue for a **supplied physical matrix**, but does not supply
-the affine coefficient embedding or native read-only access to it.
+paid native coefficient embedding or access to it. The strengthened
+[R98 transfer](QUERY_DEPTH_FRAME_TRANSFER.md) now permits temporary
+address changes with exact completed return; gatewise read-only conversion
+is no longer required for that sufficient route.
 
 For Section 1's $`m=\Theta(\sqrt Q)`$ table representation, the generic
 substitution has $`\Theta(Q^{3/2})`$ T-count and dirty work and
@@ -398,5 +401,6 @@ check the dirty-offset failure, finite-field extraction including the
 maximal exponent, and the evaluation boundary. These support the
 interfaces, not a general native lower bound. A qualifying R98 mechanism
 still needs an actual table embedding and returned extraction at its
-simultaneous square-root count/work envelope, native read-only address
-contract and sublogarithmic address T-depth.
+simultaneous count/work envelope, exact completed address-return
+contract and sublogarithmic address T-depth. Removing a dirty mask alone
+would not fix the generic substitution's O(a) depth stated in Section 6.
