@@ -132,16 +132,59 @@ a+b+c-(a\oplus b)-(a\oplus c)-(b\oplus c)
 ```
 
 There are seven signed parities, with total support size twelve and
-no affine constants. Their seven private banks therefore implement
+no affine constants. Direct application of (5) gives the previous
+four-layer construction with 105 T gates, 346 Cliffords and 28 dirty
+helpers. A hybrid with the eight-phase one-dirty-bit baseline improves
+all three constants while retaining four physical T layers.
+
+Reserve one arbitrary work bit w. Since
+$`p\oplus w=p+w-2pw`$ as integers, (6) gives the literal identity
 
 ```math
-(-1)^{abc}I_w,\qquad
-T=105,\quad D_T=4,\quad G=346,\quad b=28,
-\quad\varepsilon=0.                                    \qquad(7)
+\begin{aligned}
+&-w+(w\oplus a)+(w\oplus b)+(w\oplus c)\\
+&\quad -(w\oplus a\oplus b)-(w\oplus a\oplus c)\\
+&\quad -(w\oplus b\oplus c)+(w\oplus a\oplus b\oplus c)\\
+&=4abc(1-2w)\equiv4abc\pmod8.
+\end{aligned}                                             \qquad(7)
 ```
 
-All three bits a,b,c remain read-only address wires. No phase
-correction, supplied gate, clean helper or evaluator is omitted.
+Keep the last four terms on w, one in each layer, in their displayed order.
+Relocate the first four terms, with signs $`-,+,+,+`$, onto four
+private four-bit banks using section 2. Their affine parities are
+w, $`w\oplus a`$, $`w\oplus b`$, $`w\oplus c`$.
+Here w is an arbitrary control, not a prepared copy or clean source.
+
+At each of the four layer boundaries perform these actual words:
+
+1. Prepare all four bank parities and bank bases as in section 2,
+   using the unchanged original w and address controls.
+2. Compute that layer's retained address parity into w by CNOTs.
+3. Apply its T or T-dagger to w and all active bank T gates in parallel.
+4. Reverse the actual computation into w, then reverse the actual
+   bank bases and bank parity computations in reverse order.
+
+The w return precedes every bank inverse that uses w as a control.
+Thus every bank phase is evaluated on its intended original value,
+and the entire work register returns after each complete layer word.
+The active T targets are distinct: w and three wires per bank in
+the first layer, and w and four wires per bank in the other layers.
+Their T counts are 13,17,17,17, respectively. The four relocated
+parity support sizes are 1,2,2,2, so their Clifford charge is
+$`4\cdot22+16\cdot7=200`$. Computing and actually reversing the
+four retained parities costs $`2(2+2+2+3)=18`$ CNOTs. Consequently
+
+```math
+(-1)^{abc}I_{w,\mathrm{banks}},\qquad
+T=64,\quad D_T=4,\quad G=218,\quad b=17,
+\quad\varepsilon=0.                                    \qquad(8)
+```
+
+All three bits a,b,c remain read-only address wires. All 17 work bits
+are simultaneously arbitrary, with no independence assumption; full
+operator equality (7) proves exact return with external references.
+There are zero clean helpers and zero leakage. No phase correction,
+supplied gate, clean source or evaluator is omitted.
 The [zero-clean three-layer scalar bound](READ_ONLY_THREE_LAYER_RIGIDITY.md#4-literal-scalar-phases-have-degree-at-most-two)
 excludes Boolean scalar degree three below error $`\sqrt2/6`$.
 Consequently four layers are optimal for this scalar CCZ query within
@@ -152,23 +195,37 @@ This construction is not a cheaper AND query than the retained
 [native four-layer AND](READ_ONLY_THREE_LAYER_RIGIDITY.md#7-native-layer-fixtures-and-the-clean-qubit-distinction):
 the latter uses only eight T gates, 18 elementary Cliffords and one
 additional dirty helper. The difference is that all three scalar CCZ
-arguments in (7) remain original address wires. Reclassifying c as an
+arguments in (8) remain original address wires. Reclassifying c as an
 arbitrary target and adding two Hadamards gives an AND query, but pays
-105 T gates, 348 Cliffords and 28 helpers, with no layer advantage.
+64 T gates, 220 Cliffords and 17 helpers, with no layer advantage.
 
 For a batch of $`M=qH`$ R91 bilinear phase terms
-$`(-1)^{y_i z_j s_{ij}(X)}`$, apply (7) with the third argument
+$`(-1)^{y_i z_j s_{ij}(X)}`$, apply (8) with the third argument
 replaced by its specified linear row form. If its support size is
 $`\ell_{ij}`$, the resulting alternative has
 
 ```math
-T=105M,\quad D_T=4,\quad b=28M,\quad
-G=282M+64\sum_{i,j}\ell_{ij}.                            \qquad(8)
+T=64M,\quad D_T=4,\quad b=17M,\quad
+G=196M+22\sum_{i,j}\ell_{ij}.                            \qquad(9)
 ```
+
+For one term, the relocated support sizes sum to $`6+\ell_{ij}`$
+and the retained address support sizes sum to $`6+3\ell_{ij}`$.
+Thus the complete Clifford charge is
+
+```math
+88+16(6+\ell_{ij})+2(6+3\ell_{ij})=196+22\ell_{ij}.
+```
+
+Give different terms disjoint 17-bit banks, including private w bits,
+and serialize their Clifford words around the four common T layers.
+Original address controls may be shared, but no dirty helper is shared
+between terms. The former seven-bank alternative cost 105M T gates,
+28M dirty bits and $`282M+64\sum\ell_{ij}`$ Cliffords.
 
 For the XOR shear add the two charged Hadamards per output bit.
 The retained R91 phase word instead has eight T layers, at most 8M
-T gates and M private dirty wires. Equation (8) trades larger count
+T gates and M private dirty wires. Equation (9) trades larger count
 and simultaneous width constants for fewer layers in that component;
 both already have constant depth. This does not reduce the logarithmic
 address-indicator cost, change R91's asymptotic envelope, or establish
@@ -223,7 +280,10 @@ are required to reach the first open five-layer cubic-XOR test.
 The [bounded native checks](../../tests/test_read_only_phase_relocation.py)
 verify the sixteen-term null identity, the actual CNOT basis words and
 their inverses, every four-bit dirty input for affine parity phases,
-the simultaneous ledgers, and the seven-factor scalar CCZ identity.
+the simultaneous ledgers, the seven-factor baseline, and the hybrid
+eight-phase scalar CCZ identity. The hybrid checks include the actual
+shared-w preparation/inverse ordering, every local dirty input, distinct
+physical T targets, and the linear-row Clifford charge in (9).
 They use exact integer phases and basis permutations rather than an
 unnecessary matrix on 31 qubits. The full-space proof is (1)–(3);
 finite checks do not establish a new general lower bound.

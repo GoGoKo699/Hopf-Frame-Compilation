@@ -6,6 +6,7 @@ all possible source truth tables in a bounded linear-algebra calculation.
 """
 from __future__ import annotations
 
+from fractions import Fraction
 from itertools import combinations
 import unittest
 
@@ -81,6 +82,34 @@ def _anf(values):
     return coefficients
 
 
+def _additive_delta(table, shift):
+    """Difference in R/Z, with exact rational phases and the literal sign."""
+    return [(table[z ^ shift] - value) % 1 for z, value in enumerate(table)]
+
+
+def _additive_anf(values):
+    coefficients = list(values)
+    for bit in range((len(values) - 1).bit_length()):
+        for x in range(len(values)):
+            if x >> bit & 1:
+                coefficients[x] = (coefficients[x]
+                                   - coefficients[x ^ (1 << bit)]) % 1
+    return coefficients
+
+
+def _phase_echo_column(source, left, right, z):
+    """Execute the actual D†, B, D, A, D†, B, D, A word."""
+    phase = -source[z]
+    z ^= right
+    phase += source[z]
+    z ^= left
+    phase -= source[z]
+    z ^= right
+    phase += source[z]
+    z ^= left
+    return z, phase % 1
+
+
 class ReturnedDiagonalEchoDegreeTests(unittest.TestCase):
     def test_literal_cubic_native_word_and_full_resource_ledger(self):
         source = _source()
@@ -134,6 +163,71 @@ class ReturnedDiagonalEchoDegreeTests(unittest.TestCase):
                             term = _delta(term, right[i])
                     predicted = [x ^ y for x, y in zip(predicted, term)]
             self.assertEqual(predicted, [coefficients[z][mask] for z in range(8)])
+
+    def test_additive_derivative_sign_and_coefficients_with_overlaps(self):
+        # Arbitrary Z/16 phases: the source need not return a scalar.
+        # Zero, dependent and shared columns exercise the unrestricted maps.
+        source = [Fraction(value, 16) for value in (0, 1, 7, 3, 11, 5, 2, 13)]
+        left = (1, 2, 3, 0)
+        right = (3, 2, 1, 4)
+        fibres = []
+        for x in range(16):
+            l, r = _linear(left, x), _linear(right, x)
+            difference = _additive_delta(_additive_delta(source, l), r)
+            fibres.append(difference)
+            for z in range(8):
+                self.assertEqual(_phase_echo_column(source, l, r, z),
+                                 (z, -difference[z] % 1))
+        for shift in set(left + right):
+            once = _additive_delta(source, shift)
+            self.assertEqual(_additive_delta(once, shift),
+                             [(-2 * value) % 1 for value in once])
+        coefficients = [_additive_anf([fibres[x][z] for x in range(16)])
+                        for z in range(8)]
+        for mask in range(1, 16):
+            predicted = [Fraction(0)] * 8
+            for a in _subsets(mask):
+                for b in _subsets(mask):
+                    if a | b != mask:
+                        continue
+                    term = source
+                    for i in range(4):
+                        if a >> i & 1:
+                            term = _additive_delta(term, left[i])
+                        if b >> i & 1:
+                            term = _additive_delta(term, right[i])
+                    predicted = [(u + v) % 1 for u, v in zip(predicted, term)]
+            self.assertEqual(predicted, [coefficients[z][mask] for z in range(8)])
+        # Signed differences are essential for this non-Boolean source.
+        self.assertNotEqual(_additive_delta(source, 1),
+                            [(-value) % 1 for value in _additive_delta(source, 1)])
+
+    def test_non_boolean_source_returns_exact_cubic_phase(self):
+        # This is an identity witness, not a native compilation claim. The
+        # arbitrary-denominator one-block terms cancel; a quarter-phase
+        # parity straddles both blocks and contributes the linear x_1 term.
+        source = []
+        for z in range(64):
+            p = [(z >> i) & 1 for i in range(3)]
+            q = [(z >> (i + 3)) & 1 for i in range(3)]
+            cubic = (p[0] * q[1] * q[2] ^ p[1] * q[0] * q[2]
+                     ^ p[2] * q[0] * q[1])
+            source.append((Fraction(cubic, 2) + Fraction(p[0] ^ q[0], 4)
+                           + Fraction(p[1], 7) + Fraction(q[1] * q[2], 11)) % 1)
+        self.assertTrue(any(2 * value % 1 for value in source))
+        for x in range(8):
+            expected = Fraction(int(x == 7) ^ (x & 1), 2)
+            for z in range(64):
+                self.assertEqual(_phase_echo_column(source, x, x << 3, z),
+                                 (z, expected))
+            difference = _additive_delta(_additive_delta(source, x), x << 3)
+            self.assertEqual(difference, [expected] * 64)
+        # Coincident directions, including zero, also force a Boolean scalar.
+        quarter_parity = [Fraction(z & 1, 4) for z in range(4)]
+        for shift in range(4):
+            for z in range(4):
+                self.assertEqual(_phase_echo_column(quarter_parity, shift, shift, z),
+                                 (z, Fraction(shift & 1, 2)))
 
     def test_all_returned_truth_tables_have_no_quartic_coefficient(self):
         # Unknowns are all h(p,q) and q(x) entries, with no source-degree

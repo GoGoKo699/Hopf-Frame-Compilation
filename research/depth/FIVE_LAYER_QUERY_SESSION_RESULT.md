@@ -145,3 +145,11 @@ are recorded with the merge on the reviewed tree.
 The direct repeated-peeling and fixed-list rank candidates were stopped
 after their failures were identified. The normalizer reformulation and
 the precise question above preserve the general objective for resumption.
+
+## Subsequent continuation
+
+The [native partial-action round](NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+adds a robust Pauli-comparison quadratic bound, exact/robust one-band matching,
+a cheaper 64T four-layer scalar CCZ word, and the arbitrary-unit-circle
+extension of the diagonal echo theorem. The entries above record this
+round's historical state; the linked proof homes contain the current results.
