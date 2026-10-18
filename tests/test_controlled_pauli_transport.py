@@ -2,7 +2,8 @@
 
 The proof supplies the width-independent degree theorem. These fixtures
 retain Hermitian-section carries, the known Gottesman--Mochon example,
-its actual native inverse, and paid tensor-copy allocation. They do not
+its actual native inverse, paid tensor-copy allocation, and signed
+normalization with mixed translations and radical promotion. They do not
 assert a three-native-band realization or construct a returned query.
 Seven-qubit Pauli-domain checks use monomial bitmaps, not a dense Pauli
 basis; the only full matrices are the 128 native input columns.
@@ -132,6 +133,30 @@ def _flatten(schedule):
     return [('T', gate[1], 1 if gate[0] == 'T' else -1)
             if gate[0] in ('T', 'TDG') else gate
             for _, gates in schedule for gate in gates]
+
+
+def _five_wire_blocks(function):
+    permutation, phase = [], []
+    for value in range(32):
+        z, target = value & 15, value >> 4
+        scalar, x, y = function(z)
+        permutation.append(value ^ (x << 4))
+        phase.append((2 * scalar + 4 * y * target) % 8)
+    return np.array(permutation), np.array(phase)
+
+
+def _assert_monomial_equal(first, second):
+    np.testing.assert_array_equal(first[0], second[0])
+    np.testing.assert_array_equal(first[1], second[1])
+
+
+def _pair_five_wire_labels(first, second):
+    return (((first & 31) & (second >> 5)).bit_count()
+            + ((second & 31) & (first >> 5)).bit_count()) % 2
+
+
+def _five_wire_target_label(label):
+    return ((label >> 4) & 1) | (((label >> 9) & 1) << 1)
 
 
 class ControlledPauliTransport(unittest.TestCase):
@@ -362,6 +387,143 @@ class ControlledPauliTransport(unittest.TestCase):
         # Serial copies have a paid depth bound 60 and zero extra helpers;
         # width independence of the transport bound does not erase this cost.
         self.assertEqual(2 * sum(kind == 'T' for kind, _ in _native_schedule()), 60)
+
+
+    def test_noncommuting_lifts_literal_stripping_and_radical_promotion(self):
+        width = 5
+        # c0,c1 are identity controls; v0=c2,v1=c3 and t=c4 carry CCZ.
+        canonical = _five_wire_blocks(lambda z: (0, 0, ((z >> 2) & 1) * ((z >> 3) & 1)))
+        # W0=X_t CX(v0->t) makes the surviving Z_t sign equal to 1+v0.
+        target_match = _five_wire_blocks(lambda z: (0, 1 ^ ((z >> 2) & 1), 0))
+        h = _compose(target_match, canonical)
+        # W_z=X_t^c0 Y_t^c1, with the actual i^c1 scalar retained.
+        w = _five_wire_blocks(lambda z: ((z >> 1) & 1,
+                               (z & 1) ^ ((z >> 1) & 1), (z >> 1) & 1))
+        # T_z=Z_t^c0 X_t^c1, including its ordered-product scalar.
+        t = _five_wire_blocks(lambda z: (2 * (z & 1) * ((z >> 1) & 1),
+                               (z >> 1) & 1, z & 1))
+        # G=S_c0 CZ(c0,c1) Z_c1; the final Z is an essential sign correction.
+        g = _five_wire_blocks(lambda z: ((z & 1) + 2 * (z & 1) * ((z >> 1) & 1)
+                               + 2 * ((z >> 1) & 1), 0, 0))
+        unsigned_g = _five_wire_blocks(lambda z: ((z & 1)
+                                        + 2 * (z & 1) * ((z >> 1) & 1), 0, 0))
+        for clifford in (w, t, g, target_match):
+            self.assertTrue(_is_clifford(clifford, width))
+        source = _compose(_compose(_compose(t, g), h), _adjoint(w))
+
+        # B=CX(0->2) CX(1->3): V becomes span{e0+e2,e1+e3}.
+        values = np.arange(32)
+        basis = (values ^ ((values & 1) << 2) ^ (((values >> 1) & 1) << 3),
+                 np.zeros(32, dtype=int))
+        original_w = w
+        source, w, t, g, unsigned_g = [_conjugate(basis, operator)
+                                      for operator in (source, w, t, g, unsigned_g)]
+        for j in range(10):
+            image = _conjugate(source, _pauli(1 << j, width))
+            self.assertTrue(_is_clifford(image, width))
+        identity = (values, np.zeros(32, dtype=int))
+        _assert_monomial_equal(_compose(_adjoint(source), source), identity)
+        _assert_monomial_equal(_compose(source, _adjoint(source)), identity)
+
+        # Complete domain: E_H=P_(c0,c1) direct-sum Z_(v0,v1,t).
+        base_domain = {x | (z << width) for x in range(4) for z in range(32)}
+        h_domain = set(_domain(h, width))
+        self.assertEqual(h_domain, base_domain)
+        input_coordinates = _compose(basis, original_w)
+        expected_domain = {
+            _pauli_label(_conjugate(input_coordinates, _pauli(label, width)), width)[0]
+            for label in base_domain}
+        actual_domain = set(_domain(source, width))
+        self.assertEqual(actual_domain, expected_domain)
+        self.assertEqual(len(actual_domain), 128)
+        self.assertEqual({label & 15 for label in actual_domain}, {0, 5, 10, 15})
+
+        translations = (5, 10)
+        section = (5 | (1 << 4), 10 | (1 << 4) | (1 << 9))
+        self.assertEqual(_pair_five_wire_labels(*section), 1)  # Chosen X,Y target lifts anticommute.
+        lifts = []
+        for u, section_label in zip(translations, section):
+            self.assertIn(section_label, actual_domain)
+            self.assertNotIn(u, actual_domain)
+            lift = _pauli_label(_conjugate(w, _pauli(u, width)), width)
+            self.assertIsNotNone(lift)
+            lifts.append(lift[0])
+            self.assertEqual((lift[0] ^ section_label) & 31, 0)
+            self.assertEqual(_five_wire_target_label(lift[0]), _five_wire_target_label(section_label))
+        self.assertEqual(_pair_five_wire_labels(*lifts), 0)  # W's Z tails repair the pairing.
+        self.assertEqual(lifts[1] ^ section[1], 1 << 5)
+
+        straightened = _compose(source, w)
+        for u, target in zip(translations, (2, 1)):  # Output target labels Z,X.
+            image = _pauli_label(_conjugate(straightened, _pauli(u, width)), width)
+            self.assertIsNotNone(image)
+            self.assertEqual(image[0] & 15, u)
+            self.assertEqual(_five_wire_target_label(image[0]), target)
+        target_removed = _compose(_adjoint(t), straightened)
+        for u in translations:
+            _assert_monomial_equal(_conjugate(target_removed, _pauli(u, width)),
+                  _conjugate(g, _pauli(u, width)))
+        normalized = _compose(_adjoint(g), target_removed)
+        _assert_monomial_equal(normalized, _conjugate(basis, h))
+        for u in (0, *translations, translations[0] ^ translations[1]):
+            _assert_monomial_equal(_conjugate(normalized, _pauli(u, width)), _pauli(u, width))
+        for j in range(4):
+            z_probe = _pauli(1 << (5 + j), width)
+            _assert_monomial_equal(_conjugate(normalized, z_probe), z_probe)
+        wrong = _compose(_adjoint(unsigned_g), target_removed)
+        wrong = _conjugate(_adjoint(basis), wrong)
+        self.assertEqual(_pauli_label(_conjugate(wrong, _pauli(2, width)), width), (2, 1))
+
+        # All-column equality permits stripping I_(c0,c1) without fixing inputs.
+        normalized = _conjugate(_adjoint(basis), normalized)
+        _assert_monomial_equal(normalized, h)
+        target_z = 1 << 9
+        target_domain = {label for label in range(4)
+                         if (((label & 1) << 4) | ((label >> 1) << 9)) in h_domain}
+        self.assertEqual(target_domain, {0, 2})
+        self.assertEqual(_pair_five_wire_labels(target_z, target_z), 0)  # E_Q is genuinely degenerate.
+        signed_target = _pauli_label(_conjugate(normalized, _pauli(target_z, width)), width)
+        self.assertEqual(signed_target, (target_z | (1 << 7), 1))
+        target_normalized = _compose(_adjoint(target_match), normalized)
+        _assert_monomial_equal(target_normalized, canonical)
+        _assert_monomial_equal(_conjugate(target_normalized, _pauli(target_z, width)), _pauli(target_z, width))
+        unsigned_target_match = _five_wire_blocks(lambda z: (0, (z >> 2) & 1, 0))
+        wrong_target = _compose(_adjoint(unsigned_target_match), normalized)
+        self.assertEqual(_pauli_label(_conjugate(wrong_target, _pauli(target_z, width)), width),
+                         (target_z, 1))
+
+        # Promote t to a control: the residual source is literal CCZ(v0,v1,t).
+        # Both values of t and all arbitrary identity-spectator inputs remain.
+        promoted = (np.arange(8), np.array([4 * int(value == 7) for value in range(8)]))
+        expected = ((values & 3) | (promoted[0][values >> 2] << 2), promoted[1][values >> 2])
+        _assert_monomial_equal(target_normalized, expected)
+        self.assertEqual(_domain(promoted, 3), {z << 3: (z << 3, 0) for z in range(8)})
+
+        # Assemble the literal end coordinates, not merely their stagewise
+        # domain actions: H=A F B, with B the existing input_coordinates.
+        left = _compose(_adjoint(target_match),
+                        _compose(_adjoint(basis),
+                                 _compose(_adjoint(g), _adjoint(t))))
+        right = input_coordinates
+        self.assertTrue(_is_clifford(left, width))
+        self.assertTrue(_is_clifford(right, width))
+        _assert_monomial_equal(_compose(_compose(left, source), right), canonical)
+        _assert_monomial_equal(_adjoint(source), _compose(_compose(right, _adjoint(canonical)), left))
+
+        # A non-Pauli exact Clifford endpoint. The fixed i makes P-dagger
+        # differ literally from P, so inverse transport cannot discard it.
+        probe = _pauli(4 | 16 | (1 << 9), width)  # X_v0 Y_t.
+        probe = probe[0], (probe[1] + 2) % 8
+        endpoint = _conjugate(source, probe)
+        self.assertTrue(_is_clifford(endpoint, width))
+        self.assertIsNone(_pauli_label((endpoint[0], (endpoint[1] - 2) % 8), width))
+        transformed = _conjugate(_adjoint(right), probe)
+        transformed_inverse = _conjugate(_adjoint(right), _adjoint(probe))
+        _assert_monomial_equal(transformed_inverse, _adjoint(transformed))
+        self.assertFalse(np.array_equal(transformed_inverse[1], transformed[1]))
+        _assert_monomial_equal(_compose(transformed_inverse, transformed), identity)
+        _assert_monomial_equal(_conjugate(left, endpoint), _conjugate(canonical, transformed))
+
 
 
 if __name__ == '__main__':

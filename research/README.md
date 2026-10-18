@@ -354,17 +354,21 @@ has a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
 Monomial localization keeps the wide phase diagonal. This does not make
 the coordinate changes or dependent gadget list a free native band.
 
-The [current round](depth/UNBOUNDED_CONTROL_SESSION_RESULT.md) extends
-[source certification](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) to any
-number of isolated paired cores. Commuting control involutions force
-all fixed target-axis signs to be affine. The resulting checkable
-activation criteria have no total-overlap bound and retain 78/26 transport.
-A different [controlled-Pauli transport proof](depth/CONTROLLED_PAULI_TRANSPORT.md)
-gives uniform 174/58 bounds below $`\sqrt2/8`$ with its exact C3 block
-and Pauli-domain hypotheses. It derives the block phase budget, retaining
-a necessary weighted quartic term. The known Gottesman–Mochon source
-shows that this class need not be semi-Clifford; its charged source
-schedule is not a returned three-band query.
+The [current round](depth/COUPLED_INCIDENCE_SESSION_RESULT.md) extends
+[source certification](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) to arbitrary
+coupled nonzero-character incidence. When every zero-character B axis
+commutes with C, the full involution defect and native A isotropy force
+all interacting classes to be isolated two-axis pairs. Exact C3/native
+hypotheses remain essential; the certificate gives 78/26 transport at
+arbitrary overlap. Bad zero-character interactions remain open.
+The [controlled-Pauli transport proof](depth/CONTROLLED_PAULI_TRANSPORT.md)
+now derives its canonical exact Pauli domain by signed fixed-Clifford
+normalization, removing the former compatibility premise. Every exact
+C3 scalar-Pauli block source has uniform 174/58 bounds below
+$`\sqrt2/8`$. Its necessary weighted quartic term and both endpoint
+coordinate changes are retained. The known Gottesman–Mochon source
+shows this class need not be semi-Clifford; its charged source schedule
+is not a returned three-band query.
 
 The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 controls approximate transport through arbitrary sources with bounded
@@ -390,19 +394,24 @@ arbitrary auxiliary inputs. The new exact commuting-pivot inversion
 identity has cubic native counts and linear depth, with returned arbitrary
 helpers and no clean work. Whole-pivot commutativity does not eliminate
 cross-pivot gate dependencies. This in-place circuit does not provide the
-native read-only inverse query needed for a constructive improvement.
+native read-only inverse query needed for a complete-frame improvement.
 
-The new block-pivot calculation identifies a constant-depth product XOR,
-but its conversion to an in-place update changes the arbitrary helper
-by the inverse and repeats child inversions. A determinant invariant
-excludes repair by frozen-coefficient whole-array polynomial shears.
-This stops that shortcut within its interface, while leaving coordinate
-and other native constructions open.
+The balanced block construction now gives a complete structured
+inverse-word query and phase source with logarithmic T-depth, cubic
+T/Clifford counts, cubic arbitrary work and zero clean work. One parallel
+child-inversion position suffices because helper garbage may remain live
+until the actual compute/readout/uncompute finishes. Direct controlled
+readouts borrow that same work and return it exactly. This leaves the
+scoped frozen-coefficient determinant obstruction intact; it does not
+supply returned-work in-place inversion. Coefficient inputs change
+internally, so native read-only access and arbitrary-table encoding
+within R98's budgets remain missing. The full cycle conjunction's
+transport and faster fair baseline are unchanged.
 
-The next question is width-independent signed transport through arbitrary
-three-native-band C3 sources. Many isolated controls are covered; coupled
-even-incidence components and general zero-character interactions remain
-open. Alternative native syntheses must be tested before treating a
+The next source question is width-independent signed transport through
+bad zero-character interactions in exact three-native-band C3 sources.
+Scalar-Pauli block coordinates would now suffice even if diagonalization
+fails. Alternative native syntheses must be tested before treating a
 source parameter as a depth invariant. General non-C3, one-clean and
 address-mixing lower bounds and optimal complete-frame depth remain open.
 The [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps

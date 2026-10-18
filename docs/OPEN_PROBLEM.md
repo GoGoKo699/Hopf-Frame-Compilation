@@ -114,31 +114,29 @@ T-gadget list with r binary relations following a diagonal-C3 source has
 a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
 These explicit source hypotheses are not consequences of return.
 
-The [current round](../research/depth/UNBOUNDED_CONTROL_SESSION_RESULT.md)
-removes a total-overlap restriction for
-[isolated paired cores](../research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md).
-Any number of those cores is diagonal C3 under the exact native source
-hypotheses. Commuting full-space control involutions force each fixed
-target-axis sign to be affine, even with many coupled control phases.
-In particular, good zero-character axes and at most two B neighbors per
-C axis suffice; no zero characters and nonzero character classes of size
-at most three are a simpler sufficient condition. These certify 78/26
-transport without bounding the total relation rank. If all actual B/C
-noncommutation is one nontrivial C orbit, its incidence row must also
-have weight two; the full-space involution excludes every wider row.
-Additional bad zero-character axes are outside that single-orbit theorem.
+The [current round](../research/depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
+extends the [native source theorem](../research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+to arbitrary overlapping nonzero-character incidence. If every
+zero-character B axis commutes with C, exact full-space C3 forces each
+interacting class to consist of one isolated two-axis B/C pair. The
+full involution defect localizes each isolated A probe; native A
+isotropy forces its B-neighborhood to be uniform on each activation
+class. This closes coupled wider rows without bounding total overlap
+and certifies the existing 78/26 transport bounds. Bad zero-character
+interactions remain outside this extension.
 
 The separate [controlled-Pauli theorem](../research/depth/CONTROLLED_PAULI_TRANSPORT.md)
-assumes exact C3 controlled-Pauli blocks with the specified canonical
-Pauli domain, or explicit fiber compatibility. It gives label degree
-**58** and literal sign/general target degree **174**, below
-$`\sqrt2/8`$, independently of both control and target width. C3 forces
-quadratic Pauli labels and a scalar phase with bounded binary degrees;
-the allowed weight-four quartic term and all Hermitian-section carries
-are retained. The known non-semi-Clifford Gottesman–Mochon source and its
-tensor powers satisfy the hypothesis. Their paid realization does not
-supply a three-band source or a returned query. General C3 membership
-alone still does not imply this transport theorem.
+now assumes only an exact C3 source with scalar-Pauli computational
+blocks in fixed input/output Clifford coordinates. A signed
+normalization derives its canonical exact domain, removing the former
+domain or fiber-compatibility premise. Label degree **58** and literal
+sign/general target degree **174** hold below $`\sqrt2/8`$ independently
+of control and target width. C3 derives quadratic labels and bounded
+scalar phase degrees, retaining the weighted quartic term and all
+Hermitian-section carries. The known non-semi-Clifford Gottesman–Mochon
+source and its tensor powers satisfy the block hypothesis. Their paid
+realization does not supply a native three-band source or a returned
+query. Arbitrary C3 membership alone still does not imply this theorem.
 
 A separate [uniform transport theorem](../research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 uses the intrinsic codimension k of the source's exact Pauli-preserving
@@ -171,25 +169,43 @@ inferring a parallel schedule from whole-pivot commutativity. The circuit
 changes its matrix inputs internally and gives no improved native
 read-only query or complete frame.
 
-The attempted balanced block-inversion shortcut is now charged in the
-[cycle proof](../research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md).
-Its exact product XOR does not supply an in-place update: the three-shear
-conversion leaves the helper transformed by the inverse operator and
-requires repeated child inversions. A determinant invariant excludes
-full return within frozen-coefficient uniform polynomial array shears.
-Coordinate operations and other native mechanisms lie outside that
-invariant; no general depth lower bound or faster upper law follows.
+The [balanced construction](../research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+now permits helper garbage during inverse computation and returns it
+with the actual inverse after readout. For a d-by-d unitriangular input,
+put $`q=\binom d2`$, $`h=\max\{\lceil\log_2d\rceil-1,0\}`$,
+$`a=\lfloor d/2\rfloor`$, and $`c=\lceil d/2\rceil`$.
+The exact complete inverse-word XOR query has
+
+```math
+\begin{aligned}
+T&=64\binom d3,&G&\le160\binom d3+23q+4d,\\
+D_T&\le128h,&W&=ac(c+3)/2.
+\end{aligned}
+```
+
+Here W is additional arbitrary work beyond the q coefficient inputs
+and $`d(d+1)/2`$ arbitrary output bits; d equal to one uses W zero.
+All work and coefficient inputs return, no clean bit is used, and the
+error is zero. Its actual reversed word and direct controlled variant
+have separate complete ledgers in the proof home. The phase source has
+the same T/depth/work orders. This improves the completed structured
+source/query from linear to logarithmic depth at cubic rather than
+quadratic work. It avoids the former repeated-child-inversion cost;
+the determinant obstruction remains valid for its narrower returned
+in-place, frozen-coefficient interface. The matrix inputs change
+internally, so native read-only access and an arbitrary-table encoding
+within R98's budgets remain missing. The complete cycle conjunction's
+separate transport and fair baseline are unchanged.
 
 The next lower-bound question remains a **native degree-versus-depth
-recurrence**. The immediate source question is width-independent signed
-transport through arbitrary three-native-band C3 sources. Total overlap
-alone is no longer the useful dividing line: arbitrarily many isolated
-paired cores are covered, while overlapping even-incidence components
-and simultaneous zero-character interactions remain open. Test whether
-full C3 membership forces these components into a controlled transport
-class, or allows a native high-degree family. A representation-dependent
-parameter is not an unrestricted depth invariant. General non-C3 prefixes,
-robust radii for growing depth, one-clean work and address mixing remain
+recurrence**. For exact three-native-band C3 sources, the immediate
+remaining structural issue is bad zero-character B/C interaction.
+Does that interaction admit scalar-Pauli block coordinates, or another
+width-independent signed transport invariant? The new normalization
+makes scalar-Pauli coordinates sufficient for 174/58 transport without
+requiring diagonalization. A representation-dependent parameter is
+not an unrestricted depth invariant. General non-C3 prefixes, robust
+radii for growing depth, one-clean work and address mixing remain
 additional gaps. None of these results changes the complete-frame upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two

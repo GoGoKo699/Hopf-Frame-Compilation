@@ -4,73 +4,326 @@
 [Hybrid diagonal/core transport](HYBRID_DIAGONAL_CORE_TRANSPORT.md) ·
 [Diagonal-source transport](NATIVE_CLIFFORD_TRANSPORT.md)
 
-A third-level source whose computational control blocks are scalar
-Paulis admits width-independent native transport bounds under an explicit
-compatibility condition on its exact Pauli-preserving domain. The proof
-uses polynomial phase arithmetic instead of interpolating an arbitrary
-matrix on the whole target register. It applies to a known non-semi-
-Clifford source and its tensor powers.
+Every third-level source whose computational control blocks are scalar
+Paulis admits width-independent native transport bounds. A signed fixed-
+Clifford normalization puts its exact Pauli-preserving domain in canonical
+form; no separate domain or fiber-compatibility hypothesis is required.
+Polynomial phase arithmetic then avoids interpolating an arbitrary matrix
+on the whole target register. The theorem covers a known non-semi-Clifford
+source and its tensor powers.
 
-The controlled-Pauli form and domain condition are source hypotheses.
-Neither follows merely from complete workspace return or an arbitrary
-three-native-band description. No physical source-synthesis saving or
-returned-query construction is asserted.
+The controlled-Pauli form is a source hypothesis. It does not follow merely
+from complete workspace return, arbitrary C3 membership, or a three-native-
+band description. No physical synthesis saving or returned-query
+construction is asserted.
 
 ## 1. Statement and native contract
 
-In fixed analytical input/output Clifford coordinates suppose
+In fixed analytical input/output Clifford coordinates suppose the source
+has scalar-Pauli computational blocks:
 
 ```math
-H=I_S\otimes\sum_{z\in\mathbb F_2^r}|z\rangle\langle z|_R
-       \otimes H_z,
-\qquad H_z=e^{i\theta(z)}X^{a(z)}Z^{b(z)}.
+F=\sum_{z\in\mathbb F_2^r}|z\rangle\langle z|_R\otimes F_z,
+\qquad F_z=e^{i\theta(z)}X^{a(z)}Z^{b(z)}.
 ```
 
-The Boolean vectors a,b and scalar function $`\theta`$ may initially be
-arbitrary. Write $`\omega=e^{i\pi/4}`$. The control width r and target width q are unrestricted.
-Assume H is third-level and its exact signed Pauli-preserving domain is
+The Boolean label functions and scalar phase may initially be arbitrary.
+The control and target widths are unrestricted. Assume only that F is
+third-level. Write $`\omega=e^{i\pi/4}`$ and use the tensor-factorizing
+Hermitian section $`\tau(x,y)=i^{x\cdot y}X^xZ^y`$, with integer dot
+product in the exponent. All equalities below are literal, including the
+phase in $`X^aZ^b`$. Polynomial degrees mean Boolean algebraic degrees
+over $`\mathbb F_2`$.
+
+The signed normalization proved below gives fixed Cliffords A,B with
+
+```math
+H=AFB=I_S\otimes\sum_w|w\rangle\langle w|_{R'}\otimes H_w,
+```
+
+where every $`H_w`$ is still a scalar Pauli and the exact domain is
 
 ```math
 E_H=\{p:H\tau(p)H^\dagger\text{ is a signed Hermitian Pauli}\}
-    =\mathcal P_S\oplus Z_R.
+    =\mathcal P_S\oplus Z_{R'}.
 ```
 
-The zero label belongs to this domain. All equalities are literal,
-including the phase in $`X^aZ^b`$. Use the tensor-factorizing Hermitian
-section $`\tau(x,y)=i^{x\cdot y}X^xZ^y`$, where the exponent's dot
-product is over the integers. All polynomial degrees below are Boolean
-algebraic degrees over $`\mathbb F_2`$.
+The zero label is included. This equality is a conclusion, not an extra
+source premise. H remains C3. Below, relabel the normalized controls as
+R, denote their string by z, and write their blocks afresh as
+$`H_z=e^{i\theta(z)}X^{a(z)}Z^{b(z)}`$. Existing identity spectators
+can be included in S.
 
-The exact-domain premise can instead be replaced by the explicit
-compatibility condition that the particular inner family L preserves
-the control algebra and has Clifford fibers factoring on Q and S.
-The proof uses only that compatibility once the displayed source form
-is supplied. Neither compatibility nor the domain equality is inferred
-from a generic controlled-source representation.
-
-Let the actual native six-layer inner family L and outer Clifford
-comparison K obey the complete operator endpoint bound
+After the corresponding fixed endpoint changes, let the actual native
+six-layer inner family L and outer Clifford comparison K obey
 
 ```math
 \|K_x-HL_xH^\dagger\|_{\rm op}\le2\eta.
 ```
 
 [Retain the native ledger](NATIVE_CLIFFORD_TRANSPORT.md#4-native-degrees-including-modulo-eight-carries)
-for L and its actual inverse: fixed probe labels
-have degree two and signs degree six; a probe label of degree d has output
-label degree at most $`d+2`$ and literal conjugation sign degree at most $`3d+6`$.
-Fixed Clifford coordinates preserve the ledger.
+for L and its actual inverse: fixed probe labels have degree two and signs
+degree six; a probe label of degree d has output label degree at most
+$`d+2`$ and literal conjugation sign degree at most $`3d+6`$. Fixed
+Clifford coordinates preserve this ledger and the complete operator error.
 
-**Controlled-Pauli transport theorem.** At full query error $`\eta\lt\sqrt2/8`$,
+**Controlled-Pauli transport theorem.** At full query error
+$`\eta\lt\sqrt2/8`$,
 
 ```math
 \deg S_K\le58,\qquad\deg\kappa_K(P)\le174
 ```
 
-for every fixed Hermitian probe P. Thus the six-layer target degree is at
-most 58 for visible outer target shear and at most 174 in general.
-Neither the bounds nor the radius depends on q,r, source coefficients,
-or dirty width. The constants are conservative; no sharpness is claimed.
+for every fixed Hermitian probe P, including after restoring the original
+fixed output coordinates. The six-layer target degree is at most 58 for
+visible outer target shear and at most 174 in general. Neither the bounds
+nor the radius depends on control/target width, source coefficients,
+Pauli deficiency, or dirty width. No sharpness is claimed.
+
+### Signed normalization of the exact domain
+
+This normalization needs no C3 assumption. For the original source F,
+write a binary Pauli label as $`(u,p,v)`$: u,v are its control X,Z labels
+and p its target label. Let E be its exact Pauli-preserving domain.
+It is a linear subspace with an injective symplectic image map; the
+literal signs come from F. Since F fixes every control Z,
+$`Z_R\subseteq E`$. Commutation with these fixed operators shows that
+every domain image has the same control-X component as its input.
+
+The following construction produces H and its exact domain without
+initializing a sector, discarding a scalar, or adding a wire.
+
+#### Ordered controlled-Pauli Cliffords
+
+For any linear map $`A_0:\mathbb F_2^r\to\mathcal P_Q`$, with columns
+$`A_j=(\alpha_j,\beta_j)`$, choose the actual ordered product
+
+```math
+W_{A_0}=\prod_{j=1}^r
+\left(|0\rangle\langle0|_j\otimes I
+      +|1\rangle\langle1|_j\otimes\tau(A_j)\right).
+```
+
+Each factor is Clifford: a target Clifford takes the Hermitian axis to
+a single signed Z, reducing its controlled gate to CZ with a possible
+control Z. The product fixes control Z and has scalar-Pauli blocks. Its
+binary action, and that of its inverse, both have form
+
+```math
+(u,p,v)\longmapsto(u,p+A_0u,v')
+```
+
+with a linear control-Z tail. Conjugating a pure control translation
+contributes $`A_0u`$ to the target label; conjugating an existing target
+Pauli changes only its control-Z tail. These assertions also cover a
+zero column, whose controlled gate is the identity.
+
+The columns need not commute. For the displayed algebraic order the
+literal block is
+
+```math
+(W_{A_0})_z=i^{\psi(z)}X^{\sum_j\alpha_jz_j}
+                              Z^{\sum_j\beta_jz_j},
+```
+
+```math
+\psi(z)=\sum_j(\alpha_j\cdot\beta_j)z_j
+       +2\sum_{j\lt k}(\beta_j\cdot\alpha_k)z_jz_k\pmod4.
+```
+
+The X,Z exponents are binary sums; the displayed dots are integer dots.
+This retains the order-dependent scalar. Replacing the block by
+$`\tau(A_0z)`$ can change the operator. The source class is closed under
+left/right multiplication by these actual Cliffords, left multiplication
+by diagonal control Cliffords, and conjugation by control-only invertible
+linear coordinates. These are literal block identities.
+
+#### Straighten mixed input translations
+
+Let V be the control-X projection of E, with $`h=\dim V`$. Choose a
+linear section $`u\mapsto e(u)\in E`$. Its target component $`p_D(u)`$
+is linear. Extend it to all control translations and construct the
+ordered Clifford $`W_D`$ as above.
+
+For $`u\in V`$, $`W_DX^uW_D^\dagger`$ has control-X component u
+and target component $`p_D(u)`$. Its label differs from $`e(u)`$ only
+by a control-Z label, which is in E. Hence
+
+```math
+F_1=FW_D,\qquad E_{F_1}=S_{W_D}^{-1}E
+```
+
+has every pure $`X^u`$, $`u\in V`$, in its exact domain. Its control-X
+projection is still exactly V because $`W_D`$ preserves that component.
+It still fixes $`Z_R`$ literally.
+
+The selected section need not commute: the commuting lifts supplied
+by $`W_DX^uW_D^\dagger`$ differ by available control-Z tails. Signs
+are irrelevant only to domain membership; the actual $`W_D`$ signs
+remain in $`F_1`$.
+
+#### Match output translations with all signs
+
+For $`u\in V`$, the Pauli $`F_1X^uF_1^\dagger`$ has control-X
+component u and a linear target component $`p_I(u)`$. Extend the latter
+and construct $`W_I`$ in the same way. Put $`F_2=W_I^\dagger F_1`$.
+The displayed binary action cancels the target component even though
+it was already present in the image. Thus
+
+```math
+F_2X^uF_2^\dagger=(-1)^{s(u)}\tau_R(u,c(u)),\qquad u\in V,
+```
+
+where $`c:V\to\mathbb F_2^r`$ is linear. Left multiplication by a
+Clifford leaves the exact input domain unchanged. Commuting input
+translations have commuting images, giving
+
+```math
+u\cdot c(v)=v\cdot c(u),\qquad u,v\in V.
+```
+
+A symmetric linear map $`C:\mathbb F_2^r\to\mathbb F_2^r`$ extends
+the entire prescribed map c. To see this, choose a complement of V and
+extend the bilinear form $`(w,u)\mapsto w\cdot c(u)`$. Its V-by-V
+block is symmetric. Its cross block is prescribed by pairing c with
+the complement; the opposite block is its transpose. Choose an arbitrary
+symmetric complement-by-complement block. Thus the extension preserves
+the values of c paired with all R, not only with V.
+
+A diagonal control Clifford realizes the shear
+$`(u,v)\mapsto(u,v+Cu)`$: diagonal matrix entries use S gates and
+off-diagonal entries use CZ gates in the original computational basis.
+For $`u\in V`$ its X image has the same label as the image under
+$`F_2`$. The ratio of their signs is a character of V, because both
+conjugations respect the multiplication of $`\{X^u:u\in V\}`$ with
+the same Pauli cocycle. A control Z Pauli realizes any such character.
+Include that correction in an actual diagonal Clifford G. It satisfies
+
+```math
+GX^uG^\dagger=F_2X^uF_2^\dagger,\qquad u\in V,
+```
+
+literally. Consequently $`F_3=G^\dagger W_I^\dagger F W_D`$
+commutes all $`X^u`$, $`u\in V`$, and all control Z.
+
+Choose a control CNOT/SWAP Clifford $`C_R`$ taking V to the translation
+span of the first h control wires $`S_0`$. Then
+
+```math
+F_4=C_RF_3C_R^\dagger=I_{S_0}\otimes F_5.
+```
+
+Commutation with the full Pauli algebra on $`S_0`$ proves this exact
+factorization on arbitrary entangled inputs and references. No wire is
+initialized or physically discarded. On remaining controls $`R_0`$
+the domain has zero control-X projection; subtract its available
+control-Z tails to obtain the exact equalities
+
+```math
+E_{F_5}=E_Q\oplus Z_{R_0},\qquad
+E_{F_4}=\mathcal P_{S_0}\oplus E_{F_5}.
+```
+
+No new control translation can appear after stripping the exact identity
+factor, because the projection before stripping was exactly V.
+
+#### Match the target domain and promote its radical
+
+For $`p\in E_Q`$, blockwise Pauli conjugation gives
+
+```math
+F_5\tau(p)F_5^\dagger=(-1)^{\kappa_p(z)}\tau(p),\qquad
+\kappa_p(z)=\langle P_5(z),p\rangle.
+```
+
+The target label is unchanged. Exact-domain membership makes this sign
+affine in the remaining control string:
+
+```math
+\kappa_p(z)=s(p)+\sum_jf_j(p)z_j.
+```
+
+Evaluation at zero and each control basis vector shows that s and all
+$`f_j`$ are linear functionals of p on $`E_Q`$, including when that
+subspace is degenerate. Each extends to the full target space, whose
+nondegenerate pairing represents it by a Pauli label. Choose representing
+labels $`q_0,q_j`$ and the actual ordered Clifford
+
+```math
+W_0=\tau(q_0)\prod_j
+\left(|0\rangle\langle0|_j\otimes I
+      +|1\rangle\langle1|_j\otimes\tau(q_j)\right).
+```
+
+Its block label is $`q_0+\sum_jq_jz_j`$, so its literal conjugation
+matches $`F_5`$ on every Hermitian Pauli in $`E_Q`$. The phases of the
+ordered product are retained. Therefore $`F_6=W_0^\dagger F_5`$
+commutes $`E_Q`$ and $`Z_{R_0}`$ literally, with the same exact domain.
+
+Let $`2s_1`$ be the symplectic rank of $`E_Q`$ and c its radical
+dimension. A target-only Clifford $`C_Q`$ takes it to
+$`\mathcal P_{S_1}\oplus Z_C`$, with $`|S_1|=s_1`$ and $`|C|=c`$.
+Conjugation preserves scalar-Pauli blocks including its actual signs.
+Commutation with $`\mathcal P_{S_1}`$ forces identity on $`S_1`$;
+commutation with $`Z_C`$ forbids X labels on C. Each block thus has form
+
+```math
+I_{S_1}\otimes Z_C^{b_C(z)}
+       \otimes\widetilde\lambda_z\tau(\widetilde P(z)).
+```
+
+Regard C as additional controls, absorbing its full action into the
+scalar $`(-1)^{b_C(z)\cdot c_0}\widetilde\lambda_z`$ at the joint
+sector $`(z,c_0)`$. This regroups every sector; it selects no eigenvalue.
+A fixed wire permutation $`\Pi`$ puts the registers in the desired
+order. Then, exactly,
+
+```math
+E_H=\mathcal P_{S_0\cup S_1}\oplus Z_{R_0\cup C}.
+```
+
+Wire counts are $`|S|=h+s_1`$, $`|R'|=r-h+c`$, and
+$`|Q'|=q-s_1-c`$, whose sum is unchanged. The domain dimension checks:
+$`\dim E=r+h+2s_1+c=2|S|+|R'|`$.
+
+#### Both endpoint coordinates and literal error
+
+Extend $`W_0,C_Q`$ by identity on $`S_0`$. The complete construction is
+
+```math
+\begin{aligned}
+H&=AFB,\\
+A&=\Pi(I_{S_0}\otimes C_QW_0^\dagger)
+       C_RG^\dagger W_I^\dagger,\\
+B&=W_DC_R^\dagger(I_{S_0}\otimes C_Q^\dagger)\Pi^\dagger.
+\end{aligned}
+```
+
+Each factor is its actual selected operator, including any scalar, so
+$`F=A^\dagger HB^\dagger`$ literally. Given an endpoint
+$`K_x\approx FL_xF^\dagger`$, set
+
+```math
+K'_x=AK_xA^\dagger,\qquad L'_x=B^\dagger L_xB.
+```
+
+Then
+
+```math
+\|K'_x-HL'_xH^\dagger\|_{\rm op}
+=\|K_x-FL_xF^\dagger\|_{\rm op}.
+```
+
+The actual inverse is $`(L'_x)^\dagger=B^\dagger L_x^\dagger B`$.
+The fixed input and output coordinates generally differ; using the same
+coordinate conjugation on both sides would not preserve this identity.
+Initially supplied source endpoint Cliffords can be absorbed into A,B.
+Existing identity spectator wires may be included in S.
+
+The normalization is analytical and uses only fixed Cliffords on either
+side of F, so it preserves C3. The following phase bounds are derived
+afresh for H; no polynomial degree is propagated through these possibly
+wide coordinate changes.
 
 ## 2. C3 derives the polynomial phase bounds
 
@@ -153,8 +406,8 @@ source-specific phase gap or restriction on control width is needed.
 The [C3 rounding lemma](NATIVE_CLIFFORD_TRANSPORT.md#1-a-robust-exactness-lemma-for-every-third-level-source)
 makes the endpoint projectively exact, because its error is at most
 $`2\eta\lt\sqrt2/4`$. It requires $`H\in\mathcal C_3`$, without an
-inverse-C3 premise. Under the domain hypothesis, exactness makes L
-normalize $`E_H`$ and its radical $`Z_R`$, and H commutes $`E_H`$
+inverse-C3 premise. The canonical domain proved in section 1 makes exactness force L
+to normalize $`E_H`$ and its radical $`Z_R`$, and H commutes $`E_H`$
 literally, as in the [hybrid proof](HYBRID_DIAGONAL_CORE_TRANSPORT.md#5-exact-endpoint-and-domain-compatibility).
 Therefore
 
@@ -162,16 +415,14 @@ Therefore
 J_x=L_x^\dagger H L_x H^\dagger
 ```
 
-is an actual Clifford up to its retained scalar and, under the
-exact-domain premise, commutes $`E_H`$.
+is an actual Clifford up to its retained scalar and commutes $`E_H`$.
 The actual K and LJ differ only by a scalar, irrelevant to their Pauli
 conjugation action after this exact reduction.
 
 L permutes control sectors affinely by $`z\mapsto\phi_x(z)`$; its
-fibers factor as Q and S Cliffords. If the alternative explicit fiber
-compatibility premise is used, this step is supplied directly. In either
-case J is identity on S and commutes $`Z_R`$; the alternative premise
-does not identify the radical of a possibly larger $`E_H`$.
+fibers factor as Q and S Cliffords. Thus J is identity on S and commutes
+$`Z_R`$. These properties now follow from the normalized exact domain,
+without a separate compatibility premise.
 At every fixed control input z,
 
 ```math
@@ -340,7 +591,7 @@ Clifford coordinates adds only a cubic sign in a degree-58 label, also 174.
 The existing visible-shear and general fixed-probe target extractors
 add degree-two and degree-six baselines respectively, so the bounds 58/174 remain.
 
-The source form and exact domain are additional hypotheses. They do not
+The scalar-Pauli source form is an additional hypothesis. It does not
 follow from complete workspace return, from arbitrary C3 membership, or
 from a three-native-band description alone. This theorem does not make
 its source semi-Clifford, nor construct a returned query. Its precision
@@ -547,6 +798,12 @@ fully charged native word. Two exact endpoints built from the actual
 source and Pauli inner operators exercise four-block recovery, including
 imaginary scalar phases and a carry that changes the recovered sign.
 Tensor-product checks retain the arbitrary-width scope of the stated
-family. These bounded fixtures support the explicit mechanisms; the
-degree bounds and source-uniform radius follow from the proof above.
+family. A five-wire normalization fixture checks all physical columns
+and the full Pauli domain with mixed, noncoordinate control translations,
+noncommuting section target labels, essential literal sign corrections,
+and a degenerate target-domain direction promoted to a control. Its
+different left and right endpoint coordinates preserve an exact Clifford
+endpoint and the actual inverse, including a nonreal scalar. These
+bounded fixtures support the explicit mechanisms; the degree bounds and
+source-uniform radius follow from the proof above.
 

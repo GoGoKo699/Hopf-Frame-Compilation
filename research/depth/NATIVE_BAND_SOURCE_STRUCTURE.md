@@ -426,12 +426,14 @@ that conclusion does not restore individual-axis preservation in Section 8.
 The later [overlap-two theorem](TWO_OVERLAP_SOURCE_STRUCTURE.md) closes
 all t at most two. The [isolated-core extension](ISOLATED_NATIVE_CORE_STRUCTURE.md)
 then removes the total-overlap bound for arbitrarily many isolated paired
-cores and its checkable activation classes. A separate
+cores. Its later coupled-incidence theorem covers every exact source in
+which zero-character B axes commute with C, forcing all interacting
+nonzero classes to be isolated pairs. A separate
 [hybrid theorem](HYBRID_DIAGONAL_CORE_TRANSPORT.md) supplies transport for
 a wide diagonal C3 part coupled to a bounded quantum core, and localizes
 commuting lists with bounded relation count. Thus the former t-at-least-two
-next step is historical. Overlapping growing relation components and
-general zero-character interactions remain structural gaps. The general
+next step is historical. Bad zero-character interactions remain the
+structural source gap after the nonzero-class closure. The general
 native three-band transport, its error radius outside C3, and the general
 returned six-layer theorem remain open.
 

@@ -234,7 +234,7 @@ def _inverse_lower_word(inverse):
 
 
 def _parallel_product_shear(products, helpers):
-    """Private-helper schedule for disjoint product targets and source sets."""
+    """Private helpers, with source wires disjoint from all product targets."""
     individual = [_relative_grid([second], [target], [[helper]])[1]
                   for (_, second, target), helper in zip(products, helpers)]
     layers = []
@@ -251,7 +251,8 @@ def _parallel_product_shear(products, helpers):
     linear = [('CX', first, helper)
               for (first, _, _), helper in zip(products, helpers)]
     phase = _inverse(relative) + linear + relative + _inverse(linear)
-    hadamards = [('H', target) for _, _, target in products]
+    # A shared XOR target is conjugated once around the entire phase family.
+    hadamards = [('H', target) for target in dict.fromkeys(p[2] for p in products)]
     return hadamards + phase + hadamards, phase, layers
 
 
@@ -335,6 +336,108 @@ def _two_array_ring_product(a, b, nu):
     return tuple(_truncated_ring_mul(a[2 * i], b[j], nu)
                  ^ _truncated_ring_mul(a[2 * i + 1], b[2 + j], nu)
                  for i in range(2) for j in range(2))
+
+
+def _recursive_inverse_work(n):
+    if n <= 1:
+        return 0
+    a, c = n // 2, n - n // 2
+    return a * c * (c + 3) // 2
+
+
+def _parallel_native_words(first, second):
+    """Interleave disjoint child words at their physical T-band boundaries."""
+    def pieces(word):
+        cliffords, bands = [[]], []
+        for gate in word:
+            if gate[0] == 'T':
+                if len(cliffords) > len(bands):
+                    bands.append([])
+                bands[-1].append(gate)
+            else:
+                if len(cliffords) == len(bands):
+                    cliffords.append([])
+                cliffords[-1].append(gate)
+        if len(cliffords) == len(bands):
+            cliffords.append([])
+        return cliffords, bands
+
+    ca, ta = pieces(first)
+    cb, tb = pieces(second)
+    result = []
+    for k in range(max(len(ta), len(tb)) + 1):
+        result += ca[k] if k < len(ca) else []
+        result += cb[k] if k < len(cb) else []
+        result += ta[k] if k < len(ta) else []
+        result += tb[k] if k < len(tb) else []
+    return result
+
+
+def _two_sided_xor_word(a, c, left, right, source, target, work, native):
+    """Literal P,Q,P†,Q† echo; no accumulator or phase helper is clean."""
+    size = a * c
+    accumulator = np.array(work[:size], dtype=int).reshape(a, c)
+    private = work[size:]
+    p_products = [(left[i, k], source[k, j], accumulator[i, j])
+                  for i in range(a) for k in range(i + 1, a) for j in range(c)]
+    q_products = [(accumulator[i, k], right[k, j], target[i, j])
+                  for i in range(a) for k in range(c) for j in range(k + 1, c)]
+
+    def family(products):
+        if native:
+            return _parallel_product_shear(products, private[:len(products)])[0]
+        return [('CCX', *p) for p in products]
+
+    p = [('CX', source[i, j], accumulator[i, j]) for i in range(a) for j in range(c)]
+    q = [('CX', accumulator[i, j], target[i, j]) for i in range(a) for j in range(c)]
+    p += family(p_products)
+    q += family(q_products)
+    return p + q + _inverse(p) + _inverse(q)
+
+
+def _recursive_inverse_word(n, native=False):
+    """Bounded fixture for the garbage-output computation, including V2."""
+    pairs, _ = _triangular_pairs(n)
+    upper = {pair: bit for bit, pair in enumerate(pairs)}
+    work = list(range(len(pairs), len(pairs) + _recursive_inverse_work(n)))
+
+    def node(vertices, pool):
+        size = len(vertices)
+        if size <= 1:
+            return []
+        a, c = size // 2, size - size // 2
+        va, vc = vertices[:a], vertices[a:]
+        left = {(i, j): upper[va[i], va[j]] for i in range(a) for j in range(i + 1, a)}
+        right = {(i, j): upper[vc[i], vc[j]] for i in range(c) for j in range(i + 1, c)}
+        block = np.array([[upper[i, j] for j in vc] for i in va], dtype=int)
+        extra = np.array(pool[:a * c], dtype=int).reshape(a, c)
+        scratch = pool[a * c:]
+        first = _two_sided_xor_word(a, c, left, right, extra, block, scratch, native)
+        wa, wc = _recursive_inverse_work(a), _recursive_inverse_work(c)
+        child_a = node(va, scratch[:wa])
+        child_c = node(vc, scratch[wa:wa + wc])
+        children = (_parallel_native_words(child_a, child_c) if native
+                    else child_a + child_c)
+        last = _two_sided_xor_word(a, c, left, right, block, extra, scratch, native)
+        swaps = [gate for b, e in zip(block.flat, extra.flat)
+                 for gate in [('CX', b, e), ('CX', e, b), ('CX', b, e)]]
+        return first + children + last + swaps
+
+    return node(list(range(n)), work)
+
+
+def _apply_classical_word(value, word):
+    for gate in word:
+        if gate[0] == 'CX':
+            value ^= ((value >> int(gate[1])) & 1) << int(gate[2])
+        elif gate[0] == 'CCX':
+            value ^= (((value >> int(gate[1])) & 1)
+                      & ((value >> int(gate[2])) & 1)) << int(gate[3])
+        elif gate[0] == 'X':
+            value ^= 1 << int(gate[1])
+        else:
+            raise ValueError(gate[0])
+    return value
 
 
 class NoncommutativeCycleCharacterTests(unittest.TestCase):
@@ -911,6 +1014,134 @@ class NoncommutativeCycleCharacterTests(unittest.TestCase):
                                    rtol=0, atol=3e-14)
         np.testing.assert_allclose(_native_matrix(_inverse(word), 8),
                                    expected.conj().T, rtol=0, atol=3e-14)
+
+    def test_recursive_shared_target_native_family_returns_every_helper(self):
+        products = [(0, 1, 3), (0, 2, 3)]
+        word, _, _ = _parallel_product_shear(products, [4, 5])
+        self.assertEqual(sum(g[0] == 'H' for g in word), 2)
+        self.assertEqual(sum(g[0] == 'T' for g in word), 16)
+        self.assertEqual(_serial_t_depth(word), 8)
+        expected, phases = _monomial([('CCX', *p) for p in products], 6)
+        matrix = np.zeros((64, 64), dtype=complex)
+        matrix[expected, np.arange(64)] = 1
+        np.testing.assert_array_equal(phases, np.zeros(64, dtype=int))
+        np.testing.assert_allclose(_native_matrix(word, 6), matrix, rtol=0, atol=2e-14)
+        np.testing.assert_allclose(_native_matrix(_inverse(word), 6), matrix.conj().T,
+                                   rtol=0, atol=2e-14)
+
+    def test_recursive_inverse_native_columns_and_parallel_ledgers(self):
+        # V2 is deliberately the Clifford-only recursion, with two work bits.
+        # V3 then checks every principal/helper column on eight physical wires.
+        for n in (2, 3):
+            width = comb(n, 2) + _recursive_inverse_work(n)
+            abstract = _recursive_inverse_word(n)
+            expected, phases = _monomial(abstract, width)
+            matrix = np.zeros((1 << width, 1 << width), dtype=complex)
+            matrix[expected, np.arange(1 << width)] = 1
+            native = _recursive_inverse_word(n, native=True)
+            np.testing.assert_array_equal(phases, np.zeros_like(phases))
+            np.testing.assert_allclose(_native_matrix(native, width), matrix,
+                                       rtol=0, atol=6e-14)
+            np.testing.assert_allclose(_native_matrix(_inverse(native), width),
+                                       matrix.conj().T, rtol=0, atol=6e-14)
+
+        for n in range(1, 10):
+            native = _recursive_inverse_word(n, native=True)
+            q, triples = comb(n, 2), comb(n, 3)
+            self.assertEqual(sum(g[0] == 'T' for g in native), 32 * triples)
+            self.assertLessEqual(sum(g[0] != 'T' for g in native), 80 * triples + 11 * q)
+            depth = _serial_t_depth(native)
+            self.assertLessEqual(depth, 64 * max((n - 1).bit_length() - 1, 0))
+            if n == 6:
+                # Two nonlinear V3 children are in the same T bands.
+                self.assertEqual(depth, 96)
+            run = []
+            for gate in native + [('BARRIER',)]:
+                if gate[0] == 'T':
+                    run.append(gate[1])
+                else:
+                    self.assertEqual(len(run), len(set(run)))
+                    run = []
+            if n > 1:
+                a, c = n // 2, n - n // 2
+                local = a * c + max(c * comb(a, 2), a * comb(c, 2))
+                self.assertEqual(_recursive_inverse_work(n), a * c + max(
+                    _recursive_inverse_work(a) + _recursive_inverse_work(c), local))
+                self.assertGreaterEqual(_recursive_inverse_work(n), q)
+
+    def test_recursive_inverse_principal_independence_and_live_child_garbage(self):
+        rng = Random(30914)
+        for n in range(2, 9):
+            pairs, _ = _triangular_pairs(n)
+            q, w = len(pairs), _recursive_inverse_work(n)
+            word = _recursive_inverse_word(n)
+            samples = (range(1 << (q + w)) if n <= 3
+                       else [rng.getrandbits(q + w) for _ in range(80)])
+            for value in samples:
+                image = _apply_classical_word(value, word)
+                _, inverse = _upper_inverse(n, value & ((1 << q) - 1))
+                expected_upper = sum(int(inverse[i, j]) << bit
+                                     for bit, (i, j) in enumerate(pairs))
+                self.assertEqual(image & ((1 << q) - 1), expected_upper)
+                self.assertEqual(_apply_classical_word(image, _inverse(word)), value)
+                # The root helper's counter-action uses original coefficients.
+                a, c = n // 2, n - n // 2
+                original, _ = _upper_inverse(n, value & ((1 << q) - 1))
+                extra = np.array([(value >> (q + bit)) & 1 for bit in range(a * c)],
+                                 dtype=np.int64).reshape(a, c)
+                expected_extra = original[:a, a:] ^ (
+                    original[:a, :a] @ extra @ original[a:, a:] % 2)
+                actual_extra = np.array([(image >> (q + bit)) & 1
+                                         for bit in range(a * c)]).reshape(a, c)
+                np.testing.assert_array_equal(actual_extra, expected_extra)
+
+    def test_recursive_direct_query_and_controlled_query_all_columns(self):
+        for n in range(1, 4):
+            pairs, lower_pairs = _triangular_pairs(n)
+            q, w, r = len(pairs), _recursive_inverse_work(n), len(lower_pairs)
+            lower = {pair: q + w + bit for bit, pair in enumerate(lower_pairs)}
+            compute = _recursive_inverse_word(n)
+            control = q + w + r
+            for controlled in (False, True):
+                middle = [('CCX', control, bit, lower[j, i]) if controlled else
+                          ('CX', bit, lower[j, i]) for bit, (i, j) in enumerate(pairs)]
+                middle += [('CX', control, lower[i, i]) if controlled else
+                           ('X', lower[i, i]) for i in range(n)]
+                word = compute + middle + _inverse(compute)
+                width = control + int(controlled)
+                images, phases = _monomial(word, width)
+                values = np.arange(1 << width, dtype=np.int64)
+                table = np.array([_inverse_lower_word(_upper_inverse(n, upper)[1])
+                                  for upper in range(1 << q)], dtype=np.int64)
+                mask = table[values & ((1 << q) - 1)]
+                if controlled:
+                    mask *= (values >> control) & 1
+                expected = values ^ (mask << (q + w))
+                np.testing.assert_array_equal(images, expected)
+                np.testing.assert_array_equal(phases, np.zeros_like(values))
+                returned, reverse_phases = _monomial(word + _inverse(word), width)
+                np.testing.assert_array_equal(returned, values)
+                np.testing.assert_array_equal(reverse_phases, np.zeros_like(values))
+
+    def test_recursive_readout_pairing_is_the_cycle_source(self):
+        rng = Random(61317)
+        for n in range(1, 8):
+            algebra = _CycleAlgebra(n)
+            pairs, lower_pairs = _triangular_pairs(n)
+            q, w = len(pairs), _recursive_inverse_work(n)
+            word = _recursive_inverse_word(n)
+            for _ in range(80):
+                upper, lower, work = (rng.getrandbits(q), rng.getrandbits(len(lower_pairs)),
+                                      rng.getrandbits(w))
+                value = upper | work << q
+                image = _apply_classical_word(value, word)
+                inverse = np.eye(n, dtype=np.int64)
+                for bit, (i, j) in enumerate(pairs):
+                    inverse[i, j] = image >> bit & 1
+                parity = (_inverse_lower_word(inverse) & lower).bit_count() % 2
+                self.assertEqual(parity, algebra.character(
+                    _cycle_from_triangular(algebra, upper, lower)))
+                self.assertEqual(_apply_classical_word(image, _inverse(word)), value)
 
     def test_all_uniform_dual_number_shear_words_exclude_single_array_action(self):
         # Enumerate the entire two-array move group over F2[t]/t^2.

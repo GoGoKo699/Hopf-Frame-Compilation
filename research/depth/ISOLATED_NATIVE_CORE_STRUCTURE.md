@@ -1,4 +1,4 @@
-# Arbitrarily many isolated native paired cores
+# Native source structure at arbitrary overlap
 
 [Two-overlap source theorem](TWO_OVERLAP_SOURCE_STRUCTURE.md) ·
 [One-overlap source theorem](ONE_OVERLAP_SOURCE_STRUCTURE.md) ·
@@ -6,13 +6,16 @@
 [Signed Clifford transport](NATIVE_CLIFFORD_TRANSPORT.md)
 
 An exact C3 source with three specified native T bands is diagonal C3 in
-fixed Clifford coordinates when its noncommuting middle/outer axes split
-into isolated paired cores, with no bound on their number. The native phase
-formula controls signs across arbitrarily many controls. Commuting
-control-X images then give a common Pauli-preserving Lagrangian. This is
-an arbitrary-overlap source certificate, not a classification of all
-three-band sources or an inference from complete workspace return. Full
-C3 membership also excludes a single isolated wider activation orbit.
+fixed Clifford coordinates if every zero-activation B axis commutes with
+C. There is no bound on overlap or width. Full C3 membership forces every
+interacting nonzero character class to be exactly one two-axis B/C pair,
+even when activation matching initially permits coupled wider orbits.
+
+The proof first handles arbitrarily many isolated pairs using exact native
+phases and commuting control-X images. Section 10A then derives that pair
+structure from the weaker zero-character condition. Bad zero-character
+interactions remain outside this classification; complete workspace return
+alone does not establish the required C3 source premise.
 
 ## 1. Exact native theorem
 
@@ -359,7 +362,8 @@ In particular, if there are no zero coordinate characters and every nonzero
 character class has size at most three, the certificate holds. Every bad
 C neighborhood is a nonempty even subset of one such class, so has size
 two. This gives an arbitrary-rank activation-family consequence, not just
-an isolated finite-rank example.
+an isolated finite-rank example. Section 10A removes the neighborhood-size
+and class-size restrictions while retaining the good-zero-character premise.
 
 ## 9. Orbit incidence without an overlap bound
 
@@ -389,7 +393,9 @@ $`\{X^{J_j},X^{J_j}Z^{J_j}\}`$, retaining their Hermitian signs.
 The X and Z components separately prove independence of the C list.
 An independent basis of the even-parity Z subspace in A gives all B
 coordinates the same nonzero activation character. These are axis data,
-not certificates that the resulting full source is C3.
+not certificates that the resulting full source is C3. Section 10A proves
+that full C3 membership excludes every such wider or coupled row when
+zero-character B axes are good.
 
 ## 10. A single wider orbit is excluded by full C3 membership
 
@@ -401,8 +407,8 @@ lists, exact full-space C3 membership forces $`|J|=2`$. Consequently F is
 diagonal C3, with no bound on its total A/B overlap.
 
 In particular there are no bad zero-character B axes in this statement.
-The proof excludes one isolated wider orbit; it does not separate several
-wider orbits with overlapping neighborhoods.
+This lemma excludes one isolated wider orbit. Section 10A uses a full
+relative-block argument to handle multiple wider orbits and their overlaps.
 
 ### 10.1 Exact control-sector ratio and the half-angle axis
 
@@ -542,20 +548,309 @@ functional on $`\mathcal U`$ is that nonzero character, so its sum cannot
 belong to $`U_A`$. This contradicts $`a_i\in A`$ and excludes every
 $`k\ge4`$. Only $`k=2`$ remains, where section 1 applies directly.
 
+## 10A. Arbitrary overlap with good zero-character axes
+
+**Arbitrary-overlap source theorem.** Let $`F=E_CE_BE_A`$ be exactly C3
+on the full Hilbert space, with three independent isotropic physical lists
+of signed native T/T-dagger axes. If every zero activation-character B axis
+commutes with every C axis, each interacting nonzero character class
+contains exactly two B axes and supports exactly one C orbit pair.
+Consequently F is diagonal C3 in fixed Clifford coordinates, with no bound
+on total overlap, source width or number of classes.
+
+Here good means commuting with every C axis. Equal coordinate characters
+mean $`b_i+b_l\in U_A`$, and a zero character means $`b_i\in U_A`$.
+The theorem uses these restricted functionals on the complete activation
+code, not a chosen sample of probes. It supplies no free gates, prepared
+workspace, inverse-C3 premise or approximate C3 certification.
+
+### 10A.1. All nontrivial C orbits and their conserved controls
+
+The [native activation-orbit theorem](NATIVE_BAND_SOURCE_STRUCTURE.md#5-three-band-overlap-restricts-noncommuting-middle-axes) gives all bad C axes as pairs
+$`\{c_j,c_j+r_j\}`$, with each neighborhood $`J_j`$ contained in one
+nonzero character class and
+
+```math
+r_j=\sum_{i\in J_j}b_i\in U_A.
+```
+
+Every neighborhood is nonempty and even. Let H have these incidence rows.
+Native B/C independence and C isotropy give
+
+```math
+\mathrm{rank}(H)=m,\qquad HH^T=0,
+```
+
+where m is the number of C orbits. The rows and columns split into disjoint
+character classes; columns unused by any row may be retained. The control
+labels $`r_j`$ are independent and centralize all B/C phases. Let
+$`R=\mathrm{span}\{r_j\}`$. For the exact factor partition below, B
+means the entire B band, C means only the paired bad C phases, and G
+contains only the good C phases. This G centralizes all B axes and all
+bad C representatives. Good and zero-character B axes remain in B.
+
+If there are no bad C axes there is nothing to prove. Otherwise choose any
+A axis $`a_l`$ appearing in some r relation, and choose a Pauli p isolating
+that axis in the entire native A list. Put
+
+```math
+u_i=\langle p,b_i\rangle,\qquad
+v_j=\langle p,r_j\rangle=(Hu)_j.
+```
+
+The vector v is nonzero for this choice. Choose symplectic control
+coordinates for R so that p is precisely the product of the control X
+axes selected by v. Let $`\beta_i`$ and $`\bar c_j`$ denote the remaining
+labels after removing control-Z components. The B projection has kernel
+exactly R. In particular the relations among the $`\beta_i`$ form exactly
+the row span of H. Their pairings with the C representatives are still
+
+```math
+\langle\bar c_j,\beta_i\rangle=H_{ji}.
+```
+
+The span of the $`\bar c_j`$ intersects the span of all $`\beta_i`$
+trivially: a combination in that intersection would pair to zero with
+every $`\beta_i`$, forcing its coefficient vector to vanish because H has
+full row rank. The $`\bar c_j`$ are isotropic. Write the isolated A label
+as $`a_l=\sum_j\alpha_jr_j+a_*`$. It has no control-X component because
+A is isotropic and contains R.
+
+### 10A.2. The exact relative block does not require Clifford B restrictions
+
+Fix a control sector z, and write $`t=z+v`$. Let $`B_z,B_t`$ be the
+restrictions of the full actual B band. These restrictions need not be
+Clifford. Their literal ratio $`Q=B_tB_z^\dagger`$ is Clifford: a native phase changes its axis
+sign precisely when $`u_i=1`$, in which case its ratio is a signed
+quarter-turn. Its binary action is
+
+```math
+S_Q=\prod_{i:u_i=1}T_{\beta_i}.
+```
+
+Each native bad C pair restricts to an ordinary Clifford with retained
+eighth-root scalar. Thus both $`C_z,C_t`$ are Clifford and their relative
+binary action is
+
+```math
+P=S_{C_z^\dagger C_t}
+  =\prod_{j:v_j=1}T_{\bar c_j}.
+```
+
+Every native scalar in these restrictions is retained. The good ratio
+$`D=G_tG_z^\dagger`$ is a commuting product of quarter-turns. Its binary
+action $`D_0=S_D`$ obeys $`D_0^2=I`$ and fixes every $`\beta_i`$ and
+$`\bar c_j`$. The exact isolating A ratio is
+$`e^{\pm i\pi\tau(a_*)/4}`$, including the case of a scalar when
+$`a_*=0`$; native phase scalars cancel literally in this ratio. The full
+relative block is
+
+```math
+V=C_tQ\,
+ \bigl[B_zG_t e^{\pm i\pi\tau(a_*)/4}
+       G_t^\dagger B_z^\dagger\bigr]C_z^\dagger D.
+```
+
+The full source is C3, so V is Clifford. The global Pauli image flips
+controls by v, its two paired residual blocks are inverse, and their
+binary action is common. Hence $`S_V^2=I`$ on the entire remaining space.
+For nonzero $`a_*`$, the [trace-only half-angle lemma](NATIVE_BAND_SOURCE_STRUCTURE.md#3-native-right-extension) gives a signed Pauli
+
+```math
+H_*=B_zG_t\tau(a_*)G_t^\dagger B_z^\dagger.
+```
+
+Only traceless Hermitian involution is required before applying the lemma;
+neither $`B_z`$ nor this conjugated axis is assumed Clifford. Denote its
+binary label by h. Since D commutes with $`C_z`$, conjugating V gives
+
+```math
+C_z^\dagger V C_z
+ =(C_z^\dagger C_t)Qe^{\pm i\pi H_*/4}D.
+```
+
+Thus, on binary labels,
+
+```math
+S=P S_Q T_hD_0,\qquad S^2=I.
+```
+
+For a scalar half-angle omit $`T_h`$. The next rank calculation excludes
+that case whenever $`v\ne0`$. This is a binary consequence of a literal
+operator identity, not a replacement of any scalar in F or its inverse.
+
+### 10A.3. A rank-two defect localizes h even for an even number of flips
+
+For active rows define
+
+```math
+w_j=\sum_i u_iH_{ji}\beta_i\qquad(v_j=1).
+```
+
+Each $`w_j`$ is nonzero, since
+$`\langle\bar c_j,w_j\rangle=v_j=1`$. The involutions P and $`S_Q`$
+have square-zero differences from identity. Direct multiplication gives
+
+```math
+(P-I)(S_Q-I)=\sum_{j:v_j=1}\bar c_j\ell_{w_j},\qquad
+(S_Q-I)(P-I)=\sum_{j:v_j=1}w_j\ell_{\bar c_j},
+```
+
+where $`\ell_x(y)=\langle x,y\rangle`$. The independence of active C
+labels and their trivial intersection with the B span imply
+
+```math
+\mathrm{rank}\bigl((P S_Q)^2-I\bigr)
+=2\,\mathrm{rank}\{w_j:v_j=1\}.
+```
+
+For detail, left/right multiplication by the invertible involutions P and
+$`S_Q`$ changes $`(P S_Q)^2-I`$ into the sum of the two preceding maps.
+Apply an invertible change of basis among the active C columns and the
+contragredient change among the w columns. This leaves exactly r
+independent C columns paired with r independent w columns, where r is
+the rank of the w list. Their two spans are disjoint. The resulting
+off-diagonal bilinear form has rank $`2r`$.
+
+Set $`L=P S_QD_0`$ and $`g=D_0h`$. Then $`S=LT_g`$, while
+$`L^2=(P S_Q)^2`$ because $`D_0`$ commutes with P and $`S_Q`$ and is
+involutory. Since S is involutory and $`\mathrm{rank}(S-L)\le1`$,
+
+```math
+\mathrm{rank}(L^2-I)\le2.
+```
+
+There is an active row, so the preceding exact rank formula forces rank
+exactly two and all active $`w_j`$ to coincide with one nonzero w. A
+scalar half-angle would instead force $`L^2=I`$ and is excluded. Put
+
+```math
+q=\sum_{j:v_j=1}\bar c_j.
+```
+
+The same map formula shows
+$`\mathrm{im}(L^2-I)=\mathrm{span}\{q,w\}`$: multiplication by P or
+$`S_Q`$ preserves that plane, since $`Pw=w+q`$ and
+$`S_Qq=q+\mathrm{wt}(v)w`$. The equation $`(LT_g)^2=I`$ gives
+
+```math
+L^2=T_{Lg}T_g.
+```
+
+Its left side has rank-two difference from identity. Therefore g and Lg
+are independent, and their span is that image. In particular
+$`g\in\mathrm{span}\{q,w\}`$. The spectator map $`D_0`$ fixes q,w,
+so $`h=g`$ lies in this plane too.
+
+This argument covers even $`\mathrm{wt}(v)`$. In that case q,w commute,
+and $`L^2=T_wT_{w+q}`$; the possible corrections are h=w or $`h=w+q`$.
+For odd weight, q,w form a symplectic plane and all three nonzero labels
+may be considered. No unsupported order-three argument is used for even
+weight, and no intermediate source membership is assumed.
+
+### 10A.4. Uniform same-class commutation eliminates coupled neighborhoods
+
+First, different nonzero character classes cannot both have active rows.
+For an active row j, the coefficient vector defining $`w_j`$ is an odd
+subset of its own class. If two such w labels agree in the quotient, the
+two original B sums differ by an element of R and hence $`U_A`$. Their
+restricted activation functionals must therefore be equal. Those
+functionals are precisely their two nonzero class characters, which are
+distinct. This is a contradiction. All active rows lie in one class K.
+
+The option h=w is also impossible. Both $`B_z`$ and $`G_t`$ fix w, so
+pulling back $`H_*`$ makes $`a_*=w`$ at the label level. Restoring
+control-Z components then expresses $`a_l`$ as an odd B subset in K plus
+an element of R. It has nonzero class character and cannot belong to
+$`U_A`$, contrary to $`a_l\in A`$. Thus h has q component: it is q or
+$`q+w`$.
+
+Now use a restriction not contained in the weighted Gram matrix. Equal
+characters in K imply $`b_i+b_l\in U_A`$. Since A is isotropic, every
+individual A axis has a constant commutation bit with all B axes in K.
+The same holds for every other character class. Removing control-Z
+components does not change these pairings, and $`B_zG_t`$ commutes with
+every $`\beta_i`$. Consequently
+
+```math
+\langle h,\beta_i\rangle
+=\langle a_*,\beta_i\rangle
+=\langle a_l,b_i\rangle
+```
+
+is constant on each class. Since h has q component and w commutes with
+all B labels, its complete B-neighborhood is $`H^Tv`$. This vector is
+nonzero because H has full row rank. It is supported only on K, so the
+uniformity conclusion is precisely
+
+```math
+H^Tv=1_K.
+```
+
+For each class K there is at most one nonzero v satisfying this equation,
+again by full row rank of H. On the other hand, as $`a_l`$ runs through
+the independent A list, the isolating vectors v are exactly the columns
+of the A-coordinate matrix of the independent controls $`r_1,\ldots,r_m`$.
+Those columns span all $`\mathbb F_2^m`$. Each nonzero column is supported
+on one class, and there is at most one such vector per class. The row
+block for any class can therefore have rank at most one. Full row rank
+forces every interacting class to have exactly one C orbit. Its row must
+be $`1_K`$: the neighborhood is the entire class.
+
+In particular the overlapping rows 111100 and 001111 cannot occur in an
+exact C3 source under the stated hypotheses. This excludes that coupled
+pattern before needing a claim that the full weighted Gram matrix has
+rank at most one.
+
+### 10A.5. The remaining full-class orbit has exactly two B axes
+
+After section 10A.4 each interacting class has a single row and disjoint B
+support. Choose an A-isolating column activating that row; it activates no
+other class. Its q is that C representative, and h is q or $`q+w`$.
+Every B axis in that class anticommutes with h, and every B axis outside
+it commutes. G fixes q,w and commutes with B. The actual native pullback
+$`B_z^\dagger H_*B_z`$ must be Pauli, so the product of quarter-turns
+about all barred B axes in the class must have identity symplectic action.
+
+If the class has size k, its barred axes have exactly one relation, their
+total sum. This follows because the relation code is now the direct sum
+of the one-row codes on disjoint classes. The quarter-turn product has binary action
+
+```math
+I+N_K,\qquad
+N_K=\sum_{i\in K}\beta_i\ell_{\beta_i},\qquad
+\mathrm{rank}(N_K)=k-2.
+```
+
+The last equality is the derivative-rank lemma in section 10.3:
+the column map has rank $`k-1`$, its kernel is the all-ones vector, and
+that vector lies in its even-parity transpose image. Native signs do not
+change this binary action, and all scalar factors remain literal in the
+underlying product. Therefore $`k=2`$.
+
+All bad interactions are now disjoint two-axis B/C pairs with independent
+controls and mutually orthogonal core spaces. Every remaining B/C phase
+centralizes them and one another. The isolated-core theorem in sections 1–6
+applies, proving that F is diagonal C3 in fixed Clifford coordinates.
+
 ## 11. Scope and six-layer consequence
 
-This establishes an arbitrary-rank source certificate for isolated paired
-cores, not an arbitrary-rank classification of all activation patterns.
-Multiple wider C orbits can have overlapping even neighborhoods. Although
-their differences are independent conserved Paulis, one physical B phase
-may then belong to several orbit cores. The isolating-probe weighted Gram
-matrix has entries $`\sum_i u_iH_{ji}H_{li}`$; $`HH^T=0`$ does not make
-its off-diagonal entries vanish. The proof does not classify these coupled
-incidence patterns or arbitrary bad zero-activation interactions.
-No inverse-C3 assumption or approximate source-membership statement enters.
+Section 10A classifies all nonzero-character B/C interactions under the
+good-zero-character premise, including coupled wider incidence patterns.
+The remaining source boundary is a zero-character B axis that anticommutes
+with C. This proof does not classify arbitrary such bad-zero interactions.
+It does not infer exact or approximate source C3 membership from a returned
+query, and it does not require source-inverse C3 membership.
+
+The weighted Gram matrix alone would not close the coupled case: the
+rank calculation constrains its active part. The additional restriction is
+native A isotropy, which makes each A axis commute uniformly with all B
+axes in one character class. This distinction is why the binary incidence
+examples in section 9 are not counterexamples to the theorem.
 
 Under the [actual six-layer query contract](READ_ONLY_SIX_LAYER_REDUCTION.md),
-an exactly C3 specified prefix with this structure satisfies the retained
+an exactly C3 specified prefix satisfying either source certificate above
+satisfies the retained
 [diagonal-source transport hypothesis](NATIVE_CLIFFORD_TRANSPORT.md#5-consequence-for-the-actual-six-layer-query).
 At full operator error $`\eta\lt\sqrt2/8`$, the necessary
 Boolean-degree bound is 78, or 26 for visible outer shear. Literal target
@@ -578,6 +873,14 @@ conclusion rests on the proof above.
 The tests also check the single-orbit derivative rank at widths
 2, 4, 6, 8 and 10, and eight width-four native candidates that satisfy
 the activation geometry but fail full C3 membership.
+
+For the coupled neighborhoods 001111 and 111100, the bounded symplectic
+check enumerates all 64 selection vectors and all 256 quotient Pauli
+corrections. It verifies the rank identity and half-angle localization
+for 48 active probes and 104 involutory corrections, including even
+activation. None of the non-B corrections has the uniform same-class
+commutation required by native A isotropy. This is a check of the coupled
+obstruction, not a census substituted for the arbitrary-overlap proof.
 
 An exact three-core fixture uses six arbitrary wires, zero helpers and
 overlap three. Literal CZ words attach the parity of both other controls
