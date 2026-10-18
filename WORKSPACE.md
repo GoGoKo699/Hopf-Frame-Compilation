@@ -15,36 +15,41 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: returned-query invariants
+## Current checkpoint: three-layer query rigidity
 
-This continuation recovered main at `ac303845` (PR #165), including
-[conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) and the
-[preceding query session](research/depth/DIRTY_QUERY_SESSION_RESULT.md).
-The new [scalar-loop obstruction](research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
-proves that r actual affine Gaussian phase rounds can extract a literal
-returned Boolean sign only of degree at most $`4r+2`$, even with
-initialized helpers and fixed small error. Pauli markers recover the
-central phase information missed by the old symplectic invariant.
-This closes the bounded-round Gaussian scalar escape; it is not a native
-T-depth lower bound.
+This continuation recovered main at `3913263` (PR #166). The
+[new proof](research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) resolves
+the [preceding round's](research/depth/RETURNED_QUERY_SESSION_RESULT.md)
+three-layer question: at error below $`\sqrt2/6`$, read-only XOR queries
+with one clean qubit have Boolean degree at most four, independent of
+dirty width. With zero clean qubits, three layers force affineness.
+Intermediate code excursions are allowed and controlled through their
+signed Pauli orbit and nonzero stabilizer intersections. Every completed
+Clifford interlayer must preserve the address; physical T gates act on work.
 
-The [two-layer query theorem](research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md)
-separately proves robust degree restrictions when every Clifford
-interlayer preserves the address and T gates act on work. With one
-clean qubit the queried function has degree at most two and quadratic
-polar rank at most two. A native two-layer dirty Toffoli explicitly
-prevents dropping the address hypothesis.
-[Multiway readers and borrowed-slot substitutes](research/depth/MULTIWAY_QUERY_COST_BARRIER.md)
-also fail their stated complete-query cost or return tests.
+Exact native AND queries use four layers with zero clean qubits and
+three with one clean qubit. A two-layer relative-phase candidate retains
+a controlled-S correction cost. A separate
+[literal-phase proof](research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine)
+forces exact one-clean two-layer queries to be affine. Thus both AND
+thresholds are sharp within this interface, with a positive error radius
+proved only for the zero-clean threshold. The retained unrestricted
+two-layer dirty Toffoli prevents dropping the address hypothesis.
 
-The [session outcome](research/depth/RETURNED_QUERY_SESSION_RESULT.md)
-records the proofs, stopped candidates and next question: can three
-native T layers use non-Clifford work interference to escape a
-width-independent degree invariant while returning all work? A general
-lower bound must also survive address mixing. R98 is still conditional;
-R96 remains the strongest unconditional upper law, R79 remains selected
-Result D, and optimal general depth and unrestricted one-clean four-layer
-rigidity remain open.
+The [session outcome](research/depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
+records the proofs, native ledgers and next question: does query degree
+grow at most exponentially with physical T depth, independently of dirty
+width, or can a different exact interference mechanism escape? At four
+layers the product of two remaining dressed families need not remain a
+projective representation; the current cocycle does not iterate.
+Start with R98's zero-clean query interface, while retaining the separate
+fixed-error and unrestricted-address obligations for a frame lower bound.
+
+[Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) remains
+conditional. R96 remains the strongest unconditional upper law, R79
+remains selected Result D, and optimal general depth and unrestricted
+one-clean four-layer rigidity remain open. The prior Gaussian scalar-loop
+and multiway cost obstructions keep their own hypotheses.
 
 ## Mandate
 
