@@ -90,16 +90,29 @@ membership alone only rounds nearby endpoints and cannot bound tableau
 degree; the charged known permutation-family stress test is not a
 three-band returned query.
 
-The [current checkpoint](../research/depth/ONE_OVERLAP_SESSION_RESULT.md)
-closes the first positive-overlap case. The
-[overlap-one source theorem](../research/depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
-proves that a three-band C3 prefix with first/middle span overlap at most
-one is diagonal C3 in fixed Clifford coordinates, even when neither
-adjacent partial source is C3. It therefore certifies the existing 78/26
-bounds. The [earlier source theorem](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+The [current checkpoint](../research/depth/TWO_OVERLAP_SESSION_RESULT.md)
+extends the source certificate to overlap two. The
+[overlap-two theorem](../research/depth/TWO_OVERLAP_SOURCE_STRUCTURE.md)
+proves that an exact three-band C3 prefix with first/middle span overlap
+at most two is diagonal C3 in fixed Clifford coordinates, even when
+neither adjacent partial source is C3. It therefore certifies the existing
+78/26 bounds. The [earlier source theorem](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
 still confines middle/outer noncommutation to at most 2t middle axes for
-general overlap t. C3 membership is an extra hypothesis, and overlap is a
-property of the specified physical representation.
+general overlap t. Full-space involution arguments resolve the paired
+cores and zero-character cases; raw outer-axis spread can remain unbounded
+through duplicate cancellation. C3 membership is an extra hypothesis,
+and overlap is a property of the specified physical representation.
+
+A separate [hybrid transport theorem](../research/depth/HYBRID_DIAGONAL_CORE_TRANSPORT.md)
+handles either ordering of a wide diagonal C3 source and a fixed a-qubit
+core, when the full source is C3. With
+$`N(a)=3\,2^{5a}+15a+2`$ and $`B(a)=24N(a)+8a^2+12a`$, it gives
+label degree $`4B(a)+2`$ and literal sign degree $`12B(a)+6`$ below
+$`\sqrt2/8`$, independently of dirty width and source coefficients.
+Zero- and one-qubit cores retain the sharper 26/78 bounds. A commuting
+T-gadget list with r binary relations following a diagonal-C3 source has
+a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
+These explicit source hypotheses are not consequences of return.
 
 A separate [uniform transport theorem](../research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 uses the intrinsic codimension k of the source's exact Pauli-preserving
@@ -119,23 +132,31 @@ depth at most $`64(d-1)`$, $`d^2+d`$ dirty qubits and no clean work.
 The retained conjunction circuits are faster. Thus the width obstruction
 is not representation-independent, but no improved general reader follows.
 
-The cycle source now has an exact reformulation as the complete word query
+The cycle source has an exact reformulation as the complete word query
 for every entry of a binary unitriangular inverse, with only Hadamard
-basis changes on the lower-triangular coefficient register. Its new
-controlled-source wrapper prices two source calls, the actual inverse and
-all simultaneous dirty helpers. This identifies the native inversion cost
-rather than removing it; no improved complete circuit follows.
+basis changes on the lower-triangular coefficient register. Its
+controlled-source wrapper prices both source calls and all helpers.
+The new commuting-pivot identity implements the full in-place inverse
+with $`8\binom d3`$ T gates, $`20\binom d3`$ elementary Cliffords,
+T-depth at most $`8\max(d-2,0)`$, no clean work, and at most
+$`\lfloor(d-1)^2/4\rfloor`$ additional arbitrary helpers for
+$`d\ge2`$. All helpers return exactly. Overlapping gates prevent
+inferring a parallel schedule from whole-pivot commutativity. The circuit
+changes its matrix inputs internally and gives no improved native
+read-only query or complete frame.
 
-The next lower-bound question is a **native degree-versus-depth recurrence**,
-with overlap-two three-band C3 transport as a concrete next case. The
-one-overlap proof removes its exceptional core's spectator coupling and
-extracts common full-space Clifford coordinates. At overlap two, no such
-classification or signed transport bound is proved. A bounded number of
-exceptional middle axes alone is insufficient. Retain the actual inner
-family and return constraints, and test alternative native representations.
-General non-C3 prefixes, literal sign and error control, one-clean work and
-address mixing remain additional gaps. None of these results changes the
-complete-frame upper law.
+The next lower-bound question is a **native degree-versus-depth recurrence**.
+The immediate source question is now width-independent signed transport
+through an arbitrary three-native-band C3 source, without a bound on
+first/middle overlap. Overlap two is resolved; the hybrid transport theorem
+handles a wide diagonal part once a bounded core is proved. Growing
+relation components, rather than raw axis counts, are the remaining
+structural issue. A bound depending on displayed overlap is not yet a
+general depth invariant. Retain the actual inner family, literal signs,
+return constraints and alternative native representations. General non-C3
+prefixes, robust radii for growing depth, one-clean work and address mixing
+remain additional gaps. None of these results changes the complete-frame
+upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, at most doubled error, T-count and

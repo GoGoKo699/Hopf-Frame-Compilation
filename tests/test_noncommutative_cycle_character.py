@@ -1,13 +1,16 @@
 """Bounded evidence for the noncommutative cycle-character construction.
 
 The algebraic claims are analytic. These checks independently compare path
-algebra multiplication, in-place factorization, integer phases, and one literal
-eight-wire H/CNOT/T circuit on every physical input column. No asymptotic
-native lower bound or arbitrary-table query follows from these fixtures.
+algebra multiplication, in-place factorization, integer phases, and literal
+eight-wire H/CNOT/T circuits on every physical input column. Commuting
+inversion pivots are also compared with independent increasing-path sums.
+No asymptotic native lower bound or arbitrary-table query follows from
+these fixtures.
 """
 from __future__ import annotations
 
 from collections import Counter
+from math import comb
 from random import Random
 import unittest
 
@@ -229,10 +232,10 @@ def _inverse_lower_word(inverse):
     return sum(int(inverse[j, i]) << bit for bit, (i, j) in enumerate(lower_pairs))
 
 
-def _parallel_lower_shear(control, lower, extra, helpers):
-    """Private-helper phase schedule, with simultaneous T targets explicit."""
-    individual = [_relative_grid([source], [target], [[helper]])[1]
-                  for source, target, helper in zip(lower, extra, helpers)]
+def _parallel_product_shear(products, helpers):
+    """Private-helper schedule for disjoint product targets and source sets."""
+    individual = [_relative_grid([second], [target], [[helper]])[1]
+                  for (_, second, target), helper in zip(products, helpers)]
     layers = []
     for index in range(4):
         before, phases, after = [], [], []
@@ -244,10 +247,42 @@ def _parallel_lower_shear(control, lower, extra, helpers):
             after += layer[position + 1:]
         layers.append(before + phases + after)
     relative = [gate for layer in layers for gate in layer]
-    linear = [('CX', control, helper) for helper in helpers]
+    linear = [('CX', first, helper)
+              for (first, _, _), helper in zip(products, helpers)]
     phase = _inverse(relative) + linear + relative + _inverse(linear)
-    hadamards = [('H', target) for target in extra]
+    hadamards = [('H', target) for _, _, target in products]
     return hadamards + phase + hadamards, phase, layers
+
+
+def _parallel_lower_shear(control, lower, extra, helpers):
+    products = [(control, source, target) for source, target in zip(lower, extra)]
+    return _parallel_product_shear(products, helpers)
+
+
+def _upper_pivot_gates(degree, pivot):
+    upper_pairs, _ = _triangular_pairs(degree)
+    index = {pair: bit for bit, pair in enumerate(upper_pairs)}
+    return [(index[i, pivot], index[pivot, j], index[i, j])
+            for i in range(pivot) for j in range(pivot + 1, degree)]
+
+
+def _upper_path_word(degree, upper, allowed):
+    """Enumerate increasing paths directly, independently of pivot updates."""
+    upper_pairs, _ = _triangular_pairs(degree)
+    index = {pair: bit for bit, pair in enumerate(upper_pairs)}
+    result = 0
+    for bit, (i, j) in enumerate(upper_pairs):
+        internal = [k for k in range(i + 1, j) if k in allowed]
+        parity = 0
+        for subset in range(1 << len(internal)):
+            vertices = [i] + [k for position, k in enumerate(internal)
+                              if subset >> position & 1] + [j]
+            product = 1
+            for first, second in zip(vertices, vertices[1:]):
+                product &= upper >> index[first, second] & 1
+            parity ^= product
+        result |= parity << bit
+    return result
 
 
 class NoncommutativeCycleCharacterTests(unittest.TestCase):
@@ -567,6 +602,156 @@ class NoncommutativeCycleCharacterTests(unittest.TestCase):
                         np.testing.assert_allclose(actual, expected, rtol=0, atol=2e-14)
         # The added word is two CX gates and two output Hadamards. Source
         # and actual-source-inverse costs must be charged separately in general.
+
+    def test_commuting_pivots_match_each_partial_path_set(self):
+        # Exhaust every upper word and pivot subset through dimension four.
+        for degree in range(1, 5):
+            pairs, _ = _triangular_pairs(degree)
+            pivots = list(range(1, degree - 1))
+            for upper in range(1 << len(pairs)):
+                images = {}
+                for subset in range(1 << len(pivots)):
+                    chosen = [pivot for bit, pivot in enumerate(pivots)
+                              if subset >> bit & 1]
+                    gates = [gate for pivot in chosen
+                             for gate in _upper_pivot_gates(degree, pivot)]
+                    image = _apply_factor(upper, gates)
+                    self.assertEqual(image, _upper_path_word(degree, upper, chosen))
+                    reverse_order = [gate for pivot in reversed(chosen)
+                                     for gate in _upper_pivot_gates(degree, pivot)]
+                    self.assertEqual(_apply_factor(upper, reverse_order), image)
+                    images[subset] = image
+                for first in images:
+                    for second in images:
+                        gates = [gate for bit, pivot in enumerate(pivots)
+                                 if second >> bit & 1
+                                 for gate in _upper_pivot_gates(degree, pivot)]
+                        self.assertEqual(_apply_factor(images[first], gates),
+                                         images[first ^ second])
+
+    def test_commuting_pivot_inversion_and_actual_reverse(self):
+        rng = Random(68271)
+        for degree in range(1, 9):
+            pairs, _ = _triangular_pairs(degree)
+            batches = [_upper_pivot_gates(degree, pivot)
+                       for pivot in range(1, degree - 1)]
+            gates = [gate for batch in batches for gate in batch]
+            self.assertEqual(len(gates), comb(degree, 3))
+            self.assertEqual(max(map(len, batches), default=0),
+                             (degree - 1) ** 2 // 4)
+            for batch in batches:
+                sources = {wire for first, second, _ in batch
+                           for wire in (first, second)}
+                targets = [target for _, _, target in batch]
+                self.assertEqual(len(targets), len(set(targets)))
+                self.assertTrue(sources.isdisjoint(targets))
+            samples = (range(1 << len(pairs)) if degree <= 5
+                       else [rng.getrandbits(len(pairs)) for _ in range(100)])
+            for upper in samples:
+                image = _apply_factor(upper, gates)
+                _, inverse = _upper_inverse(degree, upper)
+                expected = sum(int(inverse[i, j]) << bit
+                               for bit, (i, j) in enumerate(pairs))
+                self.assertEqual(image, expected)
+                self.assertEqual(_apply_factor(image, list(reversed(gates))), upper)
+                self.assertEqual(_apply_factor(image, gates), upper)
+                for first in batches:
+                    self.assertEqual(_apply_factor(_apply_factor(upper, first), first), upper)
+                    for second in batches:
+                        self.assertEqual(_apply_factor(upper, first + second),
+                                         _apply_factor(upper, second + first))
+
+    def test_simultaneous_quadratic_updates_miss_a_cubic_path(self):
+        degree = 4
+        pairs, _ = _triangular_pairs(degree)
+        index = {pair: bit for bit, pair in enumerate(pairs)}
+        chain = sum(1 << index[i, i + 1] for i in range(degree - 1))
+        gates = [gate for pivot in range(1, degree - 1)
+                 for gate in _upper_pivot_gates(degree, pivot)]
+        simultaneous = chain
+        for first, second, target in gates:
+            simultaneous ^= ((chain >> first & 1) & (chain >> second & 1)) << target
+        actual = _apply_factor(chain, gates)
+        self.assertEqual(simultaneous >> index[0, 3] & 1, 0)
+        self.assertEqual(actual >> index[0, 3] & 1, 1)
+        self.assertNotEqual(simultaneous, actual)
+        # A cross-pivot target becomes a control, so the individual updates
+        # do not commute despite commutation of the completed pivots.
+        first = (index[0, 1], index[1, 2], index[0, 2])
+        second = (index[0, 2], index[2, 3], index[0, 3])
+        self.assertNotEqual(_apply_factor(chain, [first, second]),
+                            _apply_factor(chain, [second, first]))
+
+    def test_native_pivot_parallel_phase_and_full_inversion_columns(self):
+        for degree in range(3, 6):
+            upper_pairs, _ = _triangular_pairs(degree)
+            for pivot in range(1, degree - 1):
+                products = _upper_pivot_gates(degree, pivot)
+                count = len(products)
+                helpers = list(range(len(upper_pairs), len(upper_pairs) + count))
+                word, phase, layers = _parallel_product_shear(products, helpers)
+                self.assertEqual(sum(gate[0] == 'T' for gate in word), 8 * count)
+                self.assertEqual(sum(gate[0] != 'T' for gate in word), 20 * count)
+                self.assertEqual(_serial_t_depth(word), 8)
+                self.assertTrue(all(gate[1] in helpers for gate in word if gate[0] == 'T'))
+                for layer in layers:
+                    targets = [gate[1] for gate in layer if gate[0] == 'T']
+                    self.assertEqual(set(targets), set(helpers))
+                    self.assertEqual(len(targets), len(set(targets)))
+                width = len(upper_pairs) + count
+                values = np.arange(1 << width, dtype=np.int64)
+                images, exponents = _monomial(phase, width)
+                expected = np.zeros_like(values)
+                for first, second, target in products:
+                    expected ^= ((values >> first & 1) & (values >> second & 1)
+                                 & (values >> target & 1))
+                np.testing.assert_array_equal(images, values)
+                np.testing.assert_array_equal(exponents, 4 * expected)
+
+        # The smallest two-pivot inversion has six arbitrary matrix bits and
+        # two reused arbitrary helpers. Check all 256 physical columns,
+        # literal phases, both pivot orders and the gate-by-gate inverse.
+        degree, upper_width, width = 4, 6, 8
+        pairs, _ = _triangular_pairs(degree)
+        expected = np.zeros((1 << width, 1 << width), dtype=complex)
+        for value in range(1 << width):
+            _, inverse = _upper_inverse(degree, value & ((1 << upper_width) - 1))
+            image = sum(int(inverse[i, j]) << bit
+                        for bit, (i, j) in enumerate(pairs))
+            image |= value & ~((1 << upper_width) - 1)
+            expected[image, value] = 1
+        for order in ((1, 2), (2, 1)):
+            word = [gate for pivot in order
+                    for gate in _parallel_product_shear(
+                        _upper_pivot_gates(degree, pivot), [6, 7])[0]]
+            self.assertEqual(sum(gate[0] == 'T' for gate in word), 32)
+            self.assertEqual(sum(gate[0] != 'T' for gate in word), 80)
+            self.assertEqual(_serial_t_depth(word), 16)
+            np.testing.assert_allclose(_native_matrix(word, width), expected,
+                                       rtol=0, atol=3e-14)
+            np.testing.assert_allclose(_native_matrix(_inverse(word), width),
+                                       expected.conj().T, rtol=0, atol=3e-14)
+
+    def test_pivot_compute_pair_uncompute_is_cycle_source(self):
+        rng = Random(2807)
+        for degree in range(1, 8):
+            algebra = _CycleAlgebra(degree)
+            upper_pairs, lower_pairs = _triangular_pairs(degree)
+            lower_index = {pair: bit for bit, pair in enumerate(lower_pairs)}
+            gates = [gate for pivot in range(1, degree - 1)
+                     for gate in _upper_pivot_gates(degree, pivot)]
+            samples = (((upper, lower) for upper in range(1 << len(upper_pairs))
+                        for lower in range(1 << len(lower_pairs))) if degree <= 3
+                       else [(rng.getrandbits(len(upper_pairs)),
+                              rng.getrandbits(len(lower_pairs))) for _ in range(100)])
+            for upper, lower in samples:
+                image = _apply_factor(upper, gates)
+                phase = sum(lower >> lower_index[i, i] & 1 for i in range(degree)) % 2
+                for bit, (i, j) in enumerate(upper_pairs):
+                    phase ^= (image >> bit & 1) & (lower >> lower_index[j, i] & 1)
+                self.assertEqual(phase, algebra.character(
+                    _cycle_from_triangular(algebra, upper, lower)))
+                self.assertEqual(_apply_factor(image, list(reversed(gates))), upper)
 
     def test_private_lower_shear_native_word_parallel_depth_and_actual_inverse(self):
         for count in range(1, 4):

@@ -333,13 +333,26 @@ Neither result improves R96 or supplies the missing R98 query.
 
 The [diagonal-source transport proof](depth/NATIVE_CLIFFORD_TRANSPORT.md)
 gives six-layer degree at most 78, or 26 for visible outer shear, below
-$`\sqrt2/8`$. The [current round](depth/ONE_OVERLAP_SESSION_RESULT.md)
-proves the [overlap-one source theorem](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md):
-a three-band C3 source with first/middle overlap at most one belongs to the
-diagonal class, including cases where both adjacent partial sources fail
-to be C3. The [earlier source theorem](depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+$`\sqrt2/8`$. The [current round](depth/TWO_OVERLAP_SESSION_RESULT.md)
+proves the [overlap-two source theorem](depth/TWO_OVERLAP_SOURCE_STRUCTURE.md):
+an exact three-band C3 source with first/middle overlap at most two
+belongs to the diagonal class, even when both adjacent partial sources
+fail to be C3. It extends the [overlap-one proof](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
+using full-space coupled-control and zero-character involution arguments.
+The [earlier source theorem](depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
 confines middle/outer noncommutation to at most 2t middle axes for general
 overlap t. Full return alone does not supply C3 membership.
+
+The new [hybrid transport theorem](depth/HYBRID_DIAGONAL_CORE_TRANSPORT.md)
+gives explicit degree bounds through a wide diagonal source coupled to an
+a-qubit core, assuming the full source is C3. The bounds depend only on a;
+the error radius remains $`\sqrt2/8`$ even with unbounded Pauli deficiency.
+At most four fixed blocks recover each output label coordinate; bounded
+modulo-four carries recover the literal signs.
+A commuting gadget list with r relations following a diagonal-C3 source
+has a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
+Monomial localization keeps the wide phase diagonal. This does not make
+the coordinate changes or dependent gadget list a free native band.
 
 The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 controls approximate transport through arbitrary sources with bounded
@@ -358,15 +371,21 @@ produces degree-d AND on $`d^2`$ coefficient wires with literal full
 return. Its native $`O(d^3)`$ counts and $`O(d)`$ depth lose to the
 retained conjunction baseline; source and inverse costs remain decisive.
 
-The cycle phase source is now identified exactly with the complete
+The cycle phase source is identified exactly with the complete
 unitriangular-inverse word query after Hadamards on its lower coefficient
 register. A fully charged two-call wrapper supplies its control on
-arbitrary auxiliary inputs. Native inversion remains the missing cost.
+arbitrary auxiliary inputs. The new exact commuting-pivot inversion
+identity has cubic native counts and linear depth, with returned arbitrary
+helpers and no clean work. Whole-pivot commutativity does not eliminate
+cross-pivot gate dependencies. This in-place circuit does not provide the
+native read-only inverse query needed for a constructive improvement.
 
-The next question is whether overlap-two native C3 sources admit a uniform
-signed transport bound despite the wide diagonal part. The overlap-one
-case is resolved by a common full-space core reduction; a bounded residual
-subsystem at higher overlap does not follow just from the 2t-axis bound.
+The next question is width-independent signed transport through arbitrary
+three-native-band C3 sources, without bounding their first/middle overlap.
+Overlap two now closes; growing native relation components remain open.
+The hybrid theorem supplies transport once the required core factorization
+is proved. Alternative native syntheses must be tested before using
+representation-dependent source parameters as depth invariants.
 General non-C3, one-clean and address-mixing lower bounds and optimal
 complete-frame depth remain open. The
 [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps the
