@@ -333,12 +333,13 @@ Neither result improves R96 or supplies the missing R98 query.
 
 The [diagonal-source transport proof](depth/NATIVE_CLIFFORD_TRANSPORT.md)
 gives six-layer degree at most 78, or 26 for visible outer shear, below
-$`\sqrt2/8`$. The [current round](depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
-adds [native source certificates](depth/NATIVE_BAND_SOURCE_STRUCTURE.md):
-for a three-band C3 source, first/middle overlap t confines middle/outer
-noncommutation to at most 2t middle axes. Zero overlap or either adjacent
-C3 partial source certifies the diagonal class. Full return alone does not
-supply C3 membership.
+$`\sqrt2/8`$. The [current round](depth/ONE_OVERLAP_SESSION_RESULT.md)
+proves the [overlap-one source theorem](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md):
+a three-band C3 source with first/middle overlap at most one belongs to the
+diagonal class, including cases where both adjacent partial sources fail
+to be C3. The [earlier source theorem](depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+confines middle/outer noncommutation to at most 2t middle axes for general
+overlap t. Full return alone does not supply C3 membership.
 
 The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 controls approximate transport through arbitrary sources with bounded
@@ -357,11 +358,17 @@ produces degree-d AND on $`d^2`$ coefficient wires with literal full
 return. Its native $`O(d^3)`$ counts and $`O(d)`$ depth lose to the
 retained conjunction baseline; source and inverse costs remain decisive.
 
-The next question is whether bounded native overlap controls signed
-transport despite an arbitrarily wide diagonal source part, beginning
-with t equal to one. No bounded residual subsystem follows just from the
-2t-axis bound. General non-C3, one-clean and address-mixing lower bounds
-and optimal complete-frame depth remain open. The
+The cycle phase source is now identified exactly with the complete
+unitriangular-inverse word query after Hadamards on its lower coefficient
+register. A fully charged two-call wrapper supplies its control on
+arbitrary auxiliary inputs. Native inversion remains the missing cost.
+
+The next question is whether overlap-two native C3 sources admit a uniform
+signed transport bound despite the wide diagonal part. The overlap-one
+case is resolved by a common full-space core reduction; a bounded residual
+subsystem at higher overlap does not follow just from the 2t-axis bound.
+General non-C3, one-clean and address-mixing lower bounds and optimal
+complete-frame depth remain open. The
 [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps the
 actual inverse Clifford word separately charged.
 

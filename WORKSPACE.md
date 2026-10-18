@@ -15,51 +15,49 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: native source structure and a noncommutative return
+## Current checkpoint: overlap-one source closure
 
-The [current round](research/depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
-began at verified main `357040f` (PR #175). The
-[native source theorem](research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
-uses independent physical T axes: a two-band C3 source has commuting
-axis lists, and a three-band C3 source with first/middle span overlap t
-has at most 2t middle axes that fail to commute with the outer band.
-Zero overlap, or either adjacent partial source being C3, certifies the
-fixed diagonal source class. The existing six-layer degree bounds **78/26**
-then apply below full error $`\sqrt2/8`$. Full return does not imply the
-additional C3 hypothesis.
+The [current round](research/depth/ONE_OVERLAP_SESSION_RESULT.md)
+began at verified main `5501fc6` (PR #176). The
+[overlap-one theorem](research/depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
+closes the previously unresolved t equal to one case: an actual three-band
+C3 source with independent physical axes and first/middle span overlap
+at most one is diagonal C3 in fixed Clifford coordinates. Neither adjacent
+partial source needs to be C3. Paired half-angle rigidity and a full-space
+controlled-core argument eliminate coupling to the wide diagonal part.
+The existing six-layer degree bounds **78/26** therefore apply below full
+error $`\sqrt2/8`$ to this enlarged source class. Full return alone still
+does not imply the additional C3 hypothesis.
 
-The [bounded-deficiency theorem](research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
-closes the previous uniform-localization gap, including degenerate Pauli
-domains and non-C3 sources. If k is the codimension of the source's exact
-Pauli-preserving domain, put $`D(k)=(2k+1)(4k+6)`$. For k positive,
-six-layer output degree is at most $`3D(k)`$, or $`D(k)`$ for visible
-outer shear, below $`1/[4\sqrt2(2^k+1)]`$. Even one wide T band can
-have unbounded k; this is not a general degree-versus-depth bound.
+The same proof home gives a separate extension lemma for a commuting
+T-gadget list with exactly one binary dependency. Its four-axis exception
+preserves a complete commuting Pauli frame; individual-axis preservation
+would be false. These are source certificates, not synthesis savings.
 
-The [noncommutative cycle construction](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-returns degree-d AND using $`d^2`$ arbitrary coefficient wires, escaping
-the [commutative character width bound](research/depth/NONLINEAR_CHARACTER_TRANSPORT.md).
-Its complete native schedule has $`O(d^3)`$ T and Clifford count,
-depth at most $`64(d-1)`$, $`d^2+d`$ dirty work and no clean work.
-It is exact, including controlled sources and actual inverses. Existing
-AND constructions are faster; this changes the scope of a proposed
-invariant, not R91 or the complete-frame upper law.
+The [cycle-source reformulation](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+identifies the noncommutative character as
+$`\mathrm{tr}((I+U)^{-1}L)`$ over the binary field. Hadamards on L turn
+its phase source into the complete word query for unitriangular inversion.
+A two-source control wrapper returns arbitrary auxiliary inputs with every
+source, inverse and helper charged. The identity exposes the missing
+native inversion cost; it supplies no faster general reader.
 
-The next question is **whether bounded overlap controls actual signed
-transport after allowing an arbitrarily wide diagonal source part**.
-At t equal to one only two middle axes can offend, but their coupling to
-wide outer and inner bands has not been eliminated. A bounded active
-subsystem does not follow just by counting those axes. A native returned
-counterexample would be equally informative. General non-C3 prefixes,
-one-clean work and address mixing remain separate gaps.
+The next question is **whether a three-band C3 source with overlap two has
+a width-independent signed transport bound through its wide diagonal
+part**. Test diagonal-C3 classification first, but retain the actual native
+inner family and full return if it fails. Overlap depends on the specified
+representation; an alternative synthesis must be considered before using
+it as a depth parameter. General non-C3 prefixes, one-clean work and address
+mixing remain separate gaps.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 remains conditional. The general zero-clean read-only five-layer bound
-**14** and separate six-layer Pauli-comparison bound **51** remain proved.
-Optimal general depth, dimension-growing unrestricted lower bounds and
-unrestricted one-clean four-layer rigidity remain open. Final manuscript
-drafting is separate.
+**14**, six-layer Pauli-comparison bound **51**, and
+[bounded-deficiency theorem](research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
+retain their scopes. Optimal general depth, dimension-growing unrestricted
+lower bounds and unrestricted one-clean four-layer rigidity remain open.
+Final manuscript drafting is separate.
 
 ## Mandate
 

@@ -418,9 +418,14 @@ XOR query. Every basis column, literal phase and actual inverse is retained.
 
 ## 9. Remaining gap and operator meaning
 
-For positive t, the overlap theorem limits the middle/outer noncommutation
-to at most 2t middle axes. It does not yet give a signed endpoint-degree
-bound depending only on t. The surrounding diagonal phase can still couple
+The subsequent [overlap-one theorem](ONE_OVERLAP_SOURCE_STRUCTURE.md)
+closes t equal to one, certifying the diagonal C3 class and its existing
+78/26 endpoint-degree bounds. It also proves a separate diagonal-source
+extension lemma for a commuting T list with exactly one binary dependency;
+that conclusion does not restore individual-axis preservation in Section 8.
+For t at least two, the overlap theorem limits the middle/outer
+noncommutation to at most 2t middle axes but does not yet give a signed
+endpoint-degree bound depending only on t. The surrounding diagonal phase can still couple
 these observables to unboundedly many other axes, and the inner native band
 can share further commutation data. A decomposition into a bounded active
 subsystem plus a diagonal source has not been proved. The general native
