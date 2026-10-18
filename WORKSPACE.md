@@ -15,43 +15,41 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: six-layer comparisons and diagonal sources
+## Current checkpoint: native transport and a nonlinear return mechanism
 
-The [current round](research/depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
-began at verified main `67d886b` (PR #173). The general zero-clean
-read-only [five-layer degree bound](research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
-remains **14** below full operator error $`\sqrt2/24`$ (11 for invisible
-outer target shear), independently of dirty width and without an extra
-comparison hypothesis.
+The [current round](research/depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
+began at verified main `891c767` (PR #174). The
+[transport proof](research/depth/NATIVE_CLIFFORD_TRANSPORT.md) closes a new
+six-layer subcase: if the specified three-band prefix is diagonal third-level
+in fixed Clifford coordinates, the Boolean output has degree at most **78**, or
+**26** for visible outer target shear, below full error $`\sqrt2/8`$.
+The inner Clifford may be nonmonomial. A separate rounding lemma works for
+any third-level prefix, but third-level membership alone cannot bound the
+transported degree. A fully charged instance of the He–Robitaille–Tan
+permutation family demonstrates that distinction; it is not a three-band
+returned-query counterexample.
 
-The new [six-layer proof home](research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md)
-proves degree at most **51** below $`\sqrt2/64`$ when the specified
-comparison is Pauli-valued. An eight-factor cube cancels its quadratic
-label baseline and exposes a fixed target; the general Clifford-valued
-comparison remains open. An exact fully returned identity circuit in the
-same proof home has an actual comparison and defect of odd projective
-order. Repeated multiplicative differences stay non-Pauli, so full return
-does not justify the proposed Pauli-return recurrence. Its fairly simplified
-baseline has zero gates; it supplies no depth saving.
+A [nonlinear unit-group mechanism](research/depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+gives exact returned phases outside the earlier fixed-affine diagonal-source
+architecture, with a native controlled conversion to XOR. Its degree is at
+most $`1+\lfloor\log_2 w\rfloor`$ on w coefficient wires. A degree-a
+output therefore needs at least $`2^{a-1}`$ such wires, already too many
+for R98's square-root-width reader target. Sources, controls, inverses and
+the slow native realization are charged; this does not improve R91.
 
-The [diagonal-source theorem](research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-now covers q occurrences of arbitrary diagonal work sources joined by
-read-only monomial Clifford intervals. It bounds Boolean scalar degree by
-$`\max(2,q-1)`$ below error $`2\sin(\pi/2^{\max(q,3)+1})`$.
-The four-call echo radius improves to $`2\sin(\pi/32)`$.
-Source occurrence count is not native T-depth, and the radius decreases with q.
-The fixed-source fusion candidate remains blocked within the stated
-architecture and error radius. A faster fully charged reader remains open;
-fusion alone has not removed R91's logarithmic dirty-indicator depth.
+The general zero-clean read-only five-layer bound remains **14** below
+$`\sqrt2/24`$ (11 for invisible shear). The six-layer Pauli-comparison
+bound **51** below $`\sqrt2/64`$ remains a separate subcase. General
+six-layer transport is open, and full return still permits odd-order
+comparison defects.
 
-The next mathematical question is **bounded signed-tableau transport of the
-six-layer native defect through its shared three-band prefix**. Before that
-prefix its symplectic degree is at most four and its sign degree on degree-two
-probes is at most eighteen. The new proof isolates the sufficient output bounds;
-intermediate Clifford membership cannot be assumed. Success would settle
-a genuinely open zero-clean read-only six-layer question and give a concrete
-step toward a depth recurrence. One-clean work, address mixing and a suitable
-error radius remain further gaps before a growing general-frame lower bound.
+The next question is **whether the physical three-band prefix and native
+inner-family compatibility bound signed degree beyond the fixed diagonal
+source class**. Hierarchy membership or abstract normalizer structure is
+insufficient. A width-independent native invariant, or an actual returned
+counterexample, would resolve an open six-layer step toward a depth
+recurrence. Error control, one-clean work and address mixing remain further
+requirements for a growing general-frame lower bound.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)

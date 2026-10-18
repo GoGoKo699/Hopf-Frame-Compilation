@@ -320,7 +320,7 @@ proves the general zero-clean read-only five-layer degree bound **14**
 comparison hypothesis. The defect's native Pauli pullback permits one-band
 matching and bounded-degree signed tableau transport. This supersedes the
 span-preserving degree bounds but preserves their structural proofs.
-The [current round](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md) proves a
+The [six-layer comparison round](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md) proves a
 [six-layer Pauli-comparison bound](depth/READ_ONLY_SIX_LAYER_REDUCTION.md)
 of degree 51 below $`\sqrt2/64`$. The same home contains a fully returned
 identity fixture with actual odd-order comparisons and persistent non-Pauli
@@ -331,10 +331,25 @@ degree at most $`\max(2,q-1)`$ below its explicit q-dependent radius.
 Its four-call echo radius improves to $`2\sin(\pi/32)`$.
 Neither result improves R96 or supplies the missing R98 query.
 
-The next question is a native degree-versus-depth recurrence, beginning with
-the six-layer Clifford defect whose three-band conjugator need not have
-Clifford intermediate stages. One-clean/address-mixing lower bounds and
-optimal complete-frame depth remain open.
+The [current round](depth/NATIVE_TRANSPORT_SESSION_RESULT.md) proves
+[signed native transport](depth/NATIVE_CLIFFORD_TRANSPORT.md) when the
+specified prefix is diagonal third-level in fixed Clifford coordinates:
+the six-layer output degree is at most 78, or 26 for visible outer shear,
+below $`\sqrt2/8`$. The inner Clifford need not be monomial. General
+third-level membership only rounds close endpoints; a charged known
+permutation family has unbounded transported degree.
+The [nonlinear character mechanism](depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+gives a fully returned native construction outside fixed-affine transport,
+but a degree-a output needs at least $`2^{a-1}`$ coefficient wires.
+It cannot improve the square-root-width reader in this representation.
+
+The next question is native signed-degree transport through the actual
+three-band prefix beyond the fixed diagonal source class, retaining the
+inner-family and return constraints. One-clean/address-mixing lower bounds
+and optimal complete-frame depth remain open. The
+[query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) now charges
+the actual inverse Clifford word separately; its asymptotic transfers are
+unchanged.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
