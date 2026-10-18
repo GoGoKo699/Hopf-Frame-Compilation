@@ -15,47 +15,51 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: native transport and a nonlinear return mechanism
+## Current checkpoint: native source structure and a noncommutative return
 
-The [current round](research/depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
-began at verified main `891c767` (PR #174). The
-[transport proof](research/depth/NATIVE_CLIFFORD_TRANSPORT.md) closes a new
-six-layer subcase: if the specified three-band prefix is diagonal third-level
-in fixed Clifford coordinates, the Boolean output has degree at most **78**, or
-**26** for visible outer target shear, below full error $`\sqrt2/8`$.
-The inner Clifford may be nonmonomial. A separate rounding lemma works for
-any third-level prefix, but third-level membership alone cannot bound the
-transported degree. A fully charged instance of the He–Robitaille–Tan
-permutation family demonstrates that distinction; it is not a three-band
-returned-query counterexample.
+The [current round](research/depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
+began at verified main `357040f` (PR #175). The
+[native source theorem](research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+uses independent physical T axes: a two-band C3 source has commuting
+axis lists, and a three-band C3 source with first/middle span overlap t
+has at most 2t middle axes that fail to commute with the outer band.
+Zero overlap, or either adjacent partial source being C3, certifies the
+fixed diagonal source class. The existing six-layer degree bounds **78/26**
+then apply below full error $`\sqrt2/8`$. Full return does not imply the
+additional C3 hypothesis.
 
-A [nonlinear unit-group mechanism](research/depth/NONLINEAR_CHARACTER_TRANSPORT.md)
-gives exact returned phases outside the earlier fixed-affine diagonal-source
-architecture, with a native controlled conversion to XOR. Its degree is at
-most $`1+\lfloor\log_2 w\rfloor`$ on w coefficient wires. A degree-a
-output therefore needs at least $`2^{a-1}`$ such wires, already too many
-for R98's square-root-width reader target. Sources, controls, inverses and
-the slow native realization are charged; this does not improve R91.
+The [bounded-deficiency theorem](research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
+closes the previous uniform-localization gap, including degenerate Pauli
+domains and non-C3 sources. If k is the codimension of the source's exact
+Pauli-preserving domain, put $`D(k)=(2k+1)(4k+6)`$. For k positive,
+six-layer output degree is at most $`3D(k)`$, or $`D(k)`$ for visible
+outer shear, below $`1/[4\sqrt2(2^k+1)]`$. Even one wide T band can
+have unbounded k; this is not a general degree-versus-depth bound.
 
-The general zero-clean read-only five-layer bound remains **14** below
-$`\sqrt2/24`$ (11 for invisible shear). The six-layer Pauli-comparison
-bound **51** below $`\sqrt2/64`$ remains a separate subcase. General
-six-layer transport is open, and full return still permits odd-order
-comparison defects.
+The [noncommutative cycle construction](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+returns degree-d AND using $`d^2`$ arbitrary coefficient wires, escaping
+the [commutative character width bound](research/depth/NONLINEAR_CHARACTER_TRANSPORT.md).
+Its complete native schedule has $`O(d^3)`$ T and Clifford count,
+depth at most $`64(d-1)`$, $`d^2+d`$ dirty work and no clean work.
+It is exact, including controlled sources and actual inverses. Existing
+AND constructions are faster; this changes the scope of a proposed
+invariant, not R91 or the complete-frame upper law.
 
-The next question is **whether the physical three-band prefix and native
-inner-family compatibility bound signed degree beyond the fixed diagonal
-source class**. Hierarchy membership or abstract normalizer structure is
-insufficient. A width-independent native invariant, or an actual returned
-counterexample, would resolve an open six-layer step toward a depth
-recurrence. Error control, one-clean work and address mixing remain further
-requirements for a growing general-frame lower bound.
+The next question is **whether bounded overlap controls actual signed
+transport after allowing an arbitrarily wide diagonal source part**.
+At t equal to one only two middle axes can offend, but their coupling to
+wide outer and inner bands has not been eliminated. A bounded active
+subsystem does not follow just by counting those axes. A native returned
+counterexample would be equally informative. General non-C3 prefixes,
+one-clean work and address mixing remain separate gaps.
 
 R96 remains the strongest unconditional complete-frame upper law, R79
 remains selected Result D, and [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-remains conditional. Optimal general depth, dimension-growing unrestricted
-lower bounds and unrestricted one-clean four-layer rigidity remain open.
-Final manuscript drafting is separate.
+remains conditional. The general zero-clean read-only five-layer bound
+**14** and separate six-layer Pauli-comparison bound **51** remain proved.
+Optimal general depth, dimension-growing unrestricted lower bounds and
+unrestricted one-clean four-layer rigidity remain open. Final manuscript
+drafting is separate.
 
 ## Mandate
 

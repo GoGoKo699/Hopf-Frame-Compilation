@@ -82,30 +82,47 @@ counts. The four-call echo radius improves to $`2\sin(\pi/32)`$.
 This is a source-architecture bound, with a radius decreasing in q; it is
 not a general native T-depth lower bound or a faster reader.
 
-The [current checkpoint](../research/depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
-adds [signed transport through a diagonal third-level source in fixed Clifford
-coordinates](../research/depth/NATIVE_CLIFFORD_TRANSPORT.md). For the specified
-six-layer prefix, this additional hypothesis gives degree at most 78,
-or 26 for visible outer target shear, below $`\sqrt2/8`$. The inner
-Clifford need not be monomial. General third-level membership gives robust
-exactness of a nearby Clifford endpoint, but does not give bounded tableau
-degree: the same proof home records a charged permutation-family stress test.
-That example is not a three-band returned query.
+The [diagonal-source transport theorem](../research/depth/NATIVE_CLIFFORD_TRANSPORT.md)
+gives six-layer degree at most 78, or 26 for visible outer target shear,
+below $`\sqrt2/8`$, when the specified prefix is diagonal C3 in fixed
+Clifford coordinates. The inner Clifford need not be monomial. C3
+membership alone only rounds nearby endpoints and cannot bound tableau
+degree; the charged known permutation-family stress test is not a
+three-band returned query.
 
-A [nonlinear unit-group character construction](../research/depth/NONLINEAR_CHARACTER_TRANSPORT.md)
-escapes the fixed-affine source architecture with exact dirty return and paid
-native controls. Its output degree is at most $`1+\lfloor\log_2 w\rfloor`$
-on w coefficient wires. A degree-a output needs $`w\ge2^{a-1}`$,
-excluding this representation from R98's square-root-width target even
-before charging source synthesis. This is not a general query lower bound.
+The [current checkpoint](../research/depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
+adds [native source certificates](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md).
+For a three-band C3 prefix with first/middle span overlap t, at most 2t
+middle axes fail to commute with the outer band. Zero overlap, or either
+adjacent two-band partial source being C3, certifies the diagonal class
+and hence the existing 78/26 bounds. C3 membership is an extra hypothesis,
+and overlap is a property of the specified physical representation.
+
+A separate [uniform transport theorem](../research/depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
+uses the intrinsic codimension k of the source's exact Pauli-preserving
+domain, including degenerate domains and non-C3 sources. For k positive,
+put $`D(k)=(2k+1)(4k+6)`$. It gives output degree at most $`3D(k)`$,
+or $`D(k)`$ for visible shear, at error below
+$`1/[4\sqrt2(2^k+1)]`$. Its radius is uniform in the source. Native
+depth does not bound k; a wide single T band already has growing k.
+
+The [commutative character bound](../research/depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+now covers every finite-dimensional commutative nilpotent binary algebra:
+degree-a affine-input return needs at least $`2^{a-1}`$ coefficient
+wires. A fully paid [noncommutative cycle construction](../research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+escapes that bound, realizing degree-d AND on $`d^2`$ coefficient
+wires. Its exact native schedule uses $`O(d^3)`$ T and Clifford gates,
+depth at most $`64(d-1)`$, $`d^2+d`$ dirty qubits and no clean work.
+The retained conjunction circuits are faster. Thus the width obstruction
+is not representation-independent, but no improved general reader follows.
 
 The next lower-bound question is a **native degree-versus-depth recurrence**,
-beginning with three-band transport outside the fixed diagonal source class.
-The actual inner family and full-return compatibility must supply information
-absent from arbitrary third-level conjugation. Intermediate Clifford
-membership cannot be assumed. A recurrence must control literal probe signs
-and error as well as symplectic labels, independently of dirty width.
-One-clean work and address mixing remain additional gaps. None of these
+with bounded-overlap three-band transport as a concrete next case.
+The 2t exceptional middle axes can still couple to an arbitrarily wide
+diagonal part and inner band; no small residual subsystem has been proved.
+Start with t equal to one, retaining the actual inner-family and return
+constraints. General non-C3 prefixes, literal sign and error control,
+one-clean work and address mixing remain additional gaps. None of these
 results changes the complete-frame upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
