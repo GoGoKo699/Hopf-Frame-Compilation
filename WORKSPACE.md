@@ -15,50 +15,50 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: unrestricted two-layer Boolean degree bound
+## Current checkpoint: three-layer native structure and a paid cubic query
 
-The [current round](research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
-began at verified main `3c0fc62` (PR #183). R96 remains the strongest
+The [current round](research/depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+began at verified main `7cae235` (PR #184). R96 remains the strongest
 unconditional general upper law; R79 remains selected Result D and R97
 remains scoped. The count package is settled under its stated hypotheses.
 The large-width additive depth remains the general destination.
 
-The new [diagonal and Boolean theorems](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
-prove that every exact native two-layer Boolean XOR query with at most
-one clean qubit has degree at most two. Every nonquadratic query has full
-initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$ at this
-depth, independently of address arity and dirty width, with arbitrary
-intermediate Clifford/address mixing. This excludes the six-bit cubic
-bent query despite its passing the entire earlier scalar alphabet.
+The new [three-layer theorem](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md)
+proves that zero-clean Boolean XOR queries have degree at most four.
+Higher-degree queries have full operator error at least
+$`\sin(\pi/8)/(2\sqrt2)`$, independently of dirty width and arbitrary
+intermediate Clifford mixing. The joint preserved algebra forces native
+pair orbits and correlated signs; a separate argument proves the required
+commuting-source remainder instead of assuming C3. This is a zero-clean
+constant-layer theorem, not the unresolved one-clean extension.
 
-The proof retains the whole preserved Pauli algebra and the native
-relations in both bands. A non-Pauli clean image permits an explicit
-Clifford removal of initialization; the Pauli branch needs a separate
-signed quotient analysis and native row cancellation. Both branches are
-now covered. Complete operator action, literal phases, references,
-leakage, actual inverses and work return remain mandatory.
+The previous [at-most-one-clean two-layer theorem](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
+remains in force, including its nonquadratic error floor and the six-bit
+bent-query exclusion. A paid third band now corrects the earlier complex
+phase and gives a literal three-control AND query: 18 T, three layers,
+99 elementary Cliffords, one clean and one arbitrary dirty qubit. Its
+actual inverse costs 109 Cliffords after explicit reduction. Depth three
+is optimal for this finite query at that allocation; count is not claimed
+optimal. A fairly simplified baseline has 16 T, 34 Cliffords and six
+displayed layers. A growing-arity quartic-sign family retains a nontrivial
+address phase when converted into a larger XOR query.
 
-A native 12-T, two-layer, 44-Clifford counterexample has one-clean occupied
-diagonal action outside C3. Its input-dependent phase prevents treating
-it as a literal higher-degree XOR. A formal C3 correction can make a
-real quartic sign, but the new native row constraint excludes realizing
-that correction within the same two physical layers and one clean qubit.
-Thus occupied diagonal action alone does not imply C3; literal Boolean
-return supplies an essential additional constraint.
+A [projected-band component](research/depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
+recovers native axes through one Pauli stabilizer quotient except for
+one three-dimensional ambiguity. A separate fully paid example shows
+why the old shared-Pauli clean-removal inference fails for an arbitrary
+one-band/two-band split; its target has a one-layer simplification. This
+limits that proof mechanism, not alternative native representations.
 
-The constructive bent-query identity has a paid 40-T, 90-Clifford,
-ten-layer baseline using only arbitrary existing logical wires. It
-provides no faster general query. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-still needs an exact restored-address arbitrary-table primitive with
-all simultaneous count, inverse and workspace budgets.
-
-The next lower question is whether three unrestricted native T layers
-with at most one clean qubit impose a Boolean degree bound independent
-of address arity and dirty width. The argument must preserve correlations
-between the actual bands; the two-layer theorem cannot simply be iterated.
-The parallel upper target remains a faster complete query within R98's
-simultaneous budgets. These are steps toward a growing-depth invariant
-or a better construction; the complete-frame resource frontier is unchanged.
+The next lower question is whether the complete logical Pauli algebra
+on a non-Pauli intermediate clean code admits a degree bound independent
+of arity and dirty width at three native layers, without assuming that
+failed shared flip. A full unbounded-degree native query family would
+also resolve this test. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+still needs a faster exact restored-address arbitrary-table query within
+all simultaneous count, inverse and workspace budgets. Complete operator
+action, literal phases, references, leakage and work return remain mandatory.
+The complete-frame resource frontier is unchanged.
 Optimal general depth, unrestricted one-clean four-layer rigidity and
 dimension-growing lower bounds remain open. Final manuscript drafting
 remains separate.

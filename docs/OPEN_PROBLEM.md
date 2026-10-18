@@ -32,11 +32,13 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact restored-address dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
 | Unrestricted two-layer transfer constraint | [Shared native encodings](../research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md) give a single occupied transfer alphabet with one returned clean qubit. Its scalar AND floors and exact affine-distance condition remain useful components; the joint theorem below strengthens the query obstruction beyond scalar witnesses |
 | Unrestricted two-layer Boolean degree | [Joint native diagonal rigidity](../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) proves degree at most two for exact Boolean XOR with at most one clean qubit. Every nonquadratic query has full initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$, uniformly in arity and dirty width, with arbitrary Clifford/address mixing. Both clean-midpoint branches and the six-bit cubic bent query are covered. Complex occupied diagonal action alone need not be C3; no complete-frame frontier changes |
+| Unrestricted zero-clean three-layer degree | [Joint native structure](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) proves Boolean XOR degree at most four with zero clean qubits, and the same uniform error floor for higher-degree queries. All intermediate Clifford mixing is allowed. The one-clean extension remains open; a projected-band component and a failed shared-clean-flip inference identify its current gap |
+| Exact finite one-clean query | The [paid third-band correction](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md#8-paying-the-third-band-an-exact-cubic-xor-query) realizes AND3 with 18 T, three layers, 99 elementary Cliffords, one clean and one dirty helper; its actual inverse has 109 Cliffords after reduction. Depth three is optimal at this allocation, while a 16-T/34-Clifford/six-layer baseline has smaller counts. This does not improve the general frame bound |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The [current revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean
 qubit, including the six-bit cubic bent query missed by scalar transfer
 coefficients. The proof uses the full preserved Pauli algebra, explicit
@@ -58,7 +60,20 @@ the new diagonal theorem goes beyond their scalar witnesses and resolves
 the unrestricted one-clean bent-query exclusion. No dimension-growing
 depth bound is inferred from this constant-layer result.
 
-The [preceding revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
+The [current continuation](../research/depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+resolves the unrestricted zero-clean three-layer degree question with
+degree at most four for XOR predicates and a fixed error floor. It also
+pays the earlier complex phase correction in a third native band,
+giving an optimal-depth finite AND3 query. General one-clean three-layer
+degree remains open: occupied logical preservation need not give
+full-space Clifford images, and a shared Pauli clean flip need not exist
+for the displayed split. The next invariant must handle that intermediate
+code or be refuted by a complete unbounded-degree native query family.
+The growing-arity quartic-sign construction retains an unpaid address
+phase in its larger query conversion. R96 and the complete-frame lower
+frontier are unchanged.
+
+The earlier [restored-address revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
 weakens R98's sufficient premise from gatewise read-only access to exact
 completed address return. [Paid selected packing](../research/depth/PAIRED_PERMUTATION_ROUTING.md)
 handles ragged addresses without charging their larger union; joint

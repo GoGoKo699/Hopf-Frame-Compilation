@@ -285,6 +285,22 @@ upper frontier. The next lower question is an arity- and width-independent
 Boolean degree bound at three unrestricted layers; R98's faster complete
 query remains the parallel constructive target.
 
+The [three-layer native round](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+then proves an [unrestricted zero-clean degree bound](depth/THREE_LAYER_NATIVE_STRUCTURE.md):
+three layers force XOR degree at most four, with the same uniform tau
+error floor for higher-degree predicates and arbitrary intermediate
+Clifford mixing. A paid third-band correction realizes literal AND3
+using 18 T, 99 Cliffords, one clean and one dirty qubit; depth three is
+optimal at this allocation. The actual inverse costs 109 Cliffords.
+A fair 16-T/34-Clifford/six-layer baseline prevents mistaking the depth
+improvement for count improvement. A growing-arity quartic-sign family
+still has an unpaid address phase when used as a larger query.
+The [projected-band extension](depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
+isolates one possible three-dimensional defect. The full one-clean
+three-layer degree bound remains open because an intermediate code may
+be non-Pauli; the old shared-clean-flip construction is not automatic.
+No general complete-frame frontier or publication claim changes.
+
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
 [Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
