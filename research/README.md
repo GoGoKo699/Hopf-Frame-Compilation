@@ -336,8 +336,14 @@ subset-product compiler improves the source to
 $`O(r^2 2^r\log r)`$ T/G and $`O(r^2 2^r)`$ extra dirty width,
 still at $`O(\log r)`$ depth. Neither that table query nor the scoped
 arithmetic compression limits change the full-frame frontier.
-The next lower question retains joint parity-control phases, projected
-relations, silent endpoint bands and unused-sector freedom.
+The [Pauli-boundary theorem](depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
+closes one substantial subcase: actual Pauli clean images at every band
+boundary force sign degree at most 2048, and query degree at most 2047,
+even with arbitrary Clifford/address mixing. It retains the exceptional
+four-axis relation and bounds the phase dependence of an unbounded
+central register through a five-qubit quantum core. The next lower
+question concerns non-Pauli intermediate codes, with joint parity-control
+phases, silent endpoint bands and unused-sector freedom still present.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

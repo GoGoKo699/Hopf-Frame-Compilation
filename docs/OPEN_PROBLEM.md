@@ -38,6 +38,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Clean-code structural component | [Clifford restriction rigidity](../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md) gives an exact pointwise stabilizer, a literal comparison gap and a common native logical defect space. A correlated encoder counterexample disproves blanket full-space Clifford extension. Unbounded clean pair count occurs for a one-layer target, so it is not an unrestricted hardness parameter |
 | Paid high-degree algebra source | The [balanced HRT construction](../research/depth/BALANCED_ALGEBRA_PERMUTATION.md) and actual inverse have depth $`O(\log r)`$, zero clean work and full return. The [fast returned subset-product variant](../research/depth/ALGEBRA_QUERY_EXTRACTION.md#5-a-smaller-count-complete-hrt-source) improves T/G count to $`O(r^2 2^r\log r)`$ and extra dirty width to $`O(r^2 2^r)`$ at a larger depth constant. Its arbitrary-table extraction is now fully paid but still misses R98's count, width and depth requirements |
 | Occupied logical transport | [Full pair transports and paid normalization](../research/depth/OCCUPIED_LOGICAL_TRANSPORT.md) remove quadratic directions and reduce the exact one-clean three-layer question to globally preserved diagonal pair parities. High clean rank and whole-family agreement still do not force full-space Clifford images, even with no pairs; the exact witness has an easy identity target. No uniform one-clean degree theorem or unrestricted hardness claim follows |
+| One-clean Pauli-boundary three-layer degree | [Restricted native theorem](../research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md) gives sign degree at most 2048 and XOR degree at most 2047 when the actual clean image is Pauli at every native-band boundary, allowing arbitrary Clifford/address mixing. The exceptional four-axis relation is included. R74 supplies the retained uniform approximation floor; a general unbounded-degree family must use a non-Pauli intermediate code. Total clean return alone does not meet this hypothesis |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
@@ -110,6 +111,15 @@ with returned dirty masks, improving structured-source counts without
 improving the general query interface. The inverse-degree and
 coefficient-quotient limitations proved there concern specific
 arithmetic representations, not unrestricted native circuits.
+
+The same revision closes the actual
+[Pauli-boundary subcase](../research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md).
+Ordinary pair peeling and the one-relation exception leave at most five
+quantum core qubits. Exact endpoint Clifford extraction and a finite set
+of phase features give a width-independent degree bound, including all
+central controls and literal phases. The next unrestricted question is
+therefore the non-Pauli intermediate clean code; assuming a Pauli code
+merely from eventual clean return would be the first unsupported step.
 
 The earlier [restored-address revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
 weakens R98's sufficient premise from gatewise read-only access to exact

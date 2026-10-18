@@ -25,6 +25,7 @@ charged on the same circuit.
 | Selected claims | R79 remains Result D; the count package is settled under its stated hypotheses; manuscript drafting is separate |
 | Unrestricted component lower results | At most one clean and two layers imply XOR degree at most two; zero clean and three layers imply degree at most four, with retained uniform error floors |
 | Useful constructive components | Optimal-depth quadratic queries; complete balanced HRT recovery; conditional R98 transfers a faster arbitrary-table word query satisfying all its budgets |
+| New restricted lower theorem | Actual Pauli clean images at every native-band boundary imply three-layer sign degree at most 2048 and XOR degree at most 2047; arbitrary Clifford mixing is allowed, but non-Pauli intermediate codes are excluded |
 | Scoped limitations | R97's overlap hypotheses, failed clean-flip or Clifford-extension arguments, and arithmetic-stage degree bounds do not exclude the unrestricted model |
 | Open destination | Optimal general depth and dimension-growing matching lower bounds; exact one-clean three-layer degree and unrestricted one-clean four-layer rigidity remain unresolved |
 
@@ -77,6 +78,24 @@ relations, and the joint phase dependence still needs control. Pair-free
 cases also retain clean-silent bands and non-Pauli unused-sector freedom.
 Neither a growing relation count nor a failed extension proves hardness.
 
+Proceeding from that assessment closes the
+[actual Pauli-boundary subcase](PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md).
+Each genuine one-clean Pauli quotient creates at most one axis relation.
+Ordinary middle pairs peel with their literal phases; the exceptional
+four-axis relation is retained as a three-dimensional Pauli span. The
+remaining three-band algebra has symplectic rank at most ten: at most
+five quantum qubits, with arbitrarily many central controls. Exact signed
+Clifford extraction and an affine section connect this algebra to the
+original input parities. Finitely many low-degree phase features then
+give sign degree at most 2048 and XOR degree at most 2047, independent of
+dirty width. The retained R74 corollary supplies its uniform error floor.
+
+This resolves the projected one-relation case, including its exceptional
+span and central phase dependence. It does not settle unrestricted
+one-clean depth. The first unsupported extension would now be to infer
+a Pauli intermediate clean code merely from eventual clean return.
+An unbounded-degree three-layer family must leave that Pauli-code regime.
+
 The [zero-clean phase proof](THREE_LAYER_NATIVE_STRUCTURE.md#6-exact-pair-phases-and-the-common-coordinate-bound)
 was also sharpened: its special affine-parity times Boolean-quadratic
 pair phases have integer degree at most five modulo eight in the original
@@ -127,20 +146,24 @@ Neither bounds unrestricted native T-depth or alternative encodings.
 
 ## 4. Continuing question and evidence
 
-The next lower question is the completed Boolean phase in the paid
-diagonal pair-center normal form, including its joint control dependence,
-silent endpoint factors and unused-sector freedom. For a constructive
+The next lower question is the completed Boolean phase for non-Pauli
+intermediate clean codes in the paid diagonal pair-center normal form,
+including joint control dependence, silent endpoint factors and
+unused-sector freedom. The actual Pauli-boundary subcase is now closed.
+For a constructive
 escape, a mechanism must improve the full arbitrary-table ledger, or
 compile the complete frame through another paid route; another balancing
 of bounded-degree classical recovery stages retains the old depth order.
 
 The [transport fixtures](../../tests/test_occupied_logical_transport.py),
 [algebra-query fixtures](../../tests/test_algebra_query_extraction.py),
+the [Pauli-boundary fixtures](../../tests/test_pauli_boundary_three_band.py),
 and [three-layer phase fixtures](../../tests/test_three_layer_native_mechanisms.py)
 retain native physical words, literal phases, all relevant small input
 columns, arbitrary work, full unused blocks, and actual inverse costs.
 Independent proof review covers the normal form, native fast transforms,
-source allocation, extraction and the scopes of both limitations.
+source allocation, extraction, the restricted Pauli-boundary theorem,
+and the scopes of both limitations.
 Finite checks support these identities; the arbitrary-width statements
 follow from their analytic proofs. R96 and the general lower frontier
 have not been promoted.

@@ -56,9 +56,16 @@ $`O(a^2 2^a\log(a+2))`$ gates and $`O(a^2 2^a)`$ dirty work.
 It does not meet [R98's simultaneous budgets](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md).
 
 The next lower question is a uniform one-clean three-layer Boolean
-degree bound in the paid diagonal pair-center normal form. Joint
-sector-dependent phases, projected relations, clean-silent endpoint
-bands and non-Pauli unused-sector action remain. The retained R74
+degree bound in the paid diagonal pair-center normal form. The
+[Pauli-boundary theorem](research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
+now proves sign degree at most 2048, hence XOR degree at most 2047,
+when the actual clean image is Pauli at every native-band boundary.
+It includes arbitrary Clifford mixing and the exceptional four-axis
+relation. Five quantum core qubits and finitely many low-degree phase
+features control the otherwise unbounded central register. A family
+of unbounded degree must therefore use a non-Pauli intermediate clean
+code. Joint sector-dependent phases, silent endpoint bands and
+unused-sector action in that remaining case are unresolved. The retained R74
 rounding corollary already reduces sufficiently accurate approximation
 to this exact question. The constructive alternative must improve the
 complete arbitrary-table ledger or find another paid full-frame route:
