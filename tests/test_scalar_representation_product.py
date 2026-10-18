@@ -7,6 +7,9 @@ from __future__ import annotations
 
 import unittest
 
+import numpy as np
+
+from tests.test_one_band_axis_matching import _one_qubit_cliffords, _paulis
 from tests.test_read_only_three_layer_rigidity import _degree
 from tests.test_returned_diagonal_echo_degree import _ccz, _column, _inverse
 
@@ -69,7 +72,126 @@ def _tables(width):
             [0, 1, 1, 0, 0, 1, 0, 1]]
 
 
+def _binary_rank(vectors):
+    pivots = {}
+    for value in vectors:
+        while value:
+            pivot = value.bit_length() - 1
+            if pivot in pivots:
+                value ^= pivots[pivot]
+            else:
+                pivots[pivot] = value
+                break
+    return len(pivots)
+
+
+def _translation_rows(table):
+    return [sum(table[left ^ right] << right for right in range(len(table)))
+            for left in range(len(table))]
+
+
+def _displacement_rank(operator, width, paulis):
+    columns = []
+    for index in range(2 * width):
+        label = 1 << index
+        image = operator @ paulis[label] @ operator.conj().T
+        coefficients = np.array([np.vdot(p, image) / len(operator)
+                                 for p in paulis])
+        target = int(np.argmax(abs(coefficients)))
+        if abs(abs(coefficients[target]) - 1) > 1e-10:
+            raise AssertionError('The tested operator is not Clifford')
+        columns.append(target ^ label)
+    return _binary_rank(columns)
+
+
 class ScalarRepresentationProductTests(unittest.TestCase):
+    def test_translation_rank_barrier_and_degree_dependence(self):
+        rng = np.random.default_rng(7921)
+        for width in range(1, 7):
+            size = 1 << width
+            if width <= 3:
+                tables = [[0] + [(mask >> index) & 1
+                                 for index in range(size - 1)]
+                          for mask in range(1 << (size - 1))]
+            else:
+                tables = [[0] + rng.integers(0, 2, size - 1).tolist()
+                          for _ in range(24)]
+                tables += [[int(x == size - 1) for x in range(size)],
+                           [int((x & 7) == 7) for x in range(size)]]
+            for table in tables:
+                rows = _translation_rows(table)
+                rank = _binary_rank(rows)
+                parity = sum(table) & 1
+                degree = _degree(table)
+                self.assertEqual(parity, int(degree == width))
+                for left in range(size):
+                    for right in range(size):
+                        self.assertEqual((rows[left] & rows[right]).bit_count() & 1,
+                                         parity * int(left == right))
+                if any(table):
+                    self.assertGreaterEqual(rank, 1 << degree)
+                derivative_ranks = []
+                for shift in range(1, size):
+                    # F(P_x+I) is the translation matrix of Delta_x f.
+                    derivative = [table[x] ^ table[x ^ shift]
+                                  for x in range(size)]
+                    derivative_rows = _translation_rows(derivative)
+                    self.assertEqual(derivative_rows,
+                                     [rows[x] ^ rows[x ^ shift]
+                                      for x in range(size)])
+                    derivative_rank = _binary_rank(derivative_rows)
+                    derivative_ranks.append(derivative_rank)
+                    if parity:
+                        self.assertEqual((rank, derivative_rank),
+                                         (size, size // 2))
+                if degree >= 1:
+                    self.assertGreaterEqual(max(derivative_ranks),
+                                            1 << (degree - 1))
+
+    def test_flat_clifford_support_and_robust_projection_radius(self):
+        paulis = _paulis(2)
+        cliffords = _one_qubit_cliffords()
+        for first in cliffords:
+            for second in cliffords:
+                operator = np.kron(first, second)
+                rank = _displacement_rank(operator, 2, paulis)
+                coefficients = np.array([np.vdot(p, operator) / 4
+                                         for p in paulis])
+                support = abs(coefficients) > 1e-10
+                self.assertEqual(int(sum(support)), 1 << rank)
+                np.testing.assert_allclose(abs(coefficients[support]),
+                                           2 ** (-rank / 2), atol=2e-14)
+                for t_count in range(rank):
+                    kept = np.argsort(abs(coefficients))[-(1 << t_count):]
+                    approximation = sum(coefficients[i] * paulis[i]
+                                        for i in kept)
+                    normalized_error = np.linalg.norm(operator - approximation) ** 2 / 4
+                    self.assertAlmostEqual(normalized_error,
+                                           1 - 2 ** (t_count - rank))
+                    self.assertGreaterEqual(normalized_error + 1e-12, 0.5)
+        # Conjugation error is <=2 delta; a missing support bit costs >=1/2
+        # in squared normalized Hilbert--Schmidt distance.
+        delta = 1 / (2 * np.sqrt(2))
+        self.assertAlmostEqual((2 * delta) ** 2, 0.5)
+
+    def test_uncompressed_translation_has_full_bank_displacement_rank(self):
+        for width in (1, 2):
+            size = 1 << width
+            paulis = _paulis(size)
+            for table in _tables(width):
+                for shift in range(1, size):
+                    operator = np.zeros((1 << size, 1 << size), dtype=complex)
+                    for column in range(1 << size):
+                        row, sign = _translation(column, shift, table)
+                        operator[row, column] = (-1) ** sign
+                    self.assertEqual(_displacement_rank(operator, size, paulis), size)
+                    coefficients = np.array([np.vdot(p, operator) / (1 << size)
+                                             for p in paulis])
+                    support = abs(coefficients) > 1e-10
+                    self.assertEqual(int(sum(support)), 1 << size)
+                    np.testing.assert_allclose(abs(coefficients[support]),
+                                               2 ** (-size / 2), atol=2e-14)
+
     def test_literal_paulis_translation_and_honest_group_law(self):
         for width in range(1, 4):
             size = 1 << width

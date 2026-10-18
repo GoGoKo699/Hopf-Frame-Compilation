@@ -294,21 +294,28 @@ the Pauli-comparison bound of two without a Clifford middle, independent-axis
 matching, and the four-layer scalar CCZ word with 64 T gates, 218 Cliffords
 and 17 dirty helpers. These results keep their own hypotheses and ledgers.
 
-The [current follow-up](depth/RETURNED_RELATIONS_SESSION_RESULT.md) extends
-the five-layer argument to comparisons that permute the individual outer
-native axes, with conservative degree bound 244, or 41 for an invisible
-target shear, at the same error radius. It also establishes a
-[baseline-word obstruction](depth/BASELINE_WORD_OBSTRUCTION.md) and an
-[arbitrary-degree four-factor scalar construction](depth/SCALAR_REPRESENTATION_PRODUCT.md)
-with growing native source costs. The
-[returned diagonal echo](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md) now has a
-robust cubic bound below error $`2/275`$, including arbitrary source phases.
-These checks rule out source-free shortcuts without ruling out general
-native work interference. The next branch is a comparison preserving the
-outer axis span while mixing its individual axes. That branch now has an
-exact projective third-level cocycle below error $`\sqrt2/24`$; controlling
-its right action remains open. General five-layer queries and optimal
-complete-frame depth remain open.
+The [returned-relations round](depth/RETURNED_RELATIONS_SESSION_RESULT.md)
+proved the individual-axis comparison bound of 244 (41 for an invisible
+target), the [baseline-word obstruction](depth/BASELINE_WORD_OBSTRUCTION.md),
+the [four-factor scalar construction](depth/SCALAR_REPRESENTATION_PRODUCT.md),
+and the [robust diagonal-echo bound](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md).
+Its proposed span-preserving continuation is now resolved by the
+[current round](depth/SPAN_PRESERVING_SESSION_RESULT.md):
+[Section 5.4](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
+gives degree at most 112 below error $`\sqrt2/24`$, allowing axis mixing,
+non-Pauli comparisons and a non-Clifford middle. Intrinsic augmentation
+features handle the right action without assuming an ambient normalizer.
+
+The same round proves a source-cost barrier for the scalar construction,
+including compressed Pauli carriers and small full-source approximation.
+A degree-d table needs at least $`2^{d-1}`$ T gates per Clifford translation
+source. Whole-word synthesis remains outside this source-call bound.
+A further [shared-prefix invariant](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
+gives faithful degree-four actual-group features without span preservation,
+below error $`\sqrt2/40`$. With span preservation it sharpens the output
+bound to 21 at that smaller radius. The next lower-bound question is target extraction
+relative to the outer native baseline, which may lie outside the actual group. General five-layer queries and optimal complete-frame
+depth remain open.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

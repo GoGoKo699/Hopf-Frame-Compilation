@@ -34,32 +34,49 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The current [research checkpoint](../research/depth/RETURNED_RELATIONS_SESSION_RESULT.md)
-retains the five-layer partial-normalizer cocycle. The
-[five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md)
-gives degree at most seven (four for a visible outer shear) when the
-specified middle representation is Clifford-valued, at error below
-$`\sqrt2/12`$. A separate Pauli-valued comparison subcase gives degree
-at most two at the same radius, even with a non-Clifford middle.
-The new outer-axis-normalizer subcase permits non-Pauli comparisons and a
-non-Clifford middle: degree is at most 244, or 41 when the original target
-shear is invisible. These are conservative finite bounds under the explicit
-individual-axis permutation hypothesis. The general five-layer case remains
-open. Preserving the axis span alone is the next unresolved degree branch:
-its projective cocycle is now exact below error $`\sqrt2/24`$, but its
-third-level right action has no proved finite feature law.
+The current [research checkpoint](../research/depth/SPAN_PRESERVING_SESSION_RESULT.md)
+closes the span-preserving branch of the
+[five-layer proof](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound).
+For a zero-clean read-only five-layer XOR query, if the specified comparison
+K preserves the outer native T-axis span, then Boolean degree is at most 112
+at full operator error below $`\sqrt2/24`$, independently of dirty width.
+K may mix individual axes and need not be Pauli; the middle B may be
+non-Clifford. Below $`\sqrt2/40`$, the combined shared-prefix argument
+improves this span-preserving output bound to 21. The proof uses a bounded
+native nilpotent algebra, an intrinsic comparison-group feature space and a proved subgroup-extension lemma. It
+does not assume that B normalizes the larger ambient Clifford group.
 
-A [baseline-word obstruction](../research/depth/BASELINE_WORD_OBSTRUCTION.md)
-rules out cancelling every independent native baseline while retaining a
-central Boolean target in a fixed word. An
-[exact four-factor scalar construction](../research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
-realizes arbitrary Boolean phases using paid sources of growing native
-cost. Neither an abstract representation count nor baseline cancellation
-alone controls general depth; the shared native source and return equations
-must be retained. The [diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
-still forces degree at most three below full operator error $`2/275`$,
-even with arbitrary unit-circle source phases. These results do not improve
-the complete-frame asymptotic upper law.
+The earlier subcases retain their larger error radius $`\sqrt2/12`$:
+Clifford-valued middle gives degree seven (four for a visible outer shear),
+Pauli-valued comparison gives degree two, and individual-axis permutation
+gives degree 244 (41 for an invisible target shear). These are conditional
+bounds, not a theorem for general five-layer queries. Comparisons moving the
+outer span remain outside the degree theorem. A separate
+[shared-prefix invariant](../research/depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
+holds for every such five-layer comparison at error below $`\sqrt2/40`$:
+the actual group is class two of exponent dividing four, its address map
+has central bilinear defect, and its faithful third-augmentation features
+have degree at most four. The missing general step is detecting the target
+relative to the outer native baseline, which need not lie in that group.
+
+The [scalar representation construction](../research/depth/SCALAR_REPRESENTATION_PRODUCT.md)
+still returns arbitrary Boolean phases in four abstract factors, but now has
+a source-cost lower bound surviving Pauli-carrier compression. Within its
+Clifford-translation source mechanism, a degree-d table forces at least
+$`2^{d-1}`$ carrier qubits and T gates per full source. At full address degree,
+eight separately implemented calls cost at least four times the table size,
+versus R91's square-root count at comparable width. The robust bound concerns
+approximating each full source; it is not inferred from final-word accuracy.
+Whole-word fusion, other sources and general queries are not lower-bounded.
+
+The [baseline-word obstruction](../research/depth/BASELINE_WORD_OBSTRUCTION.md)
+and [robust diagonal echo](../research/depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+retain their earlier scopes. Abstract factor count and arbitrary ambient-group
+nilpotence fail without the shared native return equations. The next lower-bound
+question is target extraction from the new actual-group features when K moves
+the outer span; the constructive alternative must avoid paying the full translation
+source while meeting R91's simultaneous resource envelope. None of these
+results changes the complete-frame asymptotic upper law.
 A robust growing **unrestricted native** query lower bound
 would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, and at most doubled error and
