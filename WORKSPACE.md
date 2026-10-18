@@ -15,52 +15,44 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: zero-character certificates and intrinsic transport
+## Current checkpoint: restored-address conditional transfer
 
-The [current round](research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
-began at verified main `5e53931` (PR #180). Two source certificates
-extend the retained six-layer **78/26** bounds at full error below
-$`\sqrt2/8`$. The [commutation-cover theorem](research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
-handles every exact three-native-band C3 source whose middle axes each
-commute with at least one entire outer band, including all bad-zero-only
-interactions at arbitrary width. The [paired-orbit theorem](research/depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
-shows that zero-character interactions cannot survive on paired C orbits
-alone when every singleton C axis is good. Certified Pauli-image stripping
-and native A commutation supply the two distinct mechanisms.
+The [current round](research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
+began at verified main `5d1d608` (PR #181). It separates the complete-frame
+frontier from the useful source certificates and their representation
+limits. R96 remains the strongest unconditional general upper law; R79
+remains selected Result D, and R97 remains scoped.
 
-Certified stripping also removes all good middle axes in a general
-native three-band C3 source, preserving both diagonal-C3 and scalar-Pauli
-classification. The reduced lists need their activation recomputed;
-the original rotations remain charged.
+[Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) now needs
+only exact full-space **completed address return**, with its original
+zero-clean query count/depth/width bounds. Internal native address changes
+are allowed. Common-bank queries are compiled jointly; ragged selected
+addresses use [paired packing](research/depth/PAIRED_PERMUTATION_ROUTING.md)
+into fixed slots. Every paired array, output, private pool and actual
+inverse is charged simultaneously. The existing full error contract and
+conditional complete-frame bound are unchanged.
 
-The [controlled-Pauli proof](research/depth/CONTROLLED_PAULI_TRANSPORT.md)
-now gives an intrinsic necessary-and-sufficient test for scalar-Pauli
-coordinates. For an exact C3 source, let E be its exact input Pauli
-domain and $`N_p=S_{F\tau(p)F^\dagger}-I`$. The test is
-$`N_pN_q=0`$ for every $`p\in E^\perp`$ and every q.
-If it holds, the existing **174/58** signed/visible transport bounds
-apply. A known C3 permutation fails the test in all fixed Clifford
-coordinates; no native-three-band realization is asserted for it.
+This removes an unnecessary restriction on the constructive route; it
+supplies no faster arbitrary-table query and no unconditional improvement
+to R96. Small individual addresses do not justify a small union, and
+complete return does not justify interleaving separate mutable-address
+circuits. The new construction explicitly repairs both points.
 
-The [query audit](research/depth/GAUSS_SUM_QUERY_ENCODING.md) confirms
-that arbitrary-table inverse-entry representations already exist.
-Generic inverse-query substitution exceeds R98's count/work budgets,
-and dirty coefficient loading does not prepare the required matrix.
-An exact read-only interpolation repair returns all work, but its
-repeated evaluations lose to the direct read-only baseline. The retained
-[logarithmic-depth structured query](research/depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-is unchanged. Sparse specialization, coupled masks and nonlinear work
-remain possible routes to a better complete query.
+The [six-layer proof home](research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
+also records a literal returned word whose specified source has no
+nonidentity inverse-Clifford residual probes. Full return cannot supply
+source-wide C3 or inverse coverage. The earlier
+[source certificates](research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
+remain useful conditional components, not the final bridge to an
+unrestricted lower bound.
 
-The next source question is **whether the remaining native three-band
-C3 sources force the intrinsic product above to vanish**. Uncovered
-cases must include both a bad singleton C axis and a B axis interacting
-with both outer bands; independent component factorization is not proved.
-General non-C3 prefixes, one-clean work, address mixing and robust
-growing-depth bounds remain further gaps.
+The next constructive question is a sublogarithmic restored-address
+arbitrary-table query within R98's simultaneous budgets. In the inverse
+route, a representation already exists; paid native coefficient access
+and cancellation of dirty masks remain missing. Generic inversion and
+repeated interpolation retain excessive cost. Address mixing itself no
+longer disqualifies a candidate from R98.
 
-R96 remains the strongest unconditional complete-frame upper law; R79
-remains selected Result D, R97 remains scoped, and R98 remains conditional.
 Optimal general depth, dimension-growing unrestricted lower bounds and
 unrestricted one-clean four-layer rigidity remain open. Final manuscript
 drafting remains separate.

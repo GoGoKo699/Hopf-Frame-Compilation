@@ -56,8 +56,10 @@ factors acting first,
 Thus the complete wrapper returns E exactly. The actual body must
 preserve s on its entire physical input space, including occupied work
 and leakage sectors. Preserving it only on an ideal initialized image
-is insufficient for the exact cancellation in (3). All source anchors
-and tested work in B exclude E.
+is insufficient for the exact cancellation in (3). Internal native gates
+of B may change s: only the complete full-space operator must preserve
+it, and no other operation is interleaved with that body. All source
+anchors and tested work in B exclude E.
 
 This is a wrapper theorem, not a standalone returned-work implementation
 of $`P_s(A)`$. R91's paired XOR translations are the special case
@@ -204,11 +206,108 @@ does not modify a source, remove an inverse, or change the decoded
 operator. Its relevance to the remaining long-query contribution is
 proved separately in the conditional transfer chapter.
 
-The [four bounded fixtures](../../tests/test_paired_permutation_routing.py)
+## 5. Selected address packing for completed XOR queries
+
+Suppose a native exact query compiler implements, for every finite
+q-bit table f, the full-space operator
+
+```math
+Q_f|x,Z,w\rangle=|x,Z\mathbin\oplus f(x),w\rangle,     \qquad(9)
+```
+
+with literal phase one and arbitrary output, helper and reference
+states. The address x may change inside its native word. This section
+uses only its exact return in (9), together with the paid query bounds;
+it does not run multiple such words concurrently on shared address wires.
+
+Let s be a k-bit selector and P a common physical address register. For
+each s, specify an ordered subset $`A_s`$ of a local physical array A,
+with $`a_s=|A_s|\le a_{\max}`$. The array contains the union of the
+local address subsets and any required padding. It is disjoint from
+P, s, the entire final output word Z, and every private query/router
+register. The desired selected query is
+
+```math
+|s,P,A,Z\rangle\longmapsto
+|s,P,A,Z\mathbin\oplus f_s(P,A_s)\rangle.             \qquad(10)
+```
+
+Every row $`f_s`$ is specified, including malformed and inactive
+selector patterns. When activity H is part of s, an H-zero identity is
+implemented by a zero output row. Selector-dependent output positions
+can be embedded in one fixed output word by putting zeros in the other
+slices. Its full physical output union must be disjoint from the entire
+address union, not merely the address selected on an ideal input.
+
+Choose a physical permutation $`\Pi_s`$ of A that places the ordered
+$`A_s`$ in the first $`a_s`$ positions of a fixed
+$`a_{\max}`$-site block. Complete the permutation arbitrarily on
+the other sites. On a prescribed zero row no packing is needed, so the
+identity permutation is allowed. The subsets depend only on the short
+selector; P affects table values, not the physical permutation.
+
+Apply the paired router to A and a separate arbitrary array E. The
+sparse-grid proof of Sections 2–3 also applies to an arbitrary total
+k-bit permutation table, with $`2^k`$ rows and no separate activity
+bit. Run one complete query B on P, s and the fixed packed block, with
+row s reading only its first $`a_s`$ positions and ignoring all
+filler values. Finally apply the actual inverse router. At the complete
+query boundary B preserves P and s and is identity on E and the unused
+A positions. Equation (3) therefore gives
+
+```math
+\mathcal R^{\dagger}B\mathcal R
+=\sum_s|s\rangle\langle s|\otimes
+       \bigl(\Pi_s^{-1}B_s\Pi_s\bigr)\otimes I_E.    \qquad(11)
+```
+
+This is exactly (10), with every address, E and private helper returned.
+It remains true when B temporarily changes P or s, applies non-Clifford
+gates to them, or entangles them with its work. The proof is a literal
+operator equality and includes arbitrary dirty/reference entanglement.
+It requires exact boundary preservation on every physical sector.
+
+There is one complete long query on at most
+
+```math
+a_{\mathrm{query}}=|P|+a_{\max}+k                         \qquad(12)
+```
+
+address bits. The union size $`w=|A|`$ enters only the router ledger:
+both router appearances together use $`O(2^k w)`$ T gates,
+elementary Clifford gates and additional dirty bits, and have T-depth
+$`O(\log_2(k+2))`$. Their additional width includes E. The query
+receives its separately charged pool, disjoint from P,s,A,Z,E and all
+other live registers. Returned router-only helpers may be reused at
+complete boundaries, but E remains reserved across B. Keeping the
+pools disjoint gives the same additive simultaneous bound. Actual
+inverse queries and routers have the same resource orders.
+
+A Boolean phase uses the exact query/Z/actual-unquery/Z dirty echo on
+a separate arbitrary bit, so only a constant number of these complete
+queries is required. No controlled version of an arbitrary compiler is
+assumed: activity is an address bit with specified zero rows. Existing
+malformed-selector rows must be copied from the intended total function;
+they cannot be changed merely because the ideal source never reaches
+them.
+
+For an unselected query position whose genuine input union X is small,
+concatenate all its output bits into one table on X. This realizes the
+same product of completed XOR queries, provided the full output union
+is disjoint from X. Bounds on individual addresses alone do not bound
+X. Selected packing supplies the alternative when ragged physical
+subsets have a large union. The conditional R98 proof audits these two
+cases separately and charges their common output word and live arrays.
+
+The [six bounded fixtures](../../tests/test_paired_permutation_routing.py)
 check the native sparse-grid phase echo on all 32,768 occupied inputs,
 all three-site permutations including noninvolutive cycles, actual
 inverse work return with every selector and activity value, and a
-negative case in which changing the selector prevents auxiliary return.
+negative case in which a permanent selector change prevents auxiliary
+return. The two packing fixtures check a native body that temporarily
+changes its address and selector but restores them, and a ragged
+maximum-width-two/union-width-three example with common prefix, explicit
+inactive and invalid rows, arbitrary output offsets and paired arrays.
 The native evaluator is shared with R91's retained tests. These exact
 finite checks support the identities; the resource bounds above are
 analytic and do not assert a scalable emitter.

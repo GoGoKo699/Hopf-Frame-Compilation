@@ -24,11 +24,14 @@ T=O\!\left(\sqrt{Qq}+Qq/B\right),\qquad G=O(Qq),
 \qquad D_T=O\!\left(d(a)+Qq/B^2\right).                \qquad(1)
 ```
 
-Its additional width is at most B. The address is read-only and can
-occur only in Clifford controls throughout. Outputs and helpers are
-arbitrary; all helpers return exactly with literal phase one. The
-identity holds with arbitrary reference systems. All constants are
-absolute. For a zero-bit address the constant row is a Clifford word.
+Its additional width is at most B. Its completed operator is exactly
+$`|x,Z,w\rangle\mapsto|x,Z\mathbin\oplus f(x),w\rangle`$:
+the address, outputs and helpers may be arbitrary, all addresses and
+helpers return, and the literal phase is one. The identity holds with
+arbitrary reference systems. The native word may temporarily change
+the address; no gate-level read-only restriction is imposed. All
+constants are absolute. For a zero-bit address the constant row is a
+Clifford word.
 No efficiency bound on this classical compilation is required.
 The hypothesis includes no initialized work, supplied state, evaluator,
 measurement or reset. R91 proves this interface with
@@ -81,56 +84,119 @@ K=m+l+2,\quad t=\lceil\log_2(m+2)\rceil,\quad
 ```
 
 Run a stage only if $`r\lt m/2`$. Its original suffix of r bits
-and all source/metadata banks are unchanged. Replace complete long
-queries by (1), and selected layout wrappers by the paired routing
-lemma. All other native components are retained.
+and all source/metadata banks are unchanged. Use the paired wrappers
+for selected layouts, and reorganize each complete long-query position
+as follows. All other native components are retained.
 
-The global stage's Section 5 lists a constant number of chronological
-query positions, including all actual inverses and sparse-correction
-recovery calls. At one position at most $`CK^{d_0}`$ instances
-run in parallel. Their outputs, grid targets and helper pools are
-disjoint; their only shared inputs occur through read-only Clifford
-controls. Thus they contribute a maximum of their additive depths,
-not $`K^{d_0}d(a)`$. Their elementary Clifford counts still add.
+The original global stage's Section 5 has constantly many chronological
+query positions, including actual inverses and sparse-correction
+recovery calls. Its old implementation runs polynomially many instances
+in parallel on shared read-only Clifford controls. Completed address
+return alone does not justify that schedule. For example, the word
+$`S_i,C_i,S_i`$, where $`S_i=\mathrm{SWAP}(x,d_i)`$ and
+$`C_i=\mathrm{CNOT}(d_i;y_i)`$, exactly adds x to its output
+and returns the arbitrary address/helper bits. It uses seven CNOTs,
+one arbitrary helper and no T gates or clean work.
+But interleaving two such words as $`S_1,S_2,C_1,C_2,S_2,S_1`$
+adds the initial $`d_1`$ to the second output. The replacement
+below compiles one joint table at each position instead of interleaving
+native words that temporarily change the shared address.
+Each desired query itself has a one-CNOT implementation; this example
+diagnoses an invalid schedule, not a lower bound on query synthesis.
 
-Fix all query constants, router polynomial degrees and stage exponents
-before choosing A. Enlarge the fixed exponent C to cover these native
-substitutions and put
+For a position whose actual input union X has bounded size, concatenate
+its output bits into one word table on X. The output union must be
+disjoint from X. For selected ragged positions, use the
+[selected-address packing lemma](PAIRED_PERMUTATION_ROUTING.md#5-selected-address-packing-for-completed-xor-queries).
+It places the selected ordered physical subset into a fixed block,
+runs one returned-address query, and actually unpacks. Its address is
+the common prefix, the largest selected local address and the short
+selector, rather than the union of all selected addresses. The paired
+auxiliary array is excluded from the query support and remains reserved
+until unpacking. Internal changes of the selector are allowed because
+the complete query preserves it on every physical sector.
+
+Here is the required union audit, beyond the individual address bounds
+in the original stage. Write $`a=m-r`$ and let P be the unchanged
+original prefix of length $`n-m`$.
+
+| Long-query positions | Actual common input or selected packing |
+|---|---|
+| Initial tagged/endpoint source phases, masks and anchors | P, one current logical/label bank and short source fields; descendant prefixes are subsets of that bank. Pack a selected endpoint if its physical subset differs. |
+| Fine rectangle source, fine membership and fine-label readout | Pack the selected ragged address. Keep a fixed output word with separate slices and the original zero rows on inactive slices. |
+| Compact metadata | P, one current logical/data bank and short fields; concatenate the separate metadata outputs. |
+| Local shear catalogues | P, the fixed external High-bank union and short catalogue metadata. Each High bank has at most its block length, so their union has at most a bits. The external Low output union is excluded. |
+| Global High erasure | P, the fixed external Low-bank union of at most a bits and metadata; external High outputs are excluded. |
+| Joint rank-source phases and matching-index queries | P, the one physical Q bank and ordinary short source/metadata fields. The joint source creates no second long address bank. |
+| Matching shifts | P and short matching/weight metadata; all $`Q_i`$ output targets are excluded. |
+| Augmented coarse-block readout | All fixed coin coordinates and every reference source's private initialized $`A_i`$ bank; their combined size is $`a+O(t^3)`$. The old coarse tag is excluded. |
+| Residual row/column source phases, calibration masks and exact sign gauges | P, one current logical/label bank and short tags/source indices; the precision core is a target/work system, never part of the address. Distinct source positions remain sequential. |
+
+After layout, the external High/Low banks are not the physical Q
+positions, which park the former bank contents. The stated bounds use
+the actual external input unions. There are $`O(t^2)`$ compact
+blocks with $`O(t)`$ geometric/catalogue fields each, so the full
+metadata union has $`O(t^3)`$ bits. Ordinary source fields contribute
+$`O(\log_2(l+2))`$ bits at each of constantly many source positions.
+The fast-reference ledger supplies the $`O(t^3)`$ bound on all
+$`A_i`$ together. Hence every common-bank union above has at most
+$`n-r+C\chi`$ bits. No output wire is added merely to pad an input
+bank, and no bound on a union is inferred from individual address lengths.
+
+For the selected fine rows, the geometric bound is
+$`\alpha_i+q_i+q_i\tau_0\le a+m_{\rm free}`$, with
+$`m_{\rm free}=O(t)`$. Their physical union may be larger. Packing
+uses the maximum row length and $`O(\chi)`$ selector bits, again
+giving $`n-r+C\chi`$ address bits. Its local union array excludes
+P and has polynomial size in K. Enumerating all selector patterns gives
+at most $`2^{O(\chi)}`$ router count/work and
+$`O(\log_2(\chi+2))`$ depth. The output union is disjoint from
+every address subset, as required by the original selected-query lemma.
+All inactive and malformed-selector rows retain their original total
+functions; packing ignores filler values instead of assuming they are
+initialized.
+
+Each rewritten position therefore has a constant number of complete
+word queries. Its output length is at most $`2^{C\chi}`$; the
+actual output unions above are polynomial in K. Fix all query constants,
+router degrees and stage exponents before choosing A, and enlarge C to
+absorb both address overhead and output length. Put
 
 ```math
 \overline Q=2^{n-r+C\chi},\qquad
-B_j=\left\lfloor b/(C_1K^{d_0})\right\rfloor.
-                                                               \qquad(4)
+B=\lfloor b/C_1\rfloor.                              \qquad(4)
 ```
 
-The inherited sufficient simultaneous allocation, with enlarged fixed
-constants, is
+Here $`\overline Q`$ bounds rows times output length, including
+fixed polynomial factors after enlarging constants. The inherited
+sufficient simultaneous allocation becomes
 
 ```math
 b\ge8W_{\rm loc}+C K^{d_w}(n+\chi+2),\qquad
 W_{\rm loc}\le2^{C\chi}.                              \qquad(5)
 ```
 
-It ensures $`B_j\ge C_Q(a_j+2)`$ for every actual address.
-Every long table has $`a_j\le n-r+C\chi`$, including ordinary
-source anchors, augmented coarse-block readout, matching data, source
-masks and scalar calibration programs. Choose $`A\gt C`$; then
-all these addresses are at most n. Query multiplicities, pool splitting
-and width penalties are absorbed in one fixed degree d_0'. No new
-source field becomes part of a table address.
+It includes all live output words, packing arrays and paired auxiliary
+arrays. One exclusive pool B is disjoint from them and all addresses;
+(5) ensures $`B\ge C_Q(a_{\mathrm{query}}+2)`$. Pools are reused
+only at completed boundaries. Choose $`A\gt C`$, so every actual
+long address is at most n and its additive query depth is at most d(n).
+No polynomial instance factor multiplies d(n). Retaining a fixed
+polynomial degree d_0' in the ledger below absorbs all other overheads.
 
 The remaining depth costs are as follows.
 
 | Native component | Depth after substitution | Why no logarithmic-in-m term remains |
 |---|---:|---|
-| Long-query positions | $`O(d(n)+K^{d_0'}\overline Q/b^2)`$ | Constant sequential positions; private simultaneous pools |
+| Long-query positions | $`O(d(n)+K^{d_0'}\overline Q/b^2)`$ | Constant sequential complete word queries; exclusive reused pool |
+| Selected address packing | $`O(\log(\chi+2))`$ | Maximum selected address size; paid paired arrays |
 | Short standalone tables | $`O(\log(\chi+2))`$ | Retained R91 queries on at most $`C\chi`$ bits |
 | Ordinary borrowed-precision sources and coefficient banks | $`O(l)`$ | Constant many source positions; original logarithmic initialized indices |
 | Capped exact reference words | $`O(l+\log(t+2))`$ | All bins run on disjoint coin/private-scratch registers |
 | Selected layout/body/unlayout positions | $`O(\log(t+2))`$ | Polynomially many layouts selected by $`O(t)`$ bits; paired routing |
 | Saved suffix and complete used-work predicates | $`O(\log(\chi+2))`$ | They test only r or $`O(\chi)`$ bits |
 
-The long source anchors are in the first row, not the last row. The
+The long source anchors are in the long-query row, not the predicate row. The
 last row never tests the logical output, arbitrary dirty cores, idle
 suffix padding or new paired routing arrays. All retained selector
 fields are computationally preserved by their actual bodies. The paired
@@ -334,7 +400,18 @@ an architecture-specific query obstruction into a general lower bound.
 The concrete resumption question is: can an arbitrary Boolean/word
 table be queried in the complete arbitrary-dirty sense of (1), at
 sublogarithmic address T-depth, with the same simultaneous count and
-minimum-pool guarantees? A matrix-element or trace encoding, a query
-correct only on clean outputs, or a construction whose address receives
-non-Clifford gates shared across the required parallel banks does not
-satisfy this sufficient interface.
+minimum-pool guarantees? Exact address return suffices: the audited
+joint-query and packing schedule removes the former gate-level read-only
+premise. It does not convert every such query into a native read-only
+query or validate interleaving words that temporarily change a shared
+address.
+
+An arbitrary-table inverse-entry representation already exists; the
+[representation-cost audit](GAUSS_SUM_QUERY_ENCODING.md#6-what-the-complete-inverse-word-query-does-and-does-not-transfer)
+separates that algebraic fact from paid native encoding and access.
+A matrix-element or trace identity, or a query correct only on clean
+outputs, does not supply (1). The complete inverse-word query may now
+use its temporary coefficient/address changes in this sufficient
+interface, but still owes arbitrary-table native encoding/access and
+the simultaneous count, width and depth bounds. This transfer relaxation
+alone is not an unconditional improvement of the frame frontier.

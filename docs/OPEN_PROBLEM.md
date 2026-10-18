@@ -29,10 +29,23 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Stronger all-precision research bound | [R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives $`O(NL/b^2+L+\ell)`$ for every $`n\ge1,L\ge6`$, with optimal counts, one clean qubit, original literal widths and full error; [R95](../research/depth/LOGARITHMIC_PRECISION_DEPTH.md), [R94](../research/depth/PORTABLE_WORKSPACE_CATALOGUE.md) and [R92](../research/depth/UNIFORM_CATALOGUE_PRECISION.md) retain their independent narrower constructions |
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
-| Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact read-only dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
+| Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact restored-address dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Native AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
+
+The [current revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
+weakens R98's sufficient premise from gatewise read-only access to exact
+completed address return. [Paid selected packing](../research/depth/PAIRED_PERMUTATION_ROUTING.md)
+handles ragged addresses without charging their larger union; joint
+multi-output queries handle common banks. Internal query gates may modify
+addresses, including selectors. The query must restore every physical
+address/output/helper column with the specified XOR and literal phase.
+This broadens the constructive route without improving R96 unconditionally.
+A separate [exact six-slot counterexample](../research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
+shows why full return alone supplies neither C3 nor inverse-Clifford
+coverage for the specified source. It has identity target and is not a
+general depth obstruction.
 
 The preceding [native-defect round](../research/depth/NATIVE_DEFECT_SESSION_RESULT.md)
 resolves the general **zero-clean read-only five-layer XOR degree** question:
@@ -123,7 +136,7 @@ full involution defect localizes each isolated A probe; native A
 isotropy forces its B-neighborhood to be uniform on each activation
 class. This closes coupled wider rows without bounding total overlap
 and certifies the existing 78/26 transport bounds. The
-[current round](../research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
+[zero-character round](../research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
 adds two complementary certificates. The
 [commutation-cover theorem](../research/depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
 closes every exact native three-band C3 source whose B axes each commute
@@ -207,8 +220,9 @@ source/query from linear to logarithmic depth at cubic rather than
 quadratic work. It avoids the former repeated-child-inversion cost;
 the determinant obstruction remains valid for its narrower returned
 in-place, frozen-coefficient interface. The matrix inputs change
-internally, so native read-only access and an arbitrary-table encoding
-within R98's budgets remain missing. The [representation audit](../research/depth/GAUSS_SUM_QUERY_ENCODING.md)
+internally, which the strengthened R98 now permits at complete query
+boundaries. Paid arbitrary-table coefficient access and extraction within
+its count/work/depth budgets remain missing. The [representation audit](../research/depth/GAUSS_SUM_QUERY_ENCODING.md)
 clarifies that inverse-entry encodings already exist, but generic
 substitution has excessive count/work and affine dirty loading leaves
 offsets. Its completed-oracle counting boundary is scoped to affine
@@ -219,7 +233,10 @@ Sparse specialization, coupled-mask extraction and quantum interference
 remain outside those boundaries. The complete cycle conjunction's
 separate transport and fair baseline are unchanged.
 
-The next lower-bound question remains a **native degree-versus-depth
+The main constructive question is now a sublogarithmic arbitrary-table
+query with completed address return and all R98 budgets. Native address
+mixing is allowed; it need not first be converted to read-only access.
+The separate lower-bound question remains a **native degree-versus-depth
 recurrence**. For exact three-native-band C3 sources, the immediate
 remaining structural issue contains both a bad singleton C axis and
 a middle B axis interacting with both outer bands. Does the native
@@ -234,8 +251,8 @@ would transfer to a legal deepest-layer real-frame subfamily with two
 calls, the same clean/dirty allocation, at most doubled error, T-count and
 T-depth, and elementary Clifford budget $`G(V)+G(V^\dagger)+2\le4G(V)+2`$.
 The actual inverse is charged in the fixed H, S, CNOT alphabet.
-A faster exact multi-output query with R91's native read-only
-interface would, by conditional R98, give
+A faster exact zero-clean multi-output query with complete address and
+helper return would, by conditional R98, give
 
 ```math
 D_T=O_L\!\left(N/b^2+d(2n+10)+\log_2\log_2(n+4)\right)
