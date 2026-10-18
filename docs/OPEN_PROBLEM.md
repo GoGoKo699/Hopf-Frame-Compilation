@@ -30,25 +30,33 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
 | Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster exact restored-address dirty word-query interface to general fixed-accuracy frame depth; [two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
-| Unrestricted two-layer queries | [Shared native encodings](../research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md) give a single occupied transfer alphabet with one returned clean qubit. R75 rounding gives three-control AND error floor $`(3-2\sqrt2)/8`$ and AND arity $`a\ge4`$ floor $`2^{-a}`$, with arbitrary Clifford/address mixing and dirty width. This is a constant-layer query result, not a stronger complete-frame frontier |
+| Unrestricted two-layer transfer constraint | [Shared native encodings](../research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md) give a single occupied transfer alphabet with one returned clean qubit. Its scalar AND floors and exact affine-distance condition remain useful components; the joint theorem below strengthens the query obstruction beyond scalar witnesses |
+| Unrestricted two-layer Boolean degree | [Joint native diagonal rigidity](../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) proves degree at most two for exact Boolean XOR with at most one clean qubit. Every nonquadratic query has full initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$, uniformly in arity and dirty width, with arbitrary Clifford/address mixing. Both clean-midpoint branches and the six-bit cubic bent query are covered. Complex occupied diagonal action alone need not be C3; no complete-frame frontier changes |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The [current revision](../research/depth/JOINT_TRANSFER_SESSION_RESULT.md)
-separates paid complete queries from representation identities. Sparse
-inverse extraction retains R91's indicator cost; the tested address-shear
-and dirty-correction mechanisms provide no faster primitive. The new
-unrestricted two-layer theorem instead uses the common native clean
-encoding to force one of two physical transfer contributions to vanish,
-or reduce to a stabilizer-code overlap. It excludes three-control AND
-robustly and forces exact nonaffine queries to be at relative distance
-at least 1/4 from every affine function. The six-bit cubic bent query
-$`f(x,y)=x\cdot y+x_1x_2x_3`$ passes the entire scalar alphabet;
-its possible native realization or a joint-encoding obstruction is open.
-An exact rational-target Galois invariant has the same one-clean scope,
-with explicit failures of two-clean and rational-implies-C3 extensions.
-R96, R97 and the complete-frame lower frontier are unchanged.
+The [current revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+excludes every nonquadratic two-layer Boolean XOR with at most one clean
+qubit, including the six-bit cubic bent query missed by scalar transfer
+coefficients. The proof uses the full preserved Pauli algebra, explicit
+clean removal in the non-Pauli branch, and signed quotient relations and
+native row cancellation in the Pauli branch. A complex diagonal non-C3
+counterexample remains valid: its input-dependent phase cannot be deleted.
+The apparent formal C3 correction to a real quartic sign cannot fit the
+same native two-layer allocation. The next lower question is whether
+three unrestricted layers impose a Boolean degree bound independent of
+arity and dirty width. A faster restored-address query remains the
+parallel upper target; the paid bent-query conjugation gives no improved
+R98 primitive. R96, R79, R97 and the complete-frame frontier are unchanged.
+
+The [preceding joint-transfer revision](../research/depth/JOINT_TRANSFER_SESSION_RESULT.md)
+proves the unrestricted single occupied transfer alphabet, robust AND3
+floor and exact affine-distance condition. Its rational-target Galois
+invariant retains the one-clean scope. These remain useful components;
+the new diagonal theorem goes beyond their scalar witnesses and resolves
+the unrestricted one-clean bent-query exclusion. No dimension-growing
+depth bound is inferred from this constant-layer result.
 
 The [preceding revision](../research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
 weakens R98's sufficient premise from gatewise read-only access to exact
