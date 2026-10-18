@@ -51,6 +51,13 @@ at integer precision $`L\ge8`$ requires at least three T layers in
 the worst case. These are constant lower bounds; they do not grow with
 n or L. Optimal depth remains an open problem.
 
+The later [unrestricted two-layer query theorem](UNRESTRICTED_TWO_LAYER_QUERY.md)
+uses the joint transfer row and the shared native one-band encoding of
+the clean qubit. It strengthens the initialized coefficient restriction
+for exact clean return and excludes three-control AND robustly. Its
+proof home retains the distinction between a constant query obstruction
+and the complete-frame frontier here.
+
 ## 1. Initialized work and a robust transfer witness
 
 Let S be the n-qubit logical register, D the b-qubit arbitrary dirty

@@ -255,6 +255,20 @@ separately rules out inferring source-wide C3 or inverse-Clifford coverage
 from full return. The main next question is a faster complete query with
 all simultaneous budgets, not another representation identity alone.
 
+The subsequent [joint-transfer round](depth/JOINT_TRANSFER_SESSION_RESULT.md)
+first finds the old indicator cost in sparse inverse extraction, then
+proves an [unrestricted two-layer query theorem](depth/UNRESTRICTED_TWO_LAYER_QUERY.md).
+Shared native one-band encodings force a single occupied transfer alphabet
+with one returned clean qubit, without an address-preservation hypothesis.
+R75 rounding yields three-control AND error floor $`(3-2\sqrt2)/8`$
+and AND arity $`a\ge4`$ floor $`2^{-a}`$. Exact nonaffine queries
+must have relative distance at least 1/4 from every affine function.
+The same proof home gives an exact rational-target Galois constraint and
+native counterexamples to its two-clean and C3 extensions. A six-bit
+cubic bent XOR passes the whole scalar alphabet, so an arbitrary-width
+degree theorem still needs a joint invariant. No complete-frame bound
+or selected publication claim changes.
+
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
 [Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)

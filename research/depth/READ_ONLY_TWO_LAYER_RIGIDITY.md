@@ -7,7 +7,8 @@
 An exact zero-clean dirty query with a nonaffine output cannot use two physical T
 layers if the address is preserved at every Clifford-layer boundary and
 the T gates act only on work. This restriction includes the native
-read-only address interface of R91 and conditional R98. It does not
+read-only address interface of R91. Conditional R98 now permits completed
+address return with arbitrary internal address changes. This theorem does not
 include every circuit whose address returns only at the end.
 The theorem below gives a width-independent positive approximation
 floor with zero initialized work. Its proof separates the address
@@ -206,9 +207,11 @@ nonaffine one-clean query. Likewise, preserving the address only at the
 end does not provide (1) at each T-layer boundary.
 The query-to-frame lower-bound transfer accepts unrestricted native
 queries; this scoped theorem does not, by itself, supply its missing
-dimension-growing premise. Conditional R98 requires the read-only
-interface but a genuinely sublogarithmic construction, which a
-three-layer exclusion does not rule out.
+dimension-growing premise. Conditional R98 now requires completed address
+return and a genuinely sublogarithmic construction, which this scoped
+exclusion does not rule out. The separate
+[unrestricted two-layer theorem](UNRESTRICTED_TWO_LAYER_QUERY.md) uses
+correlated native encodings and retains its own one-clean hypotheses.
 
 ## 4. Initialized work: a robust degree and polar-rank bound
 

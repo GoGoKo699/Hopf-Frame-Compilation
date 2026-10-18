@@ -177,6 +177,12 @@ preserving P, so its restriction is a logical Clifford. This proves
 the theorem. The case L=0 is included. Dependencies created by the
 stabilizer quotient are allowed in the descended phase layers.
 
+The later [correlated-axis query theorem](UNRESTRICTED_TWO_LAYER_QUERY.md)
+uses this intrinsic essential span before descent. For exact one-clean
+return at two native T layers it gives a single Clifford-overlap alphabet
+for occupied transfer coefficients. Dependence created by the quotient
+must not erase the common-axis information used in that proof.
+
 ### Pauli midpoint consequence
 
 If $`V=V_2V_1`$ preserves the terminal clean Pauli and

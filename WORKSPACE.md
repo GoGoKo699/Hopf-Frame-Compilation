@@ -15,47 +15,50 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: restored-address conditional transfer
+## Current checkpoint: unrestricted two-layer query constraints
 
-The [current round](research/depth/RESTORED_ADDRESS_SESSION_RESULT.md)
-began at verified main `5d1d608` (PR #181). It separates the complete-frame
-frontier from the useful source certificates and their representation
-limits. R96 remains the strongest unconditional general upper law; R79
-remains selected Result D, and R97 remains scoped.
+The [current round](research/depth/JOINT_TRANSFER_SESSION_RESULT.md)
+began at verified main `1ac16c4` (PR #182). R96 remains the strongest
+unconditional general upper law; R79 remains selected Result D and R97
+remains scoped. The count package is settled under its stated hypotheses.
+The large-width additive depth remains the general destination.
 
-[Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) now needs
-only exact full-space **completed address return**, with its original
-zero-clean query count/depth/width bounds. Internal native address changes
-are allowed. Common-bank queries are compiled jointly; ragged selected
-addresses use [paired packing](research/depth/PAIRED_PERMUTATION_ROUTING.md)
-into fixed slots. Every paired array, output, private pool and actual
-inverse is charged simultaneously. The existing full error contract and
-conditional complete-frame bound are unchanged.
+The new [correlated-axis theorem](research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md)
+proves that exact one-clean return at two native T layers confines every
+occupied Pauli-transfer coefficient to a single Clifford-overlap alphabet.
+It permits arbitrary Clifford/address mixing and arbitrary dirty width.
+Combined with R75's clean-return rounding, three-control AND has full
+initialized-isometry error at least $`(3-2\sqrt2)/8`$ at two layers;
+AND on a controls, for $`a\ge4`$, has floor $`2^{-a}`$. Exact
+nonaffine Boolean queries must be at relative distance at least 1/4
+from every affine function. No growing-degree or growing-depth conclusion
+is inferred.
 
-This removes an unnecessary restriction on the constructive route; it
-supplies no faster arbitrary-table query and no unconditional improvement
-to R96. Small individual addresses do not justify a small union, and
-complete return does not justify interleaving separate mutable-address
-circuits. The new construction explicitly repairs both points.
+The same proof home gives an exact rational-target invariant
+$`V^\dagger\sigma(V)\in\{I,Z_c\}`$, with native signs retained.
+Two clean qubits invalidate it, and rational two-layer unitaries need
+not lie in C3. These scope boundaries have complete native fixtures.
+The full operator contract, literal phases, references, leakage and
+simultaneous resource accounting remain unchanged.
 
-The [six-layer proof home](research/depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
-also records a literal returned word whose specified source has no
-nonidentity inverse-Clifford residual probes. Full return cannot supply
-source-wide C3 or inverse coverage. The earlier
-[source certificates](research/depth/ZERO_CHARACTER_SESSION_RESULT.md)
-remain useful conditional components, not the final bridge to an
-unrestricted lower bound.
+The constructive candidates were simplified fairly: sparse inverse
+extraction reproduces R91's bilinear indicators; address Hadamards give
+a quadratic shear whose fixed table phase commutes with it; coherent
+mask correction still contains paid target phases. None improves the
+complete-frame ledger. [Conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+continues to accept completed restored-address queries, including internal
+address changes, with all query counts, inverses and simultaneous pools
+charged. A faster qualifying primitive remains missing.
 
-The next constructive question is a sublogarithmic restored-address
-arbitrary-table query within R98's simultaneous budgets. In the inverse
-route, a representation already exists; paid native coefficient access
-and cancellation of dirty masks remain missing. Generic inversion and
-repeated interpolation retain excessive cost. Address mixing itself no
-longer disqualifies a candidate from R98.
-
-Optimal general depth, dimension-growing unrestricted lower bounds and
-unrestricted one-clean four-layer rigidity remain open. Final manuscript
-drafting remains separate.
+The next concrete lower question is the six-bit cubic bent query
+$`f(x,y)=x\cdot y+x_1x_2x_3`$. Its entire scalar transfer matrix
+passes the new alphabet. Does the correlated native encoding exclude it,
+or can a full one-clean two-layer circuit be constructed? This tests a
+joint invariant beyond marginal coefficients. The parallel upper target
+is a sublogarithmic restored-address arbitrary-table query within R98's
+budgets. Optimal general depth, unrestricted one-clean four-layer rigidity
+and dimension-growing lower bounds remain open. Final manuscript drafting
+remains separate.
 
 ## Mandate
 
