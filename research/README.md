@@ -333,8 +333,8 @@ Neither result improves R96 or supplies the missing R98 query.
 
 The [diagonal-source transport proof](depth/NATIVE_CLIFFORD_TRANSPORT.md)
 gives six-layer degree at most 78, or 26 for visible outer shear, below
-$`\sqrt2/8`$. The [current round](depth/TWO_OVERLAP_SESSION_RESULT.md)
-proves the [overlap-two source theorem](depth/TWO_OVERLAP_SOURCE_STRUCTURE.md):
+$`\sqrt2/8`$. The [preceding round](depth/TWO_OVERLAP_SESSION_RESULT.md)
+proved the [overlap-two source theorem](depth/TWO_OVERLAP_SOURCE_STRUCTURE.md):
 an exact three-band C3 source with first/middle overlap at most two
 belongs to the diagonal class, even when both adjacent partial sources
 fail to be C3. It extends the [overlap-one proof](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
@@ -353,6 +353,18 @@ A commuting gadget list with r relations following a diagonal-C3 source
 has a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
 Monomial localization keeps the wide phase diagonal. This does not make
 the coordinate changes or dependent gadget list a free native band.
+
+The [current round](depth/UNBOUNDED_CONTROL_SESSION_RESULT.md) extends
+[source certification](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) to any
+number of isolated paired cores. Commuting control involutions force
+all fixed target-axis signs to be affine. The resulting checkable
+activation criteria have no total-overlap bound and retain 78/26 transport.
+A different [controlled-Pauli transport proof](depth/CONTROLLED_PAULI_TRANSPORT.md)
+gives uniform 174/58 bounds below $`\sqrt2/8`$ with its exact C3 block
+and Pauli-domain hypotheses. It derives the block phase budget, retaining
+a necessary weighted quartic term. The known Gottesman–Mochon source
+shows that this class need not be semi-Clifford; its charged source
+schedule is not a returned three-band query.
 
 The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
 controls approximate transport through arbitrary sources with bounded
@@ -380,16 +392,21 @@ helpers and no clean work. Whole-pivot commutativity does not eliminate
 cross-pivot gate dependencies. This in-place circuit does not provide the
 native read-only inverse query needed for a constructive improvement.
 
+The new block-pivot calculation identifies a constant-depth product XOR,
+but its conversion to an in-place update changes the arbitrary helper
+by the inverse and repeats child inversions. A determinant invariant
+excludes repair by frozen-coefficient whole-array polynomial shears.
+This stops that shortcut within its interface, while leaving coordinate
+and other native constructions open.
+
 The next question is width-independent signed transport through arbitrary
-three-native-band C3 sources, without bounding their first/middle overlap.
-Overlap two now closes; growing native relation components remain open.
-The hybrid theorem supplies transport once the required core factorization
-is proved. Alternative native syntheses must be tested before using
-representation-dependent source parameters as depth invariants.
-General non-C3, one-clean and address-mixing lower bounds and optimal
-complete-frame depth remain open. The
-[query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps the
-actual inverse Clifford word separately charged.
+three-native-band C3 sources. Many isolated controls are covered; coupled
+even-incidence components and general zero-character interactions remain
+open. Alternative native syntheses must be tested before treating a
+source parameter as a depth invariant. General non-C3, one-clean and
+address-mixing lower bounds and optimal complete-frame depth remain open.
+The [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps
+the actual inverse Clifford word separately charged.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

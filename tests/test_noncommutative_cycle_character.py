@@ -9,7 +9,8 @@ these fixtures.
 """
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, deque
+from itertools import product
 from math import comb
 from random import Random
 import unittest
@@ -283,6 +284,57 @@ def _upper_path_word(degree, upper, allowed):
             parity ^= product
         result |= parity << bit
     return result
+
+
+def _block_upper(d, bits):
+    result = np.zeros((d, d), dtype=np.int64)
+    for bit, (i, j) in enumerate((i, j) for i in range(d) for j in range(i + 1, d)):
+        result[i, j] = bits >> bit & 1
+    return result
+
+
+def _block_upper_inverse(a):
+    result = np.eye(len(a), dtype=np.int64)
+    term = result.copy()
+    for _ in range(1, len(a)):
+        term = term @ a % 2
+        result ^= term
+    return result
+
+
+def _block_single_pivot(u, k):
+    result = u.copy()
+    for i in range(k):
+        for j in range(k + 1, len(u)):
+            result[i, j] ^= u[i, k] * u[k, j]
+    return result
+
+
+def _contiguous_pivot_formula(u, start, end):
+    r = _block_upper_inverse(u[start:end, start:end])
+    b, c = u[:start, start:end], u[start:end, end:]
+    result = u.copy()
+    result[start:end, start:end] = r ^ np.eye(end - start, dtype=np.int64)
+    result[:start, start:end] = b @ r % 2
+    result[start:end, end:] = r @ c % 2
+    result[:start, end:] ^= b @ r @ c % 2
+    return result
+
+
+def _truncated_ring_mul(a, b, nu):
+    result = 0
+    while b:
+        if b & 1:
+            result ^= a
+        a <<= 1
+        b >>= 1
+    return result & ((1 << nu) - 1)
+
+
+def _two_array_ring_product(a, b, nu):
+    return tuple(_truncated_ring_mul(a[2 * i], b[j], nu)
+                 ^ _truncated_ring_mul(a[2 * i + 1], b[2 + j], nu)
+                 for i in range(2) for j in range(2))
 
 
 class NoncommutativeCycleCharacterTests(unittest.TestCase):
@@ -789,6 +841,97 @@ class NoncommutativeCycleCharacterTests(unittest.TestCase):
                 np.testing.assert_allclose(native, expected_matrix, rtol=0, atol=2e-14)
                 np.testing.assert_allclose(_native_matrix(_inverse(word), width),
                                            expected_matrix.conj().T, rtol=0, atol=2e-14)
+
+    def test_contiguous_block_formula_and_literal_all_input_involution(self):
+        rng = Random(17203)
+        for d in range(1, 8):
+            samples = (range(1 << (d * (d - 1) // 2)) if d <= 4
+                       else [rng.getrandbits(d * (d - 1) // 2) for _ in range(100)])
+            for bits in samples:
+                u = _block_upper(d, bits)
+                for start in range(d):
+                    for end in range(start + 1, d + 1):
+                        actual = u.copy()
+                        for k in range(start, end):
+                            actual = _block_single_pivot(actual, k)
+                        expected = _contiguous_pivot_formula(u, start, end)
+                        np.testing.assert_array_equal(actual, expected)
+                        np.testing.assert_array_equal(_contiguous_pivot_formula(expected, start, end), u)
+                        reversed_order = u.copy()
+                        for k in reversed(range(start, end)):
+                            reversed_order = _block_single_pivot(reversed_order, k)
+                        np.testing.assert_array_equal(reversed_order, expected)
+
+    def test_three_shears_exhaust_arbitrary_data_helpers_and_actual_inverse(self):
+        inverse_not_forward_detected = False
+        for rows, columns in ((2, 2), (3, 1), (1, 3)):
+            failed_return_columns = 0
+            width = rows * columns
+            for a_bits in range(1 << (rows * (rows - 1) // 2)):
+                for c_bits in range(1 << (columns * (columns - 1) // 2)):
+                    a0, c0 = _block_upper(rows, a_bits), _block_upper(columns, c_bits)
+                    a = np.eye(rows, dtype=np.int64) ^ a0
+                    c = np.eye(columns, dtype=np.int64) ^ c0
+                    ai, ci = _block_upper_inverse(a0), _block_upper_inverse(c0)
+                    for b_bits, e_bits in product(range(1 << width), repeat=2):
+                        b = np.array([b_bits >> i & 1 for i in range(width)]).reshape(rows, columns)
+                        e = np.array([e_bits >> i & 1 for i in range(width)]).reshape(rows, columns)
+                        b0, e0 = b.copy(), e.copy()
+                        e ^= a @ b @ c % 2
+                        b ^= ai @ e @ ci % 2
+                        e ^= a @ b @ c % 2
+                        b, e = e, b
+                        np.testing.assert_array_equal(b, a @ b0 @ c % 2)
+                        np.testing.assert_array_equal(e, ai @ e0 @ ci % 2)
+                        failed_return_columns += int(np.any(e != e0))
+                        inverse_not_forward_detected |= bool(np.any(e != a @ e0 @ c % 2))
+            self.assertGreater(failed_return_columns, 0)
+            if (rows, columns) == (2, 2):
+                self.assertEqual(failed_return_columns, 576)
+        self.assertTrue(inverse_not_forward_detected)
+
+        # A literal eight-wire case of the successful XOR shear: A is 2x2,
+        # C is 1x1, B/E/F have two bits each, and the private phase helper
+        # is arbitrary. This checks the intermediate F return as well as E.
+        product_word = _parallel_product_shear([(0, 2, 5)], [7])[0]
+        first = [('CX', 1, 5), ('CX', 2, 6)] + product_word
+        second = [('CX', 5, 3), ('CX', 6, 4)]
+        word = first + second + _inverse(first) + _inverse(second)
+        self.assertEqual(sum(gate[0] == 'T' for gate in word), 16)
+        self.assertEqual(sum(gate[0] != 'T' for gate in word), 48)
+        self.assertEqual(_serial_t_depth(word), 16)
+        self.assertTrue(all(gate[1] == 7 for gate in word if gate[0] == 'T'))
+        expected = np.zeros((256, 256), dtype=complex)
+        for value in range(256):
+            first_bit = (value >> 1 & 1) ^ ((value & 1) & (value >> 2 & 1))
+            second_bit = value >> 2 & 1
+            image = value ^ (first_bit << 3) ^ (second_bit << 4)
+            expected[image, value] = 1
+        np.testing.assert_allclose(_native_matrix(word, 8), expected,
+                                   rtol=0, atol=3e-14)
+        np.testing.assert_allclose(_native_matrix(_inverse(word), 8),
+                                   expected.conj().T, rtol=0, atol=3e-14)
+
+    def test_all_uniform_dual_number_shear_words_exclude_single_array_action(self):
+        # Enumerate the entire two-array move group over F2[t]/t^2.
+        # This is a finite architecture check, not a native-gate claim.
+        nu = 2
+        identity = (1, 0, 0, 1)
+        generators = ([(1, p, 0, 1) for p in range(4)]
+                      + [(1, 0, p, 1) for p in range(4)] + [(0, 1, 1, 0)])
+        seen, queue = {identity}, deque([identity])
+        while queue:
+            word = queue.popleft()
+            for generator in generators:
+                next_word = _two_array_ring_product(generator, word, nu)
+                if next_word not in seen:
+                    seen.add(next_word)
+                    queue.append(next_word)
+        self.assertEqual(len(seen), 48)
+        self.assertTrue(all(_truncated_ring_mul(w[0], w[3], nu)
+                            ^ _truncated_ring_mul(w[1], w[2], nu) == 1 for w in seen))
+        self.assertNotIn((3, 0, 0, 1), seen)  # diag(1+t,1)
+        self.assertIn((3, 0, 0, 3), seen)  # Paired action with inverse.
 
 
 if __name__ == '__main__':
