@@ -15,29 +15,36 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: dirty-query reformulation
+## Current checkpoint: returned-query invariants
 
-The 18 October 2026 round recovered main at `6134f329` and established
-[the conditional query-depth transfer R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md).
-An exact read-only dirty word query with R91's count envelope and
-sublogarithmic address depth would give sublogarithmic general-frame
-depth at fixed accuracy. [Paired permutation wrappers](research/depth/PAIRED_PERMUTATION_ROUTING.md)
-remove a residual routing cost; the paid remaining depth is
-$`O_L(\log\log(n+4))`$ plus the hypothetical query depth and width penalty.
-This is conditional: R96 remains the strongest unconditional general
-upper law, and R79 remains selected Result D.
+This continuation recovered main at `ac303845` (PR #165), including
+[conditional R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) and the
+[preceding query session](research/depth/DIRTY_QUERY_SESSION_RESULT.md).
+The new [scalar-loop obstruction](research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
+proves that r actual affine Gaussian phase rounds can extract a literal
+returned Boolean sign only of degree at most $`4r+2`$, even with
+initialized helpers and fixed small error. Pauli markers recover the
+central phase information missed by the old symplectic invariant.
+This closes the bounded-round Gaussian scalar escape; it is not a native
+T-depth lower bound.
 
-The [two-call corner-frame/query reduction](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
-separately transfers lower bounds for arbitrary native Boolean queries,
-preserving the clean/dirty allocation and full error contract.
-The [Gaussian inverse repair](research/depth/GAUSSIAN_INVERSE_EXTRACTION.md)
-is fully priced but does not improve R91; its affine-symplectic round
-obstruction is architecture-specific. The
-[session outcome](research/depth/DIRTY_QUERY_SESSION_RESULT.md)
-records the revision, stopped candidate, and exact resumption question.
-Continue with complete dirty queries or an invariant valid under every
-native representation. Optimal depth and unrestricted one-clean
-four-layer rigidity remain open.
+The [two-layer query theorem](research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md)
+separately proves robust degree restrictions when every Clifford
+interlayer preserves the address and T gates act on work. With one
+clean qubit the queried function has degree at most two and quadratic
+polar rank at most two. A native two-layer dirty Toffoli explicitly
+prevents dropping the address hypothesis.
+[Multiway readers and borrowed-slot substitutes](research/depth/MULTIWAY_QUERY_COST_BARRIER.md)
+also fail their stated complete-query cost or return tests.
+
+The [session outcome](research/depth/RETURNED_QUERY_SESSION_RESULT.md)
+records the proofs, stopped candidates and next question: can three
+native T layers use non-Clifford work interference to escape a
+width-independent degree invariant while returning all work? A general
+lower bound must also survive address mixing. R98 is still conditional;
+R96 remains the strongest unconditional upper law, R79 remains selected
+Result D, and optimal general depth and unrestricted one-clean four-layer
+rigidity remain open.
 
 ## Mandate
 
