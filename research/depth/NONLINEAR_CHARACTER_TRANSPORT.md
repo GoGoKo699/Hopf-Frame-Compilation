@@ -12,12 +12,16 @@ implementation, including an arbitrary-output XOR version. It escapes the
 fixed-affine transport hypothesis of the diagonal-source theorem.
 
 Its apparent advantage does not survive the workspace comparison. Every
-character in this particular unit-group representation has Boolean degree
+character in this unit-group representation, and more generally in every
+commutative nilpotent coefficient algebra below, has Boolean degree
 at most logarithmic in its physical dirty width. A degree-a target requires
 at least $`2^{a-1}`$ work bits even if source synthesis and transport are
 optimistically free. This excludes the representation from R98's
 square-root-width regime. It is not a lower bound on other nonlinear
-representations or on general native query depth.
+representations or on general native query depth. The
+[noncommutative cycle character](NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+does escape this width obstruction, with a separately charged native
+construction that does not improve the retained conjunction or R91 bounds.
 
 ## 1. A nonlinear full-return identity
 
@@ -139,6 +143,65 @@ as a coefficient wire would only change the width comparison by one.
 This conclusion already grants every source and transport call free cost;
 optimizing their native implementations cannot remove this width requirement
 within the stated representation.
+
+### The same width barrier for every commutative nilpotent algebra
+
+Let A be a nonzero finite-dimensional commutative associative nilpotent
+$`\mathbb F_2`$ algebra, with $`w=\dim A`$ and nilpotency index
+$`\nu=\min\{j:A^j=0\}`$. The unitization gives a group $`1+A`$
+whose $`2^w`$ elements are exactly all coefficient words. For any
+character $`\chi:1+A\to\mathbb F_2`$ and affine coefficient map
+
+```math
+u_x=1+b+\sum_{i=1}^a x_i a_i,\qquad b,a_i\in A,
+```
+
+the degree obeys
+
+```math
+\deg_x\chi(u_x)\le\lceil\log_2\nu\rceil
+                 \le1+\lfloor\log_2 w\rfloor.            \qquad(7a)
+```
+
+This includes multivariate quotient algebras; it needs no classification
+of their characters or square subgroups. The zero algebra has only the
+trivial character and can be omitted.
+
+For a proof, use commuting indeterminates and the universal polynomial
+
+```math
+F_d(s)=\prod_{\epsilon\in\mathbb F_2^d}
+           \left(s+\sum_{j=1}^d\epsilon_jt_j\right)
+       =s^{2^d}+\sum_{i=0}^{d-1}c_i(t)s^{2^i}.
+```
+
+It is additive in s, and each nonzero $`c_i`$ is homogeneous of degree
+$`2^d-2^i`$. Induction follows from
+$`F_{d+1}(s)=F_d(s)^2+F_d(t_{d+1})F_d(s)`$. No linear independence
+of the substituted directions is assumed. Substitute $`s=1+b`$ and
+arbitrary $`t_j\in A`$ in the commutative unitization. Frobenius and
+the coefficient degrees give
+
+```math
+\prod_{\epsilon\in\mathbb F_2^d}
+       \left(1+b+\sum_j\epsilon_jt_j\right)
+    \in 1+A^{2^{d-1}}.                                  \qquad(7b)
+```
+
+When $`2^{d-1}\ge\nu`$, this product is one. Applying the character
+identifies its value with the d-fold Boolean derivative of $`\chi(u_x)`$
+in any address directions, so every such derivative vanishes. Set
+$`d=1+\lceil\log_2\nu\rceil`$ to prove the first inequality in (7a).
+The powers $`A,A^2,\ldots`$ strictly descend until zero: an equality
+$`A^j=A^{j+1}`$ would persist under multiplication by A and contradict
+nilpotence unless both were zero. Therefore $`\nu\le w+1`$, proving
+the second inequality.
+
+In particular, a degree-a target still requires $`w\ge2^{a-1}`$ in
+every such commutative coefficient representation, before charging any
+source or transport. Commutativity is essential: the cycle construction
+linked above realizes degree d on $`d^2`$ coefficients using a
+noncommutative path algebra. The cube argument does not apply there.
 
 ## 3. The nonlinear escape really has unbounded degree
 
@@ -339,13 +402,15 @@ multi-output table has degree a.
 The failed candidate nevertheless changes the constructive diagnosis.
 Nonlinear transport can evade the fixed-affine diagonal-source obstruction
 and can be made exactly native, with controlled phases and complete dirty
-return. The obstruction here is the character's logarithmic degree in its
-physical coefficient width, not an assumed inability to return nonlinear
-work. A useful continuation would need a different nonlinear representation
-with high-degree returned characters on square-root work, together with
-cheap native transport and sources, or a different extraction identity that
-avoids this character-width relation. No dimension-growing unrestricted
-native lower bound or R96/R98 improvement follows from this example.
+return. The obstruction here is the commutative character's logarithmic
+degree in its physical coefficient width, not an assumed inability to
+return nonlinear work. The noncommutative cycle construction now supplies
+high-degree returned characters at polynomial width, but its paid source
+and transport still give no depth improvement. The remaining question is
+whether a representation can carry arbitrary tables with cheap native
+controlled sources, transport and actual inverses, or whether a different
+extraction identity can do so. No dimension-growing unrestricted native
+lower bound or R96/R98 improvement follows from either example.
 
 [Focused evidence](../../tests/test_nonlinear_character_transport.py) checks
 the character basis, all-input factorization and actual inverse, the degree

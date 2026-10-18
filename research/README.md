@@ -331,25 +331,39 @@ degree at most $`\max(2,q-1)`$ below its explicit q-dependent radius.
 Its four-call echo radius improves to $`2\sin(\pi/32)`$.
 Neither result improves R96 or supplies the missing R98 query.
 
-The [current round](depth/NATIVE_TRANSPORT_SESSION_RESULT.md) proves
-[signed native transport](depth/NATIVE_CLIFFORD_TRANSPORT.md) when the
-specified prefix is diagonal third-level in fixed Clifford coordinates:
-the six-layer output degree is at most 78, or 26 for visible outer shear,
-below $`\sqrt2/8`$. The inner Clifford need not be monomial. General
-third-level membership only rounds close endpoints; a charged known
-permutation family has unbounded transported degree.
-The [nonlinear character mechanism](depth/NONLINEAR_CHARACTER_TRANSPORT.md)
-gives a fully returned native construction outside fixed-affine transport,
-but a degree-a output needs at least $`2^{a-1}`$ coefficient wires.
-It cannot improve the square-root-width reader in this representation.
+The [diagonal-source transport proof](depth/NATIVE_CLIFFORD_TRANSPORT.md)
+gives six-layer degree at most 78, or 26 for visible outer shear, below
+$`\sqrt2/8`$. The [current round](depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
+adds [native source certificates](depth/NATIVE_BAND_SOURCE_STRUCTURE.md):
+for a three-band C3 source, first/middle overlap t confines middle/outer
+noncommutation to at most 2t middle axes. Zero overlap or either adjacent
+C3 partial source certifies the diagonal class. Full return alone does not
+supply C3 membership.
 
-The next question is native signed-degree transport through the actual
-three-band prefix beyond the fixed diagonal source class, retaining the
-inner-family and return constraints. One-clean/address-mixing lower bounds
+The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
+controls approximate transport through arbitrary sources with bounded
+Pauli-domain codimension, uniformly even near Cliffords and for degenerate
+domains. Its parameter can grow within a single T band, so it is not a
+general depth invariant. The [permutation-source note](depth/PERMUTATION_SOURCE_TRANSPORT.md)
+retains another conditional transport theorem; a qualifying three-band
+non-C3 returned instance remains unconstructed.
+
+The [commutative character theorem](depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+now proves that, for every commutative nilpotent binary coefficient
+algebra, a degree-a affine-input character needs at least $`2^{a-1}`$
+coefficient wires. This exceeds R98's square-root-width target as a grows. The
+[noncommutative cycle mechanism](depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+produces degree-d AND on $`d^2`$ coefficient wires with literal full
+return. Its native $`O(d^3)`$ counts and $`O(d)`$ depth lose to the
+retained conjunction baseline; source and inverse costs remain decisive.
+
+The next question is whether bounded native overlap controls signed
+transport despite an arbitrarily wide diagonal source part, beginning
+with t equal to one. No bounded residual subsystem follows just from the
+2t-axis bound. General non-C3, one-clean and address-mixing lower bounds
 and optimal complete-frame depth remain open. The
-[query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) now charges
-the actual inverse Clifford word separately; its asymptotic transfers are
-unchanged.
+[query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps the
+actual inverse Clifford word separately charged.
 
 The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
 pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and

@@ -34,6 +34,12 @@ monomial inner-family hypothesis. This source restriction and the
 Pauli-comparison restriction above are distinct; neither is inferred
 from full return. The general six-layer question remains open.
 
+The later [native source structure](NATIVE_BAND_SOURCE_STRUCTURE.md)
+certifies that source class for certain three-band C3 factorizations.
+[Bounded Pauli deficiency](BOUNDED_DEFICIENCY_TRANSPORT.md) gives another
+uniform approximate transport theorem, including non-C3 sources. Neither
+extra hypothesis follows from this native reduction or complete return.
+
 ## 1. Native contract and the phase-retaining comparison
 
 Let x be an a-bit address and W contain the arbitrary output t and all

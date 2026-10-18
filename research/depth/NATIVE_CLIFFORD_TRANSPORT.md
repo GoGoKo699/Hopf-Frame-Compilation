@@ -15,6 +15,12 @@ The resulting six-layer theorem requires the specified three-band prefix
 to have the additional form below. It does not resolve the general
 six-layer question or improve a complete-frame compiler.
 
+The later [native source certificates](NATIVE_BAND_SOURCE_STRUCTURE.md)
+identify additional physical factorizations satisfying this source form.
+The [bounded-deficiency theorem](BOUNDED_DEFICIENCY_TRANSPORT.md) instead
+handles a small Pauli-domain codimension without third-level membership;
+its hypothesis is independent of the diagonal-source hypothesis here.
+
 ## 1. A robust exactness lemma for every third-level source
 
 Write $`\tau(p)`$ for the Hermitian Pauli section, and call F third-level

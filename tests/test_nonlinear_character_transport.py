@@ -4,6 +4,7 @@ The analytic width obstruction is architecture-specific. Native source and
 transport words below retain all dirty and output columns and actual inverses.
 """
 from math import log2
+from random import Random
 import unittest
 
 import numpy as np
@@ -110,6 +111,55 @@ def _native_transport(address, work, helper, masks):
 
 
 class NonlinearCharacterTransportTests(unittest.TestCase):
+    def test_multivariate_commutative_cube_product_at_nilpotency_bound(self):
+        # Augmentation ideals in F2[s,t]/(s^p,t^q), rather than the
+        # univariate family. A product of p+q-1 radical elements is zero.
+        # The tested d-cubes retain arbitrary bases, zero directions,
+        # repeated directions, and linearly dependent nonzero directions.
+        rng = Random(7139)
+        for p, q in ((3, 2), (4, 3)):
+            monomials = [(i, j) for j in range(q) for i in range(p)]
+            positions = {monomial: bit for bit, monomial in enumerate(monomials)}
+            dimension = len(monomials) - 1
+            nilindex = p + q - 1
+            cube_dimension = 1 + (nilindex - 1).bit_length()
+            self.assertGreaterEqual(1 << (cube_dimension - 1), nilindex)
+
+            def multiply(first, second):
+                result = 0
+                for bit, (i, j) in enumerate(monomials):
+                    if first >> bit & 1:
+                        for other, (k, l) in enumerate(monomials):
+                            if second >> other & 1 and i + k < p and j + l < q:
+                                result ^= 1 << positions[(i + k, j + l)]
+                return result
+
+            s, t = 1 << positions[(1, 0)], 1 << positions[(0, 1)]
+            direction_sets = [
+                [0] * cube_dimension,
+                [s, s, t] + [0] * (cube_dimension - 3),
+                [s, t, s ^ t] + [0] * (cube_dimension - 3),
+            ] + [[rng.getrandbits(dimension) << 1 for _ in range(cube_dimension)]
+                 for _ in range(20)]
+            bases = (range(1 << dimension) if dimension <= 5
+                     else [rng.getrandbits(dimension) for _ in range(24)])
+            for base in bases:
+                for directions in direction_sets:
+                    product = 1
+                    for corner in range(1 << cube_dimension):
+                        unit = 1 | (base << 1)
+                        for bit, direction in enumerate(directions):
+                            if corner >> bit & 1:
+                                unit ^= direction
+                        product = multiply(product, unit)
+                    self.assertEqual(product, 1)
+            # Lower cubes need not have product one; this is not a
+            # vacuous test of a square-zero or identically trivial group.
+            lower = 1
+            for direction in (0, s, t, s ^ t):
+                lower = multiply(lower, 1 ^ direction)
+            self.assertNotEqual(lower, 1)
+
     def test_character_basis_and_homomorphisms(self):
         for width in range(1, 7):
             odds = list(range(1, width + 1, 2))
