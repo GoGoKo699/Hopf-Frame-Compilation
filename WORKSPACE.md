@@ -15,64 +15,66 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: occupied transport and fast returned algebra
+## Current checkpoint: non-Pauli boundaries and paid representation changes
 
-The [current revision](research/depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
-began at verified main `b84b072` (PR #186). R96 remains the strongest
+The [current revision](research/depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+began at verified main `55ce8b0` (PR #187). R96 remains the strongest
 unconditional general upper law: all-precision depth
 $`O(NL/b^2+L+\log_2(n+2))`$ with optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
 Result D, R97 remains scoped, and the count package is settled under its
 stated hypotheses. Optimal general depth remains the destination.
 
-The [occupied transport theorem](research/depth/OCCUPIED_LOGICAL_TRANSPORT.md)
-uses actual middle-pair differences to obtain full-space Pauli transports.
-For a Boolean sign, their active X masks identify a subspace U of affine
-derivatives. Removing a quadratic part leaves dependence only on the
-quotient by U. Paid endpoint Cliffords then put every pair difference
-into a globally preserved computational-Z parity, at unchanged width,
-T-count and T-depth, with $`O(Q^2)`$ additional Cliffords on Q wires.
-This is a lower-bound reduction, not a new optimal-count frame compiler.
-For full-degree predicates such as AND, no active coordinate change is
-needed. The pair-free subcase closes only with the stated diagonal
-silent-band hypothesis.
+The [partial-diagonal theorem](research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
+proves that a full-space three-band circuit preserving a computational-Z
+subgroup of fixed codimension has a finite description by bounded-degree
+matrix features. Paid two-band clean removal applies it when either
+actual interior clean image is Pauli: sign degree is at most $`2^{26}`$
+and XOR degree at most $`2^{26}-1`$, independently of dirty width.
+Both Pauli interior images retain the stronger 2048/2047 bounds.
+Two non-Pauli images of active ranks one and one also reduce to that
+stronger theorem by literal three-band repacking. The retained R74
+rounding corollary transfers these scoped degree bounds to approximation.
 
-A new exact family has arbitrarily large clean-active rank, every
-logical generator non-Clifford off the occupied code, no shared Pauli
-clean flip, and no middle pairs. Its occupied target is identity and its
-full extension has a one-layer realization. High rank, whole-family
-agreement and zero pair count therefore do not rescue the failed
-extension inference or establish a hard target.
+The remaining branch has both interior clean images non-Pauli and at
+least one active rank greater than one. The
+[exact decoder](research/depth/NONPAULI_CODE_DECODING.md) has only two
+low-degree controls, but is generally not a full Clifford and has its
+own native band cost. Conjugation can turn a Pauli into a Clifford with
+unbounded displacement rank. Native matching cannot be reused after
+that decoding for free. A scoped zero-pair, zero-probe-character lemma
+does give a common abelian unused-sector defect with a central Clifford
+determinant coboundary. Relating its intrinsic central coordinates to
+the target computational variables remains open; the rank-two exception
+and nonzero characters are outside that lemma.
 
-The [returned algebra construction](research/depth/ALGEBRA_QUERY_EXTRACTION.md)
-extracts any Boolean table with eight paid HRT source calls, returning
-all coefficient inputs without clean-zero promises. A native dirty-work
-implementation of ranked subset convolution reduces the balanced source
-and actual inverse to $`O(r^2 2^r\log r)`$ T/Clifford count and
-$`O(r^2 2^r)`$ extra dirty width, with zero clean and $`O(\log r)`$
-depth. The earlier $`O(3^r)`$ construction retains its smaller depth
-constant. The extracted a-bit table query still costs
-$`O(a^2 2^a\log(a+2))`$ gates and $`O(a^2 2^a)`$ dirty work.
-It does not meet [R98's simultaneous budgets](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md).
+The retained [occupied transport theorem](research/depth/OCCUPIED_LOGICAL_TRANSPORT.md)
+still supplies the paid diagonal pair-center normal form, with unchanged
+width, T-count and T-depth and $`O(Q^2)`$ Clifford overhead. High clean
+rank and whole-family agreement do not justify full-space Clifford
+extension: the earlier complete-family witness has an easy identity
+target. The next lower question is joint native probe transport and the
+completed Boolean phase in the remaining non-Pauli branch.
 
-The next lower question is a uniform one-clean three-layer Boolean
-degree bound in the paid diagonal pair-center normal form. The
-[Pauli-boundary theorem](research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
-now proves sign degree at most 2048, hence XOR degree at most 2047,
-when the actual clean image is Pauli at every native-band boundary.
-It includes arbitrary Clifford mixing and the exceptional four-axis
-relation. Five quantum core qubits and finitely many low-degree phase
-features control the otherwise unbounded central register. A family
-of unbounded degree must therefore use a non-Pauli intermediate clean
-code. Joint sector-dependent phases, silent endpoint bands and
-unused-sector action in that remaining case are unresolved. The retained R74
-rounding corollary already reduces sufficiently accurate approximation
-to this exact question. The constructive alternative must improve the
-complete arbitrary-table ledger or find another paid full-frame route:
-balancing bounded-degree classical recovery stages retains logarithmic
-depth, and quotienting this coefficient algebra cannot compress a
-full-degree table to square-root carrier width. These last limitations
-are architectural, not unrestricted native obstructions.
+The [module barrier and escape](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
+prove exponential carrier and source T-count costs for a degree-d scalar
+readout from any single elementary-abelian symplectic representation.
+Eight separately paid source calls therefore miss R98's square-root
+count for a full-degree table. A two-family half-address construction
+escapes this module hypothesis with square-root carrier width and paid
+table programming. Its complete selectors still retain the old depth;
+it does not improve the fair R91 interface. The next constructive
+operation is sublogarithmic-depth selector or probe transport within
+[R98's simultaneous budgets](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md),
+including its joint word-query schedule, or another paid full-frame
+mechanism. These module and decoder limitations are scoped to their
+representations, not unrestricted native obstructions.
+
+The [previous checkpoint](research/depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
+retains the full pair transports, actual Pauli-boundary theorem, and
+fast returned subset-product source. Its complete arbitrary-table
+extraction is paid but still misses R98. The new components do not
+promote that source into a general optimal-depth frame compiler.
 Every column, literal phase, reference, inverse, leakage and work-return
 requirement remains in force. Final manuscript drafting is separate.
 

@@ -22,6 +22,13 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
+The [current research checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+closes additional one-clean three-layer boundary cases and extends a
+separately paid source-count obstruction to arbitrary symplectic carriers.
+These are scoped structural results. R96 remains the strongest general
+depth bound, R79 remains selected Result D, and the unrestricted
+one-clean three-layer and complete-frame depth questions remain open.
+
 ## Endpoint results
 
 <a id="precision-uniform-two-clean-count"></a>
@@ -344,6 +351,41 @@ four-axis relation and bounds the phase dependence of an unbounded
 central register through a five-qubit quantum core. The next lower
 question concerns non-Pauli intermediate codes, with joint parity-control
 phases, silent endpoint bands and unused-sector freedom still present.
+
+The [current non-Pauli-boundary checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+extends that lower closure. The [partial-diagonal theorem](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
+proves a bounded-feature description for a full-space native three-band
+unitary preserving a computational-Z subgroup of fixed codimension.
+Its one-clean reduction gives sign degree at most $`2^{26}`$ and XOR
+degree at most $`2^{26}-1`$ whenever either **interior** clean image is
+Pauli; the input and final clean stabilizers do not suffice. The retained
+both-Pauli bound remains 2048/2047. [Exact repacking](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#8-both-non-pauli-images-of-active-rank-one-can-be-repacked)
+also gives those stronger bounds when both non-Pauli interior images
+have active rank one. Thus an unbounded-degree family must have both
+interior images non-Pauli and at least one active rank greater than one.
+The [one-band non-Pauli decoder](depth/NONPAULI_CODE_DECODING.md)
+has an exact controlled-Clifford form, bounded-degree control bits and
+paid native forward/inverse words. Its growing displacement-rank witness
+prevents using that decoder as a free Pauli-coordinate change within the
+same three native bands. Its separate zero-pair lemma assumes active
+rank other than two and zero character for every logical probe. The
+unused-sector defects then commute, and their phases share one central
+Clifford determinant coboundary from the actual middle band. These are
+intrinsic central coordinates: no computational target-degree bound or
+free native implementation of that gauge follows.
+
+The [symplectic-module readout theorem](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
+removes the earlier translation-orbit hypothesis from the source-count
+barrier: a degree-d linear matrix coefficient forces a free cyclic module
+of dimension $`2^d`$, hence at least $`2^{d-1}`$ carrier qubits and that
+many T gates per complete Pauli-conjugating source. It covers arbitrary
+modules and full-source approximation at the stated radius, while
+excluding signed phase readouts and fused whole-word synthesis. Two
+half-address representations escape the single-representation premise
+with square-root carrier width and at most Q table Cliffords. Every
+source, controlled probe and actual inverse is charged; a faster
+selector/probe transport within R98's simultaneous word-query budgets
+remains unpaid. R91 supplies the unchanged fair query baseline.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
