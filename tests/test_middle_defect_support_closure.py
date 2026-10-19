@@ -70,6 +70,17 @@ class MiddleDefectSupportClosureTests(unittest.TestCase):
 
         self.assertEqual(tuple(left ^ right for left, right
                                in zip(gram(active_a), gram(active_c))), gram(negative))
+        # The actual control comes from the psi-selected original negative
+        # axes, not a freely chosen quadratic on the enlarged center.
+        # psi(a)=0, psi(c)=1 and psi(p)=psi(z_j)=0.
+        negative_zero = [axis for axis in negative if not axis & c]
+        negative_one = [axis for axis in negative if axis & c]
+        beta_gram = tuple(int(first >= 3 and second >= 3 and first != second)
+                          for first in range(9) for second in range(9))
+        self.assertEqual(tuple(left ^ right for left, right
+                               in zip(gram(active_a), gram(negative_zero))), beta_gram)
+        self.assertEqual(tuple(left ^ right for left, right
+                               in zip(gram(active_c), gram(negative_one))), beta_gram)
         self.assertEqual(_rank(active_a), 7)
         self.assertEqual(_rank(active_c), 7)
         self.assertEqual(_rank(negative + positive), 8)
@@ -173,6 +184,87 @@ class MiddleDefectSupportClosureTests(unittest.TestCase):
         occupied = [[omega.conj() * value for value in row] for row in occupied]
         self.assertEqual(occupied, s_gate)
         self.assertNotIn(occupied[1][1], (CO, -CO))
+
+    def test_old_active_space_does_not_contain_every_enlarged_center_direction(self):
+        # A binary native-list model for the corrected projection theorem.
+        # It is not asserted to satisfy full Boolean phase matching. Its
+        # nonzero p outside the old active space guards precisely the
+        # unsupported last step of the proposed unrestricted closure.
+        width = 9
+        a, c, r, q, d = 1, 2, 64, 128, 256
+        z = [4, 8, 16, 32]
+        w, h = sum(z), a ^ c
+        p, middle_core = h ^ r, h ^ q
+        active_a = [a] + [a ^ axis for axis in z]
+        active_c = [c] + [c ^ axis for axis in z]
+        negative_zero, negative_one = [a ^ w], [c ^ w]
+        negative = negative_zero + negative_one
+        positive = [middle_core ^ axis for axis in z]
+        positive += [middle_core, middle_core ^ p ^ w]
+
+        def gram_columns(axes):
+            columns = []
+            for bit in range(width):
+                column = 0
+                for axis in axes:
+                    if axis >> bit & 1:
+                        column ^= axis
+                columns.append(column)
+            return columns
+
+        beta_columns = [0] * width
+        for axis in z:
+            beta_columns[axis.bit_length() - 1] = w ^ axis
+        for active, selected in ((active_a, negative_zero), (active_c, negative_one)):
+            self.assertEqual([left ^ right for left, right
+                              in zip(gram_columns(active), gram_columns(selected))],
+                             beta_columns)
+        self.assertEqual(_rank(beta_columns), 4)
+        self.assertEqual(_rank(negative + positive), 8)
+        # S=im(beta) is in W and both old active spans; p is in W but
+        # outside their entire sum. The enlarged R is S+<p>.
+        support, overlap = z, z + [p]
+        old_active = active_a + active_c
+        self.assertEqual(_rank(support + beta_columns), 4)
+        self.assertEqual(_rank(overlap), 5)
+        self.assertEqual(_rank(positive + overlap), 6)
+        self.assertEqual(_rank(negative + overlap), 7)
+        self.assertEqual(_rank(old_active), 6)
+        self.assertEqual(_rank(old_active + [p]), 7)
+        self.assertEqual(_rank(support + negative_zero + active_a), 5)
+        self.assertEqual(_rank(support + negative_one + active_c), 5)
+        beta = {left | right for left, right in combinations(z, 2)}
+        self.assertTrue(_wedge_linear(beta, p))
+
+        # The overlap is compatible with independent physical native lists
+        # and a nonpermutation positive-middle action. These are local
+        # structural conditions, not the missing Boolean phase equation.
+        zp = lambda axis: axis << width
+        first_a, first_c = c ^ r, a ^ r
+        silent_a = [first_a, first_a ^ zp(p), zp(d)]
+        silent_c = [first_c, first_c ^ zp(p), zp(d ^ p)]
+        for active, silent in ((active_a, silent_a), (active_c, silent_c)):
+            axes = [zp(axis) for axis in active] + silent
+            self.assertEqual(_rank(axes), 8)
+            for left in axes:
+                for right in axes:
+                    self.assertEqual(_symplectic(left, right, width), 0)
+        for axis in positive:
+            image = zp(axis)
+            for gate_axis in silent_a:
+                if (_symplectic(gate_axis, zp(h), width)
+                        and _symplectic(gate_axis, zp(axis), width)):
+                    image ^= gate_axis
+            self.assertEqual(image, zp(axis ^ p))
+            self.assertNotIn(axis ^ p, positive)
+        products = []
+        for axes in (silent_a, silent_c, [zp(axis) for axis in positive]):
+            product = 0
+            for axis in axes:
+                product ^= axis
+            products.append(product)
+        self.assertEqual(products, [zp(p ^ d), zp(d), zp(p)])
+        self.assertEqual(products[0], products[1] ^ products[2])
 
     def test_small_exterior_support_and_two_control_directions(self):
         # All 1,024 alternating forms in dimension five, with every

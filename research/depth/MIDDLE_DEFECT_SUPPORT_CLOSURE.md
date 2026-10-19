@@ -13,6 +13,9 @@ has a specific concentration in the shared center contained in the
 exceptional middle span. In particular, a bounded dimension of that
 intersection gives a uniform degree bound even when endpoint ranks,
 middle width and the number of other center coordinates grow.
+For actual clean sources, the original transition further excludes the
+mixed-support alternative and gives a uniform bound at fixed dimension
+of the original clean-active intersection; see Section 8.
 
 These are full-space degree results. They retain the original independent
 native lists and literal phases. The intermediate factorizations do not
@@ -405,10 +408,12 @@ remain in force. The proof does not replace them by probe-by-probe
 phase choices. Nor does it replace a non-permutation orthogonal action
 on the exceptional B coordinates by a native axis permutation.
 
-The remaining case within this no-pair normal form has growing overlap
-W and can retain a quadratic control supported wholly in W, or the
-one-line mixed case of Section 5. There the original independent exceptional middle list
-can have a nonzero Boolean cubic defect which cancels bp_u. Equations
+At the level of this abstract no-pair normal form, growing overlap W
+can retain a quadratic control supported wholly in W, or the one-line
+mixed case of Section 5. Section 8 excludes that mixed case for actual
+clean sources using their original transition. The original independent
+exceptional middle list can have a nonzero Boolean cubic defect which
+cancels bp_u. Equations
 (3)--(4) still constrain the whole family, but setting that defect to
 zero, rebasing the native list, or deleting the remaining central phase
 is unsupported. A decoder chosen separately for each center eigenvalue
@@ -514,3 +519,207 @@ from Gram identities, independence and total products; it does not
 counterexample the full Boolean theorem or supply growing Boolean
 degree. The focused fixture checks its labels and literal parity
 phases without large matrix simulation.
+
+## 8. The original clean transition removes the mixed case
+
+The original physical source imposes more than the abstract normal
+form. Retain the actual no-middle-pair branch with both interior clean
+images non-Pauli. If the original active spans have a common clean-odd
+vector, the existing shared-flip theorem already gives five/four.
+Here suppose that criterion fails.
+
+In this section L_A,L_C mean the original physical **clean-active**
+spans, not the logical silent endpoint spans used above. Put
+
+```math
+L_0=L_A+L_C,\qquad
+R_{\mathrm{act}}=L_A^0+L_C^0,
+\qquad L_A^0=L_A\cap\ker\chi,\quad
+L_C^0=L_C\cap\ker\chi,
+```
+
+where $`\chi(v)=\langle v,p_A\rangle`$ is the original clean
+functional. The control b initially lives on R_act. Later shared-center
+enlargements may add directions outside L_0. We keep R_act distinct
+from that larger computational center R throughout the argument.
+
+### 8.1. A literal commutator determines the intrinsic quadratic symbol
+
+There is a linear functional psi on L_0 which is zero on every A-active
+axis and one on every C-active axis. Indeed, these prescriptions agree
+on their intersection precisely because it contains no clean-odd
+vector. Psi kills R_act and is one on the chosen h, the sum of one
+A-active and one C-active axis. Choose an actual signed Hermitian Pauli
+Q_psi realizing this functional; no initialized-sector assertion is used.
+
+Retain the actual transition and its commuting Clifford aligner:
+
+```math
+F_0=E_{C,a}^\dagger E_{B,-}E_{A,a}=C_0G_0,
+\qquad G_0=(-1)^{a(z)}H^{b(z)}.
+```
+
+Because Q_psi flips the H bit and fixes the old center bits, its exact
+commutator with G_0 is $`(-1)^{b(z)}`$. Let s_psi be the sum of the
+original signed T orientations in F_0 on the psi-active axes, including
+the inverted C orientations. The literal identity is
+
+```math
+(-1)^b
+ =(C_0^\dagger Q_\psi C_0Q_\psi)\,
+   \omega^{-s_\psi}
+   \prod_{v:\psi(v)=1} S_v^{\epsilon_v}.          \qquad(17)
+```
+
+The first factor is a Pauli unitary, with its actual scalar. All
+displayed factors commute in the original active algebra. Thus their
+binary symplectic displacement gives the intrinsic formula
+
+```math
+M:=N_\beta=N_C+N_{U_1}=N_A+N_{U_0},               \qquad(18)
+```
+
+where U_1 and U_0 are the spans of the original negative-middle axes
+selected by psi=1 and psi=0, respectively. For an independent list X,
+$`N_X(q)=\sum_{x\in X}\langle x,q\rangle x`$. The matrix M is the
+polar displacement of the quadratic Boolean phase b, and
+$`S_\beta:=\mathrm{im}M`$ is its intrinsic support in R_act. Signs
+and T orientations are not dropped from (17); they simply do not
+change the binary S-rotation displacement in (18).
+The notation N_{U_j} always retains the selected original native list;
+it does not permit an arbitrary basis of the same span.
+
+The second equality follows either by using chi+psi or from the
+original clean Gram identity $`N_A+N_C=N_{B,-}`$. All negative-middle
+axes remain original physical labels here. Their independence gives
+$`L_{B,-}=U_0\oplus U_1`$. They are not projected through a logical
+clean quotient. Changing the commuting Clifford aligner changes b
+only by an affine term, so it does not change beta or (18).
+
+### 8.2. Lift the cubic-support identity faithfully to the physical space
+
+Choose actual clean-odd axes q_A in L_A and q_C in L_C. The physical
+section of the positive-clean Pauli quotient consisting of labels
+commuting with q_A is faithful: the other representative differs by
+p_A, which anticommutes with q_A. The old center R_act, H and every
+positive-middle axis commute with q_A. Their joint logical labels
+therefore lift injectively to the original physical space. Pull the
+paid normalizations back through this same section before using (18).
+
+At polar rank at least four, any nonzero linear flag ell_u from Section
+5 lies in W. Its positive-middle lift p is unique and lies in the
+physical positive-middle span. At either endpoint the native displacement
+of h uses only silent axes: h commutes with every clean-active axis,
+so those axes contribute zero to the native symplectic displacement.
+It also equals the A-silent displacement
+lift, since both representatives commute with q_A. For C, use the
+aligned silent band $`C_0^\dagger E_{C,s}C_0`$, which preserves P_A.
+The aligner fixes each original C-active axis, so both that silent lift
+and the positive-middle lift commute with q_C. Their possible quotient
+difference p_A does not. Hence these physical lifts agree as well.
+Because the positive-middle span commutes with C_0, undoing the aligner
+places p in the original C-silent span too.
+
+Full native independence at each physical endpoint now gives
+
+```math
+p\notin L_A,\qquad p\notin L_C\quad\text{for }p\ne0.           \qquad(19)
+```
+
+In this section let W also denote its faithful physical lift from
+Section 4. The original full middle list is independent, so
+
+```math
+W\cap(U_0\oplus U_1)=0.                           \qquad(20)
+```
+
+This compares only faithfully lifted positive labels with original
+physical negative labels. It does not try to project the latter into
+the positive-clean section.
+
+### 8.3. A projection argument removes the one-line mixed term
+
+Suppose the polar rank of b is at least four and a nonzero flag p
+survives. The exterior result gives a physical decomposition
+
+```math
+M=M_W+p r^{\flat}+r p^{\flat},\qquad
+\mathrm{im}M_W\subseteq W,\qquad
+p^{\flat}(q)=\langle p,q\rangle.                  \qquad(21)
+```
+
+Here M_W is the polar map of a W-supported quadratic symbol. Project
+$`N_C=M+N_{U_1}`$ to the ordinary vector-space quotient by W+U_1.
+Every term vanishes except $`[r]p^{\flat}`$. If [r] were nonzero,
+every vector in the kernel of N_C would pair to zero with p. Native
+C-axis independence gives $`\ker N_C=L_C^\perp`$, so this would
+put p in L_C, contradicting (19). Therefore r lies in W+U_1. The
+same argument at A puts r in W+U_0. Equation (20) makes the
+intersection of those two spaces exactly W, and hence r lies in W.
+
+Thus M is supported wholly in W. The one-line mixed alternative of
+the abstract normal form is excluded for this actual source. Moreover,
+the maps M and N_{U_1} have disjoint image spaces, and each kernel is
+the symplectic orthogonal complement of its image. Their sum
+has kernel $`S_\beta^\perp\cap U_1^\perp`$, so (18) gives
+
+```math
+L_A=S_\beta\oplus U_0,\qquad
+L_C=S_\beta\oplus U_1,
+\qquad
+S_\beta=L_A\cap L_C\subseteq L_{B,+}.             \qquad(22)
+```
+
+In fact S_beta lies in the exceptional positive-middle overlap W.
+The equality of the active intersection follows from (20) and the
+independence of U_0,U_1. In particular, a surviving nonconstant flag
+forces the polar rank of b to equal the dimension of the entire
+original active intersection.
+
+This is not a contradiction. Equations (20)--(22) imply
+$`W\cap L_0=S_\beta`$. By (19) the nonzero p does not lie in
+S_beta and therefore lies **outside the original L_0**. Such a
+direction is allowed in the enlarged shared center. Replacing that
+larger R by the old R_act at this step would incorrectly claim an
+unrestricted closure.
+
+### 8.4. A fixed original active intersection gives a uniform bound
+
+Let $`t=\dim(L_A\cap L_C)`$ for the original physical active lists.
+At polar rank at least four, if the rank differs from t, (22) rules
+out every nonconstant flag. Section 2 then gives sign degree at most
+five. In particular this applies when the polar rank is greater than t.
+Any remaining high-rank case has rank exactly t; rank two is already
+bounded by finite insertion, and rank zero is absorbed as an actual
+Clifford. Consequently the actual source satisfies
+
+```math
+\deg g\le
+\max\left\{5,
+D_{\mathrm{ins}}\bigl(0,0,0,\max\{t,2\}+1\bigr)\right\}.
+                                                               \qquad(23)
+```
+
+The low-rank step uses precisely the paid affine-control absorption:
+the remaining insertion has support dimension at most its polar rank
+plus one. Original widths, actual native lists, literal scalars and
+actual inverse words remain retained. The central cubic and real
+quadratic signs do not raise (23). The corresponding literal XOR bound
+is one less after checking these hypotheses in its actual output-Hadamard
+sign representation. This is uniform with t fixed even if both active
+ranks, the positive-middle overlap and dirty width grow.
+
+Since polar rank is even, an odd t cannot equal a surviving high rank.
+For odd t the high-rank bound is therefore five, and all control ranks
+have the uniform bound $`\max\{5,D_{\mathrm{ins}}(0,0,0,3)\}`$,
+even when that odd intersection dimension grows.
+
+The abstract normal form still has the one-line mixed possibility of
+Section 5. For actual sources the remaining requirement is stronger:
+the full quadratic support must equal the original active intersection,
+be carried by the exceptional positive-middle span, and its nonconstant
+flags must point outside the original active algebra into the enlarged
+center. Matching that external center transport with the full Boolean
+phase remains open. Neither (22) nor the fixed-intersection bound changes
+the complete-frame resource frontier or the unrestricted arbitrary-pair
+one-clean question.

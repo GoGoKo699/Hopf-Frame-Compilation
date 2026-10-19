@@ -63,10 +63,14 @@ After removing actual permuted middle-axis orbits, every Boolean-normalized cubi
 is supported in the intersection W of the genuine center and the
 remaining middle span. Fixed dimension of W closes uniformly in the
 other ranks, and transverse quadratic-control structure closes further
-unbounded-W cases. The next lower question concerns simultaneous
-cancellation inside that exceptional overlap, using the original
-clean-derived active and silent lists. Neither a raw isotropic model nor
-a complex diagonal completion supplies an actual Boolean source.
+unbounded-W cases. The actual clean-origin Gram identity strengthens this:
+fixed intersection dimension of the two original active spans closes
+even when both ranks grow. Any surviving high-rank nonconstant probe
+has quadratic support equal to that common active intersection and a
+displacement outside the entire original active algebra. The next lower
+question is that displacement into the enlarged shared center and its
+literal Boolean cancellation. A raw isotropic model or complex diagonal
+completion does not supply the missing source.
 
 The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
 proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for

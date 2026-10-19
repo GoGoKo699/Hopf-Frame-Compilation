@@ -8,8 +8,8 @@
 This continuation began at verified main `6876094` (PR #193) on
 19 October 2026. It revisited the nonempty-middle gap before asking for
 another decoder. The result is a new degree closure for bounded
-center–middle overlap, and a sharper description of the remaining
-unbounded case. On the upper side, two approximate predicate mechanisms
+center–middle overlap and, using the original clean transition, bounded
+intersection of the two clean-active spans. Two approximate predicate mechanisms
 are assessed against the complete dirty indicator. Neither supplies a
 new complete-frame circuit, and the general resource frontier is unchanged.
 
@@ -25,6 +25,7 @@ new complete-frame circuit, and the general resource frontier is unchanged.
 | Retained one-clean components | Both fixed endpoint clean-active ranks close, including arbitrary middle pairs; fixed quadratic-control polar rank closes in the actual no-pair reduction |
 | Stronger retained subcase | Constant translations on the entire common isotropic support give sign/XOR bounds three/two; an empty middle band closes uniformly |
 | New component | Constant control-phase commutators give sign/XOR bounds five/four even with a nonempty middle; bounded exceptional center–middle overlap closes uniformly in all other ranks |
+| Actual-origin strengthening | Fixed intersection dimension of the two original clean-active spans closes the no-pair branch even when both ranks grow. A surviving high-rank nonconstant displacement must leave their combined original active algebra |
 | Method limits | A fixed Clifford decoder, additive polynomial phases, and short hash summaries have specific obstructions; these do not exclude unrestricted native synthesis |
 | Remaining questions | Growing-rank one-clean three-layer degree, faster complete queries satisfying every budget, and matching general depth bounds |
 
@@ -107,6 +108,37 @@ or have only one mixed direction and one possible nonconstant parity
 line. This is a necessary condition in the actual normal form, not a
 construction or a general degree theorem.
 
+The original clean transition imposes an additional constraint that an
+arbitrary word in this normal form need not satisfy. Split the original
+negative middle list according to the character which is zero on the
+A-active list and one on the C-active list. A literal native commutator
+gives the quadratic-control Gram identities
+
+```math
+N_\beta=N_C+N_{B_-,1}=N_A+N_{B_-,0}.
+```
+
+The aligning Clifford contributes only an actual Pauli commutator to
+this identity. Physical native independence and the faithful clean
+quotient then rule out the mixed-control alternative for actual sources.
+If any nonconstant p_u survives at polar rank at least four, the support
+of beta equals the intersection of the two original active spans and
+lies in the positive middle span. Thus for $`t=\dim(L_A\cap L_C)`$,
+any control rank at least four differing from t gives the degree-five
+closure. The lower ranks use
+finite insertion, giving the uniform sign bound
+
+```math
+\max\{5,D_{\mathrm{ins}}(0,0,0,\max\{t,2\}+1)\}.
+```
+
+The remaining displacement itself must lie outside the original active
+algebra $`L_A+L_C`$. This is possible because the proved shared center
+was enlarged. Treating that enlarged center as if it were still inside
+the old active algebra would give a false full-closure inference.
+Since polar rank is even, odd t excludes every high-rank nonconstant
+case; finite insertion then gives a uniform bound even as odd t grows.
+
 ## 4. Approximation must be joint across the dirty bank
 
 The retained approximate transfer shows that fixed frame precision needs
@@ -138,12 +170,13 @@ credited as a jointly accurate, work-returning indicator.
 
 ## 5. Research decision and evidence
 
-The next lower question is whether the original clean-derived active and
-silent lists allow the remaining exceptional overlap to carry the
-required simultaneous cubic cancellations. An arbitrary isotropic model
-or a complex diagonal completion does not settle that actual-source
-question. Bounding a raw center dimension before removing permuted axes
-would also miss the parameter that the new theorem actually uses.
+The next lower question is whether a displacement into the enlarged
+center, outside the entire original active algebra, can cancel the
+quadratic phase supported in the common active intersection while
+retaining a full Boolean target. An arbitrary isotropic model or a
+complex diagonal completion does not settle that actual-source question.
+Bounding a raw center dimension before removing permuted axes would
+also miss the parameter that the first theorem actually uses.
 An explicit independent native-list fixture permits a nonconstant
 displacement inside the exceptional overlap and satisfies the clean
 Gram identity and literal total-product relation, but fails the Boolean

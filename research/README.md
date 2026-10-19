@@ -27,7 +27,10 @@ closes constant translations on just the quadratic-control support with
 sign/XOR bounds five/four, retaining a nonempty native middle. Its
 Boolean cubic defect is confined to the genuine center's intersection
 with the exceptional middle span after actual permuted axes are removed.
-Fixed overlap dimension closes uniformly in the other ranks. The stronger
+Fixed overlap dimension closes uniformly in the other ranks. The original
+clean-transition Gram identity further closes fixed intersection dimension
+of the two active spans even when both ranks grow; a remaining nonconstant
+displacement must leave the original active algebra. The stronger
 whole-support constant-translation theorem retains its three/two bounds.
 On the upper side, a sharp additive-polynomial phase obstruction and a
 complete hash-bucket countercheck identify the first unpaid operations
@@ -469,8 +472,14 @@ center–exceptional-middle intersection. Fixed intersection dimension
 closes by combining the new high-rank criterion with finite insertion.
 At control rank at least four, nonzero quotient quadratic structure or
 mixed rank at least two forces the five/four closure as well. The next
-question is whether the remaining simultaneous cancellations can occur
-in the original clean-derived lists.
+question is sharpened by the original clean-transition phase. Its exact
+quadratic Gram identity excludes the mixed-control case for actual
+sources and closes fixed intersection dimension of the two original
+active spans. A high-rank nonconstant probe forces the quadratic support
+to equal that intersection, inside the positive middle span, while its
+displacement lies outside the old active algebra. Confusing the enlarged
+shared center with the old active center would incorrectly close this
+remaining case.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
