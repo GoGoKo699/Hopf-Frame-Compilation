@@ -242,12 +242,12 @@ geometric conditions without contradicting (S1) or the source gap.
 
 For logical Hermitian Paulis P,Q, put $`C=U_BPU_B^\dagger`$ and
 $`D=U_AQU_A^\dagger`$. Then C commutes with B and D with A.
-Let $`\mathrm{tr}_{\rm phys}`$ and $`\mathrm{tr}_{\rm log}`$
+Let $`\mathrm{tr}_{\rm phys}`$ and $`\mathrm{tr}_{\rm logical}`$
 denote normalized traces. Exact flatness gives
 
 ```math
 \begin{aligned}
-\alpha&=\mathrm{tr}_{\rm log}(L^\dagger PLQ)\\
+\alpha&=\mathrm{tr}_{\rm logical}(L^\dagger PLQ)\\
  &=\mathrm{tr}_{\rm phys}\bigl[(I+A)(I+B)CD\bigr]\\
  &=\mathrm{tr}_{\rm phys}(CD)
   +\mathrm{tr}_{\rm phys}(C\,AD)
@@ -263,8 +263,13 @@ term belongs to $`\{0\}\cup\{\pm2^{-r/2}:r\ge0\}`$.
 If one term has magnitude one, equality in normalized Hilbert–Schmidt
 Cauchy–Schwarz makes the corresponding two involutions equal up to
 sign. Substitution makes the other three terms vanish, using
-$`\mathrm{tr}_{\rm phys}(A)=\mathrm{tr}_{\rm phys}(B)
-=\mathrm{tr}_{\rm phys}(AB)=0`$. Thus that case has
+
+```math
+\mathrm{tr}_{\rm phys}(A)=\mathrm{tr}_{\rm phys}(B)
+=\mathrm{tr}_{\rm phys}(AB)=0.
+```
+
+Thus that case has
 $`\alpha=\pm1`$.
 
 The four scalar alphabets alone do not exclude an apparent pattern
