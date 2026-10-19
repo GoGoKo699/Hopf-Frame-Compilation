@@ -22,14 +22,14 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
-closes every fixed pair of endpoint clean-active ranks at three native
-layers, including arbitrary middle pairs. Easy-target counterfamilies
-rule out two proposed uniform representation bounds. A four-factor
-clean-phase interface retains the growing-rank question; the faster
-complete probe source also remains open. R96 is still the strongest
-general depth bound, R79 remains selected Result D, and the complete-frame
-resource frontier is unchanged.
+The [current research checkpoint](depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+connects native probes to computational target derivatives and closes the
+active-center coordinate step using Boolean reality and a paid Clifford.
+Global-center matching remains open: fixing a center fiber can destroy
+native independence. A fully native Majorana Walsh probe retains excessive
+count and depth; its Gaussian source obstruction does not cover joint
+unrestricted synthesis. R96 remains the strongest general bound, R79
+remains selected Result D, and the complete-frame frontier is unchanged.
 
 ## Endpoint results
 
@@ -412,9 +412,20 @@ retains four phase factors in the no-middle-pair case with relation
 profile $`(0,\le1,\le1,0)`$. The clean-active factor commutes with
 the middle factor and has rank-at-most-one coupling to the silent
 endpoint. Raw displacement change can nevertheless grow on an identity
-target. The next question is the completed Boolean phase with all four
-lists and their cancellations retained, rather than another uniform
-bound on these raw representation parameters.
+target. The coupled C union is now proved independent, and a shared
+clean flip gives sign/XOR bounds five/four at unchanged native depth.
+The [computational phase theorem](depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
+uses actual two-band derivatives to localize higher-degree dependence
+in the common computational parity part of the two endpoint spans.
+Boolean reality forces the active center to transport as Paulis;
+a paid Clifford makes it computational. Applied at both endpoints,
+this reduces the actual clean transition to one quadratic-controlled
+Pauli between three independent native bands, plus a central cubic
+sign. A separate noncentral-parity subcase of the actual clean-derived
+no-pair circuit has sign/XOR bounds five/four, including endpoint rank two.
+Global matching remains open:
+conditioning the center can destroy native independence even for an
+identity target. An arbitrary quartic correction is not a free gate.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
@@ -450,6 +461,17 @@ fair query baseline. The new [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY
 pays its formal parity network, but requires generally nonnative
 rotations and misses the source count/depth budgets. Its parity-only
 repair is excluded; general Clifford interference is not.
+
+The [paid Majorana Walsh source](depth/MAJORANA_WALSH_QUERY.md) replaces
+those formal phases by an exact full-input native probe. Its
+$`T=2mp`$, $`G=O(m^2)`$, depth at most $`4p`$ and $`m/2`$ carrier
+width for $`m=2^p`$ still miss the improved-query budgets. Sharp separate
+Walsh-source bounds hold only for Majorana-preserving synthesis.
+A flat-source alternative has a paid linear-count word, but retains
+depth $`2p`$ and a costly complete dirty dual-frame readout. Its exact
+commutator gives a concrete alternate indicator interface; neither
+missing resource improvement is supplied. The separate unrestricted
+flat-source lower bound is constant, so R96 remains unchanged.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

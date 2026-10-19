@@ -15,72 +15,71 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: bounded clean transitions and the growing-rank question
+## Current checkpoint: computational phase and complete native sources
 
-The [current revision](research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
-began at verified main `e773bd0` (PR #189). R96 remains the strongest
-unconditional general upper law: all-precision depth
-$`O(NL/b^2+L+\log_2(n+2))`$ with optimal T-count, $`G=O(NL)`$,
+The [current revision](research/depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+began at verified main `5b8e063` (PR #190). R96 remains the strongest
+unconditional general upper theorem, with depth
+$`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
-Result D, R97 remains scoped, and the count package is settled under its
-stated hypotheses. Optimal general depth remains the destination.
+Result D. Optimal general depth remains the destination.
 
-The [finite-insertion theorem](research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
-retains an arbitrary bounded Pauli-supported operation that commutes
-with each middle axis. It controls the resulting norm distortion and
-completed Boolean phase without deleting that operation or compiling it
-as a free native band. Its actual one-clean reduction closes **all fixed
-endpoint clean-active ranks**, including arbitrary middle pairs and rank
-two. For two non-Pauli interior images of ranks k_A,k_C, the sign bound is
-$`D_{\rm ins}(1,1,1,k_A+k_C-1)`$; the XOR bound is one less.
-The original dirty/reference and literal-phase contract, actual inverse,
-and R74 approximation floor remain in force.
+The [fixed-rank theorem](research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
+retains its closure for both endpoint clean-active ranks fixed, including
+arbitrary middle pairs. The sharper Pauli-interior, rank-one and genuine
+exceptional rank-two cases remain in force. These are components toward
+uniformity as ranks grow, not a changed complete-frame frontier.
 
-The [earlier bounds](research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
-remain sharper for Pauli interior images and two rank-one images.
-The [bounded-relation theorem](research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md)
-and [determinant-defect theorem](research/depth/DETERMINANT_DEFECT_DEGREE.md)
-retain their separate parameterized closures. The
-[joint probe algebra](research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
-remains a bounded-algebra component, with a sharper degree-five/four
-closure for its genuinely exceptional non-S rank-two probe type.
+The [four-factor interface](research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
+now has a jointly independent C-side union whenever its coupling is
+nonzero. A common clean-odd Pauli commuting all original bands gives
+an actual zero-clean extension at unchanged three-band depth, hence
+sign degree five and XOR degree four. Its absence inside the chosen
+active span is a linear-algebra diagnosis of that split.
 
-The [easy-transition counterfamilies](research/depth/CLEAN_TRANSITION_PARAMETERS.md)
-rule out two proposed uniform parameter bounds. Products of CCZ gates
-have degree three but unbounded residual parity-list relation dimension,
-with both interior clean images non-Pauli. A separate literal identity
-family has unbounded determinant-defect codimension and needs an
-unbounded common central quotient; its first interior image is Pauli.
-Neither parameter is target hardness, and neither example is an
-unbounded-degree native query.
+The [computational phase theorem](research/depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
+connects actual native probes to target derivatives. The zero-character
+determinant branch has a quartic-plus-quotient factorization independent
+of the intrinsic determinant codimension. Its derivative mask space
+cannot be enlarged just by choosing more clean flips for the same full
+operator, and an easy CCZ family has zero coverage at growing arity.
+A separate no-pair argument localizes higher-degree dependence without
+that determinant premise. Boolean reality and native axis independence
+also force the active center to transport as Paulis: a paid diagonal
+Clifford puts it in computational coordinates. The actual clean transition
+then reduces to a central cubic sign and one quadratic-controlled Pauli
+between three independent logical native bands. A noncentral common-parity
+subcase has sign/XOR bounds five/four: the actual clean-derived no-pair
+circuit forces the needed independence and separate endpoint alignments,
+including endpoint rank two.
 
-For growing ranks, the
-[rank-one clean-phase interface](research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
-retains four phase lists in the no-middle-pair case, with
-relation profile $`(0,\le1,\le1,0)`$. The clean-active interface commutes
-with the middle factor and couples to the silent endpoint with rank at
-most one. This does not yet control the completed phase: an easy identity
-family has unbounded raw displacement change across that interface.
-The next lower question is a rank-independent Boolean degree argument
-that retains all four factors and their cancellations, or a complete
-unbounded-degree three-native-band family. The
-[exact decoder](research/depth/NONPAULI_CODE_DECODING.md) still has its
-own native cost and cannot be used as a free Pauli-coordinate change.
+The first remaining lower inference is global-center matching. Taking
+a center fiber can introduce unbounded relations even in the retained
+identity example. A bounded-relation theorem cannot be applied there
+without a new argument retaining the original global lists and their
+cancellations. An arbitrary quartic correction is not a free gate.
+The next question is that global phase constraint, or a complete native
+family with growing target degree. In the remaining fixed representation,
+every normalized common endpoint computational parity commutes with F;
+the proved noncentral-parity closure excludes the alternative.
 
-The [probe-to-word-query transfer](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally)
-remains conditional on a faster complete independent-probe source.
-The new [Walsh phase attempt](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
-has a paid formal parity network, but its rotations are generally
-nonnative and its count and depth miss the source budgets. A parity-only
-repair is excluded; general Clifford interference remains outside that
-scoped failure. R91 remains the fair baseline, and no new upper frontier
-is claimed.
+The [Majorana source audit](research/depth/MAJORANA_WALSH_QUERY.md) supplies
+a full-input native independent-Pauli probe with $`T=2mp`$,
+$`G=O(m^2)`$, depth at most $`4p`$ and carrier width $`m/2`$ for
+$`m=2^p`$. It misses the improved-query budgets. Sharp source costs
+$`mp/2`$ and p layers hold only while Clifford blocks preserve the
+Majorana span. A single flat source avoids that matrix-count bound,
+but its complete dirty dual-frame readout remains unpaid at the desired
+cost. The additional unrestricted flat-source obstruction is constant,
+not dimension growing. The parallel upper question remains joint native
+synthesis of the complete probe/readout; R91 is the fair baseline and
+R98's full transfer is still conditional.
 
-The [previous checkpoint](research/depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
-retains bounded relations, the determinant subgroup, joint probes and
-the complete conditional R98 assembly. Every column, literal phase,
-reference, inverse, leakage and work-return requirement remains in force.
-Final manuscript drafting is separate.
+The [previous checkpoint](research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+retains finite insertion and the easy-target counterfamilies. Every
+column, literal phase, arbitrary dirty input, reference, actual inverse,
+leakage and work-return requirement remains in force. Final manuscript
+drafting is separate.
 
 ## Mandate
 
