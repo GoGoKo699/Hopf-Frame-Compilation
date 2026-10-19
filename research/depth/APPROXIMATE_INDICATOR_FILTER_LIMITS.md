@@ -14,6 +14,11 @@ complete indicator bank even when the seed is initialized. Neither
 statement constrains general nonlinear access to the output bank or
 arbitrary Clifford/Hadamard interference. The frontier is unchanged.
 
+The [phase-signal and frame continuation](PHASE_SIGNAL_QUERY_LIMITS.md)
+examines different mechanisms, retaining their full dirty return and
+coherent correction costs rather than importing an initialized-input
+guarantee.
+
 ## 1. The literal additive phase-filter contract
 
 Let $`p\ge1`$, $`m=2^p`$, let x be a p-bit address and let Y be an

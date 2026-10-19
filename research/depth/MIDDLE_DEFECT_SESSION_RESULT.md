@@ -5,6 +5,10 @@
 [Approximate indicator limits](APPROXIMATE_INDICATOR_FILTER_LIMITS.md) ·
 [Previous checkpoint](CENTRAL_COCYCLE_SESSION_RESULT.md)
 
+The [next revision](EXTERNAL_CENTER_SESSION_RESULT.md) finds one actual
+middle Pauli correcting all surviving external-center flags, while
+retaining the resulting cubic phase and its native implementation gap.
+
 This continuation began at verified main `6876094` (PR #193) on
 19 October 2026. It revisited the nonempty-middle gap before asking for
 another decoder. The result is a new degree closure for bounded

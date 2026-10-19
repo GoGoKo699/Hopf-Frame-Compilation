@@ -22,21 +22,20 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/MIDDLE_DEFECT_SESSION_RESULT.md)
-closes constant translations on just the quadratic-control support with
-sign/XOR bounds five/four, retaining a nonempty native middle. Its
-Boolean cubic defect is confined to the genuine center's intersection
-with the exceptional middle span after actual permuted axes are removed.
-Fixed overlap dimension closes uniformly in the other ranks. The original
-clean-transition Gram identity further closes fixed intersection dimension
-of the two active spans even when both ranks grow; a remaining nonconstant
-displacement must leave the original active algebra. The stronger
-whole-support constant-translation theorem retains its three/two bounds.
-On the upper side, a sharp additive-polynomial phase obstruction and a
-complete hash-bucket countercheck identify the first unpaid operations
-in two approximate candidates. These interface limits do not cover
-unrestricted approximate readout or joint indicators. Constant source
-accuracy still suffices at fixed frame precision.
+The [current research checkpoint](depth/EXTERNAL_CENTER_SESSION_RESULT.md)
+finds one actual middle Pauli correcting every surviving external-center
+displacement of the controlled Pauli simultaneously. This moves a retained
+Boolean cubic into the middle phase. A concrete growing family proves that the corrected phase
+need not admit any one-T-layer realization, even with arbitrary Clifford
+endpoints; replacing it by a native band is not automatic. In the actual
+no-pair branch, a changed argument keeps the original native middle and closes fixed total probe-displacement dimension, even while
+active ranks and quadratic support grow. The previous fixed-overlap and
+fixed-active-intersection degree closures remain intact.
+Changed upper mechanisms expose two other missing operations: a phase
+signal must work on every dirty sector, and full coherent Pauli-frame
+transport already contains the complete indicator through a two-call
+reduction. These scoped results leave unrestricted synthesis open.
+Constant source accuracy still suffices at fixed frame precision.
 R96 remains the strongest general bound, R79 remains selected Result D,
 and the complete-frame frontier is unchanged.
 
@@ -481,6 +480,20 @@ displacement lies outside the old active algebra. Confusing the enlarged
 shared center with the old active center would incorrectly close this
 remaining case.
 
+The [external-center continuation](depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
+uses the full native cubic tensor to find one middle-axis product whose
+displacement equals every control flag. Multiplying H by this Pauli makes
+its translations constant, while retaining a Boolean cubic correction of
+the middle band. Its probe defects are Clifford. A rank-one action has
+exactly two odd-multiplicity axis types after fixing the quadratic support,
+but their global center dependence is not removed. A characteristic-parity
+argument excludes every one-native-layer replacement for an explicit
+corrected-middle family, including arbitrary Clifford endpoints. A changed proof keeps the original middle and normalizes its entire
+fixed Pauli space. For fixed total displacement dimension d, the
+interacting factors use at most $`d(d+1)/2+d+1`$ computational directions;
+an actual two-native-band residual then admits the retained finite-feature
+bound. The growing-d case remains open.
+
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
 native factors in one algebra of symplectic rank at most four, assuming
@@ -555,6 +568,15 @@ bucket construction has error two even with that seed. Nonlinear decoding
 of the same incomplete parity summaries does not recover the lost bit.
 These are exact interface limitations, leaving richer native interference
 and complete-query synthesis open.
+
+The [phase-signal and frame audit](depth/PHASE_SIGNAL_QUERY_LIMITS.md)
+examines different mechanisms. Products of fewer than the signal dimension
+many rank-one reflections retain a fixed subspace, preventing the desired
+negative scalar on arbitrary dirty work. Full coherent Pauli-frame
+transport is equivalent to the complete indicator up to two source calls,
+linear Clifford/dirty overhead and a factor-two error bound. These results
+identify return and correction costs without asserting unrestricted lower
+bounds or importing clean-input fanout guarantees into the native model.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
