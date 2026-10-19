@@ -223,6 +223,14 @@ entire native word and its actual inverse; isolated rows, arbitrary
 supplied blocks, and growing clean banks with an uncharged cover do not
 meet the target.
 
+For the two-band source at inverse-square-root-two amplitude, the
+follow-up gives a sharper starting point: source block error at most
+one tenth forces the two actual one-band clean-image reflections to
+anticommute exactly. Their alignment is already paid by the retained
+three-call recovery. The missing operation is choosing their complete
+normalized logical transition to approximate the indicator, with the
+required source count and width; flat success alone does not do this.
+
 The focused lower question is a native matching theorem for the retained
 independent silent bands with bounded-degree central controls. It must
 use the actual source and occupied Booleanity on all logical inputs,

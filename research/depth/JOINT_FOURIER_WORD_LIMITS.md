@@ -343,7 +343,93 @@ normalizations, not the normalized-block route. The next source question
 allows at least two genuinely noncommuting native bands and still owes
 its full count, width, Clifford and depth recurrence.
 
-## 5. Bounded receipts
+## 5. A precise next interface for two source bands
+
+A two-band source can be written $`U=U_B^\dagger U_A`$, where
+U_A,U_B are actual one-band encoders with Clifford endpoints. With
+$`J|\psi\rangle=|0\rangle_a|\psi\rangle`$, put
+
+```math
+K=J^\dagger U_B^\dagger U_AJ,\qquad
+A=U_AZ_aU_A^\dagger,\qquad B=U_BZ_aU_B^\dagger.
+```
+
+A and B are Hermitian Clifford involutions. Exact flatness
+$`K^\dagger K=I/2`$ is equivalent to $`\{A,B\}=0`$,
+by the equal-sector block argument in Section 4. A constant-accuracy
+version is available even though the discrete one-band spectrum (8)
+need not apply to U.
+
+Suppose a unitary target V on the complete nonsignal space satisfies
+$`\|K-V/\sqrt2\|\le\epsilon`$. Then
+
+```math
+\|\{A,B\}\|=4\|K^\dagger K-I/2\|
+ \le4(\sqrt2\epsilon+\epsilon^2).                 \qquad(11)
+```
+
+For the equality, express B in the two equal-dimensional A sectors.
+Its diagonal blocks D,F have the same norm: unitarity gives
+$`D^2=I-EE^\dagger`$ and $`F^2=I-E^\dagger E`$ for the
+square off-diagonal block E. The anticommutator has diagonal blocks
+2D and minus 2F, while the compressed Gram defect is D/2 in the
+actual U_A coordinates.
+
+Two distinct Hermitian Cliffords have operator distance at least
+$`\sqrt{2-\sqrt2}`$. If they differ only by scalar, Hermiticity
+makes that scalar minus one and their distance is two. Otherwise their
+normalized Choi states are distinct stabilizer states, whose overlap
+has magnitude at most $`1/\sqrt2`$; the normalized
+Hilbert--Schmidt distance already gives the stated bound. Apply this
+to the actual Hermitian Cliffords ABA and minus B. Equation (11) shows
+
+```math
+4(\sqrt2\epsilon+\epsilon^2)\lt\sqrt{2-\sqrt2}
+\quad\Longrightarrow\quad \{A,B\}=0.             \qquad(12)
+```
+
+In particular, $`\epsilon\le1/10`$ suffices. Thus a sufficiently
+accurate two-band source at this amplitude must already be exactly
+flat; its normalized logical unitary $`\sqrt2K`$ is within
+$`\sqrt2\epsilon`$ of V. This is not yet a degree bound on
+that logical unitary.
+
+Nor is aligning the flat sectors a new unpaid operation. For an actual
+anticommuting pair define $`R_P=e^{-i\pi P/4}`$. Then
+
+```math
+W=\frac{I+BA}{\sqrt2}=R_B^\dagger R_AR_B,
+\qquad WAW^\dagger=B.                             \qquad(13)
+```
+
+Each R uses its actual one-band encoder, a signal-S or S-dagger
+Clifford, and the actual inverse. Its constant eighth-root scalar can
+be emitted by a Clifford word as above. W uses six one-band encoder
+occurrences. If the encoders have linear T-count and quadratic
+Clifford count, W preserves those orders, with constant depth and no
+additional clean work. With $`\omega=e^{i\pi/4}`$, cancelling
+adjacent actual inverses gives the literal completed word
+
+```math
+U_B^\dagger WU_A=\omega^{-1}S_a^\dagger U S_aU^\dagger S_aU.
+```
+
+In promotion, the leading signal S-dagger commutes with the controlled
+bilinear probe and therefore cancels in each source conjugation; the
+fixed scalar cancels as well. What remains is exactly the three-call
+raw signal-S recovery already paid in the clean-removal theorem.
+Thus its subsequent zero-clean promotion retains that theorem's complete
+forward/actual-inverse ledger.
+
+The next concrete question is therefore to construct actual native
+anticommuting reflection pairs whose complete normalized logical
+transition approximates the indicator, with linear source count and
+width. Anticommutation guarantees flat success; it does not determine
+the logical transition. Neither an arbitrary supplied Clifford pair nor
+a formal alignment substitutes for the required original one-band
+encoders. Address/output mixing is still allowed throughout.
+
+## 6. Bounded receipts
 
 [Exact fixtures](../../tests/test_joint_fourier_word_limits.py) check
 the Fourier/derivative identity on every three-bit Boolean function,
