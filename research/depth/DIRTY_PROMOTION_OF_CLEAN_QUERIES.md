@@ -481,6 +481,90 @@ different paid recovery. Constructing a suitable native block is still
 unpaid; a formal contraction or unspecified unitary dilation supplies
 neither U nor its inverse ledger.
 
+### 6.1. Exact flatness sharpens the complete error and return recurrence
+
+For an actual two-band source at inverse-square-root-two amplitude,
+[Clifford rounding](JOINT_FOURIER_WORD_LIMITS.md#5-a-precise-next-interface-for-two-source-bands)
+makes the accepted block exactly flat whenever its error epsilon against
+the complete target is at most one tenth. Write
+
+```math
+K=J^\dagger UJ,\qquad K^\dagger K=I/2,\qquad
+L=\sqrt2K,\qquad \|L-Q_f\|\le\sqrt2\varepsilon.
+```
+
+L is unitary on the **whole** nonsignal space. Substitution in the exact
+phase-S identity above gives, with $`\omega=e^{i\pi/4}`$,
+
+```math
+V_SJ=(1+i)JK=\omega JL,\qquad
+V_S^\dagger J=\omega^{-1}JL^\dagger,\qquad [V_S,JJ^\dagger]=0.
+```
+
+The returned signal is exact, even though L may only approximate Q_f.
+Apply Section 4's exact-invariance estimate, not its leakage estimate.
+The promoted full operator is literally
+
+```math
+\widetilde Q_f
+ =I_{a,d}\otimes\bigl(H_Z L^\dagger B L B H_Z\bigr),
+\qquad B=\prod_{j=1}^q\mathrm{CZ}(T_j,Z_j),
+\qquad H_Z=H^{\otimes q}.
+```
+
+Here L acts on the address, old arbitrary output T and source work W;
+identity factors on unused registers are understood. The old signal a
+and toggle d are now arbitrary borrowed inputs and return **exactly**.
+Errors on the address, old output, source work and actual output Z are
+all included in the following full-operator bound, also with references:
+
+```math
+\begin{aligned}
+\|\widetilde Q_f-Q_f\otimes I_{\rm borrowed}\|
+ &\le2\|L-Q_f\|\le2\sqrt2\varepsilon,\\
+T_{\rm prom}&\le24T_U+48q+8,\\
+G_{\rm prom}&\le24G_U+82q+104,\\
+D_T(\mathrm{prom})&\le24d_U+32,\qquad
+b_{\rm prom}\le q+b_U+2.                         \qquad(23a)
+\end{aligned}
+```
+
+These are common forward/actual-inverse bounds; q even removes the
+last eight T gates. There are four forward and four inverse recoveries,
+each using three U/actual-inverse occurrences. Their positive-S overhead
+is $`4\cdot2+4\cdot6=32`$ Cliffords. No multiplication of the error
+by the number of clean sectors is needed because those sectors are
+exactly invariant. The actual adjoint of the entire promoted word obeys
+the same full error bound against the inverse query. No independent
+return promise or reset is used at any later call.
+
+For $`q=m=2^p`$ and $`0<\tau\le1`$, it is enough to request
+$`\varepsilon=\min\{1/10,\tau/(2\sqrt2)\}`$. A genuine two-band
+source would give depth at most 80 with the displayed count, width and
+Clifford budgets, provided its complete logical transition and uniform
+source budgets exist. This is a conditional recurrence, not a compiler
+for that transition. In particular, the
+[overlap analysis](OVERLAPPING_TWO_BAND_SOURCES.md) does not yet supply an
+indicator source.
+
+The retained restored-address R98 allocation uses at most four completed
+indicators per query and at most K_* long-query calls. At final precision
+$`\eta=2^{-L}`$, choose
+
+```math
+\varepsilon_L=\min\left\{\frac1{10},
+                    \frac{\eta}{32\sqrt2K_*}\right\}.
+```
+
+Unitary telescoping, using actual adjoints on arbitrary leaked or returned
+inputs, adds at most $`8\sqrt2K_*\varepsilon_L\le\eta/4`$.
+The retained final real/complex errors are therefore again at most
+$`149\eta/512`$ and $`789\eta/1024`$. All source constants must
+be uniform in p at this fixed requested accuracy. Equation (19), its
+one-clean frame allocation, its small/narrow R96 fallbacks and its
+$`\log_2\log_2(n+4)`$ contribution remain unchanged. R96 is still
+the strongest unconditional general upper bound.
+
 ## 7. Where the growing-clean candidate still pays depth
 
 If $`k=O(\log(p+2))`$, the factor $`M=2^k`$ is polynomial

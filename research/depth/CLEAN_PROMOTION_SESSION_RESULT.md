@@ -295,3 +295,15 @@ PR #196 and PR #198. Section 6's half-amplitude two-band option is now
 stopped by the new screen; its inverse-square-root-two option remains
 current. R96, selected R79, all literal allocations, the current R98
 transfer, and Hopf-QBP provenance are unchanged.
+
+
+## 9. Subsequent overlapping-source continuation
+
+The [overlapping-source session](OVERLAPPING_SOURCE_SESSION_RESULT.md)
+supersedes the handoff's proposed next steps. It gives the complete
+exact-flatness recurrence, two scoped overlap/probe screens, an actual
+growing signal-mixing family with a computed failing transition, and
+a fixed-pair **plus bounded additional silent-span** degree theorem.
+The unrestricted two-band source and original-pair questions remain
+open. Its proof links and WORKSPACE are the current continuation route;
+R96 and the complete-frame frontier remain unchanged.

@@ -75,15 +75,19 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md#8-fresh-workspace-handoff-after-pr-198)
+[current revision](../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
 constant-amplitude block as the initial mechanism. The conversion pays
 all actual inverses, off-code cancellation, leakage, return, and the
 restored-address R98 transfer. The two-band half-amplitude route now stops at a literal Clifford
-aligner and the retained two-layer query floor. The two-band
-inverse-square-root-two transition remains open. The first unpaid
+aligner and the retained two-layer query floor. The [overlap continuation](../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md)
+excludes parity-copy sources for p at least four, computes a genuinely
+signal-mixing family whose complete transition fails, and isolates
+simultaneous nonscalar output probes as the general two-band question.
+The exact-flatness promotion now has error at most $`2\sqrt2\epsilon`$
+and exact borrowed signal/toggle return. The first unpaid
 operation is a native source with the required linear count/width, quadratic Clifford count
 and sublogarithmic depth.
 
@@ -100,8 +104,12 @@ closes growing total displacement in the actual no-middle-pair reduction.
 The [occupied-center theorem](../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 keeps original physical pairs and reduces their noncentral support.
 Bounded central features do not justify substituting quotient dimension
-for total support in the finite-insertion theorem. Fixed positive pair
-count, growing pair count and higher-layer asymptotics remain open.
+for total support in the finite-insertion theorem. Its Section 8 now
+proves a degree bound at fixed original pair count **and** fixed
+additional coupled silent-axis span, with common feature coordinates.
+Bounding that additional span, or a sufficient dressed-support invariant,
+from pair count alone remains unpaid. Fixed positive pair count alone,
+growing pair count and higher-layer asymptotics remain open.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
 closes the fixed endpoint clean-active-rank case with arbitrary middle

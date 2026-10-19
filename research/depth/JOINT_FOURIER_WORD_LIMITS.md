@@ -643,6 +643,24 @@ The next task is to compute a complete transition from such actual
 encoders and expose its resource recurrence before drawing a depth
 conclusion. More than two source bands also remain allowed.
 
+### 5.3. Overlapping sources after the fresh-workspace handoff
+
+The [overlap continuation](OVERLAPPING_TWO_BAND_SOURCES.md) computes
+complete transitions for actual overlapping encoders. Parity-copy signal
+couplings have a robust indicator floor for p at least four, even when
+the logical bands overlap. A separate growing family genuinely mixes
+the signal and realizes nonzero symplectic product, but its computed
+logical square excludes the indicator. These are source-specific screens.
+
+For general encoders the new transported-output probe is a unitary sum
+of four Cliffords. It is not generally Clifford; scalar commutation of
+any original output probe would trigger a two-band obstruction. The
+simultaneous nonscalar case remains open. The
+[exact-flatness recurrence](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence)
+also improves the promoted error to $`2\sqrt2\epsilon`$, with exact
+borrowed signal/toggle return. Section 5.2's handoff is historical;
+constructing the complete indicator transition remains unpaid.
+
 ## 6. Bounded receipts
 
 [Exact fixtures](../../tests/test_joint_fourier_word_limits.py) check
