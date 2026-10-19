@@ -155,11 +155,12 @@ distortion. Use physical wires c,t and $`z_1,\ldots,z_m`$, with
 $`m\ge1`$, and set
 
 ```math
-Q=Z_c,\qquad R_i=Z_cZ_tZ_i,\qquad
-E_A=T_QT_{X_t},\quad
-E_B=T_Q^\dagger\prod_iT_{R_i},\quad
-E_C=\left(\prod_iT_{R_i}\right)T_{X_cX_t},\qquad
-K_A=K_C=H_c.                                      \qquad(7)
+\begin{gathered}
+Q=Z_c,\qquad R_i=Z_cZ_tZ_i,\qquad K_A=K_C=H_c,\\
+E_A=T_QT_{X_t},\qquad
+E_B=T_Q^\dagger\prod_iT_{R_i},\\
+E_C=\left(\prod_iT_{R_i}\right)T_{X_cX_t}.
+\end{gathered}                                      \qquad(7)
 ```
 
 Every list is physically independent. The last C axis commutes every
