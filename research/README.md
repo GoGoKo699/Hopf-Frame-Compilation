@@ -23,28 +23,36 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/CLEAN_PROMOTION_SESSION_RESULT.md#8-fresh-workspace-handoff-after-pr-198)
+[current research outcome](depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
 root of two is another sufficient source, through twenty-four actual
-source/inverse calls. Such a faster native block is still missing.
+source/inverse calls. Exactly flat two-band sources have promoted error at most $`2\sqrt2\epsilon`$
+and exact borrowed signal/toggle return. Such a faster native block is
+still missing.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
 source band at both paid amplitudes for $`p\ge3`$. The [two-band half-amplitude screen](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands)
 now excludes that normalization as well. Two-band inverse-square-root-two
-transitions and sources with more bands remain open; the current
-[paused discovery](depth/JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition)
-requires genuinely overlapping native dynamics. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
+transitions and sources with more bands remain open. The
+[overlap continuation](depth/OVERLAPPING_TWO_BAND_SOURCES.md) computes
+actual signal-mixing transitions and isolates the simultaneous nonscalar
+output-probe question; its parity-copy and particular-family screens
+are not unrestricted depth bounds. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
 fixes the standalone linear count order without proving growing depth.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
-support at fixed pair count. Central features do not supply the total
-support bound needed for degree closure. Those cases and higher layers
-remain open. R96 remains the strongest general upper bound, R79 remains
+support at fixed pair count. Its new Section 8 proves degree closure
+when the additional span of actually coupled silent axes is also
+bounded. Pair count alone still does not supply that hypothesis; the
+new Section 9 retains bounded scalar features and individually
+clean-preserving Clifford summands without it, but their common-band
+displacement identities do not yet close Boolean matching. The
+unrestricted original-pair and higher-layer questions remain open. R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 
 ## Endpoint results
