@@ -3,6 +3,7 @@
 The lower bound is proved algebraically. These fixtures retain symplectic
 coordinate changes, literal commutator phases, and complete native inputs.
 """
+from fractions import Fraction
 from random import Random
 import unittest
 
@@ -100,6 +101,64 @@ def _split_native_query(table):
     inverse_b = _reduce_adjacent_s(_primitive_inverse(b))
     word = [('H', 2)] + a + b + _inverse(a) + inverse_b + [('H', 2)]
     return word
+
+
+def _actual_inverse(word):
+    return _reduce_adjacent_s(_primitive_inverse(word))
+
+
+def _controlled_pauli(control, label, carrier):
+    """Positive Hermitian tensor Pauli, with literal positive-S words."""
+    word = []
+    width = len(carrier)
+    for bit, target in enumerate(carrier):
+        x, z = (label >> bit) & 1, (label >> (width + bit)) & 1
+        if x and z:
+            word += [('S', target)] * 3 + [('CX', control, target), ('S', target)]
+        elif x:
+            word.append(('CX', control, target))
+        elif z:
+            word += [('H', target), ('CX', control, target), ('H', target)]
+    return word
+
+
+def _native_probe_fixture(p):
+    if p == 1:
+        # At address 0 use X, at address 1 use Y; retain omega^address.
+        carrier, gamma, dual = [1], [1, 3], [3, 1]
+        source = ([('S', 0)] + _controlled_pauli(0, 2, carrier)
+                  + [('H', 1), ('S', 1), ('S', 1), ('H', 1), ('T', 0)])
+    else:
+        # At address b0+2b1 use X/Z on carrier b1. Both Fredkins are paid.
+        carrier, gamma, dual = [2, 3], [1, 4, 2, 8], [4, 1, 8, 2]
+        swap = _fredkin(1, 2, 3)
+        base = ([('S', 0)] * 3 + _controlled_pauli(0, 3, [2])
+                + [('H', 2), ('S', 2), ('S', 2), ('H', 2)])
+        source = swap + base + _actual_inverse(swap) + [('T', 0)]
+    outputs = list(range(p + len(carrier), p + len(carrier) + len(gamma)))
+    wrapper = [gate for bit, label in zip(outputs, dual)
+               for gate in _controlled_pauli(bit, label, carrier)]
+    hadamards = [('H', bit) for bit in outputs]
+    word = (hadamards + wrapper + source + _actual_inverse(wrapper)
+            + _actual_inverse(source) + hadamards)
+    return carrier, gamma, dual, source, wrapper, word
+
+
+def _ledger(word):
+    """Count the emitted word and certify its consecutive native T bands."""
+    t_count = g_count = depth = 0
+    targets = set()
+    for gate in word:
+        if gate[0] in ('T', 'TDG'):
+            t_count += 1
+            if not targets or gate[1] in targets:
+                depth += 1
+                targets = set()
+            targets.add(gate[1])
+        else:
+            g_count += 1
+            targets = set()
+    return t_count, g_count, depth
 
 
 class SymplecticModuleQueryBarrierTests(unittest.TestCase):
@@ -215,6 +274,91 @@ class SymplecticModuleQueryBarrierTests(unittest.TestCase):
         right = lambda label: fixed(translate(fixed(label), 1, 1))
         probe = 1 << (width + 2 * m - 1)
         self.assertNotEqual(left(right(probe)), right(left(probe)))
+
+    def _check_native_probe_indicator(self, p, expected_source, expected_indicator):
+        carrier, gamma, dual, source, wrapper, word = _native_probe_fixture(p)
+        width, m = len(carrier), len(gamma)
+        self.assertEqual(_rank(gamma), m)
+        for j, q in enumerate(dual):
+            for i, g in enumerate(gamma):
+                self.assertEqual(_symplectic(q, g, width), int(i == j))
+        self.assertTrue(any(_symplectic(q, r, width) for q in dual for r in dual))
+        omega = native_columns(1, [('T', 0)])[1][1]
+        actual_source = native_columns(p + width, source)
+        for column in range(1 << (p + width)):
+            address, data = column & (m - 1), column >> p
+            phase = omega if address & 1 else CO
+            pauli = _tau(gamma[address], width)
+            for row in range(1 << (p + width)):
+                expected = (phase * pauli[row >> p][data]
+                            if row & (m - 1) == address else CZ)
+                self.assertEqual(actual_source[row][column], expected)
+        inverse_source = _actual_inverse(source)
+        self.assertEqual(native_columns(p + width, inverse_source), adjoint(actual_source))
+        self.assertEqual((_ledger(source), _ledger(inverse_source)), expected_source)
+        self.assertLessEqual(_ledger(wrapper)[1], 5 * m * width)
+        self.assertLessEqual(_ledger(_actual_inverse(wrapper))[1], 5 * m * width)
+
+        total_width = p + width + m
+        actual = native_columns(total_width, word)
+        for column in range(1 << total_width):
+            address = column & (m - 1)
+            output = column ^ (1 << (p + width + address))
+            for row in range(1 << total_width):
+                self.assertEqual(actual[row][column], CO if row == output else CZ)
+        inverse = _actual_inverse(word)
+        self.assertEqual(native_columns(total_width, inverse), adjoint(actual))
+        self.assertEqual((_ledger(word), _ledger(inverse)), expected_indicator)
+        source_t = max(_ledger(source)[0], _ledger(inverse_source)[0])
+        source_g = max(_ledger(source)[1], _ledger(inverse_source)[1])
+        source_d = max(_ledger(source)[2], _ledger(inverse_source)[2])
+        self.assertLessEqual(_ledger(word)[0], 2 * source_t)
+        self.assertLessEqual(_ledger(word)[1], 2 * source_g + 10 * m * width + 2 * m)
+        self.assertLessEqual(_ledger(word)[2], 2 * source_d)
+
+    def test_native_noncommuting_probe_indicator_retains_address_scalar(self):
+        self._check_native_probe_indicator(
+            1, ((1, 8, 1), (1, 10, 1)), ((2, 34, 2), (2, 34, 2)))
+
+    def test_native_four_probe_indicator_returns_every_carrier_column(self):
+        self._check_native_probe_indicator(
+            2, ((15, 40, 11), (15, 38, 11)), ((30, 102, 22), (30, 102, 22)))
+
+    def test_quadratic_indicator_cliffords_fit_every_r91_allocation_branch(self):
+        branches = set()
+        for a in range(1, 13):
+            q_rows = 1 << a
+            for q in list(range(1, 65)) + [q_rows - 1, q_rows, q_rows + 1, 3 * q_rows]:
+                for t_exp in range(a + 8):
+                    t = 1 << t_exp
+                    if q >= q_rows and q_rows <= t:
+                        branches.add('direct')
+                        self.assertLessEqual(q_rows * q_rows, q_rows * q)
+                        continue
+                    j = min(q_rows, t)
+                    while j * j > q_rows * q:
+                        j //= 2
+                    g = min(q, t)
+                    h_limit = int(min(Fraction(q_rows, j), Fraction(t, g)))
+                    h = 1 << (h_limit.bit_length() - 1)
+                    k = q_rows // (h * j)
+                    self.assertEqual(k * h * j, q_rows)
+                    self.assertLessEqual(g * h, t)
+                    self.assertLessEqual(h * h + j * j, 5 * q_rows * q)
+                    self.assertLessEqual(h + j, 2 * t)
+                    if t * t >= q_rows * q:
+                        branches.add('wide')
+                        self.assertLessEqual(k * ((q + g - 1) // g), 4)
+                    elif q <= t:
+                        branches.add('bounded_outputs')
+                        self.assertLessEqual(k * ((q + g - 1) // g) * t * t,
+                                             2 * q_rows * q)
+                    else:
+                        branches.add('many_outputs')
+                        self.assertEqual(h, 1)
+                        self.assertLessEqual(k * ((q + g - 1) // g) * t * t,
+                                             2 * q_rows * q)
+        self.assertEqual(branches, {'direct', 'wide', 'bounded_outputs', 'many_outputs'})
 
 
 if __name__ == '__main__':
