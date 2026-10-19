@@ -7,6 +7,11 @@
 [Approximate query transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md) ·
 [Previous checkpoint](SHARED_CENTER_SESSION_RESULT.md)
 
+The [next revision](MIDDLE_DEFECT_SESSION_RESULT.md) closes bounded
+exceptional center–middle overlap and tests approximate predicate
+mechanisms against the complete dirty-indicator contract. This checkpoint
+retains the previous proof and resource state.
+
 This continuation began at verified main `871941a` (PR #192) on
 19 October 2026. It tested the two unpaid steps from the previous
 revision: decoding the common monomial algebra, and compiling its upper

@@ -15,10 +15,10 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: constant translations and approximate query transfer
+## Current checkpoint: exceptional middle-defect support
 
-The [current revision](research/depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
-began at verified main `871941a` (PR #192). R96 remains the strongest
+The [current revision](research/depth/MIDDLE_DEFECT_SESSION_RESULT.md)
+began at verified main `6876094` (PR #193). R96 remains the strongest
 unconditional general upper theorem, with depth
 $`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
@@ -56,8 +56,17 @@ the retained Pauli algebra. The [actual CCZ source](research/depth/ACTUAL_NATIVE
 has no shared Pauli clean flip and retains center-dependent translations
 after all these enlargements. Its degree is only three and its endpoint
 ranks are fixed. These are mechanism limits, not an unrestricted lower bound.
-The next lower question is simultaneous native phase-defect cancellation
-with a nonempty middle band and center-dependent translations.
+The [middle-defect theorem](research/depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
+now closes constant translations on just the control support, with
+sign/XOR bounds five/four while retaining a nonempty native middle.
+After removing actual permuted middle-axis orbits, every Boolean-normalized cubic defect
+is supported in the intersection W of the genuine center and the
+remaining middle span. Fixed dimension of W closes uniformly in the
+other ranks, and transverse quadratic-control structure closes further
+unbounded-W cases. The next lower question concerns simultaneous
+cancellation inside that exceptional overlap, using the original
+clean-derived active and silent lists. Neither a raw isotropic model nor
+a complex diagonal completion supplies an actual Boolean source.
 
 The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
 proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for
@@ -78,12 +87,17 @@ and the frame uses only constantly many substituted long queries.
 Every accuracy-dependent source resource remains charged. A separate
 Gaussian-conjugator obstruction is robust to small constant error but
 applies to its native Majorana-preserving synthesis, not unrestricted
-approximate readout. The next upper question is that unrestricted source
-or joint complete-query synthesis. Neither is constructed yet.
+approximate readout. The [joint-indicator audit](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
+proves a sharp square-root-two error floor for sub-full-degree additive
+polynomial phases and identifies the unpaid clean-seed initialization
+and whole-bucket error in a short-hash candidate. These are scoped
+interface failures. The next upper question remains a jointly accurate
+native indicator or unrestricted approximate source satisfying every
+resource and return requirement. Neither is constructed yet.
 
-The [previous checkpoint](research/depth/SHARED_CENTER_SESSION_RESULT.md)
-retains global native matching and the unrestricted exact standalone
-readout count barrier. Every column, literal
+The [previous checkpoint](research/depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
+retains stronger centers, the actual no-shared-flip CCZ witness and the
+constant-accuracy frame transfer. Every column, literal
 phase, arbitrary dirty input, reference, actual inverse, leakage and
 work-return requirement remains in force. Final manuscript drafting is
 separate.

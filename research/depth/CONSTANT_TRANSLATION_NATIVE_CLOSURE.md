@@ -4,6 +4,12 @@
 [Computational derivatives](COMPUTATIONAL_PHASE_DERIVATIVES.md) ·
 [Two-layer diagonal rigidity](TWO_LAYER_DIAGONAL_RIGIDITY.md)
 
+The [nonempty-middle continuation](MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
+needs constant translations only on the quadratic-control support and
+gives sign degree at most five. It also closes bounded exceptional
+center–middle overlap. The stronger whole-support hypothesis below
+retains its sharper cubic conclusion.
+
 The remaining center phase can be bounded when the actual monomial
 endpoint images translate computational inputs by constants. Their
 native origin forces every activated endpoint axis to be computationally

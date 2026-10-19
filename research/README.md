@@ -22,16 +22,18 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
-closes constant translations in the common monomial endpoint family with
-sign/XOR bounds three/two. Stronger genuine centers and a fixed-Clifford
-decoder criterion identify the remaining mechanism limit; an actual CCZ
-source retains center-dependent translations without any shared Pauli
-clean flip. A uniform corollary closes the quadratic-control form with
-an empty middle native band, using cubic closure at high control rank
-and finite insertion at rank two. The approximate query transfer now needs
-only constant source accuracy at fixed frame precision. A robust Gaussian-conjugator bound
-does not cover unrestricted approximate readout or joint indicators.
+The [current research checkpoint](depth/MIDDLE_DEFECT_SESSION_RESULT.md)
+closes constant translations on just the quadratic-control support with
+sign/XOR bounds five/four, retaining a nonempty native middle. Its
+Boolean cubic defect is confined to the genuine center's intersection
+with the exceptional middle span after actual permuted axes are removed.
+Fixed overlap dimension closes uniformly in the other ranks. The stronger
+whole-support constant-translation theorem retains its three/two bounds.
+On the upper side, a sharp additive-polynomial phase obstruction and a
+complete hash-bucket countercheck identify the first unpaid operations
+in two approximate candidates. These interface limits do not cover
+unrestricted approximate readout or joint indicators. Constant source
+accuracy still suffices at fixed frame precision.
 R96 remains the strongest general bound, R79 remains selected Result D,
 and the complete-frame frontier is unchanged.
 
@@ -458,7 +460,17 @@ already centralizes the retained algebra. The [actual four-wire witness](depth/A
 has no shared Pauli clean flip and keeps nonconstant translation after
 saturation. Safe-axis derivatives sharpen the residual parity space but
 do not remove it. Its easy CCZ target does not obstruct a general degree
-bound; the next question is simultaneous phase-defect cancellation.
+bound. The [middle-defect closure](depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
+needs constant translations only for the quadratic-control support,
+retains all three native bands, and gives sign/XOR bounds five/four.
+Actual permuted middle-axis orbits contribute only Clifford defects;
+the remaining cubic symbol lies in the exterior cube of the genuine
+center–exceptional-middle intersection. Fixed intersection dimension
+closes by combining the new high-rank criterion with finite insertion.
+At control rank at least four, nonzero quotient quadratic structure or
+mixed rank at least two forces the five/four closure as well. The next
+question is whether the remaining simultaneous cancellations can occur
+in the original clean-derived lists.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
@@ -524,6 +536,16 @@ query and constantly many substituted long queries require only constant
 readout accuracy for each fixed frame precision. Its robust count/depth
 obstruction applies to a separately paid native Gaussian conjugator,
 not unrestricted approximate readout. No general frontier changes.
+
+The [approximate-indicator audit](depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
+then tests two changed mechanisms. Sub-full-degree Hamming-distance
+polynomials used as additive dirty-output phases have a sharp
+square-root-two operator-error floor. Coherent short hashes approximate
+one predicate only with a paid initialized seed; the direct whole-bank
+bucket construction has error two even with that seed. Nonlinear decoding
+of the same incomplete parity summaries does not recover the lost bit.
+These are exact interface limitations, leaving richer native interference
+and complete-query synthesis open.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
