@@ -24,7 +24,7 @@ Let f be any Boolean function on n work bits, with n at least one, and
 put
 
 ```math
-F(w)=(-1)^{f(w)},\qquad D_f=\operatorname{diag}F,\qquad
+F(w)=(-1)^{f(w)},\qquad D_f=\mathrm{diag}F,\qquad
 H=H^{\otimes n},\qquad C=HD_fH.
 ```
 
@@ -171,7 +171,7 @@ U=C_{\rm out}D_fC_{\rm in},
 with any Boolean diagonal D_f on the entire register, then
 
 ```math
-\operatorname{spec}(A^\dagger A)\subseteq\{0,1/2,1\},\qquad
+\mathrm{spec}(A^\dagger A)\subseteq\{0,1/2,1\},\qquad
 \|A-V/2\|_{\rm op}\ge1/\sqrt2-1/2
 \qquad(7)
 ```
@@ -219,7 +219,7 @@ compression argument gives
 
 ```math
 \begin{aligned}
-\operatorname{sing}(A)&\subseteq
+\mathrm{sing}(A)&\subseteq
  \{0,\sin(\pi/8),1/\sqrt2,\cos(\pi/8),1\},\\
 \|A-V/2\|_{\rm op}&\ge1/2-\sin(\pi/8).
 \end{aligned}
@@ -267,7 +267,7 @@ sectors have equal dimension, its off-diagonal block is unitary and its
 other diagonal block is zero. Thus $`\{Q,M\}=0`$ on the
 whole space. The Pauli expansion of $`M=D^\dagger RD`$ has
 nonzero support exactly
-$`R+\operatorname{span}\{P_j:P_j\text{ anticommutes with }R\}`$:
+$`R+\mathrm{span}\{P_j:P_j\text{ anticommutes with }R\}`$:
 the physical band axes P_j are independent, so its subset terms cannot
 cancel. Conjugating by Q now shows that Q anticommutes with R and
 commutes with every axis active on R. No band axis is active on both
