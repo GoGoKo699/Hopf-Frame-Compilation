@@ -22,22 +22,25 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/EXTERNAL_CENTER_SESSION_RESULT.md)
-finds one actual middle Pauli correcting every surviving external-center
-displacement of the controlled Pauli simultaneously. This moves a retained
-Boolean cubic into the middle phase. A concrete growing family proves that the corrected phase
-need not admit any one-T-layer realization, even with arbitrary Clifford
-endpoints; replacing it by a native band is not automatic. In the actual
-no-pair branch, a changed argument keeps the original native middle and closes fixed total probe-displacement dimension, even while
-active ranks and quadratic support grow. The previous fixed-overlap and
-fixed-active-intersection degree closures remain intact.
-Changed upper mechanisms expose two other missing operations: a phase
-signal must work on every dirty sector, and full coherent Pauli-frame
-transport already contains the complete indicator through a two-call
-reduction. These scoped results leave unrestricted synthesis open.
-Constant source accuracy still suffices at fixed frame precision.
-R96 remains the strongest general bound, R79 remains selected Result D,
-and the complete-frame frontier is unchanged.
+The [current research checkpoint](depth/JOINT_INDICATOR_SESSION_RESULT.md)
+keeps the complete approximate dirty indicator as the main constructive
+target. [Broad source gauges](depth/WEAKER_INDICATOR_INTERFACES.md) and
+[selected routing](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md) remain
+constant-call equivalent to that target, with full operator errors and
+native overhead paid. A [dirty geometric loop](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md)
+uses noncommuting dynamics outside the previous reflection obstruction,
+but its independent-row precision and digital costs do not supply a
+faster source. The current restored-address R98 transfer still needs
+only constant source accuracy at fixed frame precision.
+
+In parallel, the [native-orbit theorem](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+closes growing total displacement in the actual no-middle-pair branch.
+The full cubic tensor leaves only one exceptional displacement direction;
+all growing pair-permutation phases remain inside an actual three-band
+residual. The resulting uniform degree bound does not cover original
+clean-transition middle pairs or higher layers. R96 remains the strongest
+general upper bound, R79 remains selected Result D, and the complete-frame
+frontier is unchanged.
 
 ## Endpoint results
 
@@ -492,7 +495,14 @@ corrected-middle family, including arbitrary Clifford endpoints. A changed proof
 fixed Pauli space. For fixed total displacement dimension d, the
 interacting factors use at most $`d(d+1)/2+d+1`$ computational directions;
 an actual two-native-band residual then admits the retained finite-feature
-bound. The growing-d case remains open.
+bound. The [native-orbit extension](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+now closes growing d in this actual no-middle-pair branch. Its coordinate
+algebra has only singleton and pair blocks. The full cubic identity
+removes their cross-couplings, and all pair phases are retained as the
+middle band of a three-band residual. The exceptional displacement has
+dimension one, giving the uniform sign bound
+$`\max\{D_3+576,D_{\mathrm{ins}}(0,0,0,3)\}`$. Original physical
+middle pairs and higher-layer asymptotics remain separate.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
@@ -577,6 +587,19 @@ transport is equivalent to the complete indicator up to two source calls,
 linear Clifford/dirty overhead and a factor-two error bound. These results
 identify return and correction costs without asserting unrestricted lower
 bounds or importing clean-input fanout guarantees into the native model.
+
+The [universal-probe gauge theorem](depth/WEAKER_INDICATOR_INTERFACES.md)
+allows arbitrary bank-controlled address and work unitaries at a source
+boundary. It characterizes that exact freedom and proves dimension-free
+approximate equivalence, then pays its two-call extraction and R98 error
+budget. The [joint-routing audit](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
+gives a constant-call selected-swap equivalence and exact native routing
+recurrences. Its simultaneous-diagonalization obstruction concerns one
+fixed Clifford representation, not unrestricted synthesis. The
+[geometric-loop study](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md) instead
+extracts a scalar from both dirty signal eigenstates. Independent row
+phase errors accumulate in full operator norm; its charged digital
+construction does not meet the target envelope.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

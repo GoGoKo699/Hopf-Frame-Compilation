@@ -10,19 +10,14 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/EXTERNAL_CENTER_SESSION_RESULT.md)
-corrects every external-center flag of the controlled Pauli while
-retaining the resulting Boolean cubic. Exact fixtures check the native
-transvection and characteristic-parity identities underlying the analytic
-one-layer obstruction, and an actual clean-returning source that still
-fails Boolean reality. A complex-center alignment fixture checks the
-whole-residual identity-mode step used by the new fixed-displacement
-degree closure. Separate
-signal and coherent-frame checks retain dirty inputs, literal phases and
-actual inverses. The arbitrary-rank and error statements remain analytic
-and scoped.
-No unrestricted one-clean three-layer degree theorem or faster query is
-claimed. R96 and selected R79 are unchanged.
+The [current revision](../../research/depth/JOINT_INDICATOR_SESSION_RESULT.md)
+checks complete native gauge extraction, selected routing, actual inverses,
+and the exact native cubic identities behind growing-displacement closure.
+The lower fixture is a native-defect/algebra check, not a constructed
+Boolean source; the all-size no-middle-pair theorem is analytic. The
+geometric-loop analysis retains its full-space error and digital cost
+scope. No faster complete indicator or unrestricted one-clean three-layer
+theorem is claimed. R96 and selected R79 are unchanged.
 
 ## Catalogue index
 
@@ -65,6 +60,10 @@ claimed. R96 and selected R79 are unchanged.
 | Approximate query/frame transfer | [Proof home](../../research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md), [bounded fixture](../../tests/test_approximate_query_frame_transfer.py) | A native perturbation's full-operator error certificate and pair-plane geometry are checked in bounded dimensions. Error composition, constant-in-address accuracy, simultaneous R98 resource splices and robust Gaussian count/depth bounds are analytic; no unrestricted approximate source is emitted |
 | Approximate indicator filter limits | [Proof home](../../research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [exact fixtures](../../tests/test_approximate_indicator_filter_limits.py) | All subsets of small polynomial phase banks and literal native hash shears check pointwise-versus-joint error, initialized-versus-dirty seeds, actual inverse and ledgers. The sharp additive-filter floor, complete bucket failure and restricted summary-interface bound are analytic; unrestricted approximate indicators remain open |
 | Phase-signal return and coherent-frame extraction | [Proof home](../../research/depth/PHASE_SIGNAL_QUERY_LIMITS.md), [exact fixtures](../../tests/test_phase_signal_query_limits.py) | Native bounded words expose the dirty reflection fixed space and extract the complete indicator from coherent transport with arbitrary keys and actual inverses. The rank bound, two-call ledger and full-operator error transfer are analytic interface statements |
+| Growing displacement and actual native pair orbits | [Proof home](../../research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md), [exact component checks](../../tests/test_growing_displacement_native_orbits.py) | Full cubic tensors, coordinate-algebra closure, actual signed middle defects and reversed words are checked; a Gram-compatible cross-coupling fails the tensor. Uniform no-middle-pair degree closure follows analytically while retaining the growing permutation band |
+| Maximal incomplete-source gauge | [Proof home](../../research/depth/WEAKER_INDICATOR_INTERFACES.md), [native fixture](../../tests/test_weaker_indicator_interfaces.py) | A source moves and entangles address and arbitrary work; its two-call Clifford probe returns every physical column with literal phases. Maximal commutant, dimension-free polar estimate and paid R98 transfer are analytic |
+| Joint selected routing | [Proof home](../../research/depth/JOINT_ROUTING_INDICATOR_INTERFACES.md), [exact fixtures](../../tests/test_joint_routing_indicator_interfaces.py) | Native gather/scatter, selected swaps, actual inverse and simultaneous counts retain arbitrary banks. Fixed-Clifford translation limits are scoped symplectic statements, not unrestricted depth lower bounds |
+| Noncommuting dirty geometric loops | [Proof home](../../research/depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md), [bounded checks](../../tests/test_dirty_geometric_phase_loops.py) | Literal small signal and Pauli-rotation words retain full sectors and actual inverses. The uniform two-level adiabatic estimate, sharp row-error sum condition and charged native digital recurrence are analytic; no fast source or unrestricted depth obstruction follows |
 | Determinant-defect subgroup degree | [Proof home](../../research/depth/DETERMINANT_DEFECT_DEGREE.md), [exact fixture](../../tests/test_determinant_defect_degree.py) | An identity-target native representation tests nonconstant intrinsic defect phases, a codimension-one constant-phase subgroup, its literal correcting CNOT and actual inverses. The analytic correction yields degree at most $`D_r`$ for fixed subgroup codimension r, or five when r=0, under the zero-pair/all-zero-character hypotheses. A common t-dimensional central quotient gives $`r\le t(t+3)/2`$; neither parameter is a target-hardness invariant or generally bounded |
 | Joint nonzero-probe algebra and exceptional closure | [Proof home](../../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md), [exact fixture](../../tests/test_joint_nonpauli_probe_algebra.py) | The analytic generic theorem places the whole nonzero-character family in one symplectic-rank-four algebra when both interior clean images are non-Pauli; bounded central phase complexity does not follow. The exceptional clean-factor fixture retains the occupied scalar, all physical columns, actual inverses and the explicit difference on the unused sector. The genuinely exceptional non-S rank-two probe type has a zero-clean three-band logical representation and sign/XOR bounds five/four. The finite-insertion theorem covers fixed active ranks, including rank two, with a larger bound; growing ranks remain open |
 | Symplectic-module barrier and complete probe conversion | [Proof home](../../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md), [exact fixtures](../../tests/test_symplectic_module_query_barrier.py) | Free-module ranks, Clifford support, literal commutator phases and a complete split query delimit the source barrier. Added probe-to-indicator words retain noncommuting dual labels, address phases, arbitrary output/carrier inputs and actual inverses; an exact allocation regression covers all R91 branches and the quadratic Clifford allowance. The all-size theorem conditionally supplies every R98 word-query budget from a uniform faster-probe source. The added formal Walsh word checks every input, inverse, count and fourth-difference witness; its generally nonnative rotations and parity-only repair failure do not cover general Clifford interference. The faster source is not constructed; scalar-phase readouts and fused whole-word synthesis remain outside the single-module obstruction |

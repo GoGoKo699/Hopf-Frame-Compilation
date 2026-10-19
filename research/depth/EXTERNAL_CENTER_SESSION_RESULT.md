@@ -16,6 +16,11 @@ of bounded total probe-displacement dimension, even with growing active
 ranks and quadratic support. This is a new degree component; the general
 resource frontier is unchanged.
 
+The [next checkpoint](JOINT_INDICATOR_SESSION_RESULT.md) closes the
+recorded growing-displacement question in the actual no-middle-pair
+reduction and returns the main constructive session to joint approximate
+indicators. This record retains the PR #195 decision and proof boundary.
+
 ## 1. Destination and the present frontier
 
 | Role | Retained conclusion |

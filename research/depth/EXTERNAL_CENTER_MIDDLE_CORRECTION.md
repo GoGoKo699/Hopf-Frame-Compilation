@@ -22,6 +22,13 @@ a complex phase and does not satisfy the Boolean premise. No
 complete-frame resource frontier or unrestricted one-clean degree bound
 changes here.
 
+The [native-orbit continuation](GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+subsequently closes growing total displacement in this actual no-middle-pair
+branch. It retains the growing permutation part as a third native band
+rather than applying Section 7 to a smaller dimension without paying that
+part. The original physical middle-pair and higher-layer questions remain
+open.
+
 ## 1. Retain the actual source and its whole probe family
 
 Use the full-space logical word and literal conventions of
