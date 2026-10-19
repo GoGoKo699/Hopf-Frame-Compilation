@@ -360,6 +360,57 @@ class SymplecticModuleQueryBarrierTests(unittest.TestCase):
                                              2 * q_rows * q)
         self.assertEqual(branches, {'direct', 'wide', 'bounded_outputs', 'many_outputs'})
 
+    def test_formal_walsh_indicator_return_inverse_and_non_native_phase_gap(self):
+        # R denotes a formal phase of +/- pi/m, not a native T gate.
+        def run(word, value, modulus):
+            exponent = 0
+            for gate, first, second in word:
+                if gate == 'R':
+                    exponent += second * ((value >> first) & 1)
+                else:
+                    value ^= ((value >> first) & 1) << second
+            return value, exponent % modulus
+
+        for p in range(1, 4):
+            m = 1 << p
+            gray = [a ^ (a >> 1) for a in range(m)]
+            word, parity_labels = [], set()
+            for index, a in enumerate(gray):
+                word += [('R', p + u, -1 if (a & u).bit_count() & 1 else 1)
+                         for u in range(m)]
+                parity_labels.update((1 << (p + u)) | a for u in range(m))
+                edge = a ^ gray[(index + 1) % m]
+                self.assertEqual(edge.bit_count(), 1)
+                word += [('CX', edge.bit_length() - 1, p + u) for u in range(m)]
+            inverse = [(gate, first, -second if gate == 'R' else second)
+                       for gate, first, second in reversed(word)]
+            self.assertEqual(len(parity_labels), m * m)
+            for orientation, sign in ((word, 1), (inverse, -1)):
+                self.assertEqual(sum(g[0] == 'R' for g in orientation), m * m)
+                self.assertEqual(sum(g[0] == 'CX' for g in orientation), m * m)
+                bands = [orientation[start:start + m]
+                         for start in range(0 if sign == 1 else m, len(word), 2 * m)]
+                self.assertEqual(len(bands), m)
+                self.assertTrue(all(len({g[1] for g in band}) == m
+                                    and all(g[0] == 'R' for g in band) for band in bands))
+                for column in range(1 << (p + m)):
+                    address = column & (m - 1)
+                    expected_phase = sign * m * ((column >> (p + address)) & 1)
+                    self.assertEqual(run(orientation, column, 2 * m),
+                                     (column, expected_phase % (2 * m)))
+
+        # Every native affine parity has vanishing fourth difference mod 8.
+        # The four-way Boolean sign (the p=3 restricted indicator) does not.
+        for mask in range(16):
+            for bias in range(2):
+                difference = sum((-1) ** (4 - x.bit_count())
+                                 * (((mask & x).bit_count() ^ bias) & 1)
+                                 for x in range(16))
+                self.assertEqual(difference % 8, 0)
+        sign_difference = sum((-1) ** (4 - x.bit_count()) * (4 if x == 15 else 0)
+                              for x in range(16))
+        self.assertEqual(sign_difference % 8, 4)
+
 
 if __name__ == '__main__':
     unittest.main()

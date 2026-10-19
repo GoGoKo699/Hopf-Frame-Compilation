@@ -521,10 +521,15 @@ $`2^{-530690}`$, with an optimized common phase allowed.
 
 The dependent middle phase expression is not claimed to be a single
 paid native band after projection. Its justified role is as an input
-to the bounded-relation theorem. The general branch with paired
-non-Pauli clean images remains open, as does a rank-independent bound
-when both active ranks can grow. The complete-frame resource frontier
-is unchanged.
+to the bounded-relation theorem. The later
+[finite-insertion theorem](FINITE_INSERTION_THREE_LAYER_FEATURES.md#8-one-clean-qubit-with-bounded-active-ranks-including-middle-pairs)
+closes fixed active ranks even with arbitrary middle pairs, retaining
+the residual as a bounded Pauli-supported operation rather than one
+commuting list. A rank-independent bound remains open. The
+[easy-transition family](CLEAN_TRANSITION_PARAMETERS.md)
+shows that uniformly compressing the residual to bounded relation
+dimension cannot supply that bound. The complete-frame resource
+frontier is unchanged.
 
 The [exact dependent-axis fixtures](../../tests/test_bounded_relation_native_matching.py)
 check the rank profile with signed native phases, the nontrivial

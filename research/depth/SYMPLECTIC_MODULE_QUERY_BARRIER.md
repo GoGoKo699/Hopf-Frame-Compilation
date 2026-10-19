@@ -529,6 +529,64 @@ exits already supply a useful circuit. The first missing operation in
 the present architecture remains the faster complete probe or indicator
 itself, not its scalar commutator or its multi-output assembly.
 
+### 7.1. A dense Walsh phase program does not supply the faster source
+
+The quadratic Clifford allowance pays a natural parity network, but not
+its phase operations. For $`p\ge1`$ and $`m=2^p`$, the exact integer
+identity
+
+```math
+mY_x=\sum_{u,a\in\mathbb F_2^p}
+       (-1)^{a\cdot u}(Y_u\mathbin\oplus a\cdot x)
+```
+
+holds for every address x and arbitrary output bank Y. Indeed,
+$`(Y\mathbin\oplus b)-b=Y(-1)^b`$, and summing the binary characters
+over a selects u equal to x; the subtracted b terms sum to zero.
+
+Temporarily allow the **formal**, generally nonnative primitive
+$`R(\theta)=\mathrm{diag}(1,e^{i\theta})`$. Enumerate a in cyclic
+binary Gray order. At each vertex, apply
+$`R((-1)^{a\cdot u}\pi/m)`$ to every wire holding
+$`Y_u\mathbin\oplus a\cdot x`$. Between vertices, CNOT the changed
+address bit into every Y wire, including the final edge back to zero.
+The identity proves the literal complete action $`(-1)^{Y_x}`$,
+with all computational coordinates returned and no helpers. The word
+has $`m^2`$ formal rotations, $`m^2`$ CNOTs and m formal rotation
+bands. Hadamards on Y at both ends add $`2m`$ Cliffords and turn this
+into the complete indicator. Actual reversal negates every rotation
+angle and reverses the CNOTs, with the same ledger. These are counts
+and depths in the formal rotation alphabet, **not native T-depth**.
+
+For $`p\ge3`$, the first individual phase
+$`e^{i\pi/m}=\zeta_{2m}`$ lies outside $`\mathbb Q(\zeta_8)`$:
+its cyclotomic degree is $`m\gt4`$. Every Clifford+T matrix entry
+lies in that latter field, so even an irrelevant common scalar cannot
+make the relative phase of this gate exact. Exactly returned arbitrary
+helpers do not change the matrix-entry-ratio argument. Moreover, even
+if the formal rotations were supplied, this schedule uses quadratic
+non-Clifford count and m phase bands, exceeding the desired linear
+count and sublogarithmic depth.
+
+Resynthesis confined to CNOT/X/S/T parity programs cannot repair it.
+Their mod-eight exponents are integer sums of affine parities and have
+weighted degree at most three, regardless of Clifford count or dirty
+width. Set all but one Y coordinate to zero and retain the remaining
+coordinate as a variable: the indicator phase restricts to a
+$`(p+1)`$-variable minterm sign. For $`p\ge3`$, a further restriction
+gives a four-variable sign whose fourth finite difference is four
+modulo eight, whereas every affine-parity phase has difference zero.
+Returned dirty inputs may be fixed to zero in this argument.
+
+The [exact fixture](../../tests/test_symplectic_module_query_barrier.py)
+checks the emitted formal word, its actual inverse and ledger on every
+physical input for $`p=1,2,3`$, together with the finite-difference
+witness. This rejects this concrete Walsh/parity route; it does not
+preclude joint synthesis using general Clifford/Hadamard interference.
+The first missing operation would be such a complete native synthesis
+with the simultaneous source budgets (12). The resource frontier is
+unchanged.
+
 ## 8. Evidence and research consequence
 
 The [exact fixtures](../../tests/test_symplectic_module_query_barrier.py)

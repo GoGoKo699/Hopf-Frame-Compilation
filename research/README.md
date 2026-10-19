@@ -22,13 +22,14 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
-closes bounded-relation and bounded-defect-codimension degree subcases,
-and proves a complete conditional probe-to-word-query transfer.
-The growing-parameter cases and the faster probe source remain open.
-R96 remains the strongest general
-depth bound, R79 remains selected Result D, and the unrestricted
-one-clean three-layer and complete-frame depth questions remain open.
+The [current research checkpoint](depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+closes every fixed pair of endpoint clean-active ranks at three native
+layers, including arbitrary middle pairs. Easy-target counterfamilies
+rule out two proposed uniform representation bounds. A four-factor
+clean-phase interface retains the growing-rank question; the faster
+complete probe source also remains open. R96 is still the strongest
+general depth bound, R79 remains selected Result D, and the complete-frame
+resource frontier is unchanged.
 
 ## Endpoint results
 
@@ -380,8 +381,15 @@ now controls full-space three commuting phase lists with fixed binary
 relation dimensions. Its one-clean consequence closes the no-middle-pair
 case when both endpoint clean-active ranks are bounded. The proof
 retains the resulting dependent middle list and its literal scalar;
-it does not compile that list as a free physical native band. The general
-paired case and a rank-independent bound remain open.
+it does not compile that list as a free physical native band. The later
+[finite-insertion theorem](depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
+handles an arbitrary bounded Pauli-supported operation that commutes with
+each middle axis. Its one-clean reduction closes every fixed pair of
+endpoint active ranks, including general middle pairs. For two non-Pauli
+interior images it gives sign bound
+$`D_{\rm ins}(1,1,1,k_A+k_C-1)`$ and XOR bound one less. Neither
+the insertion nor its coordinate changes are supplied for free.
+Uniformity in growing active ranks remains open.
 
 The [determinant-defect theorem](depth/DETERMINANT_DEFECT_DEGREE.md)
 supplies a different bridge in the zero-pair, all-zero-character branch.
@@ -391,7 +399,22 @@ Codimension r gives sign degree at most $`D_r`$, with degree five when
 r=0. If the entire phase family factors through one common
 t-dimensional intrinsic linear quotient, then $`r\le t(t+3)/2`$.
 The proof does not identify each intrinsic coordinate with a target
-input or bound r for every actual native representation.
+input. The [identity-target family](depth/CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity)
+proves that r and the common central quotient dimension can grow without
+bound under these hypotheses, already for a pure determinant coboundary.
+Its first interior clean image is Pauli. A separate family in the same
+note has both images non-Pauli and degree-three CCZ targets, while its
+residual parity-list relation dimension grows. These are representation
+limits, not high-degree native query families.
+
+The [rank-one clean-phase interface](depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
+retains four phase factors in the no-middle-pair case with relation
+profile $`(0,\le1,\le1,0)`$. The clean-active factor commutes with
+the middle factor and has rank-at-most-one coupling to the silent
+endpoint. Raw displacement change can nevertheless grow on an identity
+target. The next question is the completed Boolean phase with all four
+lists and their cancellations retained, rather than another uniform
+bound on these raw representation parameters.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
@@ -402,7 +425,7 @@ non-S probe type at clean active rank two separates from every silent
 band. Its occupied action then has an actual zero-clean three-band
 logical representation, giving sign degree at most five and XOR degree
 at most four. The exceptional hypothesis does not cover every rank-two
-code or the general paired case.
+code; the new fixed-rank theorem covers those codes with a larger bound.
 
 The [symplectic-module readout theorem](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
 removes the earlier translation-orbit hypothesis from the source-count
@@ -422,7 +445,10 @@ T/width and quadratic Clifford cost would then supply
 [all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally)
 for every output length and dirty allocation. That conditional schedule
 is proved; the faster source remains unpaid. R91 supplies the unchanged
-fair query baseline.
+fair query baseline. The new [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
+pays its formal parity network, but requires generally nonnative
+rotations and misses the source count/depth budgets. Its parity-only
+repair is excluded; general Clifford interference is not.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
