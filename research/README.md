@@ -425,7 +425,8 @@ non-S probe type at clean active rank two separates from every silent
 band. Its occupied action then has an actual zero-clean three-band
 logical representation, giving sign degree at most five and XOR degree
 at most four. The exceptional hypothesis does not cover every rank-two
-code; the new fixed-rank theorem covers those codes with a larger bound.
+code; the finite-insertion theorem covers the cases where both endpoint
+ranks are fixed, with a larger bound.
 
 The [symplectic-module readout theorem](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
 removes the earlier translation-orbit hypothesis from the source-count
