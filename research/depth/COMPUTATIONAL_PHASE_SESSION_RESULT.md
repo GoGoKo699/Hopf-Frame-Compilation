@@ -151,8 +151,12 @@ over their shared computational center, retaining the correlated
 cancellations before taking any fiber.
 After the shared-flip and noncentral-parity closures, every parity in
 the normalized common endpoint computational space must commute with
-F in this remaining representation. That extra constraint belongs in
-the next global matching argument; it is not itself a degree bound.
+F in this remaining representation. In fact each has a common signed
+physical lift commuting with every original band; the active middle
+sublist is empty. The possible higher-degree dependence therefore lies
+in a genuine shared computational center. Commutation alone does not
+control the relative phases of its sectors. The next argument must
+retain global native independence across that whole center.
 A successful proof must control the whole center, or a counterexample
 must give a complete growing-degree native family. The parallel upper
 question is a jointly compiled complete probe or dual-frame readout

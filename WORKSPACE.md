@@ -60,8 +60,9 @@ without a new argument retaining the original global lists and their
 cancellations. An arbitrary quartic correction is not a free gate.
 The next question is that global phase constraint, or a complete native
 family with growing target degree. In the remaining fixed representation,
-every normalized common endpoint computational parity commutes with F;
-the proved noncentral-parity closure excludes the alternative.
+every normalized common endpoint computational parity has a common
+physical lift commuting every original band. The unresolved step is
+bounding relative phases across that genuine shared center.
 
 The [Majorana source audit](research/depth/MAJORANA_WALSH_QUERY.md) supplies
 a full-input native independent-Pauli probe with $`T=2mp`$,

@@ -922,6 +922,49 @@ and every actual inverse is obtained by reversing and inverting its
 word. The cubic sign was retained in an exact target factorization;
 its removal is not free same-depth synthesis of the original target.
 
+### 9.5. The complementary common parities have literal shared lifts
+
+Retain the actual no-pair clean-source setting and normalized common
+endpoint space T, without the noncentral-witness premise of Section 9.4.
+Suppose every t in T has its input-frame
+Pauli commuting with F. Then every such parity has a common signed
+physical lift commuting with all three original native bands.
+
+Use the transported lifts t_A,t_C from Section 9.4. The same pointwise
+stabilizer argument, including the rank-two exclusion, gives
+
+```math
+W=t_C E_Bt_AE_B^\dagger\in\{I,S\}.
+```
+
+If W were S, its support-coset identity would make t_A pair to one
+with every original C-active axis c. Since t_A commutes the chosen
+A-active q, it would also pair to one with every projected F axis
+c+q. This contradicts the premise. Therefore W=I, so the native
+one-band image $`E_Bt_AE_B^\dagger`$ is Pauli. Physical B-axis
+independence forces its active sublist to be empty. Literal conjugation
+then gives
+
+```math
+E_Bt_AE_B^\dagger=t_A=t_C.
+```
+
+This common lift commutes E_A because it belongs to the original
+A-axis span, commutes E_C because it belongs to the original C-silent
+span, and commutes E_B by the empty active-sublist conclusion. The
+whole lifted family is commuting and retains its signs. All these
+identities hold on the full physical space. The input and output
+parities were transported through the actual normalization; no claim
+that they were originally computational parities is needed.
+
+Thus the complementary branch places the Section 6 high-degree
+residual in a genuine shared physical center. This alone supplies no
+degree bound for that residual. The quartic quotient is still a target
+factorization, and fixing shared-center eigenvalues can create an
+unbounded number of relations among projected native axes. The next
+matching problem must retain the global lists together with this
+literal common-lift property.
+
 ## 10. The actual clean transition leaves a quadratic-controlled Pauli
 
 The actual clean-derived transition admits a sharper form than the
