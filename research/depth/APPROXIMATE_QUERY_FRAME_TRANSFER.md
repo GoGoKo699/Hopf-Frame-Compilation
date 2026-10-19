@@ -5,6 +5,11 @@
 [Fixed-precision frame transfer R98](QUERY_DEPTH_FRAME_TRANSFER.md) ·
 [Paid Majorana source](MAJORANA_WALSH_QUERY.md)
 
+The [joint-indicator continuation](APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
+tests additive polynomial phases and coherent short hashes against this
+full source contract. Their complete-operator errors do not supply a
+faster query; the constant-accuracy transfer proved here remains valid.
+
 Approximate readout is a real remaining source question: the complete
 R98 construction needs only constant-in-address readout accuracy at
 fixed final precision. Neither the number of table rows, output batches
