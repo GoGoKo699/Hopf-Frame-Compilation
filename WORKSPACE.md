@@ -15,10 +15,10 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: global native matching and exact readout cost
+## Current checkpoint: constant translations and approximate query transfer
 
-The [current revision](research/depth/SHARED_CENTER_SESSION_RESULT.md)
-began at verified main `4e83fe1` (PR #191). R96 remains the strongest
+The [current revision](research/depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
+began at verified main `871941a` (PR #192). R96 remains the strongest
 unconditional general upper theorem, with depth
 $`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
@@ -42,16 +42,20 @@ invariant isotropic algebra. Its displacement span enlarges the genuine
 shared center; paid normalization makes the endpoint images commuting
 monomial Cliffords with affine center-controlled translations.
 
-The first unsupported inference is a global decoder or a uniform bound
-on relative phases across that center. Fiberwise elimination does not
-supply the decoder, and quadratic work-coordinate phases cannot be
-removed freely. Sliding the insertion produces Clifford involutions,
-not generally native Pauli axes. These are limitations of the present
-arguments, not obstructions to the unrestricted degree conjecture.
-An actual cubic-target family has unbounded raw control polar rank,
-but has a shared clean flip and is already in a closed branch.
-The next lower question is global phase matching in the monomial
-algebra while retaining the original native lists.
+The [constant-translation theorem](research/depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
+closes the case where those translations do not depend on the center,
+with sign/XOR bounds three/two, even for an arbitrary commuting C3 middle.
+It peels actual native sublists and uses the full complex two-layer
+diagonal theorem; it does not supply a new same-depth implementation.
+The [center and decoder audit](research/depth/NATIVE_CENTER_SATURATION_LIMITS.md)
+adds genuine active-axis-sum and whole-band parity centers. A fixed
+Clifford decoder exists only when the native band already centralizes
+the retained Pauli algebra. The [actual CCZ source](research/depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
+has no shared Pauli clean flip and retains center-dependent translations
+after all these enlargements. Its degree is only three and its endpoint
+ranks are fixed. These are mechanism limits, not an unrestricted lower bound.
+The next lower question is simultaneous native phase-defect cancellation
+between distinct endpoints when translations depend on the center.
 
 The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
 proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for
@@ -65,14 +69,19 @@ without a separate flat-source premise. Full-isometry source error tau
 would give indicator error at most $`6\tau`$, including work return;
 the exact denominator argument gives no uniform approximate lower bound.
 
-The next upper question is joint complete-query synthesis or an approximate
-source with every accuracy-dependent budget paid. R98's frame transfer
-is still conditional and currently assumes exact queries. Resynthesizing
-this exact standalone Q cannot reach its required linear T-count.
+The [approximate transfer](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+now proves that constant-in-address source accuracy suffices at fixed L:
+at most four indicators give error $`24\tau`$ per completed word query,
+and the frame uses only constantly many substituted long queries.
+Every accuracy-dependent source resource remains charged. A separate
+Gaussian-conjugator obstruction is robust to small constant error but
+applies to its native Majorana-preserving synthesis, not unrestricted
+approximate readout. The next upper question is that unrestricted source
+or joint complete-query synthesis. Neither is constructed yet.
 
-The [previous checkpoint](research/depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
-retains the computational derivative factorizations, actual center
-normalization and native Majorana source audit. Every column, literal
+The [previous checkpoint](research/depth/SHARED_CENTER_SESSION_RESULT.md)
+retains global native matching and the unrestricted exact standalone
+readout count barrier. Every column, literal
 phase, arbitrary dirty input, reference, actual inverse, leakage and
 work-return requirement remains in force. Final manuscript drafting is
 separate.

@@ -12,6 +12,12 @@ barrel-routing depth. Paired permutation wrappers remove that residual
 cost. Four decreasing early stages then make the finite terminal small
 enough to prove the following conditional reduction.
 
+The [approximate extension](APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+keeps the resource construction below and replaces only its constantly
+many completed long queries. It pays their full error and needs only
+constant source accuracy for each fixed frame precision; no approximate
+source compiler is supplied by that transfer.
+
 ## 1. A precise query hypothesis and conditional theorem
 
 Let $`d:\mathbb N\to[1,\infty)`$ be nondecreasing. Assume that,

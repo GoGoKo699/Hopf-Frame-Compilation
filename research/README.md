@@ -22,16 +22,16 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/SHARED_CENTER_SESSION_RESULT.md)
-proves global middle-span invariance for the actual quadratic-controlled
-insertion and obtains commuting monomial Clifford endpoint images after
-paid normalization of an enlarged shared center. Relative center phases
-remain unresolved; a conditional decoder is not free. The exact standalone
-Walsh dual readout has a superlinear T-count obstruction with arbitrary
-Clifford interlayers and returned helpers. Joint indicators and approximate
-readout remain outside that obstruction. R96 remains the strongest general
-bound, R79 remains selected Result D, and the complete-frame frontier is
-unchanged.
+The [current research checkpoint](depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
+closes constant translations in the common monomial endpoint family with
+sign/XOR bounds three/two. Stronger genuine centers and a fixed-Clifford
+decoder criterion identify the remaining mechanism limit; an actual CCZ
+source retains center-dependent translations without any shared Pauli
+clean flip. The approximate query transfer now needs only constant source
+accuracy at fixed frame precision. A robust Gaussian-conjugator bound
+does not cover unrestricted approximate readout or joint indicators.
+R96 remains the strongest general bound, R79 remains selected Result D,
+and the complete-frame frontier is unchanged.
 
 ## Endpoint results
 
@@ -443,6 +443,19 @@ not witness the remaining branch. Sliding the insertion can change Pauli
 axes into Clifford involutions, whose spectral T rotations are not free
 native gates.
 
+The [constant-translation closure](depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
+proves a full diagonal C3 conclusion when every monomial translation is
+constant, with arbitrary ranks and an actual commuting C3 middle.
+Only actual diagonal native sublists and a paid diagonal Clifford are
+peeled. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
+adds characteristic active-axis sums and global axis-product centers,
+but a fixed Clifford decoder is possible only when the native encoder
+already centralizes the retained algebra. The [actual four-wire witness](depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
+has no shared Pauli clean flip and keeps nonconstant translation after
+saturation. Safe-axis derivatives sharpen the residual parity space but
+do not remove it. Its easy CCZ target does not obstruct a general degree
+bound; the next question is simultaneous phase-defect cancellation.
+
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
 native factors in one algebra of symplectic rank at most four, assuming
@@ -500,8 +513,13 @@ with every Clifford and actual inverse paid. R91 already gives that
 indicator O(m) T-count, so the standalone count barrier motivates joint
 compilation. It gives no uniform approximation obstruction: full-isometry
 source error tau transfers to at most $`6\tau`$ indicator error, while
-an approximate source's simultaneous ledger and frame transfer remain
-unproved. No general frontier changes.
+an approximate source remains to be constructed. The
+[approximate transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) pays
+the remaining composition: at most 24 readout calls per complete word
+query and constantly many substituted long queries require only constant
+readout accuracy for each fixed frame precision. Its robust count/depth
+obstruction applies to a separately paid native Gaussian conjugator,
+not unrestricted approximate readout. No general frontier changes.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

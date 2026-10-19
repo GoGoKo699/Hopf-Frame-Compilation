@@ -8,6 +8,10 @@ The [global quadratic-control continuation](QUADRATIC_CONTROL_NATIVE_MATCHING.md
 retains Section 10's full native lists, proves a common invariant middle
 span, and enlarges the actual shared center. Its monomial Clifford form
 still leaves relative center phases unresolved.
+The [safe-axis refinement](ACTUAL_NATIVE_CENTER_WITNESS.md)
+uses only endpoint axes failing to commute the actual middle operator
+in the residual parity space. Its native CCZ witness shows why that
+pruning alone does not supply every missing derivative.
 
 The intrinsic determinant phases can be connected to computational
 derivatives without bounding their number of central variables. An

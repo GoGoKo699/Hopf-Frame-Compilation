@@ -12,6 +12,12 @@ center makes its endpoint images monomial Cliffords. These statements
 retain the original independent native lists; a global decoder or a bound
 on the remaining relative center phases is still missing.
 
+The [constant-translation continuation](CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
+closes that monomial subcase with sign/XOR bounds three/two. The
+[center and decoder audit](NATIVE_CENTER_SATURATION_LIMITS.md) strengthens
+the genuine center but shows why a fixed Clifford decoder is not a
+general shortcut. Center-dependent phase matching remains open.
+
 ## 1. Actual input controls and the full-space word
 
 Use the no-middle-pair clean-transition reduction with both interior
