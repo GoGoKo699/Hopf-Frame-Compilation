@@ -42,37 +42,41 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | One Pauli interior image at three layers | [Partial-diagonal finite features](../research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#7-one-pauli-interior-clean-image-suffices) give sign degree at most $`2^{26}`$ and XOR degree at most $`2^{26}-1`$ if either actual interior clean image is Pauli. The input and final clean stabilizers alone do not satisfy this premise. The stronger 2048/2047 bounds remain when both interior images are Pauli; the unrestricted one-clean question remains open |
 | Two rank-one non-Pauli interior images | [Exact three-band repacking](../research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#8-both-non-pauli-images-of-active-rank-one-can-be-repacked) converts this subcase to Pauli boundaries, retaining sign degree at most 2048 and XOR degree at most 2047. An unbounded-degree family must therefore have both interior clean images non-Pauli and at least one active rank greater than one |
 | Non-Pauli code decoding | [Exact one-band decoder](../research/depth/NONPAULI_CODE_DECODING.md) has affine/quadratic control bits and a paid native word, but can induce unbounded Clifford displacement rank. Its zero-pair, all-zero-probe-character subcase, excluding active rank two, has commuting unused-sector defects and a common central Clifford determinant cocycle. That structure does not supply a free native gauge or a general degree bound |
-| Bounded relations and pair-free active ranks | [Three commuting phase lists](../research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md) have an explicit sign-degree bound depending only on their binary relation dimensions. Applied to actual one-clean native circuits, this closes the no-middle-pair case with both endpoint clean-active ranks bounded. The dependent middle list is not credited as a physical native band; growing active ranks and the general paired case remain open |
-| Bounded determinant-defect codimension | [Common-cocycle kernel](../research/depth/DETERMINANT_DEFECT_DEGREE.md) identifies a computational-Z subgroup corrected by at most $`Q-1`$ CNOTs at unchanged three-band depth. In the stated zero-pair, all-zero-character branch, codimension r gives sign degree at most $`D_r`$, with degree five for r=0. One common t-dimensional intrinsic central quotient implies $`r\le t(t+3)/2`$; no general bound on r is proved |
-| Joint nonzero probes and the exceptional rank-two type | [Common native probe algebra](../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md) places the generic nonzero-character family in one algebra of symplectic rank at most four when both interior clean images are non-Pauli; this alone does not bound degree. The genuinely exceptional non-S probe type at clean active rank two separates locally and admits a zero-clean three-band logical representation, giving sign/XOR bounds five/four. This is not a closure of all rank-two codes |
+| Fixed endpoint clean-active ranks, including middle pairs | [Finite Pauli-supported insertion](../research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md#8-one-clean-qubit-with-bounded-active-ranks-including-middle-pairs) gives sign degree at most $`D_{\rm ins}(1,1,1,k_A+k_C-1)`$ and XOR degree one less for two non-Pauli interior images of ranks k_A,k_C, with arbitrary middle pairs and dirty width. The residual is retained and commutes with each middle axis; it is not a free native gate. The earlier [bounded-relation theorem](../research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md) retains its separate commuting-list statement. Uniformity in growing ranks remains open |
+| Bounded determinant-defect codimension | [Common-cocycle kernel](../research/depth/DETERMINANT_DEFECT_DEGREE.md) identifies a computational-Z subgroup corrected by at most $`Q-1`$ CNOTs at unchanged three-band depth. In the stated zero-pair, all-zero-character branch, codimension r gives sign degree at most $`D_r`$, with degree five for r=0. One common t-dimensional intrinsic central quotient implies $`r\le t(t+3)/2`$. An [actual identity family](../research/depth/CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity) disproves a uniform r bound under those hypotheses; its first interior image is Pauli |
+| Joint nonzero probes and the exceptional rank-two type | [Common native probe algebra](../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md) places the generic nonzero-character family in one algebra of symplectic rank at most four when both interior clean images are non-Pauli; this alone does not bound degree. The genuinely exceptional non-S probe type at clean active rank two separates locally and admits a zero-clean three-band logical representation, giving sign/XOR bounds five/four. This sharper five/four bound is specific to that probe type; the finite-insertion result covers other fixed-rank codes |
+| Growing-rank clean-phase interface | [Four retained phase factors](../research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md) give a no-middle-pair relation profile $`(0,\le1,\le1,0)`$ with rank-at-most-one active/silent coupling. An identity family has unbounded raw displacement change despite this interface. Controlling the completed phase and cancellations remains open; this is not a general degree theorem |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The [current joint-transport checkpoint](../research/depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
-adds scoped exact degree closures. Bounded relation dimensions control
-three commuting phase lists and close the actual one-clean zero-pair
-case at bounded endpoint active ranks. Separately, a bounded
-constant-defect-kernel codimension in the common determinant cocycle
-gives a paid globally preserved computational subgroup and hence a degree
-bound. Neither result bounds its representation parameter uniformly
-when it grows. A separate strict separation closes the genuinely
-exceptional non-S rank-two probe type with sign degree five and XOR
-degree four. Generic nonzero probes share a symplectic-rank-four
-algebra, but its central phases still need a degree argument. The
-general paired non-Pauli case remains open; the earlier interior-Pauli
-and rank-one cases remain proved.
+The [current clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+closes the fixed endpoint clean-active-rank case with arbitrary middle
+pairs. The finite-insertion proof keeps the entire exceptional operator,
+including non-C3 and nonisotropic support, and uses its commutation with
+each middle axis. The remaining unrestricted degree question requires
+uniformity as active ranks grow.
 
-The constructive branch now compiles independent Pauli probes into
-complete dirty indicators, retaining noncommuting dual probes, literal
-address phases and actual inverses. Under a uniform faster-probe
-hypothesis, the full R98 multi-output schedule fits its T, Clifford,
-depth and simultaneous-width budgets at every allowed dirty allocation.
-The missing upper operation is the faster complete probe or indicator
-itself. R96 remains the strongest general bound; R79 remains selected
-Result D. General one-clean three-layer degree and the complete-frame
-depth frontier remain open.
+Two [actual easy-target families](../research/depth/CLEAN_TRANSITION_PARAMETERS.md)
+rule out proposed uniform representation bounds. Degree-three CCZ
+products have unbounded residual parity-list relation dimension with
+both interior images non-Pauli. An identity target has unbounded
+determinant codimension in the all-zero-character branch, with one
+Pauli interior image. These do not give high-degree native queries.
+The new no-pair four-factor interface therefore retains the original
+phase lists and asks for a bound on their completed Boolean action.
+
+The [previous joint-transport checkpoint](../research/depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
+retains the fixed-codimension theorem, common probe algebra, sharper
+exceptional closure and complete conditional R98 transfer. The faster
+complete probe or indicator source remains unconstructed. A
+[dense Walsh phase attempt](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
+fails its native gate and simultaneous resource budgets; its parity-only
+repair obstruction does not cover general Clifford interference.
+R96 remains the strongest general bound and R79 remains selected Result D.
+General one-clean three-layer degree and complete-frame optimal depth
+remain open.
 
 The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean

@@ -398,5 +398,12 @@ supplies a partial bridge: the labels whose entire defect phase is
 constant form a subgroup H. One occupied-fixing CNOT correction makes
 H a globally preserved computational-Z subgroup. Bounded codimension
 of H, or one bounded common central quotient for the whole phase family,
-therefore gives a uniform Boolean degree bound. Establishing that
-codimension bound for every actual native representation remains open.
+therefore gives a uniform Boolean degree bound. The
+[actual identity family](CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity)
+has unbounded codimension under these hypotheses, already with trivial
+kappa corrections. A different paid representation or an argument
+controlling the completed Boolean phase is therefore needed for
+uniformity. Separately, the
+[finite-insertion reduction](FINITE_INSERTION_THREE_LAYER_FEATURES.md#8-one-clean-qubit-with-bounded-active-ranks-including-middle-pairs)
+closes every fixed pair of endpoint active ranks, including middle
+pairs; its bound need not be uniform as those ranks grow.

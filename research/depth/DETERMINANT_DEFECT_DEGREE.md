@@ -237,12 +237,19 @@ uniform bound on r from that pointwise degree statement would be the
 first unsupported step. The common quotient in Section 4 is an
 additional hypothesis, not a consequence of the one-core algebra.
 
-The next quantitative question is whether the actual independent
-endpoint bands and the literal Boolean occupied target bound the
-number in (11), or provide a different paid representation with such
-a bound. All native bands, clean-silent factors, and their joint
-dependence remain part of this question. A low-degree target can have
-a complicated unused-sector extension, so r is a parameter of the
-supplied representation, not a measure of target hardness. This note
-closes the fixed-r subcase and does not assert a general one-clean
-three-layer degree theorem or a complete-frame resource improvement.
+The [actual identity-target family](CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity)
+answers the first question negatively: all hypotheses of Section 1
+hold in a three-native-band split, but H is zero and r grows with the
+number of non-clean wires. The same family needs that many common
+linear central coordinates. Its first interior clean image is Pauli
+and its second has active rank one; it does not settle codimension
+growth under a stricter both-non-Pauli hypothesis.
+
+The remaining quantitative question is whether the actual bands and
+literal Boolean occupied target provide a different paid representation
+with bounded r, or a degree argument that avoids this parameter.
+All native bands, clean-silent factors, and their joint dependence
+remain part of that question. Thus r is a parameter of the supplied
+representation, not a measure of target hardness. This note closes the
+fixed-r subcase and does not assert a general one-clean three-layer
+degree theorem or a complete-frame resource improvement.

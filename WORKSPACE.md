@@ -15,93 +15,72 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: joint non-Pauli transport and bounded relations
+## Current checkpoint: bounded clean transitions and the growing-rank question
 
-The [current revision](research/depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
-began at verified main `a85fbef` (PR #188). R96 remains the strongest
+The [current revision](research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+began at verified main `e773bd0` (PR #189). R96 remains the strongest
 unconditional general upper law: all-precision depth
 $`O(NL/b^2+L+\log_2(n+2))`$ with optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
 Result D, R97 remains scoped, and the count package is settled under its
 stated hypotheses. Optimal general depth remains the destination.
 
-The [partial-diagonal theorem](research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
-proves that a full-space three-band circuit preserving a computational-Z
-subgroup of fixed codimension has a finite description by bounded-degree
-matrix features. Paid two-band clean removal applies it when either
-actual interior clean image is Pauli: sign degree is at most $`2^{26}`$
-and XOR degree at most $`2^{26}-1`$, independently of dirty width.
-Both Pauli interior images retain the stronger 2048/2047 bounds.
-Two non-Pauli images of active ranks one and one also reduce to that
-stronger theorem by literal three-band repacking. The retained R74
-rounding corollary transfers these scoped degree bounds to approximation.
+The [finite-insertion theorem](research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
+retains an arbitrary bounded Pauli-supported operation that commutes
+with each middle axis. It controls the resulting norm distortion and
+completed Boolean phase without deleting that operation or compiling it
+as a free native band. Its actual one-clean reduction closes **all fixed
+endpoint clean-active ranks**, including arbitrary middle pairs and rank
+two. For two non-Pauli interior images of ranks k_A,k_C, the sign bound is
+$`D_{\rm ins}(1,1,1,k_A+k_C-1)`$; the XOR bound is one less.
+The original dirty/reference and literal-phase contract, actual inverse,
+and R74 approximation floor remain in force.
 
+The [earlier bounds](research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
+remain sharper for Pauli interior images and two rank-one images.
 The [bounded-relation theorem](research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md)
-gives a finite Boolean degree bound for full-space three commuting phase
-lists with fixed binary relation dimensions. Its actual one-clean
-application closes the zero-middle-pair case when both endpoint
-clean-active ranks are bounded. A dependent middle list is an exact
-algebraic factor, not a free independent-axis native band. This does not
-close the general paired case or bound growing active ranks uniformly.
+and [determinant-defect theorem](research/depth/DETERMINANT_DEFECT_DEGREE.md)
+retain their separate parameterized closures. The
+[joint probe algebra](research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
+remains a bounded-algebra component, with a sharper degree-five/four
+closure for its genuinely exceptional non-S rank-two probe type.
 
-The [determinant-defect theorem](research/depth/DETERMINANT_DEFECT_DEGREE.md)
-gives a separate closure in the zero-pair, all-zero-probe-character
-branch, excluding clean active rank two. Constant defect phases identify
-a computational-Z subgroup; at most $`Q-1`$ CNOTs correct it without
-changing the occupied action or three-band budget. Fixed codimension r
-gives sign degree at most $`D_r`$, with degree five when r=0. One fixed
-t-dimensional central quotient for the entire phase family gives
-$`r\le t(t+3)/2`$. Neither parameter has a general native bound.
+The [easy-transition counterfamilies](research/depth/CLEAN_TRANSITION_PARAMETERS.md)
+rule out two proposed uniform parameter bounds. Products of CCZ gates
+have degree three but unbounded residual parity-list relation dimension,
+with both interior clean images non-Pauli. A separate literal identity
+family has unbounded determinant-defect codimension and needs an
+unbounded common central quotient; its first interior image is Pauli.
+Neither parameter is target hardness, and neither example is an
+unbounded-degree native query.
 
-The [joint probe theorem](research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
-places the complete generic nonzero-character defect family in one
-algebra of symplectic rank at most four when both interior clean images
-are non-Pauli. That bounded algebra alone is not a degree theorem.
-The genuinely exceptional non-S probe type at clean active rank two
-has a stronger separation: its occupied action has an actual zero-clean
-three-band logical representation, giving sign degree at most five
-and XOR degree at most four. This does not close every rank-two code.
+For growing ranks, the
+[rank-one clean-phase interface](research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
+retains four phase lists in the no-middle-pair case, with
+relation profile $`(0,\le1,\le1,0)`$. The clean-active interface commutes
+with the middle factor and couples to the silent endpoint with rank at
+most one. This does not yet control the completed phase: an easy identity
+family has unbounded raw displacement change across that interface.
+The next lower question is a rank-independent Boolean degree argument
+that retains all four factors and their cancellations, or a complete
+unbounded-degree three-native-band family. The
+[exact decoder](research/depth/NONPAULI_CODE_DECODING.md) still has its
+own native cost and cannot be used as a free Pauli-coordinate change.
 
-The [exact decoder](research/depth/NONPAULI_CODE_DECODING.md) has only two
-low-degree controls, but is generally not a full Clifford and has its
-own native band cost. Conjugation can turn a Pauli into a Clifford with
-unbounded displacement rank. Native matching cannot be reused after
-that decoding for free. Its common determinant cocycle now supports the
-fixed-codimension result above; pointwise low-degree controls alone do
-not bound that codimension or supply a simultaneous native decoder.
+The [probe-to-word-query transfer](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally)
+remains conditional on a faster complete independent-probe source.
+The new [Walsh phase attempt](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
+has a paid formal parity network, but its rotations are generally
+nonnative and its count and depth miss the source budgets. A parity-only
+repair is excluded; general Clifford interference remains outside that
+scoped failure. R91 remains the fair baseline, and no new upper frontier
+is claimed.
 
-The retained [occupied transport theorem](research/depth/OCCUPIED_LOGICAL_TRANSPORT.md)
-still supplies the paid diagonal pair-center normal form, with unchanged
-width, T-count and T-depth and $`O(Q^2)`$ Clifford overhead. High clean
-rank and whole-family agreement do not justify full-space Clifford
-extension: the earlier complete-family witness has an easy identity
-target. The next lower question is the completed Boolean phase when
-active ranks or defect codimension grow, including the paired non-Pauli
-branch.
-
-The [module barrier and escape](research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
-prove exponential carrier and source T-count costs for a degree-d scalar
-readout from any single elementary-abelian symplectic representation.
-Eight separately paid source calls therefore miss R98's square-root
-count for a full-degree table. A two-family half-address construction
-escapes this module hypothesis with square-root carrier width and paid
-table programming. Universal fixed-family Pauli probes still contain a
-complete dirty indicator through a paid two-call conversion. Conversely,
-a uniform faster independent-probe source with the stated linear T/width
-and quadratic Clifford budgets would supply the entire
-[R98 word-query interface](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md),
-for every output length and dirty allocation. That implication is proved;
-the faster source is not constructed. R91 remains the fair baseline.
-These module and decoder limitations concern their stated representations.
-
-The [previous checkpoint](research/depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
-retains the partial-diagonal theorem, interior-Pauli and rank-one
-closures, paid decoder, and arbitrary-module source barrier. The earlier
-fast subset-product source has a complete paid arbitrary-table extraction
-that still misses R98. The new components do not promote it into a
-general optimal-depth frame compiler.
-Every column, literal phase, reference, inverse, leakage and work-return
-requirement remains in force. Final manuscript drafting is separate.
+The [previous checkpoint](research/depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
+retains bounded relations, the determinant subgroup, joint probes and
+the complete conditional R98 assembly. Every column, literal phase,
+reference, inverse, leakage and work-return requirement remains in force.
+Final manuscript drafting is separate.
 
 ## Mandate
 
