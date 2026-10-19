@@ -20,6 +20,10 @@ signal, adiabatic ground-state promise, or supplied analog gate in the
 native conclusion. The continuous evolution is an intermediate identity
 whose digital cost is charged in Section 4.
 
+The [selective-inversion continuation](SELECTIVE_INVERSION_DIRTY_INDICATOR.md)
+improves the analog bank-error profile. Its native row-count obstruction
+shows why this improvement still does not give a linear-count indicator.
+
 ## 1. A scalar echo on both signal eigenstates
 
 Use X, Y and Z for the three Hermitian Pauli matrices on one signal

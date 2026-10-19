@@ -63,28 +63,36 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Phase-signal and coherent-frame interfaces | [Return and correction audit](../research/depth/PHASE_SIGNAL_QUERY_LIMITS.md) gives a fixed-space obstruction for products of rank-one signal reflections on arbitrary dirty work. Full coherent Pauli-frame transport yields a complete indicator in two source calls with linear Clifford/dirty overhead and factor-two error. These are scoped interface statements, not unrestricted approximate depth bounds |
 | Joint approximate source interfaces | [Maximal gauge](../research/depth/WEAKER_INDICATOR_INTERFACES.md) and [selected-swap](../research/depth/JOINT_ROUTING_INDICATOR_INTERFACES.md) reductions retain arbitrary intermediate address/work motion, actual inverses and constant error factors. These source freedoms remain constant-call equivalent to the complete indicator. Fixed Clifford simultaneous-diagonalization failure is a representation limit |
 | Noncommuting dirty geometric phases | [Full-space loop and native cost audit](../research/depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md) gives a common winding sign on both signal eigenstates, but independent row eigenphase errors must sum in full-bank operator norm. Its paid digital recurrence misses the target count/depth envelope; no unrestricted approximate obstruction follows |
+| Native sharing for approximate indicators | [Incidence and block bounds](../research/depth/NATIVE_INDICATOR_SHARING.md): at full-operator error below one half, each bank observable needs p active T occurrences in an unrestricted zero-clean native word. Separately emitted b address-preserving disjoint bank blocks cost at least bp T gates; no unrestricted growing-depth conclusion follows |
+| Table-specific source gauges | [Paid syndrome interface](../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md) allows arbitrary motion inside fibers of the table's probed syndrome. Full row rank recovers the complete indicator gauge; no low-rank promise or faster general R98 compiler is supplied |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The [current revision](../research/depth/JOINT_INDICATOR_SESSION_RESULT.md)
-centers the complete approximate dirty indicator, under the current
-restored-address R98 transfer. Universal source gauges allowing arbitrary
-address/work motion and complete selected swaps have paid constant-call
-indicator extractions. A noncommuting dirty geometric loop lies outside
-the earlier rank-one-reflection premise, but its full-bank precision and
-native digital costs still miss the required envelope. No faster complete
-source or general upper bound is established.
+The [current revision](../research/depth/NATIVE_SHARING_SESSION_RESULT.md)
+keeps the complete approximate dirty indicator as the main constructive
+question. Its [native incidence theorem](../research/depth/NATIVE_INDICATOR_SHARING.md)
+applies with arbitrary intermediate Clifford/address/bank mixing and
+full-operator error below one half. Every bank observable requires at
+least p active T occurrences; linear total T-count therefore requires
+growing shared incidence. This does not imply a growing depth bound.
+Separately emitted completed blocks instead pay at least p T gates per
+block, ruling out linear T-count when their maximum size is o(p).
 
-The parallel [native-orbit theorem](../research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
-closes growing total displacement in the actual no-middle-pair reduction.
-The full native cubic tensor forces pair permutations plus one common
-exceptional transvection. Retaining all signed permutation factors in an
-actual three-band residual gives a uniform degree bound. Original
-clean-transition middle pairs and higher-layer asymptotics remain open;
-the logical pair orbits just classified are not those excluded physical
-middle pairs. The complete-frame frontier remains unchanged.
+The [selective-inversion study](../research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md)
+improves the analog full-bank precision estimate but retains excessive
+native cost. [Table-specific gauges](../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
+weaken a source exactly through its probed syndrome; full rank recovers
+the universal indicator interface. A joint two-bank synthesis remains
+outside these separately specified source interfaces. R96 and the
+complete-frame frontier are unchanged.
+
+The retained [native-orbit theorem](../research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+closes growing total displacement in the actual no-middle-pair reduction,
+including all logical pair-permutation phases. The [original physical
+middle-pair scout](../research/depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md) exposes an occupied-code insertion gap; it does not
+close that branch or the higher-layer asymptotic problem.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
 closes the fixed endpoint clean-active-rank case with arbitrary middle

@@ -5,6 +5,11 @@
 [Current R98 transfer](QUERY_DEPTH_FRAME_TRANSFER.md) ·
 [Constant-accuracy extension](APPROXIMATE_QUERY_FRAME_TRANSFER.md)
 
+The [subsequent native-sharing revision](NATIVE_SHARING_SESSION_RESULT.md)
+retains these results and continues the approximate indicator search from
+PR #196. Its row-count and table-specific interface results have separate
+proof homes; the present chapter remains the PR #196 checkpoint.
+
 This session began on 19 October 2026 by fetching and checking main against
 the reviewed PR #195 commit
 `b598e4aa55c308f11f183a11ab92f0e4fc70463a`. They matched, and the working
