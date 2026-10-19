@@ -23,6 +23,12 @@ approximation lower bound. The latter distinctions matter: R91 already
 implements that indicator with O(m) T gates, and the coefficient used
 in this proof is exponentially small in $`L_p`$.
 
+The [approximate continuation](APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+shows that fixed frame precision needs only constant readout accuracy
+as the address grows. Its robust Gaussian-conjugator obstruction has
+an explicitly narrower native-decomposition hypothesis than this exact
+standalone theorem.
+
 ## 1. The complete readout and its phases
 
 Take $`p\ge2`$, $`m=2^p`$ and $`w=m/2`$ arbitrary carrier qubits.
