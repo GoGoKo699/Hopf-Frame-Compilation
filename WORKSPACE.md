@@ -47,6 +47,8 @@ closes the case where those translations do not depend on the center,
 with sign/XOR bounds three/two, even for an arbitrary commuting C3 middle.
 It peels actual native sublists and uses the full complex two-layer
 diagonal theorem; it does not supply a new same-depth implementation.
+Its empty-middle corollary closes every quadratic-control rank uniformly;
+high rank gives the cubic bound and low rank uses finite insertion.
 The [center and decoder audit](research/depth/NATIVE_CENTER_SATURATION_LIMITS.md)
 adds genuine active-axis-sum and whole-band parity centers. A fixed
 Clifford decoder exists only when the native band already centralizes
@@ -55,7 +57,7 @@ has no shared Pauli clean flip and retains center-dependent translations
 after all these enlargements. Its degree is only three and its endpoint
 ranks are fixed. These are mechanism limits, not an unrestricted lower bound.
 The next lower question is simultaneous native phase-defect cancellation
-between distinct endpoints when translations depend on the center.
+with a nonempty middle band and center-dependent translations.
 
 The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
 proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for

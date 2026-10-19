@@ -29,6 +29,7 @@ on the same circuit.
 | Unrestricted native degree results | At most one clean and two layers give XOR degree at most two; zero clean and three layers give sign/XOR bounds five/four |
 | Retained components | Both fixed endpoint clean-active ranks close, including arbitrary middle pairs; fixed quadratic-control polar rank closes in the no-pair reduction |
 | New lower component | Constant translations in the common monomial endpoint family force a full diagonal C3 operator, hence Boolean sign/XOR bounds three/two |
+| New uniform subcase | An empty middle native band closes at every control rank; polar rank at least four gives degree three, while rank two uses the retained finite-insertion bound |
 | New upper component | Constant-in-address readout accuracy suffices at fixed frame precision, under a uniform simultaneous resource hypothesis for the approximate source |
 | Still open | Growing-rank one-clean three-layer degree, a faster complete query meeting every budget, and matching general depth bounds |
 
@@ -63,6 +64,18 @@ chosen fiber encoders. For the actual clean-derived word, restoring the
 previous central cubic and quadratic signs keeps the sign bound three.
 The XOR bound applies after checking these hypotheses in the actual
 output-Hadamard sign representation.
+
+There is a further uniform consequence for the actual quadratic-control
+form. If the middle native band is empty, its matching defect is just
+the central sign $`(-1)^{b(z)p_u(z)}`$, with affine p_u. At polar rank
+at least four, Cliffordness forces p_u to be constant. The endpoint
+translations are then constant and the cubic theorem applies. Affine
+control reduces directly to two native bands; polar rank two uses the
+retained insertion bound $`D_{\mathrm{ins}}(0,0,0,3)`$. This closes the
+empty-middle case uniformly in all ranks. In the genuine quadratic
+case, equality of the two endpoint total-axis products up to sign also
+forces the middle list to be empty by the whole-word Galois identity
+and native independence.
 
 ## 3. What enlarging the center does and does not buy
 
@@ -104,7 +117,9 @@ endpoints; it does not rule out another paid derivative implementation.
 
 ## 4. The first lower inference still missing
 
-The genuinely open monomial case has some $`L_s\ne0`$. After the
+The genuinely open monomial case has some $`L_s\ne0`$ and a nonempty
+middle native band; its endpoint total-axis products differ at label level.
+After the
 displacement center is normalized, the quadratic-controlled Pauli
 contributes a central cubic defect $`b(z)\ell_u(z)`$ to each native
 matching equation. Its cancellation must come from the actual middle

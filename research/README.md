@@ -27,8 +27,10 @@ closes constant translations in the common monomial endpoint family with
 sign/XOR bounds three/two. Stronger genuine centers and a fixed-Clifford
 decoder criterion identify the remaining mechanism limit; an actual CCZ
 source retains center-dependent translations without any shared Pauli
-clean flip. The approximate query transfer now needs only constant source
-accuracy at fixed frame precision. A robust Gaussian-conjugator bound
+clean flip. A uniform corollary closes the quadratic-control form with
+an empty middle native band, using cubic closure at high control rank
+and finite insertion at rank two. The approximate query transfer now needs
+only constant source accuracy at fixed frame precision. A robust Gaussian-conjugator bound
 does not cover unrestricted approximate readout or joint indicators.
 R96 remains the strongest general bound, R79 remains selected Result D,
 and the complete-frame frontier is unchanged.
@@ -447,7 +449,9 @@ The [constant-translation closure](depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
 proves a full diagonal C3 conclusion when every monomial translation is
 constant, with arbitrary ranks and an actual commuting C3 middle.
 Only actual diagonal native sublists and a paid diagonal Clifford are
-peeled. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
+peeled. Its empty-middle corollary gives a uniform bound at every control
+rank; high rank forces constant translations, and rank two retains the
+finite-insertion bound. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
 adds characteristic active-axis sums and global axis-product centers,
 but a fixed Clifford decoder is possible only when the native encoder
 already centralizes the retained algebra. The [actual four-wire witness](depth/ACTUAL_NATIVE_CENTER_WITNESS.md)

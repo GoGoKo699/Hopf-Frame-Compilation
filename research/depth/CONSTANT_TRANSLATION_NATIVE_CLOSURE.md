@@ -251,6 +251,86 @@ directly, and the remaining complex diagonal two-band word is C3. The
 more general proof above first obtains that common center by retaining
 the identifiable diagonal endpoint sublists and their phases.
 
+### 5.1. An empty native middle list has a uniform bound
+
+There is a further closure in the actual
+[quadratic-control normal form](QUADRATIC_CONTROL_NATIVE_MATCHING.md#1-actual-input-controls-and-the-full-space-word)
+
+```math
+V=K_C^\dagger E_C^\dagger H^{b(z)}E_BE_AK_A
+  =e^{i\theta}D_g.
+```
+
+Retain all of that form's hypotheses: the three lists are globally
+independent native bands; R is a genuine shared computational center;
+the signed Hermitian H commutes with R and each middle axis; and b is
+Boolean quadratic in the actual center inputs. Suppose the B list is
+empty. Then, uniformly in width and control rank,
+
+```math
+\deg g\le D_{\mathrm{ins}}(0,0,0,3).              \qquad(11)
+```
+
+Here D_ins is the explicit
+[finite-insertion bound](FINITE_INSERTION_THREE_LAYER_FEATURES.md#1-the-full-space-expression-and-explicit-bound).
+The sharper cubic bound holds when the polar rank of b is zero or at
+least four; only rank two uses (11).
+
+For the high-rank assertion, the simultaneous native matching identities
+on $`S=R+\langle h\rangle`$ already place $`P_u`$ in the original
+computational center R when B is empty. They give
+
+```math
+P_u=H(J_uHJ_u^\dagger)=(-1)^{p_u(z)},\qquad
+C_uJ_u^\dagger=P_u^{b(z)}=(-1)^{b(z)p_u(z)},       \qquad(12)
+```
+
+where p_u is an affine center parity with its literal sign, and the
+right side is an actual diagonal Clifford. The native middle defect
+is exactly I because the list is empty. Thus the Boolean polynomial
+$`b p_u`$ has no cubic part. If the linear part ell of p_u is nonzero,
+choose affine center coordinates with ell as the first coordinate.
+Vanishing of the cubic part forces the quadratic part of b to have
+that coordinate in every quadratic monomial. Equivalently it is
+$`\ell\wedge m`$ for a linear m, and its polar rank is at most two.
+At polar rank at least four, every p_u is therefore constant.
+
+Consequently all computational-probe actions on S have zero binary
+displacement: they already fix R, and (12) now fixes the label h as
+well. Each endpoint image Q_A(s),Q_C(s) sends every computational Z
+to itself up to sign. Its permutation is a constant translation, so
+the theorem above proves $`\deg g\le3`$.
+
+At rank zero, $`H^{b(z)}`$ is an actual Clifford; absorbing it leaves
+only the two independent endpoint bands, whose diagonal theorem gives
+the same cubic bound. At rank two, the paid affine-control absorption
+leaves an insertion supported on H and two actual center parities.
+The finite-insertion theorem applies with relation ranks zero and
+support dimension at most three, proving (11). These are actual fixed
+Clifford changes with their retained phases and inverse words, not
+separate choices on center fibers. Restoring the known central cubic
+and real quadratic signs preserves the displayed bounds.
+
+There is a useful sufficient condition for the empty-list hypothesis.
+Let $`\mathsf P_A,\mathsf P_B,\mathsf P_C`$ be the literal products
+of all signed axes in the three native lists. For a genuine quadratic
+control, the
+[whole-word Boolean Galois identity](NATIVE_CENTER_SATURATION_LIMITS.md#4-whole-word-galois-products-supply-at-most-two-further-directions)
+is $`\mathsf P_A=\pm\mathsf P_B\mathsf P_C`$. If
+$`\mathsf P_A=\pm\mathsf P_C`$, it forces the binary label of
+$`\mathsf P_B`$ to vanish. Independence makes a nonempty B list
+impossible, so the preceding result applies. For affine b, do not invoke
+that genuine-control identity: direct Clifford absorption instead
+leaves the existing three-native-band bound five. Thus matching endpoint
+total products give the uniform sign bound
+$`\max\{5,3,D_{\mathrm{ins}}(0,0,0,3)\}=D_{\mathrm{ins}}(0,0,0,3)`$
+for every quadratic b. In the actual XOR sign representation the
+corresponding predicate bound is one less. This does not identify the
+individual endpoint axes or remove the distinct-total, nonempty-middle
+case.
+
+### 5.2. The remaining center-dependent case
+
 The unresolved case has nonzero center-dependent translation matrices
 in $`y\mapsto y+a_s+L_sz`$. Their nontrivial native endpoint activation
 cannot be peeled as computationally diagonal sublists by (6). Although
