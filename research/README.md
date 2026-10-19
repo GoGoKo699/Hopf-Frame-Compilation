@@ -70,8 +70,10 @@ clean-preserving Clifford summands without it, but their common-band
 displacement identities do not yet close Boolean matching. The
 [central-module profiles](depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
 now bound profile distortion and the escaping span for each actual
-matching action, without bounding the additional silent span. Their
-simultaneous matching and inside-span consequences remain unpaid. The
+matching action, without bounding the additional silent span. The original
+exceptional-axis module has dimension at most 16c modulo the center and
+can be absorbed into insertion dimension at most 17c. Simultaneous matching
+and propagation inside the old middle span remain unpaid. The
 unrestricted original-pair and higher-layer questions remain open.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.

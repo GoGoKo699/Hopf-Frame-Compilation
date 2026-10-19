@@ -252,11 +252,100 @@ Since Phi_z fixes R, this rank is $`\delta_B(\Phi_zp)`$, which is
 pointwise at most 4c by the profile theorem. Thus $`d_z\le8c`$. Reversing Φ_z gives the other direction.
 
 This bounds the full modulo-R span of escaping axes, stronger than only
-its quotient outside L+R. It remains a statement for each matching group
-element separately. It does not bound the union over z or classify
-transformations of axes remaining inside L+R. Those are the concrete
-remaining native-matching questions, and no bounded t or degree theorem
-is inferred.
+its quotient outside L+R. The transformed union over z requires care:
+the original exceptional axes admit a uniform bound, but all of their
+images need not. Neither conclusion below classifies transformations
+inside L+R or proves bounded t or Boolean degree.
+
+### 6.1. A bounded original exceptional module
+
+Write the actual endpoint band as a product of signed native rotations
+on independent commuting axes a_j. The Pauli label
+$`q(z)=K_AZ(z)K_A^\dagger`$ is linear in z. Its active-axis bits
+$`\lambda_j(z)=\langle a_j,q(z)\rangle`$ are therefore linear.
+The literal Clifford J_z has binary action
+
+```math
+\Phi_z=I+N_z,\qquad
+N_z(w)=\sum_j\lambda_j(z)\langle a_j,w\rangle a_j.
+```
+
+Orientation changes affect literal phases but not this binary action.
+Isotropy of the actual axis list gives $`N_zN_u=0`$ and
+$`\Phi_z^{-1}=\Phi_z`$. In particular N_z is linear in z.
+
+Let E be the set of original middle axes b_i for which some Phi_z sends
+b_i outside L+R. For every b_i in E, the map
+$`z\mapsto N_zb_i\pmod{L+R}`$ is nonzero linear. Thus b_i escapes
+for at least half of the uniformly distributed computational probes z.
+Choose d axes from E independent modulo R. For each z their images
+remain independent modulo R because Phi_z fixes R and is invertible.
+The escaping sublist has at most 8c members by Section 6. Averaging yields
+
+```math
+\frac d2\le8c,\qquad
+\dim\bigl((\mathrm{span}E+R)/R\bigr)\le16c.
+```
+
+This bounds a quotient span, not the number of exceptional physical axes:
+central relations may leave many original axes in the same quotient.
+Split the actual middle subband into E_bad on these exceptional axes
+and E_good on the others. The original insertion has support in H_0/R
+of dimension c. Hence the exact regrouping
+
+```math
+F'=F E_{\rm bad},\qquad
+F E_B=F'E_{\rm good}
+```
+
+places F' in a quotient-support space of dimension at most 17c.
+F' still commutes every E_good axis. This charges exactly the existing
+native gates and their actual inverses; no new synthesis, feature bound,
+or clean return is inferred. Good-axis images stay in the **old** L+R,
+not necessarily in the span of E_good plus R. Propagating the exceptional
+module and matching the surviving axes remain unpaid; iterating this
+absorption does not by itself give a bounded number of rounds.
+
+### 6.2. The transformed union can grow in the exported comparison
+
+The distinction is necessary even for an actual native finite-insertion
+comparison with a complete Boolean identity. On r arbitrary logical
+wires, r at least two, take
+
+```math
+E_A=E_C=\prod_{i=1}^r T_{Z_i},\qquad
+K_A=K_C=H^{\otimes r},\qquad
+B=X_1\cdots X_r,
+```
+
+```math
+E_B=T_B,\qquad F=T_B^\dagger,\qquad R=0.
+```
+
+All three native axis lists are independent. F commutes B and has two
+Pauli terms, so its insertion support budget has c=1. The full word
+and its actual inverse are literally identity, because the adjacent
+F and E_B cancel, followed by the actual endpoint inverses. Every input
+and reference is arbitrary.
+
+The actual commuting Clifford family is
+$`J_z=E_AX(z)E_A^\dagger`$, with the displacement formula above and
+pairwise zero products. Its only middle-axis image has binary label
+$`b+Z(z)`$; the Hermitian operator is
+$`i^{\mathrm{wt}(z)}BZ(z)`$, retaining the literal phase. Each nonzero
+z has one escaping axis. But the images at e_1, e_2 and e_1+e_2 sum
+to b in binary labels, and all images together span r+1 dimensions.
+Thus the transformed union is unbounded although the original exceptional
+space has dimension one.
+
+This is a guard for the exported finite-insertion hypotheses, not an
+original physical-pair Boolean counterfamily. No original clean-transition
+realization of this separately chosen F is asserted, and its c=1 is not
+identified with an original physical-pair quotient. An unused clean
+spectator can be returned exactly without adding that missing provenance.
+The example does not reopen the no-pair route or disprove a consequence
+using the full original-pair structure. It rules out inferring a union
+bound from the exported native comparison alone.
 
 
 ## 7. Exact checks and scope

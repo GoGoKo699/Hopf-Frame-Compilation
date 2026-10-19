@@ -125,9 +125,10 @@ sum of individually clean-preserving logical Cliffords from one shared
 actual silent band. Their displacement maps have pairwise zero products,
 which does not bound their ranks. The [central-module profiles](../research/depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
 now constrain every actual matching action without bounded silent span,
-including its escaping-axis span modulo the genuine center. Combining
-these per-action constraints into simultaneous native matching remains
-missing. Fixed positive pair count alone,
+including its escaping-axis span modulo the genuine center. The original
+exceptional-axis span is at most 16c modulo that center and can be absorbed
+into insertion dimension at most 17c. Simultaneous matching inside the old
+middle span and propagation of this exceptional module remain missing. Fixed positive pair count alone,
 growing pair count and higher-layer asymptotics remain open.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)

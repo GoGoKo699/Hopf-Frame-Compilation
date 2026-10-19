@@ -147,10 +147,18 @@ escaped middle-axis span modulo R is at most $`8c`$. The profiles retain
 central relation forms and native orientation signs; raw active rank
 cannot replace them.
 
-This does not bound the union of escaped axes, transformations within
-the original middle span plus R, or t from s alone. The next precise
-question is simultaneous native matching using the actual shared
-square-zero displacement family and all three profiles. Fixed positive
+Linearity of the actual matching family further bounds the span of
+**original** axes that escape for some probe by $`16c`$ modulo R.
+Absorbing their actual subband into the insertion gives quotient-support
+dimension at most $`17c`$. A native finite-insertion identity shows that
+the union of their transformed images can nevertheless grow; this guard
+has no asserted original physical-pair provenance. It does not reopen
+the closed no-pair case.
+
+The next precise question is simultaneous native matching inside the
+old middle span plus R and propagation of the bounded original exceptional
+module. The absorption does not prove a bounded number of rounds, bound
+t from s alone, or supply a new scalar-feature ledger. Fixed positive
 s alone, growing pair count, and the unrestricted one-clean three-layer
 degree question remain open. The closed no-middle-pair branch is not
 reopened.

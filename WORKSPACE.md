@@ -102,11 +102,14 @@ and have pairwise zero products, but this does not bound individual ranks.
 The [central-module profile theorem](research/depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
 now gives three simultaneous native profile distortions bounded by
 $`8c,4c,4c`$, with $`c\le3s+1`$, and a per-element escaped-axis span
-at most $`8c`$ modulo the genuine center. These hold without bounded t.
-The next missing operation is simultaneous native matching across the
-actual square-zero displacement family, including axes that stay inside
-the original middle span plus center. Per-element escape does not bound
-the union of escaped axes. Fixed positive s alone, growing s, and higher
+at most $`8c`$ modulo the genuine center. Linearity of the actual probe
+family further bounds the **original** exceptional-axis span modulo the
+center by $`16c`$; absorbing that subband gives insertion dimension at
+most $`17c`$. These hold without bounded t. The next missing operation is
+simultaneous native matching and propagation of that exceptional module,
+including axes that stay inside the old middle span plus center. A native
+finite-insertion guard shows that the union of transformed escaped axes
+can grow; it is not an original physical-pair counterfamily. Fixed positive s alone, growing s, and higher
 layers remain open; no bounded-t or degree conclusion is inferred.
 
 ### Stopped routes, reopening conditions and superseded instructions
