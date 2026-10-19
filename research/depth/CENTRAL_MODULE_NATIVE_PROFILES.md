@@ -111,10 +111,11 @@ k=|B(p)|. Since the actual projected list is independent, products of
 these axes give an injective map from $`\mathbb F_2^k`$ to Pauli labels. Define
 
 ```math
-K_p=\{u\in\mathbb F_2^k:
-       \text{the corresponding active-axis product lies in }R\},
-\qquad h_p=\dim K_p,
-\qquad r_p=\mathrm{rank}(u\cdot v\text{ restricted to }K_p).
+\begin{aligned}
+K_p&=\{u\in\mathbb F_2^k:\text{ the active-axis product lies in }R\},\\
+h_p&=\dim K_p,\qquad
+r_p=\mathrm{rank}(u\cdot v\text{ restricted to }K_p).
+\end{aligned}
 ```
 
 Signed representatives of a product affect only a character and do not
