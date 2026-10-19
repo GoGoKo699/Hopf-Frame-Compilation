@@ -755,3 +755,18 @@ it with W_3 without a bounded computational core. The scalar central
 feature complexity is already bounded by s; the simultaneous Clifford
 action is the unresolved part. No bound on t from s, unrestricted
 fixed-pair degree theorem, or new general depth bound is established.
+
+
+## 10. Native matching profiles modulo the genuine center
+
+The [central-module profile theorem](CENTRAL_MODULE_NATIVE_PROFILES.md)
+uses the complete Boolean comparison to bound three actual native
+profiles without bounding the silent span. With $`c\le3s+1`$, their
+variation under every member of the matching Clifford family is at
+most 8c, 4c and 4c. For each member separately, middle axes escaping
+the original middle span plus R have span at most 8c modulo R.
+The proof keeps the physical clean coordinate through the common-code
+reduction and uses the same genuine R at both logical endpoints.
+It does not bound the union of those escape spaces or classify
+rearrangements inside the original span plus R. Those simultaneous
+native matching steps, and the unrestricted degree question, remain open.

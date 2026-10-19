@@ -23,26 +23,42 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
+[current research outcome](depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
 root of two is another sufficient source, through twenty-four actual
-source/inverse calls. Exactly flat two-band sources have promoted error at most $`2\sqrt2\epsilon`$
-and exact borrowed signal/toggle return. Such a faster native block is
-still missing.
+source/inverse calls. The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
+now excludes every two-band complete indicator block at fixed positive
+normalization and fixed clean count, for sufficiently small fixed error
+and sufficiently large address size. The proof permits arbitrary dirty
+width, rejected action and common phase, without assuming flatness.
+Its explicit constants are extremely conservative; it is a source-class
+obstruction, not a dimension-growing unrestricted depth bound.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
 source band at both paid amplitudes for $`p\ge3`$. The [two-band half-amplitude screen](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands)
-now excludes that normalization as well. Two-band inverse-square-root-two
-transitions and sources with more bands remain open. The
-[overlap continuation](depth/OVERLAPPING_TWO_BAND_SOURCES.md) computes
-actual signal-mixing transitions and isolates the simultaneous nonscalar
-output-probe question; its parity-copy and particular-family screens
-are not unrestricted depth bounds. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
+retains its stronger finite-size bound at that normalization. The
+[overlap continuation](depth/OVERLAPPING_TWO_BAND_SOURCES.md) computes an
+actual involution repair and a quarter-turn screen surviving arbitrary
+logical Clifford dressing and spectators. The
+[simultaneous parity theorem](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
+adds a Reed–Muller restriction and a native rank condition, with a cheap
+nonindicator saturating that condition. These are useful component
+results; the Clifford-sum gap supplies the general two-band conclusion.
+The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
 fixes the standalone linear count order without proving growing depth.
+
+The next complete-block candidate must use at least three source bands
+within this fixed-clean, fixed-amplitude interface. The
+[generic promotion recurrence](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+has error at most $`16(3\sqrt2\epsilon+2\epsilon^2)`$ and depth at
+most 104 for a three-band source, retaining every actual inverse and
+return error. Exact borrowed signal/toggle return requires a separate
+flatness proof. The native complete block with linear count/width and
+quadratic Clifford cost remains unpaid.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
@@ -52,7 +68,14 @@ bounded. Pair count alone still does not supply that hypothesis; the
 new Section 9 retains bounded scalar features and individually
 clean-preserving Clifford summands without it, but their common-band
 displacement identities do not yet close Boolean matching. The
-unrestricted original-pair and higher-layer questions remain open. R96 remains the strongest general upper bound, R79 remains
+[central-module profiles](depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
+now bound profile distortion and the escaping span for each actual
+matching action, without bounding the additional silent span. The original
+exceptional-axis module has dimension at most 16c modulo the center and
+can be absorbed into insertion dimension at most 17c. Simultaneous matching
+and propagation inside the old middle span remain unpaid. The
+unrestricted original-pair and higher-layer questions remain open.
+R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 
 ## Endpoint results
@@ -607,8 +630,11 @@ unitary blocks to zero-clean indicators. Its generic source-call bound
 explains the retained growing-clean cost. The accompanying Fourier-word,
 Pauli-nullity and occupied-center notes distinguish architecture limits,
 unrestricted count constraints and the still-open physical-pair degree
-question. The main next question is native synthesis of the complete
-constant-amplitude block with the desired simultaneous resource bounds.
+question. Its earlier two-band resumption prompt is superseded by the
+[fixed-clean two-band source gap](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md).
+Native synthesis of a complete block with at least three source bands
+is the current candidate, with its generic recovery/return recurrence
+and simultaneous resource bounds still required.
 
 The [native-sharing continuation](depth/NATIVE_SHARING_SESSION_RESULT.md)
 adds the unrestricted active-T incidence condition and its separately

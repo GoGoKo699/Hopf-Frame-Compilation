@@ -139,3 +139,31 @@ superseded by these outcomes. Earlier half-amplitude, one-band,
 separated-band and no-middle-pair next steps retain their recorded stop
 conditions. No manuscript, selected theorem, source attribution or
 Hopf-QBP synchronization change is part of this continuation.
+
+## 5. Superseded by the fixed Clifford-sum source gap
+
+The [subsequent session](TWO_BAND_SOURCE_GAP_SESSION_RESULT.md) supersedes
+Sections 1 and 4's proposed general two-band resumption. The
+[fixed Clifford-sum theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) now excludes
+that entire complete-block interface at fixed normalization and uniformly
+bounded clean count, for sufficiently small fixed error and sufficiently
+large address size. It permits arbitrary rejected action and does not
+need flatness. Its conservative explicit constants do not give a useful
+small-address threshold or an unrestricted depth bound.
+
+The [actual involution repair and dressed quarter-turn screen](OVERLAPPING_TWO_BAND_SOURCES.md#44-an-actual-clifford-repair-of-the-involution-condition)
+also supersede the literal-family square test as the stopping diagnosis
+for independently dressed versions. The
+[simultaneous parity/rank condition](SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
+is saturated by a cheap nonindicator and is retained as a necessary
+component result. It does not reopen the stopped two-band interface.
+
+Continue source discovery with at least three physical source bands and
+the [generic promotion recurrence](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md),
+including approximate signal/toggle return unless exact flatness is
+separately proved. The original-pair scout now has
+[central-module profile and per-element escape bounds](CENTRAL_MODULE_NATIVE_PROFILES.md)
+without bounded silent span. Simultaneous native matching and inside-span
+mixing remain unresolved. WORKSPACE and the subsequent session are the
+current continuation instructions; the previous verification record
+does not certify their later changes.

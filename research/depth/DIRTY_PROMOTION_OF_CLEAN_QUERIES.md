@@ -543,9 +543,10 @@ $`\varepsilon=\min\{1/10,\tau/(2\sqrt2)\}`$. A genuine two-band
 source would give depth at most 80 with the displayed count, width and
 Clifford budgets, provided its complete logical transition and uniform
 source budgets exist. This is a conditional recurrence, not a compiler
-for that transition. In particular, the
-[overlap analysis](OVERLAPPING_TWO_BAND_SOURCES.md) does not yet supply an
-indicator source.
+for that transition. The subsequent
+[fixed Clifford-sum theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) excludes
+this two-band interface at sufficiently small fixed error and large p.
+Its arbitrary-accuracy indicator premise is therefore unavailable.
 
 The retained restored-address R98 allocation uses at most four completed
 indicators per query and at most K_* long-query calls. At final precision
@@ -564,6 +565,68 @@ be uniform in p at this fixed requested accuracy. Equation (19), its
 one-clean frame allocation, its small/narrow R96 fallbacks and its
 $`\log_2\log_2(n+4)`$ contribution remain unchanged. R96 is still
 the strongest unconditional general upper bound.
+
+### 6.2. The next source band retains the general leakage recurrence
+
+The fixed Clifford-sum obstruction applies to two physical source bands
+with uniformly bounded clean count and fixed positive block amplitude.
+A one-signal source U with **three** physical T bands is a concrete next
+interface. Its complete block must still satisfy
+
+```math
+\|J^\dagger UJ-I_p/\sqrt2\|\le\varepsilon,
+\qquad m=2^p.
+```
+
+The first unpaid operation is the actual complete logical transition,
+with common forward/actual-inverse bounds
+$`T_U,b_U=O_\varepsilon(m)`$ and $`G_U=O_\varepsilon(m^2)`$.
+An unspecified block dilation does not provide these bounds. The third
+band removes the automatic fixed-length Clifford expansion used in the
+source-gap proof: a two-band encoder's Pauli images need not be Clifford.
+This is a reason that proof no longer applies, not a construction or
+evidence that such a transition exists.
+
+Exact flatness must not be imported from Section 6.1. The general
+signal-S recovery and the approximate sector cover instead give
+
+```math
+\begin{aligned}
+\delta_{V_S}&\le3\sqrt2\varepsilon+2\varepsilon^2,\\
+\epsilon_{\mathrm{ind}}&\le16\delta_{V_S},\\
+T_{\mathrm{ind}}&\le24T_U+48m+8,\\
+G_{\mathrm{ind}}&\le24G_U+82m+104,\\
+b_{\mathrm{ind}}&\le m+b_U+2,\\
+D_T(\mathrm{ind})&\le24d_U+32\le104.
+\end{aligned}                                               \qquad(23b)
+```
+
+The twenty-four source/actual-inverse calls, positive-S overhead and
+even-m removal of eight T gates are unchanged. For
+$`0\lt\tau\le1`$, requesting $`\varepsilon\le\tau/72`$
+gives $`\epsilon_{\mathrm{ind}}\le\tau`$. The norm is on the
+complete arbitrary-input operator, including dirty work and references.
+The borrowed signal and toggle need only return approximately here;
+their return errors and signal leakage are included in (23b). No reset
+or fresh clean input is assumed between calls. The actual inverse has
+the same full error bound. If exact flatness is separately proved, the
+stronger error and exact return conclusions of (23a) apply instead.
+
+For restored-address R98 set $`\eta=2^{-L}`$ and request
+
+```math
+\varepsilon_L=\frac{\eta}{1152K_*}.
+```
+
+Four completed indicators per query and at most K_* long-query calls
+then add at most $`4K_*\cdot72\varepsilon_L=\eta/4`$.
+The retained real and complex total errors are
+$`149\eta/512`$ and $`789\eta/1024`$. With uniform source budgets,
+the conditional frame depth in (19) would be
+$`O_L(N/b^2+\log_2\log_2(n+4))`$, with the same one-clean
+allocation, dirty thresholds and R96 fallback branches. This remains
+conditional on the unpaid complete transition. A source-class failure
+does not establish an unrestricted depth bound, and R96 is unchanged.
 
 ## 7. Where the growing-clean candidate still pays depth
 
