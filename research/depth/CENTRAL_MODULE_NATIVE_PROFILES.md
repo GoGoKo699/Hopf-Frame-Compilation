@@ -348,6 +348,17 @@ The example does not reopen the no-pair route or disprove a consequence
 using the full original-pair structure. It rules out inferring a union
 bound from the exported native comparison alone.
 
+The [minimal physical-pair completion](MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
+provides actual one-pair provenance for a related occupied identity, but
+its cancellation leaves a required centrally controlled partner. For that
+fixed input and middle word, adding a silent band that moves the singleton
+prevents every one-band output completion to a Clifford target, including
+arbitrary output Cliffords and unused-sector extensions. Every complete
+target in the same family has a zero-clean three-band word with one
+middle axis, giving diagonal third-level closure and Boolean sign/XOR
+degree at most three/two. This narrows one physical mechanism; general
+inside-span matching remains open.
+
 
 ## 7. Exact checks and scope
 

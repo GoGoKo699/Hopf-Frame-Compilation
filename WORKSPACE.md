@@ -6,18 +6,21 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: two-band source gap and native profile scout
+## Current checkpoint: revision through polynomial-overhead indicator fusion
 
-**Fetched starting main:**
-`eb368d2fcccfac2c1dc22d66d0e8c8d979891384`, tree
-`715b96aa427daa89ce1fffd15a024b4494959740`, on 19 October 2026.
-Read the [current session outcome](research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
-for this continuation and its verification boundary. A fixed Clifford-sum
-gap excludes the complete two-band indicator source at sufficiently small
-fixed error and sufficiently large address size, for fixed amplitude and
-uniformly bounded clean count. The original physical-pair scout gains
-native profile constraints without assuming bounded silent span. No faster
-indicator or unrestricted depth bound is claimed. Fetch current main
+**Fetched revision baseline:**
+`3788564e260af794da683b72e1f251cd3bbd5783`, tree
+`0c1786e9d902176f3dbc0e99e15fa86c18fa30c9`, on 19 October 2026,
+after the preceding source-gap continuation merged as PR #201.
+Read the [revision outcome](research/depth/INDICATOR_FUSION_REVISION_RESULT.md)
+for this continuation and its verification boundary, and the
+[preceding source-gap outcome](research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+for the two-band theorem. The revision separates the unrestricted frontier
+from the paid source interfaces. A new root-fusion reduction absorbs
+polynomial indicator count/width overhead while retaining sublogarithmic
+depth, if such a complete source is constructed. The original physical-pair
+scout remains active. No faster indicator or unrestricted depth bound is
+claimed. Fetch current main
 before resuming; the checkpoint's starting commit is not a pin to an
 older branch.
 
@@ -33,6 +36,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Allocation and error | One clean qubit; real $`b\ge17(L+n+7)`$, complex magnitude $`b\ge17(L+n+8)`$; complete initialized-isometry error at most $`2^{-L}`$, including arbitrary dirty inputs and references |
 | Selected manuscript theorem | [R79](research/depth/UNIFORM_SUBTREE_DEPTH.md) remains Result D. The selected count frontier and literal allocations are settled; no practical crossover, efficient preprocessing or general native emitter is claimed |
 | Paid constructive transfer | [Restored-address R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) and its [approximate extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) need only constant source accuracy at each fixed final L, with uniform simultaneous count/width/Clifford/depth budgets |
+| New discovery relaxation | [Polynomial-overhead root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) turns a complete source on $`p-O_\tau(\log(p+2))`$ bits into a linear-count/width p-bit indicator. It uses eight source/actual-inverse calls, error at most eight times the source error, and an exact $`O_\tau(\log\log(p+4))`$-depth tail. This is a conditional reduction, not a faster source |
 | Latest positive component | [Clean-source promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) removes a uniformly bounded clean bank, permitting arbitrary off-code action; error is at most $`8\cdot2^k\epsilon`$. One-signal complete blocks at amplitude $`1/2`$ or $`1/\sqrt2`$ suffice through 24 source/actual-inverse calls. [Exactly flat two-band recovery](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence) improves promoted error to $`2\sqrt2\epsilon`$ and returns the borrowed signal/toggle exactly |
 | Unrestricted indicator count | [Pauli nullity](research/depth/INDICATOR_PAULI_NULLITY.md): for $`p\ge2`$, a zero-clean full-operator implementation with error below $`1/\sqrt2`$ needs at least $`2^p-1`$ T gates, with arbitrary dirty width and intermediate mixing. This is not a depth bound |
 | Current source obstruction | [Fixed Clifford-sum gap](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md): for fixed positive amplitude and uniformly bounded clean count, actual two-band sources fail at some fixed positive accuracy for all sufficiently large p, regardless of count or width. No flatness premise is needed. The general constants are conservative; [finite-p overlap screens](research/depth/OVERLAPPING_TWO_BAND_SOURCES.md) remain stronger on their particular families |
@@ -61,20 +65,41 @@ query is allowed. Success would improve the fixed-accuracy frame law
 through the paid R98 transfer; the resulting frame still has its retained
 $`\log_2\log_2(n+4)`$ contribution.
 
-**Resume outside the stopped two-band source class.** Read the
+**Revision: choose a native mechanism, not another band count.** Read the
 [fixed-sum proof](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md), the
 [complete transitions and dressed screens](research/depth/OVERLAPPING_TWO_BAND_SOURCES.md),
-and the [three-band continuation recurrence](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#62-the-next-source-band-retains-the-general-leakage-recurrence).
-The first unpaid operation is a **complete normalized logical transition**
-at amplitude $`1/\sqrt2`$ from an actual one-signal source with at least
-three physical T bands, or another explicitly paid interface. It must
-have uniform linear source T-count/dirty width and quadratic Clifford
-count at each requested accuracy. Recovery and clean removal are paid.
-For three bands their conditional depth is at most 104, and promoted
-error is at most $`16(3\sqrt2\epsilon+2\epsilon^2)`$; source tolerance
-$`\epsilon\le\tau/72`$ suffices. Signal/toggle return is approximate
-and included in this complete operator error unless exact flatness is
-proved separately. For R98 use $`\epsilon_L=2^{-L}/(1152K_*)`$.
+and the [paid source recurrence](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#62-the-next-source-band-retains-the-general-leakage-recurrence).
+No three-band native source word has been constructed. Removing a
+hypothesis of the two-band obstruction does not supply the missing
+logical transition. Exactly three bands is unnecessary: the sufficient
+goal is any qualifying sublogarithmic source depth.
+
+The chosen next question is now the [polynomial-overhead complete source](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
+For a b-bit address, construct a complete dirty indicator with
+$`T,w=O_\delta(2^b(b+2)^c)`$,
+$`G=O_\delta(4^b(b+2)^{c_G})`$, and
+$`d_E(b)=o(\log(b+2))`$, for every fixed requested delta and fixed
+resource exponents. The new root splitter and exact suffix pay its
+conversion to the original linear-budget target. The first unpaid
+operation is this **complete shallow source**, not its controlled use,
+root propagation, return or count normalization. The retained exact
+source has logarithmic depth, so substituting it leaves the frontier
+unchanged. A constant-error predicate for one output is insufficient.
+
+The [branch-difference recurrence](research/depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
+also permits a source stage whose parent-zero branch has arbitrary
+private action: only the relative parent-one action must implement the
+selected child toggle. Errors at untouched parents cancel, whereas
+independent errors among the selected parent's children can add. Its
+native parallel schedule remains a separate, charged obligation.
+
+The one-signal amplitude-$`1/\sqrt2`$ route remains an alternative.
+Its complete recurrence is $`D_T\le24d_U+32`$ and error at most
+$`16(3\sqrt2\epsilon+2\epsilon^2)`$; three bands give the
+conditional specialization 104. Signal/toggle return is approximate
+unless exact flatness is separately proved. Polynomial source overhead
+may now be normalized by fusion, but the two-band obstruction itself
+is independent of that overhead and remains in force.
 
 The new obstruction uses a fixed-length, fixed-coefficient sum of actual
 Cliffords for a projected output-probe defect. Its normalized Hilbert–Schmidt norm
@@ -112,6 +137,17 @@ finite-insertion guard shows that the union of transformed escaped axes
 can grow; it is not an original physical-pair counterfamily. Fixed positive s alone, growing s, and higher
 layers remain open; no bounded-t or degree conclusion is inferred.
 
+The [minimal actual-pair completion](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
+now tests that missing provenance directly. Its one original pair leaves
+a tied central partner after singleton cancellation. For the fixed input
+and middle word, any spectator band moving that partner prevents every
+one-band output completion to an occupied Clifford target, including
+arbitrary unused-sector extensions. More generally, every complete target
+in this fixed family has a literal zero-clean three-band representation
+with one middle axis. Diagonal targets are therefore diagonal third-level;
+Boolean sign degree is at most three and XOR degree at most two.
+Changed original sources and the general physical-pair question remain open.
+
 ### Stopped routes, reopening conditions and superseded instructions
 
 | Route or historical next step | Current decision |
@@ -122,16 +158,17 @@ layers remain open; no bounded-t or degree conclusion is inferred.
 | Growing signal-mixing rank-one-product family | A paid Clifford repair defeats the old wrong-square screen. The [quarter-turn coefficient screen](research/depth/OVERLAPPING_TWO_BAND_SOURCES.md#6-a-clifford-invariant-coefficient-screen-for-quarter-turn-transitions) excludes every independent Clifford dressing at explicit finite-p error. Reopen with a transition outside that quarter-turn class, also respecting the general two-band obstruction |
 | Simultaneous nonscalar output probes | [Parity support constraints](research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md) force linear native support, but a two-band identity transition saturates both directions. Rank saturation alone cannot supply the indicator's specified action; the fixed-sum theorem resolves the general two-band route |
 | Separated high-rank anticommuting reflections | [Stopped example](research/depth/JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition): disjoint source bands merge into one physical band. Reopen with actual overlapping dynamics; rank alone does not help |
-| Independent row/pulse synthesis | [Native sharing](research/depth/NATIVE_INDICATOR_SHARING.md) forces superlinear emitted count for too-small completed disjoint bank blocks. Reopen with growing shared bank action or joint synthesis across those boundaries |
+| Independent row/pulse synthesis | [Native sharing](research/depth/NATIVE_INDICATOR_SHARING.md) still forces superlinear emitted count for a standalone linear-budget bank. [Root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) now permits polynomial overhead in a smaller first bank; reconsider only a complete source with genuinely sublogarithmic depth and a full-bank error proof. The existing digital pulse retains excessive count and depth |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest session outcome](research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
-records the source gap and native profile continuation. Earlier prompts to
-search general two-band transitions or merely nonscalar output probes are
-superseded. The unrestricted pair-count question remains open.
+The [latest revision](research/depth/INDICATOR_FUSION_REVISION_RESULT.md)
+records the source relaxation, the actual remaining operation and the
+focused physical-pair continuation. Earlier prompts to search general
+two-band transitions, merely nonscalar output probes, or an unspecified
+three-band source are superseded. The unrestricted pair-count question remains open.
 Older session “next steps” are historical unless
 reaffirmed here. PR #196 already reconciled the documentation-only
 Hopf-QBP difference; [SYNC](SYNC.md) retains tracked upstream
@@ -157,7 +194,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/INDICATOR_FUSION_REVISION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

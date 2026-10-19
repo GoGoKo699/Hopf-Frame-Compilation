@@ -4,6 +4,15 @@
 [Complete approximate transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md) ·
 [Joint routing interfaces](JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
+**Current scope clarification.** The independent-row count theorem below
+still excludes a standalone linear-count bank. The later
+[polynomial-overhead fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+can absorb polynomial overhead in a smaller first bank, so that count
+objection alone no longer retires a source at the relaxed interface.
+The explicit digital pulse below has exponential overhead and excessive
+depth; it remains unsuitable. A replacement would need both the complete
+bank error proof and genuinely sublogarithmic native depth.
+
 A selective inversion pulse supplies a dirty scalar sign through an actual
 adjoint, without an adiabatic or initialized-eigenstate premise. Its
 Hamming-distance profile can control the complete bank with a logarithmic

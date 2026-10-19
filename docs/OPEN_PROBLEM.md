@@ -66,19 +66,22 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Native sharing for approximate indicators | [Incidence and block bounds](../research/depth/NATIVE_INDICATOR_SHARING.md): at full-operator error below one half, each bank observable needs p active T occurrences in an unrestricted zero-clean native word. Separately emitted b address-preserving disjoint bank blocks cost at least bp T gates; no unrestricted growing-depth conclusion follows |
 | Table-specific source gauges | [Paid syndrome interface](../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md) allows arbitrary motion inside fibers of the table's probed syndrome. Full row rank recovers the complete indicator gauge; no low-rank promise or faster general R98 compiler is supplied |
 | Bounded-clean and one-signal indicator sources | [Paid clean removal](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) converts complete bounded-clean queries to zero-clean words, including leakage and arbitrary off-code action. A one-signal block near the complete query at amplitude one half or inverse square root of two suffices through 24 source calls. The faster source remains missing; growing clean banks retain exponential generic call overhead |
+| Polynomial-overhead complete indicator fusion | [Paid root splitter and exact suffix](../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) absorb polynomial source T-count/dirty overhead and polynomial overhead over quadratic Clifford count into the original linear-budget indicator. Eight source/inverse calls give error at most eight times the source error and add only $`O_\tau(\log\log(p+4))`$ depth. A sublogarithmic complete source, including at a suitable slowly growing clean budget, remains unconstructed |
+| Dirty-tree differential compilation | [Full branch-difference recurrence](../research/depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md) gives $`e_i\le e_{i-1}+\delta_i`$ and complete error at most $`2\sum_i\delta_i`$. Common private action and untouched-parent errors cancel; independent sibling errors can add. Actual native scheduling, inverses and all final return remain charged |
 | Robust indicator count and incidence limit | [Pauli-nullity calculation](../research/depth/INDICATOR_PAULI_NULLITY.md) gives $`T\ge m-1`$ for $`p\ge2`$ and full-operator error below $`1/\sqrt2`$, with unrestricted native mixing and dirty width. A one-layer word saturates the earlier incidence criterion while failing the target; no growing-depth bound follows |
 | Joint Fourier-word screens | [Robust loop and block spectra](../research/depth/JOINT_FOURIER_WORD_LIMITS.md) retain their finite-size bounds: one source band is excluded at both paid amplitudes for $`p\ge3`$, and two-band half-amplitude compression has floor $`\sin(\pi/8)/(4\sqrt2)`$. The general fixed-clean two-band interface is now covered by the separate source theorem below |
 | Fixed-clean two-band source gap | [Fixed Clifford-sum theorem](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md) excludes complete indicator blocks at every fixed positive normalization and fixed clean count, for sufficiently small fixed error and sufficiently large p. Arbitrary dirty width, Clifford mixing, common phase and rejected action are allowed; flatness is unnecessary. The explicit threshold is extremely conservative. Three or more source bands and unrestricted depth remain open |
 | Dressed overlap and simultaneous parity screens | [Quarter-turn probe screen](../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md#6-a-clifford-invariant-coefficient-screen-for-quarter-turn-transitions) survives independent logical Clifford dressing and spectators, including the repaired involutory family. [Simultaneous output parities](../research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md) give a Reed–Muller restriction and linear native rank requirement; a cheap nonindicator saturates the rank condition, so it is not sufficient |
 | Original physical pairs under occupied Booleanity | [Common-center reduction](../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md) gives transition quotient dimension at most $`3m+2`$ and residual at most $`3m+1`$ for m physical pairs and nonempty endpoint active lists. Silent lists remain independent and central features have bounded degree. This does not bound total Pauli support or close fixed-pair degree; growing pair count and higher layers remain open |
 | Original-pair profiles without bounded silent span | [Central-module profiles](../research/depth/CENTRAL_MODULE_NATIVE_PROFILES.md) bound changes of three exact native profiles along every actual Boolean matching action and bound each action's escaping span modulo the genuine center. These bounds are uniform in additional silent span; they do not bound the union over actions, classify inside-span mixing, or prove fixed-pair degree closure |
+| Minimal actual-pair completion | [Original one-pair source](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md) produces a tied central partner after singleton cancellation. For the fixed input/middle word, a spectator band moving that partner permits no one-band output completion to any Clifford target, even with arbitrary unused-sector freedom. Every complete target in this family has a zero-clean three-band word with one middle axis: diagonal targets are diagonal third-level, with sign degree at most three and XOR degree at most two. Changed sources and general physical pairs remain open; this is not an unrestricted depth bound |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+[current revision](../research/depth/INDICATOR_FUSION_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -92,23 +95,30 @@ linear-combination operation. The [overlap examples](../research/depth/OVERLAPPI
 retain their finite-size lessons: involutivity can be repaired, but the
 dressed quarter-turn family still fails a complete indicator probe.
 
-The next source question therefore permits at least three physical T
-bands. The [generic one-signal recurrence](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+The [generic one-signal recurrence](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 pays twenty-four source/actual-inverse calls, with complete promoted error
 at most $`16(3\sqrt2\epsilon+2\epsilon^2)`$ and depth at most 104
 for a three-band source. Exact signal/toggle return needs separately
 proved flatness; otherwise their return errors remain included. The first
-unpaid operation is still a native complete indicator block with linear
-T-count/dirty width and quadratic Clifford count, not its amplification
-or promotion.
+unpaid operation in that route is the complete logical transition.
+No three-band native source has been supplied, and adding a band alone
+does not improve a resource bound.
 
-A growing clean bank retains exponential generic source-call overhead;
-this does not exclude joint source-dependent synthesis. The source
-screens retain their stated architecture and parameter scope.
-The unrestricted indicator nullity result concerns count, while the
-native incidence theorem still requires cross-bank sharing without
-implying a growing depth bound. R96 and the complete-frame frontier
-are unchanged.
+The revised constructive question is the
+[polynomial-overhead complete source](../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
+Use it only on $`p-O_\tau(\log(p+2))`$ address bits, pay its
+controlled root splitter, and complete the logarithmic remainder exactly.
+Polynomial overhead is thereby compatible with linear final T-count and
+dirty width. This reopens polynomial-cost row mechanisms only if they
+also supply complete-bank accuracy and genuinely sublogarithmic depth;
+the retained digital pulse does not. A slowly growing clean bank can fit
+the new recurrence, but the source budgets must hold uniformly at the
+promoted precision and its exponential call multiplier still costs depth.
+
+The source screens retain their architecture and parameter scope. The
+unrestricted indicator nullity result concerns count; the incidence
+theorem gives no growing depth bound. R96 and the complete-frame frontier
+are unchanged until the missing shallow source is constructed.
 
 The retained [native-orbit theorem](../research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
 closes growing total displacement in the actual no-middle-pair reduction.

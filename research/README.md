@@ -23,9 +23,15 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+[current research outcome](depth/INDICATOR_FUSION_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
-target. [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+now permits polynomial count/width overhead in a smaller complete source:
+eight source/inverse calls and an exact logarithmic-remainder tree restore
+the linear-budget target. Its depth is eight source depths plus
+$`O_\tau(\log\log(p+4))`$ and its full error is at most eight times
+the source error. A genuinely sublogarithmic source remains missing.
+[Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
 root of two is another sufficient source, through twenty-four actual
@@ -51,14 +57,18 @@ results; the Clifford-sum gap supplies the general two-band conclusion.
 The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
 fixes the standalone linear count order without proving growing depth.
 
-The next complete-block candidate must use at least three source bands
-within this fixed-clean, fixed-amplitude interface. The
+No three-band complete source word has been constructed. The
 [generic promotion recurrence](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 has error at most $`16(3\sqrt2\epsilon+2\epsilon^2)`$ and depth at
 most 104 for a three-band source, retaining every actual inverse and
 return error. Exact borrowed signal/toggle return requires a separate
-flatness proof. The native complete block with linear count/width and
-quadratic Clifford cost remains unpaid.
+flatness proof. These are paid conditional wrappers, not a candidate
+implementation. Exactly three bands is unnecessary. The revised first
+unpaid operation is a complete sublogarithmic-depth indicator with the
+polynomial-overhead budgets allowed by root fusion. Its
+[branch-difference refinement](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
+permits arbitrary common private action and cancels errors at untouched
+parents, while retaining sibling error and native scheduling costs.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
@@ -74,6 +84,13 @@ matching action, without bounding the additional silent span. The original
 exceptional-axis module has dimension at most 16c modulo the center and
 can be absorbed into insertion dimension at most 17c. Simultaneous matching
 and propagation inside the old middle span remain unpaid. The
+[minimal original-pair completion](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
+retains the central partner of an actual one-pair cancellation; moving
+that partner blocks every one-band output completion to a Clifford
+target for this fixed source. Every complete target in the same family
+has a literal zero-clean three-band word with one middle axis; diagonal
+targets are diagonal third-level, with sign/XOR degree at most three/two.
+It does not close the general pair case. The
 unrestricted original-pair and higher-layer questions remain open.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
