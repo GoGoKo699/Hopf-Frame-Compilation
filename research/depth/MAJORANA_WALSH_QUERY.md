@@ -4,6 +4,11 @@
 [Conditional word-query transfer](SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally) ·
 [Retained Majorana source model](SOURCE_T_DEPTH.md)
 
+The [exact dual-readout continuation](DUAL_FRAME_READOUT_BARRIER.md)
+gives a superlinear T-count bound for the standalone Q with unrestricted
+Clifford interlayers and returned helpers. That bound does not cover the
+fused indicator or ordinary approximation.
+
 Simultaneous real diagonalization of XOR translations gives an exact
 independent-Pauli probe without implementing a selected permutation of
 physical qubits. All addressing between its fixed source calls is

@@ -15,10 +15,10 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: computational phase and complete native sources
+## Current checkpoint: global native matching and exact readout cost
 
-The [current revision](research/depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
-began at verified main `5b8e063` (PR #190). R96 remains the strongest
+The [current revision](research/depth/SHARED_CENTER_SESSION_RESULT.md)
+began at verified main `4e83fe1` (PR #191). R96 remains the strongest
 unconditional general upper theorem, with depth
 $`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
@@ -26,61 +26,56 @@ Result D. Optimal general depth remains the destination.
 
 The [fixed-rank theorem](research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
 retains its closure for both endpoint clean-active ranks fixed, including
-arbitrary middle pairs. The sharper Pauli-interior, rank-one and genuine
-exceptional rank-two cases remain in force. These are components toward
+arbitrary middle pairs. The Pauli-interior, rank-one, genuine exceptional
+rank-two, shared-clean-flip and actual-source noncentral-parity cases
+remain closed under their stated hypotheses. These are components toward
 uniformity as ranks grow, not a changed complete-frame frontier.
 
-The [four-factor interface](research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
-now has a jointly independent C-side union whenever its coupling is
-nonzero. A common clean-odd Pauli commuting all original bands gives
-an actual zero-clean extension at unchanged three-band depth, hence
-sign degree five and XOR degree four. Its absence inside the chosen
-active span is a linear-algebra diagnosis of that split.
+The [computational phase reduction](research/depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
+retains the actual no-pair transition as a central cubic sign and one
+quadratic-controlled Pauli between three independent logical native bands.
+The [new global matching theorem](research/depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
+closes fixed polar rank by paid Clifford absorption and finite insertion.
+At arbitrary nonzero polar rank, the Clifford images of every computational
+probe preserve the middle native span. The endpoint probe actions agree on one common
+invariant isotropic algebra. Its displacement span enlarges the genuine
+shared center; paid normalization makes the endpoint images commuting
+monomial Cliffords with affine center-controlled translations.
 
-The [computational phase theorem](research/depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
-connects actual native probes to target derivatives. The zero-character
-determinant branch has a quartic-plus-quotient factorization independent
-of the intrinsic determinant codimension. Its derivative mask space
-cannot be enlarged just by choosing more clean flips for the same full
-operator, and an easy CCZ family has zero coverage at growing arity.
-A separate no-pair argument localizes higher-degree dependence without
-that determinant premise. Boolean reality and native axis independence
-also force the active center to transport as Paulis: a paid diagonal
-Clifford puts it in computational coordinates. The actual clean transition
-then reduces to a central cubic sign and one quadratic-controlled Pauli
-between three independent logical native bands. A noncentral common-parity
-subcase has sign/XOR bounds five/four: the actual clean-derived no-pair
-circuit forces the needed independence and separate endpoint alignments,
-including endpoint rank two.
+The first unsupported inference is a global decoder or a uniform bound
+on relative phases across that center. Fiberwise elimination does not
+supply the decoder, and quadratic work-coordinate phases cannot be
+removed freely. Sliding the insertion produces Clifford involutions,
+not generally native Pauli axes. These are limitations of the present
+arguments, not obstructions to the unrestricted degree conjecture.
+An actual cubic-target family has unbounded raw control polar rank,
+but has a shared clean flip and is already in a closed branch.
+The next lower question is global phase matching in the monomial
+algebra while retaining the original native lists.
 
-The first remaining lower inference is global-center matching. Taking
-a center fiber can introduce unbounded relations even in the retained
-identity example. A bounded-relation theorem cannot be applied there
-without a new argument retaining the original global lists and their
-cancellations. An arbitrary quartic correction is not a free gate.
-The next question is that global phase constraint, or a complete native
-family with growing target degree. In the remaining fixed representation,
-every normalized common endpoint computational parity has a common
-physical lift commuting every original band. The unresolved step is
-bounding relative phases across that genuine shared center.
+The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
+proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for
+$`m=2^p`$ modes, hence $`\Omega(m\sqrt{\log m})`$. It permits
+arbitrary Clifford interlayers and returned clean/dirty helpers, so exact
+linear-count standalone readout is excluded beyond the Gaussian model.
+It does not obstruct the complete indicator: R91 already gives O(m)
+T-count, O(m) dirty width, quadratic Clifford count and
+$`O(\log(p+2))`$ depth. A paid six-call reduction needs only Q,
+without a separate flat-source premise. Full-isometry source error tau
+would give indicator error at most $`6\tau`$, including work return;
+the exact denominator argument gives no uniform approximate lower bound.
 
-The [Majorana source audit](research/depth/MAJORANA_WALSH_QUERY.md) supplies
-a full-input native independent-Pauli probe with $`T=2mp`$,
-$`G=O(m^2)`$, depth at most $`4p`$ and carrier width $`m/2`$ for
-$`m=2^p`$. It misses the improved-query budgets. Sharp source costs
-$`mp/2`$ and p layers hold only while Clifford blocks preserve the
-Majorana span. A single flat source avoids that matrix-count bound,
-but its complete dirty dual-frame readout remains unpaid at the desired
-cost. The additional unrestricted flat-source obstruction is constant,
-not dimension growing. The parallel upper question remains joint native
-synthesis of the complete probe/readout; R91 is the fair baseline and
-R98's full transfer is still conditional.
+The next upper question is joint complete-query synthesis or an approximate
+source with every accuracy-dependent budget paid. R98's frame transfer
+is still conditional and currently assumes exact queries. Resynthesizing
+this exact standalone Q cannot reach its required linear T-count.
 
-The [previous checkpoint](research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
-retains finite insertion and the easy-target counterfamilies. Every
-column, literal phase, arbitrary dirty input, reference, actual inverse,
-leakage and work-return requirement remains in force. Final manuscript
-drafting is separate.
+The [previous checkpoint](research/depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+retains the computational derivative factorizations, actual center
+normalization and native Majorana source audit. Every column, literal
+phase, arbitrary dirty input, reference, actual inverse, leakage and
+work-return requirement remains in force. Final manuscript drafting is
+separate.
 
 ## Mandate
 
