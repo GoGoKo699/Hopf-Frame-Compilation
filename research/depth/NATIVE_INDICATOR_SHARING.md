@@ -211,6 +211,14 @@ that sharing can recover linear count; its remaining logarithmic
 address depth is the cost to improve. The current R98 transfer still
 requires all counts, widths, accuracy and depth on the same source.
 
+The later [root-fusion reduction](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+places that sharing in an outer dirty tree: a smaller complete source
+may have polynomial address overhead, which the sparse first stage
+absorbs. Thus (8) continues to constrain standalone emitted banks but
+does not exclude polynomial-cost independent rows inside that smaller
+source. Its joint full-bank error and sublogarithmic native depth are
+still unpaid. No unrestricted depth claim is added by this relaxation.
+
 The [focused fixtures](../../tests/test_native_indicator_sharing.py)
 check native support propagation and the signed-translation distinction.
 The all-width incidence and block bounds are analytic statements above;

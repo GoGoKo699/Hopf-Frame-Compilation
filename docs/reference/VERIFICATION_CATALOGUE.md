@@ -10,16 +10,22 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+The [current revision](../../research/depth/INDICATOR_FUSION_REVISION_RESULT.md)
+adds two exact branch-difference receipts and two minimal physical-pair
+receipts. Polynomial-overhead fusion and its full resource, error and
+return recurrence are analytic compositions of retained native primitives.
+The missing shallow complete source is not supplied by a finite check.
+R96, selected R79 and the unrestricted depth frontier remain unchanged.
+
+The [preceding revision](../../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
 adds focused receipts for the direct projected source defect, repaired
 and Clifford-dressed overlap sources, simultaneous parity saturation,
 and central-module native profiles. The catalogue records their scope;
 execution and full validation status belong to the reviewed-tree session
 record. The fixed Clifford-sum gap and uniform profile bounds are analytic
-theorems, not extrapolations from these fixtures. The next source candidate
-uses at least three bands with the generic error/return recurrence;
-no faster indicator or unrestricted depth theorem is claimed. R96 and
-selected R79 are unchanged.
+theorems, not extrapolations from these fixtures. Its generic three-band
+wrapper is conditional; the current revision does not treat it as an
+implemented source.
 
 The [preceding overlap revision](../../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
 retains complete overlap contractions, generic transported probes and
@@ -45,6 +51,9 @@ two-layer theorem without an additional native fixture.
 | Outer-overlap rigidity R97 | [Detailed finite checks](#detailed-finite-checks), [outer-overlap proof](../../research/depth/OUTER_OVERLAP_RIGIDITY.md) | Nine exact fixtures check native axis compatibility, transverse gauge, displayed overlap and center mixing, a distinct three-layer resplitting, and the same-space descent obstruction. The bounded-misalignment gap and its uniform aligned case remain analytic |
 | Query-depth reformulation R98 | [Query/frame identities](../../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), [conditional transfer](../../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md), [paired router](../../research/depth/PAIRED_PERMUTATION_ROUTING.md) | Exact small native query/frame words, actual-inverse phase falsifier and initialized leakage hybrid; paired routing and selected-address packing are tested on complete arbitrary inputs, including a body that temporarily changes its selector. The conditional general-frame resource/error assembly is analytic and assumes an improved query interface |
 | Fixed-clean two-band source gap | [Proof home](../../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md), [direct-defect receipts](../../tests/test_fixed_clifford_source_gap.py) | Nonflat one- and two-clean sources check the complete projected defect, literal Clifford expansion, physical trace normalization and actual inverses; bounded arithmetic checks the sparse probe and explicit gap exponents. The width-independent Clifford-sum gap and eventual-address source obstruction are analytic, with fixed clean count and normalization |
+| Polynomial-overhead indicator fusion | [Proof home](../../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Analytic two-source controlled splitter and four-traversal root/leaf echo import the retained native bilinear batch and exact nonuniform tree. Eight source calls, full error, width reuse, polynomial normalization and the slowly growing clean window are proved conditionally; no faster source or scalable emitter is inferred |
+| Dirty-tree branch differences | [Proof home](../../research/depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md), [exact fixtures](../../tests/test_dirty_tree_differential_recurrence.py) | Every physical column and actual inverse checks common nonreturned private work, selected-parent cancellation, the complete echo and sibling error addition. The all-size recurrence and compatible native scheduling obligation remain analytic |
+| Minimal original physical-pair completion | [Proof home](../../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md), [exact fixtures](../../tests/test_minimal_physical_pair_completion.py) | Literal coordinate bands, all physical columns including the unused clean sector, the tied residual partner, actual inverse and positive-S counts. The Clifford-target completion obstruction and complete zero-clean rewrite are analytic. The latter gives diagonal third-level closure and sign/XOR degree at most three/two for this fixed family; no general pair-count or depth bound follows |
 | Overlapping and Clifford-dressed sources | [Proof home](../../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md), [probe fixtures](../../tests/test_overlapping_source_probes.py), [signal-mixing fixture](../../tests/test_signal_mixing_overlap.py), [dressed-source receipts](../../tests/test_dressed_signal_overlap.py) | Exact all-column contractions, non-Clifford residual guard, involution repair, literal source/recovery inverses, return and positive-S counts. Small quarter-turn probes include a nonzero-trace Clifford involution. The dressed coefficient floors and generic promotion bounds remain analytic; involutivity alone does not establish the indicator action |
 | Simultaneous output parities | [Proof home](../../research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md), [native saturation receipts](../../tests/test_simultaneous_output_parities.py) | Complete one-band and two-band sources, actual inverses, accepted transitions and output-mask support certify cheap nonindicators with saturated native rank; the two-band identity transition saturates both directions. The Reed–Muller restriction and rank lower requirement are analytic necessary conditions, not a construction or unrestricted depth bound |
 | Original-pair bounded additional span | [Proof home, Section 8](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates) | Analytic common-coordinate feature proof bounds degree at fixed original pair count and fixed additional coupled silent-axis span. Existing occupied-center fixtures retain their original roles; no new finite fixture substitutes for the uniform theorem |
