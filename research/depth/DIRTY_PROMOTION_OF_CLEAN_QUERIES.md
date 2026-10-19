@@ -538,7 +538,7 @@ exactly invariant. The actual adjoint of the entire promoted word obeys
 the same full error bound against the inverse query. No independent
 return promise or reset is used at any later call.
 
-For $`q=m=2^p`$ and $`0<\tau\le1`$, it is enough to request
+For $`q=m=2^p`$ and $`0\lt\tau\le1`$, it is enough to request
 $`\varepsilon=\min\{1/10,\tau/(2\sqrt2)\}`$. A genuine two-band
 source would give depth at most 80 with the displayed count, width and
 Clifford budgets, provided its complete logical transition and uniform

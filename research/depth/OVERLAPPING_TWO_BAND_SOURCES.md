@@ -107,7 +107,7 @@ It follows that T_j is a Hermitian unitary and $`[T_j,A]=0`$. Its occupied trans
 
 ```math
 L^\dagger Z_jL
-=J^\dagger U_A^\dagger T_jU_AJ.                 \tag{P1}
+=J^\dagger U_A^\dagger T_jU_AJ.                 \qquad\text{(P1)}
 ```
 
 To verify (P1), start from $`2K^\dagger Z_jK=J^\dagger U_A^\dagger(I+B)CU_AJ`$ and insert the A-positive projector on both sides. The terms C_- and BC_+ vanish between these projectors, leaving C_++BC_-=T_j. This calculation includes every logical/dirty column and does not assume a computational basis for A.
@@ -123,7 +123,7 @@ For $`\|K-I_p/\sqrt2\|\le\epsilon\le1/10`$, the retained Clifford-gap argument f
 \le2\sqrt2\epsilon.
 ```
 
-For p at least four, the retained [one-clean two-band real-diagonal floor](TWO_LAYER_DIAGONAL_RIGIDITY.md#4-uniform-robust-boolean-query-obstruction) yields a contradiction if $`2\sqrt2\epsilon<\delta`$. Thus an accurate source below $`\delta/(2\sqrt2)=\sin(\pi/8)/8`$ must, for every original output Z_j, have $`ACA`$ different from both C and -C. The same reasoning can be applied to any original output parity whose target conjugate has degree greater than three.
+For p at least four, the retained [one-clean two-band real-diagonal floor](TWO_LAYER_DIAGONAL_RIGIDITY.md#4-uniform-robust-boolean-query-obstruction) yields a contradiction if $`2\sqrt2\epsilon\lt\delta`$. Thus an accurate source below $`\delta/(2\sqrt2)=\sin(\pi/8)/8`$ must, for every original output Z_j, have $`ACA`$ different from both C and -C. The same reasoning can be applied to any original output parity whose target conjugate has degree greater than three.
 
 This is a necessary non-scalar-commutator condition on a successful general two-band source. It is not a lower bound on unrestricted indicator depth.
 
@@ -244,7 +244,7 @@ Since ⟨±|exp(−iπX_a/4)=e^{∓iπ/4}⟨±| and conjugating V by ∏Z_j give
 L:=\sqrt2 J^\dagger UJ
  =\frac{1-i}{2}I+\frac{e^{-i\pi/4}}2(V-V^\dagger)
  =e^{-i\pi/4}\left[\frac I{\sqrt2}+\frac{V-V^\dagger}{2}\right].
-\tag{O1}
+\qquad\text{(O1)}
 ```
 
 This equality holds on the entire R Hilbert space and after tensoring any external reference.
@@ -259,7 +259,7 @@ Every eigenvalue of ∑X_j is odd, so F is a Hermitian involution. Equation (O1)
 
 ```math
 L=\frac{e^{-i\pi/4}}{\sqrt2}(I-iF),\qquad L^2=-F.
-\tag{O2}
+\qquad\text{(O2)}
 ```
 
 In particular L is unitary and the source is exactly flat at 1/√2 amplitude. The equal-sector lemma then proves that the actual clean-image reflections A=U_A Z_a U_A† and B=U_B Z_a U_B† anticommute.
@@ -267,7 +267,7 @@ In particular L is unitary and the source is exactly flat at 1/√2 amplitude. T
 F is a nontrivial Clifford. To see this explicitly, use X-basis labels z_j∈{0,1}, w=∑z_j. Its eigenvalue is (−1)^{q_k(z)}, where
 
 ```math
-q_k(z)=\sum_{i<j}z_i z_j+a_k\sum_jz_j+c_k\pmod2,
+q_k(z)=\sum_{i\lt j}z_i z_j+a_k\sum_jz_j+c_k\pmod2,
 ```
 
 and (a_k,c_k) equals (1,0),(0,0),(1,1),(0,1) when k modulo 8 is respectively 1,3,5,7. Thus F is a quadratic Boolean phase in the X basis. Both signs occur for every odd k≥1: the displayed quadratic is nonconstant for k≥3, and is the single input bit for k=1. The transition has eigenvalues −i when q_k=0 and 1 when q_k=1. For k=1, explicitly,
@@ -292,7 +292,7 @@ They are independent commuting axes, all active on the respective original Pauli
 N_A=\begin{pmatrix}0&I\\0&0\end{pmatrix},\qquad
 N_B=\begin{pmatrix}E&I\\0&E\end{pmatrix},\qquad
 N_A N_B=N_BN_A=\begin{pmatrix}0&E\\0&0\end{pmatrix}\ne0.
-\tag{O3}
+\qquad\text{(O3)}
 ```
 
 The nonzero product has rank one, while both individual active axis spans have dimension n. The source bands genuinely involve the signal and overlapping physical axes. This establishes realizability of the proposed nonzero-product geometry; it does not establish that this geometry is necessary for an eventual indicator source.
@@ -303,7 +303,7 @@ In the positive-S Clifford alphabet, both U and its actual inverse obey
 
 ```math
 T_U=2(k+1),\qquad D_T(U)\le2,\qquad G_U\le9k+9.
-\tag{O4}
+\qquad\text{(O4)}
 ```
 
 Indeed U_A and its inverse cost 3k+2 Cliffords; U_B and its inverse cost 6k+7 Cliffords. D and D† each cost 2(k+1) Hadamards. U_B contains one C and one C†, which together cost 4k+4 positive-S/CNOT Cliffords. The final H_a adds one. Width is exactly k+1, with one initialized signal and no private work. Other arbitrary dirty spectators can be tensored with identity and return exactly. There is no approximate synthesis error in these identities.
@@ -312,7 +312,7 @@ The existing signal-S recovery applies to this flat unitary block as an initiali
 
 ```math
 V_S=US_aU^\dagger S_aU,\qquad V_SJ=e^{i\pi/4}JL.
-\tag{O5}
+\qquad\text{(O5)}
 ```
 
 It has T≤6(k+1), D_T≤6, forward G≤27k+29 and actual-inverse G≤27k+33. The signal returns exactly. The displayed fixed phase is retained. This is the return ledger for L. For an arbitrary exactly returned L, the borrowed-sector wrapper still has the exact conjugation identity in Section 6.1 of the clean-removal theorem. It yields a good XOR approximation only when L approximates that complete XOR target; unitarity alone does not supply it.
@@ -334,7 +334,7 @@ because both signs occur in F. Consequently
 
 ```math
 \inf_{|\gamma|=1}\|\gamma J^\dagger UJ-Q/\sqrt2\|\ge\frac12.
-\tag{O6}
+\qquad\text{(O6)}
 ```
 
 This is a source-specific operator-norm floor, including every logical column, dirty input and external reference. It persists when k=O(2^p), although (O4) then fits the desired source count/width/Clifford budget. The source therefore fails before approximate indicator promotion: its complete logical action has the wrong square. It does not fail because alignment, source return, inverse execution, or physical overlap were left unpaid.
