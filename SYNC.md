@@ -20,7 +20,7 @@ they become necessary to interpret or correct an established claim there.
 The provenance record tracks:
 
 - `GoGoKo699/Hopf-QBP/main` at
-  `a9885317cf998a7df87ca07ba86e3bd4f0f419ef`;
+  `99e5ee5fc77004f662462e5d088e2a583d032f6a`;
 - the historical research seed
   `GoGoKo699/Hopf-QBP/ancilla-depth-robustness-2026` at
   `9cc564f493caff62b847fc362df522a68c6e83bf`.
@@ -95,6 +95,34 @@ September 3 reconciliation is retained in
 `upstream_reconciliation_history`, and original file lineage, the historical
 seed, and the frozen fallback remain unchanged. No upstream implementation was
 copied and no approved layout was altered.
+
+## Reconciliation completed on 2026-10-19
+
+The single commit from
+
+```text
+a9885317cf998a7df87ca07ba86e3bd4f0f419ef
+```
+
+to
+
+```text
+99e5ee5fc77004f662462e5d088e2a583d032f6a
+```
+
+consolidates reader documentation in seven Markdown files: `README.md`,
+`REPRODUCIBILITY.md`, and the claim-support, engineering, observables/readout,
+optimized-compilation, and statistical-accuracy guides. The full diff removes
+repeated explanations and nonclaims; source code, tests, circuit builders,
+decoders, and theorem formulas are unchanged.
+
+The raw-coordinate target, metric conditioning, ambient-sphere convention,
+phase-calibrated controlled-observable access, singular magnitude/phase record
+distinction, and initialized clean-flag compiler contract remain intact. No
+foundational correction requires a local scientific port. Current-baseline
+references and provenance checks advance together, with both earlier
+reconciliations, file lineage, historical seed, and frozen fallback preserved.
+The complete-frame resource frontier and operator contracts are unchanged.
 
 ## Synchronization procedure
 

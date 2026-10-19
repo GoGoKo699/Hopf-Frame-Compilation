@@ -8,8 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
-PREVIOUS_HOPF_QBP_MAIN = "faddc98da5c1fdd07ce42df2b04ca7b6ce3e2582"
-CURRENT_HOPF_QBP_MAIN = "a9885317cf998a7df87ca07ba86e3bd4f0f419ef"
+PREVIOUS_HOPF_QBP_MAIN = "a9885317cf998a7df87ca07ba86e3bd4f0f419ef"
+CURRENT_HOPF_QBP_MAIN = "99e5ee5fc77004f662462e5d088e2a583d032f6a"
 
 
 class ProvenanceTests(unittest.TestCase):
@@ -60,22 +60,36 @@ class ProvenanceTests(unittest.TestCase):
             CURRENT_HOPF_QBP_MAIN,
         )
         self.assertEqual(reconciliation["previous_main_commit"], PREVIOUS_HOPF_QBP_MAIN)
-        self.assertEqual(reconciliation["commits_reviewed"], 5)
+        self.assertEqual(reconciliation["commits_reviewed"], 1)
+        self.assertEqual(len(reconciliation["changed_upstream_paths"]), 7)
+        self.assertTrue(all(
+            path.endswith(".md") for path in reconciliation["changed_upstream_paths"]
+        ))
         joined = " ".join(reconciliation["relevant_changes"]).lower()
         self.assertIn("raw coordinatewise", joined)
         self.assertIn("natural-gradient", joined)
         self.assertIn("metric", joined)
         self.assertIn("controlled-observable", joined)
+        self.assertIn("documentation-only", joined)
 
     def test_previous_reconciliation_and_file_lineage_are_retained(self) -> None:
         history = self.payload["upstream_reconciliation_history"]
         self.assertTrue(history)
         previous = history[-1]
         self.assertEqual(previous["reviewed_main_commit"], PREVIOUS_HOPF_QBP_MAIN)
-        self.assertEqual(previous["commits_reviewed"], 10)
+        self.assertEqual(previous["commits_reviewed"], 5)
         self.assertEqual(
             previous["previous_main_commit"],
+            "faddc98da5c1fdd07ce42df2b04ca7b6ce3e2582",
+        )
+        self.assertEqual(len(history), 2)
+        self.assertEqual(history[0]["commits_reviewed"], 10)
+        self.assertEqual(
+            history[0]["previous_main_commit"],
             "9957815767ef3649275960fd5e860fb91725ff26",
+        )
+        self.assertEqual(
+            history[0]["reviewed_main_commit"], previous["previous_main_commit"],
         )
         self.assertEqual(
             previous["reviewed_main_commit"],
@@ -91,10 +105,11 @@ class ProvenanceTests(unittest.TestCase):
 
     def test_current_baseline_references_match_the_provenance(self) -> None:
         source_map = (ROOT / "docs/SOURCE_MAP.md").read_text(encoding="utf-8")
+        catalogue = (ROOT / "docs/reference/SOURCE_CATALOGUE.md").read_text(encoding="utf-8")
         sync = (ROOT / "SYNC.md").read_text(encoding="utf-8")
         current_upstreams = sync.split("## Current tracked upstreams", 1)[1].split("\n## ", 1)[0]
         # Historical reconciliation sections deliberately preserve earlier SHAs.
-        for label, text in (("SOURCE_MAP", source_map), ("current upstreams", current_upstreams)):
+        for label, text in (("SOURCE_MAP", source_map), ("SOURCE_CATALOGUE", catalogue), ("current upstreams", current_upstreams)):
             self.assertIn(CURRENT_HOPF_QBP_MAIN, text, label)
             self.assertNotIn(PREVIOUS_HOPF_QBP_MAIN, text, label)
 

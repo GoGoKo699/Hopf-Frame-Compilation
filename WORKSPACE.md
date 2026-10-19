@@ -15,66 +15,54 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: bounded middle-displacement closure
+## Current checkpoint: joint indicator mechanisms and native orbit closure
 
-The [current revision](research/depth/EXTERNAL_CENTER_SESSION_RESULT.md)
-began at verified main `981ebc6` (PR #194). R96 remains the strongest
-unconditional general upper theorem, with depth
-$`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
+The [current revision](research/depth/JOINT_INDICATOR_SESSION_RESULT.md)
+began at verified main `b598e4aa55c308f11f183a11ab92f0e4fc70463a`
+(PR #195). R96 remains the strongest unconditional general upper theorem:
+$`D_T=O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
 Result D. Optimal general depth remains the destination.
 
-The [previous checkpoint](research/depth/MIDDLE_DEFECT_SESSION_RESULT.md)
-retains the control-support, exceptional-overlap and original
-active-intersection degree closures. Fixed endpoint clean-active ranks
-also close with arbitrary middle pairs. At growing ranks the remaining
-actual no-pair candidate has quadratic support equal to the entire common
-active intersection, carried by the positive middle span, while its
-nonconstant flags leave the original active algebra. The enlarged shared
-center permits those flags; identifying it with the old center is invalid.
+The main constructive target is the complete approximate dirty indicator.
+At every fixed requested tolerance it needs linear-in-bank-size T-count
+and dirty width, quadratic Clifford count, and sublogarithmic address
+T-depth in full operator norm. The current restored-address R98 and its
+[constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+provide the paid transfer; temporary address changes are allowed inside
+completed joint queries.
 
-The [external-center correction](research/depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
-now supplies one actual middle-axis product that corrects every flag of
-the controlled Pauli simultaneously. The controlled Pauli then has constant translations, but
-a literal Boolean cubic enters the middle operation. That corrected
-commuting C3 phase has Clifford defects for the whole probe family.
-An explicit growing transvection family cannot be realized by any
-one-T-layer word, even with arbitrary Clifford endpoints and returned
-dirty helpers. This is a lower bound for the specified residual, not an
-unrestricted three-layer degree theorem or a general decoder obstruction.
-A rank-one action has two odd-multiplicity axis types after fixing the
-quadratic support; its global center-dependent phases cannot be discarded.
-A changed argument keeps the original native middle and closes fixed
-$`d=\dim\sum_u\mathrm{im}N_u`$, even with growing active ranks and
-quadratic support. After a literal complex Clifford alignment, its
-interacting factors use at most $`d(d+1)/2+d+1`$ computational directions.
-The retained partial-diagonal theorem applies to an actual two-band
-residual. The next lower question is growing total displacement dimension,
-alongside the separate arbitrary-middle-pair branch.
+The [maximal source-gauge theorem](research/depth/WEAKER_INDICATOR_INTERFACES.md)
+allows arbitrary bank-controlled address and work motion, with neither
+returned at the source boundary. A two-call Clifford probe still extracts
+the complete indicator. [Selected routing](research/depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
+is likewise equivalent under a paid constant-call reduction. Its direct
+switch tree keeps a sequential address cost; fixed Clifford re-encoding
+cannot simultaneously diagonalize all bank translations. Neither result
+is an unrestricted depth obstruction.
 
-The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
-retains its unrestricted exact standalone count obstruction; R91 already
-gives a fused indicator with linear T-count and dirty width, quadratic
-Clifford count and logarithmic address depth. The
-[approximate transfer](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-requires only constant source accuracy at fixed frame precision. The
-[polynomial and hash limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
-remain scoped interface failures.
+A [noncommuting dirty phase loop](research/depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md)
+uses a geometric scalar on both signal eigenstates, avoiding the earlier
+rank-one-reflection fixed-space premise. Its full-bank accuracy and native
+digital recurrence retain costs outside the target envelope. A collective
+native word that avoids independent-row precision accumulation remains
+an open constructive question.
 
-The [changed-mechanism audit](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md)
-examines coherent phase signals and complete Pauli-frame transport.
-A signal reflection echo fails on arbitrary dirty states; too few
-rank-one signal reflections retain a common fixed subspace. Full coherent
-frame transport contains the complete indicator through a paid two-call
-reduction, with linear Clifford/dirty overhead and error at most twice
-the source error. Neither mechanism supplies the missing faster source.
-The next upper question remains a jointly accurate zero-clean indicator
-meeting every count, width, depth and return budget.
+The parallel [native-orbit theorem](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+closes the growing-total-displacement case left by PR #195 in the actual
+no-middle-pair reduction. The full cubic tensor forces actual pair
+permutations plus one exceptional transvection. Keeping every permutation
+phase inside an actual three-band residual gives sign bound
+$`\max\{D_3+576,D_{\mathrm{ins}}(0,0,0,3)\}`$, independently of
+active ranks and dirty width. Original clean-transition middle pairs and
+higher-layer asymptotics remain open. These logical pair orbits are distinct
+from the original physical middle pairs excluded by the reduction.
 
-Every column, literal phase, arbitrary dirty input, reference, actual
-inverse, leakage and work-return requirement remains in force. These
-results change the research interface, not the complete-frame resource
-frontier. Final manuscript drafting is separate.
+Every column, literal phase, dirty input, reference, actual inverse,
+leakage and return requirement remains in force. The complete-frame
+resource frontier is unchanged. The reviewed documentation-only
+Hopf-QBP change is reconciled in [SYNC](SYNC.md); no scientific port was
+needed. Final manuscript drafting is separate.
 
 ## Mandate
 
