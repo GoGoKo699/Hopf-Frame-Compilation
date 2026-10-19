@@ -22,8 +22,9 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
-keeps the complete approximate dirty indicator as the main constructive
+The [fresh-workspace checkpoint](../WORKSPACE.md) and
+[current research outcome](depth/CLEAN_PROMOTION_SESSION_RESULT.md#8-fresh-workspace-handoff-after-pr-198)
+keep the complete approximate dirty indicator as the main constructive
 target. [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
@@ -32,9 +33,11 @@ source/inverse calls. Such a faster native block is still missing.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
-source band at both paid amplitudes for $`p\ge3`$. Two or more
-noncommuting source bands and joint address/output motion remain
-outside those hypotheses. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
+source band at both paid amplitudes for $`p\ge3`$. The [two-band half-amplitude screen](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands)
+now excludes that normalization as well. Two-band inverse-square-root-two
+transitions and sources with more bands remain open; the current
+[paused discovery](depth/JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition)
+requires genuinely overlapping native dynamics. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
 fixes the standalone linear count order without proving growing depth.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)

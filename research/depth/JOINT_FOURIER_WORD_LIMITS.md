@@ -1,18 +1,18 @@
-# Two tests for joint Fourier and Boolean-phase words
+# Joint Fourier words and native source limits
 
 [Gaussian scalar-loop limit](GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) ·
 [Native sharing requirement](NATIVE_INDICATOR_SHARING.md) ·
 [Paid removal of a bounded clean bank](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 
 Joint noncommuting words remain a live route to the complete approximate
-dirty indicator. The tests below concern two particular words that use
+dirty indicator. The tests below concern particular words that use
 nonquadratic phases, so they lie outside the earlier Gaussian-round
 argument. They identify where these candidates stop: a repeated
 Fourier/Boolean-phase loop has a robust discrete closure condition at
 bounded work degree, and a single Boolean-phase block between arbitrary
 Cliffords has the wrong singular values for normalization-two recovery.
 
-Neither test is an unrestricted T-depth bound. Different phase rounds,
+None of these screens is an unrestricted T-depth bound. Different phase rounds,
 address motion between rounds, and more general noncommuting native
 words remain outside their hypotheses. No complete-frame resource
 frontier changes here; R96 remains the strongest unconditional general
@@ -428,6 +428,220 @@ width. Anticommutation guarantees flat success; it does not determine
 the logical transition. Neither an arbitrary supplied Clifford pair nor
 a formal alignment substitutes for the required original one-band
 encoders. Address/output mixing is still allowed throughout.
+
+### 5.1. Two source bands at half amplitude reduce to two clean bands
+
+This continuation after PR #198 closes the alternative half-amplitude
+normalization for two physical source bands. The argument received an
+independent analytic audit; it uses the retained two-layer theorem and
+adds no new numerical or native-circuit fixture. Its proof is distinct
+from the still-open inverse-square-root-two transition in Section 5.
+A constant-normalization block remains a paid sufficient interface when
+more source bands are allowed. The complete-frame frontier is unchanged.
+
+Let a be the sole initialized signal and let J insert a equal to zero.
+The nonsignal space includes the entire arbitrary address, bank and
+dirty-work input; all identities extend by identity on external
+references. Factor an actual two-band native source as
+
+```math
+U=U_B^\dagger U_A,\qquad
+K=J^\dagger U_B^\dagger U_AJ,\qquad
+A=U_AZ_aU_A^\dagger,\quad B=U_BZ_aU_B^\dagger.
+```
+
+Each encoder has at most one physical T/T-dagger layer, with arbitrary Clifford endpoints. Thus A and B are actual Hermitian Clifford involutions. Both eigenspaces of each have the same dimension. No intermediate address-preservation or output-basis assumption is made.
+
+For any unitary V on the complete nonsignal space, suppose
+
+```math
+\|K-V/2\|\le\epsilon,\qquad \epsilon\lt1/2.
+\qquad\text{(H1)}
+```
+
+The rounding condition is
+
+```math
+8(\epsilon+\epsilon^2)\lt\sqrt{2-\sqrt2}.
+\qquad\text{(H2)}
+```
+
+Under these conditions the derivation gives exact flatness K-dagger K equal to I/4, and a native one-clean circuit with at most two physical T bands whose exact occupied unitary is 2K. Its error against V is at most 2 epsilon, with exact signal return and no new clean resource.
+
+Use U_A coordinates, where A is Z on the signal, and write
+
+```math
+B=\begin{pmatrix}D&E\\E^\dagger&F\end{pmatrix},\qquad
+K^\dagger K=(I+D)/2.
+```
+
+The singular values of K lie in the interval [1/2 minus epsilon, 1/2 plus epsilon]. By (H1) this interval lies strictly inside (0,1). Hence the spectrum of D lies in (-1,1), so E is invertible: unitarity of B gives
+
+```math
+EE^\dagger=I-D^2,\qquad DE+EF=0.
+```
+
+In the left polar decomposition E equal to R times V_E, R is the positive square root of I minus D squared and commutes with D. The second identity therefore gives F equal to minus V_E-dagger D V_E. Consequently the two diagonal blocks of the following defect are unitarily equivalent:
+
+```math
+\{A,B\}+I=
+\begin{pmatrix}2D+I&0\\0&I-2F\end{pmatrix}.
+```
+
+It follows that
+
+```math
+\|\{A,B\}+I\|
+ =4\|K^\dagger K-I/4\|
+ \le4(\epsilon+\epsilon^2).
+\qquad\text{(H3)}
+```
+
+The invertibility step is essential. Equal sector dimensions alone do not justify replacing this shifted norm by a single compressed block.
+
+#### Rounding to the exact order-three identity
+
+Set W equal to AB. This is an actual Clifford, W-dagger equals BA, and A W A equals W-dagger. Put E_0 equal to W plus W-dagger plus I. Then
+
+```math
+W^2+W+I=WE_0,\qquad
+W^3-I=(W-I)WE_0,
+```
+
+so (H3) implies
+
+```math
+\|W^3-I\|\le8(\epsilon+\epsilon^2).
+\qquad\text{(H4)}
+```
+
+Any Clifford that is not a scalar has distance at least square root of (2 minus square root of 2) from I: its normalized Choi stabilizer state has overlap of magnitude at most 1/square root of 2 with that of I, and normalized Hilbert--Schmidt distance is bounded by operator distance. Thus (H2) and (H4) force W cubed to be scalar. Conjugating that scalar by A and using A W cubed A equal to (W cubed)-dagger forces it to be real, hence plus or minus I. Equation (H4) is strictly below two, excluding minus I. Therefore W cubed equals I.
+
+Its possible eigenvalues are 1 and the two primitive cube roots of one. E_0 consequently has possible eigenvalues 3 and 0. Its norm in (H3) is strictly below 3 under (H2), so the eigenvalue 1 of W is absent. This proves
+
+```math
+W^2+W+I=0,\qquad \{A,B\}=-I,\qquad K^\dagger K=I/4.
+\qquad\text{(H5)}
+```
+
+This rounding uses actual Clifford structure; it is not a statement about arbitrary pairs of reflections or arbitrary multiband encoders.
+
+#### The literal polar aligner is already Clifford
+
+Equation (H5) gives the unusually simple identity
+
+```math
+R=I+BA=-AB.
+\qquad\text{(H6)}
+```
+
+Thus R is a literal unitary Clifford, including its displayed minus sign. It satisfies R A R-dagger equal to B. More directly, for a vector v in the A-positive sector,
+
+```math
+Rv=(I+B)v=2P_Bv,\qquad P_B=(I+B)/2.
+```
+
+The native completed word
+
+```math
+V_{\mathrm{clean}}=U_B^\dagger R U_A
+\qquad\text{(H7)}
+```
+
+therefore has the exact complete-code identity
+
+```math
+V_{\mathrm{clean}}J=J(2K).
+\qquad\text{(H8)}
+```
+
+There is no rejected amplitude and no residual input-dependent phase in (H8). It includes all arbitrary dirty-work inputs. The actual adjoint of (H7) supplies the inverse. Neither controlled encoders nor postselection are emitted.
+
+Let T_A,G_A and T_B,G_B be common forward/actual-inverse source
+bounds and let $`n_{\rm phys}`$ be the total physical width. Compile
+R as a Clifford from its tableau, rather than executing its T-containing
+source expressions. This costs $`O(n_{\rm phys}^2)`$ elementary
+Cliffords and no T gates; its literal minus sign costs a constant
+Clifford word. The same applies to its actual inverse. Equation (H7)
+therefore has common bounds
+
+```math
+T\le T_A+T_B,\qquad D_T\le2,\qquad
+G\le G_A+G_B+O(n_{\rm phys}^2).
+```
+
+It uses the same sole clean signal and all original dirty inputs.
+When $`n_{\rm phys}=O(m)`$, this fits the quadratic Clifford
+budget. The tableau is explicit from the source; it is not a supplied
+free operation.
+
+Generic promotion with one clean bit would subsequently use eight copies of this recovered source or its actual inverse and its already-paid bilinear tests. Its complete promoted error is at most 32 epsilon. The crucial depth-screening conclusion, however, already follows from (H7), before promotion.
+
+#### Consequence for the complete indicator
+
+Let
+
+```math
+\delta=\frac{\sin(\pi/8)}{2\sqrt2}.
+```
+
+The retained one-clean two-layer Boolean theorem has full initialized-isometry error floor delta for a nonquadratic Boolean XOR query. The same proof applies to vector outputs: Hadamards on the entire bank turn the complete indicator into the Boolean phase minus one to the power Y_x, of degree p plus one. For p at least three, that phase has degree greater than three.
+
+If a two-band source had
+
+```math
+\|K-I_p/2\|\lt\frac\delta2
+ =\frac{\sin(\pi/8)}{4\sqrt2}\approx0.0676495,
+\qquad\text{(H9)}
+```
+
+then (H2) holds, the exact recovery above is available, and (H8) has error strictly below delta. This contradicts the retained theorem. Thus the right side of (H9) is a constant lower bound for this particular half-normalized two-band source. A freely optimized common phase does not evade the retained floor. It permits arbitrary dirty width, arbitrary intermediate address/bank mixing and references. It is not a growing-depth lower bound or a restriction on three or more source bands.
+
+
+### 5.2. Paused discovery and the next complete transition
+
+The continuation stopped for a fresh-workspace handoff, not because the
+inverse-square-root-two mechanism was resolved. Its first unpaid
+operation is a family of actual one-band encoders whose anticommuting
+clean-image reflections have a complete normalized transition
+approximating the indicator, with linear T-count/dirty width and
+quadratic Clifford count. Exact flatness and a paid aligner alone do
+not select that transition. All address, bank, dirty and reference
+inputs, the literal phase and the actual inverse remain part of it.
+
+One separated construction is a dead end within the existing one-band
+screen. On disjoint logical banks R,S let C_R,C_S copy computational
+parities r,s into the signal, and let V_R,V_S be one-band words supported
+on their respective banks. With
+
+```math
+U_A=V_RC_R,\qquad U_B=V_SH_aC_S,
+```
+
+the clean-image reflections anticommute, but direct contraction gives
+
+```math
+\sqrt2\langle0_a|U_B^\dagger U_A|0_a\rangle
+   =V_R(-1)^{rs}V_S^\dagger.
+```
+
+More decisively, the source itself is
+$`C_S^\dagger H_a(V_S^\dagger V_R)C_R`$: the disjoint
+T bands merge into one physical band between Cliffords. The Section 4
+screen therefore applies. This construction can be reopened only with
+genuinely overlapping logical dynamics that prevent that merge; high
+reflection rank by itself is insufficient.
+
+A structural lead, not a degree theorem, is to write the symplectic
+maps of the two reflections as $`I+N_A,I+N_B`$. Each N squares
+to zero, and anticommutation implies
+$`N_AN_B=N_BN_A`$. The product image lies in the intersection
+of their actual active isotropic axis spans. Nonzero product or
+nontrivial shared-axis geometry is a candidate source of overlapping
+dynamics, not a proved necessary condition for every successful source.
+The next task is to compute a complete transition from such actual
+encoders and expose its resource recurrence before drawing a depth
+conclusion. More than two source bands also remain allowed.
 
 ## 6. Bounded receipts
 

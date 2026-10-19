@@ -67,21 +67,24 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Table-specific source gauges | [Paid syndrome interface](../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md) allows arbitrary motion inside fibers of the table's probed syndrome. Full row rank recovers the complete indicator gauge; no low-rank promise or faster general R98 compiler is supplied |
 | Bounded-clean and one-signal indicator sources | [Paid clean removal](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) converts complete bounded-clean queries to zero-clean words, including leakage and arbitrary off-code action. A one-signal block near the complete query at amplitude one half or inverse square root of two suffices through 24 source calls. The faster source remains missing; growing clean banks retain exponential generic call overhead |
 | Robust indicator count and incidence limit | [Pauli-nullity calculation](../research/depth/INDICATOR_PAULI_NULLITY.md) gives $`T\ge m-1`$ for $`p\ge2`$ and full-operator error below $`1/\sqrt2`$, with unrestricted native mixing and dirty width. A one-layer word saturates the earlier incidence criterion while failing the target; no growing-depth bound follows |
-| Joint Fourier-word screens | [Robust loop and block spectra](../research/depth/JOINT_FOURIER_WORD_LIMITS.md) give a positive error gap for repeated bounded-work-degree Boolean-phase loops. One physical T band is excluded at both paid block amplitudes for indicators with $`p\ge3`$; inverse-square-root-two compression has error at least $`\sin(\pi/8)/4`$. Two or more noncommuting source bands remain open |
+| Joint Fourier-word screens | [Robust loop and block spectra](../research/depth/JOINT_FOURIER_WORD_LIMITS.md) give a positive error gap for repeated bounded-work-degree Boolean-phase loops. One physical T band is excluded at both paid block amplitudes for indicators with $`p\ge3`$; inverse-square-root-two compression has error at least $`\sin(\pi/8)/4`$. Two-band half-amplitude compression also has floor $`\sin(\pi/8)/(4\sqrt2)`$; two-band inverse-square-root-two and sources with more bands remain open |
 | Original physical pairs under occupied Booleanity | [Common-center reduction](../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md) gives transition quotient dimension at most $`3m+2`$ and residual at most $`3m+1`$ for m physical pairs and nonempty endpoint active lists. Silent lists remain independent and central features have bounded degree. This does not bound total Pauli support or close fixed-pair degree; growing pair count and higher layers remain open |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
 
-The [current revision](../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
-keeps the complete approximate dirty indicator as the main constructive
+The [fresh-workspace checkpoint](../WORKSPACE.md) and
+[current revision](../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md#8-fresh-workspace-handoff-after-pr-198)
+keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
 constant-amplitude block as the initial mechanism. The conversion pays
 all actual inverses, off-code cancellation, leakage, return, and the
-restored-address R98 transfer. The first unpaid operation is a native
-source with the required linear count/width, quadratic Clifford count
+restored-address R98 transfer. The two-band half-amplitude route now stops at a literal Clifford
+aligner and the retained two-layer query floor. The two-band
+inverse-square-root-two transition remains open. The first unpaid
+operation is a native source with the required linear count/width, quadratic Clifford count
 and sublogarithmic depth.
 
 A growing clean bank retains exponential generic source-call overhead;

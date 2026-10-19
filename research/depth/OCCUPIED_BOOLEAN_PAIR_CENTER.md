@@ -390,3 +390,47 @@ separate charges. No new initialized helper or free phase operation
 is introduced. Equations (8) and (11) provide neither an upper
 compiler nor an unrestricted lower degree theorem. The complete-frame
 resource frontier is unchanged.
+
+
+## 7. Paused lower scout: dress the actual insertion before measuring it
+
+The continuation after PR #198 was paused for a workspace handoff.
+No additional degree theorem or Boolean counterfamily was established.
+A concrete reformulation of (9), now on the complete logical register,
+is
+
+```math
+\begin{aligned}
+G&=F_{\rm out}W_3,\\
+W_3&=(K_C')^\dagger(E_{C,\rm sil}')^\dagger
+             E_{B,+}E_{A,\rm sil}K_A,\\
+F_{\rm out}&=(K_C')^\dagger(E_{C,\rm sil}')^\dagger
+                 G_0E_{C,\rm sil}'K_C'.
+\end{aligned}
+```
+
+The three lists in W_3 are the actual independent projected native
+lists from Section 3. If the computational X masks in the Pauli support
+of F_out span a k-dimensional space, F_out commutes with the
+computational-Z subgroup annihilating that space. Since G is Boolean
+diagonal, W_3 commutes with the same subgroup. This is an exact algebraic
+entry to the retained
+[partial-diagonal theorem](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md).
+It does not yet give a uniform target-degree bound.
+
+The first missing implication is a bound, from the original physical
+pair count, on the **dressed** X-mask span and on the central feature
+complexity needed to combine F_out with W_3. Section 3 bounds the
+noncentral support of G_0 before this dressing. Arbitrarily many
+actual silent endpoint axes can couple to that core. Their bounded
+pairing rank is not a bound on their span outside the genuine center.
+No such substitution is justified.
+
+A possible restricted reopening condition bounds the additional span
+of the actual coupled silent axes modulo R; a bounded number of those
+axes is sufficient to bound that span. Passive silent axes cancel in
+the displayed dressing. The shared computational coordinates and final
+feature-degree ledger still require proof, so this is a proposed
+subcase, not a new theorem. Reversing the literal word gives the other
+endpoint version. Fixed positive pair count in general, growing pair
+count, and the higher-layer asymptotic question all remain open.
