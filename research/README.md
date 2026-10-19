@@ -49,6 +49,9 @@ retains the original physical middle pairs and reduces their noncentral
 support at fixed pair count. Its new Section 8 proves degree closure
 when the additional span of actually coupled silent axes is also
 bounded. Pair count alone still does not supply that hypothesis; the
+new Section 9 retains bounded scalar features and individually
+clean-preserving Clifford summands without it, but their common-band
+displacement identities do not yet close Boolean matching. The
 unrestricted original-pair and higher-layer questions remain open. R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 

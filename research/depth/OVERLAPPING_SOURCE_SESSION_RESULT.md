@@ -104,6 +104,18 @@ Fixed positive s alone, growing original pair count and higher-layer
 asymptotics remain open. The previously closed no-middle-pair route is
 not reopened.
 
+Section 9 further narrows the fixed-pair question without assuming
+bounded t. The residual is a sum of at most $`2^{3s+1}`$ actual
+clean-preserving Clifford terms whose coefficients share Section 4's
+bounded degree-four feature ledger. Unlike the earlier physical
+Clifford expansion, every term individually restricts to a complete
+logical Clifford. They come from conjugating fixed residual Paulis by
+the same actual silent band. Their binary displacement maps depend
+linearly on the residual label and have pairwise zero products, but
+this does not bound their individual ranks or support. The missing
+operation is a global native Boolean matching argument using this
+shared family; the scalar features alone do not pay it.
+
 ## 4. Verification and resumption
 
 The recurrence, probe screens and lower theorem received independent

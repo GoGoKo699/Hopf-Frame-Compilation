@@ -627,3 +627,131 @@ question is whether occupied Booleanity bounds the actual dressed X-mask
 span and an appropriate feature ledger without a bound on t. Bounded
 pairing rank still supplies no such bound. Fixed original pair count
 alone, growing pair count and unrestricted depth remain open.
+
+
+## 9. A clean-preserving Clifford sum without bounding the silent span
+
+The scalar feature ledger can be retained even when t is unbounded.
+The remaining difficulty is the simultaneous computational action of an
+actual Clifford family, whose number of members is bounded but whose
+ranks need not be. This supplies a narrower native matching question;
+it does not remove the hypothesis of Section 8.
+
+Keep the full physical clean coordinate and put
+
+```math
+c=\dim(H_0/R)\le3s+1.
+```
+
+Use the fixed coordinates of Section 4 for
+$`S_0+\langle p_A\rangle`$: choose a complement to R containing p_A,
+with fixed core Pauli realizations and R as central Z. Intersect that
+complement with H_0 to obtain a complement L with
+$`H_0=R\oplus L`$. Choose Hermitian Pauli representatives P_v for
+$`v\in\mathbb F_2^c`$ in L. Each P_v commutes P_A, and each is a
+fixed core matrix in these coordinates. Grouping the unique Pauli
+expansion by its R cosets gives the exact full physical identity
+
+```math
+G_0=\sum_{v\in\mathbb F_2^c} f_v(R)P_v.             \qquad(17)
+```
+
+Every coefficient f_v is obtained by a fixed core matrix coefficient
+functional from G_0(z). Therefore all f_v together use the same
+$`N(s)=9\,2^{3s+3}+12s+15`$ degree-at-most-four central features of
+Section 4. No extra feature for a varying representative is needed:
+the chosen representatives have fixed core realizations. Their
+coefficients need not themselves be phases or Boolean signs.
+
+As before let E_* be the actual coupled C-silent subband, and let the
+output encoder include the proved shared computational-center alignment.
+E_* commutes R and P_A. Define, initially on the full physical space,
+
+```math
+\begin{aligned}
+R_{\rm out}&=(K_C')^\dagger R K_C',\\
+H_v&=(K_C')^\dagger E_*^\dagger P_vE_*K_C'.
+\end{aligned}
+```
+
+A single native band conjugates a Pauli to a Clifford, so each H_v
+is an actual Hermitian Clifford. Both
+P_v and E_* preserve P_A, so H_v fixes the physical clean Z pointwise.
+Its restriction to the positive clean code is consequently a full
+logical Clifford, including its literal phase. Equation (15) becomes
+
+```math
+F_{\rm out}=\sum_{v\in\mathbb F_2^c}
+                   f_v(R_{\rm out})H_v.             \qquad(18)
+```
+
+This gives at most $`2^c`$ terms before restriction and on all logical
+inputs afterward. Distinct physical representatives can give duplicate
+logical terms when the clean Pauli class belongs to H_0/R; no logical
+linear independence is claimed. The aligned R coordinates are affine computational parities, preserving
+the feature degrees. In contrast to the
+[earlier physical-pair sum](ORIGINAL_MIDDLE_PAIR_INSERTIONS.md#2-what-the-bounded-pair-question-now-requires),
+**every individual Clifford term here preserves the physical clean
+coordinate**. The coefficient ledger is uniform in t. The terms are
+not supplied gates, a free linear-combination implementation, or a
+finite matrix alphabet independent of width.
+
+There is also a simultaneous native formula. Write
+
+```math
+E_*=\prod_iT_{C_i}^{\epsilon_i},\qquad
+\lambda_i(v)=\langle c_i,p_v\rangle,
+\qquad\epsilon_i\in\{1,-1\},
+```
+
+and put $`D_i=(K_C')^\dagger C_iK_C'`$ and
+$`Q_v=(K_C')^\dagger P_vK_C'`$. The literal anticommuting identity
+$`T_C^{-\epsilon}PT_C^\epsilon=\omega^{-\epsilon}PS_C^\epsilon`$
+gives, with original signs and orientations retained,
+
+```math
+H_v=\omega^{-\sum_i\epsilon_i\lambda_i(v)}
+             Q_v\prod_iS_{D_i}^{\epsilon_i\lambda_i(v)}.
+                                                               \qquad(19)
+```
+
+All D_i preserve the clean coordinate and their logical projected list
+is independent by Section 3. On the full logical Pauli space, H_v has
+binary action I+N_v with
+
+```math
+N_v(w)=\sum_i\lambda_i(v)\langle d_i,w\rangle d_i,
+\qquad N_{v+u}=N_v+N_u,
+\qquad N_vN_u=0.                                   \qquad(20)
+```
+
+The last identity uses commutation of the actual silent axes. Signs
+and T orientations affect (19) but not the odd S displacement (20).
+Independence of the projected list gives
+
+```math
+\mathrm{rank}\,N_v=|\{i:\lambda_i(v)=1\}|.
+```
+
+Every coupled axis has a nonzero functional lambda_i on H_0/R:
+it commutes R and is coupled to H_0 by definition. Therefore
+
+```math
+2^{-c}\sum_v\mathrm{rank}\,N_v=|\mathcal C_*|/2.     \qquad(21)
+```
+
+At most $`2^c-1`$ nonzero functionals occur. Grouping equal lambda_i
+in (19) uses at most that many fixed commuting Clifford products,
+with their retained common scalars. Their ranks and axis spans can
+still grow. In particular bounded family size and linear square-zero
+displacement dependence do not give a uniform displacement-rank bound.
+Equation (21) is an exact rank ledger, not an assertion that arbitrarily
+large coupled lists occur under the complete Boolean premise.
+
+The remaining implication must use the full Boolean identity
+$`G=F_{\rm out}W_3`$ and the actual three native lists of W_3 to
+control this common-band-generated logical Clifford family, or combine
+it with W_3 without a bounded computational core. The scalar central
+feature complexity is already bounded by s; the simultaneous Clifford
+action is the unresolved part. No bound on t from s, unrestricted
+fixed-pair degree theorem, or new general depth bound is established.

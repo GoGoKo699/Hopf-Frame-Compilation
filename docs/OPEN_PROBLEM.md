@@ -108,7 +108,12 @@ for total support in the finite-insertion theorem. Its Section 8 now
 proves a degree bound at fixed original pair count **and** fixed
 additional coupled silent-axis span, with common feature coordinates.
 Bounding that additional span, or a sufficient dressed-support invariant,
-from pair count alone remains unpaid. Fixed positive pair count alone,
+from pair count alone remains unpaid. Section 9 retains a bounded
+scalar-feature ledger without this span hypothesis and gives a bounded
+sum of individually clean-preserving logical Cliffords from one shared
+actual silent band. Their displacement maps have pairwise zero products,
+which does not bound their ranks; native Boolean matching remains missing.
+Fixed positive pair count alone,
 growing pair count and higher-layer asymptotics remain open.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
