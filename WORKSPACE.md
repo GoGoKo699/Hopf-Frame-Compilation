@@ -15,96 +15,66 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: exceptional middle-defect support
+## Current checkpoint: bounded middle-displacement closure
 
-The [current revision](research/depth/MIDDLE_DEFECT_SESSION_RESULT.md)
-began at verified main `6876094` (PR #193). R96 remains the strongest
+The [current revision](research/depth/EXTERNAL_CENTER_SESSION_RESULT.md)
+began at verified main `981ebc6` (PR #194). R96 remains the strongest
 unconditional general upper theorem, with depth
 $`O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
 Result D. Optimal general depth remains the destination.
 
-The [fixed-rank theorem](research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
-retains its closure for both endpoint clean-active ranks fixed, including
-arbitrary middle pairs. The Pauli-interior, rank-one, genuine exceptional
-rank-two, shared-clean-flip and actual-source noncentral-parity cases
-remain closed under their stated hypotheses. These are components toward
-uniformity as ranks grow, not a changed complete-frame frontier.
+The [previous checkpoint](research/depth/MIDDLE_DEFECT_SESSION_RESULT.md)
+retains the control-support, exceptional-overlap and original
+active-intersection degree closures. Fixed endpoint clean-active ranks
+also close with arbitrary middle pairs. At growing ranks the remaining
+actual no-pair candidate has quadratic support equal to the entire common
+active intersection, carried by the positive middle span, while its
+nonconstant flags leave the original active algebra. The enlarged shared
+center permits those flags; identifying it with the old center is invalid.
 
-The [computational phase reduction](research/depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
-retains the actual no-pair transition as a central cubic sign and one
-quadratic-controlled Pauli between three independent logical native bands.
-The [new global matching theorem](research/depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
-closes fixed polar rank by paid Clifford absorption and finite insertion.
-At arbitrary nonzero polar rank, the Clifford images of every computational
-probe preserve the middle native span. The endpoint probe actions agree on one common
-invariant isotropic algebra. Its displacement span enlarges the genuine
-shared center; paid normalization makes the endpoint images commuting
-monomial Cliffords with affine center-controlled translations.
-
-The [constant-translation theorem](research/depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
-closes the case where those translations do not depend on the center,
-with sign/XOR bounds three/two, even for an arbitrary commuting C3 middle.
-It peels actual native sublists and uses the full complex two-layer
-diagonal theorem; it does not supply a new same-depth implementation.
-Its empty-middle corollary closes every quadratic-control rank uniformly;
-high rank gives the cubic bound and low rank uses finite insertion.
-The [center and decoder audit](research/depth/NATIVE_CENTER_SATURATION_LIMITS.md)
-adds genuine active-axis-sum and whole-band parity centers. A fixed
-Clifford decoder exists only when the native band already centralizes
-the retained Pauli algebra. The [actual CCZ source](research/depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
-has no shared Pauli clean flip and retains center-dependent translations
-after all these enlargements. Its degree is only three and its endpoint
-ranks are fixed. These are mechanism limits, not an unrestricted lower bound.
-The [middle-defect theorem](research/depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
-now closes constant translations on just the control support, with
-sign/XOR bounds five/four while retaining a nonempty native middle.
-After removing actual permuted middle-axis orbits, every Boolean-normalized cubic defect
-is supported in the intersection W of the genuine center and the
-remaining middle span. Fixed dimension of W closes uniformly in the
-other ranks, and transverse quadratic-control structure closes further
-unbounded-W cases. The actual clean-origin Gram identity strengthens this:
-fixed intersection dimension of the two original active spans closes
-even when both ranks grow. Any surviving high-rank nonconstant probe
-has quadratic support equal to that common active intersection and a
-displacement outside the entire original active algebra. The next lower
-question is that displacement into the enlarged shared center and its
-literal Boolean cancellation. A raw isotropic model or complex diagonal
-completion does not supply the missing source.
+The [external-center correction](research/depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
+now supplies one actual middle-axis product that corrects every flag of
+the controlled Pauli simultaneously. The controlled Pauli then has constant translations, but
+a literal Boolean cubic enters the middle operation. That corrected
+commuting C3 phase has Clifford defects for the whole probe family.
+An explicit growing transvection family cannot be realized by any
+one-T-layer word, even with arbitrary Clifford endpoints and returned
+dirty helpers. This is a lower bound for the specified residual, not an
+unrestricted three-layer degree theorem or a general decoder obstruction.
+A rank-one action has two odd-multiplicity axis types after fixing the
+quadratic support; its global center-dependent phases cannot be discarded.
+A changed argument keeps the original native middle and closes fixed
+$`d=\dim\sum_u\mathrm{im}N_u`$, even with growing active ranks and
+quadratic support. After a literal complex Clifford alignment, its
+interacting factors use at most $`d(d+1)/2+d+1`$ computational directions.
+The retained partial-diagonal theorem applies to an actual two-band
+residual. The next lower question is growing total displacement dimension,
+alongside the separate arbitrary-middle-pair branch.
 
 The [exact dual-readout barrier](research/depth/DUAL_FRAME_READOUT_BARRIER.md)
-proves $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$ for
-$`m=2^p`$ modes, hence $`\Omega(m\sqrt{\log m})`$. It permits
-arbitrary Clifford interlayers and returned clean/dirty helpers, so exact
-linear-count standalone readout is excluded beyond the Gaussian model.
-It does not obstruct the complete indicator: R91 already gives O(m)
-T-count, O(m) dirty width, quadratic Clifford count and
-$`O(\log(p+2))`$ depth. A paid six-call reduction needs only Q,
-without a separate flat-source premise. Full-isometry source error tau
-would give indicator error at most $`6\tau`$, including work return;
-the exact denominator argument gives no uniform approximate lower bound.
+retains its unrestricted exact standalone count obstruction; R91 already
+gives a fused indicator with linear T-count and dirty width, quadratic
+Clifford count and logarithmic address depth. The
+[approximate transfer](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+requires only constant source accuracy at fixed frame precision. The
+[polynomial and hash limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
+remain scoped interface failures.
 
-The [approximate transfer](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-now proves that constant-in-address source accuracy suffices at fixed L:
-at most four indicators give error $`24\tau`$ per completed word query,
-and the frame uses only constantly many substituted long queries.
-Every accuracy-dependent source resource remains charged. A separate
-Gaussian-conjugator obstruction is robust to small constant error but
-applies to its native Majorana-preserving synthesis, not unrestricted
-approximate readout. The [joint-indicator audit](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
-proves a sharp square-root-two error floor for sub-full-degree additive
-polynomial phases and identifies the unpaid clean-seed initialization
-and whole-bucket error in a short-hash candidate. These are scoped
-interface failures. The next upper question remains a jointly accurate
-native indicator or unrestricted approximate source satisfying every
-resource and return requirement. Neither is constructed yet.
+The [changed-mechanism audit](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md)
+examines coherent phase signals and complete Pauli-frame transport.
+A signal reflection echo fails on arbitrary dirty states; too few
+rank-one signal reflections retain a common fixed subspace. Full coherent
+frame transport contains the complete indicator through a paid two-call
+reduction, with linear Clifford/dirty overhead and error at most twice
+the source error. Neither mechanism supplies the missing faster source.
+The next upper question remains a jointly accurate zero-clean indicator
+meeting every count, width, depth and return budget.
 
-The [previous checkpoint](research/depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
-retains stronger centers, the actual no-shared-flip CCZ witness and the
-constant-accuracy frame transfer. Every column, literal
-phase, arbitrary dirty input, reference, actual inverse, leakage and
-work-return requirement remains in force. Final manuscript drafting is
-separate.
+Every column, literal phase, arbitrary dirty input, reference, actual
+inverse, leakage and work-return requirement remains in force. These
+results change the research interface, not the complete-frame resource
+frontier. Final manuscript drafting is separate.
 
 ## Mandate
 

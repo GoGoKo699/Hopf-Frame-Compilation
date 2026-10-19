@@ -522,6 +522,11 @@ phases without large matrix simulation.
 
 ## 8. The original clean transition removes the mixed case
 
+The [external-center continuation](EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
+uses the remaining source constraints below to correct all flags with
+one middle Pauli. Its Boolean cubic correction remains in the middle;
+it is not automatically another independent native band.
+
 The original physical source imposes more than the abstract normal
 form. Retain the actual no-middle-pair branch with both interior clean
 images non-Pauli. If the original active spans have a common clean-odd
