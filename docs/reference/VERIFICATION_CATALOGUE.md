@@ -16,7 +16,10 @@ actual inverses, the indicator Pauli subspace, robust Fourier-word
 identities, and original physical-pair hypotheses. Its source interfaces,
 error bounds and center reductions have independent analytic audits;
 finite checks do not establish an asymptotic source or growing-depth
-lower bound. R96 and selected R79 are unchanged.
+lower bound. The [handoff continuation](../../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md#8-fresh-workspace-handoff-after-pr-198)
+adds an independently audited two-band half-amplitude screen using the
+retained two-layer theorem; it adds no new native fixture. R96 and
+selected R79 are unchanged.
 
 ## Catalogue index
 
@@ -68,7 +71,7 @@ lower bound. R96 and selected R79 are unchanged.
 | Table-specific syndrome interface | [Proof home](../../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md), [exact fixtures](../../tests/test_table_specific_indicator_interfaces.py) | Native syndrome extraction with a nonlinear row query, paid bank coordinates and a gauge mixing address and kernel-bank wires; full columns, literal phases, inverse and failure of an unpromised individual-bank probe. |
 | Bounded-clean query promotion | [Proof home](../../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md), [exact fixture](../../tests/test_dirty_promotion_of_clean_queries.py) | Arbitrary off-code native source action, complete selective echoes and sector cover, all physical columns and actual inverses; paid approximate-return, one-signal recovery and R98 resource bounds are analytic |
 | Indicator Pauli nullity | [Proof home](../../research/depth/INDICATOR_PAULI_NULLITY.md), [exact fixtures](../../tests/test_indicator_pauli_nullity.py) | Complete Pauli stabilizer-space enumeration, dirty tensor and small-address exception, robust Pauli gap, and a native one-layer incidence witness with an explicit failed joint probe |
-| Joint Fourier words | [Proof home](../../research/depth/JOINT_FOURIER_WORD_LIMITS.md), [exact fixtures](../../tests/test_joint_fourier_word_limits.py) | Bounded Fourier scalar identities, derivative gap diagnostics and normalization-specific one-signal spectra; no general native source or depth lower bound |
+| Joint Fourier words | [Proof home](../../research/depth/JOINT_FOURIER_WORD_LIMITS.md), [exact fixtures](../../tests/test_joint_fourier_word_limits.py) | Bounded Fourier scalar identities, derivative gap diagnostics and normalization-specific one-signal spectra. The two-band half-amplitude extension is analytic, with no new fixture; no general native source or depth lower bound |
 | Occupied Boolean pair center | [Proof home](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md), [exact fixtures](../../tests/test_occupied_boolean_pair_center.py) | Actual physical pairs and common-center dimensions, independent projected silent axes, endpoint-premise counterexample and bounded-feature/growing-displacement distinction; fixed-pair degree remains open |
 | Original physical middle-pair insertion | [Proof home](../../research/depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md), [exact fixtures](../../tests/test_original_middle_pair_insertions.py) | All signed pair orientations, exact Clifford correction and clean comparison, complete columns and actual inverse; one actual clean-returning pair has growing dressed support and is explicitly non-Boolean. |
 | Determinant-defect subgroup degree | [Proof home](../../research/depth/DETERMINANT_DEFECT_DEGREE.md), [exact fixture](../../tests/test_determinant_defect_degree.py) | An identity-target native representation tests nonconstant intrinsic defect phases, a codimension-one constant-phase subgroup, its literal correcting CNOT and actual inverses. The analytic correction yields degree at most $`D_r`$ for fixed subgroup codimension r, or five when r=0, under the zero-pair/all-zero-character hypotheses. A common t-dimensional central quotient gives $`r\le t(t+3)/2`$; neither parameter is a target-hardness invariant or generally bounded |

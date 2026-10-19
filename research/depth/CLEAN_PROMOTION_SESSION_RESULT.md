@@ -252,3 +252,46 @@ Finite Fourier and Pauli checks support the algebraic claims at small
 sizes; they are not asymptotic proofs or scalable source emitters.
 Required repository validation and rendered-document gates are recorded
 on the reviewed tree in the pull request.
+
+
+## 8. Fresh-workspace handoff after PR #198
+
+The verified baseline is merged main
+`d572a3f6df72081dae0e78a44123e77c809eaeff`, tree
+`a1b2ffef64e71d53611fe4a50740a7a82248a0dc`. The 1,412-test suite,
+Python 3.11/3.13 CI and full rendering passed on that research tree.
+The continuation fetched it again on 19 October 2026, then paused at
+the user's request to prepare a new workspace. The current task and
+recovery contract are in [WORKSPACE](../../WORKSPACE.md); its links
+supersede earlier session next-step passages.
+
+A brief analytic continuation established the
+[two-band half-amplitude screen](JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands).
+Small block error forces exact half-amplitude flatness. The literal
+aligner is a Clifford, so recovery keeps two physical source bands;
+the retained one-clean two-layer Boolean floor gives indicator block
+error at least $`\sin(\pi/8)/(4\sqrt2)`$ for $`p\ge3`$.
+The argument was independently audited; no new native fixture was
+added. This is a source-normalization obstruction, not a general depth
+bound. The PR #198 twenty-four-call interface remains valid for sources
+with more bands.
+
+The [inverse-square-root-two route](JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition)
+is unfinished. A separated high-rank example collapses to one physical
+band. Overlapping actual encoders remain the next candidate; their
+complete logical transition and simultaneous source budgets are the
+missing operation. No faster source or frame improvement was obtained.
+
+The [paused original-pair scout](OCCUPIED_BOOLEAN_PAIR_CENTER.md#7-paused-lower-scout-dress-the-actual-insertion-before-measuring-it)
+records an exact outer-factor rearrangement and the unproved dressed
+X-mask/feature bound. It does not promote bounded coupling rank to
+bounded support or claim a fixed-pair degree closure. The already
+proved no-pair growing-displacement closure remains intact.
+
+Historical instructions to solve the no-pair displacement branch,
+remove the clean allowance before discovery, find a one-band source at
+the tested amplitudes, or pay flat-sector alignment are superseded by
+PR #196 and PR #198. Section 6's half-amplitude two-band option is now
+stopped by the new screen; its inverse-square-root-two option remains
+current. R96, selected R79, all literal allocations, the current R98
+transfer, and Hopf-QBP provenance are unchanged.
