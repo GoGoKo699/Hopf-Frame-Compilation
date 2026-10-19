@@ -261,8 +261,8 @@ V=K_C^\dagger E_C^\dagger H^{b(z)}E_BE_AK_A
   =e^{i\theta}D_g.
 ```
 
-Retain all of that form's hypotheses: the three lists are globally
-independent native bands; R is a genuine shared computational center;
+Retain all of that form's hypotheses: each native list is independent
+on the full space; R is a genuine shared computational center;
 the signed Hermitian H commutes with R and each middle axis; and b is
 Boolean quadratic in the actual center inputs. Suppose the B list is
 empty. Then, uniformly in width and control rank,
