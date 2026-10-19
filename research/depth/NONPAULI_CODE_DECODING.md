@@ -392,3 +392,11 @@ the common cocycle (19), together with both actual endpoint encoders,
 admits a paid reduction that controls the occupied computational phase.
 The two-low-degree-control decoder in Sections 1--4 alone does not
 provide that reduction.
+
+The later [determinant-defect degree theorem](DETERMINANT_DEFECT_DEGREE.md)
+supplies a partial bridge: the labels whose entire defect phase is
+constant form a subgroup H. One occupied-fixing CNOT correction makes
+H a globally preserved computational-Z subgroup. Bounded codimension
+of H, or one bounded common central quotient for the whole phase family,
+therefore gives a uniform Boolean degree bound. Establishing that
+codimension bound for every actual native representation remains open.

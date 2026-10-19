@@ -22,10 +22,11 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
-closes additional one-clean three-layer boundary cases and extends a
-separately paid source-count obstruction to arbitrary symplectic carriers.
-These are scoped structural results. R96 remains the strongest general
+The [current research checkpoint](depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
+closes bounded-relation and bounded-defect-codimension degree subcases,
+and proves a complete conditional probe-to-word-query transfer.
+The growing-parameter cases and the faster probe source remain open.
+R96 remains the strongest general
 depth bound, R79 remains selected Result D, and the unrestricted
 one-clean three-layer and complete-frame depth questions remain open.
 
@@ -352,7 +353,7 @@ central register through a five-qubit quantum core. The next lower
 question concerns non-Pauli intermediate codes, with joint parity-control
 phases, silent endpoint bands and unused-sector freedom still present.
 
-The [current non-Pauli-boundary checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+The [preceding non-Pauli-boundary checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
 extends that lower closure. The [partial-diagonal theorem](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
 proves a bounded-feature description for a full-space native three-band
 unitary preserving a computational-Z subgroup of fixed codimension.
@@ -371,8 +372,37 @@ same three native bands. Its separate zero-pair lemma assumes active
 rank other than two and zero character for every logical probe. The
 unused-sector defects then commute, and their phases share one central
 Clifford determinant coboundary from the actual middle band. These are
-intrinsic central coordinates: no computational target-degree bound or
-free native implementation of that gauge follows.
+intrinsic central coordinates; the lemma alone gives no uniform target
+degree bound or free native implementation of that gauge.
+
+The [bounded-relation theorem](depth/BOUNDED_RELATION_NATIVE_MATCHING.md)
+now controls full-space three commuting phase lists with fixed binary
+relation dimensions. Its one-clean consequence closes the no-middle-pair
+case when both endpoint clean-active ranks are bounded. The proof
+retains the resulting dependent middle list and its literal scalar;
+it does not compile that list as a free physical native band. The general
+paired case and a rank-independent bound remain open.
+
+The [determinant-defect theorem](depth/DETERMINANT_DEFECT_DEGREE.md)
+supplies a different bridge in the zero-pair, all-zero-character branch.
+Labels with constant defect phase form a subgroup H. An actual CNOT
+correction makes H globally preserved, at unchanged width and T-depth.
+Codimension r gives sign degree at most $`D_r`$, with degree five when
+r=0. If the entire phase family factors through one common
+t-dimensional intrinsic linear quotient, then $`r\le t(t+3)/2`$.
+The proof does not identify each intrinsic coordinate with a target
+input or bound r for every actual native representation.
+
+The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
+places the complete generic nonzero-character family and its actual
+native factors in one algebra of symplectic rank at most four, assuming
+both interior clean images are non-Pauli. This is a common bounded-algebra
+component, not a computational phase bound. The genuinely exceptional
+non-S probe type at clean active rank two separates from every silent
+band. Its occupied action then has an actual zero-clean three-band
+logical representation, giving sign degree at most five and XOR degree
+at most four. The exceptional hypothesis does not cover every rank-two
+code or the general paired case.
 
 The [symplectic-module readout theorem](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
 removes the earlier translation-orbit hypothesis from the source-count
@@ -383,9 +413,16 @@ modules and full-source approximation at the stated radius, while
 excluding signed phase readouts and fused whole-word synthesis. Two
 half-address representations escape the single-representation premise
 with square-root carrier width and at most Q table Cliffords. Every
-source, controlled probe and actual inverse is charged; a faster
-selector/probe transport within R98's simultaneous word-query budgets
-remains unpaid. R91 supplies the unchanged fair query baseline.
+source, controlled probe and actual inverse is charged. Its
+[universal-probe conversion](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#6-universal-pauli-probes-contain-a-complete-dirty-indicator)
+uses two complete probe calls to implement an arbitrary-input dirty
+indicator, including noncommuting dual labels and address-dependent
+source phases. A uniform faster independent-probe source with linear
+T/width and quadratic Clifford cost would then supply
+[all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally)
+for every output length and dirty allocation. That conditional schedule
+is proved; the faster source remains unpaid. R91 supplies the unchanged
+fair query baseline.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the
