@@ -15,44 +15,46 @@ a completed source isometry or compact representation does not by itself
 supply a linear-count native recovery circuit.
 Final manuscript drafting is a separate task.
 
-## Current checkpoint: native sharing and table-specific probes
+## Current checkpoint: clean-source promotion and joint native words
 
-The [current revision](research/depth/NATIVE_SHARING_SESSION_RESULT.md)
-began at verified main `55ae14ea5da2d307194ba95184846b69f7783998`
-(PR #196). R96 remains the strongest unconditional general upper theorem:
+The [current revision](research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
+began at verified main `9d2b64f55c0c0f5a43b98441808fb46ab9bfc057`
+(PR #197). R96 remains the strongest unconditional general upper theorem:
 $`D_T=O(NL/b^2+L+\log_2(n+2))`$, optimal T-count, $`G=O(NL)`$,
 one clean qubit and the original literal widths. R79 remains selected
 Result D. Optimal general depth remains the destination.
 
-The main constructive target is still the complete approximate dirty
-indicator, with zero clean work, linear T-count and dirty width,
-quadratic Clifford count and sublogarithmic address T-depth at each
-fixed requested full-operator tolerance. The current restored-address
-R98 and its [constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+The main constructive target is the complete approximate dirty indicator,
+with zero clean work, linear T-count and dirty width, quadratic Clifford
+count and sublogarithmic address T-depth at each fixed full-operator
+tolerance. Current restored-address R98 and its
+[constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
 provide the paid transfer.
 
-The new [native sharing theorem](research/depth/NATIVE_INDICATOR_SHARING.md)
-requires at least p active T occurrences for each of the m bank
-observables at error below one half. It applies to the unrestricted
-zero-clean native word, but its incidence sum is not a growing depth
-bound. Separately emitted completed blocks pay at least p T gates each;
-independent rows therefore cost at least mp. A successful linear-count
-mechanism must share native non-Clifford work across growing bank sets.
+The new [clean-source promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+allows discovery to use a uniformly bounded clean bank. Its selective
+native echoes cancel arbitrary off-code behavior and charge leakage,
+all actual inverses and a complete sector cover. A one-signal native
+block at amplitude one half or inverse square root of two also suffices,
+through twenty-four source calls. The faster complete block remains
+unconstructed. A growing clean bank retains exponential generic
+source-call overhead; this is not a native-depth lower bound.
 
-A [selective-inversion echo](research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md)
-controls the full bank with logarithmic analog pulse width. Its complete
-native recurrence remains too costly, and the row-count theorem stops
-independent compilation even with a better pulse compiler.
-[Table-specific probes](research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
-permit a larger syndrome-preserving gauge at deficient rank; their paid
-interface does not provide an improved general-frame compiler.
+The [joint Fourier-word audit](research/depth/JOINT_FOURIER_WORD_LIMITS.md)
+gives a robust gap for repeated bounded-degree Boolean-phase loops and
+one-band block screens at both paid normalizations for $`p\ge3`$.
+Two or more distinct noncommuting source bands and joint address/output
+motion remain open mechanisms. The [indicator nullity calculation](research/depth/INDICATOR_PAULI_NULLITY.md)
+proves the unrestricted linear T-count lower bound; a one-layer witness
+shows why the earlier incidence condition alone cannot establish depth.
 
-The retained [native-orbit theorem](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
-closes growing displacement in the actual no-middle-pair three-layer
-reduction. The [focused original-middle-pair scout](research/depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md) retains the actual
-signed factors and identifies the missing occupied-code insertion
-argument; it supplies no new uniform degree closure. Original physical
-pairs and higher-layer asymptotics remain explicit open questions.
+The [occupied Boolean center](research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
+reduces original physical middle pairs to bounded noncentral transition
+support at fixed pair count, retaining independent actual silent bands.
+Bounded central features do not satisfy the finite-insertion theorem's
+total-support premise. Fixed positive pair count, growing pair count and
+higher-layer asymptotics remain open; the retained no-pair growing-
+displacement theorem is unchanged.
 
 All columns, literal phases, dirty inputs, references, actual inverses,
 leakage and return remain charged. The complete-frame frontier is

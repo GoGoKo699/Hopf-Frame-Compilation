@@ -1,5 +1,6 @@
 # Revision: native sharing and table-specific indicator probes
 
+[Next revision: clean-source promotion](CLEAN_PROMOTION_SESSION_RESULT.md) ·
 [Resource frontier](../../docs/OPEN_PROBLEM.md) ·
 [Previous checkpoint](JOINT_INDICATOR_SESSION_RESULT.md) ·
 [Current R98](QUERY_DEPTH_FRAME_TRANSFER.md) ·
