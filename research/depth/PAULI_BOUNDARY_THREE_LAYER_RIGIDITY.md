@@ -10,6 +10,13 @@ remain a Pauli stabilizer code at every native-band boundary. It does not
 cover a non-Pauli intermediate code and does not improve the complete-frame
 resource frontier.
 
+The later [partial-diagonal extension](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#7-one-pauli-interior-clean-image-suffices)
+covers either actual interior clean image being Pauli with a larger
+degree bound. Its rank-one/rank-one reduction also reaches this theorem
+after a literal repacking when both original interior images are
+non-Pauli. The present theorem retains its stronger 2048 bound under
+its own stated hypothesis.
+
 ## 1. Statement and physical hypothesis
 
 Consider an actual Clifford+T circuit with at most three native T bands,
