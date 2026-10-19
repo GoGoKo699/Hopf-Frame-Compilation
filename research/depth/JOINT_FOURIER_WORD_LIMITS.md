@@ -18,6 +18,17 @@ words remain outside their hypotheses. No complete-frame resource
 frontier changes here; R96 remains the strongest unconditional general
 upper theorem.
 
+**Subsequent source-class closure.** The
+[fixed Clifford-sum theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) now excludes
+the general two-band complete indicator block at fixed positive amplitude
+and uniformly bounded clean count, for sufficiently small fixed error
+and sufficiently large address size. It does not assume flatness. Thus
+Section 5's two-band discovery prompts are historical; their paid
+alignment identities and stronger finite-size subclass floors remain
+valid. Continue with the [three-band source recurrence](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#62-the-next-source-band-retains-the-general-leakage-recurrence)
+or another explicitly paid interface. This is still a source-class
+obstruction, not an unrestricted depth bound.
+
 ## 1. Exact fourfold closure retains only a simple sign
 
 Let f be any Boolean function on n work bits, with n at least one, and

@@ -307,3 +307,26 @@ a fixed-pair **plus bounded additional silent-span** degree theorem.
 The unrestricted two-band source and original-pair questions remain
 open. Its proof links and WORKSPACE are the current continuation route;
 R96 and the complete-frame frontier remain unchanged.
+
+## 10. Fixed-clean two-band source discovery is now stopped
+
+The [fixed Clifford-sum session](TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+supersedes Sections 6, 8 and 9's remaining two-band discovery prompts.
+Its [source theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) excludes the
+complete indicator block for every fixed positive normalization and
+uniformly bounded clean count, at sufficiently small fixed error and
+sufficiently large address size. Arbitrary dirty width, rejected action
+and common phase are allowed, and flatness is not required. This does
+not turn a source-class obstruction into an unrestricted depth bound.
+
+The promotion identities remain valid. The next fixed-clean block
+candidate uses at least three source bands and the generic leakage/return
+recurrence; exact-flatness improvements require a new proof for that
+candidate. The [repaired/dressed overlap study](OVERLAPPING_TWO_BAND_SOURCES.md)
+and [simultaneous parity saturation](SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
+retain their finite-size component results. The focused original-pair
+scout now uses [central-module profiles](CENTRAL_MODULE_NATIVE_PROFILES.md)
+to constrain actual matching without bounded silent span, while its
+simultaneous classification and general degree question remain open.
+The current verification boundary and resumption instructions are in
+the subsequent session and WORKSPACE, not this historical checkpoint.

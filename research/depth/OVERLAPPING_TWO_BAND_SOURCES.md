@@ -2,9 +2,18 @@
 
 [Current source interface](JOINT_FOURIER_WORD_LIMITS.md#5-a-precise-next-interface-for-two-source-bands) ·
 [Complete resource, error and return recurrence](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence) ·
+[Fixed-clean two-band source gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) ·
 [Two-layer rigidity](TWO_LAYER_DIAGONAL_RIGIDITY.md)
 
 This is a source-specific continuation, not an unrestricted depth theorem. Every nonsignal wire, including output-bank and private dirty-work wires, is arbitrary; identities extend by identity on external references. Physical bands retain independent native Pauli axes and actual inverses.
+
+The [fixed Clifford-sum gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) now
+excludes the general fixed-clean, fixed-amplitude two-band source
+interface at sufficiently small fixed error and sufficiently large
+address size. It requires no flatness assumption. The subclass screens
+below retain their stronger finite-size thresholds and explicit
+constants, and the displayed recovery recurrences remain conditional
+operator identities.
 
 Throughout, J inserts the sole signal in zero, and the actual source is
 $`U=U_B^\dagger U_A`$. Its clean-image reflections are
@@ -127,7 +136,7 @@ For p at least four, the retained [one-clean two-band real-diagonal floor](TWO_L
 
 This is a necessary non-scalar-commutator condition on a successful general two-band source. It is not a lower bound on unrestricted indicator depth.
 
-### The remaining paid-operation issue
+### What the four-term probe does not implement
 
 In the general case
 
@@ -135,7 +144,7 @@ In the general case
 T_j=\tfrac12(C+ACA+CB-ACAB)
 ```
 
-is a sum of four literal Clifford operators. The sum is a unitary by the algebra above, but this does not make it a Clifford or give it a two-band native realization. It is not permissible to replace it by a supplied operation, to bound it only by its symplectic rank, or to count the number of summands as native depth. The known recovered source already implements its occupied effect with paid constant many source calls; that fact does not yield the missing low-band classification. The next exact question is whether the full indicator's simultaneous output-probe constraints force more structure on these T_j, or whether actual signal-mixed one-band encoders realize their high-degree complete action within linear count/width and quadratic Clifford cost.
+is a sum of four literal Clifford operators. The sum is a unitary by the algebra above, but this does not make it a Clifford or give it a two-band native realization. It is not permissible to replace it by a supplied operation, to bound it only by its symplectic rank, or to count the number of summands as native depth. The known recovered source already implements its occupied effect with paid constant many source calls; that fact does not yield a low-band classification. The former next question asked whether simultaneous indicator probes force such a classification or permit a successful general source. The [direct projected-defect theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md#4-the-direct-projected-defect) supersedes that resumption question: a fixed-length Clifford-sum gap excludes the complete scalable source interface without classifying T_j or treating it as a native operation.
 
 No claim here establishes that Booleanity forces scalar commutation of C and A. That would be a new implication requiring proof, not a consequence of the displayed restriction to the A-positive sector.
 
@@ -150,9 +159,11 @@ P_{B,\pm}=(I\pm B)/2.
 It preserves products and adjoints on the algebra commuting B: the
 cross-sector terms vanish and the minus-sector product is
 $`AC_1AA C_2A=AC_1C_2A`$. Thus the original output probes already
-give mutually commuting residuals. The unpaid condition concerns their
-specified high-degree Boolean action in the actual input coordinates,
-jointly with the rest of the complete indicator operator.
+give mutually commuting residuals. The formerly unpaid condition was
+their specified high-degree Boolean action in the actual input
+coordinates, jointly with the rest of the complete indicator operator.
+The direct source gap uses those original coordinates to exclude the
+scalable complete transition without an additional commutation claim.
 
 ## 3. The four-term unitary is not generally Clifford: an actual source
 
@@ -175,7 +186,7 @@ But $`C(ACA)=(-I+iX-iY-iZ)/2`$ is not proportional to a Pauli. Accordingly $`T_j
 
 ## 4. A growing signal-mixing family with its complete transition
 
-This family realizes the paused nonzero-product geometry with actual one-band encoders. It is a substantive example, not a faster complete indicator. Its literal normalized transition is a square root of a quadratic Clifford involution, and a uniform distance bound excludes an arbitrary unitary involution as its target. The obstruction below applies to this literal family and common phases; it does not apply to arbitrary two-band sources or to arbitrary independent logical Clifford dressing.
+This family realizes the paused nonzero-product geometry with actual one-band encoders. It is a substantive example, not a faster complete indicator. Its literal normalized transition is a square root of a quadratic Clifford involution. Section 4.3 retains the original square-based rejection of that literal transition. Section 4.4 repairs the square with actual Clifford dressing; the stronger coefficient theorem in Section 6 then excludes the entire independently dressed family, including arbitrary spectator wires, for p at least three. These family arguments have a narrower scope and a much stronger finite-size threshold than the separate [general fixed-clean source gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md).
 
 Let k≥1 be odd, n=k+1, and let a be the single clean signal. The remaining k wires R have arbitrary inputs, including entanglement with external references. Put
 
@@ -339,7 +350,7 @@ because both signs occur in F. Consequently
 
 This is a source-specific operator-norm floor, including every logical column, dirty input and external reference. It persists when k=O(2^p), although (O4) then fits the desired source count/width/Clifford budget. The source therefore fails before approximate indicator promotion: its complete logical action has the wrong square. It does not fail because alignment, source return, inverse execution, or physical overlap were left unpaid.
 
-Reopening requires a changed complete transition: for example, different genuinely overlapping encoders, a combination whose full product is analyzed and achieves the involutory indicator action, or an independently audited logical dressing. The square argument alone does not cover independently chosen pre- and post-Clifford factors, arbitrary other two-band pairs, additional source bands, or the unrestricted depth question.
+The historical reopening question here allowed a changed complete transition or independently audited logical dressing. Section 4.4 answers the dressing question positively for the involution condition, so the square argument alone no longer diagnoses that repaired candidate. Section 6 supplies the stronger stopped-route statement for every independent Clifford dressing of this family. Different complete transitions outside that family theorem and compositions with a separately proved full action remain outside these particular screens. The separate [fixed-clean source gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) now also excludes arbitrary other two-band pairs as a scalable arbitrary-accuracy source at fixed amplitude. Additional source bands require a new analysis.
 
 The [exact native fixture](../../tests/test_signal_mixing_overlap.py)
 checks k=1 and k=3 on every column, including the complete source inverse,
@@ -349,7 +360,78 @@ bands overlap and cannot use the old disjoint-band merge; no claim that
 two is the source's minimal depth under every alternative synthesis is
 needed or made.
 
-## 5. Complete recurrence and current missing step
+### 4.4. An actual Clifford repair of the involution condition
+
+Let $`P_R=\prod_{j=1}^k Z_j`$ act only on the logical wires and put
+$`\omega=e^{i\pi/4}`$. In the X basis, P_R complements all k labels.
+Because k is odd, the sine defining F changes sign, giving
+$`P_RFP_R=-F`$. Thus the changed transition
+
+```math
+L'=\omega P_RL=P_R\exp(-i\pi F/4),\qquad
+(L')^\dagger=L',\qquad (L')^2=I
+```
+
+is a literal Hermitian involution. It defeats the square-based rejection
+without adding a T band or any clean history. Involutivity alone does
+not establish the specified indicator action.
+
+The repair has actual one-band encoders. With $`C_L=\omega P_R`$, set
+
+```math
+U'=(I_a\otimes C_L)U,
+\qquad U'_A=U_A,
+\qquad U'_B=U_B(I_a\otimes C_L^\dagger).
+```
+
+Then $`U'=(U'_B)^\dagger U'_A`$ and its complete block is
+$`L'/\sqrt2`$. The logical Clifford is an endpoint of the actual
+encoder; it is not a supplied replacement for either encoder. P_R uses
+two positive S gates per logical wire. The literal scalar
+$`\omega I=(HS)^3`$ uses six Cliffords on any existing wire, and
+its actual inverse uses twelve because each S-dagger is three positive
+S gates. The actual inverse is
+$`(U')^\dagger=U^\dagger(I_a\otimes C_L^\dagger)`$.
+Consequently the forward and inverse ledgers are
+
+```math
+\begin{aligned}
+T_{U'}&=T_{(U')^\dagger}=2(k+1),&
+D_T(U'),D_T((U')^\dagger)&\le2,\\
+G_{U'}&\le11k+15,&G_{(U')^\dagger}&\le11k+21.
+\end{aligned}
+```
+
+Width stays k+1, with one clean signal and no private work. The same
+three-call recovery, using the actual inverse, gives
+
+```math
+V'_S=U'S_a(U')^\dagger S_aU',\qquad
+V'_SJ=\omega JL',
+```
+
+with exact signal return on every logical and reference input. Its
+forward Clifford count is at most 33k+53; its actual inverse costs at
+most 33k+63. Both have T-count at most 6(k+1) and T-depth at most six.
+The raw recovery phase omega remains literal. Other dirty spectators
+return identically. These are a paid repair and return recurrence, not
+an indicator compiler: the Section 6 coefficient floor applies to L'.
+
+More generally, arbitrary independent logical Cliffords C_L,C_R give
+
+```math
+U'=(I_a\otimes C_L)U(I_a\otimes C_R),\qquad
+U'_A=U_A(I_a\otimes C_R),\qquad
+U'_B=U_B(I_a\otimes C_L^\dagger).
+```
+
+They preserve the actual one-band encoder grammar and produce complete
+block $`C_LLC_R/\sqrt2`$. They add their actual forward/inverse
+Clifford costs, no T gates and no initialized wires. The coefficient
+screen below allows both endpoints to mix all logical and dirty wires,
+including any spectator wires added to the family.
+
+## 5. Complete conditional recurrence and the stopped source interface
 
 For an actual exactly flat source, signal-S recovery returns its sole
 signal exactly and has the complete occupied unitary L, with its fixed
@@ -385,8 +467,11 @@ is included in the full operator norm. Actual inverses have the same
 majorants and error. Requesting epsilon at most
 $`\min\{1/10,\tau/(2\sqrt2)\}`$ pays any fixed target tolerance tau.
 Uniform linear T_A+T_B and b_U, and quadratic G_A+G_B, would therefore
-meet the complete indicator budget. Only under that still-unconstructed
-source hypothesis does restored-address R98 give the fixed-accuracy law
+meet the complete indicator budget if the requisite sources existed.
+The [fixed-clean source gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md) now
+excludes that hypothesis as an arbitrary-accuracy scalable family at
+this fixed amplitude. The conditional restored-address R98 transfer
+itself remains the fixed-accuracy law
 
 ```math
 D_T(\mathrm{frame})
@@ -396,13 +481,22 @@ D_T(\mathrm{frame})
 with the retained simultaneous count, Clifford, one-clean allocation
 and real/complex error bounds. The transfer's log-log term is not removed.
 
-The first unpaid operation for the unrestricted two-band source is the
-complete normalized indicator transition from actual signal-mixed
-encoders, with linear T-count and dirty width and quadratic Clifford
-count. The residual probe identity isolates a necessary operator family
-to analyze; no bound on its nonlinear feature degree follows merely
-from the number of Clifford summands or a reflection rank. More source
-bands and other bounded-clean mechanisms remain outside these screens.
+The growing family, its involutory repair and all independent logical
+Clifford dressings are stopped by Section 6 for p at least three. The
+square obstruction in Section 4.3 is no longer the decisive diagnosis
+after the repair. The former first unpaid operation was the complete
+normalized indicator transition from arbitrary signal-mixed one-band
+encoders. The [direct source-gap theorem](FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
+now excludes that scalable operation at fixed amplitude and uniformly
+bounded clean count, independently of the source's gate counts or
+width. No nonlinear-degree bound follows merely from the number of
+Clifford summands or a reflection rank: the new proof instead combines
+a uniform norm gap with the sparse original-coordinate indicator
+probe. Reopening requires a mechanism outside that source theorem,
+such as additional source bands with a separately established complete
+action and resource/error/return recurrence. A different bounded-clean
+mechanism also remains possible; varying the clean count within a fixed
+bound does not escape the theorem.
 R96 remains the strongest unconditional general upper theorem.
 
 The bounded exact tests in
@@ -411,3 +505,178 @@ check every column of an overlapping parity contraction, the general
 probe identity, literal native inverses, and an actual flat source whose
 transported probe is not Clifford. They verify finite identities, not an
 asymptotic indicator compiler or an unrestricted depth theorem.
+
+## 6. A Clifford-invariant coefficient screen for quarter-turn transitions
+
+This theorem covers the growing family and its repaired transition,
+with arbitrary independent logical Clifford endpoints, arbitrary common
+phase and arbitrary spectator wires. More generally it covers any exact
+complete normalized transition that is a Clifford dressing of a
+quarter-turn about a Hermitian Clifford involution. There is no proof
+that every two-band source has this logical form.
+
+### 6.1. A uniform coefficient dichotomy
+
+Let F be a Hermitian Clifford with $`F^2=I`$ on Q wires and let
+$`V_F=(I-iF)/\sqrt2`$. Use the positive Hermitian tensor-Pauli basis
+and normalized coefficients
+
+```math
+\widehat E(P)=2^{-Q}\mathrm{Tr}(PE),\qquad
+c_F=\max_P|\widehat F(P)|.
+```
+
+For any Hermitian Pauli R put $`S=FRF`$, which is a signed Hermitian
+Pauli. Direct expansion gives the complete operator identity
+
+```math
+V_FRV_F^\dagger=\tfrac12(R+S+iRF-iFR).
+\qquad\text{(C1)}
+```
+
+If S equals R, this is R. If S equals minus R, it is iRF and its
+coefficient ceiling is c_F, since Pauli multiplication permutes Pauli
+labels and phases. Otherwise R and S have distinct Pauli labels. Their
+coefficients in (C1) have magnitude one half: the cross term has zero
+coefficient on both. For R the cancellation is
+
+```math
+\mathrm{Tr}\bigl(R(RF-FR)\bigr)
+=\mathrm{Tr}(F)-\mathrm{Tr}(RFR)=0.
+```
+
+For S, use $`S=FRF`$, $`R^2=F^2=I`$ and cyclicity to obtain the
+same cancellation. This step does not require F to be traceless. Every
+other coefficient comes from the two Pauli multiples of F and has
+magnitude at most c_F by the triangle inequality. Consequently every
+image in (C1) is either a signed Hermitian Pauli or has every normalized
+Pauli coefficient bounded by
+
+```math
+\max\{1/2,c_F\}.
+\qquad\text{(C2)}
+```
+
+The retained [flat Clifford Pauli-expansion lemma](NATIVE_BAND_SOURCE_STRUCTURE.md#3-native-right-extension)
+shows that the nonzero coefficients of a Clifford all have magnitude
+$`2^{-r/2}`$, where r is the rank of its symplectic map minus identity.
+If F is not proportional to a Pauli, r is positive and
+$`c_F\le1/\sqrt2`$. If F is a signed Pauli, V_F is itself Clifford,
+including a constant scalar when F is plus or minus identity.
+
+Thus, for every Hermitian Clifford F, images under V_F are either
+signed Paulis or have coefficient ceiling $`1/\sqrt2`$. Tensoring
+spectators leaves this dichotomy unchanged. Independent left and right
+Clifford factors respectively permute the output and input Hermitian
+Paulis, retaining their signs; a common scalar cancels in conjugation.
+The dichotomy therefore holds for
+$`C_L(V_F\otimes I)C_R`$ with arbitrary such factors on the full
+logical-plus-dirty register. No spectator basis promise is used.
+
+### 6.2. The sparse indicator probe gives a robust full-operator floor
+
+For the complete indicator with $`m=2^p`$, any original bank observable
+has the image
+
+```math
+M_j=I_pZ_{Y_j}I_p^\dagger
+   =Z_{Y_j}(-1)^{[x=j]},\qquad
+\widehat M_j(Z_{Y_j})=1-2/m.
+\qquad\text{(C3)}
+```
+
+For p at least two, M_j is not a signed Pauli. Its operator distance
+from every signed Hermitian Pauli is at least square root two, as in
+the [complete-indicator Pauli-image gap](INDICATOR_PAULI_NULLITY.md#3-a-uniform-pauli-image-gap-makes-the-count-robust).
+Explicitly, a nonzero X mask sends each basis input to a different
+destination from the diagonal M_j, giving column distance square root
+two. A zero X mask is an affine diagonal sign; the nonaffine sign in
+(C3) differs on some input, giving distance two. This argument includes
+all arbitrary dirty directions.
+
+Suppose a candidate unitary W has the dichotomy (C2) with ceiling c,
+where $`1-2/m\gt c`$. If its Z_j image is Pauli, the preceding
+gap applies. Otherwise its coefficient at Z_j has magnitude at most c,
+and normalized trace is bounded by operator norm, so
+
+```math
+\|M_j-WZ_jW^\dagger\|\ge1-2/m-c.
+```
+
+Unitary telescoping gives
+$`\|M_j-WZ_jW^\dagger\|\le2\|W-I_p\|`$. A common phase
+on W cancels, and tensoring references preserves these bounds. Therefore
+an exactly flat source with complete normalized transition W obeys
+
+```math
+\inf_{|\gamma|=1}
+\left\|\gamma\frac W{\sqrt2}-\frac{I_p}{\sqrt2}\right\|
+\ge\frac{1-2/m-c}{2\sqrt2}.
+\qquad\text{(C4)}
+```
+
+In particular, every independently Clifford-dressed quarter-turn
+transition in Section 6.1 satisfies, for p at least three,
+
+```math
+\epsilon\ge
+\frac{1-2/m-1/\sqrt2}{2\sqrt2}
+\ge\frac{3}{8\sqrt2}-\frac14\gt0.
+\qquad\text{(C5)}
+```
+
+This is an operator-norm obstruction to meeting every fixed requested
+tolerance. It assumes neither monomial action of the candidate nor an
+initialized output or dirty register. The native actual inverse has the
+same distance from the inverse target. The proof constrains an exact
+logical form, not the T-depth of arbitrary sources.
+
+### 6.3. Sharper floor for the growing family and its repair
+
+For the Section 4 family with odd k at least three, the quadratic
+polynomial q_k has polar matrix equal to the all-ones matrix plus
+identity. Its radical is $`\{0,r\}`$, where r is the all-ones
+vector, and $`q_k(z+r)=q_k(z)+1`$. With normalized Boolean Walsh
+coefficients, squaring and summing over the displacement gives
+
+```math
+\left|\widehat{(-1)^{q_k}}(t)\right|^2
+ =2^{-k}\bigl[1-(-1)^{t\cdot r}\bigr].
+```
+
+Hence every nonzero Pauli coefficient of F has magnitude
+$`2^{-(k-1)/2}\le1/2`$. Equation (C2) improves the non-Pauli
+image ceiling to one half. For arbitrary independent Clifford dressing,
+arbitrary spectators and any common phase, (C4) now yields
+
+```math
+\epsilon\ge\frac{1/2-2/m}{2\sqrt2}
+\ge\frac1{8\sqrt2},\qquad p\ge3.
+\qquad\text{(C6)}
+```
+
+For k equal to one, the literal L is already the Clifford
+$`-iHSH`$. Every dressed image is Pauli, so the same target probe
+and its square-root-two gap give source error at least one half.
+This exception must not be assigned the non-Clifford family's Pauli
+subspace dimension.
+
+Equations (C5) and (C6) also include the actual involutory repair of
+Section 4.4. The repair fixes a real defect, but its complete probe
+profile still misses the sparse indicator response. This is the family-specific
+reason it stops, with explicit useful finite-size constants. Reopening requires a complete transition
+outside this independently dressed quarter-turn class, or a composition
+whose full operator, resources and return are separately established.
+This coefficient theorem does not exclude arbitrary other two-band
+transitions. The separate [fixed-clean source gap](FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
+does exclude them as a scalable arbitrary-accuracy source at fixed
+amplitude, while additional source bands and a faster unrestricted
+indicator remain outside that statement. The
+complete-frame frontier therefore remains unchanged.
+
+The [bounded exact receipts](../../tests/test_dressed_signal_overlap.py)
+check the repaired source and actual inverse, literal recovery phase,
+complete signal return, positive-S counts, and the coefficient identity
+for a nontraceless Hermitian Clifford. They support the displayed native
+identities; the all-width, all-dressing floors follow from the proofs
+above.

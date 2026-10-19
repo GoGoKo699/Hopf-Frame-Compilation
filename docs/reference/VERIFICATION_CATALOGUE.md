@@ -10,15 +10,22 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
-adds three exact native tests for complete overlap contractions, generic
-transported probes and their non-Clifford guard, and a growing signal-mixing
-family at k=1 and k=3. They retain all logical columns, literal phases,
-actual adjoints, clean return and positive-S counts. The exact-flatness
-recurrence, source-specific screens and restricted original-pair theorem
-received independent analytic audits. Their uniform claims are proved
-analytically; finite fixtures do not establish an indicator compiler or
-unrestricted depth bound. R96 and selected R79 are unchanged.
+The [current revision](../../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+adds focused receipts for the direct projected source defect, repaired
+and Clifford-dressed overlap sources, simultaneous parity saturation,
+and central-module native profiles. The catalogue records their scope;
+execution and full validation status belong to the reviewed-tree session
+record. The fixed Clifford-sum gap and uniform profile bounds are analytic
+theorems, not extrapolations from these fixtures. The next source candidate
+uses at least three bands with the generic error/return recurrence;
+no faster indicator or unrestricted depth theorem is claimed. R96 and
+selected R79 are unchanged.
+
+The [preceding overlap revision](../../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
+retains complete overlap contractions, generic transported probes and
+their non-Clifford guard, and the growing signal-mixing family at k=1
+and k=3. Its exact-flatness recurrence remains conditional; its proposed
+general two-band resumption is superseded by the new source gap.
 
 The [previous clean-source revision](../../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
 retains promotion, indicator-nullity, Fourier-word and occupied-center
@@ -37,9 +44,12 @@ two-layer theorem without an additional native fixture.
 | All-precision general depth R96 | [Detailed finite checks](#detailed-finite-checks), [all-precision proof](../../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Four bounded capped-reference fixtures check exact overlap/cutoff, full-space completion, all original bands and occupied actual-inverse cancellation; retained native controls, source/recovery and query suites support their existing interfaces. Global addresses, common fine grammar, coarse support, precision and width splices remain analytic |
 | Outer-overlap rigidity R97 | [Detailed finite checks](#detailed-finite-checks), [outer-overlap proof](../../research/depth/OUTER_OVERLAP_RIGIDITY.md) | Nine exact fixtures check native axis compatibility, transverse gauge, displayed overlap and center mixing, a distinct three-layer resplitting, and the same-space descent obstruction. The bounded-misalignment gap and its uniform aligned case remain analytic |
 | Query-depth reformulation R98 | [Query/frame identities](../../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), [conditional transfer](../../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md), [paired router](../../research/depth/PAIRED_PERMUTATION_ROUTING.md) | Exact small native query/frame words, actual-inverse phase falsifier and initialized leakage hybrid; paired routing and selected-address packing are tested on complete arbitrary inputs, including a body that temporarily changes its selector. The conditional general-frame resource/error assembly is analytic and assumes an improved query interface |
-| Overlapping two-band sources | [Proof home](../../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md), [probe fixtures](../../tests/test_overlapping_source_probes.py), [signal-mixing fixture](../../tests/test_signal_mixing_overlap.py) | Exact all-column contractions, nonscalar probe guard, literal transition square, source/recovery inverses and return. The general source screens and exact-flatness error recurrence are analytic; the tested growing family fails the indicator target |
+| Fixed-clean two-band source gap | [Proof home](../../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md), [direct-defect receipts](../../tests/test_fixed_clifford_source_gap.py) | Nonflat one- and two-clean sources check the complete projected defect, literal Clifford expansion, physical trace normalization and actual inverses; bounded arithmetic checks the sparse probe and explicit gap exponents. The width-independent Clifford-sum gap and eventual-address source obstruction are analytic, with fixed clean count and normalization |
+| Overlapping and Clifford-dressed sources | [Proof home](../../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md), [probe fixtures](../../tests/test_overlapping_source_probes.py), [signal-mixing fixture](../../tests/test_signal_mixing_overlap.py), [dressed-source receipts](../../tests/test_dressed_signal_overlap.py) | Exact all-column contractions, non-Clifford residual guard, involution repair, literal source/recovery inverses, return and positive-S counts. Small quarter-turn probes include a nonzero-trace Clifford involution. The dressed coefficient floors and generic promotion bounds remain analytic; involutivity alone does not establish the indicator action |
+| Simultaneous output parities | [Proof home](../../research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md), [native saturation receipts](../../tests/test_simultaneous_output_parities.py) | Complete one-band and two-band sources, actual inverses, accepted transitions and output-mask support certify cheap nonindicators with saturated native rank; the two-band identity transition saturates both directions. The Reed–Muller restriction and rank lower requirement are analytic necessary conditions, not a construction or unrestricted depth bound |
 | Original-pair bounded additional span | [Proof home, Section 8](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates) | Analytic common-coordinate feature proof bounds degree at fixed original pair count and fixed additional coupled silent-axis span. Existing occupied-center fixtures retain their original roles; no new finite fixture substitutes for the uniform theorem |
 | Original-pair shared Clifford sum | [Proof home, Section 9](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#9-a-clean-preserving-clifford-sum-without-bounding-the-silent-span) | Analytic reduction with no additional-span bound: each summand preserves the physical clean bit and descends to a complete logical Clifford; coefficients share the retained bounded feature ledger. Exact common-band phase and displacement formulas do not bound individual ranks. No fixed-pair degree closure or new simulation claim |
+| Central-module native profiles | [Proof home](../../research/depth/CENTRAL_MODULE_NATIVE_PROFILES.md), [exact profile receipts](../../tests/test_central_module_profiles.py) | Independent native bands check three distinct central-coset norms/profiles and an odd relation for a probe anticommuting with the center, retaining complete columns, phases and inverses. Actual Boolean matching gives analytic bounded profile distortion and per-element escape-span control; no bound on the union of escaping spans or fixed-pair degree is inferred |
 | Gaussian inverse repair | [Proof and scope](../../research/depth/GAUSSIAN_INVERSE_EXTRACTION.md), [bounded fixtures](../../tests/test_gaussian_inverse_extraction.py) | Complete small binary edge maps, Weyl phases, cheap-shear counterexample and inverse polynomial degree; retained R91 fixtures check native edge substitution. The robust affine-round obstruction is analytic, not a general T-depth bound |
 | Inverse-entry representation and read-only conversion | [Proof home](../../research/depth/GAUSS_SUM_QUERY_ENCODING.md), [bounded fixtures](../../tests/test_gaussian_inverse_extraction.py) | Existing arbitrary-table encoding, scoped affine-embedding capacity and completed-generic-query pricing bounds, exact dirty-offset failure and finite-field interpolation. The fully returned read-only repair loses to direct path propagation in count, depth and work; the common-mask evaluation boundary does not exclude coupled masks, quantum interference or sparse native specialization |
 | Gaussian scalar-loop obstruction | [Proof home](../../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md), [exact fixtures](../../tests/test_gaussian_scalar_loop_obstruction.py) | Arf characteristic-coefficient formula, literal Fourier cube and marked path-sum inverse polar. Width-independent degree and robust return are analytic; the primitive is an actual affine quadratic phase, not an arbitrary scalar lift of a symplectic matrix |
