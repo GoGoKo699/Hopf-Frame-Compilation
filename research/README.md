@@ -22,14 +22,16 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
-connects native probes to computational target derivatives and closes the
-active-center coordinate step using Boolean reality and a paid Clifford.
-Global-center matching remains open: fixing a center fiber can destroy
-native independence. A fully native Majorana Walsh probe retains excessive
-count and depth; its Gaussian source obstruction does not cover joint
-unrestricted synthesis. R96 remains the strongest general bound, R79
-remains selected Result D, and the complete-frame frontier is unchanged.
+The [current research checkpoint](depth/SHARED_CENTER_SESSION_RESULT.md)
+proves global middle-span invariance for the actual quadratic-controlled
+insertion and obtains commuting monomial Clifford endpoint images after
+paid normalization of an enlarged shared center. Relative center phases
+remain unresolved; a conditional decoder is not free. The exact standalone
+Walsh dual readout has a superlinear T-count obstruction with arbitrary
+Clifford interlayers and returned helpers. Joint indicators and approximate
+readout remain outside that obstruction. R96 remains the strongest general
+bound, R79 remains selected Result D, and the complete-frame frontier is
+unchanged.
 
 ## Endpoint results
 
@@ -427,6 +429,20 @@ Global matching remains open:
 conditioning the center can destroy native independence even for an
 identity target. An arbitrary quartic correction is not a free gate.
 
+The [quadratic-control matching theorem](depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
+closes fixed control polar rank by actual Clifford absorption and finite
+insertion. For a genuine quadratic control at arbitrary rank, the associated
+Clifford probe images preserve the middle native span. The input and output
+probe families agree on a common invariant isotropic algebra. Its joint
+displacements enlarge the actual shared center; paid normalization makes
+the endpoint images commuting monomial Cliffords, with affine translations
+controlled by center bits and retained quadratic work phases. This does
+not supply a global decoder or a relative-center-phase bound. A cubic
+target has unbounded raw polar rank but a shared clean flip, so it does
+not witness the remaining branch. Sliding the insertion can change Pauli
+axes into Clifford involutions, whose spectral T rotations are not free
+native gates.
+
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual
 native factors in one algebra of symplectic rank at most four, assuming
@@ -472,6 +488,20 @@ depth $`2p`$ and a costly complete dirty dual-frame readout. Its exact
 commutator gives a concrete alternate indicator interface; neither
 missing resource improvement is supplied. The separate unrestricted
 flat-source lower bound is constant, so R96 remains unchanged.
+
+The [exact dual-readout theorem](depth/DUAL_FRAME_READOUT_BARRIER.md)
+goes beyond the Gaussian-intermediate restriction for the separate Walsh
+readout Q: $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$,
+or $`\Omega(m\sqrt p)`$, including arbitrary Clifford interlayers
+and returned clean/dirty helpers. An explicit Walsh minor supplies a
+unique Pauli-channel coefficient; exact clean return introduces no
+normalization loss. A six-call Q-only wrapper gives the complete indicator
+with every Clifford and actual inverse paid. R91 already gives that
+indicator O(m) T-count, so the standalone count barrier motivates joint
+compilation. It gives no uniform approximation obstruction: full-isometry
+source error tau transfers to at most $`6\tau`$ indicator error, while
+an approximate source's simultaneous ledger and frame transfer remain
+unproved. No general frontier changes.
 
 The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
 closes that specific scalar escape: the

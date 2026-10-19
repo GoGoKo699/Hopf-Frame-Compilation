@@ -4,6 +4,11 @@
 [Rank-one interface](RANK_ONE_CLEAN_PHASE_INTERFACE.md) ·
 [Two-layer diagonal rigidity](TWO_LAYER_DIAGONAL_RIGIDITY.md)
 
+The [global quadratic-control continuation](QUADRATIC_CONTROL_NATIVE_MATCHING.md)
+retains Section 10's full native lists, proves a common invariant middle
+span, and enlarges the actual shared center. Its monomial Clifford form
+still leaves relative center phases unresolved.
+
 The intrinsic determinant phases can be connected to computational
 derivatives without bounding their number of central variables. An
 actual clean-odd Pauli gives a Clifford relation between the occupied
