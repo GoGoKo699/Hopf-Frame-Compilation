@@ -10,13 +10,13 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/NATIVE_SHARING_SESSION_RESULT.md)
-checks native Pauli-support propagation, full signal echoes and actual
-inverses, table-specific syndrome probes and original signed middle pairs.
-A joint seven-T bank fixture distinguishes the separate-row count bound
-from unrestricted synthesis. The incidence, pulse error, paid transfer
-and insertion statements have analytic proofs; finite checks do not
-establish asymptotic depth. R96 and selected R79 are unchanged.
+The [current revision](../../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
+checks complete native clean-source promotion, literal source phases and
+actual inverses, the indicator Pauli subspace, robust Fourier-word
+identities, and original physical-pair hypotheses. Its source interfaces,
+error bounds and center reductions have independent analytic audits;
+finite checks do not establish an asymptotic source or growing-depth
+lower bound. R96 and selected R79 are unchanged.
 
 ## Catalogue index
 
@@ -66,6 +66,10 @@ establish asymptotic depth. R96 and selected R79 are unchanged.
 | Native indicator sharing | [Proof home](../../research/depth/NATIVE_INDICATOR_SHARING.md), [exact fixtures](../../tests/test_native_indicator_sharing.py) | Exact native Pauli-support propagation with temporary address motion, signed translation gaps and actual inverses; a seven-T joint bank distinguishes the unrestricted incidence condition from the separate-row count bound. |
 | Selective inversion on dirty signals | [Proof home](../../research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md), [exact fixtures](../../tests/test_selective_inversion_dirty_indicator.py) | Literal SU(2) echoes and a complete finite digital word on every column, including actual inverse and gate counts; the scattering estimate and native recurrence are analytic, and the coarse fixture is not an accurate indicator. |
 | Table-specific syndrome interface | [Proof home](../../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md), [exact fixtures](../../tests/test_table_specific_indicator_interfaces.py) | Native syndrome extraction with a nonlinear row query, paid bank coordinates and a gauge mixing address and kernel-bank wires; full columns, literal phases, inverse and failure of an unpromised individual-bank probe. |
+| Bounded-clean query promotion | [Proof home](../../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md), [exact fixture](../../tests/test_dirty_promotion_of_clean_queries.py) | Arbitrary off-code native source action, complete selective echoes and sector cover, all physical columns and actual inverses; paid approximate-return, one-signal recovery and R98 resource bounds are analytic |
+| Indicator Pauli nullity | [Proof home](../../research/depth/INDICATOR_PAULI_NULLITY.md), [exact fixtures](../../tests/test_indicator_pauli_nullity.py) | Complete Pauli stabilizer-space enumeration, dirty tensor and small-address exception, robust Pauli gap, and a native one-layer incidence witness with an explicit failed joint probe |
+| Joint Fourier words | [Proof home](../../research/depth/JOINT_FOURIER_WORD_LIMITS.md), [exact fixtures](../../tests/test_joint_fourier_word_limits.py) | Bounded Fourier scalar identities, derivative gap diagnostics and normalization-specific one-signal spectra; no general native source or depth lower bound |
+| Occupied Boolean pair center | [Proof home](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md), [exact fixtures](../../tests/test_occupied_boolean_pair_center.py) | Actual physical pairs and common-center dimensions, independent projected silent axes, endpoint-premise counterexample and bounded-feature/growing-displacement distinction; fixed-pair degree remains open |
 | Original physical middle-pair insertion | [Proof home](../../research/depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md), [exact fixtures](../../tests/test_original_middle_pair_insertions.py) | All signed pair orientations, exact Clifford correction and clean comparison, complete columns and actual inverse; one actual clean-returning pair has growing dressed support and is explicitly non-Boolean. |
 | Determinant-defect subgroup degree | [Proof home](../../research/depth/DETERMINANT_DEFECT_DEGREE.md), [exact fixture](../../tests/test_determinant_defect_degree.py) | An identity-target native representation tests nonconstant intrinsic defect phases, a codimension-one constant-phase subgroup, its literal correcting CNOT and actual inverses. The analytic correction yields degree at most $`D_r`$ for fixed subgroup codimension r, or five when r=0, under the zero-pair/all-zero-character hypotheses. A common t-dimensional central quotient gives $`r\le t(t+3)/2`$; neither parameter is a target-hardness invariant or generally bounded |
 | Joint nonzero-probe algebra and exceptional closure | [Proof home](../../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md), [exact fixture](../../tests/test_joint_nonpauli_probe_algebra.py) | The analytic generic theorem places the whole nonzero-character family in one symplectic-rank-four algebra when both interior clean images are non-Pauli; bounded central phase complexity does not follow. The exceptional clean-factor fixture retains the occupied scalar, all physical columns, actual inverses and the explicit difference on the unused sector. The genuinely exceptional non-S rank-two probe type has a zero-clean three-band logical representation and sign/XOR bounds five/four. The finite-insertion theorem covers fixed active ranks, including rank two, with a larger bound; growing ranks remain open |

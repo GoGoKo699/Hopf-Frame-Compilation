@@ -22,29 +22,27 @@ two-clean linear-precision statement and supporting source proofs. The
 [state-based QBP supplement](../supplements/state_based_qbp/README.md)
 uses a different decoder and has its own task-level guarantee.
 
-The [current research checkpoint](depth/NATIVE_SHARING_SESSION_RESULT.md)
+The [current research checkpoint](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
 keeps the complete approximate dirty indicator as the main constructive
-target. The [native sharing theorem](depth/NATIVE_INDICATOR_SHARING.md)
-requires at least p active T occurrences per bank observable, even with
-unrestricted Clifford/address mixing. It gives no growing depth bound.
-Its completed-block corollary forces mp T gates for independent rows;
-sharing across growing bank sets is necessary for the linear-count goal.
+target. [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+removes a uniformly bounded clean bank with full error and native costs
+paid. A one-signal complete block at amplitude one half or inverse square
+root of two is another sufficient source, through twenty-four actual
+source/inverse calls. Such a faster native block is still missing.
 
-A [selective-inversion echo](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md)
-reduces the analog full-bank precision cost to logarithmic pulse width,
-with a complete finite native recurrence. Independent native row
-compilation still fails the count target. [Table-specific probe gauges](depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
-are governed by the probed syndrome rank; their paid reductions do not
-supply a faster general source. Current restored-address R98 still needs
-only constant source accuracy at fixed frame precision.
+The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
+are robust for their specified architectures and exclude one physical
+source band at both paid amplitudes for $`p\ge3`$. Two or more
+noncommuting source bands and joint address/output motion remain
+outside those hypotheses. The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
+fixes the standalone linear count order without proving growing depth.
 
-The retained [native-orbit theorem](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
-closes growing displacement in the actual no-middle-pair branch. The
-original physical-pair and higher-layer cases remain open. The focused
-scout keeps actual pair factors at the physical middle rather than
-assuming independence after sector restriction. R96 remains the strongest
-general upper bound, R79 remains selected Result D, and the complete-frame
-frontier is unchanged.
+The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
+retains the original physical middle pairs and reduces their noncentral
+support at fixed pair count. Central features do not supply the total
+support bound needed for degree closure. Those cases and higher layers
+remain open. R96 remains the strongest general upper bound, R79 remains
+selected Result D, and the complete-frame frontier is unchanged.
 
 ## Endpoint results
 
@@ -591,6 +589,15 @@ transport is equivalent to the complete indicator up to two source calls,
 linear Clifford/dirty overhead and a factor-two error bound. These results
 identify return and correction costs without asserting unrestricted lower
 bounds or importing clean-input fanout guarantees into the native model.
+
+The [clean-promotion continuation](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
+adds a paid route from bounded-clean complete queries and one-signal
+unitary blocks to zero-clean indicators. Its generic source-call bound
+explains the retained growing-clean cost. The accompanying Fourier-word,
+Pauli-nullity and occupied-center notes distinguish architecture limits,
+unrestricted count constraints and the still-open physical-pair degree
+question. The main next question is native synthesis of the complete
+constant-amplitude block with the desired simultaneous resource bounds.
 
 The [native-sharing continuation](depth/NATIVE_SHARING_SESSION_RESULT.md)
 adds the unrestricted active-T incidence condition and its separately

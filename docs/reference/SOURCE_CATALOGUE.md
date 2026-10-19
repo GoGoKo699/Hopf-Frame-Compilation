@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F46 and R12–R87: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
+| F1–F48 and R12–R98: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -176,6 +176,7 @@ from the exact clean-workspace size–depth theorem.
 | F45 | [Masoudi, 2026 SFU thesis](https://theses.lib.sfu.ca/show/9240), Chapter 5, Propositions 5.2, 5.4, 5.7–5.8 and Corollary 5.9 | exact channel-denominator bounds with clean ancillas and an arbitrary-clean one-layer obstruction | comparison only: the clean-projector expansion is standard; exact finite-circuit arithmetic alone does not give R73's robust gap across unbounded dirty widths |
 | F46 | [Nevin, arXiv:2511.17856](https://arxiv.org/pdf/2511.17856), Theorem 6(M1) | exact full-space Pauli-transfer computation is #P-hard already at T-depth three | comparison only; this complexity result supplies no robust synthesis gap |
 | F47 | [Torosov–Vitanov, Phys. Rev. A 83, 053420](https://link.aps.org/accepted/10.1103/PhysRevA.83.053420), Section V.A, Eqs. (12)–(13) | Rosen–Zener hyperbolic-secant scattering transition amplitude | The [selective-inversion study](../../research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md) uses this established amplitude with an actual-adjoint dirty echo, then proves the full-bank error and pays finite truncation and native synthesis. No native gate, initialized eigenstate, pulse-depth equivalence or general-frame improvement is imported |
+| F48 | [Jiang–Wang, Phys. Rev. Applied 19, 034052 (2023)](https://doi.org/10.1103/PhysRevApplied.19.034052), [arXiv:2103.09999](https://arxiv.org/abs/2103.09999), Theorem 11 | Unitary stabilizer nullity as a T-count lower bound | The [indicator calculation](../../research/depth/INDICATOR_PAULI_NULLITY.md) computes the target's complete Pauli subspace and proves its explicit robust gap. The general monotone is imported; no growing-depth lower bound follows |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
