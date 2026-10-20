@@ -3,6 +3,14 @@
 [Workspace](../../WORKSPACE.md) · [Full frontier](../../docs/OPEN_PROBLEM.md) ·
 [Previous character-source checkpoint](CHARACTER_SOURCE_REVISION_RESULT.md)
 
+This is a historical checkpoint. The later
+[structural pair revision](STRUCTURAL_PAIR_REVISION_RESULT.md) replaces
+its large all-active lower bound with sign/XOR degree six/five uniformly
+and five/four when the common active rank is at least four; see the
+[full-space diagonal proof](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md).
+The coherent-source results below are retained. This revision does not
+change the unrestricted resource frontier or settle a general original pair.
+
 This continuation starts from main
 `e6a1223c46dd3186ce3be2ab194ff0a70a6c6414`, tree
 `67978e842513a1dfdd8c93d5ef13bcd7cee53c33`, after PR #207.

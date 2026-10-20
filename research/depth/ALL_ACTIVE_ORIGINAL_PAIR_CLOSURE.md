@@ -4,12 +4,15 @@
 [Larger-support sector revision](MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) ·
 [Occupied Boolean center](OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 
-The later [uniform all-active closure](ALL_ACTIVE_SINGLETON_CLOSURE.md)
+The current [structural all-active bound](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
 removes the silent-commutation premise and permits unbounded original
-singleton coupling, with sign/XOR bound 37748865/37748864. The
-2428/2427 bound proved here remains sharper in this one-sided class,
-as does six/five when both endpoint active ranks are two. Neither
-result covers a general original pair or unrestricted depth.
+singleton coupling. It gives sign/XOR degree six/five uniformly and
+five/four when the common active rank is at least four. The 2428/2427
+theorem below is a retained historical component, as is the earlier
+[large uniform feature bound](ALL_ACTIVE_SINGLETON_CLOSURE.md). The
+[revision checkpoint](STRUCTURAL_PAIR_REVISION_RESULT.md) separates this
+source-class improvement from the open general-pair and unrestricted-depth
+questions.
 
 The larger-support sector code can require two native endpoint bands.
 That encoding obstruction does not prevent a complete degree theorem

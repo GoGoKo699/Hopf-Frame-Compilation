@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+[current research outcome](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -45,10 +45,16 @@ Its explicit constants are extremely conservative; it is a source-class
 obstruction, not a dimension-growing unrestricted depth bound.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
-[current continuation](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) records
+[previous coherent-source continuation](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) records
 the four-call direct output readout, its quantum helper-return interface,
 the scoped Fourier-twirl limit, and all-active one-pair closure without
 a singleton-coupling bound. The
+[current structural revision](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+replaces its generic matrix-feature degree estimate by actual endpoint
+sublist peeling and a fixed full-space diagonal reduction: sign/XOR
+degree at most six/five uniformly, and five/four at common active rank
+at least four. The upper source resources and full frontier are unchanged.
+The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported
 center at bounded coupling. The
@@ -225,13 +231,14 @@ finite-insertion Boolean stability unpaid. General original pairs and
 higher layers remain open; the representation obstruction supplies no
 Boolean counterfamily or unrestricted depth bound.
 The [all-active original-pair theorem](depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
-gives sign/XOR degree 2428/2427, with higher-degree floor
+gave sign/XOR degree 2428/2427, with higher-degree floor
 $`2^{-530690}`$, for a one-clean three-band word with one genuine
 pair whose difference is the sum of all actual active axes at each
 endpoint, when either endpoint's silent list
-commutes with the original middle. It supplies explicit recognition and
-a sharper bound inside the class already covered qualitatively after
-reversal with t=0.
+commutes with the original middle. It supplies recognition and a
+numerical bound inside the class already covered qualitatively after
+reversal with t=0. Its recognition and matching remain useful; the
+structural diagonal reduction below now sharpens this bound.
 The [singleton-coupling extension](depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
 retains all positive original middle singletons. If h is their actual
 pairing rank against either endpoint silent span, Boolean endpoint
@@ -244,13 +251,21 @@ useful transported-center component, with no bound on h inferred from
 one pair.
 
 The [all-active singleton closure](depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
-now removes the coupling-rank premise in that original one-pair class.
+removes the coupling-rank premise in that original one-pair class.
 The pair's literal scalar branch supplies native matching on one common
 stabilizer code; the other branch confines the actual dressed insertion
-to one computational X-mask direction. With every original singleton
-and silent list retained, the complete sign/XOR bounds are
-37748865/37748864. The sharper rank-two six/five and one-sided
-2428/2427 bounds remain available. The original-circuit rounding floor
+to one computational X-mask direction. Its generic matrix-feature bound
+37748865/37748864 is superseded by the
+[both-end diagonal reduction](depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md).
+Exact target transport makes both dressed endpoint axes monomial;
+native independence then permits their coupled sublists to be peeled as
+actual diagonal C3 phases. One fixed Clifford change makes the remaining
+insertion and actual three-band residual diagonal on the full logical
+space. The sharp native theorem gives sign/XOR bounds five/four at
+common active rank at least four; the retained rank-two theorem gives
+the uniform six/five bound. This also sharpens the earlier one-sided
+2428/2427 estimate. Every original singleton and silent factor is retained,
+with no restriction to a $`P_h`$ eigenspace. The original-circuit rounding floor
 $`2^{-530690}`$ applies within these physical-list hypotheses; no
 bound on h, free native phase list, or unrestricted three-layer theorem
 is asserted.
@@ -263,12 +278,14 @@ give a physical shared flip or a larger genuinely transported center
 with a four-dimensional residual and actual source X-mask rank at most four
 after shared alignment. Its sign/XOR bounds are
 $`D_*=576\cdot2^{62}+2252`$ and $`D_*-1`$, with the same
-rounding floor; 2428/2427 remains sharper in the one-sided class.
+rounding floor; the later structural six/five bound supersedes these
+estimates throughout this subclass.
 This assumes no bound on the old coupled silent span, grants no free
 native band, and retains the physical clean wire through the complete
 block.
 The former next step of unrestricted singleton coupling in this
-all-active class is closed by the new scalar-branch argument. General
+all-active class is closed by scalar-branch matching, with the small
+degree bound supplied by the full-space diagonal reduction. General
 pair differences and more than one original pair remain the focused
 lower questions.
 R96 remains the strongest general upper bound, R79 remains

@@ -82,17 +82,17 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Original pairs with rank-two endpoints | [Paired rank-two theorem](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints) gives sign degree at most six and XOR degree at most five for actual one-clean three-band words with two clean-active axes at each endpoint and a genuine original middle pair. Arbitrary silent lists, dirty width and unused-sector action are allowed. The same-circuit rounding theorem gives higher-degree error floor $`2^{-530690}`$, allowing a common phase. The no-pair branch retains its separate theorem; the following growing-rank extensions have additional physical hypotheses |
 | Larger physical-pair sector cost | [Larger-support analysis](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) proves that a projected endpoint code can require two bands, with isometry error floor $`1/(4\sqrt2)`$ against one-band encoders. A two-band repair is paid without extra work, but gives five bands with surviving middle singletons or four in the pair-only witness. Finite-insertion Boolean stability remains missing; this is a representation limit, not a high-degree Boolean counterfamily or unrestricted depth bound |
 | Original pairs with growing endpoint ranks | [One-sided rank two](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196 with the opposite rank unrestricted. [Actual two-axis pair differences](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permit both ranks to grow for one pair, with sign/XOR bounds $`D_{\rm np}+1`$/$`D_{\rm np}`$ from the retained no-pair constant. The original-circuit rounding floor remains $`2^{-530690}`$. General larger supports, pair count and unrestricted depth remain open |
-| All-active original-pair recognition | [Original-list theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for one genuine pair whose difference is the sum of all actual active axes at both endpoints, when either endpoint's silent list commutes with the entire original middle. This sharpens a class already covered qualitatively after reversal with coupled span t=0 and remains sharper than the uniform all-active bound in its subclass |
+| Retained all-active original-pair recognition | [Original-list theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives the earlier sign/XOR bounds 2428/2427 when either endpoint's silent list commutes with the entire original middle. Its physical recognition and matching remain useful components; the uniform structural theorem below now sharpens this subclass as well |
 | Retained pair-only center component | [Enlarged transported center](../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) permits both coupled silent lists with no middle singletons. Its original bound is superseded by the uniform all-active closure below; its physical-center construction remains useful |
 | Retained singleton-coupling component | [Actual-center extension](../research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
-| Uniform all-active genuine one-pair closure | [Scalar-branch native matching](../research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md) gives sign/XOR degree at most 37,748,865/37,748,864 with arbitrary original singletons, both silent lists, active ranks and dirty width. The pair difference must sum every actual active axis at both endpoints. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
+| Uniform all-active genuine one-pair closure | [Full-space diagonal reduction](../research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most six/five, sharpened to five/four at common active rank at least four, with arbitrary original singletons, both silent lists and dirty width. The pair difference must sum every actual active axis at both endpoints. Both-end diagonal sublist peeling and one fixed Clifford reduction replace the earlier generic feature bound. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force degree at most two for every component of an arbitrary word-valued XOR query at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The [word extension](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive) uses native outer-shear additivity and keeps all outputs arbitrary. It gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+[current revision](../research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -273,32 +273,39 @@ middle span and propagation of this exceptional module remain missing. Fixed pos
 growing pair count and higher-layer asymptotics remain open.
 
 The [all-active original-pair theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
-retains its sharper sign/XOR bounds 2428/2427 when either endpoint's
-silent list commutes with the whole original middle. The
+retains physical recognition and matching when either endpoint's silent
+list commutes with the whole original middle. Its earlier sign/XOR
+bounds 2428/2427 are superseded by the structural theorem below. The
 [pair-only center proof](../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) and
 [h-dependent singleton extension](../research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
 retain useful transported-center components. Their old question of
 unbounded singleton coupling is now closed within this all-active class.
 
-The [uniform all-active singleton closure](../research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
+The [uniform all-active diagonal reduction](../research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
 allows arbitrary original positive singletons, both coupled silent lists,
 unbounded endpoint active ranks and arbitrary dirty width. For exactly
 one genuine pair whose difference is the sum of every actual active
 axis at both endpoints, it gives sign/XOR degree at most
-**37,748,865 / 37,748,864**, without any bound on the singleton-to-silent
-coupling rank h. The actual scalar parity branch supplies native matching
-modulo that one parity. On the other branch, the nonaffine central
-quadratic sign forces the actual dressed Clifford to have one
-computational X mask. A shared matrix-feature ledger then pays the
-complete Boolean degree. No free replacement native band, sector-specific
-frame or unused-clean-block extension is assumed.
+**six/five**, with **five/four at common active rank at least four**,
+without any bound on the singleton-to-silent coupling rank h. The
+[retained scalar-branch argument](../research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
+supplies native matching and a single computational X mask for the actual
+dressed axis. Exact target transport gives the same property at the other
+endpoint. Actual independent native sublists coupled to that axis can
+then be peeled as diagonal C3 phases. One fixed Clifford change makes
+the remaining insertion and actual three-band residual diagonal on the
+full logical space, so the sharp three-layer phase-degree theorem pays
+the complete target. This replaces the generic 37,748,865/37,748,864
+matrix-feature estimate; it uses no restriction to a $`P_h`$ eigenspace,
+replacement native band or unused-clean-block extension.
 
 The proof preserves literal phases, the physical clean code, arbitrary
 dirty/reference inputs and the unrestricted unused clean block. The
 retained original-circuit rounding theorem gives the higher-degree
 floor $`2^{-530690}`$ when the resulting actual original lists meet
-this class's hypotheses. Rank-two six/five and one-sided 2428/2427 remain
-sharper in their subclasses. The next focused lower question is a
+this class's hypotheses. The retained rank-two six/five theorem supplies
+the remaining case; the new bound also sharpens the earlier one-sided
+2428/2427 estimate. The next focused lower question is a
 **general original pair difference**, which need not include every
 endpoint-active axis and need not supply this common span or quadratic
 rank. General fixed pair count, unrestricted one-clean three-layer

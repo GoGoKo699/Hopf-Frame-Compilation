@@ -4,12 +4,15 @@
 [Pair-only enlarged center](PAIR_ONLY_ENLARGED_CENTER.md) ·
 [Physical-clean matrix features](OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates)
 
-The later [uniform all-active closure](ALL_ACTIVE_SINGLETON_CLOSURE.md)
-removes the bounded-h premise in this all-active one-pair class, giving
-sign/XOR degree 37748865/37748864 without bounding h itself. The
-2428/2427 one-sided bound and rank-two six/five bound remain sharper
-in their subclasses. The actual-center argument below is retained;
-general original pairs and unrestricted depth remain open.
+The current [structural all-active bound](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
+removes the bounded-h premise without bounding h itself. It gives
+sign/XOR degree six/five uniformly and five/four when the common active
+rank is at least four. The bounded-coupling theorem and actual-center
+argument below are retained historical components; the earlier
+[large uniform feature bound](ALL_ACTIVE_SINGLETON_CLOSURE.md) is also
+superseded in this source class. The
+[revision checkpoint](STRUCTURAL_PAIR_REVISION_RESULT.md) keeps general
+original pairs and unrestricted depth open.
 
 Positive original middle singletons obstruct the pair-only kernel
 argument: a silent-axis product that commutes the pair need not commute
