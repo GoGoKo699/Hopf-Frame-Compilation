@@ -516,3 +516,11 @@ operation and return, but leaves an explicit dirty-key correction.
 The observable interface remains available to other words with genuine
 key mixing, address motion or non-Clifford fiber dynamics. Their native
 resource and complete character identities remain open.
+
+The [next complete key-mixing tests](KEY_MIXING_OBSERVABLE_SCREENS.md)
+assess an outer opposite-direction query with arbitrary quantum fibers,
+the alternate top-A probe with Clifford fibers, and an insertion that
+coherently translates the Fourier key. Their defects are scoped to those
+actual forms. A further balanced mixer has a small exact falsifier;
+multiple noncommuting address insertions and whole observable words
+remain outside these screens.

@@ -219,6 +219,32 @@ but its readout has error two from arbitrary dirty-key dependence.
 Removing that dependence with qualifying native resources is unpaid.
 Neither statement bounds unrestricted depth.
 
+The [current key-mixing revision](../research/depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
+separates a final-boundary obstruction valid for arbitrary quantum
+key-preserving fibers from more restricted affine-label and moving-key
+screens. Their exact word failures do not cover unrestricted native
+interference. The [nilpotent-pencil candidate](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md)
+leaves the conjugated-translation family: its inverse column is the
+selected output, and a fixed Vandermonde basis exposes a unique zero
+pivot. The forward quadratic XOR query is paid in eight T layers with
+admissible polynomial overhead. The in-place or single-observable
+readout remains unpaid. The prescribed weak completion and the complete
+indicator have paid conversions in both directions, retaining the
+supplied depth order; this is a reformulation, not a faster source.
+Fixed-address Clifford stages and completed low-degree monomial rounds
+have separate scoped limitations. Genuine non-Clifford interference,
+intermediate address motion and joint native resynthesis remain open.
+
+The [general-k amplitude recurrence](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
+also pays recovery at $`1/\sqrt2`$ followed by dirty promotion,
+including all zero-tests, actual inverses, helper widths and return
+error. For nonnegative beta,gamma, $`k\sim\beta\log\log b`$ and source depth
+$`O((\log b)^\gamma)`$, $`\beta+\gamma\lt1`$ is a sufficient
+sublogarithmic window only when accuracy and resource envelopes are
+uniform along the schedule. No source is supplied, and exact flatness
+remains a separate condition for exact signal return. The bounded-clean
+two-band obstruction is not an obstruction for all growing k.
+
 The [coherent-correction interface](../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 permits the same arbitrary private fibers. Its principal action is
 $`R(z,y)=(z,y+f(z)+yf(z))`$. Direct readout gives
@@ -417,6 +443,19 @@ repair obstruction does not cover general Clifford interference.
 R96 remains the strongest general bound and R79 remains selected Result D.
 The qualitative one-clean three-layer degree question is now closed.
 Its small quantitative ceiling and complete-frame optimal depth remain open.
+
+The [focused four-band physical-pair scout](../research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md)
+retains actual independent signed lists and the physical clean code.
+Its conditional radical certificate and literal shared-pair repair do
+not imply pair-count collapse: identity words can have arbitrarily
+many pairs. Disjoint-pair Boolean examples, including a nondiagonal
+controlled-SWAP middle, still admit other whole-word two-band reductions.
+For the precise fixed endpoints and equal-difference one-pair lists,
+complete Booleanity gives a controlled SWAP/CZ classification and sign
+degree at most four. A cubic reduction is equivalent to two stated
+cross-sector coefficient identities, still unproved from those actual
+lists. This is the active bounded lower question, not a general
+four-layer degree ceiling or an unrestricted depth obstruction.
 
 The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean

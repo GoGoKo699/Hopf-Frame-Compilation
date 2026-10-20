@@ -13,6 +13,62 @@ from tests.test_phase_signal_query_limits import _ccz, _counts, _cz, _x
 
 
 class DirtyPromotionOfCleanQueriesTests(unittest.TestCase):
+    def test_two_clean_compression_recovery_pays_flag_and_literal_correction(self):
+        # x=0, arbitrary old output T=1, clean A=(2,3), new flag c=4.
+        # Only A0 mixes in U.  The recovery phase must nevertheless test
+        # BOTH A bits; on A1=1 its raw action remains nonmonomial.
+        source = [('H', 2), ('CX', 0, 1)]
+        zero_test = (_x(2) + _x(3) + [('H', 4)] + _ccz((2, 3, 4))
+                     + [('H', 4)] + _x(3) + _x(2))
+        phase = zero_test + [('S', 4)] + _inverse(zero_test)
+        raw = source + phase + _inverse(source) + phase + source
+        half_root = Q2(0, Fraction(1, 2))
+        omega = CQ2(half_root, half_root)
+        omega_cubed = CQ2(-half_root, half_root)
+        inverse_root = CQ2(half_root)
+
+        for orientation in (zero_test, _inverse(zero_test)):
+            self.assertEqual(_counts(orientation), (7, 28))
+        self.assertEqual(_counts(raw), (28, 120))
+        self.assertEqual(_counts(_inverse(raw)), (28, 124))
+        raw_matrix = native_columns(5, raw)
+        self.assertEqual(native_columns(5, _inverse(raw)), adjoint(raw_matrix))
+
+        # Exact full-column formula, including every unpromised A,c input.
+        for column in range(32):
+            query_row = column ^ (2 if column & 1 else 0)
+            a0, a1, flag = bool(column & 4), bool(column & 8), bool(column & 16)
+            for row in range(32):
+                expected = CZ
+                if not a1:
+                    scalar = ((omega * (-CI if a0 else CO)) if flag else
+                              (omega_cubed * (CI if a0 else CO)))
+                    if row == query_row:
+                        expected = scalar
+                elif row == query_row or row == (query_row ^ 4):
+                    # On A1=1, the full word is Z_c H_A0 tensor Q.
+                    sign = -1 if flag else 1
+                    if a0 and row & 4:
+                        sign = -sign
+                    expected = inverse_root * sign
+                self.assertEqual(raw_matrix[row][column], expected)
+
+        # F=(S†H)^9 acts as omega^{-3}I on an existing wire.  Its
+        # actual inverse combines adjacent S powers, with no new phase.
+        correction = ([('H', 4)] + [('S', 4)] * 3) * 9
+        self.assertEqual(_counts(correction), (0, 36))
+        self.assertEqual(_counts(_inverse(correction)), (0, 18))
+        corrected = raw + correction
+        self.assertEqual(_counts(corrected), (28, 156))
+        self.assertEqual(_counts(_inverse(corrected)), (28, 142))
+        corrected_matrix = native_columns(5, corrected)
+        self.assertEqual(native_columns(5, _inverse(corrected)), adjoint(corrected_matrix))
+        for column in range(4):
+            query_row = column ^ (2 if column & 1 else 0)
+            for row in range(32):
+                self.assertEqual(corrected_matrix[row][column],
+                                 CO if row == query_row else CZ)
+
     def test_phase_s_recovery_keeps_literal_source_phase_and_actual_inverse(self):
         # Logical x=0 and arbitrary old output T=1, signal a=2.
         # U=H_a tensor CX(x,T) has the complete block Q/sqrt(2).
