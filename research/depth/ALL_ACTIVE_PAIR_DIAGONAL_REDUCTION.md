@@ -29,13 +29,10 @@ by the actual active-axis pairing in
 [the retained central-insertion reduction](ALL_ACTIVE_SINGLETON_CLOSURE.md#2-a-literal-central-controlled-quarter-turn).
 Then
 
-```math
-\begin{array}{c|cc}
-&\deg g&\deg f\text{ for a complete Boolean XOR query}\hline
-k\ge4&\le5&\le4\\
-k=2&\le6&\le5
-\end{array}
-```
+| Common active rank | Boolean sign degree | Complete Boolean XOR degree |
+| --- | --- | --- |
+| $`k\ge4`$ | $`\deg g\le5`$ | $`\deg f\le4`$ |
+| $`k=2`$ | $`\deg g\le6`$ | $`\deg f\le5`$ |
 
 Thus the uniform all-active one-pair bounds are six and five. The
 k=2 row is the retained rank-two endpoint theorem; the proof below
