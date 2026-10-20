@@ -11,6 +11,10 @@ column of the affine nilpotent pencil below. Its address-dependent
 family is not required to be a representation of XOR translations.
 The unpaid operation is a complete shallow implementation of its
 in-place map, or a different whole word transporting that one probe.
+The [Gaussian compression revision](GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
+now bounds both logical labels and signs for the stated small-clean,
+fixed-address Clifford grammar. Its affine-query stage bound does not
+lower-bound unrestricted native depth or exclude non-Gaussian readout.
 
 ## 1. Coordinates and the exact inverse column
 
