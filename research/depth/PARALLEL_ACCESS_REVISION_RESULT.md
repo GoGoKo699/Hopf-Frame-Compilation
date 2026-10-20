@@ -4,6 +4,11 @@
 [Full frontier](../../docs/OPEN_PROBLEM.md) ·
 [Previous continuation](JOINT_SELECTIVE_CONTINUATION_RESULT.md)
 
+The later [bank-motion continuation](BANK_MOTION_CONTINUATION_RESULT.md)
+pays complete nonlinear bank difference and fermionic Walsh routing,
+audits the whole-word Majorana limit, and records the current unpaid
+source operation and original-pair scout. It is the current checkpoint.
+
 This continuation starts from main
 `61ce55be85c2f167b2be32fcde5ce946cc08961d`, tree
 `17382985677e43cfd35e4e110763e52db128dc98`, after PR #204,

@@ -6,24 +6,29 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: parallel access and the missing selective dynamics
+## Current checkpoint: paid bank motion and the remaining shallow source
 
 **Fetched continuation baseline:**
-`61ce55be85c2f167b2be32fcde5ce946cc08961d`, tree
-`17382985677e43cfd35e4e110763e52db128dc98`, on 20 October 2026,
-after the selective-word continuation merged as PR #204.
-Read the [current outcome](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md),
-its [parallel-access proof and full recurrence](research/depth/PARALLEL_AFFINE_DETUNING.md),
-the [preceding selective revision](research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md),
+`6e42d0b2e2a52cb14962ae84ec4964933e3c213c`, tree
+`e98fd8b3bebda6f9c02b394ad0bc407c01b3f2af`, on 20 October 2026,
+after the parallel-access revision merged as PR #205.
+Read the [current outcome](research/depth/BANK_MOTION_CONTINUATION_RESULT.md),
+the [complete bank-difference recurrence](research/depth/COMPLETE_BANK_DIFFERENCE.md),
+the [fermionic Walsh indicator](research/depth/BANK_MOTION_WALSH_INDICATOR.md),
+the [whole-word Majorana limit](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-Polynomially many affine detuning calls now have a four-T-layer schedule.
-Their complete selective composition remains unpaid: one commuting batch
-has a constant error floor, and the read-only Clifford-interlayer Pauli
-echo needs linearly many rounds. These are representation limits, not
-unrestricted depth bounds. The word-valued four-band gap is repaired.
-The original physical-pair scout remains active; larger sector codes can
-require two endpoint bands, so their paid repair does not yield a
-three-band no-pair comparison. R96 and selected R79 remain unchanged.
+Bank motion and complete return are now paid in two constructions, but
+their displayed depths remain quadratic and linear in address length.
+Whole-word fusion retains a linear native-depth bound when every actual
+Clifford boundary preserves the address and the standard Majorana span
+of all bank/helper wires. This is a representation limit, not an
+unrestricted bound. The original physical-pair scout remains active:
+the [all-active recognition theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+sharpens a class already covered qualitatively by the reversed t=0
+theorem. The [pair-only enlarged-center theorem](research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
+also closes the all-active one-pair case with no middle singletons and
+arbitrary coupling in both silent lists. General original pairs, R96
+and selected R79 remain unchanged.
 Fetch current main before resuming; this starting commit is not a pin.
 
 <a id="current-depth-frontier"></a>
@@ -39,12 +44,15 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Selected manuscript theorem | [R79](research/depth/UNIFORM_SUBTREE_DEPTH.md) remains Result D. The selected count frontier and literal allocations are settled; no practical crossover, efficient preprocessing or general native emitter is claimed |
 | Paid constructive transfer | [Restored-address R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) and its [approximate extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) need only constant source accuracy at each fixed final L, with uniform simultaneous count/width/Clifford/depth budgets |
 | New discovery relaxation | [Polynomial-overhead root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) turns a complete source on $`p-O_\tau(\log(p+2))`$ bits into a linear-count/width p-bit indicator. It uses eight source/actual-inverse calls, error at most eight times the source error, and an exact $`O_\tau(\log\log(p+4))`$-depth tail. This is a conditional reduction, not a faster source |
-| Latest positive component | [Clean-source promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) removes a uniformly bounded clean bank, permitting arbitrary off-code action; error is at most $`8\cdot2^k\epsilon`$. One-signal complete blocks at amplitude $`1/2`$ or $`1/\sqrt2`$ suffice through 24 source/actual-inverse calls. [Exactly flat two-band recovery](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence) improves promoted error to $`2\sqrt2\epsilon`$ and returns the borrowed signal/toggle exactly |
+| Paid source promotion | [Clean-source promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) removes a uniformly bounded clean bank, permitting arbitrary off-code action; error is at most $`8\cdot2^k\epsilon`$. One-signal complete blocks at amplitude $`1/2`$ or $`1/\sqrt2`$ suffice through 24 source/actual-inverse calls. [Exactly flat two-band recovery](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence) improves promoted error to $`2\sqrt2\epsilon`$ and returns the borrowed signal/toggle exactly |
 | Unrestricted indicator count | [Pauli nullity](research/depth/INDICATOR_PAULI_NULLITY.md): for $`p\ge2`$, a zero-clean full-operator implementation with error below $`1/\sqrt2`$ needs at least $`2^p-1`$ T gates, with arbitrary dirty width and intermediate mixing. This is not a depth bound |
 | New paid batch and its scoped limit | [Parallel affine detuning](research/depth/PARALLEL_AFFINE_DETUNING.md) implements polynomially many presentations in four T layers with polynomial count/dirty-width overhead. A single batch has error at least $`1/4`$; a Pauli echo with read-only address/bank and actual Clifford interlayers needs $`h\ge\lceil b/2\rceil`$ rounds for $`b\ge2`$ at error below $`\sqrt2`$. Rounds are not unrestricted native depth |
+| Paid bank motion and its scoped limit | [Complete bank difference](research/depth/COMPLETE_BANK_DIFFERENCE.md) gives a full nonlinear merge; its balanced indicator schedule has linear count/width and $`O(b^2)`$ depth. [Fermionic Walsh routing](research/depth/BANK_MOTION_WALSH_INDICATOR.md) gives a complete no-helper indicator with $`T\le4b2^b`$ and $`D_T\le4b`$. The [whole-word theorem](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) retains linear native depth under its actual Majorana-preserving, read-only-address Clifford-boundary grammar, including arbitrary dirty helpers |
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
 | Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
+| Sharper recognition in a retained pair class | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for a one-clean three-band word with one genuine pair whose difference is the sum of all active axes at each endpoint, when either endpoint's silent list commutes with the original middle. This explicitly recognizes and sharpens a reversed t=0 class; it is not a qualitative scope expansion |
+| Pair-only closure with both silent lists coupled | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) closes the all-active genuine one-pair class with no middle singletons and arbitrary endpoint silent lists. It gives sign bound $`D_*=576\cdot2^{62}+2252`$, XOR bound $`D_*-1`$ and higher-degree floor $`2^{-530690}`$. It removes the one-sided silent-commutation premise in this singleton-free class; 2428/2427 remains sharper in the one-sided class. General middle singletons and original pairs remain open |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -138,16 +146,35 @@ now pays polynomially many presentations in four T layers, with exact
 return of added helpers. One batch still has a $`1/4`$ error floor,
 and a fixed-Pauli echo with read-only bank/address and actual Clifford
 interlayers requires at least $`\lceil b/2\rceil`$ rounds. The
-first unpaid operation is the complete selective identity and return,
-with qualifying native depth. The next question is a source using bank
-or address motion, non-Clifford branch dynamics, a different extraction
-interface, or whole-word resynthesis outside this round representation.
+missing operation is complete selectivity with qualifying native depth.
+This parallel-access revision motivated bank motion, non-Clifford branch
+dynamics and whole-word resynthesis; the current bank-moving assessment
+follows below.
 The [complete batch/echo recurrence](research/depth/PARALLEL_AFFINE_DETUNING.md#3-the-complete-composition-still-needs-its-own-return-identity)
 charges every native operation and return error. A distance-profile design
 must pay its weighted full-bank error sum. The
 [phase-access inequality](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#8-a-first-test-of-the-growing-clean-window)
 also retains its explicit spectral premise; logical phase accesses are
 not automatically native T-depth.
+
+The [complete bank difference](research/depth/COMPLETE_BANK_DIFFERENCE.md)
+now pays nonlinear composition and arbitrary-signal return, but its
+balanced recursive indicator schedule retains $`O(b^2)`$ depth.
+The [fermionic Walsh word](research/depth/BANK_MOTION_WALSH_INDICATOR.md)
+instead pays a complete bank-moving indicator with no extra work and
+$`O(b)`$ depth. Its [whole-word Majorana obstruction](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md)
+survives fusion: for $`b\ge2`$, zero-clean phase-indicator error
+$`\epsilon\lt1`$ forces
+$`2^d\ge2^b(1-\epsilon^2/2)^2`$, hence $`d\ge b-1`$ and
+$`d\ge b`$ when $`\epsilon\lt\sqrt{2-\sqrt2}`$.
+Every actual Clifford boundary must preserve x and, on each address
+sector, the standard Majorana span of **all** bank and arbitrary-helper
+wires. For the XOR indicator, its actual output-Hadamard-conjugated word
+must satisfy this grammar, including both endpoints. The next
+candidate must leave that grammar through non-Majorana Clifford
+interference, address motion or another complete interface. Bank motion
+or whole-word fusion alone does not do so. The first unpaid operation
+remains a complete sublogarithmic source under the stated budgets.
 
 Keep the [original physical-pair scout](research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates)
 active. With s original pairs and additional actual coupled silent-axis
@@ -211,6 +238,32 @@ Neither an arbitrary basis change nor deletion of an insertion preserves
 the required native/Boolean contract automatically. General original pairs
 and unrestricted depth remain open.
 
+The [all-active pair theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+now recognizes one matching class directly in the original lists: the
+single pair difference is the sum of every actual active axis at both
+endpoints, and either endpoint's silent list commutes with the whole
+original middle. It gives sign/XOR bounds 2428/2427 and the retained
+higher-degree error floor $`2^{-530690}`$. This class already falls
+under the bounded-coupled-span theorem after reversal with t=0; the gain
+is an explicit recognition and sharper bound.
+
+The [pair-only extension](research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
+keeps the same all-active genuine one-pair condition, removes all middle
+singletons, and permits arbitrary silent lists at both endpoints,
+including both coupled. Boolean kernel products give either a physical
+shared flip or an enlarged genuinely transported center with a
+four-dimensional residual and actual source X-mask rank at most four
+after shared alignment. It proves sign degree at most
+$`D_*=576\cdot2^{62}+2252`$, XOR degree at most $`D_*-1`$,
+and the same original-circuit floor $`2^{-530690}`$. It removes
+the one-sided silent-commutation premise in the singleton-free case,
+without assuming a bound on the old coupled silent-axis span or
+replacing actual axes by a free native band. The physical clean wire
+is retained through the complete block. The next focused case is
+surviving original middle singletons interacting with the kernels,
+followed by general pair differences and fixed pair count; unrestricted
+depth remains open.
+
 ### Stopped routes, reopening conditions and superseded instructions
 
 | Route or historical next step | Current decision |
@@ -224,15 +277,18 @@ and unrestricted depth remain open.
 | Independent row/pulse synthesis | [Native sharing](research/depth/NATIVE_INDICATOR_SHARING.md) still forces superlinear emitted count for a standalone linear-budget bank. [Root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) now permits polynomial overhead in a smaller first bank; reconsider only a complete source with genuinely sublogarithmic depth and a full-bank error proof. The existing digital pulse retains excessive count and depth |
 | Joint fixed-angle Clifford/read-only decoding | [Stopped within the stated grammars](research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops). Normalized calls with Clifford interlayers and fixed arbitrary encoders have a four-point floor; keeping every bank value read-only yields degree-four closure. Reopen with actual interactions or bank motion outside those hypotheses, not just another logical call |
 | Parallel affine detuning followed by a read-only Clifford Pauli echo | [Schedule paid, selective composition stopped](research/depth/PARALLEL_AFFINE_DETUNING.md): four layers per commuting batch do not remove the linear round requirement. Reopen through actual dynamics or whole-word synthesis outside this grammar; logical round counts do not lower-bound unrestricted depth |
+| Bank motion within the whole-word Majorana grammar | [Complete constructions](research/depth/BANK_MOTION_WALSH_INDICATOR.md) pay routing and return, but the [native whole-word bound](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) survives fusion while every actual Clifford boundary is address-read-only and Majorana-preserving on all bank/helpers. Reopen outside that grammar, not merely by moving the bank |
 | Independently synthesized finer detuning | [Stopped at sublogarithmic depth](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md) when the complete tensor layer is separately certified, without synthesis helpers or cross-coordinate non-Clifford operations. Joint whole-word synthesis and later error cancellation are outside |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
-records the paid parallel schedule, the still-unpaid selective identity,
-the scoped echo-round theorem and the paid physical-pair sector repair.
+The [latest continuation](research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
+records the paid bank-moving words, their retained depth costs, the
+scoped whole-word Majorana bound, sharper original-list pair recognition
+and the pair-only enlarged-center closure. The [parallel-access revision](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+retains its paid batch, scoped echo-round theorem and sector repair.
 Earlier prompts to search general
 two-band transitions, merely nonscalar output probes, or an unspecified
 three-band source are superseded. Changing amplitude at bounded clean
@@ -263,7 +319,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/BANK_MOTION_CONTINUATION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

@@ -62,6 +62,8 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Approximate predicate interface limits | [Complete-indicator audit](../research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md) proves a sharp $`\sqrt2`$ operator-error floor for additive dirty-output phases with a Hamming-distance polynomial of degree below the address length. A short coherent hash needs initialized randomness for its single-predicate guarantee and gives error two for the whole bucket-based indicator even with clean randomness. These are limitations of the stated interfaces, not unrestricted approximate-query lower bounds |
 | Phase-signal and coherent-frame interfaces | [Return and correction audit](../research/depth/PHASE_SIGNAL_QUERY_LIMITS.md) gives a fixed-space obstruction for products of rank-one signal reflections on arbitrary dirty work. Full coherent Pauli-frame transport yields a complete indicator in two source calls with linear Clifford/dirty overhead and factor-two error. These are scoped interface statements, not unrestricted approximate depth bounds |
 | Joint approximate source interfaces | [Maximal gauge](../research/depth/WEAKER_INDICATOR_INTERFACES.md) and [selected-swap](../research/depth/JOINT_ROUTING_INDICATOR_INTERFACES.md) reductions retain arbitrary intermediate address/work motion, actual inverses and constant error factors. These source freedoms remain constant-call equivalent to the complete indicator. Fixed Clifford simultaneous-diagonalization failure is a representation limit |
+| Complete bank-moving components | [Bank difference](../research/depth/COMPLETE_BANK_DIFFERENCE.md) gives a literal nonlinear vector merge and full return; its balanced equality-bank schedule has linear count/width and $`O(b^2)`$ depth. [Fermionic Walsh routing](../research/depth/BANK_MOTION_WALSH_INDICATOR.md) gives a complete indicator with $`T\le4b2^b`$, $`D_T\le4b`$, $`G=O(b4^b)`$ and no extra work. Both retain the old depth cost rather than improving R96 |
+| Whole-word Majorana native-depth limit | [Fused-word theorem](../research/depth/WHOLE_WORD_MAJORANA_LIMITS.md): for $`b\ge2`$, zero clean work and complete phase-indicator error $`\epsilon\lt1`$, $`2^d\ge2^b(1-\epsilon^2/2)^2`$ when every actual Clifford boundary preserves the address and, sectorwise, the standard Majorana span of all bank/helper wires. Thus $`d\ge b-1`$, and $`d\ge b`$ below $`\sqrt{2-\sqrt2}`$. This survives whole-word fusion in that grammar, not unrestricted Clifford interference or address motion |
 | Noncommuting dirty geometric phases | [Full-space loop and native cost audit](../research/depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md) gives a common winding sign on both signal eigenstates, but independent row eigenphase errors must sum in full-bank operator norm. Its paid digital recurrence misses the target count/depth envelope; no unrestricted approximate obstruction follows |
 | Native sharing for approximate indicators | [Incidence and block bounds](../research/depth/NATIVE_INDICATOR_SHARING.md): at full-operator error below one half, each bank observable needs p active T occurrences in an unrestricted zero-clean native word. Separately emitted b address-preserving disjoint bank blocks cost at least bp T gates; no unrestricted growing-depth conclusion follows |
 | Table-specific source gauges | [Paid syndrome interface](../research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md) allows arbitrary motion inside fibers of the table's probed syndrome. Full row rank recovers the complete indicator gauge; no low-rank promise or faster general R98 compiler is supplied |
@@ -77,14 +79,16 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Minimal actual-pair completion | [Original one-pair source](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md) produces a tied central partner after singleton cancellation. For the fixed active input/middle word, any admissible silent input band moving that partner permits no one-band output completion to a Clifford target, even with arbitrary unused-sector freedom. All admissible core-coupled silent axes are included. Every complete target has a zero-clean three-band word with one middle axis: diagonal targets are diagonal third-level, with sign/XOR degree at most three/two. General physical pairs remain open |
 | Original pairs with rank-two endpoints | [Paired rank-two theorem](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints) gives sign degree at most six and XOR degree at most five for actual one-clean three-band words with two clean-active axes at each endpoint and a genuine original middle pair. Arbitrary silent lists, dirty width and unused-sector action are allowed. The same-circuit rounding theorem gives higher-degree error floor $`2^{-530690}`$, allowing a common phase. The no-pair branch retains its separate theorem; the following growing-rank extensions have additional physical hypotheses |
 | Larger physical-pair sector cost | [Larger-support analysis](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) proves that a projected endpoint code can require two bands, with isometry error floor $`1/(4\sqrt2)`$ against one-band encoders. A two-band repair is paid without extra work, but gives five bands with surviving middle singletons or four in the pair-only witness. Finite-insertion Boolean stability remains missing; this is a representation limit, not a high-degree Boolean counterfamily or unrestricted depth bound |
-| Original pairs with growing endpoint ranks | [One-sided rank two](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196 with the opposite rank unrestricted. [Actual two-axis pair differences](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permit both ranks to grow for one pair, with sign/XOR bounds $`D_{\rm np}+1`$/$`D_{\rm np}`$ from the retained no-pair constant. The original-circuit rounding floor remains $`2^{-530690}`$. Larger physical pair supports, general pair count and unrestricted depth remain open |
+| Original pairs with growing endpoint ranks | [One-sided rank two](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196 with the opposite rank unrestricted. [Actual two-axis pair differences](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permit both ranks to grow for one pair, with sign/XOR bounds $`D_{\rm np}+1`$/$`D_{\rm np}`$ from the retained no-pair constant. The original-circuit rounding floor remains $`2^{-530690}`$. General larger supports, pair count and unrestricted depth remain open |
+| All-active original-pair recognition | [Original-list theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for one genuine pair whose difference is the sum of all actual active axes at both endpoints, when either endpoint's silent list commutes with the entire original middle. This sharpens a class already covered qualitatively after reversal with coupled span t=0 and remains sharper than the following pair-only bound in their overlap |
+| Pair-only enlarged-center closure | [Actual transported-center theorem](../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) closes the all-active genuine one-pair class with no middle singletons and arbitrary silent lists at both endpoints, including both coupled. Sign degree is at most $`D_*=576\cdot2^{62}+2252`$, XOR degree at most $`D_*-1`$, with higher-degree floor $`2^{-530690}`$. An enlarged transported center bounds the actual source X-mask rank without assuming bounded old coupled silent span. This removes the one-sided silent-commutation premise in the singleton-free case; general middle singletons, pairs and unrestricted depth remain open |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force degree at most two for every component of an arbitrary word-valued XOR query at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The [word extension](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive) uses native outer-shear additivity and keeps all outputs arbitrary. It gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+[current revision](../research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -153,6 +157,24 @@ selectivity with return and qualifying depth; a new mechanism must leave
 this grammar or resynthesize the whole word. Its full resource/error/return
 recurrence is now explicit.
 
+The [bank-difference merge](../research/depth/COMPLETE_BANK_DIFFERENCE.md)
+and [fermionic Walsh indicator](../research/depth/BANK_MOTION_WALSH_INDICATOR.md)
+now pay actual bank motion, literal phases, full return and all native
+operations. Their displayed complete depths are respectively
+$`O(b^2)`$ and $`O(b)`$, leaving the retained logarithmic-depth
+source stronger. The [whole-word Majorana theorem](../research/depth/WHOLE_WORD_MAJORANA_LIMITS.md)
+also prevents shallow fusion within its actual native grammar: every
+Clifford boundary must preserve x and, sectorwise, the standard Majorana
+span of all bank and arbitrary-helper wires. Under that premise the
+zero-clean complete phase indicator needs $`d\ge b-1`$ at error
+below one, and $`d\ge b`$ below $`\sqrt{2-\sqrt2}`$.
+For an XOR indicator, the actual output-Hadamard-conjugated word must
+satisfy the grammar at both endpoints too. The next candidate must
+leave this grammar through non-Majorana Clifford interference, address
+motion or another complete interface. The first unpaid operation
+remains the complete source with sublogarithmic depth and all resource
+budgets; bank motion or whole-word fusion alone does not supply it.
+
 The source screens retain their architecture and parameter scope. The
 unrestricted indicator nullity result concerns count; the incidence
 theorem gives no growing depth bound. R96 and the complete-frame frontier
@@ -178,6 +200,28 @@ exceptional-axis span is at most 16c modulo that center and can be absorbed
 into insertion dimension at most 17c. Simultaneous matching inside the old
 middle span and propagation of this exceptional module remain missing. Fixed positive pair count alone,
 growing pair count and higher-layer asymptotics remain open.
+
+The [all-active original-pair theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+now supplies a sharper recognition in the original physical lists. For
+one genuine pair, its difference must equal the sum of all actual
+active axes at each endpoint, and either endpoint's silent list must
+commute with the whole original middle. The complete sign/XOR bounds
+are 2428/2427, with retained higher-degree floor $`2^{-530690}`$.
+This is a sharper explicit result inside the previously covered
+reversed t=0 class, not an expansion of qualitative fixed-span scope.
+The [pair-only extension](../research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
+then permits both silent lists to couple under the same all-active
+one-pair condition, with no original middle singletons. Boolean kernel
+products give a physical shared flip or an enlarged genuinely transported
+center with a four-dimensional residual and
+actual source X-mask rank at most four after shared alignment, giving
+$`D_*=576\cdot2^{62}+2252`$ for sign degree and $`D_*-1`$
+for XOR degree, with the same rounding floor. It assumes no bound on the
+old coupled silent span and compiles no dependent union as a free band;
+it keeps the physical clean wire through the complete block. Surviving
+middle singletons interacting with the kernels are the next focused
+case, followed by general pair differences and fixed pair count.
+The unrestricted depth question remains open.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
 closes the fixed endpoint clean-active-rank case with arbitrary middle
