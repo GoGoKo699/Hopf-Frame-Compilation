@@ -6,22 +6,25 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: amplitude-uniform source gap and physical-pair continuation
+## Current checkpoint: selective-word revision and growing-rank physical pairs
 
 **Fetched continuation baseline:**
-`98dff4157d4015fdeee79decfdef52f037e3e6b6`, tree
-`4d13b0f66aa3cbe3cee3200b05f29aac23313902`, on 20 October 2026,
-after the polynomial-overhead revision merged as PR #202.
-Read the [current outcome](research/depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+`9ecaa37d0c8be1a2c460de57425a04e21697dd0a`, tree
+`2c9309c4f810d6bbfd63df9161d11ddd64f61f96`, on 20 October 2026,
+after the amplitude-uniform continuation merged as PR #203.
+Read the [current outcome](research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
 for this continuation and its verification boundary, the
 [fusion revision](research/depth/INDICATOR_FUSION_REVISION_RESULT.md), and the
 [preceding source-gap outcome](research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
 for the two-band theorem. The revision separates the unrestricted frontier
-from the paid source interfaces. A new root-fusion reduction absorbs
-polynomial indicator count/width overhead while retaining sublogarithmic
-depth, if such a complete source is constructed. The original physical-pair
-scout remains active. No faster indicator or unrestricted depth bound is
-claimed. Fetch current main
+from the paid source interfaces. The paid joint detuning remains useful,
+but joint Clifford decoding,
+the specified read-only-bank pulse grammar and independent fine-angle
+synthesis now have separate stopping theorems. Root fusion still absorbs
+polynomial source overhead if a complete shallow source is constructed.
+The original physical-pair scout now covers growing endpoint ranks under
+explicit actual-list hypotheses and remains active. No faster indicator
+or unrestricted depth bound is claimed. Fetch current main
 before resuming; the checkpoint's starting commit is not a pin to an
 older branch.
 
@@ -42,7 +45,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Unrestricted indicator count | [Pauli nullity](research/depth/INDICATOR_PAULI_NULLITY.md): for $`p\ge2`$, a zero-clean full-operator implementation with error below $`1/\sqrt2`$ needs at least $`2^p-1`$ T gates, with arbitrary dirty width and intermediate mixing. This is not a depth bound |
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
-| Focused original-pair advance | [Paired rank-two endpoints](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints): a one-clean three-band word with two clean-active axes at each endpoint and an actual original middle pair has Boolean sign degree at most six and XOR degree at most five, uniformly in its silent lists and dirty width. This is a restricted class; the separate no-pair theorem and the general question retain their own scopes |
+| Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -124,7 +127,17 @@ rows using only this angle retain a period-eight ambiguity; arbitrary
 joint bank mixing is outside that obstruction. The next question is a
 complete selective composition using paid joint bank operations, with
 sublogarithmic native depth and a full-operator error/return certificate.
-A distance-profile design must pay its weighted full-bank error sum. The
+The [joint-decoder and read-only-bank tests](research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
+now exclude normalized joint Clifford decoding, one internal one-band
+interaction, and the stated bank-read-only full-call grammar at explicit
+constant error. They do not cover arbitrary bank motion. The
+[fine-angle precision theorem](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md)
+shows that independently compiling the complete finer-rotation layer
+retains at least logarithmic depth in the stated range. Joint synthesis
+and whole-pulse cancellation remain outside. The next question is a
+complete selective word using dynamics outside these representations,
+with its full resource/error/return recurrence. A distance-profile design
+must pay its weighted full-bank error sum. The
 [phase-access inequality](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#8-a-first-test-of-the-growing-clean-window)
 also retains its explicit spectral premise; logical phase accesses are
 not automatically native T-depth.
@@ -174,9 +187,16 @@ independence forces exactly one pair and removes negative singletons
 after orientation repair. Its common computational pair parity gives
 two complete zero-clean three-band sectors, proving sign/XOR degree at
 most six/five. The retained rounding theorem supplies the conservative
-higher-degree error floor $`2^{-530690}`$ in this class. The next lower
-question is simultaneous matching beyond these rank-two endpoint
-hypotheses; general original pairs and unrestricted depth remain open.
+higher-degree error floor $`2^{-530690}`$ in this class. The new one-sided
+extension permits the opposite endpoint rank to grow
+and gives sign/XOR bounds 197/196 without bounding silent span. A separate
+one-pair extension permits both ranks to grow if the pair difference uses
+exactly two axes in each actual endpoint active list; its sectors reduce
+to the retained no-pair theorem. The next lower question is an actual
+one-pair source with growing ranks and larger pair-difference support,
+then general fixed pair count. Neither an arbitrary change of basis nor
+a sector comparison supplies a free native band. General original pairs
+and unrestricted depth remain open.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
@@ -189,14 +209,17 @@ hypotheses; general original pairs and unrestricted depth remain open.
 | Simultaneous nonscalar output probes | [Parity support constraints](research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md) force linear native support, but a two-band identity transition saturates both directions. Rank saturation alone cannot supply the indicator's specified action; the fixed-sum theorem resolves the general two-band route |
 | Separated high-rank anticommuting reflections | [Stopped example](research/depth/JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition): disjoint source bands merge into one physical band. Reopen with actual overlapping dynamics; rank alone does not help |
 | Independent row/pulse synthesis | [Native sharing](research/depth/NATIVE_INDICATOR_SHARING.md) still forces superlinear emitted count for a standalone linear-budget bank. [Root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) now permits polynomial overhead in a smaller first bank; reconsider only a complete source with genuinely sublogarithmic depth and a full-bank error proof. The existing digital pulse retains excessive count and depth |
+| Joint fixed-angle Clifford/read-only decoding | [Stopped within the stated grammars](research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops). Normalized calls with Clifford interlayers and fixed arbitrary encoders have a four-point floor; keeping every bank value read-only yields degree-four closure. Reopen with actual interactions or bank motion outside those hypotheses, not just another logical call |
+| Independently synthesized finer detuning | [Stopped at sublogarithmic depth](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md) when the complete tensor layer is separately certified, without synthesis helpers or cross-coordinate non-Clifford operations. Joint whole-word synthesis and later error cancellation are outside |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
-records the source relaxation, the actual remaining operation and the
-focused physical-pair continuation. Earlier prompts to search general
+The [latest continuation](research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+records the first unpaid selective operation, the scoped decoding and
+precision limits, the complete recurrence and growing-rank pair results.
+Earlier prompts to search general
 two-band transitions, merely nonscalar output probes, or an unspecified
 three-band source are superseded. Changing amplitude at bounded clean
 count is now also closed at the relative-error scope. The unrestricted
@@ -226,7 +249,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

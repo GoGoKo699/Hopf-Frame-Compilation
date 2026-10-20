@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+[current research outcome](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -45,8 +45,8 @@ Its explicit constants are extremely conservative; it is a source-class
 obstruction, not a dimension-growing unrestricted depth bound.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
-[current continuation](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md) records
-the resulting source decision and the original-pair advance.
+[current continuation](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md) records
+the subsequent selective-word revision and growing-rank pair advance.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
@@ -82,7 +82,13 @@ now pays the same whole-bank detuning in at most 11 T layers with linear
 T-count, quadratic Clifford count and no additional work. A complete
 selective composition and full-operator return/error certificate remain
 unpaid. Its period-eight guard covers completed independent periodic
-rows; arbitrary joint bank mixing is outside that guard. The phase-counter test also records its
+rows; arbitrary joint bank mixing is outside that guard. The new
+[joint decoding analysis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
+adds explicit floors for normalized Clifford decoding and the specified
+read-only-bank grammar. The [fine-angle analysis](depth/JOINT_DETUNING_PRECISION_LIMITS.md)
+gives the complete fallback ledger and a logarithmic depth cost for
+independent finer-layer synthesis. These scoped failures leave joint
+non-Clifford synthesis and complete selective return unpaid. The phase-counter test also records its
 quantitative access inequality, without equating accesses with native depth.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
@@ -112,8 +118,11 @@ with two clean-active axes at each endpoint and a genuine original
 middle pair. It retains arbitrary silent lists, dirty width and
 unused-sector action; the common pair-parity sectors are a proof device,
 not a free controlled compiler. The no-pair branch retains its separate
-theorem. Growing endpoint ranks, general original pairs and higher
-layers remain open.
+theorem. The [one-sided rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow)
+now gives sign/XOR bounds 197/196 while the other rank grows. The following
+two-axis physical-support theorem permits both ranks to grow for one
+original pair. Larger pair-difference supports, general original pairs
+and higher layers remain open.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 

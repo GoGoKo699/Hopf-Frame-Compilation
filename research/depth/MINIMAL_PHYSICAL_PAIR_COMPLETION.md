@@ -19,8 +19,11 @@ Boolean sign degree is at most three and XOR degree at most two. These
 are results for the specified input and middle word, not a theorem for
 all fixed-pair sources or unrestricted depth. Section 5 extends the
 scout to every paired source whose two endpoint clean-active ranks are
-two, proving sign/XOR degree at most six/five. General inside-span
-matching and growing endpoint ranks remain open.
+two, proving sign/XOR degree at most six/five. Section 6 permits one
+endpoint rank to grow without bound when the other is two, with bounds
+197/196. Section 7 also permits both ranks to grow when the one pair
+difference uses exactly two actual active axes at each endpoint.
+General original-pair matching and unrestricted depth remain open.
 
 ## 1. A literal original one-pair source
 
@@ -570,3 +573,245 @@ The [retained approximation-to-exactness theorem](CLEAN_CODE_CLIFFORD_RIGIDITY.m
 also gives its conservative floor $`2^{-530690}`$ for higher-degree
 Boolean targets in this class, allowing one common phase. It does not
 exclude arbitrary fixed tolerances or establish dimension-growing depth.
+
+## 6. One rank-two endpoint permits the other active rank to grow
+
+Retain the actual one-clean three-native-band word, complete occupied
+Boolean action, arbitrary dirty inputs and references, and a genuine
+original middle pair. If **either** endpoint clean-active rank is two,
+then
+
+```math
+\deg g\le197,\qquad \deg f\le196.
+```
+
+The opposite endpoint active rank and every silent-axis span are
+unrestricted. This is a uniform statement beyond the earlier theorem
+with both endpoint ranks bounded. It is not a theorem for arbitrary
+original pairs when both endpoint active ranks grow.
+
+### 6.1. The output quotient has one relation, not a free native band
+
+First suppose k_A=2. The actual matching and orientation repair of
+Section 5.1 still give exactly one pair, r=a_1+a_2, and
+
+```math
+S'=E_-JE_-^\dagger,\qquad k_C=2+|B_-|.
+```
+
+The proof that the negative singleton list and the two active A axes
+are jointly independent used the original middle pair, not the bound
+k_C=2. Thus it remains valid with arbitrarily many negative singletons.
+If B_- is empty, Section 5 already gives the sharper bound six.
+Assume henceforth that it is nonempty.
+
+Perform the paid common-parity normalization of Section 5.2. The physical
+parity can be made literally Z_z while preserving the clean Z_c: if the
+common parity after the affine change is Z_c Z_z, a final CNOT controlled
+by c and targeting z removes that factor. It fixes every occupied input.
+Both endpoint parities receive this same physical coordinate change.
+Fix either z sector, retaining its literal scalar and the remaining
+physical clean qubit.
+
+The two active A factors combine to an actual Clifford in the sector.
+Absorb it into the input encoder. The reoriented middle pair F also
+becomes an actual Clifford; it commutes J and every singleton, so absorb
+it into the output encoder and conjugate the output list as in Section
+5.1. The resulting input interior image J_z is a signed Pauli. The
+entire surviving middle list B_0=B_- union B_+ remains independent:
+a relation modulo r would put the sum of the removed pair in the span
+of the original singletons, violating physical middle independence.
+
+The surviving silent A list is independent modulo r for the same
+complementary-active-span reason as before. Its subsequent clean-code
+projection is also independent. Indeed a_1 commutes that list and R
+but anticommutes J_z, so J_z is not in its span after the R quotient.
+
+The complete C list behaves differently. It was independent before
+restriction, but r lies in its active span. After the R quotient its
+relation dimension is at most one. That relation can have unbounded
+length; no pair of C axes is silently deleted and no independent native
+C band is asserted. Subsequent Clifford conjugations preserve this
+relation bound. Identity-axis scalars and coincident signed axes are
+retained.
+
+### 6.2. An actual negative singleton supplies the missing clean flip
+
+Use fixed Clifford coordinates K_S for J_z and K_C for the output clean
+Pauli in this sector. After the preceding absorbed Cliffords, the full
+sector word has the form
+
+```math
+V_z=M L,\qquad
+M=K_C^\dagger E_C^\dagger E_{B_0}K_S,
+```
+
+where L preserves the physical clean Pauli and its occupied action L_0
+is a logical Clifford and the independent projected silent A band.
+The two one-band expressions E_{B_0}K_S and E_CK_C have the same actual
+clean image
+
+```math
+S_z=E_{B_0}J_zE_{B_0}^\dagger
+    =E_-J_zE_-^\dagger.
+```
+
+Here the C expression is a commuting phase list with one possible
+relation. Choose any actual negative singleton H. Because B_- is still
+independent,
+
+```math
+H\in\mathrm{im}(F_{S_z}-I)
+  =\mathrm{span}(B_-)
+  \subseteq\mathrm{span}(C_{\rm active}).
+```
+
+The last inclusion needs no independence assumption on C: the
+displacement of a commuting Pauli phase list always has image inside
+its active-axis span. Therefore H commutes every axis of both complete
+lists E_{B_0} and E_C. It anticommutes with S_z, since it anticommutes
+with J_z and commutes E_{B_0}. Its preimages through both encoders are
+actual Pauli clean flips.
+
+The [controlled-Pauli clean-removal argument](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#71-a-paid-two-band-extension-and-one-projected-band)
+therefore applies to this actual H. Its two Clifford dressings D_B,D_C
+fix every clean-zero vector literally and give
+
+```math
+D_C^\dagger M D_B=U\otimes I_c
+```
+
+on the whole sector space. The proof uses commutation with H and the
+clean Pauli, not native independence of the C factor. It keeps the
+dependent C list rather than replacing it by an unspecified extension.
+Appending the actual occupied L_0 and extending it by identity on c
+now gives the literal full-space comparison
+
+```math
+G_z\otimes I_c=(U\otimes I_c)(L_0\otimes I_c).
+```
+
+The clean wire is arbitrary in this comparison. Its three commuting
+phase factors have relation bounds (0,0,1), respectively. The input
+factor is independent by the two-quotient witness above, the middle
+factor is the retained independent singleton list, and the output
+factor has its explicitly retained one relation. All other factors
+are actual Cliffords.
+
+The [full-space bounded-relation theorem](BOUNDED_RELATION_NATIVE_MATCHING.md#1-statement-and-deliberately-loose-constants)
+therefore gives
+
+```math
+\deg g_z\le D(0,0,1)=48\cdot2+16+84=196.
+```
+
+Restoring the one common parity variable raises degree by at most one.
+The extracted quadratic sign and affine coordinates do not raise the
+resulting bound 197. The output-Hadamard sign representation gives the
+XOR bound 196, with the same actual clean images and original pair.
+
+### 6.3. Reverse orientation, resources and approximation scope
+
+If k_C=2 instead, reverse the actual physical word. The original B
+axes commute E_B, so their signed orbit action under
+$`S=E_BJE_B^\dagger`$ is the same as under J. The same original pair is
+therefore present in the reversed circuit. Its two endpoint active
+ranks exchange places. The occupied Boolean inverse differs only by
+the conjugated common scalar, so the preceding proof applies.
+
+This is a degree proof, not a coherent sector compiler. The original
+implementation and its actual inverse retain one clean qubit, the
+original dirty width, at most three native T bands, and their original
+T and Clifford counts. The global coordinates and shared-flip dressings
+cost $`O(Q^2)`$ elementary Cliffords on Q existing wires if emitted, with
+the actual inverse charged separately and no additional workspace.
+For one fixed sector the comparison keeps at most
+
+```math
+|A_s|+|B_0|+|C|
+```
+
+T phases: the two active input factors and two middle-pair factors have
+become Cliffords. Its one-relation output factor is an algebraic phase
+list; implementing it by an independent sublist and the extra phase
+uses an additional native band in that direct decomposition. No
+three-band synthesis is
+credited to this comparison. Every identity is exact, including phases,
+all logical columns, arbitrary references and clean/dirty return.
+
+The [focused exact fixture](../../tests/test_minimal_physical_pair_completion.py)
+has actual endpoint ranks two and five, three negative singletons, and
+a four-axis output relation after the parity quotient. It checks the
+original full native word and its actual inverse, clean return, both
+parity sectors and the shared-flip extension on every sector column.
+It is a mechanism check; its occupied action is not asserted to be a
+Boolean target or a growing-degree family.
+
+The retained approximation-to-exactness theorem is applied to the
+**original** physical three-native-band circuit before any sector
+restriction or dependent-list extension. Thus its conservative floor
+$`2^{-530690}`$ also excludes higher-degree targets in this one-sided
+rank-two class, allowing a common phase. It does not supply an
+arbitrary fixed-tolerance obstruction.
+
+## 7. Two-axis pair differences with both endpoint ranks growing
+
+A different native provenance condition also permits both endpoint
+active ranks to grow. Assume exactly one original middle pair and that
+its difference r is the sum of exactly two axes in **each actual
+endpoint active list**. These are statements about the physical lists,
+not about a subsequently selected basis of their spans. Let
+
+```math
+D_{\rm np}=\max\{D_3+576,D_{\rm ins}(0,0,0,3)\}
+```
+
+be the retained [uniform no-original-pair bound](GROWING_DISPLACEMENT_NATIVE_ORBITS.md#1-actual-source-hypotheses-and-conclusion).
+Its finite-insertion term also exceeds the separate $`2^{26}`$
+Pauli-interior bound.
+Then
+
+```math
+\deg g\le D_{\rm np}+1,\qquad \deg f\le D_{\rm np}.
+```
+
+Use the same paid global parity coordinates, including the
+clean-controlled CNOT if needed, and fix either R sector. The two
+specified active axes at each endpoint combine to literal Clifford
+factors. Delete precisely those two axes at each endpoint. The remaining
+endpoint lists are independent modulo r, since a relation would express
+the sum of the removed pair using its complementary physical sublist.
+The remaining middle singleton list is likewise independent modulo r
+by original middle independence.
+
+Absorb the input pair Clifford into its encoder. This preserves the
+actual restricted interior image J_z. Each original singleton still
+satisfies $`J_z B_z J_z=\pm B_z`$. Absorb the output active-pair
+Clifford into its encoder as well. Finally absorb the reoriented middle
+pair Clifford into the output data only. It commutes J_z and every
+singleton, and hence the resulting output clean image. The remaining
+middle axes are unchanged, so no new original pair is created by this
+absorption. Their independent projection also prevents distinct axes
+from merging into a spurious orbit.
+
+Each sector is therefore an actual one-clean three-native-band Boolean
+source with **no original middle pair**, on the entire remaining
+logical space. Its endpoint active ranks are k_A-2 and k_C-2; neither
+is assumed bounded. The retained no-pair theorem applies, including its
+separately closed Pauli-interior cases. Restoring the common parity and
+quadratic sign gives the displayed degree bounds.
+
+The comparison retains the original scalars, actual inverses, complete
+return and arbitrary references. It removes the four specified endpoint
+T factors and two middle-pair factors in each fixed sector, adds only
+$`O(Q^2)`$ Clifford coordinate work, and allocates no new helper. It is still
+a proof by sectors, not a freely selected coherent implementation.
+The same original-circuit approximation-to-exactness argument gives its
+conservative $`2^{-530690}`$ higher-degree floor under these actual-list
+hypotheses.
+
+One physical pair alone does not force either endpoint support to have
+size two. General one-pair sources with growing active ranks and larger
+pair-difference supports remain open, together with general fixed pair
+count and unrestricted depth. No bound on an additional silent span or
+on the union of transformed exceptional axes has been assumed.

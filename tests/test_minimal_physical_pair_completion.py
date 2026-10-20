@@ -3,6 +3,8 @@
 The first fixture retains both clean sectors and actual inverse. The
 second protects its non-C3 partner. The third keeps a core-coupled
 input axis and both pair-parity sectors; none enumerates completions.
+The fourth keeps a longer output quotient relation and pays its shared
+clean flip on every sector column, without asserting a Boolean target.
 """
 from collections import Counter
 import unittest
@@ -179,6 +181,109 @@ class MinimalPhysicalPairCompletionTests(unittest.TestCase):
             expected_pair = (scale(eye(4), omega) if central_bit == 0
                              else native_columns(2, [('H', 0), ('S', 0), ('H', 0)]))
             self.assertEqual(pair_block, expected_pair)
+
+    def test_one_sided_rank_two_with_four_axis_output_relation(self):
+        # Five physical wires, active ranks (2,5), one original pair,
+        # and three negative singletons. The C basis changes so that
+        # the pair difference uses four actual C axes, not two.
+        width = 5
+        k_a_word = _ghz(2)
+        cz_words = [gate for j in (2, 3, 4)
+                    for gate in [('H', j), ('CX', 0, j), ('H', j)]]
+        k_c_word = k_a_word + cz_words
+        ub_word = _pair_coordinates(2) + [('CX', 0, j) for j in (2, 3, 4)]
+        # Orthogonal transvection I+vv^T, v=(1,0,1,1,1), followed
+        # by the canonical axes Z0,Z1,Z0Z2,Z0Z3,Z0Z4.
+        orthogonal = ([('CX', j, 0) for j in (2, 3, 4)]
+                      + [('CX', 0, j) for j in (2, 3, 4)]
+                      + [('CX', j, 0) for j in (2, 3, 4)])
+        uc_word = orthogonal + [('CX', 0, j) for j in (2, 3, 4)]
+        ea_word = [('T', 0), ('T', 1)]
+        eb_word = _inverse(ub_word) + [('T', j) for j in range(width)] + ub_word
+        ec_word = _inverse(uc_word) + [('T', j) for j in range(width)] + uc_word
+        word = k_a_word + ea_word + eb_word + _inverse(ec_word) + _inverse(k_c_word)
+
+        a = native_columns(width, ea_word)
+        k_a = native_columns(width, k_a_word)
+        k_c = native_columns(width, k_c_word)
+        eb, ec = native_columns(width, eb_word), native_columns(width, ec_word)
+        ub, uc = native_columns(width, ub_word), native_columns(width, uc_word)
+        p_a = _tau(3, width)
+        p_c = _tau(3 | (28 << width), width)
+        clean = _tau(1 << width, width)
+        self.assertEqual(_conjugate(k_a, clean), p_a)
+        self.assertEqual(_conjugate(k_c, clean), p_c)
+        b_labels = [31, 31 | (3 << width), 5 << width, 9 << width, 17 << width]
+        c_labels = [29 << width, 2 << width, 25 << width, 21 << width, 13 << width]
+        for index, (b_label, c_label) in enumerate(zip(b_labels, c_labels)):
+            z = _tau(1 << (width + index), width)
+            self.assertEqual(_conjugate(ub, z), _tau(b_label, width))
+            self.assertEqual(_conjugate(uc, z), _tau(c_label, width))
+        self.assertEqual(_rank(b_labels), 5)
+        self.assertEqual(_rank(c_labels), 5)
+        j = _conjugate(a, p_a)
+        self.assertEqual(_conjugate(j, _tau(b_labels[0], width)),
+                         _tau(b_labels[1], width))
+        for label in b_labels[2:]:
+            self.assertEqual(_conjugate(j, _tau(label, width)),
+                             scale(_tau(label, width), -1))
+        self.assertEqual(_conjugate(eb, j), _conjugate(ec, p_c))
+
+        actual = native_columns(width, word)
+        self.assertEqual(native_columns(width, _inverse(word)), adjoint(actual))
+        self.assertEqual(_product(adjoint(actual), actual), eye(32))
+        self.assertEqual(_conjugate(actual, clean), clean)
+        self.assertEqual([len(band) for band in _native_t_bands(word)], [2, 5, 5])
+
+        # R=-Z0Z1 becomes -Z1. Every entry of both physical parity
+        # sectors is retained, including both values of the clean wire.
+        parity_coordinates = native_columns(width, [('CX', 0, 1)])
+        c_parity = _conjugate(adjoint(parity_coordinates), ec)
+        j_parity = _conjugate(adjoint(parity_coordinates), j)
+        projected_c = [15, 1, 13, 11, 7]
+        self.assertEqual(_rank(projected_c), 4)
+        self.assertEqual(projected_c[1] ^ projected_c[2]
+                         ^ projected_c[3] ^ projected_c[4], 0)
+        sector_width = 4
+        singleton_axes = [_tau(mask << sector_width, sector_width) for mask in (3, 5, 9)]
+        e_minus = _product(*[_t_phase(axis) for axis in singleton_axes])
+        k_c_sector_word = ([('H', 0)]
+                           + [gate for target in (1, 2, 3)
+                              for gate in [('H', target), ('CX', 0, target), ('H', target)]])
+        k_c_sector = native_columns(sector_width, k_c_sector_word)
+        dressing = native_columns(sector_width, [('H', 1), ('CX', 0, 1), ('H', 1)])
+        sector_clean = _tau(1 << sector_width, sector_width)
+        h_axis = singleton_axes[0]
+        for central_bit in (0, 1):
+            positions = [(value & 1) + 2 * central_bit + 4 * (value >> 1)
+                         for value in range(16)]
+            ec_sector = [[c_parity[row][column] for column in positions] for row in positions]
+            j_sector = [[j_parity[row][column] for column in positions] for row in positions]
+            k_s_word = [('H', 0)] + ([('S', 0)] if central_bit == 0 else [])
+            k_s = native_columns(sector_width, k_s_word)
+            self.assertEqual(_conjugate(k_s, sector_clean), j_sector)
+            expected_c = _product(*[
+                _t_phase(scale(_tau(mask << sector_width, sector_width),
+                               -1 if index == 1 and central_bit else 1))
+                for index, mask in enumerate(projected_c)
+            ])
+            self.assertEqual(ec_sector, expected_c)
+            common = _conjugate(e_minus, j_sector)
+            self.assertEqual(common, _conjugate(_product(ec_sector, k_c_sector), sector_clean))
+            self.assertEqual(_conjugate(h_axis, common), scale(common, -1))
+            self.assertEqual(_conjugate(h_axis, ec_sector), ec_sector)
+            self.assertEqual(_conjugate(h_axis, e_minus), e_minus)
+
+            transition = _product(adjoint(k_c_sector), adjoint(ec_sector), e_minus, k_s)
+            extended = _conjugate(adjoint(dressing), transition)
+            self.assertEqual(_conjugate(extended, sector_clean), sector_clean)
+            self.assertEqual(_conjugate(extended, _tau(1, sector_width)),
+                             _tau(1, sector_width))
+            for row in range(16):
+                for column in range(16):
+                    expected = (extended[row & ~1][column & ~1]
+                                if row % 2 == column % 2 else CZ)
+                    self.assertEqual(extended[row][column], expected)
 
 
 if __name__ == '__main__':

@@ -474,6 +474,300 @@ eight can distinguish addresses even when one row aliases. The paid
 global call above remains available to such a different mechanism.
 No claim about an arbitrary joint word follows from a single-row period.
 
+### 5.3. Joint Clifford decoding of the relative call still stops
+
+The complete detuning vector contains more information than one row's
+weight modulo eight. Its exact relative action nevertheless has a
+restricted form. Let $`R_x`$ denote the preceding call on the preserved
+address sector x, let $`S_{\rm all}=\prod_uS_{s_u}`$, and define
+
+```math
+A(x)_u=x\cdot u,\qquad P(x)=|x|\bmod2,\qquad
+Q(x)=\binom{|x|}{2}\bmod2.
+```
+
+Here the dot product and Pauli labels are over $`\mathbb F_2`$.
+The exact normalized call is
+
+```math
+C_x:=R_xR_0^\dagger
+ =S_{\rm all}^{-|x|}Z_s^{A(x)}
+ =S_{\rm all}^{-P(x)}Z_s^{A(x)+Q(x)\mathbf1}.             \qquad(13)
+```
+
+Indeed $`|x\oplus u|-|u|=|x|-2\sum_jx_ju_j`$ as an
+integer. Expanding these rotations gives the scalar
+$`\omega^{m|x|}(-i)^{m|x|/2}=1`$, so (13) drops no phase.
+The symplectic action of C_x depends only on P; its Pauli displacement
+retains the linear address features A and the quadratic feature Q.
+It is a Clifford on the bank for each fixed x, not a free Clifford on
+the joint address/bank space. Its simultaneous native implementation
+follows from the two controlled quadratic signs and parity CS-dagger
+in Section 5.2, with at most ten T bands, no helpers, and
+$`T\le3m+3b+5`$, $`G=O(m^2+b^2+mb)`$.
+
+The removed fixed layer is itself particularly inexpensive:
+
+```math
+R_0=\omega^{m(b+2)/2}
+ \left(\prod_u S_{s_u}^{-(|u|+1)}\right)
+ \prod_u T_{Z_{s_u}}T_{Z_{Y_u}Z_{s_u}}^\dagger.          \qquad(14)
+```
+
+The integer identity $`-Y+2Ys=s-(Y\mathbin\oplus s)`$
+proves (14). Its independent local axes give one native T band, 2m
+T gates, $`O(m)`$ Cliffords after reducing S powers, and no helpers.
+Literal scalar and actual-inverse costs are included.
+
+Consider any number of calls C_x or their actual inverses, interleaved
+with arbitrary address-independent joint Cliffords on Y, signals and
+private work. Denote the resulting branch word by W_x. On the fixed
+parity sector $`P(x)=p`$, moving Pauli factors through the fixed
+Cliffords gives
+
+```math
+W_x=e^{i\phi_x}\mathcal P_{v(x)}F_p,\qquad
+v(x)=v_{0,p}+L_pA(x)+Q(x)h_p.                           \qquad(15)
+```
+
+The phases are retained; no common-phase quotient is used to compare
+the complete operators. F_p is a fixed Clifford and the displayed
+coefficients are fixed binary vectors or linear maps. Repetition does
+not add new features to (15).
+
+Even arbitrary fixed bank-unitary encoders cannot complete this word.
+Let $`U_x=B^\dagger W_xE`$, where B and E are fixed unitaries
+on the entire bank/work space and do not move the address. For
+$`b\ge4`$, choose $`a=e_1+e_2`$ and $`c=e_3+e_4`$.
+The four addresses 0,a,c,a+c all have parity zero. Their A labels
+sum to zero, and their Q values are respectively 0,1,1,0. Hence (15)
+gives the exact identity
+
+```math
+U_0^\dagger U_a U_c^\dagger U_{a+c}=\zeta I,
+\qquad |\zeta|=1.                                    \qquad(16)
+```
+
+Pauli anticommutation can change zeta, but cannot change its scalar
+character. The corresponding target product for
+$`D_x=Z_{Y_x}\otimes I_{s,w}`$ is the nonscalar Hermitian Pauli
+$`D_0D_aD_cD_{a+c}`$. Its distance from every unit scalar is at
+least square root two. Four unitary replacements therefore prove
+
+```math
+\left\|\sum_x|x\rangle\langle x|\otimes U_x-D_b\otimes I\right\|
+ \le\tau
+\quad\Longrightarrow\quad
+\tau\ge\frac1{2\sqrt2}.                              \qquad(17)
+```
+
+This is a full-operator floor with arbitrary dirty inputs and references,
+including return. It permits any fixed R_0 encoders at the two ends;
+restricting those encoders to one T band is unnecessary. It does not
+permit retaining R_0 internally between the address-dependent calls.
+
+One internal fixed one-band interaction also has a finite obstruction.
+For this corollary retain the original C_x presentations. If $`b\ge6`$,
+restrict x to the span of three disjoint double flips,
+$`x(z)=\sum_{j=1}^3z_j(e_{2j-1}+e_{2j})`$.
+On this subspace P is zero and $`Q=z_1+z_2+z_3`$, so each
+normalized/Clifford segment has an affine Pauli label. Absorbing constants
+and fixed Cliffords into the endpoints and the internal encoder gives,
+up to retained branch scalars,
+
+```math
+U_z=B^\dagger\mathcal P_{Lz}V\mathcal P_{Hz}E.
+```
+
+Here V is a fixed Clifford-dressed one-band word, such as R_0. Thus
+$`K_a=V^\dagger\mathcal P_{La}V`$ is a Clifford; let M_a
+be its symplectic action. The alternating rectangle at z in directions
+a,c is, up to a scalar, a Pauli conjugated by E, with label
+
+```math
+(I+M_a)(Ha+Hc).
+```
+
+This label is independent of z. The proof uses
+$`K_a^2=I`$ up to scalar and $`M_a^2=I`$ to cancel the
+base-point terms. Two parallel rectangles across the third direction
+therefore multiply to a scalar identity. The target product contains
+eight distinct Y Paulis, so eight replacements give
+$`\tau\ge1/(4\sqrt2)`$. Arbitrary fixed unitary endpoints and
+joint bank Clifford interlayers are allowed. This corollary concerns
+one internal one-band interaction; two or more remain outside it.
+For changed affine presentations, the required common subspace must
+be proved separately rather than inferred from these double flips.
+
+The same test covers changed affine address coordinates. Suppose the
+normalized calls use known affine labels $`z_j=L_jx+t_j`$, with
+fixed Clifford interlayers. Let r be the rank of the linear parts of
+the parity features $`P(z_j)`$, and let s be the dimension of the
+scalar features $`Q(z_j)`$ modulo affine Boolean functions. Choose
+a basis of s quadratics and a parity fiber through any base address x.
+On that fiber,
+(15) generalizes to an affine label plus a fixed vector combination
+of those s quadratics. If $`b\ge r+s+2`$, let K be the common
+kernel of the parity linear parts, choose nonzero a in K, and choose
+c in
+
+```math
+K\ \cap\ \bigcap_{\ell=1}^s\ker\beta_\ell(a,\,\cdot\,),
+\qquad
+\beta_\ell(a,c)=Q_\ell(a+c)+Q_\ell(a)+Q_\ell(c)+Q_\ell(0).
+```
+
+This space has dimension at least $`b-r-s\ge2`$ and contains a,
+so c can be chosen independent of a. The four points
+$`x,x+a,x+c,x+a+c`$ then have zero second differences for every
+feature. Equation (16), and thus (17), follow again. Accuracy strictly
+below this floor requires $`r+s\ge b-1`$. In particular q affine
+normalized accesses have $`r,s\le q`$ and require
+$`q\ge\lceil(b-1)/2\rceil`$. This is a logical access count,
+not a native T-depth bound; parallel banks and their simultaneous
+native scheduling require their own ledger. Merging or resynthesizing
+accesses can also leave this representation.
+
+There is also a small-call consequence of the retained
+[read-only three-band theorem](READ_ONLY_THREE_LAYER_RIGIDITY.md#1-statement-and-exact-four-band-form)
+that permits arbitrary Y/signal Clifford mixing. Use the original full
+R calls and actual inverses, with fixed joint bank Cliffords or actual
+read-only-address Clifford interlayers. Set $`k=\lfloor b/2\rfloor`$
+and restrict to $`x(z)=\sum_{j=1}^kz_j(e_{2j-1}+e_{2j})`$.
+Now P is zero and $`Q=\sum_jz_j`$, so C_x is a genuine
+Clifford controlled by the logical z address. Each R call is this
+Clifford together with the one work-only T band (14). The read-only
+Clifford normal form substitutes the duplicated address coordinates
+directly and retains its phase, producing an actual zero-clean circuit
+on z and the original arbitrary bank/work. No duplicated coordinate is
+kept as an initialized helper.
+
+Thus q calls yield an actual read-only q-band word on that restricted
+input, not merely a per-sector interpretation. Hadamards on Y at both
+ends turn its target into a complete XOR query. Each output indexed by
+a point in this subspace has equality degree k. If $`q\le3`$ and
+$`b\ge4`$, the retained componentwise affine theorem therefore gives
+operator error at least $`\sqrt2/6`$. This transfer allows joint bank
+Clifford mixing but not arbitrary non-Clifford endpoints or address
+motion outside the read-only normal form. The separate four-band theorem
+is stated for a single output; applying it componentwise to this complete
+bank would require an additional proof. This transfer does not resolve
+more calls, arbitrary affine presentations, or unrestricted depth.
+
+The stopped mechanism is therefore joint Clifford decoding of normalized
+detunings, even with fixed unitary endpoints, together with the stated
+one-internal-layer and small-full-call extensions. Sufficiently many
+full R calls with internal non-Clifford layers remain outside these
+tests, as do address/bank mixing and other native interlayers. The first
+unpaid operation is a selective composition using such interactions,
+with a complete error/return certificate. Merely observing
+that the detuning vector distinguishes addresses does not construct
+that decoder. The same floor applies if a proposed parent-branch
+difference has this normalized form on its entire child/work space;
+common dirty action may cancel before that comparison, but does not
+weaken its required complete-operator accuracy.
+
+### 5.4. Keeping every bank value read-only still stops full-call words
+
+There is a separate obstruction for the natural pulse grammar even when
+arbitrarily many full R calls retain the layer (14) internally. Suppose
+the computational address and every Y value are preserved throughout:
+between calls allow actual Clifford circuits preserving those registers
+and acting on signals and arbitrary private work. Their gates and
+inverse costs are paid; a generic conditionally chosen Clifford is not
+granted. A call may use a known affine address presentation
+$`z_j=L_jx+t_j`$ when its Clifford rewiring is explicitly implemented
+and restored at the call boundaries. Let r be the rank of the linear
+parts of the parity features $`P(z_j)`$.
+
+This grammar cannot approximate the complete target at error strictly
+below $`1/(2\sqrt2)`$ when $`b-r\ge5`$. To prove it, fix
+the allowed computational bank input to the one-hot table with its only
+one at some address x_*. The target on all signal/private inputs is now
+$`(-1)^{[x=x_*]}I`$. Every full R call on this bank input is a
+signal Clifford, since its detunings are integers. On the common parity
+fiber through x_*, its address dependence is only the Pauli factor in
+(13). An actual read-only Clifford interlayer similarly has a fixed
+signal/private symplectic action, an affine address-dependent Pauli
+label and a Clifford address phase. This follows by restricting its
+Pauli conjugation rules; no controlled-Clifford synthesis premise is
+added.
+
+Consequently, on that fiber, the whole word is a fixed Clifford times
+an address-dependent Pauli and phase. Choose affine coordinates on the
+fiber. Its Pauli label is a polynomial of degree at most two. To bound
+the phase, use formal Boolean features t consisting of those affine
+coordinates and the quadratic $`Q(z_j)`$. Factoring each Pauli label
+into fixed generators and multiplying them gives the phase form
+
+```math
+i^{\ell(t)}(-1)^{q(t)},
+```
+
+where ell is integer linear and q is Boolean quadratic; fixed scalars
+are included in the fixed Clifford. Substituting a quadratic Boolean
+feature into an exponent modulo four produces degree at most four:
+its XOR lift contains its degree-two monomials and twice their pairwise
+products, while the coefficient-two terms need only substitution modulo
+two. The resulting phase is therefore $`i^{g(x)}`$, with g a
+squarefree polynomial over $`\mathbb Z_4`$ of degree at most four
+in the chosen fiber coordinates.
+
+If the operator returns as a scalar on every signal/private input, its
+Pauli label is constant and can be absorbed into the fixed Clifford.
+If that scalar is a fixed phase times a Boolean sign, subtract a
+constant from g. Its values are all even modulo four. Boolean-cube
+Möbius inversion then makes every coefficient even, so division by two
+gives a Boolean sign polynomial of degree at most four. The target sign
+on this fiber is a point indicator of degree $`b-r`$. Thus exact
+return is impossible when $`b-r\ge5`$.
+
+This remains a constant-error obstruction. If a branch Clifford is
+within $`\tau\lt1/(2\sqrt2)`$ of a scalar, its conjugation of
+every Pauli is within $`2\tau\lt\sqrt2`$ of that Pauli. Distinct
+Pauli images have distance at least square root two, so the branch
+Clifford is exactly scalar. Its literal scalar is an eighth root of
+unity. Even allowing one common phase in the comparison, two corrected
+branch scalars have distance at most $`2\tau`$, less than the
+spacing $`\sqrt{2-\sqrt2}`$ of distinct eighth roots. They must
+therefore equal the same fixed root times the target sign. The exact
+degree-four contradiction applies. This proves the floor on the full
+operator, using a valid bank input and arbitrary dirty signals/work;
+initialized or approximate local return has not been assumed.
+
+In particular the original presentation has r equal to one, so it stops
+at $`b\ge6`$ regardless of the number of calls. Affine presentations
+need $`r\ge b-4`$ to escape this test. These are restrictions on
+the displayed read-only grammar, not unrestricted T-depth bounds.
+Y-dependent signal actions of actual read-only Clifford interlayers are
+already allowed; moving Y values
+between full-call boundaries is outside the premise.
+For q serial full calls the paid implementation still has the upper
+ledger
+
+```math
+T\le q(5m+3b+5),\qquad
+G=O\!\left(q(m^2+mb+b^2)\right)+G_{\rm inter},\qquad
+D_T\le11q,
+```
+
+with signal width m plus any explicitly allocated private work.
+The interlayer and affine-rewiring Clifford counts are included in
+$`G_{\rm inter}`$, and the same majorants charge the actual inverse.
+These exact components contribute no synthesis error; the missing
+selectivity and return proof is an independent obligation. Neither
+the access-rank condition nor this serial upper schedule is a native
+depth lower bound.
+
+The next question remains an actual selective composition with sufficient
+internal non-Clifford dynamics and Y motion between calls, address/bank motion,
+or another mechanism. Passing one of these band-count or access-rank
+tests does not supply it. The complete selective action and return are
+still unpaid. The separate
+[precision-access analysis](JOINT_DETUNING_PRECISION_LIMITS.md)
+addresses changing the detuning angle; its premises do not extend this
+read-only theorem to arbitrary joint mixing.
+
 ## 6. What changed and where to continue
 
 Independent-row eigenphase accumulation does not force the earlier
@@ -494,7 +788,10 @@ must supply the complete distance certificate and a genuinely faster
 native schedule; changing only the row count does not do so. Section 5.2
 pays one whole-bank native call and shows why intact-axis packing must
 not be mistaken for a depth obstruction. It does not yet supply the
-selective word or its complete distance certificate. The general
+selective word or its complete distance certificate. Section 5.3 rules
+out a joint Clifford decoder for the normalized calls, even with fixed
+unitary endpoints. A next candidate must use internal non-Clifford
+interactions or otherwise leave that access representation. The general
 complete approximate indicator and optimal general T-depth remain open.
 No unrestricted depth lower bound is inferred from analog duration,
 the intact-rotation packing limit, a simulation ledger or a row T-count.
