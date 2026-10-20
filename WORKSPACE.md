@@ -6,31 +6,35 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: structural revision of the all-active one-pair bound
+## Current checkpoint: complete Booleanity collapses original physical pairs
 
 **Fetched continuation baseline:**
-`a513c534a81d9c257b5cfa4efc1da83db4affc5b`, tree
-`9f1f6a23e72c8c64cfff3cf1b1a04c322a8f25c1`, on 20 October 2026,
-after the coherent-source and one-pair continuation merged as PR #208.
-Read the [current outcome](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md),
+`3c901fdffb6b48548fc67ac7056481db5ac4136e`, tree
+`0de9c050745f9504bb78bbd4b34608a59d989f4b`, on 20 October 2026,
+after the structural pair revision merged as PR #209.
+Read the [current outcome](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md),
+the [original-pair collapse theorem](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md),
 the [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md),
-the [positive-singleton recognition theorem](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md),
+the [retained no-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md),
 the [four-call weak source](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md),
-the [retained all-active matching proof](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-The huge feature constant is replaced by sign/XOR degree **6/5 uniformly**,
-and **5/4 at common active rank at least four**. Actual native independence
-lets both endpoint dressings peel as diagonal phases; a fixed full-space
-change of basis then removes the matrix core. A Boolean commutation
-identity further forces all-active support for one genuine original pair
-with no negative singletons. This sharpens the specified physical class,
-not unrestricted depth. The first unpaid upper
-operation remains a sublogarithmic native weak source or whole extraction.
-The lower scout continues with negative-singleton original pairs. R96,
-selected R79 and the unrestricted resource frontier remain unchanged.
-The [previous checkpoint](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
-retains the four-call quantum-fiber source and the original matching
-proof. Fetch current main before resuming; this baseline is not a pin.
+Complete Booleanity forces any paired source to have exactly one original
+pair, all-active support at both endpoints, and no negative singletons
+after literal repair. Its sign/XOR bounds are **6/5 uniformly**, and
+**5/4 at common active rank at least four**. The scalar parity sector
+keeps the actual silent list independent, so Boolean reality removes
+its obstructing couplings without product-axis resynthesis. Combined
+with the retained no-pair theorem, this closes the qualitative
+unrestricted one-clean three-layer degree question. The universal
+constant is still the crude no-pair constant, not six/five.
+The first unpaid upper operation remains a sublogarithmic native weak
+source or whole extraction. The next quantitative lower question is a
+structural sharpening of the no-pair constant; higher layers and
+dimension-growing depth remain open. R96, selected R79 and the
+asymptotic unrestricted resource frontier are unchanged.
+The [previous checkpoint](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+retains the structural diagonal reduction and positive-singleton
+recognition. Fetch current main before resuming; this baseline is not a pin.
 
 <a id="current-depth-frontier"></a>
 
@@ -52,13 +56,13 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Direct output-alias source | [Four-call complete readout](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) uses the actual output wires as character coordinates and permits arbitrary quantum private-helper fibers. Complete error is at most $`4\eta`$; fusion uses 32 calls. A sublogarithmic weak source or whole extraction remains unpaid; the known source retains logarithmic depth |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
-| Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
-| Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
+| Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The [complete one-clean three-layer case split](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md) now gives an absolute degree ceiling inherited from the retained no-pair constant, with conservative higher-degree floor $`2^{-530690}`$. A small universal constant, higher layers and dimension-growing depth remain open |
+| Retained original-pair components | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) and [actual two-axis differences](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) retain their sector/return mechanisms. The new general paired-source six/five bound supersedes their larger numerical bounds |
 | Retained recognition component | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) retains its physical-center construction when either endpoint's silent list commutes with the original middle. Its historical sign/XOR bound 2428/2427 is superseded by the structural six/five theorem below |
 | Retained pair-only center component | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) permits both coupled silent lists with no middle singletons. Its original bound is superseded by the uniform all-active closure below; its physical-center construction remains useful |
 | Retained singleton-coupling component | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
-| Uniform all-active genuine one-pair closure | [Fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most **6/5 uniformly**, and **5/4 at active rank at least four**, with arbitrary original singletons, both silent lists and dirty width. The pair difference must sum every actual active axis at both endpoints. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
-| Positive-singleton original-pair recognition | [Boolean commutation identity](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md): with exactly one genuine original pair and no negative singletons after literal orientation repair, complete Booleanity forces all-active support at both actual endpoints. The same six/five and high-rank five/four bounds apply without assuming that support. Negative singletons remain the focused one-pair question |
+| Uniform all-active genuine one-pair component | [Fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most **6/5 uniformly**, and **5/4 at active rank at least four**, with arbitrary silent lists and dirty width. The new recognition theorem below supplies its actual physical support hypotheses for every paired Boolean source |
+| Original-pair collapse under complete Booleanity | [Scalar-sector native rigidity](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md): any positive original pair count collapses to exactly one, all-active at both actual endpoints, with no negative singletons after literal repair. Thus six/five and high-rank five/four cover every paired source. Combined with the no-pair theorem this gives an unrestricted one-clean native-three degree ceiling, not a dimension-growing depth bound |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -249,8 +253,10 @@ native calls to run in parallel. A universal zero-clean black-box wrapper
 needs at least $`2^k`$ source occurrences for k clean bits at the stated
 literal errors; this counts calls, not native layers or unrestricted depth.
 
-Keep the [original physical-pair scout](research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates)
-active. With s original pairs and additional actual coupled silent-axis
+The [original physical-pair scout](research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates)
+has completed its exact three-layer branch through the new scalar-sector
+proof below. Retain its earlier components without their old reopening
+instructions. With s original pairs and additional actual coupled silent-axis
 span t, the new theorem bounds Boolean degree by $`D_K+4A_K`$,
 $`K=3s+2+t`$, uniformly in width and endpoint active rank. Its shared
 computational coordinates keep the physical clean bit until after the
@@ -272,10 +278,10 @@ most $`17c`$. These hold without bounded t. The next missing operation is
 simultaneous native matching and propagation of that exceptional module,
 including axes that stay inside the old middle span plus center. A native
 finite-insertion guard shows that the union of transformed escaped axes
-can grow; it is not an original physical-pair counterfamily. Fixed positive
-s alone with growing endpoint ranks, growing s, and higher layers remain
-open; no bounded-t or general degree conclusion follows from these
-profiles alone.
+can grow; it is not an original physical-pair counterfamily. These
+profiles alone do not close fixed positive s or growing s; the later
+Boolean pair-collapse proof does, without inferring bounded t.
+Higher layers remain open.
 
 The [minimal actual-pair completion](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
 now tests that missing provenance directly. Its one original pair leaves
@@ -304,12 +310,11 @@ now proves that the projected endpoint code can require two native bands,
 even with returned dirty spectators. A paid two-band repair exists, but
 it gives five sector bands with surviving middle singletons, or four
 for the pair-only witness. This does not invoke the three-band no-pair
-theorem. The next lower question is finite-insertion stability of the
-complete occupied Boolean condition, or original-pair native matching
-that avoids this representation cost, then general fixed pair count.
-Neither an arbitrary basis change nor deletion of an insertion preserves
-the required native/Boolean contract automatically. General original pairs
-and unrestricted depth remain open.
+theorem. The later scalar-sector proof avoids this representation cost
+without claiming a cheaper sector encoder. Neither an arbitrary basis
+change nor deletion of an insertion preserves the required
+native/Boolean contract automatically. General original pairs at three
+layers are now closed below; dimension-growing depth remains open.
 
 The [all-active original-pair theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
 retains its physical-center proof when either endpoint's silent list
@@ -354,15 +359,35 @@ mask has one global commutation sign, contradicting those two nonempty
 branches. The small degree bounds therefore cover this class without a
 support premise; a second matrix core is unnecessary.
 
-The next focused lower question is a **negative-singleton original pair**.
-Its endpoint clean images need not agree, so the common-span inference
-and the required Pauli commuting both endpoint bands remain unpaid.
-First distinguish actual endpoint-axis singletons, whose neighboring
-phase factors may combine literally, from product axes whose removal
-could introduce dependent native lists. Do not infer a free native band
-or full-space Pauli symmetry from a sector comparison. General fixed
-pair count, unrestricted one-clean three-layer
-degree and dimension-growing depth remain open.
+The [new original-pair collapse theorem](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+now removes both the singleton and pair-count restrictions. For any
+clean-preserving Pauli in the actual input active span, all pair factors
+are scalar on their joint minus sector. Crucially, the output silent
+list remains independent modulo the physical clean Pauli and every pair
+difference: an actual active-axis witness excludes the former and full
+endpoint-list independence excludes the latter. Boolean reality on the
+whole remaining-register sector forces every silent axis to commute
+with that Pauli. This exports only those individual commutation signs,
+not an arbitrary sector equality. Each single-plus sector then supplies
+the previous Boolean commutator contradiction. Every pair difference
+must equal the full actual active sum, so native middle independence
+allows only one pair. Time reversal gives the other endpoint, and the
+literal clean comparison excludes every negative singleton.
+
+Thus every paired complete Boolean source has sign/XOR degree at most
+six/five, or five/four at common active rank at least four. Combining
+with the retained no-pair and Pauli-interior branches gives a uniform
+degree ceiling for **all** at-most-one-clean native-three Boolean
+circuits. Its value is still the no-pair constant
+$`D_{\rm np}=\max\{D_3+576,D_{\rm ins}(0,0,0,3)\}`$, not six.
+The same original-circuit rounding theorem gives the conservative
+higher-degree floor $`2^{-530690}`$. This closes the qualitative
+three-layer question, not arbitrary fixed accuracy or dimension-growing
+depth. The next quantitative lower question is to remove the no-pair
+matrix core structurally and sharpen that crude constant; do not reopen
+the already closed qualitative no-pair case or count another alphabet
+without a new mechanism. The main constructive task remains the paid
+sublogarithmic weak quantum-fiber source or whole extraction.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
@@ -380,18 +405,20 @@ degree and dimension-growing depth remain open.
 | Bank motion within the whole-word Majorana grammar | [Complete constructions](research/depth/BANK_MOTION_WALSH_INDICATOR.md) pay routing and return, but the [native whole-word bound](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) survives fusion while every actual Clifford boundary is address-read-only and Majorana-preserving on all bank/helpers. Reopen outside that grammar, not merely by moving the bank |
 | Independently synthesized finer detuning | [Stopped at sublogarithmic depth](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md) when the complete tensor layer is separately certified, without synthesis helpers or cross-coordinate non-Clifford operations. Joint whole-word synthesis and later error cancellation are outside |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
-| PR #207 bounded singleton-coupling question in the all-active one-pair class | Superseded by [uniform scalar-branch matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md). No bound on h is needed or inferred. Continue with negative-singleton original pairs |
+| PR #207 bounded singleton-coupling question in the all-active one-pair class | Superseded by [uniform scalar-branch matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md). No bound on h is needed or inferred; negative singletons and general pair count are now closed by Boolean pair collapse |
 | PR #208 generic one-core feature estimate | Superseded in the all-active one-pair class by [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md), giving sign/XOR bounds six/five uniformly and five/four at active rank at least four. Retain scalar-branch matching; remove the matrix core before counting its features |
-| Proper-support one-pair extension with only positive singletons | Closed by [Boolean original-list recognition](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md): complete Booleanity forces all-active support. A two-core alphabet and a new sector encoder are unnecessary. The negative-singleton case remains open |
+| Proper-support original pairs, including negative singletons and growing pair count | Closed by [scalar-sector native rigidity](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md): any paired complete Boolean word has exactly one all-active pair and no negative singletons after repair. The scalar-sector silent list stays independent; no product-axis resynthesis or second matrix alphabet is needed |
 | Fourier trace character treated as a returned scalar source | [Explicit scalarization](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source) pays the block but retains exponential mask/clean-label or amplification cost. Reopen through a different coherent scalarization or whole extraction, not trace access alone |
-| PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
+| PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). The new original-pair theorem completes the exact three-layer case split. Quantitative sharpening is distinct from reopening the closed qualitative no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
-records the structural replacement of the large all-active degree constant,
-the positive-singleton recognition theorem, the unchanged complete source
-recurrence, and the next negative-singleton question. The
+The [latest continuation](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+records general original-pair collapse, the complete exact three-layer
+case split, the unchanged source recurrence, and the next quantitative
+and constructive questions. The [previous structural revision](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+retains the small all-active degree theorem and positive-singleton
+recognition. The
 [previous checkpoint](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
 retains the four-call weak quantum-fiber source, its complete recurrence
 and depth cost, the scoped Fourier scalarization limit, and the original
@@ -402,7 +429,8 @@ Earlier prompts to search general
 two-band transitions, merely nonscalar output probes, or an unspecified
 three-band source are superseded. Changing amplitude at bounded clean
 count is now also closed at the relative-error scope. The unrestricted
-pair-count question remains open.
+pair-count question at three layers is now closed under complete
+Booleanity; higher layers and dimension-growing depth remain open.
 Older session “next steps” are historical unless
 reaffirmed here. PR #196 already reconciled the documentation-only
 Hopf-QBP difference; [SYNC](SYNC.md) retains tracked upstream
@@ -428,7 +456,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

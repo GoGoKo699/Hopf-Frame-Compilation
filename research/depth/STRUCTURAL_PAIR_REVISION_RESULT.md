@@ -4,6 +4,12 @@
 [Previous coherent-source checkpoint](COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) ·
 [New proof](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
 
+**Historical checkpoint:** the [next continuation](ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+closes the negative-singleton and arbitrary original-pair-count questions
+left here. It retains this small all-active degree theorem and changes
+the recognition mechanism; the universal three-layer constant still
+comes from the separate no-pair branch.
+
 This revision starts from main
 `a513c534a81d9c257b5cfa4efc1da83db4affc5b`, tree
 `9f1f6a23e72c8c64cfff3cf1b1a04c322a8f25c1`, after PR #208.

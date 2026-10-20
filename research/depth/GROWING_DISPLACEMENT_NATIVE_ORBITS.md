@@ -4,6 +4,13 @@
 [Actual-source support](MIDDLE_DEFECT_SUPPORT_CLOSURE.md#8-the-original-clean-transition-removes-the-mixed-case) ·
 [Partial-diagonal features](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
 
+**Current case map:** the later [Boolean original-pair collapse](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+closes the separate original-pair branch. Together with this retained
+no-pair theorem and the Pauli-interior bounds, it gives a uniform
+one-clean native-three degree ceiling. The no-pair constant below is
+unchanged and remains a target for structural quantitative sharpening;
+the old original-pair reopening instructions are historical.
+
 The full normalized cubic identity closes the growing-total-displacement
 case of the retained actual no-middle-pair branch. Its coordinatewise
 algebra forces every growing displacement direction, except one common

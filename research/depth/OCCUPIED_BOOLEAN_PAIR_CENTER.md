@@ -4,6 +4,14 @@
 [Finite insertion](FINITE_INSERTION_THREE_LAYER_FEATURES.md) ·
 [No-pair native orbits](GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
 
+**Current extension:** [Boolean original-pair collapse](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+uses this genuine center but restricts only the original pair parities,
+whose safe silent-list quotient supplies a stronger conclusion. Under
+complete Booleanity every paired source has exactly one all-active pair
+and no negative singletons after repair. The center and profile results
+below remain components; their original fixed-pair reopening question is
+now closed without a bound on the general coupled silent span.
+
 The remaining three-layer question concerns **original physical middle
 pairs** with growing endpoint clean-active ranks. The retained no-pair
 theorem already handles growing ranks and displacement when those pairs
