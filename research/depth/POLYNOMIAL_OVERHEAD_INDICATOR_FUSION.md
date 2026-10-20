@@ -386,7 +386,12 @@ $`64M\epsilon`$. The old output bank and clean-register cover
 work are already included in $`w_E`$ before the fusion's separate
 old E-output bank is added.
 
-There is also a conditional growing-clean window. For constants
+The following is the serial conditional growing-clean window. The
+[paid parallel construction](PARALLEL_CLEAN_PROMOTION.md#51-paying-any-sufficiently-small-packing-permutation)
+gives a wider sufficient window under its native address-sharing
+hypothesis, and its Section 5.2 includes this fusion's eight-call error
+and resource substitution. Neither construction supplies the source.
+For constants
 $`\beta\ge0`$ and $`\gamma\ge0`$ with
 $`\beta+\gamma\lt1`$, suppose
 

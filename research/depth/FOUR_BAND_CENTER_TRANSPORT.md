@@ -11,11 +11,12 @@ or a change to the complete approximate dirty-indicator frontier.
 
 | Result | Exact scope and consequence |
 | --- | --- |
-| Section A: one pair-orientation mismatch | With the same original endpoint probes, one original B pair and the preserved center, D has the same signed J action and the retained cubic theorem applies |
+| Section A: one pair-orientation mismatch | With the same original endpoint probes, one original B pair and the preserved center, D has the same signed J action; Section F then gives paid two-band resynthesis |
 | Section B: lost initial matching | A nontrivial complete Boolean controlled-SWAP source has a non-Clifford intermediate probe, while its paid two-band, eight-T realization remains available |
 | Section C: one anticommuting unmatched orbit | With the fixed endpoints and preserved center, exact return forces an actual inverse rotation and removes two T gates |
 | Section D: automatic center preservation | Complete occupied Booleanity forces every D axis to preserve the original center for these fixed endpoints, without complete B matching |
 | Section E: a general original-pair derivative | Arbitrary original endpoints are allowed; the center's logical X direction has a complete two-band Boolean derivative of degree at most three |
+| Section F: paid whole-word resynthesis | With an all-active common endpoint and one support-two matched pair per middle band, the full word has an actual two-band realization with its Clifford cost paid |
 
 Section D therefore supplies the center premise used in A and C when
 the complete Boolean contract holds. The original equal endpoints and
@@ -156,6 +157,8 @@ Native independence permits at most
 one such pair. Thus the original, unmodified fixed-endpoint source
 falls under the retained
 [cubic theorem](FOUR_BAND_ORIGINAL_PAIR_SCOUT.md#14-native-cubic-closure-of-the-fixed-endpoint-one-pair-class).
+Section F below strengthens this branch to an actual two-band
+realization with its Clifford cost paid.
 
 This does not assert a free same-budget replacement, nor a theorem for
 genuinely unequal original endpoint probes. In the special case A is
@@ -513,6 +516,34 @@ particularly when v is zero, and does not prove that D preserves r.
 The endpoint differences and all original native pair signs have been
 retained throughout.
 
+The derivative also gives a robust restriction. Let the original source
+have complete initialized-isometry error epsilon against G, allowing
+clean leakage and dirty-return error. Pair provenance still makes R_A
+clean-even. The actual inverse has the same error epsilon on the
+initialized code: choose any code-preserving unitary extension of G,
+write $`\Pi_0`$ for the initialized-code projector, and use unitarity in
+
+```math
+(V^\dagger-G^\dagger)\Pi_0
+ =V^\dagger(G-V)G^\dagger\Pi_0.
+```
+
+Telescoping the two source calls in the exact identity for
+$`\mathcal D_r`$ therefore gives complete derivative error at most
+$`2\epsilon`$. This includes leakage, dirty return and references;
+it does not promote approximate return to exact return. The same
+physical two-C-band circuit and resource ledger apply.
+
+Put $`\tau=\sin(\pi/8)/(2\sqrt2)`$. The proof of the retained
+[robust two-layer obstruction](TWO_LAYER_DIAGONAL_RIGIDITY.md#4-uniform-robust-boolean-query-obstruction)
+applies to every Boolean diagonal phase of degree greater than three,
+not only to its displayed XOR specialization. Below tau, it first
+rounds the clean return and all preserved Z operators, then uses the
+native eighth-root phases to force the exact target up to one common
+scalar. The real-diagonal theorem then forces degree at most three.
+Consequently the directional degree restriction above remains valid
+whenever $`\epsilon\lt\tau/2`$.
+
 For the exact indicator sign $`g(x,Y)=Y_x`$ on p address bits, this
 directional conclusion gives a concrete restriction on every original
 B pair center. Write its logical X mask as (a,b), where a shifts the
@@ -537,10 +568,122 @@ The same restriction holds for the span of these projected center
 masks because RM(3,p) is linear. This constrains only their X projection:
 native independence does not bound the number of original pairs from
 it, since independent physical centers can all have zero X mask.
-This specialization uses the exact complete contract; no approximate
-degree rounding is inferred here.
+The same mask restriction holds at complete error
+$`\epsilon\lt\sin(\pi/8)/(4\sqrt2)`$ by the preceding paid derivative
+and rounding argument.
 
-## F. Next structural question and the unchanged frontier
+## F. A paid two-band resynthesis of the fully matched mechanism
+
+The fixed endpoint above has only clean-active A axes. More generally,
+suppose every axis in the actual independent list
+
+```math
+E_A=\prod_jT_{a_j}^{\epsilon_j},\qquad
+J=E_APE_A^\dagger
+```
+
+anticommutes the Pauli P. Let an actual middle band E_B be fully
+matched under J, with exactly one genuine pair and any positive or
+negative singletons. Suppose the pair difference uses exactly two
+original A axes, a_i and a_j. These are physical native hypotheses,
+not hypotheses about a freely chosen logical pair.
+
+Write the pair as b and $`b'=JbJ`$. If its displayed second axis is c
+with $`JbJ=\sigma c`$, use the literal representative conversion
+
+```math
+T_c^{\theta_0}
+ =\omega^{\theta_0(1-\sigma)/2}T_{b'}^{\sigma\theta_0},
+\qquad \omega=e^{i\pi/4},
+```
+
+and retain its scalar. Let eta and theta be the resulting effective
+orientations. Put $`PbP=\kappa b`$. The signed pair formula is
+
+```math
+b'=-\kappa\epsilon_i\epsilon_j a_i a_j b.
+```
+
+Only a_i and a_j are active on b, so
+
+```math
+E_A^\dagger bE_A
+ =\frac{b+i\epsilon_i a_i b+i\epsilon_j a_j b
+              -\epsilon_i\epsilon_j a_i a_j b}{2}.
+```
+
+Multiply this expression by
+$`\eta-\theta\kappa\epsilon_i\epsilon_j a_i a_j`$.
+If $`\kappa\theta/\eta=1`$, the weighted sum
+$`\eta b+\theta b'`$ is unchanged. If
+$`\kappa\theta/\eta=-1`$, its image is
+
+```math
+i\eta(\epsilon_i a_i b+\epsilon_j a_j b)
+ =F(\eta b+\theta b')F^\dagger,
+\qquad F=S_{a_i}^{-\epsilon_i}.
+```
+
+Every singleton commutes every a_j: its J-fixed binary label has zero
+active displacement, and the original A axes are independent.
+It therefore also commutes F. Applying the preceding equality to the
+commuting pair exponential, while retaining its scalar
+$`e^{i\pi(\eta+\theta)/8}`$, proves the literal whole-band identity
+
+```math
+E_A^\dagger E_BE_A=F_BE_BF_B^\dagger,
+\qquad F_B\in\{I,S_{a_i}^{-\epsilon_i}\}.
+```
+
+The right side is an actual native band exposed by a Clifford. Its
+axes retain the original independence and commutation. This is stronger
+than identifying a C3 operator or a convenient logical restriction.
+
+If E_D meets the same hypotheses and the original endpoint bands obey
+$`E_C=E_A`$, apply the identity separately to both middle bands:
+
+```math
+V=K_C^\dagger F_DE_DF_D^\dagger F_BE_BF_B^\dagger K_A.
+```
+
+This is a full-space two-band realization, including the unused clean
+block. The input and output Cliffords need not be equal. If T_B,T_D
+count the original middle T gates and G_B,G_D count their Clifford
+exposures, its paid ledger is
+
+```math
+\begin{aligned}
+T(V)&=T_B+T_D,\\
+d_T(V)&\le2,\\
+G(V)&\le G_B+G_D+G(K_A)+G(K_C^\dagger)\\
+    &\quad+\sum_{j=B,D}\bigl(G(F_j)+G(F_j^\dagger)\bigr).
+\end{aligned}
+```
+
+Each nontrivial F_j is an S rotation about one actual Pauli. Local
+H/S basis changes, a CNOT parity computation onto an existing wire,
+one S or S-dagger, and the actual inverse exposure implement it in
+$`O(q)`$ elementary Cliffords with no helper. A signed axis reverses
+the effective S orientation; a common scalar of the chosen F_j
+representative cancels with its actual inverse. In the positive native
+alphabet S-dagger costs three S gates.
+
+The inverse uses the reversed literal word, with the inverse B/D
+exposures and $`G(K_C)+G(K_A^\dagger)`$ in its Clifford ledger.
+Its T count and depth are the same. Added error is zero. Every exact
+or approximate clean, dirty and reference return contract of the
+original source is preserved. If its occupied action is Boolean, the
+retained two-layer real-diagonal theorem gives degree at most three.
+
+The all-active condition is essential to this whole-word reduction.
+For a general endpoint, J-singletons commute only its clean-active
+axes; noncommuting passive A factors may retain the old cost. A pair
+with a larger active difference also lies outside this proof. The
+[Pauli-domain scout](HIGHER_SUPPORT_PAIR_BOOLEANITY.md) gives an exact
+local obstruction in those cases and tests the complete Boolean
+condition separately. No unrestricted four-layer collapse follows.
+
+## G. Next structural question and the unchanged frontier
 
 An actual D axis cannot move r inside this fixed-endpoint Boolean class.
 A center-moving trial must genuinely change the endpoint probes or the
@@ -550,7 +693,12 @@ same endpoints. In particular, an original physical center
 whose logical pullback is not computationally diagonal is outside the
 center-forcing argument. A proposed counterexample must preserve the
 original B pair's physical provenance and compare its complete paid
-word with actual whole-word resynthesis. None of the results above
+word with actual whole-word resynthesis. Section F now shows explicitly
+that the fully matched support-two mechanism retains two-band cost.
+The next question is a complete Boolean completion beyond that
+mechanism, tested by the directional derivative and the
+[Pauli-domain criterion](HIGHER_SUPPORT_PAIR_BOOLEANITY.md#1-a-necessary-pauli-domain-condition-for-diagonal-completion).
+None of the results above
 changes the main approximate dirty-indicator resource, error or return
 recurrence.
 
@@ -558,5 +706,5 @@ The [focused exact fixture](../../tests/test_four_band_original_pair_scout.py)
 checks the new signed repartition, its actual native encoders, all 32
 physical columns, the reversed inverse, and the shorter full-word
 realization. The structural conclusions in A, C and D follow from the
-proofs, not from a finite search. No new resource, error or return
-recurrence is inferred from these source-specific reductions.
+proofs, not from a finite search. The main approximate-indicator
+resource, error and return recurrences remain unchanged.

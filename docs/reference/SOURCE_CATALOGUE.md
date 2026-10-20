@@ -379,6 +379,22 @@ phase ledger, and the complete-frame precision cap. Failure-probability
 suppression is not identified with phase-sensitive operator error, and
 no new asymptotic count/depth frontier or fine-search runtime is claimed.
 
+The [parallel clean-source promotion](../../research/depth/PARALLEL_CLEAN_PROMOTION.md)
+uses the standard decomposition of an N-bit permutation into at most
+2N minus one single-target gates, presented in
+[Soeken, Abdessaied and Drechsler, Section 3](https://arxiv.org/abs/1407.5878)
+and attributed there to
+[De Vos and Van Rentergem](https://biblio.ugent.be/publication/676373).
+The local proof supplies a constructive pair-graph argument, exact
+dirty-indicator parity echoes for those gates, and the full parallel
+resource, error and return recurrence. The separate spectral alternative
+uses Grover's inherited fixed-point sequence with its own two-clean
+full-operator ledger. Its
+[frame audit](../../research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
+applies [Ambainis, Kempe and Sattath, Theorem 4](https://arxiv.org/abs/0911.1696)
+only to physical support cones satisfying the quantum local lemma;
+this is not an unrestricted native T-depth bound.
+
 The [amortized dirty-lookup theorem](../AMORTIZED_DIRTY_LOOKUP.md) combines
 F2/F8's dirty traversal and echo with F29/F30's controlled-linear and
 commuting-operator techniques. Its query interface is retained by the

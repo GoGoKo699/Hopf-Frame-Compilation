@@ -25,6 +25,15 @@ non-Clifford intermediate with the old shorter whole-word realization.
 For general endpoint probes it also pays a two-band directional
 derivative; that derivative bound is not a total-degree ceiling.
 
+The [paid resynthesis](FOUR_BAND_CENTER_TRANSPORT.md#f-a-paid-two-band-resynthesis-of-the-fully-matched-mechanism)
+now reduces the fully matched all-active support-two mechanism to two
+actual bands. The [higher-support continuation](HIGHER_SUPPORT_PAIR_BOOLEANITY.md)
+proves the boundary of that local reduction and tests a center-moving
+clean-return word. Its Pauli-preserving domain excludes every diagonal
+completion under allowed endpoint Cliffords, including spectator mixing.
+The next scout must change an actual non-Clifford list or endpoint band;
+clean return and displayed center motion alone do not supply Booleanity.
+
 ## 1. The first inference that fails with an additional native band
 
 Use the actual physical word

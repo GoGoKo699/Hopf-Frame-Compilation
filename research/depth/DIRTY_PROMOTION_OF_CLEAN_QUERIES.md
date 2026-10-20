@@ -636,6 +636,10 @@ A growing clean bank requires a paid conversion from a compressed block
 to the initialized-isometry promise of Section 1. That conversion is
 available at inverse-square-root-two amplitude. It does not construct
 the compressed source, or make the later sector cover parallel.
+The [paid parallel construction](PARALLEL_CLEAN_PROMOTION.md#51-paying-any-sufficiently-small-packing-permutation)
+separately widens the sufficient growing-clean window when its actual
+native address-sharing hypothesis holds; Section 5.2 there substitutes
+this amplitude-recovery ledger into that complete circuit.
 
 Let A contain k clean wires, with $`k\ge1`$, and let J insert
 $`A=0^k`$. All other source inputs, including the complete q-bit
