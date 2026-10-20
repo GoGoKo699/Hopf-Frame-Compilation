@@ -570,8 +570,10 @@ the strongest unconditional general upper bound.
 
 The fixed Clifford-sum obstruction applies to two physical source bands
 with uniformly bounded clean count and fixed positive block amplitude.
-A one-signal source U with **three** physical T bands is a concrete next
-interface. Its complete block must still satisfy
+A one-signal source U with **three** physical T bands is a conditional
+specialization of the recurrence below, not a constructed next mechanism.
+The [current revision](JOINT_SELECTIVE_CONTINUATION_RESULT.md) permits
+any qualifying sublogarithmic source depth. Its complete block must satisfy
 
 ```math
 \|J^\dagger UJ-I_p/\sqrt2\|\le\varepsilon,

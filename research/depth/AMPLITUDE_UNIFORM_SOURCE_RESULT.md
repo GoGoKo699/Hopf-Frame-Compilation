@@ -12,6 +12,10 @@ native mechanism, and strengthens the focused original-pair scout.
 It does not construct a complete shallow indicator or improve the
 unconditional general depth frontier.
 
+The [subsequent selective-word revision](JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+updates the current next question and extends the original-pair results.
+The conclusions below retain their historical scope.
+
 ## 1. Destination, established frontier, components and limits
 
 | Role | Assessment |
