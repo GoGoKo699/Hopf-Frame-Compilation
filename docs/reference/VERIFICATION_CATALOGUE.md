@@ -15,7 +15,8 @@ adds one joint-bank composition fixture: all 8192 phase columns of the
 13-wire HRT extraction and its actual reverse, with the zeta shear expanded
 into eleven CNOTs. It uses the retained source permutation and its native
 proof; it is not a new native source emitter. The all-size error/resource
-recurrence, clean-sector restriction and oracle-rank bound, and original
+recurrence, quadratic-inverse XOR and Choi/coherent-correction audits,
+clean-sector restriction and oracle-rank bound, and original
 singleton-coupling degree theorem are analytic. Their exact scopes remain
 explicit; no unrestricted growing-depth result is inferred.
 

@@ -113,6 +113,27 @@ value, and a is still present. Swapping the registers does not erase either
 obligation. A full-input conversion or a different coherent mechanism must
 be supplied before this component can improve the frontier.
 
+The same query pays a complete Choi-basis transform on two arbitrary
+registers and the coherent Z correction. The next specific missing gate
+is the coherent X correction $`R_z=F_rX^zF_r^\dagger`$. It acts as
+$`y\mapsto y+f(z)+yf(z)`$ on an arbitrary carrier. A fixed key gives
+a Clifford, but that does not synthesize the coherent family. Its
+arbitrary-key echo gives another complete indicator recurrence:
+
+```math
+\begin{aligned}
+T_E&\le8T_R,&d_E&\le8d_R,\\
+G_E&\le8G_R+2bm+8b+4m+10,&w_E&\le4m-2+w_R,\\
+\epsilon_E&\le8\eta,&a_{\rm clean}&=0.
+\end{aligned}
+```
+
+This reduction pays the key return with actual adjoints and includes
+all arbitrary inputs and references. A clean-Bell teleportation calculation
+does not supply the missing native correction or a returned-work word
+for arbitrary Bell labels. The full R source, or a different complete
+fused mechanism, is now the concrete next question.
+
 The current balanced arithmetic compiler does not answer that question.
 F has degree r, while its inverse is quadratic. An exact full-input
 implementation of that inverse whose completed classical inverse stages

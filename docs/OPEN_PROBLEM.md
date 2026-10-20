@@ -202,6 +202,16 @@ It leaves the original coefficients and the arbitrary old output present.
 Converting this XOR to an in-place inverse by a swap is unsupported;
 a complete conversion or whole-word interference is the next operation.
 
+The [coherent-correction audit](../research/depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
+also pays a full change to a Choi basis and the coherent Z correction.
+Its first unpaid operation is the coherent X family
+$`R_z=F_rX^zF_r^\dagger`$, whose fixed-z branches are Clifford but
+whose joint coefficients contain f(z). A paid arbitrary-key echo turns
+a complete R source into the full indicator through eight R/actual-inverse
+calls, with error at most eight times its source error. No clean Bell
+resource or returned teleportation history is assumed. The complete
+native R schedule, or a different fused word, is the next concrete question.
+
 The [clean-sector parallelism audit](../research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
 rejects a different apparent shortcut. If every actual Clifford boundary
 fixes the clean register and no T gate targets it, restriction already

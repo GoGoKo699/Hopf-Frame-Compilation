@@ -354,7 +354,130 @@ identity, with its native resource and return ledger. The retained
 balanced source provides one logarithmic-depth repair. The argument
 here is not an impossibility theorem for other conversions.
 
-## 6. First unpaid operation and exact scope of the retained limit
+## 6. The Choi basis is paid; its coherent X correction is not
+
+The complete quadratic query also gives a constant-depth change of basis
+on **two arbitrary** w-bit registers. Put $`d=2^w`$ and define, in
+operator order,
+
+```math
+G=\mathrm{SWAP}_{A,B}\,Q_k\,(H_A\otimes I_B).
+```
+
+Its literal action on every computational label pair is
+
+```math
+\begin{aligned}
+G|a,z\rangle
+ &=d^{-1/2}\sum_y(-1)^{a\cdot y}|k(y)+z,y\rangle\\
+ &=(X^z\otimes Z^aF_r)|\Phi\rangle,\qquad
+|\Phi\rangle=d^{-1/2}\sum_v|v,v\rangle.
+\end{aligned}
+```
+
+The Bell vector on the right describes these basis vectors; it is not an
+initialized resource assumed by the implementation. G is the explicit
+all-input unitary on the left. The arbitrary private work of $`Q_k`$
+returns exactly. Its common bounds are
+
+```math
+T_G=T_{Q_k},\qquad d_G\le40,\qquad
+G_G\le G_{Q_k}+4w,\qquad w_G\le w_{Q_k}.
+```
+
+The additional w Hadamards and w swaps cost $`4w`$ elementary Cliffords.
+All source registers a,z remain full logical inputs, rather than clean
+work whose allocation is omitted. The actual G adjoint uses the actual
+reverse of the query and these Clifford words.
+
+The HRT structure identifies the two literal Pauli corrections:
+
+```math
+\begin{aligned}
+F_rZ^tF_r^\dagger|y\rangle&=(-1)^{t\cdot k(y)}|y\rangle,\\
+R_z|y\rangle:=F_rX^zF_r^\dagger|y\rangle
+ &=|y+f(z)+yf(z)\rangle.
+\end{aligned}
+```
+
+The first has a paid **coherent-key** implementation, not merely cheap
+fixed-key branches. Use $`H_tQ_k(y;t)H_t`$, giving common bounds
+
+```math
+T_Z=T_{Q_k},\qquad d_Z\le40,\qquad
+G_Z\le G_{Q_k}+2w,\qquad w_Z\le w_{Q_k},
+\qquad\varepsilon_Z=0.
+```
+
+Every t and y is arbitrary. In contrast, the second correction requires
+f(z), of degree r, in the coefficients of its affine action on y.
+Each fixed-z branch is a Clifford, but the required controlled operator
+is the full word
+
+```math
+R:|z,y,h\rangle\longmapsto|z,y+f(z)+yf(z),h\rangle.
+```
+
+Its joint native synthesis is not supplied by that branchwise fact.
+For example, a teleportation calculation with an additional clean Bell
+resource would produce branches $`Z^aF_rX^z|\psi\rangle`$ after G adjoint.
+The correcting word is $`R_zZ^a`$, with the ordinary Z applied first.
+Thus even that calculation still asks for this coherent R. The actual
+model supplies no such clean Bell resource, and the calculation proves
+no returned-work identity for arbitrary initial Bell labels. Preparing
+the complete G basis alone resolves neither obligation. A fused quantum
+word may use a different mechanism; the statements here do not exclude
+it.
+
+### A complete coherent X correction already supplies the indicator
+
+The missing R is a sufficient native operation in its own right. Retain
+$`r=b+1`$, $`m=2^b`$ and $`w=2m-1`$. Allocate one arbitrary w-bit key z
+beside the arbitrary w-bit coefficient carrier y. Let $`S_x`$ add
+$`\iota(x)`$ to the singleton coordinates of z, at b CNOTs. Execute
+chronologically
+
+```math
+R,\ S_x,\ R^\dagger,\ S_x^\dagger.
+```
+
+The exact representation law
+$`R_zR_{z'}=R_{z+z'}`$ gives carrier action
+$`R_{z+\iota(x)}^\dagger R_z=R_{\iota(x)}=J_x`$ and restores z.
+No nonsingleton key coordinate is initialized or ignored. Replace each
+of the four J/actual-adjoint occurrences in Sections 1--2 by this echo
+or its actual inverse. A supplied full-operator approximation to R,
+with error eta and simultaneous common bounds
+$`T_R,G_R,d_R,w_R`$, then gives
+
+```math
+\begin{aligned}
+T_I&\le8T_R,\\
+G_I&\le8G_R+2bm+8b+4m+10,\\
+D_T(I)&\le8d_R,\\
+w_I&\le4m-2+w_R,\\
+\varepsilon_I&\le8\eta,\qquad c_{\mathrm{clean}}=0.
+\end{aligned}
+```
+
+The additional carrier and key occupy $`2w=4m-2`$ arbitrary wires.
+There are eight b-CNOT key translations, two completed zeta/copy shears,
+four top-coordinate Z gates, two output-Hadamard envelopes and the
+constant output correction. Every source occurrence is R or its actual
+adjoint. Two-source telescoping bounds each J echo by $`2\eta`$;
+the four completed occurrences give $`8\eta`$ without assuming exact
+intermediate key or helper return. All register and reference errors
+are included in that full-operator bound.
+
+Using the retained source directly gives R with two F/actual-adjoint
+calls and w controlled-X CNOTs. That implementation retains logarithmic
+depth. The new reduction does not make the correction free: it identifies
+exactly which coherent Clifford family would suffice if compiled at
+sublogarithmic depth within the relaxed budgets. It is not a lower bound
+on a whole teleportation word, on a different completion outside the
+stated full-key interface, or on unrestricted native depth.
+
+## 7. First unpaid operation and exact scope of the retained limit
 
 The next concrete question is to compile $`F_{b+1}`$ on its **entire**
 $`2^{b+1}-1`$-qubit coefficient carrier, with arbitrary returned work,
@@ -397,7 +520,7 @@ R98 transfer; the present paid construction does not. The focused
 original physical-pair lower scout concerns a different circuit class
 and remains independent of this sufficient upper-bound interface.
 
-## 7. Focused composition evidence
+## 8. Focused composition evidence
 
 The [single focused fixture](../../tests/test_full_bank_character_transport.py)
 uses b=2, the four arbitrary output bits and all seven arbitrary carrier
