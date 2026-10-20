@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/INDICATOR_FUSION_REVISION_RESULT.md)
+[current research outcome](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -36,12 +36,17 @@ removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
 root of two is another sufficient source, through twenty-four actual
 source/inverse calls. The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
-now excludes every two-band complete indicator block at fixed positive
-normalization and fixed clean count, for sufficiently small fixed error
-and sufficiently large address size. The proof permits arbitrary dirty
+now excludes every two-band complete indicator block at uniformly bounded
+clean count, for sufficiently small fixed relative error and sufficiently
+large address size, uniformly over all positive amplitudes. Decreasing
+amplitude alone cannot evade its amplitude-free defect. The proof permits arbitrary dirty
 width, rejected action and common phase, without assuming flatness.
 Its explicit constants are extremely conservative; it is a source-class
 obstruction, not a dimension-growing unrestricted depth bound.
+Its one-clean finite-size corollary gives the sharp nonzero compression
+norm floor $`\sin(\pi/8)`$. The
+[current continuation](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md) records
+the resulting source decision and the original-pair advance.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
@@ -69,6 +74,16 @@ polynomial-overhead budgets allowed by root fusion. Its
 [branch-difference refinement](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
 permits arbitrary common private action and cancels errors at untouched
 parents, while retaining sibling error and native scheduling costs.
+The [distance-profile audit](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#51-a-complete-distance-certificate-and-the-native-scheduling-gap)
+shows why a single-row coordinate improvement does not pay the complete
+bank schedule: the unchanged address--signal rotation list needs exactly
+one independent-axis batch per address bit. The [joint fixed-angle resynthesis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#52-joint-resynthesis-pays-one-special-angle-detuning-call)
+now pays the same whole-bank detuning in at most 11 T layers with linear
+T-count, quadratic Clifford count and no additional work. A complete
+selective composition and full-operator return/error certificate remain
+unpaid. Its period-eight guard covers completed independent periodic
+rows; arbitrary joint bank mixing is outside that guard. The phase-counter test also records its
+quantitative access inequality, without equating accesses with native depth.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
@@ -87,11 +102,18 @@ and propagation inside the old middle span remain unpaid. The
 [minimal original-pair completion](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
 retains the central partner of an actual one-pair cancellation; moving
 that partner blocks every one-band output completion to a Clifford
-target for this fixed source. Every complete target in the same family
+target for this fixed active input/middle source. All admissible silent
+input axes coupled to the active core are now included. Every complete target in the same family
 has a literal zero-clean three-band word with one middle axis; diagonal
 targets are diagonal third-level, with sign/XOR degree at most three/two.
-It does not close the general pair case. The
-unrestricted original-pair and higher-layer questions remain open.
+Its [paired rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints)
+proves sign/XOR degree at most six/five for one-clean three-band words
+with two clean-active axes at each endpoint and a genuine original
+middle pair. It retains arbitrary silent lists, dirty width and
+unused-sector action; the common pair-parity sectors are a proof device,
+not a free controlled compiler. The no-pair branch retains its separate
+theorem. Growing endpoint ranks, general original pairs and higher
+layers remain open.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 

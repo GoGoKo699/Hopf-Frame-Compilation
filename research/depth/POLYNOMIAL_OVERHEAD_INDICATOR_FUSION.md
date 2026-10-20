@@ -554,6 +554,26 @@ Its desired phase is negative at weight zero and positive otherwise.
 The test applies when the implementation on this witness has the
 displayed weight-only form; a general indicator need not have it.
 
+There is also a quantitative access tradeoff. Put
+$`\Delta=\alpha-\epsilon\gt0`$. For R at least one the displayed
+floor gives $`Q\le\pi h/\Delta`$. Since
+$`b^{1/R}\lt Q+1`$, every successful fingerprint must satisfy
+
+```math
+\begin{aligned}
+b&\lt(1+\pi h/\Delta)^R,\\
+R\log(1+\pi h/\Delta)&\gt\log b,\\
+h2^k\log(1+\pi h/\Delta)&\gt\log b.
+\end{aligned}
+```
+
+At fixed k and fixed positive Delta this requires
+$`h=\Omega(\log b/\log\log b)`$. It leaves a near-logarithmic
+but sublogarithmic access window; no construction in that window is
+supplied. These are bounds on the specified sequential phase accesses.
+Their native implementation, accuracy and simultaneous resource ledger
+are additional obligations.
+
 In the window $`2^k=O((\log b)^\beta)`$ and
 $`h=O((\log b)^\gamma)`$, with $`\beta+\gamma\lt1`$, one has
 

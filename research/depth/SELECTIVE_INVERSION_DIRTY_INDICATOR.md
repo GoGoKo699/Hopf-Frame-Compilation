@@ -305,6 +305,175 @@ at the requested accuracy. Improving the simulation formula alone cannot
 remove that count obligation. Joint resynthesis of all rows is outside
 the independent-emitter theorem.
 
+### 5.1. A complete distance certificate and the native scheduling gap
+
+For a replacement source on $`b\ge1`$ address bits, put $`m=2^b`$
+and retain the actual-adjoint echo $`E_d=ZU_d^\dagger ZU_d`$.
+Define its full dirty-signal errors by
+
+```math
+e_0=\|E_0+I\|,\qquad e_d=\|E_d-I\|\quad(1\le d\le b+1).
+```
+
+Suppose the completed row words preserve x,Y and act on disjoint
+arbitrary signals, with $`d=|x\oplus u|+1-Y_u`$. A sufficient
+complete-bank certificate is
+
+```math
+\max(e_0,e_1)+
+\sum_{w=1}^b\binom bw\max(e_w,e_{w+1})\le\delta.
+```
+
+The distance-zero row gives the first term. For each positive distance
+w there are exactly $`\binom bw`$ rows, and either bank-bit value
+selects one of the two displayed errors. Tensor-product telescoping
+and the preserved-sector direct sum prove full operator error at most
+delta, including every dirty-signal input, its return and references.
+This applies to the actual emitted echoes, so their synthesis errors
+must be included in the e_d. The pulse in Section 3 supplies one analog
+profile; constant accuracy for one isolated row does not supply this
+certificate.
+
+There is a separate simultaneous-scheduling obligation. Within one row,
+the axes $`Z_s,Z_YZ_s,Z_{x_j}Z_s`$ are independent, so a Clifford
+coordinate change can place their rotations on distinct wires. Some
+of those wires are shared address wires. This does not give simultaneous
+depth for all rows.
+
+In fact the unchanged address--signal rotation list has an exact packing
+limit. Its mb binary Pauli labels are the edge-incidence vectors of the
+connected complete bipartite graph $`K_{b,m}`$. Their rank over
+$`\mathbb F_2`$ is $`m+b-1`$: every edge has even total parity,
+and a spanning tree gives that many independent edges. A batch obtained
+by one Clifford coordinate change to distinct rotation targets must be
+an independent subset. Any partition into such batches therefore needs
+
+```math
+\left\lceil\frac{mb}{m+b-1}\right\rceil=b.
+```
+
+The equality follows from $`m=2^b\gt(b-1)^2`$ for every positive
+integer b. Conversely, fixing one address index gives a star of m
+independent axes, so the b address rounds in Section 5 attain this
+bound. Adding idle dirty helpers and changing Clifford coordinates do
+not change the rank of the unchanged axis list.
+
+This is an exact limit on packing these intact rotations, not a lower
+bound on unrestricted native T-depth. Each rotation batch still needs
+its native synthesis ledger; special angles, cross-row resynthesis,
+new helper-dependent axes or a different word can leave the packing
+premise. The first unpaid operation in this proposed improvement is a
+complete native source with the distance certificate above and a valid
+sublogarithmic simultaneous schedule. A coordinate improvement for one
+row or an analog pulse width does not provide it.
+
+### 5.2. Joint resynthesis pays one special-angle detuning call
+
+The intact-axis limit is not a depth bound even for the same diagonal
+operator. For $`b\ge1`$, $`m=2^b`$, the whole-bank call
+
+```math
+R=\prod_u\exp\left(\frac{i\pi}{4}
+       (|x\oplus u|+1-Y_u)Z_{s_u}\right)
+```
+
+has an exact native implementation with no additional helpers, no clean
+work, and common forward/actual-inverse bounds
+
+```math
+D_T\le11,\qquad T\le5m+3b+5,\qquad
+G=O(m^2+b^2+mb).
+```
+
+All x, Y and signal inputs are arbitrary. The statement retains the
+literal scalar and returns every computational coordinate. This is a
+paid detuning component, not a selective inversion or complete indicator.
+
+Put $`\omega=e^{i\pi/4}`$ and
+$`T_P=\exp(i\pi(1-P)/8)`$. Expanding the detuning gives exactly
+
+```math
+R=\omega^{m(b+2)/2}
+ \left(\prod_uT_{Z_{s_u}}^{-(b+1)}T_{Z_{Y_u}Z_{s_u}}^{-1}\right)
+ \left(\prod_{u,j}T_{Z_{x_j}Z_{s_u}}^{(-1)^{u_j}}\right).
+```
+
+The edge signs sum to zero for each address index; this fixes the
+displayed scalar. Replacing each negative edge power by
+$`T_P^{-1}=T_PS_P^\dagger`$, with $`S_P=T_P^2`$, costs only
+Cliffords. Write the integer Hamming weights
+$`S_X=\sum_jx_j`$ and $`S_S=\sum_us_u`$. The all-positive
+edge product has computational phase
+
+```math
+\omega^{\sum_{u,j}(x_j\oplus s_u)}
+ =\omega^{mS_X+bS_S-2S_XS_S}.
+```
+
+Combining its single-bit powers with the preceding local factors leaves
+$`T_{Z_{s_u}}^{-1}`$ and $`T_{Z_{Y_u}Z_{s_u}}^{-1}`$ for
+each u, together with $`T_{Z_{x_j}}^m`$, which is Clifford since
+m is even. The remaining 2m local axes are jointly independent: compute
+$`Y_u\mathbin\oplus s_u`$ into each existing Y wire, apply T-daggers
+on all Y and signal wires in one band, then undo those CNOTs.
+
+For either group A, let $`P_A=S_A\bmod2`$ and
+$`Q_A=\binom{S_A}{2}\bmod2`$. Since
+$`S_A\equiv P_A+2Q_A\pmod4`$, the remaining cross phase obeys
+
+```math
+-2S_XS_S\equiv-2P_XP_S+4(Q_XP_S+P_XQ_S)\pmod8.
+```
+
+Extract each parity into an existing wire by reversible linear
+Cliffords. The first term is a CS-dagger between the parity wires:
+T-daggers on both wires and a T on their XOR give two T bands and three
+T gates. Each other term is a controlled quadratic sign. A reversible
+linear change on its target group brings the quadratic into disjoint
+pair products plus a linear form, by elimination of its alternating
+bilinear form over $`\mathbb F_2`$. The linear part is controlled-Z
+Clifford work. The disjoint pair products use the
+[shared-control CCZ batch](../../docs/T_DEPTH_COMPILER.md#a-shared-control-fredkin-batch-has-at-most-four-t-layers):
+for r pairs, four T bands and $`6r+(r\bmod2)`$ T gates,
+with no helper. Each complete quadratic block uncomputes its coordinate
+change before the next block. This remains valid if a parity wire in
+the target group moves during that block.
+
+The depth is therefore at most $`1+2+4+4=11`$. With at most
+$`\lfloor b/2\rfloor`$ and $`\lfloor m/2\rfloor`$ pairs,
+the T count is at most
+$`2m+3+6\lfloor b/2\rfloor+6\lfloor m/2\rfloor+2`$,
+which gives the displayed bound. Linear changes cost
+$`O(b^2+m^2)`$ CNOTs; signed-edge Clifford corrections cost
+$`O(mb)`$. The literal scalar is emitted using
+$`(HS)^3=\omega I`$ with its exponent reduced modulo eight.
+Reversing the actual native word supplies the inverse; replacing every
+inverse S by three positive S gates preserves the stated common bounds.
+
+There is an exact restriction on using only this angle in independent
+rows. A row call $`R_d=\exp(i\pi dZ/4)`$ has period eight.
+Thus a completed row word whose only address dependence enters through
+these calls at $`d=|x\oplus u|+1-Y_u`$ and their inverses, with
+address-independent interlayers on that row,
+has $`V_{u,x}=F_u(|x\oplus u|)`$ and
+$`F_u(w+8)=F_u(w)`$. Suppose the completed bank has the disjoint,
+address-preserving row factorization (1). For $`b\ge8`$, the
+Heisenberg image of $`X_{Y_u}`$ is identical at distances zero and
+eight. The corresponding target images for $`D_b`$ are opposite.
+The same row-isolation argument as in Section 1 therefore gives
+
+```math
+\|U-D_b\otimes I\|\le\tau
+\quad\Longrightarrow\quad 2\le4\tau,
+\qquad \tau\ge\tfrac12.
+```
+
+This guards completed independent-row words at the fixed angle. It does
+not exclude joint-bank interlayers: the whole vector of detunings modulo
+eight can distinguish addresses even when one row aliases. The paid
+global call above remains available to such a different mechanism.
+No claim about an arbitrary joint word follows from a single-row period.
+
 ## 6. What changed and where to continue
 
 Independent-row eigenphase accumulation does not force the earlier
@@ -315,16 +484,27 @@ fixing that analytic precision problem does not fix the resource
 frontier. The native independent-row theorem locates a separate linear
 factor p in the count, irrespective of pulse design or row compilation.
 
-The next useful mechanism must share native non-Clifford work across
-rows, or mix address/bank systems across the boundaries at which (1)
-would apply. Merely improving isolated pulse selectivity cannot achieve
-$`T=O_\tau(m)`$. The general complete approximate indicator and
-optimal general T-depth remain open. No obstruction here applies to the
-unrestricted joint model, and no T-depth lower bound is inferred from
-analog duration, a first-order simulation ledger, or a row T-count.
+For a standalone linear-count bank, native work must be shared across
+rows or the completed-row factorization must change. The later
+[root-fusion reduction](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+allows polynomial address overhead in a smaller source, so the factor
+p in (2) alone no longer stops that discovery route. The current digital
+pulse still has exponential overhead and excessive depth. A replacement
+must supply the complete distance certificate and a genuinely faster
+native schedule; changing only the row count does not do so. Section 5.2
+pays one whole-bank native call and shows why intact-axis packing must
+not be mistaken for a depth obstruction. It does not yet supply the
+selective word or its complete distance certificate. The general
+complete approximate indicator and optimal general T-depth remain open.
+No unrestricted depth lower bound is inferred from analog duration,
+the intact-rotation packing limit, a simulation ledger or a row T-count.
 
 The [focused fixtures](../../tests/test_selective_inversion_dirty_indicator.py)
 check actual native echo phases and inverses, a finite digital word on
 all its physical columns, and the selective-inversion operator identities.
 They do not replace the all-size proofs or certify a coarse fixture as
 an accurate indicator.
+The [joint-detuning fixture](../../tests/test_joint_detuning_resynthesis.py)
+checks a literal 11-band native word and its actual inverse on all
+physical columns at b equal to two; the all-size claim is the analytic
+resynthesis above.
