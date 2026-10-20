@@ -649,10 +649,14 @@ a point in this subspace has equality degree k. If $`q\le3`$ and
 $`b\ge4`$, the retained componentwise affine theorem therefore gives
 operator error at least $`\sqrt2/6`$. This transfer allows joint bank
 Clifford mixing but not arbitrary non-Clifford endpoints or address
-motion outside the read-only normal form. The separate four-band theorem
-is stated for a single output; applying it componentwise to this complete
-bank would require an additional proof. This transfer does not resolve
-more calls, arbitrary affine presentations, or unrestricted depth.
+motion outside the read-only normal form. The subsequent
+[word-valued four-band theorem](READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive)
+supplies the additional proof needed for the complete bank: if
+$`q\le4`$ and $`b\ge6`$, its operator error is at least
+$`\sqrt2/12`$. It keeps every output arbitrary and uses native
+outer-shear additivity, rather than preparing the other outputs to invoke
+a single-output theorem. These transfers do not resolve more calls,
+arbitrary affine presentations, or unrestricted depth.
 
 The stopped mechanism is therefore joint Clifford decoding of normalized
 detunings, even with fixed unitary endpoints, together with the stated

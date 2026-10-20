@@ -16,6 +16,10 @@ approximation radius, and literal Boolean scalar degree at most five.
 Section 8 proves that four layers with zero clean qubits force XOR-query
 degree at most two at the smaller radius $`\sqrt2/12`$, and literal
 Boolean scalar degree at most three. Its degree-two XOR bound is sharp.
+Section 8.7 extends that four-layer conclusion to every component of a
+word-valued XOR query, keeping all output wires arbitrary. This needs
+an additional native block argument; preparing the other outputs would
+not be a zero-clean proof.
 
 ## 1. Statement and exact four-band form
 
@@ -812,6 +816,7 @@ are unrestricted. The degree bound is sharp: section 7 supplies an
 exact degree-two query using four layers. This does not say that every
 quadratic query has such a compiler, or give a growing depth bound.
 There is no one-clean four-layer conclusion here.
+The word-valued extension at the same radius is proved in Section 8.7.
 
 ### 8.1 Peeling the outer band and quantizing a Clifford cocycle
 
@@ -1091,3 +1096,165 @@ floating arithmetic with explicit residual tolerances. A third test
 exhausts all three-variable Boolean tables and codimension-one
 direction spaces for the derivative step. These finite checks support
 the analytic, width-independent theorem; they do not replace it.
+
+### 8.7 Word-valued queries: the outer shear is additive
+
+The same four-layer hypotheses and radius also imply
+
+```math
+\deg f_j\le2\quad\text{for every component of }f,
+\qquad Q_f|x,t\rangle=|x,t\mathbin\oplus f(x)\rangle.
+                                                               \qquad(49)
+```
+
+All output bits t are arbitrary work. No other output is prepared,
+discarded or absorbed into a clean allocation. A specified scalar
+multiplying the target is also permitted: the following necessary
+projective invariants do not alter the literal error promise. The
+single-output proof above does not itself imply (49), because its
+visible-shear case used one fixed target direction.
+
+**An additive outer-shear lemma.** The normalization (34)--(35) works
+unchanged for $`F_x=X^{f(x)}`$. Let $`z_1,\ldots,z_n`$ be the
+independent active outer T-axis labels in its fixed Clifford coordinates,
+and let Omega be the symplectic matrix. Write
+
+```math
+H(x)=S_M(x)-I=\sum_i h_i(x)z_i z_i^{\mathsf T}\Omega,
+\qquad H(0)=0.
+```
+
+The robust Clifford comparison already gives exactly
+
+```math
+H(x+y)=S_A(y)H(x)S_A(y)^{-1}+H(y),\qquad S_A(y)=I+K_y,
+                                                               \qquad(50)
+```
+
+where K is linear and $`K_yK_z=0`$. We prove that h is linear.
+Put $`W=\mathrm{span}\{h(x):x\}`$ and delete coordinates
+identically zero on W. The zero W case is immediate. Independence of
+the z_i makes the image of H(x) exactly their selected coordinate span.
+Thus $`L=\sum_x\mathrm{im}H(x)=\mathrm{span}\{z_i\}`$ is
+preserved by S_A(y). Its restriction O_y in the z basis and the induced
+automorphism phi_y of W obey
+
+```math
+\begin{aligned}
+O_y\,\mathrm{diag}(w)\,O_y^{\mathsf T}
+ &=\mathrm{diag}(\phi_yw)\quad(w\in W),\\
+h(x+y)&=\phi_yh(x)+h(y),\qquad O_{y+z}=O_y+O_z+I.
+\end{aligned}                                                  \qquad(51)
+```
+
+Both O and phi are representations of the additive address group.
+Group the coordinates by their nonzero coordinate functionals
+$`\chi_i\in W^*`$, obtaining independent blocks $`L_\chi`$.
+The congruence in (51) forces O_y to map $`L_\chi`$ onto
+$`L_{\chi\circ\phi_y^{-1}}`$. To see this without presuming
+an individual-axis permutation, choose a basis of W and formal
+variable lists s,t. Over their rational-function field,
+$`D(t)=\mathrm{diag}(\chi_i(t))`$ is invertible, and (51) gives
+
+```math
+O_yD(s)D(t)^{-1}O_y^{-1}
+ =D(\phi_y s)D(\phi_y t)^{-1}.                          \qquad(52)
+```
+
+Distinct nonzero binary linear forms have distinct ratios
+$`\chi(s)/\chi(t)`$: equality of cross products makes them
+proportional, hence equal over the binary field. The eigenspaces in
+(52) are therefore exactly the stated blocks. This field extension is
+only an algebraic proof device; it supplies no physical gate or state.
+
+Every block orbit has size at most two. Otherwise the elementary
+abelian address group has y,z taking one block to four distinct blocks
+under 0,y,z,y+z. For nonzero v in the first block, the identity
+$`O_{y+z}v=O_yv+O_zv+v`$ would relate four nonzero vectors in
+independent blocks. Thus each block is fixed or belongs to a two-cycle
+swapped by a nonzero linear character u(y).
+
+On a two-cycle chi,psi, put $`a(x)=\chi(h(x))`$,
+$`b(x)=\psi(h(x))`$ and $`v(x)=a(x)+b(x)`$. Summing the
+two cocycle equations makes v linear; the first equation is
+
+```math
+a(x+y)=a(x)+a(y)+u(y)v(x).
+```
+
+Setting y=x gives $`u(x)v(x)=0`$ for every x. A nonzero linear
+u forces the linear v to vanish: choose x_0 with u(x_0)=1, then
+compare x_0 and x_0+x for $`x\in\ker u`$. Hence a,b are
+additive. Fixed-block coordinates are additive directly. All h
+coordinates are therefore linear. Since the h(x) span W, (51) also
+implies phi_y is the identity and
+
+```math
+[S_A(y),S_M(x)]=0\quad\text{for every }x,y.               \qquad(53)
+```
+
+**Remove the linear visible part.** Put $`g(x)=f(x)+f(0)`$.
+The outer coefficient word has the form
+$`h(x)=\ell(x)+E g(x)`$, with ell linear and E extracting the
+active outer X coordinates of the target Pauli. Since h is linear,
+choose a linear lift g_0 with $`E g_0(x)=E g(x)`$. The residual
+word $`g+g_0`$ lies in the kernel of E. Its outer conjugate is
+therefore a Pauli with label v(x), fixed by every outer shear.
+
+Fold g_0 into the linear-label baseline T_x in (38). Then
+
+```math
+M_x\doteq Q_xP_{v(x)},\qquad Q_x=P_xN_x,
+\qquad S_N(x)v(z)=v(z)\quad\text{for every }x,z.          \qquad(54)
+```
+
+Equations (39)--(45) apply to this baseline: (53) supplies the required
+symplectic commutation, and d(x,y), for fixed y, has degree at most two
+in x with every degree-two coefficient in $`\mathrm{im}K_y`$.
+These are factorizations for a necessary invariant, not additional
+synthesized bands or an altered literal target. The exact Pauli-label
+comparison in (35) becomes
+
+```math
+v(x+y)+v(x)+v(y)=d(x,y)+K_yv(x).                         \qquad(55)
+```
+
+**The residual vector is quadratic.** Let J be the span of the
+independent inner native axes with nonzero characters in (48).
+Every image of K_y lies in J, and every K_y kills J. Modulo J, the
+quadratic coefficients of d disappear. Equation (55) then makes every
+derivative of v modulo J affine, so v modulo J has degree at most two.
+Every higher-degree coefficient of v lies in J and is killed by K_y.
+The right side of (55) consequently has degree at most two in x,
+proving $`\deg v\le3`$.
+
+Write the homogeneous cubic part in the independent inner-axis basis
+as $`v^{[3]}(x)=\sum_i z'_i c_i(x)`$. Taking degree-two parts
+of (55), including the term K_y applied to the quadratic part of v,
+gives coefficientwise
+
+```math
+(\Delta_yv^{[3]})^{[2]}\in\mathrm{im}K_y
+ =\mathrm{span}\{z'_i:u_i(y)=1\}.                       \qquad(56)
+```
+
+For $`y\in\ker u_i`$, this makes every derivative of c_i
+affine. Section 8.5's codimension-one argument excludes each cubic
+c_i. Thus v has degree at most two. The target Pauli labels are
+independent, so the residual output word maps injectively to v;
+adding back its linear lift proves (49) for every component.
+
+All quantization used only the original $`6\eta\lt1/\sqrt2`$
+comparison, so the extension loses no error. It retains zero clean
+work, arbitrary finite dirty width, all logical columns, references,
+actual inverse and complete return. It remains a four-layer theorem
+for read-only Clifford boundaries and work-only T gates, not an
+unrestricted depth bound or a general layer recurrence.
+
+The same [four-layer fixture file](../../tests/test_read_only_four_layer_rigidity.py)
+now runs two retained dirty AND words together for outputs ab and ac.
+It uses three shared address bits, two arbitrary outputs and two arbitrary
+dirty helpers, with 16 T gates, four layers and 36 elementary Cliffords.
+Exact checks retain all 128 physical columns and the actual inverse;
+both outputs and helpers are arbitrary throughout. This checks the
+simultaneous native contract, not the universal block lemma above.

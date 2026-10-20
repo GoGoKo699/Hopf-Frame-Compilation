@@ -23,6 +23,9 @@ two, proving sign/XOR degree at most six/five. Section 6 permits one
 endpoint rank to grow without bound when the other is two, with bounds
 197/196. Section 7 also permits both ranks to grow when the one pair
 difference uses exactly two actual active axes at each endpoint.
+Section 8 gives an exact two-band sector encoder for larger support and
+proves that one band cannot suffice for a concrete growing-rank family.
+That is a code-encoding result, not a Boolean-degree obstruction.
 General original-pair matching and unrestricted depth remain open.
 
 ## 1. A literal original one-pair source
@@ -815,3 +818,224 @@ size two. General one-pair sources with growing active ranks and larger
 pair-difference supports remain open, together with general fixed pair
 count and unrestricted depth. No bound on an additional silent span or
 on the union of transformed exceptional axes has been assumed.
+
+## 8. Larger physical support: a two-band sector encoder and a one-band obstruction
+
+The two-axis hypothesis in Section 7 is doing native work: the related
+phases become Clifford and the remaining endpoint list is independent.
+For larger actual support, keeping the single relation is valid algebra,
+but calling the quotient a native band is not. This section identifies
+the exact one-band failure and supplies a paid two-band replacement.
+Neither statement bounds the Boolean degree of general original-pair
+sources.
+
+### 8.1. A nonzero alternating displacement after the parity quotient
+
+At one endpoint let the actual independent clean-active axes have binary
+labels $`a_1,\ldots,a_k`$. Suppose the original pair difference has
+label
+
+```math
+r=a_1+\cdots+a_k,\qquad k\ge4,\qquad k\equiv0\pmod2.
+```
+
+Thus this hypothesis concerns **all actual active axes**, not the size
+of a newly chosen basis. Let R be the literal signed pair-product Pauli.
+It commutes the endpoint clean Pauli P and the entire endpoint phase
+list. P and R are independent: P anticommutes each active axis, whereas
+every element of their span commutes that axis. Consequently, in either
+fixed R sector the restricted clean image $`J_z`$ is a balanced
+Hermitian involution. Its positive eigenspace is exactly the endpoint
+image of the entire one-clean initialized space in that sector.
+
+Work on the nondegenerate sector label space
+$`r^\perp/\langle r\rangle`$, and write $`\bar A`$ for the matrix of
+the projected actual active labels. Its only relation is
+$`\mathbf1=(1,\ldots,1)`$. The binary symplectic displacement of
+$`J_z`$ is
+
+```math
+N_z=F_{J_z}-I=\bar A\bar A^{\mathsf T}\Omega.
+```
+
+Here signs and T-dagger orientations have no effect on the binary
+matrix. The image of $`\bar A^{\mathsf T}\Omega`$ is
+$`\mathbf1^\perp`$. Since k is even, the one-dimensional kernel
+$`\langle\mathbf1\rangle`$ of $`\bar A`$ lies in this image.
+Therefore
+
+```math
+\mathrm{rank}\,N_z=k-2\gt0,\qquad
+\langle v,N_zv\rangle
+ =\sum_{i=1}^k\langle\bar a_i,v\rangle
+ =\left\langle\sum_{i=1}^k\bar a_i,v\right\rangle=0
+\quad\text{for every }v.                                      \qquad(8)
+```
+
+For comparison, an actual independent one-native-band encoder, with
+arbitrary Clifford endpoints and precisely one initialized clean wire,
+has a clean image whose active-axis displacement is
+$`N=A_IA_I^{\mathsf T}\Omega`$. If its displacement is nonzero, its
+characteristic vector $`\sum_{i\in I}a_i`$ is nonzero by independence.
+Hence $`\langle v,Nv\rangle`$ is not identically zero. If the active
+list is empty, N is zero. Clifford conjugation preserves both rank and
+the condition that this quadratic expression vanish identically.
+Tensoring arbitrary returned dirty spectators with identity also
+preserves them. Equation (8) therefore excludes every such one-band
+encoder of this sector code, including arbitrary Clifford dressing and
+arbitrary action on the unused clean sector.
+
+There is a conservative robust version. Let W be the complete endpoint
+isometry on the clean-zero input and let $`\widehat W`$ be any such
+one-band isometry on the same logical and arbitrary dirty inputs. Allow
+one common scalar when measuring their operator-norm error delta.
+The complete logical domain is essential: their range projectors are
+$`(I+J_z)/2`$ and $`(I+\widehat J)/2`$. Projector telescoping gives
+
+```math
+\|J_z-\widehat J\|\le4\delta.
+```
+
+Their binary symplectic actions differ by (8). Thus some Hermitian
+Pauli Q has images with distinct labels; the distance between these
+signed Pauli images is at least $`\sqrt2`$. A second telescope gives
+
+```math
+\sqrt2\le
+\|J_zQJ_z-\widehat JQ\widehat J\|
+\le2\|J_z-\widehat J\|\le8\delta,
+\qquad \delta\ge\frac1{4\sqrt2}.                            \qquad(9)
+```
+
+The scalar cancels in the projectors. This bound allows arbitrary
+references and returned dirty spectators, but still only one initialized
+clean wire. It is a floor for this sector-encoding task, not for the
+original three-band Boolean problem or the unrestricted indicator.
+
+### 8.2. An actual original-pair witness and a matching two-band encoder
+
+Use the [physical family already constructed](ORIGINAL_MIDDLE_PAIR_INSERTIONS.md#3-one-original-pair-can-acquire-growing-pauli-support),
+with $`k\in4\mathbb N`$:
+
+```math
+E_A=E_C=\prod_{i=0}^{k-1}T_{Z_i},\qquad
+P=X^{\otimes k},\qquad Q=Y^{\otimes k},\qquad
+F=T_PT_Q,\qquad R=PQ=Z^{\otimes k}.
+```
+
+Let K be H on wire zero followed by CNOTs from zero to every other wire.
+The complete original word is
+$`V_k=K^\dagger E_A^\dagger FE_AK`$. Its actual J exchanges P,Q
+with positive signs; there is exactly one original physical pair and
+both actual active ranks are k. Only wire zero is initialized. Also
+
+```math
+K^\dagger RK=\prod_{i=1}^{k-1}Z_i,
+```
+
+so the pair parity is a genuine logical parity, independent of the clean
+wire. The original word and its actual inverse each retain $`2k+2`$
+T gates, at most three native bands, $`6k-2`$ elementary H/CNOT gates,
+and no additional work. They return the clean wire exactly on every
+logical and reference input. This is not a Boolean target family.
+
+The corresponding endpoint sector isometry has a literal two-band
+implementation. Put $`\ell=k-1`$, and define the coordinate words
+
+```math
+U_{\rm out}=\prod_{j=0}^{k-2}\mathrm{CX}_{j\to\ell},\qquad
+U_{\rm in}=\prod_{j=1}^{k-2}\mathrm{CX}_{j\to\ell}.
+```
+
+All CNOTs within each product commute. Since k-2 is even,
+
+```math
+\begin{aligned}
+U_{\rm out}^\dagger K U_{\rm in}
+ &=\mathrm{GHZ}_{k-1}\otimes I_\ell,\\
+U_{\rm out}^\dagger E_AU_{\rm out}
+ &=\left(\prod_{i=0}^{k-2}T_{Z_i}\right)
+      T_{Z_0\cdots Z_{k-1}}.
+\end{aligned}
+```
+
+The entire transformed endpoint word commutes $`Z_\ell`$. In its
+literal sector $`Z_\ell=(-1)^z`$ it equals
+
+```math
+E_z\,\mathrm{GHZ}_{k-1},\qquad
+E_z=\left(\prod_{i=0}^{k-2}T_{Z_i}\right)
+ T_{(-1)^zZ_0\cdots Z_{k-2}}.                              \qquad(10)
+```
+
+The first k-1 independent phases form one native band. Compute the
+remaining parity into any one of these existing wires, apply its T
+phase, and uncompute it. For z=1 conjugate that T by the actual Pauli X;
+the identity $`XT_ZX=T_{-Z}`$ retains the literal scalar, unlike replacing
+it silently by $`T_Z^\dagger`$. Use $`X=HS^2H`$ for both corrections.
+The explicit forward word and its actual inverse each have the ledger
+
+```math
+T=k,\qquad D_T\le2,\qquad G\le3k-5+8z,\qquad
+\text{one existing clean wire and no new helper}.              \qquad(11)
+```
+
+The inverse uses T-dagger and the same self-inverse Pauli correction;
+thus it has the same bound in positive H/S/CNOT gates. Emitting both
+coordinate words adds $`2k-3`$ CNOTs. Equation (10) is an equality on
+every sector column, not only a choice of basis for the positive code.
+It consequently preserves the complete isometry, actual inverse,
+unused-clean-sector action and reference correlations. Any additional
+dirty spectators are untouched. Equations (9)--(11) make two bands
+necessary and sufficient for this endpoint sector encoder below the
+stated error floor.
+
+More generally, quotienting an independent endpoint list by one pair
+parity creates at most one relation. A maximal independent sublist and
+the one remaining phase give at most two native bands on the existing
+sector wires, with T-count no greater than the original list length and
+$`O(Q^2)`$ Clifford work for
+Q wires. A zero projected axis contributes its literal scalar; all signs
+and actual inverse phases are retained. No new clean or dirty allocation
+is required. This is a paid sector implementation, not a claim that the
+dependent list is already a native band.
+
+### 8.3. What this does and does not repair
+
+For one fixed original-pair parity, the reoriented middle pair is
+Clifford and the surviving original singleton list is independent.
+Using the preceding two-band endpoint implementations gives at most
+five native bands, with pattern $`2+1+2`$. If the middle list consists
+only of the original pair, as in the witness above, the bound is four,
+with pattern $`2+2`$. Neither count is a three-native-band no-pair
+source. Choosing a separate implementation in each parity sector is
+also not an uncharged coherent compiler: restoring that choice and all
+coordinate, inverse and return costs would be a further operation.
+
+The [bounded-relation full-space theorem](BOUNDED_RELATION_NATIVE_MATCHING.md#1-statement-and-deliberately-loose-constants)
+does not bypass the missing step. It permits these dependent phase
+lists in a **full-space Boolean** comparison. The present source fixes
+only the occupied clean sector, and the alternating code invariant
+does not supply a common Pauli clean flip at the two endpoints. A
+full-space extension still needs proof; the freedom to choose the
+unused sector does not provide it automatically.
+
+The [existing four-wire exact fixture](../../tests/test_original_middle_pair_insertions.py)
+now checks both parity sectors of (10), their actual inverses and the
+literal signed parity phase. It extracts the displacement from actual
+Pauli conjugations and checks its rank two and vanishing diagonal
+quadratic expression. The fixture retains the original non-Boolean
+entries; it tests the claimed mechanism, not a Boolean enumeration or
+a new lower-bound family.
+
+Thus the general destination and its resource frontier are unchanged.
+The next scout question remains [finite-insertion Boolean stability](ORIGINAL_MIDDLE_PAIR_INSERTIONS.md#2-what-the-bounded-pair-question-now-requires):
+can the original no-pair clean comparison tolerate its retained native
+pair insertion uniformly in both endpoint active ranks? A positive
+lemma must keep the original physical lists, occupied scalar and unused
+sector, rather than assume that deleting the insertion leaves a Boolean
+target. Alternatively, a new matching argument could supply an actual
+full-space shared-flip extension for the larger-support sectors. The
+two-band encoder is a useful exact component; its one-band obstruction
+limits this representation and is not a degree or unrestricted depth
+bound.

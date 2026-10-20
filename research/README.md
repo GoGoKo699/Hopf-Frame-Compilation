@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+[current research outcome](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -45,8 +45,9 @@ Its explicit constants are extremely conservative; it is a source-class
 obstruction, not a dimension-growing unrestricted depth bound.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
-[current continuation](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md) records
-the subsequent selective-word revision and growing-rank pair advance.
+[current continuation](depth/PARALLEL_ACCESS_REVISION_RESULT.md) records
+the paid parallel-access schedule, scoped echo-round limit, multioutput
+proof repair and larger-support physical-pair sector cost.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
@@ -90,6 +91,14 @@ gives the complete fallback ledger and a logarithmic depth cost for
 independent finer-layer synthesis. These scoped failures leave joint
 non-Clifford synthesis and complete selective return unpaid. The phase-counter test also records its
 quantitative access inequality, without equating accesses with native depth.
+The [parallel-affine batch](depth/PARALLEL_AFFINE_DETUNING.md) now pays
+polynomially many presentations in four T layers and returns the added
+helpers exactly. A single batch has a $`1/4`$ error floor. A Pauli
+echo with actual read-only address/bank Clifford interlayers requires at
+least $`\lceil b/2\rceil`$ rounds below error $`\sqrt2`$.
+This resolves access scheduling and retains the unpaid selective
+composition; it is not an unrestricted native-depth theorem. The full
+batch/actual-adjoint echo resource, error and return recurrence is paid.
 
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
@@ -121,8 +130,13 @@ not a free controlled compiler. The no-pair branch retains its separate
 theorem. The [one-sided rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow)
 now gives sign/XOR bounds 197/196 while the other rank grows. The following
 two-axis physical-support theorem permits both ranks to grow for one
-original pair. Larger pair-difference supports, general original pairs
-and higher layers remain open.
+original pair. The [larger-support analysis](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction)
+now gives a robust one-band obstruction and an exact two-band repair for
+the sector endpoint code. This raises the sector comparison to five
+bands with middle singletons, or four in the pair-only witness, leaving
+finite-insertion Boolean stability unpaid. General original pairs and
+higher layers remain open; the representation obstruction supplies no
+Boolean counterfamily or unrestricted depth bound.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 
@@ -746,8 +760,13 @@ zero-clean read-only four-layer XOR queries have degree at most two
 below error $`\sqrt2/12`$, independently of dirty width. Clifford
 comparison targets and an auxiliary Pauli cocycle handle the vanished
 symplectic contribution as well. The exact AND fixture makes this
-degree bound sharp. There is no new unrestricted or one-clean four-layer
-conclusion.
+degree bound sharp. The subsequent [word-valued extension](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive)
+proves the same degree bound for every simultaneous output, with all
+outputs arbitrary. Native coordinate blocks force the outer shear to be
+additive; a vector-valued residual argument handles the remaining target
+directions. One exact shared-address fixture checks outputs ab and ac,
+all physical columns and the actual inverse. There is no new unrestricted
+or one-clean four-layer conclusion.
 
 The [five-layer continuation](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
 keeps the comparison Clifford and identifies the partial-normalizer gap.
