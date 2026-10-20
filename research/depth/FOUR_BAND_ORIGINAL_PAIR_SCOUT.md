@@ -18,6 +18,13 @@ the stated fixed-endpoint, one-pair orbit class. They do not turn its
 commuting phase lists into a free native layer or cover arbitrary
 four-band return.
 
+The [center-transport continuation](FOUR_BAND_CENTER_TRANSPORT.md)
+derives center preservation in the stated fixed-endpoint Boolean class,
+retains literal unmatched-axis reductions, and exhibits a paid
+non-Clifford intermediate with the old shorter whole-word realization.
+For general endpoint probes it also pays a two-band directional
+derivative; that derivative bound is not a total-degree ceiling.
+
 ## 1. The first inference that fails with an additional native band
 
 Use the actual physical word

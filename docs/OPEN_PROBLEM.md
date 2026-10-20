@@ -245,6 +245,21 @@ uniform along the schedule. No source is supplied, and exact flatness
 remains a separate condition for exact signal return. The bounded-clean
 two-band obstruction is not an obstruction for all growing k.
 
+The [Gaussian compression theorem](../research/depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
+handles arbitrary fixed bank Cliffords and all dirty inputs. Complete
+amplitude recovery at inverse square root of two forces rank-one clean
+overlap. The normalized logical labels and signs have bounded degree
+in the physical tableau, giving a query-stage requirement proportional
+to p divided by k+1 for the literal affine-query grammar. This is not a
+native-depth bound or an obstruction to arbitrary quantum address motion.
+The [involutory Gauss theorem](../research/depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
+separately screens global scalar interference with output-bank variables
+among the coefficients. For degree-D matrix entries on the full external
+cube, its unsquared Boolean Gauss sign has degree at most 9D. Paying the
+in-place correction cannot rescue that bounded-degree source. Non-involutory
+forms and different whole-word completions retain their separate unpaid
+operations; the general frontier is unchanged.
+
 The [coherent-correction interface](../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 permits the same arbitrary private fibers. Its principal action is
 $`R(z,y)=(z,y+f(z)+yf(z))`$. Direct readout gives
@@ -459,6 +474,14 @@ bounded lower question must now leave these fixed-endpoint/orbit
 hypotheses; general four-band return does not imply the common-J
 Pauli matching. No general four-layer degree ceiling or unrestricted
 depth obstruction follows.
+The [physical-center revision](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md)
+now derives center preservation from complete occupied Booleanity in this
+same fixed-endpoint class. Literal orientation repair and a sole unmatched
+anticommuting orbit also reduce there. A signed native controlled-SWAP
+repartition proves that the initial intermediate can nevertheless be
+non-Clifford; its existing two-band realization remains. Multiple unmatched
+factors are not closed, and a center-moving trial must change the stated
+endpoint or diagonal-logical-center hypotheses.
 
 The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean

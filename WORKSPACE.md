@@ -6,13 +6,17 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: pay coherent readout, then judge the full frontier
+## Current checkpoint: distinguish complete sources from their representations
 
 **Fetched continuation baseline:**
-`41e56213813c18fd0d490cea22562cf8576ec03f`, tree
-`fe6fa06be9b7e28199d08b2c6f3c509ac94ab483`, on 20 October 2026,
-after the observable-source revision merged as PR #212.
-Read the [current outcome](research/depth/DIRTY_KEY_REVISION_RESULT.md),
+`47d543a2199e1ca5113be78d0ed7158c8f7f0cb8`, tree
+`f5d41886d29d65279f1f637306ad49dcaec2048d`, on 20 October 2026,
+after the dirty-key and affine-pencil revision merged as PR #213.
+Read the [current outcome](research/depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md),
+the [Gaussian compression theorem](research/depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md),
+the [involutory Gauss scalar audit](research/depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md),
+the [physical-center revision](research/depth/FOUR_BAND_CENTER_TRANSPORT.md),
+the [previous source outcome](research/depth/DIRTY_KEY_REVISION_RESULT.md),
 the [key-mixing screens](research/depth/KEY_MIXING_OBSERVABLE_SCREENS.md),
 the [nilpotent-pencil candidate](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md),
 the [general-k recovery recurrence](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag),
@@ -24,7 +28,18 @@ the [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONA
 the [retained no-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md),
 the [four-call weak source](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-The general upper and lower frontier is unchanged. The complete
+The general upper and lower frontier is unchanged. Small-clean Gaussian
+compression now has a complete sign-and-label screen: exact amplitude
+quantization and clean-stabilizer elimination retain arbitrary dirty
+width. Its affine-query stage lower bound is not native T-depth.
+The scalar escape is tested separately. Both the sixfold Fourier loop
+and the unsquared Gauss phase of bounded-degree symmetric involutory
+pencils have bounded Boolean degree on the complete external input cube.
+Even a free in-place correction would not supply the missing addressed
+phase in that source family. General non-involutory forms, crossed
+non-Gaussian interference and native parallel promotion remain outside
+those results; none has yet supplied a qualifying complete source.
+The complete
 observable contract still permits arbitrary intermediate address motion
 and quantum helper action. New key-mixing screens identify exact
 failures of the tested source grammars, including a final reverse query
@@ -50,6 +65,17 @@ Without those extra hypotheses, common-probe restoration alone does
 not establish a D pair count. The previous high-rank
 quadratic-control diagnostic also remains open at its actual middle
 transport, with no new universal ceiling.
+The [center revision](research/depth/FOUR_BAND_CENTER_TRANSPORT.md) now
+derives preserved r from occupied Booleanity for the stated identical
+endpoints and diagonal logical center. It extends literal repair and
+sole-anticommuting-axis removal in that class. A fully paid repartition
+has a genuinely non-Clifford intermediate, demonstrating the failed
+initial-matching inference, but still has the old two-band realization.
+Multiple unmatched B factors remain open even with these endpoints;
+center-moving trials must leave the center-forcing hypotheses.
+For general endpoints, an actual original pair supplies a paid two-band
+Boolean directional derivative of degree at most three. It imposes no
+total-degree ceiling on terms invariant under that direction.
 The original physical-pair branch stays closed at sign/XOR **6/5**,
 or **5/4** at common active rank at least four; the universal one-clean
 three-layer ceiling remains $`D_{\rm np}=D_3+576`$.

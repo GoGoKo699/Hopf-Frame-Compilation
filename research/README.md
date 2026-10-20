@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/DIRTY_KEY_REVISION_RESULT.md)
+[current research outcome](depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -61,6 +61,14 @@ now pays amplitude-$`1/\sqrt2`$ recovery, an extra flag, all zero-tests
 and dirty promotion, with a uniform slowly growing clean window. Return
 is approximate unless exact flatness is separately established; no
 qualifying source in that window is supplied.
+The [Gaussian compression audit](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
+now controls both labels and signs after a small clean projection, with
+exact flatness and arbitrary dirty width. Its query-stage bound is not
+native depth. The [involutory Gauss audit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
+also controls the global scalar channel: bounded-degree matrix entries
+cannot hide growing-degree addressed signs even in the unsquared Gauss
+phase. Whole-word non-Gaussian readout and native parallel clean promotion
+remain constructive questions.
 The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
 now excludes every two-band complete indicator block at uniformly bounded
 clean count, for sufficiently small fixed relative error and sufficiently
@@ -106,6 +114,12 @@ disjoint-pair Boolean words can still admit another whole-word reduction.
 The fixed-endpoint one-pair/orbit class now has an actual-axis cubic
 closure: every middle axis commutes across the two bands. This is not
 a general four-layer degree bound or a free same-budget replacement.
+The [center-transport revision](depth/FOUR_BAND_CENTER_TRANSPORT.md)
+derives actual center preservation in that fixed-endpoint Boolean class,
+extends signed repairs and sole-unmatched-axis removals, and supplies a
+non-Clifford-intermediate counterexample that retains the old two-band
+cost. Multiple unmatched factors and broader endpoint geometries remain
+outside the closure; no unrestricted four-layer bound follows.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported
