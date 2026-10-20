@@ -1,8 +1,9 @@
 """Literal physical-pair insertion checks, not a Boolean-degree theorem.
 
 The two-wire cases retain every signed swap and native orientation. The
-four-wire source checks genuine support growth through the endpoint band;
-it returns one clean wire but is not claimed as a Boolean query.
+four-wire source checks genuine support growth through the endpoint band
+and its exact two-band parity-sector encoder. It returns one clean wire
+but is not claimed as a Boolean query.
 """
 from collections import Counter
 from fractions import Fraction
@@ -11,7 +12,7 @@ import unittest
 from tests.exact_matrices import (
     CZ, CO, CI, add, adjoint, eye, multiply, native_columns, scale,
 )
-from tests.test_clean_code_clifford_rigidity import _rank
+from tests.test_clean_code_clifford_rigidity import _pauli_label, _rank
 from tests.test_three_layer_native_mechanisms import _native_t_bands
 from tests.test_two_layer_diagonal_rigidity import _inverse
 from tests.test_two_layer_galois_return import _conjugate, _tau
@@ -139,6 +140,81 @@ class OriginalMiddlePairInsertionTests(unittest.TestCase):
             self.assertEqual(count['T'] + count['TDG'], 2 * width + 2)
             self.assertEqual(count['H'] + count['CX'], 6 * width - 2)
             self.assertEqual([len(band) for band in _native_t_bands(candidate)], [width, 2, width])
+
+        # The original pair product is a genuine logical parity. Isolate
+        # it by actual input/output Clifford words, with no extra clean.
+        k = native_columns(width, k_word)
+        r = _tau(all_bits << width, width)
+        self.assertEqual(_conjugate(adjoint(k), r),
+                         _tau((all_bits ^ 1) << width, width))
+        last = width - 1
+        out_word = [('CX', bit, last) for bit in range(last)]
+        in_word = [('CX', bit, last) for bit in range(1, last)]
+        u_out, u_in = [native_columns(width, w) for w in (out_word, in_word)]
+        self.assertEqual(multiply(multiply(adjoint(u_out), k), u_in),
+                         native_columns(width, _ghz(last)))
+        self.assertEqual(len(out_word) + len(in_word), 2 * width - 3)
+        endpoint = multiply(multiply(multiply(adjoint(u_out), e), k), u_in)
+        sector_clean = _conjugate(adjoint(u_out), j)
+        sector_size = 1 << last
+
+        def block(matrix, z):
+            indices = range(z * sector_size, (z + 1) * sector_size)
+            return [[matrix[row][column] for column in indices] for row in indices]
+
+        def pairing(left, right):
+            mask = sector_size - 1
+            return (((left & mask) & (right >> last)).bit_count()
+                    + ((left >> last) & (right & mask)).bit_count()) % 2
+
+        for z in (0, 1):
+            with self.subTest(pair_parity=z):
+                j_z = block(sector_clean, z)
+                self.assertEqual(j_z, adjoint(j_z))
+                self.assertEqual(multiply(j_z, j_z), eye(sector_size))
+                self.assertEqual(sum((j_z[i][i] for i in range(sector_size)), CZ), CZ)
+                # Extract F-I from actual matrix conjugations of the
+                # generators. Check the quadratic form's coefficients,
+                # rather than enumerate Pauli groups or Boolean targets.
+                displacement = []
+                for bit in range(2 * last):
+                    label = 1 << bit
+                    image_label = _pauli_label(_conjugate(j_z, _tau(label, last)), last)
+                    self.assertIsNotNone(image_label)
+                    displacement.append(image_label ^ label)
+                self.assertEqual(_rank(displacement), width - 2)
+                for i in range(2 * last):
+                    self.assertEqual(pairing(1 << i, displacement[i]), 0)
+                    for h in range(i):
+                        self.assertEqual(pairing(1 << i, displacement[h])
+                                         ^ pairing(1 << h, displacement[i]), 0)
+
+                # E_z GHZ_(k-1), including the literal negative-axis
+                # correction and its actual inverse. X=H S S H is used
+                # unchanged in both directions, retaining the same ledger.
+                parity = [('CX', bit, last - 1) for bit in range(last - 1)]
+                x_word = ([('H', last - 1), ('S', last - 1),
+                           ('S', last - 1), ('H', last - 1)] if z else [])
+                phase = (parity + x_word + [('T', last - 1)]
+                         + x_word + list(reversed(parity)))
+                phase_inverse = (parity + x_word + [('TDG', last - 1)]
+                                 + x_word + list(reversed(parity)))
+                encoder_word = _ghz(last) + [('T', bit) for bit in range(last)] + phase
+                inverse_word = (phase_inverse + [('TDG', bit) for bit in reversed(range(last))]
+                                + _inverse(_ghz(last)))
+                encoder = native_columns(last, encoder_word)
+                self.assertEqual(encoder, block(endpoint, z))
+                self.assertEqual(_conjugate(encoder, _tau(1 << last, last)), j_z)
+                self.assertEqual(native_columns(last, inverse_word), adjoint(encoder))
+                self.assertEqual(multiply(native_columns(last, inverse_word), encoder),
+                                 eye(sector_size))
+                for candidate in (encoder_word, inverse_word):
+                    count = Counter(gate[0] for gate in candidate)
+                    self.assertEqual(count['T'] + count['TDG'], width)
+                    self.assertEqual(count['H'] + count['S'] + count['CX'],
+                                     3 * width - 5 + 8 * z)
+                    self.assertEqual(sorted(len(band) for band in _native_t_bands(candidate)),
+                                     [1, width - 1])
 
 
 if __name__ == '__main__':

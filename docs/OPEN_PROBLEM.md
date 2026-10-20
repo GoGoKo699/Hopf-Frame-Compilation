@@ -76,14 +76,15 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Original-pair profiles without bounded silent span | [Central-module profiles](../research/depth/CENTRAL_MODULE_NATIVE_PROFILES.md) bound changes of three exact native profiles along every actual Boolean matching action and bound each action's escaping span modulo the genuine center. These bounds are uniform in additional silent span; they do not bound the union over actions, classify inside-span mixing, or prove fixed-pair degree closure |
 | Minimal actual-pair completion | [Original one-pair source](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md) produces a tied central partner after singleton cancellation. For the fixed active input/middle word, any admissible silent input band moving that partner permits no one-band output completion to a Clifford target, even with arbitrary unused-sector freedom. All admissible core-coupled silent axes are included. Every complete target has a zero-clean three-band word with one middle axis: diagonal targets are diagonal third-level, with sign/XOR degree at most three/two. General physical pairs remain open |
 | Original pairs with rank-two endpoints | [Paired rank-two theorem](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints) gives sign degree at most six and XOR degree at most five for actual one-clean three-band words with two clean-active axes at each endpoint and a genuine original middle pair. Arbitrary silent lists, dirty width and unused-sector action are allowed. The same-circuit rounding theorem gives higher-degree error floor $`2^{-530690}`$, allowing a common phase. The no-pair branch retains its separate theorem; the following growing-rank extensions have additional physical hypotheses |
+| Larger physical-pair sector cost | [Larger-support analysis](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) proves that a projected endpoint code can require two bands, with isometry error floor $`1/(4\sqrt2)`$ against one-band encoders. A two-band repair is paid without extra work, but gives five bands with surviving middle singletons or four in the pair-only witness. Finite-insertion Boolean stability remains missing; this is a representation limit, not a high-degree Boolean counterfamily or unrestricted depth bound |
 | Original pairs with growing endpoint ranks | [One-sided rank two](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196 with the opposite rank unrestricted. [Actual two-axis pair differences](../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permit both ranks to grow for one pair, with sign/XOR bounds $`D_{\rm np}+1`$/$`D_{\rm np}`$ from the retained no-pair constant. The original-circuit rounding floor remains $`2^{-530690}`$. Larger physical pair supports, general pair count and unrestricted depth remain open |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
-| Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force XOR degree at most two at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The proof handles both visible and vanishing outer symplectic contributions; it gives no one-clean four-layer or unrestricted-address conclusion |
+| Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force degree at most two for every component of an arbitrary word-valued XOR query at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The [word extension](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive) uses native outer-shear additivity and keeps all outputs arbitrary. It gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+[current revision](../research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -138,6 +139,19 @@ retain their exact grammar; arbitrary bank motion is outside. The
 retains at least logarithmic depth under its complete-layer precision
 promise. Joint non-Clifford synthesis and whole-word cancellation remain
 open, together with the actual selective action and return.
+
+The [parallel-affine revision](../research/depth/PARALLEL_AFFINE_DETUNING.md)
+pays polynomially many affine full calls in four T layers with polynomial
+address overhead, exact added-helper return and literal inverse costs.
+A single commuting batch has error at least $`1/4`$ for $`b\ge3`$.
+A fixed-work-Pauli echo with actual Clifford interlayers preserving
+address and bank needs $`h\ge\lceil b/2\rceil`$ rounds for
+$`b\ge2`$ below error $`\sqrt2`$, independently of parallel
+access rank or work width. This is a round-grammar theorem, not an
+unrestricted native-depth bound. The first unpaid operation is complete
+selectivity with return and qualifying depth; a new mechanism must leave
+this grammar or resynthesize the whole word. Its full resource/error/return
+recurrence is now explicit.
 
 The source screens retain their architecture and parameter scope. The
 unrestricted indicator nullity result concerns count; the incidence

@@ -18,6 +18,10 @@ from tests.test_read_only_three_layer_rigidity import (
     ALPHAS, BETAS, P_ROWS, H, S, T, _cx, _degree, _fixture,
     _linear, _pauli, _wire,
 )
+from tests.exact_matrices import CO, CZ, native_columns
+from tests.test_read_only_query_layer_fixtures import (
+    _flatten, _zero_clean_four_layers,
+)
 
 
 ROWS = P_ROWS + [((7, 3), (6, 4))]
@@ -78,6 +82,44 @@ def _anf(values):
 
 
 class ReadOnlyFourLayerRigidity(unittest.TestCase):
+    def test_two_quadratic_outputs_share_address_with_full_dirty_return(self):
+        # The retained native words run together on distinct arbitrary
+        # work wires. Shared address controls are never initialized copies.
+        first = _zero_clean_four_layers(a=0, b=1, t=3, d=5)
+        second = _zero_clean_four_layers(a=0, b=2, t=4, d=6)
+        schedule = []
+        for (kind, gates), (other_kind, other_gates) in zip(first, second):
+            self.assertEqual(kind, other_kind)
+            schedule.append((kind, gates + other_gates))
+        layers = [gates for kind, gates in schedule if kind == 'T']
+        self.assertEqual(len(layers), 4)
+        self.assertEqual(sum(map(len, layers)), 16)
+        self.assertEqual(sum(len(gates) for kind, gates in schedule
+                             if kind == 'C'), 36)
+        for layer in layers:
+            targets = [gate[1] for gate in layer]
+            self.assertEqual(len(targets), len(set(targets)))
+            self.assertTrue(all(3 <= target < 7 for target in targets))
+        word = _flatten(schedule)
+        for gate in word:
+            if gate[0] == 'CX':
+                self.assertGreaterEqual(gate[2], 3)
+            elif gate[0] == 'H':
+                self.assertIn(gate[1], (3, 4))
+        actual = native_columns(7, word)
+        inverse = [('TDG' if gate[0] == 'T' else
+                    'T' if gate[0] == 'TDG' else gate[0], *gate[1:])
+                   for gate in reversed(word)]
+        actual_inverse = native_columns(7, inverse)
+        for column in range(128):
+            a, b, c = ((column >> bit) & 1 for bit in range(3))
+            row = column ^ ((a * b) << 3) ^ ((a * c) << 4)
+            expected = [CO if i == row else CZ for i in range(128)]
+            self.assertEqual([actual[i][column] for i in range(128)],
+                             expected)
+            self.assertEqual([actual_inverse[i][column] for i in range(128)],
+                             expected)
+
     def test_literal_five_band_normalization_with_actual_inverse(self):
         c, d = _four_layer_fixture()
         u0 = _fibre(c, d, 0)

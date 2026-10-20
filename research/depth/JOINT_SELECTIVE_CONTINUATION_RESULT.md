@@ -12,6 +12,12 @@ continuing it, and keeps the original physical-pair lower scout active.
 No complete shallow indicator or stronger unrestricted depth bound is
 claimed.
 
+**Later continuation:** [Parallel-access revision](PARALLEL_ACCESS_REVISION_RESULT.md)
+pays simultaneous affine access, proves a scoped Pauli-echo round limit,
+repairs the four-band word-valued gap recorded below, and analyzes the
+larger-support physical-pair sector cost. This record retains the state
+of the PR #204 continuation.
+
 ## 1. Separate the destination from the current mechanisms
 
 | Role | Current assessment |
