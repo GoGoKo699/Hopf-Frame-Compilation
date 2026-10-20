@@ -53,7 +53,11 @@ a singleton-coupling bound. The
 replaces its generic matrix-feature degree estimate by actual endpoint
 sublist peeling and a fixed full-space diagonal reduction: sign/XOR
 degree at most six/five uniformly, and five/four at common active rank
-at least four. The upper source resources and full frontier are unchanged.
+at least four. The
+[positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+further derives the all-active support from complete Booleanity when the
+literal orientation repair leaves no negative singletons. The upper
+source resources and full frontier are unchanged.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported
@@ -270,6 +274,19 @@ $`2^{-530690}`$ applies within these physical-list hypotheses; no
 bound on h, free native phase list, or unrestricted three-layer theorem
 is asserted.
 
+The [positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+removes the support assumption in the one-pair class with no negative
+singletons after literal pair-orientation repair. Exact clean comparison
+gives a common active span. If the pair difference omitted an actual
+active axis, a clean-preserving Pauli in that span would commute with
+its transported image on the scalar parity branch and anticommute on
+the quarter-turn branch. A complete Boolean derivative has one global
+commutation sign, a contradiction. All-active support is therefore a
+conclusion in this positive-singleton class, and the same six/five
+uniform and five/four rank-at-least-four bounds follow. This analytic
+extension preserves the full operator contract and retained rounding
+floor; it adds no fixture or upper compiler.
+
 The [pair-only enlarged-center theorem](depth/PAIR_ONLY_ENLARGED_CENTER.md)
 removes the one-sided silent-commutation premise under the all-active
 genuine one-pair condition with no middle singletons, allowing arbitrary
@@ -285,9 +302,10 @@ native band, and retains the physical clean wire through the complete
 block.
 The former next step of unrestricted singleton coupling in this
 all-active class is closed by scalar-branch matching, with the small
-degree bound supplied by the full-space diagonal reduction. General
-pair differences and more than one original pair remain the focused
-lower questions.
+degree bound supplied by the full-space diagonal reduction. Boolean
+support recognition also closes proper-support candidates with only
+positive singletons. One original pair with negative singletons and
+more than one original pair remain the focused lower questions.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 

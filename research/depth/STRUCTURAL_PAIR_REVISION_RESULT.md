@@ -19,9 +19,10 @@ one-pair structure supports a substantially sharper conclusion.
 | Strongest general upper | [R96](ALL_PRECISION_LINEAR_DEPTH.md), with selected [R79](UNIFORM_SUBTREE_DEPTH.md) and all literal allocations unchanged |
 | Strongest general lower components | [Two-layer Boolean rigidity](TWO_LAYER_DIAGONAL_RIGIDITY.md), [zero-clean three-layer rigidity](THREE_LAYER_NATIVE_STRUCTURE.md), and the unrestricted indicator T-count bound remain distinct from a growing-depth theorem |
 | Revised focused lower theorem | [Fixed full-space diagonal reduction](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md): in the all-active genuine original one-pair class, sign/XOR degree is at most **6/5 uniformly**, and **5/4 when the common active rank is at least four** |
+| New physical recognition | [Positive-singleton recognition](POSITIVE_SINGLETON_PAIR_RECOGNITION.md): with exactly one genuine original pair and no negative singletons after literal orientation repair, complete Booleanity forces the all-active support condition. The same small degree bounds therefore apply without assuming that support |
 | Retained component | The old proof's scalar-branch matching and one-X-mask conclusion remain essential. Its generic matrix-feature estimate is no longer needed for this class |
 | Upper component and missing operation | Four-call extraction still permits arbitrary quantum private-helper fibers. A complete sublogarithmic native weak source or whole extraction remains unpaid |
-| Scope of the obstruction | The new degree bound assumes the actual original pair difference sums every clean-active axis at both endpoints. It does not cover arbitrary original pairs or unrestricted one-clean three-layer circuits |
+| Scope of the obstruction | The direct degree proof assumes all-active support; the recognition theorem derives that support in the positive-singleton one-pair class. Negative singletons, arbitrary pair count and unrestricted one-clean three-layer circuits remain outside |
 
 The revised lower theorem improves the known degree frontier inside its
 specified physical class. It does not improve the full upper resource
@@ -105,32 +106,44 @@ bounded-clean two-band relative-gap theorem is a source-specific
 obstruction; it does not supply an unrestricted native-depth bound.
 Changing the lower proof does not pay a new upper source.
 
-## 4. Next research question and evidence
+## 4. The next scout changes mechanism again
 
-Continue with an actual original pair whose difference uses a proper
-subset of the endpoint-active axes. Determine whether the same complete
-Boolean condition forces a removable Pauli symmetry, or whether an
-additional retained transition prevents the fixed full-space
-diagonalization. The first task is an original-list operator identity
-and native matching condition, not another finite matrix catalogue.
-Negative original singletons may give different endpoint clean images;
-the all-active common-span reduction cannot simply be reused there.
-General pair count, unrestricted one-clean three-layer degree and
-dimension-growing depth remain open.
+The first attempted proper-support extension did retain an unpaid step.
+Writing its insertion as $`G_0=D F_h`$ would not supply the same-Pauli
+transport when D does not commute P_h. Likewise, one X-mask coset modulo
+an extra direction does not make the dressing gates diagonal. A
+Hadamard on that extra direction need not preserve the complete target.
+Another finite matrix catalogue would hide this issue.
 
-The next proposed proper-support extension has a precise audit point.
-If its insertion is written $`G_0=D F_h`$, with F_h commuting P_h
-but D not known to commute P_h, the exact transport is dressed by D;
-the same-Pauli identity used above is unavailable. Likewise, one X-mask
-coset modulo an extra direction does not force the dressing gates to
-be diagonal. A Hadamard on that extra direction need not preserve the
-complete target. The missing inference is a full-space Pauli symmetry
-or an exact replacement cancellation, not a finite-feature estimate.
-A focused next question is one genuine original pair with four-axis
-support at both endpoints, at least two additional active axes, and
-only positive singletons after literal orientation repair. Does complete
-Booleanity force such a reduction? This extension is not a theorem of
-the present checkpoint.
+The [recognition proof](POSITIVE_SINGLETON_PAIR_RECOGNITION.md) instead
+returns to the actual original word. With no negative singletons, the
+endpoint clean images agree and give a common active span. Proper
+support would supply an actual Pauli t commuting with both endpoint
+bands and every singleton, but anticommuting with the paired axis.
+On the literal scalar pair branch its transported image equals the
+output t Pauli; on the quarter-turn branch those two operators
+anticommute.
+
+The shared computational pair parity and scalar branch force the two
+endpoint t Paulis to have the same X mask. A Boolean diagonal target's
+phase derivative is invariant under translation by that mask, so its
+transported Pauli must have one global commutation sign with the output
+t Pauli. The two nonempty parity branches contradict this. Proper
+support is therefore impossible in the positive-singleton one-pair
+class: complete Booleanity forces all-active support at both actual
+endpoints. Combining with Section 2 proves the same uniform six/five
+bound throughout that class. No two-core feature estimate is needed.
+
+The next unresolved original-one-pair question requires **negative
+singletons**. They can give different endpoint clean images, so the
+common-active-span inference used here is unavailable. A concrete first
+question is whether negative singletons equal to actual endpoint axes
+can be combined literally with their neighboring T phases, and what
+remains when they are only products of endpoint axes. Product-axis
+rewriting must not introduce dependent native lists. This is a research
+question, not an additional closure theorem. General pair count,
+unrestricted one-clean three-layer degree and dimension-growing depth
+remain open.
 
 The revision is analytic. The retained
 [all-active fixture](../../tests/test_all_active_singleton_closure.py)
@@ -138,5 +151,6 @@ checks the central-controlled quarter-turn, literal scalar branch,
 signed conventions, all physical columns and actual inverse. It does
 not assert the new degree theorem by enumeration. Independent audits
 checked both-end native peeling, full-space Pauli alignment, the phase
-degree and restoration. These internal checks do not replace external
-technical review.
+degree and restoration, and the positive-singleton Boolean commutation
+contradiction. These internal checks do not replace external technical
+review.

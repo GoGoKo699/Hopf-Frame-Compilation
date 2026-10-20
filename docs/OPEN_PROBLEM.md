@@ -85,7 +85,8 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Retained all-active original-pair recognition | [Original-list theorem](../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives the earlier sign/XOR bounds 2428/2427 when either endpoint's silent list commutes with the entire original middle. Its physical recognition and matching remain useful components; the uniform structural theorem below now sharpens this subclass as well |
 | Retained pair-only center component | [Enlarged transported center](../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) permits both coupled silent lists with no middle singletons. Its original bound is superseded by the uniform all-active closure below; its physical-center construction remains useful |
 | Retained singleton-coupling component | [Actual-center extension](../research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
-| Uniform all-active genuine one-pair closure | [Full-space diagonal reduction](../research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most six/five, sharpened to five/four at common active rank at least four, with arbitrary original singletons, both silent lists and dirty width. The pair difference must sum every actual active axis at both endpoints. Both-end diagonal sublist peeling and one fixed Clifford reduction replace the earlier generic feature bound. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
+| Uniform all-active genuine one-pair closure | [Full-space diagonal reduction](../research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most six/five, sharpened to five/four at common active rank at least four, with arbitrary original singletons, both silent lists and dirty width. The pair difference must sum every actual active axis at both endpoints. Both-end diagonal sublist peeling and one fixed Clifford reduction replace the earlier generic feature bound. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. The following recognition theorem removes the support premise in the positive-singleton class |
+| One genuine pair with only positive singletons | [Boolean support recognition](../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md) proves that, after literal pair-orientation repair, absence of negative singletons forces the pair difference to sum every actual active axis at both endpoints. Thus complete Boolean signs have degree at most six, XOR queries at most five, sharpened to five/four at common active rank at least four. The all-active support is a conclusion in this class. The proof uses exact transported parity and Boolean derivative commutation; original-pair cases with negative singletons and unrestricted depth remain open |
 | General symplectic-carrier source count and probe interface | [Arbitrary-module readout barrier](../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) forces $`2^{d-1}`$ carrier qubits and T gates per separately realized source for a degree-d linear symplectic readout. Universal fixed-family probes contain a complete dirty indicator through a paid conversion. A uniform faster independent-probe compiler with the stated simultaneous budgets would supply the full R98 interface for all output lengths and dirty allocations; that faster source remains unconstructed |
 | Scoped returned-query obstructions | [Affine Gaussian scalar loops](../research/depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md) have Boolean degree at most $`4r+2`$ after r rounds; [two read-only T layers](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) force degree at most two and quadratic polar rank at most two with one clean qubit. Neither is an unrestricted dimension-growing T-depth lower bound |
 | Three-layer query frontier | [Three read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) force affine XOR outputs with zero clean qubits and degree at most four with one clean qubit, at error below $`\sqrt2/6`$ independently of dirty width. [Exact one-clean two-layer read-only queries are affine](../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine). Within this read-only interface, two-input AND depth is four with zero clean and three with one clean; the one-clean optimality is exact-only. This does not settle general depth |
@@ -305,11 +306,23 @@ retained original-circuit rounding theorem gives the higher-degree
 floor $`2^{-530690}`$ when the resulting actual original lists meet
 this class's hypotheses. The retained rank-two six/five theorem supplies
 the remaining case; the new bound also sharpens the earlier one-sided
-2428/2427 estimate. The next focused lower question is a
-**general original pair difference**, which need not include every
-endpoint-active axis and need not supply this common span or quadratic
-rank. General fixed pair count, unrestricted one-clean three-layer
-degree and dimension-growing depth remain open.
+2428/2427 estimate.
+
+The [positive-singleton recognition theorem](../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+then removes the all-active support premise when exactly one original
+pair remains and every singleton is positive under the actual clean
+comparison after literal pair-orientation repair. A proper-support pair
+would make the transported axis commute on the scalar parity branch and
+anticommute on the quarter-turn branch. The complete Boolean derivative
+forces one global commutation sign, excluding that branch change. The
+pair difference must therefore sum all actual active axes at both
+endpoints, so the six/five and rank-at-least-four five/four bounds apply.
+This is an analytic recognition result, with the same full operator
+contract and retained rounding floor. The next focused lower question
+is **one genuine original pair with negative singletons**, where the
+common active-span premise of this argument is unavailable. More than
+one original pair, unrestricted one-clean three-layer degree and
+dimension-growing depth remain open.
 
 The [previous clean-transition checkpoint](../research/depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
 closes the fixed endpoint clean-active-rank case with arbitrary middle

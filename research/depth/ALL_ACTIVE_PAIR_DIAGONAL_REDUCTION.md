@@ -43,6 +43,13 @@ establishes the k at least four row. It does not revise the generic
 partial-diagonal feature theorem. It replaces the use of that theorem
 in this particular physical source class.
 
+The companion [positive-singleton recognition theorem](POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+derives the all-active support condition for a complete Boolean word
+with exactly one genuine original pair and no negative singletons after
+literal orientation repair. Thus the bounds above also apply to that
+class without assuming all-active support. Negative singletons and
+unrestricted pair count remain outside this extension.
+
 ## 2. Retained reduction through the actual one-mask Clifford
 
 Use Sections 2--5 of
