@@ -148,9 +148,11 @@ observable error. Small individual kernel entries are insufficient.
 Take
 
 ```math
-q(a)=k(a)_T+a_T=\gamma_2(a)_T,\qquad
-g(a)=a_Tq(a),\qquad \sigma_x(a)=\iota(x)k(a),
-\qquad M=H_AD_gQ_kH_A,\qquad J_x=MD_{\sigma,x}M.  \qquad(7)
+\begin{aligned}
+q(a)&=k(a)_T+a_T=\gamma_2(a)_T,\\
+g(a)&=a_Tq(a),\qquad \sigma_x(a)=\iota(x)k(a),\\
+M&=H_AD_gQ_kH_A,\qquad J_x=MD_{\sigma,x}M.        \qquad(7)
+\end{aligned}
 ```
 
 The quadratic q is independent of $`a_T`$, so g is cubic. Use the
