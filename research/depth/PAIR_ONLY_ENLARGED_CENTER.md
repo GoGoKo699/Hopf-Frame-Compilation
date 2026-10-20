@@ -4,6 +4,13 @@
 [All-active recognition](ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) ·
 [Shared physical-clean feature proof](OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates)
 
+The later [uniform all-active closure](ALL_ACTIVE_SINGLETON_CLOSURE.md)
+also permits arbitrary original middle singletons and their unbounded
+coupling to both silent lists, with sign/XOR bound 37748865/37748864.
+It sharpens the general constant below while preserving this enlarged
+center proof. The one-sided 2428/2427 and rank-two six/five bounds
+remain sharper where applicable; general original pairs remain open.
+
 Products of actual silent axes can provide transported central Paulis
 without providing new native phase axes. In the one-pair case with no
 middle singletons, Boolean endpoint commutation makes those products

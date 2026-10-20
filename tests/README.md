@@ -13,6 +13,8 @@ theorem by numerical extrapolation.
 
 | Test file | Principal questions |
 |---|---|
+| [`test_output_aliased_character.py`](test_output_aliased_character.py) | Direct output/carrier aliases, all 2048 phase columns and actual reverse, four source calls, and an explicit native conditional quantum helper that returns only in the completed character; retained coefficient permutations supply F |
+| [`test_all_active_singleton_closure.py`](test_all_active_singleton_closure.py) | Four-active-axis central-controlled quarter-turn on all 32 physical columns, nonaffine central sign, both signed-swap conventions, unused clean sector and actual inverse; structural identity fixture, not a Boolean degree witness |
 | [`test_full_bank_character_transport.py`](test_full_bank_character_transport.py) | Shared HRT carrier, all 8192 address/bank/carrier phase columns and actual reverse, eleven-CNOT zeta shear and constant correction; composition fixture importing the retained native source proof |
 | [`test_frames.py`](test_frames.py) | Do the recursive and addressed constructions give the same frame? Are marker columns, chart domains, metric weights, and singular continuations consistent? |
 | [`test_complex_analysis.py`](test_complex_analysis.py) | Do magnitude and leaf-phase differentials, gauge relations, and zero-amplitude behavior match the frame convention? |

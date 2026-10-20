@@ -4,6 +4,13 @@
 [Larger-support sector revision](MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) ·
 [Occupied Boolean center](OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 
+The later [uniform all-active closure](ALL_ACTIVE_SINGLETON_CLOSURE.md)
+removes the silent-commutation premise and permits unbounded original
+singleton coupling, with sign/XOR bound 37748865/37748864. The
+2428/2427 bound proved here remains sharper in this one-sided class,
+as does six/five when both endpoint active ranks are two. Neither
+result covers a general original pair or unrestricted depth.
+
 The larger-support sector code can require two native endpoint bands.
 That encoding obstruction does not prevent a complete degree theorem
 when the original lists supply a different matching mechanism. Here
