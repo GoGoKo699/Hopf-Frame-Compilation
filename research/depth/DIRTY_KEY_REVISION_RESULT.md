@@ -239,11 +239,17 @@ This does not merge a dependent commuting union into one native layer
 or supply a same-budget replacement circuit. The next focused scout
 must leave the stated fixed-endpoint/orbit hypotheses. In general
 four-band clean return, treating both interior lists as Pauli orbits of
-the same J is the first unsupported inference. The bounded next test
-keeps one genuine B pair and one negative B singleton, then carries the
-actual changed probe W through the additional list. This is not a general
-four-layer bound, and a sector representation is not a free full-space
-circuit.
+the same J is the first unsupported inference. Carrying the actual
+changed probe W through an already aligned B list restores common-J
+orbits on D: the two negative-singleton spans agree. A sole negative
+singleton cancels two literal T gates, with its scalar retained. The
+fixed endpoints and preserved physical center additionally force exactly
+one D pair for every negative-list size, returning to the cubic class.
+General span restoration alone does not establish that pair count.
+The bounded next test therefore retains genuinely changed endpoint
+probes, or addresses the initial unsupported matching inference. This
+is not a general four-layer bound, and a sector representation is not
+a free full-space circuit.
 
 ## 7. Next question and evidence boundary
 

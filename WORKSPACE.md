@@ -41,7 +41,13 @@ that window has been constructed.
 The focused original-pair scout now tests four actual bands. Its
 conditional radical certificate and literal pair removals remain useful,
 but identity words can have arbitrarily many physical pairs. Displayed
-pair count cannot certify unrestricted depth. The previous high-rank
+pair count cannot certify unrestricted depth. Actual negative-singleton
+transport restores common-probe orbits under the stated aligned-list
+hypotheses; a sole negative singleton cancels two literal T gates. The
+fixed endpoints and preserved physical center force one D pair for
+every negative-list size and return this route to the cubic class.
+Without those extra hypotheses, common-probe restoration alone does
+not establish a D pair count. The previous high-rank
 quadratic-control diagnostic also remains open at its actual middle
 transport, with no new universal ceiling.
 The original physical-pair branch stays closed at sign/XOR **6/5**,

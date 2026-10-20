@@ -545,10 +545,12 @@ U:=E_DE_B=CCZ_{x_1,x_2,z}\otimes I_{d,w}.          \qquad(27)
 Set the two endpoint lists and endpoint coordinates to
 
 ```math
-a_1=Y_1X_2,\quad a_2=X_1Y_2,\quad a_3=Z_w,
-\qquad E_A=E_C=T_{a_1}T_{a_2}^{\dagger}T_{a_3},
-\qquad K_A=K_C=K=H_w\,CNOT_{w\to1},
-\qquad P_A=P_C=Z_1X_w.                            \qquad(28)
+\begin{aligned}
+a_1&=Y_1X_2,\quad a_2=X_1Y_2,\quad a_3=Z_w,\\
+E_A&=E_C=T_{a_1}T_{a_2}^{\dagger}T_{a_3},\\
+K_A&=K_C=K=H_w\,CNOT_{w\to1},\\
+P_A&=P_C=Z_1X_w.
+\end{aligned}                                      \qquad(28)
 ```
 
 The chronological K word is CNOT followed by H. The endpoint axes
@@ -707,9 +709,16 @@ D&hZ_zp,\ hZ_zpr,\ hr,\ hZ_zr &(-1,+1,+1,-1).
 ```
 
 These are again disjoint independent four-axis lists. To expose them,
-start with the diagonal parity bases $`(d+x_1,d+x_1+x_2,d+z,d)`$
-and $`(d+z+x_1,d+z+x_1+x_2,d+x_2,d+z+x_2)`$, with the coefficients
-in (34). Both four-by-four binary maps are invertible, so their literal
+start with the diagonal parity bases
+
+```math
+\begin{aligned}
+B_0&=(d+x_1,d+x_1+x_2,d+z,d),\\
+D_0&=(d+z+x_1,d+z+x_1+x_2,d+x_2,d+z+x_2),
+\end{aligned}
+```
+
+with the coefficients in (34). Both four-by-four binary maps are invertible, so their literal
 CNOT elimination words give native encoders. Conjugate each phase band
 by Q, whose chronological word is $`CNOT_{1\to2},H_1`$:
 $`Q^\dagger Z_1Q=p`$, $`Q^\dagger Z_2Q=r`$. The signed axes
@@ -1105,7 +1114,7 @@ about the original operator, with no extra helper, approximation
 error or resource substitution. In particular, it is not a same-budget
 construction obtained by freely synthesizing the coefficient functions.
 
-### 14.4. The next bounded original-pair question
+### 14.4. The bounded question after cubic closure
 
 The fixed-endpoint, one-pair common-orbit class is now closed at cubic
 degree. A useful continuation must leave those hypotheses. At general
@@ -1119,14 +1128,142 @@ Retain one genuine original B pair and its explicitly preserved physical
 center, but allow one actual negative B singleton. Its Clifford image
 W in (5) need not equal J, and the additional native list is matched
 under W when that matching is justified, not under J. The next bounded
-question is whether this smallest change permits complete Boolean
+question at this checkpoint was whether this smallest change permits complete Boolean
 transport outside the common-orbit class, or forces an actual reduction
 back to it. The real two-band scalar transport (9), literal repairs and
 both pair-sign sectors must be carried through that question. Replacing
 W by J or calling its projected axes independent in advance would be
-the first unsupported step.
+the first unsupported step. Section 15 now pays this transport and
+identifies which part of the question remains open.
 
 This source-specific cubic theorem does not change the complete
 approximate dirty-indicator frontier, the retained unrestricted
 three-layer results, or any inherited resource, error and return
 recurrence.
+
+## 15. Negative-singleton restoration and an actual gate removal
+
+The sole-negative-singleton question in Section 14.4 has an exact
+reduction when the two endpoint probes are the same J and the B pair
+factors are already literally aligned as in (4). These are physical
+hypotheses. Absorbing an earlier B orientation repair that changes
+the output probe does not preserve them automatically.
+
+In fact, allow any independent negative B singleton list, with binary
+columns A. Its actual band E_- gives the Hermitian Clifford
+$`W=E_-JE_-^\dagger`$. Assume complete return
+$`E_DWE_D^\dagger=J`$. One-band matching now legitimately makes the
+actual D list a signed orbit list under W. The conclusion is that W
+and J have the same signed action on every actual D axis. This restores
+common-J matching; by itself it does not bound the number or differences
+of D's genuine pairs.
+
+To prove this, write the binary symplectic action of W as I+N, with
+symplectic form Omega. Hermitian involutivity gives
+$`N^2=0`$ and $`N^{\mathsf T}\Omega=\Omega N`$. The literal negative
+singleton update is
+
+```math
+N_J-N=AA^{\mathsf T}\Omega,\qquad NA=0.           \qquad(51)
+```
+
+Apply the actual D orientation repair under W. Let B have one column
+b from each orientation-mismatched genuine pair, let R=NB contain
+their pair differences, and let L contain the negative D singleton
+columns. The repair Clifford has binary action
+$`T=I+BB^{\mathsf T}\Omega`$. Native commutation and the singleton
+relations give
+
+```math
+NL=0,\qquad
+B^{\mathsf T}\Omega B=B^{\mathsf T}\Omega L
+                     =B^{\mathsf T}\Omega R=0.
+```
+
+Thus the exact repair order in (4), now applied to D, gives
+
+```math
+\begin{aligned}
+N_J
+ &=T\bigl(N+LL^{\mathsf T}\Omega\bigr)T,\\
+N_J-N
+ &=\bigl(BR^{\mathsf T}+RB^{\mathsf T}
+                         +LL^{\mathsf T}\bigr)\Omega,\\
+0=N(N_J-N)&=RR^{\mathsf T}\Omega.                 \qquad(52)
+\end{aligned}
+```
+
+The original D pair differences are independent: a relation among
+them would be a relation among disjoint pairs of actual independent
+D axes. Hence R has full column rank. Its transpose is surjective,
+so $`RR^{\mathsf T}`$ has the same rank as R. Equation (52) forces
+R empty: there are no mismatched D pairs. Equations (51)--(52) then
+give
+
+```math
+LL^{\mathsf T}=AA^{\mathsf T},\qquad
+\mathrm{span}(L)=\mathrm{span}(A).                \qquad(53)
+```
+
+The span equality again uses independence of each actual singleton
+list. Every D axis commutes with L, hence with every B negative
+singleton. Its image under J does too, since J negates those
+singletons. Conjugating that image by E_- therefore does nothing:
+W and J agree literally, including signs, on every D axis. For
+several negative singletons, (53) is a span statement, not a license
+to identify or freely replace their individual native axes.
+
+If B has just one negative singleton $`T_n^\epsilon`$, (53) instead
+forces precisely one negative D singleton $`T_{\sigma n}^{\delta}`$,
+where sigma is plus or minus one. Exact restoration of J forces
+$`\sigma\delta=-\epsilon`$; the other possibility would conjugate
+J by an S rotation about n, although J negates n. Every remaining
+axis in both actual lists commutes with n. The two gates therefore
+cancel through the whole middle word by the literal identity
+
+```math
+T_{\sigma n}^{\delta}T_n^\epsilon
+ =\omega^{\delta(1-\sigma)/2}I,
+\qquad \sigma\delta=-\epsilon.                   \qquad(54)
+```
+
+This deletes two actual T gates. It retains the displayed scalar,
+all physical columns, the initialized clean block, arbitrary dirty
+inputs and references, and the actual reversed inverse. Native
+independence survives deletion. There is no extra helper or error;
+retaining or implementing the scalar uses at most a constant-size
+Clifford correction. No native band disappears unless its remaining
+list is empty.
+
+With the fixed endpoints (28), one original B pair of difference r,
+and the retained physical-center premise, this reduction is stronger.
+For any actual D axis d, put $`t_i=\langle d,a_i\rangle`$, with
+$`a_3=Z_w`$. Preserved $`r=a_1+a_2`$ gives $`t_1=t_2`$. If d lies
+in a genuine restored J-pair, its two actual axes commute within D,
+so
+
+```math
+0=\langle d,N_Jd\rangle=t_1+t_2+t_3,
+\qquad N_Jd=t_1a_1+t_2a_2+t_3Z_w.               \qquad(55)
+```
+
+Thus $`t_3=0`$ and its nonzero pair difference can only be r.
+Independent genuine-pair differences give at most one D pair. If
+there were none, every D axis would be binary-fixed by J. Independence
+of the three active endpoint axes would then force every D axis to
+commute with all three, making the coupling matrix M of Section 5
+zero. That radical certificate retains arbitrary negative B singletons
+and excludes the proper pair $`r=a_1+a_2\ne a_1+a_2+Z_w`$.
+Consequently there is exactly one D pair of difference r, and Section
+14 applies for every size of the actual negative B list. The concrete
+$`n=Z_w`$ trial also pays for the literal removal in (54).
+
+Common-J restoration alone does not establish these pair hypotheses;
+the last argument additionally uses the fixed endpoints and preserved
+physical center. Under all of them, adding negative singletons or
+trying a second D pair cannot leave the cubic class. The next bounded
+question must instead carry a genuinely changed endpoint probe through
+its actual repair, or address the first unsupported matching inference
+in (2). None of these conditional reductions supplies an unrestricted
+four-layer depth theorem or changes the complete approximate source's
+resource, error and return recurrence.
