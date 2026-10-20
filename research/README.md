@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+[current research outcome](depth/BANK_MOTION_CONTINUATION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -45,9 +45,11 @@ Its explicit constants are extremely conservative; it is a source-class
 obstruction, not a dimension-growing unrestricted depth bound.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
-[current continuation](depth/PARALLEL_ACCESS_REVISION_RESULT.md) records
-the paid parallel-access schedule, scoped echo-round limit, multioutput
-proof repair and larger-support physical-pair sector cost.
+[current continuation](depth/BANK_MOTION_CONTINUATION_RESULT.md) records
+two paid bank-moving constructions, their retained depth costs, a scoped
+whole-word Majorana bound and sharper original-list pair recognition.
+The [parallel-access revision](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+retains its batch schedule, echo-round limit and multioutput proof repair.
 
 The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
 are robust for their specified architectures and exclude one physical
@@ -100,6 +102,27 @@ This resolves access scheduling and retains the unpaid selective
 composition; it is not an unrestricted native-depth theorem. The full
 batch/actual-adjoint echo resource, error and return recurrence is paid.
 
+The [complete bank-difference merge](depth/COMPLETE_BANK_DIFFERENCE.md)
+now pays nonlinear composition and arbitrary-signal return. Its balanced
+equality-bank recurrence has linear exponential count/width and an
+$`O(b^2)`$ depth schedule. The [fermionic Walsh construction](depth/BANK_MOTION_WALSH_INDICATOR.md)
+instead implements the whole indicator with $`T\le4b2^b`$,
+$`D_T\le4b`$, $`G=O(b4^b)`$ and no extra work. Both retain
+slower depth than the existing logarithmic source.
+The [whole-word Majorana theorem](depth/WHOLE_WORD_MAJORANA_LIMITS.md)
+survives fusion when every actual Clifford boundary preserves x and,
+sectorwise, the standard Majorana span of all bank/helper wires.
+For $`b\ge2`$, zero clean work and full phase-indicator error
+$`\epsilon\lt1`$, it gives
+$`2^d\ge2^b(1-\epsilon^2/2)^2`$, hence $`d\ge b-1`$ and
+$`d\ge b`$ below $`\sqrt{2-\sqrt2}`$. This is a native-depth
+bound only within that grammar. An XOR indicator's actual
+output-Hadamard-conjugated word must satisfy it at both endpoints too.
+The next shallow-source mechanism must
+leave it through non-Majorana Clifford interference, address motion or
+another complete interface; bank motion alone is now paid and does not
+improve the frontier.
+
 The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
 retains the original physical middle pairs and reduces their noncentral
 support at fixed pair count. Its new Section 8 proves degree closure
@@ -137,6 +160,15 @@ bands with middle singletons, or four in the pair-only witness, leaving
 finite-insertion Boolean stability unpaid. General original pairs and
 higher layers remain open; the representation obstruction supplies no
 Boolean counterfamily or unrestricted depth bound.
+The [all-active original-pair theorem](depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+gives sign/XOR degree 2428/2427, with higher-degree floor
+$`2^{-530690}`$, for a one-clean three-band word with one genuine
+pair whose difference is the sum of all actual active axes at each
+endpoint, when either endpoint's silent list
+commutes with the original middle. It supplies explicit recognition and
+a sharper bound inside the class already covered qualitatively after
+reversal with t=0. The case with both silent lists coupled to the pair
+remains the focused next question; no general original-pair closure follows.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 
@@ -694,9 +726,11 @@ Pauli-nullity and occupied-center notes distinguish architecture limits,
 unrestricted count constraints and the still-open physical-pair degree
 question. Its earlier two-band resumption prompt is superseded by the
 [fixed-clean two-band source gap](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md).
-Native synthesis of a complete block with at least three source bands
-is the current candidate, with its generic recovery/return recurrence
-and simultaneous resource bounds still required.
+Native synthesis of a complete block with additional source bands
+remains an alternative, with its generic recovery/return recurrence
+and simultaneous resource bounds still required. The current
+bank-motion checkpoint asks for a qualifying shallow source beyond the
+whole-word Majorana grammar, not a band count alone.
 
 The [native-sharing continuation](depth/NATIVE_SHARING_SESSION_RESULT.md)
 adds the unrestricted active-T incidence condition and its separately
