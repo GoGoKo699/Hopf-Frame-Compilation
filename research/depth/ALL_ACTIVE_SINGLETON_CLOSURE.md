@@ -4,6 +4,15 @@
 [Occupied computational center](OCCUPIED_BOOLEAN_PAIR_CENTER.md#4-computational-center-and-a-finite-feature-description) ·
 [Partial-diagonal native features](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
 
+The current [structural diagonal reduction](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
+sharpens this same all-active source class to sign/XOR degree six/five
+uniformly, and five/four when the common active rank is at least four.
+It uses Sections 2--5 below and replaces the large feature bound in
+Sections 1 and 6. Those historical bounds and their proof are retained;
+the generic partial-diagonal theorem is unchanged. See the
+[revision checkpoint](STRUCTURAL_PAIR_REVISION_RESULT.md) for the current
+frontier and remaining general-pair question.
+
 The actual scalar branch of one original physical pair supplies native
 matching on one common stabilizer code. The other branch then forces a
 single dressed Clifford to have only one computational X mask. This
@@ -37,7 +46,8 @@ B,D and its difference label $`r=b+d`$ is the sum of **all actual
 clean-active axes at each endpoint**. Original singleton lists and
 both silent lists are unrestricted.
 
-Then
+The historical feature-theorem conclusion, now superseded by the
+[structural six/five bound](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md), is
 
 ```math
 \begin{aligned}
@@ -49,9 +59,9 @@ Then
 
 This constant is $`D_1+36`$, using the retained
 [partial-diagonal constant](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#1-statement-and-explicit-constants)
-$`D_1=37748829`$. The sharper six/five bound remains available when
-the common active rank is two; the existing 2428/2427 one-sided bound
-also remains sharper in its subclass. No bound on the actual
+$`D_1=37748829`$. At this historical feature step, the six/five bound
+for common active rank two and the 2428/2427 one-sided bound were sharper
+in their respective subclasses. No bound on the actual
 singleton-to-silent coupling rank h is asserted or needed.
 
 The proof keeps all original phase gates and their literal inverses.
@@ -405,6 +415,12 @@ bounds the dressed action itself, without bounding the number, rank
 or span of coupled singleton or silent axes.
 
 ## 6. One shared matrix ledger completes the degree bound
+
+This retained feature step is superseded for the present source class by
+the [full-space diagonal reduction](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md).
+Its one-mask input from Section 5 remains part of the current proof;
+the generic matrix-feature theorem and the calculation below are
+preserved as component results.
 
 The complete logical factorization remains
 

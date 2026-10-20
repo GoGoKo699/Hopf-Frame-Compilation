@@ -6,26 +6,31 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: weaker coherent sources and all-active one-pair closure
+## Current checkpoint: structural revision of the all-active one-pair bound
 
 **Fetched continuation baseline:**
-`e6a1223c46dd3186ce3be2ab194ff0a70a6c6414`, tree
-`67978e842513a1dfdd8c93d5ef13bcd7cee53c33`, on 20 October 2026,
-after the character-source revision merged as PR #207.
-Read the [current outcome](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md),
+`a513c534a81d9c257b5cfa4efc1da83db4affc5b`, tree
+`9f1f6a23e72c8c64cfff3cf1b1a04c322a8f25c1`, on 20 October 2026,
+after the coherent-source and one-pair continuation merged as PR #208.
+Read the [current outcome](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md),
+the [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md),
+the [positive-singleton recognition theorem](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md),
 the [four-call weak source](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md),
-the [uniform all-active one-pair theorem](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md),
+the [retained all-active matching proof](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-Direct output aliasing halves the source occurrences and lets the completed
-character cancel arbitrary quantum helper fibers. The first unpaid upper
-operation is a sublogarithmic native source or whole extraction. The lower
-scout closes arbitrary singleton coupling for the all-active genuine
-one-pair class; general pair differences are next. R96, selected R79 and
-the unrestricted depth frontier remain unchanged. The
-[previous checkpoint](research/depth/CHARACTER_SOURCE_REVISION_RESULT.md)
-retains the eight-call construction, clean-cover audit and h-dependent
-center component. Fetch current main before resuming; this baseline is
-not a pin.
+The huge feature constant is replaced by sign/XOR degree **6/5 uniformly**,
+and **5/4 at common active rank at least four**. Actual native independence
+lets both endpoint dressings peel as diagonal phases; a fixed full-space
+change of basis then removes the matrix core. A Boolean commutation
+identity further forces all-active support for one genuine original pair
+with no negative singletons. This sharpens the specified physical class,
+not unrestricted depth. The first unpaid upper
+operation remains a sublogarithmic native weak source or whole extraction.
+The lower scout continues with negative-singleton original pairs. R96,
+selected R79 and the unrestricted resource frontier remain unchanged.
+The [previous checkpoint](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+retains the four-call quantum-fiber source and the original matching
+proof. Fetch current main before resuming; this baseline is not a pin.
 
 <a id="current-depth-frontier"></a>
 
@@ -49,10 +54,11 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
 | Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
-| Sharper recognition in a retained pair class | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for a one-clean three-band word with one genuine pair whose difference is the sum of all active axes at each endpoint, when either endpoint's silent list commutes with the original middle. This explicitly recognizes and sharpens a reversed t=0 class; it is not a qualitative scope expansion |
+| Retained recognition component | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) retains its physical-center construction when either endpoint's silent list commutes with the original middle. Its historical sign/XOR bound 2428/2427 is superseded by the structural six/five theorem below |
 | Retained pair-only center component | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) permits both coupled silent lists with no middle singletons. Its original bound is superseded by the uniform all-active closure below; its physical-center construction remains useful |
 | Retained singleton-coupling component | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
-| Uniform all-active genuine one-pair closure | [Scalar-branch native matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md) gives sign/XOR degree at most 37,748,865/37,748,864 with arbitrary original singletons, both silent lists, active ranks and dirty width. The pair difference must sum every actual active axis at both endpoints. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
+| Uniform all-active genuine one-pair closure | [Fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most **6/5 uniformly**, and **5/4 at active rank at least four**, with arbitrary original singletons, both silent lists and dirty width. The pair difference must sum every actual active axis at both endpoints. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
+| Positive-singleton original-pair recognition | [Boolean commutation identity](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md): with exactly one genuine original pair and no negative singletons after literal orientation repair, complete Booleanity forces all-active support at both actual endpoints. The same six/five and high-rank five/four bounds apply without assuming that support. Negative singletons remain the focused one-pair question |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -306,35 +312,56 @@ the required native/Boolean contract automatically. General original pairs
 and unrestricted depth remain open.
 
 The [all-active original-pair theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
-retains its sharper sign/XOR bounds 2428/2427 when either endpoint's
-silent list commutes with the whole original middle. The
+retains its physical-center proof when either endpoint's silent list
+commutes with the whole original middle; its historical sign/XOR bound
+2428/2427 is superseded by the structural theorem below. The
 [pair-only center proof](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) and
 [h-dependent singleton extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
 retain useful transported-center components. Their old question of
 unbounded singleton coupling is now closed within this all-active class.
 
-The [uniform all-active singleton closure](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
+The [structural all-active one-pair revision](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
 allows arbitrary original positive singletons, both coupled silent lists,
 unbounded endpoint active ranks and arbitrary dirty width. For exactly
 one genuine pair whose difference is the sum of every actual active
 axis at both endpoints, it gives sign/XOR degree at most
-**37,748,865 / 37,748,864**, without any bound on the singleton-to-silent
-coupling rank h. The actual scalar parity branch supplies native matching
-modulo that one parity. On the other branch, the nonaffine central
-quadratic sign forces the actual dressed Clifford to have one
-computational X mask. A shared matrix-feature ledger then pays the
-complete Boolean degree. No free replacement native band, sector-specific
-frame or unused-clean-block extension is assumed.
+**6/5 uniformly**, improving to **5/4 when the common active rank is at
+least four**, without any bound on the singleton-to-silent coupling rank h.
+The retained scalar-branch argument gives an actual dressed Clifford
+with one computational X mask. The complete target transports that same
+mask to the other endpoint. Actual native independence makes every
+rotation dressing this Pauli computationally diagonal, so both endpoint
+subbands peel as literal diagonal C3 factors. A fixed Pauli alignment and
+Hadamard leave the entire diagonal target unchanged and make the residual
+actual three-band word fully diagonal. The sharp zero-clean degree-five
+theorem then applies. No second Pauli-sector restriction, free replacement
+native band or unused-clean-block extension is assumed. The old generic
+matrix-feature bound is retained only as a historical certificate.
 
 The proof preserves literal phases, the physical clean code, arbitrary
 dirty/reference inputs and the unrestricted unused clean block. The
 retained original-circuit rounding theorem gives the higher-degree
 floor $`2^{-530690}`$ when the resulting actual original lists meet
-this class's hypotheses. Rank-two six/five and one-sided 2428/2427 remain
-sharper in their subclasses. The next focused lower question is a
-**general original pair difference**, which need not include every
-endpoint-active axis and need not supply this common span or quadratic
-rank. General fixed pair count, unrestricted one-clean three-layer
+this class's hypotheses. Rank two supplies the retained six/five row.
+The [positive-singleton recognition theorem](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+now derives all-active support from complete Booleanity when exactly one
+genuine original pair has no negative singletons after literal repair.
+Proper support would supply a Pauli commuting with both endpoint bands
+and every singleton, but anticommuting with the paired axis. Its transport
+equals the output Pauli on the scalar parity branch and anticommutes with
+it on the other branch. A Boolean diagonal derivative with the same X
+mask has one global commutation sign, contradicting those two nonempty
+branches. The small degree bounds therefore cover this class without a
+support premise; a second matrix core is unnecessary.
+
+The next focused lower question is a **negative-singleton original pair**.
+Its endpoint clean images need not agree, so the common-span inference
+and the required Pauli commuting both endpoint bands remain unpaid.
+First distinguish actual endpoint-axis singletons, whose neighboring
+phase factors may combine literally, from product axes whose removal
+could introduce dependent native lists. Do not infer a free native band
+or full-space Pauli symmetry from a sector comparison. General fixed
+pair count, unrestricted one-clean three-layer
 degree and dimension-growing depth remain open.
 
 ### Stopped routes, reopening conditions and superseded instructions
@@ -353,16 +380,22 @@ degree and dimension-growing depth remain open.
 | Bank motion within the whole-word Majorana grammar | [Complete constructions](research/depth/BANK_MOTION_WALSH_INDICATOR.md) pay routing and return, but the [native whole-word bound](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) survives fusion while every actual Clifford boundary is address-read-only and Majorana-preserving on all bank/helpers. Reopen outside that grammar, not merely by moving the bank |
 | Independently synthesized finer detuning | [Stopped at sublogarithmic depth](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md) when the complete tensor layer is separately certified, without synthesis helpers or cross-coordinate non-Clifford operations. Joint whole-word synthesis and later error cancellation are outside |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
-| PR #207 bounded singleton-coupling question in the all-active one-pair class | Superseded by [uniform scalar-branch matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md). No bound on h is needed or inferred. Continue with general original pair differences |
+| PR #207 bounded singleton-coupling question in the all-active one-pair class | Superseded by [uniform scalar-branch matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md). No bound on h is needed or inferred. Continue with negative-singleton original pairs |
+| PR #208 generic one-core feature estimate | Superseded in the all-active one-pair class by [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md), giving sign/XOR bounds six/five uniformly and five/four at active rank at least four. Retain scalar-branch matching; remove the matrix core before counting its features |
+| Proper-support one-pair extension with only positive singletons | Closed by [Boolean original-list recognition](research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md): complete Booleanity forces all-active support. A two-core alphabet and a new sector encoder are unnecessary. The negative-singleton case remains open |
 | Fourier trace character treated as a returned scalar source | [Explicit scalarization](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source) pays the block but retains exponential mask/clean-label or amplification cost. Reopen through a different coherent scalarization or whole extraction, not trace access alone |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
-records the four-call weak quantum-fiber source, its complete recurrence
-and retained depth cost, the scoped Fourier scalarization limit, and the
-uniform all-active one-pair theorem with arbitrary singleton coupling.
+The [latest continuation](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+records the structural replacement of the large all-active degree constant,
+the positive-singleton recognition theorem, the unchanged complete source
+recurrence, and the next negative-singleton question. The
+[previous checkpoint](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+retains the four-call weak quantum-fiber source, its complete recurrence
+and depth cost, the scoped Fourier scalarization limit, and the original
+all-active scalar-branch matching proof.
 The previous bank-moving words and scoped bounds remain retained. The [parallel-access revision](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 retains its paid batch, scoped echo-round theorem and sector repair.
 Earlier prompts to search general
@@ -395,7 +428,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the
