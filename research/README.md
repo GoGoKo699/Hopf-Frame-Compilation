@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
+[current research outcome](depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -69,6 +69,26 @@ also controls the global scalar channel: bounded-degree matrix entries
 cannot hide growing-degree addressed signs even in the unsquared Gauss
 phase. Whole-word non-Gaussian readout and native parallel clean promotion
 remain constructive questions.
+The [parallel-promotion continuation](depth/PARALLEL_CLEAN_PROMOTION.md)
+pays private source scheduling and complete packing/echo recurrences.
+A refined monomial packing retains constant source accuracy for exactly
+invariant sectors. Exact native packing is now paid when
+$`2^k(k+1)^2=o(\log(p+2))`$, enlarging the sufficient source window:
+$`k\sim\beta\log\log p`$ and source depth $`O((\log p)^\gamma)`$
+need only $`\beta\lt1`$ and $`\gamma\lt1`$ separately. A qualifying
+source remains missing. A separate two-clean spectral filter has a
+closed precision ledger conditional on an unproved whole-space gap;
+[structured-frame limits](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
+retain their common-Pauli-space, support-cone and explicit graph premises.
+The [odd-key counter source](depth/COHERENT_COUNTER_SOURCE.md) eliminates
+precise gradient preparation through one clean bit and arbitrary dirty
+lower bits. Its flat compression is exact, but shallow joint arithmetic
+and the full-bank schedule remain unpaid. Its logarithmic clean count
+also lies outside the paid generic packing window. The
+[crossed-kernel audit](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) gives a full
+collision identity and exact dirty-sector gaps for the stated candidate
+families. Its paid shallow word fails complete readout; none of these
+representation restrictions bounds unrestricted native depth.
 The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
 now excludes every two-band complete indicator block at uniformly bounded
 clean count, for sufficiently small fixed relative error and sufficiently
@@ -120,6 +140,15 @@ extends signed repairs and sole-unmatched-axis removals, and supplies a
 non-Clifford-intermediate counterexample that retains the old two-band
 cost. Multiple unmatched factors and broader endpoint geometries remain
 outside the closure; no unrestricted four-layer bound follows.
+The [paid paired resynthesis](depth/FOUR_BAND_CENTER_TRANSPORT.md#f-a-paid-two-band-resynthesis-of-the-fully-matched-mechanism)
+reduces the fully matched all-active support-two mechanism to two actual
+bands with phase and return retained. The
+[higher-support scout](depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md) leaves
+that local reduction, but its center-moving trial fails the necessary
+Pauli-domain test for Booleanity even under spectator-mixing Cliffords.
+The same five-wire fixed middle also fails every one-band output
+endpoint refactorization; new middle dynamics or quantum spectator
+couplings remain outside. This is not a general four-band theorem.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported

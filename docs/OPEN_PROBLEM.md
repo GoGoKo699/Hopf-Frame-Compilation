@@ -95,7 +95,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force degree at most two for every component of an arbitrary word-valued XOR query at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The [word extension](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive) uses native outer-shear additivity and keeps all outputs arbitrary. It gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+[current revision](../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -259,6 +259,41 @@ cube, its unsquared Boolean Gauss sign has degree at most 9D. Paying the
 in-place correction cannot rescue that bounded-degree source. Non-involutory
 forms and different whole-word completions retain their separate unpaid
 operations; the general frontier is unchanged.
+
+The [native parallel-promotion revision](../research/depth/PARALLEL_CLEAN_PROMOTION.md)
+now pays its refined packing through exact single-target permutation
+synthesis and dirty-indicator parity echoes. It has a sufficient window
+$`2^k(k+1)^2=o(\log(p+2))`$, with subpolynomial address overhead.
+For $`k\sim\beta\log\log p`$ and source depth
+$`O((\log p)^\gamma)`$, the conditions are separately
+$`\beta\lt1`$ and $`\gamma\lt1`$, rather than their sum being
+less than one. Exactly sector-preserving sources retain complete error
+twice source error, independent of the number of copies. General
+leakage retains its separate shrinking accuracy requirement. The
+fully substituted compression/recovery/promotion/fusion ledger is paid;
+a qualifying shallow source remains absent. At k of order log p,
+this generic packing is too costly.
+
+A separate two-clean spectral filter has a complete precision ledger,
+but still needs a constant whole-space gap. The
+[frame limits](../research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
+exclude common-Lagrangian frames, sufficiently small physical support
+cones, and stated graph/trace-pencil families. Those ordinary block
+and representation restrictions do not lower-bound unrestricted T-depth.
+The [odd-key counter identity](../research/depth/COHERENT_COUNTER_SOURCE.md)
+needs no precision gradient: one clean bit selects all odd Fourier keys
+with arbitrary dirty lower bits, and every key gives the same returned
+zero test. A literal flat source follows with logarithmically many
+clean counter wires. Joint modular arithmetic and the full-bank native
+schedule remain unpaid at the required depth; that clean count also
+exceeds the current generic packing window. These components do not
+yet compose to improve the unrestricted frontier.
+The [crossed-kernel continuation](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md)
+gives an exact full collision criterion and a paid shallow trial, but
+its observable fails on arbitrary dirty sectors. The separate diagonal,
+plain-XOR and unbalanced-translation obstructions retain their stated
+middle-action and outer-kernel hypotheses. Other whole-word dynamics
+remain outside; the complete unrestricted frontier is unchanged.
 
 The [coherent-correction interface](../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 permits the same arbitrary private fibers. Its principal action is
@@ -482,6 +517,20 @@ repartition proves that the initial intermediate can nevertheless be
 non-Clifford; its existing two-band realization remains. Multiple unmatched
 factors are not closed, and a center-moving trial must change the stated
 endpoint or diagonal-logical-center hypotheses.
+
+The center proof now gives a paid error-two-epsilon derivative for
+an error-epsilon source and an actual two-band resynthesis of the
+fully matched all-active support-two mechanism. The latter preserves
+literal phase, unused-block action and return, so it retains the old
+cost. The [higher-support continuation](../research/depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md)
+proves the local resynthesis boundary and rejects a five-wire
+center-moving clean-return trial through its Pauli-preserving domain.
+It cannot be made diagonal by endpoint Cliffords, even with spectators.
+For the unchanged middle on these same five wires, every one-band
+output endpoint refactorization is also excluded. Different middle
+dynamics and new native quantum spectator couplings remain open.
+Neither a directional derivative nor this fixed trial gives a total
+degree theorem for unrestricted four-band sources.
 
 The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean
