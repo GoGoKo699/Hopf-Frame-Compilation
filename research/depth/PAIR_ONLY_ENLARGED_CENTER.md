@@ -405,3 +405,9 @@ Finding a sufficiently large actual shared center or a different native
 matching mechanism in that case remains the next question. General
 original pairs and unrestricted depth remain open, and the general
 frame resource frontier is unchanged.
+
+The [positive-singleton extension](ORIGINAL_PAIR_SINGLETON_COUPLING.md)
+retains all original positive middle axes at bounded actual singleton-to-silent
+coupling rank h. Its enlarged transported center has quotient dimension
+at most $`2h+4`$ and recovers this theorem's constant when h is zero.
+Unrestricted h and general pair differences remain open.

@@ -757,3 +757,10 @@ actual twelve-Clifford inverse verify the asymmetric positive-S
 accounting used in Section 6. The already checked sector-cover identity
 then removes the fixed source phase; no extra phase correction is
 inserted into this receipt.
+
+The [native sector-parallelism audit](CLEAN_SECTOR_PARALLELISM_AUDIT.md)
+separates completed-sector commutativity from an actual parallel schedule.
+A clean register fixed at every native Clifford boundary can already be
+removed directly. A universal zero-clean black-box wrapper needs at least
+one source occurrence per clean sector; that count is not a native-depth
+lower bound.
