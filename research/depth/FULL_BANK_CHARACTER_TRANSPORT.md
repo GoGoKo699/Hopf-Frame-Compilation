@@ -5,6 +5,13 @@
 [Balanced HRT permutation](BALANCED_ALGEBRA_PERMUTATION.md) ·
 [Polynomial-overhead fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 
+The [current direct output readout](OUTPUT_ALIASED_CHARACTER_SOURCE.md)
+identifies the character coordinates with the output bank and uses four
+source calls, with full error at most four times source error. It also
+permits arbitrary quantum private-helper fibers, which cancel inside the
+completed character. The eight-call disjoint-carrier construction below
+is retained with its original proof and fixture.
+
 The earlier algebra query was compared with the square-root count and
 width budget for one arbitrary table. The complete-indicator relaxation
 changes that comparison. One shared coefficient carrier now supplies

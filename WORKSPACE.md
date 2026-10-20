@@ -6,26 +6,26 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: a joint algebra source and bounded singleton coupling
+## Current checkpoint: weaker coherent sources and all-active one-pair closure
 
 **Fetched continuation baseline:**
-`9282645cdfa33d37a09a29809306c23498d01b0e`, tree
-`af1734f9660d08081ae8a345f6a4a7b746ba40ea`, on 20 October 2026,
-after the bank-motion revision merged as PR #206.
-Read the [current outcome](research/depth/CHARACTER_SOURCE_REVISION_RESULT.md),
-the [joint HRT bank extraction](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md),
-the [clean-sector audit](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md),
-the [singleton-coupling theorem](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md),
+`e6a1223c46dd3186ce3be2ab194ff0a70a6c6414`, tree
+`67978e842513a1dfdd8c93d5ef13bcd7cee53c33`, on 20 October 2026,
+after the character-source revision merged as PR #207.
+Read the [current outcome](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md),
+the [four-call weak source](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md),
+the [uniform all-active one-pair theorem](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-The old algebra source now fits the complete-bank count and width budgets
-using one shared arbitrary carrier. Its known depth remains logarithmic;
-the next operation is a faster full-input HRT source or completed extraction
-word. The physical-pair scout now permits positive middle singletons at
-bounded actual coupling rank, without bounding that rank from pair count.
-R96, selected R79 and unrestricted depth remain unchanged. The
-[previous checkpoint](research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
-retains the bank-moving constructions and scoped Majorana theorem.
-Fetch current main before resuming; this starting commit is not a pin.
+Direct output aliasing halves the source occurrences and lets the completed
+character cancel arbitrary quantum helper fibers. The first unpaid upper
+operation is a sublogarithmic native source or whole extraction. The lower
+scout closes arbitrary singleton coupling for the all-active genuine
+one-pair class; general pair differences are next. R96, selected R79 and
+the unrestricted depth frontier remain unchanged. The
+[previous checkpoint](research/depth/CHARACTER_SOURCE_REVISION_RESULT.md)
+retains the eight-call construction, clean-cover audit and h-dependent
+center component. Fetch current main before resuming; this baseline is
+not a pin.
 
 <a id="current-depth-frontier"></a>
 
@@ -44,14 +44,15 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Unrestricted indicator count | [Pauli nullity](research/depth/INDICATOR_PAULI_NULLITY.md): for $`p\ge2`$, a zero-clean full-operator implementation with error below $`1/\sqrt2`$ needs at least $`2^p-1`$ T gates, with arbitrary dirty width and intermediate mixing. This is not a depth bound |
 | New paid batch and its scoped limit | [Parallel affine detuning](research/depth/PARALLEL_AFFINE_DETUNING.md) implements polynomially many presentations in four T layers with polynomial count/dirty-width overhead. A single batch has error at least $`1/4`$; a Pauli echo with read-only address/bank and actual Clifford interlayers needs $`h\ge\lceil b/2\rceil`$ rounds for $`b\ge2`$ at error below $`\sqrt2`$. Rounds are not unrestricted native depth |
 | Paid bank motion and its scoped limit | [Complete bank difference](research/depth/COMPLETE_BANK_DIFFERENCE.md) gives a full nonlinear merge; its balanced indicator schedule has linear count/width and $`O(b^2)`$ depth. [Fermionic Walsh routing](research/depth/BANK_MOTION_WALSH_INDICATOR.md) gives a complete no-helper indicator with $`T\le4b2^b`$ and $`D_T\le4b`$. The [whole-word theorem](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) retains linear native depth under its actual Majorana-preserving, read-only-address Clifford-boundary grammar, including arbitrary dirty helpers |
-| Joint algebra-bank reopening | [One shared HRT carrier](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md) supplies the complete bank through eight source calls and a Clifford zeta shear, with error at most eight times source error. The retained source fits polynomial count/width overhead but has logarithmic depth. A sublogarithmic full-input source or complete extraction remains unpaid |
+| Direct output-alias source | [Four-call complete readout](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) uses the actual output wires as character coordinates and permits arbitrary quantum private-helper fibers. Complete error is at most $`4\eta`$; fusion uses 32 calls. A sublogarithmic weak source or whole extraction remains unpaid; the known source retains logarithmic depth |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
 | Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
 | Sharper recognition in a retained pair class | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for a one-clean three-band word with one genuine pair whose difference is the sum of all active axes at each endpoint, when either endpoint's silent list commutes with the original middle. This explicitly recognizes and sharpens a reversed t=0 class; it is not a qualitative scope expansion |
-| Pair-only closure with both silent lists coupled | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) closes the all-active genuine one-pair class with no middle singletons and arbitrary endpoint silent lists. It gives sign bound $`D_*=576\cdot2^{62}+2252`$, XOR bound $`D_*-1`$ and higher-degree floor $`2^{-530690}`$. It removes the one-sided silent-commutation premise in this singleton-free class; 2428/2427 remains sharper in the one-sided class. Unrestricted middle-singleton coupling and general original pairs remain open |
-| Original middle singletons at bounded coupling | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives sign degree at most $`D_{2h+4}+4A_{2h+4}`$, XOR one less, for the all-active one-pair class with positive singleton-to-silent coupling rank h. The two endpoint ranks are equal; an enlarged transported center has residual dimension at most $`2h+4`$. No bound on h from pair count is asserted |
+| Retained pair-only center component | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) permits both coupled silent lists with no middle singletons. Its original bound is superseded by the uniform all-active closure below; its physical-center construction remains useful |
+| Retained singleton-coupling component | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
+| Uniform all-active genuine one-pair closure | [Scalar-branch native matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md) gives sign/XOR degree at most 37,748,865/37,748,864 with arbitrary original singletons, both silent lists, active ranks and dirty width. The pair difference must sum every actual active axis at both endpoints. The retained higher-degree floor is $`2^{-530690}`$ under these original-list hypotheses. General pair differences and unrestricted depth remain open |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -175,39 +176,63 @@ interference, address motion or another complete interface. Bank motion
 or whole-word fusion alone does not do so. The first unpaid operation
 remains a complete sublogarithmic source under the stated budgets.
 
-The [joint HRT bank extraction](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md)
-now reopens a concrete nonlinear source outside the Majorana grammar.
-One shared $`2^{b+1}-1`$-bit arbitrary coefficient carrier serves all
-$`2^b`$ output bits through eight source/actual-inverse calls and a
-paid Clifford zeta shear. Its complete recurrence is
-$`T_E\le8T_F`$, $`d_E\le8d_F`$,
-$`G_E\le8G_F+2b2^b+4b+4\cdot2^b+10`$,
-$`w_E\le2^{b+1}-1+w_F`$, and $`\epsilon_E\le8\eta`$.
-The retained fast HRT source meets the relaxed polynomial count/width
-budgets but has logarithmic depth. The next concrete operation is a
-sublogarithmic full-input HRT source, or a qualifying synthesis of the
-whole extraction word. Its quadratic inverse and third-level membership
-do not supply a native implementation. The retained inverse-degree
-argument limits completed classical bounded-degree stages, not arbitrary
-native interference. Root fusion uses 64 F/actual-inverse occurrences,
-with error at most $`64\eta`$; request $`\eta=\tau/64`$.
+The [direct output-alias revision](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md)
+now reduces the shared HRT extraction to four source/actual-adjoint
+occurrences. After a subset-zeta transform on the arbitrary output Y,
+its nonconstant wires are the character's carrier coordinates. Only
+$`m=2^b`$ additional carrier wires are needed. A sufficient source is
+$`V_0=\sum_c|f(c)\rangle\langle c|\otimes S_c`$, with arbitrary
+input-dependent **quantum unitary** action on private dirty helpers.
+The completed character cancels this action; source helpers need not
+return between calls. With full-operator source error eta, the complete
+zero-clean recurrence is
+$`T_I\le4T_V`$, $`D_T(I)\le4d_V`$,
+$`G_I\le4G_V+bm+2b+2m+6`$,
+$`h_I\le m+h_V`$, and $`\varepsilon_I\le4\eta`$.
+Every address, output, dirty and reference input is retained, with actual
+adjoints and complete return error. Root fusion uses 32 source calls,
+error $`32\eta`$, and depth
+$`32d_V(b_0+1)+O_\tau(\log\log(p+4))`$; request
+$`\eta=\tau/32`$. Fixed-L frame transfer requests
+$`\eta_L=2^{-L}/(512K_*)`$ under the retained literal allocations.
+The known source still has logarithmic depth. These interface and
+constant improvements do not change the general upper frontier.
 
-The [quadratic-inverse component](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map)
-now supplies the complete arbitrary-output XOR of that inverse in at most
-40 T layers, with polynomial address overhead and exact helper return.
-It leaves the original coefficients and the arbitrary old output present.
-Converting this XOR to an in-place inverse by a swap is unsupported;
-a complete conversion or whole-word interference is the next operation.
+The [coherent-correction interface](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
+permits the same arbitrary private fibers. Its principal action is
+$`R(z,y)=(z,y+f(z)+yf(z))`$. Direct readout gives
+$`T_I\le4T_R`$, $`D_T(I)\le4d_R`$,
+$`G_I\le4G_R+bm+4b+2m+6`$,
+$`h_I\le3m-1+h_R`$, and error at most $`4\eta`$.
+The paid quadratic-inverse XOR converts R to the paired transform
+$`F\otimes F^\dagger`$ and back with at most 80 added T layers,
+$`2T_{Q_k}`$ added T gates and $`2G_{Q_k}+3(2m-1)`$ added
+Cliffords. The paired transform is a sufficient weak source, counting
+its second bank as private work. It is not a standalone returned F.
 
-The [coherent-correction audit](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
-also pays a full change to a Choi basis and the coherent Z correction.
-Its first unpaid operation is the coherent X family
-$`R_z=F_rX^zF_r^\dagger`$, whose fixed-z branches are Clifford but
-whose joint coefficients contain f(z). A paid arbitrary-key echo turns
-a complete R source into the full indicator through eight R/actual-inverse
-calls, with error at most eight times its source error. No clean Bell
-resource or returned teleportation history is assumed. The complete
-native R schedule, or a different fused word, is the next concrete question.
+The [algebra-key group operation](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#6-a-paid-algebra-key-multiplication-does-not-yet-convert-the-key)
+is paid in constant depth with polynomial overhead, but its key a still
+needs the conversion $`a=f(z)`$. A paid phase query for the group
+Fourier kernel does not supply the corresponding single-register
+transform. The [explicit kernel and scalarization audit](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source)
+exposes a trace character with scalar amplitude $`2^{-w}`$, for
+$`w=2^{b+1}-1`$, while its full operator is distance $`1+2^{-w}`$
+from that scalar. The particular Pauli-Z twirl repairs it using $`2w`$
+clean labels. Any K-mask combination at relative error epsilon below one
+needs $`K\ge(1-\epsilon^2)2^{2w}`$. Standard promotion or
+amplification retains exponential cost. This is a limitation of the
+mask-twirl representation, not an unrestricted native-depth bound.
+
+The first unpaid upper operation is consequently a sublogarithmic
+native weak fiber source, paired transform, coherent correction, or
+complete extraction within the polynomial-overhead budgets. The existing
+inverse-degree argument covers completed classical stages, including
+classical helper garbage; it does not cover arbitrary quantum fibers or
+nonmonomial native interference. A new mechanism must pay the actual
+coherent conversion, not infer it from a quadratic XOR, fixed-key
+Clifford membership, or trace access. The historical
+[eight-call extraction](research/depth/FULL_BANK_CHARACTER_TRANSPORT.md)
+remains a valid independent construction.
 
 The [clean-sector parallelism audit](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
 rejects a different apparent shortcut. If every actual Clifford boundary
@@ -280,42 +305,37 @@ Neither an arbitrary basis change nor deletion of an insertion preserves
 the required native/Boolean contract automatically. General original pairs
 and unrestricted depth remain open.
 
-The [all-active pair theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
-now recognizes one matching class directly in the original lists: the
-single pair difference is the sum of every actual active axis at both
-endpoints, and either endpoint's silent list commutes with the whole
-original middle. It gives sign/XOR bounds 2428/2427 and the retained
-higher-degree error floor $`2^{-530690}`$. This class already falls
-under the bounded-coupled-span theorem after reversal with t=0; the gain
-is an explicit recognition and sharper bound.
+The [all-active original-pair theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+retains its sharper sign/XOR bounds 2428/2427 when either endpoint's
+silent list commutes with the whole original middle. The
+[pair-only center proof](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) and
+[h-dependent singleton extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
+retain useful transported-center components. Their old question of
+unbounded singleton coupling is now closed within this all-active class.
 
-The [pair-only extension](research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
-keeps the same all-active genuine one-pair condition, removes all middle
-singletons, and permits arbitrary silent lists at both endpoints,
-including both coupled. Boolean kernel products give either a physical
-shared flip or an enlarged genuinely transported center with a
-four-dimensional residual and actual source X-mask rank at most four
-after shared alignment. It proves sign degree at most
-$`D_*=576\cdot2^{62}+2252`$, XOR degree at most $`D_*-1`$,
-and the same original-circuit floor $`2^{-530690}`$. It removes
-the one-sided silent-commutation premise in the singleton-free case,
-without assuming a bound on the old coupled silent-axis span or
-replacing actual axes by a free native band. The physical clean wire
-is retained through the complete block. The following extension now
-covers bounded singleton coupling; general pair differences and fixed
-pair count remain open.
+The [uniform all-active singleton closure](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
+allows arbitrary original positive singletons, both coupled silent lists,
+unbounded endpoint active ranks and arbitrary dirty width. For exactly
+one genuine pair whose difference is the sum of every actual active
+axis at both endpoints, it gives sign/XOR degree at most
+**37,748,865 / 37,748,864**, without any bound on the singleton-to-silent
+coupling rank h. The actual scalar parity branch supplies native matching
+modulo that one parity. On the other branch, the nonaffine central
+quadratic sign forces the actual dressed Clifford to have one
+computational X mask. A shared matrix-feature ledger then pays the
+complete Boolean degree. No free replacement native band, sector-specific
+frame or unused-clean-block extension is assumed.
 
-The [singleton-coupling extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
-now retains all positive original middle singletons. If h is their actual
-pairing rank against either endpoint silent span, Boolean endpoint
-transport proves that both ranks agree and supplies an enlarged physical
-center with quotient dimension at most $`2h+4`$. The complete sign bound
-is $`D_{2h+4}+4A_{2h+4}`$, XOR one less, with the same original-circuit
-rounding floor. It assumes no bound on the old coupled-silent axis span
-and substitutes no product axis as a free native phase. The sharper
-one-sided and pair-only bounds remain in force. The next lower question
-is the remaining symmetric coupling form when h grows; no bound on h
-from one pair, or general original-pair closure, is inferred.
+The proof preserves literal phases, the physical clean code, arbitrary
+dirty/reference inputs and the unrestricted unused clean block. The
+retained original-circuit rounding theorem gives the higher-degree
+floor $`2^{-530690}`$ when the resulting actual original lists meet
+this class's hypotheses. Rank-two six/five and one-sided 2428/2427 remain
+sharper in their subclasses. The next focused lower question is a
+**general original pair difference**, which need not include every
+endpoint-active axis and need not supply this common span or quadratic
+rank. General fixed pair count, unrestricted one-clean three-layer
+degree and dimension-growing depth remain open.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
@@ -333,13 +353,16 @@ from one pair, or general original-pair closure, is inferred.
 | Bank motion within the whole-word Majorana grammar | [Complete constructions](research/depth/BANK_MOTION_WALSH_INDICATOR.md) pay routing and return, but the [native whole-word bound](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) survives fusion while every actual Clifford boundary is address-read-only and Majorana-preserving on all bank/helpers. Reopen outside that grammar, not merely by moving the bank |
 | Independently synthesized finer detuning | [Stopped at sublogarithmic depth](research/depth/JOINT_DETUNING_PRECISION_LIMITS.md) when the complete tensor layer is separately certified, without synthesis helpers or cross-coordinate non-Clifford operations. Joint whole-word synthesis and later error cancellation are outside |
 | Earlier filter, Gaussian and phase-signal routes | Read [filter limits](research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [approximate Gaussian limit](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), and [signal/frame limits](research/depth/PHASE_SIGNAL_QUERY_LIMITS.md). Their failures retain full-bank error, separate-source cost, or unpaid coherent correction; reopening must explicitly leave or overcome the stated hypotheses |
+| PR #207 bounded singleton-coupling question in the all-active one-pair class | Superseded by [uniform scalar-branch matching](research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md). No bound on h is needed or inferred. Continue with general original pair differences |
+| Fourier trace character treated as a returned scalar source | [Explicit scalarization](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source) pays the block but retains exponential mask/clean-label or amplification cost. Reopen through a different coherent scalarization or whole extraction, not trace access alone |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). Original physical pairs are a different remaining case; do not reopen the closed no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/CHARACTER_SOURCE_REVISION_RESULT.md)
-records the shared algebra-bank source, its complete recurrence and retained
-depth cost, the clean-cover audit and the bounded singleton-coupling theorem.
+The [latest continuation](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+records the four-call weak quantum-fiber source, its complete recurrence
+and retained depth cost, the scoped Fourier scalarization limit, and the
+uniform all-active one-pair theorem with arbitrary singleton coupling.
 The previous bank-moving words and scoped bounds remain retained. The [parallel-access revision](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 retains its paid batch, scoped echo-round theorem and sector repair.
 Earlier prompts to search general
@@ -372,7 +395,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/CHARACTER_SOURCE_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the
