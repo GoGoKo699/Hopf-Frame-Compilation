@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/CENTRAL_PARITY_REVISION_RESULT.md)
+[current research outcome](depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -31,6 +31,18 @@ eight source/inverse calls and an exact logarithmic-remainder tree restore
 the linear-budget target. Its depth is eight source depths plus
 $`O_\tau(\log\log(p+4))`$ and its full error is at most eight times
 the source error. A genuinely sublogarithmic source remains missing.
+The [current observable-source audit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
+specializes the retained selected-routing freedom to the HRT candidate.
+The source need only transport the complete addressed output Pauli;
+two actual calls suffice, with full error delta and no extra fixed
+carrier. The top-output alias also saves one wire and four Cliffords
+in the four-call algebra-source wrapper. These are contract and constant
+improvements. The new shared-key Clifford-fiber theorem excludes any
+number of such overlaps with affine address-Pauli insertion, at error
+below $`\sqrt2`$. The tested opposite-direction quadratic word leaves
+that premise but retains arbitrary dirty-key dependence with error two.
+Canceling this dependence with a genuinely shallow complete word is
+the next constructive question; no unrestricted depth bound follows.
 [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
@@ -156,13 +168,13 @@ another complete interface; bank motion alone is now paid and does not
 improve the frontier.
 
 The [direct HRT output readout](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md)
-identifies $`2^b-1`$ character coordinates with the actual output wires
-after a paid in-place zeta transform. One completed character replaces
+identifies all $`2^b`$ output wires with carrier coordinates, including
+the top probe, after a paid in-place zeta transform. One readout replaces
 the outer echo in the retained
 [disjoint-carrier construction](depth/FULL_BANK_CHARACTER_TRANSPORT.md).
 For $`m=2^b`$, its complete recurrence is
 $`T_E\le4T_V`$, $`d_E\le4d_V`$,
-$`G_E\le4G_V+bm+2b+2m+6`$, $`w_E\le m+w_V`$,
+$`G_E\le4G_V+bm+2b+2m+2`$, $`w_E\le m-1+w_V`$,
 and $`\epsilon_E\le4\eta`$. The ideal source may apply arbitrary
 input-dependent quantum unitaries to its private helpers: the character
 and its actual inverse return them. This is a full-operator source
@@ -353,9 +365,12 @@ high-rank bound dominates it and the Pauli-interior and paired ceilings.
 The sharp quantitative question remains. The corresponding high-rank
 restriction gives constant translation but creates a relation in the
 actual endpoint lists. Native independence no longer licenses diagonal
-axis peeling, while the insertion retains quadratic control. The next
-lower question is to resolve that exact step with its relation and
-literal phase retained, followed by higher-layer degree growth. The
+axis peeling, while the insertion retains quadratic control. The
+[literal relation factorization](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md#7-the-exceptional-relation-recreates-a-quadratic-controlled-pauli)
+now exposes another quadratic-controlled Pauli of polar rank equal to
+the relation support size minus two. Its controls need not be in the
+whole word's shared center; moving it through the middle remains
+unsupported. This diagnosis retains the old mechanism and cost. The
 restriction's failure is a limitation of this proof mechanism; it does
 not obstruct an alternative native representation or establish growing
 unrestricted depth.

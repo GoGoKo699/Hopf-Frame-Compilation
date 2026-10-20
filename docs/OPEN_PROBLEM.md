@@ -95,7 +95,7 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Four-layer zero-clean query closure | [Four read-only T layers](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) force degree at most two for every component of an arbitrary word-valued XOR query at error below $`\sqrt2/12`$, independently of dirty width; literal Boolean scalar phases have degree at most three. The [word extension](../research/depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive) uses native outer-shear additivity and keeps all outputs arbitrary. It gives no one-clean four-layer or unrestricted-address conclusion |
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current revision](../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+[current revision](../research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 question. [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 now permits a uniformly bounded clean bank or a one-signal complete
@@ -185,16 +185,17 @@ budgets; bank motion or whole-word fusion alone does not supply it.
 The [direct output-alias revision](../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md)
 now reduces the shared HRT extraction to four source/actual-adjoint
 occurrences. After a subset-zeta transform on the arbitrary output Y,
-its nonconstant wires are the character's carrier coordinates. Only
-$`m=2^b`$ additional carrier wires are needed. A sufficient source is
+all its wires are carrier coordinates, including the top probe on
+$`Y_\varnothing`$. Only $`m-1`$ additional carrier wires are needed,
+where $`m=2^b`$. A sufficient source is
 $`V_0=\sum_c|f(c)\rangle\langle c|\otimes S_c`$, with arbitrary
 input-dependent **quantum unitary** action on private dirty helpers.
 The completed character cancels this action; source helpers need not
 return between calls. With full-operator source error eta, the complete
 zero-clean recurrence is
 $`T_I\le4T_V`$, $`D_T(I)\le4d_V`$,
-$`G_I\le4G_V+bm+2b+2m+6`$,
-$`h_I\le m+h_V`$, and $`\varepsilon_I\le4\eta`$.
+$`G_I\le4G_V+bm+2b+2m+2`$,
+$`h_I\le m-1+h_V`$, and $`\varepsilon_I\le4\eta`$.
 Every address, output, dirty and reference input is retained, with actual
 adjoints and complete return error. Root fusion uses 32 source calls,
 error $`32\eta`$, and depth
@@ -204,12 +205,26 @@ $`\eta_L=2^{-L}/(512K_*)`$ under the retained literal allocations.
 The known source still has logarithmic depth. These interface and
 constant improvements do not change the general upper frontier.
 
+The [observable specialization](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md)
+applies the retained selected-routing principle directly to the output
+bank: $`J^\dagger Z_{Y_0}J`$ must approximate its complete addressed
+Pauli at error delta. The indicator uses two J calls, no extra fixed
+carrier, Clifford cost at most $`2G_J+2m+2`$ and complete error delta.
+Fusion uses sixteen J calls and error $`8\delta`$. This relaxes the
+prescribed HRT permutation, without creating a faster source by itself.
+The new shared-key theorem excludes arbitrarily long Clifford-fiber
+words with affine address-Pauli insertion at error below $`\sqrt2`$.
+An actual opposite-direction quadratic word leaves that representation,
+but its readout has error two from arbitrary dirty-key dependence.
+Removing that dependence with qualifying native resources is unpaid.
+Neither statement bounds unrestricted depth.
+
 The [coherent-correction interface](../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 permits the same arbitrary private fibers. Its principal action is
 $`R(z,y)=(z,y+f(z)+yf(z))`$. Direct readout gives
 $`T_I\le4T_R`$, $`D_T(I)\le4d_R`$,
-$`G_I\le4G_R+bm+4b+2m+6`$,
-$`h_I\le3m-1+h_R`$, and error at most $`4\eta`$.
+$`G_I\le4G_R+bm+4b+2m+2`$,
+$`h_I\le3m-2+h_R`$, and error at most $`4\eta`$.
 The paid quadratic-inverse XOR converts R to the paired transform
 $`F\otimes F^\dagger`$ and back with at most 80 added T layers,
 $`2T_{Q_k}`$ added T gates and $`2G_{Q_k}+3(2m-1)`$ added
@@ -361,8 +376,10 @@ The remaining estimate is still very crude. At high rank, fixing the
 last translation parity makes the dressed Pauli's X mask constant but
 introduces a relation in the actual endpoint lists. The independent-axis
 peeling argument cannot then be applied, and the insertion still has
-quadratic control. A structural reduction that retains this relation
-and the full phase is the next focused lower question. This identifies
+quadratic control. The [literal relation factorization](../research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md#7-the-exceptional-relation-recreates-a-quadratic-controlled-pauli)
+now retains the phase and exposes another quadratic-controlled Pauli,
+whose controls need not be in the whole word's shared center. Moving
+it through the actual middle remains unsupported. This identifies
 a limitation of that proposed proof step, not a new unrestricted
 obstruction. The original-circuit rounding theorem
 gives the corresponding higher-degree error floor $`2^{-530690}`$,

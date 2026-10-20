@@ -11,10 +11,12 @@ from tests.exact_matrices import CO, CZ, Gate, apply_word
 from tests.test_balanced_algebra_permutation import _hrt_f, _hrt_k
 
 
-def _layout(b):
+def _layout(b, *, alias_top=False):
     m, full = 1 << b, (1 << (b + 1)) - 1
     bank = list(range(b, b + m))
     carrier = {full ^ subset: bank[subset] for subset in range(1, m)}
+    if alias_top:
+        carrier[full] = bank[0]
     extra = b + m
     for subset in range(1, full + 1):
         if subset not in carrier:
@@ -65,6 +67,36 @@ def _reverse(word):
 
 
 class OutputAliasedCharacterTests(unittest.TestCase):
+    def test_top_output_alias_removes_both_extra_z_gates(self):
+        b, r, m = 2, 3, 4
+        bank, carrier, helper = _layout(b, alias_top=True)
+        width = helper + 1
+        self.assertEqual(width, 10)  # b + m outputs + (m-1) carrier + fiber
+        self.assertEqual(len(set(carrier.values()) & set(bank)), m)
+        self.assertEqual(carrier[(1 << r) - 1], bank[0])
+        zeta = [('CX', bank[s ^ (1 << bit)], bank[s])
+                for bit in range(b) for s in range(m) if s & (1 << bit)]
+        source = _fiber_word(carrier, helper) + [('F',)]
+        jword = _reverse(source)
+        jword += [('CX', bit, carrier[1 << bit]) for bit in range(b)]
+        jword += source
+        phase = zeta + jword + [('Z', bank[0])]
+        phase += _reverse(jword) + _reverse(zeta)
+        self.assertEqual(sum(g[0] in ('F', 'Finv') for g in phase), 4)
+        self.assertEqual(sum(g[0] == 'Z' for g in phase), 1)
+        self.assertEqual(2 * len(zeta) + 2 * b + 2 * m + 2, 22)
+        tables = {'F': [_hrt_f(raw << 1, r) for raw in range(1 << 7)],
+                  'Finv': [_hrt_k(raw << 1, r) for raw in range(1 << 7)]}
+        witness = _apply(source, {1 << carrier[1]: CO}, carrier, tables)
+        self.assertEqual(len(witness), 2)
+        inverse = _reverse(phase)
+        for column in range(1 << width):
+            address = column & (m - 1)
+            sign = -1 if (column >> bank[address]) & 1 else 1
+            expected = {column: sign * CO}
+            self.assertEqual(_apply(phase, {column: CO}, carrier, tables), expected)
+            self.assertEqual(_apply(inverse, {column: CO}, carrier, tables), expected)
+
     def test_all_columns_with_nonreturning_quantum_source_fiber(self):
         b, r, m = 2, 3, 4
         bank, carrier, helper = _layout(b)
