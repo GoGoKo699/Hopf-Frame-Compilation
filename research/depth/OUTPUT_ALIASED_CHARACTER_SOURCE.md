@@ -9,8 +9,9 @@
 The coefficient carrier need not remain disjoint from the output bank.
 Its character reads exactly the nonconstant subset-zeta coordinates of
 that bank. Identifying these physical wires removes the outer translation
-echo: one character word, four source occurrences and only one additional
-bank of carrier wires suffice. The source itself may leave arbitrary
+echo. The top carrier can also be the constant output coordinate:
+one observable readout, four source occurrences and m minus one extra
+carrier wires suffice. The source itself may leave arbitrary
 input-dependent unitary action on its dirty helpers; the character word
 cancels that action with the actual inverse.
 
@@ -52,22 +53,23 @@ For each nonempty $`S\subseteq[b]`$, identify the carrier wire
 $`y_{[r]\setminus S}`$ with the existing output wire holding
 $`z_S(Y)`$. This is a wire assignment, not a copy or a supplied value.
 The $`m-1`$ assigned coordinates are distinct; they contain the dummy
-generator r and exclude the full set $`[r]`$. Supply the other m carrier
-coordinates as arbitrary dirty inputs. In particular, the top coordinate
-$`y_{[r]}`$ and every singleton $`y_{\{i\}}`$ with $`i\le b`$ are
-among those dirty wires. The output wire $`Y_\varnothing`$ stays outside
-the carrier. There is no physical constant-coefficient wire.
+generator r and exclude the full set $`[r]`$. Also identify
+$`y_{[r]}=z_\varnothing=Y_\varnothing`$. These are m distinct
+output/carrier aliases. Supply the other $`m-1`$ carrier coordinates
+as arbitrary dirty inputs, including every singleton $`y_{\{i\}}`$
+with $`i\le b`$. There is no physical constant-coefficient wire.
 
-The retained character word uses
+The retained translation is
 
 ```math
-J_x=F_rX^{\iota(x)}F_r^\dagger,\qquad
-C_x:\quad J_x,\ Z_{[r]},\ J_x^\dagger,\ Z_{[r]}
+J_x=F_rX^{\iota(x)}F_r^\dagger.
 ```
 
-in chronological order. Its exact action is
-$`C_x|y\rangle=(-1)^{\lambda(yA_x)}|y\rangle`$ on the entire carrier.
-Only the assigned coordinates occur in its exponent:
+Its principal action is $`y\mapsto y+A_x+yA_x`$. Since
+$`\lambda(A_x)=0`$, chronological $`J_x,Z_{[r]},J_x^\dagger`$
+is the diagonal sign $`(-1)^{y_{[r]}+\lambda(yA_x)}`$ on the
+entire carrier. Only the assigned nonconstant coordinates occur in
+the second term:
 
 ```math
 \begin{aligned}
@@ -80,10 +82,10 @@ Only the assigned coordinates occur in its exponent:
 The first equality follows by complementary subset multiplication; the
 second is the algebraic normal form of the equality functions. Every
 unassigned carrier coefficient may be arbitrary and remains present in
-the source calls. The complete C word restores every carrier wire,
-including the aliased output wires. Reverse the actual zeta transform,
-then correct the missing constant character by $`Z_{Y_\varnothing}`$.
-Conjugating the completed phase word by Hadamards on all Y wires gives
+the source calls. The aliased top coordinate supplies the missing
+constant term, so the phase is exactly $`(-1)^{Y_x}`$. Reverse the
+actual zeta transform. Conjugating this completed phase word by Hadamards
+on all Y wires gives
 
 ```math
 I_b|x,Y,h\rangle=|x,Y\mathbin\oplus e_x,h\rangle.
@@ -92,8 +94,8 @@ I_b|x,Y,h\rangle=|x,Y\mathbin\oplus e_x,h\rangle.
 The actual chronological word is therefore
 
 ```math
-H_Y,\quad\mathrm{zeta}_Y,\quad C_x,\quad
-\mathrm{zeta}_Y^\dagger,\quad Z_{Y_\varnothing},\quad H_Y.
+H_Y,\quad\mathrm{zeta}_Y,\quad J_x,\quad Z_{[r]},\quad
+J_x^\dagger,\quad\mathrm{zeta}_Y^\dagger,\quad H_Y.
 ```
 
 Output motion inside the source is explicitly allowed. No output or
@@ -126,9 +128,9 @@ S_{c+\iota(x)}S_c^\dagger|h\rangle.
 
 The principal permutation is still $`y\mapsto y+A_x+yA_x`$.
 The top-coordinate Z reads only this principal value. In the chronological
-word $`J_x,Z,J_x^\dagger,Z`$, the actual J adjoint cancels the helper
-unitary exactly. The two scalar phases therefore give the same character
-$`(-1)^{\lambda(yA_x)}`$, tensored with identity on H. No separate
+word $`J_x,Z,J_x^\dagger`$, the actual J adjoint cancels the helper
+unitary exactly. The scalar phase is
+$`(-1)^{y_{[r]}+\lambda(yA_x)}`$, tensored with identity on H. No separate
 return after either source occurrence is required.
 
 Suppose the emitted source V obeys
@@ -147,17 +149,16 @@ common ledger
 ```math
 \begin{aligned}
 T_I&\le4T_V,\\
-G_I&\le4G_V+bm+2b+2m+6,\\
+G_I&\le4G_V+bm+2b+2m+2,\\
 D_T(I)&\le4d_V,\\
-h_I&\le m+h_V,\\
+h_I&\le m-1+h_V,\\
 \varepsilon_I&\le4\eta,\qquad a_{\mathrm{clean}}=0.
 \end{aligned}
 ```
 
 The Clifford remainder includes the two zeta words, two b-CNOT address
-translations, two top-coordinate Z gates, the two output-Hadamard
-envelopes, and the additional constant-character Z correction. Each Z
-uses $`S^2`$.
+translations, one top-coordinate Z gate and the two output-Hadamard
+envelopes. Z uses $`S^2`$.
 In the positive-S convention, adjacent inverse powers reduce literally
 by $`S^{-2}=S^2`$, giving the same common allowance for the actual reverse.
 
@@ -199,14 +200,14 @@ uses four R/actual-adjoint occurrences and gives
 ```math
 \begin{aligned}
 T_I&\le4T_R,\\
-G_I&\le4G_R+bm+4b+2m+6,\\
+G_I&\le4G_R+bm+4b+2m+2,\\
 D_T(I)&\le4d_R,\\
-h_I&\le3m-1+h_R,\\
+h_I&\le3m-2+h_R,\\
 \varepsilon_I&\le4\eta,\qquad a_{\mathrm{clean}}=0.
 \end{aligned}
 ```
 
-Width counts the m unassigned carrier wires and the entire
+Width counts the $`m-1`$ unassigned carrier wires and the entire
 $`2m-1`$-wire key. The four key translations explain the $`4b`$ term.
 As before, the complete norm estimate does not assume exact intermediate
 key or helper return. The exact fiber source gives exact final return;
@@ -505,23 +506,33 @@ classical stages, not on unrestricted native T layers. Arbitrary
 nonmonomial interference or genuinely quantum conditional helper
 unitaries are not covered by that degree argument.
 
-The next constructive question is consequently a sublogarithmic native
-implementation of one of these weaker complete source interfaces, or
-of the whole extraction, within the relaxed polynomial-overhead budgets.
+The [observable-transport revision](OBSERVABLE_TRANSPORT_SOURCE.md)
+weakens the prescribed carrier permutation further: only one complete
+addressed Pauli observable must be transported. It permits arbitrary
+intermediate address motion and has no extra fixed carrier requirement.
+The next constructive question is a sublogarithmic native implementation
+of that observable interface, these sufficient sources, or the whole
+extraction, within the relaxed polynomial-overhead budgets.
 No source construction or unrestricted obstruction is supplied here.
 The original physical-pair lower scout remains an independent question;
 none of these interface reductions bounds its unrestricted coupling rank.
 
 ## 9. Focused composition evidence
 
-The [single exact fixture](../../tests/test_output_aliased_character.py)
+The [retained exact fixture](../../tests/test_output_aliased_character.py)
 uses b=2, all four arbitrary output bits, four additional arbitrary
 carrier bits and one arbitrary private helper, on eleven physical wires.
 It checks all 2048 phase columns of the direct construction and its
 actual reverse. The zeta transform is expanded into its four actual
 CNOTs. The fixture also verifies the physical alias count, the exclusion
 of $`Y_\varnothing`$ from the carrier, the four source occurrences and the 26-Clifford
-remainder including the analytic output-Hadamard envelopes.
+remainder including the analytic output-Hadamard envelopes. This keeps
+the earlier disjoint-probe construction as a historical identity check.
+The new top-alias fixture uses ten physical wires and checks all 1024
+columns and the actual reverse. It aliases all four output wires,
+uses only three additional carrier wires and the same quantum helper,
+and checks the improved 22-Clifford remainder. Its phase word has one
+Z readout and no separate constant correction.
 
 The source deliberately applies an input-dependent quantum helper word:
 a native controlled-H followed by a controlled Z. A checked source

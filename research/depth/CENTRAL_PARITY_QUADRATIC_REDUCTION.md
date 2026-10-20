@@ -318,3 +318,156 @@ does not yet pay that operation. The
 [exact regression fixtures](../../tests/test_central_parity_quadratic_reduction.py)
 check the literal relation guard; the degree conclusions follow from
 the analytic arguments above.
+
+## 7. The exceptional relation recreates a quadratic-controlled Pauli
+
+The exceptional dependent band has an exact normal form. It explains
+why the preceding restriction can retain the old insertion mechanism;
+it gives no further degree ceiling or resource-frontier improvement.
+
+Let E be a full-space product of commuting signed Pauli T/T-dagger
+rotations whose label list has at most one binary relation. This includes
+the complete logical restriction of one independent native band by one
+genuine central parity. Let H be a signed Hermitian Pauli on that full
+logical register, and suppose the Clifford
+$`Q=E^\dagger HE`$ has one constant computational X mask. All remaining
+logical and dirty inputs are arbitrary. No Boolean target premise is
+needed for this component.
+
+Let A be the sublist activated by H, with labels a_i. For every
+computational Z label v, the constant-mask premise and the commuting
+phase formula give
+
+```math
+0=(\Phi_Q-I)v
+  =\sum_{i\in A}\langle a_i,v\rangle a_i.          \qquad(18)
+```
+
+If A is independent, every coefficient in (18) vanishes, so every
+activated axis is computational Z. In particular this applies if the
+full list's only relation is not wholly contained in A. Otherwise let
+R be the support of the unique relation in A. The coefficient vector
+in (18) is a multiple of its incidence vector. Thus every activated
+axis outside R is computational Z, while all relation axes share one
+computational X mask u. If u is zero, ordinary diagonal peeling again
+applies. Only the case of nonzero u needs another factor.
+
+Write $`m=|R|`$. Pairing the relation with H gives
+$`m=0\pmod2`$: all its members are activated. Choose one member as
+A_1. The unsigned label differences $`a_i+a_1`$ are computational Z
+labels and commute with A_1. The differences for
+$`2\le i\le m-1`$ are independent, and their sum is the remaining
+difference $`a_m+a_1`$. Indeed any additional relation between those
+differences would give a relation between the a_i omitting a_m.
+
+One fixed affine computational Clifford sends u to the X mask of a
+wire t and those independent differences to separate Z coordinates.
+Diagonal S/CZ decorations remove the remaining Z decoration of A_1.
+No Hadamard on an arbitrary target coordinate is used. In this frame
+the actual signed relation axes have the form
+
+```math
+\begin{gathered}
+A_i=(-1)^{\eta_i}X_t Z_{r_i(z)},\qquad
+r_1=0,\qquad r_{j+1}=z_j\quad(1\le j\le m-2),\\
+r_m=z_1\mathbin\oplus\cdots\mathbin\oplus z_{m-2}.
+\end{gathered}                                      \qquad(19)
+```
+
+The signs eta_i are retained, including the sign of the product
+relation. For m=2 there are no z coordinates and both r_i are zero;
+the same formulas cover the repeated-axis Clifford case.
+
+Let $`\epsilon_i\in\{1,-1\}`$ be the original rotation orientations,
+put $`s_i=\epsilon_i(-1)^{\eta_i}`$, and choose
+$`\kappa\in\{0,1\}`$ by
+
+```math
+\kappa=\frac{\sum_i s_i}{2}\pmod2,\qquad
+q_0=\frac{\sum_i s_i-2\kappa}{4}\pmod2.             \qquad(20)
+```
+
+These integer quotients exist because m is even and by the definition
+of kappa. With $`S_{X_t}=T_{X_t}^2`$, the literal relation subband is
+
+```math
+\begin{gathered}
+E_R=D(z)S_{X_t}^{\kappa}X_t^{q(z)},\\
+D(z)=\omega^{\sum_i\epsilon_i(\eta_i\mathbin\oplus r_i(z))},\\
+q(z)=q_0+
+ \sum_{j=1}^{m-2}\frac{-(s_{j+1}+s_m)}2\,z_j
+ +\sum_{j\lt k}z_jz_k\pmod2.                      \qquad(21)
+\end{gathered}
+```
+
+Here D is a diagonal C3 phase, the middle factor is one fixed Clifford,
+and the last factor is a quadratically controlled Pauli. D includes
+all scalar contributions, including the constant contributions from
+the signed relation axes.
+
+To verify (21), let $`X_t=(-1)^t`$. The exact exponent on the whole
+joint eigenspace is
+
+```math
+\begin{aligned}
+\phi(t,z)
+ &=\sum_i\epsilon_i(\eta_i\mathbin\oplus t\mathbin\oplus r_i(z))\\
+ &=\phi(0,z)+t\sum_i s_i(-1)^{r_i(z)}.
+\end{aligned}                                      \qquad(22)
+```
+
+Since the XOR of all r_i is zero, the final sum is constant modulo
+four, equal to $`2\kappa`$. Expanding the last parity in (19) modulo
+four gives
+
+```math
+\begin{aligned}
+\sum_i s_i(-1)^{r_i(z)}
+ &\equiv\sum_i s_i
+ -2\sum_j(s_{j+1}+s_m)z_j
+ +4s_m\sum_{j\lt k}z_jz_k\\
+ &\equiv2\kappa+4q(z)\pmod8.
+\end{aligned}                                      \qquad(23)
+```
+
+This proves the equality on every column, without discarding its
+common phase. The polar matrix of q is
+$`I+\mathbf1\mathbf1^{\mathsf T}`$ on the even-dimensional space
+of $`m-2`$ control coordinates. Its kernel is zero, so
+
+```math
+\mathrm{rank}\,\beta_q=m-2.                       \qquad(24)
+```
+
+Thus the new quadratic control can have unbounded polar rank even
+though the relation dimension is only one. The four-axis guard of
+Section 6 is the first nontrivial instance, with polar rank two; it
+also keeps the extra spectator parity and literal phases in its
+original coordinates.
+
+The control labels in (19) are the actual products of two H-active
+axes. They commute with H and every axis of this same endpoint band.
+Consequently all other factors of E commute separately with D,
+$`S_{X_t}^{\kappa}`$ and $`X_t^{q(z)}`$. This is a local endpoint
+identity. It does **not** show that these control parities are in the
+shared center of the complete three-band word, or that they commute
+with its actual middle list or opposite endpoint.
+
+The first unsupported operation is therefore moving the new
+$`X_t^{q(z)}`$ through that actual middle word. Matching or canceling
+it against the earlier $`H^{b(z)}`$ insertion would require an
+additional complete-word identity, with both controls and all phases
+retained. Equal polar ranks or a constant translation mask do not
+supply that identity. The restriction has exposed another quadratic
+control, rather than removed the mechanism responsible for the old
+cost.
+
+The fixed coordinate word uses $`O(w^2)`$ elementary Cliffords on w
+logical wires, no T gates and no helper. The factorization is exact,
+so it introduces no error or return deficit on the restricted full
+logical space, including references. Its actual inverse reverses the
+same factors and conjugates every scalar. It does not assert a free
+native implementation of D or $`X_t^{q(z)}`$, or promote the selected
+parity to a physically free initialized input. The complete source
+recurrence, R96 and the unrestricted growing-depth question remain
+unchanged.

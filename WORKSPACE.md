@@ -6,39 +6,47 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: one central parity removes the rank-two insertion
+## Current checkpoint: transport the output observable, then test the mechanism
 
 **Fetched continuation baseline:**
-`2ae86e1346b306db08e429f345c5bbdb1b992571`, tree
-`e8091975883f9ffe1f3553b538f33aedfbd13441`, on 20 October 2026,
-after original physical-pair collapse merged as PR #210.
-Read the [current outcome](research/depth/CENTRAL_PARITY_REVISION_RESULT.md),
+`db5cd441e8894137fccae015418a8713633cae46`, tree
+`157fcd31f092eae03cbf19700ed639efb5d54951`, on 20 October 2026,
+after the central-parity revision merged as PR #211.
+Read the [current outcome](research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md),
+the [observable source and shared-key theorem](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md),
 the [central-parity reduction](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md),
 the [original-pair collapse theorem](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md),
 the [fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md),
 the [retained no-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md),
 the [four-call weak source](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md),
 and the [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
-For a no-pair quadratic control of polar rank two, fixing one genuine
-computational parity makes the insertion an actual Clifford. Each sector
-has a complete three-band representation with Pauli clean boundaries;
-the retained 2048 theorem and one-coordinate reconstruction give sign
-degree at most **2049**. This removes the old finite-insertion term from
-the universal ceiling, leaving $`D_{\rm np}=D_3+576`$. The controlling
-high-rank matrix estimate is still crude. Every paired source retains
-the stronger sign/XOR bounds **6/5 uniformly**, and **5/4 at common
-active rank at least four**, by complete Boolean pair collapse.
-The first unpaid upper operation remains a sublogarithmic native weak
-source or whole extraction. In the high-rank lower branch, fixing the
-remaining translation parity creates a native-list relation: constant
-translation alone no longer justifies independent-axis peeling, and
-the insertion remains quadratic-controlled. Repairing that exact step,
-with the relation and literal phase retained, is the next quantitative
-question; higher layers and dimension-growing depth remain open. R96, selected R79 and the
-asymptotic unrestricted resource frontier are unchanged.
-The [previous checkpoint](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
-retains the exhaustive original-pair theorem and qualitative three-layer
-case split. Fetch current main before resuming; this baseline is not a pin.
+The general upper and lower frontier is unchanged. The revised HRT
+interface prescribes only $`J^\dagger Z_{Y_0}J`$, the complete addressed
+output observable; arbitrary intermediate address motion and quantum
+helper action are allowed. Two actual J calls give the indicator with
+the same observable error and no extra probe wire. The retained algebra
+source also aliases its top probe with the constant output coordinate,
+saving one carrier wire and four Cliffords. Neither supplies a faster J.
+Arbitrarily long words preserving a common Fourier key with Clifford
+fibers, using an affine address-Pauli insertion, still have affine labels
+and cannot transport the
+required monomial family at error below $`\sqrt2`$. This is a source
+representation theorem, not an unrestricted depth bound.
+The focused lower diagnostic now factors the exceptional relation
+literally into a diagonal phase, a fixed Clifford and another
+quadratic-controlled Pauli of potentially unbounded polar rank.
+Moving that new control through the actual middle remains unsupported.
+The original physical-pair branch stays closed at sign/XOR **6/5**,
+or **5/4** at common active rank at least four; the universal one-clean
+three-layer ceiling remains $`D_{\rm np}=D_3+576`$.
+The main next operation is complete observable transport outside the
+shared-key grammar with sublogarithmic depth and simultaneous budgets.
+The first tested opposite-direction word escapes that grammar but its
+readout still depends on an arbitrary auxiliary bank, giving error two.
+Canceling that coherent key dependence is the next concrete question.
+The [previous checkpoint](research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+retains the rank-two sign bound 2049 and its exact scope. Fetch current
+main before resuming; this baseline is not a pin.
 
 <a id="current-depth-frontier"></a>
 
@@ -58,6 +66,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | New paid batch and its scoped limit | [Parallel affine detuning](research/depth/PARALLEL_AFFINE_DETUNING.md) implements polynomially many presentations in four T layers with polynomial count/dirty-width overhead. A single batch has error at least $`1/4`$; a Pauli echo with read-only address/bank and actual Clifford interlayers needs $`h\ge\lceil b/2\rceil`$ rounds for $`b\ge2`$ at error below $`\sqrt2`$. Rounds are not unrestricted native depth |
 | Paid bank motion and its scoped limit | [Complete bank difference](research/depth/COMPLETE_BANK_DIFFERENCE.md) gives a full nonlinear merge; its balanced indicator schedule has linear count/width and $`O(b^2)`$ depth. [Fermionic Walsh routing](research/depth/BANK_MOTION_WALSH_INDICATOR.md) gives a complete no-helper indicator with $`T\le4b2^b`$ and $`D_T\le4b`$. The [whole-word theorem](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) retains linear native depth under its actual Majorana-preserving, read-only-address Clifford-boundary grammar, including arbitrary dirty helpers |
 | Direct output-alias source | [Four-call complete readout](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) uses the actual output wires as character coordinates and permits arbitrary quantum private-helper fibers. Complete error is at most $`4\eta`$; fusion uses 32 calls. A sublogarithmic weak source or whole extraction remains unpaid; the known source retains logarithmic depth |
+| Complete observable source | [Addressed Pauli transport](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) permits arbitrary intermediate address/helper action. Two J calls give complete error delta, with no extra fixed carrier. Fusion uses 16 J calls and error at most $`8\delta`$. A shared Fourier key with Clifford fibers and affine address-Pauli insertion fails the required nonlinear labels at error below $`\sqrt2`$, regardless of word length; this is a representation limit |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
 | Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The [complete one-clean three-layer case split](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), sharpened by the [central-parity reduction](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md), gives sign degree at most $`D_{\rm np}=D_3+576`$, with conservative higher-degree floor $`2^{-530690}`$. A small universal constant, higher layers and dimension-growing depth remain open |
@@ -194,16 +203,17 @@ remains a complete sublogarithmic source under the stated budgets.
 The [direct output-alias revision](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md)
 now reduces the shared HRT extraction to four source/actual-adjoint
 occurrences. After a subset-zeta transform on the arbitrary output Y,
-its nonconstant wires are the character's carrier coordinates. Only
-$`m=2^b`$ additional carrier wires are needed. A sufficient source is
+all its wires are carrier coordinates, including the top probe on
+$`Y_\varnothing`$. Only $`m-1`$ additional carrier wires are needed,
+where $`m=2^b`$. A sufficient source is
 $`V_0=\sum_c|f(c)\rangle\langle c|\otimes S_c`$, with arbitrary
 input-dependent **quantum unitary** action on private dirty helpers.
 The completed character cancels this action; source helpers need not
 return between calls. With full-operator source error eta, the complete
 zero-clean recurrence is
 $`T_I\le4T_V`$, $`D_T(I)\le4d_V`$,
-$`G_I\le4G_V+bm+2b+2m+6`$,
-$`h_I\le m+h_V`$, and $`\varepsilon_I\le4\eta`$.
+$`G_I\le4G_V+bm+2b+2m+2`$,
+$`h_I\le m-1+h_V`$, and $`\varepsilon_I\le4\eta`$.
 Every address, output, dirty and reference input is retained, with actual
 adjoints and complete return error. Root fusion uses 32 source calls,
 error $`32\eta`$, and depth
@@ -213,12 +223,22 @@ $`\eta_L=2^{-L}/(512K_*)`$ under the retained literal allocations.
 The known source still has logarithmic depth. These interface and
 constant improvements do not change the general upper frontier.
 
+The [observable specialization](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md)
+uses the retained selected-routing principle to remove the prescribed
+coefficient permutation altogether. It only asks for the complete
+addressed output observable at error delta. Two J calls give the
+indicator, with $`G_I\le2G_J+2m+2`$, no additional fixed probe or
+carrier, and the same full return error. Fusion uses sixteen J calls
+and error $`8\delta`$. The new all-length shared-key theorem and
+opposite-direction dirty-key counterexample test mechanisms for this
+contract; they do not turn its reformulation into a faster source.
+
 The [coherent-correction interface](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 permits the same arbitrary private fibers. Its principal action is
 $`R(z,y)=(z,y+f(z)+yf(z))`$. Direct readout gives
 $`T_I\le4T_R`$, $`D_T(I)\le4d_R`$,
-$`G_I\le4G_R+bm+4b+2m+6`$,
-$`h_I\le3m-1+h_R`$, and error at most $`4\eta`$.
+$`G_I\le4G_R+bm+4b+2m+2`$,
+$`h_I\le3m-2+h_R`$, and error at most $`4\eta`$.
 The paid quadratic-inverse XOR converts R to the paired transform
 $`F\otimes F^\dagger`$ and back with at most 80 added T layers,
 $`2T_{Q_k}`$ added T gates and $`2G_{Q_k}+3(2m-1)`$ added
@@ -400,8 +420,12 @@ The corresponding high-rank shortcut has an identified missing step.
 Fixing its remaining translation parity creates a relation in the actual
 endpoint lists. Although the dressed Pauli then has a constant X mask,
 native independence no longer supplies diagonal-axis peeling, and the
-quadratic-controlled insertion remains. The next lower question is a
-structural reduction retaining that relation and the complete phase.
+quadratic-controlled insertion remains. The
+[literal relation factorization](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md#7-the-exceptional-relation-recreates-a-quadratic-controlled-pauli)
+now retains the phase and exposes another quadratic-controlled Pauli.
+Its controls commute with the endpoint band but need not be in the
+whole word's shared center. Moving it through the middle, or canceling
+it against the original insertion, remains unsupported.
 The qualitative no-pair case is already closed; another matrix alphabet
 alone is not the intended progress. The main constructive task remains the paid
 sublogarithmic weak quantum-fiber source or whole extraction.
@@ -427,14 +451,18 @@ sublogarithmic weak quantum-fiber source or whole extraction.
 | Proper-support original pairs, including negative singletons and growing pair count | Closed by [scalar-sector native rigidity](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md): any paired complete Boolean word has exactly one all-active pair and no negative singletons after repair. The scalar-sector silent list stays independent; no product-axis resynthesis or second matrix alphabet is needed |
 | Generic finite insertion for polar-rank-two control | Superseded quantitatively by [one-parity Clifford replacement](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md), giving sign degree at most 2049. At high rank, restricting the translation parity does not remove the quadratic insertion or justify independent-axis peeling after the actual list acquires a relation |
 | Fourier trace character treated as a returned scalar source | [Explicit scalarization](research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source) pays the block but retains exponential mask/clean-label or amplification cost. Reopen through a different coherent scalarization or whole extraction, not trace access alone |
+| Arbitrarily many same-key quadratic/Fourier overlaps | [Shared-key Clifford-fiber theorem](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md), with affine address-Pauli insertion, retains affine labels and error at least $`\sqrt2`$ for the nonlinear character. Reopen outside the stated fiber/insertion grammar; moving the unchanged key to the other bank is insufficient |
+| Opposite-direction two-query source | [Full dirty-key calculation](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) escapes the shared-key premise but leaves auxiliary-bank dependence and error two. Reopen with a complete cancellation identity on arbitrary inputs; its return is already paid |
 | PR #195 growing-total-displacement question | Superseded by PR #196's [actual no-middle-pair closure](research/depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md). The new original-pair theorem completes the exact three-layer case split. Quantitative sharpening is distinct from reopening the closed qualitative no-pair branch |
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
-records the rank-two Clifford replacement, the improved universal ceiling,
-the remaining high-rank relation problem, and the unchanged complete
-source recurrence. The [previous pair-collapse continuation](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+The [latest continuation](research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+records the complete observable interface, the shared-key representation
+limit, the extra output alias and the retained quadratic-control mechanism.
+The [previous central-parity revision](research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+records the rank-two Clifford replacement and improved universal ceiling.
+The [previous pair-collapse continuation](research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
 records general original-pair collapse and the complete exact three-layer
 case split. The [previous structural revision](research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
 retains the small all-active degree theorem and positive-singleton
@@ -476,7 +504,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/CENTRAL_PARITY_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

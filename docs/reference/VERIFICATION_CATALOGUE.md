@@ -10,7 +10,21 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current central-parity revision](../../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+The [current source revision](../../research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+adds an analytic all-length shared-key Clifford-fiber obstruction and
+an exact opposite-direction two-query counterexample with dirty-key
+dependence. These concern the specified source words, not unrestricted
+depth. The observable contract specializes the retained selected-routing
+principle. The extra top-output alias is checked on all 1024 physical
+columns and the actual reverse, using the same coherent nonreturning
+helper fiber as the preserved 2048-column fixture. The new receipt
+checks one probe Z, three additional carrier wires and a 22-Clifford
+remainder. It does not emit a new native coefficient source.
+The lower audit gives a literal one-relation factorization with
+potentially unbounded quadratic-control rank; the previous four-axis
+guard remains its focused example. No general frontier changes.
+
+The [previous central-parity revision](../../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
 replaces the no-pair rank-two finite-insertion application by an analytic
 2049 sign-degree bound. On each of two genuine central-parity sectors,
 an actual full-space Clifford agrees with the insertion and preserves
@@ -145,6 +159,7 @@ two-layer theorem without an additional native fixture.
 | Bounded-clean two-band source gap | [Proof home](../../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md), [direct-defect receipts](../../tests/test_fixed_clifford_source_gap.py), [relative-defect fixtures](../../tests/test_relative_amplitude_source_gap.py) | Nonflat sources check both projected defects, literal Clifford expansions, physical trace normalization, actual inverses and common phases. Two additional exact fixtures check the amplitude-free factor order and sharp one-clean nonzero/zero compression boundary. The uniform relative gap over all positive amplitudes is analytic, with bounded clean count; growing-clean constants and unrestricted depth are not inferred |
 | Polynomial-overhead indicator fusion | [Proof home](../../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Analytic two-source controlled splitter and four-traversal root/leaf echo import the retained native bilinear batch and exact nonuniform tree. Eight source calls, full error, width reuse, polynomial normalization and the slowly growing clean window are proved conditionally. The quantitative phase-access inequality retains its additional spectral premise; no faster source or unrestricted depth bound is inferred |
 | Direct output-alias character source | [Proof home](../../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md), [composition fixture](../../tests/test_output_aliased_character.py) | All 2048 phase columns and the actual reverse check direct output/carrier aliases, four source calls, literal constant correction and an explicit native controlled-H/CZ helper fiber with coherent intermediate work. F and its inverse use retained coefficient permutations; this is not a new native source emitter. Complete error/return, the paired transform, paid algebra-key multiplication, and the scoped Fourier-twirl support bound are analytic. The source still needs sublogarithmic native depth |
+| Top-output alias and shared-key source revision | [Observable proof](../../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md), [alias proof](../../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md), [composition fixture](../../tests/test_output_aliased_character.py) | The additional 1024-column receipt and actual reverse check the top probe alias, one Z readout, four source calls, quantum helper return and reduced width/Clifford remainder. The prior fixture is preserved. The all-length affine-label obstruction for shared-key Clifford fibers, its approximation constants, and the explicit dirty-key failure of the opposite-direction two-query word are analytic. These are scoped representation tests; the complete shallow source remains unpaid |
 | Joint HRT full-bank extraction | [Proof home](../../research/depth/FULL_BANK_CHARACTER_TRANSPORT.md), [composition fixture](../../tests/test_full_bank_character_transport.py) | One shared arbitrary carrier serves every output; all 8192 phase columns and the actual reverse verify the coherent bank, constant correction and eleven-CNOT zeta shear. The complete eight-source-call recurrence and relaxed source budgets are analytic. Retained native F proofs supply source costs; logarithmic depth is unchanged |
 | Clean-sector parallelism audit | [Proof home](../../research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) | Analytic restriction of actual sector-preserving Clifford boundaries removes a dispensable clean bank with no T-count/depth increase. A full-space rank argument requires $`2^k`$ source occurrences for universal black-box promotion at the stated literal errors. No native-depth inference or numerical fixture |
 | Original singleton coupling | [Proof home](../../research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) | Analytic all-active one-pair theorem retaining every positive singleton: actual endpoint span duality supplies a transported radical with quotient dimension at most $`2h+4`$ at singleton-to-silent rank h. Shared physical-clean features give sign bound $`D_{2h+4}+4A_{2h+4}`$, XOR one less and retained rounding floor. No bound on h from pair count, free native band, or unrestricted depth claim |
