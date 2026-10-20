@@ -10,7 +10,25 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+The [current revision](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+adds an analytic expander zero-reflection construction with a complete
+native/precision/return ledger, uniform-address and product-rank source
+screens, exact virtual-function arithmetic, one-pass clean-dimension
+tradeoffs and physical-probe eligibility lemmas.
+Independent analytic audits check the spectral gap, general-block cubing,
+literal scalar handling, bounded-clean promotion, dirty padding, actual
+native support, code dependence and complete arithmetic return. Graph
+readout bounds retain their normalization and baseline hypotheses.
+The spectral-paving proof separately audits the supplied partition
+theorem, finite exact certification, native sign frames, global
+truncated-key echo and the constant-clean filter's complete precision
+ledger. Exact sector invariance and general leakage have different
+source-accuracy recurrences.
+No new search experiment or implemented native emitter is claimed.
+The general depth frontier remains unchanged;
+required validation and rendered-document checks cover the reviewed tree.
+
+The [preceding revision](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
 adds paid native parallel promotion in a larger sufficient source
 window, an exact odd-key counter identity, crossed-kernel contract
 screens, paid paired resynthesis and a higher-support Booleanity test.

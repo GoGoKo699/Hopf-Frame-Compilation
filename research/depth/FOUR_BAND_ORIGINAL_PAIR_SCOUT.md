@@ -1283,3 +1283,22 @@ its actual repair, or address the first unsupported matching inference
 in (2). None of these conditional reductions supplies an unrestricted
 four-layer depth theorem or changes the complete approximate source's
 resource, error and return recurrence.
+
+
+The [general center/probe revision](FOUR_BAND_CENTER_TRANSPORT.md#g-a-sole-unmatched-anticommuting-factor-must-merge-natively)
+now removes the special endpoint hypothesis for an isolated unmatched
+anticommuting factor and pays its literal Clifford merger, without
+requiring the rest of its native band to commute with the probe. Its
+[independent-union and shared-center tests](FOUR_BAND_CENTER_TRANSPORT.md#i-an-independent-native-union-excludes-anticommuting-orbits)
+retain the actual lists, including the dependent support after a center
+restriction. The stronger
+[native-defect argument](FOUR_BAND_CENTER_TRANSPORT.md#i3-native-defects-close-the-one-center-cross-commutation-branch)
+bounds first-band/probe cross-commutation rank by native overlap
+dimension on affected first-band coordinates. It closes that
+cross-commutation when the entire native span intersection is just
+the genuine pair center. Commuting unmatched images remain open.
+The focused scout
+continues with that actual coupling and complete endpoint/Boolean
+transport. Actual output-endpoint realizability and full dirty/reference
+return remain separate obligations; invariant spans are not free native
+phase removals.

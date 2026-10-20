@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F48 and R12–R98: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
+| F1–F50 and R12–R98: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -177,6 +177,8 @@ from the exact clean-workspace size–depth theorem.
 | F46 | [Nevin, arXiv:2511.17856](https://arxiv.org/pdf/2511.17856), Theorem 6(M1) | exact full-space Pauli-transfer computation is #P-hard already at T-depth three | comparison only; this complexity result supplies no robust synthesis gap |
 | F47 | [Torosov–Vitanov, Phys. Rev. A 83, 053420](https://link.aps.org/accepted/10.1103/PhysRevA.83.053420), Section V.A, Eqs. (12)–(13) | Rosen–Zener hyperbolic-secant scattering transition amplitude | The [selective-inversion study](../../research/depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md) uses this established amplitude with an actual-adjoint dirty echo, then proves the full-bank error and pays finite truncation and native synthesis. No native gate, initialized eigenstate, pulse-depth equivalence or general-frame improvement is imported |
 | F48 | [Jiang–Wang, Phys. Rev. Applied 19, 034052 (2023)](https://doi.org/10.1103/PhysRevApplied.19.034052), [arXiv:2103.09999](https://arxiv.org/abs/2103.09999), Theorem 11 | Unitary stabilizer nullity as a T-count lower bound | The [indicator calculation](../../research/depth/INDICATOR_PAULI_NULLITY.md) computes the target's complete Pauli subspace and proves its explicit robust gap. The general monotone is imported; no growing-depth lower bound follows |
+| F49 | [Anshu–Balasubramanian–Haferkamp–Harrow–Tan, arXiv:2609.01605v1](https://arxiv.org/html/2609.01605v1), Theorem 2.3 and Section 2.2 | fourteen explicit involutory CNOT generators with a uniform gap in every finite-dimensional unitary representation | The [zero-reflection construction](../../research/depth/EXPANDER_ZERO_REFLECTION.md) uses the natural permutation representation, proves its selected-zero gap, and pays controlled SELECT, general-block filtering, literal phases, promotion and dirty padding. A generic conjugation-space gap is insufficient; no complete indicator or general frame improvement is imported |
+| F50 | [Marcus–Spielman–Srivastava, *Annals of Mathematics* 182 (2015), 327–350](https://annals.math.princeton.edu/wp-content/uploads/annals-v182-n1-p08-p.pdf), Corollary 1.5 | a dimension-independent partition bound for Parseval frames with bounded vector norms | The [spectral-promotion construction](../../research/depth/MSS_SPECTRAL_PROMOTION.md) applies this theorem to a flat-diagonal projection, pays all Boolean sign frames and arbitrary truth-table banks, and proves truncated-batch error cancellation and complete promotion. Finite exhaustive certification is used; no efficient paving search or new proof of the partition theorem is claimed |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -394,6 +396,28 @@ full-operator ledger. Its
 applies [Ambainis, Kempe and Sattath, Theorem 4](https://arxiv.org/abs/0911.1696)
 only to physical support cones satisfying the quantum local lemma;
 this is not an unrestricted native T-depth bound.
+
+The [single-predicate expander construction](../../research/depth/EXPANDER_ZERO_REFLECTION.md)
+uses F49 and Grover's inherited fixed-point phase choice. Its contribution
+is the complete zero-clean native/precision/return recurrence and the
+joint-relabeling scope test, not the group-expander theorem or fixed-point
+amplification. The [structured packing audit](../../research/depth/PARALLEL_CLEAN_PROMOTION.md#7-structured-packing-concentration-is-paid-radix-compression-is-not)
+uses F33, Sections 5--7, for exact in-place addition and constant addition.
+The local three-addition interval identity does not import a fast
+multi-bit radix conversion or an arbitrary-bank in-place permutation.
+The [virtual-function arithmetic](../../research/depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
+uses F33's complete incrementer depth, then proves its own Boolean-control
+substitution, recursive carries, odd multiplier and interval echoes.
+Their truth-table costs and arbitrary dirty return are charged; no fast
+whole radix conversion is imported from the adder.
+
+The [MSS promotion](../../research/depth/MSS_SPECTRAL_PROMOTION.md)
+changes that mechanism. F50 supplies the partition existence; the local
+construction turns its colors into 64 exact native sign frames, proves
+the whole-space gap and the at-most-two-active-key error bound, and
+charges those non-Clifford frames in the retained two-clean filter.
+It bypasses radix compression without claiming to implement it. The
+larger conditional window still needs an actual qualifying clean source.
 
 The [amortized dirty-lookup theorem](../AMORTIZED_DIRTY_LOOKUP.md) combines
 F2/F8's dirty traversal and echo with F29/F30's controlled-linear and

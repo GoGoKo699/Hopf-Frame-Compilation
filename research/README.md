@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+[current research outcome](depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -31,6 +31,25 @@ eight source/inverse calls and an exact logarithmic-remainder tree restore
 the linear-budget target. Its depth is eight source depths plus
 $`O_\tau(\log\log(p+4))`$ and its full error is at most eight times
 the source error. A genuinely sublogarithmic source remains missing.
+The new [expander zero reflection](depth/EXPANDER_ZERO_REFLECTION.md)
+pays a single complete approximate predicate with zero clean work,
+linear count/dirty width and constant T-depth at every fixed tolerance.
+Its uniform precision ledger is $`T,G=O(pL+L^2)`$ and $`D_T=O(L^2)`$.
+Address motion prevents free parallel row use. The joint-relabeling
+extension preserves a uniform-address subspace, even with arbitrary
+address-independent bank dynamics, and fails the complete target.
+The bounded-choice product-rank and graph-readout audits retain separate
+scope; arbitrary wide native coupling remains outside the former.
+The [virtual-function arithmetic](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
+pays exact dirty additions, odd multipliers and interval echoes, while
+full in-place radix packing remains unpaid.
+The [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
+separates fixed-fiber and dirty-mixing width limits; an exact fully dirty
+echo still retains linear depth. The [physical-pair revision](depth/FOUR_BAND_CENTER_TRANSPORT.md#g-a-sole-unmatched-anticommuting-factor-must-merge-natively)
+pays sole-factor mergers and tests dependent native support without
+claiming a general higher-layer bound. The main resource frontier remains
+unchanged; these results choose the next complete mechanism.
+
 The [current observable-source audit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
 specializes the retained selected-routing freedom to the HRT candidate.
 The source need only transport the complete addressed output Pauli;
@@ -76,8 +95,13 @@ invariant sectors. Exact native packing is now paid when
 $`2^k(k+1)^2=o(\log(p+2))`$, enlarging the sufficient source window:
 $`k\sim\beta\log\log p`$ and source depth $`O((\log p)^\gamma)`$
 need only $`\beta\lt1`$ and $`\gamma\lt1`$ separately. A qualifying
-source remains missing. A separate two-clean spectral filter has a
-closed precision ledger conditional on an unproved whole-space gap;
+source remains missing. The new
+[MSS spectral promotion](depth/MSS_SPECTRAL_PROMOTION.md) pays global
+native frames with a whole-space gap and enlarges the sufficient window
+to $`k=o(\log(p+2))`$, with depth $`O_\tau(d_V+k+1)`$ and
+polynomial source overhead. Its truncated batch keeps constant requested
+accuracy under exact sector invariance; general leakage is separate.
+The frames use paid non-Clifford Boolean phases, while
 [structured-frame limits](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
 retain their common-Pauli-space, support-cone and explicit graph premises.
 The [odd-key counter source](depth/COHERENT_COUNTER_SOURCE.md) eliminates

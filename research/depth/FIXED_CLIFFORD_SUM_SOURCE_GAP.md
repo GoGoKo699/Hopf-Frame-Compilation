@@ -579,3 +579,70 @@ check the amplitude-free physical/code defect identity, its literal
 projector expansion, actual adjoints and common-phase cancellation, and
 the sharp one-signal norm example with its zero-block branch. The uniform
 relative gap and all-size scope remain analytic.
+
+## 9. Exact growing-clean sources and the shrinking approximate threshold
+
+The retained recurrence gives a quantitative exact corollary. This
+concerns the same two actual one-band encoders and their complete
+compressed indicator block; it is not an unrestricted depth bound.
+For B equal to one, write
+
+```math
+a_1=0,\qquad
+a_j=2(j-1)a_{j-1}+(2j-1)\lceil\log_2j\rceil+j.
+```
+
+Dividing by the homogeneous multiplier and summing yields
+
+```math
+\begin{aligned}
+a_M&=2^{M-1}(M-1)!S_M,\\
+S_M&=\sum_{j=2}^M
+\frac{(2j-1)\lceil\log_2j\rceil+j}{2^{j-1}(j-1)!}.
+\end{aligned}
+```
+
+For M at least two, its first term gives $`S_M\ge5/2`$.
+Using $`\lceil\log_2j\rceil\le j-1`$ bounds the full series by
+$`(7/2)e^{1/2}-1\lt5`$. Consequently
+$`\log_2 a_M=M\log_2M+O(M)`$.
+
+Suppose the complete block is exactly $`K=I_p/\sqrt2`$, up to one
+common scalar phase, with k initialized signals and every other input
+arbitrary. For an original output Z probe, Section 7's nonzero relative
+defect has normalized Hilbert--Schmidt norm $`2^{-(p+k)/2}`$.
+Its literal Clifford expansion has $`M=2^{3k+1}`$ terms and
+coefficients of magnitude $`2^{-3k}`$. The explicit gap requires
+
+```math
+2^{-(p+k)/2}\ge2^{-3k-a_M},\qquad p\le2a_M+5k.
+```
+
+Inverting the displayed growth of a_M gives the necessary condition
+
+```math
+k\ge\frac13\log_2\log_2p
+ -\frac13\log_2\log_2\log_2p-O(1).
+```
+
+Thus $`k=o(\log\log p)`$ cannot supply an exact two-band source.
+The [paid parallel-promotion window](PARALLEL_CLEAN_PROMOTION.md#51-paying-any-sufficiently-small-packing-permutation)
+is broader: it includes k asymptotic to beta times log log p for every
+fixed beta below one. This exact corollary leaves, for example,
+$`1/3\le\beta\lt1`$ available to further source investigation.
+
+The approximate conclusion is different. The same proof supplies
+
+```math
+\tau_0(k)=2^{-a_M-(5/2)k-4},\qquad
+p\ge2a_M+5k+6.
+```
+
+This excluded relative tolerance tends to zero with k. Even an error
+of order $`2^{-k}`$ can greatly exceed it. Hence the calculation does
+not exclude fixed-positive-error sources with growing clean count,
+nor give a uniform fixed-error obstruction in the paid packing window.
+Budgets promised separately at every fixed accuracy cannot be used at
+this shrinking tolerance without a uniform precision estimate. This
+distinction also prevents a fixed-k theorem from excluding every
+accuracy-dependent but address-independent allocation k(tau).

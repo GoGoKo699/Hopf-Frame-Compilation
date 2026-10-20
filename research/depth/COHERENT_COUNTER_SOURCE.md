@@ -16,6 +16,11 @@ modular accumulation and the full-bank schedule remain unpaid at the
 required sublogarithmic depth. Isolated shallow rotations, a supplied
 catalyst, or logical commutation do not pay either obligation.
 
+The revision in Sections 9--10 separates this counter from a different
+dirty-key mechanism. It proves a clean-dimension/error tradeoff for
+one-pass row filters and pays an exact full-bank echo, whose emitted
+native depth remains linear. Neither result changes the general frontier.
+
 ## 1. Registers and the complete modular operation
 
 For $`p\ge1`$, put
@@ -350,3 +355,208 @@ schedule, not of every unitary shared-catalyst mechanism.
 
 Neither paper pays the missing full-bank operation in Section 5. The
 general upper and lower frontier remains unchanged.
+
+## 9. One-pass row filters: clean dimension, error and dirty mixing
+
+A smaller coherent row filter has two distinct width questions. Let
+$`A(z)=U_n^{z_n}\cdots U_1^{z_1}`$ read n mismatch literals once,
+and let J insert k clean wires, with $`r=2^k`$. If the remaining dirty
+space has dimension D, J has rank D in an rD-dimensional space. Allow
+arbitrary mixing of these clean and dirty wires. Suppose
+
+```math
+A(0)=I,\qquad \|J^\dagger A(z)J\|\le\rho
+\quad(z\ne0).
+```
+
+The reflected row $`E=A^\dagger(I-2JJ^\dagger)A`$ obeys the exact
+complete error identity
+
+```math
+E(0)J=-J,\qquad
+\|(E(z)-I)J\|=2\|J^\dagger A(z)J\|\le2\rho.       \qquad(17)
+```
+
+This includes every dirty-return error and arbitrary references.
+Put $`P_j=U_j\cdots U_1`$ and $`\Phi_j=P_j^\dagger J`$, including
+$`P_0=I`$. For $`j\lt\ell`$, the cross block
+$`\Phi_\ell^\dagger\Phi_j`$ is the compression of the nonempty
+interval input $`U_\ell\cdots U_{j+1}`$. Its norm is at most rho.
+For $`F=\sum_{j=0}^n\Phi_j\Phi_j^\dagger`$, therefore,
+
+```math
+\mathrm{tr}F=(n+1)D,\quad
+\mathrm{tr}F^2\le(n+1)D(1+n\rho^2),\quad
+\mathrm{rank}F\le rD.
+```
+
+The trace/rank inequality proves
+
+```math
+r\ge\frac{n+1}{1+n\rho^2}.                       \qquad(18)
+```
+
+In particular, exact orthogonal row filtering requires $`r\ge n+1`$,
+even with arbitrary dirty mixing. If a serial full-bank schedule budgets
+$`\rho=O(\tau/2^p)`$ with $`n=p+1`$, (18) retains logarithmic clean
+count. This is a consequence of that sufficient row-error budget; it
+does not prove such a budget necessary for every coherent whole-bank word.
+
+A stronger fixed-error bound applies when each dirty key is invariant
+and the initialized register in one key fiber has dimension r. For a
+unit vector psi, the inverse-prefix vectors $`P_j^\dagger\psi`$ have
+pairwise overlap at most rho. Packing their separated unit vectors in
+$`\mathbb C^r`$ gives $`r=\Omega_\rho(\log(n+1))`$ for fixed
+$`\rho\lt1`$. More generally, a one-pass fixed preparation/readout
+with literal compressed amplitudes $`\pm1/\sqrt2`$ and error $`\epsilon\le1/8`$
+has separation $`\Delta=\sqrt2-2\epsilon`$ and
+$`n+1\le(1+2/\Delta)^{2r}`$. No commutativity is needed: multiplying
+two inverse-prefix vectors by $`P_\ell`$ identifies their difference
+with the corresponding interval input minus the zero input. General
+zero transitions can be absorbed into a fixed interaction frame.
+
+Thus changing only the row transitions from commuting to noncommuting
+does not enter the [paid promotion window](PARALLEL_CLEAN_PROMOTION.md#51-paying-any-sufficiently-small-packing-permutation)
+while the fixed-fiber premise remains. This is a one-pass filter limit,
+not an unrestricted native-depth bound. The next construction shows why
+its fixed-fiber premise cannot be dropped.
+
+## 10. A complete dirty Majorana echo pays return but retains linear depth
+
+Take $`M=4\lceil(p+2)/4\rceil`$ and $`b=M/2`$, so M exceeds p+1.
+On b arbitrary qubits use the standard Jordan--Wigner Majoranas
+$`\gamma_0,\ldots,\gamma_{M-1}`$, with $`\gamma_0=X_0`$.
+Choose an actual Clifford D whose adjoint is their unsigned M-cycle.
+The even cycle has determinant minus one: its implementation includes
+a Pauli correction, not just Majorana plane rotations.
+
+Here is a paid construction. The cycle is the product of the matchings
+$`j\mapsto-j`$ and $`j\mapsto1-j`$ modulo M, with b-1 and b pairs.
+Each matching uses independent commuting $`S_P^{\pm1}`$ axes
+$`P=i\gamma_a\gamma_b`$. Their product gives the cycle with signs.
+Conjugation by a Majorana monomial indexed by S gives sign vector
+$`v_j=|S|+[j\in S]`$ over F_2. This map is invertible for even M,
+so an actual Pauli repairs every required sign, including the odd
+orientation. The scalar of the emitted D is retained.
+
+This also gives a constructive counterexample to the fixed-fiber width
+claim. In k independent blocks initialize only each first qubit in plus,
+leaving all other inputs arbitrary. Let J insert those k bits, and put
+$`P_0=JJ^\dagger`$, $`A_w=(D^w)^{\otimes k}`$ and
+$`P_w=A_w^\dagger P_0A_w`$. At every $`1\le w\le p+1`$, each
+transported first Majorana anticommutes with its original one. Expanding
+the projector gives
+
+```math
+J^\dagger P_wJ=2^{-k}I,\qquad
+\|((I-2P_w)-I)J\|=2^{1-k/2}.                     \qquad(19)
+```
+
+Hence fixed row accuracy needs only a fixed clean bank when dirty keys
+really mix. Together with the ordinary exact cyclic counter of dimension
+less than $`2(n+1)`$, (18)--(19) give the component tradeoff
+$`r=\Theta(\min\{n+1,\rho^{-2}\})`$, up to power-of-two rounding,
+for $`0\lt\rho\lt1`$. This tradeoff makes no shallow native-depth
+promise.
+
+For the complete indicator, even this row error and initialization can
+be removed. Use a single entirely arbitrary block per row and define
+
+```math
+A_u=D^{w_u},\qquad R_u=A_u^\dagger\gamma_0A_u,\qquad
+Q_u=\gamma_0R_u\gamma_0R_u.
+```
+
+The Majorana anticommutation relations give the full-space identity
+
+```math
+Q_u=\begin{cases} I,&w_u=0,\\-I,&w_u\ne0.\end{cases}
+\qquad
+\prod_uQ_u=(-1)^{m-Y_x}I=(-1)^{Y_x}I.             \qquad(20)
+```
+
+Here m is even. Every private input and reference returns literally;
+there is no clean counter, phase-gradient state or approximate row budget.
+This multiple-pass Pauli readout does not assume the orthogonal
+one-pass inner filter of (18).
+
+The native bill is also explicit. Expose each matching's Pauli axes by
+an actual private Clifford and its actual inverse. On each exposed target,
+the chronological word $`T_t,\mathrm{CNOT}_{c,t},T_t^\dagger,
+\mathrm{CNOT}_{c,t}`$ equals $`\omega^{-c}\mathrm{CS}(c,t)`$,
+where $`\omega=e^{i\pi/4}`$. Thus a controlled matching has two T
+bands, all targets private. The controlled Pauli repair is Clifford.
+The control-only scalar cancels exactly in $`A_u^\dagger\gamma_0A_u`$;
+it is not a free phase convention for an isolated controlled call.
+Let common forward/actual-inverse bounds be
+
+```math
+T_{cD}\le2(M-1),\quad d_{cD}\le4,\quad G_{cD}=O(b^2),
+\qquad G_{\rm pow}=O(b^2).
+```
+
+The last quantity pays a fixed power of D. Write $`w_u`$ as its constant
+$`|u|+1`$ plus p+1 signed positive-control bits. This uses controlled
+D or its actual inverse without changing any address bit at a native
+boundary. Four A calls and four literal Majorana Paulis implement Q.
+All m rows run in parallel on disjoint private blocks, sharing only
+read-only address/bank controls. Therefore
+
+```math
+\begin{aligned}
+T&\le8m(M-1)(p+1),& d&\le16(p+1),\\
+b_{\rm dirty}&\le mb,&
+G&\le m\{4[(p+1)G_{cD}+G_{\rm pow}]+32\}.
+\end{aligned}                                                   \qquad(21)
+```
+
+These bounds hold for the actual inverse. The XOR indicator adds 2m
+Hadamards. One clean signal and a final H would supply literal flat
+compression at amplitude $`1/\sqrt2`$, but merely normalize this
+already complete linear-depth query. The known
+[bank-motion construction](BANK_MOTION_WALSH_INDICATOR.md) already has
+the better bound $`4p`$. Thus (20) resolves return and key dependence,
+while retaining the old depth scale.
+
+### The joint-cycle shortcut has a scoped native cost
+
+A separate implementation of $`A(x)=D^{|x|}`$ cannot become shallow
+while retaining the actual
+[Majorana-preserving Clifford-boundary grammar](WHOLE_WORD_MAJORANA_LIMITS.md#2-actual-clifford-boundaries-give-address-characters).
+Each entry of its native adjoint matrix after d T bands then has at most
+$`2^d`$ Walsh characters. Since M is divisible by four, the cycle has a
+normalized complex eigenvector v with eigenvalue i. Thus
+$`v^\dagger O_A(x)v=i^{|x|}`$, whose $`2^p`$ Walsh coefficients all
+have magnitude $`2^{-p/2}`$.
+
+If the emitted U approximates A tensored with identity on any helpers
+on the entire space to error
+$`\epsilon\lt1/2`$, up to one common scalar, use the Majorana norm identity
+$`\|\sum_jz_j\gamma_j\|=\|z\|_2`$ only for real vectors z.
+The conjugation bound gives $`\|(O_U-O_A)z\|_2\le2\epsilon\|z\|_2`$
+for every such z. Since $`O_U-O_A`$ is a real matrix, its complex
+spectral norm equals its real spectral norm. Thus the same bound applies
+to the complex cycle eigenvector v. The functional
+$`v^\dagger O_Uv`$ uses at most $`M^2 2^d`$ Walsh characters.
+Parseval on the missing flat coefficients yields
+
+```math
+d\ge p-2\log_2M+\log_2(1-4\epsilon^2).           \qquad(22)
+```
+
+Arbitrary dirty helpers may be appended after the original b wires
+in the fixed Jordan--Wigner ordering. The original M Majoranas are then
+unchanged. Extend v by zero on the new Majorana coordinates, so only
+the original M by M block enters. An odd Pin action may put parity
+signs on later Majoranas; these do not alter that original block.
+The actual Clifford boundaries, including endpoints, must
+preserve that frame and fix the computational address. Equation (22)
+bounds the separately required A, not a resynthesized whole Q, the
+completed full bank, or unrestricted Clifford+T circuits.
+
+The revision is therefore concrete. Dirty-key mixing can beat the
+fixed-fiber clean requirement and can give exact complete return. The
+present native realization still retains linear depth. Improving its
+initialization is no longer the next question; a qualifying whole echo
+must change its native boundary mechanism or supply a different complete
+source with the simultaneous budgets.
