@@ -256,6 +256,107 @@ break the displayed complement symmetry; its complete selection and
 return costs would then need a new proof. This is an interface diagnosis,
 not a lower bound on unrestricted nonlinear-Y readout.
 
+### 4.1. Finite parity access still fails under coherent address motion
+
+There is a quantitative version that does not require the complement
+symmetry or low-degree masks of Section 4. Keep Y computationally
+preserved at completed-access boundaries, and let every dependence on Y occur
+through a specified finite collection of parity masks
+$`v\in\mathbb F_2^m`$. An access may depend on all its supplied
+parities $`v\cdot Y`$ in an arbitrary way. Between accesses, allow
+arbitrary quantum operations on the address, seed, initialized registers
+and private work, provided those operations themselves are independent
+of Y. Thus address Hadamards, coherent seed changes and nonmonomial
+private action are allowed. Every additional direct parity access must
+be included in the collection.
+
+Let W be the binary span of all accessible masks. If
+$`\dim W\lt m`$, choose a nonzero $`d\in W^\perp`$. Every access
+is identical for Y and Y+d, so the whole word has the same remaining-
+register block on those two bank inputs, even with arbitrary intermediate
+address motion. Any common clean insertion consequently gives equal
+compressed blocks $`K_Y=K_{Y+d}`$.
+
+The desired phase-indicator blocks are
+
+```math
+D_Y=\sum_x(-1)^{Y_x}|x\rangle\langle x|\otimes I_{\rm private}.
+```
+
+Choose an x with $`d_x=1`$ and any unit private input. The two desired
+vectors are opposites. The triangle inequality therefore gives
+
+```math
+\sup_Y\|K_Y-\alpha D_Y\|\ge\alpha
+\qquad(\alpha\gt0).
+```
+
+The same statement holds after a common source-phase optimization.
+For a complete initialized-isometry or full-unitary promise, the common
+actual output vector has norm one; the parallelogram identity instead
+gives error at least $`\sqrt2`$. Both statements include returned work
+and reference inputs. The block estimate is appropriate to the
+$`1/\sqrt2`$ compressed-source interface: its relative error cannot
+be less than one in this deficient-access model, independently of the
+number of clean inputs.
+
+For example, suppose h access families each have at most S seed labels,
+and each seed's hash has at most $`2^q`$ buckets. Add r_0 separately
+accessed parity masks. Each bucket supplies its characteristic mask, so
+a necessary condition for relative compressed-source error less than
+one is
+
+```math
+r_0+hS2^q\ge m.
+```
+
+Repeated accesses to the same masks do not enlarge their span. This
+count permits arbitrary bucket masks, including nonlinear hashes and
+masks that break the old complement witness. If $`S\le2^k`$,
+$`r_0=o(m)`$ and h is polynomial in p, then
+$`k=O(\log\log(p+4))`$ requires $`q\ge p-O(\log(p+2))`$.
+Here $`S\le2^k`$ is an explicit seed-label assumption; a bound of k
+on clean inputs alone does not bound all dirty or quantum seed spaces.
+Nor is the necessary dimension condition sufficient for a source.
+
+The fixed affine-hash primitive itself is paid. For a surjective affine
+hash $`h_0:\mathbb F_2^p\to\mathbb F_2^q`$, choose one existing
+output wire in each bucket. CNOT every other bucket wire into that
+pivot, using exactly $`m-2^q`$ CNOTs. An invertible affine change of
+address coordinates makes the first q address bits equal to h_0(x).
+Apply the retained [exact q-bit phase indicator](NONUNIFORM_DIRTY_INDICATOR.md)
+on the pivot bank, and actually undo both encodings. The completed
+operation is exactly
+
+```math
+|x,Y,w\rangle\longmapsto
+ (-1)^{\sum_{u:h_0(u)=h_0(x)}Y_u}|x,Y,w\rangle.
+```
+
+It has zero clean inputs, exact arbitrary-work return, and common
+forward/actual-inverse bounds
+
+```math
+T,w=O(2^q),\qquad G=O(m+p^2),\qquad
+d=O(\log_2(q+2)).
+```
+
+The indicator's Hadamard endpoints and both bank/address encodings are
+included. Choosing among encoders coherently is a further native
+operation; the obstruction above grants that selection rather than
+treating its synthesis as free in this ledger. With q forced close to
+p, substituting this primitive retains the existing logarithmic
+address-depth guarantee. It does not supply the desired sublogarithmic
+source, even though its count and width fit the relaxed source budget.
+
+This is an access-representation obstruction. Fixed reversible linear
+bank encoders that are undone at an access can be included by pulling
+their masks back into W. Bank Hadamards, nonlinear bank motion, or
+additional Y-dependent private operations outside the listed parities
+need a new analysis. The mask count h is not an unrestricted native
+T-depth bound, and the logarithmic upper guarantee of the paid primitive
+is not a lower bound on another joint synthesis.
+
 ## 5. What a successful replacement must supply
 
 The initialized single-predicate bound (5) does not supply a zero-clean

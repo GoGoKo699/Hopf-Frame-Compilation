@@ -630,6 +630,182 @@ allocation, dirty thresholds and R96 fallback branches. This remains
 conditional on the unpaid complete transition. A source-class failure
 does not establish an unrestricted depth bound, and R96 is unchanged.
 
+### 6.3. Recovering a general clean-bank compression with one extra flag
+
+A growing clean bank requires a paid conversion from a compressed block
+to the initialized-isometry promise of Section 1. That conversion is
+available at inverse-square-root-two amplitude. It does not construct
+the compressed source, or make the later sector cover parallel.
+
+Let A contain k clean wires, with $`k\ge1`$, and let J insert
+$`A=0^k`$. All other source inputs, including the complete q-bit
+output and private work W, are arbitrary. Suppose an actual native
+unitary U satisfies
+
+```math
+K=J^\dagger UJ,\qquad
+\|K-Q_f/\sqrt2\|\le\varepsilon\le1/8.
+```
+
+Introduce one additional clean flag c, untouched by U. Let C_k be the
+returned zero-test (4), now with target c and its own arbitrary private
+pool, and emit
+
+```math
+\widehat R=C_k^\dagger S_c C_k.
+```
+
+On the complete c=0 sector this is exactly
+$`R=I+(i-1)P`$, where $`P=JJ^\dagger`$ acts on A. Both c and
+the zero-test pool return exactly there, for every A, logical and work
+input, including superpositions. On c=1 the action is different and is
+not discarded. Thus the construction uses k+1 clean wires before
+promotion; c is not an implicitly initialized dirty helper.
+
+Write J' for insertion of both A=0 and c=0. With tensor identities
+understood, define the actual word
+
+```math
+V_{\rm raw}=U\widehat R U^\dagger\widehat R U.
+```
+
+Its rightmost factor acts first. Put $`a=i-1`$. The projector algebra,
+on the entire initialized input space, gives
+
+```math
+V_{\rm raw}J'
+ =aJ'K+UJ'\bigl(iI-2iK^\dagger K\bigr).
+```
+
+Indeed the more general coefficient of UJ' is
+$`1+a+a^2K^\dagger K`$, and $`a^2=-2i`$. Since
+$`a/\sqrt2=\omega^3`$ for $`\omega=e^{i\pi/4}`$, the full
+initialized-isometry error is
+
+```math
+\begin{aligned}
+\|K^\dagger K-I/2\|&\le\sqrt2\varepsilon+\varepsilon^2,\\
+\|V_{\rm raw}J'-\omega^3J'Q_f\|
+ &\le3\sqrt2\varepsilon+2\varepsilon^2
+ =:\eta.
+\end{aligned}
+```
+
+This bound includes rejected A amplitude, address/output error and
+private-work return, with arbitrary external references. The flag and
+the zero-test pool return exactly during this initialized recovery.
+The inverse is the actual reversed native word, and has the same
+initialized error against $`\omega^{-3}Q_f^\dagger`$. No claim of
+exact A return follows without an additional flatness identity.
+
+The fixed phase already cancels in the promotion of Sections 2--4.
+For a standalone literal query, it can instead be corrected explicitly:
+on any existing wire,
+
+```math
+F=(S^\dagger H)^9=\omega^{-3}I,\qquad V=F V_{\rm raw}.
+```
+
+The native identity $`(HS)^3=\omega I`$ fixes this phase. Expanding
+each S dagger as three positive S gates costs 36 Cliffords for F;
+its actual inverse reduces to $`(HS)^9`$, costing 18. This reduction
+only combines adjacent powers of S. With common forward/actual-inverse
+source and zero-test bounds, safe common bounds for the corrected V are
+
+```math
+\begin{aligned}
+T_V&\le3T_U+4T_{C_k},\\
+G_V&\le3G_U+4G_{C_k}+42,\\
+d_V&\le3d_U+4d_{C_k},\\
+b_V&\le b_U+b_{C_k},\qquad k_V=k+1,\\
+\|VJ'-J'Q_f\|&\le\eta.
+\end{aligned}
+```
+
+There are three U/actual-adjoint calls and four C_k/actual-adjoint
+calls. The additive 42 allows six positive-S gates for the two inverse
+phase gates and 36 for the optional phase correction. The raw word has
+the smaller common additive allowance six. All zero-test helpers are
+arbitrary and returned, and the displayed width uses disjoint private
+pools. Sequential reuse does not multiply width by the call count.
+
+For clarity, keep the explicitly corrected V in the following complete
+ledger. Let $`M'=2^{k+1}`$ and let C_{k+1} be the promotion's separate
+returned zero-test on the joint A,c bank. Substitution into (11) and
+(14) gives a zero-clean full-operator query E with
+
+```math
+\begin{aligned}
+T_E&\le M'\bigl(12T_U+16T_{C_k}+4T_{C_{k+1}}+24q+4\bigr),\\
+G_E&\le M'\bigl(12G_U+16G_{C_k}+4G_{C_{k+1}}+40q+184\bigr)+2q,\\
+d_E&\le M'\bigl(12d_U+16d_{C_k}+4d_{C_{k+1}}+16\bigr),\\
+b_E&\le k+q+2+b_U+b_{C_k}+b_{C_{k+1}},\\
+\|E-Q_f\otimes I_{\rm borrowed}\|
+ &\le8M'\eta
+ =16\cdot2^k(3\sqrt2\varepsilon+2\varepsilon^2).
+\end{aligned}
+```
+
+Omitting F from every recovery is legitimate because its phase cancels
+in each source conjugation; it replaces 184 by 40 in the Clifford
+bound. The displayed conservative ledger nevertheless charges a literal
+source correction. Every final borrowed-register return error is
+included in the full norm. In particular, the flag's exact return on
+the initialized recovery sector is not promoted to a claim of exact
+return on arbitrary borrowed superpositions. The actual adjoint of E
+obeys the same complete error bound against the inverse query.
+
+If exact flatness $`K^\dagger K=I/2`$ is separately proved, then
+$`L=\sqrt2K`$ is unitary and $`VJ'=J'L`$. The joint clean sector
+is exactly invariant, so (16) instead gives error at most
+$`2\sqrt2\varepsilon`$, with exact return of A, c and the promotion
+toggle. This is an additional premise. Section 6.1's one-signal
+two-band rounding does not establish it for a growing clean bank.
+
+For $`0\lt\delta\le1`$, the sufficient compression accuracy
+
+```math
+\varepsilon\le\frac{\delta}{72\cdot2^k}
+```
+
+gives E error at most delta, since
+$`3\sqrt2+2\varepsilon\lt9/2`$ in the stated range. This is a
+compression accuracy, not an already returned-query accuracy.
+For a b-bit indicator source, take
+
+```math
+k(b)=\max\{1,\lfloor\beta\log_2\log_2(b+4)\rfloor\},
+\qquad \varepsilon_b=\frac{\delta}{72\cdot2^{k(b)}},
+\qquad \beta,\gamma\ge0,\quad \beta+\gamma\lt1.
+```
+
+If U has depth $`O((\log(b+2))^\gamma)`$ uniformly along this
+accuracy schedule, polynomial address overhead in T-count and width,
+and at most quadratic-bank Clifford count times polynomial address
+overhead, the zero-tests in (10) give the bound below. The simultaneous
+count and width bounds must also hold uniformly along the same accuracy
+schedule, with fixed polynomial exponents; fixed-epsilon constants alone
+do not suffice.
+
+```math
+d_E(b)=O\!\left(
+ [\log(b+2)]^{\beta+\gamma}
+ +[\log(b+2)]^\beta\log\log\log(b+16)
+\right)=o(\log(b+2)).
+```
+
+The [paid root fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+then absorbs the polynomial overhead and multiplies E's complete error
+by eight. To obtain final indicator tolerance tau, use
+$`\delta=\tau/8`$ above. This pays recovery of a general-k amplitude
+block inside the existing sufficient growing-clean window. It supplies
+neither such a block nor a faster unrestricted circuit. The first
+unpaid operation remains an actual source U meeting its full compressed
+operator promise and simultaneous native budgets uniformly along
+$`\varepsilon_b`$. Bounded-clean two-band sources retain the
+[fixed-sum obstruction](FIXED_CLIFFORD_SUM_SOURCE_GAP.md); that theorem
+does not give a gap uniform along this growing-k schedule.
+
 ## 7. Where the growing-clean candidate still pays depth
 
 If $`k=O(\log(p+2))`$, the factor $`M=2^k`$ is polynomial
@@ -757,6 +933,16 @@ actual twelve-Clifford inverse verify the asymmetric positive-S
 accounting used in Section 6. The already checked sector-cover identity
 then removes the fixed source phase; no extra phase correction is
 inserted into this receipt.
+
+A third five-wire fixture checks Section 6.3 with two initialized source
+wires and the additional recovery flag. Its actual two-control zero-test
+costs seven T gates and 28 Cliffords. All 32 columns of the raw recovery
+and its actual inverse are checked, including a nonmonomial unpromised
+sector. The literal phase correction costs 36 forward and 18 inverse
+Cliffords; the corrected recovery costs 28 T gates and 156 forward or
+142 inverse Cliffords. Its complete initialized action is exactly the
+logical CNOT query. This is a bounded native identity receipt, not a
+growing-clean source construction or an asymptotic emitter.
 
 The [native sector-parallelism audit](CLEAN_SECTOR_PARALLELISM_AUDIT.md)
 separates completed-sector commutativity from an actual parallel schedule.

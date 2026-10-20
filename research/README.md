@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+[current research outcome](depth/DIRTY_KEY_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -41,13 +41,27 @@ improvements. The new shared-key Clifford-fiber theorem excludes any
 number of such overlaps with affine address-Pauli insertion, at error
 below $`\sqrt2`$. The tested opposite-direction quadratic word leaves
 that premise but retains arbitrary dirty-key dependence with error two.
-Canceling this dependence with a genuinely shallow complete word is
-the next constructive question; no unrestricted depth bound follows.
+The [key-mixing revision](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
+adds a final-boundary theorem valid for arbitrary quantum fibers and
+separate moving-key screens with explicit premises. A different
+[nilpotent-pencil candidate](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md)
+encodes the complete output as an inverse column, or a unique zero
+pivot. Its quadratic XOR query is paid in eight layers; coherent
+readout remains unpaid. Its prescribed weak completion is equivalent
+to the indicator under constant-depth polynomial overhead, so rebuilding
+it from the old indicator retains the old depth. A native readout
+outside fixed-address Clifford stages and completed monomial rounds
+is the next constructive question; no unrestricted depth bound follows.
 [Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
 removes a uniformly bounded clean bank with full error and native costs
 paid. A one-signal complete block at amplitude one half or inverse square
 root of two is another sufficient source, through twenty-four actual
-source/inverse calls. The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
+source/inverse calls. The [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
+now pays amplitude-$`1/\sqrt2`$ recovery, an extra flag, all zero-tests
+and dirty promotion, with a uniform slowly growing clean window. Return
+is approximate unless exact flatness is separately established; no
+qualifying source in that window is supplied.
+The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
 now excludes every two-band complete indicator block at uniformly bounded
 clean count, for sufficiently small fixed relative error and sufficiently
 large address size, uniformly over all positive amplitudes. Decreasing
@@ -85,7 +99,13 @@ maximum. Its value is $`D_{\rm np}=D_3+576`$, still controlled by
 the crude high-rank estimate. The original-circuit rounding floor is
 $`2^{-530690}`$; arbitrary fixed tolerance and growing depth remain
 outside this conclusion. Upper source resources, R96 and selected R79
-are unchanged.
+are unchanged. The [focused four-band scout](depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md)
+retains a conditional physical coupling-radical certificate and literal
+pair removals. Identity words can have arbitrarily many physical pairs;
+disjoint-pair Boolean words can still admit another whole-word reduction.
+The fixed-endpoint one-pair/orbit class now has an actual-axis cubic
+closure: every middle axis commutes across the two bands. This is not
+a general four-layer degree bound or a free same-budget replacement.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported
