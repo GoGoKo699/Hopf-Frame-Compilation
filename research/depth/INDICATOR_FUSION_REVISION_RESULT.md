@@ -4,6 +4,14 @@
 [Full resource frontier](../../docs/OPEN_PROBLEM.md) ·
 [Preceding source-gap result](TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
 
+**Historical checkpoint.** The [amplitude-uniform continuation](AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+now excludes decreasing-amplitude two-band sources at bounded clean
+count and sufficiently small fixed relative error. It also extends the
+fixed-core sign/XOR bound three/two to every admissible silent input
+extension, and proves six/five for actual paired rank-two/rank-two
+endpoints. The fusion reduction below remains valid; its missing
+complete shallow source is still unpaid.
+
 The revision does not establish a faster general circuit. It identifies
 an unsupported change of emphasis in the previous continuation and
 replaces it with a paid constructive reduction. Adding a third source

@@ -1,4 +1,4 @@
-# A fixed Clifford-sum gap excludes fixed-clean two-band indicator sources
+# A Clifford-sum gap excludes bounded-clean two-band indicator sources
 
 [Two-band source interface](JOINT_FOURIER_WORD_LIMITS.md#5-a-precise-next-interface-for-two-source-bands) ·
 [Transported probes](OVERLAPPING_TWO_BAND_SOURCES.md#2-transported-output-probe-for-general-encoders) ·
@@ -6,8 +6,8 @@
 
 ## 1. Complete source theorem and its scope
 
-Fix a number k of clean source inputs and a positive amplitude
-$`\alpha\le1`$. Let J insert those k inputs in zero. Let U_A and U_B
+Fix a number k of clean source inputs. Let J insert those inputs in zero.
+Let U_A and U_B
 be actual one-band native encoders on all wires, and put
 
 ```math
@@ -17,14 +17,14 @@ K=J^\dagger U_B^\dagger U_AJ.
 All other inputs are arbitrary: the p address wires, the complete
 $`m=2^p`$ output bank, and every private dirty-work wire. The target is
 the complete indicator I_p, tensored with identity on private work.
-There are constants $`\epsilon_0(k,\alpha)>0`$ and
-$`m_0(k,\alpha)`$, independent of every source width and gate count,
-such that
+There are constants $`\tau_0(k)>0`$ and $`m_0(k)`$, independent of
+every source width, gate count and positive amplitude, such that for
+every $`0\lt\alpha\le1`$
 
 ```math
-m\ge m_0(k,\alpha)
+m\ge m_0(k)
 \quad\Longrightarrow\quad
-\|K-\alpha I_p\|>\epsilon_0(k,\alpha).
+\|K-\alpha I_p\|>\tau_0(k)\alpha.
 ```
 
 The same conclusion holds after optimizing a common source phase.
@@ -34,22 +34,27 @@ unchanged by tensoring an arbitrary external reference.
 It requires neither exact nor approximately rounded flatness.
 
 Consequently the two-one-band-source interface cannot provide the
-complete indicator to every fixed positive accuracy as the address
-size grows. Increasing the source's gate counts or width cannot evade this
+complete indicator to every fixed positive **relative** accuracy as the
+address size grows. Increasing the source's gate counts or width, or
+letting its amplitude decrease with address size, cannot evade this
 statement. In particular it excludes the proposed one-clean source at
 amplitude $`1/\sqrt2`$, even without imposing its desired linear
 T-count/dirty-width and quadratic Clifford-count budgets.
 
 This is a source theorem. It does not give an asymptotic lower bound
 on unrestricted indicator T-depth, and it does not exclude a different
-constant-depth mechanism. The theorem fixes alpha and an upper bound
-k_0 on the clean count before taking the address size large. Any source
+constant-depth mechanism. The theorem fixes an upper bound k_0 on the
+clean count before taking the address size large. Any source
 with k≤k_0 is covered by padding it with k_0−k idle clean wires, which
 leaves its compressed block unchanged. Thus bounded variation of the
-clean count is already covered. The proof supplies no uniform constants
-for unbounded clean counts or for amplitudes changing with address size
-or accuracy without further control; those applications need a new
-quantitative argument.
+clean count is already covered. No uniform constants for unbounded
+clean counts are supplied. The earlier fixed-amplitude proof and its
+useful constants are retained in Sections 2--6; the amplitude-free
+defect in Section 7 proves the stronger statement above. Section 8 also
+gives a finite-size lower bound on every nonzero one-signal compression.
+There is no amplitude-independent absolute error floor: as alpha tends
+to zero, the zero block has absolute error alpha. Such a block contains
+no approximate normalized indicator.
 
 The full conditional promotion and R98 recurrences remain correct in
 their [existing home](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence).
@@ -378,3 +383,199 @@ also explain why replacing the transported four-term unitary by a
 Clifford was not a valid shortcut. The direct defect closes the
 general source interface by a different invariant; it does not
 assert that those transported unitaries are Cliffords.
+
+## 7. An amplitude-free defect gives a uniform relative gap
+
+Allow the positive amplitude alpha to depend arbitrarily on address
+size, requested accuracy or the source word, while retaining
+$`0\lt\alpha\le1`$. Keep k bounded in advance. The coefficient
+$`-\alpha^2 2^{-k}`$ in Section 4 would no longer be fixed, so that
+particular gap cannot simply be reused uniformly. Instead compare the
+transported output probe with the source's own compressed Gram operator.
+
+Use the same actual encoders, projectors, C and D as in Section 4 and
+define
+
+```math
+X_{\mathrm{rel}}
+ =\Pi_A\Pi_B C\Pi_A-D\Pi_A\Pi_B\Pi_A.
+```
+
+Put $`V_A=U_AJ`$ and $`V_B=U_BJ`$. They are isometries onto
+their respective full code spaces, and $`K=V_B^\dagger V_A`$.
+Since the original output P commutes with the initialized clean
+projector, direct insertion gives the exact identity
+
+```math
+X_{\mathrm{rel}}
+ =V_A\bigl(K^\dagger P K-PK^\dagger K\bigr)V_A^\dagger.
+```
+
+In particular X_rel is supported on the A code on both sides, without
+any flatness or return premise. With q nonsignal wires,
+
+```math
+\|X_{\mathrm{rel}}\|_{2,q+k}
+ =2^{-k/2}\|K^\dagger P K-PK^\dagger K\|_{2,q}.
+```
+
+Expanding its three projectors in each term gives at most
+
+```math
+M_k^{\mathrm{rel}}=2^{3k+1}
+```
+
+literal Cliffords, all with coefficients in
+$`\{2^{-3k},-2^{-3k}\}`$. These coefficients do not involve alpha.
+Repeated terms may be kept as separate summands. The fixed-sum lemma
+therefore supplies $`g_k>0`$, independent of source width and gate
+count, such that
+
+```math
+X_{\mathrm{rel}}=0
+\quad\hbox{or}\quad
+\|X_{\mathrm{rel}}\|_{2,q+k}\ge g_k.
+```
+
+For an explicit conservative choice, apply Section 3 with B=1 and
+$`M=M_k^{\mathrm{rel}}`$ to the integer-coefficient sum
+$`2^{3k}X_{\mathrm{rel}}`$. It gives
+$`g_k=2^{-3k-a_M}`$. No sharpness is claimed.
+
+Suppose now that the complete block obeys the relative estimate
+
+```math
+\|K-\alpha I_p\|\le\tau\alpha.
+```
+
+Write $`K=\alpha I_p+E`$. The two quadratic expressions have
+errors at most $`2\alpha\|E\|+\|E\|^2`$ each. Hence
+
+```math
+\begin{aligned}
+\bigl\|K^\dagger P K-PK^\dagger K
+ -\alpha^2(I_p^\dagger P I_p-P)\bigr\|
+ &\le\alpha^2(4\tau+2\tau^2),\\
+\|X_{\mathrm{rel}}\|_{2,q+k}
+ &\le2^{-k/2}\alpha^2
+       \left(4\tau+2\tau^2+\frac2{\sqrt m}\right).
+\end{aligned}
+```
+
+The second line uses the same sparse output-probe witness as Section 5;
+it is a normalized-trace estimate for the exact defect, while the
+source premise remains the full operator norm. Choose
+
+```math
+\begin{aligned}
+\tau_0(k)&=\min\left\{\frac18,
+                         \frac{2^{k/2}g_k}{16}\right\},\\
+m_0(k)&=\max\left\{1,\frac{64\,2^{-k}}{g_k^2}\right\}.
+\end{aligned}
+```
+
+For $`\tau\le\tau_0(k)`$ and $`m\ge m_0(k)`$, one has
+$`4\tau+2\tau^2\le17\tau/4`$. Since alpha is at most one,
+the two contributions to the last bound are at most 17g_k/64 and
+g_k/4, respectively. Thus
+
+```math
+\|X_{\mathrm{rel}}\|_{2,q+k}\le\frac{33}{64}g_k\lt g_k.
+```
+
+The gap forces X_rel to vanish. Its exact code restriction then says
+$`K^\dagger P K=PK^\dagger K`$. The complete indicator witness,
+however, has operator norm $`2\alpha^2`$, so the relative error
+bound would require
+
+```math
+2\alpha^2
+ \le\alpha^2(4\tau+2\tau^2)
+ \le\frac{17}{32}\alpha^2.
+```
+
+This is impossible for every positive alpha. The constants are uniform
+over its entire interval, proving Section 1's stronger theorem.
+An arbitrary common source phase cancels from both quadratic terms,
+so the result also holds after optimizing that phase.
+
+The proof is an invariant calculation, not a native implementation of
+X_rel. It retains the complete bank, arbitrary dirty inputs and reference
+entanglement, and uses the actual encoder adjoints. It assumes neither
+exact nor approximate clean return beyond the stated compressed block.
+Padding a source with idle clean wires covers any clean count at most
+a fixed k_0 by the constants for k_0.
+
+This closes decreasing-amplitude two-band sources at uniformly bounded
+clean count as a way to supply arbitrarily small fixed relative error.
+It does not exclude every modest numerical tolerance: the displayed
+constants remain conservative. Nor does it provide constants uniform
+in unbounded k, whether k grows with address size or with the requested
+accuracy. Additional source bands and unrestricted constant-depth
+circuits remain outside this theorem. The polynomial-overhead fusion
+does not alter the conclusion, because no count or width hypothesis was
+used here.
+
+## 8. A sharp finite-size norm gap for one clean signal
+
+There is a separate useful obstruction before invoking a large-address
+indicator witness. For one clean signal and the same actual one-band
+encoders, let
+
+```math
+A=U_AZ_aU_A^\dagger,\qquad B=U_BZ_aU_B^\dagger.
+```
+
+Both are Hermitian literal Cliffords, and their positive eigenspaces
+each have half the full physical dimension. Then
+
+```math
+\|K\|=\|\Pi_B\Pi_A\|=\frac12\|A+B\|.
+```
+
+The first equality follows by writing
+$`\Pi_B\Pi_A=V_BKV_A^\dagger`$. For the second, write the
+unitary $`U_B^\dagger U_A`$ in its two equally sized signal blocks,
+with diagonal blocks K and L. Its square off-diagonal blocks and
+unitarity imply that $`K^\dagger K`$ and $`L^\dagger L`$ have
+the same spectrum. In U_A coordinates, $`(A+B)^2`$ is block
+diagonal with blocks $`4K^\dagger K`$ and $`4L^\dagger L`$.
+Taking norms proves the identity. The equal half-dimensional sectors
+are essential to this step.
+
+If K is nonzero, A and minus B are distinct Hermitian Cliffords. Their
+normalized Choi states either differ by sign, giving operator distance
+two, or are distinct projective stabilizer states, whose overlap has
+magnitude at most $`1/\sqrt2`$. Consequently
+
+```math
+K=0\quad\hbox{or}\quad
+\|K\|\ge\frac{\sqrt{2-\sqrt2}}2=\sin(\pi/8).
+```
+
+This constant is sharp: take $`U_A=I`$ and
+$`U_B=T_{Y_a}X_a`$, with identity on any spectators. Then A is Z,
+B is minus H, and the nonzero scalar compressed block has magnitude
+$`\sin(\pi/8)`$. Taking $`U_B=X_a`$ instead gives B equal to
+minus A and K equal to zero. Both are actual native sources; literal
+scalar phases are retained when evaluating their compressed blocks.
+
+For any unitary target V, not just an indicator, a meaningful relative
+estimate with $`\|K-\alpha V\|\le\tau\alpha`$ and
+$`\tau\lt1`$ excludes K equal to zero. It therefore requires
+
+```math
+\alpha\ge\frac{\sin(\pi/8)}{1+\tau}.
+```
+
+Unlike Section 7's indicator theorem, this finite-size conclusion
+needs only one signal and no large address. It bounds the norm of the
+whole compression, not every nonzero singular value and not the
+compression of a general deeper circuit. It does not extend the
+half-sector norm identity to several clean signals.
+
+The [two focused exact fixtures](../../tests/test_relative_amplitude_source_gap.py)
+check the amplitude-free physical/code defect identity, its literal
+projector expansion, actual adjoints and common-phase cancellation, and
+the sharp one-signal norm example with its zero-block branch. The uniform
+relative gap and all-size scope remain analytic.

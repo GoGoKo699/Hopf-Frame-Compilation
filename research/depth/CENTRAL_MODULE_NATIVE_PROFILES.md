@@ -356,8 +356,13 @@ prevents every one-band output completion to a Clifford target, including
 arbitrary output Cliffords and unused-sector extensions. Every complete
 target in the same family has a zero-clean three-band word with one
 middle axis, giving diagonal third-level closure and Boolean sign/XOR
-degree at most three/two. This narrows one physical mechanism; general
-inside-span matching remains open.
+degree at most three/two, now including all admissible silent input axes
+coupled to the active core. The [paired rank-two extension](MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints)
+also gives sign/XOR degree at most six/five when both actual endpoint
+clean-active ranks are two and an original middle pair is present.
+This uses common pair-parity coordinates and native quotient independence.
+The no-pair branch is separate; general inside-span matching beyond these
+endpoint hypotheses remains open.
 
 
 ## 7. Exact checks and scope

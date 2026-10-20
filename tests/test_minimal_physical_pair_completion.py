@@ -1,7 +1,8 @@
 """Exact small guards for a fixed original physical-pair completion.
 
 The first fixture retains both clean sectors and actual inverse. The
-second protects its non-C3 partner; neither enumerates output completions.
+second protects its non-C3 partner. The third keeps a core-coupled
+input axis and both pair-parity sectors; none enumerates completions.
 """
 from collections import Counter
 import unittest
@@ -119,6 +120,65 @@ class MinimalPhysicalPairCompletionTests(unittest.TestCase):
         second_image = _conjugate(first_image, _tau(1, width))
         self.assertEqual([sum(value != CZ for value in row) for row in second_image],
                          [2, 2, 2, 2])
+
+
+    def test_core_coupled_input_and_two_rank_two_parity_sectors(self):
+        # c=0 is clean; a=1,t=2,s=3 are arbitrary. The new input
+        # axis is R_p Z_t, and the extra middle singleton is R_p Z_s.
+        # This is a sector-reduction fixture, not a Boolean-degree witness.
+        width = 4
+        k_word = _ghz(2)
+        x_t = [('H', 2), ('S', 2), ('S', 2), ('H', 2)]
+        ua_word = [('CX', 0, 2), ('CX', 1, 2)] + x_t
+        ub_word = ([('CX', 0, 3), ('CX', 1, 3),
+                    ('CX', 2, 0), ('CX', 2, 1)]
+                   + _pair_coordinates(2) + [('H', 2)])
+        ea_word = _inverse(ua_word) + [('T', 0), ('T', 1), ('T', 2)] + ua_word
+        eb_word = (_inverse(ub_word)
+                   + [('T', 0), ('T', 1), ('TDG', 2), ('T', 3)] + ub_word)
+        word = (k_word + ea_word + eb_word
+                + [('TDG', 0), ('TDG', 1)] + _inverse(k_word))
+
+        p_axis = _tau(3, width)
+        q_axis = _tau(3 | (3 << width), width)
+        rp = multiply(p_axis, q_axis)
+        b = _tau(4, width)
+        zt, zs = _tau(4 << width, width), _tau(8 << width, width)
+        ua = native_columns(width, ua_word)
+        ub = native_columns(width, ub_word)
+        self.assertEqual(_conjugate(ua, zt), multiply(rp, zt))
+        middle_axes = (multiply(p_axis, b), multiply(q_axis, b),
+                       b, multiply(rp, zs))
+        for index, axis in enumerate(middle_axes):
+            self.assertEqual(_conjugate(ub, _tau(1 << (width + index), width)), axis)
+        self.assertEqual(_rank([1 << width, 2 << width, 7 << width]), 3)
+        self.assertEqual(_rank([7, 7 | (3 << width), 4, 11 << width]), 4)
+
+        actual = native_columns(width, word)
+        self.assertEqual(native_columns(width, _inverse(word)), adjoint(actual))
+        self.assertEqual(_product(adjoint(actual), actual), eye(16))
+        self.assertEqual(_conjugate(actual, _tau(1 << width, width)),
+                         _tau(1 << width, width))
+        self.assertEqual([len(band) for band in _native_t_bands(word)], [3, 4, 2])
+
+        k = native_columns(width, k_word)
+        a = native_columns(width, [('T', 0), ('T', 1)])
+        pair = _product(adjoint(k), adjoint(a), _t_phase(middle_axes[0]),
+                        _t_phase(middle_axes[1]), a, k)
+        omega = native_columns(1, [('T', 0)])[1][1]
+        for central_bit in (0, 1):
+            positions = [2 * central_bit + 4 * t + 8 * s
+                         for s in (0, 1) for t in (0, 1)]
+            block = [[actual[row][column] for column in positions] for row in positions]
+            pair_block = [[pair[row][column] for column in positions] for row in positions]
+            sign = 2 * central_bit - 1  # R_l=-Z_a.
+            expected = _product(_t_phase(scale(_tau(1, 2), sign)),
+                                _t_phase(scale(_tau(2 << 2, 2), sign)),
+                                _t_phase(scale(_tau(1 << 2, 2), sign)))
+            self.assertEqual(block, expected)
+            expected_pair = (scale(eye(4), omega) if central_bit == 0
+                             else native_columns(2, [('H', 0), ('S', 0), ('H', 0)]))
+            self.assertEqual(pair_block, expected_pair)
 
 
 if __name__ == '__main__':

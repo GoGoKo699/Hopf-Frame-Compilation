@@ -3,6 +3,14 @@
 [Workspace](../../WORKSPACE.md) · [Resource frontier](../../docs/OPEN_PROBLEM.md) ·
 [Previous session](OVERLAPPING_SOURCE_SESSION_RESULT.md)
 
+**Historical checkpoint.** The [amplitude-uniform continuation](AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+strengthens the source obstruction to a uniform relative-error floor
+over all positive amplitudes at bounded clean count. Decreasing amplitude
+alone is therefore no longer a reopening condition. Its original-pair
+continuation also closes actual paired rank-two/rank-two endpoints at
+sign/XOR degree six/five. The results and verification record below
+retain the scope of this earlier session.
+
 This continuation fetched main
 `eb368d2fcccfac2c1dc22d66d0e8c8d979891384`, tree
 `715b96aa427daa89ce1fffd15a024b4494959740`, on 19 October 2026.
