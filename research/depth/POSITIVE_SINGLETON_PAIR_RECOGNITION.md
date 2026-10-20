@@ -4,6 +4,12 @@
 [General occupied computational center](OCCUPIED_BOOLEAN_PAIR_CENTER.md#4-computational-center-and-a-finite-feature-description) ·
 [All-active diagonal reduction](ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
 
+**Later extension:** [complete Boolean pair collapse](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+removes both the positive-singleton and one-pair premises. Every paired
+complete Boolean source has exactly one all-active pair and no negative
+singletons after repair. The proof below remains a useful component;
+its final negative-singleton reopening question is now closed.
+
 For one genuine original middle pair, the absence of negative singletons
 already forces the all-active support condition under the complete
 Boolean contract. The proof uses the pair's two literal parity branches

@@ -4,6 +4,13 @@
 [Native profiles and the exported guard](CENTRAL_MODULE_NATIVE_PROFILES.md#62-the-transformed-union-can-grow-in-the-exported-comparison) ·
 [Two-native-band classification](NATIVE_BAND_SOURCE_STRUCTURE.md#2-two-native-bands-exact-c3-classification)
 
+**Later recognition:** [complete Boolean pair collapse](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+closes arbitrary original pair count and singleton signs at three layers.
+Its paired six/five bound supersedes the larger general paired bounds
+below. The exact completions, safe quotient identities and sector-encoder
+obstructions remain useful components; they do not become free native
+operations. The reopening instructions below describe this earlier stage.
+
 An actual one-pair source can cancel a positive middle singleton and
 implement occupied identity. Its pair residual also contains a second,
 centrally controlled T phase. That partner prevents the minimal source

@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+[current research outcome](depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -49,15 +49,28 @@ norm floor $`\sin(\pi/8)`$. The
 the four-call direct output readout, its quantum helper-return interface,
 the scoped Fourier-twirl limit, and all-active one-pair closure without
 a singleton-coupling bound. The
-[current structural revision](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+[previous structural revision](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
 replaces its generic matrix-feature degree estimate by actual endpoint
 sublist peeling and a fixed full-space diagonal reduction: sign/XOR
 degree at most six/five uniformly, and five/four at common active rank
 at least four. The
 [positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
-further derives the all-active support from complete Booleanity when the
-literal orientation repair leaves no negative singletons. The upper
-source resources and full frontier are unchanged.
+further derived the all-active support from complete Booleanity when the
+literal orientation repair leaves no negative singletons. The new
+[original-pair collapse theorem](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+removes that premise and the pair-count restriction: any complete Boolean
+one-clean native-three word with a genuine original pair has exactly
+one, with all-active support at both endpoints and no negative singleton
+after literal repair. Its sign/XOR degree is therefore at most six/five,
+or five/four at common active rank at least four. Together with the
+retained no-pair and Pauli-interior cases, its [exhaustive corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained) gives an absolute
+width-independent degree ceiling $`D_{\rm np}`$ for every at-most-one-clean
+native-three Boolean sign, and $`D_{\rm np}-1`$ for its nonconstant
+complete XOR predicate. The universal constant remains the crude
+no-pair bound, not six/five. The original-circuit rounding floor is
+$`2^{-530690}`$; arbitrary fixed tolerance and growing depth remain
+outside this conclusion. Upper source resources, R96 and selected R79
+are unchanged.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported
@@ -231,9 +244,10 @@ original pair. The [larger-support analysis](depth/MINIMAL_PHYSICAL_PAIR_COMPLET
 now gives a robust one-band obstruction and an exact two-band repair for
 the sector endpoint code. This raises the sector comparison to five
 bands with middle singletons, or four in the pair-only witness, leaving
-finite-insertion Boolean stability unpaid. General original pairs and
-higher layers remain open; the representation obstruction supplies no
-Boolean counterfamily or unrestricted depth bound.
+finite-insertion Boolean stability unpaid by that representation.
+The later pair-collapse theorem bypasses this cost for complete Boolean
+three-layer words; higher layers remain open. The representation
+obstruction supplies no Boolean counterfamily or unrestricted depth bound.
 The [all-active original-pair theorem](depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
 gave sign/XOR degree 2428/2427, with higher-degree floor
 $`2^{-530690}`$, for a one-clean three-band word with one genuine
@@ -271,8 +285,9 @@ the uniform six/five bound. This also sharpens the earlier one-sided
 2428/2427 estimate. Every original singleton and silent factor is retained,
 with no restriction to a $`P_h`$ eigenspace. The original-circuit rounding floor
 $`2^{-530690}`$ applies within these physical-list hypotheses; no
-bound on h, free native phase list, or unrestricted three-layer theorem
-is asserted.
+bound on h or free native phase list is asserted by that component.
+The later pair-collapse theorem supplies the unrestricted paired-branch
+recognition needed to apply it.
 
 The [positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
 removes the support assumption in the one-pair class with no negative
@@ -304,10 +319,36 @@ The former next step of unrestricted singleton coupling in this
 all-active class is closed by scalar-branch matching, with the small
 degree bound supplied by the full-space diagonal reduction. Boolean
 support recognition also closes proper-support candidates with only
-positive singletons. One original pair with negative singletons and
-more than one original pair remain the focused lower questions.
-R96 remains the strongest general upper bound, R79 remains
-selected Result D, and the complete-frame frontier is unchanged.
+positive singletons. The
+[scalar-sector continuation](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+now closes the remaining negative-singleton and growing-original-pair
+questions. Restriction to the joint scalar pair sector preserves the
+actual output-silent list's independence. Boolean reality removes its
+dressing of every clean-even active direction; the full logical Boolean
+derivative then cannot switch commutation sign between pair sectors.
+Every pair difference is the same complete active sum, so original
+middle independence permits only one. Reversal gives output support,
+and the clean comparison excludes negative singletons.
+
+The [exhaustive one-clean three-layer corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained) retains the ceiling
+
+```math
+D_{\rm np}=\max\{D_3+576,D_{\rm ins}(0,0,0,3)\},
+\qquad \deg g\le D_{\rm np},\quad \deg f\le D_{\rm np}-1.
+```
+
+The constants belong to the retained no-pair proof homes; their
+finite-insertion term also dominates the Pauli-interior and paired
+ceilings. This closes the qualitative uniform-degree question, not its
+sharp quantitative form. The next lower question is a structural
+sharpening of this no-pair constant, followed by higher-layer degree
+growth. It is not another request to enumerate a larger matrix alphabet.
+The conservative rounding floor applies to the original full circuit,
+including leakage, dirty return and references. The resulting depth
+exclusion is still constant, not dimension-growing. R96 remains the
+strongest general upper bound, R79 remains selected Result D, and the
+first unpaid upper operation remains a qualifying sublogarithmic weak
+quantum-fiber source or whole extraction.
 
 ## Endpoint results
 
@@ -568,8 +609,9 @@ bent query. A 12-T, two-layer, 44-Clifford one-clean complex diagonal
 counterexample still disproves the blanket occupied-C3 extension; its
 input-dependent phase cannot receive a free correction in the same
 native layers. A paid ten-layer bent-query baseline gives no improved
-upper frontier. The next lower question is an arity- and width-independent
-Boolean degree bound at three unrestricted layers; R98's faster complete
+upper frontier. Its next lower question was an arity- and width-independent
+Boolean degree bound at three unrestricted layers, now closed qualitatively
+by the no-pair theorem and original-pair collapse. R98's faster complete
 query remains the parallel constructive target.
 
 The [three-layer native round](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
@@ -583,9 +625,10 @@ A fair 16-T/34-Clifford/six-layer baseline prevents mistaking the depth
 improvement for count improvement. A growing-arity quartic-sign family
 still has an unpaid address phase when used as a larger query.
 The [projected-band extension](depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
-isolates one possible three-dimensional defect. The full one-clean
-three-layer degree bound remains open because an intermediate code may
-be non-Pauli; the old shared-clean-flip construction is not automatic.
+isolates one possible three-dimensional defect. Non-Pauli intermediate
+codes made the one-clean extension nonautomatic; the old shared-clean-flip
+construction remains invalid in general. The subsequent no-pair and
+pair-collapse theorems now give a uniform, though crude, degree ceiling.
 No general complete-frame frontier or publication claim changes.
 
 The [clean-code and algebra round](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
@@ -593,7 +636,8 @@ then gives three supported components. [Clifford code rigidity](depth/CLEAN_CODE
 classifies literal pointwise stabilizers and localizes the complete native
 logical comparison family. Exact examples disprove blanket full-space
 Clifford extension and show that arbitrarily many clean-paired axes can
-have a one-layer full target. [Quadratic queries](depth/QUADRATIC_NATIVE_QUERY.md)
+have a one-layer complex diagonal full target, not a Boolean sign.
+[Quadratic queries](depth/QUADRATIC_NATIVE_QUERY.md)
 have optimal depth two with zero clean and one returned dirty helper,
 with paid coordinates and actual inverses. A fair six-band cubic baseline
 stops the quartic-phase echo as a saving. The
@@ -603,8 +647,9 @@ correction bank; six calls occupy five native stages per merge. Its
 source and inverse have $`O(\log r)`$ depth and
 $`O(3^r)`$ counts and dirty allocation on $`2^r-1`$ arbitrary inputs,
 improving the fair $`O(r)`$ depth baseline. Its degree-r returned query
-still has growing depth. The next unrestricted lower question is the
-one-clean three-layer degree bound after handling unused-sector freedom.
+still has growing depth. That checkpoint's unrestricted lower question
+was the one-clean three-layer degree bound after handling unused-sector
+freedom; the current pair-collapse continuation closes its qualitative form.
 The retained R74 theorem already reduces sufficiently accurate Boolean
 approximation to exact occupied action at a uniform small radius;
 a faster general R98 query remains open, and R96 is unchanged.
@@ -628,9 +673,10 @@ closes one substantial subcase: actual Pauli clean images at every band
 boundary force sign degree at most 2048, and query degree at most 2047,
 even with arbitrary Clifford/address mixing. It retains the exceptional
 four-axis relation and bounds the phase dependence of an unbounded
-central register through a five-qubit quantum core. The next lower
-question concerns non-Pauli intermediate codes, with joint parity-control
-phases, silent endpoint bands and unused-sector freedom still present.
+central register through a five-qubit quantum core. Its next lower
+question concerned non-Pauli intermediate codes, with joint parity-control
+phases, silent endpoint bands and unused-sector freedom retained by the
+later no-pair and original-pair theorems.
 
 The [preceding non-Pauli-boundary checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
 extends that lower closure. The [partial-diagonal theorem](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
@@ -641,8 +687,9 @@ degree at most $`2^{26}-1`$ whenever either **interior** clean image is
 Pauli; the input and final clean stabilizers do not suffice. The retained
 both-Pauli bound remains 2048/2047. [Exact repacking](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#8-both-non-pauli-images-of-active-rank-one-can-be-repacked)
 also gives those stronger bounds when both non-Pauli interior images
-have active rank one. Thus an unbounded-degree family must have both
-interior images non-Pauli and at least one active rank greater than one.
+have active rank one. This narrowed any then-unexcluded unbounded-degree
+family to two non-Pauli interiors and at least one active rank above one;
+the subsequent uniform theorem excludes such a family as well.
 The [one-band non-Pauli decoder](depth/NONPAULI_CODE_DECODING.md)
 has an exact controlled-Clifford form, bounded-degree control bits and
 paid native forward/inverse words. Its growing displacement-rank witness
@@ -667,7 +714,8 @@ endpoint active ranks, including general middle pairs. For two non-Pauli
 interior images it gives sign bound
 $`D_{\rm ins}(1,1,1,k_A+k_C-1)`$ and XOR bound one less. Neither
 the insertion nor its coordinate changes are supplied for free.
-Uniformity in growing active ranks remains open.
+Uniformity in growing active ranks is now supplied by the separate
+no-pair theorem and original-pair collapse, not by this insertion estimate.
 
 The [determinant-defect theorem](depth/DETERMINANT_DEFECT_DEGREE.md)
 supplies a different bridge in the zero-pair, all-zero-character branch.
@@ -701,9 +749,11 @@ this reduces the actual clean transition to one quadratic-controlled
 Pauli between three independent native bands, plus a central cubic
 sign. A separate noncentral-parity subcase of the actual clean-derived
 no-pair circuit has sign/XOR bounds five/four, including endpoint rank two.
-Global matching remains open:
-conditioning the center can destroy native independence even for an
-identity target. An arbitrary quartic correction is not a free gate.
+This component alone did not supply global matching: conditioning the
+whole center can destroy native independence even for an identity target.
+The later no-pair closure retains actual native lists, while original-pair
+collapse uses only its explicitly injective scalar-sector quotient.
+An arbitrary quartic correction is still not a free gate.
 
 The [quadratic-control matching theorem](depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
 closes fixed control polar rank by actual Clifford absorption and finite
@@ -860,8 +910,9 @@ adds a paid route from bounded-clean complete queries and one-signal
 unitary blocks to zero-clean indicators. Its generic source-call bound
 explains the retained growing-clean cost. The accompanying Fourier-word,
 Pauli-nullity and occupied-center notes distinguish architecture limits,
-unrestricted count constraints and the still-open physical-pair degree
-question. Its earlier two-band resumption prompt is superseded by the
+unrestricted count constraints and the then-open physical-pair degree
+question, now closed by Boolean original-pair collapse. Its earlier
+two-band resumption prompt is superseded by the
 [fixed-clean two-band source gap](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md).
 Native synthesis of a complete block with additional source bands
 remains an alternative, with its generic recovery/return recurrence

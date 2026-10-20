@@ -4,6 +4,12 @@
 [Full-space diagonal native-three theorem](THREE_LAYER_NATIVE_STRUCTURE.md) ·
 [Rank-two endpoint case](MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints)
 
+The later [Boolean original-pair collapse theorem](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
+supplies this note's one-pair and all-active hypotheses for every exact
+complete Boolean source with any original physical pair. Thus the
+six/five bound below covers the entire paired branch. The unrestricted
+three-layer bound still uses the separate, larger no-pair constant.
+
 The large feature constant in the first all-active closure is unnecessary.
 Once the actual dressed pair axis has one computational X mask, native
 independence identifies every endpoint rotation which dresses that axis.
@@ -44,8 +50,8 @@ The companion [positive-singleton recognition theorem](POSITIVE_SINGLETON_PAIR_R
 derives the all-active support condition for a complete Boolean word
 with exactly one genuine original pair and no negative singletons after
 literal orientation repair. Thus the bounds above also apply to that
-class without assuming all-active support. Negative singletons and
-unrestricted pair count remain outside this extension.
+class without assuming all-active support. The later general collapse
+theorem linked above removes its singleton and pair-count restrictions.
 
 ## 2. Retained reduction through the actual one-mask Clifford
 
