@@ -24,6 +24,12 @@ theorem, finite exact certification, native sign frames, global
 truncated-key echo and the constant-clean filter's complete precision
 ledger. Exact sector invariance and general leakage have different
 source-accuracy recurrences.
+The subsequent Clifford rank--norm refinement checks the primary
+operator theorem, its normalized Choi convention and an elementary
+one-term elimination proof. The direct projected defect supplies the
+exact clean-count bound and finite relative-error exclusion; its
+code-supported norm conversion is retained in the approximate case.
+The exact theorem does not exclude fixed-error growing-clean sources.
 No new search experiment or implemented native emitter is claimed.
 The general depth frontier remains unchanged;
 required validation and rendered-document checks cover the reviewed tree.

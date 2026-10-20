@@ -119,8 +119,13 @@ clean count, for sufficiently small fixed relative error and sufficiently
 large address size, uniformly over all positive amplitudes. Decreasing
 amplitude alone cannot evade its amplitude-free defect. The proof permits arbitrary dirty
 width, rejected action and common phase, without assuming flatness.
-Its explicit constants are extremely conservative; it is a source-class
-obstruction, not a dimension-growing unrestricted depth bound.
+The [rank--norm refinement](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+now requires $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$
+for exact sources. It excludes exact one-clean sources for p≥18,
+and relative error at most $`2^{-10}`$ for p≥20. These are
+source-class statements, not dimension-growing unrestricted depth
+bounds. The explicit growing-k approximate floor still tends to zero,
+so fixed-error growing-clean sources remain open.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
 [previous coherent-source continuation](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) records

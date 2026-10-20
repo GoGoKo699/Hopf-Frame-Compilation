@@ -47,8 +47,10 @@ constant-depth mechanism. The theorem fixes an upper bound k_0 on the
 clean count before taking the address size large. Any source
 with k≤k_0 is covered by padding it with k_0−k idle clean wires, which
 leaves its compressed block unchanged. Thus bounded variation of the
-clean count is already covered. No uniform constants for unbounded
-clean counts are supplied. The earlier fixed-amplitude proof and its
+clean count is already covered. The fixed-sum argument itself supplies
+no uniform constants for unbounded clean counts. Section 10 supplies a stronger exact
+growing-clean bound and explicit finite-error screens by a separate
+Clifford rank--norm argument. The earlier fixed-amplitude proof and its
 useful constants are retained in Sections 2--6; the amplitude-free
 defect in Section 7 proves the stronger statement above. Section 8 also
 gives a finite-size lower bound on every nonzero one-signal compression.
@@ -372,9 +374,10 @@ p_0=2a_{10}+9=2\,560\,999\,827.
 
 The enormous displayed threshold records a constructive proof of a
 positive asymptotic floor. It gives no useful estimate of the first
-excluded small address size. Sharpening the finite Clifford-sum gap
-could improve these constants, but is unnecessary to exclude an
-arbitrary-accuracy scalable source family within this interface.
+excluded small address size. This threshold belongs to the fixed-sum
+proof. The separate rank--norm argument in Section 10 excludes exact one-clean sources
+already at p at least 18, and relative error at most 1/1024 at p at
+least 20. Neither calculation asserts an unrestricted depth bound.
 
 The earlier parity-copy screen, scalar-commuting-probe screen, and
 computed signal-mixing family retain their exact finite-size scopes
@@ -582,9 +585,10 @@ relative gap and all-size scope remain analytic.
 
 ## 9. Exact growing-clean sources and the shrinking approximate threshold
 
-The retained recurrence gives a quantitative exact corollary. This
-concerns the same two actual one-band encoders and their complete
-compressed indicator block; it is not an unrestricted depth bound.
+The retained fixed-sum recurrence gives the following quantitative
+exact corollary. Section 10 strengthens it by a separate rank--norm
+argument. Both concern the same two actual one-band encoders and
+their complete compressed indicator block, not unrestricted depth.
 For B equal to one, write
 
 ```math
@@ -628,8 +632,10 @@ k\ge\frac13\log_2\log_2p
 Thus $`k=o(\log\log p)`$ cannot supply an exact two-band source.
 The [paid parallel-promotion window](PARALLEL_CLEAN_PROMOTION.md#51-paying-any-sufficiently-small-packing-permutation)
 is broader: it includes k asymptotic to beta times log log p for every
-fixed beta below one. This exact corollary leaves, for example,
-$`1/3\le\beta\lt1`$ available to further source investigation.
+fixed beta below one. By itself this exact corollary leaves, for example,
+$`1/3\le\beta\lt1`$ unresolved. Section 10 closes the larger exact
+$`k=o(\log p)`$ window; the growing-clean constant-accuracy source
+question remains open.
 
 The approximate conclusion is different. The same proof supplies
 
@@ -646,3 +652,251 @@ Budgets promised separately at every fixed accuracy cannot be used at
 this shrinking tolerance without a uniform precision estimate. This
 distinction also prevents a fixed-k theorem from excluding every
 accuracy-dependent but address-independent allocation k(tau).
+
+## 10. Rank-norm bounds sharpen the exact and finite-error source screen
+
+The exact conclusion of Section 9 can be strengthened from order
+log log p clean inputs to order log p. The amplitude and all dirty
+widths remain unrestricted. The approximate conclusion below has a
+shrinking accuracy threshold and does not exclude constant-accuracy
+sources throughout the growing-clean promotion window.
+
+### Operator norm versus normalized Hilbert--Schmidt norm
+
+For an arbitrary n-qubit operator E, let $`\chi_{\mathrm C}(E)`$
+be the minimum number of Clifford unitaries in a complex linear
+combination equal to E. Let $`\Lambda_{\mathrm C}(E)`$ be the
+minimum coefficient l1 norm over all such decompositions. The
+triangle inequality gives $`\|E\|\le\Lambda_{\mathrm C}(E)`$.
+Global Clifford phases can be absorbed into the coefficients; every
+literal Clifford used in this note is an admissible summand.
+
+[Sinha and Lovitz, arXiv:2610.06819v1](https://arxiv.org/html/2610.06819v1),
+Theorem 4.7 and Corollary 4.9, prove the dimension-independent bound
+
+```math
+\begin{aligned}
+\chi_{\mathrm C}(E)\le M
+&\quad\Longrightarrow\quad
+\|E\|^2\le\Lambda_{\mathrm C}(E)^2
+       \le B(M)\|E\|_{2,n}^2,\\
+B(M)&=\min\left\{\frac{4^M-1}{3},
+              2^{12\sqrt{M\log_2(2M)}}\right\}.
+\end{aligned}
+```
+
+This is the operator theorem, including nonunitary E, with
+$`\|E\|_{2,n}^2=2^{-n}\mathrm{tr}(E^\dagger E)`$.
+It permits arbitrary complex coefficients. The second bound uses
+the paper's weighted clustering theorem; no fixed-coefficient gap
+or unencoded-target assumption is substituted for it.
+
+For completeness, the first bound has the following elementary
+one-term elimination proof. Under the normalized Choi map,
+Cliffords correspond exactly to stabilizer states maximally
+entangled across the n:n cut. Write $`\Lambda_{\mathrm M}`$
+for coefficient l1 norm over those states. A stabilizer missing a
+ebits from maximal entanglement has
+$`\Lambda_{\mathrm M}\le2^{a/2}`$: its bipartite stabilizer
+normal form has a pairs with no entanglement, each expanded as the
+sum of two Bell states with coefficient $`1/\sqrt2`$.
+
+A nonzero Pauli projection increases this deficit by at most one.
+Indeed, a nondeterministic stabilizer measurement replaces one
+stabilizer generator; the old and new label spaces share a
+codimension-one subspace. Their intersections with the left-local
+Pauli space therefore differ in dimension by at most one. That
+dimension is the stabilizer's entanglement deficit. Deterministic
+nonzero projections do not change the state.
+
+Induct on t for a vector v expressed with t stabilizers of deficit
+at most a. Choose one displayed stabilizer s, put
+$`P_s=|s\rangle\langle s|`$, and average
+$`Q_g=(I-g)/2`$ over its full signed stabilizer group. Then
+
+```math
+v=P_sv+2\mathbb E_g Q_gv,\qquad
+\mathbb E_g\|Q_gv\|^2=\tfrac12\|(I-P_s)v\|^2.
+```
+
+Every $`Q_gv`$ has at most t minus one surviving stabilizer
+summands and deficit at most a+1. If their squared coefficient
+norm is bounded by $`2^{a+1}c_{t-1}`$ times their squared norm,
+the triangle and Cauchy--Schwarz inequalities give
+
+```math
+\begin{aligned}
+\Lambda_{\mathrm M}(v)
+&\le2^{a/2}\left(\|P_sv\|
+           +2\sqrt{c_{t-1}}\|(I-P_s)v\|\right),\\
+\Lambda_{\mathrm M}(v)^2
+&\le2^a(1+4c_{t-1})\|v\|^2.
+\end{aligned}
+```
+
+Thus $`c_0=0`$ and $`c_t=1+4c_{t-1}=(4^t-1)/3`$.
+Apply the deficit-zero case to a Clifford Choi decomposition of E.
+Its norm squared is $`\|E\|_{2,n}^2`$, proving the first
+operator bound without the stronger clustering result. This
+weighted argument retains maximal-entanglement costs; a generic
+stabilizer-state extent bound alone would not suffice.
+
+### Exact complete sources require logarithmically many clean inputs
+
+Use the direct defect from Section 4, not the larger relative defect:
+
+```math
+X=\Pi_A\Pi_B C\Pi_A-\alpha^2D\Pi_A,
+\qquad M_k=2^{3k}+2^k.
+```
+
+Its displayed literal Clifford expansion proves
+$`\chi_{\mathrm C}(X)\le M_k`$ even when alpha varies, because
+the rank--norm theorem does not require fixed coefficients. If
+$`K=\alpha I_p`$ exactly, with any positive alpha, the original
+single-output Pauli probe gives
+
+```math
+\|X\|=2\alpha^2,\qquad
+\|X\|_{2,q+k}=2\alpha^2\,2^{-(p+k)/2}.
+```
+
+The factor $`2^{-p/2}`$ is the one-address support of the defect;
+$`2^{-k/2}`$ is the normalized-trace conversion from the full
+A code to the physical space. Every output and private dirty column
+is included in these norms. The operator inequality now gives
+
+```math
+\boxed{\quad
+p+k\le\log_2 B(M_k)
+\le12\sqrt{M_k\log_2(2M_k)}.
+\quad}
+```
+
+Since $`M_k\le2^{3k+1}`$, inversion yields
+
+```math
+k\ge\frac23\log_2p
+       -\frac13\log_2\log_2p-O(1).
+```
+
+Even the elementary bound alone gives
+$`p+k\lt2M_k\le2^{3k+2}`$, hence
+$`k\gt(\log_2p-2)/3`$. Thus exact two-one-band sources with
+$`k=o(\log p)`$ cannot supply the complete indicator at any
+positive amplitude, including $`1/\sqrt2`$. This closes the exact
+source part of the larger conditional promotion window.
+
+For one clean signal, $`M_1=10`$. The elementary inequality gives
+$`p+1\le\log_2((4^{10}-1)/3)\lt19`$, so every integer
+p at least 18 is excluded for exact complete sources. No width or
+gate-count bound is used. A common source phase cancels from the
+quadratic defect, so the same result holds after optimizing it.
+This is a coarse complete-source screen; sharper obstructions under
+the [specialized overlapping-source hypotheses](OVERLAPPING_TWO_BAND_SOURCES.md)
+remain applicable.
+
+### Approximate sources retain a shrinking threshold
+
+Suppose instead that $`\|K-\alpha I_p\|\le\tau\alpha`$.
+Put
+
+```math
+\eta=2\tau+\tau^2,\qquad
+\beta_k=\frac{2^{k/2}}{\sqrt{B(M_k)}}.
+```
+
+Embed the ideal logical defect into the physical A code:
+
+```math
+X_*=\alpha^2 V_A(I_p^\dagger P I_p-P)V_A^\dagger.
+```
+
+The quadratic source estimate gives
+$`\|X-X_*\|\le\alpha^2\eta`$. Both physical operators vanish
+off the A code. Consequently
+
+```math
+\begin{aligned}
+\|X\|&\ge\alpha^2(2-\eta),\\
+\|X\|_{2,q+k}
+&\le2^{-k/2}\alpha^2
+             \left(\eta+2^{1-p/2}\right).
+\end{aligned}
+```
+
+The second line uses the normalized Hilbert--Schmidt norm on all
+logical inputs, followed by the exact clean-code factor
+$`2^{-k/2}`$; it is not an initialized-subspace approximation to
+the desired operator contract. If eta is at least two, the final
+necessary bound below is automatic. Otherwise X is nonzero, and
+combining these bounds with the Clifford rank--norm inequality
+and cancelling positive alpha
+gives the necessary condition
+
+```math
+\boxed{\quad
+\eta\ge
+\max\left\{0,
+\frac{2(\beta_k-2^{-p/2})}{1+\beta_k}\right\}.
+\quad}
+```
+
+Equivalently, whenever the fraction is positive,
+$`\tau\ge\sqrt{1+2(\beta_k-2^{-p/2})/(1+\beta_k)}-1`$.
+Setting tau to zero recovers the exact inequality above.
+
+There is also a useful finite-error one-clean corollary: no complete
+source with k equal to one, p at least 20 and positive alpha has
+relative error at most $`1/1024`$. Indeed, put
+$`R=\sqrt{B(10)/2}\lt420`$. Such an approximation would require
+$`2-\eta\le R(\eta+2^{1-p/2})`$, while
+$`\eta\lt1/500`$ and $`2^{1-p/2}\le1/512`$ give
+
+```math
+R(\eta+2^{1-p/2})\lt\frac{5313}{3200}
+\lt\frac53\lt\frac{999}{500}\lt2-\eta.
+```
+
+This contradiction uses only the elementary elimination bound.
+For fixed k this gives an explicit positive asymptotic relative-error
+floor, uniform in amplitude and dirty width. For growing k, however,
+$`\beta_k`$ decreases to zero. In particular this estimate does
+not exclude fixed-accuracy approximate sources with
+$`k=o(\log p)`$, including exactly sector-preserving sources
+offered to the new promotion wrapper.
+
+### A uniform precision tradeoff
+
+Suppose the relative error is at most $`2^{-L}`$, where L is at
+least two, and put $`s=\min\{L,p/2\}`$. Then
+$`\eta\le3\cdot2^{-L}\le3/4`$, so the preceding necessary
+inequality gives
+
+```math
+\frac54\le2-\eta
+ \le R_k\bigl(\eta+2^{1-p/2}\bigr)
+ \le5R_k2^{-s},\qquad
+R_k=\sqrt{2^{-k}B(M_k)}.
+```
+
+Consequently $`\log_2R_k\ge\min\{L,p/2\}-2`$.
+Substituting the optimized bound for B and inverting as above yields
+
+```math
+k\ge\frac23\log_2\min\{p,L\}
+ -\frac13\log_2\log_2\min\{p,L\}-O(1)
+```
+
+as the minimum tends to infinity. This is a simultaneous
+precision/clean-count constraint. For fixed L it gives no clean
+count growing with p, so the constant-accuracy growing-clean
+source question remains open.
+
+All conclusions concern the complete compression of two actual
+one-band encoders. They do not bound unrestricted native T-depth,
+do not assume that the encoded target is Clifford, and do not close
+the separate original physical-pair scout. The many-probe route
+would still need a new uniform correlation theorem for its moving
+one-band-encoded Clifford family to obtain a stronger growing-k
+constant-accuracy conclusion.

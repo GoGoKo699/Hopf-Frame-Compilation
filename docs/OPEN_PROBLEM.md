@@ -289,6 +289,17 @@ address-sharing and uniform source budget hypotheses. General leakage
 still requires accuracy of order two to the minus k. Finite exhaustive
 paving search is allowed; efficient preprocessing is not claimed.
 
+The [Clifford rank--norm source screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+excludes exact two-band sources throughout this window: they need
+$`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$ clean bits.
+For one clean bit, its elementary bound excludes exact sources for
+p≥18 and relative error at most $`2^{-10}`$ for p≥20, regardless of
+positive amplitude, count or dirty width. Its growing-k approximate
+floor still shrinks. The remaining two-band candidate must therefore
+be genuinely approximate with growing clean allocation; exact flatness
+of its Gram block does not imply exact logical action. Higher-band
+mechanisms and unrestricted depth remain separate questions.
+
 The earlier two-clean spectral filter's Clifford-frame class retains
 its own conditional gap question. The new frames include paid
 non-Clifford Boolean phases. The

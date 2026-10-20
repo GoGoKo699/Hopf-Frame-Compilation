@@ -482,8 +482,9 @@ one-pass inner filter of (18).
 
 The native bill is also explicit. Expose each matching's Pauli axes by
 an actual private Clifford and its actual inverse. On each exposed target,
-the chronological word $`T_t,\mathrm{CNOT}_{c,t},T_t^\dagger,
-\mathrm{CNOT}_{c,t}`$ equals $`\omega^{-c}\mathrm{CS}(c,t)`$,
+the chronological word
+$`T_t,\mathrm{CNOT}_{c,t},T_t^\dagger,\mathrm{CNOT}_{c,t}`$
+equals $`\omega^{-c}\mathrm{CS}(c,t)`$,
 where $`\omega=e^{i\pi/4}`$. Thus a controlled matching has two T
 bands, all targets private. The controlled Pauli repair is Clifford.
 The control-only scalar cancels exactly in $`A_u^\dagger\gamma_0A_u`$;

@@ -18,7 +18,7 @@ Read that outcome, the
 [parallel promotion and structured packing](research/depth/PARALLEL_CLEAN_PROMOTION.md),
 [exact virtual-function arithmetic](research/depth/VIRTUAL_FUNCTION_ARITHMETIC.md),
 [counter and one-pass tradeoffs](research/depth/COHERENT_COUNTER_SOURCE.md),
-[quantitative two-band source gap](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#9-exact-growing-clean-sources-and-the-shrinking-approximate-threshold),
+[quantitative two-band source gap](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen),
 [physical-center transport](research/depth/FOUR_BAND_CENTER_TRANSPORT.md),
 [higher-support Booleanity test](research/depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md),
 [preceding outcome](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md),
@@ -83,12 +83,17 @@ inherit the refined one-active-fiber error cancellation.
 These structured arithmetic questions are no longer necessary for the
 new spectral wrapper. A qualifying complete source is still absent.
 
-The fixed-Clifford-sum recurrence now also implies that exact two-band
-sources need at least one third of log log p, less a log log log p
-correction, clean bits. Its approximate excluded tolerance shrinks very
-rapidly with k. It therefore does not exclude fixed-error sources with
-growing clean count, or every precision-dependent bounded allocation.
-Source-specific gap constants are not unrestricted depth bounds.
+A Clifford rank--norm theorem now sharpens the exact two-band source
+screen to
+$`k\ge(2/3)\log_2 p-(1/3)\log_2\log_2 p-O(1)`$.
+Thus exact sources cannot fill the new sublogarithmic-clean window.
+An elementary version already excludes exact one-clean sources for
+p at least 18, and relative error at most $`2^{-10}`$ for p at least
+20, uniformly over positive amplitude and arbitrary dirty width.
+The growing-k approximate floor still tends to zero. Fixed-error
+growing-clean sources, higher-band mechanisms and unrestricted depth
+remain open. The earlier fixed-coefficient gap proof is retained;
+source-specific bounds are not unrestricted depth bounds.
 
 For one-pass row filters, arbitrary dirty mixing gives the sharp
 component clean-dimension tradeoff
@@ -160,7 +165,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Paid native spectral promotion | [MSS paving and truncated batches](research/depth/MSS_SPECTRAL_PROMOTION.md) supply the whole-space gap with 64 paid non-Clifford frames. At fixed requested tolerance, extraction has depth $`O_\tau(d_V+k+1)`$ and polynomial source overhead when $`k=o(\log(p+2))`$. Exact sector invariance retains constant requested source accuracy; general leakage retains its separate multiplier. Native address-sharing and the actual shallow source remain required |
 | Retained exact packing alternative | [Parallel exact packing](research/depth/PARALLEL_CLEAN_PROMOTION.md) qualifies when $`2^k(k+1)^2=o(\log(p+2))`$, with error $`2\eta`$ under exact sector invariance. It retains its own smaller sufficient window and complete recurrence |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
-| Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
+| Current source obstruction | [Clifford rank--norm defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact two-band sources require $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. At k=1, exact sources fail for p≥18 and relative error at most $`2^{-10}`$ fails for p≥20, uniformly over positive amplitude and arbitrary dirty width. No flatness is needed. The explicit approximate floor shrinks with k, leaving fixed-error growing-clean sources open; specialized overlap screens retain their own scopes |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The [complete one-clean three-layer case split](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), sharpened by the [central-parity reduction](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md), gives sign degree at most $`D_{\rm np}=D_3+576`$, with conservative higher-degree floor $`2^{-530690}`$. A small universal constant, higher layers and dimension-growing depth remain open |
 | Rank-two quadratic-control component | [One-parity Clifford replacement](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md) gives sign degree at most 2049, uniformly in endpoint ranks and dirty width. It allows at most one relation per restricted native list and retains every logical column. This is a degree argument, not a cheaper source implementation |
 | Retained original-pair components | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) and [actual two-axis differences](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) retain their sector/return mechanisms. The new general paired-source six/five bound supersedes their larger numerical bounds |

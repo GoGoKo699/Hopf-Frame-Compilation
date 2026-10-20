@@ -449,3 +449,10 @@ class and bypasses the radix-packing obligation. It does not implement
 the monomial packing W, establish a Clifford-only frame theorem, or
 construct a qualifying shallow source. The complete unrestricted
 frontier therefore remains open.
+
+The subsequent [rank--norm source screen](FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+excludes exact two-band sources throughout this sublogarithmic-clean
+window. It does not exclude fixed-error growing-clean sources, even
+with separately proved exact flatness, or sources using another
+native mechanism. Exact flatness of K†K is distinct from exact
+agreement of K with the desired indicator block.

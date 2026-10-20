@@ -176,13 +176,28 @@ their own complete ledgers in the linked proof homes.
 
 No qualifying new U is supplied here. Two-band sources with uniformly
 bounded clean count remain obstructed at some fixed positive relative
-accuracy. The [quantitative recurrence](FIXED_CLIFFORD_SUM_SOURCE_GAP.md#9-exact-growing-clean-sources-and-the-shrinking-approximate-threshold)
-also excludes exact two-band sources with clean count little-o of
-log log p, and gives a leading one-third lower coefficient up to a
-log log log p correction. Its approximate excluded tolerance shrinks
-rapidly with k. It does not exclude fixed-error growing-clean sources,
-every precision-dependent clean allocation, higher-band mechanisms,
-or unrestricted sublogarithmic depth.
+accuracy. A fresh [Clifford rank--norm bound](FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+strengthens the exact-source threshold to
+
+```math
+k\ge\frac23\log_2p-\frac13\log_2\log_2p-O(1).
+```
+
+It therefore excludes exact two-band sources throughout the new
+sublogarithmic-clean promotion window. This application permits
+arbitrary defect coefficients and uses the smaller direct defect,
+rather than the old fixed-coefficient gap. Its elementary elimination
+bound alone excludes exact one-clean sources for p≥18, and sources
+with relative error at most $`2^{-10}`$ for p≥20. The constants are
+independent of positive amplitude, dirty width and gate count.
+
+The proof also gives an explicit approximate inequality for each k.
+Its excluded tolerance still shrinks as k grows, so fixed-error
+growing-clean sources remain open. The old coefficient-gap proof,
+higher-band mechanisms and unrestricted sublogarithmic depth retain
+their separate scopes. The next source question is genuinely
+approximate two-band compression with growing clean allocation, or
+a different mechanism, rather than an exact source in this window.
 
 ## 5. Spectral paving changes the extraction mechanism
 
