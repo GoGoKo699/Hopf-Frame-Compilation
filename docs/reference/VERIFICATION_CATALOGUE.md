@@ -10,7 +10,43 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+The [current revision](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+adds an analytic expander zero-reflection construction with a complete
+native/precision/return ledger, uniform-address and product-rank source
+screens, exact virtual-function arithmetic, one-pass clean-dimension
+tradeoffs and physical-probe eligibility lemmas.
+Independent analytic audits check the spectral gap, general-block cubing,
+literal scalar handling, bounded-clean promotion, dirty padding, actual
+native support, code dependence and complete arithmetic return. Graph
+readout bounds retain their normalization and baseline hypotheses.
+The spectral-paving proof separately audits the supplied partition
+theorem, finite exact certification, native sign frames, global
+truncated-key echo and the constant-clean filter's complete precision
+ledger. Exact sector invariance and general leakage have different
+source-accuracy recurrences.
+The seven-selector alternative audits the entire compressed-block
+cubing identity, maximum branch error in SELECT, determinant-one
+selector phase synthesis and the full seven-clean promotion ledger.
+Its uniform precision bound includes source synthesis at the requested
+accuracy and is stated before the fixed-tolerance root fusion.
+The latent-center component checks the actual forward-pencil columns,
+Clifford generator receipts, center and representation decomposition,
+and the fixed bounded probe's Parseval bound. Central preservation is
+kept separate from pointwise invariance. The singleton-tail component
+checks its actual sector corrections, nonaffine label obstruction and
+literal four-T repair; neither component supplies a new source.
+
+The subsequent Clifford rank--norm refinement checks the primary
+operator theorem, its normalized Choi convention and an elementary
+one-term elimination proof. The direct projected defect supplies the
+exact clean-count bound and finite relative-error exclusion; its
+code-supported norm conversion is retained in the approximate case.
+The exact theorem does not exclude fixed-error growing-clean sources.
+No new search experiment or implemented native emitter is claimed.
+The general depth frontier remains unchanged;
+required validation and rendered-document checks cover the reviewed tree.
+
+The [preceding revision](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
 adds paid native parallel promotion in a larger sufficient source
 window, an exact odd-key counter identity, crossed-kernel contract
 screens, paid paired resynthesis and a higher-support Booleanity test.
@@ -200,7 +236,7 @@ two-layer theorem without an additional native fixture.
 | Positive-singleton original-pair recognition | [Proof home](../../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md) | Retained analytic component deriving all-active support for one genuine pair with positive singletons. Its Boolean commutation identity is used by the general collapse theorem below; its old singleton and pair-count restrictions are no longer needed for the final paired-source bound |
 | Complete Boolean original-pair collapse | [Proof home](../../research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), [exact fixtures](../../tests/test_boolean_original_pair_collapse.py) | Analytic theorem for arbitrary original pair count and singleton signs: the actual silent list remains independent modulo the physical clean Pauli and all pair differences. Scalar-sector Boolean reality removes its couplings, and single-plus sectors force every pair difference to equal the full active sum. Native middle independence leaves exactly one pair; reversal and literal clean comparison remove negative singletons. Paired sign/XOR degree is six/five, or five/four at high rank; the unrestricted three-layer ceiling still uses the retained no-pair constant. Fixed fixtures test identities and contract boundaries, not the theorem by enumeration |
 | Four-band original physical-pair scout | [Initial proof](../../research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md), [center transport](../../research/depth/FOUR_BAND_CENTER_TRANSPORT.md), [exact fixtures](../../tests/test_four_band_original_pair_scout.py) | Four small full-space words check actual independent signed lists, original pair differences, center fixation, literal encoder signs, unused clean blocks, all columns and actual reverses. The new repartition has a non-Clifford intermediate but retains the old two-band whole-word realization. The conditional radical, literal removals, fixed-endpoint center preservation and general-endpoint directional derivative are analytic. The derivative now has a complete approximate recurrence. Fully matched all-active support-two factors have paid actual two-band resynthesis. A derivative bound is not a total-degree bound; displayed pair count does not certify minimal native depth |
-| Native parallel clean promotion | [Proof home](../../research/depth/PARALLEL_CLEAN_PROMOTION.md), [two exact receipts](../../tests/test_parallel_clean_promotion.py) | The six-wire quartic phase checks all 64 columns, actual inverse, 32 T gates, 44 Cliffords and private T targets. A second six-bit fixture checks the refined packing and complete echo, all phases/returns and four batch/eight packing calls. Its W is a specified permutation, not a native emitter. General sharing, refined constant-error bound and complete ledger are analytic. A standard single-target decomposition plus exact dirty-indicator echoes pays generic native packing in the stated growing-clean window. A qualifying source remains unpaid; the alternative constant-clean spectral filter also needs a whole-space gap |
+| Native parallel clean promotion | [Proof home](../../research/depth/PARALLEL_CLEAN_PROMOTION.md), [two exact receipts](../../tests/test_parallel_clean_promotion.py) | The six-wire quartic phase checks all 64 columns, actual inverse, 32 T gates, 44 Cliffords and private T targets. A second six-bit fixture checks the refined packing and complete echo, all phases/returns and four batch/eight packing calls. Its W is a specified permutation, not a native emitter. General sharing, refined constant-error bound and complete ledger are analytic. A standard single-target decomposition plus exact dirty-indicator echoes pays generic native packing in the stated growing-clean window. A qualifying source remains unpaid. The original spectral alternative left its whole-space gap conditional; the subsequent [MSS wrapper](../../research/depth/MSS_SPECTRAL_PROMOTION.md) pays the gap and all native frames in the enlarged window |
 | Odd-key coherent counter | [Proof home](../../research/depth/COHERENT_COUNTER_SOURCE.md) | Analytic equality of the one-clean-bit code with all odd Fourier keys gives the same exact zero test and complete dirty/reference return in every sector. The k+1-clean source has literal flat amplitude normalization, paid zero reflection, full conditional arithmetic/count/error/inverse ledger, and exact Hamming-shell spectrum. A fixed-accuracy gradient preparation lemma is separate. No new fixture, shallow full-bank schedule or unrestricted depth bound |
 | Spectral promotion frame limits | [Proof home](../../research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md) | Analytic common-Lagrangian transversal, quantum local-lemma support condition, and explicit Bell/trace-pencil trial energies. Each has separate premises. Ordinary block depth is not native T-depth, and dense noncommuting global frames remain open. No new fixture or inferred whole-space gap |
 | Crossed cubic kernels | [Proof home](../../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md) | Analytic Fourier collision criterion, full-observable wrong-parity norm, paid shallow-word ledger and arbitrary-dirty-sector witnesses. Diagonal, plain-XOR, unbalanced translation and one balanced-repair class have distinct hypotheses. No new numerical fixture or unrestricted depth obstruction |

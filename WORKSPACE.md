@@ -6,89 +6,164 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: distinguish paid extraction from a complete source
+## Current checkpoint: paid spectral promotion and the complete-source gap
 
-**Fetched continuation baseline:**
-`af3a52e67c62746ae1d7dc137158367b9ef0ff22`, tree
-`e81bcec94f14f93830a0e6ef5dbbaa10ab1400a7`, on 20 October 2026,
-after the Gaussian and physical-center revision merged as PR #214.
-Read the [current outcome](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md),
-[parallel promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md),
-[crossed-kernel source audit](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md),
-[odd-key counter source](research/depth/COHERENT_COUNTER_SOURCE.md),
-[spectral frame limits](research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md),
-[physical-center transport and resynthesis](research/depth/FOUR_BAND_CENTER_TRANSPORT.md),
+**Fetched continuation baseline:** PR #215, the paid parallel-promotion
+and kernel revision, on 20 October 2026. Its merged main commit and tree
+are recorded in the [current outcome](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md).
+Fetch current main before resuming; this baseline is not a pin.
+Read that outcome, the
+[expander zero reflection and joint-bank screen](research/depth/EXPANDER_ZERO_REFLECTION.md),
+[paid spectral promotion](research/depth/MSS_SPECTRAL_PROMOTION.md),
+[parallel promotion and structured packing](research/depth/PARALLEL_CLEAN_PROMOTION.md),
+[exact virtual-function arithmetic](research/depth/VIRTUAL_FUNCTION_ARITHMETIC.md),
+[counter and one-pass tradeoffs](research/depth/COHERENT_COUNTER_SOURCE.md),
+[quantitative two-band source gap](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen),
+[physical-center transport](research/depth/FOUR_BAND_CENTER_TRANSPORT.md),
 [higher-support Booleanity test](research/depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md),
-[preceding outcome](research/depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md),
+[preceding outcome](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md),
 [general-k recovery recurrence](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag),
 [focused original-pair scout](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md),
 [complete observable contract](research/depth/OBSERVABLE_TRANSPORT_SOURCE.md),
 and [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
 
-The general upper and lower frontier is unchanged. Native parallel
-promotion now has a paid source-sharing schedule and full count, width,
-Clifford, error and return recurrence. A refined monomial packing keeps
-complete error at $`2\eta`$, independent of the number of source copies,
-for exactly invariant source sectors. Exactly flat amplitude-$`1/\sqrt2`$
-recovery gives $`2\sqrt2\epsilon`$, including the extra recovery flag.
-General leakage retains its separate precision multiplier. The packing
-is now paid for $`2^k(k+1)^2=o(\log(p+2))`$ using a standard
-single-target permutation decomposition and exact dirty-indicator
-parity echoes. For $`k\sim\beta\log\log p`$ and source depth
-$`O((\log p)^\gamma)`$, the sufficient conditions are separately
-$`\beta\lt1`$ and $`\gamma\lt1`$, replacing the serial
-$`\beta+\gamma\lt1`$ window. No qualifying source is supplied.
-At k of order log p, that generic packing remains too costly. The
-lexical monomial-round restriction is not a native-depth bound.
-A separate two-clean spectral filter has a complete precision ledger,
-but its constant whole-space gap is unproved. Common-Lagrangian,
-bounded-cone and stated dense graph frames have distinct scoped limits.
-General dense noncommuting global frames remain open.
+The general complete-frame upper and lower frontier is unchanged.
+There is a new paid **single-predicate** result: approximate zero
+reflection/MCZ with zero clean work, $`T,G,b=O_\tau(p)`$ and
+$`D_T=O_\tau(1)`$, in full operator norm on arbitrary inputs and
+references. With $`L=1+\log_2(1/\tau)`$, the same construction has
+$`T,G=O(pL+L^2)`$, $`b=O(p)`$ and $`D_T=O(L^2)`$.
+Four clean selectors, a proved whole-space contraction, determinant-one
+fixed-point phases, bounded-clean promotion and dirty padding are all
+paid. The imported CNOT group-expander theorem is stated in its actual
+representation; no generic Hilbert--Schmidt gap is substituted for it.
 
-The crossed non-Gaussian kernel now has an exact collision criterion
-and a paid constant-depth candidate. The candidate fails the complete
-observable contract on arbitrary dirty-key sectors. Diagonal middles,
-plain XOR middles, and stated unbalanced-derivative translation middles
-have separate source-specific gaps; these do not exclude all two-bank
-quantum dynamics. An inverse-looking Fourier kernel is not readout.
-The [Gaussian compression](research/depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
-and [involutory Gauss scalar](research/depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
-limits remain scoped to their stated representations. A paid forward
-[nilpotent-pencil query](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md)
-still does not implement its selected inverse column.
+This resolves the primitive, not the complete exponentially wide
+indicator. Its native boundaries move the tested address. Independent
+row copies cannot share that moving address by the existing native
+schedule, and serial row accuracy does not give a uniform whole-bank
+error. A joint relabeling attempt also fails: the uniform-address
+subspace is invariant even with arbitrary address-independent quantum
+bank/helper operations, whereas the target sends a balanced bank input
+orthogonally outside. Its compression gap is the requested amplitude,
+and its full initialized-unitary gap is square root of two. Bounded-choice
+SELECT products also retain an operator-Schmidt-rank cost even with
+local address phases; wide native Clifford coupling lies outside that
+screen. The paid forward graph predicate retains a small readout
+normalization, with a baseline-dependent thin-rank limit. The next
+complete-bank mechanism needs an actual address-sensitive interaction
+and a complete resource/error/return identity outside that grammar.
 
-The exact odd-key counter uses one clean bit to select every odd
-Fourier key in a modular bank with otherwise arbitrary dirty bits.
-All those keys give the same returned zero test, so precise gradient
-preparation is unnecessary. With k clean counter bits it gives a
-literal flat amplitude-$`1/\sqrt2`$ source identity. Its first unpaid
-operation is shallow joint modular accumulation and the full-bank
-schedule. Logical commutation and a Hamming-shell formula do not pay
-that schedule. Its k of order log p also lies outside the generic
-packing window just proved; composing the two results does not yet
-supply the missing source.
+A [latent-center interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+now pays actual Clifford generators whose center contains the desired
+addressed observable. The missing operation is full-space central-sign
+readout with constant amplitude and arbitrary-work return. Preserving
+that central sign does not fix its whole eigenspace pointwise, so a
+generic group-expander gap supplies no such extractor. The fixed-probe
+twirl limit is a representation test, not a limit on all readout.
 
-The original physical-pair scout remains active. The fully matched,
-all-active, support-two mechanism now has an explicit two-band
-resynthesis with literal phases, actual inverse and return preserved.
-It retains the old cost. Higher support leaves that local resynthesis,
-but the first five-wire center-moving clean-return trial cannot be made
-Boolean by endpoint Cliffords: its Pauli-preserving domain lacks a
-logical Lagrangian, even with spectators. This is one candidate's
-failure, not a four-band theorem. The general original-pair derivative
-also has a paid approximate recurrence; it restricts only its direction,
-not total Boolean degree. Commuting D-phase repairs and every one-band output endpoint on the
-same five wires also fail the domain test. Continue with actual middle
-dynamics or new native quantum coupling outside these rejected classes.
+The new [spectral-paving construction](research/depth/MSS_SPECTRAL_PROMOTION.md)
+pays a larger conditional promotion window: $`k=o(\log(p+2))`$,
+with extraction depth $`O_\tau(d_V+k+1)`$ and complete polynomial
+overhead. It truncates the selective batch to sectors containing one
+or two active clean keys, then uses a finite paving theorem to supply
+64 global native frames with a whole-space gap. Their Boolean phases,
+truth-table banks, actual inverses and constant-clean filter are paid.
+Exact source-sector invariance retains a requested accuracy depending
+only on tau, even as k grows. General leakage retains its factor of
+two to the k. The same-source uniform budget and native address-sharing
+requirements remain essential. The frame search terminates but carries
+no efficient classical-preprocessing claim.
 
-The three-band physical-pair bound remains sign/XOR **6/5**, or **5/4**
-at common active rank at least four. The separate no-pair result still
-controls the universal one-clean three-layer ceiling
-$`D_{\rm np}=D_3+576`$. The main constructive question is an actual
-complete shallow source with simultaneous budgets. Paying a wrapper,
-changing source coordinates or adding a displayed band does not by
-itself change the frontier. Fetch current main before resuming; this
-baseline is not a pin.
+A seven-selector alternative now also pays uniform precision without
+Hamiltonian simulation. For $`L=1+\log_2(1/\tau)`$, its pre-fusion
+depth is $`O(L(d_V+k+1)+L^2)`$. A lazy average has a positive
+compressed block bounded by 63/64 on the marked sector; the same
+seven selectors support general-block cubing. Every controlled branch,
+phase synthesis, final promotion and arbitrary return is charged.
+The source accuracy is proportional to tau/L under exact sector
+invariance, or tau divided by $`2^kL`$ with leakage. Source resources
+are evaluated at that requested accuracy. The fixed-tolerance window
+and missing complete-source operation remain unchanged.
+
+The earlier exact-packing window remains valid:
+$`2^k(k+1)^2=o(\log(p+2))`$. Exactly sector-preserving sources retain
+error $`2\eta`$; exactly flat amplitude-$`1/\sqrt2`$ recovery gives
+$`2\sqrt2\epsilon`$. General leakage keeps its separate precision
+multiplier. A structured packing revision pays concentration of the
+rare marked weights but still needs a full in-place nonzero-radix
+compression. The three-addition elementary shuffle is paid; the
+multi-bit radix shuffle retains a linear number of dependent stages.
+Exact virtual-function additions, odd power-of-two multipliers and
+interval rotations now have paid polylogarithmic native depth and
+explicit exponential truth-table cost. They still do not supply the
+full rectangle-to-rank conversion. The structured packing does not
+inherit the refined one-active-fiber error cancellation.
+These structured arithmetic questions are no longer necessary for the
+new spectral wrapper. A qualifying complete source is still absent.
+
+A Clifford rank--norm theorem now sharpens the exact two-band source
+screen to
+$`k\ge(2/3)\log_2 p-(1/3)\log_2\log_2 p-O(1)`$.
+Thus exact sources cannot fill the new sublogarithmic-clean window.
+An elementary version already excludes exact one-clean sources for
+p at least 18, and relative error at most $`2^{-10}`$ for p at least
+20, uniformly over positive amplitude and arbitrary dirty width.
+The growing-k approximate floor still tends to zero. Fixed-error
+growing-clean sources, higher-band mechanisms and unrestricted depth
+remain open. The earlier fixed-coefficient gap proof is retained;
+source-specific bounds are not unrestricted depth bounds.
+
+For one-pass row filters, arbitrary dirty mixing gives the sharp
+component clean-dimension tradeoff
+$`r=\Theta(\min\{p+1,\rho^{-2}\})`$. The stronger fixed-error
+$`r=\Omega(\log p)`$ statement needs invariant finite-dimensional
+fibers. A fully dirty Majorana commutator echo pays exact complete-bank
+return, but its emitted depth is at most $`16(p+1)`$, worse than the
+retained $`4p`$ bank-motion word. The separate joint-cycle lower bound
+uses actual Majorana-preserving boundaries and does not bound a
+resynthesized whole echo or arbitrary native circuits.
+
+The original physical-pair scout remains active. An isolated unmatched
+anticommuting factor must merge with an actual axis in the other band,
+even for unequal actual Clifford probes and without assuming the rest
+of the first-band phase commutes with the probe. Its two T gates become
+a paid Clifford or cancel. The first multiple-factor matching exception
+is a commuting cubic component with a cheaper two-band realization.
+[Native probe defects](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#i3-native-defects-close-the-one-center-cross-commutation-branch)
+bound the first-band/probe cross-commutation rank by the native
+overlap dimension on affected first-band coordinates. They exclude
+that cross-commutation when the only middle-span intersection is a
+genuine matched pair's center.
+An affected silent block with nonsingular restricted pairing has a
+paid full-space Clifford replacement, removing twice its rank in T
+gates with quadratic Clifford synthesis cost. Singular cubic blocks
+retain their separate phase obligation.
+The dependent support formula remains a useful component; no
+independent native quotient is assumed. A noncommuting escape needs
+overlap on the affected first-band coordinates. Commuting unmatched
+images remain open, and span invariance does not pay their native phase.
+The Pauli-domain fiber inequality also extends the higher-support
+Booleanity test to a stated common quantum-spectator attachment.
+None is a general four-band theorem. Continue with actual middle
+couplings outside the proved eligibility classes, an actual output
+endpoint, and full Boolean return before claiming a new source.
+
+The [small singleton-tail trial](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#singleton-sector-assembly)
+has compatible sector symplectic maps but quadratic Pauli correction
+labels. Its actual endpoint therefore is not Clifford. The residual
+has a paid four-T, two-band implementation, which restores the old
+cost instead of completing a cheaper source. Continue the physical
+scout outside this assembly mechanism; this trial is not a general
+four-band obstruction.
+
+The established three-band paired sign/XOR bounds remain **6/5**, or
+**5/4** at common active rank at least four. The no-pair result retains
+the universal one-clean three-layer ceiling $`D_{\rm np}=D_3+576`$.
+The main unpaid operation is still a complete shallow indicator or
+word query with simultaneous budgets. A paid scalar predicate, a
+clean-count improvement, or a representation obstruction alone does
+not change that frontier.
 
 <a id="current-depth-frontier"></a>
 
@@ -104,6 +179,8 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Paid constructive transfer | [Restored-address R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) and its [approximate extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) need only constant source accuracy at each fixed final L, with uniform simultaneous count/width/Clifford/depth budgets |
 | New discovery relaxation | [Polynomial-overhead root fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) turns a complete source on $`p-O_\tau(\log(p+2))`$ bits into a linear-count/width p-bit indicator. It uses eight source/actual-inverse calls, error at most eight times the source error, and an exact $`O_\tau(\log\log(p+4))`$-depth tail. This is a conditional reduction, not a faster source |
 | Paid source promotion | [Clean-source promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) removes a uniformly bounded clean bank, permitting arbitrary off-code action; error is at most $`8\cdot2^k\epsilon`$. One-signal complete blocks at amplitude $`1/2`$ or $`1/\sqrt2`$ suffice through 24 source/actual-inverse calls. [Exactly flat two-band recovery](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#61-exact-flatness-sharpens-the-complete-error-and-return-recurrence) improves promoted error to $`2\sqrt2\epsilon`$ and returns the borrowed signal/toggle exactly |
+| Paid single-predicate component | [Expander zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md): zero clean, full-operator error tau, $`T,G=O(pL+L^2)`$, $`b=O(p)`$, $`D_T=O(L^2)`$, with $`L=1+\log_2(1/\tau)`$. Native address motion and whole-bank error prevent an automatic complete-indicator consequence |
+| Joint-bank source screen | [Uniform-address invariant](research/depth/EXPANDER_ZERO_REFLECTION.md#9-the-uniform-address-obstruction-to-joint-relabeling): completed joint label permutations plus arbitrary address-independent bank/helper operations have compression error at least the target amplitude and complete error at least square root of two. Address-sensitive interactions are outside; this is not a native-depth bound |
 | Unrestricted indicator count | [Pauli nullity](research/depth/INDICATOR_PAULI_NULLITY.md): for $`p\ge2`$, a zero-clean full-operator implementation with error below $`1/\sqrt2`$ needs at least $`2^p-1`$ T gates, with arbitrary dirty width and intermediate mixing. This is not a depth bound |
 | New paid batch and its scoped limit | [Parallel affine detuning](research/depth/PARALLEL_AFFINE_DETUNING.md) implements polynomially many presentations in four T layers with polynomial count/dirty-width overhead. A single batch has error at least $`1/4`$; a Pauli echo with read-only address/bank and actual Clifford interlayers needs $`h\ge\lceil b/2\rceil`$ rounds for $`b\ge2`$ at error below $`\sqrt2`$. Rounds are not unrestricted native depth |
 | Paid bank motion and its scoped limit | [Complete bank difference](research/depth/COMPLETE_BANK_DIFFERENCE.md) gives a full nonlinear merge; its balanced indicator schedule has linear count/width and $`O(b^2)`$ depth. [Fermionic Walsh routing](research/depth/BANK_MOTION_WALSH_INDICATOR.md) gives a complete no-helper indicator with $`T\le4b2^b`$ and $`D_T\le4b`$. The [whole-word theorem](research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) retains linear native depth under its actual Majorana-preserving, read-only-address Clifford-boundary grammar, including arbitrary dirty helpers |
@@ -112,9 +189,10 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | New paid inverse-column component | [Nilpotent pencil](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md): a fixed Vandermonde basis gives the exact selected-output inverse column and a unique-zero-pivot star. The complete forward XOR query has eight T layers, $`T,h=O(2^pp^2)`$ and $`G=O(4^pp^2+2^pp^3)`$. In-place or observable readout is unpaid; reductions from the old indicator retain its depth |
 | Serial growing-clean recovery window | [General-k amplitude recovery](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag) pays the zero-test, flag, promotion, actual inverse and full error. For nonnegative beta,gamma, $`k\sim\beta\log\log b`$ and source depth $`O((\log b)^\gamma)`$, $`\beta+\gamma\lt1`$ suffices conditionally, with uniform accuracy and resource envelopes. Flatness is separate; no source is supplied |
 | New source-specific screens | [Key-mixing audit](research/depth/KEY_MIXING_OBSERVABLE_SCREENS.md) separates a final-boundary gap valid for arbitrary quantum fibers from Clifford-label and moving-key transition gaps. Additional key mixing and address motion remain outside; exact failed word columns are not general obstructions |
-| Paid native parallel promotion window | [Exact packing and spectral alternative](research/depth/PARALLEL_CLEAN_PROMOTION.md) pay sharing and all extraction costs. Exact packing qualifies when $`2^k(k+1)^2=o(\log(p+2))`$, retaining error $`2\eta`$ under exact sector invariance. General leakage is separate. The source remains unpaid; the alternative spectral route also needs a whole-space gap |
+| Paid native spectral promotion | [MSS paving and truncated batches](research/depth/MSS_SPECTRAL_PROMOTION.md) supply the whole-space gap with 64 paid non-Clifford frames. At fixed requested tolerance, extraction has depth $`O_\tau(d_V+k+1)`$ and polynomial source overhead when $`k=o(\log(p+2))`$. Exact sector invariance retains constant requested source accuracy; general leakage retains its separate multiplier. Native address-sharing and the actual shallow source remain required |
+| Retained exact packing alternative | [Parallel exact packing](research/depth/PARALLEL_CLEAN_PROMOTION.md) qualifies when $`2^k(k+1)^2=o(\log(p+2))`$, with error $`2\eta`$ under exact sector invariance. It retains its own smaller sufficient window and complete recurrence |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
-| Current source obstruction | [Amplitude-free Clifford-sum defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#7-an-amplitude-free-defect-gives-a-uniform-relative-gap): for uniformly bounded clean count, actual two-band sources fail at some fixed positive relative accuracy for all sufficiently large p, uniformly over every positive amplitude, regardless of count or width. No flatness premise is needed. The general constants are conservative; finite-p overlap screens retain their separate stronger constants. With one signal, every nonzero compression has norm at least $`\sin(\pi/8)`$ |
+| Current source obstruction | [Clifford rank--norm defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact two-band sources require $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. At k=1, exact sources fail for p≥18 and relative error at most $`2^{-10}`$ fails for p≥20, uniformly over positive amplitude and arbitrary dirty width. No flatness is needed. The explicit approximate floor shrinks with k, leaving fixed-error growing-clean sources open; specialized overlap screens retain their own scopes |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The [complete one-clean three-layer case split](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), sharpened by the [central-parity reduction](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md), gives sign degree at most $`D_{\rm np}=D_3+576`$, with conservative higher-degree floor $`2^{-530690}`$. A small universal constant, higher layers and dimension-growing depth remain open |
 | Rank-two quadratic-control component | [One-parity Clifford replacement](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md) gives sign degree at most 2049, uniformly in endpoint ranks and dirty width. It allows at most one relation per restricted native list and retains every logical column. This is a degree argument, not a cheaper source implementation |
 | Retained original-pair components | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) and [actual two-axis differences](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) retain their sector/return mechanisms. The new general paired-source six/five bound supersedes their larger numerical bounds |
@@ -123,7 +201,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Retained singleton-coupling component | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
 | Uniform all-active genuine one-pair component | [Fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most **6/5 uniformly**, and **5/4 at active rank at least four**, with arbitrary silent lists and dirty width. The new recognition theorem below supplies its actual physical support hypotheses for every paired Boolean source |
 | Original-pair collapse under complete Booleanity | [Scalar-sector native rigidity](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md): any positive original pair count collapses to exactly one, all-active at both actual endpoints, with no negative singletons after literal repair. Thus six/five and high-rank five/four cover every paired source. Combined with the no-pair theorem this gives an unrestricted one-clean native-three degree ceiling, not a dimension-growing depth bound |
-| Focused four-band physical-pair scout | [Conditional radical, removals and fixed-endpoint closure](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md) retain actual lists and the physical clean code. Identity words can have arbitrarily many pairs. In the stated fixed-endpoint one-pair/orbit class, all actual middle axes commute and occupied sign degree is at most three. No general four-layer ceiling or unrestricted depth claim follows |
+| Focused four-band physical-pair scout | [Conditional radical, removals and fixed-endpoint closure](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md) retain actual lists and the physical clean code. The fixed-endpoint one-pair/orbit class has occupied sign degree at most three. [Native probe defects](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#i3-native-defects-close-the-one-center-cross-commutation-branch) bound first-band/probe cross-commutation rank by native overlap dimension on affected first-band coordinates. They do not supply axis matching, Boolean completion or a general four-layer ceiling |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -602,7 +680,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

@@ -30,6 +30,10 @@ admit terminating certified evaluation, including unequal and singular tuples.
 | Supporting depth results | [R80–R85](#large-width-t-depth) retain promised-family and terminal theorems; R87's fine decoder, [R88's sharp-query/fallback interfaces](../research/depth/PREFIX_SELECTED_COIN_TERMINAL.md), and [R89's coarse reductions](../research/depth/CAUSAL_COMPACT_COIN_DEPTH.md) support R90 |
 | Constant-depth obstruction | The [zero-clean five-layer bound](#constant-depth-frontier) is proved; [R97](#outer-axis-overlap) excludes bounded outer-axis misalignment; the unrestricted one-clean five-layer bound remains open |
 | Query reformulation | [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md) transfers a faster restored-address dirty word-query interface to general fixed-accuracy frame depth; its [approximate extension](../research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) requires only constant source accuracy at fixed frame precision, under uniform simultaneous source budgets. [Two-call corner reductions](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) separately transfer unrestricted Boolean-query lower bounds |
+| Paid scalar predicate | [Expander zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) has zero clean work, full-operator error tau, $`T,G=O(pL+L^2)`$, $`b=O(p)`$ and $`D_T=O(L^2)`$, where $`L=1+\log_2(1/\tau)`$. Its native address motion prevents free shared-row use; the complete indicator remains unpaid |
+| Joint-bank source limitation | [Uniform-address screen](../research/depth/EXPANDER_ZERO_REFLECTION.md#9-the-uniform-address-obstruction-to-joint-relabeling) excludes completed joint relabelings with every address-independent bank/helper quantum operation, at compression error below the target amplitude and initialized-unitary error below square root of two. Address-sensitive mechanisms are outside this representation limit |
+| Quantitative two-band scope | [Clifford rank–norm bound](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen) requires $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$ for exact complete logical action $`K=\alpha I_p`$, with $`\alpha>0`$. Exact Gram flatness alone is insufficient. The approximate threshold shrinks with k, leaving fixed-error growing-clean sources open; this is not an unrestricted depth bound |
+| One-pass and whole-echo distinction | [Counter revision](../research/depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing) proves a sharp clean-dimension/error tradeoff with dirty mixing. A complete zero-clean Majorana echo pays return but retains linear depth; its separate joint-cycle obstruction assumes the actual Majorana-preserving native grammar |
 | Unrestricted two-layer transfer constraint | [Shared native encodings](../research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md) give a single occupied transfer alphabet with one returned clean qubit. Its scalar AND floors and exact affine-distance condition remain useful components; the joint theorem below strengthens the query obstruction beyond scalar witnesses |
 | Unrestricted two-layer Boolean degree | [Joint native diagonal rigidity](../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) proves degree at most two for exact Boolean XOR with at most one clean qubit. Every nonquadratic query has full initialized-isometry error at least $`\sin(\pi/8)/(2\sqrt2)`$, uniformly in arity and dirty width, with arbitrary Clifford/address mixing. Both clean-midpoint branches and the six-bit cubic bent query are covered. Complex occupied diagonal action alone need not be C3; no complete-frame frontier changes |
 | Unrestricted zero-clean three-layer degree | [Joint native structure](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) proves Boolean XOR degree at most four with zero clean qubits, and the same uniform error floor for higher-degree queries. All intermediate Clifford mixing is allowed. The following one-clean ceiling is now proved, but is much less sharp |
@@ -274,8 +278,48 @@ fully substituted compression/recovery/promotion/fusion ledger is paid;
 a qualifying shallow source remains absent. At k of order log p,
 this generic packing is too costly.
 
-A separate two-clean spectral filter has a complete precision ledger,
-but still needs a constant whole-space gap. The
+A new [MSS spectral-paving wrapper](../research/depth/MSS_SPECTRAL_PROMOTION.md)
+pays 64 global native frames and their whole-space gap. Truncating the
+batch to at most two active clean keys retains constant requested
+source accuracy under exact sector invariance. Its depth is
+$`O_\tau(d_V+k+1)`$ and its extra count/width is
+$`2^{O(k2^k)}`$. Thus $`k=o(\log(p+2))`$ is a paid sufficient
+window with polynomial source overhead, subject to the same native
+address-sharing and uniform source budget hypotheses. General leakage
+still requires accuracy of order two to the minus k. Finite exhaustive
+paving search is allowed; efficient preprocessing is not claimed.
+
+A [latent-center readout interface](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+pays Clifford generators whose center contains the addressed bank
+observable. Ordinary group mixing does not extract that sign: the
+central eigenspaces are preserved but are not pointwise fixed. A
+fixed bounded probe also has a shrinking coefficient after conjugation
+averaging. Full-space central-sign readout at constant amplitude is
+still unpaid and is not excluded by these scoped tests.
+
+The [seven-selector filter](../research/depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+replaces Hamiltonian simulation by a lazy average and general-block
+cubing. At $`L=1+\log_2(1/\tau)`$ its pre-fusion depth is
+$`O(L(d_V+k+1)+L^2)`$, with separate count/width recurrences on the
+same word. Exact sector preservation requests source accuracy
+proportional to tau/L; leakage adds the factor two to the k.
+This improves the uniform wrapper cost, while all source quantities
+must still be charged at their actual requested precision.
+
+The [Clifford rank--norm source screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+excludes exact two-band sources throughout this window: they need
+$`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$ clean bits.
+For one clean bit, its elementary bound excludes exact sources for
+p≥18 and relative error at most $`2^{-10}`$ for p≥20, regardless of
+positive amplitude, count or dirty width. Its growing-k approximate
+floor still shrinks. The remaining two-band candidate must therefore
+be genuinely approximate with growing clean allocation; exact flatness
+of its Gram block does not imply exact logical action. Higher-band
+mechanisms and unrestricted depth remain separate questions.
+
+The earlier two-clean spectral filter's Clifford-frame class retains
+its own conditional gap question. The new frames include paid
+non-Clifford Boolean phases. The
 [frame limits](../research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
 exclude common-Lagrangian frames, sufficiently small physical support
 cones, and stated graph/trace-pencil families. Those ordinary block
@@ -285,9 +329,9 @@ needs no precision gradient: one clean bit selects all odd Fourier keys
 with arbitrary dirty lower bits, and every key gives the same returned
 zero test. A literal flat source follows with logarithmically many
 clean counter wires. Joint modular arithmetic and the full-bank native
-schedule remain unpaid at the required depth; that clean count also
-exceeds the current generic packing window. These components do not
-yet compose to improve the unrestricted frontier.
+schedule remain unpaid at the required depth; that clean count
+is still outside the new sublogarithmic-clean sufficient window.
+These components do not yet compose to improve the unrestricted frontier.
 The [crossed-kernel continuation](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md)
 gives an exact full collision criterion and a paid shallow trial, but
 its observable fails on arbitrary dirty sectors. The separate diagonal,
@@ -517,6 +561,21 @@ repartition proves that the initial intermediate can nevertheless be
 non-Clifford; its existing two-band realization remains. Multiple unmatched
 factors are not closed, and a center-moving trial must change the stated
 endpoint or diagonal-logical-center hypotheses.
+
+The [general native-probe revision](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md#g-a-sole-unmatched-anticommuting-factor-must-merge-natively)
+now pays an isolated anticommuting factor's actual Clifford merger,
+even with unequal probes and without commuting the remaining native
+phase through the input probe. Its
+[active-overlap theorem](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md#i3-native-defects-close-the-one-center-cross-commutation-branch)
+bounds first-band/probe cross-commutation rank by shared native
+overlap dimension on the affected first-band axes. If the only
+intersection
+is a genuine matched pair's center, that cross-commutation vanishes
+for every size of its actual D expression and outside D list.
+This does not imply individual axis matching, Booleanity or cheaper
+resynthesis. Commuting unmatched images and coupled active overlaps
+remain open. The rank-four matching counterexample retains an explicit
+cheaper two-band word.
 
 The center proof now gives a paid error-two-epsilon derivative for
 an error-epsilon source and an actual two-band resynthesis of the

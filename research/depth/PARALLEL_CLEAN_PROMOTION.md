@@ -14,10 +14,12 @@ The source and error conventions are those of
 [clean promotion Sections 1–4](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#1-the-source-is-a-complete-query-not-a-prepared-state).
 The native-sharing distinction is the one in the
 [clean-sector parallelism audit](CLEAN_SECTOR_PARALLELISM_AUDIT.md).
-Section 6 gives a separate conditional extraction through a constant
-whole-space spectral gap, which remains unpaid. The packing construction
-supplies a larger sufficient clean-source window; neither alternative
-constructs the missing shallow clean source itself.
+Section 6 retains a conditional extraction through a constant
+whole-space gap for Clifford frames. The later
+[MSS construction](MSS_SPECTRAL_PROMOTION.md) pays a different global
+frame family with native non-Clifford Boolean phases, including their
+T cost, and widens the sufficient window to clean count sublogarithmic
+in p. Neither reduction constructs the missing shallow source itself.
 
 ## 1. Source contract and native sharing
 
@@ -727,7 +729,9 @@ depth refer to this same word.
 
 Thus a constant number of explicitly paid global frames satisfying
 (14) would replace W by a constant-clean filter and its paid promotion.
-No such constant-gap family is supplied here. Local product frames do
+No such Clifford-frame family is supplied here. The later
+[MSS construction](MSS_SPECTRAL_PROMOTION.md) instead pays global native
+frames and adds their T cost to this filter's ledger. Local product frames do
 not establish (14), and no average-state or random-state argument can
 replace its whole-space gap. Both this spectral alternative and the
 packing alternative also require an actual qualifying clean source V,
@@ -740,3 +744,114 @@ sharing a Lagrangian Pauli space, bounded physical block cones, and
 explicit Bell orbits for global graph frames. The block-cone statement
 concerns ordinary block depth, not native T-depth. Dense frames with
 different noncommuting global Pauli bases remain open.
+
+## 7. Structured packing: concentration is paid, radix compression is not
+
+The generic permutation compiler in Section 5.1 is sufficient below its
+stated window. A structured alternative separates the useful component
+from its remaining native operation. Let $`k\ge1`$, $`h=2^k`$,
+$`n=hk`$, and retain arbitrary k-bit keys A_j and weights t_j. Put
+
+```math
+q_j=[A_j=0],\qquad g=\bigoplus_jq_jt_j,\qquad
+Q=\bigvee_jq_j.
+```
+
+A balanced tree concentrates g into one weight t_*. Each subtree keeps
+one of its actual weight bits. At a node, let u,v be the nonemptiness
+predicates of the unchanged left/right key registers. Swap the two
+representatives when $`(u,v)=(0,1)`$, and add the right representative
+to the left when $`(u,v)=(1,1)`$. These disjoint conditions transform
+the old contribution $`ut_L+vt_R`$ into $`(u\lor v)t_L`$.
+For each fixed key input this is an invertible linear map on arbitrary
+weights. The complete tree U therefore satisfies
+
+```math
+U(-1)^{Fg}U^\dagger=(-1)^{FQt_*}.
+```
+
+F is any external Boolean phase label. No predicate or weight is
+initialized. A controlled SWAP is three single-target Boolean XORs;
+the conditional CNOT is one. At a node with s leaves, each is paid by
+the exact dirty-indicator parity echo on at most ks+1 controls, in
+$`O(\log(ks+2))`$ T-depth and exponential count/dirty width. Distinct
+nodes at one level have disjoint principal inputs and private pools.
+Thus the same literal word and actual inverse obey
+
+```math
+d_U=O(k\log(n+2)),\qquad
+T_U,G_U,b_U\le2^{O(n)}\mathrm{poly}(n).
+```
+
+The all-nonzero key set B has size
+$`(2^k-1)^h\lt2^{n-1}`$. Suppose a zero-clean key permutation C
+maps B into the halfspace a=0 for one designated actual key bit a.
+With $`Q'=Q\circ C^{-1}`$, this would imply $`aQ'=a`$. Define
+
+```math
+\begin{aligned}
+D&=(CU)(-1)^{Fg}(CU)^\dagger=(-1)^{FQ't_*},\\
+L&=\mathrm{CNOT}(a,t_*),\\
+E&=D^\dagger L^\dagger DL=(-1)^{Fa}.
+\end{aligned}
+```
+
+Then $`E^\dagger X_aEX_a=(-1)^F`$ on the entire space. This uses
+four original phase batches and eight CU/actual-inverse occurrences,
+returning all arbitrary keys, weights and helpers. It pays extraction
+conditional on C. It does not implement C.
+
+This concentration also does not retain Section 4's one-active-fiber
+error cancellation: a Q=1 sector can contain many active source copies.
+The complete batch error and four-use telescoping bound remain necessary.
+The refined $`2\eta`$ bound cannot simply be transferred to this word.
+
+### 7.1 An elementary shuffle and the exact remaining operation
+
+Let $`L=2^r`$ and $`0\le b\le L`$. The stable exchange of adjacent
+integer intervals [b,L) and [L,L+b) is exactly three additions on an
+(r+1)-bit register: add minus b modulo 2L; if the high bit is zero,
+add b modulo L to the low bits; then add b modulo 2L. The middle
+rotation, translated by the outer additions, rotates [b,L+b) and fixes
+its complement. It maps the first interval forward by b and the second
+backward by L minus b.
+
+[Remaud and Vandaele, Sections 5--7](https://arxiv.org/html/2501.16802v2)
+pay exact reversible addition without initialized work and constant
+addition in $`O(\log^3(r+2))`$ Toffoli depth with at most one dirty
+helper. A stable outer control is added to their constant-arity gates
+using returned private helpers. Hence the elementary interval shuffle
+has polylogarithmic native depth and polynomial count/width. Neither
+measurement nor clean carry history is used.
+
+For an m-bit row x and r-bit column y, the desired multi-bit stable
+radix shuffle is the total permutation
+
+```math
+F_b(x,y)=
+\begin{cases}
+xb+y,&y\lt b,\\
+2^m b+x(L-b)+(y-b),&y\ge b.
+\end{cases}
+```
+
+Its first rectangle occupies the first $`2^m b`$ integers; the other
+rectangle fills the complement. Successive row-bit shuffles implement
+it, but use m dependent stages. At the top of a balanced packing of
+the nonzero-radix digits, m is proportional to n. This retains linear
+depth in n, up to logarithmic factors.
+
+The first unpaid operation is a sublinear-depth full-space implementation
+of this multi-bit radix permutation, or another actual key compression C.
+Out-of-place XOR queries for a map and its inverse do not provide its
+in-place action on an arbitrary target bank. The cited adder pays each
+elementary shuffle, not removal of their serial dependence. The new
+[approximate zero reflection](EXPANDER_ZERO_REFLECTION.md) likewise
+does not supply this permutation. Neither composition changes the paid
+packing window or the unrestricted source frontier.
+
+The [MSS spectral wrapper](MSS_SPECTRAL_PROMOTION.md) subsequently
+bypasses this permutation and pays a larger conditional source window.
+The first unpaid radix operation above remains a limitation of the
+structured packing mechanism, rather than a barrier to promotion by
+other native dynamics.

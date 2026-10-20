@@ -65,22 +65,37 @@ with those spectators, including wires designated as dirty.
 ### A controlled-family version
 
 Suppose W preserves c computational control wires and has target
-fibers W_z. If one fiber has trivial Pauli-preserving domain, then
+fibers W_z. For every individual fiber,
+
+```math
+\nu(M_W)\le c+\nu(M_{W_z}).
+```
+
+To prove this without assuming that Pauli transport fixes each fiber,
+project M_W onto its control X mask, of rank k. Its kernel contains
+the c-dimensional control Z space C. After deleting those Z coordinates,
+write the remaining target-label space as K. A zero-X-mask Pauli has
+a Pauli image in each fiber, so $`K\subseteq M_{W_z}`$ for every z.
+Choose k control-Z/lift hyperbolic pairs. Adding control-Z vectors to
+K removes its pairings with the lifts without changing its own form.
+The remaining c minus k control directions are radical. Hence
+
+```math
+\begin{aligned}
+\dim M_W&=c+\dim K+k,\\
+\mathrm{rank}(\Omega|_{M_W})
+ &=2k+\mathrm{rank}(\Omega|_K),\\
+\nu(M_W)&=c+\nu(K)\le c+\nu(M_{W_z}).
+\end{aligned}
+```
+
+No classification of cross-fiber transport or equality between K and
+any full fiber domain is required. In particular, if one fiber has
+trivial Pauli-preserving domain, the control Z space and this bound give
 
 ```math
 \nu(M_W)=c.
 ```
-
-Indeed, project M_W onto its control X mask. The kernel consists
-exactly of the c control Z characters: a zero-mask Pauli with target
-factor Q must have a Pauli image in every fiber, and the stated fiber
-forces Q=I. If the projection has rank k, M_W has dimension c+k.
-A vector in its symplectic radical must lie in the kernel, since it
-commutes every control Z. Within that kernel, the annihilator of the
-projected X masks has dimension c-k. Thus the restricted symplectic
-rank is 2k and the asserted maximal isotropic dimension follows.
-This argument does not require a classification of cross-fiber
-transport.
 
 ## 2. The exact boundary of the isolated-pair resynthesis
 
@@ -515,6 +530,53 @@ return. Identity spectators may be added and mixed by the endpoint
 Cliffords; new native quantum couplings to them are outside this
 five-wire classification.
 
+### 5.3. Common quantum spectator attachments still retain the deficit
+
+There is also a genuine quantum-coupling extension of the first trial.
+Attach the same arbitrary signed spectator Pauli P_s to both actual B
+axes and the same Q_s to both actual D axes, on s additional wires.
+The endpoint bands act as identity on these spectators. The two
+attachments may anticommute. Each original pair remains independent,
+commuting and J-aligned, with its old center: the common attachment
+squares to identity. Complete clean return therefore still holds on
+every spectator input, without implying dirty return.
+
+In an ordinary h=0 fiber the four actual induced axes are
+
+```math
+\begin{aligned}
+B:&\quad X_vP_s,\ Z_uX_vP_s,\\
+D:&\quad X_uQ_s,\ -Z_vX_uQ_s.
+\end{aligned}
+```
+
+Let e be the binary commutation pairing of P_s and Q_s. Their
+cross-band pairing matrix is
+
+```math
+\begin{pmatrix}e&1+e\\1+e&e\end{pmatrix}.
+```
+
+It is invertible for either e. The four labels consequently span a
+nondegenerate four-dimensional Pauli space. An analytical Clifford
+change of coordinates identifies the fiber with two signed factors
+$`T_ZT_X`$ and identity on s remaining wires. Its maximal isotropic
+Pauli-domain dimension is s. The general fiber inequality above gives
+
+```math
+\nu(M_W)\le2+s\lt4+s.
+```
+
+No logical Clifford endpoints, including arbitrary spectator mixing,
+can make this complete occupied operator diagonal. This excludes a
+specific common-attachment mechanism, not all spectator interactions.
+The actual native sizes remain [5,2,2,5], with fourteen T gates, no
+added initialized helper, and paid Pauli exposures and actual inverses
+on all 5+s wires. Their elementary Clifford cost is $`O((5+s)^2)`$.
+All statements concern the full spectator space, without measurement
+or a supplied eigenstate. The coordinate change is an analytic test,
+not an uncharged replacement of the physical source.
+
 ## 6. The first remaining obligation
 
 This source has actual higher-support physical pairs, a moved center,
@@ -525,7 +587,7 @@ Section 5.2. The proof is
 analytic; no finite search or numerical fixture is needed.
 
 The next chosen trial changes the actual middle transport or adds a
-genuine native quantum coupling to another wire, and must supply a
+native quantum coupling outside the common attachments above, and must supply a
 logical Lagrangian in the Pauli domain. Boundary Clifford changes,
 the commuting phase repairs and the five-wire output-endpoint
 refactorizations above cannot do that. Any proposed Boolean source
