@@ -103,7 +103,9 @@ are unchanged. The [focused four-band scout](depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT
 retains a conditional physical coupling-radical certificate and literal
 pair removals. Identity words can have arbitrarily many physical pairs;
 disjoint-pair Boolean words can still admit another whole-word reduction.
-This tests representation limits, not a general four-layer degree bound.
+The fixed-endpoint one-pair/orbit class now has an actual-axis cubic
+closure: every middle axis commutes across the two bands. This is not
+a general four-layer degree bound or a free same-budget replacement.
 The
 [previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
 retains the disjoint-carrier extraction, clean-cover audit and transported

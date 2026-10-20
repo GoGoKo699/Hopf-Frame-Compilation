@@ -86,7 +86,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Retained singleton-coupling component | [Actual-center extension](research/depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md) gives equal endpoint coupling ranks h and residual dimension at most $`2h+4`$. The following theorem removes bounded h without asserting that h is bounded |
 | Uniform all-active genuine one-pair component | [Fixed full-space diagonal reduction](research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) gives sign/XOR degree at most **6/5 uniformly**, and **5/4 at active rank at least four**, with arbitrary silent lists and dirty width. The new recognition theorem below supplies its actual physical support hypotheses for every paired Boolean source |
 | Original-pair collapse under complete Booleanity | [Scalar-sector native rigidity](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md): any positive original pair count collapses to exactly one, all-active at both actual endpoints, with no negative singletons after literal repair. Thus six/five and high-rank five/four cover every paired source. Combined with the no-pair theorem this gives an unrestricted one-clean native-three degree ceiling, not a dimension-growing depth bound |
-| Focused four-band physical-pair scout | [Conditional radical and removals](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md) retain actual lists and the physical clean code. Exact identity words have arbitrarily many pairs; disjoint middle pairs can still permit whole-word depth reduction. No general four-layer degree ceiling or unrestricted depth claim follows |
+| Focused four-band physical-pair scout | [Conditional radical, removals and fixed-endpoint closure](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md) retain actual lists and the physical clean code. Identity words can have arbitrarily many pairs. In the stated fixed-endpoint one-pair/orbit class, all actual middle axes commute and occupied sign degree is at most three. No general four-layer ceiling or unrestricted depth claim follows |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -469,10 +469,16 @@ off-diagonal pair transport and paid whole-word reductions. A controlled
 SWAP middle also retains two bands after another exact coordinate change.
 With the stated fixed endpoints and actual equal-difference one-pair
 lists, complete Booleanity gives a controlled SWAP/CZ classification
-and conditional sign degree at most four. The remaining cubic-reduction
-obligation is $`B_3=0`$ and $`C_2=D_2`$, from those actual lists.
-Physical singleton commutation and their equal sums do not yet prove
-it. None of these diagnostics supplies a general four-layer ceiling.
+and an intermediate degree-four bound. The stronger actual-axis proof
+now forces all middle axes to commute, closes the cross-sector criterion,
+and gives occupied sign degree at most three. A commuting union need
+not be one independent native list; no free replacement circuit follows.
+Continue beyond these fixed endpoints or the actual common-J orbit
+assumptions. General four-band clean return does not supply those orbit
+identities. The next bounded test retains one genuine B pair and one
+negative B singleton, matching the additional actual list under its
+justified probe W rather than silently replacing W by J. None of these
+diagnostics is a general four-layer ceiling.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

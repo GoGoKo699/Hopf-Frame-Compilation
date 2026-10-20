@@ -668,3 +668,16 @@ does not supply a zero-pivot readout. The selected next attempt must
 also supply genuine nonmonomial carrier mixing across the query stages
 and be analyzed as a complete word. This bounded failed trial does not
 exclude broader address-motion or non-Clifford bank interference.
+
+Within the query architecture, changing only one bank's basis has an
+additional exact limitation. Every query, source-bank Fourier change
+and address-only gate commutes with all target translations X_t(v).
+Any word built from them retains the fixed target-translation character
+of its probe, whereas the addressed observable changes that character
+with x. The same orthogonal-eigenspace argument gives a gap of at least
+$`\sqrt2`$. Changing only the target bank instead leaves the arbitrary
+source sector z=0 invariant, where the query is identity and no bank
+selection is performed. These statements test these actual primitives;
+they do not cover general native circuits. A new query-based attempt
+must mix both carrier banks across stages and prove complete readout,
+not merely add address phases or a one-bank Fourier boundary.

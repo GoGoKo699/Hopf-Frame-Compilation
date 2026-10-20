@@ -451,11 +451,14 @@ not imply pair-count collapse: identity words can have arbitrarily
 many pairs. Disjoint-pair Boolean examples, including a nondiagonal
 controlled-SWAP middle, still admit other whole-word two-band reductions.
 For the precise fixed endpoints and equal-difference one-pair lists,
-complete Booleanity gives a controlled SWAP/CZ classification and sign
-degree at most four. A cubic reduction is equivalent to two stated
-cross-sector coefficient identities, still unproved from those actual
-lists. This is the active bounded lower question, not a general
-four-layer degree ceiling or an unrestricted depth obstruction.
+complete Booleanity first gives a controlled SWAP/CZ classification.
+The actual-axis argument then proves that all middle axes commute
+across the bands and closes the occupied sign degree at three. It does
+not turn their dependent union into a free native layer. The active
+bounded lower question must now leave these fixed-endpoint/orbit
+hypotheses; general four-band return does not imply the common-J
+Pauli matching. No general four-layer degree ceiling or unrestricted
+depth obstruction follows.
 
 The [preceding revision](../research/depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
 excludes every nonquadratic two-layer Boolean XOR with at most one clean

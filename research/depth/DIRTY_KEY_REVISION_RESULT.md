@@ -20,7 +20,7 @@ complete indicator or stronger unrestricted depth bound is claimed.
 | New paid source component | Amplitude-$`1/\sqrt2`$ recovery and dirty promotion now have an explicit general-k resource, accuracy and return recurrence, including a sufficient slowly growing clean window |
 | New mechanism diagnosis | A final reverse query cannot repair a key-preserving core even with arbitrary quantum fibers. Other specified moving-key words retain a non-Pauli action or affine labels. These are operator obstructions for those representations |
 | New constructive candidate | A Vandermonde encoding makes the selected output an inverse column of an affine matrix pencil. Its quadratic XOR query is paid; coherent inverse-column readout remains unpaid |
-| Focused lower scout | Four bands permit arbitrarily many original physical pairs even in an identity word. A conditional radical certificate and literal pair-removal rules survive, but representation pair count cannot certify unrestricted depth |
+| Focused lower scout | Four bands permit arbitrarily many original physical pairs even in an identity word. A conditional radical certificate and literal pair-removal rules survive. The fixed-endpoint one-pair/orbit class now has an actual-axis cubic closure; neither it nor representation pair count certifies unrestricted depth |
 
 The old number 37748865/37748864 was a generic feature ceiling, not a
 prediction of an optimal degree. The retained structural reduction
@@ -228,14 +228,22 @@ yet another exact coordinate change still gives two bands.
 
 Under the further actual one-pair-per-list and equal-difference
 hypotheses, the complete middle is a controlled product of r, CZ and
-SWAP. Legitimate sector restrictions give a conditional occupied sign
-degree at most four. The actual singleton lists commute across bands
-and have equal binary sums. Cubic degree is equivalent to two remaining
-coefficient identities, $`B_3=0`$ and $`C_2=D_2`$, in that proof
-home's notation. Deriving them from the actual native lists, or finding
-a literal counterexample, is the next focused scout. This is not a
-general four-layer bound; a sector representation is not a free
-full-space circuit.
+SWAP. Legitimate sector restrictions first give occupied degree at most
+four and isolate two cross-sector coefficient identities. The stronger
+actual-axis argument then proves that all middle axes commute across
+the bands. Consequently the middle is in the third Clifford-hierarchy
+level and the occupied sign degree is at most three. The cubic criterion
+is closed in this class; a new feature count is unnecessary.
+
+This does not merge a dependent commuting union into one native layer
+or supply a same-budget replacement circuit. The next focused scout
+must leave the stated fixed-endpoint/orbit hypotheses. In general
+four-band clean return, treating both interior lists as Pauli orbits of
+the same J is the first unsupported inference. The bounded next test
+keeps one genuine B pair and one negative B singleton, then carries the
+actual changed probe W through the additional list. This is not a general
+four-layer bound, and a sector representation is not a free full-space
+circuit.
 
 ## 7. Next question and evidence boundary
 
@@ -246,7 +254,8 @@ complete operator action before treating a phase kernel, matrix inverse
 or initialized column as an implementation. Then charge its actual
 inverse, error, return and all resource budgets on that same word.
 
-Keep the small physical-pair scout active in parallel. A scoped failure
+Keep the small physical-pair scout active in parallel, beyond the now
+closed fixed-endpoint one-pair class. A scoped failure
 can change the next mechanism without closing the unrestricted problem.
 If a construction reconstructs the old logarithmic source, preserve its
 useful component and change the missing operation rather than promoting
