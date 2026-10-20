@@ -47,7 +47,8 @@ Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
 [current continuation](depth/BANK_MOTION_CONTINUATION_RESULT.md) records
 two paid bank-moving constructions, their retained depth costs, a scoped
-whole-word Majorana bound and sharper original-list pair recognition.
+whole-word Majorana bound, sharper original-list pair recognition and
+the pair-only enlarged-center closure.
 The [parallel-access revision](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 retains its batch schedule, echo-round limit and multioutput proof repair.
 
@@ -167,8 +168,21 @@ pair whose difference is the sum of all actual active axes at each
 endpoint, when either endpoint's silent list
 commutes with the original middle. It supplies explicit recognition and
 a sharper bound inside the class already covered qualitatively after
-reversal with t=0. The case with both silent lists coupled to the pair
-remains the focused next question; no general original-pair closure follows.
+reversal with t=0.
+The [pair-only enlarged-center theorem](depth/PAIR_ONLY_ENLARGED_CENTER.md)
+removes the one-sided silent-commutation premise under the all-active
+genuine one-pair condition with no middle singletons, allowing arbitrary
+endpoint silent lists including both coupled. Boolean kernel products
+give a physical shared flip or a larger genuinely transported center
+with a four-dimensional residual and actual source X-mask rank at most four
+after shared alignment. Its sign/XOR bounds are
+$`D_*=576\cdot2^{62}+2252`$ and $`D_*-1`$, with the same
+rounding floor; 2428/2427 remains sharper in the one-sided class.
+This assumes no bound on the old coupled silent span, grants no free
+native band, and retains the physical clean wire through the complete
+block.
+The next focused case is surviving original middle singletons interacting
+with the kernels, then general pair differences and fixed pair count.
 R96 remains the strongest general upper bound, R79 remains
 selected Result D, and the complete-frame frontier is unchanged.
 

@@ -19,7 +19,7 @@ active. Neither construction changes the general resource frontier.
 | Useful reductions | [Root fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) absorbs polynomial source overhead; [clean promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) pays bounded-clean and amplitude-source wrappers |
 | New constructive components | [Complete bank difference](COMPLETE_BANK_DIFFERENCE.md) pays nonlinear vector multiplication; [fermionic Walsh routing](BANK_MOTION_WALSH_INDICATOR.md) gives an exact complete indicator on every bank occupation sector |
 | Limits of these approaches | The displayed Cartesian merge has an O(b squared) depth schedule. The Walsh construction has linear depth; the whole-word Majorana theorem excludes shallow resynthesis only inside its explicit grammar |
-| Focused lower component | [All-active original-pair matching](ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives explicit sign/XOR bounds 2428/2427 for its physical-list class, including growing active ranks and silent lists |
+| Focused lower components | [All-active recognition](ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives explicit sign/XOR bounds 2428/2427; [pair-only enlarged-center matching](PAIR_ONLY_ENLARGED_CENTER.md) also closes the all-active one-pair class with both silent lists coupling, when no middle singletons are present |
 
 For $`N=2^n`$, $`n\ge1,L\ge6`$, R96 retains
 
@@ -200,7 +200,7 @@ absolute-error floor nor an unrestricted depth bound.
 
 ## 5. Original physical-pair scout and verification boundary
 
-The new explicit physical-list criterion has one genuine original middle
+The earlier explicit physical-list criterion has one genuine original middle
 pair, whose difference is the sum of all actual active axes at both
 endpoints, and an input-silent list commuting with the original middle
 list, or its time reverse. The complete sign/XOR degrees are at most
@@ -208,23 +208,43 @@ list, or its time reverse. The complete sign/XOR degrees are at most
 Both active ranks, silent spans, middle singletons and dirty width may grow.
 The proof retains the unused clean block and literal phase throughout.
 
-An exhaustive total-axis-span dichotomy gives either a physical common
-clean flip or complete matching through the enlarged commuting subgroup
-H_0. Its 603 coefficient features, one retained parity bit and three
-diagonal-C3 exponent bits yield the bound. A commuting dependent union is
-used only for C3 membership, never as a free native band. Qualitatively
-this class already falls under the earlier reversed t=0 coupled-span
-theorem; the advance is its explicit recognition and sharper bound.
-The case where both actual silent lists couple to the original pair
-remains open, as do general pairs and unrestricted depth.
+That proof uses either a physical clean flip or the enlarged subgroup H_0.
+Its 603 coefficient features, one parity bit and three diagonal-C3 digits
+give the bound; the commuting union is used only for C3 membership.
+Qualitatively the class falls under the earlier reversed t=0 theorem.
+The advance is its explicit recognition and sharper bound.
 
-The two focused fixtures are the
-[Walsh indicator](../../tests/test_bank_motion_walsh_indicator.py), checking
+The new [pair-only closure](PAIR_ONLY_ENLARGED_CENTER.md) removes the
+one-sided silent-commutation condition when the original middle list is
+exactly that genuine pair, with no singleton axes. The pair difference
+must still equal the sum of all actual active axes at both endpoints.
+No bound on either silent span is assumed. Its complete bounds are
+
+```math
+D_*=576\cdot2^{62}+2252,\qquad
+\deg g\le D_*,\qquad\deg f\le D_*-1.
+```
+
+Products in the kernels of the silent pair couplings commute the entire
+middle list and acquire actual endpoint transport. When both lists couple,
+their cross-pairing matrix has rank at most one. The zero case supplies a
+physical clean flip; the other case enlarges the transported center to Z with
+$`\dim(M/Z)=4`$ for the entire physical axis span M. This is stronger
+than a pairing-rank assertion and does not bound the old additional span t.
+The localization Clifford fixes Z and preserves M. One global alignment
+and the feature ledger retaining the physical clean bit then prove $`D_*`$.
+The same original-circuit floor $`2^{-530690}`$ applies. No native
+band or unused-sector extension is supplied for free.
+
+The next lower questions are original middle singletons, which can block
+this transport, and general pair differences. Unrestricted depth remains open.
+
+The two focused fixtures are the [Walsh indicator](../../tests/test_bank_motion_walsh_indicator.py), checking
 all 64 six-wire columns, all occupation sectors and the actual inverse,
 and the [all-active pair fixture](../../tests/test_all_active_original_pair_closure.py),
 checking the physical span dichotomy, actual clean flip, full columns,
 phases and inverse. The Walsh emitted receipt is T=32, depth at most eight,
 G=258, with no clean or additional dirty work. These are mechanism witnesses;
-the bank difference, Majorana limit and degree theorem have analytic proofs.
+the bank difference, Majorana limit and both degree results have analytic proofs.
 Required full validation and exact-tree publication receipts belong on the
 pull request; no full-suite result is asserted by this checkpoint.

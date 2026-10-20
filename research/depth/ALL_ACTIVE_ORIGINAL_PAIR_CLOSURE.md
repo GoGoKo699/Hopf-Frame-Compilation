@@ -378,10 +378,13 @@ therefore excludes sign degree above 2428 or XOR degree above 2427
 within the stated original-list class, allowing one common scalar.
 This is not an arbitrary fixed-tolerance obstruction.
 
-The unresolved next step is the case where both actual silent lists
-couple to the original middle pair. Then the Boolean endpoint lemma
-does not make all retained lists commute, and Case II need not have
-an empty coupled-silent sublist. Neither a bounded pair count nor a
-rank-one coupling functional bounds that actual span. General original
-pairs and unrestricted depth remain open; the general frame resource
-frontier is unchanged.
+The [pair-only enlarged-center continuation](PAIR_ONLY_ENLARGED_CENTER.md)
+also handles both actual silent lists coupling to the pair when no
+middle singleton survives. It uses transported coupling kernels to
+enlarge the genuine center, rather than bounding the old coupled-silent
+span. The smaller bound here remains sharper under its own hypotheses.
+With surviving middle singletons, the endpoint lemma need not make
+those kernels centralize the entire middle list. Neither bounded pair
+count nor a rank-one coupling functional alone bounds the actual span.
+General original pairs and unrestricted depth remain open; the general
+frame resource frontier is unchanged.

@@ -25,7 +25,10 @@ of all bank/helper wires. This is a representation limit, not an
 unrestricted bound. The original physical-pair scout remains active:
 the [all-active recognition theorem](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
 sharpens a class already covered qualitatively by the reversed t=0
-theorem. General original pairs, R96 and selected R79 remain unchanged.
+theorem. The [pair-only enlarged-center theorem](research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
+also closes the all-active one-pair case with no middle singletons and
+arbitrary coupling in both silent lists. General original pairs, R96
+and selected R79 remain unchanged.
 Fetch current main before resuming; this starting commit is not a pin.
 
 <a id="current-depth-frontier"></a>
@@ -49,6 +52,7 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The unrestricted one-clean three-layer degree and dimension-growing depth questions remain open |
 | Focused original-pair advance | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) gives sign/XOR degree at most 197/196, uniformly in the opposite active rank, silent lists and dirty width. Both-rank-two six/five remains sharper. A separate [two-axis pair-difference theorem](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) permits both ranks to grow under an actual physical-list support condition. General pairs remain open |
 | Sharper recognition in a retained pair class | [All-active original-pair closure](research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md) gives sign/XOR degree 2428/2427 and higher-degree floor $`2^{-530690}`$ for a one-clean three-band word with one genuine pair whose difference is the sum of all active axes at each endpoint, when either endpoint's silent list commutes with the original middle. This explicitly recognizes and sharpens a reversed t=0 class; it is not a qualitative scope expansion |
+| Pair-only closure with both silent lists coupled | [Enlarged transported center](research/depth/PAIR_ONLY_ENLARGED_CENTER.md) closes the all-active genuine one-pair class with no middle singletons and arbitrary endpoint silent lists. It gives sign bound $`D_*=576\cdot2^{62}+2252`$, XOR bound $`D_*-1`$ and higher-degree floor $`2^{-530690}`$. It removes the one-sided silent-commutation premise in this singleton-free class; 2428/2427 remains sharper in the one-sided class. General middle singletons and original pairs remain open |
 
 The [resource frontier](docs/OPEN_PROBLEM.md) is authoritative for the
 full theorem map, including the zero-clean five-layer lower bound and
@@ -241,9 +245,24 @@ endpoints, and either endpoint's silent list commutes with the whole
 original middle. It gives sign/XOR bounds 2428/2427 and the retained
 higher-degree error floor $`2^{-530690}`$. This class already falls
 under the bounded-coupled-span theorem after reversal with t=0; the gain
-is an explicit recognition and sharper bound. The next focused case has
-both actual silent lists coupled to the original pair. General pair
-count and unrestricted depth remain open.
+is an explicit recognition and sharper bound.
+
+The [pair-only extension](research/depth/PAIR_ONLY_ENLARGED_CENTER.md)
+keeps the same all-active genuine one-pair condition, removes all middle
+singletons, and permits arbitrary silent lists at both endpoints,
+including both coupled. Boolean kernel products give either a physical
+shared flip or an enlarged genuinely transported center with a
+four-dimensional residual and actual source X-mask rank at most four
+after shared alignment. It proves sign degree at most
+$`D_*=576\cdot2^{62}+2252`$, XOR degree at most $`D_*-1`$,
+and the same original-circuit floor $`2^{-530690}`$. It removes
+the one-sided silent-commutation premise in the singleton-free case,
+without assuming a bound on the old coupled silent-axis span or
+replacing actual axes by a free native band. The physical clean wire
+is retained through the complete block. The next focused case is
+surviving original middle singletons interacting with the kernels,
+followed by general pair differences and fixed pair count; unrestricted
+depth remains open.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
@@ -267,8 +286,8 @@ count and unrestricted depth remain open.
 
 The [latest continuation](research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
 records the paid bank-moving words, their retained depth costs, the
-scoped whole-word Majorana bound and the sharper original-list pair
-recognition. The [parallel-access revision](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+scoped whole-word Majorana bound, sharper original-list pair recognition
+and the pair-only enlarged-center closure. The [parallel-access revision](research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
 retains its paid batch, scoped echo-round theorem and sector repair.
 Earlier prompts to search general
 two-band transitions, merely nonscalar output probes, or an unspecified
