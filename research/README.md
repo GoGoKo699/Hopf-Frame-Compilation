@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+[current research outcome](depth/CENTRAL_PARITY_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -66,8 +66,11 @@ or five/four at common active rank at least four. Together with the
 retained no-pair and Pauli-interior cases, its [exhaustive corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained) gives an absolute
 width-independent degree ceiling $`D_{\rm np}`$ for every at-most-one-clean
 native-three Boolean sign, and $`D_{\rm np}-1`$ for its nonconstant
-complete XOR predicate. The universal constant remains the crude
-no-pair bound, not six/five. The original-circuit rounding floor is
+complete XOR predicate. The [central-parity refinement](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
+now gives sign degree 2049 for the polar-rank-two quadratic-control
+branch, removing the old finite-insertion term from the universal
+maximum. Its value is $`D_{\rm np}=D_3+576`$, still controlled by
+the crude high-rank estimate. The original-circuit rounding floor is
 $`2^{-530690}`$; arbitrary fixed tolerance and growing depth remain
 outside this conclusion. Upper source resources, R96 and selected R79
 are unchanged.
@@ -330,19 +333,32 @@ Every pair difference is the same complete active sum, so original
 middle independence permits only one. Reversal gives output support,
 and the clean comparison excludes negative singletons.
 
-The [exhaustive one-clean three-layer corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained) retains the ceiling
+The [exhaustive one-clean three-layer corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained),
+with the [central-parity refinement](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md),
+gives the ceiling
 
 ```math
-D_{\rm np}=\max\{D_3+576,D_{\rm ins}(0,0,0,3)\},
+D_{\rm np}=D_3+576,
 \qquad \deg g\le D_{\rm np},\quad \deg f\le D_{\rm np}-1.
 ```
 
-The constants belong to the retained no-pair proof homes; their
-finite-insertion term also dominates the Pauli-interior and paired
-ceilings. This closes the qualitative uniform-degree question, not its
-sharp quantitative form. The next lower question is a structural
-sharpening of this no-pair constant, followed by higher-layer degree
-growth. It is not another request to enumerate a larger matrix alphabet.
+For a polar-rank-two control, fix one genuine computational center
+parity. On each entire remaining-register sector the insertion agrees
+with an actual Clifford. Its replacement preserves Pauli boundaries
+and the three original independent native lists, so the 2048 theorem
+applies. Reconstructing the two sector signs in the same coordinates
+gives 2049. This removes the old finite-insertion term; the retained
+high-rank bound dominates it and the Pauli-interior and paired ceilings.
+
+The sharp quantitative question remains. The corresponding high-rank
+restriction gives constant translation but creates a relation in the
+actual endpoint lists. Native independence no longer licenses diagonal
+axis peeling, while the insertion retains quadratic control. The next
+lower question is to resolve that exact step with its relation and
+literal phase retained, followed by higher-layer degree growth. The
+restriction's failure is a limitation of this proof mechanism; it does
+not obstruct an alternative native representation or establish growing
+unrestricted depth.
 The conservative rounding floor applies to the original full circuit,
 including leakage, dirty return and references. The resulting depth
 exclusion is still constant, not dimension-growing. R96 remains the
@@ -757,7 +773,14 @@ An arbitrary quartic correction is still not a free gate.
 
 The [quadratic-control matching theorem](depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
 closes fixed control polar rank by actual Clifford absorption and finite
-insertion. For a genuine quadratic control at arbitrary rank, the associated
+insertion. The [central-parity revision](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
+instead fixes one parity at polar rank two and replaces the insertion
+by an actual Clifford on each full sector, giving sign degree at most
+2049. More generally, polar rank $`2r`$ permits a proof restriction of
+r control parities, giving at most r relations per native list and
+sign bound $`D(r,r,r)+r`$ under the retained bounded-relation theorem.
+These restrictions are degree arguments, not cheaper implementations.
+For a genuine quadratic control at arbitrary rank, the associated
 Clifford probe images preserve the middle native span. The input and output
 probe families agree on a common invariant isotropic algebra. Its joint
 displacements enlarge the actual shared center; paid normalization makes
@@ -774,8 +797,8 @@ proves a full diagonal C3 conclusion when every monomial translation is
 constant, with arbitrary ranks and an actual commuting C3 middle.
 Only actual diagonal native sublists and a paid diagonal Clifford are
 peeled. Its empty-middle corollary gives a uniform bound at every control
-rank; high rank forces constant translations, and rank two retains the
-finite-insertion bound. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
+rank; high rank forces constant translations, and rank two now has the
+central-parity bound 2049. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
 adds characteristic active-axis sums and global axis-product centers,
 but a fixed Clifford decoder is possible only when the native encoder
 already centralizes the retained algebra. The [actual four-wire witness](depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
@@ -817,9 +840,10 @@ now closes growing d in this actual no-middle-pair branch. Its coordinate
 algebra has only singleton and pair blocks. The full cubic identity
 removes their cross-couplings, and all pair phases are retained as the
 middle band of a three-band residual. The exceptional displacement has
-dimension one, giving the uniform sign bound
-$`\max\{D_3+576,D_{\mathrm{ins}}(0,0,0,3)\}`$. Original physical
-middle pairs and higher-layer asymptotics remain separate.
+dimension one, giving the high-rank sign bound $`D_3+576`$. The
+central-parity refinement makes this the uniform no-pair ceiling.
+Original physical middle pairs are separately closed by Boolean
+pair collapse; higher-layer asymptotics remain open.
 
 The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
 places the complete generic nonzero-character family and its actual

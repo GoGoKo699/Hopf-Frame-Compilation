@@ -7,8 +7,10 @@
 **Current case map:** the later [Boolean original-pair collapse](BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
 closes the separate original-pair branch. Together with this retained
 no-pair theorem and the Pauli-interior bounds, it gives a uniform
-one-clean native-three degree ceiling. The no-pair constant below is
-unchanged and remains a target for structural quantitative sharpening;
+one-clean native-three degree ceiling. The later
+[one-parity reduction](CENTRAL_PARITY_QUADRATIC_REDUCTION.md) removes
+the rank-two finite-insertion term from the no-pair constant. The
+high-rank constant below remains a target for structural sharpening;
 the old original-pair reopening instructions are historical.
 
 The full normalized cubic identity closes the growing-total-displacement
@@ -123,13 +125,17 @@ uniform bound
 
 ```math
 \deg g\le
-\max\{C_*,D_{\mathrm{ins}}(0,0,0,3)\}.               \qquad(8)
+C_*=D_3+576.                                          \qquad(8)
 ```
 
 This is independent of total displacement dimension, clean-active ranks,
 quadratic support and dirty width. For a literal XOR query, first check
 this reduction for its actual output-Hadamard sign representation; the
 predicate degree is then at most one less than (8).
+
+Equation (8) uses the later [central-parity theorem](CENTRAL_PARITY_QUADRATIC_REDUCTION.md),
+which bounds the rank-two branch by 2049 and removes its much larger
+finite-insertion application. The high-rank proof (7) is unchanged.
 
 ## 2. The common fixed space is one dimension from a coordinate algebra
 

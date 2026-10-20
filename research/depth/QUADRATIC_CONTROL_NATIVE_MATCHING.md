@@ -12,6 +12,12 @@ center makes its endpoint images monomial Cliffords. These statements
 retain the original independent native lists; a global decoder or a bound
 on the remaining relative center phases is still missing.
 
+The later [central-parity reduction](CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
+sharpens the polar-rank-two case to sign degree 2049: one genuine center
+parity makes the insertion Clifford on each complete remaining-register
+sector. The finite-insertion estimate below remains a valid component;
+the new sector proof replaces its rank-two use in the universal ceiling.
+
 The [constant-translation continuation](CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
 closes that monomial subcase with sign/XOR bounds three/two. The
 [center and decoder audit](NATIVE_CENTER_SATURATION_LIMITS.md) strengthens
@@ -109,6 +115,11 @@ every middle-axis Pauli. The retained finite-insertion theorem proves
 
 The explicit function D_ins is defined in
 [its proof home](FINITE_INSERTION_THREE_LAYER_FEATURES.md#1-the-full-space-expression-and-explicit-bound).
+The later [one-parity argument](CENTRAL_PARITY_QUADRATIC_REDUCTION.md#3-reconstruct-the-same-boolean-function)
+gives the stronger bound 2049 when r=1, and its
+[general restriction component](CENTRAL_PARITY_QUADRATIC_REDUCTION.md#4-a-general-polar-rank-and-relation-budget-component)
+gives the alternative bound $`D(r,r,r)+r`$ at fixed r. These are degree
+arguments with explicit relation budgets, not free native synthesis.
 When r=0 the entire insertion is Clifford and is absorbed in (3),
 leaving an actual zero-clean three-native-band Boolean word. The sharper
 bound is then $`\deg g\le5`$. Restoring the retained central cubic and

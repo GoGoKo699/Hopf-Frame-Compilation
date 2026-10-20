@@ -448,16 +448,17 @@ sign circuit of T-depth at most three, on the full logical and dirty
 register with at most one initialized clean qubit, retain the bound
 
 ```math
-D_{\rm np}=\max\{D_3+576,D_{\rm ins}(0,0,0,3)\}.
+D_{\rm np}=D_3+576.
 ```
 
 Here $`D_3`$ is the constant of the
 [partial-diagonal feature theorem](PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#1-statement-and-explicit-constants),
-and $`D_{\rm ins}`$ is the
-[finite-insertion constant](FINITE_INSERTION_THREE_LAYER_FEATURES.md#1-the-full-space-expression-and-explicit-bound).
-No replacement or sharpening of either generic feature theorem is
-claimed. The finite-insertion term already exceeds $`2^{26}`$, as
-recorded in the [retained no-pair application](MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing).
+and the later [one-parity reduction](CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
+replaces the old rank-two finite-insertion application by 2049.
+The high-rank value displayed here exceeds both 2049 and $`2^{26}`$.
+Neither generic feature theorem is changed: the new rank-two argument
+avoids using the finite-insertion theorem in this case. The original
+pair-collapse proof and its six/five conclusion are unchanged.
 
 | Actual circuit case | Established sign-degree bound |
 | --- | --- |

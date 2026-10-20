@@ -10,7 +10,21 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current pair-collapse revision](../../research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+The [current central-parity revision](../../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+replaces the no-pair rank-two finite-insertion application by an analytic
+2049 sign-degree bound. On each of two genuine central-parity sectors,
+an actual full-space Clifford agrees with the insertion and preserves
+the Pauli code at every native boundary. The retained 2048 theorem and
+reconstruction in the same coordinates give the result. The universal
+ceiling is now $`D_3+576`$, still controlled by the high-rank no-pair
+feature estimate. The [focused exact fixtures](../../tests/test_central_parity_quadratic_reduction.py)
+check actual sector replacements with literal phases and adjoints, and
+a native four-axis restriction whose one relation invalidates
+independent-axis diagonal peeling. That guard is not a completed
+no-pair Boolean source. No source upper recurrence or asymptotic
+resource frontier changes.
+
+The [previous pair-collapse revision](../../research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
 adds an analytic theorem for every exact complete Boolean one-clean
 native-three source with any genuine original pair. Scalar-sector
 silent-list independence supplies Boolean one-band rigidity; comparison
