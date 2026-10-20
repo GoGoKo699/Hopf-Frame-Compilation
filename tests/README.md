@@ -13,6 +13,7 @@ theorem by numerical extrapolation.
 
 | Test file | Principal questions |
 |---|---|
+| [`test_full_bank_character_transport.py`](test_full_bank_character_transport.py) | Shared HRT carrier, all 8192 address/bank/carrier phase columns and actual reverse, eleven-CNOT zeta shear and constant correction; composition fixture importing the retained native source proof |
 | [`test_frames.py`](test_frames.py) | Do the recursive and addressed constructions give the same frame? Are marker columns, chart domains, metric weights, and singular continuations consistent? |
 | [`test_complex_analysis.py`](test_complex_analysis.py) | Do magnitude and leaf-phase differentials, gauge relations, and zero-amplitude behavior match the frame convention? |
 | [`test_compiler_boundaries.py`](test_compiler_boundaries.py) | State-only failure, sharp all-observable sensitivity, common phases, leakage, singular markers, and checkpoint interfaces |

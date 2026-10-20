@@ -383,3 +383,9 @@ full six-wire native XOR and adjoint at t=0; larger native phase words
 with arbitrary masks and temporary values; and the balanced tree ledger.
 The arbitrary-width statements follow from the identities above. No
 complete-frame theorem or unrestricted depth lower bound is promoted.
+
+The [joint full-bank continuation](FULL_BANK_CHARACTER_TRANSPORT.md) now
+uses this same carrier and eight source calls for every indicator output
+simultaneously. Its zeta readout is paid. The old one-table square-root
+comparison remains valid, but the complete-bank count and width now fit
+the relaxed fusion budget; native depth remains logarithmic.
