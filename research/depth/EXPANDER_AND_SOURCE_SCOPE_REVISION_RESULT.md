@@ -138,6 +138,17 @@ an alternative word whose erased baseline already implements the
 desired action. The first unpaid operation is a full nonvanishing
 compression or addressed observable, not its forward graph predicate.
 
+The [latent-center refinement](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+gives a constructive alternative interface. The forward pencil pays
+actual Clifford generators of a Pauli subgroup whose center contains
+the addressed observable. Both central sectors carry nontrivial
+irreducible actions; ordinary invariant-vector filtering selects
+neither sector. Conjugation averaging from one fixed bounded probe
+has a shrinking addressed coefficient. Neither statement excludes
+an alternative full-space central-sign readout. That readout, with
+constant amplitude and returned arbitrary work, is the first unpaid
+operation in this representation.
+
 These results select a question rather than retire the destination:
 can a genuinely wide address-bank operation supply a complete source
 outside these invariants, with a constant-fraction coherent readout
@@ -251,6 +262,33 @@ the k and therefore needs the separately stated accuracy envelope.
 An exactly flat amplitude-one-over-square-root-two block inherits the
 constant-accuracy case after the paid recovery and its extra clean flag.
 
+The [seven-selector refinement](MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+improves the uniform precision recurrence. Half of its SELECT branches
+are identity and half are the paid framed phases. The compressed block
+is identity when the desired bit is zero and a positive contraction of
+norm at most 63/64 when it is one. General-block cubing uses the same
+seven selectors at every level. A returned zero test and final
+bounded-clean promotion recover the complete query.
+
+For $`L=1+\log_2(1/\tau)`$, put $`h=2^k`$ and
+$`\Lambda=2^{O(h(k+1))}\mathrm{poly}(h,k)`$.
+The simultaneous pre-fusion bounds are
+
+```math
+\begin{aligned}
+d_{\rm out}&=O\bigl(L(d_V+k+1)+L^2\bigr),\\
+T_{\rm out}&=O\bigl(L\{h(T_V+q)+\Lambda\}+L^2\bigr),\\
+G_{\rm out}&=O\bigl(L\{h(G_V+q)+\Lambda\}+L^2\bigr),\\
+w_{\rm out}&=O\bigl(h(b_V+q+k)+\Lambda\bigr).
+\end{aligned}
+```
+
+The source terms are evaluated at accuracy proportional to tau/L
+under exact sector preservation, or tau divided by hL with leakage.
+This removes the Hamiltonian-simulation inverse-tolerance factor.
+It does not supply a source whose own budgets meet these conditions;
+the retained root fusion still uses its fixed-tolerance hypotheses.
+
 This is a genuine improvement of the conditional promotion frontier.
 It is not a qualifying source. The first unpaid operation is now that
 source's complete logical transition, with native address sharing and
@@ -337,6 +375,14 @@ also rejects the stated common quantum-spectator extension of the
 higher-support trial. Its two factors have a two-plane domain deficit
 on an actual fiber, which prevents any full logical Pauli Lagrangian.
 This concerns that attachment, not all additional quantum coupling.
+
+The [minimal singleton-tail trial](FOUR_BAND_CENTER_TRANSPORT.md#singleton-sector-assembly)
+shows why agreeing sector symplectic maps is insufficient. Its exact
+Pauli corrections have quadratic labels, so the assembled actual
+endpoint is non-Clifford. The remaining doubly controlled Pauli has
+an explicit four-T, two-band receipt with no helper and full literal
+return. Paying that residual restores the old cost; the mechanism is
+therefore set aside without turning its failure into a general bound.
 
 The next noncommuting scout needs overlap on C-active coordinates,
 or a change of the original center's transport. It must supply an

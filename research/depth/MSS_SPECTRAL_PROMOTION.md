@@ -13,6 +13,9 @@ preservation of the source's clean sector permits constant source
 accuracy, independent of k. This enlarges the sufficient-source window
 to $`k=o(\log p)`$ under the resource assumptions in Section 7.
 An actual qualifying shallow clean source remains absent.
+The [lazy filter in Section 8](#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+gives uniform pre-fusion depth $`O(L(d_V+k+1)+L^2)`$, with
+$`L=1+\log_2(1/\tau)`$ and source budgets evaluated at its stated accuracy.
 
 Every norm below is a complete operator or initialized-isometry norm,
 including arbitrary source work, borrowed registers and references.
@@ -166,7 +169,7 @@ counting, K is binomial with h=M and success probability 1/M. For M≥2,
  \Pr(K=1)&=(1-1/M)^{M-1}>e^{-1},\\
  \Pr(K=2)&=\tfrac12\Pr(K=1),\\
  \delta:=2^{-n}\mathrm{rank}(P_0)
-  &=1-\tfrac12\Pr(1\le K\le2)<\tfrac34.
+  &=1-\tfrac12\Pr(1\le K\le2)\lt \tfrac34.
 \end{aligned}                                                       \qquad(8)
 ```
 
@@ -186,7 +189,7 @@ each coordinate-color projection Pi_j satisfies
 \begin{aligned}
  \|\Pi_jQ\Pi_j\|&\le\alpha,\\
  \alpha&=(1/8+\sqrt\delta)^2
-   <49/64+\sqrt3/8<63/64.
+   \lt 49/64+\sqrt3/8\lt 63/64.
 \end{aligned}                                                       \qquad(9)
 ```
 
@@ -456,3 +459,196 @@ window. It does not exclude fixed-error growing-clean sources, even
 with separately proved exact flatness, or sources using another
 native mechanism. Exact flatness of K†K is distinct from exact
 agreement of K with the desired indicator block.
+
+## 8. A lazy seven-selector filter improves uniform precision
+
+The same paid frames admit a filter without Trotter simulation. Retain
+the source contracts, exact capped echo and native scheduling assumptions
+of Sections 1–4. This alternative changes the precision recurrence; it
+does not supply a qualifying complete source.
+
+Use seven clean selectors s and no output-bit control inside the batch.
+For each label s* replace the toggle in (3) by
+$`e_j\mapsto e_j\oplus[s=s_*]\chi(A)q_j`$. Its vector-query address
+now has $`m_D=hk+7`$ bits. Apply (6) with this m_D, then (7), without
+changing the four emitted source stages. The same complete error bound
+(5) holds. Off the selected label the actual echo is literally identity,
+even for an approximate source. Here w_g excludes x,Z and the seven
+selectors; the arbitrary final output bit u is not used yet.
+
+Write $`G_F=(-1)^{F g_\chi}`$, let P project onto zero in all seven selectors,
+and let J be that initialized embedding. Prepare a uniform superposition
+of 128 branches: 64 identities and 64 framed G_F operations. Precisely,
+with s=(s_0,s'),
+
+```math
+\begin{aligned}
+ \mathrm{SELECT}
+ &=\sum_{s:s_0=0}|s\rangle\langle s|\otimes I
+   +\sum_{b\in\mathbb F_2^6}|1,b\rangle\langle1,b|
+                    \otimes C_bG_FC_b^\dagger,\\
+ S_0&=H_s\,\mathrm{SELECT}\,H_s,\\
+ A:=J^\dagger S_0J
+ &=\frac12\left(I+\frac1{64}\sum_b C_bG_FC_b^\dagger\right)
+   =\begin{cases}
+      I,&F=0,\\
+      \overline P_0:=64^{-1}\sum_bC_bP_0C_b^\dagger,&F=1,
+     \end{cases}\\
+ 0&\preceq\overline P_0\preceq cI,\qquad c=63/64.
+\end{aligned}                                                       \qquad(23)
+```
+
+The last line is exactly the whole-space paving inequality (10). The
+ideal S_0 is identity on the entire F=0 sector. The physical SELECT is
+64 serial branch words: C_b†, the echo controlled by s=(1,b), then C_b
+in chronological order. The frames are not controlled, and no controlled
+source is used. Every actual branch preserves the selector label; at
+each label at most one capped phase is active. All other whole words
+are identity, including on previously erroneous components. Thus the
+full error is the maximum branch error e_g, while the native ledger
+charges all 64 batches and 128 frame appearances:
+
+```math
+\begin{aligned}
+ \|\widetilde S_0-S_0\|&\le e_g,\\
+ T_0&\le64T_g+128T_C,\\
+ G_0&\le64G_g+128G_C+14,\\
+ d_0&\le64d_g+128d_C,\qquad w_0\le w_g+b_C.
+\end{aligned}                                                       \qquad(24)
+```
+
+The fourteen Cliffords prepare and unprepare the selectors. The exact
+frames and their entire arbitrary banks retain ledger (12).
+
+Use the [general-block cubing identity](EXPANDER_ZERO_REFLECTION.md#3-fixed-point-cubing-with-the-same-four-clean-bits)
+with the determinant-one selector phase
+
+```math
+\begin{aligned}
+ R&=\exp\!\left[\frac{i\pi}{3}
+       \left(P-\frac I{128}\right)\right]
+   =\prod_{\varnothing\ne B\subseteq[7]}\exp(i\pi Z_B/384),\\
+ S_{j+1}&=S_jRS_j^\dagger R^\dagger S_j,\qquad N=3^j,\\
+ J^\dagger S_jJ&=A^N,\\
+ \|\widetilde S_j-S_j\|&\le Ne_g+(N-1)\nu_R.
+\end{aligned}                                                       \qquad(25)
+```
+
+For any unitary S the compressed recursion is A_S A_S† A_S, where
+A_S=PSP on the range of P: the linear term has coefficient
+$`\omega+\bar\omega-1=0`$ and the cubic term coefficient
+$`|\omega-1|^2=1`$, for $`\omega=e^{i\pi/3}`$. Since A is Hermitian,
+this gives A^N without a supplied two-dimensional signal decomposition.
+The common scalar of R cancels against its actual inverse. There are
+N base-word appearances and N−1 phase appearances, always on the same
+seven clean selectors. The ideal S_j remains identity on F=0 and has
+zero-selector amplitude at most c^N on F=1.
+
+Pay each of R's 127 Pauli rotations by parity computation, a determinant-one
+single-qubit approximant of error at most nu_R/127, and inverse parity
+computation. The parity words use
+$`2(7\cdot2^6-(2^7-1))=642`$ CNOTs and no extra workspace. Let C_7
+be the returned XOR into arbitrary u controlled by s=0. The
+[private-phase ladder](../../docs/DIRTY_SUM_COMPRESSION.md#read-only-affine-controls-with-private-phase-work)
+uses 20 Toffolis, five dirty chain bits and one phase helper. The fourteen
+negative-literal X masks cost 56 Cliffords, with X=HSSH. Safe common
+forward/actual-inverse receipts are
+
+```math
+\begin{aligned}
+ T_R&\le127t_r,&G_R&\le127g_r+642,&d_R&\le127d_r,\\
+ T_{C_7}&\le160,&G_{C_7}&\le296,&d_{C_7}&\le160,
+ \qquad b_{C_7}\le6.
+\end{aligned}                                                       \qquad(26)
+```
+
+Every inverse is the reverse of the chosen finite native word. Emit
+
+```math
+\begin{aligned}
+ V_F&=X_u\widetilde S_j^\dagger C_7\widetilde S_j,\\
+ \|V_FJ-JQ_F\|&\le\epsilon_F
+   :=2c^N+2Ne_g+2(N-1)\nu_R.
+\end{aligned}                                                       \qquad(27)
+```
+
+On F=0, C_7 flips u on the initialized code and X_u cancels it. On F=1,
+the ideal word differs from X_u by at most twice the zero-selector
+amplitude. This proves (27) for arbitrary x,Z,u, old source outputs and
+all borrowed registers, including reference entanglement and return of
+the seven selectors. Approximate return of source-dependent work is part
+of this norm bound; separate exact return is not asserted. Charging X_u
+as four native Cliffords gives
+
+```math
+\begin{aligned}
+ T_F&\le2NT_0+2(N-1)T_R+T_{C_7},\\
+ G_F&\le2NG_0+2(N-1)G_R+G_{C_7}+4,\\
+ d_F&\le2Nd_0+2(N-1)d_R+d_{C_7},\\
+ b_F&\le w_g+b_C+b_{C_7}.
+\end{aligned}                                                       \qquad(28)
+```
+
+b_F excludes x,Z,u and the seven initialized selectors. Apply the
+[complete promotion recurrence](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+at seven clean bits and one output, then the two-query Z echo and H_Z
+envelope as in Section 6. The same emitted zero-clean word and its actual
+inverse have
+
+```math
+\begin{aligned}
+ T_{\rm out}&\le1024T_F+1024T_{C_7}+7168,\\
+ G_{\rm out}&\le1024G_F+1024G_{C_7}+14344+2q,\\
+ d_{\rm out}&\le1024d_F+1024d_{C_7}+4096,\\
+ w_{\rm out}&\le b_F+b_{C_7}+10,\\
+ \delta_{\rm out}&\le2048\epsilon_F.
+\end{aligned}                                                       \qquad(29)
+```
+
+Width excludes only x and specified Z. It includes seven promoted
+selectors, the old single-bit source output, the promotion toggle, the
+final arbitrary echo bit, and every bank in (6) and (12). The two C_7
+pools may be distinct; this conservative width does not assume clean
+reusable work.
+
+For final tolerance $`0\lt \tau\le1`$, put sigma=tau/8 and choose
+
+```math
+\begin{aligned}
+ 2c^N&\le\sigma/8192,\qquad N=3^j,\\
+ e_g&\le\sigma/(16384N),\qquad
+ \nu_R\le\sigma/(16384N),\\
+ \eta&\le\sigma/(65536N)\quad\text{under (1)},\\
+ \epsilon&\le\sigma/(131072hN)\quad\text{with leakage}.
+\end{aligned}                                                       \qquad(30)
+```
+
+Then epsilon_F≤3sigma/8192<sigma/2048 and delta_out<sigma. The retained
+root fusion contributes at most eight times this error when its separate
+source-size and count hypotheses hold. Exactly flat amplitude recovery
+uses k=k_0+1 and eta≤sqrt(2)epsilon_U; general recovery substitutes
+3sqrt(2)epsilon_U+2epsilon_U² into the leakage bound. Its actual resource
+ledger (20) is substituted before the h source copies are made arbitrary.
+
+Put $`L=1+\log_2(1/\tau)`$. The least eligible power of three has
+N=O(L), and log(1/nu_R)=O(L). The retained determinant-one single-qubit
+synthesis bound gives t_r,g_r,d_r=O(L), without extra workspace. The
+simultaneous **pre-fusion** bounds are
+
+```math
+\begin{aligned}
+ d_{\rm out}&=O\!\left(L(d_V+k+1)+L^2\right),\\
+ T_{\rm out}&=O\!\left(L\{h(T_V+q)+\Lambda\}+L^2\right),\\
+ G_{\rm out}&=O\!\left(L\{h(G_V+q)+\Lambda\}+L^2\right),\\
+ w_{\rm out}&=O\!\left(h(b_V+q+k)+\Lambda\right),\\
+ \Lambda&=2^{O(h(k+1))}\mathrm{poly}(h,k).
+\end{aligned}                                                       \qquad(31)
+```
+
+The source budgets are evaluated at the actual accuracies in (30):
+exact-sector sources need accuracy O(tau/L), and the leakage case needs
+O(tau/(hL)). The formula does not assume precision-independent source
+synthesis. At fixed tau this retains the paid sublogarithmic-clean
+promotion window in Section 7. It removes the Trotter inverse-tolerance
+factor from the uniform wrapper; it makes no uniform post-fusion count
+claim and supplies no new complete source or unrestricted depth bound.

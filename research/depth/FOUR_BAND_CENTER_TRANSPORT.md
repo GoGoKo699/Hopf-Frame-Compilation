@@ -1315,3 +1315,134 @@ physical columns, the reversed inverse, and the shorter full-word
 realization. The structural conclusions in A, C and D follow from the
 proofs, not from a finite search. The main approximate-indicator
 resource, error and return recurrences remain unchanged.
+
+<a id="singleton-sector-assembly"></a>
+
+## K. A singleton tail still owes its full sector phase
+
+This bounded candidate tests an actual coupled completion of the
+overlap condition. It fails before a Boolean output endpoint exists.
+The residual is paid below; it supplies no general four-band
+obstruction or improvement to the complete resource frontier.
+
+Use the fixed endpoint on wires 1,2,z,w, with the unused d wire
+omitted. In this section only, redefine the local center h and put
+
+```math
+\begin{aligned}
+u&=X_zX_w,&v&=Y_zY_w,&h&=uv=-Z_zZ_w,\\
+c&=Z_1,&d&=Z_1Z_w,&dh&=-Z_1Z_z.
+\end{aligned}
+```
+
+Take the actual all-positive T lists
+
+```math
+E=(p,rp,u,v),\qquad D=(d,dh,c),\qquad rp=-Y_1Y_2.
+```
+
+Each list is independent and commuting. The original physical
+J pair $`p\leftrightarrow-rp`$ remains, with center r; its chosen
+orientations mismatch the signed pair action. The actual singleton
+c has the same commutation tail on p,rp as the D pair. Here
+$`JhJ=-h`$ and $`JcJ=rc`$; no h-fixed sector is assumed.
+The middle has seven T gates in native bands of sizes four and three.
+
+Use fixed encoded Paulis $`Z_c=c,\ X_c=p`$,
+$`Z_h=h,\ X_h=X_z`$ and $`Z_t=Z_w,\ X_t=u`$,
+with r the remaining central coordinate. These are legitimate
+coordinates on each r code. Put $`J_t=(X_t+Y_t)/\sqrt2`$.
+The original-pair conjugation gives
+
+```math
+J_{\rm core}'=\Pi_{r+}(-Y_c)+\Pi_{r-}X_c
+             =(-i)X_cS_rZ_cCZ_{rc}.
+```
+
+Retaining the literal pair scalars, the remaining middle is
+$`T_cU_1`$, where
+
+```math
+U_1\big|_{h+}=K_c=S_{cZ_t}S_{X_t},\qquad
+U_1\big|_{h-}=iI.
+```
+
+Thus the full probe, after known Clifford factors, is
+
+```math
+\begin{aligned}
+Q&=DEJ E^\dagger D^\dagger
+   =\omega^{-1}S_cQ_1(-i)S_rZ_cCZ_{rc},\\
+Q_1&=U_1X_cX_hJ_tU_1^\dagger.
+\end{aligned}
+```
+
+For input bits $`C=(1-c)/2,\ H=(1-h)/2`$, Q1 flips both
+controls. Relative on the left to the fixed target Clifford
+$`A_+=iJ_tK_+^\dagger=iH_tZ_t`$, its exact target corrections are
+
+| C,H | 0,0 | 1,0 | 0,1 | 1,1 |
+| --- | --- | --- | --- | --- |
+| Correction | I | $`-iX_t`$ | $`-iX_t`$ | $`-iY_t`$ |
+
+The Pauli labels are $`X_t^{C+H+CH}Z_t^{CH}`$. A full Clifford
+with this control permutation and a common target symplectic map
+must have affine correction labels: every target Pauli image has
+one fixed target label times a control-Z character. The quadratic
+terms therefore make Q non-Clifford. Equal sector symplectic maps
+alone do not assemble into an actual Clifford. Since a one-native-band
+output endpoint has a Clifford clean probe, this middle cannot
+supply complete exact clean return, and hence cannot supply the
+complete Boolean operator. The conclusion concerns these actual
+axes and endpoint, not unrestricted circuits.
+
+The table also identifies the exact missing phase. As an operator
+product, with the rightmost factor acting first, its correction is
+
+```math
+\begin{aligned}
+F={}&S_c^\dagger S_h^\dagger CZ_{ch}\,
+       CX_{c\to t}CX_{h\to t}\,W,\\
+W={}&CCX_{ch\to t}CCZ_{cht}=\Lambda^2(-iY_t).
+\end{aligned}
+```
+
+Let $`B=S_{X_t}^\dagger`$. Then $`BZ_tB^\dagger=Y_t`$ and
+$`W=BD_\phi B^\dagger`$, with the literal phase identity
+
+```math
+\begin{aligned}
+f(C,H,T)&=-2CH+4CHT\pmod8\\
+ &=T-(C\oplus T)-(H\oplus T)+(C\oplus H\oplus T),\\
+D_\phi&=T_{Z_t}T_{Z_cZ_t}^\dagger
+            T_{Z_hZ_t}^\dagger T_{Z_cZ_hZ_t}\\
+ &=T_{Z_w}T_{Z_1Z_w}^\dagger
+            T_{Z_z}T_{Z_1Z_z}^\dagger.
+\end{aligned}
+```
+
+The last equality uses two signed-axis conversions whose
+$`\omega^{-1}`$ and $`\omega`$ scalars cancel exactly. The four
+labels have rank three: their union is not one independent native
+band. Split them into the displayed two independent pairs. Expose
+each pair with one CNOT, respectively $`w\to1`$ and $`z\to1`$,
+and its inverse, for four CNOTs. Also
+
+```math
+B=CNOT_{z\to w}H_zS_z^\dagger H_zCNOT_{z\to w}.
+```
+
+In the repository's positive H,S,CNOT alphabet, B costs seven
+Clifford gates and its inverse costs five. W therefore has a
+literal emitter with four T gates, two native bands and at most
+sixteen Clifford gates, with no helper. Its actual reversed inverse
+has the same counts. This full-space identity covers arbitrary
+inputs and references with zero approximation error.
+
+The emitted residual uses two native bands; it does not supply
+the required Clifford clean probe of a one-band output endpoint.
+Inserting its emitter retains an additional two-band bill and does
+not give a cheaper complete Boolean source or an optimality claim. This
+small-tail mechanism stops here; the next source must change the
+actual coupled phase algebra and pay its complete endpoint and
+return. All complete-indicator recurrences remain unchanged.

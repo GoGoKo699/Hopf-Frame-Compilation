@@ -4,7 +4,7 @@
 [Returned dirty conjunctions](../../docs/DIRTY_SUM_COMPRESSION.md) ·
 [Parallel promotion and its native-sharing requirement](PARALLEL_CLEAN_PROMOTION.md)
 
-For every fixed tolerance $`0<\tau<1`$, an approximate reflection about
+For every fixed tolerance $`0\lt \tau\lt 1`$, an approximate reflection about
 the all-zero string has a literal zero-clean Clifford+T implementation
 with
 
@@ -118,11 +118,11 @@ eigenvalue on zero-perpendicular by $`1-\gamma`$, where
 
 Its smallest eigenvalue is at least $`-7/8`$: each of the fifteen
 nonidentity terms in the numerator of (4) is bounded below by -I.
-Since $`\gamma<1/8`$,
+Since $`\gamma\lt 1/8`$,
 
 ```math
 A|0^n\rangle=|0^n\rangle,\qquad
-\|A|_{\{0^n\}^{\perp}}\|\le c:=1-\gamma<1.                  \qquad(5)
+\|A|_{\{0^n\}^{\perp}}\|\le c:=1-\gamma\lt 1.                  \qquad(5)
 ```
 
 The emitted $`S_0`$ is an exact Hermitian unitary. It acts as identity
@@ -837,7 +837,7 @@ through $`(1,x_1,\ldots,x_p)`$, whereas those matching columns
 are distinct standard basis vectors. Thus if
 
 ```math
-2^{\sum_i k_i}(p+1)<2^p,                                   \qquad(37)
+2^{\sum_i k_i}(p+1)\lt 2^p,                                   \qquad(37)
 ```
 
 some address has no desired $`Z_{Y_x}`$ component. Standard clean
@@ -851,7 +851,7 @@ the lower bound is $`|\alpha|-2r\zeta`$ for the emitted observable:
 it physically uses both W and its actual inverse. The support count
 is not doubled, but the call and error ledger is.
 
-For uniform k and $`\epsilon+2r\zeta<|\alpha|`$, the bound therefore requires
+For uniform k and $`\epsilon+2r\zeta\lt |\alpha|`$, the bound therefore requires
 $`kr\ge p-\log_2(p+1)`$. In particular, constant-k predicates
 and $`O(\log\log p)`$ such rounds do not complete this readout.
 This is an observable-transport statement; a direct source

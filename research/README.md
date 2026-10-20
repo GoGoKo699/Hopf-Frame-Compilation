@@ -101,6 +101,18 @@ native frames with a whole-space gap and enlarges the sufficient window
 to $`k=o(\log(p+2))`$, with depth $`O_\tau(d_V+k+1)`$ and
 polynomial source overhead. Its truncated batch keeps constant requested
 accuracy under exact sector invariance; general leakage is separate.
+The [latent-center interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+pays actual forward-pencil Clifford generators. The addressed sign
+lies in their center, but full-space central-sign extraction remains
+unpaid. Ordinary invariant-vector filtering and fixed-probe twirling
+do not supply it; arbitrary readout remains outside those tests.
+
+A [seven-selector alternative](depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+also pays uniform precision: for $`L=1+\log_2(1/\tau)`$, the same
+pre-fusion word has depth $`O(L(d_V+k+1)+L^2)`$, using a lazy
+average, general-block cubing and complete bounded-clean promotion.
+Its source resources are charged at accuracy proportional to tau/L
+under exact sector preservation, with the separate leakage multiplier.
 The frames use paid non-Clifford Boolean phases, while
 [structured-frame limits](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
 retain their common-Pauli-space, support-cone and explicit graph premises.

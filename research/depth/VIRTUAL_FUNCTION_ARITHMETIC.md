@@ -224,7 +224,7 @@ $`0\le a(x)\le b(x)\le2^s`$. Put
 
 ```math
 \begin{aligned}
- e(x,y)&=[a(x)\le y<b(x)],\\
+ e(x,y)&=[a(x)\le y\lt b(x)],\\
  J_x(y)&=a(x)+b(x)-1-y\pmod{2^s}.
 \end{aligned}                                                       \qquad(13)
 ```

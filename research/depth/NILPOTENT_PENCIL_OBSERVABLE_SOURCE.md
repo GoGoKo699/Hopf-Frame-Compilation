@@ -685,3 +685,120 @@ selection is performed. These statements test these actual primitives;
 they do not cover general native circuits. A new query-based attempt
 must mix both carrier banks across stages and prove complete readout,
 not merely add address phases or a one-bank Fourier boundary.
+
+<a id="latent-center-readout"></a>
+
+## 11. A paid forward subgroup has the addressed observable in its center
+
+Retain the physical coordinates of Sections 1–3, with n=pm, and enumerate
+the binary basis so that e_0=a_0. To distinguish the inverse label from
+the field vectors v_u of Section 1, write
+
+```math
+\begin{aligned}
+ A_x&=N_x^{\mathsf T},\qquad \nu_x=N_x^{-1}a_0=a_x,\\
+ w_j(x)&=A_xe_j\quad(j\ne0),\\
+ \mathcal H_x&=\mathrm{span}\{w_j(x):j\ne0\}
+             =\mathrm{ker}(\nu_x^{\mathsf T}).
+\end{aligned}                                                       \qquad(22)
+```
+
+The last equality follows from invertibility and
+$`\nu_x^{\mathsf T}A_x=e_0^{\mathsf T}`$. The specified output wires
+and the other (p−1)m carrier wires are all arbitrary. On this complete
+carrier use the literal real Pauli subgroup
+
+```math
+ \Gamma_x=\langle X(w_j(x))\ (j\ne0),\ Z(e_i)\ (0\le i\lt n)\rangle,
+ \qquad X(a)|z\rangle=|z+a\rangle.                       \qquad(23)
+```
+
+These are already paid native generators. Since A_x is affine in x and
+A_0=I, each w_j(x) is e_j plus p fixed binary masks controlled by the
+address bits. Emit X on j and the corresponding address-to-carrier
+CNOTs. Every completed boundary fixes x; there is no helper or clean
+wire. Safe common forward/actual-reverse bounds are T=d=0 and
+G≤np+8 for an X generator, and G≤6 for a Z generator. The constants
+cover unfused inverse S words in the positive-S alphabet. A literal
+concatenation using each of the 2n−1 generators once therefore has
+
+```math
+ T=d=0,\qquad G\le(n-1)(np+8)+6n=O(m^2p^3).             \qquad(24)
+```
+
+Its only width beyond x and specified Y is the existing (p−1)m carrier
+coordinates. This is a complete family, not an extraction claim for
+that concatenation. The whole coherent translation by A_xy is instead
+the Section 3 query Q_N on arbitrary coefficient bank y and target z,
+with the separate n-bit principal bank and ledger (9). The subgroup
+corresponds algebraically to y_0=0; this does not initialize y, erase its
+first coordinate, or grant a prepared coherent selection of generators.
+
+The center is exactly the desired label. Commutation with every Z(e_i)
+forces a Pauli's X label to vanish. Commutation with all translations
+in H_x then forces its Z label into span(nu_x). All Z labels are
+present, so for $`\Omega_x=Z(\nu_x)=Z_{Y_x}`$,
+
+```math
+ Z(\Gamma_x)=\{I,-I,\Omega_x,-\Omega_x\}.                \qquad(25)
+```
+
+On each of the two Omega_x sectors, translations by H_x and all
+characters generate the full matrix algebra on that affine coset.
+Thus the two sector representations are irreducible, each of dimension
+$`2^{n-1}`$. Their characters differ only on scalar multiples of
+Omega_x; every noncentral element has trace zero on both sectors.
+The subgroup and this claim are fiberwise. No common abstract expander
+or compiler for its proposed generators follows merely from the fibers.
+
+Ordinary invariant mixing does not select the central character. Since
+n≥2, some nonzero w in H_x anticommutes with a fixed-coordinate Z.
+Their commutator is −I, so neither sector has an invariant vector.
+A one-dimensional character sends every commutator to +1; twisting
+cannot change this conclusion. More explicitly, the available Weyl
+commutator is $`(-1)^{b^{\mathsf T}A_xe_j}I`$: it reads a forward-entry
+scalar, not the bank-dependent inverse-column observable. An ordinary
+group expander therefore approaches the zero invariant projector on
+both sectors, even if its complete native implementation is granted.
+
+Conjugation has a different invariant space. For normalized trace
+$`\tau_n(O)=2^{-n}\mathrm{tr}(O)`$, Pauli orthogonality gives the exact
+twirl on the complete carrier:
+
+```math
+\begin{aligned}
+ \Phi_x(O)&=|\Gamma_x|^{-1}\sum_{g\in\Gamma_x}gOg^\dagger\\
+           &=\tau_n(O)I+\tau_n(\Omega_xO)\Omega_x.
+\end{aligned}                                                       \qquad(26)
+```
+
+For a fixed starting probe O independent of x with $`\|O\|\le1`$,
+the m addressed Paulis are orthogonal. Hence
+
+```math
+ \sum_x|\tau_n(\Omega_xO)|^2
+ \le\tau_n(O^\dagger O)\le1.                            \qquad(27)
+```
+
+A uniform approximation of Phi_x(O) to alpha Omega_x thus has error at
+least $`|\alpha|-2^{-p/2}`$. This is a fixed-probe twirl statement;
+a separately supplied x-dependent probe requires its own paid complete
+word. Vectorizing conjugation gives only
+$`\mathrm{span}\{\mathrm{vec}(I),\mathrm{vec}(\Omega_x)\}`$,
+a rank-two invariant space in dimension $`4^n`$. This does not prepare
+a code on the two arbitrary banks. Spectators and references tensor
+these identities with the appropriate untouched identity action.
+
+The first unpaid operation is full-space central-character readout with
+constant amplitude and the required native return and sharing contract.
+Preserving Omega merely preserves its sectors; using an invariant
+projector equal to $`(I+\Omega_x)/2`$ would require every generator to
+fix that entire sector pointwise. The paid subgroup instead acts
+nontrivially on both. Its abelianization has binary rank 2n−1, so the
+Pauli subgroup itself has no constant-size generating set. A proposed
+ambient automorphism expander still needs its actual generators and
+selected representation; the canonical conjugation A_x S A_x^{-1}
+exposes the unpaid inverse. A coherent SELECT over the listed basis
+generators likewise needs a priced index and preparation. None of
+these observations rules out a different full central-character
+protocol or supplies a qualifying shallow source.

@@ -24,6 +24,18 @@ theorem, finite exact certification, native sign frames, global
 truncated-key echo and the constant-clean filter's complete precision
 ledger. Exact sector invariance and general leakage have different
 source-accuracy recurrences.
+The seven-selector alternative audits the entire compressed-block
+cubing identity, maximum branch error in SELECT, determinant-one
+selector phase synthesis and the full seven-clean promotion ledger.
+Its uniform precision bound includes source synthesis at the requested
+accuracy and is stated before the fixed-tolerance root fusion.
+The latent-center component checks the actual forward-pencil columns,
+Clifford generator receipts, center and representation decomposition,
+and the fixed bounded probe's Parseval bound. Central preservation is
+kept separate from pointwise invariance. The singleton-tail component
+checks its actual sector corrections, nonaffine label obstruction and
+literal four-T repair; neither component supplies a new source.
+
 The subsequent Clifford rank--norm refinement checks the primary
 operator theorem, its normalized Choi convention and an elementary
 one-term elimination proof. The direct projected defect supplies the

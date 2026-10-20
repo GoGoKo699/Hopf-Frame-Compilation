@@ -54,6 +54,14 @@ normalization, with a baseline-dependent thin-rank limit. The next
 complete-bank mechanism needs an actual address-sensitive interaction
 and a complete resource/error/return identity outside that grammar.
 
+A [latent-center interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+now pays actual Clifford generators whose center contains the desired
+addressed observable. The missing operation is full-space central-sign
+readout with constant amplitude and arbitrary-work return. Preserving
+that central sign does not fix its whole eigenspace pointwise, so a
+generic group-expander gap supplies no such extractor. The fixed-probe
+twirl limit is a representation test, not a limit on all readout.
+
 The new [spectral-paving construction](research/depth/MSS_SPECTRAL_PROMOTION.md)
 pays a larger conditional promotion window: $`k=o(\log(p+2))`$,
 with extraction depth $`O_\tau(d_V+k+1)`$ and complete polynomial
@@ -66,6 +74,17 @@ only on tau, even as k grows. General leakage retains its factor of
 two to the k. The same-source uniform budget and native address-sharing
 requirements remain essential. The frame search terminates but carries
 no efficient classical-preprocessing claim.
+
+A seven-selector alternative now also pays uniform precision without
+Hamiltonian simulation. For $`L=1+\log_2(1/\tau)`$, its pre-fusion
+depth is $`O(L(d_V+k+1)+L^2)`$. A lazy average has a positive
+compressed block bounded by 63/64 on the marked sector; the same
+seven selectors support general-block cubing. Every controlled branch,
+phase synthesis, final promotion and arbitrary return is charged.
+The source accuracy is proportional to tau/L under exact sector
+invariance, or tau divided by $`2^kL`$ with leakage. Source resources
+are evaluated at that requested accuracy. The fixed-tolerance window
+and missing complete-source operation remain unchanged.
 
 The earlier exact-packing window remains valid:
 $`2^k(k+1)^2=o(\log(p+2))`$. Exactly sector-preserving sources retain
@@ -129,6 +148,14 @@ Booleanity test to a stated common quantum-spectator attachment.
 None is a general four-band theorem. Continue with actual middle
 couplings outside the proved eligibility classes, an actual output
 endpoint, and full Boolean return before claiming a new source.
+
+The [small singleton-tail trial](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#singleton-sector-assembly)
+has compatible sector symplectic maps but quadratic Pauli correction
+labels. Its actual endpoint therefore is not Clifford. The residual
+has a paid four-T, two-band implementation, which restores the old
+cost instead of completing a cheaper source. Continue the physical
+scout outside this assembly mechanism; this trial is not a general
+four-band obstruction.
 
 The established three-band paired sign/XOR bounds remain **6/5**, or
 **5/4** at common active rank at least four. The no-pair result retains

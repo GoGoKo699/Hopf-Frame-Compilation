@@ -419,6 +419,11 @@ the whole-space gap and the at-most-two-active-key error bound, and
 charges those non-Clifford frames in the retained two-clean filter.
 It bypasses radix compression without claiming to implement it. The
 larger conditional window still needs an actual qualifying clean source.
+Its seven-selector alternative reuses the inherited pi/3 phase and
+the explicitly proved general-block cubing identity. A lazy average
+of the paid frames removes the Hamiltonian-simulation precision factor;
+all selector synthesis, source accuracy and complete return costs remain
+in the same emitted-word ledger. This is a conditional wrapper result.
 
 F51 sharpens the [two-band source screen](../../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen). Its allowance for arbitrary coefficients permits the smaller direct defect even when amplitude varies. The resulting exact clean-count lower bound closes exact two-band sources in the new promotion window; the approximate floor still shrinks with the clean allocation. This application and its full-code norm conversion are distinct from the imported coefficient-norm theorem.
 

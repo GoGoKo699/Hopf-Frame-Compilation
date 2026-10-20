@@ -289,6 +289,23 @@ address-sharing and uniform source budget hypotheses. General leakage
 still requires accuracy of order two to the minus k. Finite exhaustive
 paving search is allowed; efficient preprocessing is not claimed.
 
+A [latent-center readout interface](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+pays Clifford generators whose center contains the addressed bank
+observable. Ordinary group mixing does not extract that sign: the
+central eigenspaces are preserved but are not pointwise fixed. A
+fixed bounded probe also has a shrinking coefficient after conjugation
+averaging. Full-space central-sign readout at constant amplitude is
+still unpaid and is not excluded by these scoped tests.
+
+The [seven-selector filter](../research/depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+replaces Hamiltonian simulation by a lazy average and general-block
+cubing. At $`L=1+\log_2(1/\tau)`$ its pre-fusion depth is
+$`O(L(d_V+k+1)+L^2)`$, with separate count/width recurrences on the
+same word. Exact sector preservation requests source accuracy
+proportional to tau/L; leakage adds the factor two to the k.
+This improves the uniform wrapper cost, while all source quantities
+must still be charged at their actual requested precision.
+
 The [Clifford rank--norm source screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
 excludes exact two-band sources throughout this window: they need
 $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$ clean bits.
