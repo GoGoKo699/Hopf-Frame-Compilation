@@ -1734,7 +1734,7 @@ Let $`Q=UJU^\dagger`$. The exact full-space identity is
 QX_1Q=\frac{Y_1}{2}\left(
  Z_w+Y_{z_1}Y_{z_2}Y_{z_3}
  -X_{z_1}X_{z_2}X_{z_3}X_w
- -Z_{z_1}Z_{z_2}Z_{z_3}Y_w\right).                 \tag{L.1}
+ -Z_{z_1}Z_{z_2}Z_{z_3}Y_w\right).                 \qquad(L.1)
 ```
 
 All four Pauli labels are distinct, so Q is not Clifford. This
@@ -1771,7 +1771,7 @@ F^2=\Pi_{h+}d+i\Pi_{h-},\qquad WhW=-h
 give
 
 ```math
-QX_1Q=Y_1\bigl(\Pi_{h+}b+\Pi_{h-}WbW\bigr).       \tag{L.2}
+QX_1Q=Y_1\bigl(\Pi_{h+}b+\Pi_{h-}WbW\bigr).       \qquad(L.2)
 ```
 
 To evaluate the remaining term, set $`v_i=J_wu_iJ_w`$ and
@@ -1819,8 +1819,9 @@ normalized norm give
 \begin{aligned}
 \|QAQ^\dagger-CAC^\dagger\|_{\rm op}
  &\ge\sqrt{2-2\mu},\\
-\|Q-C\|_{\rm op}&\ge\tfrac12\sqrt{2-2\mu}.        \tag{L.3}
+\|Q-C\|_{\rm op}&\ge\tfrac12\sqrt{2-2\mu}.
 \end{aligned}
+\qquad(L.3)
 ```
 
 For the second line use the triangle inequality on the two unitary
@@ -1855,7 +1856,7 @@ Hermitian Clifford, including arbitrary Clifford boundary changes
 and spectator mixing. Applying (L.3) proves
 
 ```math
-\epsilon\ge\frac14.                              \tag{L.4}
+\epsilon\ge\frac14.                              \qquad(L.4)
 ```
 
 This is a full clean-isometry bound for the specified input endpoint
