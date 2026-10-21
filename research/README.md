@@ -204,7 +204,7 @@ Each home separates its paid native operations from its first unpaid conversion.
 - [Coherent counters: an exact odd-key code and the missing native schedule](depth/COHERENT_COUNTER_SOURCE.md) — [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
 - [Exact arithmetic with virtual Boolean functions and dirty work](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
 - [Complete bank difference: a paid nonlinear merge and its depth cost](depth/COMPLETE_BANK_DIFFERENCE.md)
-- [A complete indicator from fermionic bank motion](depth/BANK_MOTION_WALSH_INDICATOR.md)
+- [A complete indicator from fermionic bank motion](depth/BANK_MOTION_WALSH_INDICATOR.md) — [full spectral error](depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract) · [paid expander lift](depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) · [sparse-word obstruction](depth/BANK_MOTION_WALSH_INDICATOR.md#sparse-expander-lift-obstruction)
 - [A paid Majorana Walsh probe and its restricted source cost](depth/MAJORANA_WALSH_QUERY.md)
 - [Selective inversion, dirty scalar echoes, and independent-row cost](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md) — [distance-profile audit](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#51-a-complete-distance-certificate-and-the-native-scheduling-gap) · [joint fixed-angle resynthesis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#52-joint-resynthesis-pays-one-special-angle-detuning-call) · [joint decoding analysis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
 - [Parallel affine detuning: a paid batch and the remaining composition](depth/PARALLEL_AFFINE_DETUNING.md)
@@ -225,7 +225,7 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Overlapping two-band sources and transported output probes](depth/OVERLAPPING_TWO_BAND_SOURCES.md)
 - [Simultaneous output parities and native support rank](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
 - [Limits of structured frames for spectral promotion](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
-- [Crossed cubic kernels and complete observable transport](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) — [normalized forward source](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source) · [Clifford signal-image gap](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) · [normalized half-bilinear trial](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source); both constructed sources retain a wrong lookup sector
+- [Crossed cubic kernels and complete observable transport](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) — [normalized forward source](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source) · [Clifford signal-image gap](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) · [normalized half-bilinear trial](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source) · [XOR-carry trial and changed acceptance question](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source); constructed words retain wrong lookup sectors
 - [Two complete key-mixing tests for observable transport](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
 - [Gaussian compression with a small clean signal](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
 - [Involutory Gaussian loops and their unsquared scalar limit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)

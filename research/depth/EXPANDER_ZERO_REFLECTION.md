@@ -22,6 +22,10 @@ large because the explicit expander gap is small.
 This is an unconditional single-predicate component. Its native
 boundaries move the tested register, so it supplies no simultaneous
 schedule for the exponentially many rows of a complete indicator.
+The [fermionic lift assessment](BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift)
+gives an explicit constant-auxiliary lift, its exact full-occupation
+spectral error contract, a fixed-branching obstruction, and the
+still-unpaid coherent centering operation.
 
 ## 1. The supplied CNOT expander and its representation
 

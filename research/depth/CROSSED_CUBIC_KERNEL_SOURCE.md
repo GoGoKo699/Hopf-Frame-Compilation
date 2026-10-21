@@ -897,3 +897,456 @@ it must be specified and paid, not inferred from the presence of dense
 mixing. The already paid four-call recovery cannot correct a wrong
 projector. Neither this finite failure nor the Clifford-image screen
 excludes general higher-band sources or moves the frame frontier.
+
+### 11.3 A paid address-controlled shear does not repair the sectors
+
+The next literal trial replaces the fixed mixer by
+
+```math
+ S_x=Q_{\bar N_x^{\mathsf T}}(z;t),\qquad
+ S_x(z,t)=(z,t+\bar N_x^{\mathsf T}z),\qquad
+ R_x=RS_x=H^{\otimes2n}U_{M S_x}.                     \qquad(37)
+```
+
+Keep the definitions of E_x, V_x and the source (33), with R_x in
+place of R. This is address-controlled bank motion; it leaves the
+address register unchanged. The accepted Gram remains exactly
+$`C_E^\dagger V^\dagger\Pi_0VC_E/2`$ on every carrier, helper and
+reference input. Its full matrix formula is (35) with M replaced by
+M S_x; no dirty input is fixed to zero.
+
+The standard-coordinate query S_x is the returned query in
+[Section 3 of the pencil proof](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#3-the-full-quadratic-xor-query-is-paid)
+with its four fixed basis changes omitted. Its actual reverse has the
+same cost. In chronological order, reading the first row and then the
+second, the emitted V_x is
+
+```math
+ \begin{gathered}
+ S_x,\ R,\ D_x,\ R^\dagger,\ S_x^\dagger,\ D_x,\\
+ S_x,\ R,\ D_x^\dagger,\ R^\dagger,\ S_x^\dagger,\ D_x^\dagger.
+ \end{gathered}
+```
+
+Here each dagger denotes the actual reversed native word, even though
+the ideal query S_x is an involution. The complete source uses eight
+query calls in addition to (34). Their private pools can reuse the
+existing three-r-bit pool between sequential calls. Thus the common
+source/actual-inverse ledger is
+
+```math
+\begin{aligned}
+ T_U&\le480r+2,&d_U&\le482,&b_U&\le3r,\\
+ G_U&\le8(24p+80)r+8(4n^2+8n)+4c_n+19\\
+    &\quad+8(3n+16r+2s).
+\end{aligned}                                           \qquad(38)
+```
+
+The source is exact and still has one clean signal. This pays the
+changed mechanism before testing its sectors; its constant depth and
+polynomial overhead fit the same conditional fusion envelope.
+
+At p=1, x=1, the two binary matrices E and bar-N-transpose coincide:
+$`E=\bar N_1^{\mathsf T}=\left(\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right)`$.
+Consequently $`M S_1(z,t)=(t,z)`$. The mixer is a whole-bank swap
+followed by four Hadamards. D_1 is the phase $`i^{z_0t_1}`$ on
+the pair z_0,t_1; $`R_1^\dagger D_1R_1`$ is its X-basis copy on
+the disjoint pair t_0,z_1. They commute. Therefore V_1=I for every
+integer choice of the two commutator exponents. Also V_0=I because
+D_0=I. The complete p=1 V, including coherent addresses, is identity.
+On x=1,z=e_1,t=0 the required probe in (36) is minus one and the
+actual probe is plus one, so the complete Gram error is one half.
+The exact fixture checks every column of this cancellation using the
+literal binary mixer, not only that witness.
+
+At p=2, x=1,z=e_2,t=0, the exact integer Walsh fixture gives probe
+expectation $`147/512`$ for the default commutator, with norm exactly
+one. Hence its Gram error is at least $`659/2048`$. The sign variants
+(+1,-1), (-1,+1), (-1,-1) give $`129/512,129/512,147/512`$;
+the exponent pairs (2,1), (1,2), (2,2) give $`3/128,0,0`$.
+These are full-state exact receipts at a specific input, not an
+all-size exclusion or an obstacle to a separately paid small-p fallback.
+
+There is a stronger obstruction to repairing this p=1 commutator by
+changing its mixer alone. For the whole p=1 circuit, including the
+address control and arbitrary dirty work, D is one projector
+quarter-turn, $`D=I+(i-1)P`$. Let E be any unitary and put
+$`W=D^\dagger E^\dagger D E`$. If a computational input s has
+$`D|s\rangle=d_s|s\rangle`$, then
+
+```math
+ \begin{aligned}
+ \langle s|W|s\rangle
+   &=\overline{d_s}\langle Es|D|Es\rangle
+     =\overline{d_s}\bigl(1-\lambda+i\lambda\bigr),\\
+ \lambda&=\langle Es|P|Es\rangle\in[0,1],\\
+ |\langle s|W|s\rangle|^2
+   &=(1-\lambda)^2+\lambda^2\ge1/2.
+ \end{aligned}                                           \qquad(39)
+```
+
+This uses only the two eigenvalues 1 and i of D; it does not require
+E to be a conjugate of D. In particular it applies to every unitary
+mixer R in the present commutator, even one that mixes address,
+carriers and additional dirty work.
+
+Choose s with x=1,z=e_1,t=0 and arbitrary fixed work bits. Its initial
+probe Z_z0 Z_t0 has eigenvalue plus one and its desired probe has
+eigenvalue minus one. Equation (39) puts at least one half of the
+final weight in the initial probe's plus sector. The final probe
+expectation is therefore nonnegative, and consequently
+
+```math
+ \|G-G_*\|\ge1/4\qquad
+ \text{for this p=1 quarter-turn commutator.}           \qquad(40)
+```
+
+Reversing D replaces i by minus i and leaves (39) unchanged; the
+unitary E may be arbitrary, including either sign or any tested
+integer power of its phase. This does not apply when the outer D
+has been squared, to general higher-band sources or arbitrary longer
+interference words, or to p at least two, where D_x need not have
+only the two eigenvalues 1 and i. It does not exclude an asymptotic
+family with a separate small-p construction.
+The specific shear (37) is paused at its failed sector identity.
+Reopening requires a changed interference word with correct complete
+lookup sectors, rather than another normalization or readout step.
+
+### 11.4 Genuine address Hadamards expose an explicit return failure
+
+Two further complete words mix the address coherently. Let
+$`F_X=H^{\otimes p}`$ act on the address, retain the controlled mixer
+R_x from (37), and choose either
+$`\mathcal R_L=F_X(\bigoplus_xR_x)`$ or
+$`\mathcal R_R=(\bigoplus_xR_x)F_X`$. Put
+$`D=\bigoplus_xD_x`$, $`E=\mathcal R^\dagger D\mathcal R`$ and
+$`V=D^\dagger E^\dagger D E`$, then use the same actual source (33).
+Normalization remains exact on the full address-and-carrier space.
+The source and its actual reverse add exactly eight address-Hadamard
+walls to (38), hence at most 8p Cliffords and no T gates, clean inputs,
+dirty width or precision cost.
+
+The complete kernels distinguish these from controlled-bank motion.
+Write L_x=M S_x for the binary map in (37), Q=2^(2n), and use x,y
+for address labels and r,s,u for carrier labels. Then
+
+```math
+ \begin{aligned}
+ (\mathcal R_L)_{(y,u),(x,s)}
+   &=(mQ)^{-1/2}(-1)^{x\cdot y+u^{\mathsf T}L_xs},\\
+ (\mathcal R_R)_{(y,u),(x,s)}
+   &=(mQ)^{-1/2}(-1)^{x\cdot y+u^{\mathsf T}L_ys},\\
+ (E_L)_{(x,r),(x',s)}
+   &=(mQ)^{-1}\sum_{y,u}i^{q_y(u)}
+       (-1)^{y\cdot(x+x')+u^{\mathsf T}(L_xr+L_{x'}s)},\\
+ (E_R)_{(x,r),(x',s)}
+   &=(mQ)^{-1}\sum_{y,u}i^{q_y(u)}
+       (-1)^{y\cdot(x+x')+u^{\mathsf T}L_y(r+s)}.
+ \end{aligned}                                           \qquad(41)
+```
+
+Thus E_R is a convolution on the joint binary address-and-carrier
+group, while E_L need not be. Neither fact identifies the required
+accepted sectors or returns the address automatically.
+
+The exact p=1 fixture checks all 32 columns. In dual coordinates and
+the binary labeling $`j=z+4t+16x`$, put
+$`A=V^\dagger Z_{z_0}Z_{t_0}V`$ and $`G_{\rm dual}=(I+A)/4`$.
+Both choices give
+
+```math
+ A_{9,29}=-(1+i)/4,\qquad A_{18,18}=1,\qquad
+ (G_{\rm dual})_{9,29}=-(1+i)/16.                     \qquad(42)
+```
+
+The off-diagonal Gram entry connects different addresses and is zero
+in the required Gram. The fixed carrier basis changes do not remove
+this address-sector failure. It does not imply that intermediate
+address motion is forbidden.
+The input 18 is x=1,z=e_1,t=0, whose desired probe is minus one;
+both words consequently have the maximal Gram gap one half.
+
+The p=2 fixture propagates all 262,144 address-and-carrier amplitudes
+with integer Walsh transforms from x=1,z=e_2,t=0. Both resulting
+states have norm exactly one. The left choice has probe expectation
+$`20011/65536`$ and Gram gap at least $`85547/262144`$; the right
+choice has expectation $`6913/16384`$ and gap at least
+$`23297/65536`$. Integer amplitudes are converted to unbounded
+integers before squaring, so these receipts do not use rounded norm
+or phase estimates.
+
+These two words are paused at their complete sector and address-return
+failure. The exact kernels and native cost make the trials reviewable;
+the finite failures do not exclude other address-moving mechanisms,
+longer interference, or a family with separately paid small cases.
+The first missing operation remains a complete inverse-column lookup
+projector, and no complete-indicator or frame-depth frontier moves here.
+
+<a id="normalized-xor-carry-source"></a>
+
+## 12. An exact T-wall shear supplies a different normalized phase source
+
+This trial replaces the expanded half-bilinear phase by a literal T
+wall around the returned quadratic XOR query. It retains the XOR
+carries modulo eight automatically, uses fewer private wires, and has
+an exact complete accepted Gram. The tested fixed mixer and its address
+Hadamard variant still select the wrong sectors. This is a paid partial
+construction, not a qualifying lookup source.
+
+### 12.1 The actual phase and native schedule
+
+Keep the standard dual coordinates, n=pm, and
+$`B_x=\bar N_x^{\mathsf T}-I`$ from Section 11. Let
+$`Q_{B_x}|z,t\rangle=|z,t+B_xz\rangle`$, and put
+$`P_t=\bigotimes_{j=0}^{n-1}T_{t_j}`$ and
+$`\omega=e^{i\pi/4}`$. The chronological word
+$`P_t^\dagger,Q_{B_x},P_t,Q_{B_x}^\dagger`$ gives
+
+```math
+ \begin{aligned}
+ D_x&=Q_{B_x}^\dagger P_tQ_{B_x}P_t^\dagger,\\
+ D_x|z,t\rangle&=\omega^{h_x(z,t)}|z,t\rangle,\\
+ h_x(z,t)&=|t\mathbin\oplus B_xz|-|t|\pmod8.
+ \end{aligned}                                             \qquad(43)
+```
+
+Here the matrix product and XOR are binary, and the bars mean integer
+Hamming weight. This is the complete operator, including identity on
+the returned query helpers. In particular D_0=I. If
+$`a_j=(B_xz)_j`$ is its binary value, then
+$`h_x=\sum_j(a_j-2t_ja_j)`$ modulo eight. Replacing a_j by an integer
+sum of its contributing monomials would change the operator. For
+example, two active XOR summands give a_j=0, not 2. Equation (43)
+requires no synthesis of a fine controlled angle or separate carry
+register.
+
+The standard-coordinate nonlinear core of the pencil query has
+
+```math
+ T_B\le8r,\quad d_B\le8,\quad h_B\le r,\quad
+ G_B\le2n+16r+2s,
+ \qquad r=(m-1)p^2,\quad s\le(m-1)p^3.                  \qquad(44)
+```
+
+This is the already paid eight-layer R91 derivative schedule, with
+neither the physical-coordinate E changes nor the identity shear.
+Both actual query orientations return all helpers. Its physical T
+targets are private. The two intervening T walls target the distinct
+principal t wires and occur after query return, so they each need one
+native T layer; no simultaneous reuse of a T target is inferred.
+Thus D and its actual reverse have
+
+```math
+ T_D\le16r+2n,\qquad d_D\le18,\qquad
+ G_D\le2G_B,\qquad h_D\le r.                            \qquad(45)
+```
+
+All these identities are exact on coherent address, both arbitrary
+banks, every arbitrary query helper and references. The transposed
+query B_x^T is also a returned bilinear query with the same safe bounds;
+its separately tested phase uses $`|t\oplus B_x^{\mathsf T}z|-|t|`$.
+
+This is also a paid relative phase insertion for the complete kernel
+translation bank. Let P delete only the first **binary** coordinate
+a_0, and put $`K_x=(I+B_x)P`$. The binary transpose convention gives
+$`v_x^{\mathsf T}(I+B_x)=e_0^{\mathsf T}`$, so
+$`\mathrm{im}K_x=\ker(v_x^{\mathsf T})`$, of codimension one.
+The other p-1 binary directions in the first field block are retained;
+they are fixed columns of K_x. Deleting that entire field block
+instead would give the smaller codimension-p, field-valued kernel.
+Since B_x annihilates the first field block, $`B_xP=B_x`$. Write
+$`D(A)=Q_A^\dagger P_tQ_AP_t^\dagger`$ for any binary shear A.
+The exact diagonal phases then give
+
+```math
+ D(K_x)D(P)^\dagger
+   =Q_P D(B_x)Q_P,
+ \qquad
+ |t+K_xz|-|t+Pz|
+   =|(t+Pz)+B_xz|-|t+Pz|.                              \qquad(45a)
+```
+
+No scalar phase is discarded. Q_P is a fixed CNOT shear using at
+most n-1 gates, and it commutes with $`Z_{z_0}Z_{t_0}`$. Thus this
+relative kernel echo costs only two fixed shears beyond (45); in the
+commutator source they can conjugate the mixer only if the outer
+fixed shears are retained. Explicitly, for the commutator V below,
+$`V(Q_PD Q_P,R)=Q_PV(D,Q_PRQ_P)Q_P`$, and the corresponding dual
+Gram is conjugated by Q_P as well. Q_P need not commute with the
+desired lookup probe, so those outer shears cannot be dropped from
+the sector check. This supplies an actual phase insertion sensitive
+to the arbitrary kernel translation bank, not a central-character
+readout by itself.
+
+### 12.2 Complete normalized source, kernel and ledger
+
+Use the fixed dense mixer from Section 11,
+$`R=H^{\otimes2n}U_M`$, $`M(z,t)=(Ez+t,z)`$, with
+$`G_R\le4n^2+8n`$. Set
+$`F_x=R^\dagger D_xR`$ and
+$`V_x=D_x^\dagger F_x^\dagger D_xF_x`$. With the same literal
+H-or-X signal word U_0, the physical source is
+
+```math
+ \begin{aligned}
+ U&=C_E^\dagger V^\dagger U_0VC_E,\qquad
+ C_E=U_{E^{-\mathsf T}}\otimes U_{E^{-\mathsf T}},\\
+ K&=\frac1{\sqrt2}C_E^\dagger V^\dagger\Pi_0VC_E,\\
+ G=K^\dagger K&=\frac12C_E^\dagger V^\dagger\Pi_0VC_E,
+ \qquad \Pi_0=(I+Z_{z_0}Z_{t_0})/2.
+ \end{aligned}                                             \qquad(46)
+```
+
+V is controlled by the full coherent address. Equation (46) proves
+normalization and rank on the entire space, with no prepared carrier
+or postselection. It also holds when R is replaced by
+$`\mathcal R=H_X^{\otimes p}\otimes R`$, acting on the address and
+banks together; then V need not preserve the address. The required
+Gram is still the fixed-address lookup projector, so intermediate
+address motion adds an obligation rather than an automatic return.
+
+For the fixed R, Q=2^(2n), and carrier labels r,s, the full finite sum is
+
+```math
+ \begin{aligned}
+ (V_x)_{rs}&=Q^{-2}\sum_{t,w,w'}
+ \omega^{-h_x(r)-h_x(w)+h_x(t)+h_x(w')}
+ (-1)^{w^{\mathsf T}M(t+r)+w'^{\mathsf T}M(t+s)},\\
+ (G_{x,\rm dual})_{rs}
+ &=\frac12\sum_{u:u_{z_0}=u_{t_0}}\overline{(V_x)_{ur}}(V_x)_{us}.
+ \end{aligned}
+                                                               \qquad(47)
+```
+
+Every sum is over complete arbitrary carrier labels. The exact
+unpaid sector identity remains
+$`V_x^\dagger Z_{z_0}Z_{t_0}V_x=Z_z(v_x)Z_t(v_x)`$ in the binary
+coordinates of Section 11. For an address-moving V, its right-hand
+side is the corresponding controlled direct sum and its off-diagonal
+address blocks must vanish.
+
+U and its actual inverse use eight D calls, eight R calls, four fixed
+carrier-basis changes and one U_0. With $`c_n=n^2+3n`$,
+
+```math
+ \begin{aligned}
+ T_U&\le128r+16n+2,&d_U&\le146,&b_U&\le r,\\
+ G_U&\le16G_B+8(4n^2+8n)+4c_n+19,&\varepsilon_U&=0.
+ \end{aligned}                                             \qquad(48)
+```
+
+Here b_U excludes the two principal n-bit carriers and counts only
+additional query work; embedding the source around the m specified
+output wires also allocates the other (2p-1)m carrier wires. Each D
+returns its private pool before reuse. The address-Hadamard variant
+adds at most 8p Cliffords and nothing to the other bounds. These
+polynomial overheads fit the fusion interface, but that interface
+cannot repair a wrong projector. There is no approximation or inverse
+replacement hidden in (48).
+
+### 12.3 Exact failed sectors and the scope of the small case
+
+At p=1, x=1, z=e_1, t=0, the desired paired character is minus one.
+The fixed-mixer word instead has transported probe expectation plus
+one and hence the maximal Gram gap one half. The genuine address-H
+variant also has expectation plus one on that input, for either value
+of the arbitrary native phase helper.
+
+There is a useful analytic scope beyond those two mixers. On the
+entire p=1 address-and-carrier space, D from (43) has spectrum
+$`\{1,\omega,\omega^{-1}\}`$. For any unit vector b that is a D
+eigenvector, and any unitary F on the complete non-signal space,
+
+```math
+ |\langle b|D^\dagger F^\dagger DF|b\rangle|
+   =|\langle Fb|D|Fb\rangle|\ge1/\sqrt2.                \qquad(49)
+```
+
+The numerical range of D lies in the convex hull of those three
+points, all with real part at least 1/sqrt(2). Choose b to be the
+computational input x=1,z=e_1,t=0 above. Its initial probe is plus one
+and its desired probe is minus one. Equation (49) leaves at least
+one half of its final probability in the initial plus sector, so
+(46) has Gram error at least one quarter. Thus changing only the
+inner unitary F, including genuine address motion and arbitrary
+spectator mixing, cannot solve this p=1 commutator. This is not an
+all-size obstruction: D has a larger spectrum at p at least two,
+and an asymptotic family may use a separate small-p construction.
+
+The exact p=2 fixed-mixer fixture uses x=1,z=e_p,t=0. In binary
+standard coordinates B_xz is z shifted right by p bits. The target
+probe is again minus one, whereas the actual expectation is
+
+```math
+ \frac{57}{128}+\frac{33}{256}\sqrt2,
+ \qquad
+ \|G-G_*\|\ge\frac{185}{512}+\frac{33}{1024}\sqrt2.
+                                                               \qquad(50)
+```
+
+Changing just the query orientation to B_x^T gives expectation
+$`29/128+(21/128)\sqrt2`$ on the same input, also inconsistent with
+the target. These are complete-operator witnesses, not average-input
+or trace promises. They do not exclude a separate p=2 fallback.
+
+The [exact fixtures](../../tests/test_t_wall_xor_gram_source.py) check
+all coherent-address and dirty-input columns of the literal p=1 phase
+and its actual inverse, the literal relative kernel-echo identity,
+the full one-clean half-projector Gram, the
+address-H variant on both dirty-helper inputs, and the p=2 sums.
+The latter retain integer coefficients in Z[omega], check exact norm
+one, and convert coefficients to unbounded integers before products.
+They are finite guards and internal analytic checks, not external
+mathematical review or a general native emitter.
+
+The changed phase therefore solves its native carry and normalization
+obligations, but not the complete central-character readout. Pause
+these particular commutator words; the first unpaid operation is
+still the conjugated-probe identity in (47), including address return
+when applicable. Continuing this mechanism requires a specified
+interference word that changes that identity, rather than further
+extraction or precision work. No complete-indicator or frame-depth
+frontier moves.
+
+### 12.4 Charge preservation requires a different acceptance polynomial
+
+Fix any nonzero address x. On the two arbitrary carriers, including
+identity on any spectators, write
+$`P_0=Z_{z_0}Z_{t_0}`$ and $`Q=Z_z(v_x)Z_t(v_x)`$.
+These are distinct nonidentity diagonal Paulis. Put
+$`\Pi_0=(I+P_0)/2`$, $`\Pi_{\rm eq}=(I+Q)/2`$ and
+$`\Pi_{\rm neq}=(I-Q)/2`$. For any unitary V on this fixed-address
+space that commutes with Q, Pauli trace orthogonality gives
+
+```math
+ \mathrm{Tr}(\Pi_{\rm neq}V^\dagger\Pi_0V)
+   =\mathrm{Tr}(\Pi_{\rm neq}\Pi_0)=D_{\rm tot}/4,
+ \qquad
+ \left\|\tfrac12V^\dagger\Pi_0V-\tfrac12\Pi_{\rm eq}\right\|
+   \ge\frac14,                                         \qquad(51)
+```
+
+where D_tot is the full dimension including the spectators. The
+target vanishes on the unequal sector, while the actual positive
+Gram has mean eigenvalue one quarter there. In fact the displayed
+distance is exactly one half: V-dagger Pi_0 V commutes with Q, and
+its unequal-sector restriction is a projector of rank D_tot/4, so
+the actual Gram has eigenvalue one half where the target is zero.
+Both Grams are half-projectors, so their distance is at most one half.
+
+Kernel translations and bank-diagonal phases preserve Q. A word
+using only such charge-preserving operations therefore cannot obtain
+the desired Gram by conjugating the fixed Pi_0 in (46). This is a
+statement about that exact fixed-address conjugation template, not
+an unrestricted depth bound, an address-motion exclusion, or an
+obstruction to every source that preserves Q.
+
+The next concrete question is to build a **signal-interleaved** source
+from the paid corank-one query $`Q_{K_x}`$ and its relative XOR-carry
+phases: specify the signal couplings and their interleaving, derive
+the actual block $`K=J^\dagger UJ`$, and test its full Gram rather than
+conjugating the same fixed projector. Any signal-controlled query or
+phase occurrence needs its own literal native schedule, actual
+inverse and arbitrary-input return proof before a fixture treats it
+as available. No qualifying interleaved word is claimed here; the
+first unpaid operation remains a normalized complete lookup Gram.
