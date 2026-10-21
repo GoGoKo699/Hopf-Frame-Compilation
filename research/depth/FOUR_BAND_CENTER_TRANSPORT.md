@@ -1283,7 +1283,7 @@ The singular case has a stronger conclusion than merely retaining
 an unpaid phase. Keep the actual I.4 block and put
 
 ```math
-r_0=\operatorname{rank}C_0,\qquad k_0=s-r_0.
+r_0=\mathrm{rank}C_0,\qquad k_0=s-r_0.
 ```
 
 There is an exact full-space factorization
@@ -1328,7 +1328,7 @@ also makes the corresponding X-only Pauli shift Pauli-preserving.
 Products give the same property for every
 
 ```math
-v\in V=\operatorname{im}C_0,\qquad \dim V=r_0.
+v\in V=\mathrm{im}C_0,\qquad \dim V=r_0.
 ```
 
 Since F is diagonal in these coordinates, its Pauli image of
@@ -1337,7 +1337,7 @@ expansions gives equality of active spans and the binary displacement
 identity
 
 ```math
-\operatorname{diag}(v)
+\mathrm{diag}(v)
  =\sum_{b:\ b\cdot v=1}bb^{\mathsf T},              \qquad(22)
 ```
 

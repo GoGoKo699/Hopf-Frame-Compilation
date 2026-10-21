@@ -20,6 +20,7 @@ It does not claim an improved unrestricted resource frontier.
 | New source-specific theorem | Accurate complete native read-only two-band compression requires linearly many clean inputs, even without flatness or exact return |
 | New representation theorem | The exact maximum normalized Clifford correlation with the addressed observable is at most the address length plus one divided by the bank size; normalized Clifford averages cannot uniformly separate its whole eigenspaces |
 | New positive conditional interface | A one-clean source whose accepted Gram operator encodes the selected half-space gives a complete indicator through six-call recovery and paid serial promotion; the accepted unitary fiber need not be phase-aligned |
+| New Gram-source screen | For p at least three, one-clean two-band sources cannot meet Gram error at most $`1/256`$, even with unrestricted intermediate address motion. At least three source bands or another clean allocation is required |
 | Focused physical-pair component | Singular affected-silent blocks reduce to original native sublists bounded by pairing nullity; small nullity gives a full Clifford removal |
 | Remaining limitations | No normalized shallow complete source has been constructed. Moving-address sources, genuinely wide non-Clifford readout and unrestricted native depth remain outside the new obstructions |
 
@@ -184,6 +185,23 @@ overhead, so the retained fusion reduction would normalize the counts.
 No such source is supplied here. This is a paid alternative interface,
 not a claim that restating the projector already changes the frontier.
 
+The [principal-angle audit](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+also stops the most immediate attempt to realize it in two source bands.
+The two one-band clean images are Hermitian Cliffords. Their product C
+has principal-angle spectrum determined by the accepted Gram operator.
+At Gram error at most $`1/256`$, C to the fourth is within one half
+of identity; Clifford Pauli discreteness and literal reflection symmetry
+force it to be exactly identity. A paid square then supplies a two-band
+exactly returned clean action within $`1/64`$ of the lookup sign.
+The retained Boolean rigidity floor excludes this for p at least three.
+
+This argument permits arbitrary native address motion and dirty width.
+It is specific to one clean signal and two source bands. It does not
+follow from the unitary-compression theorem in Section 2, and does not
+exclude a three-band or other sublogarithmic Gram source. The next
+candidate should leave this closed two-band case, not merely change
+its intermediate address convention.
+
 ## 5. Keep the original physical-pair scout focused
 
 [Section I.5 of center transport](FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction)
@@ -209,8 +227,9 @@ this silent factorization.
 ## 6. Next research question and certification boundary
 
 The next constructive question is a normalized full-space Gram source
-or another complete wide non-Clifford readout, allowing genuine address
-motion while paying its native schedule. A low-budget Clifford average
+with at least three native bands, or another complete wide non-Clifford
+readout, allowing genuine address motion while paying its native
+schedule. A low-budget Clifford average
 cannot supply it. A direct native read-only two-band unitary compression
 cannot fill the current promotion window. These are reasons to change
 the mechanism, not reasons to abandon optimal general depth.

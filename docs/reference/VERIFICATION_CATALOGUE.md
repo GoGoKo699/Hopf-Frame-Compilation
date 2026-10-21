@@ -16,7 +16,11 @@ Clifford lookup-correlation theorem, paired projector-Gram readout and
 the singular affected-silent physical-block reduction. Independent
 internal audits retain the actual native scope, projective phases,
 Fourier normalization, affine stabilizer support, full physical axes,
-actual adjoints and complete return errors. Two exact label/phase tests
+actual adjoints and complete return errors.
+The further Gram-source audit checks the full principal-angle spectrum,
+Clifford fourth-order rounding, literal two-band square and the retained
+Boolean rigidity floor; it permits address motion and remains specific
+to one clean signal and two source bands. Two exact label/phase tests
 check cocycle cancellation and aggregate Fourier moments. A physical
 guard checks both the eight-T/two-band and seven-T/three-band words on
 all sixteen columns and their actual inverses. The readout fixture

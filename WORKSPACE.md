@@ -55,7 +55,12 @@ accepted Gram operator equal to half the paired lookup projector instead
 has a paid six-call readout and serial dirty promotion. It permits
 arbitrary intermediate address motion and arbitrary accepted unitary
 fibers. The full resource/error/return recurrence is in the linked
-proof home; its normalized shallow source remains unpaid.
+proof home; its normalized shallow source remains unpaid. A separate
+[principal-angle screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+excludes one-clean two-band Gram sources at error at most $`1/256`$
+for p at least three, even with arbitrary address motion. Thus this
+particular new target must start with at least three source bands or
+a different clean allocation. It does not stop sublogarithmic depth.
 
 There is a new paid **single-predicate** result: approximate zero
 reflection/MCZ with zero clean work, $`T,G,b=O_\tau(p)`$ and

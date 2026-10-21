@@ -61,7 +61,13 @@ is a different sufficient target: accepted unitary fibers need not be
 phase-aligned, and a paid six-call reflection reads their Gram projector.
 Serial one-clean promotion permits arbitrary intermediate address motion.
 Ordinary paired-Pauli averaging still loses its normalization, so the
-required normalized native source remains unconstructed.
+required normalized native source remains unconstructed. Its
+[one-clean two-band case](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+is separately excluded at Gram error at most $`1/256`$ for p at
+least three, without an address-preservation premise. This uses the
+actual Clifford product of clean-image reflections, not the unitary
+compression theorem. At least three source bands or a different clean
+allocation is the next concrete test; no growing-depth bound follows.
 The [singular physical-block reduction](depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction)
 also pays the retained phase obligation more precisely: at most
 four-thirds of the pairing nullity in original axes per band survive,

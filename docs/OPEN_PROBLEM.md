@@ -313,6 +313,14 @@ $`32\sqrt{24\delta}`$; source count, width and precision are all
 charged. Arbitrary intermediate address motion is allowed. The
 normalized source is still unpaid, and the ordinary Pauli average's
 small normalization cannot be replaced by this desired one for free.
+The [one-clean two-band Gram screen](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+now rules out that smallest realization even with unrestricted address
+motion. Gram error at most $`1/256`$ rounds the actual Clifford
+reflection product to fourth order; its square gives a returned
+two-band Boolean action, contradicting the retained rigidity floor
+when p is at least three. The next projector-Gram source must use at
+least three bands or a different clean allocation. This is a constant
+source-depth exclusion, not a dimension-growing unrestricted bound.
 
 The [seven-selector filter](../research/depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
 replaces Hamiltonian simulation by a lazy average and general-block

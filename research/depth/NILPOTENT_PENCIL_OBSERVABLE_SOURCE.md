@@ -1019,3 +1019,188 @@ checks the paired-Pauli identity and the six-call phase-S readout,
 including a nontrivial private Hadamard fiber, every rejected signal
 input, the literal phase, and the actual inverse. It is a finite
 identity check, not a compiler for the missing asymptotic source.
+
+<a id="two-band-projector-gram-gap"></a>
+
+## 13. One-clean projector-Gram sources need more than two bands
+
+The Gram interface in Section 12 leaves the accepted partial isometry
+free, but a sufficiently accurate **one-clean, two-band** source still
+cannot supply the complete lookup projector. This conclusion permits
+arbitrary intermediate address motion and arbitrary dirty width. It is
+not the read-only source theorem, and it does not follow by treating a
+Gram promise as a unitary-compression promise.
+
+**Theorem.** Let U be any actual native circuit of T-depth at most two,
+with one initialized clean signal a and all other inputs arbitrary.
+Put $`K=J^\dagger UJ`$ and $`G=K^\dagger K`$. For any projector Pi,
+if
+
+```math
+ \|G-\Pi/2\|\le\delta\le1/256,                       \qquad(36)
+```
+
+there is an actual native circuit of T-depth at most two, with the same
+one clean signal, that returns that signal exactly and approximates
+$`2\Pi-I`$ on the entire initialized input space with error at most
+four delta. Consequently, for p at least three, no such U satisfies
+(36) for the paired lookup projector of Section 12.
+
+### 13.1 Principal angles and a literal Clifford rounding
+
+Factor the actual two bands as $`U=U_B^\dagger U_A`$, where U_A and
+U_B are one-band encoders on all physical wires. Define
+
+```math
+ A=U_AZ_aU_A^\dagger,\qquad
+ B=U_BZ_aU_B^\dagger,\qquad C=AB,\qquad
+ Q=(C+C^\dagger)/2.                                  \qquad(37)
+```
+
+Each one-band encoder maps a Pauli to a literal Clifford: conjugation
+through a physical T/T-dagger band produces a product of local
+Cliffords, and the outer native Cliffords preserve this property.
+Thus A and B are Hermitian Clifford involutions and C is a Clifford.
+All their actual phases are retained. Also
+$`ACA=C^\dagger`$, and Q commutes with A.
+
+Conjugate Q by U_A, and write the actual U in its original equally
+sized clean blocks as
+
+```math
+ U=\begin{pmatrix}K&M\\N&L\end{pmatrix}.
+```
+
+Then $`U_A^\dagger Q U_A`$ has diagonal blocks $`2G-I`$ and $`2L^\dagger L-I`$.
+The **diagonally opposite** blocks K and L have the same singular
+values. Indeed, unitarity gives
+$`K^\dagger K=I-N^\dagger N`$ and
+$`LL^\dagger=I-NN^\dagger`$, and N is square. Therefore the spectrum
+of Q is the spectrum of $`2G-I`$, repeated twice. This uses the sole
+clean signal's equal half-dimensional sectors; it is not a general
+growing-clean identity.
+
+Since G is a positive contraction, (36) places its spectrum within
+delta of $`\{0,1/2\}`$. For $`\delta\le1/4`$, every corresponding
+eigenvalue t of Q obeys
+
+```math
+ t^2(1-t^2)\le4\delta.
+```
+
+For example, near the zero eigenvalue of G one has
+$`1-t^2=4\lambda(1-\lambda)\le4\delta`$; near one half one has
+$`t^2\le4\delta^2`$. Functional calculus for the unitary C gives
+the exact polynomial identity
+
+```math
+ (C^4-I)^\dagger(C^4-I)=16Q^2(I-Q^2).
+```
+
+Consequently
+
+```math
+ \|C^4-I\|\le8\sqrt\delta\le1/2.                    \qquad(38)
+```
+
+Here is a phase-safe Clifford rounding, without a finite scalar-phase
+assumption. Set $`D=C^4`$. For every Hermitian physical Pauli P,
+
+```math
+ \|DPD^\dagger-P\|\le2\|D-I\|\le1\lt\sqrt2.
+```
+
+D is Clifford, and distinct signed Hermitian Paulis have operator
+distance at least square root of two. Thus D commutes with every Pauli
+and is scalar. The identity $`ACA=C^\dagger`$ implies
+$`ADA=D^\dagger`$, so that scalar is either plus or minus one.
+Equation (38) excludes minus one. Therefore
+
+```math
+ C^4=I.                                               \qquad(39)
+```
+
+### 13.2 An actual two-band reflection, not a free spectral function
+
+Equation (39) makes the spectrum of G a subset of $`\{0,1/2,1\}`$.
+The bound $`\|G\|\le1/2+\delta\lt1`$ excludes one. Hence
+
+```math
+ \Pi'=2G\quad\hbox{is a projector},\qquad
+ \|\Pi'-\Pi\|\le2\delta.                             \qquad(40)
+```
+
+The required physical reflection has the explicit form
+
+```math
+ R=-U_A^\dagger C^2U_A.                               \qquad(41)
+```
+
+C squared is an actual Clifford. Since
+$`AC^2A=C^{-2}=C^2`$, R commutes with the original clean Z_a and
+returns its clean sector exactly. Moreover,
+$`C^2=2Q^2-I`$, and on that sector
+
+```math
+ J^\dagger RJ
+ =I-2(2G-I)^2=4G-I=2\Pi'-I.
+```
+
+It follows on all original logical, output, private and reference
+inputs that
+
+```math
+ \|RJ-J(2\Pi-I)\|\le4\delta\le1/64.                 \qquad(42)
+```
+
+This does not implement an uncharged polynomial in G: (41) is the
+native implementation. Use the actual U_A and its adjoint and an
+exact Clifford synthesis of C squared, retaining its scalar. The
+minus sign is a literal Clifford scalar, for example $`(XZ)^2=-I`$.
+There are two physical T bands, at most twice the T count of U_A,
+no new workspace and an additional $`O(q^2)`$ Clifford synthesis cost
+on q physical wires. The word is exactly Hermitian, so its actual
+inverse can be emitted as the same word. These facts are needed only
+to retain the native two-band class; no efficient classical synthesis
+or resource-frontier improvement is inferred.
+
+### 13.3 Applying the Boolean obstruction and selecting the next source
+
+For the paired projector, $`2\Pi-I=\Omega_{x,C}\Omega_{x,D}`$.
+The bitwise CNOT conjugation from Section 12 changes this to the complete
+lookup phase Omega_p, using no additional clean work. This phase is
+$`(-1)^{F(x,Y)}`$, where
+
+```math
+ F(x,Y)=\bigoplus_{u\in\mathbb F_2^p}Y_u[x=u],
+ \qquad\deg_{\mathbb F_2}F=p+1.
+```
+
+The [robust two-band Boolean proof](TWO_LAYER_DIAGONAL_RIGIDITY.md#4-uniform-robust-boolean-query-obstruction)
+applies directly to every real diagonal Boolean phase of degree greater
+than three: its preserved-Z rounding, native eighth-root phases and
+real-diagonal C3 conclusion do not require the phase to have the special
+single-output form $`zf(x)`$. Thus its error floor
+$`\sin(\pi/8)/(2\sqrt2)`$ also applies to Omega_p when p is at least
+three. This is strictly larger than one over 64, contradicting (42).
+No output bank is initialized or fixed to a test state in this reduction.
+
+In particular, the Gram accuracy $`\delta=\tau^2/24576`$ requested
+by Section 12 for $`0\lt\tau\le1`$ is already inside this excluded
+two-band radius. Intermediate address motion therefore does not rescue
+a one-clean two-band projector-Gram source. The next constructive
+candidate at this interface must use at least three source bands, or
+change its clean allocation together with a separately paid recovery
+and promotion. This does not retire the projector-Gram mechanism:
+three or more bands are outside (37)'s Clifford-product rounding, and
+one clean signal still has the complete recurrence (35).
+The conclusion is specific to this projector-Gram target and one clean
+signal. It does not exclude a general unitary-compression source whose
+Gram approximates $`I/2`$, nor a growing-clean projector-Gram source.
+
+The exact principal-angle fixture in
+[`test_nilpotent_pencil_observable_source.py`](../../tests/test_nilpotent_pencil_observable_source.py)
+checks (39)--(42) for a small two-band source whose projector depends
+only on a two-bit bank parity. All physical columns, scalar phases
+and actual inverses are retained. This permitted low-degree example
+checks the algebra rather than the excluded asymptotic source.

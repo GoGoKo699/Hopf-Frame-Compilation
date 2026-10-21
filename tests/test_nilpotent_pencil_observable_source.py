@@ -7,7 +7,9 @@ This does not emit the unpaid in-place source or a native schedule.
 from fractions import Fraction
 import unittest
 
-from tests.exact_matrices import CI, CO, CQ2, CZ, Q2, adjoint, native_columns
+from tests.exact_matrices import (
+    CI, CO, CQ2, CZ, Q2, adjoint, eye, multiply, native_columns, scale,
+)
 from tests.test_majorana_walsh_query import _inverse as _word_inverse
 
 
@@ -173,6 +175,54 @@ class NilpotentPencilObservableSourceTests(unittest.TestCase):
             for row in range(16):
                 expected = (CO if not parity else -CO) if row == column else CZ
                 self.assertEqual(readout_matrix[row][column], expected)
+
+    def test_two_band_partial_gram_principal_angle_reflection(self):
+        # Arbitrary banks c,d and one clean signal a. This allowed
+        # low-degree source has Gram Pi_equal/2 and exactly two T gates.
+        # Split its actual word at the second band; no abstract encoder
+        # or separately approximated inverse is substituted.
+        def cz(control, target):
+            return [('H', target), ('CX', control, target), ('H', target)]
+
+        rotation = [('S', 2)] * 3 + [('H', 2), ('T', 2),
+                                     ('H', 2), ('S', 2)]
+        controlled_h = _word_inverse(rotation) + cz(0, 2) + rotation
+        source = ([('CX', 1, 0), ('H', 2)] + controlled_h
+                  + [('CX', 0, 2), ('CX', 1, 0)])
+        t_positions = [i for i, gate in enumerate(source)
+                       if gate[0] in {'T', 'TDG'}]
+        self.assertEqual(len(t_positions), 2)
+        split = t_positions[1]
+        ua = native_columns(3, source[:split])
+        ub = native_columns(3, _word_inverse(source[split:]))
+        unitary = native_columns(3, source)
+        self.assertEqual(multiply(adjoint(ub), ua), unitary)
+        self.assertEqual(native_columns(3, _word_inverse(source)),
+                         adjoint(unitary))
+
+        clean_z = [[(CO if column < 4 else -CO) if row == column else CZ
+                    for column in range(8)] for row in range(8)]
+        a = multiply(multiply(ua, clean_z), adjoint(ua))
+        b = multiply(multiply(ub, clean_z), adjoint(ub))
+        c = multiply(a, b)
+        c_squared = multiply(c, c)
+        self.assertEqual(multiply(c_squared, c_squared), eye(8))
+        self.assertEqual(multiply(multiply(a, c), a), adjoint(c))
+
+        accepted = [row[:4] for row in unitary[:4]]
+        gram = multiply(adjoint(accepted), accepted)
+        half = CQ2(Q2(Fraction(1, 2)))
+        expected_gram = [[half if row == column and column in (0, 3) else CZ
+                          for column in range(4)] for row in range(4)]
+        self.assertEqual(gram, expected_gram)
+        reflected = scale(multiply(multiply(adjoint(ua), c_squared), ua), -CO)
+        self.assertEqual(reflected, adjoint(reflected))
+        self.assertEqual(multiply(reflected, reflected), eye(8))
+        for column in range(4):
+            sign = CO if column in (0, 3) else -CO
+            for row in range(8):
+                self.assertEqual(reflected[row][column],
+                                 sign if row == column else CZ)
 
     def test_gf4_complete_bank_and_quadratic_xor_matrices(self):
         p, m, n = 2, 4, 8
