@@ -1,10 +1,16 @@
-"""One exact GF(4) matrix fixture for the nilpotent-pencil source.
+"""Exact matrix fixtures for the nilpotent-pencil source and its interfaces.
 
 Matrices act on arbitrary binary bank labels, so their equalities cover
 all carrier and second-bank inputs without Hilbert-space enumeration.
 This does not emit the unpaid in-place source or a native schedule.
 """
+from fractions import Fraction
 import unittest
+
+from tests.exact_matrices import (
+    CI, CO, CQ2, CZ, Q2, adjoint, eye, multiply, native_columns, scale,
+)
+from tests.test_majorana_walsh_query import _inverse as _word_inverse
 
 
 def _mul(a, b):
@@ -91,6 +97,133 @@ def _shear(a):
 
 
 class NilpotentPencilObservableSourceTests(unittest.TestCase):
+    def test_paired_pauli_sum_is_half_rank_swap_not_a_thin_code(self):
+        # The numerator of P(a,b) tensor P(a,b) on |c,d> is the
+        # integer sign (-1)^(a.b+b.(c+d)), with output |c+a,d+a>.
+        # Summing exact integers keeps every phase and every bank column.
+        for n in (1, 2, 3):
+            size = 1 << n
+            for nu in range(1, size):
+                nonzero_columns = 0
+                for c in range(size):
+                    for d in range(size):
+                        numerator = {}
+                        for a in range(size):
+                            if (a & nu).bit_count() % 2:
+                                continue
+                            output = (c ^ a, d ^ a)
+                            for b in range(size):
+                                sign = (-1) ** ((b & (a ^ c ^ d)).bit_count() % 2)
+                                numerator[output] = numerator.get(output, 0) + sign
+                        numerator = {row: value for row, value in numerator.items()
+                                     if value}
+                        same_sector = not ((nu & (c ^ d)).bit_count() % 2)
+                        expected = {(d, c): size} if same_sector else {}
+                        self.assertEqual(numerator, expected)
+                        nonzero_columns += bool(numerator)
+                self.assertEqual(nonzero_columns, size * size // 2)
+
+    def test_partial_gram_phase_s_readout_returns_arbitrary_private_fiber(self):
+        # Logical banks are c=0,d=1, private h=2, clean signal a=3.
+        # The source acts as H_h tensor H_a on c=d, and H_h tensor X_a
+        # otherwise. Its accepted Gram is Pi_equal/2; its nontrivial
+        # private Hadamard fiber need not be returned by the source.
+        def cz(control, target):
+            return [('H', target), ('CX', control, target), ('H', target)]
+
+        rotation = [('S', 3)] * 3 + [('H', 3), ('T', 3),
+                                     ('H', 3), ('S', 3)]
+        controlled_h = _word_inverse(rotation) + cz(0, 3) + rotation
+        source = ([('H', 2), ('CX', 1, 0), ('H', 3)]
+                  + controlled_h + [('CX', 0, 3), ('CX', 1, 0)])
+        source_matrix = native_columns(4, source)
+        self.assertEqual(native_columns(4, _word_inverse(source)), adjoint(source_matrix))
+        half_root = Q2(0, Fraction(1, 2))
+        omega = CQ2(half_root, half_root)
+        half = CQ2(Q2(Fraction(1, 2)))
+        for column in range(8):
+            equal = (column & 1) == ((column >> 1) & 1)
+            for row in range(8):
+                sign = -1 if (row & 4 and column & 4) else 1
+                expected = half * sign if equal and row & 3 == column & 3 else CZ
+                self.assertEqual(source_matrix[row][column], expected)
+
+        recovered = source + [('S', 3)] + _word_inverse(source) + [('S', 3)] + source
+        recovered_matrix = native_columns(4, recovered)
+        self.assertEqual(native_columns(4, _word_inverse(recovered)),
+                         adjoint(recovered_matrix))
+        # Exact clean-code pass phase and whole rejected amplitude; the
+        # arbitrary h fiber remains H until the actual inverse readout.
+        for column in range(8):
+            equal = (column & 1) == ((column >> 1) & 1)
+            for row in range(16):
+                sign = -1 if (row & 4 and column & 4) else 1
+                scalar = omega if equal else CI
+                signal = 0 if equal else 8
+                expected = (scalar * CQ2(half_root) * sign
+                            if row & 11 == (column & 3) | signal else CZ)
+                self.assertEqual(recovered_matrix[row][column], expected)
+
+        # V=W^dagger Z_a W is exactly Hermitian. The emitted actual
+        # inverse is the same word, not an independently compiled target.
+        readout = recovered + [('S', 3), ('S', 3)] + _word_inverse(recovered)
+        readout_matrix = native_columns(4, readout)
+        self.assertEqual(readout_matrix, adjoint(readout_matrix))
+        self.assertEqual(native_columns(4, _word_inverse(readout)), readout_matrix)
+        for column in range(16):
+            parity = ((column >> 0) ^ (column >> 1) ^ (column >> 3)) & 1
+            for row in range(16):
+                expected = (CO if not parity else -CO) if row == column else CZ
+                self.assertEqual(readout_matrix[row][column], expected)
+
+    def test_two_band_partial_gram_principal_angle_reflection(self):
+        # Arbitrary banks c,d and one clean signal a. This allowed
+        # low-degree source has Gram Pi_equal/2 and exactly two T gates.
+        # Split its actual word at the second band; no abstract encoder
+        # or separately approximated inverse is substituted.
+        def cz(control, target):
+            return [('H', target), ('CX', control, target), ('H', target)]
+
+        rotation = [('S', 2)] * 3 + [('H', 2), ('T', 2),
+                                     ('H', 2), ('S', 2)]
+        controlled_h = _word_inverse(rotation) + cz(0, 2) + rotation
+        source = ([('CX', 1, 0), ('H', 2)] + controlled_h
+                  + [('CX', 0, 2), ('CX', 1, 0)])
+        t_positions = [i for i, gate in enumerate(source)
+                       if gate[0] in {'T', 'TDG'}]
+        self.assertEqual(len(t_positions), 2)
+        split = t_positions[1]
+        ua = native_columns(3, source[:split])
+        ub = native_columns(3, _word_inverse(source[split:]))
+        unitary = native_columns(3, source)
+        self.assertEqual(multiply(adjoint(ub), ua), unitary)
+        self.assertEqual(native_columns(3, _word_inverse(source)),
+                         adjoint(unitary))
+
+        clean_z = [[(CO if column < 4 else -CO) if row == column else CZ
+                    for column in range(8)] for row in range(8)]
+        a = multiply(multiply(ua, clean_z), adjoint(ua))
+        b = multiply(multiply(ub, clean_z), adjoint(ub))
+        c = multiply(a, b)
+        c_squared = multiply(c, c)
+        self.assertEqual(multiply(c_squared, c_squared), eye(8))
+        self.assertEqual(multiply(multiply(a, c), a), adjoint(c))
+
+        accepted = [row[:4] for row in unitary[:4]]
+        gram = multiply(adjoint(accepted), accepted)
+        half = CQ2(Q2(Fraction(1, 2)))
+        expected_gram = [[half if row == column and column in (0, 3) else CZ
+                          for column in range(4)] for row in range(4)]
+        self.assertEqual(gram, expected_gram)
+        reflected = scale(multiply(multiply(adjoint(ua), c_squared), ua), -CO)
+        self.assertEqual(reflected, adjoint(reflected))
+        self.assertEqual(multiply(reflected, reflected), eye(8))
+        for column in range(4):
+            sign = CO if column in (0, 3) else -CO
+            for row in range(8):
+                self.assertEqual(reflected[row][column],
+                                 sign if row == column else CZ)
+
     def test_gf4_complete_bank_and_quadratic_xor_matrices(self):
         p, m, n = 2, 4, 8
         # Columns are v_u, then binary expansion orders beta_0 v_u,

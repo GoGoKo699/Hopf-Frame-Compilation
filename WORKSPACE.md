@@ -6,13 +6,17 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Repository modification
 and merge are authorized. Optimal general T-depth remains the destination;
 final manuscript drafting is a separate task.
 
-## Current checkpoint: paid spectral promotion and the complete-source gap
+## Current checkpoint: native source scope and complete readout
 
-**Fetched continuation baseline:** PR #215, the paid parallel-promotion
-and kernel revision, on 20 October 2026. Its merged main commit and tree
-are recorded in the [current outcome](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md).
+**Fetched continuation baseline:** PR #216, the paid spectral-promotion
+and zero-reflection revision, on 21 October 2026. Its merged main commit
+and tree are recorded in the [current outcome](research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md).
 Fetch current main before resuming; this baseline is not a pin.
 Read that outcome, the
+[native read-only approximate source bound](research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md),
+[complete Clifford-filter limit](research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md),
+[paired projector readout](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout),
+[preceding spectral revision](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md),
 [expander zero reflection and joint-bank screen](research/depth/EXPANDER_ZERO_REFLECTION.md),
 [paid spectral promotion](research/depth/MSS_SPECTRAL_PROMOTION.md),
 [parallel promotion and structured packing](research/depth/PARALLEL_CLEAN_PROMOTION.md),
@@ -28,6 +32,36 @@ Read that outcome, the
 and [fusion reduction](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
 
 The general complete-frame upper and lower frontier is unchanged.
+The approximate two-band candidate now has a sharper scope distinction.
+If every actual Clifford boundary fixes the address and physical T
+targets are private, a complete amplitude-$`1/\sqrt2`$ source at
+relative error at most $`1/8`$ needs
+$`k\ge\lceil(p-3)/2\rceil`$ clean wires. This permits arbitrary
+dirty width, clean leakage and off-code action, and needs no exact
+flatness. It excludes direct use of this source class in the current
+sublogarithmic-clean spectral-promotion window. Completed address return
+alone does not give the required native sharing. Moving-address
+approximate two-band sources, higher-band mechanisms and unrestricted
+depth remain open. The next source must leave this actual-boundary
+grammar or supply a different paid whole-bank schedule.
+
+The next constructive target is a normalized projector-Gram source,
+not another bare-Clifford expander. A wide Clifford's sharp normalized
+correlation with the complete lookup is at most $`(p+1)/2^p`$;
+arbitrary wide Clifford branches therefore do not give a constant-gap
+normalized filter for its two whole eigenspaces. This is a coefficient
+and representation limit, not native T-depth. A one-clean source with
+accepted Gram operator equal to half the paired lookup projector instead
+has a paid six-call readout and serial dirty promotion. It permits
+arbitrary intermediate address motion and arbitrary accepted unitary
+fibers. The full resource/error/return recurrence is in the linked
+proof home; its normalized shallow source remains unpaid. A separate
+[principal-angle screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+excludes one-clean two-band Gram sources at error at most $`1/256`$
+for p at least three, even with arbitrary address motion. Thus this
+particular new target must start with at least three source bands or
+a different clean allocation. It does not stop sublogarithmic depth.
+
 There is a new paid **single-predicate** result: approximate zero
 reflection/MCZ with zero clean work, $`T,G,b=O_\tau(p)`$ and
 $`D_T=O_\tau(1)`$, in full operator norm on arbitrary inputs and
@@ -109,9 +143,10 @@ Thus exact sources cannot fill the new sublogarithmic-clean window.
 An elementary version already excludes exact one-clean sources for
 p at least 18, and relative error at most $`2^{-10}`$ for p at least
 20, uniformly over positive amplitude and arbitrary dirty width.
-The growing-k approximate floor still tends to zero. Fixed-error
-growing-clean sources, higher-band mechanisms and unrestricted depth
-remain open. The earlier fixed-coefficient gap proof is retained;
+The general growing-k approximate floor still tends to zero. Fixed-error
+growing-clean sources outside the native read-only class, higher-band
+mechanisms and unrestricted depth remain open. The earlier
+fixed-coefficient gap proof is retained;
 source-specific bounds are not unrestricted depth bounds.
 
 For one-pass row filters, arbitrary dirty mixing gives the sharp
@@ -137,8 +172,14 @@ that cross-commutation when the only middle-span intersection is a
 genuine matched pair's center.
 An affected silent block with nonsingular restricted pairing has a
 paid full-space Clifford replacement, removing twice its rank in T
-gates with quadratic Clifford synthesis cost. Singular cubic blocks
-retain their separate phase obligation.
+gates with quadratic Clifford synthesis cost. The
+[singular extension](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction)
+leaves at most $`\lfloor4k/3\rfloor`$ original axes per band,
+where k is pairing nullity. Nullity at most two is fully Clifford;
+nullity three only retains the known rank-four cubic block. The
+replacement never adds native depth or workspace and retains literal
+phases and every physical column. Genuinely coupled center transport
+and the Boolean output endpoint remain the focused scout's targets.
 The dependent support formula remains a useful component; no
 independent native quotient is assumed. A noncommuting escape needs
 overlap on the affected first-band coordinates. Commuting unmatched
@@ -193,6 +234,9 @@ Write $`N=2^n`$, with integer $`n\ge1,L\ge6`$.
 | Retained exact packing alternative | [Parallel exact packing](research/depth/PARALLEL_CLEAN_PROMOTION.md) qualifies when $`2^k(k+1)^2=o(\log(p+2))`$, with error $`2\eta`$ under exact sector invariance. It retains its own smaller sufficient window and complete recurrence |
 | Clean-cover audit | [Native boundary restriction](research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) deletes a clean bank fixed at every actual Clifford boundary with unchanged T-count/depth. General black-box promotion needs at least $`2^k`$ source occurrences; this is not a native-depth lower bound |
 | Current source obstruction | [Clifford rank--norm defect](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact two-band sources require $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. At k=1, exact sources fail for p≥18 and relative error at most $`2^{-10}`$ fails for p≥20, uniformly over positive amplitude and arbitrary dirty width. No flatness is needed. The explicit approximate floor shrinks with k, leaving fixed-error growing-clean sources open; specialized overlap screens retain their own scopes |
+| New native read-only source obstruction | [Complete-bank Fourier bound](research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md): at amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$, actual read-only two-band sources need $`k\ge\lceil(p-3)/2\rceil`$. Arbitrary dirty width, clean leakage and nonflat compression are allowed. This excludes the direct two-band/current-promotion combination, not moving-address sources or unrestricted depth |
+| New complete-filter limit | [Sharp Clifford correlation](research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md): normalized correlation with the complete lookup is at most $`(p+1)/2^p`$, with arbitrary wide address-bank-helper Clifford coupling. Low-budget Clifford averages and their fixed-call filters cannot supply a complete constant-amplitude source; native T-depth is not bounded |
+| New conditional readout interface | [Paired projector-Gram readout](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout): one clean signal and accepted Gram equal to half the paired lookup projector suffice. Six-call recovery and serial promotion give zero-clean depth at most $`48d_U+32`$, with complete error at most $`32\sqrt{24\delta}`$ for Gram error delta. Intermediate address motion is allowed; the normalized U is unpaid |
 | Lower-bound scope | [Two-layer Boolean rigidity](research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md) gives XOR degree at most two with at most one clean qubit and robust floor $`\sin(\pi/8)/(2\sqrt2)`$ for higher degree. [Zero-clean three-layer rigidity](research/depth/THREE_LAYER_NATIVE_STRUCTURE.md) gives XOR degree at most four. The [complete one-clean three-layer case split](research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), sharpened by the [central-parity reduction](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md), gives sign degree at most $`D_{\rm np}=D_3+576`$, with conservative higher-degree floor $`2^{-530690}`$. A small universal constant, higher layers and dimension-growing depth remain open |
 | Rank-two quadratic-control component | [One-parity Clifford replacement](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md) gives sign degree at most 2049, uniformly in endpoint ranks and dirty width. It allows at most one relation per restricted native list and retains every logical column. This is a degree argument, not a cheaper source implementation |
 | Retained original-pair components | [Either endpoint rank two](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) and [actual two-axis differences](research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#7-two-axis-pair-differences-with-both-endpoint-ranks-growing) retain their sector/return mechanisms. The new general paired-source six/five bound supersedes their larger numerical bounds |
@@ -625,7 +669,12 @@ diagnostics is a general four-layer ceiling.
 | Zero-clean discovery only; one-band inverse-square-root-two; unpaid flat-sector alignment | Superseded by PR #198's clean promotion, one-band screen and paid alignment. The remaining task is the logical transition, not those operations |
 | Old precision-envelope/opening/local-compiler next steps | Superseded by R94–R96. R96 is all-precision; earlier headline bounds remain historical with their useful component proofs |
 
-The [latest continuation](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+The [latest continuation](research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+separates the actual native source scope from unrestricted depth and
+records the next complete-readout question. The
+[spectral revision](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+retains paid zero reflections and spectral promotion. The
+[parallel revision](research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
 records conditional parallel promotion, the crossed-kernel contract audit,
 paid physical-pair resynthesis and the higher-support Booleanity test.
 The [preceding revision](research/depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
@@ -680,7 +729,7 @@ and completed state-based QBP supplement remain separate.
 | Selected claims and literal allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
 | Claim-led explanation and dependency map | [Review](REVIEW.md), [proof map](docs/README.md) |
 | Full frontier and complete-circuit requirement | [Resource questions](docs/OPEN_PROBLEM.md) |
-| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md) |
+| Research proofs and historical outcomes | [Research index](research/README.md), [current session record](research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md) |
 | Attribution and evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 Separate discovery from certification. Before a new fixture, state the

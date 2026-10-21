@@ -10,7 +10,27 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+The [current revision](../../research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+adds the complete-bank Fourier nuclear-norm source bound, the sharp
+Clifford lookup-correlation theorem, paired projector-Gram readout and
+the singular affected-silent physical-block reduction. Independent
+internal audits retain the actual native scope, projective phases,
+Fourier normalization, affine stabilizer support, full physical axes,
+actual adjoints and complete return errors.
+The further Gram-source audit checks the full principal-angle spectrum,
+Clifford fourth-order rounding, literal two-band square and the retained
+Boolean rigidity floor; it permits address motion and remains specific
+to one clean signal and two source bands. Two exact label/phase tests
+check cocycle cancellation and aggregate Fourier moments. A physical
+guard checks both the eight-T/two-band and seven-T/three-band words on
+all sixteen columns and their actual inverses. The readout fixture
+checks a nontrivial accepted private fiber and its cancellation; it
+does not emit the missing normalized large-bank source. The analytic
+claims do not follow merely from these small fixtures, and internal
+audits do not replace external technical review. The complete general
+resource frontier and selected manuscript are unchanged.
+
+The [preceding revision](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
 adds an analytic expander zero-reflection construction with a complete
 native/precision/return ledger, uniform-address and product-rank source
 screens, exact virtual-function arithmetic, one-pass clean-dimension
