@@ -10,230 +10,186 @@ scopes of the individual checks. A research fixture's presence here does
 not make its construction a current principal result. Finite checks do
 not prove universal statements or asymptotic optimality.
 
-The [current revision](../../research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
-adds the complete-bank Fourier nuclear-norm source bound, the sharp
-Clifford lookup-correlation theorem, paired projector-Gram readout and
-the singular affected-silent physical-block reduction. Independent
-internal audits retain the actual native scope, projective phases,
-Fourier normalization, affine stabilizer support, full physical axes,
-actual adjoints and complete return errors.
-The further Gram-source audit checks the full principal-angle spectrum,
-Clifford fourth-order rounding, literal two-band square and the retained
-Boolean rigidity floor; it permits address motion and remains specific
-to one clean signal and two source bands. Two exact label/phase tests
-check cocycle cancellation and aggregate Fourier moments. A physical
-guard checks both the eight-T/two-band and seven-T/three-band words on
-all sixteen columns and their actual inverses. The readout fixture
-checks a nontrivial accepted private fiber and its cancellation; it
-does not emit the missing normalized large-bank source. The analytic
-claims do not follow merely from these small fixtures, and internal
-audits do not replace external technical review. The complete general
-resource frontier and selected manuscript are unchanged.
+## Research evidence contracts
 
-The [preceding revision](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
-adds an analytic expander zero-reflection construction with a complete
-native/precision/return ledger, uniform-address and product-rank source
-screens, exact virtual-function arithmetic, one-pass clean-dimension
-tradeoffs and physical-probe eligibility lemmas.
-Independent analytic audits check the spectral gap, general-block cubing,
-literal scalar handling, bounded-clean promotion, dirty padding, actual
-native support, code dependence and complete arithmetic return. Graph
-readout bounds retain their normalization and baseline hypotheses.
-The spectral-paving proof separately audits the supplied partition
-theorem, finite exact certification, native sign frames, global
-truncated-key echo and the constant-clean filter's complete precision
-ledger. Exact sector invariance and general leakage have different
-source-accuracy recurrences.
-The seven-selector alternative audits the entire compressed-block
-cubing identity, maximum branch error in SELECT, determinant-one
-selector phase synthesis and the full seven-clean promotion ledger.
-Its uniform precision bound includes source synthesis at the requested
-accuracy and is stated before the fixed-tolerance root fusion.
-The latent-center component checks the actual forward-pencil columns,
-Clifford generator receipts, center and representation decomposition,
-and the fixed bounded probe's Parseval bound. Central preservation is
-kept separate from pointwise invariance. The singleton-tail component
-checks its actual sector corrections, nonaffine label obstruction and
+The index below owns the proof/test map; these notes retain audit and fixture
+details not captured by its short rows. Use the [current frontier](../OPEN_PROBLEM.md)
+for strongest results and open questions, not the chronology of a component.
+All-size statements and resource/error/return recurrences are analytic unless
+explicitly identified as finite checks. Internal audits are not independent
+external technical review, and bounded fixtures do not emit a general native source.
+
+### Complete-source and readout audits
+
+The [native-source and readout audit](../../research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+covers the [complete-bank Fourier bound](../../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md),
+[sharp Clifford lookup correlation](../../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md),
+[paired projector-Gram readout](../../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md),
+and singular affected-silent physical-block reduction. It retains actual native
+scope, projective phases, Fourier normalization, affine stabilizer support,
+full physical axes, actual adjoints and complete return errors.
+The Gram-source audit checks the full principal-angle spectrum, Clifford
+fourth-order rounding, literal two-band square and Boolean rigidity floor.
+It allows address motion but is specific to one clean signal and two source
+bands. [Two exact label/phase tests](../../tests/test_read_only_two_band_source_gap.py)
+check cocycle cancellation and aggregate Fourier moments.
+The [physical guard](../../tests/test_four_band_original_pair_scout.py)
+checks the eight-T/two-band and seven-T/three-band words on all sixteen
+columns and their actual inverses. The [readout fixture](../../tests/test_nilpotent_pencil_observable_source.py)
+checks a nontrivial accepted private fiber and its cancellation, not the
+missing normalized large-bank source. Its principal-angle fixture is a
+permitted low-degree example, not the excluded asymptotic source.
+
+The [zero-reflection and source-scope audit](../../research/depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+covers the [expander zero reflection](../../research/depth/EXPANDER_ZERO_REFLECTION.md),
+uniform-address and product-rank source screens,
+[exact virtual-function arithmetic](../../research/depth/VIRTUAL_FUNCTION_ARITHMETIC.md),
+one-pass clean-dimension tradeoffs and physical-probe eligibility.
+Its analytic checks retain the spectral gap, general-block cubing, literal
+scalar, bounded-clean promotion, dirty padding, actual native support,
+code dependence and complete arithmetic return. Graph readout bounds keep
+their normalization and baseline hypotheses.
+The [spectral-paving proof](../../research/depth/MSS_SPECTRAL_PROMOTION.md)
+audits the supplied partition theorem, finite exact certification, native
+sign frames, global truncated-key echo and constant-clean filter precision.
+Exact sector invariance and general leakage have different source-accuracy
+recurrences. The seven-selector alternative audits compressed-block cubing,
+maximum branch error in SELECT, determinant-one selector phases and the full
+seven-clean promotion ledger. Its uniform precision bound evaluates source
+synthesis at the requested accuracy before fixed-tolerance root fusion.
+
+The same audit retains forward-pencil columns, Clifford generator receipts,
+latent-center and representation decomposition, and the fixed bounded probe's
+Parseval bound. Central preservation is not pointwise invariance. Singleton-tail
+checks retain actual sector corrections, the nonaffine label obstruction and
 literal four-T repair; neither component supplies a new source.
+The Clifford rank--norm refinement checks the primary operator theorem,
+normalized Choi convention and elementary one-term elimination proof.
+Its direct projected defect gives the exact clean-count bound and finite
+relative-error exclusion; approximate conversion uses the code-supported
+norm. The exact theorem does not exclude fixed-error growing-clean sources.
+These are analytic audits, not a new search experiment or native emitter.
 
-The subsequent Clifford rank--norm refinement checks the primary
-operator theorem, its normalized Choi convention and an elementary
-one-term elimination proof. The direct projected defect supplies the
-exact clean-count bound and finite relative-error exclusion; its
-code-supported norm conversion is retained in the approximate case.
-The exact theorem does not exclude fixed-error growing-clean sources.
-No new search experiment or implemented native emitter is claimed.
-The general depth frontier remains unchanged;
-required validation and rendered-document checks cover the reviewed tree.
+### Promotion, kernels and observable sources
 
-The [preceding revision](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
-adds paid native parallel promotion in a larger sufficient source
-window, an exact odd-key counter identity, crossed-kernel contract
-screens, paid paired resynthesis and a higher-support Booleanity test.
+The [parallel-promotion and kernel audit](../../research/depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+covers paid native parallel promotion, the odd-key counter identity,
+crossed-kernel screens, paired resynthesis and higher-support Booleanity.
 Two bounded exact receipts check the private-target quartic phase and
-the refined packing echo on every column and actual inverse. The
-packing fixture specifies a basis permutation; it does not emit a
-native packing circuit. A separate analytic decomposition pays generic
-packing in the stated window. Complete resource/error/return recurrences,
-sector obstructions and the Pauli-domain criterion are analytic.
+refined packing echo on every column and actual inverse. The packing
+fixture specifies a basis permutation, not a native packing circuit;
+a separate analytic decomposition pays generic packing in the stated window.
+The [Gaussian and center audit](../../research/depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
+retains small-clean sign-and-label bounds, bounded-degree involutory Gauss
+scalar restrictions and physical-center transport. Fixed fixtures retain
+literal columns, scalars and actual inverses; their source-specific limits
+are not unrestricted depth bounds.
 
-The [preceding revision](../../research/depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
-retains small-clean Gaussian sign-and-label bounds, bounded-degree
-involutory Gauss scalar restrictions and actual physical-center transport.
-Its fixed fixtures check literal columns, scalars and actual inverses;
-source-specific limits are not unrestricted depth bounds.
+The [dirty-key audit](../../research/depth/DIRTY_KEY_REVISION_RESULT.md)
+has two exact integer-Walsh column checks rejecting the specified
+key-mixing words. Its GF(4) fixture checks every inverse column, transpose,
+physical output alias, star identity and quadratic query involution.
+The general-k recovery receipt retains a nonmonomial off-code source,
+literal phase and reverse on all columns. The four-band physical-pair
+fixtures retain independent signed native lists, all columns and actual
+inverses. These do not construct the unpaid shallow readout.
 
-The [previous revision](../../research/depth/DIRTY_KEY_REVISION_RESULT.md)
-adds scoped key-mixing screens, an affine-pencil query and paid converse,
-general-k amplitude recovery, and a focused four-band physical-pair
-scout. Two exact integer-Walsh column checks reject the specified
-key-mixing words. A GF(4) matrix fixture checks every inverse column,
-transpose, physical output alias, star identity and quadratic query
-involution. The general-k receipt retains a nonmonomial off-code source
-and checks its literal recovery, phase and reverse on all columns.
-Small pair fixtures retain independent signed native lists, all physical
-columns and actual inverses. The universal scoped statements and
-complete resource/error recurrences are analytic. None of these checks
-constructs the unpaid shallow readout or proves unrestricted depth.
-
-The [previous source revision](../../research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
-adds an analytic all-length shared-key Clifford-fiber obstruction and
+The [observable-source audit](../../research/depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+retains an analytic all-length shared-key Clifford-fiber obstruction and
 an exact opposite-direction two-query counterexample with dirty-key
-dependence. These concern the specified source words, not unrestricted
-depth. The observable contract specializes the retained selected-routing
-principle. The extra top-output alias is checked on all 1024 physical
-columns and the actual reverse, using the same coherent nonreturning
-helper fiber as the preserved 2048-column fixture. The new receipt
-checks one probe Z, three additional carrier wires and a 22-Clifford
-remainder. It does not emit a new native coefficient source.
-The lower audit gives a literal one-relation factorization with
-potentially unbounded quadratic-control rank; the previous four-axis
-guard remains its focused example. No general frontier changes.
+dependence. Its observable contract specializes selected routing.
+The top-output alias checks all 1024 columns and the actual reverse,
+using the coherent nonreturning helper fiber of the retained 2048-column
+fixture: one probe Z, three extra carrier wires and a 22-Clifford remainder.
+It does not emit a new native coefficient source. The lower audit's
+one-relation factorization permits unbounded quadratic-control rank;
+the four-axis guard remains its focused example.
 
-The [previous central-parity revision](../../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
-replaces the no-pair rank-two finite-insertion application by an analytic
-2049 sign-degree bound. On each of two genuine central-parity sectors,
-an actual full-space Clifford agrees with the insertion and preserves
-the Pauli code at every native boundary. The retained 2048 theorem and
-reconstruction in the same coordinates give the result. The universal
-ceiling is now $`D_3+576`$, still controlled by the high-rank no-pair
-feature estimate. The [focused exact fixtures](../../tests/test_central_parity_quadratic_reduction.py)
-check actual sector replacements with literal phases and adjoints, and
-a native four-axis restriction whose one relation invalidates
-independent-axis diagonal peeling. That guard is not a completed
-no-pair Boolean source. No source upper recurrence or asymptotic
-resource frontier changes.
+### Original physical-pair checks
 
-The [previous pair-collapse revision](../../research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
-adds an analytic theorem for every exact complete Boolean one-clean
-native-three source with any genuine original pair. Scalar-sector
-silent-list independence supplies Boolean one-band rigidity; comparison
-with each single-quarter-turn sector forces exactly one all-active pair
-and excludes negative singletons after literal repair. The retained
-all-active six/five bound therefore covers the entire paired branch.
-Combined with the retained no-pair and Pauli-interior results this gives
-a uniform unrestricted one-clean three-layer degree ceiling, still with
-the crude no-pair constant. It is not a growing-depth theorem.
-The [six focused fixtures](../../tests/test_boolean_original_pair_collapse.py)
-check a literal three-wire Boolean identity with a genuine pair and
-nontrivial unused block, its actual inverse and native lists; the
-failed negative-axis insertion; joint clean/pair quotient independence
-and a deliberately dependent counterguard; one-band reality; signed
-two-pair branches; and a clean-returned negative-singleton source whose
-occupied action is not Boolean. These are fixed algebra checks, not a
-search or proof of the universal theorem.
+The [central-parity audit](../../research/depth/CENTRAL_PARITY_REVISION_RESULT.md)
+retains actual full-space Clifford replacements on two central-parity
+sectors, preservation of the Pauli code at every native boundary and
+the same-coordinate 2048 theorem/reconstruction behind the 2049 bound.
+Its [focused fixtures](../../tests/test_central_parity_quadratic_reduction.py)
+check those replacements with literal phases and adjoints, and a native
+four-axis restriction whose one relation invalidates independent-axis
+diagonal peeling. The guard is not a completed no-pair Boolean source.
+The universal ceiling $`D_3+576`$ remains controlled by the high-rank no-pair estimate.
 
-The [previous structural revision](../../research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
-adds an analytic consequence of the retained original-pair identities
-and sharp three-native-band diagonal theorem. Actual diagonal sublists
-are peeled at both endpoints; one fixed Clifford change makes the
-remaining insertion and actual three-band residual diagonal on the full
-logical space. This gives sign/XOR degree at most five/four at common
-active rank at least four, and six/five uniformly with the retained
-rank-two theorem. It uses no restriction to a $`P_h`$ eigenspace and
-needs no new fixture.
-The existing central-identity fixture supports its stated identity;
-the new reduction and degree conclusion are analytic. The additional
-[positive-singleton recognition](../../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
-is also analytic: complete Booleanity forces all-active pair support
-when literal orientation repair leaves no negative singletons. Its
-parity-branch commutation contradiction uses the retained exact transport
-identities and requires no new fixture. Source upper resources, R96,
-selected R79 and the complete-frame frontier are unchanged.
+The [original-pair collapse audit](../../research/depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+has [six focused fixtures](../../tests/test_boolean_original_pair_collapse.py):
+a literal three-wire Boolean identity with a genuine pair, nontrivial unused
+block, actual inverse and native lists; failed negative-axis insertion;
+joint clean/pair quotient independence and a deliberately dependent
+counterguard; one-band reality; signed two-pair branches; and a returned
+negative-singleton source whose occupied action is not Boolean.
+They are fixed algebra checks, not a search or proof by enumeration.
+The [structural audit](../../research/depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+and [positive-singleton recognition](../../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+add analytic full-space reductions and recognition, not new fixtures.
+The existing central-identity fixture supports its own identity, without
+restriction to a pair-parity eigenspace or a universal degree test.
 
-The [previous coherent-source continuation](../../research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
-adds two focused exact fixtures. The direct output/carrier construction
-checks all 2048 phase columns and the actual reverse on eleven wires,
-including an input-dependent native quantum helper that returns only in
-the completed character. A five-wire original-pair fixture checks the
-literal central-controlled quarter-turn on all 32 physical columns,
-including both signed-swap conventions and the unused clean sector.
-The latter guards a structural identity and is not a Boolean query or
-a numerical degree bound. The four-call source/fiber recurrence,
-Fourier-twirl support bound, and uniform all-active one-pair closure are
-analytic; none proves an unrestricted growing-depth result.
+The [coherent-source and one-pair audit](../../research/depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+has two exact fixtures: all 2048 phase columns and the actual reverse on
+eleven wires, with an input-dependent native quantum helper returning only
+in the completed character; and a five-wire original-pair word on all
+32 columns, including both signed-swap conventions and the unused clean
+sector. The latter tests the central-controlled quarter-turn identity,
+not a Boolean query or numerical degree bound. The four-call source/fiber
+recurrence, Fourier-twirl support bound and all-active one-pair closure are analytic.
 
-The [previous algebra continuation](../../research/depth/CHARACTER_SOURCE_REVISION_RESULT.md)
-retains one joint-bank composition fixture: all 8192 phase columns of the
-13-wire HRT extraction and its actual reverse, with the zeta shear expanded
-into eleven CNOTs. It uses the retained source permutation and its native
-proof; it is not a new native source emitter. The all-size error/resource
-recurrence, quadratic-inverse XOR and Choi/coherent-correction audits,
-clean-sector restriction and oracle-rank bound, and original
-singleton-coupling degree theorem are analytic. Their exact scopes remain
-explicit; no unrestricted growing-depth result is inferred.
+The [bank-motion audit](../../research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
+retains a six-wire moving-bank indicator receipt and original-pair
+span-dichotomy checks on four and five wires. Whole-word Majorana depth
+keeps its actual-boundary representation hypothesis. Original-list and
+pair-only enlarged-center closures are analytic: the latter permits both
+silent lists to couple under the all-active difference condition, without
+middle singletons, a new fixture, a bounded coupled-silent span or a free
+native band. The index records how structural six/five closure supersedes
+the earlier 2428/2427 estimates; fixtures do not prove those theorems.
 
-The [previous bank-motion continuation](../../research/depth/BANK_MOTION_CONTINUATION_RESULT.md)
-adds an exact six-wire moving-bank indicator receipt and original-pair
-span-dichotomy checks on four and five physical wires. The whole-word
-Majorana depth theorem and both original-list closure theorems are
-analytic. The Majorana theorem retains its actual-boundary representation
-hypothesis. The earlier sign/XOR bounds 2428/2427 sharpened a class already
-covered qualitatively by the reversed bounded-coupled-span theorem at t=0;
-the structural six/five theorem now supersedes those estimates.
-The new pair-only enlarged-center theorem instead permits both silent
-lists to couple, under the all-active difference condition and with no
-middle singletons. It uses no new fixture and does not bound the earlier
-coupled-silent span or grant a free native band. None of these theorems
-is inferred from the finite fixtures.
-R96, selected R79 and the full frontier are unchanged; a complete shallow
-source remains missing.
+### Algebraic transport and retained interfaces
 
-The [previous continuation](../../research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
-retains the exact simultaneous quadratic-query receipt, the physical-pair
-witness with its paid two-band sector encoder, and the parallel-affine
-schedule built from the existing phase-relocation primitive. Its cube
-obstruction and Pauli-echo round theorem are analytic. The
-[earlier selective continuation](../../research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
-retains the growing-rank physical-pair, joint-decoder and fine-angle
-results. All retain their stated operator contracts and representation
-limits; finite fixtures do not establish unrestricted asymptotics.
+The [character-source audit](../../research/depth/CHARACTER_SOURCE_REVISION_RESULT.md)
+has one joint-bank fixture: all 8192 phase columns of the 13-wire HRT
+extraction and its actual reverse, with the zeta shear expanded into
+eleven CNOTs. It uses the retained source permutation and native proof,
+not a new native source emitter. All-size error/resource, quadratic-inverse
+XOR, Choi/coherent-correction, clean-sector restriction, oracle-rank and
+original singleton-coupling arguments are analytic.
 
-The [preceding revision](../../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
-adds focused receipts for the direct projected source defect, repaired
-and Clifford-dressed overlap sources, simultaneous parity saturation,
-and central-module native profiles. The catalogue records their scope;
-execution and full validation status belong to the reviewed-tree session
-record. The fixed Clifford-sum gap and uniform profile bounds are analytic
-theorems, not extrapolations from these fixtures. Its generic three-band
-wrapper is conditional; the current revision does not treat it as an
-implemented source.
+The [parallel-access audit](../../research/depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+retains the simultaneous quadratic-query receipt, physical-pair witness
+with paid two-band sector encoder, and parallel-affine schedule built
+from phase relocation. Cube and Pauli-echo-round obstructions are analytic.
+The [joint-selective audit](../../research/depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+retains growing-rank physical-pair, joint-decoder and fine-angle results,
+with their operator contracts and representation limits.
 
-The [preceding overlap revision](../../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
+The [two-band source audit](../../research/depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+retains direct projected-defect, repaired and Clifford-dressed overlap,
+simultaneous-parity and central-module receipts. Its fixed Clifford-sum
+gap and uniform profile bounds are analytic; the generic three-band
+wrapper is conditional, not implemented. Execution and validation status
+belong to the reviewed-tree session record.
+The [overlap audit](../../research/depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
 retains complete overlap contractions, generic transported probes and
-their non-Clifford guard, and the growing signal-mixing family at k=1
-and k=3. Its exact-flatness recurrence remains conditional; its proposed
-general two-band resumption is superseded by the new source gap.
-
-The [previous clean-source revision](../../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
+their non-Clifford guard, and signal-mixing fixtures at k=1 and k=3.
+Its exact-flatness recurrence is conditional; the source gap supersedes
+the proposed general two-band resumption.
+The [clean-source audit](../../research/depth/CLEAN_PROMOTION_SESSION_RESULT.md)
 retains promotion, indicator-nullity, Fourier-word and occupied-center
-fixtures. Its subsequent half-amplitude screen uses the retained
-two-layer theorem without an additional native fixture.
+fixtures; its half-amplitude screen uses the retained two-layer theorem
+without an extra native fixture.
 
 ## Catalogue index
 
 | Material | Entry point | Scope |
 |---|---|---|
+| Native read-only two-band source gap | [Proof home](../../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md), [label/phase fixtures](../../tests/test_read_only_two_band_source_gap.py) | Complete-bank Fourier nuclear-norm bound with arbitrary dirty width, clean leakage and nonflat compression. Two finite checks retain projective cocycles and aggregate Fourier moments. The clean-count requirement is analytic and assumes actual read-only Clifford boundaries; it does not exclude moving-address sources or bound unrestricted native depth |
+| Sharp Clifford lookup correlation | [Proof home](../../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) | Analytic normalized-trace correlation and complete fixed-space limits allow wide address-bank-helper Clifford coupling. Clifford averages and fixed-call filters retain their coefficient budgets; a wide T layer can leave this representation. No new native emitter or native-depth lower bound is claimed |
 | C: real and complex-magnitude one-clean count frontier | [Count evidence](../VERIFICATION.md#endpoint-count-evidence) | Growing-source diagnostics, exact non-dyadic precision scales, bounded conjugate-signal recovery, and a separate phase-dressing composition check |
 | D: one-clean count and depth | [Detailed finite checks](#detailed-finite-checks) | R79's analytic precision ledger and splices use unchanged R78 decoder and R72 one-clean interfaces; existing decoder, source, recovery and dirty-query checks retain their finite scopes |
 | Fixed-accuracy logarithmic general depth R90 | [Detailed finite checks](#detailed-finite-checks) | Bounded dirty program, catalogue commutator, literal native factor and reference-return fixtures; fixed-number reduction, native local synthesis, catalogue absorption, selected-factor error and original-width composition remain analytic |
@@ -247,7 +203,7 @@ two-layer theorem without an additional native fixture.
 | Direct output-alias character source | [Proof home](../../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md), [composition fixture](../../tests/test_output_aliased_character.py) | All 2048 phase columns and the actual reverse check direct output/carrier aliases, four source calls, literal constant correction and an explicit native controlled-H/CZ helper fiber with coherent intermediate work. F and its inverse use retained coefficient permutations; this is not a new native source emitter. Complete error/return, the paired transform, paid algebra-key multiplication, and the scoped Fourier-twirl support bound are analytic. The source still needs sublogarithmic native depth |
 | Top-output alias and shared-key source revision | [Observable proof](../../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md), [alias proof](../../research/depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md), [composition fixture](../../tests/test_output_aliased_character.py) | The additional 1024-column receipt and actual reverse check the top probe alias, one Z readout, four source calls, quantum helper return and reduced width/Clifford remainder. The prior fixture is preserved. The all-length affine-label obstruction for shared-key Clifford fibers, its approximation constants, and the explicit dirty-key failure of the opposite-direction two-query word are analytic. These are scoped representation tests; the complete shallow source remains unpaid |
 | Key-mixing observable screens | [Proof home](../../research/depth/KEY_MIXING_OBSERVABLE_SCREENS.md), [integer-Walsh fixture](../../tests/test_key_mixing_observable_screens.py) | Exact probe expectations on one allowed column each reject the stated four-query source and two-insertion word. Final-boundary, Clifford-label, moving-key and translation-family theorems are analytic with separate premises. The word ledgers charge actual inverses; no arbitrary-bank input is replaced by zero in a theorem |
-| Nilpotent-pencil inverse-column source | [Proof home](../../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md), [GF(4) fixture](../../tests/test_nilpotent_pencil_observable_source.py) | Binary matrix identities check the full Vandermonde basis, all inverse columns, physical transposes/output aliases, star formula and quadratic XOR involution. The eight-layer query, arbitrary-fiber wrapper, returned convolution converse and complete resource/error recurrences are analytic. The in-place/readout source is not emitted; stage-degree restrictions are not unrestricted depth bounds |
+| Nilpotent-pencil inverse-column source | [Proof home](../../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md), [exact fixtures](../../tests/test_nilpotent_pencil_observable_source.py) | Binary matrix identities check the full Vandermonde basis, all inverse columns, physical transposes/output aliases, star formula and quadratic XOR involution. Paired-Pauli, six-call phase-S readout and principal-angle fixtures retain a nontrivial private fiber, rejected signal inputs, literal phases and actual inverses. The eight-layer query, arbitrary-fiber wrapper, returned convolution converse and complete resource/error recurrences are analytic. The in-place/readout source is not emitted; stage-degree restrictions are not unrestricted depth bounds |
 | Coherent finite-parity access | [Existing filter proof home](../../research/depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md#41-finite-parity-access-still-fails-under-coherent-address-motion) | Analytic orthogonal-mask witness extends the complement argument to a finite parity span, allowing coherent address/seed motion and arbitrary bank-independent private operations. The fixed affine-hash query and actual encoders are paid. This is a bank-access restriction, not a bound on all clean-assisted sources or unrestricted depth; no new numerical fixture |
 | Joint HRT full-bank extraction | [Proof home](../../research/depth/FULL_BANK_CHARACTER_TRANSPORT.md), [composition fixture](../../tests/test_full_bank_character_transport.py) | One shared arbitrary carrier serves every output; all 8192 phase columns and the actual reverse verify the coherent bank, constant correction and eleven-CNOT zeta shear. The complete eight-source-call recurrence and relaxed source budgets are analytic. Retained native F proofs supply source costs; logarithmic depth is unchanged |
 | Clean-sector parallelism audit | [Proof home](../../research/depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) | Analytic restriction of actual sector-preserving Clifford boundaries removes a dispensable clean bank with no T-count/depth increase. A full-space rank argument requires $`2^k`$ source occurrences for universal black-box promotion at the stated literal errors. No native-depth inference or numerical fixture |
@@ -255,7 +211,7 @@ two-layer theorem without an additional native fixture.
 | All-active one-pair full-space diagonal reduction | [Structural proof](../../research/depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md), [retained central identity](../../research/depth/ALL_ACTIVE_SINGLETON_CLOSURE.md), [identity fixture](../../tests/test_all_active_singleton_closure.py) | The existing four-active-axis pair on five wires checks the nonaffine central sign, plus-branch identity without extending it to the minus branch, both signed-swap conventions, all 32 physical columns and the actual inverse; it is not asserted to be Boolean and does not test a universal degree bound. Analytic target transport, actual both-end diagonal sublist peeling and one fixed full-space diagonal reduction give sign/XOR bounds five/four at common active rank at least four, and six/five uniformly using the retained rank-two theorem. This supersedes the generic 37748865/37748864 estimate and the one-sided 2428/2427 estimate. No new fixture or restriction to a $`P_h`$ eigenspace is used. The original pair difference must sum every actual active axis at both endpoints; arbitrary original singleton and silent lists remain allowed. The retained rounding floor is scoped to these physical-list hypotheses; no bound on h or unrestricted depth closure follows |
 | Positive-singleton original-pair recognition | [Proof home](../../research/depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md) | Retained analytic component deriving all-active support for one genuine pair with positive singletons. Its Boolean commutation identity is used by the general collapse theorem below; its old singleton and pair-count restrictions are no longer needed for the final paired-source bound |
 | Complete Boolean original-pair collapse | [Proof home](../../research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md), [exact fixtures](../../tests/test_boolean_original_pair_collapse.py) | Analytic theorem for arbitrary original pair count and singleton signs: the actual silent list remains independent modulo the physical clean Pauli and all pair differences. Scalar-sector Boolean reality removes its couplings, and single-plus sectors force every pair difference to equal the full active sum. Native middle independence leaves exactly one pair; reversal and literal clean comparison remove negative singletons. Paired sign/XOR degree is six/five, or five/four at high rank; the unrestricted three-layer ceiling still uses the retained no-pair constant. Fixed fixtures test identities and contract boundaries, not the theorem by enumeration |
-| Four-band original physical-pair scout | [Initial proof](../../research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md), [center transport](../../research/depth/FOUR_BAND_CENTER_TRANSPORT.md), [exact fixtures](../../tests/test_four_band_original_pair_scout.py) | Four small full-space words check actual independent signed lists, original pair differences, center fixation, literal encoder signs, unused clean blocks, all columns and actual reverses. The new repartition has a non-Clifford intermediate but retains the old two-band whole-word realization. The conditional radical, literal removals, fixed-endpoint center preservation and general-endpoint directional derivative are analytic. The derivative now has a complete approximate recurrence. Fully matched all-active support-two factors have paid actual two-band resynthesis. A derivative bound is not a total-degree bound; displayed pair count does not certify minimal native depth |
+| Four-band original physical-pair scout | [Initial proof](../../research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md), [center transport](../../research/depth/FOUR_BAND_CENTER_TRANSPORT.md), [exact fixtures](../../tests/test_four_band_original_pair_scout.py) | Five small full-space words check actual independent signed lists, original pair differences, center fixation, literal encoder signs, unused clean blocks, all columns and actual reverses. The new repartition has a non-Clifford intermediate but retains the old two-band whole-word realization. The conditional radical, literal removals, fixed-endpoint center preservation and general-endpoint directional derivative are analytic. The derivative now has a complete approximate recurrence. Fully matched all-active support-two factors have paid actual two-band resynthesis. A derivative bound is not a total-degree bound; displayed pair count does not certify minimal native depth. The fifth guard compares literal eight-T/two-band and seven-T/three-band realizations on all sixteen columns and actual inverses |
 | Native parallel clean promotion | [Proof home](../../research/depth/PARALLEL_CLEAN_PROMOTION.md), [two exact receipts](../../tests/test_parallel_clean_promotion.py) | The six-wire quartic phase checks all 64 columns, actual inverse, 32 T gates, 44 Cliffords and private T targets. A second six-bit fixture checks the refined packing and complete echo, all phases/returns and four batch/eight packing calls. Its W is a specified permutation, not a native emitter. General sharing, refined constant-error bound and complete ledger are analytic. A standard single-target decomposition plus exact dirty-indicator echoes pays generic native packing in the stated growing-clean window. A qualifying source remains unpaid. The original spectral alternative left its whole-space gap conditional; the subsequent [MSS wrapper](../../research/depth/MSS_SPECTRAL_PROMOTION.md) pays the gap and all native frames in the enlarged window |
 | Odd-key coherent counter | [Proof home](../../research/depth/COHERENT_COUNTER_SOURCE.md) | Analytic equality of the one-clean-bit code with all odd Fourier keys gives the same exact zero test and complete dirty/reference return in every sector. The k+1-clean source has literal flat amplitude normalization, paid zero reflection, full conditional arithmetic/count/error/inverse ledger, and exact Hamming-shell spectrum. A fixed-accuracy gradient preparation lemma is separate. No new fixture, shallow full-bank schedule or unrestricted depth bound |
 | Spectral promotion frame limits | [Proof home](../../research/depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md) | Analytic common-Lagrangian transversal, quantum local-lemma support condition, and explicit Bell/trace-pencil trial energies. Each has separate premises. Ordinary block depth is not native T-depth, and dense noncommuting global frames remain open. No new fixture or inferred whole-space gap |
@@ -267,8 +223,8 @@ two-layer theorem without an additional native fixture.
 | Whole-word Majorana depth limit | [Proof home](../../research/depth/WHOLE_WORD_MAJORANA_LIMITS.md) | Analytic all-occupation spectral control and sparse Walsh paths give $`2^d\ge2^b(1-\epsilon^2/2)^2`$ for $`b\ge2`$ and complete error $`\epsilon\lt1`$, with arbitrary dirty width. Every actual Clifford boundary must preserve the read-only address and the standard Majorana space of all work wires. The argument covers fused words and later error cancellation within that representation; no finite fixture proves it, and arbitrary non-Gaussian boundaries or address motion remain outside |
 | Dirty-tree branch differences | [Proof home](../../research/depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md), [exact fixtures](../../tests/test_dirty_tree_differential_recurrence.py) | Every physical column and actual inverse checks common nonreturned private work, selected-parent cancellation, the complete echo and sibling error addition. The all-size recurrence and compatible native scheduling obligation remain analytic |
 | Original physical-pair completion and rank-two endpoints | [Proof home](../../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md), [four exact fixtures](../../tests/test_minimal_physical_pair_completion.py) | Literal coordinate bands, all physical columns including the unused clean sector, the tied residual partner, actual inverse and positive-S counts. The added four-wire receipt retains a core-coupled silent input axis, an extra positive singleton, and both pair-parity sectors with their literal scalar and Clifford phases. Analytic closure gives sign/XOR degree three/two for the fixed core with all admissible silent extensions, and six/five for actual paired rank-two/rank-two endpoints. A new five-wire receipt checks endpoint ranks two/five, three negative singletons, a four-axis quotient relation and full shared-flip return. The one-sided 197/196 and two-axis physical-support extensions are analytic. The no-pair theorem is separate; no general pair-count or depth bound follows |
-| All-active original-pair matching | [Proof home](../../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md), [exact mechanism fixture](../../tests/test_all_active_original_pair_closure.py) | The actual rank-four pair on four wires and its arbitrary fifth-wire extension check original-list independence, all-active difference support, both total-axis-span alternatives, the isotropic enlarged center, every physical column, actual inverse and native ledger. The outside-span case also checks the emitted clean-flip dressing; the retained non-Boolean entries prevent interpreting either witness as Boolean-target enumeration. The earlier analytic sign/XOR bounds 2428/2427 require the one-pair difference to equal both complete active-list sums and either endpoint's silent list to commute with the entire original middle list. This class already lies in the earlier reversed t=0 theorem. The structural full-space diagonal theorem now sharpens its degree bounds, while this matching proof and its fixtures remain useful components. Its conservative higher-degree error floor is $`2^{-530690}`$; general original pairs and unrestricted depth remain open |
-| Pair-only enlarged-center closure | [Proof home](../../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) | Analytic one-clean three-band theorem for one genuine original pair, no middle singletons, and pair difference equal to both complete active-list sums; both endpoint silent lists may be arbitrary. When both lists couple, kernel-product endpoint transport forces $`K=\lambda\alpha\gamma^{\mathsf T}`$: the zero case gives a physical clean flip and sign/XOR bounds five/four; the nonzero case supplies a genuinely transported enlarged center with quotient dimension four. The retained feature theorem then gives sign bound $`D_*=576\cdot2^{62}+2252`$ and XOR bound $`D_*-1`$, with original-circuit rounding floor $`2^{-530690}`$. No new numerical evidence is claimed, the old coupled-silent span need not be bounded, and no native band is supplied for free. The later all-active closure removes this middle-singleton restriction, and its structural diagonal reduction gives the stronger uniform six/five bound; general original pairs and unrestricted depth remain open |
+| All-active original-pair matching | [Proof home](../../research/depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md), [exact mechanism fixture](../../tests/test_all_active_original_pair_closure.py) | The actual rank-four pair on four wires and its arbitrary fifth-wire extension check original-list independence, all-active difference support, both total-axis-span alternatives, the isotropic enlarged center, every physical column, actual inverse and native ledger. The outside-span case also checks the emitted clean-flip dressing; the retained non-Boolean entries prevent interpreting either witness as Boolean-target enumeration. The earlier analytic sign/XOR bounds 2428/2427 require the one-pair difference to equal both complete active-list sums and either endpoint's silent list to commute with the entire original middle list. This class already lies in the earlier reversed t=0 theorem. The structural full-space diagonal theorem now sharpens its degree bounds, while this matching proof and its fixtures remain useful components. Its conservative higher-degree error floor is $`2^{-530690}`$; this component alone does not cover general original pairs or unrestricted depth; see the [current frontier](../OPEN_PROBLEM.md) |
+| Pair-only enlarged-center closure | [Proof home](../../research/depth/PAIR_ONLY_ENLARGED_CENTER.md) | Analytic one-clean three-band theorem for one genuine original pair, no middle singletons, and pair difference equal to both complete active-list sums; both endpoint silent lists may be arbitrary. When both lists couple, kernel-product endpoint transport forces $`K=\lambda\alpha\gamma^{\mathsf T}`$: the zero case gives a physical clean flip and sign/XOR bounds five/four; the nonzero case supplies a genuinely transported enlarged center with quotient dimension four. The retained feature theorem then gives sign bound $`D_*=576\cdot2^{62}+2252`$ and XOR bound $`D_*-1`$, with original-circuit rounding floor $`2^{-530690}`$. No new numerical evidence is claimed, the old coupled-silent span need not be bounded, and no native band is supplied for free. The later all-active closure removes this middle-singleton restriction, and its structural diagonal reduction gives the stronger uniform six/five bound; this component alone does not cover general original pairs or unrestricted depth; see the [current frontier](../OPEN_PROBLEM.md) |
 | Overlapping and Clifford-dressed sources | [Proof home](../../research/depth/OVERLAPPING_TWO_BAND_SOURCES.md), [probe fixtures](../../tests/test_overlapping_source_probes.py), [signal-mixing fixture](../../tests/test_signal_mixing_overlap.py), [dressed-source receipts](../../tests/test_dressed_signal_overlap.py) | Exact all-column contractions, non-Clifford residual guard, involution repair, literal source/recovery inverses, return and positive-S counts. Small quarter-turn probes include a nonzero-trace Clifford involution. The dressed coefficient floors and generic promotion bounds remain analytic; involutivity alone does not establish the indicator action |
 | Simultaneous output parities | [Proof home](../../research/depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md), [native saturation receipts](../../tests/test_simultaneous_output_parities.py) | Complete one-band and two-band sources, actual inverses, accepted transitions and output-mask support certify cheap nonindicators with saturated native rank; the two-band identity transition saturates both directions. The Reed–Muller restriction and rank lower requirement are analytic necessary conditions, not a construction or unrestricted depth bound |
 | Original-pair bounded additional span | [Proof home, Section 8](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md#8-a-proved-bounded-span-reopening-with-shared-feature-coordinates) | Analytic common-coordinate feature proof bounds degree at fixed original pair count and fixed additional coupled silent-axis span. Existing occupied-center fixtures retain their original roles; no new finite fixture substitutes for the uniform theorem |
@@ -280,15 +236,15 @@ two-layer theorem without an additional native fixture.
 | Two-layer read-only query rigidity | [Proof home](../../research/depth/READ_ONLY_TWO_LAYER_RIGIDITY.md), [zero-clean fixtures](../../tests/test_read_only_two_layer_rigidity.py), [initialized-work fixtures](../../tests/test_read_only_clean_rigidity.py) | Literal Clifford phases, actual-inverse hybrid with leakage, Pauli separation, one-clean quadratic structure, and a native two-layer Toffoli showing why unrestricted address mixing lies outside the theorem |
 | Unrestricted one-clean two-layer transfer constraints | [Proof home](../../research/depth/UNRESTRICTED_TWO_LAYER_QUERY.md), [joint-transfer fixtures](../../tests/test_joint_transfer_two_layer.py), [Galois fixtures](../../tests/test_two_layer_galois_return.py) | Exact row normalization, infinite-alphabet tails, shared native clean-axis spans and trace cancellation, full-input query coefficients, native inverses and literal rational return. Two-clean and rational non-C3 counterexamples delimit the invariant; a six-bit cubic bent query passes the complete scalar alphabet but is excluded by the subsequent joint theorem. Universal bounds and clean-return rounding are analytic |
 | Unrestricted two-layer Boolean degree bound | [Proof home](../../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md), [exact diagonal fixtures](../../tests/test_two_layer_diagonal_rigidity.py), [paid bent-query baseline](../../tests/test_bent_query_baseline.py) | Full preserved-algebra proof, paid clean removal, signed one-relation quotient analysis and native row cancellation prove degree at most two with at most one clean qubit; the nonquadratic error floor is uniform in arity and dirty width. Exact complex diagonal counterexample checks retain all occupied columns, unused sector, literal inverses and ledger; its formal real correction cannot fit the same native layers. The 40-T/90-Clifford/ten-layer bent baseline restores every input and borrowed logical helper. No dimension-growing depth or complete-frame improvement is claimed |
-| Unrestricted zero-clean three-layer degree and paid one-clean query | [Proof home](../../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md), [native mechanism fixtures](../../tests/test_three_layer_native_mechanisms.py) | Analytic whole-algebra proof gives XOR degree at most four and a uniform error floor with zero clean qubits. Exact one-clean AND3 uses 18 T/99 Cliffords/three layers, with all occupied columns, leakage, dirty return and full actual inverse checked; the inverse has 109 Cliffords after reduction. A smaller-count six-layer baseline and a split-specific counterexample with a one-layer simplification delimit the claims. General one-clean degree and full frame depth remain open |
-| Clean-code Clifford rigidity and native probes | [Proof home](../../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md), [exact fixtures](../../tests/test_clean_code_clifford_rigidity.py) | Literal pointwise Clifford stabilizer, exceptional rank-two group, restriction gap and native logical localization are proved analytically. Finite native comparisons include a correlated non-Clifford extension counterexample and a growing-rank no-shared-flip family with a paid one-layer simplification. Clean pair count is not an unrestricted lower-bound invariant; no one-clean three-layer degree theorem is claimed |
+| Unrestricted zero-clean three-layer degree and paid one-clean query | [Proof home](../../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md), [native mechanism fixtures](../../tests/test_three_layer_native_mechanisms.py) | Analytic whole-algebra proof gives XOR degree at most four and a uniform error floor with zero clean qubits. Exact one-clean AND3 uses 18 T/99 Cliffords/three layers, with all occupied columns, leakage, dirty return and full actual inverse checked; the inverse has 109 Cliffords after reduction. A smaller-count six-layer baseline and a split-specific counterexample with a one-layer simplification delimit the claims. This component does not establish a general one-clean degree theorem or determine full frame depth; see the [current frontier](../OPEN_PROBLEM.md) |
+| Clean-code Clifford rigidity and native probes | [Proof home](../../research/depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md), [exact fixtures](../../tests/test_clean_code_clifford_rigidity.py) | Literal pointwise Clifford stabilizer, exceptional rank-two group, restriction gap and native logical localization are proved analytically. Finite native comparisons include a correlated non-Clifford extension counterexample and a growing-rank no-shared-flip family with a paid one-layer simplification. Clean pair count is not an unrestricted lower-bound invariant; this component supplies no general one-clean three-layer degree theorem; see the [current frontier](../OPEN_PROBLEM.md) |
 | Complete quadratic XOR queries | [Proof home](../../research/depth/QUADRATIC_NATIVE_QUERY.md), [exact fixtures](../../tests/test_quadratic_native_query.py) | Two physical parity bases, dirty phase cancellation, constructive polar congruence and paid affine correction give exact optimal depth two with zero clean and one dirty for every nonaffine quadratic. Tests retain complete small matrices, general finite coordinate checks, physical bands, literal native adjoints and asymmetric inverse S counts. The improved cubic baseline is checked on all occupied columns; simultaneous shared-control batching is not inferred |
 | Balanced HRT in-place recovery | [Proof home](../../research/depth/BALANCED_ALGEBRA_PERMUTATION.md), [exact native and algebra fixtures](../../tests/test_balanced_algebra_permutation.py) | Six returned bilinear calls in five native stages pay each in-place multiplier; native full-column phases and adjoints, concurrent shared controls with private T targets, shared dirty coefficient banks, balanced forward/inverse maps and simultaneous ledgers support the analytic $`O(\log r)`$ source depth with $`O(3^r)`$ counts and dirty work. All coefficient inputs are arbitrary data. The fair cardinality-batched baseline is charged; no bounded-depth counterfamily or complete-frame improvement is claimed |
 | Occupied pair transport and whole-family extension boundary | [Proof home](../../research/depth/OCCUPIED_LOGICAL_TRANSPORT.md), [exact fixtures](../../tests/test_occupied_logical_transport.py) | Native pair differences commute all three bands and give full-space Pauli transports; affine derivative quotients and paid common Clifford normalization are analytic. Exact fixtures cover paired axes and both sectors, noncoordinate Boolean quotients, simultaneous clean-controlled alignment, and the arbitrary-rank family where every logical generator is non-Clifford off-code despite an occupied identity target. No unrestricted one-clean degree bound is claimed |
-| Pauli-boundary three-layer degree | [Proof home](../../research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md), [exact fixtures](../../tests/test_pauli_boundary_three_band.py) | The analytic proof retains one-relation matching, dependent singleton cancellation, a five-qubit quantum core, signed Clifford extraction, an affine section and all phase digits. Tests check full native dependent-axis identities, ordered-Pauli Clifford phases and degree-four binary carries. Sign degree at most 2048 and XOR degree at most 2047 require actual Pauli clean images at every band boundary; the general non-Pauli intermediate-code branch remains open |
+| Pauli-boundary three-layer degree | [Proof home](../../research/depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md), [exact fixtures](../../tests/test_pauli_boundary_three_band.py) | The analytic proof retains one-relation matching, dependent singleton cancellation, a five-qubit quantum core, signed Clifford extraction, an affine section and all phase digits. Tests check full native dependent-axis identities, ordered-Pauli Clifford phases and degree-four binary carries. Sign degree at most 2048 and XOR degree at most 2047 require actual Pauli clean images at every band boundary; general non-Pauli intermediate codes are outside this component; see the [current frontier](../OPEN_PROBLEM.md) |
 | One-band non-Pauli code decoding | [Proof home](../../research/depth/NONPAULI_CODE_DECODING.md), [three exact fixtures](../../tests/test_nonpauli_code_decoding.py) | Literal signed canonical bands, every physical decoder/inverse column, bounded-degree control bits, paid native bands and growing induced Clifford displacement rank are checked. The decoder need not be a full Clifford and has its own native cost. A separate analytic zero-pair lemma, excluding active rank two and requiring every probe character to vanish, gives commuting defects and a common determinant cocycle. The later fixed-codimension degree theorem uses that family; the cocycle alone does not provide a uniform bound or an uncharged gauge |
-| Partial-diagonal finite features and interior-code closures | [Proof home](../../research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md), [two exact fixtures](../../tests/test_partial_diagonal_three_layer_features.py) | An active-sector Clifford extension may be non-Hermitian off-sector; pointwise commuting physical pairs may use noncommuting core types. Tests retain native scalars, actual inverses, order-eight count reduction and arbitrary central controls. The analytic finite-feature theorem and full-space reduction give sign/XOR bounds $`2^{26}`$/$`2^{26}-1`$ when either actual interior clean image is Pauli; both-Pauli 2048/2047 remains sharper. Analytic exact repacking also yields 2048/2047 for two non-Pauli interior images with active ranks one and one, without another T band or initialized qubit. General one-clean three-layer degree remains open |
-| Bounded-relation degree and pair-free active ranks | [Proof home](../../research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md), [three exact fixtures](../../tests/test_bounded_relation_native_matching.py) | Signed dependent-axis rank profiles, a nontrivial relation-four strict-majority proxy, and the difference between a norm symmetry and an actual Clifford passage are checked. The analytic theorem bounds degree at fixed relation dimensions and closes actual one-clean circuits with no middle pairs and bounded endpoint active ranks. It does not supply a free physical band for the dependent list. The finite-insertion extension below covers paired cases at fixed active ranks; growing ranks remain open |
+| Partial-diagonal finite features and interior-code closures | [Proof home](../../research/depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md), [two exact fixtures](../../tests/test_partial_diagonal_three_layer_features.py) | An active-sector Clifford extension may be non-Hermitian off-sector; pointwise commuting physical pairs may use noncommuting core types. Tests retain native scalars, actual inverses, order-eight count reduction and arbitrary central controls. The analytic finite-feature theorem and full-space reduction give sign/XOR bounds $`2^{26}`$/$`2^{26}-1`$ when either actual interior clean image is Pauli; both-Pauli 2048/2047 remains sharper. Analytic exact repacking also yields 2048/2047 for two non-Pauli interior images with active ranks one and one, without another T band or initialized qubit. This component does not establish the general one-clean three-layer degree ceiling; see the [current frontier](../OPEN_PROBLEM.md) |
+| Bounded-relation degree and pair-free active ranks | [Proof home](../../research/depth/BOUNDED_RELATION_NATIVE_MATCHING.md), [three exact fixtures](../../tests/test_bounded_relation_native_matching.py) | Signed dependent-axis rank profiles, a nontrivial relation-four strict-majority proxy, and the difference between a norm symmetry and an actual Clifford passage are checked. The analytic theorem bounds degree at fixed relation dimensions and closes actual one-clean circuits with no middle pairs and bounded endpoint active ranks. It does not supply a free physical band for the dependent list. The finite-insertion extension below covers paired cases at fixed active ranks; this component does not give a uniform growing-rank bound; see the [current frontier](../OPEN_PROBLEM.md) |
 | Finite insertion and all fixed endpoint active ranks | [Proof home](../../research/depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md), [two exact fixtures](../../tests/test_finite_insertion_three_layer_features.py) | Full-space native words exhibit rank-profile distortion and a non-C3 insertion on nonisotropic support; complete columns and actual inverses are checked. The analytic theorem retains an arbitrary bounded Pauli-supported insertion commuting with each middle axis. For two non-Pauli interior images its one-clean reduction gives sign bound $`D_{\rm ins}(1,1,1,k_A+k_C-1)`$ and XOR bound one less, including arbitrary middle pairs. The Pauli cases retain their sharper earlier bounds. No free insertion or uniform growing-rank bound is claimed |
 | Easy-transition representation parameters | [Proof home](../../research/depth/CLEAN_TRANSITION_PARAMETERS.md), [relation fixtures](../../tests/test_clean_transition_relation_obstruction.py), [determinant fixtures](../../tests/test_clean_transition_parameters.py) | Independent native lists, literal phases, occupied columns and actual inverses are checked. A degree-three CCZ family with both interiors non-Pauli requires unbounded residual parity-list relation dimension. A separate identity family has all probe characters zero and unbounded determinant codimension, with its first interior image Pauli. Arbitrary-width lower bounds follow analytically; neither family has growing target degree |
 | Rank-one clean-phase interface | [Proof home](../../research/depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md), [exact native fixture](../../tests/test_rank_one_clean_phase_interface.py) | The analytic no-pair reduction retains relation bounds $`(0,1,1,0)`$ and rank-at-most-one active/silent coupling; the C union is independent when coupled. A shared clean flip gives an actual zero-clean extension and sign/XOR bounds five/four. The identity fixture checks full columns, unused action, inverse and unbounded displacement change; it also exhibits unbounded fiber relations. Neither parameter lower-bounds target hardness |
@@ -297,7 +253,7 @@ two-layer theorem without an additional native fixture.
 | Native Majorana Walsh source | [Proof home](../../research/depth/MAJORANA_WALSH_QUERY.md), [exact source fixtures](../../tests/test_majorana_walsh_query.py) | Every native Walsh/probe column, actual inverse, anticommuting address-mask order and resource word is checked. Routing and binary stage checks support the analytic quadratic Clifford ledger. Sharp source count/depth apply to Majorana-preserving synthesis only. The flat-frame equality identity retains its sign; the separate readout receives the exact count obstruction below. The R75 flat-source obstruction is unrestricted but constant |
 | Exact standalone Walsh dual readout | [Proof home](../../research/depth/DUAL_FRAME_READOUT_BARRIER.md), [exact fixtures](../../tests/test_dual_frame_readout_barrier.py) | Downset determinants for p=2 through 6, an actual eight-mode native channel coefficient, the full dirty-table character, a six-call native indicator with phase gauge and actual inverse, and clean-projector contraction are checked. The analytic $`\Omega(m\sqrt p)`$ T-count bound permits arbitrary Clifford interlayers and returned clean/dirty helpers. It does not cover the fused indicator or ordinary approximation; the six-call approximate transfer retains full-isometry and work-return error |
 | Constant translations and center saturation | [Closure proof](../../research/depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md), [center and decoder proof](../../research/depth/NATIVE_CENTER_SATURATION_LIMITS.md) | Arbitrary-rank constant-translation closure, the uniform empty-middle corollary, characteristic and Galois centers, and the exact fixed-Clifford decoder criterion are analytic. No center-dependent fiber decoder or unrestricted degree theorem is inferred |
-| Exceptional middle-defect support and actual origin | [Proof home](../../research/depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md), [exact fixtures](../../tests/test_middle_defect_support_closure.py) | Bounded exterior-support cases, signed permutation defects and a nonpermutation Gram-preserving defect retain Clifford square roots and actual inverses. Original-transition Gram checks and an enlarged-center model guard the physical lift and the false full-closure inference. Partial-support degree five, fixed-overlap and fixed-active-intersection closure are analytic; the unrestricted one-clean case remains open |
+| Exceptional middle-defect support and actual origin | [Proof home](../../research/depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md), [exact fixtures](../../tests/test_middle_defect_support_closure.py) | Bounded exterior-support cases, signed permutation defects and a nonpermutation Gram-preserving defect retain Clifford square roots and actual inverses. Original-transition Gram checks and an enlarged-center model guard the physical lift and the false full-closure inference. Partial-support degree five, fixed-overlap and fixed-active-intersection closure are analytic; the unrestricted one-clean case is not closed by this component; see the [current frontier](../OPEN_PROBLEM.md) |
 | Simultaneous external-center correction | [Proof home](../../research/depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md), [exact fixtures](../../tests/test_external_center_middle_correction.py) | Common middle preimages and rank-one quotient structure retain the actual native basis. Characteristic-parity phases obstruct any one-layer realization of a specified corrected middle. A literal complex source distinguishes clean return from Boolean completion; complex center alignment supports the analytic fixed-displacement closure, without an unrestricted three-layer conclusion |
 | Actual no-shared-flip native source | [Proof home](../../research/depth/ACTUAL_NATIVE_CENTER_WITNESS.md), [exact fixtures](../../tests/test_actual_native_center_witness.py) | The four-wire source, literal occupied CCZ and unused-sector extension, actual inverse, native bands and ledgers are checked on bounded complete inputs. Nonconstant translation, encoded-algebra support and failed whole-image Clifford passage diagnose the mechanism. Safe-axis pruning and the no-shared-flip conclusion have analytic proofs |
 | Approximate query/frame transfer | [Proof home](../../research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md), [bounded fixture](../../tests/test_approximate_query_frame_transfer.py) | A native perturbation's full-operator error certificate and pair-plane geometry are checked in bounded dimensions. Error composition, constant-in-address accuracy, simultaneous R98 resource splices and robust Gaussian count/depth bounds are analytic; no unrestricted approximate source is emitted |
@@ -315,10 +271,10 @@ two-layer theorem without an additional native fixture.
 | Clean-query recovery and promotion | [Proof home](../../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md), [exact fixture](../../tests/test_dirty_promotion_of_clean_queries.py) | Arbitrary off-code native source action, complete selective echoes and sector cover, all physical columns and actual inverses. The added five-wire k=2 receipt checks nonmonomial off-code action, the returned zero-test flag, recovery phase and actual inverse. General-k amplitude-$`1/\sqrt2`$ resources, error, exact-flatness distinction and uniform growing-clean window are analytic; no qualifying shallow source is supplied |
 | Indicator Pauli nullity | [Proof home](../../research/depth/INDICATOR_PAULI_NULLITY.md), [exact fixtures](../../tests/test_indicator_pauli_nullity.py) | Complete Pauli stabilizer-space enumeration, dirty tensor and small-address exception, robust Pauli gap, and a native one-layer incidence witness with an explicit failed joint probe |
 | Joint Fourier words | [Proof home](../../research/depth/JOINT_FOURIER_WORD_LIMITS.md), [exact fixtures](../../tests/test_joint_fourier_word_limits.py) | Bounded Fourier scalar identities, derivative gap diagnostics and normalization-specific one-signal spectra. The two-band half-amplitude extension is analytic, with no new fixture; no general native source or depth lower bound |
-| Occupied Boolean pair center | [Proof home](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md), [exact fixtures](../../tests/test_occupied_boolean_pair_center.py) | Actual physical pairs and common-center dimensions, independent projected silent axes, endpoint-premise counterexample and bounded-feature/growing-displacement distinction; fixed-pair degree remains open |
+| Occupied Boolean pair center | [Proof home](../../research/depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md), [exact fixtures](../../tests/test_occupied_boolean_pair_center.py) | Actual physical pairs and common-center dimensions, independent projected silent axes, endpoint-premise counterexample and bounded-feature/growing-displacement distinction; this component alone supplies no fixed-pair degree bound; see the [current frontier](../OPEN_PROBLEM.md) |
 | Original physical middle-pair insertion | [Proof home](../../research/depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md), [exact fixtures](../../tests/test_original_middle_pair_insertions.py) | All signed pair orientations, exact Clifford correction and clean comparison, complete columns and actual inverse; one actual clean-returning pair has growing dressed support and is explicitly non-Boolean. The [larger-support analysis](../../research/depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction) adds both literal parity-sector encoders and actual inverses to the retained four-wire witness, and checks nonzero alternating displacement. The robust one-band floor and general paid two-band repair are analytic; five/four sector bands do not close three-band Boolean degree. |
 | Determinant-defect subgroup degree | [Proof home](../../research/depth/DETERMINANT_DEFECT_DEGREE.md), [exact fixture](../../tests/test_determinant_defect_degree.py) | An identity-target native representation tests nonconstant intrinsic defect phases, a codimension-one constant-phase subgroup, its literal correcting CNOT and actual inverses. The analytic correction yields degree at most $`D_r`$ for fixed subgroup codimension r, or five when r=0, under the zero-pair/all-zero-character hypotheses. A common t-dimensional central quotient gives $`r\le t(t+3)/2`$; neither parameter is a target-hardness invariant or generally bounded |
-| Joint nonzero-probe algebra and exceptional closure | [Proof home](../../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md), [exact fixture](../../tests/test_joint_nonpauli_probe_algebra.py) | The analytic generic theorem places the whole nonzero-character family in one symplectic-rank-four algebra when both interior clean images are non-Pauli; bounded central phase complexity does not follow. The exceptional clean-factor fixture retains the occupied scalar, all physical columns, actual inverses and the explicit difference on the unused sector. The genuinely exceptional non-S rank-two probe type has a zero-clean three-band logical representation and sign/XOR bounds five/four. The finite-insertion theorem covers fixed active ranks, including rank two, with a larger bound; growing ranks remain open |
+| Joint nonzero-probe algebra and exceptional closure | [Proof home](../../research/depth/JOINT_NONPAULI_PROBE_ALGEBRA.md), [exact fixture](../../tests/test_joint_nonpauli_probe_algebra.py) | The analytic generic theorem places the whole nonzero-character family in one symplectic-rank-four algebra when both interior clean images are non-Pauli; bounded central phase complexity does not follow. The exceptional clean-factor fixture retains the occupied scalar, all physical columns, actual inverses and the explicit difference on the unused sector. The genuinely exceptional non-S rank-two probe type has a zero-clean three-band logical representation and sign/XOR bounds five/four. The finite-insertion theorem covers fixed active ranks, including rank two, with a larger bound; this component does not give a uniform growing-rank bound; see the [current frontier](../OPEN_PROBLEM.md) |
 | Symplectic-module barrier and complete probe conversion | [Proof home](../../research/depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md), [exact fixtures](../../tests/test_symplectic_module_query_barrier.py) | Free-module ranks, Clifford support, literal commutator phases and a complete split query delimit the source barrier. Added probe-to-indicator words retain noncommuting dual labels, address phases, arbitrary output/carrier inputs and actual inverses; an exact allocation regression covers all R91 branches and the quadratic Clifford allowance. The all-size theorem conditionally supplies every R98 word-query budget from a uniform faster-probe source. The added formal Walsh word checks every input, inverse, count and fourth-difference witness; its generally nonnative rotations and parity-only repair failure do not cover general Clifford interference. The faster source is not constructed; scalar-phase readouts and fused whole-word synthesis remain outside the single-module obstruction |
 | Fast returned algebra and arbitrary-table extraction | [Proof home](../../research/depth/ALGEBRA_QUERY_EXTRACTION.md), [exact fixtures](../../tests/test_algebra_query_extraction.py) | Eight paid source occurrences extract any Boolean table without initialized coefficient promises. Dirty linear-program echoes and eight-corner native CCZ cancellation compile ranked subset convolution. Tests retain full small native matrices and adjoints, arbitrary mask/temporary return, source-tree ledgers and compression scopes. Source T/G improves to $`O(r^2 2^r\log r)`$ and dirty width to $`O(r^2 2^r)`$, with logarithmic depth; R98 remains unmet |
 | One-relation projected native matching | [Proof home](../../research/depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation), [exact coefficient fixtures](../../tests/test_projected_band_matching.py) | Dependent Pauli expansions, signs, exact Fourier spectra, independent outside axes and a full native stabilizer lift verify the component. Individual axes are recovered except for a four-axis relation's three-dimensional span; its matching is necessary only. The robust condition acts on an already identified Pauli stabilizer quotient, not an arbitrary intermediate clean code |
@@ -453,6 +409,8 @@ supply the all-size statements within their declared interfaces.
 | Completed-group resynthesis | [Source-program resynthesis §§5–6](../../research/endpoint/SOURCE_PROGRAM_RESYNTHESIS.md#5-completed-groups-admit-independent-gauges-without-connectors) | [source_group_resynthesis](../../compiler_robust_hopf/source_group_resynthesis.py); [tests](../../tests/test_source_group_resynthesis.py) | Exact rational coefficient/mask tables and raw-connector sign witness; bounded complete recovery/gauge words in faithful compact Clifford coordinates, retaining both central sectors and leakage. No large physical-core simulation or gate emitter. |
 
 ### Detailed finite checks
+
+<a id="complete-frame-depth-checks"></a>
 
 The [homogeneous-magnitude theorem R80](../../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 has four [operator fixtures](../../tests/test_homogeneous_depth.py):
@@ -919,6 +877,73 @@ support the exact query substitutions. These component checks do not emit
 the complete complex circuit or establish its asymptotic bounds by testing.
 The existing native fixtures and immutable receipts remain unchanged.
 
+<a id="shared-source-and-recovery-checks"></a>
+
+The [compressed-column theorem](../../research/depth/SUBLINEAR_T_DEPTH.md)
+has separate source, exact dirty-query, complete-recovery and tail proofs.
+Its five [bounded recovery checks](../../tests/test_sublinear_depth_recovery.py)
+use independently written two-target descendant vectors and small numerical
+unitary completions. They check every frame column for unequal signed and
+singular tuples, marker packing, padded-tag overlap, actual inverse use,
+active-only amplification phase, and residual work/flag leakage. Negative
+controls preserve the root while corrupting a marker, substitute a different
+completion's inverse, or apply the active minus globally. The last error
+check includes final guard erasure and exact identity on inactive columns.
+
+Five [binary-gradient calibration checks](../../tests/test_phase_gradient_calibration.py)
+reuse the emitted helper-free TTK adder. Exhaustive small register inputs
+cover occupied programs, gradient offsets, both target signs, inactivity,
+and actual inverses. A two-bit Clifford+T matrix checks literal phases;
+larger small kickback blocks check the real rotation. A coarse native
+product source produces nonzero leakage and verifies its complete-output
+error bound. Negative controls drop a guard or target sign, or substitute
+an ideal preparation inverse. The source is deliberately coarse, not an
+implementation of arbitrary-accuracy one-qubit synthesis.
+
+The [shared-gradient checks](../../tests/test_shared_gradient_recovery.py)
+add a literal two-bit compute/swap/uncompute adder, occupied-work inactive
+echoes, and a complete coefficient-bank phase table. Recovery-shaped
+noncommuting words test one native preparation and its actual inverse at
+the two boundaries, including nonzero final leakage and a preparation-error
+bound independent of the number of middle calls. Counterchecks reject a
+reflection that tests the live gradient, a substituted ideal inverse, and
+a discarded coefficient-bank scalar phase. Programmable angle accuracy
+requires a zero program; the fixed outer damping instead ignores program
+contents. These checks use small exact permutations and matrices of
+dimension at most 64. They test the local identities and source boundary
+comparison, not a complete emitted amplitude-amplification compiler.
+
+The [grouped-terminal checks](../../tests/test_grouped_terminal_depth.py)
+combine literal native H/T/T-dagger interpretation with complete-word
+prefetch and actual unloading. They test occupied inactive programs,
+predicates and dirty helpers, with negative controls for an omitted phase
+correction, a mutable query address and a missing activity guard. Integer
+checks cover rounded group sizes, execution order and the source/coarse
+balance. Their small column batches and illustrative allocation constants
+do not establish a scalable emitter or a numerical crossover.
+
+The [shared binary terminal checks](../../tests/test_shared_binary_terminal.py)
+add an exact sparse two-stage, sixteen-type accepted product on every
+source/logical column. Noncommuting coarse words produce coherent prefix
+addresses for the next stage; failure amplitudes and literal complex phases
+are retained. The source is unprepared only at the final boundary. Missing
+history and intermediate source projection give different accepted blocks.
+This algebra fixture supplies coefficient-table actions and folds the local
+suffix predicate into atom rejection; it does not emit the full query or
+production-precision circuit. Separate native shift/history words check all
+occupied register inputs, dirty-helper return, literal phases and actual
+inverses. A native source/body/inverse word checks inactive cancellation on
+occupied coherent inputs. Wrong inverse ordering, a raw disabled source,
+and preparation substituted for its inverse have negative controls. The
+pinned generic source/shift/history receipts remain unchanged.
+
+These fixtures do not emit the derived Boolean tables or a complete native
+descendant loader. The existing native dirty-query, shared-control phase,
+returned-helper predicate and nonuniform-indicator tests cover their stated
+finite interfaces. Terminating source selection, polynomial and arithmetic-table overhead
+absorption, and the same-circuit asymptotic theorem are proved analytically;
+no numerical extrapolation or efficient preprocessing claim is made.
+
 The [packed rejection-bank proof](../../research/endpoint/PACKED_REJECTION_BANKS.md)
 has [integer-routing and full-unitary diagnostics](../../compiler_robust_hopf/packed_rejection_banks.py)
 and [tests](../../tests/test_packed_rejection_banks.py). They distinguish exact
@@ -1093,6 +1118,8 @@ $`O(N+\mathcal B_K)`$ cost. It charges the actual selected bottom trace
 and imposes no exponent promise on the upper tree. The former exponent
 envelopes are corollaries. These finite identities are not a variable-size
 native emitter.
+
+<a id="count-source-checks"></a>
 
 The separate [growing-source helper](../../compiler_robust_hopf/growing_precision_source.py)
 records exact rational refinement factors and symbolic source scales.

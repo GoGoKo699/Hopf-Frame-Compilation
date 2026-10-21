@@ -296,13 +296,13 @@ inverse polynomial in n. It supersedes the resource bound of the earlier
 [compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision),
 whose separately charged early and terminal source proofs remain available.
 
-At fixed accuracy, [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md)
-gives $`D_T=O_L(N/b^2+\log_2(n+2))`$ with the same one-clean
-allocation, literal widths, and optimal T-count. Three R89 reductions
-leave a small terminal; dirty program queries select local catalogue
-factors whose commutator returns two borrowed arrays. R79 remains the
-all-precision statement of D. R90 claims neither efficient preprocessing
-nor a scalable emitter.
+The strongest research upper bound is now
+[R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md): all-precision depth
+$`O(NL/b^2+L+\log_2(n+2))`$ at the same one-clean real/complex
+reservations and optimal count budgets. Its full-operator proof prices
+borrowed precision, fast references and direct-prefix programming.
+R79 remains selected Result D; the [current frontier](docs/OPEN_PROBLEM.md)
+separates this stronger bound from open optimality.
 
 The complex theorem concerns the prescribed magnitude frame, with supplied
 leaf phases; it is not arbitrary complex-unitary synthesis. T-depth permits

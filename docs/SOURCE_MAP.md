@@ -80,269 +80,102 @@ and [matched-program consequence](QBP_CONSEQUENCE.md).
 
 ## 4. Results established in this repository
 
-Write $N=2^n$, $q=n+a+b$, and
-$`L=\max\{6,\lceil\log_2(1/\eta)\rceil\}`$ for $0\lt\eta\le1/64$.
-Upper bounds hold for every parameter tuple; matching lower bounds are
-worst-case statements over the specified family.
+The [publication scope](../manuscript/PUBLICATION_SCOPE.md) owns the
+selected formulas, precision ranges and literal reservations. The
+[resource frontier](OPEN_PROBLEM.md) distinguishes those claims from
+the strongest research upper bound, R96, and the remaining depth question.
+R79 remains selected Result D. This page maps dependencies rather than
+restating their resource ledgers.
 
-| Selected result | Local proof and construction | Imported premises and boundary |
+| Claim | Local construction | Imported premises and boundary |
 |---|---|---|
-| **A. Exact complete frame**: size $\Theta(N)$ and depth $\Theta(n+N/(n+m))$ for every clean budget | [Compiler theorem](COMPILER_THEOREM.md): strict-zero echo, conditioned tree cut, decoder, explicit router, and local lower-bound reductions; R1–R11 | C1–C5 and H1–H9; real and phase-dressed complex magnitude frames; exact work return. CNOT count is $\Theta(N)$ for $n\ge2$ and zero for $n=1$. |
-| **B. Matching finite-precision frontier**: $T^\star=\Theta(\sqrt{NL}+L+NL/q)$ | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete corrections, shared-source composition; R12–R16 | F1–F5, F10–F11; sufficient clean reservation $a\ge C(n+h)$, $h=1+\lceil\log_2(L+n+2)\rceil$; real and complex magnitude families; $O(NL)$ Clifford cost. |
-| **C. One-clean count frontier**: $`T=O(N+L)`$ at base width; $`T^\star=\Theta(\sqrt{NL}+L+NL/b)`$ at doubled base width | [One-clean growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier); R64–R65, with R25's small-dimension corollary | Every $`n\ge1`$, $`L\ge6`$, fixed $`a=1`$; base $`B=L+n+7`$ real, $`B=L+n+8`$ complex magnitude; banked match at $`b\ge2B`$; $`G=O(NL)`$. Exact-base matching at $`L\ge\max\{6,n\}`$. Existing F2–F5, F8–F9, F11, F19–F20 and R17/R20/R25/R62/R63 interfaces; full isometry, literal phases and actual inverses. |
-| **D. One-clean optimal count and depth bounds** | [Precision-uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), R79, using R78's native spectral decoder and R72's one-clean terminal, width/precision fallbacks and literal diagonal | Every $`n\ge1`$, integer $`L\ge6`$, one clean flag; real $`b\ge17(L+n+7)`$, phase-dressed complex magnitude $`b\ge17(L+n+8)`$; full error $`2^{-L}`$ and absolute constants. The original per-call descendant loader's precision factors, enlarged protected bank, native queries, actual inverses and full work return are charged. Half-error factors share the sole flag and dirty pool; no new external premise or unrestricted optimal-depth claim. |
-| **Fixed-accuracy corollary of D**: $`D_T=O_\eta(N/b^2+\log^2(n+2))`$ | [Subtree-projector decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md), R78: native transported reflections and coherent spectral-label erasure replace early amplitude amplification | Every fixed $`0\lt\eta\le1/64`$, all $`n\ge1`$, one clean flag, and the same family-specific dirty thresholds; optimal $`T=O_\eta(\sqrt N+N/b)`$, $`G=O_\eta(N)`$, and full initialized-isometry error. R79 makes the precision dependence absolute while retaining R78's decoder algebra and this fixed-accuracy statement. No new import or unrestricted optimal-depth claim. |
-| **Retained linear-precision depth predecessor**: $`D_T=O(NL/b^2+F(n,L))`$ | [Compressed-column construction](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision), [coherent descendant loader](../research/depth/COHERENT_DESCENDANT_LOADER.md), [shared-gradient early recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md), [shared binary terminal source](../research/depth/SHARED_BINARY_TERMINAL.md), and [shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md); R66 | Some absolute $`c>0`$, integers $`6\le L\le cn`$, two clean flags, and every $`b\ge17(L+n+7)`$; complete real frames, error $`2^{-L}`$, and simultaneous $`T=O(\sqrt{NL}+NL/b)`$, $`G=O(NL)`$, with absolute constants. F5 supplies the early Boolean-state premise. Terminal reuse combines R12/R14's compact binary source and shared-source interface with F1/F10/F11's geometric weights, coherent history and LCU recovery; R20 supplies exact bounded controls. Native loading, conditional storage, charged queries and recovery retain the full return contract. No new external premise or unrestricted optimal-depth claim. |
-| **Endpoint count theorem and complex-magnitude corollary**: worst-case $`T^\star=\Theta(N)`$ | [Growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) and [complex-magnitude composition](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); R62 | Existing F2/F5/F8–F9/F11/F19–F20 ingredients through the retained native interfaces; $`a=2,b=N+n+7,\eta=2^{-N},L=N,n\ge3`$. Complete prescribed real and phase-dressed complex magnitude frames; literal phases and full work-return error. No additional Clifford-count or T-depth bound. |
-| **Precision-uniform two-clean count**: $`T=O(N+L)`$ | [Uniform growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count); R63 | Existing R17/R20/R25/R62 native interfaces, with the precision-parametrized disjoint-block/state-source form; $`n\ge3`$, integer $`L\ge6`$, $`\eta=2^{-L}`$, $`a=2`$, $`b\ge L+n+7`$ for real frames and $`b\ge L+n+8`$ for phase-dressed complex magnitude frames. Universal constants, full initialized-isometry error, and actual inverses; no new Clifford-count or T-depth bound. |
+| A: exact complete frame, R1–R11 | [Compiler theorem](COMPILER_THEOREM.md): borrowed-suffix echo, conditioned tree cut, decoder, router and local lower-bound reductions | C1–C5 and H1–H9; prescribed real and phase-dressed complex magnitude frames, exact workspace return |
+| B: sufficient-clean T-count, R12–R16 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete residual corrections and shared-source composition | F1–F5 and F10–F11; sufficient clean allocation, complete targets and elementary Clifford accounting |
+| C: one-clean count, R64–R65 | [Uniform growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), with R25's small-dimension baseline | F2–F5, F8–F9, F11 and F19–F20 through R17/R20/R25/R62/R63; exact-base and doubled-base matching have different hypotheses; no T-depth consequence |
+| D: one-clean simultaneous count/depth, R79 | [Uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's native spectral decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and R72's one-clean terminal, width/precision splice and literal diagonal | Existing descendant-source, native query, recovery and conditional-work premises; all per-call precision, protected storage, actual inverses and leakage are charged; no unrestricted depth optimum |
+| Stronger research upper, R96 | [All-precision linear-depth theorem](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md): borrowed precision, fast references and directly programmed terminal | Existing exact bounded-control, source, recovery and query premises; same one-clean real/complex reservations and full operator contract; no new imported premise, efficient-preprocessing or general-emitter claim |
 
-For R66, the depth term is
+The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
+retains the full statements, separate state-based QBP results and earlier
+resource regimes. Upper bounds hold for all admitted parameter tuples;
+matching lower bounds are worst-case over the named family. The exact and
+Clifford+T constructions do not assert simultaneous optimality of one
+circuit in both gate models.
 
-```math
-F(n,L)=\min\{nL,(\sqrt n+L)\log_2(n+2)\}.
-```
+### Count construction dependencies
 
-At sufficient $`b=\Theta(\sqrt{NL})`$, $`L=O(\sqrt n)`$ retains
-$`O(\sqrt n\log(n+2))`$ depth, and $`L=o(n/\log(n+2))`$ gives
-sublinear depth within the stated precision range.
+| Result | Dependency and local contribution |
+|---|---|
+| R62: two-clean high-precision endpoint | [Mixed local gauges](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md), [fixed-bottom disjoint blocks](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks), [disjoint state extensions](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources), R20's conditional guards and R25's dirty scalar words supply the native interfaces. The [growing-source proof](../research/endpoint/GROWING_SOURCE_COMPILER.md) supplies growing arenas, exact refinement, compensated overlap and summable charges. |
+| R62: complex endpoint and lower bound | R17's packed literal diagonal gives the [same-wire complex corollary](../research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint); the [single-angle witness](FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness) applies to both families. This retains the sharper two-clean complex reservation. |
+| R63: uniform precision | The [two-clean proof](../research/endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count) separates logical source size from accuracy. Its [high-precision block/state variant](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form) and R17's low-precision/bounded-dimension baseline cover complementary regimes. F3/F4 match the exact base width only under the stated precision condition. |
+| R64: one-clean recovery | The [whole-source conjugate lift](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#2-lift-the-whole-high-level-word) borrows the phase signal outside every core while retaining the initialized recovery anchor. Both conjugate sectors give the same real target; actual dirty replay and leakage are included. R25 supplies literal complex phase composition. |
+| R65: banked count | [Banked high-precision interfaces](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces), self-borrowed selectors and exact returned word banks preserve complete masks. R25 covers low precision and bounded dimension, including one and two logical qubits. F3/F4 supply matching count bounds; the arbitrary-diagonal complex subfamily retains the canonical-domain lower bound. |
+| R52–R53: separate reductions | The [bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) and [regular tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md) retain their factor-coverage and Cayley-synthesis hypotheses; they are not substitutes for the complete-frame theorem. |
 
-The separate [entry-indexed encoding limit](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-(R67) gives a sharp square-root normalization barrier within its explicit
-row/column factorization contract. It is not a native-depth lower bound.
+R62–R65 reuse existing synthesis and lower-bound premises. Their complete
+proofs price guards, every source, actual inverse, dirty/reference action
+and work return; neither the count theorem nor its banked extension alone
+supplies a depth bound.
 
-For D's all-precision R79 theorem, let
+### Depth construction dependencies
 
-```math
-F_{79}(n,L)=\min\{nL,(L+\log_2(n+2))\log_2(n+L+2)\}.
-```
-
-The all-precision same-circuit bounds are
-
-```math
-T=O\!\left(\sqrt{NL}+L+\frac{NL}{b}\right),\qquad
-D_T=O\!\left(\frac{NL}{b^2}+F_{79}(n,L)\right),\qquad G=O(NL).
-```
-
-Count is optimal throughout. For $`L>N/n^2`$, the stronger depth
-bound replaces $`F_{79}`$ by L. Simultaneous worst-case count and depth matching
-holds through $`b\le\sqrt{NL/F_{79}(n,L)}`$, on every nonempty interval
-above $`17(L+n+7)`$ for real frames or $`17(L+n+8)`$ for
-phase-dressed complex magnitude frames. R79 retains literal leaf phases
-and includes both factors' leakage in the initialized-isometry bound.
-
-At $`L=O(\log(n+2))`$ and sufficient $`b=\Theta(\sqrt{NL})`$,
-R79 gives $`O(\log^2(n+2))`$ depth, including inverse-polynomial
-error in n. R45's [retained baseline](UNIFORM_PRECISION_DEPTH.md), R70,
-R71 and R66 keep their original two-clean statements. R72 retains its
-earlier one-clean envelope and supplies the native terminal, width/precision
-splice and literal-diagonal interfaces. The additive $`F_{79}`$ and L
-terms have no unrestricted matching depth lower bound.
-
-The separate [clean-aware obstruction](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md),
-R73, gives constant lower bounds with arbitrary Clifford interlayers and
-dirty width. Each fixed clean budget has a positive three-layer error
-floor, now explicit by R74's independent
-[elementary initialized-sector proof](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector).
-With no clean work the witness's exact three-layer floor is approximately
-0.169714, attained by a Clifford; integer precision L ≥ 3 requires four
-layers. Its one-clean two-layer witness requires three layers for L ≥ 8.
-F35/F44 supply stabilizer facts. F43 supplies the retained scalar-closure
-proof, but is not needed for the elementary fixed-clean obstruction.
-
-The [four-layer crossing-rank theorem](../research/depth/FOUR_LAYER_CROSSING_RANK.md),
-R74, gives an explicit error floor at every fixed clean budget and middle
-crossing-rank bound. Its elementary initialized-sector proof requires
-minimum crossing rank $`\Omega_a(\sqrt L)`$ at error $`2^{-L}`$,
-over all native four-layer decompositions. F44 supplies symplectic
-realization and stabilizer coordinates; F43 remains a premise only of
-the retained scalar-closure proof. The rank condition does not exclude
-four layers with positive clean work and unbounded crossing rank.
-
-The [four-layer operator-rigidity theorem](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md),
-R75, gives a uniform operator-norm separation of approximately 0.270598
-between distinct two-layer Pauli images. It strengthens the zero-clean
-witness to a four-layer error floor of approximately 0.135299, with
-arbitrary returned dirty width: integer precision L ≥ 3 requires at least
-five T layers. Its proof uses F35/F44's stabilizer facts, R73's local phase
-gap and unit-circle arithmetic, and exact Pauli commutants. With one clean
-qubit it proves only terminal clean-Z preservation below that threshold.
-It does not establish a scalar four-layer transfer gap or a five-layer
-lower bound with positive clean work.
-
-The [one-clean midpoint theorem](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
-R76, gives a five-layer obstruction when a four-layer realization admits
-a Pauli or Hermitian-Clifford encoded clean observable at its two-layer
-midpoint, with unrestricted dirty width and middle crossing rank. It uses
-R75's phase-polynomial extension, R74's finite-boundary argument, and a
-local compressed-commutant lift. A separate cyclotomic norm argument
-excludes finite-projective-order occupied blocks below error $`1/196608`$.
-These proofs add no imported premise. Terminal return alone does not
-imply either restriction; the unrestricted one-clean question remains open.
-
-The [inner clean-spread theorem](../research/depth/ONE_CLEAN_INNER_SPREAD.md),
-R77, uses a flat Pauli expansion of the inner clean Clifford core to
-extend R76 to non-Clifford midpoints at bounded inner spread. R74's
-existing equal-coefficient finite-boundary theorem supplies the gap;
-R76 supplies compressed-commutant lifting and phase discreteness.
-It forces minimum clean-active spread $`\Omega(\log\log L)`$
-in both outer layers, independently of middle crossing rank. Its exact
-two-qubit counterexample rules out a universal common-sign-flip
-certificate, not the unrestricted rigidity conjecture. No new external
-premise or compiler upper bound is introduced.
-
-The [outer-overlap theorem](../research/depth/OUTER_OVERLAP_RIGIDITY.md),
-R97, derives a physical-axis normalizer, shared-image compatibility and a
-bounded Clifford expansion from actual native encoder pairs. Removing
-individual axes inside the common intersection and extracting a
-simultaneous diagonal Clifford extend the gap to bounded misalignment
-relative to either physical list. R74 supplies the finite-boundary
-estimate; R76 supplies phase-polynomial closure, compressed-commutant
-lifting and occupied phase discreteness; R77 supplies the flat-expansion
-argument. Zero misalignment gives R76's uniform floor. No new external
-premise, compiler upper bound or unrestricted one-clean gap is claimed.
-The [representation limits](../research/depth/FOUR_LAYER_REPRESENTATION_LIMITS.md)
-separate the exact same-space descent obstruction from the
-representation-dependent center-mixing examples.
-
-The retained R66 compressed-column predecessor has a separate dependency
-chain. Its improvement over R45 retains that earlier uniform theorem's
-literal threshold on the stated subrange:
+R66 is a retained two-clean, linear-precision predecessor, not the current
+general frontier. Its [full theorem](../research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
+keeps its own range, source proofs and explicit resource ledger.
 
 | Obligation | Source and local proof boundary |
 |---|---|
-| Coarse real-state approximation | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3): Boolean-phase state preparation and LCU/amplification architecture; its ancillary allocation is not imported |
-| Coherent descendant source | [Loader Sections 2–5](../research/depth/COHERENT_DESCENDANT_LOADER.md#2-a-strictly-certifiable-geometric-expansion): local strict certified residual recursion, preserved tag/prefix sectors, calibrated real rotations, exact inactive identity, and source-isometry error including leakage |
-| Native data access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): returned arbitrary-input XOR/phase queries, private non-Clifford supports under shared read-only addresses, and charged mask/guard words |
-| Early shared precision and recovery | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md): native source preparation once, priced compute/swap/uncompute arithmetic and coefficient tables, ideal-gradient invariant sector, and recovery reflection excluding the live core; the older per-call calibration uses TTK's exact adder |
-| Complete-column recovery and uniform closure | [Depth construction](../research/depth/SUBLINEAR_T_DEPTH.md#3-compress-the-complete-columns): depth tags, normalization $`\sqrt K`$ with $`K=O(n)`$, full-unitary comparison, literal amplification signs, and a precision-dependent terminal cutoff with absolute count, width, and error constants |
-| Terminal binary source and history | [Shared binary terminal proof](../research/depth/SHARED_BINARY_TERMINAL.md): R12/R14's compact source and accepted-shift composition, F1/F10/F11's geometric weights, coherent failure history and LCU recovery, and a constant sixteen-type one-layer residual dictionary; a logarithmic protected suffix pays source preparation once per stream |
-| Native terminal controls and coarse programs | R20's [bounded-control lemma](CONDITIONAL_SUFFIX_COMPILER.md#exact-conditioning-without-a-clifford-count-penalty) and retained [whole-word prefetch](../research/depth/GROUPED_TERMINAL_DEPTH.md#2-prefetch-the-exact-coarse-native-word): literal guarded phases, stable addresses and actual unloading; no grouped column-forest residual is needed in the selected terminal kernel |
-| Count-efficient deepest layers | [Retained nonuniform indicator](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence) and capped operator source: linear indicator count, separate simultaneous dirty reservations, and complete tail error |
+| Coarse real-state approximation | [GKW v3, Lemma 3.2 and Section 3.3](https://arxiv.org/html/2411.04790v3#S3): Boolean-phase preparation and LCU/amplification architecture; its ancillary allocation is not imported |
+| Coherent descendant source | [Loader Sections 2–5](../research/depth/COHERENT_DESCENDANT_LOADER.md#2-a-strictly-certifiable-geometric-expansion) and [complete loader](../research/depth/COHERENT_DESCENDANT_LOADER.md): strict certified recursion, preserved tag/prefix sectors, calibrated rotations, exact inactive identity and leakage-aware source error |
+| Native access | [Shallow dirty queries](../research/depth/SHALLOW_DIRTY_QUERIES.md): arbitrary-input XOR/phase queries, private non-Clifford supports under shared read-only addresses, charged masks and guards |
+| Early shared precision | [Shared-gradient recovery](../research/depth/SHARED_GRADIENT_RECOVERY.md): one paid preparation, compute/swap/uncompute arithmetic and tables, ideal-gradient invariant sector, and reflection excluding the live core; F32 supplies the retained per-call calibration adder |
+| Complete-column recovery | [R66's column construction](../research/depth/SUBLINEAR_T_DEPTH.md#3-compress-the-complete-columns): depth tags, square-root normalization, full-unitary comparison, literal amplification signs and terminal cutoff |
+| Terminal source and history | [Shared binary terminal](../research/depth/SHARED_BINARY_TERMINAL.md): R12/R14 compact source and accepted-shift composition; F1/F10/F11 geometric weights, coherent failure history and LCU recovery; a sixteen-type one-layer dictionary and protected suffix |
+| Conditional controls and programs | [R20's bounded-control lemma](CONDITIONAL_SUFFIX_COMPILER.md#exact-conditioning-without-a-clifford-count-penalty) and [whole-word prefetch](../research/depth/GROUPED_TERMINAL_DEPTH.md#2-prefetch-the-exact-coarse-native-word): literal guarded phases, stable addresses and actual unloading |
+| Deepest layers | [Rectangular nonuniform query](../research/depth/NONUNIFORM_DIRTY_INDICATOR.md#5-a-count-efficient-rectangular-blocked-query-consequence), capped operator source and [uniform baseline](UNIFORM_PRECISION_DEPTH.md): simultaneous dirty reservations, complete tail error and fallback |
+| Separate interfaces | [Grouped terminal](../research/depth/GROUPED_TERMINAL_DEPTH.md) retains its column-forest proof; the [entry-indexed limit R67](../research/depth/ENTRY_INDEXED_ENCODING_LIMIT.md) concerns its stated row/column factorization, not unrestricted depth |
 
-The [grouped terminal theorem](../research/depth/GROUPED_TERMINAL_DEPTH.md)
-retains its separate $`L^{3/2}`$ depth contribution and column-forest proof.
-The terminal source is distinct from the early binary phase gradient;
-neither reuse mechanism is supplied as a free precision state. R79 uses
-the original per-call descendant loader and R78's spectral decoder in
-place of the shared-gradient and overlap-recovery rows. Its terminal uses
-R72's one-clean relocation and uncapped deepest-layer interface, with
-the source and query costs kept explicit in the uniform proof.
+R79 uses the original per-call descendant loader and R78 spectral decoder
+instead of the early shared-gradient/overlap-recovery route. Its terminal
+uses R72's one-clean relocation and uncapped deepest-layer interface.
+R45, R66, R70 and R71 retain their original two-clean statements; the
+terminal binary source and early binary phase gradient are distinct
+charged mechanisms, never supplied precision states.
 
-The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
-also records supporting corollaries, separate state-based QBP theorems, and
-research constructions. Their individual hypotheses are not suppressed by
-the selected claims.
+### Lower-bound dependencies and scope
 
-R62 uses the [mixed local gauges](../research/endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
-[disjoint-block compilation of the fixed bottom levels](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
-and [disjoint state extensions](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
-together with R20's conditional-suffix interface and R25's actual dirty
-scalar words. The local proof supplies the growing arenas, exact source
-refinement, compensated overlap, and summable native charges. R17's packed
-literal diagonal gives the complex-magnitude corollary on the same wires;
-the [single-angle precision witness](FAULT_TOLERANT_COMPILER.md#103-an-explicit-width-independent-precision-witness)
-gives $`2N-1`$ for both families. This composition imports no new synthesis
-premise or literature-priority claim.
+| Result | Imported or retained input | Local contribution and limit |
+|---|---|---|
+| [Clean-aware R73](../research/depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md) | F35/F44 stabilizer facts; F43 in the retained scalar-closure proof only | Fixed-clean three-layer obstruction; [R74's initialized-sector proof](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector) independently makes it explicit without F43 |
+| [Crossing-rank R74](../research/depth/FOUR_LAYER_CROSSING_RANK.md) | F44 symplectic realization and stabilizer coordinates | Active-span normalization and explicit fixed-clean rank-dependent gap; unbounded crossing rank is not excluded |
+| [Operator rigidity R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md) | F35/F44, R73 local phase gap and unit-circle arithmetic | Two-layer Pauli-image isolation and exact commutants yield the zero-clean five-layer lower bound; at one clean qubit, only terminal clean-Z preservation follows |
+| [Midpoint R76](../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md) | R75 phase-polynomial extension and R74 finite-boundary form | Compressed-commutant lift for Pauli/Hermitian-Clifford midpoints; separate local cyclotomic norm argument for finite-projective-order blocks; terminal return alone does not imply either hypothesis |
+| [Inner spread R77](../research/depth/ONE_CLEAN_INNER_SPREAD.md) | R74 finite-boundary theorem and R76 lifting/phase discreteness | Flat Pauli expansion covers bounded inner spread; its exact common-sign-flip counterexample limits that certificate, not unrestricted rigidity |
+| [Outer overlap R97](../research/depth/OUTER_OVERLAP_RIGIDITY.md) | R74 estimate, R76 lifting/closure and R77 flat expansion | Physical-axis normalizer, shared-image compatibility and diagonal-Clifford extraction give a bounded-misalignment gap; [representation limits](../research/depth/FOUR_LAYER_REPRESENTATION_LIMITS.md) distinguish same-space descent from non-invariant center mixing |
 
-R63 separates the dyadic source precision from the logical dimension:
-the retained arenas depend on N, while the source charges sum to $`O(L)`$.
-The [high-precision disjoint-block/state-source variant](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#precision-parametrized-high-precision-form)
-supplies the same complete native interfaces for $`L>N/n^2`$ beyond a
-universal dimension threshold. R17 supplies both the $`L\le N/n^2`$
-splice and the bounded-n, arbitrary-L fallback. For complex magnitude
-frames, precision $`L+1`$ in the real factor and R17's packed literal
-diagonal give the stated $`L+n+8`$ reservation. No additional external
-premise is imported, and R62 retains its tighter complex endpoint width.
-For R63 at exactly $`b=L+n+7`$ (real) or $`b=L+n+8`$ (complex
-magnitude), $`L\ge\max\{6,n\}`$ makes physical width $`q=\Theta(L)`$.
-The existing F3/F4 lower bound $`\Omega(NL/q+L)`$ therefore gives
-worst-case $`\Theta(N+L)`$ at these widths. The uniform upper bound
-also allows larger dirty allocations; this matching corollary does not.
-
-R64 uses the [whole-source conjugate lift](../research/endpoint/CONJUGATE_SIGNAL_RECOVERY.md#2-lift-the-whole-high-level-word)
-before outer recovery. The borrowed phase signal stays outside every core;
-the initialized anchor marker and logical recovery coordinates remain.
-The same real target is obtained in both conjugate sectors, with actual
-dirty replay and leakage included. R25's one-clean literal diagonal then
-composes the complex magnitude frame at precision $`L+1`$.
-
-R65 uses the [banked high-precision interfaces](../research/endpoint/DISJOINT_BLOCK_COMPILER.md#banked-high-precision-interfaces)
-and the retained exact dirty word-bank query. Self-borrowed selectors and
-returned banks implement the same complete masks. Their summed native
-charges remove the repeated precision term, and the full Clifford ledger
-is $`O(NL)`$. At the stated bank thresholds, $`q=n+1+b=\Theta(b)`$,
-so F3/F4's existing $`\Omega(\sqrt{NL}+L+NL/q)`$ bound matches the
-upper construction. C uses R25's layerwise banked baseline for
-$`L\le N/n^2`$, where $`nL\le\sqrt{NL}`$, and for bounded n.
-The cases $`n=1,2`$ have $`N\le4`$, so that baseline costs $`O(L)`$
-and the root-angle witness supplies the matching $`\Omega(L)`$.
-R20's exact conditional-work guards remain a dependency; its grouped
-precision bound is a separate retained corollary. R64–R65 introduce no
-new external synthesis or lower-bound premise, priority claim, or
-T-depth guarantee. For complex magnitude frames, the arbitrary-diagonal
-subfamily supplies the lower bound even on the canonical angle domain.
-
-R17 includes the packed two-clean diagonal reservation. The endpoint
-[bounded-factor bridge](../research/endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md)
-and [regular tree reduction](../research/endpoint/TREE_CAYLEY_REDUCTION.md)
-are R52–R53. Their factor-coverage and Cayley-synthesis hypotheses distinguish
-these constructive reductions from the complete-frame upper bounds.
+The [frontier](OPEN_PROBLEM.md#constant-depth-frontier) owns the exact
+thresholds and quantifiers. These statements do not prove unrestricted one-clean four-layer rigidity or
+dimension-growing optimal depth.
 
 ## 5. Fault-tolerant sources and contribution boundaries
 
-The later [structured common-flag theorem R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
-uses the existing one-qubit synthesis, read-only conjunction and dirty-query
-interfaces, the [quadrant-sign gauge](../research/endpoint/PRECISION_GAUGE_COMPILER.md#1-contract-and-effective-normalization),
-and R72/R79's literal fallback and phase composition. Its new circuit
-identity uses the same actual product factors in source and conjugator,
-giving exact tag/work return. Its common-angle certified perturbation
-preserves the structured promise. The
-[recursive terminal R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md)
-uses R78's full-mode decoder and the sharp rectangular query with an
-unchanged external prefix. Its uniform-height extension covers every
-$`0\le M\le n`$ with terminal depth
-$`O_L(N/b^2+\ell\log_2(M+2))`$, where $`\ell=\log_2(n+2)`$,
-at the same one-clean reservation and count orders. The extension proves
-the resource sums uniformly in M; it introduces no new source premise.
-Both add local proofs rather than new external premises. Neither replaces
-R79's general all-precision statement.
+The following supporting-family constructions reuse existing premises.
+Their local promises and ranges remain in their proof homes, not in a
+second general resource ledger.
 
-The [bounded-density theorem R82](../research/depth/BOUNDED_DENSITY_DEPTH.md)
-combines the retained precision gauge, native real-vector source, R80's
-common-flag word, sharp dirty queries, and R66's
-[dimension-free isometry extension](../research/depth/SUBLINEAR_T_DEPTH.md#4-from-a-source-error-to-an-honest-unitary-comparison).
-Its finite variance and Carleson argument is proved within the chapter;
-the sparse Schur row/column sources, constant-normalization recovery, and
-recursive relative-density ledger add no new external premise. The
-[product-reference corollary](../research/depth/BOUNDED_DENSITY_DEPTH.md#12-positive-product-reference-corollary)
-requires an effectively supplied strictly positive classical product
-distribution and fixed upper/lower density-ratio bounds. Its constants
-are independent of the reference biases; reference zeros and an efficient
-search for a suitable reference are outside the statement. This is a
-fixed-accuracy supporting-family compiler. R79 remains the general
-frontier.
+| Supporting result | Retained ingredients and local addition |
+|---|---|
+| [Common-flag R80](../research/depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md) | One-qubit synthesis, conjunction/query interfaces, [quadrant-sign gauge](../research/endpoint/PRECISION_GAUGE_COMPILER.md#1-contract-and-effective-normalization), and R72/R79 fallbacks. Actual shared product factors give exact return; certified common-angle perturbation preserves the promise. |
+| [Recursive terminal R81](../research/depth/RECURSIVE_TERMINAL_DEPTH.md) | R78 full-mode decoder and rectangular query with unchanged external prefix. The uniform-height resource sums are local; the early decoder must still be charged. |
+| [Bounded-density R82](../research/depth/BOUNDED_DENSITY_DEPTH.md) | Precision gauge, native real-vector source, R80 common flag, sharp queries and [R66 isometry extension](../research/depth/SUBLINEAR_T_DEPTH.md#4-from-a-source-error-to-an-honest-unitary-comparison). Finite variance/Carleson bounds, sparse Schur overlaps and recursive density control are local. |
+| [Positive-product R82 corollary](../research/depth/BOUNDED_DENSITY_DEPTH.md#12-positive-product-reference-corollary) | Effectively supplied strictly positive classical reference and fixed density-ratio bounds; constants are independent of biases. Reference zeros and efficient reference search are not covered. |
+| [Affine orientations R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md) and [deterministic frames R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md) | Existing sign gauge/queries plus paid triangular affine leaf maps and short-tag marker corrections, or exact selected involutions, signed strings and last-deviation inverse; no free in-place permutation. |
+| [Geometric-band R85](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) | GKW-based sources, R78 reflections, native queries/echoes, sign/phase composition and the logarithmic-height R81 terminal. Coarse bins, upper-frame unloading, local flag transport and a temporarily clean dirty output word are proved locally. |
 
-[R83's affine orientations](../research/depth/AFFINE_ORIENTATION_DEPTH.md)
-combine the existing sign gauge and native queries with a triangular
-affine leaf map and a short-tag-selected marker correction.
-[R84's deterministic frames](../research/depth/DETERMINISTIC_FRAME_DEPTH.md)
-use exact selected involutions, signed string sources, and the
-last-deviation inverse for arbitrary signed corner rotations. Their
-separate promises and fixed-accuracy/exact contracts remain in their proof
-homes; neither imports a free in-place permutation primitive.
-
-The [R85 geometric-band theorem](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
-reuses the GKW-based descendant-source interface, R78's transported
-reflections, exact native XOR/phase queries and dirty echoes, the existing
-sign gauge and phase composition, and the logarithmic-height R81 terminal.
-Its local additions are geometric coarse bins, the upper-frame unloading
-identity, a local flag transporter, and a returned dirty output word made
-temporarily clean by parking it in the exposed logical tail. This gives
-the fixed-L depth $`O_L(N/b^2+\ell\log_2(\ell+2))`$ for
-arbitrary orientations of depth-shared unordered magnitude pairs, with
-the existing count orders and literal one-clean widths. There is no new external premise, claim
-for arbitrary node-dependent magnitudes, uniform-precision extension,
-efficient preprocessing, or general emitter.
+None of these scoped families replaces the strongest general upper R96.
+The detailed [source register](reference/SOURCE_CATALOGUE.md) distinguishes
+local proof additions from imported synthesis or lower-bound premises.
 
 | Premise | Primary locator | Imported role and local specialization |
 |---|---|---|
@@ -355,7 +188,7 @@ efficient preprocessing, or general emitter.
 | Product compression and amplification | Low–Wiebe Lemma 13; Fang–Lin–Tong Lemma 3/Appendix D; Berry et al. Eqs. (7)–(15); Brassard et al. Eq. (8); F10–F11/F20 | Failure history, LCU, and amplification; local complete-isometry error and literal-phase accounting |
 | Dirty-query depth and unary reuse | F29–F34/F36–F37 | Controlled Clifford circuits, grouped selection, phase synthesis, arithmetic, reusable references, and bilinear recursion; local all-dirty return and width allocation |
 
-The [complete F1–F46 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+The [complete F1–F51 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
 provides primary URLs, versions, exact locators, and comparison-only sources.
 The [related-work map](RELATED_WORK.md) separates established ingredients
 from the frame-specific construction; bounded source checking certifies

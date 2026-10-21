@@ -1,0 +1,71 @@
+# Research route decisions
+
+[Current checkpoint](../WORKSPACE.md) · [Resource frontier](../docs/OPEN_PROBLEM.md) · [Research catalogue](README.md)
+
+This is a decision map, not a second proof collection. It records why a
+mechanism is insufficient, the scope of a proved obstruction, and the new
+operation or hypothesis needed to reopen it. Proofs, exact counterexamples
+and unique failed attempts remain in the linked homes. A representation
+limit, oracle-call bound or failed word is not an unrestricted depth bound.
+
+## Complete sources and promotion
+
+| Route | Present assessment | What would justify continuing |
+| --- | --- | --- |
+| [Polynomial-overhead complete source](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Fusion, controlled use, return and count normalization are paid; the known source retains logarithmic depth. | A complete sublogarithmic source with uniform precision and simultaneous polynomial budgets. A single-output predicate is insufficient. |
+| [Projector-Gram readout](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) | Six-call recovery and serial one-clean promotion are paid. Paired-Pauli SELECT has exponentially small normalization. | A normalized native Gram source, allowing arbitrary accepted private fibers; actual source synthesis remains essential. |
+| [One-clean two-band Gram source](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) | Excluded for p at least three at Gram error at most $`1/256`$, including address motion. | At least three source bands, or a different clean allocation with separately paid recovery. Spectral closure alone is not a native factorization. |
+| [Spectral clean promotion](depth/MSS_SPECTRAL_PROMOTION.md) | Qualifies conditionally at $`k=o(\log(p+2))`$; uniform source accuracy and native address sharing are still required. | Supply an actual eligible source. Endpoint address return does not establish native sharing. |
+| [Exact packing and virtual arithmetic](depth/PARALLEL_CLEAN_PROMOTION.md), [arithmetic](depth/VIRTUAL_FUNCTION_ARITHMETIC.md) | Exact packing has a smaller sufficient window. Addition/multiplication/interval components do not pay full in-place radix compression; the spectral wrapper no longer needs it. | A complete rectangle-to-rank conversion whose total ledger improves on the paid wrapper, not another arithmetic component alone. |
+| [Scalar expander zero reflection](depth/EXPANDER_ZERO_REFLECTION.md) | A complete single predicate is paid at constant fixed-accuracy depth. Native address motion and joint-bank accuracy remain obstacles to parallel row use. | An address-sensitive whole-bank schedule with full operator error and arbitrary return. Uniform-address relabeling is excluded only under its stated grammar. |
+| [Forward affine-pencil XOR](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md) | Eight-layer forward query and its converse are paid; coherent in-place or observable readout is not. Rebuilding from the old indicator retains its depth. | A genuinely quantum complete readout outside the proved fixed-address Clifford/monomial restrictions. |
+| [Output-alias weak fiber source](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) | Four-call extraction cancels arbitrary private unitary fibers; the known source is not sublogarithmic. | A new weak fiber source, paired transform or whole extraction within the full polynomial budgets. |
+| [Clean-sector parallelism](depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md) | A clean bank fixed at every native boundary can already be removed by restriction. General black-box promotion needs exponentially many source occurrences in clean count. | A genuinely different native schedule; logical call counts alone do not bound native depth. |
+| [One-pass row filters and counters](depth/COHERENT_COUNTER_SOURCE.md) | Fixed-fiber and arbitrary dirty-mixing limits differ. The paid fully dirty counter echo retains linear depth. | Leave the actual one-pass/invariant-fiber or Majorana grammar and pay the complete source, not only the counter. |
+
+## Source-specific representation limits
+
+| Route | Why the recorded mechanism stops | Reopening condition |
+| --- | --- | --- |
+| [General overlapping two-band compression](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md) | With uniformly bounded clean count, the amplitude-free defect excludes the every-fixed-relative-accuracy interface, even when amplitude decreases. The general growing-clean approximate floor shrinks. | Additional source bands, a different interface, or a quantitatively paid growing clean count. Changing amplitude alone is insufficient. |
+| [Native read-only two-band compression](depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md) | At amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$, linearly many clean inputs are necessary. This does not fit the current spectral-promotion window. | Leave the actual read-only boundary grammar or use a different source/promotion mechanism. |
+| [Half-amplitude two-band block](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands) | Near-half flatness has a literal Clifford aligner, so recovery remains within the two-band obstruction. | A different normalization/interface or more source bands. |
+| [Parity-copy overlap](depth/OVERLAPPING_TWO_BAND_SOURCES.md) | Undoing the signal contraction leaves a signed permutation whose output probe is two-band; the architecture fails for p at least four. | Leave the parity-copy signal architecture. |
+| [Growing signal-mixing quarter turns](depth/OVERLAPPING_TWO_BAND_SOURCES.md#6-a-clifford-invariant-coefficient-screen-for-quarter-turn-transitions) | A Clifford repair defeats the old wrong-square test, but the quarter-turn coefficient screen excludes independent Clifford dressings at explicit finite-size error. | A transition outside that quarter-turn class, also respecting the general source screen. |
+| [Simultaneously nonscalar output probes](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md) | Linear native support is necessary, but a two-band identity transition saturates both directions without the target action. | Prove the actual logical transition; support or rank saturation is not enough. |
+| [Separated high-rank reflections](depth/JOINT_FOURIER_WORD_LIMITS.md#52-paused-discovery-and-the-next-complete-transition) | Disjoint source bands merge into one physical band. | Actual overlapping dynamics, not high rank alone. |
+| [Independent row/pulse synthesis](depth/NATIVE_INDICATOR_SHARING.md) | Standalone native sharing retains superlinear emitted count. Fusion now permits polynomial overhead, but the existing pulse retains excessive depth. | A complete sublogarithmic source and a full-bank error proof within the relaxed fusion budgets. |
+| [Fixed-angle joint decoding](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops) | Clifford decoding and the specified read-only-bank grammars have constant-error/degree obstructions. | Actual interactions or bank motion outside those hypotheses, not another normalized logical call. |
+| [Parallel affine detuning](depth/PARALLEL_AFFINE_DETUNING.md) | Four-layer batches are paid, but one batch is not selective and the specified read-only Pauli echo still needs linearly many rounds. | Different branch dynamics or whole-word synthesis outside the actual grammar. Round counts are not unrestricted depth. |
+| [Independently synthesized fine detuning](depth/JOINT_DETUNING_PRECISION_LIMITS.md) | Separate certification of the full finer-rotation layer, without synthesis helpers or cross-coordinate non-Clifford operations, retains logarithmic depth. | Joint synthesis or whole-pulse error cancellation with its own complete certificate. |
+| [Bank motion in the Majorana grammar](depth/WHOLE_WORD_MAJORANA_LIMITS.md), [paid word](depth/BANK_MOTION_WALSH_INDICATOR.md) | The native whole-word lower bound survives fusion when every actual Clifford boundary is read-only on address and preserves the full Majorana span. | Non-Majorana interference, address motion or another complete interface. Bank motion alone does not escape. |
+| [Filters](depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md), [Gaussian conjugators](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md#4-constant-error-does-not-repair-the-gaussian-conjugator), [phase signals](depth/PHASE_SIGNAL_QUERY_LIMITS.md) | The recorded routes retain full-bank error, separate source cost or unpaid coherent correction under their respective hypotheses. | Explicitly overcome the named cost or leave the proved representation. |
+| [Fourier trace scalarization](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#7-the-shallow-fourier-kernel-is-not-a-returned-scalar-source) | A trace character is not a returned scalar operator; the paid mask twirl retains exponential label/amplification cost. | A different coherent scalarization or complete extraction, not trace access alone. |
+| [Shared-key Clifford fibers](depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Arbitrarily many overlaps with affine address-Pauli insertion retain affine labels and the stated constant error floor. | Leave the fiber/insertion grammar. Moving the same unchanged key to another bank is insufficient. |
+| [Opposite-direction two-query word](depth/OBSERVABLE_TRANSPORT_SOURCE.md) | It leaves the shared-key premise but retains dirty-key dependence and error two; return is already paid. | A full cancellation identity on arbitrary dirty inputs. |
+| [Final reverse query and affine moving keys](depth/KEY_MIXING_OBSERVABLE_SCREENS.md) | Separate final-boundary, Clifford-label and moving-key screens retain their stated quantum-fiber hypotheses. | Additional genuine mixing, non-Clifford fibers or address motion with a complete operator identity. |
+| [Wide Clifford filtering](depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) | Sharp lookup correlation limits low-budget positive averages, LCUs and fixed-call scalar-zero filters. | Genuinely wide non-Clifford readout, another normalization mechanism, or enough paid coefficient/call budget. These bounds do not bound native T-depth. |
+| [Crossed cubic kernels](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) | The recorded complete-source audit retains dirty-key/transition obligations; a plausible accepted phase is insufficient. | Evaluate the full accepted operator or Gram on every dirty-key sector and supply its native normalization. |
+
+## Lower scouts and settled earlier questions
+
+| Earlier question | Current decision and retained component |
+| --- | --- |
+| [Unbounded singleton coupling in the all-active one-pair class](depth/ALL_ACTIVE_SINGLETON_CLOSURE.md) | Closed by uniform scalar-branch matching; no bound on coupling rank is inferred or needed. |
+| [Generic one-core feature estimate](depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md) | Superseded in that class by full-space diagonal reduction: sign/XOR degree six/five, or five/four at active rank at least four. Keep the earlier component proof, not its old headline constant. |
+| [Proper-support pairs, negative singletons and growing pair count](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md) | Complete Booleanity forces one all-active pair and no negative singletons after repair. This closes the paired native-three branch, not arbitrary higher depth. |
+| [Growing total displacement without original pairs](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md) | The exact no-pair branch is closed. Quantitative improvement is different from reopening that qualitative question. |
+| [Polar-rank-two finite insertion](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md) | One-parity Clifford replacement sharpens the rank-two degree bound. At high rank, a restricted native relation recreates a quadratic-controlled insertion; diagonal peeling remains unsupported. |
+| [Four-band pair count or fixed-endpoint diagonal middle](depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md) | Literal counterfamilies and whole-word removals defeat a general pair-count collapse. The fixed-endpoint/orbit class is settled only under its physical hypotheses. |
+| [Silent center transport](depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction) | Actual-list mergers pay the singular reduction. Continue genuinely coupled transport outside this factorization, not a free quotient band. |
+| [Singleton-tail sector assembly](depth/FOUR_BAND_CENTER_TRANSPORT.md#singleton-sector-assembly) | Compatible symplectic maps still have nonaffine Pauli correction labels. Its paid repair restores the old cost. Reopen only with an actual cheaper endpoint and full Boolean return. |
+
+The earlier zero-clean-only discovery restriction, one-band inverse-square-root-two
+search and unpaid flat-sector alignment are superseded by
+[clean promotion and paid recovery](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md).
+Old precision-envelope and local-compiler next steps are superseded by
+[R94–R96](depth/ALL_PRECISION_LINEAR_DEPTH.md); their useful components remain
+indexed. The [research catalogue](README.md#session-records-and-designs)
+retains every outcome and design document. Consult [WORKSPACE](../WORKSPACE.md)
+for the live question rather than treating an old session's final paragraph
+as an instruction.
