@@ -290,5 +290,49 @@ class FourBandOriginalPairScoutTests(unittest.TestCase):
             self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in source), sum(sizes))
 
 
+    def test_first_silent_kernel_residue_retains_a_depth_tradeoff(self):
+        # The analytic I.5 theorem leaves this rank-four block at nullity
+        # three. Check the literal phase identity, not a sampled clean input.
+        width, size = 4, 16
+        complementary = [14, 13, 11, 7]
+        self.assertEqual(_rank(complementary), 4)
+        for i, row in enumerate(complementary):
+            for j, other in enumerate(complementary):
+                self.assertEqual((row & other).bit_count() % 2, int(i == j))
+        coordinates = ([('CX', bit, 0) for bit in (1, 2, 3)]
+                       + [('CX', 0, bit) for bit in (1, 2, 3)]
+                       + [('CX', bit, 0) for bit in (1, 2, 3)])
+        original = ([('T', bit) for bit in range(width)]
+                    + coordinates
+                    + [('T', bit) for bit in range(width)]
+                    + list(reversed(coordinates)))
+
+        # x -> (a,b,c,t), with a=x0 xor t, etc. The common-shift
+        # coordinate t is arbitrary and is returned on every column.
+        expose = [('CX', 3, bit) for bit in range(3)]
+        middle = [('CX', 1, 0), ('CX', 0, 2), ('CX', 2, 1)]
+        reduced = (expose + [('T', bit) for bit in range(3)]
+                   + middle + [('T', bit) for bit in range(3)]
+                   + list(reversed(middle))
+                   + [('CX', 1, 2), ('T', 2), ('CX', 1, 2)]
+                   + list(reversed(expose)))
+        expected = [[CZ for _ in range(size)] for _ in range(size)]
+        for column in range(size):
+            expected[column][column] = CO if column in (0, 15) else -CO
+        for word, bands, cliffords in ((original, [4, 4], 18),
+                                      (reduced, [3, 3, 1], 14)):
+            actual = native_columns(width, word)
+            self.assertEqual(actual, expected)
+            self.assertEqual(native_columns(width, _inverse(word)), adjoint(actual))
+            self.assertEqual([len(band) for band in _native_t_bands(word)], bands)
+            self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in word),
+                             sum(bands))
+            self.assertEqual(sum(gate[0] == 'CX' for gate in word), cliffords)
+            self.assertEqual(sum(gate[0] == 'CX' for gate in _inverse(word)),
+                             cliffords)
+        # The seven-T identity costs a third native band. It is not a
+        # free replacement of the original eight-T/two-band component.
+
+
 if __name__ == '__main__':
     unittest.main()

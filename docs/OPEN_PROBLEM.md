@@ -297,6 +297,23 @@ fixed bounded probe also has a shrinking coefficient after conjugation
 averaging. Full-space central-sign readout at constant amplitude is
 still unpaid and is not excluded by these scoped tests.
 
+The [complete Clifford-filter theorem](../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md)
+strengthens that diagnosis without assuming narrow branch operators.
+For arbitrary wide Clifford coupling, normalized trace correlation with
+the complete lookup is at most $`(p+1)/2^p`$, sharply. A normalized
+Clifford average cannot uniformly separate its two full eigenspaces by
+a constant spectral gap. The associated coefficient-budget bounds also
+retain a clean-compression factor; none is a native-depth bound.
+The [paired Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout)
+instead permits arbitrary accepted unitary fibers. A one-clean source
+with accepted Gram equal to half the paired lookup projector gives an
+exact complete query through six calls, followed by paid serial dirty
+promotion. Approximate Gram error delta gives full error at most
+$`32\sqrt{24\delta}`$; source count, width and precision are all
+charged. Arbitrary intermediate address motion is allowed. The
+normalized source is still unpaid, and the ordinary Pauli average's
+small normalization cannot be replaced by this desired one for free.
+
 The [seven-selector filter](../research/depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
 replaces Hamiltonian simulation by a lazy average and general-block
 cubing. At $`L=1+\log_2(1/\tau)`$ its pre-fusion depth is
@@ -314,8 +331,20 @@ p≥18 and relative error at most $`2^{-10}`$ for p≥20, regardless of
 positive amplitude, count or dirty width. Its growing-k approximate
 floor still shrinks. The remaining two-band candidate must therefore
 be genuinely approximate with growing clean allocation; exact flatness
-of its Gram block does not imply exact logical action. Higher-band
-mechanisms and unrestricted depth remain separate questions.
+of its Gram block does not imply exact logical action.
+
+The [native read-only refinement](../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md)
+now excludes that candidate's direct fit to the current parallel wrapper.
+For a complete amplitude-$`1/\sqrt2`$ compression with relative
+error at most $`1/8`$, it requires
+$`k\ge\lceil(p-3)/2\rceil`$ if every actual Clifford boundary
+fixes the address and physical T gates act on private wires. Neither
+flatness nor exact clean return is assumed. The current wrapper's
+private output banks alone then exceed the polynomial-overhead budget.
+This does not lower-bound every promotion scheme. Completed source
+address return does not supply these native boundary hypotheses;
+moving-address two-band sources, higher-band mechanisms and
+unrestricted depth remain separate questions.
 
 The earlier two-clean spectral filter's Clifford-frame class retains
 its own conditional gap question. The new frames include paid

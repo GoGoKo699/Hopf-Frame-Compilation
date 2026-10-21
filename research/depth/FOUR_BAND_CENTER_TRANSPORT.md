@@ -1277,6 +1277,203 @@ replacement. Even the nonsingular removal is a source-specific
 component, not an unrestricted depth bound or a change to the
 approximate-indicator frontier.
 
+### I.5. Singular silent blocks have a paid kernel-size reduction
+
+The singular case has a stronger conclusion than merely retaining
+an unpaid phase. Keep the actual I.4 block and put
+
+```math
+r_0=\operatorname{rank}C_0,\qquad k_0=s-r_0.
+```
+
+There is an exact full-space factorization
+
+```math
+F=C_{\rm merge}D_1E_1,\qquad
+|D_1|=|E_1|=s'
+ \le\min\{s,\lfloor4k_0/3\rfloor\},                 \qquad(21)
+```
+
+where $`C_{\rm merge}`$ is a literal Clifford, including its scalar,
+and $`D_1,E_1`$ are subsets of the original actual native lists.
+No restricted or quotient list is declared independent. In particular:
+
+- If $`k_0\le2`$, F is Clifford and all $`2s`$ T gates can be removed.
+- If $`k_0=3`$, the only possible non-Clifford residue is one
+  rank-four complementary-triple block from Section H, up to axis
+  permutations and paid Clifford orientations. Its eight-T, two-band
+  cost is retained.
+
+Thus nonsingularity is sufficient but not necessary for I.4's full
+Clifford removal. A singularity of dimension one or two does not
+support a residual non-Clifford phase in this actual silent block.
+
+**The block still exists.** The construction of $`D_0,E_0`$ and the
+factorization $`U=F U_{\rm rest}=U_{\rm rest}F`$ in I.4 did not use
+nonsingularity. It only used the absence of zero rows in $`C_0`$.
+That absence still holds: every selected E axis is C-active, and I.3
+excludes edges from the affected silent set to coupled E axes.
+The active-support identities therefore still make the D axes in
+$`A_0`$ an independent basis of size s. All of F's axes commute with
+every residual native factor.
+
+Expose the independent physical E axes as $`Z_1,\ldots,Z_s`$ for
+the proof; all other physical qubits remain spectators of F. This
+is a full-space Clifford coordinate system, not a clean-code
+restriction. Each $`Ja_iJ`$ has X-mask equal to column i of
+$`C_0`$ on these coordinates. I.4's identity
+$`F(Ja_iJ)F^\dagger=S_i`$ makes that shift Pauli-preserving.
+The remaining Z/spectator Pauli part is fixed by F, so its removal
+also makes the corresponding X-only Pauli shift Pauli-preserving.
+Products give the same property for every
+
+```math
+v\in V=\operatorname{im}C_0,\qquad \dim V=r_0.
+```
+
+Since F is diagonal in these coordinates, its Pauli image of
+$`X(v)`$ has the same X-mask v. Comparing its two one-band
+expansions gives equality of active spans and the binary displacement
+identity
+
+```math
+\operatorname{diag}(v)
+ =\sum_{b:\ b\cdot v=1}bb^{\mathsf T},              \qquad(22)
+```
+
+where b ranges over the actual D-basis labels in the E coordinates.
+Signs and orientations remain in the physical operators; they do not
+alter this necessary binary identity.
+
+**Equal-character classes are actual orthogonal blocks.** On V write
+$`\chi_i(v)=v_i`$ and $`\chi_b(v)=b\cdot v`$.
+Every $`\chi_i`$ is nonzero because $`C_0`$ has no zero rows.
+The union of the E active spans over V is therefore all of
+$`A_0`$. Equality of active spans implies that the active D axes
+over V also span $`A_0`$. D is an independent basis of size s,
+so every actual D axis occurs in that union: $`\chi_b\ne0`$.
+
+If $`b_i=1`$, active-span equality gives
+
+```math
+\chi_b(v)=1\ \Longrightarrow\ \chi_i(v)=1
+\quad\hbox{for every }v\in V.
+```
+
+Two nonzero binary linear functionals with this implication are equal.
+Hence b is supported wholly on the coordinate class
+$`\{i:\chi_i=\chi_b\}`$.
+For a class $`\chi`$ of size $`n_\chi`$, choose v with
+$`\chi(v)=1`$. Active-span equality makes its actual D axes a
+basis of the entire class, and the corresponding block of (22) gives
+
+```math
+B_\chi B_\chi^{\mathsf T}=I_{n_\chi}.             \qquad(23)
+```
+
+Thus the full D/E change of basis is a direct sum of orthogonal
+binary matrices on these physical coordinate classes. This is an
+individual-axis conclusion obtained before any native resynthesis.
+It is not inferred from span invariance alone.
+
+Remove every common individual E/D axis in each class. A common
+standard basis column of an orthogonal matrix has zeros in that row
+in every other column, so deleting its row and column leaves an
+orthogonal matrix. The final residual class is empty or has at
+least four coordinates: in dimensions at most three an orthonormal
+binary basis is a permutation basis. If its retained size is
+$`n'_\chi>0`$, then
+
+```math
+n'_\chi\le n_\chi\le\frac43(n_\chi-1).
+```
+
+Let m be the number of distinct coordinate characters. They span
+$`V^*`$, so $`m\ge r_0`$, and
+
+```math
+k_0=s-r_0
+ =\sum_\chi(n_\chi-1)+(m-r_0).
+```
+
+Summing the preceding size bound proves (21). If $`k_0\le2`$,
+every class has size at most three and hence disappears. If
+$`k_0=3`$, a nonempty residual consumes the entire defect budget
+in one class of size four. Section H's rank-four classification
+then gives precisely the four complementary triples. This proves
+both stated small-kernel consequences.
+
+**The surviving phase is cubic, with its Clifford part still paid.**
+The global change-of-basis matrix B is orthogonal by (23). Changing
+an actual T orientation or an axis sign changes F only by a
+commuting Clifford and an eighth-root scalar. For the all-positive
+orientation, its phase exponent in $`\mathbb Z/8\mathbb Z`$ is
+
+```math
+f(x)=\sum_i x_i+\sum_j(b_j\cdot x\bmod2).
+```
+
+Expand each parity modulo eight. Orthogonality makes the linear
+coefficients even and the quadratic coefficients multiples of four;
+all higher surviving terms are cubic with coefficient four. Thus
+F is a paid diagonal Clifford and scalar times a Boolean cubic
+phase. This does not erase that cubic phase or give it one native
+band. In particular, the rank-four guard remains non-Clifford.
+
+The guard also illustrates the separate count/depth tradeoff. In
+coordinates $`x=(a\oplus t,b\oplus t,c\oplus t,t)`$, its literal
+phase is the product of all seven positive parity-T gates on
+$`(a,b,c)`$. Independent batches are
+$`(a,b,c)`$, $`(a\oplus b,a\oplus c,a\oplus b\oplus c)`$,
+and $`(b\oplus c)`$. The first coordinate exposure uses three
+CNOTs; the middle batch uses the chronological encoder
+$`CX(b\to a),CX(a\to c),CX(c\to b)`$. Include their actual
+inverses and the two CNOTs exposing the last parity. This pays
+seven T gates, three bands and fourteen CNOTs, with no helper.
+The original eight-T, two-band realization uses eighteen CNOTs
+and retains the better depth. The focused exact fixture checks
+both full sixteen-column operators and their actual inverses;
+no common scalar or arbitrary t input is discarded.
+
+**Literal phase and full-word resources.** For two actual axes
+with the same binary label, write their signed representatives as
+$`A,\sigma A`$, where $`\sigma\in\{\pm1\}`$. The exact merger is
+
+```math
+T_A^\epsilon T_{\sigma A}^{\delta}
+ =\omega^{\delta(1-\sigma)/2}
+  T_A^{\epsilon+\sigma\delta},\qquad
+\omega=e^{i\pi/4}.                                 \qquad(24)
+```
+
+The final exponent is zero or plus/minus two, so each removed pair
+is an actual Clifford, not a projective cancellation. All these
+Cliffords commute with the full residual middle word. Collect and
+synthesize them, retaining the scalar as in I.4, in $`O(q^2)`$
+Clifford gates on the existing q physical qubits. Delete the selected
+T rotations from their existing native bands and retain the original
+band-exposure Cliffords. Therefore
+
+```math
+\begin{aligned}
+T_{\rm new}&=T_{\rm old}-2(s-s'),\\
+d_{\rm new}&\le d_{\rm old},\\
+G_{\rm new}&\le G_{\rm old}+O(q^2).
+\end{aligned}                                      \qquad(25)
+```
+
+No workspace is added. The actual inverse has the same T/depth
+reduction and its own $`O(q^2)`$ Clifford increment. This replacement
+is an exact identity on all physical columns, including the unused
+clean sector and arbitrary dirty inputs entangled with references.
+Any pre-existing approximation or return error is unchanged.
+
+The result compresses the affected-silent obstruction to an actual
+two-band residual whose axis count is bounded by the pairing nullity.
+It does not classify genuinely
+coupled axes, supply the Boolean output endpoint, or bound unrestricted
+native depth.
+
 <a id="g-next-structural-question-and-the-unchanged-frontier"></a>
 
 ## J. Next structural question and the unchanged frontier
@@ -1285,6 +1482,16 @@ The sole-factor merger is paid, while the first multi-factor
 matching exception is a commuting cubic component retaining the
 old two-band cost. Extending that component does not change the
 resource frontier.
+
+Section I.5 now removes affected-silent blocks of pairing nullity at
+most two and bounds a general such block by
+$`\lfloor4k_0/3\rfloor`$ retained axes per actual band. Nullity
+three gives only the already-paid rank-four cubic component. This
+is a whole-word simplification, not the missing Boolean completion.
+The next physical candidate should therefore test genuinely coupled
+center transport outside this silent-block factorization, with its
+actual output endpoint and sector phases, rather than treating a
+singular silent block as a new source by itself.
 
 For a genuinely noncommuting unmatched branch, the next necessary
 ingredient is shared native overlap on the C-active E coordinates

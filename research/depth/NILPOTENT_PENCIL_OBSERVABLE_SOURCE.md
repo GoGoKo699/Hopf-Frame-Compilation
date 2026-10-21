@@ -802,3 +802,220 @@ exposes the unpaid inverse. A coherent SELECT over the listed basis
 generators likewise needs a priced index and preparation. None of
 these observations rules out a different full central-character
 protocol or supplies a qualifying shallow source.
+
+<a id="paired-projector-readout"></a>
+
+## 12. A half-rank relative word and its paid one-signal readout
+
+The paired representation has a useful target that is not a thin
+invariant-vector projector. It also makes the unpaid normalization
+explicit. Let C and D be two arbitrary n-bit carriers, put
+$`d=2^{n-1}`$, and let S swap their entire states. For binary labels
+a,b define the Hermitian Pauli
+$`P(a,b)=i^{\sum_j a_jb_j}X(a)Z(b)`$. Then
+
+```math
+\begin{aligned}
+ \Pi_x&=\frac{I+\Omega_{x,C}\Omega_{x,D}}2,\\
+ B_x&=\frac1{2d}\sum_{a\in H_x,\ b\in\mathbb F_2^n}
+           P(a,b)\otimes P(a,b)=\Pi_x S,\\
+ B_x^\dagger B_x&=B_xB_x^\dagger=\Pi_x.
+\end{aligned}                                                       \qquad(28)
+```
+
+To prove (28), change binary basis so that nu_x is the first Z label.
+The subgroup's Hermitian Paulis are I or Z on that coordinate and
+arbitrary Paulis on the remaining n−1 coordinates. The ordinary
+Pauli expansion of swap on those coordinates is
+$`d^{-1}\sum_P P\otimes P`$. On the equal-central-bit sector the
+first-coordinate swap is identity. Conjugating back on both carriers
+preserves their full swap; Pauli signs cancel between the two copies.
+Thus B_x has norm one and rank $`2^{2n-1}`$. The same formulas hold
+coherently in x and tensored with every private reference identity.
+
+There are $`2^{2n-1}=2d^2`$ summands in (28). Their coefficient
+one-norm is d, not one. Ordinary uniform coherent SELECT therefore
+compresses to $`B_x/d`$, not B_x. It also has a 2n−1 bit index whose
+preparation and return must be paid. Writing a=A_xy with y_0=0 lets the
+forward pencil supply labels; it does not pay this normalization or
+initialize the coefficient bank. The full-space identity escapes the
+thin-code rank argument, but by itself supplies no native advantage:
+after a fixed swap its desired projector is already the lookup parity
+on two banks.
+
+### 12.1 Six actual source calls read a partially flat block
+
+Here is a paid conditional extraction at the original amplitude
+$`1/\sqrt2`$. Let U have exactly one clean signal a, with J inserting
+a=0 and P=JJ-dagger. Every other register is arbitrary. In the next
+formulas B can be any square partial isometry with initial projector
+$`\Pi=B^\dagger B`$, including the coherent direct sum of B_x above.
+Suppose its entire accepted block satisfies
+
+```math
+ K=J^\dagger UJ,\qquad
+ \|K-B/\sqrt2\|\le\eta\le1/8,\qquad
+ e(\eta)=3\sqrt2\eta+2\eta^2.
+                                                                    \qquad(29)
+```
+
+No promise on U's other blocks is required. Use the literal words
+
+```math
+ W=US_aU^\dagger S_aU,\qquad V=W^\dagger Z_aW.
+                                                                    \qquad(30)
+```
+
+The actual source adjoints, not separately approximated inverse targets,
+occur in (30). For $`\delta=-1-i`$, direct block expansion gives
+
+```math
+\begin{aligned}
+ WJ&=-\delta JK+UJ(iI-2iK^\dagger K),\\
+ J^\dagger WJ&=[(1+2i)I-2iKK^\dagger]K.
+\end{aligned}                                                       \qquad(31)
+```
+
+At eta=0 the first identity maps Pi into the clean sector as
+$`e^{i\pi/4}JB`$, while the second vanishes on Pi-perp. Consequently
+V has exact initialized action $`J(2\Pi-I)`$, with exact signal and
+private return. Its accepted phase is retained in (31) and cancels in
+the literal conjugation (30); no phase correction is assumed free.
+
+The approximate bound remains linear, rather than using a generic
+square-root leakage estimate. Since
+$`\|K^\dagger K-\Pi/2\|\le\sqrt2\eta+\eta^2`$,
+
+```math
+ \|WJ\Pi-e^{i\pi/4}JB\|\le e(\eta),\qquad
+ \|PWJ(I-\Pi)\|\le\sqrt5\eta.
+                                                                    \qquad(32)
+```
+
+For the second bound, K is a contraction, the prefactor in the second
+line of (31) has norm at most sqrt(5), and
+$`\|K(I-\Pi)\|\le\eta`$. Put Q=W-dagger P W. Projection
+geometry gives the exact relation
+
+```math
+ \|(Q-J\Pi J^\dagger)J\|
+ =\max\{\|(I-P)WJ\Pi\|,\|PWJ(I-\Pi)\|\}
+ \le e(\eta).
+```
+
+Indeed, the squared operator on the left is block diagonal in Pi and
+Pi-perp, with blocks $`\Pi(I-J^\dagger QJ)\Pi`$ and
+$`(I-\Pi)J^\dagger QJ(I-\Pi)`$. Therefore the complete return bound is
+
+```math
+ \|VJ-J(2\Pi-I)\|\le2e(\eta).                         \qquad(33)
+```
+
+There is a weaker exact sufficient interface: **only**
+$`K^\dagger K=\Pi/2`$ is needed for exact readout. The polar partial
+isometry $`B=\sqrt2 K`$ then has arbitrary final subspace and arbitrary
+logical/private fibers; (31) still proves (33) with zero error. This
+does not infer block closeness (29) from approximate Gram closeness.
+The stated linear approximate bound uses (29) itself.
+
+An approximate Gram promise is also sufficient, with its own weaker
+error estimate. If A=K-dagger K and
+$`\|A-\Pi/2\|\le\delta`$, the second line of (31) gives
+
+```math
+ \bigl(J^\dagger WJ\bigr)^\dagger\bigl(J^\dagger WJ\bigr)
+   =g(A),\qquad g(t)=5t-8t^2+4t^3.
+```
+
+Since A is a positive contraction, $`g(\Pi/2)=\Pi`$ and
+telescoping the three powers yields
+
+```math
+ \|g(A)-\Pi\|\le[5+8(1+1/2)+4(1+1/2+1/4)]\delta=24\delta.
+```
+
+The same projection identity proves
+
+```math
+ \|VJ-J(2\Pi-I)\|\le2\sqrt{24\delta}.                 \qquad(33a)
+```
+
+This source interface does not require a chosen accepted partial
+isometry, any phase alignment, or any promise on its final subspace.
+
+### 12.2 Complete indicator, resources and arbitrary-work return
+
+For (28), $`2\Pi_x-I=\Omega_{x,C}\Omega_{x,D}`$. Bitwise CNOTs
+from D into C conjugate this product to Omega_{x,C}. Hadamards on the
+m specified Y coordinates of C convert it to the complete XOR
+indicator. The other n−m coordinates of C and all n coordinates of D
+are private arbitrary work, not initialized code states.
+
+Let T_U,G_U,d_U,b_U be common bounds for the actual U and its actual
+adjoint; b_U excludes x, both n-bit carriers and the clean signal.
+The one-clean complete indicator V_I just constructed has
+
+```math
+\begin{aligned}
+ T_{V_I}&\le6T_U,&
+ G_{V_I}&\le6G_U+2n+2m+10,\\
+ d_{V_I}&\le6d_U,&
+ b_{V_I}&\le2n-m+b_U,\\
+ \|V_IJ-JI_p\|&\le2e(\eta).
+\end{aligned}                                                       \qquad(34)
+```
+
+The ten extra Cliffords inside V count two S, two actual S-daggers
+emitted as three positive S each, and Z emitted as SS. For the
+indicator's actual inverse emit **the same full word V_I**: (30) is
+exactly Hermitian for every actual unitary U, even an approximate
+source, and the outer Hadamard/CNOT conjugation preserves this fact.
+This is a literal adjoint implementation with the same phase and count,
+not a separately approximated inverse or a quotient by global phase.
+
+Apply the [serial one-clean promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+with q=m. Its full recurrence becomes
+
+```math
+\begin{aligned}
+ T_{\rm out}&\le48T_U+48m+8,\\
+ G_{\rm out}&\le48G_U+16n+98m+152,\\
+ D_T({\rm out})&\le48d_U+32,\\
+ b_{\rm out}&\le2n+b_U+2,\qquad b_{\rm clean}=0,\\
+ \|\widetilde I_p-I_p\otimes I_{\rm borrowed}\|
+   &\le32e(\eta)=96\sqrt2\eta+64\eta^2.
+\end{aligned}                                                       \qquad(35)
+```
+
+For p≥1, m is even and the final eight T gates can be omitted. For
+$`0\lt\tau\le1`$, request $`\eta=\tau/144`$ in the source and
+evaluate every source resource at that tolerance. All source-signal,
+second-carrier, private-work and promotion-toggle return errors are
+already included in (35), on arbitrary coherent address, output, dirty
+and reference inputs. The serial promotion has **no** shared-address
+native-boundary premise: U may move the address internally and have
+arbitrary off-code action. The stronger native-sharing hypotheses of
+the separately parallel spectral wrapper are not imported here.
+
+For the Gram-only source promise (33a), all resource lines of (35) are
+unchanged and its full-operator error is instead at most
+$`32\sqrt{24\delta}`$. Request
+$`\delta=\tau^2/24576`$ and evaluate every source resource at that
+Gram tolerance. This is not the linear block-error claim in (35).
+
+The extraction uses one source-clean bit and removes it. An exact
+projector-Gram source gives exact final return and action. A source
+satisfying (29) uniformly at each fixed requested tolerance, with
+T/width $`O(m\mathrm{poly}(p))`$, Clifford count
+$`O(m^2\mathrm{poly}(p))`$ and depth $`o(\log p)`$, would
+enter the retained polynomial-overhead fusion window. No such source
+is emitted by the paired-Pauli sum or the forward pencil. Its
+constant-amplitude projector-Gram normalization remains the first
+unpaid operation, and neither (28) nor the ordinary SELECT loss is an
+unrestricted native depth bound.
+
+The [small full-column fixture](../../tests/test_nilpotent_pencil_observable_source.py)
+checks the paired-Pauli identity and the six-call phase-S readout,
+including a nontrivial private Hadamard fiber, every rejected signal
+input, the literal phase, and the actual inverse. It is a finite
+identity check, not a compiler for the missing asymptotic source.

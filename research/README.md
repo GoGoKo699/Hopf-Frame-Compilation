@@ -23,7 +23,7 @@ two-clean linear-precision statement and supporting source proofs. The
 uses a different decoder and has its own task-level guarantee.
 
 The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+[current research outcome](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
 keep the complete approximate dirty indicator as the main constructive
 target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 now permits polynomial count/width overhead in a smaller complete source:
@@ -49,6 +49,23 @@ echo still retains linear depth. The [physical-pair revision](depth/FOUR_BAND_CE
 pays sole-factor mergers and tests dependent native support without
 claiming a general higher-layer bound. The main resource frontier remains
 unchanged; these results choose the next complete mechanism.
+
+The current revision makes that choice sharper. The
+[Clifford-correlation theorem](depth/CLIFFORD_LOOKUP_FIXED_SPACE.md)
+gives the sharp complete-lookup bound $`(p+1)/2^p`$, even for
+arbitrary wide Clifford address-bank coupling. A normalized Clifford
+average therefore cannot uniformly separate the two whole lookup
+eigenspaces with constant gap. The
+[paired projector-Gram interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout)
+is a different sufficient target: accepted unitary fibers need not be
+phase-aligned, and a paid six-call reflection reads their Gram projector.
+Serial one-clean promotion permits arbitrary intermediate address motion.
+Ordinary paired-Pauli averaging still loses its normalization, so the
+required normalized native source remains unconstructed.
+The [singular physical-block reduction](depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction)
+also pays the retained phase obligation more precisely: at most
+four-thirds of the pairing nullity in original axes per band survive,
+with no increase in depth. This is not a general four-band theorem.
 
 The [current observable-source audit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
 specializes the retained selected-routing freedom to the HRT candidate.
@@ -137,7 +154,16 @@ for exact sources. It excludes exact one-clean sources for p≥18,
 and relative error at most $`2^{-10}`$ for p≥20. These are
 source-class statements, not dimension-growing unrestricted depth
 bounds. The explicit growing-k approximate floor still tends to zero,
-so fixed-error growing-clean sources remain open.
+so fixed-error growing-clean sources remain open outside the following
+native-boundary restriction.
+The [complete read-only two-band bound](depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md)
+requires $`k\ge\lceil(p-3)/2\rceil`$ at amplitude
+$`1/\sqrt2`$ and relative error at most $`1/8`$. It uses the
+whole bank's independent output labels, not one scalar predicate,
+and allows arbitrary dirty width, off-code action and nonflat blocks.
+It stops the direct combination of this two-band source class with
+the current native-parallel spectral wrapper. Address motion or a
+different jointly paid schedule remains outside the theorem.
 Its one-clean finite-size corollary gives the sharp nonzero compression
 norm floor $`\sin(\pi/8)`$. The
 [previous coherent-source continuation](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) records
