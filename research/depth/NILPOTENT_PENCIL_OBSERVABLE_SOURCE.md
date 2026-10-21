@@ -1012,7 +1012,15 @@ enter the retained polynomial-overhead fusion window. No such source
 is emitted by the paired-Pauli sum or the forward pencil. Its
 correct normalized lookup sector remains the first unpaid operation;
 the [new normalized trials](CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source)
-pay half-projector normalization for other sectors. Neither (28) nor the ordinary SELECT loss is an
+pay half-projector normalization for other sectors. The later
+[signal-interleaved words](SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) pay their
+controlled phases but retain wrong-sector acceptance. The
+[scalar-kernel source](SCALAR_KERNEL_FILTER_SOURCE.md) rejects the wrong
+charge but misses most of the correct sector. The
+[corank-one Fourier/Bell construction](CORANK_FOURIER_BELL_SOURCE.md)
+identifies the exact desired partial isometry; shared outcomes and the
+paid coherent-SWAP repair do not implement its complete normalized Gram.
+Neither these scoped failures, (28), nor the ordinary SELECT loss is an
 unrestricted native depth bound.
 
 The [small full-column fixture](../../tests/test_nilpotent_pencil_observable_source.py)
