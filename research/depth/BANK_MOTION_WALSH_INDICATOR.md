@@ -298,9 +298,9 @@ For $`0\lt\tau\lt1`$, put $`a=2\arcsin(\tau/2)`$. Then (10)
 is at most tau if and only if
 
 ```math
-\sum_{\theta_j>0}\theta_j\le a,
+\sum_{\theta_j\gt0}\theta_j\le a,
 \qquad
-\sum_{\theta_j<0}|\theta_j|\le a.                       \qquad(11)
+\sum_{\theta_j\lt0}|\theta_j|\le a.                       \qquad(11)
 ```
 
 Indeed, singleton subsets first force $`|\theta_j|\le a`$.
