@@ -12,8 +12,9 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 **Recovered main:** [PR #219](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/219),
 `6decb5a096773c0d0a2c13a930b16e0009c1b3b1`, fetched 21 October 2026.
-This checkpoint adds paid source trials and a scoped bank-lift obstruction;
-exact reviewed-tree verification receipts belong to its pull-request record.
+This checkpoint adds paid source trials and a scoped bank-lift obstruction
+in [PR #220](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/220);
+exact reviewed-tree verification receipts belong to that review record.
 Fetch current main before resuming; the recovered commit is not a pin.
 
 Read in this order:
