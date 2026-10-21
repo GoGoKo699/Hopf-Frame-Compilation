@@ -17,6 +17,7 @@ or a change to the complete approximate dirty-indicator frontier.
 | Section D: automatic center preservation | Complete occupied Booleanity forces every D axis to preserve the original center for these fixed endpoints, without complete B matching |
 | Section E: a general original-pair derivative | Arbitrary original endpoints are allowed; the center's logical X direction has a complete two-band Boolean derivative of degree at most three |
 | Section F: paid whole-word resynthesis | With an all-active common endpoint and one support-two matched pair per middle band, the full word has an actual two-band realization with its Clifford cost paid |
+| Section L: genuinely coupled six-wire candidate | A literal four-term Pauli image rules out every one-band output endpoint, with complete clean-return error at least one quarter; this stops the specified candidate, not arbitrary four bands |
 
 Section D therefore supplies the center premise used in A and C when
 the complete Boolean contract holds. The original equal endpoints and
@@ -1492,6 +1493,9 @@ The next physical candidate should therefore test genuinely coupled
 center transport outside this silent-block factorization, with its
 actual output endpoint and sector phases, rather than treating a
 singular silent block as a new source by itself.
+Section L carries out that test for the held six-wire candidate and
+stops it at the output endpoint. Its next-step condition supersedes
+retesting that same literal candidate as an unpaid possible completion.
 
 For a genuinely noncommuting unmatched branch, the next necessary
 ingredient is shared native overlap on the C-active E coordinates
@@ -1653,3 +1657,236 @@ not give a cheaper complete Boolean source or an optimality claim. This
 small-tail mechanism stops here; the next source must change the
 actual coupled phase algebra and pay its complete endpoint and
 return. All complete-indicator recurrences remain unchanged.
+
+<a id="coupled-six-wire-endpoint-obstruction"></a>
+
+## L. A genuinely coupled six-wire middle fails its actual output endpoint
+
+This section resolves the six-wire candidate held in the
+[PR #217 continuation note](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/217#issuecomment-6307823212).
+It is outside the affected-silent factorization, but its transported
+clean reflection is not Clifford. Thus no one-band output endpoint
+can complete it, even before imposing Boolean diagonality or dirty
+return. A quantitative full-isometry version is proved below.
+
+### L.1. Actual axes and a paid two-band middle
+
+Use wires $`1,2,z_1,z_2,z_3,w`$ and the fixed input endpoint above,
+with the three z wires as spectators of that endpoint. Put
+
+```math
+\begin{aligned}
+p&=X_1X_2,&r&=Z_1Z_2,&rp&=-Y_1Y_2,\\
+u_i&=Z_{z_i}X_w\quad(i=1,2,3),&&
+u_4=X_{z_1}X_{z_2}X_{z_3}Y_w,\\
+h&=u_1u_2u_3u_4=Y_{z_1}Y_{z_2}Y_{z_3}Z_w,\\
+c&=Z_1,&b&=Z_w,&d&=cb.
+\end{aligned}
+```
+
+Take all-positive T exponents on the literal signed lists
+
+```math
+B=(p,rp,u_1,u_2,u_3,u_4),\qquad
+D=(c,rc,d,dh).
+```
+
+The lists are internally commuting and independent. Their spans
+intersect exactly in $`\langle r,h\rangle`$: the union has binary
+rank eight, and r and h are independent members of both spans.
+The two D tails d,dh anticommute with every u axis. Thus these are
+genuine couplings, rather than an affected-silent block or a free
+native quotient. The original physical pair is still
+$`JpJ=-rp`$ with $`J=J_{\rm core}J_w`$ as above.
+
+Here are explicit Clifford exposures; all lists of gates in this
+paragraph are chronological. On wires 1,2, the word
+$`CX_{1\to2},H_1,CX_{1\to2}`$ maps $`Z_1,Z_2`$ to p,rp.
+On the four tail wires, apply H on all four, then the three
+$`CZ_{z_i,w}`$, then H on all four, then
+$`H_w,S_w^\dagger,H_w`$. This maps $`Z_{z_i}`$ to u_i and
+$`Z_w`$ to u_4. Their disjoint combination is an actual encoder
+C_B. For C_D, apply
+$`CX_{1\to w},CX_{1\to z_1},CX_{z_2\to z_1},CX_{z_3\to z_1}`$,
+followed by H then S on each z wire. It maps
+$`Z_1,Z_2,Z_w,Z_{z_1}`$ to c,rc,d,dh, respectively.
+
+Emit each band as its inverse encoder, its simultaneous T layer,
+and its encoder. Expanding each CZ into H/CNOT/H and each
+$`S^\dagger`$ into three positive S gates gives exposure counts
+$`25,23`$ for C_B and its inverse, and $`10,16`$ for C_D and
+its inverse. Therefore the actual middle
+
+```math
+U=E_DE_B
+```
+
+and its actual reversed inverse have ten T gates, two native T
+bands, at most 74 elementary H/S/CNOT gates, six existing wires,
+and no added workspace or approximation error. This pays the middle;
+it does not assert that it returns the input clean code.
+
+### L.2. The literal transported Pauli has four terms
+
+Let $`Q=UJU^\dagger`$. The exact full-space identity is
+
+```math
+QX_1Q=\frac{Y_1}{2}\left(
+ Z_w+Y_{z_1}Y_{z_2}Y_{z_3}
+ -X_{z_1}X_{z_2}X_{z_3}X_w
+ -Z_{z_1}Z_{z_2}Z_{z_3}Y_w\right).                 \tag{L.1}
+```
+
+All four Pauli labels are distinct, so Q is not Clifford. This
+identity tests the actual output probe, rather than only the
+symplectic actions on separate center characters.
+
+For an analytic derivation, put
+
+```math
+E=\prod_{i=1}^4T_{u_i},\quad
+F=T_dT_{dh},\quad W=EJ_wE^\dagger,\quad
+P=u_1u_2u_3=Z_{z_1}Z_{z_2}Z_{z_3}X_w.
+```
+
+In the encoded core coordinates put $`Y_c=ipc`$.
+On r positive, the original B pair conjugates the core probe to
+$`-Y_c`$ and the D pair conjugates this to p; on r negative,
+both pair factors are their literal scalar $`\omega I`$ and
+the core probe is p. Consequently
+
+```math
+Q=FpWF^\dagger.
+```
+
+The pair scalars cancel here only because these are conjugations;
+they were not discarded from U. With $`\Pi_{h\pm}=(I\pm h)/2`$,
+the elementary identities
+
+```math
+X_1FX_1=iF^\dagger,\qquad
+F^2=\Pi_{h+}d+i\Pi_{h-},\qquad WhW=-h
+```
+
+give
+
+```math
+QX_1Q=Y_1\bigl(\Pi_{h+}b+\Pi_{h-}WbW\bigr).       \tag{L.2}
+```
+
+To evaluate the remaining term, set $`v_i=J_wu_iJ_w`$ and
+$`C_u=\prod_iS_{u_i},\ C_v=\prod_iS_{v_i}`$. On h negative,
+$`\prod_i u_i=-I`$ and $`\prod_i v_i=I`$. Expanding the four
+literal S factors therefore gives
+
+```math
+\begin{aligned}
+C_u&=\frac i2(u_1+u_2+u_3-P),\\
+C_v&=\frac12(u_1u_2+u_1u_3+u_2u_3-I),\\
+C_u^\dagger C_v&=-iP.
+\end{aligned}
+```
+
+Each even v product commutes with every u axis. Using
+$`bE^\dagger=-Eb`$, $`J_wbJ_w=-b`$, and these S products gives
+
+```math
+\Pi_{h-}WbW
+ =-\Pi_{h-}bC_u^\dagger C_v
+ =-i\Pi_{h-}Pb
+ =-\Pi_{h-}Z_{z_1}Z_{z_2}Z_{z_3}Y_w.
+```
+
+Substitution in (L.2), with its flipped h character retained, proves
+(L.1). In particular, matching the sector symplectic maps would not
+remove this Pauli-image obstruction.
+
+### L.3. A coefficient witness gives a complete return-error floor
+
+The following general endpoint test does not depend on the six-wire
+algebra. For a unitary Q and Hermitian Pauli A, define
+
+```math
+\mu=\max_{P\ {m Hermitian\ Pauli}}
+       |\mathrm{tr}(PQAQ^\dagger)|/\dim\mathcal H.
+```
+
+Every Clifford C sends A to a signed Pauli. Normalized
+Hilbert--Schmidt orthogonality and the operator-norm bound on that
+normalized norm give
+
+```math
+\begin{aligned}
+\|QAQ^\dagger-CAC^\dagger\|_{\rm op}
+ &\ge\sqrt{2-2\mu},\\
+\|Q-C\|_{\rm op}&\ge\tfrac12\sqrt{2-2\mu}.        \tag{L.3}
+\end{aligned}
+```
+
+For the second line use the triangle inequality on the two unitary
+factors; no approximate Pauli rounding assumption is required.
+For (L.1), $`\mu=1/2`$, so Q is at distance at least one half
+from every full-space Clifford.
+
+Let $`\mathcal J_A`$ be the isometric embedding into the actual
+positive input clean code, and $`\mathcal J_C`$ the embedding into
+any proposed one-band output clean code. Both codes have dimension
+exactly half the physical space. Allow an arbitrary unitary L on
+all uninitialized inputs; Booleanity and dirty return would only
+restrict L further. If
+
+```math
+\|U\mathcal J_A-\mathcal J_C L\|_{\rm op}\le\epsilon,
+```
+
+then the leakage into the orthogonal output code is at most epsilon.
+Writing $`P_U=U\mathcal J_A\mathcal J_A^\dagger U^\dagger`$
+and $`P_C=\mathcal J_C\mathcal J_C^\dagger`$, the equal-rank
+projector identity gives
+
+```math
+\|P_U-P_C\|_{\rm op}
+ =\|(I-P_C)P_U\|_{\rm op}\le\epsilon.
+```
+
+Thus $`\|Q-J_C\|_{\rm op}\le2\epsilon`$, where
+$`J_C=2P_C-I`$. A one-native-band output image of a Pauli is a
+Hermitian Clifford, including arbitrary Clifford boundary changes
+and spectator mixing. Applying (L.3) proves
+
+```math
+\epsilon\ge\frac14.                              \tag{L.4}
+```
+
+This is a full clean-isometry bound for the specified input endpoint
+and middle, valid for arbitrary logical, dirty and reference inputs.
+Appending unused spectator wires does not change its four Pauli
+coefficients. It is stronger than an exact-return failure, but it is
+not a universal four-band error floor or Boolean-degree theorem.
+
+### L.4. What stops and what can extend
+
+The held candidate is now stopped: its first unavailable operation
+is a one-band output endpoint, which (L.4) excludes at error below
+one quarter. Full Boolean return is therefore unavailable as well.
+Reopening requires a changed actual input/middle phase algebra or
+an additional paid non-Clifford endpoint mechanism that changes the
+witness, followed by a complete operator and resource proof. Merely
+relabeling center sectors or repairing a Clifford boundary cannot
+do so.
+
+The coefficient test (L.3) applies to a transported probe after any
+number of middle layers. Additional non-Clifford layers may repair
+this particular witness, so the test alone is not a growing-layer
+invariant. In view of the paid fixed-accuracy scalar zero reflection,
+no dimension-growing lower bound for conjunction is inferred from
+this example. A future lower mechanism must control the complete
+bank or a genuine layer-stable invariant at the requested accuracy.
+
+The [exact fixture](../../tests/test_coupled_pair_endpoint.py) checks
+the actual signed encoders, the center intersection, the full probe
+identity, its actual reversed inverse and the sector calculations
+in $`\mathbf Q(\sqrt2,i)`$. The proofs above and an independent
+internal audit establish the scoped conclusions; these finite checks
+and audits are not external mathematical review. No complete-frame
+resource frontier or complete-indicator recurrence changes.

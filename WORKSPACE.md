@@ -6,20 +6,22 @@ Work only in **GoGoKo699/Hopf-Frame-Compilation**. Modification and merge
 are authorized. The destination is optimal general native T-depth for
 complete Hopf frames. Manuscript drafting is a separate task.
 
-## Current checkpoint: native source scope and complete readout
+<a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-**Verified scientific baseline:** [PR #217](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/217),
-merged 21 October 2026 as `6ba339245eda3f7473774caf80e843610c0c5dd3`,
-tree `d5f0291cc6a4e6bbe4f54d6ab5d17f1bfc5c9c73`.
-All ten local commands below, 1,464 deterministic tests, both Python CI
-matrices and the rendered-document gate passed on that tree.
-Fetch current main before resuming; this baseline is not a pin.
+## Current checkpoint: normalized sources and the missing lookup sector
+
+**Recovered main:** [PR #218](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/218),
+`ac1e39565281bed7ee116414d66cbb6d7d406fb9`, fetched 21 October 2026.
+Its preceding scientific baseline was PR #217. This checkpoint adds the
+source constructions and scoped exclusions below; exact reviewed-tree
+verification receipts belong to its PR record. Fetch current main before
+resuming; the recovered commit is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Latest substantive outcome](research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md): revision assessment and complete paid readout ledger.
-3. The proof homes for the two active questions below.
+2. [Normalized Fourier-source trial](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source): actual source, full Gram and failed lookup sector.
+3. [Four-call Gram recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 4. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
 No conversation replay is needed. Historical prompts and session endings
@@ -44,6 +46,12 @@ bounds with absolute constants. [R79](research/depth/UNIFORM_SUBTREE_DEPTH.md)
 remains selected Result D. At fixed accuracy and square-root dirty width,
 the unrestricted depth interval is still logarithmic upper versus constant
 lower. The latest source and representation results do not close it.
+
+The exhaustive at-most-one-clean three-layer Boolean theorem has universal
+sign degree at most $`D_{\rm np}=D_3+576=480\,2^{43}+903`$ and nonconstant
+XOR degree at most $`D_{\rm np}-1`$, with rounding radius strictly below
+$`2^{-530690}`$; see the [exact case split](research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md).
+The paired six/five bounds are a separate branch, not universal bounds.
 
 ### Main unfinished route and exact missing operation
 
@@ -71,17 +79,29 @@ Assess success on that complete ledger, not source depth alone.
 accepted block $`K=J^\dagger UJ`$ and $`K^\dagger K\approx\Pi_{\rm eq}/2`$,
 where $`\Pi_{\rm eq}=(I+\Omega_{x,C}\Omega_{x,D})/2`$, using higher-band
 native interference, or find another complete wide non-Clifford readout.
-The [paired projector-Gram interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout)
-pays six-call recovery and serial dirty promotion, including arbitrary
-accepted private fibers and intermediate address motion.
-**The normalized shallow source is unpaid.** Paired-Pauli SELECT loses
-exponential normalization; a forward XOR query or central-sign preservation
-does not repair it.
+The [four-call Gram interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
+pays recovery and serial dirty promotion, including arbitrary accepted fibers,
+address motion and actual inverses. Gram error $`\delta\le\tau^2/4096`$
+suffices. The six-call linear block-error interface remains available.
+**The qualifying lookup source is unpaid.** The new two-query signal echo
+has a normalized half-projector Gram at T-depth at most 18 and polynomial
+overhead, but selects the forward label $`N_xa_0`$, not $`N_x^{-1}a_0`$.
+Its full Gram error is exactly one half for $`p\ge2`$. An inverse appearing
+in its flat Fourier kernel does not survive as the accepted lookup sector.
+The [half-bilinear dense commutator](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source)
+also has a fully paid constant-depth normalized source, but exact p=1,2
+fixtures reject its tested sectors; this is not an all-size exclusion.
+Pause these particular words. The next concrete question is whether an
+explicit address-sensitive nonmonomial mixer can transport the fixed
+paired parity to the inverse-column parity, uniformly on both arbitrary
+carriers. Start with its full conjugated-probe identity and native ledger;
+the existing four-call recovery cannot correct the wrong projector.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
 | [Native read-only two-band bound](research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md) | At amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$, $`k\ge\lceil(p-3)/2\rceil`$ clean inputs are necessary when every actual Clifford boundary fixes the address. No flatness or exact return is assumed. |
 | [One-clean two-band Gram screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) | For p at least three, Gram error at most $`1/256`$ is impossible even with address motion. This target needs at least three source bands or a different clean allocation. |
+| [Actual Clifford signal-image screen](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) | If $`U^\dagger Z_aU`$ is Clifford, lookup Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$. Arbitrary Clifford address motion is allowed; a general higher-band source need not satisfy this premise. |
 | [Sharp Clifford-filter limit](research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) | Arbitrary wide Clifford lookup correlation is at most $`(p+1)/2^p`$. Low-budget Clifford averaging is not a normalized source; this is not a T-depth bound. |
 | [General two-band rank–norm screen](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen) | Exact sources have a growing clean lower bound. The approximate floor shrinks with clean count; fixed-error moving-address growing-clean compression remains open. |
 
@@ -89,25 +109,23 @@ The [spectral-promotion window](research/depth/MSS_SPECTRAL_PROMOTION.md)
 $`k=o(\log(p+2))`$ still requires a source, uniform precision and native
 address sharing. Completed address return does not justify parallel native
 calls. The paid [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md)
-does not automatically compose into a uniformly accurate whole bank.
+has zero clean work and constant fixed-accuracy depth. Conjunction alone
+cannot witness dimension-growing depth at fixed accuracy; its row copies
+still lack a qualifying whole-bank schedule and joint error proof.
 
-**Focused lower scout.** Continue [center transport](research/depth/FOUR_BAND_CENTER_TRANSPORT.md)
-and the [original physical-pair scout](research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md).
-The affected-silent reduction leaves at most $`\lfloor4k/3\rfloor`$
-actual axes per band at pairing nullity k; k at most two is Clifford.
-It never raises depth or adds workspace. Next test genuinely coupled
-center transport outside that factorization: pay an actual output probe
-and full Boolean return. Sector-compatible symplectic maps, a common
-center and a smaller T-count do not supply a cheaper complete circuit.
+**Bounded lower scout completed.** The [genuinely coupled six-wire middle](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
+is paid (ten T gates, two bands, no helpers), but its transported probe sends
+$`X_1`$ to four Paulis of magnitude one half. Every one-band output endpoint
+has complete clean-return error at least one quarter, even with spectator
+Clifford mixing and arbitrary logical action. Pause this candidate. Reopen
+only with changed actual phase algebra or a paid non-Clifford endpoint,
+then prove full Boolean return. The coefficient test can inspect more
+layers; its witness is not invariant under extra non-Clifford layers.
 
-The [held continuation notes](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/217#issuecomment-6307823212)
-specify a six-wire candidate, exact Gram-sector matching conditions and
-a four-call Gram-only observation. They are **not certified additions
-to the proof homes**. Audit and test before promotion; fourth-order
-spectral closure does not make its square a free Clifford.
-The three-band paired sign/XOR bounds remain six/five (five/four at
-active rank at least four), with a separate no-pair ceiling.
-None is a general four-band or dimension-growing depth theorem.
+The held PR #217 continuation queue is superseded: four-call recovery and
+the two exact Gram-sector conditions are proved in the pencil home; the
+six-wire candidate is stopped above. Fourth-order closure still supplies
+neither correct lookup sectors nor a free native implementation of its square.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

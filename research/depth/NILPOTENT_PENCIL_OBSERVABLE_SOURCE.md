@@ -1010,8 +1010,9 @@ T/width $`O(m\mathrm{poly}(p))`$, Clifford count
 $`O(m^2\mathrm{poly}(p))`$ and depth $`o(\log p)`$, would
 enter the retained polynomial-overhead fusion window. No such source
 is emitted by the paired-Pauli sum or the forward pencil. Its
-constant-amplitude projector-Gram normalization remains the first
-unpaid operation, and neither (28) nor the ordinary SELECT loss is an
+correct normalized lookup sector remains the first unpaid operation;
+the [new normalized trials](CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source)
+pay half-projector normalization for other sectors. Neither (28) nor the ordinary SELECT loss is an
 unrestricted native depth bound.
 
 The [small full-column fixture](../../tests/test_nilpotent_pencil_observable_source.py)
@@ -1019,6 +1020,97 @@ checks the paired-Pauli identity and the six-call phase-S readout,
 including a nontrivial private Hadamard fiber, every rejected signal
 input, the literal phase, and the actual inverse. It is a finite
 identity check, not a compiler for the missing asymptotic source.
+
+<a id="four-call-gram-readout"></a>
+
+### 12.3 Four actual calls suffice under the Gram-only promise
+
+The Gram-only interface has a shorter recovery than (30). This does
+not improve the linear-in-eta block-error estimate (33), and does not
+supply a source. Retain one clean signal, let $`Z=Z_a`$, and define
+the actual native word
+
+```math
+ M=ZU^\dagger ZU,\qquad F=M^2,\qquad
+ G=K^\dagger K,\quad K=J^\dagger UJ.
+                                                               \qquad(35a)
+```
+
+Its chronological order is U,Z,U-dagger,Z,U,Z,U-dagger,Z. It uses
+four source/actual-adjoint calls and four literal Z gates. In the clean
+and rejected block decomposition, $`U^\dagger ZU`$ is a Hermitian
+involution with upper-left block $`E=2G-I`$. Its off-diagonal block
+therefore has squared norm operator $`I-E^2`$. Multiplication gives
+the exact complete accepted block
+
+```math
+ J^\dagger FJ=2E^2-I=8G^2-8G+I=:f(G).                 \qquad(35b)
+```
+
+Suppose $`\|G-\Pi/2\|\le\delta\le1`$ for a projector Pi.
+No commutation of G and Pi is assumed. Put
+$`S_0=I-2\Pi`$, $`\Delta=G-\Pi/2`$, and
+$`D=FJ-JS_0`$. Since F and S_0 are unitary and (35b) is Hermitian,
+
+```math
+\begin{aligned}
+ D^\dagger D
+ &=2I-S_0f(G)-f(G)S_0\\
+ &=16\Pi\Delta^2\Pi
+   +16(I-\Pi)G(I-G)(I-\Pi).                         \qquad(35c)
+\end{aligned}
+```
+
+The two summands have orthogonal Pi and Pi-perp supports. The first
+has norm at most $`16\delta^2`$. Because G is a positive contraction,
+the second is bounded above by $`16(I-\Pi)G(I-\Pi)`$, whose norm
+is at most $`16\delta`$. Thus the full initialized-isometry estimate is
+
+```math
+ \|FJ+J(2\Pi-I)\|\le4\sqrt\delta.                    \qquad(35d)
+```
+
+This includes rejected-signal leakage, every private fiber and arbitrary
+references. At delta zero it returns the signal exactly and implements
+the **negative** of the requested reflection. At nonzero delta F need
+not be Hermitian or preserve the clean sector; its actual inverse is
+$`(U^\dagger ZUZ)^2`$, not a second forward F. The elementary
+native example $`U=H_aT_aH_a`$ gives $`F=-iX_a`$, so omitting this
+distinction would already fail on one wire.
+
+Apply the same CNOT/Hadamard envelope as (34). Its initialized target
+is $`-I_p`$, a fixed phase times the complete indicator; that phase
+cancels in the serial promotion's source conjugations. No phase
+correction is needed. Common forward/actual-inverse bounds are
+$`T_V\le4T_U`$, $`G_V\le4G_U+2n+2m+8`$,
+$`d_V\le4d_U`$, $`b_V\le2n-m+b_U`$. Each Z and its actual
+adjoint are emitted as two positive S gates. Substitution in the
+one-clean promotion gives
+
+```math
+\begin{aligned}
+ T_{\rm out}&\le32T_U+48m+8,\\
+ G_{\rm out}&\le32G_U+16n+98m+136,\\
+ D_T({\rm out})&\le32d_U+32,\\
+ b_{\rm out}&\le2n+b_U+2,\qquad b_{\rm clean}=0,\\
+ \|\widetilde I_p-I_p\otimes I_{\rm borrowed}\|
+   &\le64\sqrt\delta.                                \qquad(35e)
+\end{aligned}
+```
+
+Again the final eight T gates can be omitted for even m. For requested
+$`0\lt\tau\le1`$, $`\delta\le\tau^2/4096`$ suffices. All
+source resources must be evaluated at that Gram precision. Actual
+adjoints are retained throughout the promotion, including after leaked
+components; no fresh clean signal or reset is used. The polynomial
+fusion envelope is unchanged. This is a smaller conditional recovery
+ledger, not a change to the unconditional complete-frame frontier.
+
+The [exact four-call fixtures](../../tests/test_gram_four_call_readout.py)
+check the full-column negative reflection with an arbitrary private
+Hadamard fiber, the noncommuting-Gram identity (35c), and the literal
+non-Hermitian inverse example. These finite identities do not establish
+a normalized higher-band source or an asymptotic native schedule.
 
 <a id="two-band-projector-gram-gap"></a>
 
@@ -1185,8 +1277,8 @@ $`\sin(\pi/8)/(2\sqrt2)`$ also applies to Omega_p when p is at least
 three. This is strictly larger than one over 64, contradicting (42).
 No output bank is initialized or fixed to a test state in this reduction.
 
-In particular, the Gram accuracy $`\delta=\tau^2/24576`$ requested
-by Section 12 for $`0\lt\tau\le1`$ is already inside this excluded
+In particular, the Gram accuracy $`\delta=\tau^2/4096`$ requested
+by Section 12.3 for $`0\lt\tau\le1`$ is already inside this excluded
 two-band radius. Intermediate address motion therefore does not rescue
 a one-clean two-band projector-Gram source. The next constructive
 candidate at this interface must use at least three source bands, or
@@ -1197,6 +1289,52 @@ one clean signal still has the complete recurrence (35).
 The conclusion is specific to this projector-Gram target and one clean
 signal. It does not exclude a general unitary-compression source whose
 Gram approximates $`I/2`$, nor a growing-clean projector-Gram source.
+
+### 13.4 Higher-band discovery must match two spectral sectors
+
+The principal-angle algebra also gives an exact diagnostic beyond two
+bands. Factor any one-signal source as $`U=U_B^\dagger U_A`$ and
+retain A,B,C from (37). Let
+$`P_A=(I+A)/2`$ and $`\widehat\Pi=U_AJ\Pi J^\dagger U_A^\dagger`$.
+Then the complete exact Gram contract is equivalent to the **joint**
+conditions
+
+```math
+ \begin{aligned}
+ (C+I)(C^2+I)&=0,\\
+ P_A(I-C^2)/2&=\widehat\Pi.
+ \end{aligned}                                          \qquad(43)
+```
+
+For necessity, the equally sized one-signal sectors and the
+diagonally opposite singular-value identity in Section 13.1 give the
+spectrum of Q as that of $`2G-I`$, repeated twice. If
+$`G=\Pi/2`$, Q has only eigenvalues minus one and zero. Since
+C is unitary and $`Q=(C+C^\dagger)/2`$, C has only eigenvalues
+$`-1,i,-i`$, proving the first line. On those eigenvalues,
+$`(I-C^2)/2=I+Q`$. Compression to the A-positive sector then gives
+the second line. Conversely the first line implies this same polynomial
+identity, and
+
+```math
+ P_A(I+Q)=2P_AP_BP_A=2U_AJGJ^\dagger U_A^\dagger,
+ \qquad P_B=(I+B)/2.
+```
+
+The second line therefore gives $`G=\Pi/2`$ on the entire input
+space. The one-signal rank balance is essential to the necessity
+argument; (43) is not asserted for a general growing clean bank.
+
+For an actual three-band source, U_A can be a two-band encoder and
+U_B a one-band encoder. A, and hence C, need not be Clifford. Fourth
+order closure $`C^4=I`$ alone still admits the unwanted Gram-one
+sector (C=I); the first line of (43) removes it. Even that first line
+does not identify the surviving sector with the lookup projector:
+a logical input rotation changes it while preserving the spectrum.
+The exact fixtures include both failures. Neither line supplies a free
+native implementation of $`C^2`$ or an output endpoint. A candidate
+must satisfy the sector matching and pay its emitted source, actual
+inverse, precision and return together.
 
 The exact principal-angle fixture in
 [`test_nilpotent_pencil_observable_source.py`](../../tests/test_nilpotent_pencil_observable_source.py)
