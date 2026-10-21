@@ -21,6 +21,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Verification](docs/VERIFICATION.md) | Inspect executable evidence and its limits |
 | [Current depth frontier](docs/OPEN_PROBLEM.md) | Locate the proved resource bounds and the remaining one-clean question |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
+| [Working checkpoint](WORKSPACE.md) | Resume the active research question and its full operator/resource contract |
 
 ## Target and resource contract
 
@@ -179,13 +180,8 @@ inputs. Borrowed-precision sources, fast references and direct prefix
 programming remove the precision restriction. Optimal depth remains open; selected manuscript Result D
 remains R79.
 
-Earlier refinements remain available:
-[R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) for fixed accuracy,
-[R92](research/depth/UNIFORM_CATALOGUE_PRECISION.md) for an absolute
-catalogue envelope, [R94](research/depth/PORTABLE_WORKSPACE_CATALOGUE.md)
-for workspace transfer, and
-[R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md) for logarithmic depth
-at inverse-polynomial accuracy.
+The [research catalogue](research/README.md#large-workspace-t-depth)
+retains the earlier refinements and their useful proof components.
 
 The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
 The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
@@ -210,18 +206,14 @@ The following distinct allocations remain useful:
 | Resource point | Current guarantee |
 |---|---|
 | Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| Fixed accuracy, $`a=1`$, sufficient $`b=\Theta_\eta(\sqrt N)`$ | [R90](research/depth/DIRTY_CATALOGUE_TERMINAL.md) attains worst-case optimal count for both complete-frame families with $`D_T=O_\eta(\log_2(n+2))`$ and $`G=O_\eta(N)`$; optimal depth remains open |
 | All precisions, $`a=1`$, $`L\ge6`$, sufficient $`b=\Theta(\sqrt{NL}+L+n)`$ | [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives absolute $`D_T=O(L+\log_2(n+2))`$, optimal T-count and $`G=O(NL)`$ for both frame families; optimal depth remains open |
-| Inverse-polynomial error in n, $`a=1`$, $`L=\lceil\log_2(n+2)\rceil\ge6`$, sufficient $`b=\Theta(\sqrt{NL})`$ | [R95](research/depth/LOGARITHMIC_PRECISION_DEPTH.md) gives absolute $`D_T=O(\log n)`$, optimal T-count, and $`G=O(NL)`$ for both frame families |
 
 The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
 uses a packed literal diagonal. Result B covers allocations with sufficient
 clean work even when Result C's dirty reservation is unavailable. Result D
 supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. The earlier two-clean real-frame
-[compressed-column special case](research/depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains its source and recovery proofs. R79 supersedes its resource bound
-with one clean flag and an absolute precision-dependent ledger.
+T-depth bound. R96 includes fixed accuracy and inverse-polynomial error
+in n; earlier special allocations remain in the linked frontier and catalogue.
 The [resource statement](docs/OPEN_PROBLEM.md) gives the matching intervals
 and remaining optimal-depth question; the [research index](research/README.md)
 retains supporting constructions and the limits of specific interfaces.

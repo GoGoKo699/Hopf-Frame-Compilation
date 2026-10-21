@@ -1,521 +1,29 @@
 # Research results for complete-frame compilation
 
-[Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Endpoint status](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md)
+[Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Resource frontier](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md) · [Working checkpoint](../WORKSPACE.md)
 
-This catalogue separates selected proof dependencies, retained special
-cases, earlier methods, and scoped obstructions. The
-[core proof map](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
-gives the minimal dependency chain. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md)
-states the resource formulas and literal reservations; the
-[resource frontier](../docs/OPEN_PROBLEM.md) states the remaining questions.
-A method-specific obstruction is not a lower bound for every compiler.
+This is a topic catalogue, not a second frontier statement or a sequence of
+research instructions. Each claim has one proof home; that home supplies its
+hypotheses, resource/error ledger, literal phases, actual inverses and return
+contract. A method-specific obstruction is not a lower bound for every compiler.
+Stopped and superseded routes are assessed once in the
+[route decisions](ROUTE_DECISIONS.md).
 
-The selected growing-source count theorem and
-[precision-uniform subtree depth theorem](depth/UNIFORM_SUBTREE_DEPTH.md)
-cover complete real and phase-dressed complex magnitude frames with one
-clean qubit. The depth theorem combines the
-[subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) with the
-terminal and fallback interfaces of the retained
-[one-clean predecessor](depth/ONE_CLEAN_DEPTH.md). The
-[sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) keeps its
-two-clean linear-precision statement and supporting source proofs. The
-[state-based QBP supplement](../supplements/state_based_qbp/README.md)
-uses a different decoder and has its own task-level guarantee.
+Use the [minimal count-proof chain](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
+for selected dependencies. Use the [current research outcome](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+and [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
+for the active question. The [changed-decoder supplement](../supplements/state_based_qbp/README.md)
+has a separate task-level guarantee.
 
-The [fresh-workspace checkpoint](../WORKSPACE.md) and
-[current research outcome](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
-keep the complete approximate dirty indicator as the main constructive
-target. The [root-fusion reduction](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
-now permits polynomial count/width overhead in a smaller complete source:
-eight source/inverse calls and an exact logarithmic-remainder tree restore
-the linear-budget target. Its depth is eight source depths plus
-$`O_\tau(\log\log(p+4))`$ and its full error is at most eight times
-the source error. A genuinely sublogarithmic source remains missing.
-The new [expander zero reflection](depth/EXPANDER_ZERO_REFLECTION.md)
-pays a single complete approximate predicate with zero clean work,
-linear count/dirty width and constant T-depth at every fixed tolerance.
-Its uniform precision ledger is $`T,G=O(pL+L^2)`$ and $`D_T=O(L^2)`$.
-Address motion prevents free parallel row use. The joint-relabeling
-extension preserves a uniform-address subspace, even with arbitrary
-address-independent bank dynamics, and fails the complete target.
-The bounded-choice product-rank and graph-readout audits retain separate
-scope; arbitrary wide native coupling remains outside the former.
-The [virtual-function arithmetic](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
-pays exact dirty additions, odd multipliers and interval echoes, while
-full in-place radix packing remains unpaid.
-The [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
-separates fixed-fiber and dirty-mixing width limits; an exact fully dirty
-echo still retains linear depth. The [physical-pair revision](depth/FOUR_BAND_CENTER_TRANSPORT.md#g-a-sole-unmatched-anticommuting-factor-must-merge-natively)
-pays sole-factor mergers and tests dependent native support without
-claiming a general higher-layer bound. The main resource frontier remains
-unchanged; these results choose the next complete mechanism.
-
-The current revision makes that choice sharper. The
-[Clifford-correlation theorem](depth/CLIFFORD_LOOKUP_FIXED_SPACE.md)
-gives the sharp complete-lookup bound $`(p+1)/2^p`$, even for
-arbitrary wide Clifford address-bank coupling. A normalized Clifford
-average therefore cannot uniformly separate the two whole lookup
-eigenspaces with constant gap. The
-[paired projector-Gram interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout)
-is a different sufficient target: accepted unitary fibers need not be
-phase-aligned, and a paid six-call reflection reads their Gram projector.
-Serial one-clean promotion permits arbitrary intermediate address motion.
-Ordinary paired-Pauli averaging still loses its normalization, so the
-required normalized native source remains unconstructed. Its
-[one-clean two-band case](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
-is separately excluded at Gram error at most $`1/256`$ for p at
-least three, without an address-preservation premise. This uses the
-actual Clifford product of clean-image reflections, not the unitary
-compression theorem. At least three source bands or a different clean
-allocation is the next concrete test; no growing-depth bound follows.
-The [singular physical-block reduction](depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction)
-also pays the retained phase obligation more precisely: at most
-four-thirds of the pairing nullity in original axes per band survive,
-with no increase in depth. This is not a general four-band theorem.
-
-The [current observable-source audit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
-specializes the retained selected-routing freedom to the HRT candidate.
-The source need only transport the complete addressed output Pauli;
-two actual calls suffice, with full error delta and no extra fixed
-carrier. The top-output alias also saves one wire and four Cliffords
-in the four-call algebra-source wrapper. These are contract and constant
-improvements. The new shared-key Clifford-fiber theorem excludes any
-number of such overlaps with affine address-Pauli insertion, at error
-below $`\sqrt2`$. The tested opposite-direction quadratic word leaves
-that premise but retains arbitrary dirty-key dependence with error two.
-The [key-mixing revision](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
-adds a final-boundary theorem valid for arbitrary quantum fibers and
-separate moving-key screens with explicit premises. A different
-[nilpotent-pencil candidate](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md)
-encodes the complete output as an inverse column, or a unique zero
-pivot. Its quadratic XOR query is paid in eight layers; coherent
-readout remains unpaid. Its prescribed weak completion is equivalent
-to the indicator under constant-depth polynomial overhead, so rebuilding
-it from the old indicator retains the old depth. A native readout
-outside fixed-address Clifford stages and completed monomial rounds
-is the next constructive question; no unrestricted depth bound follows.
-[Clean-source promotion](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
-removes a uniformly bounded clean bank with full error and native costs
-paid. A one-signal complete block at amplitude one half or inverse square
-root of two is another sufficient source, through twenty-four actual
-source/inverse calls. The [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
-now pays amplitude-$`1/\sqrt2`$ recovery, an extra flag, all zero-tests
-and dirty promotion, with a uniform slowly growing clean window. Return
-is approximate unless exact flatness is separately established; no
-qualifying source in that window is supplied.
-The [Gaussian compression audit](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
-now controls both labels and signs after a small clean projection, with
-exact flatness and arbitrary dirty width. Its query-stage bound is not
-native depth. The [involutory Gauss audit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
-also controls the global scalar channel: bounded-degree matrix entries
-cannot hide growing-degree addressed signs even in the unsquared Gauss
-phase. Whole-word non-Gaussian readout and native parallel clean promotion
-remain constructive questions.
-The [parallel-promotion continuation](depth/PARALLEL_CLEAN_PROMOTION.md)
-pays private source scheduling and complete packing/echo recurrences.
-A refined monomial packing retains constant source accuracy for exactly
-invariant sectors. Exact native packing is now paid when
-$`2^k(k+1)^2=o(\log(p+2))`$, enlarging the sufficient source window:
-$`k\sim\beta\log\log p`$ and source depth $`O((\log p)^\gamma)`$
-need only $`\beta\lt1`$ and $`\gamma\lt1`$ separately. A qualifying
-source remains missing. The new
-[MSS spectral promotion](depth/MSS_SPECTRAL_PROMOTION.md) pays global
-native frames with a whole-space gap and enlarges the sufficient window
-to $`k=o(\log(p+2))`$, with depth $`O_\tau(d_V+k+1)`$ and
-polynomial source overhead. Its truncated batch keeps constant requested
-accuracy under exact sector invariance; general leakage is separate.
-The [latent-center interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
-pays actual forward-pencil Clifford generators. The addressed sign
-lies in their center, but full-space central-sign extraction remains
-unpaid. Ordinary invariant-vector filtering and fixed-probe twirling
-do not supply it; arbitrary readout remains outside those tests.
-
-A [seven-selector alternative](depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
-also pays uniform precision: for $`L=1+\log_2(1/\tau)`$, the same
-pre-fusion word has depth $`O(L(d_V+k+1)+L^2)`$, using a lazy
-average, general-block cubing and complete bounded-clean promotion.
-Its source resources are charged at accuracy proportional to tau/L
-under exact sector preservation, with the separate leakage multiplier.
-The frames use paid non-Clifford Boolean phases, while
-[structured-frame limits](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
-retain their common-Pauli-space, support-cone and explicit graph premises.
-The [odd-key counter source](depth/COHERENT_COUNTER_SOURCE.md) eliminates
-precise gradient preparation through one clean bit and arbitrary dirty
-lower bits. Its flat compression is exact, but shallow joint arithmetic
-and the full-bank schedule remain unpaid. Its logarithmic clean count
-also lies outside the paid generic packing window. The
-[crossed-kernel audit](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) gives a full
-collision identity and exact dirty-sector gaps for the stated candidate
-families. Its paid shallow word fails complete readout; none of these
-representation restrictions bounds unrestricted native depth.
-The [fixed Clifford-sum theorem](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
-now excludes every two-band complete indicator block at uniformly bounded
-clean count, for sufficiently small fixed relative error and sufficiently
-large address size, uniformly over all positive amplitudes. Decreasing
-amplitude alone cannot evade its amplitude-free defect. The proof permits arbitrary dirty
-width, rejected action and common phase, without assuming flatness.
-The [rank--norm refinement](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
-now requires $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$
-for exact sources. It excludes exact one-clean sources for p≥18,
-and relative error at most $`2^{-10}`$ for p≥20. These are
-source-class statements, not dimension-growing unrestricted depth
-bounds. The explicit growing-k approximate floor still tends to zero,
-so fixed-error growing-clean sources remain open outside the following
-native-boundary restriction.
-The [complete read-only two-band bound](depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md)
-requires $`k\ge\lceil(p-3)/2\rceil`$ at amplitude
-$`1/\sqrt2`$ and relative error at most $`1/8`$. It uses the
-whole bank's independent output labels, not one scalar predicate,
-and allows arbitrary dirty width, off-code action and nonflat blocks.
-It stops the direct combination of this two-band source class with
-the current native-parallel spectral wrapper. Address motion or a
-different jointly paid schedule remains outside the theorem.
-Its one-clean finite-size corollary gives the sharp nonzero compression
-norm floor $`\sin(\pi/8)`$. The
-[previous coherent-source continuation](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md) records
-the four-call direct output readout, its quantum helper-return interface,
-the scoped Fourier-twirl limit, and all-active one-pair closure without
-a singleton-coupling bound. The
-[previous structural revision](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
-replaces its generic matrix-feature degree estimate by actual endpoint
-sublist peeling and a fixed full-space diagonal reduction: sign/XOR
-degree at most six/five uniformly, and five/four at common active rank
-at least four. The
-[positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
-further derived the all-active support from complete Booleanity when the
-literal orientation repair leaves no negative singletons. The new
-[original-pair collapse theorem](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
-removes that premise and the pair-count restriction: any complete Boolean
-one-clean native-three word with a genuine original pair has exactly
-one, with all-active support at both endpoints and no negative singleton
-after literal repair. Its sign/XOR degree is therefore at most six/five,
-or five/four at common active rank at least four. Together with the
-retained no-pair and Pauli-interior cases, its [exhaustive corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained) gives an absolute
-width-independent degree ceiling $`D_{\rm np}`$ for every at-most-one-clean
-native-three Boolean sign, and $`D_{\rm np}-1`$ for its nonconstant
-complete XOR predicate. The [central-parity refinement](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
-now gives sign degree 2049 for the polar-rank-two quadratic-control
-branch, removing the old finite-insertion term from the universal
-maximum. Its value is $`D_{\rm np}=D_3+576`$, still controlled by
-the crude high-rank estimate. The original-circuit rounding floor is
-$`2^{-530690}`$; arbitrary fixed tolerance and growing depth remain
-outside this conclusion. Upper source resources, R96 and selected R79
-are unchanged. The [focused four-band scout](depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md)
-retains a conditional physical coupling-radical certificate and literal
-pair removals. Identity words can have arbitrarily many physical pairs;
-disjoint-pair Boolean words can still admit another whole-word reduction.
-The fixed-endpoint one-pair/orbit class now has an actual-axis cubic
-closure: every middle axis commutes across the two bands. This is not
-a general four-layer degree bound or a free same-budget replacement.
-The [center-transport revision](depth/FOUR_BAND_CENTER_TRANSPORT.md)
-derives actual center preservation in that fixed-endpoint Boolean class,
-extends signed repairs and sole-unmatched-axis removals, and supplies a
-non-Clifford-intermediate counterexample that retains the old two-band
-cost. Multiple unmatched factors and broader endpoint geometries remain
-outside the closure; no unrestricted four-layer bound follows.
-The [paid paired resynthesis](depth/FOUR_BAND_CENTER_TRANSPORT.md#f-a-paid-two-band-resynthesis-of-the-fully-matched-mechanism)
-reduces the fully matched all-active support-two mechanism to two actual
-bands with phase and return retained. The
-[higher-support scout](depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md) leaves
-that local reduction, but its center-moving trial fails the necessary
-Pauli-domain test for Booleanity even under spectator-mixing Cliffords.
-The same five-wire fixed middle also fails every one-band output
-endpoint refactorization; new middle dynamics or quantum spectator
-couplings remain outside. This is not a general four-band theorem.
-The
-[previous algebra checkpoint](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
-retains the disjoint-carrier extraction, clean-cover audit and transported
-center at bounded coupling. The
-[bank-motion checkpoint](depth/BANK_MOTION_CONTINUATION_RESULT.md) retains
-the bank-moving constructions and their scoped Majorana theorem.
-The [parallel-access revision](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
-retains its batch schedule, echo-round limit and multioutput proof repair.
-
-The [joint Fourier-word limits](depth/JOINT_FOURIER_WORD_LIMITS.md)
-are robust for their specified architectures and exclude one physical
-source band at both paid amplitudes for $`p\ge3`$. The [two-band half-amplitude screen](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands)
-retains its stronger finite-size bound at that normalization. The
-[overlap continuation](depth/OVERLAPPING_TWO_BAND_SOURCES.md) computes an
-actual involution repair and a quarter-turn screen surviving arbitrary
-logical Clifford dressing and spectators. The
-[simultaneous parity theorem](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
-adds a Reed–Muller restriction and a native rank condition, with a cheap
-nonindicator saturating that condition. These are useful component
-results; the Clifford-sum gap supplies the general two-band conclusion.
-The [indicator nullity bound](depth/INDICATOR_PAULI_NULLITY.md)
-fixes the standalone linear count order without proving growing depth.
-
-No three-band complete source word has been constructed. The
-[generic promotion recurrence](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
-has error at most $`16(3\sqrt2\epsilon+2\epsilon^2)`$ and depth at
-most 104 for a three-band source, retaining every actual inverse and
-return error. Exact borrowed signal/toggle return requires a separate
-flatness proof. These are paid conditional wrappers, not a candidate
-implementation. Exactly three bands is unnecessary. The revised first
-unpaid operation is a complete sublogarithmic-depth indicator with the
-polynomial-overhead budgets allowed by root fusion. Its
-[branch-difference refinement](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
-permits arbitrary common private action and cancels errors at untouched
-parents, while retaining sibling error and native scheduling costs.
-The [distance-profile audit](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#51-a-complete-distance-certificate-and-the-native-scheduling-gap)
-shows why a single-row coordinate improvement does not pay the complete
-bank schedule: the unchanged address--signal rotation list needs exactly
-one independent-axis batch per address bit. The [joint fixed-angle resynthesis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#52-joint-resynthesis-pays-one-special-angle-detuning-call)
-now pays the same whole-bank detuning in at most 11 T layers with linear
-T-count, quadratic Clifford count and no additional work. A complete
-selective composition and full-operator return/error certificate remain
-unpaid. Its period-eight guard covers completed independent periodic
-rows; arbitrary joint bank mixing is outside that guard. The new
-[joint decoding analysis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
-adds explicit floors for normalized Clifford decoding and the specified
-read-only-bank grammar. The [fine-angle analysis](depth/JOINT_DETUNING_PRECISION_LIMITS.md)
-gives the complete fallback ledger and a logarithmic depth cost for
-independent finer-layer synthesis. These scoped failures leave joint
-non-Clifford synthesis and complete selective return unpaid. The phase-counter test also records its
-quantitative access inequality, without equating accesses with native depth.
-The [parallel-affine batch](depth/PARALLEL_AFFINE_DETUNING.md) now pays
-polynomially many presentations in four T layers and returns the added
-helpers exactly. A single batch has a $`1/4`$ error floor. A Pauli
-echo with actual read-only address/bank Clifford interlayers requires at
-least $`\lceil b/2\rceil`$ rounds below error $`\sqrt2`$.
-This resolves access scheduling and retains the unpaid selective
-composition; it is not an unrestricted native-depth theorem. The full
-batch/actual-adjoint echo resource, error and return recurrence is paid.
-
-The [complete bank-difference merge](depth/COMPLETE_BANK_DIFFERENCE.md)
-now pays nonlinear composition and arbitrary-signal return. Its balanced
-equality-bank recurrence has linear exponential count/width and an
-$`O(b^2)`$ depth schedule. The [fermionic Walsh construction](depth/BANK_MOTION_WALSH_INDICATOR.md)
-instead implements the whole indicator with $`T\le4b2^b`$,
-$`D_T\le4b`$, $`G=O(b4^b)`$ and no extra work. Both retain
-slower depth than the existing logarithmic source.
-The [whole-word Majorana theorem](depth/WHOLE_WORD_MAJORANA_LIMITS.md)
-survives fusion when every actual Clifford boundary preserves x and,
-sectorwise, the standard Majorana span of all bank/helper wires.
-For $`b\ge2`$, zero clean work and full phase-indicator error
-$`\epsilon\lt1`$, it gives
-$`2^d\ge2^b(1-\epsilon^2/2)^2`$, hence $`d\ge b-1`$ and
-$`d\ge b`$ below $`\sqrt{2-\sqrt2}`$. This is a native-depth
-bound only within that grammar. An XOR indicator's actual
-output-Hadamard-conjugated word must satisfy it at both endpoints too.
-The next shallow-source mechanism must
-leave it through non-Majorana Clifford interference, address motion or
-another complete interface; bank motion alone is now paid and does not
-improve the frontier.
-
-The [direct HRT output readout](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md)
-identifies all $`2^b`$ output wires with carrier coordinates, including
-the top probe, after a paid in-place zeta transform. One readout replaces
-the outer echo in the retained
-[disjoint-carrier construction](depth/FULL_BANK_CHARACTER_TRANSPORT.md).
-For $`m=2^b`$, its complete recurrence is
-$`T_E\le4T_V`$, $`d_E\le4d_V`$,
-$`G_E\le4G_V+bm+2b+2m+2`$, $`w_E\le m-1+w_V`$,
-and $`\epsilon_E\le4\eta`$. The ideal source may apply arbitrary
-input-dependent quantum unitaries to its private helpers: the character
-and its actual inverse return them. This is a full-operator source
-comparison, not a promise only on initialized inputs or individual
-basis probabilities. Root fusion uses 32 source occurrences and has
-error at most $`32\eta`$; request $`\eta=\tau/32`$.
-The retained fast HRT source meets the relaxed polynomial count/width
-budgets but has logarithmic depth. The next operation is a qualifying
-sublogarithmic source with this weaker helper-return interface, or a
-synthesis of the completed word. Its quadratic inverse and third-level
-membership do not supply that operation. The retained inverse-degree
-argument limits completed classical bounded-degree stages, including
-classical helper garbage, rather than arbitrary native interference.
-
-The [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map)
-now supplies the complete arbitrary-output XOR of that inverse in at most
-40 T layers, with polynomial address overhead and exact helper return.
-It leaves the original coefficients and the arbitrary old output present.
-Converting this XOR to an in-place inverse by a swap is unsupported;
-a complete conversion or whole-word interference is the next operation.
-
-The [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
-also pays a full change to a Choi basis and the coherent Z correction.
-Its first unpaid operation is the coherent X family
-$`R_z=F_rX^zF_r^\dagger`$, whose fixed-z branches are Clifford but
-whose joint coefficients contain f(z). The
-[direct output version](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
-uses four R/actual-inverse calls, error at most $`4\eta`$ and
-$`3m-1+w_R`$ extra dirty wires, allowing arbitrary private quantum
-fibers. Two paid quadratic XORs and a swap relate R to the paired
-transform $`F_r\otimes F_r^\dagger`$ on two arbitrary banks.
-The algebra-key multiplication $`(a,y)\mapsto(a,y+a+ay)`$ is already
-constant-depth, but it does not convert the key to $`a=f(z)`$.
-The shallow Fourier kernel has an exact weak block encoding with
-$`2w`$ clean labels and amplitude $`2^{-w}`$, for $`w=2^r-1`$.
-Its mask-twirl scalarization needs exponentially many terms at fixed
-relative error; this is a representation limit, not a native-depth
-bound. No clean Bell resource or returned teleportation history is
-assumed. A complete shallow coherent source or different fused word
-remains missing.
-
-The [clean-sector parallelism audit](depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
-rejects a different apparent shortcut. If every actual Clifford boundary
-fixes the clean register and no T gate targets it, restriction already
-removes that clean bank without increasing T-count or depth. Merely
-returning the clean bank at source endpoints does not allow overlapping
-native calls to run in parallel. A universal zero-clean black-box wrapper
-needs at least $`2^k`$ source occurrences for k clean bits at the stated
-literal errors; this counts calls, not native layers or unrestricted depth.
-
-The [occupied Boolean center](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
-retains the original physical middle pairs and reduces their noncentral
-support at fixed pair count. Its new Section 8 proves degree closure
-when the additional span of actually coupled silent axes is also
-bounded. Pair count alone still does not supply that hypothesis; the
-new Section 9 retains bounded scalar features and individually
-clean-preserving Clifford summands without it, but their common-band
-displacement identities do not yet close Boolean matching. The
-[central-module profiles](depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
-now bound profile distortion and the escaping span for each actual
-matching action, without bounding the additional silent span. The original
-exceptional-axis module has dimension at most 16c modulo the center and
-can be absorbed into insertion dimension at most 17c. Simultaneous matching
-and propagation inside the old middle span remain unpaid. The
-[minimal original-pair completion](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md)
-retains the central partner of an actual one-pair cancellation; moving
-that partner blocks every one-band output completion to a Clifford
-target for this fixed active input/middle source. All admissible silent
-input axes coupled to the active core are now included. Every complete target in the same family
-has a literal zero-clean three-band word with one middle axis; diagonal
-targets are diagonal third-level, with sign/XOR degree at most three/two.
-Its [paired rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints)
-proves sign/XOR degree at most six/five for one-clean three-band words
-with two clean-active axes at each endpoint and a genuine original
-middle pair. It retains arbitrary silent lists, dirty width and
-unused-sector action; the common pair-parity sectors are a proof device,
-not a free controlled compiler. The no-pair branch retains its separate
-theorem. The [one-sided rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow)
-now gives sign/XOR bounds 197/196 while the other rank grows. The following
-two-axis physical-support theorem permits both ranks to grow for one
-original pair. The [larger-support analysis](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction)
-now gives a robust one-band obstruction and an exact two-band repair for
-the sector endpoint code. This raises the sector comparison to five
-bands with middle singletons, or four in the pair-only witness, leaving
-finite-insertion Boolean stability unpaid by that representation.
-The later pair-collapse theorem bypasses this cost for complete Boolean
-three-layer words; higher layers remain open. The representation
-obstruction supplies no Boolean counterfamily or unrestricted depth bound.
-The [all-active original-pair theorem](depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
-gave sign/XOR degree 2428/2427, with higher-degree floor
-$`2^{-530690}`$, for a one-clean three-band word with one genuine
-pair whose difference is the sum of all actual active axes at each
-endpoint, when either endpoint's silent list
-commutes with the original middle. It supplies recognition and a
-numerical bound inside the class already covered qualitatively after
-reversal with t=0. Its recognition and matching remain useful; the
-structural diagonal reduction below now sharpens this bound.
-The [singleton-coupling extension](depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
-retains all positive original middle singletons. If h is their actual
-pairing rank against either endpoint silent span, Boolean endpoint
-transport proves that both ranks agree and supplies an enlarged physical
-center with quotient dimension at most $`2h+4`$. The complete sign bound
-is $`D_{2h+4}+4A_{2h+4}`$, XOR one less, with the same original-circuit
-rounding floor. It assumes no bound on the old coupled-silent axis span
-and substitutes no product axis as a free native phase. This remains a
-useful transported-center component, with no bound on h inferred from
-one pair.
-
-The [all-active singleton closure](depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
-removes the coupling-rank premise in that original one-pair class.
-The pair's literal scalar branch supplies native matching on one common
-stabilizer code; the other branch confines the actual dressed insertion
-to one computational X-mask direction. Its generic matrix-feature bound
-37748865/37748864 is superseded by the
-[both-end diagonal reduction](depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md).
-Exact target transport makes both dressed endpoint axes monomial;
-native independence then permits their coupled sublists to be peeled as
-actual diagonal C3 phases. One fixed Clifford change makes the remaining
-insertion and actual three-band residual diagonal on the full logical
-space. The sharp native theorem gives sign/XOR bounds five/four at
-common active rank at least four; the retained rank-two theorem gives
-the uniform six/five bound. This also sharpens the earlier one-sided
-2428/2427 estimate. Every original singleton and silent factor is retained,
-with no restriction to a $`P_h`$ eigenspace. The original-circuit rounding floor
-$`2^{-530690}`$ applies within these physical-list hypotheses; no
-bound on h or free native phase list is asserted by that component.
-The later pair-collapse theorem supplies the unrestricted paired-branch
-recognition needed to apply it.
-
-The [positive-singleton recognition theorem](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
-removes the support assumption in the one-pair class with no negative
-singletons after literal pair-orientation repair. Exact clean comparison
-gives a common active span. If the pair difference omitted an actual
-active axis, a clean-preserving Pauli in that span would commute with
-its transported image on the scalar parity branch and anticommute on
-the quarter-turn branch. A complete Boolean derivative has one global
-commutation sign, a contradiction. All-active support is therefore a
-conclusion in this positive-singleton class, and the same six/five
-uniform and five/four rank-at-least-four bounds follow. This analytic
-extension preserves the full operator contract and retained rounding
-floor; it adds no fixture or upper compiler.
-
-The [pair-only enlarged-center theorem](depth/PAIR_ONLY_ENLARGED_CENTER.md)
-removes the one-sided silent-commutation premise under the all-active
-genuine one-pair condition with no middle singletons, allowing arbitrary
-endpoint silent lists including both coupled. Boolean kernel products
-give a physical shared flip or a larger genuinely transported center
-with a four-dimensional residual and actual source X-mask rank at most four
-after shared alignment. Its sign/XOR bounds are
-$`D_*=576\cdot2^{62}+2252`$ and $`D_*-1`$, with the same
-rounding floor; the later structural six/five bound supersedes these
-estimates throughout this subclass.
-This assumes no bound on the old coupled silent span, grants no free
-native band, and retains the physical clean wire through the complete
-block.
-The former next step of unrestricted singleton coupling in this
-all-active class is closed by scalar-branch matching, with the small
-degree bound supplied by the full-space diagonal reduction. Boolean
-support recognition also closes proper-support candidates with only
-positive singletons. The
-[scalar-sector continuation](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md)
-now closes the remaining negative-singleton and growing-original-pair
-questions. Restriction to the joint scalar pair sector preserves the
-actual output-silent list's independence. Boolean reality removes its
-dressing of every clean-even active direction; the full logical Boolean
-derivative then cannot switch commutation sign between pair sectors.
-Every pair difference is the same complete active sum, so original
-middle independence permits only one. Reversal gives output support,
-and the clean comparison excludes negative singletons.
-
-The [exhaustive one-clean three-layer corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained),
-with the [central-parity refinement](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md),
-gives the ceiling
-
-```math
-D_{\rm np}=D_3+576,
-\qquad \deg g\le D_{\rm np},\quad \deg f\le D_{\rm np}-1.
-```
-
-For a polar-rank-two control, fix one genuine computational center
-parity. On each entire remaining-register sector the insertion agrees
-with an actual Clifford. Its replacement preserves Pauli boundaries
-and the three original independent native lists, so the 2048 theorem
-applies. Reconstructing the two sector signs in the same coordinates
-gives 2049. This removes the old finite-insertion term; the retained
-high-rank bound dominates it and the Pauli-interior and paired ceilings.
-
-The sharp quantitative question remains. The corresponding high-rank
-restriction gives constant translation but creates a relation in the
-actual endpoint lists. Native independence no longer licenses diagonal
-axis peeling, while the insertion retains quadratic control. The
-[literal relation factorization](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md#7-the-exceptional-relation-recreates-a-quadratic-controlled-pauli)
-now exposes another quadratic-controlled Pauli of polar rank equal to
-the relation support size minus two. Its controls need not be in the
-whole word's shared center; moving it through the middle remains
-unsupported. This diagnosis retains the old mechanism and cost. The
-restriction's failure is a limitation of this proof mechanism; it does
-not obstruct an alternative native representation or establish growing
-unrestricted depth.
-The conservative rounding floor applies to the original full circuit,
-including leakage, dirty return and references. The resulting depth
-exclusion is still constant, not dimension-growing. R96 remains the
-strongest general upper bound, R79 remains selected Result D, and the
-first unpaid upper operation remains a qualifying sublogarithmic weak
-quantum-fiber source or whole extraction.
+| Need | Catalogue section |
+|---|---|
+| One-clean count and earlier endpoint methods | [Endpoint results](#endpoint-results) |
+| General depth constructions and promised families | [Large-workspace T-depth](#large-workspace-t-depth) |
+| Complete indicator interfaces and paid promotion | [Query transfers](#complete-query-transfers-and-clean-source-promotion) |
+| Source mechanisms and their limitations | [Components](#constructive-components-and-source-candidates) · [Scoped limits](#source-specific-limits-and-failed-compositions) |
+| Native lower bounds and the focused scout | [Boolean rigidity](#native-boolean-rigidity-and-clean-code-structure) · [Physical pairs](#original-physical-pairs-and-the-four-band-scout) |
+| Restricted query/source grammars | [Read-only transport](#read-only-queries-and-source-transport-classes) |
+| Prior designs and outcome records | [Historical records](#session-records-and-designs) |
 
 ## Endpoint results
 
@@ -523,1047 +31,420 @@ quantum-fiber source or whole extraction.
 
 ### Precision-uniform one-clean count
 
-The [one-clean growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
-is the proof home for Result C's unbanked count. Its
-[two-clean predecessor](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count)
-supplies the precision/mode separation. The one-clean lift borrows the
-phase signal while retaining the initialized anchor marker; the layerwise
-baseline covers low precision and bounded dimension.
-
-The [claim ledger](../manuscript/PUBLICATION_SCOPE.md) records each family's
-base dirty reservation and the matching qualification at that exact width.
-The guarantee includes every logical input, dirty/reference correlation,
-literal phase, clean-work leakage, and actual inverse.
+[Growing-source compilation](endpoint/GROWING_SOURCE_COMPILER.md) is the
+proof home. Read the [one-clean theorem](endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count)
+with its [two-clean predecessor](endpoint/GROWING_SOURCE_COMPILER.md#10-precision-uniform-two-clean-count).
+The selected claim ledger retains the exact base-width matching qualification.
 
 ### Optimal banked count frontier
 
-The [banked growing-source theorem](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
-proves Result C's optimal count frontier throughout the stated doubled-base
-width regimes. Banked source masks return every bank and selector before
-the next operation. Summed native charges and the existing width-sensitive
-lower bounds establish matching; the theorem's Clifford budget and
-real/complex reservations remain distinct obligations.
+The [banked extension](endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier)
+is the proof home for Result C at its doubled-base reservation. Count
+optimality does not add a T-depth guarantee.
 
 ### Constant-clean high-precision count
 
-The [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count)
-and [growing-source compiler](endpoint/GROWING_SOURCE_COMPILER.md) retain
-the two-clean high-precision theorem for complete prescribed real frames.
-The [complex-magnitude corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-composes the half-error real construction with the packed literal diagonal.
-Its sharper complex reservation saves one dirty qubit relative to the
-one-clean theorem at this endpoint. The real zero-phase witness supplies
-the same lower bound. Growing sources, sealed rejection modes, frozen
-output tags, actual dirty replay, and final recovery are charged. These
-count results do not claim arbitrary-complex-unitary synthesis, a new
-T-depth bound, or a general native emitter.
-
-Its proof uses the [mixed local gauges and dyadic kernels](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md),
-[disjoint-block compilation of the fixed bottom levels](endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks),
-and [disjoint source extensions](endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources),
-together with the linked conditional-work guards, scalar, and recovery
-primitives. The conditional-suffix grouped count remains a separate
-corollary; C does not require its iterated grouping in the precision splice.
-
-The remaining tables catalogue earlier methods and their individual limits.
-An unconstructed source or fine step in one of these methods is not an
-unresolved part of the growing-source theorem or a new work order.
+The retained [endpoint statement](../docs/OPEN_PROBLEM.md#constant-clean-high-precision-count)
+and [complex-magnitude corollary](endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
+keep their sharper two-clean allocation. Their literal phases and full return
+are not replaced by an arbitrary-complex-unitary synthesis claim.
 
 <a id="native-primitives-and-promised-families"></a>
 
 #### Retained primitives and promised families
 
-| Study | Result | Scope |
-|---|---|---|
-| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) | Linear endpoint count for disjoint SU blocks; unbanked and banked high-precision block/state interfaces with full Clifford ledgers | High-precision forms require $`L\gt N/n^2`$ beyond their fixed dimension threshold; each interface retains its own clean allocation, literal phase, and complete return |
-| [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Linear native count under a support-times-rank budget; boundary-column and collective common-basis fusion | Two-clean complex and one-clean real domains; growing sequential overlap does not inherit the disjoint budget |
-| [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Full conjugate-sector phase word, real initialized-target and source-overlap lifts, zero-clean real reflection banks, and one-clean real blocks | The phase signal is borrowed outside every core; the initialized anchor marker and genuine logical recovery coordinates are retained; complementary-sector restrictions keep their original scope |
-| [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Full-input selected Pauli/source-axis rotations with two arbitrary helpers; jointly compiled raw rejection orientations at O(Q+q+ell) T-count | Literal query phases and shared-core width are charged; raw canonicalization does not compile transported logical prefixes |
-| [Matching and leaf deflation](endpoint/MATCHING_LEAF_DEFLATION.md) | Canonical rank equals twice forest matching size; matching-budget compilers and an explicitly closed nonidentity deflation | Paid input correction retained; separate-level precision still costs O(nN); no unrestricted endpoint improvement |
-| [Precision-gauge compiler](endpoint/PRECISION_GAUGE_COMPILER.md) | Linear endpoint count on regular charts, fixed-ratio exponent intervals, and the stated cheap/ultraweak family; exact mixed-height scheduling bound | Rescheduling unchanged merge banks retains repeated precision cost; the next construction changes those sources |
-| [Heterogeneous precision source](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) | At every integer height, $`O(N+\mathcal B_K)`$ count after certified clipping; linear retained bottom trace gives linear count | Fixed common-source construction with mixed local gauges and actual dirty replay; includes the earlier exponent-envelope and mixed-height families |
-| [Structured forests](endpoint/STRUCTURED_FOREST_COMPILERS.md) | Linear endpoint count under sub-binary degree-window growth, including fixed computational outdegree; over a cheap or fixed-ratio base, either bounded exceptional path depth or bounded exits per base component suffices | Bounded exits allow arbitrarily deep exceptional paths; original computational-label tree and fixed promise constants, with exact signed and corner tuples included |
-| [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | **Proved special case:** linear endpoint count for a literal native-baseline antichain promise | Generic rounded frames need not satisfy that promise |
-| [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | **Proved special case:** linear endpoint count under the stated ancestor-closure condition, including a changed path | This is a restricted update family, not the unrestricted frame family |
+| Proof home | Role and scope |
+|---|---|
+| [Disjoint native blocks](endpoint/DISJOINT_BLOCK_COMPILER.md) · [disjoint-block compilation of the fixed bottom levels](endpoint/DISJOINT_BLOCK_COMPILER.md#1-disjoint-unitary-blocks) · [disjoint source extensions](endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources) | Disjoint SU/block/state compilation; high-precision forms retain their threshold and separate clean allocations. |
+| [Rank-weighted boundary compiler](endpoint/RANK_WEIGHTED_BOUNDARY_COMPILER.md) | Support-times-rank and common-basis fusion; growing sequential overlap is not free. |
+| [Borrowed phase and recovery sectors](endpoint/CONJUGATE_SIGNAL_RECOVERY.md) | Borrowed phase and conjugate recovery; the initialized anchor and logical recovery coordinates remain. |
+| [Borrowed selected axes](endpoint/BORROWED_AXIS_COMPILER.md) | Selected source-axis rotations and raw orientation fusion; transported logical prefixes are separate. |
+| [Matching and leaf deflation](endpoint/MATCHING_LEAF_DEFLATION.md) | Forest-matching rank and exact deflation; levelwise precision retains its repeated cost. |
+| [Precision-gauge compiler](endpoint/PRECISION_GAUGE_COMPILER.md) | Regular charts, exponent envelopes and cheap/ultraweak families; unchanged merge banks still repeat precision. |
+| [Heterogeneous precision source](endpoint/HETEROGENEOUS_PRECISION_SOURCE.md) | Certified clipping, mixed local gauges and actual dirty replay; linear bottom trace gives linear count. |
+| [Structured forests](endpoint/STRUCTURED_FOREST_COMPILERS.md) | Sub-binary growth and bounded-exit promises on the original computational tree. |
+| [Antichain changes](endpoint/ANTICHAIN_COMPILER.md) | Literal native-baseline antichain promise, not arbitrary rounded frames. |
+| [Sparse nested changes](endpoint/SPARSE_UPDATE_COMPILER.md) | Ancestor-closure update promise, including a changed path. |
 
 <a id="full-frame-reductions-and-remaining-native-steps"></a>
 
 #### Earlier full-frame reductions and their native limits
 
-| Study | Result | Scope |
-|---|---|---|
-| [Fixed-tree Cayley reduction](endpoint/TREE_CAYLEY_REDUCTION.md) | All-angle phase gauge, regular parameter chart, exact O(N)-T permutations, and a two-diagonal-algebra generator | This route's direct fine-core realization costs O(nN); it supplies no separate linear native ledger |
-| [Boundary propagation](endpoint/BOUNDARY_PROPAGATION.md) | Sparse preconditioning, repeated-call precision within the exact width, and complete feedback cancellation to one prefix encoder | Repeated calls cost O(RN); the surviving fine encoder has a direct O(nN)-T certificate |
-| [Coarse encoder](endpoint/COARSE_PREFIX_ENCODER.md) and [collective refinement](endpoint/COLLECTIVE_PRECISION_REFINEMENT.md) | Joint prefix compilation, exact geometric history, quadratic physical purification, and a cubic midpoint replacement at O(N) T-count | Fixed-order refinement of the terminal regular-core frame; this refinement route has no all-order linear-cost ledger |
-| [Coupled tree resolvent](endpoint/COUPLED_TREE_RESOLVENT.md) | All-order graded inverse, tail and support bounds, ideal normalization-three scattering, and hidden-prefix baseline identity | Direct native synthesis retains O(N+nL) cost; small rank and static feedback do not establish a linear native ledger |
-| [Canonical-star resolvent](endpoint/CANONICAL_STAR_RESOLVENT.md) | Exact root-column transfer, triangular Cayley denominator, and a linear-count full native local oracle | The descendant feedback inverse remains unpaid |
-| [Original-tree residual](endpoint/ORIGINAL_TREE_RESIDUAL.md) | Signed path and determinant identities; exponentially accurate exactly returned coarse word; regularized 4N-mode source completion with bounded tree-cut ranks | Ideal source geometry is proved; fine native source preparation and its inverse remain unpaid |
-| [Ordered block banks and finite histories](endpoint/ORDERED_BLOCK_BANKS.md) | Linear-volume complete-frame bands, sharp block/monomial factor-count scale, one nested-support source construction, and native right-readout, coarse-prefix and local fine banks | Stored banks are not ordered execution; fine left source remains open; the modular lower bound does not cover fused native synthesis |
-| [Tree transport](endpoint/ENDPOINT_TREE_TRANSPORT.md) | Sparse generators, weighted norms, complete transport columns, and native small-mode constructions | Representation size and classical conditioning do not price the joint native operation; unchanged local scattering retains its query limitation |
-| [Weighted transport block](endpoint/WEIGHTED_TRANSPORT_BLOCK.md) | Valid complete dilation with exact/approximate dirty-return variants | The constructed native word retains the repeated precision cost |
-| [Packed rejection banks](endpoint/PACKED_REJECTION_BANKS.md) | Supported rejected paths fit the two mode flags; preweight and one final recovery give the complete frame; depthwise balance gives exact four-port compression and a full rounded comparison within the literal dirty width | Fine prefix transport remains unpaid; bankwise scalarization still requires a fine chronological prefix, and direct source cost remains O(nN) |
-| [Joint history compression](endpoint/JOINT_HISTORY_COMPRESSION.md) | Three compressor calls recover a complete fine prefix; an anchored Householder specifies a stable full completion, and two compressor calls give its history range reflection | Native compression remains unconstructed; logical-label-preserving mixing has a constant error floor, and a reflection-only oracle needs growing queries to recover the orientation |
-| [Residual assembly](endpoint/RESIDUAL_ASSEMBLY.md) | Forward/reverse and coupled repairs, independent-forest packing, orthogonal-history capacity, and damping restrictions | The selected affine branch, native repair and refinement-table costs remain charged; all-order inverse bounds are in the coupled-resolvent chapter |
+Unpaid steps below belong to these earlier approaches, not to gaps in the
+proved growing-source theorem.
+
+| Proof home | Role and scope |
+|---|---|
+| [Fixed-tree Cayley reduction](endpoint/TREE_CAYLEY_REDUCTION.md) | All-angle gauge and regular Cayley chart; direct fine-core synthesis retains its extra logarithmic factor. |
+| [Boundary propagation](endpoint/BOUNDARY_PROPAGATION.md) | Complete feedback cancellation to a prefix encoder; repeated native calls remain charged. |
+| [Coarse encoder](endpoint/COARSE_PREFIX_ENCODER.md) and [collective refinement](endpoint/COLLECTIVE_PRECISION_REFINEMENT.md) | Paid coarse/fixed-order refinement; no all-order linear-cost refinement ledger. |
+| [Coupled tree resolvent](endpoint/COUPLED_TREE_RESOLVENT.md) | All-order graded inverse and scattering identities; direct native cost remains. |
+| [Canonical-star resolvent](endpoint/CANONICAL_STAR_RESOLVENT.md) | Complete local oracle; descendant feedback inversion remains unpaid in this route. |
+| [Original-tree residual](endpoint/ORIGINAL_TREE_RESIDUAL.md) | Exactly returned coarse word and fine source geometry; native fine preparation remains unpaid. |
+| [Ordered block banks and finite histories](endpoint/ORDERED_BLOCK_BANKS.md) | Stored banks do not execute in order; fine chronological source/replay costs remain. |
+| [Tree transport](endpoint/ENDPOINT_TREE_TRANSPORT.md) | Complete transport identities and small-mode circuits; representation size does not price the joint word. |
+| [Weighted transport block](endpoint/WEIGHTED_TRANSPORT_BLOCK.md) | Complete dilation and dirty-return variants; repeated precision cost survives. |
+| [Packed rejection banks](endpoint/PACKED_REJECTION_BANKS.md) | Compressed rejection modes and full comparison; fine prefix transport remains unpaid. |
+| [Joint history compression](endpoint/JOINT_HISTORY_COMPRESSION.md) | Complete compressor interfaces; native history compression remains unconstructed. |
+| [Residual assembly](endpoint/RESIDUAL_ASSEMBLY.md) | Forward/reverse repairs and capacity bounds; native assembly and refinement tables remain charged. |
 
 #### Source programs and encodings
 
-| Study | Result | Scope |
-|---|---|---|
-| [Source reuse](endpoint/SOURCE_REUSE_LIMITS.md) | Transformed-mask fusion, dirty Klein dressing, Spin closure, full-source dirty-polar obstruction, and a single involutory echo bound | The source witness is not proved reachable by the fixed global encoder; the echo bound requires invariant clean inputs and a commuting target |
-| [Source-program resynthesis](endpoint/SOURCE_PROGRAM_RESYNTHESIS.md) | Joint raw-source resynthesis, prefix-selected tails, completed-group gauges, and a fixed-core endpoint normal form | Raw connectors and growing local costs remain distinct; independent gauges apply only after full group recovery; endpoint bound unchanged |
-| [Joint native words](endpoint/JOINT_NATIVE_WORDS.md) | Literal Pauli-word contract and returned-dirty compression to half the dirty symplectic rank, without added T gates or error | Canonical counting gives only a linear lower bound; no short-word selection rule or unrestricted improvement |
-| [Canonical grouped scalar](endpoint/CANONICAL_SCALAR_COMPLETION.md) | A canonical scalar and direction-controlled inverse fit the existing group interface | Consolidating the scalar calls also helps the old construction; precision is still paid per group |
-| [Paid logical encodings](endpoint/PAID_LOGICAL_ENCODINGS.md) | Bit-optimal vacuum/one-hot permutation, a 15-T six-bit native encoder, branching support and exact sector controls | Complete input action retained; physical common-core and regular phase-stage limits are scoped, not unrestricted T bounds |
-| [Native realification and ring height](endpoint/NATIVE_REALIFICATION.md) | Realification at at most twice the T-count, exact marker-support gap, linear-height dyadic approximation, and a normalized accepted-phase bound | Ring height does not price a native word; the phase bound requires literally calibrated stabilizer boundaries |
-| [Spin decoding](endpoint/SPIN_DECODING_LIMITS.md) | Spectral multiplicity bounds for one doubled lift with a target-dependent inverse encoder or unrelated Clifford wrappers | The endpoint witnesses require n at least four; general noninverse native wrappers and other representations remain eligible |
-| [Schur source limits](endpoint/SCALAR_SCHUR_LIMITS.md) | Exact coarse-frame correlation gauge and a polynomial approximation floor at fixed source-mode dimension, even with arbitrary dirty work | One prescribed coarse call with bounded logical-label-preserving sources; no unrestricted source or T-count lower bound |
+| Proof home | Role and scope |
+|---|---|
+| [Source reuse](endpoint/SOURCE_REUSE_LIMITS.md) | Raw fusion and scoped dirty-polar/echo bounds; reachability and invariant-input premises remain. |
+| [Source-program resynthesis](endpoint/SOURCE_PROGRAM_RESYNTHESIS.md) | Raw resynthesis and grouped gauges; growing local costs and transported prefixes stay separate. |
+| [Joint native words](endpoint/JOINT_NATIVE_WORDS.md) | Literal Pauli words and returned-dirty compression; no short-word selection rule. |
+| [Canonical grouped scalar](endpoint/CANONICAL_SCALAR_COMPLETION.md) | Paid canonical scalar within the old group interface; precision is still paid per group. |
+| [Paid logical encodings](endpoint/PAID_LOGICAL_ENCODINGS.md) | Complete native encoders and sector controls; common-core and phase-stage restrictions are scoped. |
+| [Native realification and ring height](endpoint/NATIVE_REALIFICATION.md) | Paid realification and ring-height diagnostics; height alone does not price native synthesis. |
+| [Spin decoding](endpoint/SPIN_DECODING_LIMITS.md) | Spectral limits for the stated doubled lift; unrelated source representations remain eligible. |
+| [Schur source limits](endpoint/SCALAR_SCHUR_LIMITS.md) | Fixed-mode, logical-label-preserving source limits with arbitrary dirty work. |
 
 #### Diagonal and reflection architectures
 
-| Study | Result | Scope |
-|---|---|---|
-| [Bounded diagonal factorization](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) | Certified factor search at the literal dirty budget, stable nested-projector coverage, and an explicit nonflat n-slot factorization | The n-slot realization costs O(nN); uniformly bounded coverage by eligible mixers remains a separate premise |
-| [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Haar/flat-Clifford restrictions, gauge-transport rigidity, and the tight n-stage bound for differentiable Clifford-centered diagonal architectures | Approximate stage bounds additionally require a physical Lipschitz constant; other baseline and selection models remain eligible |
-| [Center-phase reflections](endpoint/CENTERED_PHASE_REFLECTIONS.md) | Exact all-table optimum, real-image classification, quadratic floors, and an exactly verified five-qubit member | The two slots are a table and its inverse; multiple centers and different source words remain eligible |
-| [Programmed reflections](endpoint/PROGRAMMED_REFLECTIONS.md) | Exact phase-orbit and reversing-equation tests, a regular signed-cycle chart, and native fixed offsets | Classical factor selection is distinct from native synthesis; the scoped query restriction is paired with a cheap alternate baseline |
-
-The [archived route assessments](ROUTE_HISTORY.md) retain additional
-derivations and their assumptions. The independent
-[single-angle precision lower bound](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
-and [full-frame geometry](../docs/HOPF_INTERFACE.md) live in their canonical
-proof chapters; they are not duplicated here.
-
-### Large-workspace T-depth
-
-The [precision-uniform subtree theorem](depth/UNIFORM_SUBTREE_DEPTH.md),
-R79, is the selected all-precision simultaneous count/depth proof for both
-frame families. With absolute constants, one clean qubit and the retained
-family-specific dirty thresholds, it gives optimal
-$`T=O(\sqrt{NL}+L+NL/b)`$, $`G=O(NL)`$, and
-
-```math
-D_T=O\!\left(NL/b^2+
-\min\{nL,(L+\log_2(n+2))\log_2(n+L+2)\}\right).
-```
-
-At sufficient $`b=\Theta(\sqrt{NL})`$, depth is
-$`O(\log^2(n+2))`$ for $`L=O(\log(n+2))`$, including
-inverse-polynomial error in n. R78's fixed-accuracy theorem remains a
-corollary; R72's stronger high-precision clause is retained.
-The precision splice, literal widths, matching intervals, and shrinking-error
-special cases are stated in the [claim ledger](../manuscript/PUBLICATION_SCOPE.md).
-The full initialized-isometry guarantee includes common phase, earlier
-leakage, arbitrary dirty inputs, and their references. Optimal large-width
-depth remains open. At fixed integer $`L\ge6`$, the later
-[dirty catalogue theorem R90](depth/DIRTY_CATALOGUE_TERMINAL.md)
-improves the general bound to
-
-```math
-T=O_L(\sqrt N+N/b),\qquad G=O_L(N),\qquad
-D_T=O_L(N/b^2+\ell),\qquad \ell=\log_2(n+2).
-```
-
-It retains one clean qubit and the original literal real/complex widths,
-including arbitrary node-dependent signed magnitudes, zeros, prescribed
-leaf phases, and the full initialized-isometry contract. Three R89 coarse
-reductions leave a small terminal; a complete rounded program selects
-fixed local factors on two borrowed arrays whose unwanted actions cancel
-in a commutator. R79 remains the selected manuscript result. R90
-does not assert depth optimality or constants uniform in growing L.
-
-The [R92 absolute precision envelope](depth/UNIFORM_CATALOGUE_PRECISION.md)
-and [R93 grouped terminal](depth/GROUPED_CATALOGUE_PRECISION.md)
-give independent growing-precision refinements. The later
-[portable-workspace theorem R94](depth/PORTABLE_WORKSPACE_CATALOGUE.md)
-proves, uniformly on $`6\le L\le2\ell`$,
-
-```math
-D_T=O\!\left(NL/b^2+\ell\log_2(\ell+2)\right),
-```
-
-with the original one-clean optimal T-count, Clifford budget, literal
-real/complex widths and full operator contract. At $`L=\Theta(\ell)`$
-and square-root dirty width, it reaches the
-$`O(\ell\log_2(\ell+2))`$ benchmark. The
-[executed design](depth/CATALOGUE_BOOTSTRAP_PROMPT.md) and
-[session outcome](depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md) record the
-bootstrap: R79 compiles a constant number of larger groups directly to final
-accuracy, with its complete local workspace carried through selected
-transfer. R91 supplies parallel queries and paired routing; no residual
-endpoint labels are needed. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
-retains the other precision ranges and the open optimal-depth question.
-The [executed full-flag design](depth/FULL_FLAG_DEPTH_PROMPT.md) and
-[session outcome](depth/FULL_FLAG_DEPTH_SESSION_RESULT.md) establish
-[R95](depth/LOGARITHMIC_PRECISION_DEPTH.md):
-$`D_T=O(NL/b^2+L+\ell)`$ on the same range, with the same simultaneous
-count, width and full-isometry guarantees. A coarse mathematical frame
-implemented to final accuracy admits a constant-normalization sparse
-correction. Borrowed real rotations reduce a local source's initialized
-scratch to logarithmic size; exact compact references and two explicit
-local reductions then give depth $`O(h+\kappa)`$ with much larger
-allowed local dirty resources. R94's full-payload catalogue absorbs them.
-The [executed precision bridge](depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
-establishes [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md): the same bound
-for every $`n\ge1,L\ge6`$, with absolute constants and the original
-count, width and complete-error guarantees. The globally priced stage
-separates logarithmic precision scratch from geometric metadata; a
-shorter exact cap speeds the original reference. A directly programmed
-terminal then avoids the full final-accuracy catalogue. Optimal general
-depth and matching dimension-growing lower bounds remain open.
-
-The [executed four-layer session](depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
-establishes [outer-overlap rigidity, R97](depth/OUTER_OVERLAP_RIGIDITY.md).
-A positive error floor depends only on the smaller outer-axis misalignment
-dimension: intersection dimension minus the number of individual axes
-from that list lying in it. An intersection spanned by a subset of either
-physical list gives R76's uniform floor at any dimension. The unrestricted
-gap remains open when both misalignment dimensions grow.
-The [executed design](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md) and outcome
-retain the exact descent and center-mixing limits. This is a constant
-lower-bound branch; the upper theorem and selected Result D are unchanged.
-
-The [dirty-query round](depth/DIRTY_QUERY_SESSION_RESULT.md) establishes
-[conditional R98](depth/QUERY_DEPTH_FRAME_TRANSFER.md): an improved exact
-restored-address word-query interface transfers to general fixed-accuracy depth,
-with a fully paid $`O_L(\log\log(n+4))`$ residual. The
-[paired permutation wrapper](depth/PAIRED_PERMUTATION_ROUTING.md) is an
-unconditional native component. The
-[corner-frame/query reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
-separately transfers lower bounds for arbitrary native Boolean queries
-with two calls and the same clean/dirty allocation. These two query
-interfaces have different hypotheses. The
-[Gaussian inverse extraction](depth/GAUSSIAN_INVERSE_EXTRACTION.md)
-prices a candidate repair and proves a tight affine-symplectic round
-obstruction for its in-place map. It does not obstruct direct scalar
-extraction or unrestricted T-depth. R96 remains the strongest
-unconditional upper law, and R79 remains selected Result D.
-
-The [restored-address revision](depth/RESTORED_ADDRESS_SESSION_RESULT.md)
-removes gatewise read-only access from R98's sufficient hypothesis.
-Joint common-bank queries and paid selected-address packing replace the
-shared-address parallel schedule. Every address and helper must return
-at the completed query boundary; internal address mixing is allowed.
-The conditional bound is unchanged, and no improved arbitrary-table
-primitive or unrestricted lower bound is inferred. The
-[six-layer source counterexample](depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
-separately rules out inferring source-wide C3 or inverse-Clifford coverage
-from full return. The main next question is a faster complete query with
-all simultaneous budgets, not another representation identity alone.
-
-The subsequent [joint-transfer round](depth/JOINT_TRANSFER_SESSION_RESULT.md)
-first finds the old indicator cost in sparse inverse extraction, then
-proves an [unrestricted two-layer query theorem](depth/UNRESTRICTED_TWO_LAYER_QUERY.md).
-Shared native one-band encodings force a single occupied transfer alphabet
-with one returned clean qubit, without an address-preservation hypothesis.
-R75 rounding yields three-control AND error floor $`(3-2\sqrt2)/8`$
-and AND arity $`a\ge4`$ floor $`2^{-a}`$. Exact nonaffine queries
-must have relative distance at least 1/4 from every affine function.
-The same proof home gives an exact rational-target Galois constraint and
-native counterexamples to its two-clean and C3 extensions. A six-bit
-cubic bent XOR passes the whole scalar alphabet, demonstrating why the
-subsequent degree theorem needs a joint invariant. No complete-frame
-bound or selected publication claim changes.
-
-The [joint diagonal round](depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
-then proves the [unrestricted two-layer Boolean degree bound](depth/TWO_LAYER_DIAGONAL_RIGIDITY.md):
-with at most one clean qubit, every exact XOR query has degree at most two,
-and every nonquadratic query has uniform initialized-isometry error floor
-$`\sin(\pi/8)/(2\sqrt2)`$. Arbitrary dirty width and intermediate
-address mixing are allowed. The proof combines full-space diagonal C3
-rigidity, explicit clean removal for a non-Pauli image, and native
-quotient-row cancellation for a Pauli image. It excludes the six-bit
-bent query. A 12-T, two-layer, 44-Clifford one-clean complex diagonal
-counterexample still disproves the blanket occupied-C3 extension; its
-input-dependent phase cannot receive a free correction in the same
-native layers. A paid ten-layer bent-query baseline gives no improved
-upper frontier. Its next lower question was an arity- and width-independent
-Boolean degree bound at three unrestricted layers, now closed qualitatively
-by the no-pair theorem and original-pair collapse. R98's faster complete
-query remains the parallel constructive target.
-
-The [three-layer native round](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
-then proves an [unrestricted zero-clean degree bound](depth/THREE_LAYER_NATIVE_STRUCTURE.md):
-three layers force XOR degree at most four, with the same uniform tau
-error floor for higher-degree predicates and arbitrary intermediate
-Clifford mixing. A paid third-band correction realizes literal AND3
-using 18 T, 99 Cliffords, one clean and one dirty qubit; depth three is
-optimal at this allocation. The actual inverse costs 109 Cliffords.
-A fair 16-T/34-Clifford/six-layer baseline prevents mistaking the depth
-improvement for count improvement. A growing-arity quartic-sign family
-still has an unpaid address phase when used as a larger query.
-The [projected-band extension](depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
-isolates one possible three-dimensional defect. Non-Pauli intermediate
-codes made the one-clean extension nonautomatic; the old shared-clean-flip
-construction remains invalid in general. The subsequent no-pair and
-pair-collapse theorems now give a uniform, though crude, degree ceiling.
-No general complete-frame frontier or publication claim changes.
-
-The [clean-code and algebra round](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
-then gives three supported components. [Clifford code rigidity](depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md)
-classifies literal pointwise stabilizers and localizes the complete native
-logical comparison family. Exact examples disprove blanket full-space
-Clifford extension and show that arbitrarily many clean-paired axes can
-have a one-layer complex diagonal full target, not a Boolean sign.
-[Quadratic queries](depth/QUADRATIC_NATIVE_QUERY.md)
-have optimal depth two with zero clean and one returned dirty helper,
-with paid coordinates and actual inverses. A fair six-band cubic baseline
-stops the quartic-phase echo as a saving. The
-[balanced HRT source](depth/BALANCED_ALGEBRA_PERMUTATION.md) pays in-place
-recovery by splitting an algebra generator and returning a dirty
-correction bank; six calls occupy five native stages per merge. Its
-source and inverse have $`O(\log r)`$ depth and
-$`O(3^r)`$ counts and dirty allocation on $`2^r-1`$ arbitrary inputs,
-improving the fair $`O(r)`$ depth baseline. Its degree-r returned query
-still has growing depth. That checkpoint's unrestricted lower question
-was the one-clean three-layer degree bound after handling unused-sector
-freedom; the current pair-collapse continuation closes its qualitative form.
-The retained R74 theorem already reduces sufficiently accurate Boolean
-approximation to exact occupied action at a uniform small radius;
-a faster general R98 query remains open, and R96 is unchanged.
-
-The [occupied-transport revision](depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
-gives a new [full-space pair transport](depth/OCCUPIED_LOGICAL_TRANSPORT.md).
-Its affine Boolean derivatives remove only a quadratic part; paid
-endpoint Cliffords put all remaining pair differences into globally
-preserved computational parities at the same T-depth and width.
-A complete-family counterexample retains non-Clifford unused action at
-arbitrarily high clean rank even with zero pairs. The pair-free C3
-subcase needs its explicit diagonal silent-band premise.
-The [returned algebra query](depth/ALGEBRA_QUERY_EXTRACTION.md) removes
-the coefficient-zero promise through eight source calls. Its fast native
-subset-product compiler improves the source to
-$`O(r^2 2^r\log r)`$ T/G and $`O(r^2 2^r)`$ extra dirty width,
-still at $`O(\log r)`$ depth. Neither that table query nor the scoped
-arithmetic compression limits change the full-frame frontier.
-The [Pauli-boundary theorem](depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
-closes one substantial subcase: actual Pauli clean images at every band
-boundary force sign degree at most 2048, and query degree at most 2047,
-even with arbitrary Clifford/address mixing. It retains the exceptional
-four-axis relation and bounds the phase dependence of an unbounded
-central register through a five-qubit quantum core. Its next lower
-question concerned non-Pauli intermediate codes, with joint parity-control
-phases, silent endpoint bands and unused-sector freedom retained by the
-later no-pair and original-pair theorems.
-
-The [preceding non-Pauli-boundary checkpoint](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
-extends that lower closure. The [partial-diagonal theorem](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md)
-proves a bounded-feature description for a full-space native three-band
-unitary preserving a computational-Z subgroup of fixed codimension.
-Its one-clean reduction gives sign degree at most $`2^{26}`$ and XOR
-degree at most $`2^{26}-1`$ whenever either **interior** clean image is
-Pauli; the input and final clean stabilizers do not suffice. The retained
-both-Pauli bound remains 2048/2047. [Exact repacking](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#8-both-non-pauli-images-of-active-rank-one-can-be-repacked)
-also gives those stronger bounds when both non-Pauli interior images
-have active rank one. This narrowed any then-unexcluded unbounded-degree
-family to two non-Pauli interiors and at least one active rank above one;
-the subsequent uniform theorem excludes such a family as well.
-The [one-band non-Pauli decoder](depth/NONPAULI_CODE_DECODING.md)
-has an exact controlled-Clifford form, bounded-degree control bits and
-paid native forward/inverse words. Its growing displacement-rank witness
-prevents using that decoder as a free Pauli-coordinate change within the
-same three native bands. Its separate zero-pair lemma assumes active
-rank other than two and zero character for every logical probe. The
-unused-sector defects then commute, and their phases share one central
-Clifford determinant coboundary from the actual middle band. These are
-intrinsic central coordinates; the lemma alone gives no uniform target
-degree bound or free native implementation of that gauge.
-
-The [bounded-relation theorem](depth/BOUNDED_RELATION_NATIVE_MATCHING.md)
-now controls full-space three commuting phase lists with fixed binary
-relation dimensions. Its one-clean consequence closes the no-middle-pair
-case when both endpoint clean-active ranks are bounded. The proof
-retains the resulting dependent middle list and its literal scalar;
-it does not compile that list as a free physical native band. The later
-[finite-insertion theorem](depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
-handles an arbitrary bounded Pauli-supported operation that commutes with
-each middle axis. Its one-clean reduction closes every fixed pair of
-endpoint active ranks, including general middle pairs. For two non-Pauli
-interior images it gives sign bound
-$`D_{\rm ins}(1,1,1,k_A+k_C-1)`$ and XOR bound one less. Neither
-the insertion nor its coordinate changes are supplied for free.
-Uniformity in growing active ranks is now supplied by the separate
-no-pair theorem and original-pair collapse, not by this insertion estimate.
-
-The [determinant-defect theorem](depth/DETERMINANT_DEFECT_DEGREE.md)
-supplies a different bridge in the zero-pair, all-zero-character branch.
-Labels with constant defect phase form a subgroup H. An actual CNOT
-correction makes H globally preserved, at unchanged width and T-depth.
-Codimension r gives sign degree at most $`D_r`$, with degree five when
-r=0. If the entire phase family factors through one common
-t-dimensional intrinsic linear quotient, then $`r\le t(t+3)/2`$.
-The proof does not identify each intrinsic coordinate with a target
-input. The [identity-target family](depth/CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity)
-proves that r and the common central quotient dimension can grow without
-bound under these hypotheses, already for a pure determinant coboundary.
-Its first interior clean image is Pauli. A separate family in the same
-note has both images non-Pauli and degree-three CCZ targets, while its
-residual parity-list relation dimension grows. These are representation
-limits, not high-degree native query families.
-
-The [rank-one clean-phase interface](depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
-retains four phase factors in the no-middle-pair case with relation
-profile $`(0,\le1,\le1,0)`$. The clean-active factor commutes with
-the middle factor and has rank-at-most-one coupling to the silent
-endpoint. Raw displacement change can nevertheless grow on an identity
-target. The coupled C union is now proved independent, and a shared
-clean flip gives sign/XOR bounds five/four at unchanged native depth.
-The [computational phase theorem](depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
-uses actual two-band derivatives to localize higher-degree dependence
-in the common computational parity part of the two endpoint spans.
-Boolean reality forces the active center to transport as Paulis;
-a paid Clifford makes it computational. Applied at both endpoints,
-this reduces the actual clean transition to one quadratic-controlled
-Pauli between three independent native bands, plus a central cubic
-sign. A separate noncentral-parity subcase of the actual clean-derived
-no-pair circuit has sign/XOR bounds five/four, including endpoint rank two.
-This component alone did not supply global matching: conditioning the
-whole center can destroy native independence even for an identity target.
-The later no-pair closure retains actual native lists, while original-pair
-collapse uses only its explicitly injective scalar-sector quotient.
-An arbitrary quartic correction is still not a free gate.
-
-The [quadratic-control matching theorem](depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
-closes fixed control polar rank by actual Clifford absorption and finite
-insertion. The [central-parity revision](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md)
-instead fixes one parity at polar rank two and replaces the insertion
-by an actual Clifford on each full sector, giving sign degree at most
-2049. More generally, polar rank $`2r`$ permits a proof restriction of
-r control parities, giving at most r relations per native list and
-sign bound $`D(r,r,r)+r`$ under the retained bounded-relation theorem.
-These restrictions are degree arguments, not cheaper implementations.
-For a genuine quadratic control at arbitrary rank, the associated
-Clifford probe images preserve the middle native span. The input and output
-probe families agree on a common invariant isotropic algebra. Its joint
-displacements enlarge the actual shared center; paid normalization makes
-the endpoint images commuting monomial Cliffords, with affine translations
-controlled by center bits and retained quadratic work phases. This does
-not supply a global decoder or a relative-center-phase bound. A cubic
-target has unbounded raw polar rank but a shared clean flip, so it does
-not witness the remaining branch. Sliding the insertion can change Pauli
-axes into Clifford involutions, whose spectral T rotations are not free
-native gates.
-
-The [constant-translation closure](depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
-proves a full diagonal C3 conclusion when every monomial translation is
-constant, with arbitrary ranks and an actual commuting C3 middle.
-Only actual diagonal native sublists and a paid diagonal Clifford are
-peeled. Its empty-middle corollary gives a uniform bound at every control
-rank; high rank forces constant translations, and rank two now has the
-central-parity bound 2049. The [center saturation audit](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
-adds characteristic active-axis sums and global axis-product centers,
-but a fixed Clifford decoder is possible only when the native encoder
-already centralizes the retained algebra. The [actual four-wire witness](depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
-has no shared Pauli clean flip and keeps nonconstant translation after
-saturation. Safe-axis derivatives sharpen the residual parity space but
-do not remove it. Its easy CCZ target does not obstruct a general degree
-bound. The [middle-defect closure](depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
-needs constant translations only for the quadratic-control support,
-retains all three native bands, and gives sign/XOR bounds five/four.
-Actual permuted middle-axis orbits contribute only Clifford defects;
-the remaining cubic symbol lies in the exterior cube of the genuine
-center–exceptional-middle intersection. Fixed intersection dimension
-closes by combining the new high-rank criterion with finite insertion.
-At control rank at least four, nonzero quotient quadratic structure or
-mixed rank at least two forces the five/four closure as well. The next
-question is sharpened by the original clean-transition phase. Its exact
-quadratic Gram identity excludes the mixed-control case for actual
-sources and closes fixed intersection dimension of the two original
-active spans. A high-rank nonconstant probe forces the quadratic support
-to equal that intersection, inside the positive middle span, while its
-displacement lies outside the old active algebra. Confusing the enlarged
-shared center with the old active center would incorrectly close this
-remaining case.
-
-The [external-center continuation](depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
-uses the full native cubic tensor to find one middle-axis product whose
-displacement equals every control flag. Multiplying H by this Pauli makes
-its translations constant, while retaining a Boolean cubic correction of
-the middle band. Its probe defects are Clifford. A rank-one action has
-exactly two odd-multiplicity axis types after fixing the quadratic support,
-but their global center dependence is not removed. A characteristic-parity
-argument excludes every one-native-layer replacement for an explicit
-corrected-middle family, including arbitrary Clifford endpoints. A changed proof keeps the original middle and normalizes its entire
-fixed Pauli space. For fixed total displacement dimension d, the
-interacting factors use at most $`d(d+1)/2+d+1`$ computational directions;
-an actual two-native-band residual then admits the retained finite-feature
-bound. The [native-orbit extension](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
-now closes growing d in this actual no-middle-pair branch. Its coordinate
-algebra has only singleton and pair blocks. The full cubic identity
-removes their cross-couplings, and all pair phases are retained as the
-middle band of a three-band residual. The exceptional displacement has
-dimension one, giving the high-rank sign bound $`D_3+576`$. The
-central-parity refinement makes this the uniform no-pair ceiling.
-Original physical middle pairs are separately closed by Boolean
-pair collapse; higher-layer asymptotics remain open.
-
-The [joint nonzero-probe theorem](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
-places the complete generic nonzero-character family and its actual
-native factors in one algebra of symplectic rank at most four, assuming
-both interior clean images are non-Pauli. This is a common bounded-algebra
-component, not a computational phase bound. The genuinely exceptional
-non-S probe type at clean active rank two separates from every silent
-band. Its occupied action then has an actual zero-clean three-band
-logical representation, giving sign degree at most five and XOR degree
-at most four. The exceptional hypothesis does not cover every rank-two
-code; the finite-insertion theorem covers the cases where both endpoint
-ranks are fixed, with a larger bound.
-
-The [symplectic-module readout theorem](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md)
-removes the earlier translation-orbit hypothesis from the source-count
-barrier: a degree-d linear matrix coefficient forces a free cyclic module
-of dimension $`2^d`$, hence at least $`2^{d-1}`$ carrier qubits and that
-many T gates per complete Pauli-conjugating source. It covers arbitrary
-modules and full-source approximation at the stated radius, while
-excluding signed phase readouts and fused whole-word synthesis. Two
-half-address representations escape the single-representation premise
-with square-root carrier width and at most Q table Cliffords. Every
-source, controlled probe and actual inverse is charged. Its
-[universal-probe conversion](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#6-universal-pauli-probes-contain-a-complete-dirty-indicator)
-uses two complete probe calls to implement an arbitrary-input dirty
-indicator, including noncommuting dual labels and address-dependent
-source phases. A uniform faster independent-probe source with linear
-T/width and quadratic Clifford cost would then supply
-[all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally)
-for every output length and dirty allocation. That conditional schedule
-is proved; the faster source remains unpaid. R91 supplies the unchanged
-fair query baseline. The new [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
-pays its formal parity network, but requires generally nonnative
-rotations and misses the source count/depth budgets. Its parity-only
-repair is excluded; general Clifford interference is not.
-
-The [paid Majorana Walsh source](depth/MAJORANA_WALSH_QUERY.md) replaces
-those formal phases by an exact full-input native probe. Its
-$`T=2mp`$, $`G=O(m^2)`$, depth at most $`4p`$ and $`m/2`$ carrier
-width for $`m=2^p`$ still miss the improved-query budgets. Sharp separate
-Walsh-source bounds hold only for Majorana-preserving synthesis.
-A flat-source alternative has a paid linear-count word, but retains
-depth $`2p`$ and a costly complete dirty dual-frame readout. Its exact
-commutator gives a concrete alternate indicator interface; neither
-missing resource improvement is supplied. The separate unrestricted
-flat-source lower bound is constant, so R96 remains unchanged.
-
-The [exact dual-readout theorem](depth/DUAL_FRAME_READOUT_BARRIER.md)
-goes beyond the Gaussian-intermediate restriction for the separate Walsh
-readout Q: $`T(Q)\ge2p\binom{p-1}{\lfloor(p-1)/2\rfloor}`$,
-or $`\Omega(m\sqrt p)`$, including arbitrary Clifford interlayers
-and returned clean/dirty helpers. An explicit Walsh minor supplies a
-unique Pauli-channel coefficient; exact clean return introduces no
-normalization loss. A six-call Q-only wrapper gives the complete indicator
-with every Clifford and actual inverse paid. R91 already gives that
-indicator O(m) T-count, so the standalone count barrier motivates joint
-compilation. It gives no uniform approximation obstruction: full-isometry
-source error tau transfers to at most $`6\tau`$ indicator error, while
-an approximate source remains to be constructed. The
-[approximate transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md) pays
-the remaining composition: at most 24 readout calls per complete word
-query and constantly many substituted long queries require only constant
-readout accuracy for each fixed frame precision. Its robust count/depth
-obstruction applies to a separately paid native Gaussian conjugator,
-not unrestricted approximate readout. No general frontier changes.
-
-The [approximate-indicator audit](depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
-then tests two changed mechanisms. Sub-full-degree Hamming-distance
-polynomials used as additive dirty-output phases have a sharp
-square-root-two operator-error floor. Coherent short hashes approximate
-one predicate only with a paid initialized seed; the direct whole-bank
-bucket construction has error two even with that seed. Nonlinear decoding
-of the same incomplete parity summaries does not recover the lost bit.
-These are exact interface limitations, leaving richer native interference
-and complete-query synthesis open.
-
-The [phase-signal and frame audit](depth/PHASE_SIGNAL_QUERY_LIMITS.md)
-examines different mechanisms. Products of fewer than the signal dimension
-many rank-one reflections retain a fixed subspace, preventing the desired
-negative scalar on arbitrary dirty work. Full coherent Pauli-frame
-transport is equivalent to the complete indicator up to two source calls,
-linear Clifford/dirty overhead and a factor-two error bound. These results
-identify return and correction costs without asserting unrestricted lower
-bounds or importing clean-input fanout guarantees into the native model.
-
-The [clean-promotion continuation](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
-adds a paid route from bounded-clean complete queries and one-signal
-unitary blocks to zero-clean indicators. Its generic source-call bound
-explains the retained growing-clean cost. The accompanying Fourier-word,
-Pauli-nullity and occupied-center notes distinguish architecture limits,
-unrestricted count constraints and the then-open physical-pair degree
-question, now closed by Boolean original-pair collapse. Its earlier
-two-band resumption prompt is superseded by the
-[fixed-clean two-band source gap](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md).
-Native synthesis of a complete block with additional source bands
-remains an alternative, with its generic recovery/return recurrence
-and simultaneous resource bounds still required. The current
-bank-motion checkpoint asks for a qualifying shallow source beyond the
-whole-word Majorana grammar, not a band count alone.
-
-The [native-sharing continuation](depth/NATIVE_SHARING_SESSION_RESULT.md)
-adds the unrestricted active-T incidence condition and its separately
-emitted block-count consequence. Its [table-specific interfaces](depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
-identify the exact syndrome gauge and give a paid conditional R98
-transfer. Its [selective-inversion study](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md)
-improves the analog error profile but stops independent row compilation
-under the native count bound. The [physical-pair insertion](depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md)
-keeps original independence and a finite Clifford expansion, while
-exposing the missing occupied-code stability lemma. None moves the
-complete-frame frontier.
-
-The [universal-probe gauge theorem](depth/WEAKER_INDICATOR_INTERFACES.md)
-allows arbitrary bank-controlled address and work unitaries at a source
-boundary. It characterizes that exact freedom and proves dimension-free
-approximate equivalence, then pays its two-call extraction and R98 error
-budget. The [joint-routing audit](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
-gives a constant-call selected-swap equivalence and exact native routing
-recurrences. Its simultaneous-diagonalization obstruction concerns one
-fixed Clifford representation, not unrestricted synthesis. The
-[geometric-loop study](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md) instead
-extracts a scalar from both dirty signal eigenstates. Independent row
-phase errors accumulate in full operator norm; its charged digital
-construction does not meet the target envelope.
-
-The [returned-query continuation](depth/RETURNED_QUERY_SESSION_RESULT.md)
-closes that specific scalar escape: the
-[Gaussian scalar-loop theorem](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
-bounds the extracted sign's Boolean degree by $`4r+2`$ for r actual
-affine quadratic phase rounds, with fixed Clifford interlayers and even
-initialized helpers. Its marker/path-sum proof detects central phases;
-the bound is on completed rounds, not unrestricted native T-depth.
-The separate [two-layer read-only theorem](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md)
-gives robust initialized-work degree and polar-rank restrictions, with
-an explicit unrestricted two-layer Toffoli falsifying a broader claim.
-The [multiway cost audit](depth/MULTIWAY_QUERY_COST_BARRIER.md) stops
-termwise tensor splitting, rank-deficient bucket toggles and cyclic
-borrowed-slot substitutes under their respective hypotheses. No improved
-unconditional frame bound or growing native depth lower bound is claimed.
-
-The [three-layer continuation](depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
-answers the next native query question. Its
-[proof home](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) shows that, below
-error $`\sqrt2/6`$, three work-only T layers with preserved address
-boundaries force affine XOR outputs with zero clean qubits and degree at
-most four with one clean qubit, independently of dirty width. A signed
-Pauli orbit controls intermediate clean-code excursions. Exact native
-AND fixtures use four zero-clean layers or three one-clean layers; a
-two-layer candidate retains a non-Clifford branch phase. The
-[exact one-clean two-layer phase argument](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine)
-also forces affineness, making the one-clean three-layer AND depth exactly
-optimal in this interface; no robust affine radius is asserted. The next issue
-is degree growth with the number of layers, while fixed-error robustness
-and arbitrary address mixing remain separate requirements for a general
-frame lower bound. The complete-frame upper frontier is unchanged.
-
-The [four-layer follow-up](depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
-closes the first case of that handoff. In
-[section 8 of the same proof home](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two),
-zero-clean read-only four-layer XOR queries have degree at most two
-below error $`\sqrt2/12`$, independently of dirty width. Clifford
-comparison targets and an auxiliary Pauli cocycle handle the vanished
-symplectic contribution as well. The exact AND fixture makes this
-degree bound sharp. The subsequent [word-valued extension](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive)
-proves the same degree bound for every simultaneous output, with all
-outputs arbitrary. Native coordinate blocks force the outer shear to be
-additive; a vector-valued residual argument handles the remaining target
-directions. One exact shared-address fixture checks outputs ab and ac,
-all physical columns and the actual inverse. There is no new unrestricted
-or one-clean four-layer conclusion.
-
-The [five-layer continuation](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-keeps the comparison Clifford and identifies the partial-normalizer gap.
-Its [proof home](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md) gives degree at
-most seven, or four for a visible shear, under the Clifford-middle condition
-at error below $`\sqrt2/12`$. The
-[previous follow-up](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md) adds
-the Pauli-comparison bound of two without a Clifford middle, independent-axis
-matching, and the four-layer scalar CCZ word with 64 T gates, 218 Cliffords
-and 17 dirty helpers. These results keep their own hypotheses and ledgers.
-
-The [returned-relations round](depth/RETURNED_RELATIONS_SESSION_RESULT.md)
-proved the individual-axis comparison bound of 244 (41 for an invisible
-target), the [baseline-word obstruction](depth/BASELINE_WORD_OBSTRUCTION.md),
-the [four-factor scalar construction](depth/SCALAR_REPRESENTATION_PRODUCT.md),
-and the [robust diagonal-echo bound](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md).
-Its proposed span-preserving continuation is now resolved by the
-[span-preserving round](depth/SPAN_PRESERVING_SESSION_RESULT.md):
-[Section 5.4](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound)
-gives degree at most 112 below error $`\sqrt2/24`$, allowing axis mixing,
-non-Pauli comparisons and a non-Clifford middle. Intrinsic augmentation
-features handle the right action without assuming an ambient normalizer.
-
-The same round proves a source-cost barrier for the scalar construction,
-including compressed Pauli carriers and small full-source approximation.
-A degree-d table needs at least $`2^{d-1}`$ T gates per Clifford translation
-source. Whole-word synthesis remains outside this source-call bound.
-A further [shared-prefix invariant](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map)
-gives faithful degree-four actual-group features without span preservation,
-below error $`\sqrt2/40`$. With span preservation it sharpens the output
-bound to 21 at that smaller radius. The [native-defect round](depth/NATIVE_DEFECT_SESSION_RESULT.md)
-resolves the missing target extraction: [Section 5.6](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
-proves the general zero-clean read-only five-layer degree bound **14**
-(**11** for an invisible target shear) below $`\sqrt2/24`$, with no extra
-comparison hypothesis. The defect's native Pauli pullback permits one-band
-matching and bounded-degree signed tableau transport. This supersedes the
-span-preserving degree bounds but preserves their structural proofs.
-The [six-layer comparison round](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md) proves a
-[six-layer Pauli-comparison bound](depth/READ_ONLY_SIX_LAYER_REDUCTION.md)
-of degree 51 below $`\sqrt2/64`$. The same home contains a fully returned
-identity fixture with actual odd-order comparisons and persistent non-Pauli
-defects; repeated Pauli-return cannot be the general invariant. The
-[diagonal-source proof](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md) now covers q
-arbitrary diagonal sources with affine monomial-Clifford transport, giving
-degree at most $`\max(2,q-1)`$ below its explicit q-dependent radius.
-Its four-call echo radius improves to $`2\sin(\pi/32)`$.
-Neither result improves R96 or supplies the missing R98 query.
-
-The [diagonal-source transport proof](depth/NATIVE_CLIFFORD_TRANSPORT.md)
-gives six-layer degree at most 78, or 26 for visible outer shear, below
-$`\sqrt2/8`$. The [preceding round](depth/TWO_OVERLAP_SESSION_RESULT.md)
-proved the [overlap-two source theorem](depth/TWO_OVERLAP_SOURCE_STRUCTURE.md):
-an exact three-band C3 source with first/middle overlap at most two
-belongs to the diagonal class, even when both adjacent partial sources
-fail to be C3. It extends the [overlap-one proof](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
-using full-space coupled-control and zero-character involution arguments.
-The [earlier source theorem](depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
-confines middle/outer noncommutation to at most 2t middle axes for general
-overlap t. Full return alone does not supply C3 membership.
-
-The new [hybrid transport theorem](depth/HYBRID_DIAGONAL_CORE_TRANSPORT.md)
-gives explicit degree bounds through a wide diagonal source coupled to an
-a-qubit core, assuming the full source is C3. The bounds depend only on a;
-the error radius remains $`\sqrt2/8`$ even with unbounded Pauli deficiency.
-At most four fixed blocks recover each output label coordinate; bounded
-modulo-four carries recover the literal signs.
-A commuting gadget list with r relations following a diagonal-C3 source
-has a hybrid core of at most $`4(2^r-1)`$ qubits if their product is C3.
-Monomial localization keeps the wide phase diagonal. This does not make
-the coordinate changes or dependent gadget list a free native band.
-
-The [preceding round](depth/COUPLED_INCIDENCE_SESSION_RESULT.md) extends
-[source certification](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) to arbitrary
-coupled nonzero-character incidence. When every zero-character B axis
-commutes with C, the full involution defect and native A isotropy force
-all interacting classes to be isolated two-axis pairs. Exact C3/native
-hypotheses remain essential; the certificate gives 78/26 transport at
-arbitrary overlap. The [zero-character round](depth/ZERO_CHARACTER_SESSION_RESULT.md)
-adds [commutation-cover and certified-stripping results](depth/NATIVE_BAND_SOURCE_STRUCTURE.md):
-if each B axis commutes with an entire outer band, the source is diagonal
-C3, including arbitrary bad-zero-only interactions. Good middle axes can
-be removed after certified A-axis stripping, preserving C3. The
-[paired-orbit extension](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md) also
-proves that zero-character interactions cannot occur only on paired C
-orbits when every singleton C axis is good. Both certificates retain
-78/26 transport; mixed cases remain.
-The [controlled-Pauli transport proof](depth/CONTROLLED_PAULI_TRANSPORT.md)
-now derives its canonical exact Pauli domain by signed fixed-Clifford
-normalization, removing the former compatibility premise. Every exact
-C3 scalar-Pauli block source has uniform 174/58 bounds below
-$`\sqrt2/8`$. Its necessary weighted quartic term and both endpoint
-coordinate changes are retained. The known Gottesman–Mochon source
-shows this class need not be semi-Clifford; its charged source schedule
-is not a returned three-band query. The same proof home now characterizes
-scalar-Pauli form intrinsically: for exact input domain E and
-$`N_p=S_{F\tau(p)F^\dagger}-I`$, it is equivalent to
-$`N_pN_q=0`$ for all $`p\in E^\perp`$ and all q. The criterion
-keeps signed normalization and is invariant under fixed endpoint
-Cliffords. The known four-generator HRT source fails it, separating this
-class from generic C3 without asserting a native-three-band counterexample.
-
-The [bounded-deficiency theorem](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
-controls approximate transport through arbitrary sources with bounded
-Pauli-domain codimension, uniformly even near Cliffords and for degenerate
-domains. Its parameter can grow within a single T band, so it is not a
-general depth invariant. The [permutation-source note](depth/PERMUTATION_SOURCE_TRANSPORT.md)
-retains another conditional transport theorem; a qualifying three-band
-non-C3 returned instance remains unconstructed.
-
-The [commutative character theorem](depth/NONLINEAR_CHARACTER_TRANSPORT.md)
-now proves that, for every commutative nilpotent binary coefficient
-algebra, a degree-a affine-input character needs at least $`2^{a-1}`$
-coefficient wires. This exceeds R98's square-root-width target as a grows. The
-[noncommutative cycle mechanism](depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-produces degree-d AND on $`d^2`$ coefficient wires with literal full
-return. Its native $`O(d^3)`$ counts and $`O(d)`$ depth lose to the
-retained conjunction baseline; source and inverse costs remain decisive.
-
-The cycle phase source is identified exactly with the complete
-unitriangular-inverse word query after Hadamards on its lower coefficient
-register. A fully charged two-call wrapper supplies its control on
-arbitrary auxiliary inputs. The new exact commuting-pivot inversion
-identity has cubic native counts and linear depth, with returned arbitrary
-helpers and no clean work. Whole-pivot commutativity does not eliminate
-cross-pivot gate dependencies. This in-place circuit does not provide the
-completed XOR query within the budgets needed for a complete-frame improvement.
-
-The balanced block construction now gives a complete structured
-inverse-word query and phase source with logarithmic T-depth, cubic
-T/Clifford counts, cubic arbitrary work and zero clean work. One parallel
-child-inversion position suffices because helper garbage may remain live
-until the actual compute/readout/uncompute finishes. Direct controlled
-readouts borrow that same work and return it exactly. This leaves the
-scoped frozen-coefficient determinant obstruction intact; it does not
-supply returned-work in-place inversion. Coefficient inputs change
-internally; strengthened R98 now allows this at complete query boundaries.
-Paid arbitrary-table coefficient access and extraction within its
-count/work/depth budgets remain missing. The full cycle conjunction's
-transport and faster fair baseline are unchanged.
-
-The [inverse-query cost audit](depth/GAUSS_SUM_QUERY_ENCODING.md) identifies
-the remaining constructive cost: arbitrary-table inverse-entry encodings
-already exist, but generic query substitution exceeds the count/work
-envelope and dirty loading retains unknown offsets. Affine embeddings
-and fixed completed generic-query compositions have scoped capacity
-bounds. A full read-only interpolation repair cancels the offset, but
-its repeated source evaluations lose to direct read-only path propagation.
-Sparse native specialization, coupled masks and nonlinear work remain open.
-
-The remaining component source question is whether native three-band structure forces
-the intrinsic tableau product to vanish in the remaining mixed cases.
-This would give 174/58 transport without demanding diagonalization.
-Alternative native syntheses must be tested before treating a
-source parameter as a depth invariant. General non-C3, one-clean and
-address-mixing lower bounds and optimal complete-frame depth remain open.
-The [query/frame reduction](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md) keeps
-the actual inverse Clifford word separately charged.
-
-The [depth preparation map](depth/DEPTH_OBSTACLE_MAP.md) reconstructs the
-pre-R78 fixed-accuracy cost ledger, the exact lower-proof bottleneck, and
-the assumptions a new route must change. It separates dimension-growing
-depth from the next constant-depth obstruction and preserves the scope of
-earlier method-specific limits.
-
-The [real R70 theorem](depth/ALL_PRECISION_DEPTH.md) and
-[complex R71 theorem](depth/COMPLEX_FRAME_DEPTH.md) retain their two-clean
-statements. The two-clean [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision)
-retains its original linear-precision statement and source interfaces. The
-[older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md) still
-supplies the two-clean precision and width splices.
-
-| Current proof | Role |
+| Proof home | Role and scope |
 |---|---|
-| [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | Selected R79 theorem: retain explicit per-call source precision costs, enlarge the protected bank, and combine R78's decoder with R72's one-clean terminal and all-precision splices; all resource constants are absolute |
-| [Dirty catalogue terminal](depth/DIRTY_CATALOGUE_TERMINAL.md) | Current R90 fixed-accuracy general bound: three R89 reductions and a zero-clean catalogue commutator give $`O_L(N/b^2+\ell)`$ depth, with original count budgets, literal widths, and the complete operator contract |
-| [Parallel bilinear word query](depth/PARALLEL_BILINEAR_WORD_QUERY.md) | R91 exact component used by R94: private phase targets parallelize arbitrary output words, removing additive q depth with no clean work; independent of R92 and R93 |
-| [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope and a slow unbounded precision window with logarithmic depth; retains R79's other regimes |
-| [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision improvement: local early decoder, whole noncommuting coarse groups, shared matrix-unit residual source, and the original one-clean width/phase splices |
-| [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 growing-precision bound: carry the entire local R79 workspace through dirty selection, compile larger groups directly to final accuracy, and return borrowed arrays exactly with parallel R91 queries and routing |
-| [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96: $`O(NL/b^2+L+\ell)`$ for all $`n\ge1,L\ge6`$, with optimal counts, one clean bit, original literal widths and full initialized-isometry error |
-| [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | Separated $`O(\log l+\log^3m)`$ reserve, actual global-prefix addresses, explicit standalone costs and full recovery |
-| [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | Shorter exact geometric cap, full-space comparison to the original reference, complete augmented flags and actual-inverse cancellation |
-| [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Independently closed intermediate theorem through $`L\le n^{3/4}`$, using three fast stages and R94's complete-payload catalogue |
-| [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | Fixed fine-mask grammar with global-prefix queries and a paid native coarse instruction schedule; original conditional flags, literal controls and complete work return |
-| [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95: uniform $`O(NL/b^2+L+\ell)`$ on $`6\le L\le2\ell`$, with optimal counts, one clean bit, original literal widths and full-isometry error |
-| [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: coarse geometric precision, final-accuracy shared-gradient references, a small absolute residual norm, signed Schur sources and complete recovery |
-| [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Logarithmic initialized source scratch via borrowed real calibration; approximate dirty-core return is retained in a whole-physical-space comparison |
-| [Local frame depth with relaxed counts](depth/RELAXED_COUNT_LOCAL_DEPTH.md) | One-clean depth $`O(h+\kappa)`$ with fixed-polynomial exponential local count/dirty allowance; exact reference coins, decreasing two-stage construction and complete-payload prefix slots |
-| [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | Retained R89 theorem and coarse-reduction interface: causal local matchings and parallel fixed-coin reference transforms erase the coarse label in logarithmic depth; its original preserved-prefix recursion has an iterated-logarithmic overhead |
-| [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | Retained R87 theorem and fine-decoder interface: a paid product-coin embedding and tensor Hadamards expose the fine spectral band, with actual-inverse cleanup and the retained all-width splice |
-| [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | Retained R88 real terminal theorem with depth $`O_L(N/b^2+\ell\log_2\log_2(M+4))`$; its sharp-query and literal-width fallback interfaces support R89's stronger prefix recursion |
-| [Compact fixed coins](depth/COMPACT_COIN_FLAGS.md) | Exact finite atom partitions, acyclic two-outcome columns, and whole coarse flags; a compact representation alone does not supply an in-place native source |
-| [Short-label subset routing](depth/SHORT_LABEL_SUBSET_ROUTING.md) | Finite dense-set matching and staged-shear compression with reversible query words; neither primitive is a prescribed arbitrary-permutation compiler or a frame eraser on its own |
-| [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 intermediate general bound: positive interval embedding, a bounded absolute-norm Haar conversion, and paid local recovery; its rounding and geometric allocation are retained by R87 |
-| [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) | Supporting exact selected wire permutations with arbitrary dirty controls, variable-size query families, and exposed clean-window geometry; [contiguous coin layouts](depth/SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals) have $`O(\ell)`$ routing depth |
-| [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 decoder proof and fixed-accuracy corollary: replace early amplitude amplification by native transported reflections and coherent spectral-label erasure; retain the one-clean terminal, width splice, literal phases, and optimal count |
-| [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | Retained R72 predecessor and selected proof interfaces: native one-clean layer words, protected terminal work, explicit width/precision splices, and literal phase composition |
-| [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | Retained two-clean theorem: combine complete circuits across precision ranges, retaining literal widths, optimal count, and explicit inherited matching intervals |
-| [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | Retained two-clean theorem: charge literal phase dressing and shared-workspace composition, with the complex dirty reservation and the same count/depth envelope |
-| [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Reuse the binary source above a logarithmic protected bank through exponentially growing precision, with explicit precision cardinality in every query charge |
-| [High-precision depth schedule](depth/HIGH_PRECISION_DEPTH.md) | Replace completed real masks after the signal lift, sum their rectangular-query depths, and serialize the separately bounded native remainder |
-| [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) | Compress all early columns into orthogonal depth/prefix sectors, complete the source error to a full-unitary comparison, recover the prescribed operator, and charge the early/tail composition |
-| [Shared binary terminal source](depth/SHARED_BINARY_TERMINAL.md) | Retain one compact geometric source across single-layer residual kernels, record failures coherently, and recover the complete stream within logarithmic conditional workspace |
-| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Certified signed-state construction, coherent source labels, native calibration, and complete work/error contract |
-| [Shared-gradient recovery](depth/SHARED_GRADIENT_RECOVERY.md) | One native phase-source preparation and actual return across early recovery, priced arithmetic and coefficient tables, and a reflection excluding the invariant live gradient |
-| [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Parallel private T layers, arbitrary-dirty Boolean phases, and variable-suffix Hadamard echoes |
-| [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic address T-depth, needed to retain the final layers' square-root T-count |
+| [Bounded diagonal factorization](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) | Certified factor search and explicit nonflat realization; bounded eligible-mixer coverage remains a premise. |
+| [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Differentiable Clifford-centered architectures; approximate bounds need a physical Lipschitz assumption. |
+| [Center-phase reflections](endpoint/CENTERED_PHASE_REFLECTIONS.md) | One table/inverse pair with fixed centers; multiple-center words remain outside. |
+| [Programmed reflections](endpoint/PROGRAMMED_REFLECTIONS.md) | Phase-orbit tests and fixed offsets; factor selection and native synthesis are separate. |
 
-The [joint decoder/terminal session](depth/JOINT_DEPTH_SESSION_RESULT.md)
-added three supporting results while keeping R79 as the general
-frontier at that checkpoint. At fixed accuracy and square-root width,
-[R80](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md) gives logarithmic
-depth for depth-homogeneous magnitudes with arbitrary signs, using one
-common product conjugator and exact tag return. Its signed balanced real
-case is exact. [R81](depth/RECURSIVE_TERMINAL_DEPTH.md) gives a uniform
-terminal-height bound, including a log-times-log-log contribution for
-the general logarithmic terminal;
-the general early decoder still had square-logarithmic depth then. Their
-full contracts, all-width splices, and scope restrictions have separate
-proof homes. At the same accuracy and width scale,
-[R82](depth/BOUNDED_DENSITY_DEPTH.md) supplies a complete
-sub-square-logarithmic circuit for density bounded relative to a positive
-product reference. Its weighted correction has constant normalization;
-sparse native sources and iterated-logarithmic recursion retain the
-one-clean allocation and count budgets. The constants depend on fixed
-accuracy and density bounds, so this is also a promised-family result.
+Additional endpoint derivations and their assumptions remain in
+[route history](ROUTE_HISTORY.md).
 
-The later [branch-orientation session](depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
-adds [R83](depth/AFFINE_ORIENTATION_DEPTH.md): logarithmic depth at fixed
-accuracy when each depth has a common unordered magnitude pair and its
-branch choices are affine functions of the prefix. The leaf map and
-signed marker correction are both implemented natively. It also proves
-[R84](depth/DETERMINISTIC_FRAME_DEPTH.md), an exact compiler for arbitrary
-signed corner rotations with
-$`O(\log(n+2)(1+\log^*n))`$ depth at square-root width. Both preserve
-one clean qubit, square-root T-count, and linear Clifford count. The
-[R82 reference extension](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension)
-uses R83's priced conditional core to admit positive affine-oriented
-references with unchanged fixed-density bounds. The subsequent
-[in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
-stopped without a qualifying general construction. It records a unary
-relabeling identity with an unpaid recursive selector, scoped four-shear
-and exact encoding restrictions, and a limited corner-word obstruction.
-These do not exclude general native circuits. The subsequent
-[joint orientation session](depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
-executes its [five-hour design](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
-and proves [R85](depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md): arbitrary
-nonlinear orientations with shared unordered depth magnitudes have
-$`O_L(\log(n+2)\log\log(n+4))`$ depth at square-root dirty width,
-with one clean qubit and the existing count budgets. A geometric coarse
-band selects an unloader that exposes clean suffix space for a local
-orientation permutation. Only the coarse tag needs spectral recovery.
-Signs, zeros, balanced pairs, and prescribed leaf phases are included.
+## Large-workspace T-depth
 
-The [executed general-magnitude design](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
-and [session outcome](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
-advanced the fixed-accuracy general frontier through R86. A rounded
-weighted tree is embedded in consecutive uniform intervals; the
-balanced-Haar overlap has absolute norm $`O_L(\sqrt\ell)`$. Its
-paid recovery uses the exposed suffix and
-[selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md), then erases
-the fine label with the local frame compiler and its actual inverse.
-The subsequent
-[executed factorization design](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
-and [session outcome](depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
-prove R87 through a different local representation. Independent coin
-words encode the branch decisions; tensor Hadamards make the last
-nonzero coin block equal the marker depth. The paid source and its
-actual inverse erase the fine tag without R86's interval-overlap
-amplification. R87 matched R85's depth order for arbitrary magnitudes;
-R85 retains its independent promised-family proof.
+R96 is the strongest unconditional general upper theorem; R79 remains
+selected Result D. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
+owns the formulas, literal allocations and remaining optimal-depth question.
+The table identifies dependencies rather than repeating their proofs.
 
-The subsequent [terminal refinement R88](depth/PREFIX_SELECTED_COIN_TERMINAL.md)
-compiles arbitrary deepest-M real-frame layers selected by a preserved
-external prefix, including signed and singular tuples. It retains the
-one-clean allocation, original real width, full initialized-isometry
-contract, and count budgets, with depth
-$`O_L(N/b^2+\ell\log_2\log_2(M+4))`$ for every $`0\le M\le n`$.
-A logarithmic terminal therefore contributes only
-$`O_L(\ell\log_2\log_2(\ell+4))`$. The contiguous-layout routing
-specialization has $`O(\ell)`$ depth. At that checkpoint R87's complete
-bound was unchanged because coarse recovery still contributed
-$`O_L(\ell\log_2(\ell+2))`$.
+| Proof home | Role and scope |
+|---|---|
+| [Precision-uniform subtree depth](depth/UNIFORM_SUBTREE_DEPTH.md) | R79 selected Result D: R78 decoder plus R72 interfaces, uniformly priced at every precision. |
+| [Dirty catalogue terminal](depth/DIRTY_CATALOGUE_TERMINAL.md) | R90 fixed-accuracy catalogue construction; no uniform-in-precision or depth-optimality claim. |
+| [Parallel bilinear word query](depth/PARALLEL_BILINEAR_WORD_QUERY.md) | R91 exact parallel word-query component; removes additive output-length depth. |
+| [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope; retains the other precision regimes. |
+| [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision grouped correction with shared matrix-unit sources. |
+| [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 complete local-workspace transfer through dirty selection. |
+| [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96 strongest all-precision general upper theorem, with original simultaneous budgets. |
+| [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | R96 component: separated precision scratch, global-prefix addresses and complete recovery. |
+| [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
+| [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
+| [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | R96 terminal: native coarse instructions and global-prefix fine-mask queries. |
+| [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95 logarithmic-depth law on its stated growing-precision range. |
+| [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: sparse correction to a coarse frame implemented at final accuracy. |
+| [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Borrowed calibration reduces initialized scratch; full-space approximation includes dirty return. |
+| [Local frame depth with relaxed counts](depth/RELAXED_COUNT_LOCAL_DEPTH.md) | One-clean local depth with fixed-polynomial relaxed count/width budgets. |
+| [Causal compact-coin depth](depth/CAUSAL_COMPACT_COIN_DEPTH.md) | R89 causal matching and reference transforms; retained preserved-prefix recursion. |
+| [Product-coin dilation](depth/COIN_DILATION_DEPTH.md) | R87 product-coin embedding and spectral-label erasure with actual return. |
+| [Prefix-selected coin terminal](depth/PREFIX_SELECTED_COIN_TERMINAL.md) | R88 prefix-selected real terminal; separate literal-width fallback. |
+| [Compact fixed coins](depth/COMPACT_COIN_FLAGS.md) | Exact compact representation; not itself an in-place native source. |
+| [Short-label subset routing](depth/SHORT_LABEL_SUBSET_ROUTING.md) | Paid staged shears and matching; not a free arbitrary-permutation compiler. |
+| [Interval-dilation depth](depth/INTERVAL_DILATION_DEPTH.md) | R86 general interval embedding and paid overlap recovery. |
+| [Selected dirty routing](depth/SELECTED_DIRTY_ROUTING.md) · [contiguous coin layouts](depth/SELECTED_DIRTY_ROUTING.md#7-a-logarithmic-depth-specialization-for-contiguous-intervals) | Exact selected dirty permutations and contiguous-layout specialization. |
+| [Subtree-projector decoder](depth/SUBTREE_PROJECTOR_DECODER.md) | R78 fixed-accuracy decoder and corollary; paid reflection and label erasure. |
+| [One-clean count and depth](depth/ONE_CLEAN_DEPTH.md) | R72 one-clean layer, terminal, width/precision and literal-phase interfaces. |
+| [All-precision composition](depth/ALL_PRECISION_DEPTH.md) | R70 retained two-clean all-precision composition. |
+| [Complex magnitude-frame depth](depth/COMPLEX_FRAME_DEPTH.md) | R71 retained two-clean complex extension and its dirty reservation. |
+| [Whole-frame binary stream](depth/WHOLE_FRAME_BINARY_DEPTH.md) | Binary-source reuse with explicit precision cardinality in all queries. |
+| [High-precision depth schedule](depth/HIGH_PRECISION_DEPTH.md) | Complete real-mask lift and separately charged native remainder. |
+| [Complete sublinear-depth construction](depth/SUBLINEAR_T_DEPTH.md) · [compressed-column theorem](depth/SUBLINEAR_T_DEPTH.md#10-a-precision-uniform-extension-through-linear-precision) | Retained two-clean compressed-column construction and source-error completion. |
+| [Shared binary terminal source](depth/SHARED_BINARY_TERMINAL.md) | One compact source across residual kernels and coherent failure history. |
+| [Coherent descendant loader](depth/COHERENT_DESCENDANT_LOADER.md) | Signed-state loading, source labels and native calibration. |
+| [Shared-gradient recovery](depth/SHARED_GRADIENT_RECOVERY.md) | Paid shared-gradient preparation, arithmetic and actual return. |
+| [Shallow dirty queries](depth/SHALLOW_DIRTY_QUERIES.md) | Private native layers, arbitrary-dirty phases and suffix echoes. |
+| [Nonuniform indicators](depth/NONUNIFORM_DIRTY_INDICATOR.md) | Linear count/work and logarithmic-address-depth indicator baseline. |
 
-The [continuation record](depth/COIN_CONTINUATION_SESSION_RESULT.md)
-then gives [R89](depth/CAUSAL_COMPACT_COIN_DEPTH.md). One global
-compression word and causal local matchings realize the compact-coin
-embedding; parallel reference transforms read the coarse band directly.
-The last-nonzero test includes each reference source's initialized work.
-Preserved-prefix recursion gives the stronger arbitrary-height real
-terminal bound $`O_L(N/b^2+\ell(1+\log_2^*(M+2)))`$ and the
-complete real/complex frontier at that checkpoint. Here $`\log_2^*x`$
-counts repeated base-two logarithms until the value is at most 2. Every
-source and actual inverse is paid.
+### Promised families and retained depth interfaces
 
-The [executed whole-terminal design](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md)
-and [session outcome](depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
-give [R90](depth/DIRTY_CATALOGUE_TERMINAL.md). Three coarse reductions
-replace the unbounded recursive tail by a sufficiently small complete
-rounded program. An exact dirty word query and XOR slot translations
-select local catalogue factors. Two disjoint borrowed arrays transfer
-their commutator to the logical target and return exactly. The selected
-factor error, rather than the number of catalogue slots, controls the
-complete operator error. The proof includes a zero-clean local synthesis
-ledger and the original-width splice.
+These promised-family or retained-interface results keep their own hypotheses. R80–R85 are not replacements for the unrestricted R96 theorem; the encoding bound is architecture-specific.
 
-R79 remains the selected all-precision theorem. The
-[executed precision-terminal design](depth/PRECISION_TERMINAL_PROMPT.md)
-and [session record](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
-give R91–R93. Small complete groups share long-prefix reads while a paid
-shared source corrects each actual coarse operator. R93 strictly improves
-the inverse-polynomial-accuracy benchmark; R92 independently makes a
-slowly growing precision range uniform. R94 uses R79's proved compiler
-inside each larger catalogue entry and R91 for parallel selection. Its
-complete workspace transfer removes the residual correction and permits
-a constant number of groups at final accuracy. R95 improves both its
-opening and local depth, reaching logarithmic depth at inverse-polynomial
-accuracy while preserving the global count and width contracts.
-R96 then extends $`O(NL/b^2+L+\ell)`$ to all precisions through a
-global borrowed-work stage and directly programmed terminal. The
-[continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-retains optimal general depth and dimension-growing lower bounds as
-open questions. Full work return and
-simultaneous count/width bounds remain part of any further improvement. The finite
-catalogue gives no efficient classical preprocessing, practical crossover,
-or scalable native emitter guarantee.
+- [R80 — Logarithmic depth for homogeneous magnitudes](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
+- [R81 — Recursive compilation of prefix-selected terminal frames](depth/RECURSIVE_TERMINAL_DEPTH.md)
+- [R82 — Bounded-density compilation against a positive structured reference](depth/BOUNDED_DENSITY_DEPTH.md) — [R82 reference extension](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension)
+- [R83 — Logarithmic depth for affine branch orientations](depth/AFFINE_ORIENTATION_DEPTH.md)
+- [R84 — Exact depth for deterministic Hopf frames](depth/DETERMINISTIC_FRAME_DEPTH.md)
+- [R85 — Geometric-band recovery for arbitrary branch orientations](depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
+- [Grouped terminal layers with whole-word coarse programs](depth/GROUPED_TERMINAL_DEPTH.md)
+- [A sharp normalization limit for entry-indexed frame encodings](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
+- [Preparation map for the remaining depth problem](depth/DEPTH_OBSTACLE_MAP.md)
 
-The retained binary-source terminal proof reuses the compact source and shared-source
-composition R12/R14, with the inherited geometric weights, coherent
-failure history and LCU recovery F1/F10/F11. R20 supplies exact bounded
-controls, and the [grouped terminal alternative](depth/GROUPED_TERMINAL_DEPTH.md)
-supplies the retained whole-word coarse-prefetch interface. That alternative
-keeps its proved $`L^{3/2}`$ contribution and column-forest residuals;
-the selected terminal kernel uses sixteen one-layer matrix-unit types.
-In the retained compressed-column proof, the early shared phase gradient
-and the terminal geometric source have separate paid preparations and return
-proofs. No new external premise
-or priority claim is introduced.
+## Complete query transfers and clean-source promotion
 
-The [entry-indexed encoding bound](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
-proves sharp worst-case normalization $`\sqrt{n+1}`$ for that
-architecture using the balanced Haar frame. At operator error epsilon,
-the lower bound is $`(1-\epsilon)\sqrt{n+1}`$. Extra entry-local
-channels and reweighting obey the same bound. It does not constrain
-unrestricted block encodings or establish a native T-depth lower bound.
-R78 replaces that overlap recovery with explicitly priced spectral-label
-erasure; R79 makes the resulting resource bound uniform in precision.
-The normalization theorem remains unchanged.
+These are complete interfaces and conditional transfers, not constructions of the missing shallow source. Completed return does not imply native read-only sharing, and logical call lower bounds are not unrestricted T-depth bounds.
 
-The following obstruction branch is independent of the constructive proof
-chain. The [resource frontier](../docs/OPEN_PROBLEM.md) gives the exact
-witnesses, thresholds, and remaining one-clean question. Zero leaf phases
-place the witnesses in the phase-dressed family as well.
+- [R98 — From native query depth to complete-frame depth](depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+- [Constant-accuracy readouts and the complete frame transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+- [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
+- [Short-label permutation wrappers with paired dirty arrays](depth/PAIRED_PERMUTATION_ROUTING.md)
+- [Polynomial source overhead can be absorbed by a paid indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+- [Removing a bounded clean bank from a complete XOR query](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) — [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
+- [Parallel clean-source promotion: packing and spectral alternatives](depth/PARALLEL_CLEAN_PROMOTION.md)
+- [Spectral clean-source promotion with paid paving frames](depth/MSS_SPECTRAL_PROMOTION.md) — [seven-selector alternative](depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
+- [Clean-sector parallelism: what the native schedule actually buys](depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
+- [Dirty-tree compilation from complete branch differences](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
+- [Which incomplete indicator interfaces still contain the full operation](depth/WEAKER_INDICATOR_INTERFACES.md)
+- [Table-specific probes and the remaining joint-word freedom](depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
+- [Joint bank routing and the complete dirty indicator](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
-| Proof | Established obstruction | Scope that remains open |
-|---|---|---|
-| [Clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md), R73 | Fixed-clean error floors at three layers, uniform in dimension and dirty width; explicit zero-clean optimum and separate one-clean two-layer gap | Arbitrary Clifford interlayers are allowed; these are constant-depth bounds |
-| [Four-layer crossing rank](depth/FOUR_LAYER_CROSSING_RANK.md), R74 | Elementary explicit rigidity gap and necessary middle-rank growth, minimized over all four-layer decompositions | Crossing rank may grow with precision; the qualitative polynomial-limit argument remains separately valid |
-| [Four-layer operator rigidity](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md), R75 | Width-independent gap between distinct two-layer Pauli images; zero-clean five-layer bound and exact one-clean terminal-sector preservation below the gap | Terminal-sector preservation alone does not settle one-clean four-layer approximation |
-| [One-clean midpoint rigidity](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md), R76 | Pauli and Hermitian-Clifford midpoint floors using phase discreteness, finite Clifford boundaries, and compressed-commutant lifting | Unrestricted non-Clifford midpoints need an additional rigidity argument |
-| [Inner clean spread](depth/ONE_CLEAN_INNER_SPREAD.md), R77 | Bounded-spread non-Clifford extension; both outer layers must grow in every accurate representation; exact example excludes a common sign-compatible sector flip even among arbitrary unitaries | Unbounded inner spread remains eligible; the counterexample does not refute the remaining gap conjecture |
-| [Outer-overlap rigidity](depth/OUTER_OVERLAP_RIGIDITY.md), R97 | Positive floor at bounded misalignment relative to either physical outer-axis list; uniform R76 floor at zero misalignment, without bounding inner spread or crossing rank | Both misalignment dimensions must grow; exact same-space descent fails, and displayed center mixing does not exclude another native split |
+## Constructive components and source candidates
 
-Together R74 and R77 force all four layers to grow in any hypothetical
-arbitrarily accurate one-clean sequence for this witness. R97 additionally
-forces both outer-axis misalignment dimensions to diverge in every
-admissible native representation. Optimal depth remains open.
+Each home separates its paid native operations from its first unpaid conversion. A scalar predicate, forward XOR query, inverse-column formula or trace character is not by itself a normalized complete indicator.
 
-The following earlier studies isolate costs or restrict particular
-interfaces. They remain as mathematical results and records of the
-previous grouped construction; their individual limits do not obstruct
-the complete-column source and recovery above.
+- [Exact two-layer quadratic queries with one returned dirty qubit](depth/QUADRATIC_NATIVE_QUERY.md)
+- [Balanced native compilation of the HRT algebra permutations](depth/BALANCED_ALGEBRA_PERMUTATION.md)
+- [Full-input algebra queries and fast returned multiplication](depth/ALGEBRA_QUERY_EXTRACTION.md)
+- [A complete bank from one nonlinear algebra source](depth/FULL_BANK_CHARACTER_TRANSPORT.md) — [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map) · [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
+- [Direct output readout and the weaker algebra-source contract](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) — [direct output version](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
+- [Complete observable transport and the shared-key source limit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
+- [A nonhomomorphic affine-pencil source for the complete bank](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md) — [paired projector-Gram interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) · [one-clean two-band case](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) · [latent-center interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
+- [A paid constant-depth approximate zero reflection](depth/EXPANDER_ZERO_REFLECTION.md)
+- [Coherent counters: an exact odd-key code and the missing native schedule](depth/COHERENT_COUNTER_SOURCE.md) — [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
+- [Exact arithmetic with virtual Boolean functions and dirty work](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
+- [Complete bank difference: a paid nonlinear merge and its depth cost](depth/COMPLETE_BANK_DIFFERENCE.md)
+- [A complete indicator from fermionic bank motion](depth/BANK_MOTION_WALSH_INDICATOR.md)
+- [A paid Majorana Walsh probe and its restricted source cost](depth/MAJORANA_WALSH_QUERY.md)
+- [Selective inversion, dirty scalar echoes, and independent-row cost](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md) — [distance-profile audit](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#51-a-complete-distance-certificate-and-the-native-scheduling-gap) · [joint fixed-angle resynthesis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#52-joint-resynthesis-pays-one-special-angle-detuning-call) · [joint decoding analysis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
+- [Parallel affine detuning: a paid batch and the remaining composition](depth/PARALLEL_AFFINE_DETUNING.md)
+- [Four abstract Pauli representations can return any Boolean phase](depth/SCALAR_REPRESENTATION_PRODUCT.md)
+- [A noncommutative cycle character with complete dirty return](depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
+- [A Gauss-sum table encoding and its missing dirty query](depth/GAUSS_SUM_QUERY_ENCODING.md)
+- [Gaussian inverse extraction: an exact identity and its paid boundary](depth/GAUSSIAN_INVERSE_EXTRACTION.md)
+- [Weighted-chain factorization of finite Haar trees](depth/WEIGHTED_CHAIN_FACTORIZATION.md)
 
-| Study | What survives | Limit of the result |
-|---|---|---|
-| [Restricted source depth](depth/SOURCE_T_DEPTH.md) | Exact source schedules and matching depth in a specified Majorana-linear architecture | No unrestricted full-frame depth lower bound |
-| [Two-layer source obstruction](depth/SHALLOW_SOURCE_OBSTRUCTION.md) | Full-input source approximation gaps in the stated two-layer model | Does not rule out other source architectures or frame compilers |
-| [Source leakage](depth/SOURCE_LEAKAGE_DIAGNOSTICS.md) | Explicit common-precision source families with coherent leakage accumulation | Ideal-angle stability cannot simply be substituted for the full output error; other circuits remain eligible |
-| [Flag echoes](depth/HOPF_FLAG_ECHO.md) | Exact errors and a same-mask cancellation exception | Generic radial leakage survives these proposed echo words |
-| [Radial filter](depth/HOPF_RADIAL_FILTER.md) | A phase-correct filter with quadratic radial error and a smaller precision cap | Charged extra calls retain the earlier source schedule's depth order |
-| [Batched lookup](depth/BATCHED_DIRTY_LOOKUP.md) | A valid intermediate schedule and its distinct ledger | The selected proof uses the later self-contained amortized query; this schedule is retained as a predecessor |
-| [Common-source rearrangement](depth/COMMON_SOURCE_REUSE.md) | Exact conjugation and counterexamples to a stale success monitor or one-use fresh bank | The conjugated reflection or another work-return mechanism remains necessary |
-| [Protected unary source](depth/PROTECTED_UNARY_SOURCE.md) | One source preparation/actual return across early groups, with a global error charge | Removes source-boundary overhead only |
-| [Windowed predicates](depth/WINDOWED_GROUP_PREDICATES.md) | Consumed activity caches with exact inactive cancellation | Predicate overhead becomes sublinear; logical transport and queries remain |
-| [Shared-prefix queries](depth/SHARED_PREFIX_QUERY_AUDIT.md) | Exact cache-capacity restrictions, charged refresh, and a fresh-query reduction | Special affine differences help only with an extra promise; generic correction is still charged |
-| [Retained-source fusion](depth/RETAINED_SOURCE_FUSION.md) | Exact factors and a two-shift, logarithmic-depth stabilizer completion | The complementary ordered transport remains linear in group height; the original full-group schedule is still retained |
+## Source-specific limits and failed compositions
 
-The earlier grouped schedules separately charged O(n) logical transport
-and program query/unload. Their local refinements alone did not remove
-both allowances. The current construction bypasses those stages by
-recovering the complete early operator from its charged column source.
+Use these only with their stated actual-boundary, fiber, normalization or source-call premises. The read-only two-band compression bound differs from the one-clean two-band Gram screen in the pencil proof; neither is a dimension-growing unrestricted depth theorem.
+
+- [Complete two-band sources with native read-only address](depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md)
+- [A Clifford-sum gap excludes bounded-clean two-band indicator sources](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md) — [rank--norm refinement](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen)
+- [Clifford averages cannot select the complete lookup eigenspace](depth/CLIFFORD_LOOKUP_FIXED_SPACE.md)
+- [Joint Fourier words and native source limits](depth/JOINT_FOURIER_WORD_LIMITS.md) — [two-band half-amplitude screen](depth/JOINT_FOURIER_WORD_LIMITS.md#51-two-source-bands-at-half-amplitude-reduce-to-two-clean-bands)
+- [Overlapping two-band sources and transported output probes](depth/OVERLAPPING_TWO_BAND_SOURCES.md)
+- [Simultaneous output parities and native support rank](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
+- [Limits of structured frames for spectral promotion](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
+- [Crossed cubic kernels and complete observable transport](depth/CROSSED_CUBIC_KERNEL_SOURCE.md)
+- [Two complete key-mixing tests for observable transport](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
+- [Gaussian compression with a small clean signal](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
+- [Involutory Gaussian loops and their unsquared scalar limit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
+- [Scalar phases of closed Gaussian circuits have bounded degree](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
+- [Complete-input limits of two approximate equality filters](depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
+- [Phase-signal and coherent-frame interfaces for complete queries](depth/PHASE_SIGNAL_QUERY_LIMITS.md)
+- [Dirty geometric phase loops and the complete-bank cost](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md)
+- [Joint detuning and the cost of independent fine-angle replacement](depth/JOINT_DETUNING_PRECISION_LIMITS.md)
+- [Native sharing required by a complete approximate indicator](depth/NATIVE_INDICATOR_SHARING.md)
+- [The count cost of replacing two indicators by many](depth/MULTIWAY_QUERY_COST_BARRIER.md)
+- [A source-count barrier for symplectic commutator readout](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) — [universal-probe conversion](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#6-universal-pauli-probes-contain-a-complete-dirty-indicator) · [all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally) · [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
+- [An exact T-count barrier for the separate Walsh dual readout](depth/DUAL_FRAME_READOUT_BARRIER.md)
+- [Nonlinear character transport: a returned native mechanism and its width cost](depth/NONLINEAR_CHARACTER_TRANSPORT.md)
+- [A whole-word native-depth limit for Majorana-preserving indicator circuits](depth/WHOLE_WORD_MAJORANA_LIMITS.md)
+
+## Constant-depth frame obstructions
+
+The [resource frontier](../docs/OPEN_PROBLEM.md) owns the exact witnesses and
+thresholds. These are separate from the constructive chain.
+
+| Proof home | Role and scope |
+|---|---|
+| [Clean-aware depth obstruction](depth/CLEAN_AWARE_DEPTH_OBSTRUCTION.md), R73 | Fixed-clean error floors at three layers; no dimension-growing depth bound. |
+| [Four-layer crossing rank](depth/FOUR_LAYER_CROSSING_RANK.md), R74 | Explicit gap and necessary middle-rank growth over all decompositions. |
+| [Four-layer operator rigidity](depth/FOUR_LAYER_OPERATOR_RIGIDITY.md), R75 | Zero-clean five-layer bound; one-clean sector return alone is insufficient. |
+| [One-clean midpoint rigidity](depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md), R76 | Pauli/Hermitian-Clifford midpoint floors; unrestricted non-Clifford midpoints remain open. |
+| [Inner clean spread](depth/ONE_CLEAN_INNER_SPREAD.md), R77 | Bounded-spread extension and outer-layer growth; unbounded spread remains eligible. |
+| [Outer-overlap rigidity](depth/OUTER_OVERLAP_RIGIDITY.md), R97 | Bounded outer-axis misalignment floor; both misalignments may grow. |
+
+## Native Boolean rigidity and clean-code structure
+
+The unrestricted two-band and zero-clean three-band Boolean statements coexist with conditional clean-code components. The complete one-clean three-band case split is in the pair-collapse and central-parity homes; its conservative error radius is not an arbitrary-fixed-accuracy growing-depth bound.
+
+- [A robust linear T-count bound for the complete dirty indicator](depth/INDICATOR_PAULI_NULLITY.md)
+- [Joint transfer constraints for unrestricted two-layer queries](depth/UNRESTRICTED_TWO_LAYER_QUERY.md)
+- [Two native T layers: diagonal rigidity and its clean-work boundary](depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
+- [Three native T layers: a degree bound and a paid cubic query](depth/THREE_LAYER_NATIVE_STRUCTURE.md)
+- [Matching native one-T bands through Cliffords](depth/ONE_BAND_AXIS_MATCHING.md) — [projected-band extension](depth/ONE_BAND_AXIS_MATCHING.md#6-a-projected-band-with-one-relation)
+- [Clifford rigidity on a non-Pauli clean code](depth/CLEAN_CODE_CLIFFORD_RIGIDITY.md)
+- [Occupied logical transport and a diagonal pair-center normal form](depth/OCCUPIED_LOGICAL_TRANSPORT.md)
+- [Three layers with Pauli clean images have bounded Boolean degree](depth/PAULI_BOUNDARY_THREE_LAYER_RIGIDITY.md)
+- [Three native layers with a fixed number of non-diagonal coordinates](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md) — [Exact repacking](depth/PARTIAL_DIAGONAL_THREE_LAYER_FEATURES.md#8-both-non-pauli-images-of-active-rank-one-can-be-repacked)
+- [Exact decoding of a one-band non-Pauli clean code](depth/NONPAULI_CODE_DECODING.md)
+- [Bounded relations in three commuting phase bands](depth/BOUNDED_RELATION_NATIVE_MATCHING.md)
+- [Three commuting phase bands with a finite Pauli-supported insertion](depth/FINITE_INSERTION_THREE_LAYER_FEATURES.md)
+- [Representation parameters of easy clean transitions](depth/CLEAN_TRANSITION_PARAMETERS.md) — [identity-target family](depth/CLEAN_TRANSITION_PARAMETERS.md#5-unbounded-determinant-codimension-for-literal-occupied-identity)
+- [A computational degree bound from the common determinant defect](depth/DETERMINANT_DEFECT_DEGREE.md)
+- [A rank-one interface for an unbounded clean transition](depth/RANK_ONE_CLEAN_PHASE_INTERFACE.md)
+- [A joint algebra for nonzero clean-code probe characters](depth/JOINT_NONPAULI_PROBE_ALGEBRA.md)
+- [Computational derivatives of the completed clean-transition phase](depth/COMPUTATIONAL_PHASE_DERIVATIVES.md)
+- [Global constraints for a quadratically controlled Pauli insertion](depth/QUADRATIC_CONTROL_NATIVE_MATCHING.md)
+- [Constant endpoint translations force a cubic Boolean phase](depth/CONSTANT_TRANSLATION_NATIVE_CLOSURE.md)
+- [Native center saturation and the limit of Clifford decoding](depth/NATIVE_CENTER_SATURATION_LIMITS.md)
+- [Actual native center witness and safe-axis derivative pruning](depth/ACTUAL_NATIVE_CENTER_WITNESS.md)
+- [The native middle defect confines the remaining quadratic control](depth/MIDDLE_DEFECT_SUPPORT_CLOSURE.md)
+- [One middle Pauli absorbs the external center displacement](depth/EXTERNAL_CENTER_MIDDLE_CORRECTION.md)
+- [Growing middle displacement reduces to native pair permutations](depth/GROWING_DISPLACEMENT_NATIVE_ORBITS.md)
+- [One central parity removes the rank-two insertion](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md) — [literal relation factorization](depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md#7-the-exceptional-relation-recreates-a-quadratic-controlled-pauli)
+
+## Original physical pairs and the four-band scout
+
+The paired three-band branch is closed by Boolean pair collapse and full-space diagonal reduction. Earlier matching/center results remain components, not live gaps in that theorem. Four-band center transport retains actual native lists, literal phases and the occupied clean code; no general four-band ceiling is claimed.
+
+- [Complete Booleanity collapses the original physical pair count](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md) — [exhaustive one-clean three-layer corollary](depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained)
+- [All-active one-pair reduction to a diagonal native three-band word](depth/ALL_ACTIVE_PAIR_DIAGONAL_REDUCTION.md)
+- [Boolean recognition of an all-active pair from positive singletons](depth/POSITIVE_SINGLETON_PAIR_RECOGNITION.md)
+- [Four-band scout: actual pair transport and an added-band coupling certificate](depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md)
+- [Four-band center transport and the first unmatched native axis](depth/FOUR_BAND_CENTER_TRANSPORT.md) — [physical-pair revision](depth/FOUR_BAND_CENTER_TRANSPORT.md#g-a-sole-unmatched-anticommuting-factor-must-merge-natively) · [singular physical-block reduction](depth/FOUR_BAND_CENTER_TRANSPORT.md#i5-singular-silent-blocks-have-a-paid-kernel-size-reduction) · [paid paired resynthesis](depth/FOUR_BAND_CENTER_TRANSPORT.md#f-a-paid-two-band-resynthesis-of-the-fully-matched-mechanism)
+- [Higher-support physical pairs and the Boolean completion test](depth/HIGHER_SUPPORT_PAIR_BOOLEANITY.md)
+- [Original middle pairs as a finite physical insertion](depth/ORIGINAL_MIDDLE_PAIR_INSERTIONS.md)
+- [A common center forced by the occupied Boolean phase](depth/OCCUPIED_BOOLEAN_PAIR_CENTER.md)
+- [Bounded native profile distortion modulo the genuine center](depth/CENTRAL_MODULE_NATIVE_PROFILES.md)
+- [A minimal physical pair and its required output partner](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md) — [paired rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#5-all-paired-sources-with-two-clean-active-axes-at-both-endpoints) · [one-sided rank-two extension](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#6-one-rank-two-endpoint-permits-the-other-active-rank-to-grow) · [larger-support analysis](depth/MINIMAL_PHYSICAL_PAIR_COMPLETION.md#8-larger-physical-support-a-two-band-sector-encoder-and-a-one-band-obstruction)
+- [A complete original-pair bound when the input silent list commutes with the middle](depth/ALL_ACTIVE_ORIGINAL_PAIR_CLOSURE.md)
+- [An original-pair bound with a bounded middle-singleton coupling rank](depth/ORIGINAL_PAIR_SINGLETON_COUPLING.md)
+- [An enlarged actual center for one all-active pair without middle singletons](depth/PAIR_ONLY_ENLARGED_CENTER.md)
+- [All-active original-pair closure with arbitrary singleton coupling](depth/ALL_ACTIVE_SINGLETON_CLOSURE.md)
+
+## Read-only queries and source-transport classes
+
+These results require their stated read-only boundaries, comparison operators, exact source classes or bounded parameters. Native layer counts, completed query rounds and source representation parameters are distinct.
+
+- [Two-layer rigidity with a preserved address](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md) — [exact one-clean two-layer phase argument](depth/READ_ONLY_TWO_LAYER_RIGIDITY.md#5-exact-one-clean-queries-are-affine)
+- [Three- and four-layer rigidity with a preserved address](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md) — [section 8 of the same proof home](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#8-four-layers-with-zero-clean-qubits-degree-at-most-two) · [word-valued extension](depth/READ_ONLY_THREE_LAYER_RIGIDITY.md#87-word-valued-queries-the-outer-shear-is-additive)
+- [Five-layer read-only rigidity and native defects](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md) — [Section 5.4](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#54-span-preserving-comparisons-a-finite-degree-bound) · [shared-prefix invariant](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#55-shared-prefix-comparisons-a-robust-quadratic-group-map) · [Section 5.6](depth/READ_ONLY_FIVE_LAYER_REDUCTION.md#56-native-defects-a-general-five-layer-degree-bound)
+- [Six-layer native reduction and a Pauli-comparison degree bound](depth/READ_ONLY_SIX_LAYER_REDUCTION.md) — [six-layer source counterexample](depth/READ_ONLY_SIX_LAYER_REDUCTION.md#9-full-return-supplies-no-source-wide-inverse-coverage)
+- [Exact phase relocation onto arbitrary dirty work](depth/READ_ONLY_PHASE_RELOCATION.md)
+- [Clifford transport through a third-level source](depth/NATIVE_CLIFFORD_TRANSPORT.md)
+- [Native band structure of third-level sources](depth/NATIVE_BAND_SOURCE_STRUCTURE.md)
+- [Three native bands with at most one-dimensional overlap](depth/ONE_OVERLAP_SOURCE_STRUCTURE.md)
+- [Three native bands with two-dimensional overlap](depth/TWO_OVERLAP_SOURCE_STRUCTURE.md)
+- [Native source structure at arbitrary overlap](depth/ISOLATED_NATIVE_CORE_STRUCTURE.md)
+- [Uniform native transport through controlled Paulis](depth/CONTROLLED_PAULI_TRANSPORT.md)
+- [Native transport through a diagonal third-level source and a bounded core](depth/HYBRID_DIAGONAL_CORE_TRANSPORT.md)
+- [Uniform Clifford transport from bounded Pauli deficiency](depth/BOUNDED_DEFICIENCY_TRANSPORT.md)
+- [Transport through a literal permutation source](depth/PERMUTATION_SOURCE_TRANSPORT.md)
+- [Returned diagonal source words have bounded Boolean degree](depth/RETURNED_DIAGONAL_ECHO_DEGREE.md)
+- [Why a word cannot cancel the two native baseline families alone](depth/BASELINE_WORD_OBSTRUCTION.md)
+- [Four-layer representations: exact scope checks](depth/FOUR_LAYER_REPRESENTATION_LIMITS.md)
+
+## Retained grouped-source schedules and diagnostics
+
+These earlier methods isolate costs and preserve counterexamples. Their
+individual limitations do not obstruct the later complete-column compiler.
+
+| Proof home | Role and scope |
+|---|---|
+| [Restricted source depth](depth/SOURCE_T_DEPTH.md) | Matching only in the stated Majorana-linear architecture. |
+| [Two-layer source obstruction](depth/SHALLOW_SOURCE_OBSTRUCTION.md) | Full-input gaps in the specified two-layer source model. |
+| [Source leakage](depth/SOURCE_LEAKAGE_DIAGNOSTICS.md) | Coherent radial leakage invalidates ideal-angle-only error substitution. |
+| [Flag echoes](depth/HOPF_FLAG_ECHO.md) | Exact echo errors and a same-mask exception; generic leakage survives. |
+| [Radial filter](depth/HOPF_RADIAL_FILTER.md) | Paid phase-correct filtering; inherited source depth order remains. |
+| [Batched lookup](depth/BATCHED_DIRTY_LOOKUP.md) | Valid earlier lookup schedule with its own ledger. |
+| [Common-source rearrangement](depth/COMMON_SOURCE_REUSE.md) | Stale-monitor and fresh-bank counterexamples; return mechanism still required. |
+| [Protected unary source](depth/PROTECTED_UNARY_SOURCE.md) | One preparation across groups; removes only source-boundary overhead. |
+| [Windowed predicates](depth/WINDOWED_GROUP_PREDICATES.md) | Consumed activity caches with exact inactive cancellation. |
+| [Shared-prefix queries](depth/SHARED_PREFIX_QUERY_AUDIT.md) | Cache capacity, refresh and correction costs; special affine promises are separate. |
+| [Retained-source fusion](depth/RETAINED_SOURCE_FUSION.md) | Paid fusion and stabilizer completion; ordered complementary transport remains. |
+
+## Session records and designs
+
+These records preserve decisions, failed attempts, supporting derivations and
+the scope known at each checkpoint. Their next-step instructions are historical
+unless reaffirmed in the working checkpoint. A design prompt is not a theorem.
+The current outcome is listed here as well as linked above so every retained
+research document is discoverable from this catalogue.
+
+- [Continuation: amplitude-uniform source limits and a paid joint detuning](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+- [Revision: complete bank motion is paid; a shallow source remains missing](depth/BANK_MOTION_CONTINUATION_RESULT.md)
+- [Five-hour design: move precision into borrowed work](depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
+- [Borrowed precision and direct programming: execution outcome](depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+- [Branch-orientation depth session](depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+- [Five-hour design: carry the workspace through the catalogue](depth/CATALOGUE_BOOTSTRAP_PROMPT.md)
+- [Catalogue bootstrap session: the local compiler carries its workspace](depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
+- [Revision: constant translations and approximate query transfer](depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
+- [Revision: fix one genuine parity before counting matrix features](depth/CENTRAL_PARITY_REVISION_RESULT.md)
+- [Revision: one algebra source serves the whole indicator bank](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
+- [Clean-code revision and a paid algebra recovery](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+- [Revision: a paid clean-source route to the dirty indicator](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
+- [Revision: clean-transition phase and representation cost](depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+- [Revision: weaker coherent sources and uniform all-active one-pair closure](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
+- [Product-coin continuation: causal batching and recursive depth](depth/COIN_CONTINUATION_SESSION_RESULT.md)
+- [Revision: the computational phase and the complete native source](depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+- [Coupled incidence, signed normalization and a complete inverse query](depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
+- [Joint encodings: unrestricted one-clean two-layer Boolean rigidity](depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+- [Revision: pay the readout before claiming a shallower source](depth/DIRTY_KEY_REVISION_RESULT.md)
+- [Dirty-query reformulation: execution outcome](depth/DIRTY_QUERY_SESSION_RESULT.md)
+- [Revision: spectral promotion, zero tests and complete sources](depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+- [Revision: retain the native middle and bound its probe action](depth/EXTERNAL_CENTER_SESSION_RESULT.md)
+- [Five-layer query continuation: a normalizer gap and two mechanism tests](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
+- [Four-layer query closure: follow-up outcome](depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+- [Five-hour design: read the complete flag and pay precision once](depth/FULL_FLAG_DEPTH_PROMPT.md)
+- [Complete flags and local precision: execution outcome](depth/FULL_FLAG_DEPTH_SESSION_RESULT.md)
+- [Revision: Gaussian readout, scalar phases and physical-center transport](depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
+- [Five-hour design: general magnitudes from exposed clean space](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
+- [General-magnitude recovery: session result](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+- [Revision: keep the depth destination, relax the source count requirement](depth/INDICATOR_FUSION_REVISION_RESULT.md)
+- [Five-hour design: factor the interval recovery](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
+- [Interval-recovery factorization: session result](depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+- [Joint decoder and terminal depth session](depth/JOINT_DEPTH_SESSION_RESULT.md)
+- [Revision: complete joint indicators and growing native displacement](depth/JOINT_INDICATOR_SESSION_RESULT.md)
+- [Revision: joint defects, bounded relations, and the complete probe task](depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
+- [Algebraic side results from the joint orientation session](depth/JOINT_ORIENTATION_DISCOVERY_NOTES.md)
+- [Five-hour design: joint orientation and recovery](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
+- [Joint orientation and recovery: session result](depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+- [Revision: the complete selective word remains unpaid](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+- [Unrestricted two-layer queries: joint constraints and native return](depth/JOINT_TRANSFER_SESSION_RESULT.md)
+- [Revision: where the remaining native cubic defect can live](depth/MIDDLE_DEFECT_SESSION_RESULT.md)
+- [Native defects close the five-layer read-only degree gap](depth/NATIVE_DEFECT_SESSION_RESULT.md)
+- [Native partial conjugation: cube relations and returned phase mechanisms](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+- [Revision: native sharing and table-specific indicator probes](depth/NATIVE_SHARING_SESSION_RESULT.md)
+- [Native Clifford transport and nonlinear returned characters](depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
+- [Revision: non-Pauli clean codes and the cost of changing representations](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+- [Revision: keep the destination, change the source mechanism](depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+- [Revision: logical transport, native algebra costs, and the remaining depth question](depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
+- [Five-hour design: the unrestricted one-clean four-layer gap](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md)
+- [One-clean four-layer session: outer misalignment and the remaining gap](depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
+- [Overlap-one closure and the cost of the cycle source](depth/ONE_OVERLAP_SESSION_RESULT.md)
+- [Revision: use Booleanity before resynthesizing negative singletons](depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
+- [Continuation: complete transitions from overlapping two-band sources](depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
+- [Revision: parallel access is paid; selective dynamics remain missing](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+- [Revision: pay parallel promotion, then test the complete source](depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+- [The in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+- [Five-hour design: precision without repeated long-prefix work](depth/PRECISION_TERMINAL_PROMPT.md)
+- [Precision-terminal session: grouping the noncommuting middle](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+- [Revision: native source scope and complete projector readout](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+- [Runnable prompt for a five-hour depth research session](depth/RESEARCH_SESSION_PROMPT.md)
+- [Fixed-accuracy depth research session: execution record](depth/RESEARCH_SESSION_RESULT.md)
+- [Restored-address queries and the complete-frame transfer](depth/RESTORED_ADDRESS_SESSION_RESULT.md)
+- [Returned-query invariants: execution outcome](depth/RETURNED_QUERY_SESSION_RESULT.md)
+- [Native axes, scalar return and the missing relation](depth/RETURNED_RELATIONS_SESSION_RESULT.md)
+- [Revision: global native matching and the exact readout cost](depth/SHARED_CENTER_SESSION_RESULT.md)
+- [Six-layer Pauli comparisons and diagonal-source bounds](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
+- [Span-preserving comparisons and the cost of returned sources](depth/SPAN_PRESERVING_SESSION_RESULT.md)
+- [Revision: remove the matrix core before counting its features](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+- [Five-hour design: compose the terminal with returned borrowed work](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md)
+- [Whole-terminal session: logarithmic general depth](depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+- [Three native bands and a noncommutative return mechanism](depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
+- [Three-layer revision: a native degree invariant and a paid cubic query](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+- [Three-layer queries: execution outcome](depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
+- [Two-band source obstruction and the continuing physical-pair scout](depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+- [Overlap-two sources, bounded-core transport, and commuting inverse pivots](depth/TWO_OVERLAP_SESSION_RESULT.md)
+- [Unbounded paired cores and controlled-Pauli transport](depth/UNBOUNDED_CONTROL_SESSION_RESULT.md)
+- [Precision-uniform follow-up: execution record](depth/UNIFORM_PRECISION_SESSION_RESULT.md)
+- [Zero-character source certificates and an intrinsic transport test](depth/ZERO_CHARACTER_SESSION_RESULT.md)
 
 ## Attribution and reproducibility
 
-The [research literature notes](RELATED_WORK.md) preserve comparisons for
-these studies. Stable source/result identifiers remain in the
-[source catalogue](../docs/reference/SOURCE_CATALOGUE.md); the
-[finite-evidence catalogue](../docs/reference/VERIFICATION_CATALOGUE.md)
-identifies the corresponding checks and their limitations.
+The [research literature notes](RELATED_WORK.md) retain comparisons.
+Stable source/result identifiers belong to the
+[source catalogue](../docs/reference/SOURCE_CATALOGUE.md); executable checks and
+their limitations belong to the
+[verification catalogue](../docs/reference/VERIFICATION_CATALOGUE.md).
 
-Each proof links its executable evidence in the shared package and test
-directories. The complete research corpus is included in mathematics,
-link and presentation validation.
+The binary-source terminal retains shared-source composition R12/R14,
+LCU recovery F1/F10/F11 and exact bounded controls R20 as identified in those
+homes. The [older uniform construction](../docs/UNIFORM_PRECISION_DEPTH.md),
+[independent precision lower bounds](../docs/FAULT_TOLERANT_COMPILER.md#10-matching-lower-bounds-and-their-lineage)
+and [full-frame geometry](../docs/HOPF_INTERFACE.md) remain authoritative.
+Finite checks support literal identities, not asymptotic proofs or scalable
+emitters. The entire research corpus remains in link, mathematics and
+presentation validation.
