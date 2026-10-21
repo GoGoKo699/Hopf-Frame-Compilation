@@ -1,5 +1,12 @@
 # Revision: native source scope and complete projector readout
 
+**Historical checkpoint.** Its source and lower-scout next steps are superseded by
+the [current workspace](../../WORKSPACE.md), the
+[normalized-source trials](CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source),
+[four-call Gram recovery](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout),
+and [coupled endpoint obstruction](FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
+The original revision below is retained as a record.
+
 This continuation fetched main commit
 `3ac6ee925f1257aafaefc40cef201427767aea8d`, tree
 `6ebf13b038c041643505d867ebbdcc4a3c42e7b5`, merged as PR #216.

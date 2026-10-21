@@ -190,28 +190,29 @@ not count normalization or its controlled use, remains unpaid.
 | [Spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | At fixed tolerance, depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address-sharing and uniform precision budgets are premises. Exact sector invariance avoids the general leakage multiplier |
 | [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. Native address motion and whole-bank error prevent an automatic indicator |
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
-| [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. Normalized shallow U is not supplied |
+| [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
 
 For the last interface, let $`n_c=pm`$ denote one carrier-bank size.
-Six U/actual-adjoint calls followed by serial dirty promotion give the
+[Four U/actual-adjoint calls](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) followed by serial dirty promotion give the
 complete zero-clean ledger
 
 ```math
 \begin{aligned}
-T_{\rm out}&\le48T_U+48m+8,&
-G_{\rm out}&\le48G_U+16n_c+98m+152,\\
-D_T({\rm out})&\le48d_U+32,&
+T_{\rm out}&\le32T_U+48m+8,&
+G_{\rm out}&\le32G_U+16n_c+98m+136,\\
+D_T({\rm out})&\le32d_U+32,&
 b_{\rm out}&\le2n_c+b_U+2.
 \end{aligned}
 ```
 
 Gram error delta gives complete error at most
-$`32\sqrt{24\delta}`$; request $`\delta\le\tau^2/24576`$.
-The stronger block promise
-$`\|K-B_x/\sqrt2\|\le\eta\le1/8`$ gives error
-$`32(3\sqrt2\eta+2\eta^2)`$ instead. All source costs are evaluated
-at the requested precision. Recovery and full return are paid; obtaining
-the constant-amplitude source is the first unpaid native operation.
+$`64\sqrt\delta`$; request $`\delta\le\tau^2/4096`$.
+The separate six-call recovery, under the stronger block promise
+$`\|K-B_x/\sqrt2\|\le\eta\le1/8`$, retains complete error at most
+$`32(3\sqrt2\eta+2\eta^2)`$, with its original 48-call promoted ledger.
+All source costs are evaluated at the requested precision. Recovery and
+full return are paid; obtaining the correct normalized lookup sector is
+the first unpaid native operation.
 
 The relevant exclusions have different hypotheses:
 
@@ -220,13 +221,23 @@ The relevant exclusions have different hypotheses:
 | General two-band unitary compression | [Rank–norm theorem](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact $`K=\alpha I_p`$, $`\alpha>0`$, needs $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. Fixed-error growing-clean sources remain outside its shrinking approximate floor |
 | Native read-only two-band compression | [Complete-bank Fourier bound](../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md): amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$ require $`k\ge\lceil(p-3)/2\rceil`$ when actual Clifford boundaries fix the address. No flatness, exact return or dirty-width bound is assumed |
 | One-clean two-band projector-Gram source | [Principal-angle screen](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap): for $`p\ge3`$, Gram error at most $`1/256`$ is impossible even with intermediate address motion. More source bands or another clean allocation are outside this screen |
+| Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. General higher-band words need not satisfy this premise |
 | Wide Clifford filters | [Sharp lookup correlation](../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) is $`(p+1)/2^p`$ for $`p\ge2`$; normalized Clifford averages cannot separate the two full lookup eigenspaces by a constant gap. Coefficient and call bounds are not native-depth bounds |
 
 Completed address return does not supply native read-only sharing.
 The direct read-only two-band/current-spectral-wrapper combination fails;
 this does not lower-bound every promotion scheme or unrestricted depth.
-The next source question is a normalized higher-band Gram mechanism, or
-another complete wide non-Clifford readout with a paid native schedule.
+The [normalized Fourier echo](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source)
+is a paid native source of depth at most 18 with polynomial overhead,
+but selects the forward pencil column; its Gram gap to the inverse-column
+lookup target is exactly $`1/2`$ for $`p\ge2`$. The
+[half-bilinear commutator](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source)
+also has exact half-projector normalization and a complete constant-depth
+schedule. Exact p=1,2 fixtures reject its tested sectors, without an
+all-size exclusion. The next operation is a changed, paid interference
+word transporting the fixed parity to the inverse-column lookup parity,
+or another complete-bank interface. Neither normalization alone nor an
+inverse appearing in a Fourier kernel establishes that operation.
 
 ## Constant-depth frontier
 
@@ -297,7 +308,7 @@ remain open. These constant-layer results do not match R96 asymptotically.
 |---|---|
 | At most one clean qubit, two bands | [Boolean XOR degree at most two](../research/depth/TWO_LAYER_DIAGONAL_RIGIDITY.md); higher degree has full-isometry floor $`\sin(\pi/8)/(2\sqrt2)`$ |
 | Zero clean qubits, three bands | [Boolean XOR degree at most four](../research/depth/THREE_LAYER_NATIVE_STRUCTURE.md), with the same floor for higher degree |
-| At most one clean qubit, three bands | [Exhaustive original-pair/no-pair closure](../research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained), sharpened by [central-parity reduction](../research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md): sign degree at most $`D_{\rm np}=D_3+576`$, nonconstant XOR degree at most $`D_{\rm np}-1`$, with conservative rounding floor $`2^{-530690}`$ |
+| At most one clean qubit, three bands | [Exhaustive original-pair/no-pair closure](../research/depth/BOOLEAN_ORIGINAL_PAIR_COLLAPSE.md#9-complete-native-three-corollary-with-the-no-pair-constant-retained), sharpened by [central-parity reduction](../research/depth/CENTRAL_PARITY_QUADRATIC_REDUCTION.md): sign degree at most $`D_{\rm np}=D_3+576=480\,2^{43}+903`$, nonconstant XOR degree at most $`D_{\rm np}-1`$, with rounding radius strictly below $`2^{-530690}`$ |
 
 These statements allow unrestricted intermediate Clifford/address mixing
 and arbitrary dirty width. The tiny three-layer radius does not exclude
@@ -314,8 +325,17 @@ Fixed-endpoint/orbit closure, literal pair removal and
 are scoped components. The affected-silent reduction leaves at most
 $`\lfloor4k/3\rfloor`$ original axes per band at pairing nullity k;
 it adds no depth or workspace and is entirely Clifford for $`k\le2`$.
-Genuinely coupled transport, an actual output endpoint and full Boolean
-return remain the focused test. No general four-band theorem follows.
+The [coupled six-wire trial](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
+now has a structural endpoint obstruction: its ten-T, two-band middle
+transports a probe to four Paulis of magnitude one half, forcing complete
+clean-isometry error at least $`1/4`$ for every one-band output endpoint,
+even with spectator mixing and arbitrary logical action. This candidate
+is paused before Boolean return. A changed actual middle or a paid
+non-Clifford endpoint is required to reopen it. The coefficient argument
+can inspect longer words, but extra non-Clifford layers can repair its
+witness. No general four-band theorem or fixed-accuracy growing-depth
+bound follows; the scalar zero-test construction rules out conjunction
+alone as such a witness.
 
 ## Earlier endpoint constructions
 
