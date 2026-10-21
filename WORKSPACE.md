@@ -13,8 +13,9 @@ complete Hopf frames. Manuscript drafting is a separate task.
 **Recovered main:** [PR #218](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/218),
 `ac1e39565281bed7ee116414d66cbb6d7d406fb9`, fetched 21 October 2026.
 Its preceding scientific baseline was PR #217. This checkpoint adds the
-source constructions and scoped exclusions below; exact reviewed-tree
-verification receipts belong to its PR record. Fetch current main before
+source constructions and scoped exclusions below in
+[PR #219](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/219);
+exact reviewed-tree verification receipts belong to that PR record. Fetch current main before
 resuming; the recovered commit is not a pin.
 
 Read in this order:

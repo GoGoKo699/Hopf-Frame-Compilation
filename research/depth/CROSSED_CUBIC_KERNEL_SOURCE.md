@@ -853,9 +853,14 @@ are
 ```
 
 The accepted Gram in dual coordinates is therefore
-$`G_{r,s}=\tfrac12\sum_{u:u_{z_0}=u_{t_0}}
-\overline{(V_x)_{u,r}}(V_x)_{u,s}`$. These finite sums are exact
-operator formulas, not an efficient classical evaluation claim.
+
+```math
+G_{r,s}=\tfrac12\sum_{u:u_{z_0}=u_{t_0}}
+\overline{(V_x)_{u,r}}(V_x)_{u,s}.
+```
+
+These finite sums are exact operator formulas, not an efficient classical
+evaluation claim.
 
 The required remaining identity is
 
