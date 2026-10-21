@@ -265,3 +265,340 @@ inverse. Its emitted forward word has $`T=32,D_T\le8,G=258`$
 after local inverse-S reductions, with zero clean and zero additional
 dirty work. This supports the literal identity and gate ledger, not
 the universal or asymptotic claims above.
+
+<a id="fermionic-spectral-error-contract"></a>
+
+## 5. Complete accuracy of a fermionic lift is a spectral phase condition
+
+The [approximate scalar zero reflection](EXPANDER_ZERO_REFLECTION.md)
+suggests a different one-particle input to Gamma. Its constant-depth
+full-operator approximation on the **index register** does not by itself
+certify the induced operation on all occupations. The exact distinction
+is as follows.
+
+Let V and R be any unitaries on an M-dimensional mode-index space, and
+let the eigenvalues of $`E=R^\dagger V`$ be
+$`e^{i\theta_1},\ldots,e^{i\theta_M}`$, with principal phases
+$`\theta_j\in(-\pi,\pi]`$. Multiplicativity of Gamma and the
+exterior-power eigenvalues give the exact identity
+
+```math
+\|\Gamma(V)-\Gamma(R)\|_{\rm op}
+ =\max_{S\subseteq[M]}
+       \left|\exp\!\left(i\sum_{j\in S}\theta_j\right)-1\right|.
+                                                               \qquad(10)
+```
+
+This includes every occupation sector and every reference extension.
+The empty subset is the vacuum, whose phase is fixed. A common phase
+of the **one-particle** V becomes a particle-number-dependent phase
+under Gamma and cannot be discarded.
+
+For $`0\lt\tau\lt1`$, put $`a=2\arcsin(\tau/2)`$. Then (10)
+is at most tau if and only if
+
+```math
+\sum_{\theta_j\gt0}\theta_j\le a,
+\qquad
+\sum_{\theta_j\lt0}|\theta_j|\le a.                       \qquad(11)
+```
+
+Indeed, singleton subsets first force $`|\theta_j|\le a`$.
+If the positive total exceeds a, the first positive partial sum
+exceeding a lies in $`(a,2a]`$. Since $`a\lt\pi/3`$, that sum
+lies in the forbidden arc $`(a,2\pi-a)`$, contradicting (10).
+The negative phases have the same argument. Conversely, (11) places
+every subset sum in $`[-a,a]`$, which proves sufficiency.
+
+Thus the complete error controls total positive and negative phase
+mass, rather than just the largest individual phase. A convenient
+sufficient certificate is
+
+```math
+\|\Gamma(V)-\Gamma(R)\|
+ \le\sum_{j=1}^M|e^{i\theta_j}-1|
+ =\|E-I\|_1
+ \le M\|V-R\|.                                         \qquad(12)
+```
+
+The first inequality follows by telescoping each subset product. If
+$`\mathrm{rank}(E-I)\le r`$, its final bound improves to
+$`r\|V-R\|`$. This is a sufficient certificate, not a necessary
+rank restriction on successful mechanisms.
+
+The loss can occur with determinant one: for even M, take M/2 phases
+$`\pi/M`$ and M/2 phases $`-\pi/M`$. Then the one-particle
+error tends to zero, but occupying only the positive-phase modes gives
+complete error at least $`\sqrt2`$. A rank-one reflection has a
+special protection. If $`R=I-2|x\rangle\langle x|`$ and
+$`V=I-2|\psi\rangle\langle\psi|`$, with
+$`\alpha=\arccos|\langle x|\psi\rangle|`$, the only nontrivial
+relative eigenvalues are $`e^{2i\alpha}`$ and
+$`e^{-2i\alpha}`$. Equation (10) gives $`2\sin\alpha`$,
+independent of M, as in (8). Merely being an approximate scalar
+zero-test does not establish this relative-rank property.
+
+<a id="expander-fermionic-lift"></a>
+
+## 6. An actual expander lift, its constant auxiliary dimension and its unpaid steps
+
+There is an explicit native lift of the scalar source with only a
+constant factor more modes. It is useful to state the family before
+assessing its accuracy and addressing cost. In this section p is the
+external address length and $`m=2^p`$.
+
+First define the logical scalar word of
+[the zero-reflection proof](EXPANDER_ZERO_REFLECTION.md#3-fixed-point-cubing-with-the-same-four-clean-bits)
+using its exact specified permutations, rather than their dirty-helper
+native decompositions. SELECT is a signed computational-basis
+permutation on the tested bits and four selectors. Its CNOT matchings,
+selected Z, and selector masks are explicit. The four-selector query
+$`C_4`$ is the specified classical permutation; the bounded-clean
+promotion's zero-test C is likewise the specified four-literal
+permutation. Its K is the specified CCZ phase. All these operators are
+exact, with their actual inverses.
+
+The only logical auxiliary index bits needed are the four selectors,
+the old query output, the new query output, and the promotion toggle:
+seven bits. For $`n=3\lceil p/3\rceil=p+r`$, keep also the
+$`r\le2`$ padding bits and perform the complete padding-sector cover.
+Consequently the logical source has
+
+```math
+k=7+r\le9,\qquad d=2^k\le512,\qquad M=dm
+                                                               \qquad(13)
+```
+
+mode coordinates. The logical reflection word, denoted
+$`V_{p,\eta}`$, obeys the scalar proof's complete estimate
+
+```math
+\|V_{p,\eta}-(R_0\otimes I_d)\|\le\eta,
+\qquad R_0=I_m-2|0^p\rangle\langle0^p|.                \qquad(14)
+```
+
+Here every logical auxiliary input is arbitrary. The four initialized
+selectors occur only in the source proof before promotion; (14) has no
+initialized input. This construction does not delete helpers from an
+emitted native scalar circuit. It defines the same logical operators
+without introducing their implementation helpers, then implements their
+Gamma images directly on the M physical occupation wires.
+
+That implementation is literal:
+
+* A signed index permutation lifts to a fixed fermionic mode permutation
+  and single-mode Z gates. Adjacent fermionic swaps are the six-Clifford
+  words from Section 2; at most $`M(M-1)/2`$ such swaps suffice.
+* An index H lifts to the matching stage (3)--(4), with M T gates,
+  one physical T band, and at most $`6M^2`$ Cliffords. Index S or T
+  lifts to S or T on each mode whose corresponding index bit is one.
+  Index CNOTs and parity exposures are fixed index permutations.
+* The determinant-one selector rotations use the actual finite
+  single-qubit words from the scalar proof. Lift every H, S, T and
+  T-dagger occurrence, retaining its literal phase and using actual
+  reversals. No continuously variable occupation phase is supplied for
+  free.
+
+For each fixed one-particle tolerance eta the logical word has only
+$`O_\eta(1)`$ signed-permutation blocks and single-qubit factors:
+SELECT is one such permutation block, regardless of p. Therefore its
+native lift $`L_{p,\eta}=\Gamma(V_{p,\eta})`$ has simultaneous
+common forward/actual-inverse bounds
+
+```math
+T_L=O_\eta(M),\qquad G_L=O_\eta(M^2),\qquad
+D_T(L)=O_\eta(1),\qquad a_{\rm clean}=0.                \qquad(15)
+```
+
+There is no work beyond its M occupation wires. These estimates are
+native circuit bounds at fixed **one-particle** accuracy. They are not
+complete-bank accuracy bounds.
+
+The ideal lift marks all d auxiliary modes in row zero:
+
+```math
+\Gamma(R_0\otimes I_d)=\prod_{a=1}^d Z_{Y_{0,a}}.
+```
+
+Let $`P_x|u,a\rangle=|u+x,a\rangle`$ on mode coordinates and
+$`\mathcal P=\sum_x|x\rangle\langle x|\otimes\Gamma(P_x)`$.
+Define the fixed Clifford
+
+```math
+C=\prod_{u\in\mathbb F_2^p}\prod_{a=2}^d
+          \mathrm{CX}_{Y_{u,a},Y_{u,1}}.
+```
+
+The complete emitted candidate is
+
+```math
+\widetilde D_{p,\eta}
+ =C\mathcal P^\dagger L_{p,\eta}\mathcal P C^\dagger.
+                                                               \qquad(16)
+```
+
+With the ideal lift in place of L, (16) is exactly
+$`\sum_x|x\rangle\langle x|\otimes Z_{Y_{x,1}}`$
+tensored with identity on all other modes. Indeed, mode translation
+moves the marked row to x, and C maps that row's d-mode parity to its
+first wire. The $`(d-1)m`$ helper modes need no initialization;
+the ideal return is exact. The two C words cost $`2m(d-1)`$ CNOTs.
+The norm error in (16) equals
+$`\|\Gamma(V_{p,\eta})-\Gamma(R_0\otimes I_d)\|`$,
+so (10)--(11) are precisely its full bank/helper/reference contract.
+Hadamards on the m specified bank wires turn this phase into the
+complete bit indicator.
+
+There are two independent unpaid improvements.
+
+**Precision.** The scalar estimate (14) supplies only the last bound in
+(12). Taking $`\eta=\tau/M`$ is sufficient for full tolerance tau.
+The logical factor count is $`O(N\ell)=O(L^2)`$, where
+$`L=1+\log(1/\eta)`$, $`N=O(L)`$, and the synthesized selector
+rotation word has length $`\ell=O(L+\log L)`$. Lifting those
+factors serially therefore gives depth $`O_\tau(p^2)`$. This is the
+cost of the displayed precision allocation, not a lower bound on the
+actual expander lift. A direct proof of (11), a bounded-relative-rank
+construction, or another total-phase estimate could improve this
+allocation in a changed family. Section 7 shows that merely keeping
+the present source's branching length fixed cannot do so, even with
+arbitrarily precise auxiliary rotations.
+The resulting count and width overheads are polynomial in p and hence
+fit the paid fusion interface; its depth certificate does not.
+
+**Coherent centering.** Equation (16) must implement
+$`\mathcal P`$, not separately choose a classical circuit for each x.
+An actual implementation uses p successive matchings: at stage j,
+$`x_j`$ controls the $`M/2`$ fermionic swaps pairing
+$`(u,a)`$ with $`(u+e_j,a)`$. Route each matching to adjacent modes
+by fixed fermionic swaps, apply the controlled matching, and actually
+unroute. A controlled adjacent fermionic swap is a Fredkin followed by
+CCZ on its control and two modes. The
+[shared-control batch schedules](../../docs/T_DEPTH_COMPILER.md#a-shared-control-fredkin-batch-has-at-most-four-t-layers)
+and the [CCZ batch schedule](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+give at most eight T bands and $`6M+2`$ T gates per stage, with
+$`O(M^2)`$ Cliffords and no clean or extra dirty work. Both orientations
+of $`\mathcal P`$ thus add at most $`16p`$ T bands and
+$`12pM+4p`$ T gates. These are genuine shared-control native
+schedules, but the displayed depth is linear in p.
+
+Second quantization does not automatically lift a circuit that moves
+the **external physical address** through its intermediate operations.
+It is a homomorphism on the mode-index operator, or fiberwise on an
+explicit address-preserving family. Centering the scalar expander at x
+conjugates its index generators by $`P_x`$; it does not remove the
+coherent implementation obligation. Conversely, moving address and
+bank labels together enters the
+[separate joint-relabeling interface](EXPANDER_ZERO_REFLECTION.md#9-the-uniform-address-obstruction-to-joint-relabeling).
+
+Thus this is a complete specified partial family, not a new shallow
+indicator. The route is paused pending both a changed source with a
+complete spectral-phase certificate or another way to avoid accumulation, and a
+paid centering or replacement interface of the required depth. The
+[polynomial-overhead fusion theorem](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+absorbs the displayed polynomial count overhead, not either growing
+depth cost. This does not restrict general non-Gaussian native
+interfaces, and it does not restore conjunction as a dimension-growing
+fixed-accuracy depth witness.
+
+The [spectral fixtures](../../tests/test_fermionic_lift_spectrum.py)
+check exact determinant-one phase accumulation, the tilted rank-two
+relative spectrum, the native two-mode lift's determinant sign, and
+full-sector auxiliary parity decoding. They are finite identity checks;
+(10)--(16), the native family and the resource conclusions are analytic.
+
+<a id="sparse-expander-lift-obstruction"></a>
+
+## 7. Fixed branching cannot give a complete expander lift
+
+For unpadded lengths p divisible by three, the displayed scalar word has an
+additional exact property: it is minus identity when the tested data
+is zero, on **every** logical auxiliary input. The selected generators
+fix zero, so $`S_j`$ is exactly identity there even with approximate
+selector rotations and their actual inverses. The scalar query and
+bounded-clean promotion are consequently exact on that data sector;
+the final phase echo is minus identity. This argument is made only for
+the unpadded lengths. The approximate padding-sector cover does not
+automatically preserve an exact zero-data eigenvector.
+
+Here is a general sparse-column consequence. Let
+$`f=m^{-1/2}\sum_u|u\rangle`$, let U be a unitary on
+$`\mathbb C^m\otimes\mathbb C^d`$ satisfying
+$`U(f\otimes|a\rangle)=-f\otimes|a\rangle`$ for every a,
+and suppose each column of U has at most s nonzero entries. Put
+
+```math
+V=(I_m-2|f\rangle\langle f|)\otimes I_d,
+\qquad A=U-I.
+```
+
+For the column $`j=(u,a)`$, the sum of A's entries in rows with
+auxiliary label a is exactly minus two. This follows from the left
+eigenvector relation, which follows in turn from unitarity and the
+specified right eigenvector. The column has at most $`s+1`$ nonzero
+entries, so Cauchy--Schwarz gives
+
+```math
+\|Ae_j\|^2\ge\frac4{s+1},\qquad
+\|(U-V)e_j\|^2=\|Ae_j\|^2-\frac4m.
+```
+
+The second equality retains the exact cross term from that same
+minus-two row sum. Summing over all dm columns and using
+$`\|U-V\|\le2`$ gives
+
+```math
+\|U-V\|_1
+ \ge\frac12\|U-V\|_{\mathrm F}^2
+ \ge2d\left(\frac m{s+1}-1\right).                    \qquad(17)
+```
+
+If $`\|\Gamma(U)-\Gamma(V)\|\le\tau\lt1`$, (11) implies
+$`\|U-V\|_1\le2a`$, where $`a=2\arcsin(\tau/2)`$.
+Thus a necessary condition is
+
+```math
+m\le(s+1)(1+a/d).                                     \qquad(18)
+```
+
+Apply this after conjugating the logical scalar word by Fourier
+Hadamards on its p **tested data** bits only. This is a mathematical
+basis change, used only in the proof; no native Fourier transform is
+being supplied. Every data CNOT becomes the reversed CNOT, and the
+selected data Z becomes a selected X. Thus SELECT and all other
+non-auxiliary blocks remain signed permutations in this basis. The
+remaining mixing blocks act only on the d-dimensional auxiliary
+register. With b such blocks, even allowing each to be an arbitrary
+unitary of unlimited precision, every column has support at most
+
+```math
+s\le d^b.
+```
+
+The exact zero-data sector becomes precisely the prescribed
+$`f\otimes\mathbb C^d`$ eigenspace. Equations (17)--(18) therefore
+apply to the actual scalar word and its literal fermionic lift. They
+require
+
+```math
+b\log_2d\ge p-O_\tau(1).                              \qquad(19)
+```
+
+Even allowing $`d\le(p+2)^c`$ for fixed c requires
+$`b=\Omega_\tau(p/\log(p+2))`$ within this block grammar.
+For the unpadded source $`d=128`$ is constant, while the number of
+auxiliary mixing blocks is $`O(N)`$, with N the fixed-point source
+length. It follows that complete fixed-tolerance accuracy requires
+$`N=\Omega_\tau(p)`$ in this family. Increasing only the precision
+of its selector rotations cannot repair a fixed N. The explicitly
+serial matching compiler in Section 6 consequently has growing depth;
+its constant-length version fails even before coherent centering.
+
+This is a structural obstruction for the specified sparse index word,
+not an unrestricted native T-depth theorem. The variable b counts
+auxiliary mixing blocks, not arbitrary native bands. A new family
+could violate the sparse-column premise or use a different physical
+interface. The unbounded subsequence of unpadded lengths already
+excludes this fixed-branching family as a general complete indicator.
+The spectral fixture also checks (17)'s exact column cross term on a
+small signed-permutation example. No finite fixture proves (18)--(19).

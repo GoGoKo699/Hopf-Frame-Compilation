@@ -189,6 +189,7 @@ not count normalization or its controlled use, remains unpaid.
 | [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) | Bounded clean banks and constant-amplitude complete blocks can be removed with charged actual inverses, leakage and arbitrary off-code cancellation; this supplies no shallow source |
 | [Spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | At fixed tolerance, depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address-sharing and uniform precision budgets are premises. Exact sector invariance avoids the general leakage multiplier |
 | [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. Native address motion and whole-bank error prevent an automatic indicator |
+| [Complete fermionic lift](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) | Native lifting and arbitrary auxiliary-mode decoding are paid. The full spectral-phase contract and sparse-column obstruction force growing filter length for the literal fixed-auxiliary expander word; displayed coherent centering also has linear address depth |
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
 | [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
 
@@ -232,12 +233,25 @@ is a paid native source of depth at most 18 with polynomial overhead,
 but selects the forward pencil column; its Gram gap to the inverse-column
 lookup target is exactly $`1/2`$ for $`p\ge2`$. The
 [half-bilinear commutator](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source)
-also has exact half-projector normalization and a complete constant-depth
-schedule. Exact p=1,2 fixtures reject its tested sectors, without an
-all-size exclusion. The next operation is a changed, paid interference
-word transporting the fixed parity to the inverse-column lookup parity,
-or another complete-bank interface. Neither normalization alone nor an
-inverse appearing in a Fourier kernel establishes that operation.
+now includes paid address-sensitive shears and genuine address-Hadamard
+mixing. The [XOR-carry source](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source)
+has exact half-projector normalization and native depth at most 146.
+Exact p=1,2 witnesses reject these tested words, without an all-size
+exclusion. Charge-preserving conjugation of their fixed paired projector
+has exact Gram gap one half at every nonzero fixed address. The next
+operation is a signal-interleaved acceptance polynomial using the paid
+corank-one query and phases, with controlled primitives separately paid,
+or another complete-bank interface.
+
+The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
+controls every subset sum of relative eigenphases, not just the largest
+one-particle error. For the literal expander lift on unpadded lengths,
+the [sparse-word theorem](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#sparse-expander-lift-obstruction)
+forces filter length $`N=\Omega_\tau(p)`$ at constant auxiliary dimension,
+even with arbitrary selector precision. This stops its fixed-branching
+version; it is not an unrestricted T-depth lower bound and does not
+alter the constant-depth scalar zero test. None of these source trials
+moves the complete-frame frontier.
 
 ## Constant-depth frontier
 
