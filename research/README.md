@@ -226,6 +226,9 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Simultaneous output parities and native support rank](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
 - [Limits of structured frames for spectral promotion](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
 - [Crossed cubic kernels and complete observable transport](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) — [normalized forward source](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source) · [Clifford signal-image gap](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) · [normalized half-bilinear trial](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source) · [XOR-carry trial and changed acceptance question](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source); constructed words retain wrong lookup sectors
+- [Signal-interleaved kernel sources](depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) — paid controlled phases, explicit accepted polynomials, and all-size sector obstructions for the two displayed families
+- [A normalized scalar-kernel partial source](depth/SCALAR_KERNEL_FILTER_SOURCE.md) — correct-charge support, complete native/error ledger, missing even-sector states and fixed-diagonal phase rigidity
+- [Corank-one Fourier kernels and Bell acceptance](depth/CORANK_FOURIER_BELL_SOURCE.md) — exact partial isometry, complete Bell dilation, shared-outcome normalization and a paid coherent-SWAP source with the wrong Gram
 - [Two complete key-mixing tests for observable transport](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
 - [Gaussian compression with a small clean signal](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
 - [Involutory Gaussian loops and their unsquared scalar limit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)

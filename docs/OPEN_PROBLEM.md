@@ -239,9 +239,26 @@ has exact half-projector normalization and native depth at most 146.
 Exact p=1,2 witnesses reject these tested words, without an all-size
 exclusion. Charge-preserving conjugation of their fixed paired projector
 has exact Gram gap one half at every nonzero fixed address. The next
-operation is a signal-interleaved acceptance polynomial using the paid
-corank-one query and phases, with controlled primitives separately paid,
-or another complete-bank interface.
+operation was a signal-interleaved acceptance polynomial. The resulting
+[actual families](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
+now pay their controlled phases. The attenuated two-clean word retains
+wrong-sector acceptance for any inner unitary; its direct one-clean
+replacement has a real-trace obstruction for the displayed flat mixer.
+Both have Gram error at least one quarter at every nonzero address.
+The latter is a scoped all-size theorem, not merely a finite failure.
+
+The [scalar-kernel partial source](../research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
+has constant fixed-accuracy native depth. Its ideal Gram rejects every
+wrong-charge input with exact half-projector normalization, but misses most of the
+correct sector, and scalar spectral processing cannot distinguish those
+missing inputs from the rejected charge. The
+[corank-one Fourier/Bell construction](../research/depth/CORANK_FOURIER_BELL_SOURCE.md)
+has the desired abstract partial isometry and a complete native dilation.
+Shared outcomes impose extra stabilizers; its paid depth-42 coherent-SWAP
+source has exact Gram gap one half. These simultaneous ledgers fit
+polynomial fusion, but their failed sector contracts do not. The current
+next question changes the final phase coupling in the one-clean word;
+its complete Gram remains unproved.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest

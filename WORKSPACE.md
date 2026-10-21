@@ -8,25 +8,24 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: XOR-carry sources and complete bank-lift accuracy
+## Current checkpoint: complete signal, scalar-kernel and Bell source trials
 
-**Recovered main:** [PR #219](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/219),
-`6decb5a096773c0d0a2c13a930b16e0009c1b3b1`, fetched 21 October 2026.
-This checkpoint adds paid source trials and a scoped bank-lift obstruction
-in [PR #220](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/220);
-exact reviewed-tree verification receipts belong to that review record.
-Fetch current main before resuming; the recovered commit is not a pin.
+**Recovered main:** [PR #220](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/220),
+`6f5702291016eb664d75c1ae589abd69ec31f2bf`, fetched 21 October 2026.
+This checkpoint constructs signal-interleaved, scalar-kernel and coherent
+Bell source families, with complete operator and native ledgers. Their
+lookup-sector failures are proved below; no qualifying source is supplied.
+Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Normalized XOR-carry source](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source): actual source, full Gram, failed sectors and the changed acceptance question.
-3. [Complete bank-lift accuracy](research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract): full spectral criterion, paid expander lift and its sparse-word obstruction.
+2. [Signal-interleaved sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md): actual controlled phases, accepted polynomials, all-size failures and the changed final coupling.
+3. [Scalar-kernel partial source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and [corank-one Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md): correct support versus normalization, with complete arbitrary-input actions.
 4. [Four-call Gram recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
-No conversation replay is needed. Historical prompts and session endings
-are records, not current instructions.
+Historical prompts and session endings are records, not current instructions.
 
 <a id="current-depth-frontier"></a>
 
@@ -84,26 +83,36 @@ The [four-call Gram interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE
 pays recovery and serial dirty promotion, including arbitrary accepted fibers,
 address motion and actual inverses. Gram error $`\delta\le\tau^2/4096`$
 suffices. The six-call linear block-error interface remains available.
-**The qualifying lookup source is unpaid.** The depth-18 Fourier echo
-selects the forward pencil column, with Gram gap one half for p at least
-two. The half-bilinear trial now includes paid address-dependent shears
-and actual address-Hadamard motion; exact p=1,2 witnesses still reject
-these particular words. The new [XOR-carry phase family](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source)
-has exact half-projector normalization, native depth at most 146 and
-polynomial fusion budgets, but its tested sectors also fail. These
-finite failures are not all-size exclusions or objections to small-size
-fallbacks.
+**The qualifying lookup source is unpaid.** The
+[signal-interleaved families](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
+now pay the controlled phases and actual accepted polynomials. The
+attenuated two-clean word fails for every inner unitary; the direct
+one-clean word of depth at most 314 fails for its flat Fourier mixer.
+Both have Gram error at least one quarter at every nonzero address.
+The latter proof also identifies the exact phase-eigenspace condition
+needed to reject its offending inputs; another flat mixer is insufficient.
 
-**Next concrete question.** Use the paid corank-one kernel query and
-relative XOR-carry phase in a signal-interleaved source. Specify the
-signal couplings, derive the actual accepted block K, and pay every
-controlled primitive and actual inverse before testing the full Gram.
-Merely conjugating the fixed paired projector by charge-preserving
-kernel operations has exact Gram gap one half at every nonzero fixed
-address. This narrow template obstruction motivates changing the
-acceptance polynomial, not another mixer-only scan. No qualifying
-interleaved word is supplied; four-call recovery cannot fix a wrong
-projector.
+The [scalar-kernel source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
+has constant fixed-accuracy depth. Its ideal Gram has the correct
+half-projector normalization and rejects the entire wrong charge, but
+misses most of the correct sector and has gap one half. Scalar spectral
+processing cannot distinguish its missing-even and odd zero eigenvectors.
+The [corank-one Fourier matrix](research/depth/CORANK_FOURIER_BELL_SOURCE.md)
+has the desired abstract Gram, but shared Bell outcomes impose extra
+stabilizers and dilute the accepted weight. Its actual one-clean
+coherent-SWAP repair has depth at most 42 and exact gap one half at every
+size. All these source budgets fit polynomial fusion; their sector
+contracts fail. These are analytic, scoped failures, not general depth bounds.
+
+**Next concrete question.** Change the final phase coupling in the
+one-clean signal word by the partial-Hadamard bank rotation specified in
+its [proof home](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md).
+This preserves the correct zero-address block and adds only Clifford
+walls. First determine the intersection of its rotated fixed-phase
+space with the wrong lookup sector; then derive the complete Gram if
+that screen is passed. Its full Gram identity is unresolved. A new
+coupling must change this sector condition, not merely extraction
+constants, flat mixing or precision. Pause the displayed failed words.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -120,15 +129,12 @@ calls. The paid [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION
 has zero clean work and constant fixed-accuracy depth. Conjunction alone
 cannot witness dimension-growing depth at fixed accuracy.
 
-The [literal fermionic expander lift](research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift)
-is now paid, including arbitrary helper modes and coherent centering.
-Complete accuracy constrains the total positive and negative relative
-eigenphase masses. On unpadded lengths, a sparse-column proof forces
-filter length $`N=\Omega_\tau(p)`$ at constant auxiliary dimension,
-regardless of selector precision. Pause this fixed-branching lift: its
-serial compilation and the displayed centering restore growing depth.
-This is a restricted logical-word obstruction, not a general native-depth
-bound; the scalar zero-reflection theorem is unchanged.
+The [paid fermionic lift](research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift)
+remains paused: complete spectral accuracy forces filter length
+$`N=\Omega_\tau(p)`$ on unpadded lengths at constant auxiliary dimension,
+regardless of selector precision; displayed coherent centering also
+restores growing depth. This is a restricted sparse-word obstruction,
+not a general native-depth bound; the scalar zero test is unchanged.
 
 **Bounded lower scout completed.** The [genuinely coupled six-wire middle](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
 is paid (ten T gates, two bands, no helpers), but its transported probe sends
@@ -139,19 +145,17 @@ only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
 
-The PR #219 address-sensitive-mixer proposal is superseded by the paid
-trials and changed acceptance question above. The held PR #217 queue is
-also superseded: four-call recovery and
-the two exact Gram-sector conditions are proved in the pencil home; the
-six-wire candidate is stopped above. Fourth-order closure still supplies
-neither correct lookup sectors nor a free native implementation of its square.
+The PR #220 signal-interleaving question and PR #219 mixer proposal are
+superseded by the actual words and changed final coupling above. The
+held PR #217 queue is closed: four-call recovery and the exact Gram-sector
+conditions are proved; the six-wire candidate is stopped. Fourth-order
+closure supplies neither lookup sectors nor a free native square.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
-[Route decisions](research/ROUTE_DECISIONS.md) is the compact map of why
-mechanisms stopped, what must change to reopen them, and which earlier
-questions are settled. Unique attempts and proofs remain in their original
-homes. A representation-specific obstruction does not retire the destination.
+[Route decisions](research/ROUTE_DECISIONS.md) records stopped mechanisms,
+their reopening conditions and settled questions. Unique attempts and proofs
+remain in their homes; a representation limit does not retire the destination.
 
 <a id="research-decision-and-stopping-rules"></a>
 <a id="continuing-toward-the-general-answer"></a>

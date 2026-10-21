@@ -1341,12 +1341,18 @@ statement about that exact fixed-address conjugation template, not
 an unrestricted depth bound, an address-motion exclusion, or an
 obstruction to every source that preserves Q.
 
-The next concrete question is to build a **signal-interleaved** source
-from the paid corank-one query $`Q_{K_x}`$ and its relative XOR-carry
-phases: specify the signal couplings and their interleaving, derive
-the actual block $`K=J^\dagger UJ`$, and test its full Gram rather than
-conjugating the same fixed projector. Any signal-controlled query or
-phase occurrence needs its own literal native schedule, actual
-inverse and arbitrary-input return proof before a fixture treats it
-as available. No qualifying interleaved word is claimed here; the
-first unpaid operation remains a normalized complete lookup Gram.
+This motivated the actual [signal-interleaved sources](SIGNAL_INTERLEAVED_KERNEL_SOURCE.md).
+Their controlled T walls, accepted polynomials and actual inverses are
+now paid; the two displayed families still have wrong-sector Gram error
+at least one quarter at every nonzero address. The direct one-clean
+family has a precise phase-eigenspace condition on the obstructing
+inputs. Changing only its flat mixer does not repair it.
+
+Two different interfaces were also constructed: a
+[scalar-kernel partial source](SCALAR_KERNEL_FILTER_SOURCE.md) with correct
+charge but insufficient support, and a
+[complete Bell dilation](CORANK_FOURIER_BELL_SOURCE.md) whose coherent-SWAP
+repair has the wrong projector. These are source-specific failures,
+not an exclusion of general higher-band interference. The first unpaid
+operation remains a normalized complete lookup Gram; the
+[current checkpoint](../../WORKSPACE.md) selects the next actual coupling.
