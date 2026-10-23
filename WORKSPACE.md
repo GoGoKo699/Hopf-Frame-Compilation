@@ -8,17 +8,17 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: joint sources and the missing squared-product identity
+## Current checkpoint: a paid charge-preserving orbit and its missing reflection
 
-**Recovered main:** [PR #224](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/224),
-`a36d777effe3e9e198a35b13d7525a85e4381197`, fetched 23 October 2026.
-Joint-source recovery is paid; the old bank algebra cannot supply lookup sectors.
+**Recovered main:** [PR #225](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/225),
+`7734189f170ecbdba96671324b0c758e46e7b593`, fetched 23 October 2026.
+Charge-preserving affine motion is paid; its second reflection remains unpaid.
 Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Coupled order source](research/depth/COUPLED_ORDER_GRAM_SOURCE.md): actual joint word, squared-product interface, two paid failed trials and the remaining identity.
+2. [Affine orbit source](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md): complete charge-preserving motion, native orbit coordinates, diagonal cochains and the failed anchor.
 3. [Tail-bank commutant](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction): why extra signal paths alone cannot repair the retained bank algebra.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout), [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout), and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
@@ -99,21 +99,22 @@ stabilizers. Its paid thin projector and two-reflection repair still have
 gap one half for p at least two. These budgets fit fusion; the general
 sector contracts fail. The proof homes retain their exact scopes.
 
-The CZ-coupled word retains independent attenuation. A tail-Hadamard
-three-query word genuinely changes that bank algebra, but fails an exact
-p=1 sector test. The [order-interference word](research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
-instead has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$ for native Hermitian
-reflections R,S. Its central identity would already give a direct
-zero-clean query, so this mechanism needs no extraction wrapper.
-Two explicit bank-moving pairs have correct base normalization and paid
-constant-depth schedules but fail distinct p=1 tests. These are finite
-failures, not all-size exclusions of changed bank dynamics.
+The [order-interference word](research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
+has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$; a successful squared product
+already gives a direct zero-clean query. Its earlier two bank-moving
+pairs fail finite p=1 tests, not an all-size screen of changed dynamics.
+The [new affine involution](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md)
+has no fixed bank inputs, preserves the lookup charge, and has paid
+constant-depth orbit coordinates. Diagonal second reflections obey an exact
+phase-difference equation with minimum Boolean phase degree p+2, not a
+native-depth bound; the approximate scalar zero test prevents that inference.
 
-**Next concrete question.** Find changed native reflection dynamics with
-$`(R_xS_x)^2\approx\Omega_{x,C}\Omega_{x,D}`$ on the complete banks,
-or another complete-bank mechanism, without using the target projector as a
-primitive. Pause the displayed failed pairs unless a concrete
-sector correction is supplied; changing small sizes alone is not that identity.
+**Next concrete question.** Construct a genuinely non-diagonal second
+reflection for the paid affine involution, or a shallow approximate diagonal
+cochain with its complete error proved. The local anchor fails at every
+nonzero address; the tautological cochain already contains the lookup.
+Require $`(R_xS_x)^2\approx\Omega_{x,C}\Omega_{x,D}`$ on all banks,
+not only orbit existence, degree saturation or zero-address normalization.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -146,10 +147,9 @@ only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
 
-The PR #224 joint-source question now has actual words, recovery and finite
-sector tests; older next steps are superseded. The shared affine address stage
-is paid but sees only p+1 parities in its same-bank grammar. Fourth-order
-closure, signal coupling and absence of an old witness do not supply lookup sectors.
+Independent dirty row selectors are paid, but their natural flip echo returns
+the old stage with only p+1 bank parities. An unmixed clean-selector average
+retains only the affine-support span; selector mixing still owes complete return.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

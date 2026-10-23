@@ -143,6 +143,37 @@ class ScalarKernelFilterSourceTests(unittest.TestCase):
                                      1 << (n - bank))
         self.assertEqual(satisfying, 8)
 
+    def test_rank_one_determinant_echo_on_all_p1_algebra_columns(self):
+        # Binary N_x=[[1,0],[x,1]], v_x=(1,x), and
+        # M=N_x+e0*y^T. This is an algebra guard, not a native emitter.
+        checked = 0
+        for x in range(2):
+            for y in range(4):
+                q = (y & 1) ^ (x & (y >> 1))
+                determinant = (1 ^ (y & 1)) ^ (x & (y >> 1))
+                self.assertEqual(determinant, 1 ^ q)
+
+                def image(z):
+                    dot = (y & z).bit_count() & 1
+                    return z ^ ((x & z & 1) << 1) ^ dot
+
+                kernel = [z for z in range(4) if image(z) == 0]
+                self.assertEqual(kernel, [0, 1 | (x << 1)] if q else [0])
+                accepted = 0
+                gap_twice = 0
+                for z in range(4):
+                    shift = image(z)
+                    for t in range(4):
+                        # The actual XOR map and its reverse preserve x,y,z.
+                        self.assertEqual((t ^ shift) ^ shift, t)
+                        f = int(t == 0) ^ int(t == shift)
+                        accepted += f
+                        gap_twice = max(gap_twice, abs(f - (1 - q)))
+                        checked += 1
+                self.assertEqual(accepted, 2 * (4 - (1 << q)))
+                self.assertEqual(gap_twice, 1)
+        self.assertEqual(checked, 128)
+
 
 if __name__ == '__main__':
     unittest.main()

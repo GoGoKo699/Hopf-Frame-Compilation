@@ -359,7 +359,11 @@ Reopen this mechanism with an actual bank/address-moving pair and a
 derivation of its squared product, or a concrete unresolved algebraic
 identity that can supply the desired Q_x with uniform error. A p=1
 patch alone is not such an identity. More layers or more complicated
-readout do not by themselves repair either displayed pair. The paid
+readout do not by themselves repair either displayed pair. The subsequent
+[affine orbit construction](AFFINE_ORBIT_REFLECTION_SOURCE.md) pays a
+fixed-point-free, charge-preserving S and its orbit coordinates. Its local
+and scalar-zero choices of R fail; a general second reflection is still unpaid.
+The paid
 approximate scalar zero reflection remains compatible with these
 scoped failures; conjunction is not a dimension-growing fixed-accuracy
 depth witness.

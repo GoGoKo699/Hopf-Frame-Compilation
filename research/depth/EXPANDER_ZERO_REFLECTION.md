@@ -1009,6 +1009,102 @@ their full action and return must be paid separately. The next missing
 operation is a joint source that retains enough bank information and
 has bounded-clean complete return. Sharing one generator is now paid,
 but alone supplies neither that operation nor a better frame frontier.
+
+<a id="independent-row-selector-echo"></a>
+
+### Independent row selectors: paid motion and a collapsing dirty echo
+
+An explicit changed-input trial assigns an arbitrary selector s_u to
+every row and replaces the control a_u by s_u Y_u. For one matching C,
+define
+
+```math
+S_C(s,Y)=\prod_u g_u^{s_uY_u},\qquad
+S_C(s,Y)x=C^{M_0(sY)}x+(I+C)M_1(sY).                    \qquad(43)
+```
+
+Here sY means coordinatewise binary multiplication, not a supplied
+product bank. The operators preserve s and Y. Equation (43) is a
+complete permutation identity with literal phase +1, not a statement
+only about classical selector inputs.
+
+There is a direct native realization without initializing the selectors.
+Borrow one arbitrary parity bit h and emit chronologically:
+
+1. The returned bilinear query B toggling h by the sum of s_u Y_u.
+2. The matching C controlled by h.
+3. The actual native inverse of B.
+4. The actual native inverse of the controlled matching.
+5. For each matching pair (c_j,t_j), toggle address bit t_j by
+   the sum of s_u Y_u over labels with u at coordinate c_j equal to one.
+
+The first four operations give the power C to M_0(sY), independently
+of the original h, and return h. The last operation gives the translation
+in (43). Each bilinear wall is a collection of exact private-phase
+Toffolis: enclose their commuting diagonal words by one Hadamard pair
+per output, and place all T gates on distinct private helpers. Shared
+selector, bank and output wires occur only as Clifford controls inside
+the phase words. Thus each of the five walls has at most eight T layers.
+For q at least one, safe common forward/actual-inverse bounds are
+
+```math
+\begin{aligned}
+T_S&\le16m+16q+4qm,&d_S&\le40,\\
+G_S&\le20m+20q+5qm,&
+b_S&\le1+\max(m,q,qm/2).
+\end{aligned}                                                   \qquad(44)
+```
+
+The p address bits, m bank bits and m row selectors are principal
+arbitrary inputs. All additional helpers return exactly. If borrowed
+as source work, the m selectors must also be included in its width.
+There is no precision error. Formula (44) fits polynomial intermediate
+budgets, but supplies neither a complete indicator nor clean removal.
+
+The natural zero-clean echo removes precisely the information it added.
+Let X_s flip every row selector, using its literal four-Clifford X word.
+Since all anchored maps for this one C commute and square to identity,
+
+```math
+S_C X_s S_C^\dagger X_s
+ =\prod_u g_u^{s_uY_u+(s_u+1)Y_u}
+ =\prod_u g_u^{Y_u}.                                    \qquad(45)
+```
+
+It returns every selector and has bounds 2T_S, 2d_S and
+2G_S+8m, reusing the returned private pool. Its full action is exactly
+the old stage (38), so any word assembled only from these echoes and
+the interlayers allowed above retains the Gram gap one quarter.
+Without an echo or internal selector changes, the s=0 fiber is
+bank-independent and likewise cannot be a complete lookup.
+
+Even granting m initialized selectors does not repair the unmixed
+averaging version. Put Hadamards on all selectors only at entrance and
+exit, use any number of stages (43), and allow common interlayers on
+address and other work but not on s or Y. For fixed Y, every selector
+path depends only on M(sY). Uniform s makes this moment vector uniform
+on
+
+```math
+L(Y)=\mathrm{span}_{\mathbb F_2}\{(1,u):Y_u=1\}.             \qquad(46)
+```
+
+Indeed the linear map from s onto L(Y) has equally sized fibers.
+The accepted block therefore depends only on L(Y), even when the
+different matching stages do not commute. For p at least two, the full
+bank and the full bank missing row zero have the same L: for independent
+a,b, the three nonzero labels a,b,a+b already sum to (1,0) after
+augmentation. Their lookup signs at address zero are opposite. The
+same two-fiber comparison proves Gram gap at least one quarter for
+this accepted word. Its m clean inputs are additionally outside the
+bounded-clean source budget; the gap holds even if that cost is granted.
+
+These are limits of the displayed dirty echo and unmixed acceptance,
+not of general independent-selector words. Internal selector mixing,
+bank interactions or different-generator commutators can leave their
+premises. Such a candidate still owes its full operator and selector
+return; the failed row/stage reordering above cannot supply them.
+
 The proof is analytic. The exact native and bank-collision fixtures in
 [the synchronized-stage tests](../../tests/test_synchronized_address_stage.py)
 are finite internal checks, not external mathematical review.
