@@ -267,6 +267,12 @@ source. The source must additionally include every bank, remove arbitrary-select
 dependence and control the coherent off-diagonal terms before invoking
 paid recovery and fusion. The general complete-frame frontier is unchanged.
 
+The [bank-response continuation](BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+derives the surviving two-row background conjugation and separates exact
+fixed-row isolation from unpaid aggregation. The
+[co-moving stage](CO_MOVING_LOOKUP_STAGE.md) changes the bank dynamics;
+its paid sector preservation still does not validate the old acceptance.
+
 The [exact fixtures](../../tests/test_coupled_quarter_phase_source.py) retain
 all 64 columns and both actual inverses of six-wire native one-row sources:
 40 T/54 Clifford gates for (1), and 40 T/57 Cliffords for (9), where

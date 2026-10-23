@@ -271,6 +271,10 @@ reflection is already paid in its original proof. The remaining
 constructive task is to retain this changed address algebra while
 deriving a normalized complete arbitrary-bank acceptance polynomial.
 
+The [row-isolation continuation](BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+now pays a fixed-row SELECT after cancelling each stage's background.
+It does not supply coherent row selection or normalized full-bank acceptance.
+
 The [exact fixtures](../../tests/test_quarter_phase_matching_limits.py)
 check the local group, tensor invariant, heterogeneous signatures,
 bipartition witnesses and an actual changed-partition action. They do
