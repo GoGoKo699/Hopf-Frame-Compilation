@@ -254,6 +254,17 @@ global Gram error exceeds 7/512. This fixes the acceptance polynomial
 and branch spectra, not a gate-depth class. Local rotations, all mixers
 and finer approximation of these words do not supply a qualifying source.
 
+A paid three-branch conjugation word has a wrong-charge input with
+acceptance one half for every inner unitary. With the actual branches,
+every one-qubit signal seed retains a positive trace gap for p at least three.
+The [Boolean spectral source](../research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md)
+instead changes the branch spectra. Exact phase estimation, bounded-clean
+removal and dirty phase echoes pay its controlled broad reflections and
+quarter phases at constant depth. For Hermitian reflections R,F its Gram is
+$`[I+(FR+RF)/2]/4`$. Exact matching requires their product to be the lookup
+sign. The original flat/diagonal family retains gap at least one quarter
+at every nonzero address; a qualifying pair is unpaid.
+
 The [scalar-kernel partial source](../research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
 has constant fixed-accuracy native depth. Its ideal Gram rejects every
 wrong-charge input with exact half-projector normalization, but misses most of the
@@ -270,9 +281,10 @@ controlled-reflection repairs with zero accepted erased baseline cannot cover th
 half-space; this is a scoped call-rank limit, not a native-depth bound.
 The earlier depth-42 coherent-SWAP source also retains gap one half.
 These simultaneous ledgers fit polynomial fusion, but their general
-sector contracts do not. The next signal mechanism must change the
-acceptance polynomial or actual branch spectra; more mixing, including
-address motion, cannot repair the proved moment mismatch.
+sector contracts do not. The next concrete signal question uses unequal
+outer branches, or a non-flat broad-reflection pair with a proved lookup
+product. The original two-branch moment obstruction still applies to its
+unchanged spectra, including arbitrary address motion.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest

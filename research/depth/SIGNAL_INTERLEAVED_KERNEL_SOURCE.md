@@ -4,7 +4,7 @@
 [Relative XOR-carry phase](CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source) ·
 [Complete four-call recovery](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
 
-Two explicit native families change the acceptance polynomial instead
+Explicit native families change the acceptance polynomial instead
 of conjugating a fixed half-projector. The first uses two clean signals;
 the second removes the independent attenuation and uses one clean signal.
 Both have constant native T-depth and the permitted polynomial source
@@ -14,7 +14,9 @@ address. These are obstructions to the displayed words, not general
 depth bounds. The native controlled phase is a useful completed component.
 The changed final coupling in Section 7 is also resolved: a grading
 identity excludes every final conjugation preserving the distinguished
-X_z0, including conjugations that move the address.
+X_z0, including conjugations that move the address. Section 11 changes
+the polynomial again with three controlled branches, including a native
+signal seed; its complete action gives a separate scoped obstruction.
 
 ## 1. Registers and the actual phase
 
@@ -764,7 +766,249 @@ R or V is assumed: the obstruction already permits them at no cost.
 This is not an obstruction to general higher-band sources or other
 acceptance polynomials.
 
-## 11. Verification scope and the next unpaid operation
+<a id="three-branch-seeded-source"></a>
+
+## 11. Three controlled branches and a paid signal seed
+
+Conjugating a controlled E by two controlled F branches is an actual
+change of acceptance algebra. Keep the literal rotation
+$`R_a=T(Y_a)`$ from (11), and put
+
+```math
+ \begin{aligned}
+ P&=(I+P_0)/2,&
+ B_F&=H_a\mathrm C_a(F)H_a,\\
+ U_0&=R_a^3\mathrm C_a(P_0)R_a^\dagger,&
+ W_\theta&=B_F R_y(\theta)_a^\dagger
+           \mathrm C_a(E)R_y(\theta)_aB_F^\dagger,\\
+ U_\theta&=U_0W_\theta.
+ \end{aligned}                                                   \qquad(41)
+```
+
+The two outer branches are actual inverses. Since E_0=I, W_theta is
+identity at address zero for every theta. The base source has accepted
+row $`\omega[P/\sqrt2,\ I-P-P/\sqrt2]`$; hence its accepted
+block is $`(1+i)P/2`$ and its Gram is P/2. Thus (41) retains
+the exact required base normalization without another clean signal.
+
+Here is the complete accepted polynomial. Write
+$`s=\sin(\theta/2)`$, $`c=\cos(\theta/2)`$,
+$`u=(s+c)/2`$, $`v=(s-c)/2`$, and define bank operators
+
+```math
+ L=uI+vF,\qquad H=uI-vF,\qquad
+ C=\sqrt2\,vPF+(I-P)H,\qquad \Delta=E-I.
+```
+
+The letters H and C in this display are bank operators, not a
+Hadamard or a controlled-gate abbreviation. Multiplying the signal
+blocks gives
+
+```math
+ \begin{aligned}
+ (W_\theta)_{00}&=I+L\Delta L^\dagger,&
+ (W_\theta)_{10}&=H\Delta L^\dagger,\\
+ K_\theta&=\omega\left(P/\sqrt2+C\Delta L^\dagger\right),\\
+ G_\theta&=P/2+
+     {PC\Delta L^\dagger+L\Delta^\dagger C^\dagger P\over\sqrt2}
+       +L\Delta^\dagger C^\dagger C\Delta L^\dagger.
+ \end{aligned}                                                   \qquad(42)
+```
+
+This is a full operator identity; E and F need not commute. Every
+address, carrier and private-work input can be coherent or entangled
+with a reference. Only the one signal is initialized and accepted.
+
+### Native implementation and the protected unseeded sector
+
+At theta equal to zero, (41) uses three paid controlled phase calls.
+At theta equal to pi/4, use R_a and its actual inverse for the seed:
+their scalar phases cancel exactly. Together with the physical C_E
+envelope, safe common source and actual-inverse bounds are
+
+```math
+ \begin{gathered}
+ \begin{array}{c|c|c}
+  &\theta=0&\theta=\pi/4\\ \hline
+ T&48r+420n+2&48r+420n+4\\
+ d_T&470&472\\
+ G&6G_B+534n+2G_{\mathcal R}+4c_n+37
+   &6G_B+534n+2G_{\mathcal R}+4c_n+49
+ \end{array}\\
+ h\le\max(r,4n),\quad a_{\rm clean}=1,
+ \quad\varepsilon_U=0
+ \end{gathered}                                          \qquad(43)
+```
+
+The common Clifford constants allow 15 gates for the two orientations
+of R cubed and R-dagger, six for controlled P_0, twelve for the P_0
+factors in controlled F and its inverse, and four signal Hadamards.
+The seeded word adds two six-Clifford one-T rotations. Replacing that
+seed by the complex-axis native word R_a S_a adds four more Cliffords
+for S and its actual inverse, with all other bounds unchanged. The returned
+private pool is reused between the three controlled phase calls.
+All helpers return exactly; no clean return of the source signal is
+assumed before the paid recovery. The budgets fit polynomial-overhead
+fusion. An arbitrary real theta below is an algebraic comparison,
+not an assertion of exact native synthesis for every real angle.
+
+The unseeded word has a protected sector for **every** unitary E.
+If Fw=w then B_F and its inverse fix $`|0\rangle_aw`$;
+the middle controlled E also fixes that vector. For any nonzero
+address choose j different from zero with (v_x)_j=1 and set
+$`w=|z=0,t=e_j\rangle`$. Then Fw=P_0w=w but Q_xw=-w.
+Consequently
+
+```math
+ K_0w=\omega w/\sqrt2,\qquad
+ \|G_0-G_*(x)\|\ge1/2\quad(x\ne0).                      \qquad(44)
+```
+
+Changing E, its spectrum or its mixer cannot repair this unseeded
+sandwich while retaining that common fixed sector of F and P_0.
+This explains why merely adding an inverse controlled branch does
+not create a lookup source.
+
+### Every real-axis signal seed retains a trace excess
+
+The seed removes the premise that the middle control remains zero,
+so (44) alone does not settle it. A separate calculation does. Fix a
+nonzero address, use normalized trace t, and put
+
+```math
+ \begin{aligned}
+ \mu&=\mathrm t(E)=a^{n-p},& a&=(2+\sqrt2)/4,\\
+ \rho&=2^{-(n-p)},& A_2&=\mathrm t(M^2)=(1+\rho)/2,\\
+ M&=(F+F^\dagger)/2,&
+ Z&=\mathrm t(EME^\dagger M),\\
+ J&=\mathrm t\!\left(M(E^\dagger-I)P_0(E-I)\right),&
+ q&=\sin\theta,\quad b=\cos\theta.
+ \end{aligned}
+```
+
+The symbol J here is a scalar moment, distinct from clean insertion
+in the general Gram interface. The actual E has constant computational
+diagonal mu and commutes with X_z0. Both M and P_0 anticommute with
+X_z0, while $`\mathrm t(MP_0)=\mu`$. These facts and (42) give
+
+```math
+ \mathrm t(G_\theta)
+ =\frac14+\frac{1-\mu}{4}
+   +\frac{qbJ-b^2[Z+(1-2\mu)A_2]}8.                    \qquad(45)
+```
+
+For details of the cancellation, $`L^\dagger L=(I-bM)/2`$ and
+$`C^\dagger C=(I-qP+b(I-P)M)/2`$. The normalized trace of
+the linear term in (42) is
+$`(\mu-1)v(u\mu+v)`$. In the quadratic term, the three
+contractions against I, P and (I-P)M respectively are
+
+```math
+ \begin{aligned}
+ \mathrm t((I-bM)\Delta^\dagger\Delta)&=2(1-\mu),\\
+ \mathrm t((I-bM)\Delta^\dagger P\Delta)&=1-\mu-bJ/2,\\
+ \mathrm t((I-bM)\Delta^\dagger(I-P)M\Delta)
+   &=-\mu(1-\mu)-\frac b2[Z+(1-2\mu)A_2].
+ \end{aligned}
+```
+
+These identities prove (45) without assuming any extra commutation.
+Cyclicity also gives
+$`J=\mathrm t(EME^\dagger P_0)+(1-2\mu)\mu`$.
+Cauchy--Schwarz therefore implies
+$`|Z|\le A_2`$ and
+$`|J|\le\sqrt{A_2}+|1-2\mu|\mu`$.
+For p at least three, mu is less than 1/16, A_2 is less than 9/16
+and its square root is less than 3/4. Using $`|qb|\le1/2`$
+and $`b^2\le1`$ in (45) proves the uniform bound
+
+```math
+ \begin{aligned}
+ \|G_\theta-G_*(x)\|
+ &\ge\mathrm t(G_\theta)-\frac14\\
+ &\ge\frac{(1-\mu)(1-A_2)}4
+           -\frac{\sqrt{A_2}+\mu}{16}
+   \gt\frac{53}{1024},\qquad p\ge3,
+       \quad x\ne0,
+       \quad\theta\in\mathbb R.
+ \end{aligned}                                                   \qquad(46)
+```
+
+The strict rational certificate is
+
+```math
+\frac{(15/16)(7/16)}4-\frac{3/4+1/16}{16}=\frac{53}{1024}.
+```
+
+### Complex-axis seeds obey the same bound
+
+In fact every one-qubit unitary seed V in place of R_y(theta) is
+excluded in the same range. Write
+$`V^\dagger|1\rangle=\alpha|0\rangle+\beta|1\rangle`$,
+and put
+
+```math
+ a=2\mathrm{Re}(\overline\alpha\beta),\qquad
+ b=2\mathrm{Im}(\overline\alpha\beta),\qquad
+ c=|\beta|^2-|\alpha|^2,\qquad a^2+b^2+c^2=1.
+```
+
+The polynomial (42) remains valid with
+$`u=(\alpha+\beta)/2`$, $`v=(\alpha-\beta)/2`$.
+Let $`N=(F-F^\dagger)/(2i)`$ and $`A=cM-bN`$.
+Then $`L^\dagger L=(I-A)/2`$ and
+$`C^\dagger C=(I-aP+(I-P)A)/2`$. Since
+$`\mathrm t(MN)=0`$ and $`\mathrm t(NP_0)=0`$, define
+
+```math
+ \begin{aligned}
+ A_{2,V}&=\mathrm t(A^2)
+      =c^2 A_2+b^2(1-\rho)/2\le(1-a^2)A_2,\\
+ Z_V&=\mathrm t(EAE^\dagger A),\\
+ J_V&=\mathrm t(A\Delta^\dagger P_0\Delta)
+      =\mathrm t(EAE^\dagger P_0)+(1-2\mu)c\mu.
+ \end{aligned}
+```
+
+The same three contractions now give the complete normalized trace
+
+```math
+ \mathrm t(G_V)=\frac14+\frac{1-\mu}{4}
+   +\frac{aJ_V-Z_V-(1-2\mu)A_{2,V}}8.                   \qquad(47)
+```
+
+For p at least three, Cauchy--Schwarz gives
+$`|Z_V|\le A_{2,V}`$ and
+$`|aJ_V|\le(\sqrt{A_2}+\mu)/2`$, because
+$`|a|\sqrt{1-a^2}\le1/2`$ and $`|ac|\le1/2`$.
+Also $`Z_V+(1-2\mu)A_{2,V}\le2(1-\mu)A_2`$.
+Substitution in (47) proves the same strict bound 53/1024 in (46)
+for **every one-qubit seed**, including complex axes.
+
+These theorems use the actual flat, X-diagonal first branch and the
+actual relative phase F. They do not allow arbitrary conjugations
+of those operators, unequal outer controlled branches or different
+acceptance words. They are not general three-band or higher-band
+depth bounds. Address-controlled signal seeds are allowed fiber by
+fiber; genuine address motion is not asserted for this trace proof.
+Spectator identities and external reference identities preserve all
+estimates. If an emitted source is within full error epsilon of
+(41), subtract at most 2 epsilon from either Gram lower bound.
+
+Exact p=1 fixtures multiply the complete signal word, compare (42)
+on every carrier column, and check the following normalized traces
+and wrong-sector receipts at x=1,z=e_1,t=0:
+
+| Seed | Normalized trace of the Gram | Wrong-sector accepted norm squared |
+| --- | --- | --- |
+| theta=0 | $`9/32-\sqrt2/64`$ | $`1/2`$ |
+| theta=pi/4 | $`11/32-5\sqrt2/128`$ | $`7/16+\sqrt2/16`$ |
+| Native complex seed R_a S_a | $`41/128-\sqrt2/32`$ | $`1/2`$ |
+
+The p=1 fixtures do not extend (46) to p=1 or p=2. The unseeded
+bound (44) already covers those sizes analytically.
+
+## 12. Verification scope and the next unpaid operation
 
 The focused exact fixtures multiply the full p=1 signal operator
 with the specified S, verify its accepted polynomial and grading
@@ -783,7 +1027,11 @@ distinct from external mathematical review.
 
 This final-coupling route is paused with its native components
 retained. A next source must change the actual branch moments or the
-acceptance polynomial. Changing only the first mixer, adding a joint
+acceptance polynomial. The three-branch sandwich (41) is also paused:
+its unseeded control has a protected wrong sector, and every one-qubit
+seed has the scoped trace excess (46)--(47). Unequal outer branches or a
+different branch algebra would change the moments in that calculation;
+their complete lookup action remains unpaid. Changing only the first mixer, adding a joint
 final coupling, or moving addresses cannot overcome (40). The earlier
 suggestion to escape solely by mixing the distinguished coordinate is
 therefore superseded. The first unpaid operation remains a normalized
