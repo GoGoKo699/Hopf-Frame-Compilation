@@ -900,3 +900,112 @@ the separate original physical-pair scout. The many-probe route
 would still need a new uniform correlation theorem for its moving
 one-band-encoded Clifford family to obtain a stronger growing-k
 constant-accuracy conclusion.
+
+<a id="bounded-clean-two-band-gram-screen"></a>
+
+## 11. A bounded-clean two-band screen for the normalized Gram interface
+
+The rank--norm argument also applies directly to the
+[paired Gram contract](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout),
+without assuming that the accepted block approximates a unitary. This
+is a bounded source-screen corollary, not a general depth lower bound.
+For each fixed clean count it gives only a **tiny-error** exclusion;
+in particular it does not exclude every specified moderate tolerance.
+The sharper
+[one-clean two-band screen](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap)
+remains applicable under its own hypotheses.
+
+Let $`J_k`$ insert k zero clean inputs, with k at least one, and let
+$`U=U_B^\dagger U_A`$ be two actual one-band encoders. The q other
+input wires, including address, banks and private work, are arbitrary.
+Write
+
+```math
+K=J_k^\dagger UJ_k,\qquad G=K^\dagger K,\qquad
+G_*={\Pi_{\rm eq}\over2}={I+\Omega_{x,C}\Omega_{x,D}\over4}.
+```
+
+Using B from Section 10, put
+
+```math
+M_k=2^{2k+1}(2^k-1),\qquad
+\beta_k={2^{k/2}\over\sqrt{B(M_k)}}.
+```
+
+Any such source with $`\|G-G_*\|\le\delta`$ necessarily satisfies
+
+```math
+\boxed{\quad
+\delta\ge {1\over4}\max\left\{0,
+ {\beta_k-2^{-p/2}\over1+\beta_k}\right\}.
+\quad}                                                        \qquad(11.1)
+```
+
+In particular an exact source requires
+$`p+k\le\log_2 B(M_k)`$. For two clean inputs $`M_2=96`$.
+For every fixed k, (11.1) has a positive limiting error floor as p
+grows, but that floor shrinks rapidly with k. No fixed-accuracy
+exclusion for growing k, or for a larger clean count chosen as the
+requested accuracy changes, follows from this corollary alone.
+
+To prove it, set $`V_A=U_AJ_k`$,
+$`P_A=V_AV_A^\dagger`$ and
+$`P_B=U_BJ_kJ_k^\dagger U_B^\dagger`$. Choose one bank bit at
+row u in C and let L be its X Pauli, acting trivially on the clean
+inputs. Its one-band image $`D=U_ALU_A^\dagger`$ is a literal
+Clifford and commutes with $`P_A`$. Hence the physical defect is
+
+```math
+E=P_A(P_B-DP_BD^\dagger)P_A
+  =V_A(G-LGL)V_A^\dagger.                                    \qquad(11.2)
+```
+
+On the right L denotes the same Pauli on the logical input. Each
+code projector is $`2^{-k}`$ times the sum of its $`2^k`$
+one-band images of clean-Z products; all these images are literal
+Cliffords. The identity term cancels in the middle difference of
+(11.2). Expanding both outer projectors and both middle terms
+therefore gives at most $`2\cdot2^{2k}(2^k-1)=M_k`$ Clifford
+summands. No collapse of ordered products or flatness is assumed.
+
+The desired full-bank action has the exact one-address defect
+
+```math
+G_*-LG_*L={1\over2}[x=u]\Omega_{x,C}\Omega_{x,D}.
+```
+
+For its encoded version $`E_*`$, including all logical bank and
+private-work columns and using physical normalized trace,
+
+```math
+\|E_*\|={1\over2},\qquad
+\|E_*\|_{2,q+k}={1\over2}2^{-(p+k)/2}.
+```
+
+The Gram error gives $`\|E-E_*\|\le2\delta`$. Both defects are
+supported on $`P_A`$, so their normalized Hilbert--Schmidt error is
+at most $`2^{-k/2}2\delta`$, rather than merely $`2\delta`$.
+For $`\delta\lt1/4`$, the rank--norm inequality now implies
+
+```math
+{1\over2}-2\delta
+ \le\sqrt{B(M_k)}\,2^{-k/2}
+       \left(2\delta+{1\over2}2^{-p/2}\right),
+\qquad
+\beta_k(1-4\delta)\le4\delta+2^{-p/2},
+```
+
+which rearranges to (11.1). For $`\delta\ge1/4`$ that bound is
+automatic. Intermediate address motion, arbitrary dirty width and
+arbitrary reference entanglement do not affect this proof; no
+complete-return promise or count budget was used. Thus merely adding
+a second clean input does not give a two-band source meeting this
+Gram contract at every requested accuracy. Genuine higher-band
+interference remains outside this screen.
+
+`tests/test_two_band_gram_screen.py` checks actual inverse words, the
+encoded defect and its displayed expansion over
+$`\mathbb Q(\sqrt2,i)`$ for the single-bank Clifford-conjugate target.
+A separate exact fixture checks the canonical paired lookup support
+and physical trace factors. These finite fixtures are not a proof of
+the uniform rank--norm theorem and are not external mathematical review.

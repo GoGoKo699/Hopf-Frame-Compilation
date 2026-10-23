@@ -54,6 +54,21 @@ def _control(matrix):
     return result
 
 
+def _two_signal_control(matrix, signal):
+    """Complete controlled bank matrix; signals follow the bank wires."""
+    size = len(matrix)
+    result = zeros(4 * size)
+    for label in range(4):
+        offset = label * size
+        for row in range(size):
+            if not ((label >> signal) & 1):
+                result[offset + row][offset + row] = CO
+            else:
+                for column in range(size):
+                    result[offset + row][offset + column] = matrix[row][column]
+    return result
+
+
 def _one_clean_block(e, f):
     a, b = scale(e, CI), scale(f, CI)
     alpha = CO + CI * CQ2(Q2(-1, 1))
@@ -144,6 +159,137 @@ def _integer_receipt(p, family):
 
 
 class SignalInterleavedKernelSourceTests(unittest.TestCase):
+    def test_joint_cz_word_full_polynomial_return_and_blind_bank_pauli(self):
+        half, quarter = CQ2(Fraction(1, 2)), CQ2(Fraction(1, 4))
+        identity, x_zero = eye(16), native_columns(4, [('X', 0)])
+        blind = native_columns(4, [('X', 3)])
+        p_zero = native_columns(4, [('Z', 0), ('Z', 2)])
+        h_signals = native_columns(6, [('H', 4), ('H', 5)])
+        phase_word = [('S', 4), ('H', 5), ('CX', 4, 5), ('H', 5)]
+        phase = native_columns(6, phase_word)
+        skeleton = ([('H', 4), ('H', 5), ('CX', 4, 0)]
+                    + phase_word + [('H', 4), ('H', 5)])
+        self.assertEqual(_counts(skeleton), (0, 9))
+        self.assertEqual(_counts(_inverse(skeleton)), (0, 11))
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            a = multiply(e, x_zero)
+            operations = (h_signals, _two_signal_control(a, 0),
+                          _two_signal_control(f, 1), phase, h_signals)
+            source, reverse = eye(64), eye(64)
+            for operation in operations:
+                source = multiply(operation, source)
+            for operation in reversed(operations):
+                reverse = multiply(adjoint(operation), reverse)
+            self.assertEqual(reverse, adjoint(source))
+            self.assertEqual(multiply(reverse, source), eye(64))
+            accepted = [row[:16] for row in source[:16]]
+            expected = scale(add(add(identity, f), scale(
+                add(a, scale(multiply(f, a), -CO)), CI)), quarter)
+            self.assertEqual(accepted, expected)
+            gram = multiply(adjoint(accepted), accepted)
+            for branch in (e, f, p_zero, x_zero, accepted, gram):
+                self.assertEqual(multiply(branch, blind), multiply(blind, branch))
+            charge_word = [('Z', 0), ('Z', 2)]
+            if address:
+                charge_word += [('Z', 1), ('Z', 3)]
+            charge = native_columns(4, charge_word)
+            self.assertEqual(multiply(multiply(blind, charge), blind),
+                             scale(charge, -CO if address else CO))
+            if not address:
+                self.assertEqual(gram, scale(add(identity, p_zero), quarter))
+            else:
+                self.assertEqual(gram[8][8], half)
+
+    def test_tail_phase_independence_and_nonzero_field_charge(self):
+        from tests.test_nilpotent_pencil_observable_source import _transpose
+        for p in (1, 2, 3):
+            m, n = 1 << p, p * (1 << p)
+            modulus = {1: 0b11, 2: 0b111, 3: 0b1011}[p]
+
+            def field_mul(left, right):
+                result = 0
+                while right:
+                    if right & 1:
+                        result ^= left
+                    right >>= 1
+                    left <<= 1
+                    if left & m:
+                        left ^= modulus
+                return result
+
+            for address in range(m):
+                standard = [1 << i for i in range(n)]
+                for block in range(1, m):
+                    for bit in range(p):
+                        product = field_mul(address, 1 << bit)
+                        for target in range(p):
+                            if (product >> target) & 1:
+                                standard[p*block + target] ^= 1 << (p*(block-1) + bit)
+                b_matrix = tuple(row ^ (1 << i)
+                                 for i, row in enumerate(_transpose(standard)))
+                self.assertTrue(all(row == 0 for row in b_matrix[n-p:]))
+                power, v_address = 1, 0
+                for j in range(m):
+                    v_address |= power << (p*j)
+                    power = field_mul(power, address)
+                self.assertEqual((v_address >> (n-p)) & ((1 << p)-1),
+                                 1 if address else 0)
+                for z in (0, 1, 1 << p, (1 << n)-1):
+                    image = _binary_image(b_matrix, z)
+                    for t in (0, 1, (1 << n)-1):
+                        shifted = t ^ (z & ~1)
+                        exponent = (shifted ^ image).bit_count() - shifted.bit_count()
+                        for j in range(n-p, n):
+                            changed = shifted ^ (1 << j)
+                            self.assertEqual((changed ^ image).bit_count()
+                                             - changed.bit_count(), exponent)
+
+    def test_tail_hadamard_three_query_word_leaves_commutant_but_fails_sector(self):
+        half, quarter = CQ2(Fraction(1, 2)), CQ2(Fraction(1, 4))
+        identity, x_zero = eye(16), native_columns(4, [('X', 0)])
+        tail_h = native_columns(4, [('H', 3)])
+        blind = native_columns(4, [('X', 3)])
+        h_signals = native_columns(6, [('H', 4), ('H', 5)])
+        phase = native_columns(6, [('S', 4), ('H', 5), ('CX', 4, 5), ('H', 5)])
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            changed_e = multiply(multiply(tail_h, e), tail_h)
+            f_prime = multiply(multiply(adjoint(changed_e), f), changed_e)
+            operations = (h_signals,
+                          _two_signal_control(multiply(changed_e, x_zero), 0),
+                          _two_signal_control(f, 1),
+                          _two_signal_control(adjoint(changed_e), 0),
+                          phase, h_signals)
+            source, reverse = eye(64), eye(64)
+            for operation in operations:
+                source = multiply(operation, source)
+            for operation in reversed(operations):
+                reverse = multiply(adjoint(operation), reverse)
+            self.assertEqual(reverse, adjoint(source))
+            self.assertEqual(multiply(reverse, source), eye(64))
+            accepted = [row[:16] for row in source[:16]]
+            expected = scale(add(add(identity, f), scale(add(
+                x_zero, scale(multiply(f_prime, x_zero), -CO)), CI)), quarter)
+            self.assertEqual(accepted, expected)
+            gram = multiply(adjoint(accepted), accepted)
+            m_f, m_prime = add(f, adjoint(f)), add(f_prime, adjoint(f_prime))
+            cross = add(add(m_f, scale(m_prime, -CO)),
+                        add(multiply(adjoint(f_prime), f),
+                            scale(multiply(adjoint(f), f_prime), -CO)))
+            expanded = scale(add(add(scale(identity, CQ2(4)), add(m_f, m_prime)),
+                                 scale(multiply(cross, x_zero), CI)),
+                             CQ2(Fraction(1, 16)))
+            self.assertEqual(gram, expanded)
+            if not address:
+                p_zero = native_columns(4, [('Z', 0), ('Z', 2)])
+                self.assertEqual(gram, scale(add(identity, p_zero), quarter))
+            else:
+                self.assertNotEqual(multiply(changed_e, blind), multiply(blind, changed_e))
+                self.assertNotEqual(multiply(accepted, blind), multiply(blind, accepted))
+                self.assertNotEqual(multiply(gram, blind), multiply(blind, gram))
+                self.assertEqual(gram[8][8], half)
+
     def test_literal_controlled_t_returns_all_four_dirty_helpers(self):
         word = _ct_word()
         self.assertEqual(_counts(word), (70, 88))

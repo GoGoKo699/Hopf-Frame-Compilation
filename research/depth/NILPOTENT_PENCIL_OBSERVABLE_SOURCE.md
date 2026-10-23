@@ -1120,6 +1120,132 @@ Hadamard fiber, the noncommuting-Gram identity (35c), and the literal
 non-Hermitian inverse example. These finite identities do not establish
 a normalized higher-band source or an asymptotic native schedule.
 
+<a id="two-clean-joint-gram-readout"></a>
+
+### 12.4 Two jointly accepted clean signals need no extra recovery flag
+
+A coupled two-signal candidate can use the same Gram contract, provided
+acceptance means the **joint** zero state of both signals. Let J now
+insert a=b=0, let P be its full-space code projector, and suppose
+
+```math
+K=J^\dagger UJ,\qquad G=K^\dagger K,\qquad
+\|G-\Pi_{\rm eq}/2\|\le\delta.
+```
+
+All carrier, address and source-private inputs remain arbitrary. The
+reflection about this smaller code is still exactly Clifford:
+
+```math
+R_2=2P-I=Z_aZ_b\mathrm{CZ}(a,b).
+                                                               \qquad(35f)
+```
+
+Two positive S gates implement each Z, and H, CNOT, H implement CZ.
+Thus R_2 and its actual inverse have zero T gates, seven elementary
+Cliffords and no private work. Adjacent inverse S pairs reduce to the
+same two positive S gates. No initialized phase flag is hidden here.
+
+Emit the actual word
+
+```math
+F_2=(R_2U^\dagger R_2U)^2,\qquad
+F_2^\dagger=(U^\dagger R_2UR_2)^2.
+                                                               \qquad(35g)
+```
+
+The proof of (35b)--(35d) does not require the accepted and rejected
+blocks to have equal dimensions. Indeed the upper-left block of the
+Hermitian involution $`U^\dagger R_2U`$ is E=2G-I, and its upper
+off-diagonal block B satisfies $`BB^\dagger=I-E^2`$. Squaring R_2
+times that involution therefore gives exactly $`2E^2-I`$ on the
+accepted block. Consequently
+
+```math
+\begin{aligned}
+J^\dagger F_2J&=8G^2-8G+I,\\
+\|F_2J+J(2\Pi_{\rm eq}-I)\|&\le4\sqrt\delta
+\quad(0\le\delta\le1).
+\end{aligned}
+```
+
+The noncommuting error-square identity (35c) applies verbatim with this
+J. The estimate includes all rejected joint-signal amplitude, arbitrary
+accepted fibers, address motion, private work and reference inputs.
+At zero Gram error both signals return exactly. Otherwise the actual
+inverse in (35g) is required; a second forward F_2 is not an inverse.
+
+Use the CNOT/Hadamard envelope of (34). Its two-clean complete-query
+target is the fixed negative phase times I_p, and safe common bounds are
+
+```math
+\begin{aligned}
+T_V&\le4T_U,&G_V&\le4G_U+2n+2m+28,\\
+d_V&\le4d_U,&b_V&\le2n-m+b_U,\\
+\|VJ+JI_p\|&\le4\sqrt\delta.
+\end{aligned}                                                   \qquad(35h)
+```
+
+Here b_U excludes the address, both n-bit carriers and the two clean
+signals. The other carrier coordinates are arbitrary work, as in
+Section 12.2. The fixed minus sign cancels inside the actual source
+conjugations of [serial promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence);
+it is not discarded from a standalone circuit identity.
+
+For that promotion's two-bit zero-test, use the
+[returned private-phase Toffoli](SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#literal-controlled-t-wall)
+on a,b and its arbitrary toggle, conjugated by X on each
+control. The four X gates cost sixteen Cliffords; the Toffoli costs
+eight T, ten Cliffords and eight T layers on one private dirty phase
+helper. This gives common forward/actual-inverse bounds
+T_C=8, G_C=26, d_C=8 and b_C=1. For $`\delta\lt1/16`$, the
+recovery error is below one, as required by the approximate promotion.
+Applying its four-sector recurrence (11) and full-operator error bound
+(14) gives
+
+```math
+\begin{aligned}
+T_E&\le64T_U+96m+144,\\
+G_E&\le64G_U+32n+194m+928,\\
+d_E&\le64d_U+192,\\
+b_E&\le2n+b_U+4,\qquad a_{\rm clean}=0,\\
+\|E-I_p\otimes I_{\rm borrowed}\|&\le128\sqrt\delta.
+\end{aligned}                                                   \qquad(35i)
+```
+
+These conservative constants charge the entire clean-sector cover,
+controlled bilinear phases and actual adjoints. No controlled-U is
+used. Source and zero-test pools are counted separately; sequential
+calls do not multiply width. Approximate joint-clean return is not
+promoted to exact return on the now-arbitrary borrowed signal bank.
+
+At requested tolerance tau at most one, the two sufficient schedules are
+
+```math
+\begin{aligned}
+\delta&\le\tau^2/2^{14}
+&&\Longrightarrow\quad \mathrm{error}(E)\le\tau,\\
+\delta&\le\tau^2/2^{20}
+&&\Longrightarrow\quad \mathrm{error}(E)\le\tau/8.
+\end{aligned}                                                   \qquad(35j)
+```
+
+The second schedule supplies the accuracy required by the
+[eight-call polynomial-overhead fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#4-complete-resource-error-and-return-recurrence).
+All source resources must hold at that Gram accuracy. Thus sources with
+T-count and dirty width at most m times fixed polynomials in p,
+Clifford count at most m squared times a fixed polynomial in p, and
+T-depth sublogarithmic in p would still qualify after recovery,
+promotion and fusion. A two-signal allocation does not itself supply
+such a normalized source, and none is inferred from this extension.
+
+The [two-clean recovery fixtures](../../tests/test_two_clean_gram_recovery.py)
+check the literal joint-code reflection, a noncommuting complete Gram
+identity, recovery with an arbitrary private fiber, the actual inverses,
+and the full four-sector native promotion on arbitrary helpers. These
+are bounded exact checks of the recovery components, not evidence that
+a proposed higher-band source has the required lookup sectors.
+
 <a id="two-band-projector-gram-gap"></a>
 
 ## 13. One-clean projector-Gram sources need more than two bands

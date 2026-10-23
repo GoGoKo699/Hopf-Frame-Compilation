@@ -21,6 +21,10 @@ Section 12 makes the outer branches unequal. A complete rejection
 condition excludes every left unitary and scalar signal seed while
 retaining the specified right and middle branches; a moving-address
 right-branch trial instead fails its base normalization.
+Section 13 tests an actual two-signal coupling and identifies a common
+bank Pauli that excludes every word built from the retained branches,
+regardless of signal count or call count. A changed bank Hadamard leaves
+that grammar but its displayed three-query word fails a finite sector test.
 
 ## 1. Registers and the actual phase
 
@@ -1247,7 +1251,179 @@ address-motion obstruction. A replacement architecture must explicitly
 pay and verify its normalization instead of assuming that a fixed
 address-zero action survives the Hadamards.
 
-## 13. Verification scope and the next unpaid operation
+<a id="tail-bank-commutant-obstruction"></a>
+
+## 13. Joint signals, a common bank Pauli, and a changed bank coupling
+
+Two signals can interact physically without supplying new lookup sectors.
+For $`A=E_xX_{z_0}`$, consider the actual two-clean word
+
+```math
+U_{\rm CZ}=H_aH_b\,\mathrm{CZ}_{ab}S_a\,
+       \mathrm C_b(F_x)\mathrm C_a(A)\,H_aH_b.
+                                                               \qquad(57)
+```
+
+Products act rightmost first. Both signals are inserted and accepted at
+zero, after their CZ coupling. The four signal paths give the complete
+accepted block and Gram
+
+```math
+\begin{aligned}
+K_{\rm CZ}&=\frac{I+iA+F-iFA}{4},\\
+K_{\rm CZ}^\dagger K_{\rm CZ}
+ &=\frac1{16}(I+iA+F-iFA)^\dagger(I+iA+F-iFA).
+\end{aligned}                                                   \qquad(58)
+```
+
+At x=0, A=X_z0 anticommutes with F=P_0, so
+$`K_{\rm CZ}=(I+iX_{z_0})(I+P_0)/4`$ and the Gram is exactly
+$`(I+P_0)/4`$. The signal coupling has therefore retained the base
+normalization. Nevertheless the accepted polynomial is still an
+independently attenuated one-signal core: its complete coefficients,
+not the presence of a physical CZ, determine that fact. Explicitly,
+$`K_{\rm CZ}=\langle0|W_a|0\rangle/\sqrt2`$ for
+$`W_a=H_a\mathrm C_a(F)H_a\mathrm C_a(A)S_aH_a`$.
+On any
+wrong-charge F=+1 vector w, its accepted diagonal entry is one half,
+since the term $`(I-F)A`$ has zero matrix element against w. Hence
+the error is at least one quarter for this word, independently of A.
+
+The controlled A uses a signal-to-z_0 CNOT followed by the paid
+controlled E. The signal-only skeleton has eight Cliffords forward
+and ten in its actual reverse, where S-dagger is three S gates.
+Including controlled X and the six Cliffords in controlled P_0,
+common forward/actual-inverse bounds are
+
+```math
+\begin{aligned}
+T&\le32r+280n,&d_T&\le312,\\
+G&\le4G_B+356n+2G_{\mathcal R}+4c_n+17,&
+h&\le\max(r,4n),\qquad a_{\rm clean}=2.
+\end{aligned}                                                   \qquad(59)
+```
+
+All private helpers return exactly on arbitrary inputs. The two source
+signals need not return before acceptance; complete recovery is a separate
+operation. Every branch, its literal phase and its actual inverse are
+native, with zero synthesis error here. The intermediate polynomial
+budgets fit the retained fusion allowance.
+
+### The actual E,F branch algebra has a charge-flipping commutant
+
+There is a simpler obstruction that does not count signal paths or
+native bands. Put $`j_*=n-p`$, the first binary coordinate of the last
+field block in t, and let $`W=X_{t_{j_*}}`$. The image of B_x occupies
+only the first n-p binary target coordinates. The last p terms in the
+weight difference (1) therefore cancel, making D_x independent of all
+last-block t bits. Since j_* is positive, P_0 also acts trivially on
+this bit. The actual E is X-diagonal. Consequently, at every address,
+
+```math
+[W,D_x]=[W,E_x]=[W,F_x]=[W,P_0]=[W,X_{z_0}]=0.
+                                                               \qquad(60)
+```
+
+For a nonzero field element x, the last field entry of v_x is
+$`x^{m-1}=1`$. In the retained binary basis, field one has first
+coordinate one. Thus $`(v_x)_{j_*}=1`$, and
+$`WQ_xW=-Q_x`$ at every nonzero address.
+
+Consider any word of the completed controlled branches in (60), their
+actual inverses, and interlayers acting as identity on this principal
+bank qubit. The signal bank, all other work and the address may be
+arbitrarily large; the interlayers may move the address coherently.
+More generally any additional completed branch commuting with W is
+allowed. Signal preparation, helper insertion and joint acceptance must
+also act as identity on this bank qubit. The whole source and its
+compression then commute with W. In particular its accepted Gram G
+satisfies WGW=G, whereas the full target obeys
+
+```math
+\|G_*-WG_*W\|=1/2,\qquad
+\|G-G_*\|\ge1/4\quad(p\ge1).                           \qquad(61)
+```
+
+The first norm is attained in any nonzero-address fiber; at x=0 the
+target difference vanishes. The triangle inequality and unitary
+invariance prove the second norm without restricting the source to
+fixed-address fibers. Arbitrary spectator and reference identities do
+not change the conclusion. Full source approximation error eta can
+reduce the bound by at most $`2\eta`$.
+
+This is an all-call-count limitation of the displayed branch algebra,
+not a lower bound on native T-depth. Individual gates inside a paid
+controlled-D word need not commute with W: it is the completed branch
+identity, with returned helpers, that enters (60). Additional clean
+signals, scalar signal seeds, higher-degree words in E,F or address-only
+motion cannot remove this commutant. A branch or coupling acting on the
+blind bank degree of freedom must change. General left unitaries in
+Section 12 need not commute with W, so (61) does not replace that
+section's differently scoped theorem.
+
+### A tail-Hadamard change leaves the grammar but does not prove the Gram
+
+Let H_tail apply H to every last-block t bit and put
+$`E'=H_{\rm tail}E H_{\rm tail}`$. The x=0 branch remains identity.
+This changes the actual bank algebra, not only signal processing; at
+p=1 the exact fixture confirms that E' no longer commutes with W.
+To change the accepted polynomial as well, insert a controlled E-prime
+inverse after controlled F:
+
+```math
+U_{\rm tail}=H_aH_b\,\mathrm{CZ}_{ab}S_a\,
+ \mathrm C_a(E'^\dagger)\mathrm C_b(F)
+ \mathrm C_a(E'X_{z_0})\,H_aH_b.
+                                                               \qquad(62)
+```
+
+Its four path operators are $`I,X_{z_0},F,E'^\dagger FE'X_{z_0}`$.
+With $`F'=E'^\dagger FE'`$, the complete accepted block is
+
+```math
+K_{\rm tail}=\frac{I+F+iX_{z_0}-iF'X_{z_0}}4.            \qquad(63)
+```
+
+No commutation of F with E-prime is used. Both F and F-prime
+anticommute with X_z0. Writing $`M=F+F^\dagger`$ and
+$`M'=F'+F'^\dagger`$, the full Gram is
+
+```math
+K_{\rm tail}^\dagger K_{\rm tail}
+ =\frac{4I+M+M'+i(M-M'+F'^\dagger F-F^\dagger F')X_{z_0}}{16}.
+```
+
+This expression retains every off-diagonal entry.
+At x=0, (63) again equals $`(I+iX_{z_0})(I+P_0)/4`$, so its
+normalization is correct. Relative to (59), the additional controlled
+E-prime inverse and the two tail-Hadamard conjugations give
+
+```math
+\begin{aligned}
+T&\le48r+420n,&d_T&\le468,\\
+G&\le6G_B+534n+4G_{\mathcal R}+4c_n+17+4p,&
+h&\le\max(r,4n),\qquad a_{\rm clean}=2.
+\end{aligned}                                                   \qquad(64)
+```
+
+These are exact common forward/reverse bounds, with the same complete
+private return contract. A full p=1 fixture nevertheless gives
+
+```math
+\|K_{\rm tail}|x=1,z=0,t=e_1\rangle\|^2=1/2,
+\qquad Q_1|0,e_1\rangle=-|0,e_1\rangle.                 \qquad(65)
+```
+
+Thus breaking (60) is necessary for this branch route, not sufficient
+for lookup. The p=1 fixture also verifies that the accepted block and
+its Gram no longer commute with W, so this is not a disguised
+application of (61). Equation (65) is a finite failure of this specified word;
+it is not an all-size exclusion of the changed bank algebra, nor an
+obstruction to correcting finitely many small sizes. A further source
+must establish the full sector identity, rather than infer it from the
+absence of the old commutant.
+
+## 14. Verification scope and the next unpaid operation
 
 The focused exact fixtures multiply the full p=1 signal operator
 with the specified S, verify its accepted polynomial and grading
@@ -1279,10 +1455,13 @@ therefore superseded. The first unpaid operation remains a normalized
 complete accepted Gram on the correct lookup sectors; none of these
 necessary changes supplies that operation by itself.
 
-A concrete next construction question is a coupled two-signal,
-four-path source in which the signals interact before one joint
-acceptance. The independent attenuation in Section 3 is already
-excluded. The coupled word needs a complete accepted polynomial,
-normalization and native schedule; its recovery and bounded-clean
-promotion must be paid together. This is an open construction question,
-not an emitted source or a resource improvement.
+The joint-signal words (57) and (62) now have complete polynomials,
+native ledgers and exact base tests. The former retains independent
+attenuation; the latter breaks the blind tail-X commutant but fails its
+displayed p=1 lookup test. The all-call-count result (61) means that
+changing signal processing alone cannot repair the retained E,F algebra.
+The next source must change actual bank dynamics and establish the
+complete lookup-sector identity; merely removing one old witness does
+not establish that identity. Recovery and bounded-clean promotion must
+be paid together with any successful source. None of these results
+changes the complete-frame frontier.

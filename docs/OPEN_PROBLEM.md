@@ -192,8 +192,10 @@ not count normalization or its controlled use, remains unpaid.
 | [Complete fermionic lift](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) | Native lifting and arbitrary auxiliary-mode decoding are paid. The full spectral-phase contract and sparse-column obstruction force growing filter length for the literal fixed-auxiliary expander word; displayed coherent centering also has linear address depth |
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
 | [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
+| [Joint two-clean Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) | Joint-code reflection is Clifford. Four-call recovery and full dirty promotion give error $`128\sqrt\delta`$; $`\delta\le\tau^2/2^{20}`$ supplies tolerance tau/8 before fusion. The source is still unpaid |
+| [Squared-product interface](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#squared-product-interface) | Coupled order interference has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$. A successful pair directly gives the zero-clean reflection, bypassing extraction; two paid trials fail finite sector tests |
 
-For the last interface, let $`n_c=pm`$ denote one carrier-bank size.
+For the one-clean interface, let $`n_c=pm`$ denote one carrier-bank size.
 [Four U/actual-adjoint calls](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) followed by serial dirty promotion give the
 complete zero-clean ledger
 
@@ -208,12 +210,8 @@ b_{\rm out}&\le2n_c+b_U+2.
 
 Gram error delta gives complete error at most
 $`64\sqrt\delta`$; request $`\delta\le\tau^2/4096`$.
-The separate six-call recovery, under the stronger block promise
-$`\|K-B_x/\sqrt2\|\le\eta\le1/8`$, retains complete error at most
-$`32(3\sqrt2\eta+2\eta^2)`$, with its original 48-call promoted ledger.
-All source costs are evaluated at the requested precision. Recovery and
-full return are paid; obtaining the correct normalized lookup sector is
-the first unpaid native operation.
+The six-call alternative retains its linear-error and 48-call promoted ledger.
+All costs use the requested precision. The normalized lookup sector remains unpaid.
 
 The relevant exclusions have different hypotheses:
 
@@ -222,6 +220,7 @@ The relevant exclusions have different hypotheses:
 | General two-band unitary compression | [Rank–norm theorem](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact $`K=\alpha I_p`$, $`\alpha>0`$, needs $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. Fixed-error growing-clean sources remain outside its shrinking approximate floor |
 | Native read-only two-band compression | [Complete-bank Fourier bound](../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md): amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$ require $`k\ge\lceil(p-3)/2\rceil`$ when actual Clifford boundaries fix the address. No flatness, exact return or dirty-width bound is assumed |
 | One-clean two-band projector-Gram source | [Principal-angle screen](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap): for $`p\ge3`$, Gram error at most $`1/256`$ is impossible even with intermediate address motion. More source bands or another clean allocation are outside this screen |
+| Bounded-clean two-band projector-Gram source | [Direct Gram-defect screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen): tiny positive asymptotic error floor for each fixed clean count k, using $`M_k=2^{2k+1}(2^k-1)`$ Clifford summands; $`M_2=96`$. Not an exclusion at every moderate tolerance or for growing/accuracy-dependent k |
 | Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. General higher-band words need not satisfy this premise |
 | Wide Clifford filters | [Sharp lookup correlation](../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) is $`(p+1)/2^p`$ for $`p\ge2`$; normalized Clifford averages cannot separate the two full lookup eigenspaces by a constant gap. Coefficient and call bounds are not native-depth bounds |
 
@@ -241,22 +240,22 @@ exclusion. Charge-preserving conjugation of their fixed paired projector
 has exact Gram gap one half at every nonzero fixed address. The next
 operation was a signal-interleaved acceptance polynomial. The resulting
 [actual families](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
-now pay their controlled phases. The attenuated two-clean word retains
-wrong-sector acceptance for any inner unitary; its direct one-clean
-replacement has a real-trace obstruction for the displayed flat mixer.
-Both have Gram error at least one quarter at every nonzero address.
-The stronger grading argument excludes every final conjugation commuting
-with $`X_{z_0}`$, and its partial-H proposal fails even where the old
-witness disappears. More broadly, the [branch-moment theorem](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#branch-moment-obstruction)
-excludes arbitrary independent unitary conjugations of both branches for
-p at least three, including coherent address motion and dirty spectators:
-global Gram error exceeds 7/512. This fixes the acceptance polynomial
-and branch spectra, not a gate-depth class. Local rotations, all mixers
-and finer approximation of these words do not supply a qualifying source.
+pay their controlled phases but fail their stated sector contracts.
+The [branch-moment theorem](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#branch-moment-obstruction)
+gives global Gram error greater than 7/512 for p at least three under
+arbitrary independent conjugations of the two branches, including
+address motion and dirty spectators. It fixes the polynomial and spectra,
+not a gate-depth class; earlier grading/attenuation bounds retain their scopes.
 
 A paid [unequal-branch word](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#unequal-outer-branch-source)
 still has Gram gap greater than $`2^{-22}`$ for p at least two, for every
 signal seed and arbitrary left unitary, with its middle/right branches and readout fixed.
+The separate [tail-bank commutant](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction)
+gives Gram gap at least one quarter for every p at least one for arbitrary
+words in the actual E,F bank algebra, any number of signals/calls and
+address-only interlayers. A tail-bank X commutes with every such source
+but flips the nonzero-address target. A changed tail-Hadamard three-query
+word escapes that premise but fails an exact p=1 sector test.
 The [Boolean spectral source](../research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md)
 instead changes the branch spectra. Exact phase estimation, bounded-clean
 removal and dirty phase echoes pay its controlled broad reflections and
@@ -266,25 +265,26 @@ sign. The original flat/diagonal family retains gap at least one quarter
 at every nonzero address; a qualifying pair is unpaid.
 
 The [scalar-kernel partial source](../research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
-has constant fixed-accuracy native depth. Its ideal Gram rejects every
-wrong-charge input with exact half-projector normalization, but misses most of the
-correct sector, and scalar spectral processing cannot distinguish those
+has constant fixed-accuracy depth and exact half normalization but misses
+most of the correct sector. Scalar processing cannot distinguish those
 missing inputs from the rejected charge. The
 [corank-one Fourier/Bell construction](../research/depth/CORANK_FOURIER_BELL_SOURCE.md)
 has the desired abstract partial isometry and a complete native dilation.
 Shared outcomes impose extra stabilizers; their full thin projector now
 has a paid one-clean half-normalized source using the scalar zero test.
-A two-reflection interference word meets the complete Gram contract at
-p=1 on arbitrary auxiliaries, but has exact gap one half for p at least
-two because a correct-charge common kernel remains. Fixed-call thin
-controlled-reflection repairs with zero accepted erased baseline cannot cover the
-half-space; this is a scoped call-rank limit, not a native-depth bound.
+A two-reflection word works at p=1 on arbitrary auxiliaries, but a correct-charge
+common kernel gives gap one half for p at least two. Fixed-call thin
+controlled-reflection repairs with zero accepted erased baseline cannot cover
+the half-space; this is a scoped call-rank limit, not a native-depth bound.
 The earlier depth-42 coherent-SWAP source also retains gap one half.
 These simultaneous ledgers fit polynomial fusion, but their general
-sector contracts do not. The next concrete signal question uses unequal
-outer branches, or a non-flat broad-reflection pair with a proved lookup
-product. The original two-branch moment obstruction still applies to its
-unchanged spectra, including arbitrary address motion.
+sector contracts do not. The [coupled order word](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
+now changes the central obligation to $`(R_xS_x)^2\approx Q_x`$.
+Its two explicit bank-moving pairs are correctly normalized at x=0,
+with constant-depth native schedules and actual inverses, but fail distinct
+p=1 tests. These finite failures are not all-size obstructions. The next
+question is a changed pair with a complete squared-product identity,
+not more signal paths in the excluded bank algebra or extraction optimization.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest
