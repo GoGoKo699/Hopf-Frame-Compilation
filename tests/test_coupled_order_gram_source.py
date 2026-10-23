@@ -111,6 +111,52 @@ def _p1_pair(address, broad=False):
 
 
 class CoupledOrderGramSourceTests(unittest.TestCase):
+    def test_balanced_two_branch_source_has_literal_zero_clean_square_readout(self):
+        # Both branches move the arbitrary spectator. Their relative word,
+        # not either branch alone, returns it and gives the requested query.
+        first = [('H', 1)]
+        second = [('S', 0), ('H', 1)]
+        v0, v1 = native_columns(2, first), native_columns(2, second)
+        accepted = scale(add(v0, scale(v1, -CO)), HALF)
+        projector = [[CO if i == j and i & 1 else CZ for j in range(4)]
+                     for i in range(4)]
+        self.assertEqual(multiply(adjoint(accepted), accepted),
+                         scale(projector, HALF))
+        minus = (_x(0) + [('S', 0)] * 2) * 2
+        self.assertEqual(_counts(minus), (0, 12))
+        self.assertEqual(native_columns(2, minus), scale(eye(4), -CO))
+        word = (second + _inverse(first)) * 2 + minus
+        actual = native_columns(2, word)
+        self.assertEqual(actual, add(scale(projector, CQ2(2)), scale(eye(4), -CO)))
+        self.assertEqual(native_columns(2, _inverse(word)), adjoint(actual))
+        self.assertEqual(_counts(word), (0, 18))
+
+    def test_balanced_readout_identities_do_not_assume_sector_commutation(self):
+        q = native_columns(1, [('H', 0), ('T', 0), ('H', 0), ('S', 0)])
+        identity = eye(2)
+        b = [[CO, CZ], [CZ, CZ]]
+        self.assertNotEqual(multiply(q, b), multiply(b, q))
+        a = scale(add(q, adjoint(q)), HALF)
+        q_minus_i = add(q, scale(identity, -CO))
+        qb = multiply(q_minus_i, b)
+        self.assertEqual(multiply(adjoint(qb), qb),
+                         scale(multiply(multiply(b, add(identity, scale(a, -CO))), b),
+                               CQ2(2)))
+        left = add(multiply(q, q), add(identity, scale(b, CQ2(-2))))
+        right = scale(add(multiply(q, add(a, scale(b, -CO))), qb), CQ2(2))
+        self.assertEqual(left, right)
+        # The square relation alone is insufficient: Q=-I and P=0.
+        negative = scale(identity, -CO)
+        wrong = scale(add(identity, scale(negative, -CO)), HALF)
+        self.assertEqual(multiply(negative, negative), identity)
+        self.assertEqual(multiply(adjoint(wrong), wrong), identity)
+
+    def test_balanced_readout_scalar_square_root_loss_is_exact(self):
+        phase = native_columns(1, [('T', 0)])[1][1]
+        defect = (CO - (phase + phase.conj()) * Fraction(1, 2)) * Fraction(1, 2)
+        error = phase * phase - CO
+        self.assertEqual(error.conj() * error, CQ2(16) * defect * (CO - defect))
+
     def test_literal_controlled_anchor_returns_arbitrary_helper_and_actual_reverse(self):
         word = _controlled_s0(0, 1, 2, 3)
         self.assertEqual(_counts(word), (11, 19))

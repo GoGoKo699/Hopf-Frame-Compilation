@@ -1342,10 +1342,12 @@ D-to-C CNOTs. Both orientations add 2n Cliffords, no T-depth, and
 specified m outputs is then $`2n+b_{R_C}`$. The gap persists; no
 Vandermonde basis change or initialized carrier is needed.
 
-Pause this single-stage difference. The new concrete question is a
-genuinely nonunitary accepted polynomial using distinct quarter-phase
-stages: remove dirty-selector dependence and cover the complete lookup
-sector together. The six-wire, 20-T, 28-Clifford native fixture fixes
+Pause this single-stage difference. The [coupled-source audit](COUPLED_QUARTER_PHASE_SOURCE.md)
+now pays two-stage and four-path acceptance, but exposes coherent Gram
+defects. The [matching-family audit](QUARTER_PHASE_MATCHING_LIMITS.md)
+proves a one-row spectral escape. The remaining question is complete
+signal-interleaved acceptance that removes coherent interference and
+retains arbitrary-bank normalization. The six-wire, 20-T, 28-Clifford native fixture fixes
 one row active and checks every address/selector/helper/signal column
 and its actual reverse; it is not an arbitrary-bank native emitter.
 The separate algebra fixture checks all p=2 row-bank/selector fibers

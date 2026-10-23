@@ -164,6 +164,80 @@ gives direct error below $`\tau/8`$, suitable for the eight-call
 [polynomial-overhead fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
 Neither finite fixture below provides such a source estimate.
 
+<a id="balanced-two-unitary-gram-readout"></a>
+
+### A balanced two-unitary Gram source also gives a direct square query
+
+This distinct reduction applies to any actual zero-clean unitary branches
+$`V_0,V_1`$ on the complete address, bank and arbitrary-work space. They
+need not be reflections, commute, preserve the address, or return their
+principal selector registers separately. Any additional private implementation
+helpers must return, so that these branches are complete unitaries on their
+common principal registers. Suppose an accepted block has the balanced form
+
+```math
+K=(V_0-V_1)/2,\qquad Q=V_0^\dagger V_1,\qquad
+\|K^\dagger K-P/2\|\le\delta,
+```
+
+where P is a projector, including identity on every work register that the
+final query must return. Put $`A=\mathrm{Re}Q`$ and $`B=I-P`$.
+The Gram is $`(I-A)/2`$, hence $`\|A-B\|\le2\delta`$. The exact identities
+
+```math
+\begin{aligned}
+Q^2-(2B-I)&=2Q(A-B)+2(Q-I)B,\\
+[(Q-I)B]^\dagger[(Q-I)B]&=2B(I-A)B
+\end{aligned}
+```
+
+give $`\|(Q-I)B\|\le2\sqrt\delta`$ and therefore
+
+```math
+\|Q^2-(I-2P)\|\le4\delta+4\sqrt\delta.                 \qquad(6a)
+```
+
+No commutation between Q and P is used. For
+$`P=(I+\Omega)/2`$, the literal word $`-Q^2`$ is a complete
+zero-clean approximation to the lookup reflection $`\Omega`$. It uses
+two actual $`V_0^\dagger`$ calls and two $`V_1`$ calls. The literal minus
+is $`(XZ)^2=-I`$ on any existing principal wire: with X=HSSH and Z=SS,
+it costs twelve elementary Cliffords and no T gates. If the branches have
+common forward/inverse ledgers $`(T_j,G_j,d_j,h_j)`$, the direct word obeys
+
+```math
+\begin{aligned}
+T_{\rm out}&\le2(T_0+T_1),&
+G_{\rm out}&\le2(G_0+G_1)+12,\\
+d_{\rm out}&\le2(d_0+d_1),&
+h_{\rm out}&\le\max(h_0,h_1).
+\end{aligned}
+```
+
+The private-pool maximum requires complete return of each private pool;
+all principal selectors remain counted as arbitrary work. A direct
+single-bank phase query becomes the XOR indicator by two m-Hadamard walls.
+In paired coordinates the previously stated carrier/basis envelope must
+instead be added explicitly. Every final return error is included in (6a).
+For $`0\lt\tau\le1`$, requesting $`\delta\le\tau^2/4096`$ gives error
+at most $`65\tau/1024\lt\tau/8`$, suitable for eight-call fusion.
+
+The square-root dependence cannot generally be replaced by a linear bound:
+for scalar P=0 and $`Q=e^{i\theta}`$, the Gram defect is
+$`\delta=(1-\cos\theta)/2`$ and
+$`|Q^2-1|=4\sqrt{\delta(1-\delta)}`$.
+The squared-query condition alone is not a converse: Q=-I, P=0 has the
+correct square and the wrong Gram. Exact equivalence additionally requires
+$`Q|_{P^\perp}=I`$.
+
+Thus a successful balanced two-branch source already solves a direct
+zero-clean query; its nonunitary accepted block does not relax that
+obligation. Different coefficients, attenuated blocks and genuine
+multipath acceptance are outside this reduction. The
+[coupled quarter-phase source](COUPLED_QUARTER_PHASE_SOURCE.md) is a
+fully paid example whose complete Gram fails. Exact native and noncommuting
+algebra fixtures are in [the order-source tests](../../tests/test_coupled_order_gram_source.py).
+
 ## 3. A paid anchor with the correct zero-address square
 
 Retain p at least one, $`m=2^p`$, n=pm, and standard dual/carrier bits
