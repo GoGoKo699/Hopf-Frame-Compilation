@@ -105,8 +105,12 @@ $`A^2+B^2=I`$. If A=Q, then B squared is zero and B=0. Moreover,
 ```
 
 To prove (5), $`\|A-Q\|\le4\delta`$ and
-$`\|I-A^2\|\le\|Q(Q-A)+(Q-A)A\|\le8\delta`$, since
-$`\|A\|\le1`$. Hence $`\|B\|\le\sqrt{8\delta}`$.
+
+```math
+\|I-A^2\|\le\|Q(Q-A)+(Q-A)A\|\le8\delta,
+```
+
+since $`\|A\|\le1`$. Hence $`\|B\|\le\sqrt{8\delta}`$.
 This proof does not assume that Q commutes with W.
 
 Consequently the precise missing identity for (1) is
@@ -205,7 +209,8 @@ Here $`\omega=e^{i\pi/4}`$, additions inside bit strings are XOR,
 $`B_x=\bar N_x^T-I`$, P deletes binary coordinate zero, and P_t
 is the n-fold T wall. Put $`r=(m-1)p^2`$ and
 $`s\le(m-1)p^3`$. The literal bank shear has common bounds
-$`T_B\le8r,d_B\le8,G_B\le2n+16r+2s,h_B\le r`$.
+$`T_B\le8r`$, $`d_B\le8`$, $`G_B\le2n+16r+2s`$,
+and $`h_B\le r`$.
 The two opposite T walls and two Q_P walls therefore give
 
 ```math
