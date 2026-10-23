@@ -8,17 +8,17 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: a paid charge-preserving orbit and its missing reflection
+## Current checkpoint: non-diagonal normalization and the next source interface
 
-**Recovered main:** [PR #225](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/225),
-`7734189f170ecbdba96671324b0c758e46e7b593`, fetched 23 October 2026.
-Charge-preserving affine motion is paid; its second reflection remains unpaid.
-Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
+**Recovered main:** [PR #226](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/226),
+`f0b1e84e5cec6b0f362ef774fa465b43f0faabf7`, fetched 23 October 2026.
+The tested non-diagonal pair fails; no qualifying source is supplied. Exact-tree
+receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Affine orbit source](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md): complete charge-preserving motion, native orbit coordinates, diagonal cochains and the failed anchor.
+2. [Transverse orbit source](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md): exact dressing normalization, a paid non-diagonal family and its sector error; the [affine gauge](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge) retains the earlier component.
 3. [Tail-bank commutant](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction): why extra signal paths alone cannot repair the retained bank algebra.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout), [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout), and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
@@ -100,21 +100,21 @@ gap one half for p at least two. These budgets fit fusion; the general
 sector contracts fail. The proof homes retain their exact scopes.
 
 The [order-interference word](research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
-has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$; a successful squared product
-already gives a direct zero-clean query. Its earlier two bank-moving
-pairs fail finite p=1 tests, not an all-size screen of changed dynamics.
-The [new affine involution](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md)
-has no fixed bank inputs, preserves the lookup charge, and has paid
-constant-depth orbit coordinates. Diagonal second reflections obey an exact
-phase-difference equation with minimum Boolean phase degree p+2, not a
-native-depth bound; the approximate scalar zero test prevents that inference.
+has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$; success already gives a direct zero-clean query. The affine first reflection is a
+paid charge-preserving conjugate of a fixed two-bit flip, not a source of
+charge information. Its diagonal cochain degree p+2 is not a depth bound.
+[Non-diagonal controlled dressing](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
+of a Hadamard anchor has Gram at most I/4 for arbitrary bank unitaries.
+The transverse X anchor removes that attenuation but requires a complete
+unitary square root of the charge. A paid non-Clifford mixed-bank trial
+fails analytically at every size. Pause these words, not all higher-band sources.
 
-**Next concrete question.** Construct a genuinely non-diagonal second
-reflection for the paid affine involution, or a shallow approximate diagonal
-cochain with its complete error proved. The local anchor fails at every
-nonzero address; the tautological cochain already contains the lookup.
-Require $`(R_xS_x)^2\approx\Omega_{x,C}\Omega_{x,D}`$ on all banks,
-not only orbit existence, degree saturation or zero-address normalization.
+**Next concrete question.** Combine two distinct [paid quarter-phase stages](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage)
+with genuine internal selector mixing, and derive their complete accepted Gram.
+The [one-clean flip-difference source](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source)
+pays a nontrivial accepted fiber without controlling the stage, but its
+single-stage full-bank Gram gap is one for p at least two. Test the coupled
+accepted polynomial first; certify final selector return through paid recovery.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -149,7 +149,7 @@ layers; its witness is not invariant under extra non-Clifford layers.
 
 Independent dirty row selectors are paid, but their natural flip echo returns
 the old stage with only p+1 bank parities. An unmixed clean-selector average
-retains only the affine-support span; selector mixing still owes complete return.
+retains only the affine-support span. A [mixed-selector commutator](research/depth/EXPANDER_ZERO_REFLECTION.md#mixed-selector-commutator) leaves that premise but leaks selectors; its opposite-CNOT trial has no exact positive-power return repair.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

@@ -131,6 +131,19 @@ the correct lookup sectors approximately, not merely have the correct
 zero-address spectra. This is a screen for (6), not a general native
 depth obstruction.
 
+There is also a direct Gram test without the square-root loss in (5).
+For $`G=(I+\mathrm{Re}W)/4`$, the same conjugation identities give
+$`[G,R]=[G,S]=0`$. If $`\|G-(I+Q)/4\|\le\delta`$, then
+
+```math
+\|Q-RQR\|\le8\delta,\qquad \|Q-SQS\|\le8\delta.
+```
+
+Indeed compare the target with its R conjugate through G; each of
+the two differences has norm at most delta. The S proof is identical.
+This is a necessary condition on this order-interference Gram, not
+a restriction on arbitrary normalized sources.
+
 If solved with error controlled by (5), the four-reflection word in
 (6) itself is a complete zero-clean implementation. The two-clean
 Gram recovery theorem is available for the source (1), but is

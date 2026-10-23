@@ -174,6 +174,8 @@ class CoupledOrderGramSourceTests(unittest.TestCase):
                 expected = scale(add(multiply(r, s), multiply(s, r)), NORMALIZATION)
                 self.assertEqual(accepted, expected)
                 gram = multiply(adjoint(accepted), accepted)
+                self.assertEqual(multiply(gram, r), multiply(r, gram))
+                self.assertEqual(multiply(gram, s), multiply(s, gram))
                 square = multiply(multiply(r, s), multiply(r, s))
                 self.assertEqual(gram, scale(add(eye(16),
                                                 scale(add(square, adjoint(square)), HALF)),

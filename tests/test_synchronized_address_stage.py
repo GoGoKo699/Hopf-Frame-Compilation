@@ -8,7 +8,8 @@ from fractions import Fraction
 from collections import Counter
 import unittest
 
-from tests.exact_matrices import CO, CZ, adjoint, native_columns
+from tests.exact_matrices import CI, CO, CZ, adjoint, native_columns
+from tests.test_affine_orbit_reflection_source import _private_c3x, _private_ccz
 from tests.test_half_bilinear_gram_source import _private_toffoli
 from tests.test_majorana_walsh_query import _inverse
 from tests.test_phase_signal_query_limits import _counts
@@ -80,6 +81,39 @@ def _selector_stage(address, selectors, bank, p, pairs):
     if parity:
         address = _matching(address, pairs)
     return address ^ _matching(label_sum, pairs) ^ label_sum
+
+
+def _rational_product(left, right):
+    return [[sum(a * b for a, b in zip(row, column))
+             for column in zip(*right)] for row in left]
+
+
+def _mixed_selector_matrix():
+    # Selector is the low bit. Opposite anchored CNOTs act on two address bits.
+    g = lambda x: x ^ ((x & 1) << 1)
+    h = lambda x: x ^ ((x >> 1) & 1)
+    a = [[Fraction((i & 1) == (j & 1)
+                   and (i >> 1) == (g(j >> 1) if j & 1 else j >> 1))
+          for j in range(8)] for i in range(8)]
+    b = [[Fraction(int((i >> 1) == (j >> 1))
+                   + (1 if (i & 1) == (j & 1) else -1)
+                   * int((i >> 1) == h(j >> 1)), 2)
+          for j in range(8)] for i in range(8)]
+    return _rational_product(_rational_product(_rational_product(a, b), a), b)
+
+
+def _private_cs(a, b, dirty, phase):
+    second_difference = [
+        ('T', dirty), ('CX', a, dirty), ('TDG', dirty), ('CX', b, dirty),
+        ('T', dirty), ('CX', a, dirty), ('TDG', dirty), ('CX', b, dirty)]
+    return _inverse(second_difference) + _private_ccz(dirty, a, b, phase)
+
+
+def _private_ccs(a, b, c, dirty, auxiliary, phase):
+    toggle = _private_toffoli(a, b, dirty, phase)
+    sign = _private_cs(dirty, c, auxiliary, phase)
+    return (_inverse(sign) + toggle + sign + toggle
+            + _private_c3x(a, b, c, dirty, auxiliary, phase)[1:-1])
 
 
 class SynchronizedAddressStageTests(unittest.TestCase):
@@ -203,6 +237,158 @@ class SynchronizedAddressStageTests(unittest.TestCase):
                 matrices.append(tuple(columns))
             self.assertEqual(matrices[0], matrices[1])
             self.assertNotEqual(banks[0] & 1, banks[1] & 1)
+
+    def test_native_mixed_selector_commutator_has_complete_literal_action(self):
+        for width, primitive, mask, counts in (
+                (4, _private_cs(0, 1, 2, 3), 3, (12, 12)),
+                (6, _private_ccs(0, 1, 2, 3, 4, 5), 7, (72, 80))):
+            self.assertEqual(_counts(primitive), counts)
+            self.assertEqual(_counts(_inverse(primitive)), counts)
+            matrix = native_columns(width, primitive)
+            self.assertEqual(native_columns(width, _inverse(primitive)), adjoint(matrix))
+            # Logical inputs are used only as physical Clifford controls.
+            self.assertTrue(all(gate[1] >= mask.bit_length()
+                                for gate in primitive if gate[0] in ('T', 'TDG')))
+            for column in range(1 << width):
+                for row in range(1 << width):
+                    expected = (CI if column & mask == mask else CO) if row == column else CZ
+                    self.assertEqual(matrix[row][column], expected)
+        # s,y,x0,x1,d,g: one row bank bit and two helpers, all arbitrary.
+        a = _private_c3x(0, 1, 2, 3, 4, 5)
+        b = [('H', 0)] + _private_c3x(0, 1, 3, 2, 4, 5) + [('H', 0)]
+        word = _inverse(b) + _inverse(a) + b + a
+        self.assertEqual(_counts(word), (128, 156))
+        self.assertEqual(_counts(_inverse(word)), (128, 156))
+        actual = native_columns(6, word)
+        self.assertEqual(native_columns(6, _inverse(word)), adjoint(actual))
+        logical = _mixed_selector_matrix()
+        for column in range(64):
+            for row in range(64):
+                if (row ^ column) & (2 | 48):
+                    expected = CZ
+                elif not column & 2:
+                    expected = CO if row == column else CZ
+                else:
+                    i = (row & 1) | ((row >> 2 & 3) << 1)
+                    j = (column & 1) | ((column >> 2 & 3) << 1)
+                    expected = CO * logical[i][j]
+                self.assertEqual(actual[row][column], expected)
+
+    def test_mixed_selector_leakage_power_polynomial_and_short_echoes(self):
+        w = _mixed_selector_matrix()
+        g = lambda x: x ^ ((x & 1) << 1)
+        h = lambda x: x ^ ((x >> 1) & 1)
+        leakage = [[Fraction(int(i == g(j)) + int(i == g(h(j)))
+                             - int(i == h(g(j))) - int(i == h(g(h(j)))), 4)
+                    for j in range(4)] for i in range(4)]
+        self.assertEqual([[w[2*i][2*j+1] for j in range(4)] for i in range(4)],
+                         leakage)
+        gram = _rational_product(list(zip(*leakage)), leakage)
+        self.assertEqual(sum(gram[i][i] for i in range(4)), Fraction(3, 4))
+        self.assertEqual(_rational_product(gram, gram),
+                         [[Fraction(3, 4) * value for value in row] for row in gram])
+        w2, identity = _rational_product(w, w), [
+            [Fraction(i == j) for j in range(8)] for i in range(8)]
+        w3 = _rational_product(w2, w)
+        self.assertEqual(sum(w[i][i] for i in range(8)), Fraction(25, 4))
+        for i in range(8):
+            for j in range(8):
+                self.assertEqual(w3[i][j] - Fraction(5, 4) * w2[i][j]
+                                 + Fraction(5, 4) * w[i][j] - identity[i][j], 0)
+        # Both selector states over the marked address, and over the uniform
+        # unmarked vector, are fixed. Normalization is unnecessary here.
+        for selector in (0, 1):
+            for support in ((0,), (1, 2, 3)):
+                vector = [Fraction((i & 1) == selector and (i >> 1) in support)
+                          for i in range(8)]
+                self.assertEqual([sum(a*b for a, b in zip(row, vector)) for row in w],
+                                 vector)
+        x = [[Fraction(i == (j ^ 1)) for j in range(8)] for i in range(8)]
+        z = [[Fraction((-1 if i & 1 else 1) * (i == j))
+              for j in range(8)] for i in range(8)]
+        for pauli in (x, z, _rational_product(x, z)):
+            echo = _rational_product(_rational_product(_rational_product(w, pauli),
+                                                       list(zip(*w))),
+                                     list(zip(*pauli)))
+            returns = all(echo[2*i][2*j+1] == echo[2*i+1][2*j] == 0
+                          and echo[2*i][2*j] == echo[2*i+1][2*j+1]
+                          for i in range(4) for j in range(4))
+            self.assertFalse(returns)
+        # Quarter-dressed opposite directions have only the marked common
+        # +1 eigenspace. This one-row projector identity is not a full source.
+        for label in range(4):
+            projectors = []
+            for control, target in ((0, 1), (1, 0)):
+                r = [[CZ for _ in range(4)] for _ in range(4)]
+                for column in range(4):
+                    active = ((column ^ label) >> control) & 1
+                    r[column ^ (active << target)][column] = CI if active else CO
+                inverse = adjoint(r)
+                projector = [[(r[i][j] + inverse[i][j]) * Fraction(1, 2)
+                              for j in range(4)] for i in range(4)]
+                self.assertEqual(projector, [
+                    [CO if i == j and not ((i ^ label) >> control & 1) else CZ
+                     for j in range(4)] for i in range(4)])
+                projectors.append(projector)
+            self.assertEqual(sum(projectors[0][i][i] * projectors[1][i][i]
+                                 for i in range(4)), CO)
+
+    def test_quarter_phase_flip_difference_source_and_all_p2_grams(self):
+        # One active row is a fixed fixture parameter, not an initialized bank.
+        # a,s,xc,xt,d,g: only a is the accepted signal; every native column is kept.
+        stage = _private_cs(1, 2, 4, 5) + _private_toffoli(1, 2, 3, 5)
+        word = ([('H', 0), ('CX', 0, 1)] + stage
+                + [('CX', 0, 1), ('S', 0), ('S', 0), ('H', 0)])
+        self.assertEqual(_counts(word), (20, 28))
+        self.assertEqual(_counts(_inverse(word)), (20, 28))
+        actual = native_columns(6, word)
+        self.assertEqual(native_columns(6, _inverse(word)), adjoint(actual))
+        for column in range(64):
+            signal, selector, control = column & 1, column >> 1 & 1, column >> 2 & 1
+            for row in range(64):
+                expected = CZ
+                for branch in (0, 1):
+                    active = (selector ^ branch) * control
+                    output = (column ^ (active << 3)) & ~1 | (row & 1)
+                    if row == output:
+                        sign = -1 if branch and (signal ^ (row & 1) ^ 1) else 1
+                        expected += (CI if active else CO) * Fraction(sign, 2)
+                self.assertEqual(actual[row][column], expected)
+        accepted = [[actual[row][column] for column in range(0, 64, 2)]
+                    for row in range(0, 64, 2)]
+        gram = _rational_product(adjoint(accepted), accepted)
+        for i in range(32):
+            for j in range(32):
+                self.assertEqual(gram[i][j], CO * Fraction(1, 2)
+                                 if i == j and i & 2 else CZ)
+
+        phases = (CO, CI, -CO, -CI)
+        largest_gap = Fraction(0)
+        for bank in range(16):
+            for selectors in range(16):
+                for control in (0, 1):
+                    mismatch = [u for u in range(4) if (u & 1) != control]
+                    count = sum(bank >> u & 1 for u in mismatch)
+                    selected = sum((bank >> u & 1) * (selectors >> u & 1)
+                                   for u in mismatch)
+                    # Exact (R-FRF)/2 on the remaining target bit, retaining
+                    # all powers and literal i phases rather than only a norm.
+                    block = [[CZ, CZ], [CZ, CZ]]
+                    for target in (0, 1):
+                        block[target ^ (selected & 1)][target] += phases[selected % 4] * Fraction(1, 2)
+                        other = count - selected
+                        block[target ^ (other & 1)][target] -= phases[other % 4] * Fraction(1, 2)
+                    actual_gram = _rational_product(adjoint(block), block)
+                    sign = -1 if (count // 2 - selected) & 1 else 1
+                    value = Fraction(1, 2) if count & 1 else Fraction(1 - sign, 2)
+                    self.assertEqual(actual_gram,
+                                     [[CO * value if i == j else CZ for j in range(2)]
+                                      for i in range(2)])
+                    for target in (0, 1):
+                        address = control | (target << 1)
+                        desired = Fraction(1 - (bank >> address & 1), 2)
+                        largest_gap = max(largest_gap, abs(value - desired))
+        self.assertEqual(largest_gap, 1)
 
 
 if __name__ == '__main__':

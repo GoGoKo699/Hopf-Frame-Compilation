@@ -1108,3 +1108,247 @@ return; the failed row/stage reordering above cannot supply them.
 The proof is analytic. The exact native and bank-collision fixtures in
 [the synchronized-stage tests](../../tests/test_synchronized_address_stage.py)
 are finite internal checks, not external mathematical review.
+
+<a id="mixed-selector-commutator"></a>
+
+## 13. Internal selector mixing: a paid commutator with unresolved return
+
+The next literal trial leaves the unmixed-selector premise. For two
+matchings C,D, take the exact stages (43) and put, in operator order,
+
+```math
+A=S_C(s,Y),\qquad B=H_s^{\otimes m}S_D(s,Y)H_s^{\otimes m},
+\qquad W=ABA^\dagger B^\dagger.                         \qquad(47)
+```
+
+Use the actual native reversals in (47), not a promise that each
+emitted word is syntactically its inverse. The logical A,B are
+Hermitian. With the common stage bounds (44), W has zero clean work,
+error zero, T-count at most 2T_C+2T_D, T-depth at most 160, Clifford
+count at most 2G_C+2G_D+4m, and private pool at most
+max(b_C,b_D). The m arbitrary selectors are additional borrowed work.
+Every private stage helper returns; the selectors do not generally do so.
+These are simultaneous polynomial-overhead budgets, not a complete source.
+
+Set the bank to one active row u. All selectors except s_u decouple.
+Write g=g_{C,u}, h=g_{D,u} and $`P_h^\pm=(I\pm h)/2`$.
+In the s_u computational basis the exact surviving factors are
+
+```math
+A=\begin{pmatrix}I&0\\0&g\end{pmatrix},\qquad
+B=\begin{pmatrix}P_h^+&P_h^-\\P_h^-&P_h^+\end{pmatrix},
+\qquad W_{01}=P_h^-gP_h^+.
+                                                               \qquad(48)
+```
+
+Consequently $`\|W_{01}\|=\|[g,h]\|/2`$. Indeed the commutator
+has off-diagonal blocks twice those of g in the h eigenspaces.
+Selector return on this complete one-row sector holds if and only if
+g and h commute. Necessity follows from (48) and Hermiticity of g;
+if they commute the entire word is
+
+```math
+W=I_{s_u}\otimes\bigl(I-2P_g^-P_h^-\bigr).             \qquad(49)
+```
+
+For C=D, all anchored row maps commute with one another, so the full
+m-selector echo returns every selector and is exactly
+$`\prod_u g_{C,u}^{Y_u}`$: it recovers the old moment stage (38).
+That returned special case does not retain new lookup information.
+
+There is a dimension-independent leakage witness for different stages.
+For p at least two choose C=CNOT(0,1), D=CNOT(1,0), u=0, and fix
+the other address bits to zero. The two nontrivial address reflections
+have negative vectors
+$`|g_-\rangle=(|1\rangle-|3\rangle)/\sqrt2`$ and
+$`|h_-\rangle=(|2\rangle-|3\rangle)/\sqrt2`$.
+Their product has order three, giving
+
+```math
+\|[g,h]\|=\sqrt3,\qquad \|W_{01}\|=\sqrt3/2.          \qquad(50)
+```
+
+Thus W is at distance at least sqrt(3)/2 from every operator that
+returns s_u and acts only on the address. This is an exact full-space
+return failure, not a numerical failure on an initialized selector.
+
+Taking a fixed power does not repair exact return in this fixture.
+A and B are rank-one Householder reflections on eight dimensions;
+their negative vectors are $`|1\rangle|g_-\rangle`$ and
+$`|{-}\rangle|h_-\rangle`$, with overlap magnitude
+$`1/(2\sqrt2)`$. W fixes their six-dimensional common complement.
+Its other two eigenvalues satisfy $`\lambda+\bar\lambda=1/4`$.
+They are not roots of unity: otherwise this rational trace would be
+an integer, since it would be an algebraic integer. For every positive
+integer k, the range of $`W^k-I`$ is therefore the same two-dimensional
+plane. This plane is not a tensor product of the whole selector with
+one address line, since g_- and h_- are independent. But a nonidentity
+$`I_s\otimes V`$ of rank-two difference from identity has exactly
+that range. No positive power W^k returns the selector exactly.
+This does not give an approximation lower bound for arbitrary powers;
+powers approaching identity are not excluded.
+
+The opposite-CNOT trial also fixes both the marked address and the
+uniform vector on its other three addresses. Every word in these
+controlled permutations and selector-only interlayers acts identically
+on those two address states. A common helper insertion/acceptance
+therefore has Gram gap at least one quarter against the lookup
+half-projector: the two required expectations differ by one half.
+This is the same common-invariant principle as Section 9, now on the
+one-row fiber, not a new unrestricted depth bound. A bank scalar
+cannot distinguish those states either.
+
+Pause this undressed commutator. A phase-dressed generator or another
+address-sensitive insertion may break that invariant, but then its
+complete accepted Gram and arbitrary-selector return must be derived
+again. The six-wire native fixture checks all 64 columns with arbitrary
+bank bit and both private helpers, 128 T gates and 156 Cliffords in
+either orientation. A second exact fixture checks (48), the leakage
+eigenvalue, the power polynomial and the failure of the three single
+selector-Pauli echoes. The latter are finite checks, not an exclusion
+of general echo words. The all-size scope above is analytic and
+internally audited; it supplies no external mathematical review.
+
+<a id="quarter-phase-selector-stage"></a>
+
+### A paid quarter-phase stage for a changed acceptance question
+
+For a single CNOT C with control c and target t, define
+$`r_u=i^{x_c\oplus u_c}g_{C,u}`$ and the complete stage
+
+```math
+R_C=D_CS_C,\qquad
+D_C|x,s,Y\rangle
+ =i^{\sum_u s_uY_u(x_c\oplus u_c)}|x,s,Y\rangle,
+\qquad R_C=\prod_u r_u^{s_uY_u}.                       \qquad(51)
+```
+
+The control bit is unchanged by every g_{C,u}, so the factors commute
+as required. All x,s,Y inputs remain arbitrary. A private controlled-S
+phase has an exact 12-T, 12-Clifford word: the four-T, four-CNOT
+second difference returns its arbitrary dirty bit d and has exponent
+
+```math
+d-(d\oplus a)+(d\oplus a\oplus b)-(d\oplus b)
+=-2ab+4dab\pmod8.
+```
+
+Its actual inverse followed by the private CCZ(d,a,b) gives
+$`i^{ab}`$, returning both private bits.
+
+For $`i^{abc}`$, use chronologically CS(d,c)-dagger,
+Toffoli(a,b;d), CS(d,c), Toffoli(a,b;d), then C3Z(a,b,c,d).
+The first four factors give $`i^{abc}(-1)^{abcd}`$; the last
+removes that sign. The retained private C3X word, without its outer
+target Hadamards, pays C3Z. Thus this controlled-controlled-S has
+72 T gates, 80 Cliffords, at most 72 T layers and three returned
+arbitrary private bits. All physical T targets are private.
+For u_c=1, use CS(s_u,Y_u) times the actual inverse of this cubic
+quarter phase; for u_c=0 use the cubic phase itself. Parallel private
+row words and (44) give common forward/actual-reverse bounds
+
+```math
+T_{R_C}\le T_C+78m,\quad G_{R_C}\le G_C+86m,\quad
+d_{R_C}\le124,\quad b_{R_C}\le\max(b_C,3m).             \qquad(52)
+```
+
+There are zero clean inputs and zero error, with all additional helpers
+returned on the complete space; the m selectors remain principal inputs.
+At one active row, $`(r_u+r_u^\dagger)/2=P_{x_c=u_c}`$.
+For opposite CNOT directions at p=2, the two common +1 eigenspaces
+therefore intersect only in the marked address. Their symmetrized
+average is $`(P_{x_0=u_0}+P_{x_1=u_1})/2`$, with gap one half
+below its marked eigenvalue one. This removes the preceding common
+fixed-vector obstruction in that fixture. It does not make the old
+commutator a source, or prove a uniform full-bank spectral gap.
+The [flip-difference source below](#quarter-phase-flip-difference-source)
+pays one nonunitary accepted polynomial of these stages. Its full lookup
+Gram still fails. The exact tests check the private phases and the
+p=2 projector identity; no complete source is supplied by this component.
+
+<a id="quarter-phase-flip-difference-source"></a>
+
+### A one-clean flip-difference source and its complete accepted Gram
+
+For p at least two, the paid single-CNOT R_C gives an actual nonunitary
+accepted block without a controlled-R_C implementation. Let F flip all
+m selectors. With one initialized signal a, emit chronologically
+
+```math
+H_a,\quad \prod_u\mathrm{CX}(a,s_u),\quad R_C,\quad
+\prod_u\mathrm{CX}(a,s_u),\quad Z_a,\quad H_a.
+                                                               \qquad(53)
+```
+
+The Z is the literal two-S word. The complete native unitary U has
+$`T_U=T_{R_C}`$, $`d_U\le124`$, $`G_U\le G_{R_C}+2m+4`$,
+the same private pool, one clean signal and zero implementation error.
+Counting the selectors, its dirty width outside the address and row bank
+is $`b_U=m+b_{R_C}`$.
+Its actual reverse has the same bounds. The selectors are arbitrary
+principal work; only the stage's additional helpers return exactly.
+For J inserting a=0, direct propagation of both signal branches gives
+
+```math
+K_-=J^\dagger UJ=(R_C-FR_CF)/2,\qquad
+K_-^\dagger K_-=\tfrac12\bigl(I-\mathrm{Re}(R_C^\dagger FR_CF)\bigr).
+                                                               \qquad(54)
+```
+
+Every address, row bank, selector, private-helper and reference input
+is included. Nontrivial accepted fibers are allowed by the
+[paid Gram recovery](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout);
+U itself need not return its signal or selectors. That recovery would
+give complete return only if the full target Gram were supplied.
+
+For one active row u, (54) reduces to the literal identities
+
+```math
+K_-=P_{x_c\ne u_c}\,Z_{s_u}(I-iX_t)/2,\qquad
+K_-^\dagger K_-=\tfrac12P_{x_c\ne u_c}\otimes I_s.       \qquad(55)
+```
+
+Thus the source has correct half normalization and an arbitrary-selector
+unitary accepted fiber on the mismatch halfspace. It rejects the marked
+address, but for p at least two it also misses the unmarked addresses
+sharing that control bit. This is a complete partial-projector identity,
+not a source for the whole lookup sector.
+
+The general-bank action identifies the next failure precisely. At each
+fixed control bit define the ordinary integer counts
+$`N=\sum_{u:u_c\ne x_c}Y_u`$ and
+$`N_s=\sum_{u:u_c\ne x_c}s_uY_u`$. All matching rows are identity
+and each selected mismatching row contributes iX_t. Therefore
+
+```math
+R_C=(iX_t)^{N_s},\qquad R_C^\dagger FR_CF=(iX_t)^{N-2N_s},
+\qquad K_-^\dagger K_-=
+\begin{cases}
+I/2,&N\text{ odd},\\
+\bigl[1-(-1)^{N/2-N_s}\bigr]I/2,&N\text{ even}.
+\end{cases}                                                   \qquad(56)
+```
+
+The even case depends on the arbitrary selector parity and takes values
+zero or one, not one half. For p at least two choose a marked row x
+and two further active rows with opposite control bit, and set s=0.
+Then N=2 and N_s=0, so the actual Gram is one while the desired
+$`(I+\Omega)/4`$ is zero. The full Gram distance is exactly one,
+since both are positive contractions. Even an empty bank gives actual
+zero versus desired one half. For the canonical paired $`\Pi_{\rm eq}/2`$,
+put Y in the specified physical C rows and conjugate by the n bitwise
+D-to-C CNOTs. Both orientations add 2n Cliffords, no T-depth, and
+2n-m additional arbitrary carrier inputs. Total dirty width beyond the
+specified m outputs is then $`2n+b_{R_C}`$. The gap persists; no
+Vandermonde basis change or initialized carrier is needed.
+
+Pause this single-stage difference. The new concrete question is a
+genuinely nonunitary accepted polynomial using distinct quarter-phase
+stages: remove dirty-selector dependence and cover the complete lookup
+sector together. The six-wire, 20-T, 28-Clifford native fixture fixes
+one row active and checks every address/selector/helper/signal column
+and its actual reverse; it is not an arbitrary-bank native emitter.
+The separate algebra fixture checks all p=2 row-bank/selector fibers
+of (54)--(56). These finite checks support
+the analytic all-size action and sharp failure; they do not supply the
+missing source or external mathematical review.
