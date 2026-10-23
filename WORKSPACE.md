@@ -8,14 +8,13 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: entangling selector acceptance and its remaining gap
+## Current checkpoint: fixed-row extraction and the addressed-readout gap
 
-**Verified starting checkpoint:** [PR #231](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/231),
-`3deca4bea3154fd230f6945a94f82c6c66137531`, checked 23 October 2026.
-The continuation below pays entangling selector controls, screens complete
-marked acceptance and separates finite and address-zero charge sectors. Neither
-these separations nor the complete two-bit calibration supply a scalable
-lookup source. Exact-tree receipts belong to the PR record.
+**Verified starting checkpoint:** [PR #232](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/232),
+`415e3fe2219e2e73ddc40994bd6494e7f711d343`, checked 24 October 2026.
+One matching now separates address-zero sectors, but its full-space readout
+is a physical bank-bit phase. Paid transport has linear depth; no shallow
+general source is supplied. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -106,16 +105,16 @@ scalar filtering has a marked/unmarked eigenvalue collision. Transplanting
 the earlier four-path polynomial also fails, with marked acceptance three
 quarters. Sector preservation does not supply sector readout.
 
-**Latest substantive outcome.** [Entangling selector acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md)
-pays controlled zeta and partial-Fourier mixers at depth four without helpers.
-Linear selector networks and global Hadamards retain an all-size common
-marked/empty-bank module and Gram floor one quarter. Partial Fourier mixing
-escapes that module, but the specified four-path sources have a complete
-two-bit floor one sixth. Adding a global flip eliminates cross-charge
-intertwiners on the full two-bit space and, analytically for every p at least two,
-between the address-zero sectors. A depth-16 square-stage commutator reads two-bit
-lookup exactly, while its fixed affine-Pauli extension has a quadratic
-sign restriction. The earlier local-singlet and affine-transport limits remain.
+**Latest substantive outcome.** The [fixed-row extraction](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#fixed-row-central-word)
+gives $`[[[R_C,X_{s_0}],X_{s_t}],Z_{s_t}]=Z_{Y_0}`$ on the whole
+space, retaining actual inverses and the nonzero-address phase. One matching
+suffices for address-zero separation, but this physical-bit phase is already
+Clifford. Selector controls, finite separation and earlier acceptance limits
+remain in the same proof home. The
+[transport reduction](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#address-transport-cost)
+pays one-bank translation at depth at most 4p. Conjugating the physical phase
+then gives lookup with linear depth. Free moved zeta or an addressed selector
+flip would assume the missing indicator.
 
 **Next concrete question: full-sector acceptance beyond the screened words.**
 Derive an accepted polynomial K with genuinely changed interference, paid
@@ -136,6 +135,8 @@ source or all-address separation proof. Do not revisit the screened
 four-path words or mistake square-stage Clifford dressing for a general
 readout. Acceptance remains unpaid, not recovery or promotion. Even a
 constant-depth source retains log-log depth through the current reductions.
+Address-zero central-word extraction is settled. A next candidate must
+depend on $`Y_x`$ at nonzero addresses without assuming free transport.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon
