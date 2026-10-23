@@ -866,3 +866,149 @@ native T-depth: it counts completed factors in this representation,
 which might admit a different joint synthesis. The next mechanism
 must pay complete readout while using more than a bounded collection
 of these affine-label branches.
+
+<a id="synchronized-anchored-generator-stage"></a>
+
+## 12. Shared address-generator stages and their bank-moment limit
+
+The data motion in the scalar filter motivates a different native
+schedule. A single translated generator can in fact be shared across
+all rows without copying or initializing the address. The exact
+identity below pays that stage. Its simple reuse with the physical
+bank as controls, however, retains only p+1 bank parities and cannot
+give the complete lookup. Neither fact asserts a general depth bound.
+
+Let C be a product of q CNOTs on p address bits, with all control and
+target wires pairwise distinct. Write its pairs as
+$`(c_j,t_j)`$, so $`C^2=I`$. For each row label
+$`u\in\mathbb F_2^p`$, define the anchored affine permutation
+
+```math
+g_u(x)=C(x+u)+u=Cx+(I+C)u.
+```
+
+The translations $`(I+C)u`$ are fixed by C. Thus every g_u is an
+involution, and all these maps for the same C commute. Give each row
+an arbitrary coherent control a_u and put
+
+```math
+M_0(a)=\bigoplus_u a_u,\qquad
+M_1(a)=\sum_u a_u u\in\mathbb F_2^p.
+```
+
+The complete product, in any row order, is
+
+```math
+\prod_u g_u^{a_u}(x)
+   =C^{M_0(a)}x+(I+C)M_1(a).                         \qquad(38)
+```
+
+This identity includes coherent controls: both sides are the same
+permutation of every joint computational column, with scalar +1.
+It does not replace the controls by sampled classical values.
+
+### Native word and simultaneous ledger
+
+Borrow an arbitrary parity bit h and one private phase helper for
+each CNOT pair. First XOR every a_u into h, apply C controlled by h,
+undo those parity CNOTs, and apply C controlled by h again. The two
+controlled powers multiply to $`C^{M_0(a)}`$, independently of the
+old h, which returns. Each controlled matching is a wall of q exact
+returned private-phase Toffolis. Their physical T targets are the q
+distinct phase helpers; h is only a Clifford control. Each wall has
+eight T layers, 8q T gates and 10q elementary Cliffords, including
+the target Hadamards.
+
+Finally, for each pair $`(c_j,t_j)`$ and every label with
+$`u_{c_j}=1`$, apply CNOT from a_u to the address target t_j. These
+$`qm/2`$ CNOTs add the translation in (38), where $`m=2^p`$.
+Together with the two m-CNOT parity words, the forward word and its
+actual native reverse have the common complete ledger
+
+```math
+\begin{aligned}
+T&=16q,&D_T&\le16,\\
+G&=20q+2m+qm/2,&b_{\rm dirty}&=q+1,\\
+a_{\rm clean}&=0,&\varepsilon&=0.
+\end{aligned}                                                   \qquad(39)
+```
+
+The p address bits and m row controls are principal arbitrary inputs,
+outside the private width in (39). Every private helper returns
+exactly; arbitrary references tensor identity. In particular this
+stage has T-count O(p), Clifford count O(mp) and constant T-depth.
+If a_u is instead a nontrivial function of a row selector and a bank
+bit, computing that function is a separate operation not included in
+(39).
+
+Different generator matchings need not commute. Equation (38) permits
+reordering rows only within one fixed generator stage. It does not
+justify moving all equal-generator factors together inside a product
+of complete row filters. For example, take two address bits,
+$`C=\mathrm{CX}(0;1)`$, $`D=\mathrm{CX}(1;0)`$, and active
+labels 0 and e_0. Starting at address zero, applying C then D within
+each row gives $`e_0+e_1`$; applying both C rows and then both D
+rows gives e_1. Nor does the shared stage provide the multi-selector
+compression or clean removal for a new synchronized filter word.
+
+<a id="shared-stage-bank-moment-gap"></a>
+
+### Reusing the same physical bank as controls cannot complete lookup
+
+There is an exact limitation on the simplest proposed joint word.
+At every completed stage (38), set $`a_u=Y_u`$ using the same
+physical m-bit bank Y. Allow any number of stages, any CNOT matchings,
+their actual inverses, and arbitrary intervening unitaries on the
+address, signals and private work. Those interlayers act as identity
+on Y, and all dependence on Y must occur through the displayed stages.
+The address can move coherently. Helper insertion and final
+compression are common to all Y and act outside Y.
+
+By (38), each stage depends on Y only through $`M_0(Y),M_1(Y)`$.
+The complete word, its accepted block K and its Gram therefore have
+identical fibers whenever these p+1 parities agree. This remains true
+after any number of layers, without a depth or private-width bound.
+
+For p at least two, choose linearly independent row labels a,b. Let
+Delta be the bank string supported on the four labels
+$`0,a,b,a+b`$. Then
+
+```math
+M_0(\Delta)=0,\qquad M_1(\Delta)=0,\qquad \Delta_0=1.
+                                                               \qquad(40)
+```
+
+Hence Y and $`Y+\Delta`$ have identical complete source fibers, but
+the desired lookup signs at address zero are opposite. For
+$`\Omega|x,Y\rangle=(-1)^{Y_x}|x,Y\rangle`$, the triangle
+inequality on these two identified fibers gives
+
+```math
+\|K-\alpha\Omega\|\ge|\alpha|.                       \qquad(41)
+```
+
+In particular a complete phase implementation in this grammar has
+error at least one. For the half-projector Gram target, the desired
+expectations on the same address/work input are one half and zero,
+while the two actual Gram expectations are equal. Consequently
+
+```math
+\left\|K^\dagger K-\frac{I+\Omega}{4}\right\|
+   \ge\frac14.                                         \qquad(42)
+```
+
+This is also the paired lookup Gram in its single-bank form after
+the fixed bitwise CNOT change of coordinates. Approximation of a
+displayed ideal word by full operator error epsilon decreases (41)
+by at most epsilon and (42) by at most $`2\epsilon`$.
+
+The premise is the complete bank dependence, not the number of
+stages. Independent row selectors multiplying Y_u, other bank-sensitive
+interactions, or intervening operations on Y can leave this grammar;
+their full action and return must be paid separately. The next missing
+operation is a joint source that retains enough bank information and
+has bounded-clean complete return. Sharing one generator is now paid,
+but alone supplies neither that operation nor a better frame frontier.
+The proof is analytic. The exact native and bank-collision fixtures in
+[the synchronized-stage tests](../../tests/test_synchronized_address_stage.py)
+are finite internal checks, not external mathematical review.

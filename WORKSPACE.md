@@ -8,17 +8,17 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: three-branch interference and Boolean spectral sources
+## Current checkpoint: unequal-branch rejection and shared address stages
 
-**Recovered main:** [PR #222](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/222),
-`c323d19b042935e5e532a42f7ab9392daaab3dd7`, fetched 23 October 2026.
-The new three-branch and Boolean spectral sources have paid circuits but wrong Grams.
+**Recovered main:** [PR #223](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/223),
+`db9a2f365356f1af5145a951983555df9da5e26a`, fetched 23 October 2026.
+Unequal branches still fail; a shared address stage is paid but loses bank information.
 Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Signal-interleaved sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) and [Boolean reflection sources](research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md): actual changed words, full Grams and complete native ledgers.
+2. [Unequal-branch sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#unequal-outer-branch-source) and [shared address stages](research/depth/EXPANDER_ZERO_REFLECTION.md#synchronized-anchored-generator-stage): actual words, complete ledgers and scoped failure mechanisms.
 3. [Scalar-kernel partial source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and [corank-one Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md): correct support versus normalization on arbitrary inputs.
 4. [Four-call Gram recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
@@ -102,17 +102,17 @@ explicit correct-charge common kernel still gives gap one half.
 These budgets fit fusion; their general sector contracts fail. These are
 analytic, scoped results, not general depth bounds.
 
-The new three-branch sandwich has a protected wrong-charge input; signal
-control seeds retain a scoped trace obstruction. Exact zero-clean Boolean
-spectral reshaping pays controlled quarter phases and a one-clean source
-whose Gram contract reduces to a broad-reflection product. Its trace is
-correct, but the old flat/diagonal dynamics still select wrong sectors.
+With the actual middle/right branches and readout, every signal seed and
+arbitrary left branch has Gram gap greater than $`2^{-22}`$ for p at least
+two. An address-Hadamard right-branch trial also fails its p=1 base test.
+The shared affine address stage is exact and zero-clean; repeating it with
+the same untouched bank sees only p+1 bank parities and has Gram gap one quarter.
 
-**Next concrete question.** Use unequal outer branches in a native
-three-branch word and derive its complete accepted polynomial, or construct
-a non-flat broad-reflection pair whose product is the lookup sign.
-Neither closed family supplies that product. Fixed-call thin-Bell repairs
-with zero accepted erased baseline remain paused; this is not a depth bound.
+**Next concrete question.** Construct a coupled two-signal, four-path word
+with one joint acceptance and derive its complete Gram. The second signal
+must change the acceptance polynomial, not merely add independent attenuation.
+Pay its constant-clean recovery/promotion and full ledger with the source.
+The [Boolean reflection product](research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md) remains open outside the excluded flat/diagonal family.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -145,8 +145,8 @@ only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
 
-The PR #222 three-branch and spectrum questions now have the explicit
-families above; the older mixer proposals are superseded. The
+The PR #223 unequal-left-branch question is resolved by the two-input norm
+obstruction; generator sharing alone also fails. The older next steps are superseded. The
 held PR #217 queue is closed: four-call recovery and the exact Gram-sector
 conditions are proved; the six-wire candidate is stopped. Fourth-order
 closure supplies neither lookup sectors nor a free native square.

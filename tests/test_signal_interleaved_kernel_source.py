@@ -333,6 +333,214 @@ class SignalInterleavedKernelSourceTests(unittest.TestCase):
                          - (Fraction(3, 4) + Fraction(1, 16))/16,
                          Fraction(53, 1024))
 
+    def test_unequal_outer_complete_word_polynomial_and_actual_reverse(self):
+        # Complete 32x32 logical words, with literal native signal gates
+        # and the controlled phase identities paid in the earlier fixtures.
+        # The two outer branches are not inverses at the nonzero address.
+        signal, size = 4, 16
+        identity, half = eye(size), CQ2(Fraction(1, 2))
+        p0 = native_columns(4, [('Z', 0), ('Z', 2)])
+        projector = scale(add(identity, p0), half)
+        complement = add(identity, scale(projector, -CO))
+        d_op = add(scale(projector, CQ2(Q2(0, 1))),
+                   scale(complement, -CO))
+        partial_word = [('H', 1), ('H', 3)]
+        partial_h = native_columns(4, partial_word)
+        self.assertEqual(_counts(partial_word + _inverse(partial_word)), (0, 4))
+        rotation = native_columns(5, ry_t(signal))
+        rotation_cube = native_columns(5, ry_t(signal, cube=True))
+        signal_h = native_columns(5, [('H', signal)])
+        controlled_p0 = native_columns(5, [
+            ('H', 0), ('CX', signal, 0), ('H', 0),
+            ('H', 2), ('CX', signal, 2), ('H', 2),
+        ])
+        base = multiply(multiply(rotation_cube, controlled_p0), adjoint(rotation))
+        omega = _root_powers()[1]
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            g = multiply(multiply(partial_h, f), adjoint(partial_h))
+            right = multiply(multiply(signal_h, _control(f)), signal_h)
+            left = multiply(multiply(signal_h, _control(g)), signal_h)
+            delta = add(e, scale(identity, -CO))
+            for seed_word in ([], ry_t(signal),
+                              [('S', signal)] + ry_t(signal),
+                              ry_t(signal, cube=True)):
+                seed = native_columns(5, seed_word)
+                seed_inverse = native_columns(5, _inverse(seed_word))
+                self.assertEqual(seed_inverse, adjoint(seed))
+                operations = (adjoint(right), seed, _control(e),
+                              seed_inverse, left, base)
+                source = eye(32)
+                for operation in operations:
+                    source = multiply(operation, source)
+                reverse = eye(32)
+                for operation in reversed(operations):
+                    reverse = multiply(adjoint(operation), reverse)
+                self.assertEqual(reverse, adjoint(source))
+                self.assertEqual(multiply(reverse, source), eye(32))
+                accepted = [row[:size] for row in source[:size]]
+                small_word = [tuple([gate[0]] + [0 for _ in gate[1:]])
+                              for gate in seed_word]
+                small_inverse = native_columns(1, _inverse(small_word))
+                alpha, beta = small_inverse[0][1], small_inverse[1][1]
+                u, v = (alpha + beta)*half, (alpha - beta)*half
+                l_op = add(scale(identity, u), scale(f, v))
+                delta_l = multiply(delta, adjoint(l_op))
+                x_op = add(scale(identity, half), scale(delta_l, u))
+                y_op = add(scale(adjoint(f), half), scale(delta_l, v))
+                expected = scale(add(multiply(complement, x_op),
+                                     multiply(multiply(d_op, g), y_op)), omega)
+                self.assertEqual(accepted, expected)
+                self.assertEqual(add(multiply(adjoint(x_op), x_op),
+                                     multiply(adjoint(y_op), y_op)),
+                                 scale(identity, half))
+                gy = multiply(g, y_op)
+                expanded = add(
+                    multiply(multiply(adjoint(x_op), complement), x_op),
+                    multiply(multiply(adjoint(gy), add(identity, projector)), gy))
+                cross = multiply(multiply(adjoint(x_op), complement), gy)
+                expanded = add(expanded, scale(add(cross, adjoint(cross)), -CO))
+                gram = multiply(adjoint(accepted), accepted)
+                self.assertEqual(gram, expanded)
+                if not address:
+                    self.assertEqual(gram, scale(projector, half))
+                elif not seed_word:
+                    self.assertEqual(gram[8][8], half)
+
+        # A left branch that flips the readout parity attains the general
+        # unseeded lower bound, unlike the partial-H branch's one half.
+        changed_g = native_columns(4, [('X', 0)])
+        left = multiply(multiply(signal_h, _control(changed_g)), signal_h)
+        source = multiply(multiply(multiply(base, left), _control(e)), adjoint(right))
+        accepted = [row[:size] for row in source[:size]]
+        gram = multiply(adjoint(accepted), accepted)
+        self.assertEqual(gram[8][8], CQ2(Fraction(1, 4)))
+
+    def test_unequal_outer_two_rejection_defects_and_phase_autocorrelation(self):
+        half, quarter = CQ2(Fraction(1, 2)), CQ2(Fraction(1, 4))
+        inv_root_two = CQ2(Q2(0, Fraction(1, 2)))
+        # A two-dimensional exact algebra fixture exercises both signs of
+        # P0, without mistaking it for the scalable Hopf branch family.
+        identity = eye(2)
+        p0 = native_columns(1, [('Z', 0)])
+        projector = scale(add(identity, p0), half)
+        complement = add(identity, scale(projector, -CO))
+        e = scale(add(identity, scale(native_columns(1, [('X', 0)]), CI)),
+                  inv_root_two)
+        delta = add(e, scale(identity, -CO))
+        for seed_word in ([], ry_t(0), [('S', 0)] + ry_t(0), ry_t(0, cube=True)):
+            seed_inverse = native_columns(1, _inverse(seed_word))
+            alpha, beta = seed_inverse[0][1], seed_inverse[1][1]
+            u, v = (alpha + beta)*half, (alpha - beta)*half
+            l_op = scale(identity, u + v)  # F=I for this algebra fixture.
+            delta_l = multiply(delta, adjoint(l_op))
+            x_op = add(scale(identity, half), scale(delta_l, u))
+            y_op = add(scale(identity, half), scale(delta_l, v))
+            defect = add(multiply(adjoint(y_op), y_op), scale(
+                multiply(multiply(adjoint(x_op), complement), x_op), -CO))
+            a = alpha.conj()*beta + beta.conj()*alpha
+            c = beta.conj()*beta - alpha.conj()*alpha
+            b = (CO - c)*(CO + a)
+            q = CO - inv_root_two
+            expected_plus = quarter + a*c*q/ CQ2(4) - b/CQ2(16)
+            expected_minus = a*c*q/CQ2(2) + b/CQ2(16)
+            self.assertEqual(defect[0][0], expected_plus)
+            self.assertEqual(defect[1][1], expected_minus)
+
+        powers = _root_powers()
+        for shift_a in (0, 1):
+            for shift_b in (0, 1):
+                correlation = CZ
+                for a_bit in (0, 1):
+                    for b_bit in (0, 1):
+                        original = (-1)**a_bit * b_bit
+                        shifted = (-1)**(a_bit ^ shift_a) * (b_bit ^ shift_b)
+                        correlation += powers[(shifted - original) % 8]
+                expected = (inv_root_two if shift_b else
+                            (half if shift_a else CO))
+                self.assertEqual(correlation/CQ2(4), expected)
+
+    def test_unequal_outer_witnesses_and_uniform_error_certificate(self):
+        from tests.test_nilpotent_pencil_observable_source import _mul, _transpose
+        powers = _root_powers()
+        p, m, n = 2, 4, 8
+        for address in range(1, m):
+            standard = _field_matrix([
+                [int(i == j) ^ (_mul(address, 1) if i == j + 1 else 0)
+                 for j in range(m)] for i in range(m)])
+            b_matrix = tuple(row ^ (1 << i)
+                             for i, row in enumerate(_transpose(standard)))
+            v_address = sum(_power(address, j) << (p*j) for j in range(m))
+            z_minus = next(z for z in range(1, 1 << n, 2)
+                           if _binary_image(b_matrix, z).bit_count() == 4)
+            t_minus = z_minus & ~1
+            j = next(j for j in range(1, n) if (v_address >> j) & 1)
+            for z, t, parity in ((0, 1 << j, 0), (z_minus, t_minus, 1)):
+                shifted = t ^ (z & ~1)
+                h = (shifted ^ _binary_image(b_matrix, z)).bit_count() - shifted.bit_count()
+                self.assertEqual(h, 4*parity)
+                self.assertEqual(((z ^ t) & 1), parity)
+                self.assertEqual((v_address & (z ^ t)).bit_count() % 2, 1)
+                self.assertEqual(CQ2((-1)**parity)*powers[-h % 8], CO)
+
+        # Conservative rational certificates, with no numerical limiting
+        # inference or optimization of the source extraction constants.
+        self.assertGreater(Fraction(2), Fraction(7, 5)**2)
+        self.assertGreater(Fraction(17, 20)**6, Fraction(3, 8))
+        self.assertLess(Fraction(2), Fraction(10, 7)**2)
+        self.assertLess(Fraction(6, 7)**21, Fraction(1, 24))
+        epsilon = Fraction(1, 2048)
+        sphere_lower = ((Fraction(91, 69) - Fraction(432, 23)*epsilon)**2
+                        - Fraction(16, 23) - Fraction(128, 23)*epsilon)
+        self.assertGreater(sphere_lower, 1)
+        self.assertEqual(epsilon**2, Fraction(1, 1 << 22))
+
+    def test_moving_address_right_branch_full_word_and_failed_base(self):
+        # Both address columns remain coherent in the 64x64 source.
+        # This is one changed right branch, not an address-motion bound.
+        size, signal = 32, 5
+        e, f = zeros(size), zeros(size)
+        for address in (0, 1):
+            e_fiber, f_fiber = _p1_parts(address)
+            for row in range(16):
+                for column in range(16):
+                    e[16*address + row][16*address + column] = e_fiber[row][column]
+                    f[16*address + row][16*address + column] = f_fiber[row][column]
+        address_h = native_columns(5, [('H', 4)])
+        right_f = multiply(multiply(address_h, f), address_h)
+        identity, half = eye(size), CQ2(Fraction(1, 2))
+        p0 = native_columns(5, [('Z', 0), ('Z', 2)])
+        projector = scale(add(identity, p0), half)
+        complement = add(identity, scale(projector, -CO))
+        d_op = add(scale(projector, CQ2(Q2(0, 1))),
+                   scale(complement, -CO))
+        rotation = native_columns(6, ry_t(signal))
+        rotation_inverse = native_columns(6, _inverse(ry_t(signal)))
+        rotation_cube = native_columns(6, ry_t(signal, cube=True))
+        signal_h = native_columns(6, [('H', signal)])
+        base = multiply(multiply(rotation_cube, _control(p0)), rotation_inverse)
+        left = multiply(multiply(signal_h, _control(f)), signal_h)
+        right = multiply(multiply(signal_h, _control(right_f)), signal_h)
+        source = eye(64)
+        for operation in (adjoint(right), rotation, _control(e),
+                          rotation_inverse, left, base):
+            source = multiply(operation, source)
+        accepted = [row[:size] for row in source[:size]]
+        small_inverse = native_columns(1, _inverse(ry_t(0)))
+        alpha, beta = small_inverse[0][1], small_inverse[1][1]
+        u, v = (alpha + beta)*half, (alpha - beta)*half
+        l_op = add(scale(identity, u), scale(right_f, v))
+        delta_l = multiply(add(e, scale(identity, -CO)), adjoint(l_op))
+        x_op = add(scale(identity, half), scale(delta_l, u))
+        y_op = add(scale(adjoint(right_f), half), scale(delta_l, v))
+        expected = scale(add(multiply(complement, x_op),
+                             multiply(multiply(d_op, f), y_op)), _root_powers()[1])
+        self.assertEqual(accepted, expected)
+        gram = multiply(adjoint(accepted), accepted)
+        # x=0, z=e1, t=e0 has P0=-1 and therefore target acceptance zero.
+        self.assertEqual(gram[6][6],
+                         CQ2(Q2(Fraction(7, 32), Fraction(-13, 128))))
+
     def test_partial_h_full_signal_gram_and_empty_intersection(self):
         partial_h = native_columns(4, [('H', 1), ('H', 3)])
         distinguished_x = native_columns(4, [('X', 0)])

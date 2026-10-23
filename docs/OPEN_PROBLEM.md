@@ -188,7 +188,7 @@ not count normalization or its controlled use, remains unpaid.
 |---|---|
 | [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) | Bounded clean banks and constant-amplitude complete blocks can be removed with charged actual inverses, leakage and arbitrary off-code cancellation; this supplies no shallow source |
 | [Spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | At fixed tolerance, depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address-sharing and uniform precision budgets are premises. Exact sector invariance avoids the general leakage multiplier |
-| [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. Native address motion and whole-bank error prevent an automatic indicator |
+| [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. A synchronized affine address stage is now paid; its same-bank reuse retains only p+1 parities and cannot give complete lookup |
 | [Complete fermionic lift](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) | Native lifting and arbitrary auxiliary-mode decoding are paid. The full spectral-phase contract and sparse-column obstruction force growing filter length for the literal fixed-auxiliary expander word; displayed coherent centering also has linear address depth |
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
 | [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
@@ -254,9 +254,9 @@ global Gram error exceeds 7/512. This fixes the acceptance polynomial
 and branch spectra, not a gate-depth class. Local rotations, all mixers
 and finer approximation of these words do not supply a qualifying source.
 
-A paid three-branch conjugation word has a wrong-charge input with
-acceptance one half for every inner unitary. With the actual branches,
-every one-qubit signal seed retains a positive trace gap for p at least three.
+A paid [unequal-branch word](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#unequal-outer-branch-source)
+still has Gram gap greater than $`2^{-22}`$ for p at least two, for every
+signal seed and arbitrary left unitary, with its middle/right branches and readout fixed.
 The [Boolean spectral source](../research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md)
 instead changes the branch spectra. Exact phase estimation, bounded-clean
 removal and dirty phase echoes pay its controlled broad reflections and
