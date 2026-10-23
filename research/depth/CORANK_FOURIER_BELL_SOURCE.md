@@ -7,11 +7,14 @@
 The paid corank-one translation matrix has an exact singular Fourier
 operator whose left Gram is the desired central-character projector.
 Its complete two-bank unitary dilation is also paid. This does not
-supply a one-clean source: selecting a Bell fiber uses an entire
+supply the required lookup source: selecting a Bell fiber uses an entire
 auxiliary bank, and the paired shared-outcome construction has success
 weight exponential in minus the carrier width. A concrete coherent-SWAP
 repair instead has a fully normalized one-clean Gram and maximal lookup
-error at every size. These are statements about the displayed words,
+error at every size. Sections 7--8 pay a normalized source for the thin
+projector using the scalar zero reflection, and then a two-reflection
+source that succeeds completely at n=2 but has an explicit missing
+even-charge subspace at every n at least three. These are statements about the displayed words,
 not general native-depth obstructions. The complete-frame frontier is
 unchanged.
 
@@ -204,7 +207,7 @@ Taking a fixed computational auxiliary diagonal in (7a) retains
 only ell=0 and ell=v_x, which recovers (7). The other summands move
 the arbitrary auxiliaries coherently and cannot be discarded. No
 one-clean implementation of the equality projector is assumed.
-Even if a source for $`A_x/2`$ were supplied, its Gram distance from
+Section 7 supplies a native approximate source for $`A_x/2`$. Its ideal Gram distance from
 $`\Pi_{\rm eq}/2`$ would be exactly one half: A_x is a proper
 subprojector for every $`n\ge2`$. In particular the coincident p=1
 fixed-auxiliary coefficient in (7) is not a complete-input exception.
@@ -354,11 +357,309 @@ and normalization. They are internal verification, not external
 mathematical review or an all-circuit lower bound.
 
 The singular Fourier partial isometry remains a precise target for
-a different acceptance circuit. The missing operation is a paid
-coherent extraction of its left central character with constant
-accepted amplitude and arbitrary auxiliary inputs. Shared Pauli
-byproducts alone give (7), while the concrete coherent swap gives
-(8), not that character. Reopening this route requires a changed
-unitary acceptance word, with its complete Gram derived; another
-claim that corank one supplies a free one-clean dilation does not
-change the source status.
+a different acceptance circuit. The later construction below supplies
+a normalized native thin-projector source and a complete n=2 repair.
+At growing size the missing operation is still a paid extraction of
+the central character on its entire half-space, with arbitrary
+auxiliary inputs. Shared outcomes, the coherent swap and the two
+reflections below have different complete operators, but none supplies
+that growing-size extraction. Reopening requires a changed acceptance
+word whose Gram covers the missing even-charge subspace.
+
+<a id="paid-thin-bell-source"></a>
+
+## 7. The scalar zero reflection pays the thin half-projector source
+
+There is now a complete implementation of the previously hypothetical
+thin source. This does not require a clean Bell bank. Let
+$`Q_{K_x^{\mathsf T}}(C;Y)`$ add $`K_x^{\mathsf T}c`$ into Y,
+and define the returned shear word
+
+```math
+ \mathcal L_x=Q_{K_x^{\mathsf T}}(C;Z)
+              Q_{K_x^{\mathsf T}}(C;Y)\,
+              \mathrm{CX}_{C\to D}.
+```
+
+The n CNOTs in the last factor act coordinatewise. These three ideal
+shears commute, preserve C and the address, and are involutions.
+Conjugating X_C(ell) gives the summand in (7a), so the complete identity is
+
+```math
+ A_x=\mathcal L_x
+       (|+^n\rangle\langle+^n|_C\otimes I_{DYZ})
+       \mathcal L_x^\dagger.                            \qquad(13)
+```
+
+The plus vector in (13) identifies a projector, not an initialization.
+Put $`R_{A,x}=I-2A_x`$ and let $`R_0^{(n+1)}`$ be the complete
+zero reflection on the existing signal a and carrier C. The actual
+controlled reflection has the ideal full-space word
+
+```math
+ \begin{aligned}
+ \mathcal C_{A,x}
+   &=\mathcal L_x H_C X_a R_0^{(n+1)}X_a H_C\mathcal L_x^\dagger\\
+   &=|0\rangle\langle0|_a\otimes I
+     +|1\rangle\langle1|_a\otimes R_{A,x}.
+ \end{aligned}                                           \qquad(14)
+```
+
+Here H_C means all n carrier Hadamards. Testing zero after X_a tests
+a=1 and C=0; consequently (14) uses a zero reflection on n+1 tested
+bits, not a supplied controlled version of an approximate unitary.
+The [complete scalar zero-reflection construction](EXPANDER_ZERO_REFLECTION.md#7-arbitrary-lengths-and-the-complete-zero-clean-ledger)
+provides an emitted $`\widetilde R_0^{(n+1)}`$ with no initialized
+work and full error at most eta. Denote its common native
+forward/actual-inverse resources by $`T_0,G_0,d_0,h_0`$.
+All its borrowed inputs and reference correlations are arbitrary.
+Its return is approximate within eta, not assumed exact.
+
+Keeping the literal R_a from (9), emit the one-clean source
+
+```math
+ U_{A,x}=R_a^3 Z_a\mathcal C_{A,x}R_a^\dagger,
+ \qquad
+ K_{A,x}={1+i\over2}A_x,
+ \qquad K_{A,x}^\dagger K_{A,x}=A_x/2.                  \qquad(15)
+```
+
+On A_x the middle signal operation is identity and the accepted
+amplitude of R_a squared is (1+i)/2; on its complement the middle
+operation is Z_a and the accepted amplitude vanishes. Equation (15)
+holds on the whole auxiliary space, including the moving auxiliary
+blocks in (7a). The emitted source satisfies
+
+```math
+ \|\widetilde U_A-U_A\|\le\eta,\qquad
+ \|\widetilde K_A^\dagger\widetilde K_A-A_x/2\|\le2\eta.
+                                                               \qquad(16)
+```
+
+The actual reversed word uses the actual inverse of the emitted zero
+reflection. An approximate zero reflection need not be exactly
+Hermitian or involutory.
+
+For the simultaneous ledger, $`PB_x^{\mathsf T}=B_x^{\mathsf T}`$,
+so $`K_x^{\mathsf T}=P+B_x^{\mathsf T}`$. The transposed bilinear
+query therefore has the same r-mask, eight-layer bound, plus n minus
+one fixed CNOTs. With $`g_K=G_B+n-1`$,
+
+```math
+ \begin{aligned}
+ T_{\mathcal L}&\le16r,&d_{\mathcal L}&\le16,
+ &G_{\mathcal L}&\le2g_K+n,\\
+ T_{\mathcal C}&\le32r+T_0,&d_{\mathcal C}&\le32+d_0,
+ &G_{\mathcal C}&\le4g_K+4n+8+G_0.
+ \end{aligned}                                           \qquad(17)
+```
+
+The last eight Cliffords are two literal X_a gates. Query calls are
+sequential, so one mask pool suffices. Reuse the pool with the zero
+reflection's borrowed work; every primitive has a complete arbitrary-input
+guarantee, and its error is counted in (16). Including the physical
+X-dual envelope, common source and actual-inverse bounds are
+
+```math
+ \begin{aligned}
+ T_{U_A}&\le32r+T_0+2,&d_{U_A}&\le34+d_0,\\
+ G_{U_A}&\le G_{\mathcal C}+17+4c_n+4n,&
+ b_{U_A}&\le2n+\max(r,h_0),\qquad a_{\rm clean}=1.
+ \end{aligned}                                           \qquad(18)
+```
+
+The 17 Cliffords include the signal Z and both rotation orientations.
+The two principal carriers and address are excluded from b; Y,Z and
+every private helper are included. At fixed eta this is constant
+native T-depth with polynomial count/width overhead in m. It is a
+paid correctly charged partial source, but A_x is a proper subprojector
+of the required half-space. Recovery cannot enlarge its support.
+
+<a id="two-reflection-bell-source"></a>
+
+## 8. Two reflections give a complete small case and an exact scaling failure
+
+Change the acceptance circuit using a Hadamard on only Y:
+
+```math
+ A_x'=H_YA_xH_Y,\qquad
+ V_x=(I-2A_x')(I-2A_x),\qquad
+ U_{2,x}=H_a Z_a(H_Y\mathcal C_{A,x}H_Y)\mathcal C_{A,x}H_a.
+                                                               \qquad(19)
+```
+
+Only a starts clean. All four banks and the private helpers remain
+arbitrary. The ideal accepted block is the anti-Hadamard-test block
+
+```math
+ K_{2,x}=(I-V_x)/2.                                     \qquad(20)
+```
+
+There is a complete fiber calculation of its support. Fix X-basis
+eigenlabels alpha, beta, gamma on C,D,Z. The summand of A_x on Y is
+$`(-1)^{\ell\cdot s}X_Y(K_x^{\mathsf T}\ell)`$, where
+$`s=\alpha+\beta+K_x\gamma`$. If
+$`v_x\cdot(\alpha+\beta)=1`$, the terms ell and ell+v_x cancel,
+so A_x and A_x' both vanish on that entire fiber.
+
+Otherwise s belongs to the image of K_x. Its restriction to the fixed
+domain $`e_0^\perp`$ is bijective onto that image, so there is a
+unique mathematical label u with $`K_xu=s`$ and u_0=0. This solve
+labels the proof's fibers; no inverse query is emitted. On the last
+n minus one Y bits, put $`d=2^{n-1}`$ and
+
+```math
+ |\chi_u\rangle=d^{-1/2}
+       \sum_{y\in\mathbb F_2^{n-1}}(-1)^{u\cdot y}|y\rangle.
+```
+
+In this even-charge fiber the actual two projectors are
+
+```math
+ A_x=|\chi_u\rangle\langle\chi_u|\otimes I_{Y_0},
+ \qquad
+ A_x'=|u\rangle\langle u|\otimes I_{Y_0},
+ \qquad |\langle u|\chi_u\rangle|^2=\epsilon:=2/q.
+                                                               \qquad(21)
+```
+
+Thus for every n at least two,
+$`A_xA_x'A_x=\epsilon A_x`$. The two rays are independent. Their
+span projector, on the complete four-bank space, is
+
+```math
+ \begin{aligned}
+ P_{{\rm span},x}
+   &={A_x+A_x'-A_xA_x'-A_x'A_x\over1-\epsilon},\\
+ K_{2,x}^\dagger K_{2,x}
+   &={2I-V_x-V_x^\dagger\over4}
+     =(1-\epsilon)P_{{\rm span},x},\\
+ P_{{\rm span},x}&\le\Pi_{\rm eq},\qquad
+ \mathrm{rank}(P_{{\rm span},x})=2q^3.
+ \end{aligned}                                           \qquad(22)
+```
+
+At n=2, d=2 and the two rays span the whole Y tail. Hence
+$`P_{{\rm span},x}=\Pi_{\rm eq}`$ and (22) is exactly
+$`\Pi_{\rm eq}/2`$. This is a genuine complete one-clean source
+for p=1, including every auxiliary input and coherent address, not
+the misleading fixed-auxiliary coincidence in (7).
+
+For every n at least three there is an explicit missing even-charge
+input, independent of x. Put C,D,Z in their all-plus states, leave
+Y_0 arbitrary, and use
+
+```math
+ |\psi_{\rm tail}\rangle
+   ={\,|e_1\rangle-|e_2\rangle\over\sqrt2}
+```
+
+on the Y tail, where e_1,e_2 are two different nonzero standard basis
+labels. In this fiber u=0. The displayed vector is orthogonal to
+both the zero vector and the uniform plus vector, so both A_x and
+A_x' annihilate it, whereas the desired paired charge is plus.
+Consequently
+
+```math
+ \left\|K_{2,x}^\dagger K_{2,x}-\Pi_{\rm eq}/2\right\|=1/2
+ \qquad(n\ge3).                                        \qquad(23)
+```
+
+The upper bound follows from (22): on the span the discrepancy is
+$`1/2-\epsilon`$, on its even-charge complement it is minus one
+half, and on odd charge it is zero. The witness remains valid for
+an arbitrary coherent address and arbitrary references. It also
+shows why more signal operations using only these same two ideal
+reflections cannot distinguish the missing even-charge vectors from
+odd-charge vectors: both reflections are identity on both spaces.
+Conjugating both Y and Z by Hadamards instead makes the stabilizer
+families commute and supplies only additional thin intersections.
+
+### Native precision, complete return and recovery
+
+Use (14) twice, with actual emitted scalar zero words of error eta.
+The two additional H_Y walls and the signal H,Z,H are Clifford.
+With the physical envelope included, the common ledger is
+
+```math
+ \begin{aligned}
+ T_{U_2}&\le64r+2T_0,&d_{U_2}&\le64+2d_0,\\
+ G_{U_2}&\le2G_{\mathcal C}+6n+4+4c_n,&
+ b_{U_2}&\le2n+\max(r,h_0),\qquad a_{\rm clean}=1,\\
+ \|\widetilde U_2-U_2\|&\le2\eta,&
+ \|\widetilde G_2-G_2\|&\le4\eta.
+ \end{aligned}                                           \qquad(24)
+```
+
+Every native query helper returns exactly. All return errors of the
+approximate scalar zero words, including any movement of their tested
+signal/carrier wires between boundaries, are included in (24).
+The actual source inverse reverses both emitted scalar zero words;
+neither is replaced by a second forward approximation. On the
+missing-even witness its accepted norm is at most 2 eta, so the
+emitted lookup Gram error is at least $`1/2-4\eta^2`$.
+
+For p=1, the scalar zero test has only three tested bits. Use an exact
+eight-T returned CCZ with negative C literals, rather than an
+approximation. Each controlled reflection then uses four returned
+bilinear query words and that CCZ. The explicit fixture emits the
+whole source with 80 T gates and 168 Cliffords in dual coordinates;
+the common positive-S actual inverse uses the same bounds after
+adjacent S powers are reduced modulo four. With the safe fixed basis
+envelope this gives
+
+```math
+ T_{U_2}\le80,\quad G_{U_2}\le216,\quad d_{U_2}\le80,
+ \quad b_{U_2}\le5,
+ \qquad(p=1,\ n=m=2).                                  \qquad(25)
+```
+
+The source Gram error is zero. The already proved
+[four-call recovery and serial dirty promotion](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
+therefore give a complete exact zero-clean p=1 indicator, for example
+with the simultaneous safe bounds
+$`T\le2664`$, $`G\le7276`$, $`D_T\le2592`$ and dirty width
+at most 11. All auxiliary return is part of that theorem. If using
+the approximate scalar primitive instead, eta at most
+$`\tau^2/16384`$ makes the p=1 Gram error at most
+$`\tau^2/4096`$ and the same recovery has final error at most tau.
+For larger p no precision choice repairs (23).
+
+The [short-word thin-reflection rank bounds](EXPANDER_ZERO_REFLECTION.md#11-a-paid-graph-reflection-still-needs-complete-readout)
+already cover the relevant baseline-dependent call obstruction;
+they are not a new general depth bound here. Their exact controlled-call
+specialization is useful. Let D be the dimension of the banks, address
+and arbitrary helpers, excluding the signal. Each ideal controlled
+$`R_{A,x}`$ call differs from identity on rank D/q in the full
+2D-dimensional space. For k such calls with arbitrary unitary
+interlayers, replace every call by identity to define the baseline
+accepted block K_0. Telescoping the rank defects and compressing to
+the signal-zero subspace gives
+
+```math
+ \mathrm{rank}(K-K_0)\le kD/q.
+                                                               \qquad(26)
+```
+
+If K_0=0 and k is strictly less than q/2, the kernel of K intersects
+the desired rank-D/2 even-charge space. Hence the ideal Gram error is
+at least one half. If the emitted whole word is within full operator
+error nu of this ideal word, its accepted norm on that kernel vector
+is at most nu, giving Gram error at least $`1/2-\nu^2`$.
+Thus a sufficiently accurate repair within this zero-accepted-baseline
+controlled-call grammar requires at least $`q/2=2^{n-1}`$ ideal
+calls. This constant counts controlled reflections: an uncontrolled
+reflection on the two-signal-sector space has twice the rank defect.
+The baseline assumption is essential, and this is not a native
+T-depth bound.
+
+The constructive progress is (14)--(25): controlled and normalized thin sources are paid, a real
+complete small case is identified, and the next unpaid operation is
+removing the common-kernel blindness on the full even-charge sector.
+Reopen with a changed broad phase or signal coupling that acts on that
+space, not another precision choice or scalar function of this walk.
+
+The additional exact fixtures check the full p=1 Gram, the literal
+source and actual inverse with both arbitrary private-mask values,
+and the p=2 common-kernel witness. These support the analytic proof;
+they are internal verification, not external mathematical review.

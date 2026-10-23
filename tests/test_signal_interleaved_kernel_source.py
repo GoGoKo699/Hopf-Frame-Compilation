@@ -211,6 +211,165 @@ class SignalInterleavedKernelSourceTests(unittest.TestCase):
         for inputs, receipt in expected.items():
             self.assertEqual(_integer_receipt(*inputs), receipt)
 
+    def test_partial_h_full_signal_gram_and_empty_intersection(self):
+        partial_h = native_columns(4, [('H', 1), ('H', 3)])
+        distinguished_x = native_columns(4, [('X', 0)])
+        other_x = native_columns(4, [('X', 1)])
+        rotation = native_columns(5, ry_t(4))
+        signal_s = native_columns(5, [('S', 4)])
+        signal_h = native_columns(5, [('H', 4)])
+        half = CQ2(Fraction(1, 2))
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            changed_f = multiply(multiply(partial_h, f), partial_h)
+            source = eye(32)
+            for operation in (rotation, signal_s, signal_h,
+                              _control(scale(e, CI)), signal_h,
+                              _control(scale(changed_f, CI)), signal_h, rotation):
+                source = multiply(operation, source)
+            accepted = [row[:16] for row in source[:16]]
+            self.assertEqual(accepted, _one_clean_block(e, changed_f))
+            gram = multiply(adjoint(accepted), accepted)
+
+            real_f = scale(add(changed_f, adjoint(changed_f)), half)
+            imag_f = scale(add(changed_f, scale(adjoint(changed_f), -CO)), -CI * half)
+            weighted_e = add(scale(e, CO + CI), scale(adjoint(e), CO - CI))
+            expanded = add(scale(eye(16), half), scale(weighted_e, CQ2(Fraction(-1, 8))))
+            expanded = add(expanded, scale(add(multiply(multiply(adjoint(e), imag_f), e),
+                                              scale(imag_f, -CO)),
+                                          CQ2(Q2(0, Fraction(1, 8)))))
+            expanded = add(expanded, scale(add(scale(multiply(real_f, e), CO - CI),
+                                              scale(multiply(adjoint(e), real_f), CO + CI)),
+                                          CQ2(Fraction(1, 8))))
+            self.assertEqual(gram, expanded)
+            self.assertEqual(multiply(e, distinguished_x), multiply(distinguished_x, e))
+            self.assertEqual(multiply(multiply(distinguished_x, changed_f), distinguished_x),
+                             scale(changed_f, -CO))
+            twirled = scale(add(gram, multiply(multiply(distinguished_x, gram), distinguished_x)),
+                            half)
+            expected_twirl = add(scale(eye(16), half), scale(weighted_e, CQ2(Fraction(-1, 8))))
+            self.assertEqual(twirled, expected_twirl)
+            self.assertEqual(multiply(gram, other_x), multiply(other_x, gram))
+            self.assertEqual(gram[0][0], half)
+            self.assertEqual(gram[2][2], half)
+            if address:
+                charge = native_columns(4, [('Z', 0), ('Z', 1), ('Z', 2), ('Z', 3)])
+                rotated_charge = multiply(multiply(partial_h, charge), partial_h)
+                support = [label for label in range(16) if f[label][label] == CO]
+                self.assertEqual(support, [0, 5, 8, 13])
+                self.assertFalse(any(rotated_charge[i][j] != CZ
+                                     for i in support for j in support))
+
+    def test_local_rotation_full_signal_gram_and_trace_obstruction(self):
+        # The fixed-address pi/4 rotation is exact. The parameterized
+        # nonzero-address echo in the proof uses paid approximations;
+        # this fixture does not certify that asymptotic synthesis.
+        signal_rotation = native_columns(5, ry_t(4))
+        signal_s = native_columns(5, [('S', 4)])
+        signal_h = native_columns(5, [('H', 4)])
+        local_rotation = native_columns(4, ry_t(0))
+        z0 = native_columns(4, [('Z', 0)])
+        x0 = native_columns(4, [('X', 0)])
+        half = CQ2(Fraction(1, 2))
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            v = local_rotation if address else eye(16)
+            changed_f = multiply(multiply(adjoint(v), f), v)
+            source = eye(32)
+            for operation in (signal_rotation, signal_s, signal_h,
+                              _control(scale(e, CI)), signal_h,
+                              _control(scale(changed_f, CI)), signal_h,
+                              signal_rotation):
+                source = multiply(operation, source)
+            accepted = [row[:16] for row in source[:16]]
+            self.assertEqual(accepted, _one_clean_block(e, changed_f))
+            gram = multiply(adjoint(accepted), accepted)
+            if not address:
+                self.assertEqual(gram[0][0], half)
+                self.assertEqual(gram[1][1], CZ)
+                continue
+            rest = multiply(z0, f)
+            expected_f = multiply(scale(add(z0, scale(x0, -CO)),
+                                        CQ2(Q2(0, Fraction(1, 2)))), rest)
+            self.assertEqual(changed_f, expected_f)
+            self.assertEqual(gram[2][2], CQ2(Fraction(7, 16)))
+            self.assertEqual(sum((gram[k][k] for k in range(16)), CZ),
+                             CQ2(Q2(6, -1)))
+            self.assertEqual(sum((multiply(e, x0)[k][k] for k in range(16)), CZ), CZ)
+            y0 = scale(multiply(x0, z0), CI)
+            for pauli in (x0, y0, z0):
+                phase = multiply(pauli, rest)
+                real_part = scale(add(phase, adjoint(phase)), half)
+                product = multiply(real_part, e)
+                self.assertEqual(sum((product[k][k] for k in range(16)), CZ), CZ)
+
+    def test_x1_orbit_parity_and_attained_spectral_gap(self):
+        powers = _root_powers()
+        for p in (1, 2, 3):
+            m, n = 1 << p, p * (1 << p)
+            v = sum(1 << (block * p) for block in range(m))
+            w = v ^ 1
+            # At x=1 the binary B query shifts field blocks by p bits.
+            self.assertEqual((w >> p).bit_count(), m - 1)
+            self.assertEqual((w >> p).bit_count() % 2, 1)
+            k = 1 if p == 1 else 3
+            z = ((1 << k) - 1) << p
+            t = z & ~1  # Literal t=Pz, so a=t+Pz=0.
+            a = t ^ (z & ~1)
+            exponent = (a ^ (z >> p)).bit_count() - a.bit_count()
+            self.assertLessEqual(k, n - p)
+            self.assertEqual(exponent, k)
+            eigenvalue = powers[exponent % 8]
+            spectral_error = (CO - (CO + CI) * eigenvalue / CQ2(2)
+                              - (CO - CI) * eigenvalue.conj() / CQ2(2)) / CQ2(4)
+            expected = CQ2(Fraction(1, 4)) if p == 1 else CQ2(Q2(Fraction(1, 4), Fraction(1, 4)))
+            self.assertEqual(spectral_error, expected)
+
+    def test_exact_branch_moments_and_global_positive_floor(self):
+        powers = _root_powers()
+        a = CQ2(Q2(Fraction(1, 2), Fraction(1, 4)))
+        for p in (1, 2):
+            n, ell = p * (1 << p), p * ((1 << p) - 1)
+            counts = [0] * 8
+            # Literal x=1 XOR-carry phase on every pair of carrier labels.
+            # No product-distribution formula is used in this enumeration.
+            for z in range(1 << n):
+                for t in range(1 << n):
+                    shifted = t ^ (z & ~1)
+                    h = (shifted ^ (z >> p)).bit_count() - shifted.bit_count()
+                    counts[h % 8] += 1
+            dimension = CQ2(1 << (2 * n))
+            first = sum((CQ2(count) * powers[k]
+                         for k, count in enumerate(counts)), CZ) / dimension
+            second = sum((CQ2(count) * powers[(2 * k) % 8]
+                          for k, count in enumerate(counts)), CZ) / dimension
+            mu = CO
+            for _ in range(ell):
+                mu *= a
+            rho = CQ2(Fraction(1, 1 << ell))
+            self.assertEqual(first, mu)
+            self.assertEqual(second, rho)
+            m_square = h_square = CZ
+            for k, count in enumerate(counts):
+                phase = powers[k]
+                real_part = (phase + phase.conj()) / CQ2(2)
+                h_part = ((CO - CI) * phase + (CO + CI) * phase.conj()) / CQ2(2)
+                m_square += CQ2(count) * real_part * real_part
+                h_square += CQ2(count) * h_part * h_part
+            self.assertEqual(m_square / dimension, (CO + rho) / CQ2(2))
+            self.assertEqual(h_square / dimension, CO)
+
+        # Exact rational certificates at the largest global moments for p>=3.
+        # sqrt(2)<3/2 proves a<7/8; no floating-point gap is inferred.
+        self.assertLess(Fraction(2), Fraction(3, 2) ** 2)
+        self.assertLess(Fraction(7, 8) ** 21, Fraction(1, 16))
+        self.assertLess((1 + Fraction(1, 1 << 21)) / 2, Fraction(3, 4) ** 2)
+        mu_upper = Fraction(1, 8) + Fraction(7, 8) * Fraction(1, 16)
+        self.assertEqual(mu_upper, Fraction(23, 128))
+        second_upper = (1 + Fraction(1, 8) + Fraction(1, 1 << 21)) / 2
+        self.assertLess(second_upper, Fraction(49, 64) ** 2)
+        self.assertEqual((1 - mu_upper - Fraction(49, 64)) / 4, Fraction(7, 512))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -73,6 +73,56 @@ def _reverse_bell_outcomes(p, x, a, sign):
     return [Fraction(int(value), 2*q*q) for value in numerators]
 
 
+def _x(wire):
+    return [('H', wire), ('S', wire), ('S', wire), ('H', wire)]
+
+
+def _reduce_s_runs(word):
+    result = []
+    index = 0
+    while index < len(word):
+        gate = word[index]
+        end = index + 1
+        if gate[0] == 'S':
+            while end < len(word) and word[end] == gate:
+                end += 1
+            result.extend([gate] * ((end-index) % 4))
+        else:
+            result.append(gate)
+        index = end
+    return result
+
+
+def _p1_reflection_source():
+    # x0; C1,2; D3,4; Y5,6; Z7,8; signal9; one returned phase mask10.
+    x, c0, c1, signal, phase = 0, 1, 2, 9, 10
+    linear = [('CX', c0, 3), ('CX', c1, 4)]
+    for target in (6, 8):
+        linear += _private_toffoli(x, c0, target, phase) + [('CX', c1, target)]
+    ccz = [('H', c1)] + _private_toffoli(signal, c0, c1, phase) + [('H', c1)]
+    negative_c_phase = _x(c0) + _x(c1) + ccz + _x(c1) + _x(c0)
+    controlled = (word_inverse(linear) + [('H', c0), ('H', c1)]
+                  + negative_c_phase + [('H', c0), ('H', c1)] + linear)
+    y_wall = [('H', 5), ('H', 6)]
+    return ([('H', signal)] + controlled + y_wall + controlled + y_wall
+            + [('S', signal), ('S', signal), ('H', signal)])
+
+
+def _thin_projector_numerators(rows):
+    """Integer numerators qA,qA' from their complete Pauli actions."""
+    n, q = len(rows), 1 << len(rows)
+    first = np.zeros((q**4, q**4), dtype=np.int64)
+    second = np.zeros_like(first)
+    for column in range(q**4):
+        y = (column >> (2*n)) & (q-1)
+        for ell in range(q):
+            image = _binary_image(_transpose(rows), ell)
+            data_flip = ell | (ell << n) | (image << (3*n))
+            first[column ^ data_flip ^ (image << (2*n)), column] += 1
+            second[column ^ data_flip, column] += 1 - 2*((image & y).bit_count() & 1)
+    return first, second
+
+
 class CorankFourierBellSourceTests(unittest.TestCase):
     def test_p1_p2_full_fourier_grams_fix_the_two_kernel_orientations(self):
         for p in (1, 2):
@@ -217,6 +267,90 @@ class CorankFourierBellSourceTests(unittest.TestCase):
                 coefficient = int(row == column) + int(row == swapped)
                 self.assertEqual(block[i][j], coefficient * alpha)
                 self.assertEqual(gram[i][j], CQ2(Fraction(coefficient, 4)))
+
+    def test_thin_source_and_complete_p1_fibers_keep_literal_signal_phases(self):
+        # The three possible fibers (odd, even u=0, even u=1) exhaust
+        # the p=1 full operator, leaving all other fiber labels arbitrary.
+        # y_tail=0, signal=1; CZ is emitted with literal H/CX/H.
+        cz = [('H', 0), ('CX', 1, 0), ('H', 0)]
+        for u in (None, 0, 1):
+            mask = _x(0) if u == 0 else []
+            controlled = ([] if u is None else
+                          [('H', 0)] + mask + cz + mask + [('H', 0)])
+            word = ([('H', 1)] + controlled + [('H', 0)]
+                    + controlled + [('H', 0), ('S', 1), ('S', 1), ('H', 1)])
+            actual = native_columns(2, word)
+            accepted = [row[:2] for row in actual[:2]]
+            gram = multiply(adjoint(accepted), accepted)
+            for row in range(2):
+                for column in range(2):
+                    expected = CQ2(Fraction(1, 2)) if u is not None and row == column else CZ
+                    self.assertEqual(gram[row][column], expected)
+            self.assertEqual(native_columns(2, word_inverse(word)), adjoint(actual))
+            # The separately normalized one-thin-projector source uses
+            # the same controlled reflection, with its native scalar kept.
+            thin = (ry_t(1, inverse=True) + controlled
+                    + [('S', 1), ('S', 1)] + ry_t(1, cube=True))
+            block = [row[:2] for row in native_columns(2, thin)[:2]]
+            alpha = CQ2(Fraction(1, 4), Fraction(1, 4))
+            for row in range(2):
+                for column in range(2):
+                    expected = (alpha * (-1 if u and row != column else 1)
+                                if u is not None else CZ)
+                    self.assertEqual(block[row][column], expected)
+
+    def test_literal_p1_reflection_pair_returns_dirty_mask_and_actual_inverse(self):
+        word = _p1_reflection_source()
+        inverse = _reduce_s_runs(word_inverse(word))
+        self.assertEqual(_counts(word), (80, 168))
+        self.assertEqual(_counts(inverse), (80, 168))
+        rows, vector, n = _kernel(1, 1)
+        q = 1 << n
+        first, second = _thin_projector_numerators(rows)
+        identity = np.eye(q**4, dtype=np.int64)
+        walk = (q*identity - 2*second) @ (q*identity - 2*first)
+        accepted = q*q*identity - walk
+        target = np.zeros_like(accepted)
+        for column in range(q**4):
+            target[column, column] += q**4
+            target[column ^ vector ^ (vector << n), column] += q**4
+        # Every principal and auxiliary input column is checked here;
+        # the native fixture below challenges the actual query helpers.
+        np.testing.assert_array_equal(accepted.T @ accepted, target)
+        columns = [1, 1 | (1 << 10)]
+        for native_word, operator in ((word, walk), (inverse, walk.T)):
+            actual = native_columns(11, native_word, columns=columns)
+            for j, column in enumerate(columns):
+                helper = column >> 10
+                for row in range(1 << 11):
+                    if row & 1 != 1 or row >> 10 != helper:
+                        expected = CZ
+                    else:
+                        bank = (row >> 1) & 255
+                        signal = (row >> 9) & 1
+                        value = (q*q if bank == 0 else 0) + (1 if signal else -1)*int(operator[bank, 0])
+                        expected = CQ2(Fraction(value, 2*q*q))
+                    self.assertEqual(actual[row][j], expected)
+
+    def test_p2_common_kernel_witness_survives_all_addresses(self):
+        # C,D,Z have X label zero.  This computes both full stabilizer
+        # actions on the two-supported Y witness without large matrices.
+        for x in range(4):
+            rows, vector, n = _kernel(2, x)
+            q = 1 << n
+            images = [_binary_image(_transpose(rows), ell) for ell in range(q)]
+            self.assertEqual(set(images), set(range(0, q, 2)))
+            for y0 in (0, 1):
+                state = {2 | y0: 1, 4 | y0: -1}
+                first = [0]*q
+                second = [0]*q
+                for image in images:
+                    for y, amplitude in state.items():
+                        first[y ^ image] += amplitude
+                        second[y] += amplitude * (1 - 2*((image & y).bit_count() & 1))
+                self.assertEqual(first, [0]*q)
+                self.assertEqual(second, [0]*q)
+            self.assertNotEqual(vector, 0)
 
 
 if __name__ == '__main__':
