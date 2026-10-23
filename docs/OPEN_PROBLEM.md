@@ -40,9 +40,8 @@ evaluation, without an efficient-preprocessing claim.
 | Main constructive question | A complete approximate dirty indicator with sublogarithmic address depth and simultaneous resource budgets |
 | Focused lower question | Actual original physical-pair transport beyond the proved four-band eligibility classes; no general four-band degree ceiling is known |
 
-The [current readout assessment](../research/depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
-separates general theorems, paid components, source-specific limitations and
-the first unpaid operation. The [route decisions](../research/ROUTE_DECISIONS.md)
+The [working checkpoint](../WORKSPACE.md#current-checkpoint-native-source-scope-and-complete-readout)
+identifies the current question and first unpaid operation. The [route decisions](../research/ROUTE_DECISIONS.md)
 record stopped mechanisms and the conditions that would justify reopening them.
 
 <a id="precision-uniform-two-clean-count"></a>
@@ -224,77 +223,13 @@ The relevant exclusions have different hypotheses:
 | Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. General higher-band words need not satisfy this premise |
 | Wide Clifford filters | [Sharp lookup correlation](../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) is $`(p+1)/2^p`$ for $`p\ge2`$; normalized Clifford averages cannot separate the two full lookup eigenspaces by a constant gap. Coefficient and call bounds are not native-depth bounds |
 
-Completed address return does not supply native read-only sharing.
-The direct read-only two-band/current-spectral-wrapper combination fails;
-this does not lower-bound every promotion scheme or unrestricted depth.
-The [normalized Fourier echo](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source)
-is a paid native source of depth at most 18 with polynomial overhead,
-but selects the forward pencil column; its Gram gap to the inverse-column
-lookup target is exactly $`1/2`$ for $`p\ge2`$. The
-[half-bilinear commutator](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source)
-now includes paid address-sensitive shears and genuine address-Hadamard
-mixing. The [XOR-carry source](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source)
-has exact half-projector normalization and native depth at most 146.
-Exact p=1,2 witnesses reject these tested words, without an all-size
-exclusion. Charge-preserving conjugation of their fixed paired projector
-has exact Gram gap one half at every nonzero fixed address. The next
-operation was a signal-interleaved acceptance polynomial. The resulting
-[actual families](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
-pay their controlled phases but fail their stated sector contracts.
-The [branch-moment theorem](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#branch-moment-obstruction)
-gives global Gram error greater than 7/512 for p at least three under
-arbitrary independent conjugations of the two branches, including
-address motion and dirty spectators. It fixes the polynomial and spectra,
-not a gate-depth class; earlier grading/attenuation bounds retain their scopes.
-
-A paid [unequal-branch word](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#unequal-outer-branch-source)
-still has Gram gap greater than $`2^{-22}`$ for p at least two, for every
-signal seed and arbitrary left unitary, with its middle/right branches and readout fixed.
-The separate [tail-bank commutant](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction)
-gives Gram gap at least one quarter for every p at least one for arbitrary
-words in the actual E,F bank algebra, any number of signals/calls and
-address-only interlayers. A tail-bank X commutes with every such source
-but flips the nonzero-address target. A changed tail-Hadamard three-query
-word escapes that premise but fails an exact p=1 sector test.
-The [Boolean spectral source](../research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md)
-instead changes the branch spectra. Exact phase estimation, bounded-clean
-removal and dirty phase echoes pay its controlled broad reflections and
-quarter phases at constant depth. For Hermitian reflections R,F its Gram is
-$`[I+(FR+RF)/2]/4`$. Exact matching requires their product to be the lookup
-sign. The original flat/diagonal family retains gap at least one quarter
-at every nonzero address; a qualifying pair is unpaid.
-
-The [scalar-kernel partial source](../research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
-has constant fixed-accuracy depth and exact half normalization but misses
-most of the correct sector. Scalar processing cannot distinguish those
-missing inputs from the rejected charge. The
-[corank-one Fourier/Bell construction](../research/depth/CORANK_FOURIER_BELL_SOURCE.md)
-has the desired abstract partial isometry and a complete native dilation.
-Shared outcomes impose extra stabilizers; their full thin projector now
-has a paid one-clean half-normalized source using the scalar zero test.
-A two-reflection word works at p=1 on arbitrary auxiliaries, but a correct-charge
-common kernel gives gap one half for p at least two. Fixed-call thin
-controlled-reflection repairs with zero accepted erased baseline cannot cover
-the half-space; this is a scoped call-rank limit, not a native-depth bound.
-The earlier depth-42 coherent-SWAP source also retains gap one half.
-These ledgers fit polynomial fusion, but their general sector contracts do not.
-The [coupled order word](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md) requires
-$`(R_xS_x)^2\approx Q_x`$, already a complete direct query. The paid
-[affine orbit](../research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge) is a charge-preserving conjugate of a fixed flip.
-[Non-diagonal dressing](../research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
-has a Hadamard-anchor Gram cap I/4; its transverse anchor requires a complete
-unitary square root. A paid non-Clifford trial has Gram gap at least
-$`\sqrt2/4`$ for every p. These words are paused; genuinely nonunitary accepted sources remain open. Neither phase degree nor these gaps bounds general depth.
-
-The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
-controls every subset sum of relative eigenphases, not just the largest
-one-particle error. For the literal expander lift on unpadded lengths,
-the [sparse-word theorem](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#sparse-expander-lift-obstruction)
-forces filter length $`N=\Omega_\tau(p)`$ at constant auxiliary dimension,
-even with arbitrary selector precision. This stops its fixed-branching
-version; it is not an unrestricted T-depth lower bound and does not
-alter the constant-depth scalar zero test. None of these source trials
-moves the complete-frame frontier.
+Completed address return does not establish native read-only sharing.
+The [route decisions](../research/ROUTE_DECISIONS.md) record the precise
+limitations and reopening conditions for normalized kernel, signal-interleaved,
+scalar/Bell, orbit and fermionic sources. The
+[working checkpoint](../WORKSPACE.md#main-unfinished-route-and-exact-missing-operation)
+identifies the next complete-operator question. None of the recorded source
+trials supplies the missing complete shallow source or changes the general frontier.
 
 ## Constant-depth frontier
 

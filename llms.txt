@@ -31,7 +31,7 @@ Upper theorems hold for all admitted parameters. Matching lower bounds are worst
 - C: precision-uniform one-clean count and the banked frontier. [Growing-source Sections 11–12](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) are authoritative; retained two-clean corollaries keep distinct allocations.
 - Selected D: [R79, uniform subtree depth](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/depth/UNIFORM_SUBTREE_DEPTH.md), with R78 decoder and R72 terminal/fallback dependencies.
 - Strongest unconditional research upper: [R96, all-precision linear depth](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/depth/ALL_PRECISION_LINEAR_DEPTH.md), preserving one clean qubit, the real/complex dirty thresholds, optimal T-count and complete return error. R79 remains selected D.
-- Optimal general T-depth remains open. A source-specific obstruction, logical-call lower bound or smaller component constant is not an unrestricted depth bound or a complete-circuit improvement. Read WORKSPACE for the current unpaid native operation and active physical-pair scout.
+- Optimal general T-depth remains open. A source-specific obstruction, logical-call lower bound or smaller component constant is not an unrestricted depth bound or a complete-circuit improvement. Read WORKSPACE for the current unpaid native operation and chosen research question.
 
 ## Separate evidence and task boundaries
 

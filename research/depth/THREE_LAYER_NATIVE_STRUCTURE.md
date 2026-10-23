@@ -290,6 +290,8 @@ because both V_0 and the peeled factor are diagonal. Products of
 diagonal C3 operations are diagonal C3, so **V_0 is diagonal C3**.
 This proves the required closure without a missing source premise.
 
+<a id="6-exact-pair-phases-and-the-common-coordinate-bound"></a>
+
 ## 6. Exact pair phases and the original-coordinate degree bound
 
 For a paired orbit choose its signed Hermitian difference to be
