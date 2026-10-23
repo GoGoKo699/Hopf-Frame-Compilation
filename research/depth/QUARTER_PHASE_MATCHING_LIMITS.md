@@ -258,7 +258,11 @@ A=\frac{2I+\sum_{j=1}^{14}r_j}{16},\qquad
 
 The convex-unitary variance identity, retaining just the identity-to-r_j
 pairs, gives
-$`1-\|A\psi\|^2\ge\sum_j\|(I-r_j)\psi\|^2/128=7E/32`$.
+
+```math
+1-\|A\psi\|^2\ge\sum_j\|(I-r_j)\psi\|^2/128=7E/32.
+```
+
 Conjugating every r_j by the same row translation proves the same
 single-row statement at any marked address.
 
@@ -270,6 +274,10 @@ dirty selectors have a different Gram operator. The scalar zero
 reflection is already paid in its original proof. The remaining
 constructive task is to retain this changed address algebra while
 deriving a normalized complete arbitrary-bank acceptance polynomial.
+
+The [row-isolation continuation](BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+now pays a fixed-row SELECT after cancelling each stage's background.
+It does not supply coherent row selection or normalized full-bank acceptance.
 
 The [exact fixtures](../../tests/test_quarter_phase_matching_limits.py)
 check the local group, tensor invariant, heterogeneous signatures,

@@ -8,20 +8,21 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: coupled-source coherence and matching invariants
+## Current checkpoint: row isolation and co-moving acceptance
 
-**Verified scientific checkpoint:** [PR #228](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/228),
-`ea8f2ed40a8c85b465296703cd6675072b77eb03`, checked 23 October 2026.
-Coupled two-path and four-path sources are paid but fail the complete Gram.
-Matching invariants and a one-row spectral escape are proved; no qualifying
-complete source is supplied. Exact-tree receipts belong to the PR record.
+**Verified starting checkpoint:** [PR #229](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/229),
+`30b9adf901d2fa3c20eda8c1e0c45b613992c89e`, checked 23 October 2026.
+The continuation below proves a complete background-conjugation defect,
+fixed-row isolation and a paid lookup-charge-preserving bank-motion stage.
+Its simple and transplanted readouts fail; no qualifying complete source
+is supplied. Exact-tree receipts belong to the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Coupled quarter-phase sources](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md): complete accepted polynomials, the marked/unmarked eigenvalue collision, and the four-path coherent Gram defect.
-3. [Matching limits and spectral escape](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md), then [balanced two-branch readout](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout): exact hypotheses and the direct zero-clean square reduction.
+2. [Bank response and row isolation](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md): full background conjugation, exact two-row defect, fixed-row cancellation and unpaid aggregation.
+3. [Co-moving lookup stages](research/depth/CO_MOVING_LOOKUP_STAGE.md): a paid sector-preserving component, failed acceptance words and the remaining complete identity. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -87,51 +88,51 @@ or $`\tau^2/2^{20}`$ before eight-call fusion. No extra clean recovery flag is u
 and [route decisions](research/ROUTE_DECISIONS.md#source-specific-representation-limits)
 before proposing a new word; their hypotheses are not general depth bounds.
 
-**Latest substantive outcome.** The [matched-flip two-stage word](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md)
-has a complete arbitrary-bank relative operator, but a marked/unmarked
-common eigenvalue defeats scalar filtering. Reversing branch order also
-fails. A paid four-path word with bank-sensitive phases passes the empty-bank
-and one-row basis-probability checks, yet has complete Gram error
-exactly one half. A fixed-row selector flip does give an exact
-selector-independent partial Gram on arbitrary banks.
-[Matching stages](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) cover all
-coordinates at constant depth, but fixed partitions and fixed bipartitions
-have proved invariant-vector limits. The full dressed expander family has
-a uniform one-row spectral gap; that is not an arbitrary-bank Gram theorem.
+**Latest substantive outcome.** [Composing stages before a row echo](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+leaves an exact first-stage background conjugation. A two-row bank has
+coherent Gram error exactly three quarters and dirty-selector dependence.
+Echoing each stage first cancels every background; a four-clean fixed-row
+expander compression is paid. Coherently selecting its row would require
+the missing indicator itself. Unmixed global-flip batching cannot distinguish
+an eight-row affine cube from the empty bank on the selector-zero fiber.
+These are scoped acceptance failures, not general native-depth bounds.
 
-**Next concrete question: complete bank-bit response.** For a bank-preserving
-candidate write $`G_Y=K(Y)^\dagger K(Y)`$. In the single-bank coordinates
-of the coupled-source proof, the target is $`(I+\Omega_Y)/4`$, with
-$`\Omega_Y|x\rangle=(-1)^{Y_x}|x\rangle`$. Seek an actual accepted word with
+The [co-moving construction](research/depth/CO_MOVING_LOOKUP_STAGE.md) instead
+moves address, physical bank and selectors together. It commutes with the
+complete lookup charge $`\Omega|x,Y\rangle=(-1)^{Y_x}|x,Y\rangle`$ and has
+zero clean work, depth at most 116, and polynomial fusion budgets. Its basic
+echo has Gram error at least one half on every proper nonempty even bank;
+scalar filtering has a marked/unmarked eigenvalue collision. Transplanting
+the earlier four-path polynomial also fails, with marked acceptance three
+quarters. Sector preservation does not supply sector readout.
+
+**Next concrete question: changed co-moving acceptance.** Derive a genuinely
+different accepted polynomial K in distinct paid co-moving stages, with
+explicit paid selector mixing as well as signal interlayers, satisfying
 
 ```math
-G_0=I/2,\qquad
-G_{Y\oplus e_v}-G_Y
-=-\frac{(-1)^{Y_v}}2|v\rangle\langle v|\otimes I_{\rm work}
+K^\dagger K\,\Pi_-=0,\qquad
+K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
+\Pi_\pm=(I\pm\Omega)/2,
 ```
 
-for every row v and every background bank Y. These exact identities telescope
-to the complete target; they are a test for a proposed source, not a new source.
-This diagnostic is scoped to bank-preserving candidates; the general source
-model may move the bank.
-Start from the paid row-selective partial Gram and derive its background
-conjugations when distinct dressed matching stages are combined. The first
-calculation is the full two-active-row operator, retaining every selector and
-off-diagonal address term. Do not infer arbitrary-bank sector invariance from
-the one-row gap: another active row can move a marked address.
+or a uniform complete norm approximation within the recovery budget above.
+Retain every arbitrary bank and selector, actual inverses, literal phases
+and every off-diagonal term. Bare stages fix the selector-zero fiber;
+signal-only mixing cannot work. Do not reuse the failed scalar echo or unchanged
+four-path acceptance. Paid bank motion is now available; its qualifying
+acceptance identity is the first unpaid step, not recovery or dirty promotion.
 
-Proceed only if an exact cancellation identity or a global norm estimate
-survives at every bank. A per-flip error epsilon alone accumulates to
-$`|Y|\varepsilon\le m\varepsilon`$; accuracy of order delta/m can restore the
-old precision/depth cost. Pay any coherent row selection, signal mixing and
-actual inverse before claiming a complete improvement. Stop a proposed repair
-if it assumes a free address-controlled row flip, $`\Theta(p)`$ clean history
-or a correction that reconstructs the known logarithmic-depth indicator.
-A scalar filter of the failed word or another basis-only success is insufficient.
-If the word reduces to two balanced unitary branches, use the
+The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
+remains available for bank-preserving alternatives. Per-flip error epsilon
+can accumulate sharply to m epsilon even with zero mixed response. Pay any
+coherent row selection, signal mixing and actual inverse. Stop repairs that
+assume a free address-controlled row flip, growing clean history, or precision
+that reconstructs the known depth. If acceptance reduces to two balanced
+unitary branches, apply the
 [direct-square criterion](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout).
-Recovery is already paid. The earlier instruction to merely couple stages
-or transfer the one-row spectral gap is superseded by this response test.
+The earlier instruction to calculate the two-active-row background is settled;
+the one-row gap alone still does not give a complete source.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
