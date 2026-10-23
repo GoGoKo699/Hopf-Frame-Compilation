@@ -333,6 +333,63 @@ class SynchronizedAddressStageTests(unittest.TestCase):
             self.assertEqual(sum(projectors[0][i][i] * projectors[1][i][i]
                                  for i in range(4)), CO)
 
+    def test_quarter_phase_flip_difference_source_and_all_p2_grams(self):
+        # One active row is a fixed fixture parameter, not an initialized bank.
+        # a,s,xc,xt,d,g: only a is the accepted signal; every native column is kept.
+        stage = _private_cs(1, 2, 4, 5) + _private_toffoli(1, 2, 3, 5)
+        word = ([('H', 0), ('CX', 0, 1)] + stage
+                + [('CX', 0, 1), ('S', 0), ('S', 0), ('H', 0)])
+        self.assertEqual(_counts(word), (20, 28))
+        self.assertEqual(_counts(_inverse(word)), (20, 28))
+        actual = native_columns(6, word)
+        self.assertEqual(native_columns(6, _inverse(word)), adjoint(actual))
+        for column in range(64):
+            signal, selector, control = column & 1, column >> 1 & 1, column >> 2 & 1
+            for row in range(64):
+                expected = CZ
+                for branch in (0, 1):
+                    active = (selector ^ branch) * control
+                    output = (column ^ (active << 3)) & ~1 | (row & 1)
+                    if row == output:
+                        sign = -1 if branch and (signal ^ (row & 1) ^ 1) else 1
+                        expected += (CI if active else CO) * Fraction(sign, 2)
+                self.assertEqual(actual[row][column], expected)
+        accepted = [[actual[row][column] for column in range(0, 64, 2)]
+                    for row in range(0, 64, 2)]
+        gram = _rational_product(adjoint(accepted), accepted)
+        for i in range(32):
+            for j in range(32):
+                self.assertEqual(gram[i][j], CO * Fraction(1, 2)
+                                 if i == j and i & 2 else CZ)
+
+        phases = (CO, CI, -CO, -CI)
+        largest_gap = Fraction(0)
+        for bank in range(16):
+            for selectors in range(16):
+                for control in (0, 1):
+                    mismatch = [u for u in range(4) if (u & 1) != control]
+                    count = sum(bank >> u & 1 for u in mismatch)
+                    selected = sum((bank >> u & 1) * (selectors >> u & 1)
+                                   for u in mismatch)
+                    # Exact (R-FRF)/2 on the remaining target bit, retaining
+                    # all powers and literal i phases rather than only a norm.
+                    block = [[CZ, CZ], [CZ, CZ]]
+                    for target in (0, 1):
+                        block[target ^ (selected & 1)][target] += phases[selected % 4] * Fraction(1, 2)
+                        other = count - selected
+                        block[target ^ (other & 1)][target] -= phases[other % 4] * Fraction(1, 2)
+                    actual_gram = _rational_product(adjoint(block), block)
+                    sign = -1 if (count // 2 - selected) & 1 else 1
+                    value = Fraction(1, 2) if count & 1 else Fraction(1 - sign, 2)
+                    self.assertEqual(actual_gram,
+                                     [[CO * value if i == j else CZ for j in range(2)]
+                                      for i in range(2)])
+                    for target in (0, 1):
+                        address = control | (target << 1)
+                        desired = Fraction(1 - (bank >> address & 1), 2)
+                        largest_gap = max(largest_gap, abs(value - desired))
+        self.assertEqual(largest_gap, 1)
+
 
 if __name__ == '__main__':
     unittest.main()

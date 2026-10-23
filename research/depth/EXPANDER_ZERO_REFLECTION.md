@@ -1261,7 +1261,94 @@ average is $`(P_{x_0=u_0}+P_{x_1=u_1})/2`$, with gap one half
 below its marked eigenvalue one. This removes the preceding common
 fixed-vector obstruction in that fixture. It does not make the old
 commutator a source, or prove a uniform full-bank spectral gap.
-The next unpaid operation is a genuinely nonunitary accepted polynomial
-of these paid stages, with its full lookup Gram and arbitrary-selector
-return proved together. The same two tests check the private phases
-and the p=2 projector identity exactly; no new general source is claimed.
+The [flip-difference source below](#quarter-phase-flip-difference-source)
+pays one nonunitary accepted polynomial of these stages. Its full lookup
+Gram still fails. The exact tests check the private phases and the
+p=2 projector identity; no complete source is supplied by this component.
+
+<a id="quarter-phase-flip-difference-source"></a>
+
+### A one-clean flip-difference source and its complete accepted Gram
+
+For p at least two, the paid single-CNOT R_C gives an actual nonunitary
+accepted block without a controlled-R_C implementation. Let F flip all
+m selectors. With one initialized signal a, emit chronologically
+
+```math
+H_a,\quad \prod_u\mathrm{CX}(a,s_u),\quad R_C,\quad
+\prod_u\mathrm{CX}(a,s_u),\quad Z_a,\quad H_a.
+                                                               \qquad(53)
+```
+
+The Z is the literal two-S word. The complete native unitary U has
+$`T_U=T_{R_C}`$, $`d_U\le124`$, $`G_U\le G_{R_C}+2m+4`$,
+the same private pool, one clean signal and zero implementation error.
+Counting the selectors, its dirty width outside the address and row bank
+is $`b_U=m+b_{R_C}`$.
+Its actual reverse has the same bounds. The selectors are arbitrary
+principal work; only the stage's additional helpers return exactly.
+For J inserting a=0, direct propagation of both signal branches gives
+
+```math
+K_-=J^\dagger UJ=(R_C-FR_CF)/2,\qquad
+K_-^\dagger K_-=\tfrac12\bigl(I-\mathrm{Re}(R_C^\dagger FR_CF)\bigr).
+                                                               \qquad(54)
+```
+
+Every address, row bank, selector, private-helper and reference input
+is included. Nontrivial accepted fibers are allowed by the
+[paid Gram recovery](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout);
+U itself need not return its signal or selectors. That recovery would
+give complete return only if the full target Gram were supplied.
+
+For one active row u, (54) reduces to the literal identities
+
+```math
+K_-=P_{x_c\ne u_c}\,Z_{s_u}(I-iX_t)/2,\qquad
+K_-^\dagger K_-=\tfrac12P_{x_c\ne u_c}\otimes I_s.       \qquad(55)
+```
+
+Thus the source has correct half normalization and an arbitrary-selector
+unitary accepted fiber on the mismatch halfspace. It rejects the marked
+address, but for p at least two it also misses the unmarked addresses
+sharing that control bit. This is a complete partial-projector identity,
+not a source for the whole lookup sector.
+
+The general-bank action identifies the next failure precisely. At each
+fixed control bit define the ordinary integer counts
+$`N=\sum_{u:u_c\ne x_c}Y_u`$ and
+$`N_s=\sum_{u:u_c\ne x_c}s_uY_u`$. All matching rows are identity
+and each selected mismatching row contributes iX_t. Therefore
+
+```math
+R_C=(iX_t)^{N_s},\qquad R_C^\dagger FR_CF=(iX_t)^{N-2N_s},
+\qquad K_-^\dagger K_-=
+\begin{cases}
+I/2,&N\text{ odd},\\
+\bigl[1-(-1)^{N/2-N_s}\bigr]I/2,&N\text{ even}.
+\end{cases}                                                   \qquad(56)
+```
+
+The even case depends on the arbitrary selector parity and takes values
+zero or one, not one half. For p at least two choose a marked row x
+and two further active rows with opposite control bit, and set s=0.
+Then N=2 and N_s=0, so the actual Gram is one while the desired
+$`(I+\Omega)/4`$ is zero. The full Gram distance is exactly one,
+since both are positive contractions. Even an empty bank gives actual
+zero versus desired one half. For the canonical paired $`\Pi_{\rm eq}/2`$,
+put Y in the specified physical C rows and conjugate by the n bitwise
+D-to-C CNOTs. Both orientations add 2n Cliffords, no T-depth, and
+2n-m additional arbitrary carrier inputs. Total dirty width beyond the
+specified m outputs is then $`2n+b_{R_C}`$. The gap persists; no
+Vandermonde basis change or initialized carrier is needed.
+
+Pause this single-stage difference. The new concrete question is a
+genuinely nonunitary accepted polynomial using distinct quarter-phase
+stages: remove dirty-selector dependence and cover the complete lookup
+sector together. The six-wire, 20-T, 28-Clifford native fixture fixes
+one row active and checks every address/selector/helper/signal column
+and its actual reverse; it is not an arbitrary-bank native emitter.
+The separate algebra fixture checks all p=2 row-bank/selector fibers
+of (54)--(56). These finite checks support
+the analytic all-size action and sharp failure; they do not supply the
+missing source or external mathematical review.

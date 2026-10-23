@@ -109,12 +109,12 @@ The transverse X anchor removes that attenuation but requires a complete
 unitary square root of the charge. A paid non-Clifford mixed-bank trial
 fails analytically at every size. Pause these words, not all higher-band sources.
 
-**Next concrete question.** Compose the [paid quarter-phase selector stage](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage)
-with bounded-clean interference having genuinely nonunitary accepted fibers.
-First derive its one-active-row accepted Gram and full arbitrary-selector return,
-then the action on arbitrary coherent banks. At p=2 the changed generators
-remove the former common unmarked invariant, not the complete-source obligation.
-Do not reuse the failed commutator or assume a lookup square root as a premise.
+**Next concrete question.** Combine two distinct [paid quarter-phase stages](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage)
+with genuine internal selector mixing, and derive their complete accepted Gram.
+The [one-clean flip-difference source](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source)
+pays a nontrivial accepted fiber without controlling the stage, but its
+single-stage full-bank Gram gap is one for p at least two. Test the coupled
+accepted polynomial first; certify final selector return through paid recovery.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
