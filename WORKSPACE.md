@@ -8,19 +8,18 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: branch-moment obstruction and paid Bell interference
+## Current checkpoint: three-branch interference and Boolean spectral sources
 
-**Recovered main:** [PR #221](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/221),
-`4c5e0aeca9e201be7defb5c1ce6cdf32a13c3a60`, fetched 23 October 2026.
-This checkpoint closes mixer-only repairs of the signal polynomial and pays
-thin-projector Bell interference. Its complete p=1 success does not scale.
+**Recovered main:** [PR #222](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/222),
+`c323d19b042935e5e532a42f7ab9392daaab3dd7`, fetched 23 October 2026.
+The new three-branch and Boolean spectral sources have paid circuits but wrong Grams.
 Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Signal-interleaved sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md): native words, full Grams, grading and the stronger branch-moment obstruction.
-3. [Scalar-kernel partial source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and [corank-one Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md): correct support versus normalization, with complete arbitrary-input actions.
+2. [Signal-interleaved sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) and [Boolean reflection sources](research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md): actual changed words, full Grams and complete native ledgers.
+3. [Scalar-kernel partial source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and [corank-one Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md): correct support versus normalization on arbitrary inputs.
 4. [Four-call Gram recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -41,8 +40,7 @@ complex-magnitude width $`b\ge17(L+n+8)`$, with complete
 initialized-isometry error at most $`2^{-L}`$. These are simultaneous
 bounds with absolute constants. [R79](research/depth/UNIFORM_SUBTREE_DEPTH.md)
 remains selected Result D. At fixed accuracy and square-root dirty width,
-the unrestricted depth interval is still logarithmic upper versus constant
-lower. The latest source and representation results do not close it.
+logarithmic upper versus constant lower depth remains open.
 
 The exhaustive at-most-one-clean three-layer Boolean theorem has universal
 sign degree at most $`D_{\rm np}=D_3+576=480\,2^{43}+903`$ and nonconstant
@@ -104,15 +102,17 @@ explicit correct-charge common kernel still gives gap one half.
 These budgets fit fusion; their general sector contracts fail. These are
 analytic, scoped results, not general depth bounds.
 
-**Next concrete question.** Change the acceptance algebra: construct a
-three-controlled-branch signal word from the paid phase/query primitives,
-derive its accepted polynomial and check the normalized trace before
-attempting complete lookup-sector matching. Alternatively change the
-actual branch spectra, not their mixers. The current two-branch word is
-paused even for unrestricted nonsignal conjugations. Fixed-call thin-Bell
-repairs with zero accepted erased baseline are also paused: at least
-$`2^{n-1}`$ ideal controlled-reflection calls are needed to cover the
-half-space. This is a call-rank limit, not a native-depth bound.
+The new three-branch sandwich has a protected wrong-charge input; signal
+control seeds retain a scoped trace obstruction. Exact zero-clean Boolean
+spectral reshaping pays controlled quarter phases and a one-clean source
+whose Gram contract reduces to a broad-reflection product. Its trace is
+correct, but the old flat/diagonal dynamics still select wrong sectors.
+
+**Next concrete question.** Use unequal outer branches in a native
+three-branch word and derive its complete accepted polynomial, or construct
+a non-flat broad-reflection pair whose product is the lookup sign.
+Neither closed family supplies that product. Fixed-call thin-Bell repairs
+with zero accepted erased baseline remain paused; this is not a depth bound.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -145,8 +145,8 @@ only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
 
-The PR #221 partial-H question, PR #220 interleaving question and PR #219
-mixer proposal are superseded by the complete calculations above. The
+The PR #222 three-branch and spectrum questions now have the explicit
+families above; the older mixer proposals are superseded. The
 held PR #217 queue is closed: four-call recovery and the exact Gram-sector
 conditions are proved; the six-wire candidate is stopped. Fourth-order
 closure supplies neither lookup sectors nor a free native square.

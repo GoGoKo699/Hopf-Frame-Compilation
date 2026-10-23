@@ -211,6 +211,128 @@ class SignalInterleavedKernelSourceTests(unittest.TestCase):
         for inputs, receipt in expected.items():
             self.assertEqual(_integer_receipt(*inputs), receipt)
 
+    def test_three_branch_seeded_word_full_polynomial_and_trace(self):
+        signal, size = 4, 16
+        identity, half = eye(size), CQ2(Fraction(1, 2))
+        inverse_root_two = CQ2(Q2(0, Fraction(1, 2)))
+        p0 = native_columns(4, [('Z', 0), ('Z', 2)])
+        projector = scale(add(identity, p0), half)
+        complement = add(identity, scale(projector, -CO))
+        rotation = native_columns(5, ry_t(signal))
+        rotation_cube = native_columns(5, ry_t(signal, cube=True))
+        signal_h = native_columns(5, [('H', signal)])
+        controlled_p0 = native_columns(5, [
+            ('H', 0), ('CX', signal, 0), ('H', 0),
+            ('H', 2), ('CX', signal, 2), ('H', 2),
+        ])
+        base = multiply(multiply(rotation_cube, controlled_p0), adjoint(rotation))
+        omega = _root_powers()[1]
+
+        def trace(matrix):
+            return sum((matrix[j][j] for j in range(size)), CZ) / CQ2(size)
+
+        for address in (0, 1):
+            e, f = _p1_parts(address)
+            outer = multiply(multiply(signal_h, _control(f)), signal_h)
+            f_plus = scale(add(identity, f), half)
+            f_minus = scale(add(identity, scale(f, -CO)), half)
+            delta = add(e, scale(identity, -CO))
+            for seed_kind in ('zero', 'real', 'complex'):
+                seed = rotation if seed_kind != 'zero' else eye(32)
+                if seed_kind == 'complex':
+                    seed = multiply(seed, native_columns(5, [('S', signal)]))
+                word = eye(32)
+                for operation in (adjoint(outer), seed, _control(e),
+                                  adjoint(seed), outer, base):
+                    word = multiply(operation, word)
+                accepted = [row[:size] for row in word[:size]]
+
+                # Use the accepted polynomial, independent of the 32x32 word.
+                # The scalar phase in the native seed cancels between L
+                # and L-dagger, so no nested square roots are needed.
+                seed_small = (native_columns(1, ry_t(0))
+                              if seed_kind != 'zero' else eye(2))
+                if seed_kind == 'complex':
+                    seed_small = multiply(seed_small, native_columns(1, [('S', 0)]))
+                seed_inverse = adjoint(seed_small)
+                l_op = add(scale(f_plus, seed_inverse[0][1]),
+                           scale(f_minus, seed_inverse[1][1]))
+                h_op = add(scale(f_minus, seed_inverse[0][1]),
+                           scale(f_plus, seed_inverse[1][1]))
+                coefficient = add(
+                    scale(multiply(projector, add(l_op, scale(h_op, -CO))),
+                          inverse_root_two),
+                    multiply(complement, h_op))
+                expected = scale(add(scale(projector, inverse_root_two),
+                                     multiply(multiply(coefficient, delta),
+                                              adjoint(l_op))), omega)
+                self.assertEqual(accepted, expected)
+                gram = multiply(adjoint(accepted), accepted)
+                if address == 0:
+                    self.assertEqual(gram, scale(projector, half))
+                    continue
+
+                mu = trace(e)
+                m_op = scale(add(f, adjoint(f)), half)
+                a2 = trace(multiply(m_op, m_op))
+                correlation = trace(multiply(multiply(multiply(e, m_op),
+                                                       adjoint(e)), m_op))
+                j_moment = trace(multiply(multiply(multiply(m_op, adjoint(delta)),
+                                                   p0), delta))
+                if seed_kind != 'complex':
+                    q, b = ((inverse_root_two, inverse_root_two)
+                            if seed_kind == 'real' else (CZ, CO))
+                    trace_formula = (CQ2(Fraction(1, 4)) + (CO - mu) / CQ2(4)
+                                     + (q*b*j_moment - b*b*(correlation
+                                         + (CO - CQ2(2)*mu)*a2)) / CQ2(8))
+                    self.assertEqual(trace(gram), trace_formula)
+
+                alpha, beta = seed_inverse[0][1], seed_inverse[1][1]
+                cross = alpha.conj() * beta
+                a_bloch = cross + cross.conj()
+                b_bloch = (cross - cross.conj()) / CI
+                c_bloch = beta.conj()*beta - alpha.conj()*alpha
+                self.assertEqual(a_bloch*a_bloch + b_bloch*b_bloch
+                                 + c_bloch*c_bloch, CO)
+                n_op = scale(add(f, scale(adjoint(f), -CO)), -CI*half)
+                axis = add(scale(m_op, c_bloch), scale(n_op, -b_bloch))
+                axis_square = trace(multiply(axis, axis))
+                axis_correlation = trace(multiply(multiply(multiply(e, axis),
+                                                            adjoint(e)), axis))
+                axis_j = trace(multiply(multiply(multiply(axis, adjoint(delta)),
+                                                  p0), delta))
+                general_trace = (CQ2(Fraction(1, 4)) + (CO - mu) / CQ2(4)
+                                 + (a_bloch*axis_j - axis_correlation
+                                    - (CO - CQ2(2)*mu)*axis_square) / CQ2(8))
+                self.assertEqual(trace(gram), general_trace)
+                expected_traces = {
+                    'zero': CQ2(Q2(Fraction(9, 32), Fraction(-1, 64))),
+                    'real': CQ2(Q2(Fraction(11, 32), Fraction(-5, 128))),
+                    'complex': CQ2(Q2(Fraction(41, 128), Fraction(-1, 32))),
+                }
+                self.assertEqual(trace(gram), expected_traces[seed_kind])
+                expected_wrong = (CQ2(Q2(Fraction(7, 16), Fraction(1, 16)))
+                                  if seed_kind == 'real' else half)
+                self.assertEqual(gram[2][2], expected_wrong)
+
+    def test_three_branch_blind_sector_and_uniform_seed_certificate(self):
+        # At x=1 the same F=+1, P0=+1, Q=-1 vector is protected
+        # for a genuinely changed first branch as well as the actual E.
+        _, f = _p1_parts(1)
+        changed_e = native_columns(4, [('T', 0), ('H', 1), ('CX', 1, 3)])
+        signal_h = native_columns(5, [('H', 4)])
+        outer = multiply(multiply(signal_h, _control(f)), signal_h)
+        sandwich = multiply(multiply(outer, _control(changed_e)), adjoint(outer))
+        self.assertEqual([row[8] for row in sandwich],
+                         [CO if j == 8 else CZ for j in range(32)])
+
+        # Exact positivity certificate for every real-axis seed, p>=3.
+        self.assertLess(Fraction(7, 8)**21, Fraction(1, 16))
+        self.assertLess((1 + Fraction(1, 1 << 21)) / 2, Fraction(9, 16))
+        self.assertEqual(Fraction(15, 16)*Fraction(7, 16)/4
+                         - (Fraction(3, 4) + Fraction(1, 16))/16,
+                         Fraction(53, 1024))
+
     def test_partial_h_full_signal_gram_and_empty_intersection(self):
         partial_h = native_columns(4, [('H', 1), ('H', 3)])
         distinguished_x = native_columns(4, [('X', 0)])
