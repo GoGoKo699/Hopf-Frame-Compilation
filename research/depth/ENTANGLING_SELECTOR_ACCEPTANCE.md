@@ -12,7 +12,9 @@ using linear selector permutations and global Hadamards. Partial Fourier
 mixing leaves that module, yet the specified four-path source still has a
 two-bit Gram floor of one sixth. Adding an affine selector flip gives an
 exact finite algebraic separator and an all-size separation at address zero;
-neither supplies a uniform gap or a lookup construction. A square-stage commutator gives a complete two-bit
+the latter has a direct central-word proof, but that word reads the fixed
+physical bank bit on the full space. Neither supplies an all-address lookup
+construction. A square-stage commutator gives a complete two-bit
 calibration and identifies precisely why its affine-Pauli extension stops.
 
 None of these statements changes R96 or proves a general depth lower bound.
@@ -291,6 +293,11 @@ implementation of its charge projectors.
 
 ### All-size separation within address zero
 
+The following invariant-image proof retains its original three-image
+hypothesis. The [direct central word](#fixed-row-central-word) below
+strengthens the conclusion to a single nonempty matching and identifies
+exactly what the separator reads away from address zero.
+
 There is also an analytic result for every p at least two, including every
 bank background. Restrict both charge representations to the invariant
 address-zero space, so their charges are determined by $`Y_0`$. Use the
@@ -344,11 +351,121 @@ the reverse intertwiner as well. This proves separation for arbitrary
 banks and coherent selectors within x=0, not merely for the earlier
 empty/singleton witness.
 
+<a id="fixed-row-central-word"></a>
+
+### A direct central word reads the fixed physical row
+
+Use the group commutator convention $`[A,B]=ABA^\dagger B^\dagger`$.
+Let C be any nonempty matching and choose a moved row t. Then
+$`t,Ct\ne0`$ and $`Ct\ne t`$. On the **complete** space, define
+
+```math
+E=[R_C,X_{s_0}],\qquad Q=[E,X_{s_t}],\qquad W=[Q,Z_{s_t}].
+```
+
+The exact identities are
+
+```math
+\begin{aligned}
+E&=i^{Y_0d_C(x,0)(2s_0-1)}L_C^{Y_0},\\
+Q&=(X_{s_{Ct}}X_{s_t})^{Y_0},\\
+W&=(-1)^{Y_0}I=Z_{Y_0}.                              \qquad(11d)
+\end{aligned}
+```
+
+Here the exponent of i is a diagonal operator. Flipping selector zero
+changes h by $`Y_0`$ and changes n by
+$`Y_0d_C(x,0)(1-2s_0)`$. Row zero, its bank bit and every control
+coordinate are fixed by C. These facts give the first line with the
+actual stage adjoint, including its nonzero-address phase. That phase
+commutes with the moved-row X and Z operators. Conjugation by L takes
+$`X_{s_t}`$ to $`X_{s_{Ct}}`$, giving the second line. Its two-row
+Pauli has exactly one overlap with $`Z_{s_t}`$, giving the last line.
+Every basis label returns with precisely the displayed phase, including
+arbitrary coherent inputs entangled with a reference.
+
+The expanded word uses eight actual stage/adjoint calls, eight
+$`X_{s_0}`$, four $`X_{s_t}`$ and two $`Z_{s_t}`$ factors. In the
+positive-S native alphabet, $`X=HS^2H`$ and $`Z=S^2`$ give common
+forward/actual-reverse bounds
+
+```math
+T_W\le8T_R,\qquad G_W\le8G_R+52,\qquad D_T(W)\le8d_R\le928.
+```
+
+The stage's private dirty pool is reused and returns exactly; there is
+no clean input. These are bounds for the displayed word, not optimal
+costs: its complete action is just the two-Clifford gate $`Z_{Y_0}`$.
+
+On x=0, W equals Omega. Taking t to be the all-ones row, every nonempty
+CNOT matching moves it, and (11a) supplies both of its selector Paulis
+from M, N, H and F. Thus the original alphabet with **one** nonempty
+matching already has no opposite-charge intertwiner within x=0: an
+intertwiner would have to intertwine +I and -I. No third row image or
+spectral-gap argument is required. This strengthens the earlier
+separation theorem, while explaining its limited constructive content.
+For general x the same word reads $`Y_0`$, not $`Y_x`$.
+
+<a id="address-transport-cost"></a>
+
+### Extending the fixed-row readout requires addressed transport
+
+Let $`(T_xY)_u=Y_{u\oplus x}`$ and define the coherent one-bank
+translation $`V_Y|x,Y\rangle=|x,T_xY\rangle`$. It leaves x unchanged,
+is an involution, and has the complete identity
+
+```math
+V_Y^\dagger Z_{Y_0}V_Y=\Omega.                         \qquad(11e)
+```
+
+Consequently a shallow implementation of this transport would itself
+solve the phase lookup. Two global bank-Hadamard walls then give the
+complete dirty indicator. An emitted zero-clean unitary with full return
+error at most epsilon from $`V_Y\otimes I`$ gives error at most
+$`2\epsilon`$ in (11e), by the two-factor norm estimate; its actual
+native inverse is required. This is a sufficient reduction to lookup,
+not an equivalence claiming that lookup cheaply implements transport.
+
+The straightforward exact transport has p sequential batches. Batch j
+swaps each pair of bank wires $`(u,u\oplus e_j)`$ with $`u_j=0`$,
+controlled by $`x_j`$. Each batch has m/2 disjoint Fredkins sharing
+one control. Two outer CNOTs per pair plus the
+[four-layer bilinear batch](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#2-pay-for-a-root-controlled-complete-bank-transition)
+give, for $`p\ge2`$, common forward/actual-inverse bounds
+
+```math
+T_{V_Y}\le3mp,\qquad G_{V_Y}\le(7m+3)p,\qquad
+D_T(V_Y)\le4p.                                        \qquad(11f)
+```
+
+There are no helpers, clean inputs or errors. Distinct coordinate
+batches share physical bank wires, so commutation of their logical
+permutations does not make their native T layers disjoint. Equation
+(11f) is an upper bound for this schedule, not a transport lower bound;
+its linear depth does not improve the retained logarithmic route.
+
+The same issue occurs if zeta is moved with the address. On selectors,
+write $`M_x=T_xM_pT_x`$. Since global F commutes with every row
+translation, (11a) gives
+
+```math
+M_xFM_x=T_xX_{s_0}T_x=X_{s_x}.                         \qquad(11g)
+```
+
+The right side is exactly the requested complete indicator on the
+selector bank. Address-relative zeta conjugation cannot be assigned a
+free cost to extend the address-zero argument. Nor can a free
+$`X_{s_x}`$ be inserted into an address-relative stage echo. The first
+unpaid operation in these repairs is addressed transport or selection,
+which the fixed-row central word does not provide.
+
 ### Scope of the remaining all-address question
 
 The address-zero result does not exclude intertwiners involving nonzero
 address orbits, even when one endpoint has address zero. It supplies no
-uniform gap, normalized accepted block or complete recovery construction.
+all-address gap, normalized accepted block or complete lookup construction.
+The direct word (11d) settles its fixed-fiber readout but does not alter
+this boundary; (11e)-(11g) locate the missing address dependence.
 If only the same two address coordinates are used at p greater than two,
 the entire alphabet commutes with every unused address X. With one bank
 marking x but not its spectator-bit flip, this again gives a one-quarter
@@ -443,8 +560,9 @@ complete accepted identity remains unpaid. The CNOT/global-H grammar
 cannot be repaired by longer signal processing; the displayed partial-H
 four-path source is also rejected. The affine-flip enlarged algebra escapes
 the common-intertwiner obstruction at two bits and, for every p at least two, between
-the two address-zero sectors. Other address orbits and a uniform source or
-gap remain open. The square-stage calibration cannot be extrapolated through
+the two address-zero sectors. The direct address-zero extraction is settled,
+but its full-space action is only $`Z_{Y_0}`$. Other address orbits and a
+uniform all-address source or gap remain open. The square-stage calibration cannot be extrapolated through
 fixed affine-Pauli words.
 
 The next admissible attack must specify a genuinely different accepted
@@ -464,6 +582,9 @@ optimal constant-depth frames.
 Exact fixtures: [native selector controls](../../tests/test_entangling_selector_readout.py),
 [marked acceptance](../../tests/test_entangling_marked_acceptance.py),
 [finite sector separator](../../tests/test_co_moving_sector_separator.py), and
-[square-stage calibration](../../tests/test_square_stage_readout.py).
+[square-stage calibration](../../tests/test_square_stage_readout.py). The
+[fixed-row and transport fixtures](../../tests/test_fixed_row_transport_readout.py)
+retain the full-address phase in (11d), test its disagreement with lookup,
+and corroborate the translation and moved-zeta identities.
 Finite fixtures corroborate the stated identities and finite certificates;
 they do not replace the all-size arguments or establish an asymptotic source.
