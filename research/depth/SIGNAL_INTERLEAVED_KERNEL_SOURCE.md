@@ -17,6 +17,10 @@ identity excludes every final conjugation preserving the distinguished
 X_z0, including conjugations that move the address. Section 11 changes
 the polynomial again with three controlled branches, including a native
 signal seed; its complete action gives a separate scoped obstruction.
+Section 12 makes the outer branches unequal. A complete rejection
+condition excludes every left unitary and scalar signal seed while
+retaining the specified right and middle branches; a moving-address
+right-branch trial instead fails its base normalization.
 
 ## 1. Registers and the actual phase
 
@@ -1008,7 +1012,242 @@ and wrong-sector receipts at x=1,z=e_1,t=0:
 The p=1 fixtures do not extend (46) to p=1 or p=2. The unseeded
 bound (44) already covers those sizes analytically.
 
-## 12. Verification scope and the next unpaid operation
+<a id="unequal-outer-branch-source"></a>
+
+## 12. Unequal outer branches and their complete rejection condition
+
+Changing only the left outer branch is a further actual source family.
+Keep U_0 and B_F from (41), and use the paid partial Hadamard S of
+Section 7 to put $`G=S^\dagger FS`$. For any signal seed V, define
+
+```math
+ B_G=H_a\mathrm C_a(G)H_a,\qquad
+ U_{G,V}=U_0 B_G V_a^\dagger\mathrm C_a(E)V_aB_F^\dagger.
+                                                               \qquad(48)
+```
+
+Here G_0=F_0=P_0, so the exact base Gram is still P/2. The
+left branch and the right inverse are now different. For the actual
+partial-H G, its controlled word adds two S calls, or 4(n-1)
+Cliffords, to the ledger (43). In particular V=I has
+
+```math
+ \begin{aligned}
+ T&\le48r+420n+2,&d_T&\le470,\\
+ G_{\rm native}&\le6G_B+534n+2G_{\mathcal R}+4c_n+37+4(n-1).
+ \end{aligned}
+```
+
+The native V=R_a seed adds two T, two T layers and twelve Cliffords;
+V=R_a S_a adds four further Cliffords in the common inverse bound.
+The private width remains at most max(r,4n), with one clean signal.
+All private work returns exactly, actual inverses are emitted, and
+the exact polynomial intermediate budgets still fit fusion. A general
+unitary V or G in the theorem below is algebraic freedom, not a free
+native implementation.
+
+The following complete polynomial also applies to any unitary left
+branch G. Write $`V^\dagger|1\rangle=\alpha|0\rangle+\beta|1\rangle`$
+and put
+
+```math
+ \begin{aligned}
+ u&=(\alpha+\beta)/2,&v&=(\alpha-\beta)/2,&
+ L_F&=uI+vF,&\Delta&=E-I,\\
+ C&=I-P,&D&=\sqrt2P-C,\\
+ X&=I/2+u\Delta L_F^\dagger,&
+ Y&=F^\dagger/2+v\Delta L_F^\dagger.
+ \end{aligned}
+```
+
+The symbols X,Y,D in this subsection are block coefficients, not
+Paulis or the original phase D_x. Multiplication of the two signal
+blocks gives the entire accepted operator and Gram:
+
+```math
+ \begin{aligned}
+ K_{G,V}&=\omega(CX+DGY),\\
+ K_{G,V}^\dagger K_{G,V}
+ &=X^\dagger CX-X^\dagger CGY-Y^\dagger G^\dagger CX
+       +Y^\dagger G^\dagger(I+P)GY,\\
+ X^\dagger X+Y^\dagger Y&=I/2.
+ \end{aligned}                                                   \qquad(49)
+```
+
+The last identity follows from the unit norm of the first block
+column before B_G. It also follows directly from the definitions.
+These equations retain all off-diagonal action, coherent addresses,
+arbitrary bank and dirty inputs, and reference identities.
+
+With V=I, any unit vector satisfying Fw=Pw=w has
+
+```math
+ K_{G,I}w=\omega DGw/2,\qquad
+ \|K_{G,I}w\|^2=(1+\|PGw\|^2)/4\ge1/4.              \qquad(50)
+```
+
+The wrong-charge basis vector in (44) has these properties. Thus
+the unseeded unequal word fails for every E and every unitary G,
+even if G moves addresses or mixes arbitrary spectators. For the
+specified partial-H G, which commutes with P, its acceptance remains
+one half. An unequal left branch alone does not remove the protected
+input.
+
+### A seed-independent rejection obstruction with the actual right branch
+
+Allow any unitary seed V and any unitary G, but retain the actual E,F
+of (3). For every fixed nonzero address and every p at least two,
+
+```math
+ \left\|K_{G,V}^\dagger K_{G,V}-G_*(x)\right\|\gt2^{-22}.
+                                                               \qquad(51)
+```
+
+This permits arbitrary changes of the left branch, beyond conjugation
+of F. It is not a theorem about every three-branch source: its actual
+right branch, middle branch, placement of the single seed and U_0
+readout remain hypotheses.
+
+To prove (51), exact rejection of a vector w would require
+GYw=CXw. More quantitatively, if w has wrong lookup charge and the
+complete Gram error is at most delta, then (49) implies
+
+```math
+ \begin{aligned}
+ \|K_{G,V}w\|^2
+ &=2\|PGYw\|^2+\|C(X-GY)w\|^2\le\delta,\\
+ d(w)&=\|Yw\|^2-\|CXw\|^2,\qquad
+ |d(w)|\le\sqrt\delta.
+ \end{aligned}                                                   \qquad(52)
+```
+
+For the last bound, the distance from GYw to CXw is at most
+$`\sqrt\delta`$, while their two norms sum to at most one by the last
+line of (49). This removes the left branch from a necessary condition.
+Since the argument holds for every wrong-charge unit vector, it also
+gives the operator condition
+
+```math
+ \|\Pi_{\rm neq}(Y^\dagger Y-X^\dagger CX)
+                    \Pi_{\rm neq}\|\le\sqrt\delta.
+```
+
+Two computational inputs suffice. First take the earlier
+w_+=|z=0,t=e_j>, with j different from zero and (v_x)_j=1.
+It obeys Fw_+=w_+, P_0w_+=w_+, and Q_xw_+=-w_+.
+For w_-, choose z with B_xz of weight four, set z_0=1 and let t be
+z with coordinate zero set to zero.
+This is possible because B_x is independent of z_0 and has the full
+first n-p coordinates as image, with n-p at least six when p is at
+least two. Then h_x=4, P_0=-1, F=+1, and
+v_x dot (z+t)=v_x dot e_0=1, so Q_x=-1 as well.
+
+The actual E is X-diagonal with constant computational diagonal
+mu from (36). Its autocorrelation kappa is also common to every
+computational basis column w:
+
+```math
+ \langle w|E^\dagger P_0E|w\rangle
+ =\sigma\kappa\quad(P_0w=\sigma w),\qquad
+ 0\le\kappa\le1.                                      \qquad(53)
+```
+
+This assertion concerns computational basis vectors, not arbitrary
+P_0 eigenvectors. Indeed $`E^\dagger P_0 E P_0`$ is X-diagonal,
+so every computational
+diagonal equals its normalized trace. Conjugating that trace by the
+linear Fourier mixer turns P_0 into a fixed bit translation. In the
+independent phase coordinates $`a=t+P_{\rm del}z`$ and b=B_xz,
+where P_del deletes coordinate zero, the exponent is
+the sum of (-1) raised to a_j times b_j over n-p active coordinates.
+The contribution to its phase autocorrelation from one coordinate is
+1 for translation (0,0), 1/2 for (1,0), and 1/sqrt(2) for either
+translation with the second bit one. The total autocorrelation is
+their product, proving (53). No cancellation or independence of the
+chosen witness is assumed beyond this uniform-coordinate trace.
+
+Put $`a=2\mathrm{Re}(\overline\alpha\beta)`$,
+$`c=|\beta|^2-|\alpha|^2`$, q=1-mu, and b=(1-c)(1+a).
+Here $`a^2+c^2\le1`$, including complex-axis seeds.
+Using Fw_+=w_+ and Fw_-=w_-
+in the definitions of X,Y gives the two exact defects
+
+```math
+ \begin{aligned}
+ d_+&=1/4+acq/4-b(1-\kappa)/16,\\
+ d_-&=acq/2+b(1-\kappa)/16.
+ \end{aligned}                                                   \qquad(54)
+```
+
+For p=2, $`\mu=((2+\sqrt2)/4)^6\gt3/8`$. Hence
+d_++d_-=(1+3acq)/4 is greater than 1/64, using ac at least
+-1/2. Equation (52) already gives $`\delta\gt2^{-14}`$ in this case.
+
+For p at least three, mu is less than 1/24: the single-coordinate
+moment is less than 6/7, n-p is at least 21, and (6/7)^21 is less
+than 1/24. Suppose $`\delta\le2^{-22}`$ and write
+$`\epsilon=\sqrt\delta`$, so epsilon is at most 1/2048. Equations
+(52)--(54), together with 1-kappa at most one, imply
+
+```math
+ \begin{aligned}
+ ac&\ge-8/23-64\epsilon/23,\\
+ b&\ge8/3-16\epsilon,\\
+ a-c=b-1+ac&\ge91/69-432\epsilon/23,\\
+ a^2+c^2
+ &\ge(91/69-432\epsilon/23)^2-16/23-128\epsilon/23
+ \gt1.
+ \end{aligned}                                                   \qquad(55)
+```
+
+The last expression decreases throughout this epsilon interval and
+is still greater than one at its right endpoint, as the exact rational
+fixture checks. This contradicts the seed normalization and proves
+(51). The constant is a conservative certificate, not an optimized
+extraction or resource constant.
+
+The same two witness inputs may be embedded into the full coherent
+address space and tensored with any spectator state. Thus (51) is
+also a global bound if the left G moves addresses or mixes spectators,
+while E,F and the scalar signal seed retain the specified form.
+An address-controlled seed is covered fiber by fiber. A general
+seed acting on bank or dirty inputs is not included. Full source
+approximation error eta decreases the bound by at most 2 eta.
+
+The actual partial-H unequal source and its seeds are therefore
+paused. Reopening requires changing the right branch or middle
+dynamics, changing the signal/readout architecture, or another source
+interface. The theorem does not supply a general depth lower bound.
+
+### A concrete moving-address right branch does not preserve the base
+
+One changed right branch was also tested on its complete operator.
+Let A apply H to all p address bits and replace the right F in (48)
+by $`F^{\rm addr}=A^\dagger F A`$, with left G=F, the actual E,
+and native seed V=R_a. All operators here act on the full coherent
+address space. The right controlled word is implemented by two A
+calls around the paid controlled F inverse, adding only 2p Cliffords
+to the seeded ledger (43). Its count, depth, width, inverse and private
+return budgets remain qualified intermediate budgets.
+
+This changes a hypothesis of (51), but it does not inherit the old
+base normalization. At p=1 the complete 64-dimensional source has
+the following exact receipt:
+
+```math
+ \|K|x=0,z=e_1,t=e_0\rangle\|^2
+   =7/32-13\sqrt2/128\gt0,\qquad
+ G_*|x=0,z=e_1,t=e_0\rangle=0.                          \qquad(56)
+```
+
+The fixture checks the full accepted polynomial (49), with this new
+right branch, rather than restricting an intermediate address fiber.
+This is a failure of the specified moving-address word, not a general
+address-motion obstruction. A replacement architecture must explicitly
+pay and verify its normalization instead of assuming that a fixed
+address-zero action survives the Hadamards.
+
+## 13. Verification scope and the next unpaid operation
 
 The focused exact fixtures multiply the full p=1 signal operator
 with the specified S, verify its accepted polynomial and grading
@@ -1029,11 +1268,21 @@ This final-coupling route is paused with its native components
 retained. A next source must change the actual branch moments or the
 acceptance polynomial. The three-branch sandwich (41) is also paused:
 its unseeded control has a protected wrong sector, and every one-qubit
-seed has the scoped trace excess (46)--(47). Unequal outer branches or a
-different branch algebra would change the moments in that calculation;
-their complete lookup action remains unpaid. Changing only the first mixer, adding a joint
+seed has the scoped trace excess (46)--(47). The unequal left branch
+in (48) changes those moments but is independently stopped by (50)--(55),
+even with an arbitrary one-qubit seed and arbitrary left unitary.
+A changed right branch or different branch algebra remains unpaid.
+Changing only the first mixer, adding a joint
 final coupling, or moving addresses cannot overcome (40). The earlier
 suggestion to escape solely by mixing the distinguished coordinate is
 therefore superseded. The first unpaid operation remains a normalized
 complete accepted Gram on the correct lookup sectors; none of these
 necessary changes supplies that operation by itself.
+
+A concrete next construction question is a coupled two-signal,
+four-path source in which the signals interact before one joint
+acceptance. The independent attenuation in Section 3 is already
+excluded. The coupled word needs a complete accepted polynomial,
+normalization and native schedule; its recovery and bounded-clean
+promotion must be paid together. This is an open construction question,
+not an emitted source or a resource improvement.
