@@ -8,18 +8,20 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: non-diagonal normalization and the next source interface
+## Current checkpoint: coupled-source coherence and matching invariants
 
-**Recovered main:** [PR #226](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/226),
-`f0b1e84e5cec6b0f362ef774fa465b43f0faabf7`, fetched 23 October 2026.
-The tested non-diagonal pair fails; no qualifying source is supplied. Exact-tree
-receipts belong to the PR record. Fetch main before resuming; this is not a pin.
+**Recovered main:** [PR #227](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/227),
+`0f0cfa3364b27734d0bb8c466999398f4404c67f`, fetched 23 October 2026.
+Coupled two-path and four-path sources are paid but fail the complete Gram.
+Matching invariants and a one-row spectral escape are proved; no qualifying
+complete source is supplied. Exact-tree receipts belong to the PR record.
+Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Transverse orbit source](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md): exact dressing normalization, a paid non-diagonal family and its sector error; the [affine gauge](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge) retains the earlier component.
-3. [Tail-bank commutant](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction): why extra signal paths alone cannot repair the retained bank algebra.
+2. [Coupled quarter-phase sources](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md): complete accepted polynomials, the marked/unmarked eigenvalue collision, and the four-path coherent Gram defect.
+3. [Matching limits and spectral escape](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md), then [balanced two-branch readout](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout): exact hypotheses and the direct zero-clean square reduction.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout), [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout), and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -89,32 +91,34 @@ that flips the target at every nonzero address. Every word in that algebra
 has global Gram gap at least one quarter for p at least one, with any
 signal/call count and address-only motion. This is not a native-depth bound.
 
-The [scalar-kernel source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) has
-constant fixed-accuracy depth and half normalization, but misses most of the
-correct sector, giving gap one half. Scalar processing cannot distinguish
-its missing-even and odd zero eigenvectors.
-The [corank-one Fourier matrix](research/depth/CORANK_FOURIER_BELL_SOURCE.md)
-has the desired abstract Gram, but shared Bell outcomes impose extra
-stabilizers. Its paid thin projector and two-reflection repair still have
-gap one half for p at least two. These budgets fit fusion; the general
-sector contracts fail. The proof homes retain their exact scopes.
+The [scalar-kernel](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and
+[Fourier/Bell](research/depth/CORANK_FOURIER_BELL_SOURCE.md) sources miss
+whole target sectors. [Transverse orbit completion](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
+and the [affine gauge](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge)
+retain their separate normalization, square-root and conjugacy limits.
+Their proof homes and route decisions record the precise reopening conditions.
 
-The [order-interference word](research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
-has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$; success already gives a direct zero-clean query. The affine first reflection is a
-paid charge-preserving conjugate of a fixed two-bit flip, not a source of
-charge information. Its diagonal cochain degree p+2 is not a depth bound.
-[Non-diagonal controlled dressing](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
-of a Hadamard anchor has Gram at most I/4 for arbitrary bank unitaries.
-The transverse X anchor removes that attenuation but requires a complete
-unitary square root of the charge. A paid non-Clifford mixed-bank trial
-fails analytically at every size. Pause these words, not all higher-band sources.
+**Latest substantive outcome.** The [matched-flip two-stage word](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md)
+has a complete arbitrary-bank relative operator, but a marked/unmarked
+common eigenvalue defeats scalar filtering. Reversing branch order also
+fails. A paid four-path word with bank-sensitive phases passes the empty-bank
+and one-row basis-probability checks, yet has complete Gram error
+exactly one half. A fixed-row selector flip does give an exact
+selector-independent partial Gram on arbitrary banks.
+[Matching stages](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) cover all
+coordinates at constant depth, but fixed partitions and fixed bipartitions
+have proved invariant-vector limits. The full dressed expander family has
+a uniform one-row spectral gap; that is not an arbitrary-bank Gram theorem.
 
-**Next concrete question.** Combine two distinct [paid quarter-phase stages](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage)
-with genuine internal selector mixing, and derive their complete accepted Gram.
-The [one-clean flip-difference source](research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source)
-pays a nontrivial accepted fiber without controlling the stage, but its
-single-stage full-bank Gram gap is one for p at least two. Test the coupled
-accepted polynomial first; certify final selector return through paid recovery.
+**Next concrete question.** Can genuine signal-interleaved acceptance over
+the full dressed matching family cancel the four-path coherent Gram defect
+while retaining bank-sensitive normalization? Derive the entire accepted
+operator, including off-diagonal address/selector terms, before a new fixture.
+Require its norm error on every bank, not only correct basis probabilities.
+The [balanced two-unitary reduction](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout)
+shows that returning to two balanced branches already owes a direct complete
+zero-clean square query. Recovery remains paid; the qualifying source does not.
+The earlier instruction to merely couple two quarter-phase stages is superseded.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
@@ -146,10 +150,6 @@ Clifford mixing and arbitrary logical action. Pause this candidate. Reopen
 only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
-
-Independent dirty row selectors are paid, but their natural flip echo returns
-the old stage with only p+1 bank parities. An unmixed clean-selector average
-retains only the affine-support span. A [mixed-selector commutator](research/depth/EXPANDER_ZERO_REFLECTION.md#mixed-selector-commutator) leaves that premise but leaks selectors; its opposite-CNOT trial has no exact positive-power return repair.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
