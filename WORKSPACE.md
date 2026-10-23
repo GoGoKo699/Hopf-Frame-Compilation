@@ -8,19 +8,19 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: unequal-branch rejection and shared address stages
+## Current checkpoint: joint sources and the missing squared-product identity
 
-**Recovered main:** [PR #223](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/223),
-`db9a2f365356f1af5145a951983555df9da5e26a`, fetched 23 October 2026.
-Unequal branches still fail; a shared address stage is paid but loses bank information.
+**Recovered main:** [PR #224](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/224),
+`a36d777effe3e9e198a35b13d7525a85e4381197`, fetched 23 October 2026.
+Joint-source recovery is paid; the old bank algebra cannot supply lookup sectors.
 Exact-tree receipts belong to the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Unequal-branch sources](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#unequal-outer-branch-source) and [shared address stages](research/depth/EXPANDER_ZERO_REFLECTION.md#synchronized-anchored-generator-stage): actual words, complete ledgers and scoped failure mechanisms.
-3. [Scalar-kernel partial source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and [corank-one Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md): correct support versus normalization on arbitrary inputs.
-4. [Four-call Gram recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
+2. [Coupled order source](research/depth/COUPLED_ORDER_GRAM_SOURCE.md): actual joint word, squared-product interface, two paid failed trials and the remaining identity.
+3. [Tail-bank commutant](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#tail-bank-commutant-obstruction): why extra signal paths alone cannot repair the retained bank algebra.
+4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout), [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout), and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
 <a id="current-depth-frontier"></a>
@@ -70,62 +70,63 @@ and its [constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRA
 transfer qualifying queries to frames, retaining their log-log contribution.
 Assess success on that complete ledger, not source depth alone.
 
-**Constructive question.** Build a normalized one-clean source U with
+**Constructive question.** Build a normalized bounded-clean source U with
 accepted block $`K=J^\dagger UJ`$ and $`K^\dagger K\approx\Pi_{\rm eq}/2`$,
 where $`\Pi_{\rm eq}=(I+\Omega_{x,C}\Omega_{x,D})/2`$, using higher-band
 native interference, or find another complete wide non-Clifford readout.
 The [four-call Gram interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
 pays recovery and serial dirty promotion, including arbitrary accepted fibers,
 address motion and actual inverses. Gram error $`\delta\le\tau^2/4096`$
-suffices. The six-call linear block-error interface remains available.
+suffices for one clean signal. Joint two-clean recovery and full dirty promotion
+give error at most $`128\sqrt\delta`$; request $`\delta\le\tau^2/2^{14}`$,
+or $`\tau^2/2^{20}`$ before eight-call fusion. No extra clean recovery flag is used.
 **The qualifying lookup source is unpaid.** The
 [signal-interleaved families](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
-pay controlled phases and actual accepted polynomials. The attenuated
-two-clean word fails for every inner unitary. For p at least three, the
-direct one-clean polynomial has global Gram error greater than 7/512
-under arbitrary independent conjugations of both branch operators,
-including coherent address motion and dirty spectator mixing. Their
-first two spectral moments already forbid matching the target trace.
-Restricted grading/local bounds retain smaller-size scopes, not general depth bounds.
+pay controlled phases and actual accepted polynomials. Earlier attenuation,
+branch-moment and unequal-left obstructions retain their distinct scopes.
+Separately, the actual E,F bank algebra commutes with a tail-bank X
+that flips the target at every nonzero address. Every word in that algebra
+has global Gram gap at least one quarter for p at least one, with any
+signal/call count and address-only motion. This is not a native-depth bound.
 
-The [scalar-kernel source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
-has constant fixed-accuracy depth. Its ideal Gram has the correct
-half-projector normalization and rejects the entire wrong charge, but
-misses most of the correct sector and has gap one half. Scalar spectral
-processing cannot distinguish its missing-even and odd zero eigenvectors.
+The [scalar-kernel source](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) has
+constant fixed-accuracy depth and half normalization, but misses most of the
+correct sector, giving gap one half. Scalar processing cannot distinguish
+its missing-even and odd zero eigenvectors.
 The [corank-one Fourier matrix](research/depth/CORANK_FOURIER_BELL_SOURCE.md)
 has the desired abstract Gram, but shared Bell outcomes impose extra
-stabilizers. A paid scalar-zero envelope now implements their full thin
-projector with half normalization. Two conjugated reflections remove the
-extra condition at p=1 on arbitrary auxiliaries; for p at least two an
-explicit correct-charge common kernel still gives gap one half.
-These budgets fit fusion; their general sector contracts fail. These are
-analytic, scoped results, not general depth bounds.
+stabilizers. Its paid thin projector and two-reflection repair still have
+gap one half for p at least two. These budgets fit fusion; the general
+sector contracts fail. The proof homes retain their exact scopes.
 
-With the actual middle/right branches and readout, every signal seed and
-arbitrary left branch has Gram gap greater than $`2^{-22}`$ for p at least
-two. An address-Hadamard right-branch trial also fails its p=1 base test.
-The shared affine address stage is exact and zero-clean; repeating it with
-the same untouched bank sees only p+1 bank parities and has Gram gap one quarter.
+The CZ-coupled word retains independent attenuation. A tail-Hadamard
+three-query word genuinely changes that bank algebra, but fails an exact
+p=1 sector test. The [order-interference word](research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
+instead has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$ for native Hermitian
+reflections R,S. Its central identity would already give a direct
+zero-clean query, so this mechanism needs no extraction wrapper.
+Two explicit bank-moving pairs have correct base normalization and paid
+constant-depth schedules but fail distinct p=1 tests. These are finite
+failures, not all-size exclusions of changed bank dynamics.
 
-**Next concrete question.** Construct a coupled two-signal, four-path word
-with one joint acceptance and derive its complete Gram. The second signal
-must change the acceptance polynomial, not merely add independent attenuation.
-Pay its constant-clean recovery/promotion and full ledger with the source.
-The [Boolean reflection product](research/depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md) remains open outside the excluded flat/diagonal family.
+**Next concrete question.** Find changed native reflection dynamics with
+$`(R_xS_x)^2\approx\Omega_{x,C}\Omega_{x,D}`$ on the complete banks,
+or another complete-bank mechanism, without using the target projector as a
+primitive. Pause the displayed failed pairs unless a concrete
+sector correction is supplied; changing small sizes alone is not that identity.
 
 | Read before proposing a source | Exact scope |
 | --- | --- |
 | [Native read-only two-band bound](research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md) | At amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$, $`k\ge\lceil(p-3)/2\rceil`$ clean inputs are necessary when every actual Clifford boundary fixes the address. No flatness or exact return is assumed. |
-| [One-clean two-band Gram screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) | For p at least three, Gram error at most $`1/256`$ is impossible even with address motion. This target needs at least three source bands or a different clean allocation. |
+| [One-clean two-band Gram screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) | For p at least three, Gram error at most $`1/256`$ is impossible even with address motion. |
+| [Bounded-clean two-band Gram screen](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen) | A direct Gram defect gives a tiny positive fixed-k asymptotic error floor. For two clean bits its Clifford-sum length is 96. This does not exclude every moderate tolerance or growing/accuracy-dependent clean count. |
 | [Actual Clifford signal-image screen](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) | If $`U^\dagger Z_aU`$ is Clifford, lookup Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$. Arbitrary Clifford address motion is allowed; a general higher-band source need not satisfy this premise. |
 | [Sharp Clifford-filter limit](research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) | Arbitrary wide Clifford lookup correlation is at most $`(p+1)/2^p`$. Low-budget Clifford averaging is not a normalized source; this is not a T-depth bound. |
 | [General two-band rank–norm screen](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen) | Exact sources have a growing clean lower bound. The approximate floor shrinks with clean count; fixed-error moving-address growing-clean compression remains open. |
 
-The [spectral-promotion window](research/depth/MSS_SPECTRAL_PROMOTION.md)
-$`k=o(\log(p+2))`$ still requires a source, uniform precision and native
-address sharing. Completed address return does not justify parallel native
-calls. The paid [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md)
+The [spectral-promotion window](research/depth/MSS_SPECTRAL_PROMOTION.md) $`k=o(\log(p+2))`$
+still requires a source, uniform precision and native address sharing.
+Completed return does not justify parallel native calls. The [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md)
 has zero clean work and constant fixed-accuracy depth. Conjunction alone
 cannot witness dimension-growing depth at fixed accuracy.
 
@@ -145,11 +146,10 @@ only with changed actual phase algebra or a paid non-Clifford endpoint,
 then prove full Boolean return. The coefficient test can inspect more
 layers; its witness is not invariant under extra non-Clifford layers.
 
-The PR #223 unequal-left-branch question is resolved by the two-input norm
-obstruction; generator sharing alone also fails. The older next steps are superseded. The
-held PR #217 queue is closed: four-call recovery and the exact Gram-sector
-conditions are proved; the six-wire candidate is stopped. Fourth-order
-closure supplies neither lookup sectors nor a free native square.
+The PR #224 joint-source question now has actual words, recovery and finite
+sector tests; older next steps are superseded. The shared affine address stage
+is paid but sees only p+1 parities in its same-bank grammar. Fourth-order
+closure, signal coupling and absence of an old witness do not supply lookup sectors.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
