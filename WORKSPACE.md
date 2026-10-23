@@ -8,21 +8,21 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: row isolation and co-moving acceptance
+## Current checkpoint: paid selector readout and its singlet limit
 
-**Verified starting checkpoint:** [PR #229](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/229),
-`30b9adf901d2fa3c20eda8c1e0c45b613992c89e`, checked 23 October 2026.
-The continuation below proves a complete background-conjugation defect,
-fixed-row isolation and a paid lookup-charge-preserving bank-motion stage.
-Its simple and transplanted readouts fail; no qualifying complete source
-is supplied. Exact-tree receipts belong to the PR record.
+**Verified starting checkpoint:** [PR #230](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/230),
+`7f59a609c136fc9d18d354e5357a1a2b88e8a4e6`, checked 23 October 2026.
+The continuation below pays address-relative selector mixing and its
+one-clean source, then proves a complete same-bank singlet obstruction.
+Affine row translations do not repair the old four-path source either.
+No qualifying lookup source is supplied. Exact-tree receipts belong to the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
 2. [Bank response and row isolation](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md): full background conjugation, exact two-row defect, fixed-row cancellation and unpaid aggregation.
-3. [Co-moving lookup stages](research/depth/CO_MOVING_LOOKUP_STAGE.md): a paid sector-preserving component, failed acceptance words and the remaining complete identity. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
+3. [Co-moving lookup stages](research/depth/CO_MOVING_LOOKUP_STAGE.md) and [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md): paid components, complete acceptance failures and the remaining identity. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -88,7 +88,7 @@ or $`\tau^2/2^{20}`$ before eight-call fusion. No extra clean recovery flag is u
 and [route decisions](research/ROUTE_DECISIONS.md#source-specific-representation-limits)
 before proposing a new word; their hypotheses are not general depth bounds.
 
-**Latest substantive outcome.** [Composing stages before a row echo](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+**Retained components.** [Composing stages before a row echo](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
 leaves an exact first-stage background conjugation. A two-row bank has
 coherent Gram error exactly three quarters and dirty-selector dependence.
 Echoing each stage first cancels every background; a four-clean fixed-row
@@ -106,6 +106,17 @@ scalar filtering has a marked/unmarked eigenvalue collision. Transplanting
 the earlier four-path polynomial also fails, with marked acceptance three
 quarters. Sector preservation does not supply sector readout.
 
+**Latest substantive outcome.** [Address-relative selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md)
+pays a zero-clean Hadamard tag at depth two and its clean-controlled version
+at depth at most 30. The resulting one-clean difference source has depth at
+most 176, with exact phases, dirty return and actual inverses. Nevertheless,
+a two-row permutation orbit supports a dirty singlet invisible to every
+covariant row-local commutator, for arbitrary phase angles and local rotations.
+The source has Gram error at least one half; scalar filtering retains a
+same-bank marked/unmarked collision and error floor one quarter. Separately,
+coherent singleton transport preserves the old four-path three-quarter
+marked leakage under affine row translations. These are scoped source limits.
+
 **Next concrete question: changed co-moving acceptance.** Derive a genuinely
 different accepted polynomial K in distinct paid co-moving stages, with
 explicit paid selector mixing as well as signal interlayers, satisfying
@@ -118,10 +129,12 @@ K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
 
 or a uniform complete norm approximation within the recovery budget above.
 Retain every arbitrary bank and selector, actual inverses, literal phases
-and every off-diagonal term. Bare stages fix the selector-zero fiber;
-signal-only mixing cannot work. Do not reuse the failed scalar echo or unchanged
-four-path acceptance. Paid bank motion is now available; its qualifying
-acceptance identity is the first unpaid step, not recovery or dirty promotion.
+and every off-diagonal term. Use row labels that distinguish a moved pair,
+or genuinely interleave different matchings and selector operations outside
+the completed local-echo grammar. More precise local rotations, scalar filters,
+or affine relocation alone cannot repair the proved failures. This is a
+necessary change of mechanism, not a sufficient construction. The qualifying
+acceptance identity remains the first unpaid step, not recovery or promotion.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon

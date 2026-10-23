@@ -275,3 +275,11 @@ selectors and private work in the final error. Neither the source signal
 nor its accepted fiber is promised to return beforehand. Reusing the scalar
 filter of (7), or transplanting the unchanged polynomial (11), cannot supply
 (12).
+
+The continuation [paid selector readout](CO_MOVING_SELECTOR_READOUT.md)
+implements address-relative Hadamard tags and their clean-controlled use.
+Its completed covariant local echo has a same-bank orbit-pair singlet
+obstruction, even for arbitrary local rotations and phase angles. The same
+note shows that affine row translations preserve the failed four-path
+witness through coherent singleton transport. These narrower screens guide
+the changed acceptance problem; neither is a general native-depth bound.
