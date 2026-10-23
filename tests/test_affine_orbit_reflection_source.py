@@ -53,6 +53,10 @@ def _c(rows, z, t):
     return z, t ^ ((_binary_image(rows, z) ^ 1) if z & 1 else 0)
 
 
+def _l(rows, z, t):
+    return z, t ^ (_binary_image(rows, z) if z & 1 else 0)
+
+
 def _degree(values):
     coefficients = list(values)
     for bit in range((len(values) - 1).bit_length()):
@@ -83,19 +87,29 @@ def _consistent(rows, rhs, columns):
 class AffineOrbitReflectionSourceTests(unittest.TestCase):
     def test_native_affine_reflection_and_cubic_normalizer_return_all_helpers(self):
         source, normalizer, _, _ = _p1_words()
+        gauge = normalizer[1:]  # Remove only CX(z0,t0), not a hidden inverse.
         self.assertEqual(_counts(source), (8, 19))
         self.assertEqual(_counts(normalizer), (40, 49))
-        for word, is_normalizer in ((source, False), (normalizer, True)):
+        self.assertEqual(_counts(gauge), (40, 48))
+        for word, action in ((source, _s), (normalizer, _c), (gauge, _l)):
             actual = native_columns(7, word)
             self.assertEqual(native_columns(7, _inverse(word)), adjoint(actual))
             for column in range(128):
                 x = column & 1
                 z, t = column >> 1 & 3, column >> 3 & 3
                 rows, _, _ = _kernel(1, x)
-                new_z, new_t = (_c if is_normalizer else _s)(rows, z, t)
+                new_z, new_t = action(rows, z, t)
                 output = x | (new_z << 1) | (new_t << 3) | (column & 96)
                 for row in range(128):
                     self.assertEqual(actual[row][column], CO if row == output else CZ)
+        # The conjugacy is not restricted to diagonal or fixed-address R.
+        # This Hermitian native R moves the address and has a tilted axis.
+        r_word = [('H', 0), ('TDG', 2), ('H', 2), ('T', 2)]
+        s_zero = _x(1) + _x(3)
+        changed_r = gauge + r_word + gauge
+        left = s_zero + changed_r + s_zero + changed_r
+        right = gauge + source + r_word + source + r_word + gauge
+        self.assertEqual(native_columns(7, left), native_columns(7, right))
 
     def test_native_completed_p1_pair_and_actual_reverse_on_complete_columns(self):
         source, _, local, repaired = _p1_words()
@@ -128,6 +142,12 @@ class AffineOrbitReflectionSourceTests(unittest.TestCase):
                         self.assertEqual((zz ^ 1, tt ^ images[zz] ^ 1), (z, t))
                         q = _parity(vector & (z ^ t))
                         self.assertEqual(_parity(vector & (zz ^ tt)), q)
+                        # L is a charge-preserving involution and L S0 L=S.
+                        lt = t ^ (images[z] if z & 1 else 0)
+                        self.assertEqual(lt ^ (images[z] if z & 1 else 0), t)
+                        self.assertEqual(_parity(vector & (z ^ lt)), q)
+                        lst = lt ^ 1 ^ (images[z ^ 1] if (z ^ 1) & 1 else 0)
+                        self.assertEqual((z ^ 1, lst), (zz, tt))
                         u = t ^ (a if z & 1 else 0)
                         self.assertEqual(tt ^ (a if zz & 1 else 0), u)
                         self.assertEqual((u ^ a) ^ (a if zz & 1 else 0), t)

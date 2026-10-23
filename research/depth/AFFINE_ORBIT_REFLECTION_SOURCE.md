@@ -110,6 +110,57 @@ G_C&\le10(n-1)+38s+1,&h_C&\le\max(n-1,2s).
 Both (2) and (6) fit the polynomial intermediate source budgets.
 All controls, banks and private helpers may be entangled with a reference.
 
+<a id="charge-preserving-orbit-gauge"></a>
+
+### 2.1. The affine motion is a paid change of presentation
+
+Let $`C_0=\mathrm{CX}(z_0,t_0)`$ and
+$`S_0=X_{z_0}X_{t_0}`$. Removing the first CNOT in the actual word
+for C gives the exact native involution
+
+```math
+L_x=C_xC_0=C_0C_x,\qquad
+L_x|z,t\rangle=|z,t+z_0K_xz\rangle.
+```
+
+The two shears commute because both preserve z. Since
+$`v_x^{\mathsf T}K_x=0`$, L commutes with Q on the complete space.
+Equations (3)--(4), together with $`C_0S_0C_0=X_{z_0}`$, imply
+
+```math
+L_xS_0L_x=S_x,\qquad L_xQ_xL_x=Q_x.                    \qquad(6a)
+```
+
+Let L, S and Q denote the controlled direct sums of these operators
+over the address. For any unitary R, put $`R'=LRL`$. Then
+
+```math
+(R'S_0)^2=L(RS)^2L,\qquad
+\|(R'S_0)^2-Q\|=\|(RS)^2-Q\|.                         \qquad(6b)
+```
+
+Hermiticity and the involution property of R are preserved. In that
+reflection case the order-source Grams are also conjugate by L, so
+their errors relative to $`(I+Q)/4`$ agree exactly. This conclusion
+does not require R to be diagonal or to preserve the address.
+
+The common forward/actual-reverse ledger for L is
+
+```math
+T_L\le8(n-1)+32s,\quad d_L\le40,\quad
+G_L\le10(n-1)+38s,\quad h_L\le\max(n-1,2s).             \qquad(6c)
+```
+
+Thus replacing R by R' adds two L calls, not an unpaid inverse:
+T, G and depth increase by at most twice (6c), and its returned
+helper pool can be reused, with width at most the maximum of the
+two pools. Exact conjugation leaves any full-operator implementation
+error of R unchanged. The converse reduction is the same involution.
+The affine S therefore has useful paid orbit coordinates, but it is
+not an easier normalization or charge-extraction task than the fixed
+S_0. Any claimed improvement must lie in the second reflection's
+complete action, not merely in making this first reflection depend on x.
+
 <a id="diagonal-orbit-cochain"></a>
 
 ## 3. Exact diagonal completions and their sharp phase degree
@@ -286,7 +337,7 @@ analytically in the stated all-size scopes. A complete p=1 repair is
 checked natively. The exact guards in
 [`test_affine_orbit_reflection_source.py`](../../tests/test_affine_orbit_reflection_source.py)
 also check arbitrary-helper return, actual reversal, field-coordinate
-orbits and the sharp phase-degree claim at small sizes.
+orbits, the paid gauge (6a), and the sharp phase-degree claim at small sizes.
 
 The complete-frame frontier is unchanged. Continue only with a second
 reflection whose complete orbit difference is q, or a different interface.

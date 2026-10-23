@@ -188,7 +188,7 @@ not count normalization or its controlled use, remains unpaid.
 |---|---|
 | [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) | Bounded clean banks and constant-amplitude complete blocks can be removed with charged actual inverses, leakage and arbitrary off-code cancellation; this supplies no shallow source |
 | [Spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | At fixed tolerance, depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address-sharing and uniform precision budgets are premises. Exact sector invariance avoids the general leakage multiplier |
-| [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. A synchronized affine address stage is now paid; its same-bank reuse retains only p+1 parities and cannot give complete lookup |
+| [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | With $`L_\tau=1+\log_2(1/\tau)`$, zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$. Synchronized stages are paid but same-bank moments are insufficient. A [quarter-phase selector stage](../research/depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage) changes the tested invariant, not the unpaid complete accepted Gram/return |
 | [Complete fermionic lift](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) | Native lifting and arbitrary auxiliary-mode decoding are paid. The full spectral-phase contract and sparse-column obstruction force growing filter length for the literal fixed-auxiliary expander word; displayed coherent centering also has linear address depth |
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
 | [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
@@ -279,12 +279,12 @@ the half-space; this is a scoped call-rank limit, not a native-depth bound.
 The earlier depth-42 coherent-SWAP source also retains gap one half.
 These ledgers fit polynomial fusion, but their general sector contracts do not.
 The [coupled order word](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md) requires
-$`(R_xS_x)^2\approx Q_x`$. A new [affine involution](../research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md)
-preserves Q, has no fixed inputs, and has paid constant-depth orbit coordinates.
-Its diagonal cochains have sharp minimum Boolean phase degree p+2; this is
-not a native-depth bound. A local Clifford anchor fails at every nonzero
-address with Gram gap one half. A non-diagonal second reflection or a shallow
-approximate diagonal cochain remains unpaid; extraction is not the bottleneck.
+$`(R_xS_x)^2\approx Q_x`$, already a complete direct query. The paid
+[affine orbit](../research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge) is a charge-preserving conjugate of a fixed flip.
+[Non-diagonal dressing](../research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
+has a Hadamard-anchor Gram cap I/4; its transverse anchor requires a complete
+unitary square root. A paid non-Clifford trial has Gram gap at least
+$`\sqrt2/4`$ for every p. These words are paused; genuinely nonunitary accepted sources remain open. Neither phase degree nor these gaps bounds general depth.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest
