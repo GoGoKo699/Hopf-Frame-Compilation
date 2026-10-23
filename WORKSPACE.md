@@ -13,8 +13,8 @@ complete Hopf frames. Manuscript drafting is a separate task.
 **Verified starting checkpoint:** [PR #231](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/231),
 `3deca4bea3154fd230f6945a94f82c6c66137531`, checked 23 October 2026.
 The continuation below pays entangling selector controls, screens complete
-marked acceptance and identifies a finite algebraic separator. Neither
-that separator nor the complete two-bit calibration supplies a scalable
+marked acceptance and separates finite and address-zero charge sectors. Neither
+these separations nor the complete two-bit calibration supply a scalable
 lookup source. Exact-tree receipts belong to the PR record.
 Fetch main before resuming; this is not a pin.
 
@@ -111,9 +111,9 @@ pays controlled zeta and partial-Fourier mixers at depth four without helpers.
 Linear selector networks and global Hadamards retain an all-size common
 marked/empty-bank module and Gram floor one quarter. Partial Fourier mixing
 escapes that module, but the specified four-path sources have a complete
-two-bit floor one sixth. Adding a global flip eliminates every cross-charge
-intertwiner at two bits, certified on all 1024 basis states; no uniform gap
-or native filter follows. A depth-16 square-stage commutator reads two-bit
+two-bit floor one sixth. Adding a global flip eliminates cross-charge
+intertwiners on the full two-bit space and, analytically for every p at least two,
+between the address-zero sectors. A depth-16 square-stage commutator reads two-bit
 lookup exactly, while its fixed affine-Pauli extension has a quadratic
 sign restriction. The earlier local-singlet and affine-transport limits remain.
 
@@ -131,8 +131,8 @@ or a uniform complete norm approximation within the recovery budget above.
 Retain every arbitrary bank and selector, actual inverses, literal phases
 and off-diagonal terms. Establish marked cancellation before tuning signal
 angles; then prove whole positive-sector coverage. A uniform intermediate
-gap still needs paid normalization. The flip-enlarged two-bit algebra is
-a seed, not a source or an all-size result. Do not revisit the screened
+gap still needs paid normalization. The flip-enlarged algebra has no general
+source or all-address separation proof. Do not revisit the screened
 four-path words or mistake square-stage Clifford dressing for a general
 readout. Acceptance remains unpaid, not recovery or promotion. Even a
 constant-depth source retains log-log depth through the current reductions.

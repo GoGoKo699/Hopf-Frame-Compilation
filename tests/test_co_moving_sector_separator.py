@@ -6,8 +6,9 @@ spectra.  Arithmetic reduces Z[i,1/2] modulo 65537 with i mapped to 256.
 Coprime reduced characteristic polynomials certify a nonzero resultant
 over Q(i), hence disjoint spectra over C and no cross-charge intertwiner.
 
-This finite algebra certificate is not a normalized accepted source, a
-uniform spectral gap, a native filter, or an all-address-length theorem.
+The additional zero-address fixtures check the all-bank commutator and
+anticommuting-Pauli steps of the separate analytic all-p argument.  Neither
+result is a normalized accepted source, uniform gap, or native filter.
 """
 
 from collections import Counter
@@ -37,9 +38,9 @@ def _zeta(bits, transpose=False):
                for v in range(4))
 
 
-def _zeta_literal(bits, transpose=False):
-    for coordinate in range(2):
-        for row in range(4):
+def _zeta_literal(bits, transpose=False, p=2):
+    for coordinate in range(p):
+        for row in range(1 << p):
             if row >> coordinate & 1:
                 continue
             control, target = row, row ^ (1 << coordinate)
@@ -147,6 +148,76 @@ def _polynomial_gcd(a, b):
 
 
 class CoMovingSectorSeparatorTests(unittest.TestCase):
+    def test_zero_address_commutator_retains_every_background_and_phase(self):
+        families = (
+            (2, (((0, 1),), ((1, 0),))),
+            (3, (((0, 1),), ((1, 2),), ((2, 0),))),
+            (4, (((0, 1), (2, 3)), ((1, 0), (3, 2)), ((0, 2), (1, 3)))),
+        )
+        for p, matchings in families:
+            m, full = 1 << p, (1 << (1 << p)) - 1
+            if p == 2:
+                banks, selector_inputs = range(16), range(16)
+            else:
+                even_rows = sum(1 << row for row in range(m) if row % 2 == 0)
+                bases = {0, full, even_rows, 1 << (m - 1),
+                         (1 << 1) | (1 << (m // 2)) | (1 << (m - 1))}
+                banks = sorted(bases | {bank ^ 1 for bank in bases})
+                selectors = {0, full, even_rows, full ^ even_rows}
+                selectors.update(1 << row for row in range(m))
+                selectors.update(full ^ (1 << row) for row in range(m))
+                selector_inputs = sorted(selectors)
+            for pairs in matchings:
+                matching = _Matching(p, pairs)
+                for bank in banks:
+                    for selectors in selector_inputs:
+                        for borrowed in (0, 1):
+                            # Right-to-left chronology of R X_0 R^dagger X_0.
+                            actual = matching.stage_literal(
+                                (0, bank, selectors ^ 1, borrowed, 0), inverse=True)
+                            x, y, s, bit, phase = actual
+                            actual = matching.stage_literal((x, y, s ^ 1, bit, phase))
+                            expected = (0, matching.relabel(bank),
+                                        matching.relabel(selectors), borrowed, 0)
+                            if not bank & 1:
+                                expected = (0, bank, selectors, borrowed, 0)
+                            self.assertEqual(actual, expected)
+
+    def test_zeta_flip_probes_and_anticommuting_orbit_pairs(self):
+        for p in range(2, 6):
+            m, full = 1 << p, (1 << (1 << p)) - 1
+            top = m - 1
+            if p <= 3:
+                selector_inputs = range(1 << m)
+            else:
+                selector_inputs = sorted({0, full}
+                                         | {1 << row for row in range(m)}
+                                         | {full ^ (1 << row) for row in range(m)})
+            first = _Matching(p, ((0, 1),))
+            second = _Matching(p, ((1, 0),))
+            first_image, second_image = first.images[top], second.images[top]
+            self.assertEqual(len({top, first_image, second_image}), 3)
+            x_mask = (1 << top) | (1 << first_image)
+            z_mask = (1 << top) | (1 << second_image)
+            self.assertEqual((x_mask & z_mask).bit_count() % 2, 1)
+            for selectors in selector_inputs:
+                mfm = _zeta_literal(_zeta_literal(selectors, p=p) ^ full, p=p)
+                nfn = _zeta_literal(_zeta_literal(selectors, True, p) ^ full, True, p)
+                self.assertEqual(mfm, selectors ^ 1)
+                self.assertEqual(nfn, selectors ^ (1 << top))
+                # The two Pauli supports meet only at top.  This retains
+                # their literal anticommutation sign on arbitrary inputs.
+                self.assertEqual(((selectors & z_mask).bit_count()
+                                  + ((selectors ^ x_mask) & z_mask).bit_count()) % 2, 1)
+                for marked in (0, 1):
+                    state, sign = selectors, 0
+                    for operation in ('Z', 'X', 'Z', 'X'):
+                        if marked and operation == 'Z':
+                            sign ^= (state & z_mask).bit_count() % 2
+                        elif marked:
+                            state ^= x_mask
+                    self.assertEqual((state, sign), (selectors, marked))
+
     def test_complete_stage_columns_and_literal_selector_networks(self):
         self.assertEqual(_IMAGINARY ** 2 % _PRIME, _PRIME - 1)
         for control, target in _PAIRS:
