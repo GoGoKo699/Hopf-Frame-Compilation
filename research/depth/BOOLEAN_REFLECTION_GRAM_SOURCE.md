@@ -48,8 +48,12 @@ quarter, by the phase-coordinate change used in the
 [branch-moment calculation](SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#branch-moment-obstruction).
 Every residue probability is at most one half, since convolution cannot
 increase the largest probability. Symmetry gives
-$`\Pr(4\le h\le7)=(1-\Pr(h=0)+\Pr(h=4))/2`$, between one
-quarter and three quarters. These reflections therefore avoid the thin
+
+```math
+\Pr(4\le h\le7)=\frac{1-\Pr(h=0)+\Pr(h=4)}2,
+```
+
+between one quarter and three quarters. These reflections avoid the thin
 accepted-support premise of the Bell call-rank obstruction.
 
 For $`P_\pm=(I\pm R)/2`$, put

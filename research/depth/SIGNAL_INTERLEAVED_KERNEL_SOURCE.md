@@ -827,15 +827,17 @@ their scalar phases cancel exactly. Together with the physical C_E
 envelope, safe common source and actual-inverse bounds are
 
 ```math
+ \begin{gathered}
  \begin{array}{c|c|c}
   &\theta=0&\theta=\pi/4\\ \hline
  T&48r+420n+2&48r+420n+4\\
  d_T&470&472\\
  G&6G_B+534n+2G_{\mathcal R}+4c_n+37
    &6G_B+534n+2G_{\mathcal R}+4c_n+49
- \end{array}
- \qquad h\le\max(r,4n),\quad a_{\rm clean}=1,
- \quad\varepsilon_U=0.                                  \qquad(43)
+ \end{array}\\
+ h\le\max(r,4n),\quad a_{\rm clean}=1,
+ \quad\varepsilon_U=0
+ \end{gathered}                                          \qquad(43)
 ```
 
 The common Clifford constants allow 15 gates for the two orientations
@@ -933,7 +935,11 @@ and $`b^2\le1`$ in (45) proves the uniform bound
 ```
 
 The strict rational certificate is
-$`(15/16)(7/16)/4-(3/4+1/16)/16=53/1024`$.
+
+```math
+\frac{(15/16)(7/16)}4-\frac{3/4+1/16}{16}=\frac{53}{1024}.
+```
+
 ### Complex-axis seeds obey the same bound
 
 In fact every one-qubit unitary seed V in place of R_y(theta) is
