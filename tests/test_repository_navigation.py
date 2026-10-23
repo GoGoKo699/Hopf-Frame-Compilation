@@ -132,9 +132,13 @@ COMPATIBILITY_ANCHORS = {
     ],
     "docs/reference/VERIFICATION_CATALOGUE.md": [
         "catalogue-index",
+        "complete-frame-depth-checks",
+        "count-source-checks",
         "detailed-finite-checks",
         "endpoint-source-and-representation-checks",
+        "reading-index",
         "rendering-checks",
+        "shared-source-and-recovery-checks",
         "state-based-qbp-coverage",
         "verification-catalogue"
     ],
@@ -155,6 +159,14 @@ COMPATIBILITY_ANCHORS = {
         "source-programs-and-encodings"
     ]
 }
+
+EVIDENCE_CATALOGUES = (
+    "tests/README.md",
+    "docs/reference/VERIFICATION_CATALOGUE.md",
+    "docs/reference/DEPTH_FIXTURES.md",
+    "docs/reference/SHARED_SOURCE_FIXTURES.md",
+    "docs/reference/SOURCE_AND_OPERATOR_FIXTURES.md",
+)
 
 PAGE_LINE_BUDGETS = {
     "WORKSPACE.md": 220,
@@ -241,6 +253,22 @@ class RepositoryNavigationTests(unittest.TestCase):
         }
         missing = sorted(str(path.relative_to(ROOT)) for path in expected - targets)
         self.assertEqual(missing, [], msg="Uncatalogued research documents")
+
+    def test_evidence_catalogues_link_every_test_module(self):
+        targets = {
+            target
+            for relative in EVIDENCE_CATALOGUES
+            for catalogue in [ROOT / relative]
+            for raw in MARKDOWN_LINK.findall(catalogue.read_text())
+            if (target := local_target(catalogue, raw)) is not None
+        }
+        expected = {
+            path.resolve() for path in (ROOT / "tests").rglob("test_*.py")
+            if not any(part.startswith(".")
+                       for part in path.relative_to(ROOT).parts)
+        }
+        missing = sorted(str(path.relative_to(ROOT)) for path in expected - targets)
+        self.assertEqual(missing, [], msg="Uncatalogued test modules")
 
     def test_entry_pages_route_instead_of_accumulating_history(self):
         for relative, limit in PAGE_LINE_BUDGETS.items():

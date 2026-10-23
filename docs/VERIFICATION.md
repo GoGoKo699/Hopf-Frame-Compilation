@@ -59,14 +59,14 @@ cover every logical column, literal phase, returned clean work, arbitrary
 dirty input and external reference. The [claim ledger](../manuscript/PUBLICATION_SCOPE.md)
 states the exact thresholds, matching ranges and sharper two-clean complex endpoint.
 
-The catalogue's [count-source checks](reference/VERIFICATION_CATALOGUE.md#count-source-checks)
+The [count-source checks](reference/SOURCE_AND_OPERATOR_FIXTURES.md#count-source-checks)
 record non-dyadic precision scales, phase dressing and conjugate recovery,
 including supplied-matrix and native-emission limits. Those finite checks
 do not establish the all-size compiler or its resource bound.
 
 ### Subtree-projector decoder evidence
 
-The catalogue's [complete-frame depth checks](reference/VERIFICATION_CATALOGUE.md#complete-frame-depth-checks)
+The [complete-frame depth checks](reference/DEPTH_FIXTURES.md)
 record R78–R96's decoder, orientation, dilation, routing, sparse-correction
 and precision fixtures. Each retains its own negative controls, finite
 range, return contract and analytic-versus-implemented boundary. Result D
@@ -75,7 +75,7 @@ circuit identity or fixture.
 
 ### Sublinear-depth evidence
 
-The catalogue's [shared-source and recovery checks](reference/VERIFICATION_CATALOGUE.md#shared-source-and-recovery-checks)
+The [shared-source and recovery checks](reference/SHARED_SOURCE_FIXTURES.md)
 record the sublinear predecessor, native calibration, shared-gradient,
 grouped-terminal and shared-binary-source fixtures. Their bounded words
 and supplied table actions do not emit a complete native descendant
@@ -83,10 +83,10 @@ loader or certify asymptotic cutoffs and preprocessing.
 
 ### Detailed evidence records
 
-The [verification catalogue](reference/VERIFICATION_CATALOGUE.md) preserves
-the per-fixture descriptions, negative controls, and software boundaries for
-the supporting constructions and earlier routes. Its
-[detailed finite checks](reference/VERIFICATION_CATALOGUE.md#detailed-finite-checks)
+The [verification catalogue](reference/VERIFICATION_CATALOGUE.md#reading-index)
+routes to the per-fixture descriptions, negative controls, and software boundaries
+for the supporting constructions and earlier routes. The
+[count, query and operator fixtures](reference/SOURCE_AND_OPERATOR_FIXTURES.md)
 cover packed diagonals, source borrowing, tree reductions, refinement and
 forest compilers, operator stability, and representation restrictions. The
 [endpoint source and representation map](reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)

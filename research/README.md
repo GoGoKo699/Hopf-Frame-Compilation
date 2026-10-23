@@ -10,9 +10,9 @@ Stopped and superseded routes are assessed once in the
 [route decisions](ROUTE_DECISIONS.md).
 
 Use the [minimal count-proof chain](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
-for selected dependencies. Use the [current research outcome](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
-and [continuing mandate](../WORKSPACE.md#continuing-toward-the-general-answer)
-for the active question. The [changed-decoder supplement](../supplements/state_based_qbp/README.md)
+for selected dependencies. Use the [working checkpoint](../WORKSPACE.md)
+for the current outcome, active question and continuation contract.
+The [changed-decoder supplement](../supplements/state_based_qbp/README.md)
 has a separate task-level guarantee.
 
 | Need | Catalogue section |
@@ -359,8 +359,8 @@ individual limitations do not obstruct the later complete-column compiler.
 These records preserve decisions, failed attempts, supporting derivations and
 the scope known at each checkpoint. Their next-step instructions are historical
 unless reaffirmed in the working checkpoint. A design prompt is not a theorem.
-The current outcome is listed here as well as linked above so every retained
-research document is discoverable from this catalogue.
+The records below keep every retained outcome and design discoverable from
+this catalogue.
 
 - [Continuation: amplitude-uniform source limits and a paid joint detuning](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
 - [Revision: complete bank motion is paid; a shallow source remains missing](depth/BANK_MOTION_CONTINUATION_RESULT.md)
@@ -420,7 +420,7 @@ research document is discoverable from this catalogue.
 - [The in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
 - [Five-hour design: precision without repeated long-prefix work](depth/PRECISION_TERMINAL_PROMPT.md)
 - [Precision-terminal session: grouping the noncommuting middle](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
-- [Revision: native source scope and complete projector readout](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+- [Historical revision: native source scope and complete projector readout](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
 - [Runnable prompt for a five-hour depth research session](depth/RESEARCH_SESSION_PROMPT.md)
 - [Fixed-accuracy depth research session: execution record](depth/RESEARCH_SESSION_RESULT.md)
 - [Restored-address queries and the complete-frame transfer](depth/RESTORED_ADDRESS_SESSION_RESULT.md)

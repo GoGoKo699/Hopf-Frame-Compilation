@@ -11,6 +11,9 @@ theorem by numerical extrapolation.
 
 ## Test groups
 
+This table is a starting point. The [fixture reading index](../docs/reference/VERIFICATION_CATALOGUE.md#reading-index)
+routes to the remaining suites and their detailed evidence contracts.
+
 | Test file | Principal questions |
 |---|---|
 | [`test_output_aliased_character.py`](test_output_aliased_character.py) | Direct output/carrier aliases, all 2048 phase columns and actual reverse, four source calls, and an explicit native conditional quantum helper that returns only in the completed character; retained coefficient permutations supply F |
@@ -145,6 +148,7 @@ theorem by numerical extrapolation.
 | [`test_provenance.py`](test_provenance.py) | Are upstream commits, source roles, and local lineage recorded consistently? |
 | [`test_literature_policy.py`](test_literature_policy.py) | Does the active proof use one compiler framework and maintain the declared contribution boundary? |
 | [`test_reviewer_narrative.py`](test_reviewer_narrative.py) | Do the primary reading route, diagrams, links, terminology, and source-version statements remain coherent? |
+| [`test_repository_navigation.py`](test_repository_navigation.py) | Do public entry anchors remain compatible, research and test catalogues stay complete, and entry pages retain their routing role? |
 | [`test_math_typography.py`](test_math_typography.py) | Do notation, quantifiers, adjoints, and mathematical prose retain their intended meaning? |
 | [`test_hyphen_inline_math.py`](test_hyphen_inline_math.py) | Does inline mathematics next to a word hyphen use the protected GitHub syntax? |
 | [`test_presentation.py`](test_presentation.py) | Does the presentation checker detect damaged math handoffs, diagram overflow, overlapping labels, and obscured connectors? |
@@ -152,11 +156,12 @@ theorem by numerical extrapolation.
 The [endpoint fixture index](../docs/reference/VERIFICATION_CATALOGUE.md#endpoint-source-and-representation-checks)
 also maps the source-completion, ordered-bank, recovery, boundary, encoding,
 reflection, and source-resynthesis suites to their proof and module homes.
-The [detailed finite checks](../docs/reference/VERIFICATION_CATALOGUE.md#detailed-finite-checks)
-cover the Cayley and scattering tests, transported repairs, precision carry,
-small products, joint-source bodies, canonical grouped scalars, and task-cost
-arithmetic. Together these maps describe the full collection discovered by
-`validate.py`.
+The [complete-frame depth fixtures](../docs/reference/DEPTH_FIXTURES.md),
+[shared-source and recovery fixtures](../docs/reference/SHARED_SOURCE_FIXTURES.md),
+and [count, query and operator fixtures](../docs/reference/SOURCE_AND_OPERATOR_FIXTURES.md)
+retain the detailed finite contracts. Together with the catalogue index, these
+maps describe the full collection discovered by `validate.py`; the navigation
+suite checks that every test module has an evidence-map link.
 
 ## Highest-leverage operator checks
 

@@ -13,9 +13,9 @@ and method-specific obstructions.
 References below to the best bound, an endpoint gap, or a next step describe
 the corresponding historical pass; they are not current work orders.
 
-Use the [research index](README.md) for the current result hierarchy and
-the [endpoint statement](../docs/OPEN_PROBLEM.md) for the remaining
-large-width depth question. The [workspace guide](../WORKSPACE.md#research-decision-and-stopping-rules)
+Use the [resource frontier](../docs/OPEN_PROBLEM.md) for current bounds and
+the remaining large-width depth question, and the [research index](README.md)
+to find every retained construction and outcome. The [workspace guide](../WORKSPACE.md#research-decision-and-stopping-rules)
 sets the current scope and stopping rules.
 
 <a id="a-sufficient-construction-to-seek"></a>

@@ -10,8 +10,8 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 ## Current checkpoint: coupled-source coherence and matching invariants
 
-**Recovered main:** [PR #227](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/227),
-`0f0cfa3364b27734d0bb8c466999398f4404c67f`, fetched 23 October 2026.
+**Verified scientific checkpoint:** [PR #228](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/228),
+`ea8f2ed40a8c85b465296703cd6675072b77eb03`, checked 23 October 2026.
 Coupled two-path and four-path sources are paid but fail the complete Gram.
 Matching invariants and a one-row spectral escape are proved; no qualifying
 complete source is supplied. Exact-tree receipts belong to the PR record.
@@ -22,7 +22,7 @@ Read in this order:
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
 2. [Coupled quarter-phase sources](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md): complete accepted polynomials, the marked/unmarked eigenvalue collision, and the four-path coherent Gram defect.
 3. [Matching limits and spectral escape](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md), then [balanced two-branch readout](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout): exact hypotheses and the direct zero-clean square reduction.
-4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout), [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout), and [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction).
+4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
 <a id="current-depth-frontier"></a>
@@ -82,21 +82,10 @@ address motion and actual inverses. Gram error $`\delta\le\tau^2/4096`$
 suffices for one clean signal. Joint two-clean recovery and full dirty promotion
 give error at most $`128\sqrt\delta`$; request $`\delta\le\tau^2/2^{14}`$,
 or $`\tau^2/2^{20}`$ before eight-call fusion. No extra clean recovery flag is used.
-**The qualifying lookup source is unpaid.** The
-[signal-interleaved families](research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md)
-pay controlled phases and actual accepted polynomials. Earlier attenuation,
-branch-moment and unequal-left obstructions retain their distinct scopes.
-Separately, the actual E,F bank algebra commutes with a tail-bank X
-that flips the target at every nonzero address. Every word in that algebra
-has global Gram gap at least one quarter for p at least one, with any
-signal/call count and address-only motion. This is not a native-depth bound.
-
-The [scalar-kernel](research/depth/SCALAR_KERNEL_FILTER_SOURCE.md) and
-[Fourier/Bell](research/depth/CORANK_FOURIER_BELL_SOURCE.md) sources miss
-whole target sectors. [Transverse orbit completion](research/depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md)
-and the [affine gauge](research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md#charge-preserving-orbit-gauge)
-retain their separate normalization, square-root and conjugacy limits.
-Their proof homes and route decisions record the precise reopening conditions.
+**The qualifying lookup source is unpaid.** Use the
+[quantitative source screens](docs/OPEN_PROBLEM.md#paid-source-interfaces-and-their-limits)
+and [route decisions](research/ROUTE_DECISIONS.md#source-specific-representation-limits)
+before proposing a new word; their hypotheses are not general depth bounds.
 
 **Latest substantive outcome.** The [matched-flip two-stage word](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md)
 has a complete arbitrary-bank relative operator, but a marked/unmarked
@@ -110,52 +99,47 @@ coordinates at constant depth, but fixed partitions and fixed bipartitions
 have proved invariant-vector limits. The full dressed expander family has
 a uniform one-row spectral gap; that is not an arbitrary-bank Gram theorem.
 
-**Next concrete question.** Can genuine signal-interleaved acceptance over
-the full dressed matching family cancel the four-path coherent Gram defect
-while retaining bank-sensitive normalization? Derive the entire accepted
-operator, including off-diagonal address/selector terms, before a new fixture.
-Require its norm error on every bank, not only correct basis probabilities.
-The [balanced two-unitary reduction](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout)
-shows that returning to two balanced branches already owes a direct complete
-zero-clean square query. Recovery remains paid; the qualifying source does not.
-The earlier instruction to merely couple two quarter-phase stages is superseded.
+**Next concrete question: complete bank-bit response.** For a bank-preserving
+candidate write $`G_Y=K(Y)^\dagger K(Y)`$. In the single-bank coordinates
+of the coupled-source proof, the target is $`(I+\Omega_Y)/4`$, with
+$`\Omega_Y|x\rangle=(-1)^{Y_x}|x\rangle`$. Seek an actual accepted word with
 
-| Read before proposing a source | Exact scope |
-| --- | --- |
-| [Native read-only two-band bound](research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md) | At amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$, $`k\ge\lceil(p-3)/2\rceil`$ clean inputs are necessary when every actual Clifford boundary fixes the address. No flatness or exact return is assumed. |
-| [One-clean two-band Gram screen](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) | For p at least three, Gram error at most $`1/256`$ is impossible even with address motion. |
-| [Bounded-clean two-band Gram screen](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen) | A direct Gram defect gives a tiny positive fixed-k asymptotic error floor. For two clean bits its Clifford-sum length is 96. This does not exclude every moderate tolerance or growing/accuracy-dependent clean count. |
-| [Actual Clifford signal-image screen](research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) | If $`U^\dagger Z_aU`$ is Clifford, lookup Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$. Arbitrary Clifford address motion is allowed; a general higher-band source need not satisfy this premise. |
-| [Sharp Clifford-filter limit](research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) | Arbitrary wide Clifford lookup correlation is at most $`(p+1)/2^p`$. Low-budget Clifford averaging is not a normalized source; this is not a T-depth bound. |
-| [General two-band rank–norm screen](research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen) | Exact sources have a growing clean lower bound. The approximate floor shrinks with clean count; fixed-error moving-address growing-clean compression remains open. |
+```math
+G_0=I/2,\qquad
+G_{Y\oplus e_v}-G_Y
+=-\frac{(-1)^{Y_v}}2|v\rangle\langle v|\otimes I_{\rm work}
+```
 
-The [spectral-promotion window](research/depth/MSS_SPECTRAL_PROMOTION.md) $`k=o(\log(p+2))`$
-still requires a source, uniform precision and native address sharing.
-Completed return does not justify parallel native calls. The [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md)
-has zero clean work and constant fixed-accuracy depth. Conjunction alone
-cannot witness dimension-growing depth at fixed accuracy.
+for every row v and every background bank Y. These exact identities telescope
+to the complete target; they are a test for a proposed source, not a new source.
+This diagnostic is scoped to bank-preserving candidates; the general source
+model may move the bank.
+Start from the paid row-selective partial Gram and derive its background
+conjugations when distinct dressed matching stages are combined. The first
+calculation is the full two-active-row operator, retaining every selector and
+off-diagonal address term. Do not infer arbitrary-bank sector invariance from
+the one-row gap: another active row can move a marked address.
 
-The [paid fermionic lift](research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift)
-remains paused: complete spectral accuracy forces filter length
-$`N=\Omega_\tau(p)`$ on unpadded lengths at constant auxiliary dimension,
-regardless of selector precision; displayed coherent centering also
-restores growing depth. This is a restricted sparse-word obstruction,
-not a general native-depth bound; the scalar zero test is unchanged.
-
-**Bounded lower scout completed.** The [genuinely coupled six-wire middle](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
-is paid (ten T gates, two bands, no helpers), but its transported probe sends
-$`X_1`$ to four Paulis of magnitude one half. Every one-band output endpoint
-has complete clean-return error at least one quarter, even with spectator
-Clifford mixing and arbitrary logical action. Pause this candidate. Reopen
-only with changed actual phase algebra or a paid non-Clifford endpoint,
-then prove full Boolean return. The coefficient test can inspect more
-layers; its witness is not invariant under extra non-Clifford layers.
+Proceed only if an exact cancellation identity or a global norm estimate
+survives at every bank. A per-flip error epsilon alone accumulates to
+$`|Y|\varepsilon\le m\varepsilon`$; accuracy of order delta/m can restore the
+old precision/depth cost. Pay any coherent row selection, signal mixing and
+actual inverse before claiming a complete improvement. Stop a proposed repair
+if it assumes a free address-controlled row flip, $`\Theta(p)`$ clean history
+or a correction that reconstructs the known logarithmic-depth indicator.
+A scalar filter of the failed word or another basis-only success is insufficient.
+If the word reduces to two balanced unitary branches, use the
+[direct-square criterion](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout).
+Recovery is already paid. The earlier instruction to merely couple stages
+or transfer the one-row spectral gap is superseded by this response test.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
 [Route decisions](research/ROUTE_DECISIONS.md) records stopped mechanisms,
 their reopening conditions and settled questions. Unique attempts and proofs
 remain in their homes; a representation limit does not retire the destination.
+The [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
+needs changed phase algebra or a paid non-Clifford endpoint before reopening.
 
 <a id="research-decision-and-stopping-rules"></a>
 <a id="continuing-toward-the-general-answer"></a>
@@ -178,11 +162,11 @@ replace an analytic proof or external technical review.
 
 | Need | Authoritative home |
 | --- | --- |
-| Selected claims and exact allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md), [core audit](docs/CORE_CLAIM_AUDIT.md) |
+| Selected claims and exact allocations | [Publication scope](manuscript/PUBLICATION_SCOPE.md) |
 | Argument and proof dependencies | [Review](REVIEW.md), [documentation map](docs/README.md) |
 | Current general resource frontier | [Resource questions](docs/OPEN_PROBLEM.md) |
 | All research proofs and outcomes | [Research catalogue](research/README.md) |
-| Attribution and finite evidence | [Source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
+| Attribution and finite evidence | [Core audit](docs/CORE_CLAIM_AUDIT.md), [source catalogue](docs/reference/SOURCE_CATALOGUE.md), [verification catalogue](docs/reference/VERIFICATION_CATALOGUE.md) |
 
 <a id="refurnishing-policy"></a>
 
