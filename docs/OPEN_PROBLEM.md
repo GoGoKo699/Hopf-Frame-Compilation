@@ -245,7 +245,14 @@ now pay their controlled phases. The attenuated two-clean word retains
 wrong-sector acceptance for any inner unitary; its direct one-clean
 replacement has a real-trace obstruction for the displayed flat mixer.
 Both have Gram error at least one quarter at every nonzero address.
-The latter is a scoped all-size theorem, not merely a finite failure.
+The stronger grading argument excludes every final conjugation commuting
+with $`X_{z_0}`$, and its partial-H proposal fails even where the old
+witness disappears. More broadly, the [branch-moment theorem](../research/depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#branch-moment-obstruction)
+excludes arbitrary independent unitary conjugations of both branches for
+p at least three, including coherent address motion and dirty spectators:
+global Gram error exceeds 7/512. This fixes the acceptance polynomial
+and branch spectra, not a gate-depth class. Local rotations, all mixers
+and finer approximation of these words do not supply a qualifying source.
 
 The [scalar-kernel partial source](../research/depth/SCALAR_KERNEL_FILTER_SOURCE.md)
 has constant fixed-accuracy native depth. Its ideal Gram rejects every
@@ -254,11 +261,18 @@ correct sector, and scalar spectral processing cannot distinguish those
 missing inputs from the rejected charge. The
 [corank-one Fourier/Bell construction](../research/depth/CORANK_FOURIER_BELL_SOURCE.md)
 has the desired abstract partial isometry and a complete native dilation.
-Shared outcomes impose extra stabilizers; its paid depth-42 coherent-SWAP
-source has exact Gram gap one half. These simultaneous ledgers fit
-polynomial fusion, but their failed sector contracts do not. The current
-next question changes the final phase coupling in the one-clean word;
-its complete Gram remains unproved.
+Shared outcomes impose extra stabilizers; their full thin projector now
+has a paid one-clean half-normalized source using the scalar zero test.
+A two-reflection interference word meets the complete Gram contract at
+p=1 on arbitrary auxiliaries, but has exact gap one half for p at least
+two because a correct-charge common kernel remains. Fixed-call thin
+controlled-reflection repairs with zero accepted erased baseline cannot cover the
+half-space; this is a scoped call-rank limit, not a native-depth bound.
+The earlier depth-42 coherent-SWAP source also retains gap one half.
+These simultaneous ledgers fit polynomial fusion, but their general
+sector contracts do not. The next signal mechanism must change the
+acceptance polynomial or actual branch spectra; more mixing, including
+address motion, cannot repair the proved moment mismatch.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest
