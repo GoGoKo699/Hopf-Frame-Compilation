@@ -308,3 +308,90 @@ Its seven-wire word has 66 T gates, 177 forward Cliffords and 179 for
 the actual inverse, with one initialized signal and one arbitrary helper.
 They support the identities; the all-size claims are analytic
 proofs, internally audited rather than externally reviewed.
+
+<a id="rank-one-determinant-echo"></a>
+
+## 6. A native rank-one determinant query still gives a thin scalar echo
+
+A changed pencil encodes the lookup sign as a corank distinction, but
+its paid scalar echo does not read that distinction on arbitrary work.
+Let y be an arbitrary n-bit carrier in standard dual coordinates and set
+
+```math
+M_{x,y}=\bar N_x+e_0y^{\mathsf T},\qquad
+q=v_x^{\mathsf T}y,\qquad
+\det M_{x,y}=1+q,\qquad \dim\ker M_{x,y}=q.              \qquad(16)
+```
+
+The determinant and nullity are over the binary field. Indeed
+$`\bar N_x^{-1}M_{x,y}=I+v_xy^{\mathsf T}`$ and
+$`\bar N_xv_x=e_0`$. If q=1 the kernel is the line spanned by v_x;
+if q=0 this rank-one update is invertible. The orientation matters:
+the equivalent transposed update is
+$`\bar N_x^{\mathsf T}+ye_0^{\mathsf T}`$, not
+$`\bar N_x^{\mathsf T}+e_0y^{\mathsf T}`$.
+
+The actual query on two further arbitrary n-bit banks is
+
+```math
+Q_M|x,y,z,t\rangle=|x,y,z,t+M_{x,y}z\rangle.
+```
+
+Emit n CNOTs for the identity, the forward-block bilinear pencil wall,
+and the n products $`y_jz_j`$ into t_0. The forward-block wall uses
+the multiplication matrices rather than their transposes, with the same
+r terms and incidence bound s. All r+n cubic phases use distinct R91
+private helpers, with one shared Hadamard pair per affected target.
+Thus common forward/actual-inverse bounds are
+
+```math
+T_M\le8(r+n),\quad d_M\le8,\quad h_M\le r+n,\quad
+G_M\le3n+16(r+n)+2(s+n)=21n+16r+2s.                    \qquad(17)
+```
+
+No value of y,z,t is initialized. Every private helper returns exactly.
+Use the literal source (6) with Q_M in place of Q_K and the same
+scalar zero query on t. Its ideal action is exactly (8), now with
+
+```math
+f_M=[t=0]\mathbin\oplus[t=M_{x,y}z],\qquad
+A_M^\dagger A_M=\tfrac12\Pi_{f_M}.                     \qquad(18)
+```
+
+Four query and four scalar-zero appearances give
+$`T_U\le4T_M+4T_0+2`$, $`d_U\le32+4d_0+2`$,
+$`G_U\le4G_M+4G_0+63`$ and private pool
+$`h_U\le\max(r+n,h_0)`$, with one clean signal. The three n-bit
+banks are additional principal inputs, not omitted helpers. The same
+full-operator telescoping as (10) gives source error at most 4epsilon
+and Gram error at most 8epsilon; every inverse is the actual reverse.
+For paired physical lookup take $`y=E^{-\mathsf T}(C+D)`$ while
+retaining the other carrier: the fixed envelope adds $`4c_n+2n`$
+Cliffords and a fourth n-bit principal bank, all arbitrary. The total
+dirty width beyond m specified outputs is then $`4n-m+h_U`$.
+These bounds fit polynomial-overhead fusion at fixed epsilon.
+
+They do not supply its sector contract. At each fixed x,y, exactly
+$`2^n-2^q`$ values of z have nonzero Mz, each accepting exactly two
+targets. Therefore, on the complete z,t work space,
+
+```math
+\mathrm{rank}\Pi_{f_M}=2(2^n-2^q),\qquad
+\left\|\tfrac12\Pi_{f_M}-\tfrac{1-q}{2}I\right\|=\tfrac12.
+                                                               \qquad(19)
+```
+
+For q=0 the column z=t=0 is missing. For q=1, n=pm is at least two,
+so M has positive rank and some t=0, Mz nonzero column is falsely
+accepted. Thus the gap is one half in every lookup sector, not just
+after tracing work; the emitted Gram gap is at least 1/2 minus
+8epsilon. The exact p=1 fixture checks all 128 x,y,z,t columns and
+the ranks six and four. This is an algebra fixture, not an emitter
+for the approximate scalar-zero component.
+
+Pause this determinant-to-scalar-zero echo. Reopen with a complete
+broad corank readout, including native return and normalization, not
+the determinant identity or an average over a prepared bank. The
+constant-depth scalar zero theorem and the complete-frame frontier
+are unchanged; the all-size failure above is analytic and internally
+audited, not external mathematical review.

@@ -193,7 +193,7 @@ not count normalization or its controlled use, remains unpaid.
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
 | [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
 | [Joint two-clean Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) | Joint-code reflection is Clifford. Four-call recovery and full dirty promotion give error $`128\sqrt\delta`$; $`\delta\le\tau^2/2^{20}`$ supplies tolerance tau/8 before fusion. The source is still unpaid |
-| [Squared-product interface](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#squared-product-interface) | Coupled order interference has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$. A successful pair directly gives the zero-clean reflection, bypassing extraction; two paid trials fail finite sector tests |
+| [Squared-product interface](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#squared-product-interface) | Coupled order interference has Gram $`[I+\mathrm{Re}((RS)^2)]/4`$. A successful pair directly gives the zero-clean reflection. The [affine orbit](../research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md) now pays a charge-preserving first operation, but not its required second reflection |
 
 For the one-clean interface, let $`n_c=pm`$ denote one carrier-bank size.
 [Four U/actual-adjoint calls](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) followed by serial dirty promotion give the
@@ -277,14 +277,14 @@ common kernel gives gap one half for p at least two. Fixed-call thin
 controlled-reflection repairs with zero accepted erased baseline cannot cover
 the half-space; this is a scoped call-rank limit, not a native-depth bound.
 The earlier depth-42 coherent-SWAP source also retains gap one half.
-These simultaneous ledgers fit polynomial fusion, but their general
-sector contracts do not. The [coupled order word](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md)
-now changes the central obligation to $`(R_xS_x)^2\approx Q_x`$.
-Its two explicit bank-moving pairs are correctly normalized at x=0,
-with constant-depth native schedules and actual inverses, but fail distinct
-p=1 tests. These finite failures are not all-size obstructions. The next
-question is a changed pair with a complete squared-product identity,
-not more signal paths in the excluded bank algebra or extraction optimization.
+These ledgers fit polynomial fusion, but their general sector contracts do not.
+The [coupled order word](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md) requires
+$`(R_xS_x)^2\approx Q_x`$. A new [affine involution](../research/depth/AFFINE_ORBIT_REFLECTION_SOURCE.md)
+preserves Q, has no fixed inputs, and has paid constant-depth orbit coordinates.
+Its diagonal cochains have sharp minimum Boolean phase degree p+2; this is
+not a native-depth bound. A local Clifford anchor fails at every nonzero
+address with Gram gap one half. A non-diagonal second reflection or a shallow
+approximate diagonal cochain remains unpaid; extraction is not the bottleneck.
 
 The [complete fermionic error criterion](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract)
 controls every subset sum of relative eigenphases, not just the largest
