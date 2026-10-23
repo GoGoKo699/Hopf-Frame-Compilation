@@ -258,7 +258,11 @@ A=\frac{2I+\sum_{j=1}^{14}r_j}{16},\qquad
 
 The convex-unitary variance identity, retaining just the identity-to-r_j
 pairs, gives
-$`1-\|A\psi\|^2\ge\sum_j\|(I-r_j)\psi\|^2/128=7E/32`$.
+
+```math
+1-\|A\psi\|^2\ge\sum_j\|(I-r_j)\psi\|^2/128=7E/32.
+```
+
 Conjugating every r_j by the same row translation proves the same
 single-row statement at any marked address.
 

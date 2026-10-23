@@ -108,6 +108,7 @@ quarters. Sector preservation does not supply sector readout.
 
 **Next concrete question: changed co-moving acceptance.** Derive a genuinely
 different accepted polynomial K in distinct paid co-moving stages, with
+explicit paid selector mixing as well as signal interlayers, satisfying
 
 ```math
 K^\dagger K\,\Pi_-=0,\qquad
@@ -117,7 +118,8 @@ K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
 
 or a uniform complete norm approximation within the recovery budget above.
 Retain every arbitrary bank and selector, actual inverses, literal phases
-and every off-diagonal term. Do not reuse the failed scalar echo or unchanged
+and every off-diagonal term. Bare stages fix the selector-zero fiber;
+signal-only mixing cannot work. Do not reuse the failed scalar echo or unchanged
 four-path acceptance. Paid bank motion is now available; its qualifying
 acceptance identity is the first unpaid step, not recovery or dirty promotion.
 

@@ -122,6 +122,8 @@ class CoMovingLookupStageTests(unittest.TestCase):
         state = x, bank, selectors, borrowed, 0
         actual = matching.stage_literal(state)
         self.assertEqual(actual, matching.stage_formula(state))
+        if selectors == 0:
+            self.assertEqual(actual, state)
         self.assertEqual(matching.stage_literal(actual, inverse=True), state)
         reverse = matching.stage_literal(state, inverse=True)
         self.assertEqual(matching.stage_literal(reverse), state)

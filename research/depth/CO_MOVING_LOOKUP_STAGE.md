@@ -240,9 +240,20 @@ not all signal-interleaved co-moving sources.
 
 ## 5. The remaining complete identity
 
+Bare stages (2) and their inverses fix every input on the selector-zero
+fiber: h and n_C both vanish there for every bank. Common interlayers
+acting only on address, clean signals and returned private work preserve
+that fiber and cannot distinguish the empty bank from a bank marking the
+chosen address. Their target Gram expectations differ by one half, so
+this unmixed grammar has error at least one quarter. A new word therefore
+needs paid selector mixing or other bank-sensitive dynamics outside that
+grammar. Selector Hadamards and flips commute with Omega and are already
+native, but their presence alone does not validate an acceptance word.
+
 The new stage pays bank motion and preserves the lookup charge. It does
-not pay its readout. A genuinely changed signal-interleaved polynomial in
-distinct stages must have accepted block K satisfying
+not pay its readout. A genuinely changed polynomial in distinct stages,
+with explicit paid selector and signal interlayers, must have accepted
+block K satisfying
 
 ```math
 K^\dagger K\,\Pi_-=0,\qquad
@@ -250,8 +261,8 @@ K^\dagger K\,\Pi_+=\tfrac12\Pi_+,
 \qquad \Pi_\pm=(I\pm\Omega)/2,                              \qquad(12)
 ```
 
-or the corresponding uniform operator-norm approximation. Signal-only
-operations and complete stages (2) preserve the two charge sectors, but
+or the corresponding uniform operator-norm approximation. Signal and
+selector operations and complete stages (2) preserve the two charge sectors, but
 sector preservation alone supplies neither equality in (12).
 Every selector and every bank belongs to this contract; a correct basis
 probability or a one-row gap is insufficient. Any controlled use, signal

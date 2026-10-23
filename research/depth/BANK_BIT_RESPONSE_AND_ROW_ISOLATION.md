@@ -107,7 +107,7 @@ There is zero implementation error. The additional stage helpers return
 exactly and their pool is reused. The arbitrary selectors are included
 in dirty width; accepting the signal does not promise their return.
 For two single-CNOT stages, (6) gives
-$`T\le196m+32,G\le222m+46,b_{\rm dirty}\le4m`$.
+$`T\le196m+32`$, $`G\le222m+46`$ and $`b_{\rm dirty}\le4m`$.
 
 ### Incidence already destroys the marked kernel
 
@@ -189,11 +189,13 @@ term by term and is not excluded.
 For each individual stage, the opposite order of operations works:
 
 ```math
-E_{M,v}=R_M^\dagger F_vR_MF_v
-       =a_v^{(1-2s_v)Y_v},\qquad
+\begin{aligned}
+E_{M,v}&=R_M^\dagger F_vR_MF_v
+       =a_v^{(1-2s_v)Y_v},\\
 \left(\frac{R_M-F_vR_MF_v}{2}\right)^\dagger
 \left(\frac{R_M-F_vR_MF_v}{2}\right)
- =\frac{Y_v}{2}(I-\mathrm{Re}a_v)\otimes I_s.              \qquad(9)
+ &=\frac{Y_v}{2}(I-\mathrm{Re}a_v)\otimes I_s.
+\end{aligned}                                                   \qquad(9)
 ```
 
 Every other row cancels before different generators are combined.
