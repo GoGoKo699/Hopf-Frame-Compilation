@@ -467,6 +467,13 @@ $`X_{s_x}`$ be inserted into an address-relative stage echo. The first
 unpaid operation in these repairs is addressed transport or selection,
 which the fixed-row central word does not provide.
 
+The [MOD3 transport reduction](MOD3_ZETA_TRANSPORT.md#order-three-blocks)
+now pays a binary block decomposition and native baselines for moved zeta.
+Its [complete Pauli echo](MOD3_ZETA_TRANSPORT.md#pauli-transport-interface)
+needs only one jointly transported observable; a paid indicator converse
+also supplies exact logarithmic-depth full batches. Sublogarithmic transport
+remains unpaid, so this does not assign (11g) a free shallow implementation.
+
 ### Scope of the remaining all-address question
 
 The address-zero result does not exclude intertwiners involving nonzero
