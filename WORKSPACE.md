@@ -8,19 +8,19 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: weak MOD3 transport and its native two-band limit
+## Current checkpoint: Pauli orbit compression and exact three-layer transport
 
-**Verified starting checkpoint:** [PR #236](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/236),
-`b48086daec39b64a5ab8bbd92c519a28079a827f`, checked 24 October 2026.
-Shared cleanup reduces the weak source to two indicator calls. A native
-gap excludes at most two source T layers at small fixed error; a sublogarithmic
-compiler remains unpaid. Exact-tree receipts are in the PR record.
+**Verified starting checkpoint:** [PR #237](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/237),
+`75db2c1ec57544bfa4842963df1422a9b9456044`, fetched 24 October 2026.
+A two-layer circuit pays one-coordinate Pauli transport, but its composition
+does not transport the complete address orbit. Three-layer approximation below
+the retained gap must already be exact. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [MOD3 zeta transport](research/depth/MOD3_ZETA_TRANSPORT.md): fixed binary reduction, paid native baselines, weak complete Pauli transport and the constant-call indicator converse.
+2. [MOD3 zeta transport](research/depth/MOD3_ZETA_TRANSPORT.md): complete observable contract and three-layer exactness; [weak orbit compression](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md): paid single-coordinate transport and the missing joint action.
 3. [Bank response](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md), [co-moving stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md), and [bank-coupled dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md): retained components and source screens. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
@@ -112,29 +112,27 @@ floor; the changed p=3 bank-Hadamard source has a complete marked-Gram
 $`1/64`$ floor. These scoped failures and the marked-cancellation question
 remain in that proof home; they do not exclude general nonlocal sources.
 
-**Latest substantive outcome.** [Shared cleanup](research/depth/MOD3_ZETA_TRANSPORT.md#shared-cleanup-transport)
-uses two complete indicator calls for a weak Pauli-transport source and
-four for the full MOD3 batch; the twelve-call factorwise-return construction
-remains a baseline. Intermediate predicate work may change and returns in
-the complete observable echo. The retained exact indicator gives these
-components $`T,w=O(m)`$, $`G=O(m^2)`$ and depth $`O(\log(p+2))`$,
-with zero clean work. These constant-factor savings do not change R96.
+**Latest substantive outcome.** [One-coordinate orbit compression](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md)
+uses eight T gates, two layers and one arbitrary returned helper. Fixed
+Clifford walls spread its Pauli action across the whole bank. The displayed
+composition has complete observable error two for every p at least two.
+Sequential binary-linear factors must act correctly on an exponentially
+growing prefix span; the resulting rank budget is not a native-depth bound.
+The indicator-based shared-cleanup baseline retains logarithmic depth.
 
-**Next concrete question: a quantum joint Pauli-transport compiler.**
-For $`p\ge3`$, the [native two-band screen](research/depth/MOD3_ZETA_TRANSPORT.md#two-band-transport-screen)
-requires at least three source T layers at observable error below
-$`\tau_*=\sin(\pi/8)/(2\sqrt2)\approx0.135299`$.
-Emit a zero-clean E transporting $`P_0=X^{Se_0}`$ under the
+**Next concrete question: native transport of the whole address orbit.**
+Seek a zero-clean three-layer E with the exact joint Pauli identity in the
 [complete observable contract](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface),
-at every fixed requested tolerance, depth $`o(\log(p+2))`$ and simultaneous
-polynomial count/dirty-width budgets. Every address, bank, work and reference
-input remains arbitrary. Source work may move; the complete echo and actual
-inverse pay its final return. Controlled indicator needs only controlled P_0,
-not controlled E. Full-batch approximation is sufficient but unnecessary;
-relative errors commuting with P_0 are allowed. The two-band screen leaves
-three-layer and growing sublogarithmic sources open. Classical MOD3 degree
-only bounds multiplicative depth. Constant source depth still retains the
-transfer's log-log contribution; fixed tolerance gives no all-precision claim.
+with the simultaneous polynomial count/dirty-width budgets. The
+[three-layer rounding theorem](research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness)
+makes any error below $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$ exact; two layers
+are excluded for p at least three. Four or more layers may instead use the
+approximate contract at every fixed tolerance with depth $`o(\log(p+2))`$.
+Every address, bank, work and reference input remains arbitrary. Source work
+may move; its echo and actual inverse must return it. Controlled P_0 suffices
+for controlled indicator. The unpaid identity is joint orbit transport;
+individual coordinate identities do not compose. Constant source depth still
+retains the transfer's log-log term; fixed tolerance gives no all-precision claim.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon

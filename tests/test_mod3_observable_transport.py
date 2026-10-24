@@ -11,7 +11,9 @@ The larger checks are phase-free ideal-indicator oracle compositions,
 not native indicator emitters. A separate tiny native fixture retains
 literal phases in K=C_1 D_1 C_0 P C_0^dagger D_1^dagger C_1^dagger:
 K is Clifford, so E P E^dagger=C_2 D_2 K D_2^dagger C_2^dagger has
-two T bands. Finite fixtures do not establish the analytic error gap.
+two T bands. Adding a third source band gives the corresponding literal
+four-band echo, including its actual inverse. Finite fixtures do not
+establish the analytic error gap or the approximation-to-exactness theorem.
 """
 from itertools import product
 import unittest
@@ -178,6 +180,28 @@ class Mod3ObservableTransportTests(unittest.TestCase):
         for band in (d1, d2, _inverse(d2)):
             self.assertEqual(len({gate[1] for gate in band}), len(band))
         self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in folded), 2 * len(d2))
+
+        # A noncommuting third physical band tests the four-band echo
+        # identity used by the rounding theorem, on all four columns.
+        d3 = [('TDG', 1)]
+        c3 = [('CX', 1, 0), ('H', 0), ('S', 1)]
+        third_band = native_columns(width, d3)
+        old_echo = native_columns(width, folded)
+        self.assertNotEqual(multiply(third_band, old_echo), multiply(old_echo, third_band))
+        source3 = source + d3 + c3
+        folded3 = _inverse(c3) + _inverse(d3) + folded + d3 + c3
+        full3 = _inverse(source3) + pauli + source3
+        actual3 = native_columns(width, folded3)
+        self.assertEqual(actual3, native_columns(width, full3))
+        self.assertEqual(native_columns(width, _inverse(source3)),
+                         adjoint(native_columns(width, source3)))
+        self.assertEqual(native_columns(width, _inverse(folded3)), adjoint(actual3))
+        self.assertEqual(adjoint(actual3), actual3)
+        self.assertEqual(multiply(actual3, actual3), eye(1 << width))
+        for band in (d2, d3, _inverse(d2), _inverse(d3)):
+            self.assertEqual(len({gate[1] for gate in band}), len(band))
+        self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in folded3),
+                         2 * (len(d2) + len(d3)))
 
 
 if __name__ == '__main__':
