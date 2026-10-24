@@ -15,8 +15,8 @@ complete Hopf frames. Manuscript drafting is a separate task.
 Complete coefficient assembly remains paid, with linear emitted address depth.
 The normalized broad-baseline syndrome source has ideal Gram gap one half
 for p at least three. A separate four-band shifted-syndrome commutator has
-Pauli-transport error at least one quarter at every p, without a thin-source
-premise. R96 is unchanged. Exact-tree receipts belong in the PR record.
+Pauli-transport error at least square root two for p at least two, without a
+thin-source premise. R96 is unchanged. Exact-tree receipts belong in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -132,17 +132,17 @@ interlayers. This is a call/baseline restriction, not a native-depth bound.
 
 The [shifted-syndrome commutator](research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator)
 changes mechanism: four actual wide T bands, 4m T gates and no helpers.
-Its full Pauli image retains coefficient $`1/2+2^{-(m/2+1)/2-1}`$ on
-$`Z_{B_0}`$, against the target's $`1/m`$, giving error at least one
-quarter for every p. Independent T/T-dagger sign choices cannot repair it.
-This excludes that word, not shifted-syndrome or general four-layer sources.
+Its full Pauli image cannot respond to some nonzero bank rows when p is at
+least two, giving error at least $`\sqrt2`$. This persists for arbitrary
+rotation angles on the same axes. At p=1 the native T word has a separate
+one-quarter coefficient gap. These are limits of that commutator family.
 
 **Next concrete question: change the complete joint action.**
 Pause serial coefficient extension, fixed-Clifford simultaneous diagonalization,
 fixed-call corrections of a fixed-row baseline, and the tested commutator.
 Can a paid intermediate bank/address word that changes the original probe
 replace the probe-preserving middle band and yield the complete lookup image? Derive that image before optimizing its layer count; another
-change of signs or removal of one symmetry does not establish the identity.
+angle tuning or removal of one symmetry does not establish the identity.
 The first unpaid operation remains a complete source of depth $`o(\log(p+2))`$,
 with simultaneous count, width, precision and arbitrary-work
 return. Growing-call joint words and different accepted Grams remain possible.

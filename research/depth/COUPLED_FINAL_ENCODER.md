@@ -895,7 +895,7 @@ above are analytic and internally audited, not externally reviewed.
 
 <a id="shifted-syndrome-wide-commutator"></a>
 
-## 7. A four-band broad word retains the wrong Pauli coefficient
+## 7. A four-band broad word misses complete bank rows
 
 A different native trial uses no thin reflection or accepted compression.
 Let $`p\ge1`$, $`m=2^p`$, and let a and B be the arbitrary address
@@ -1034,12 +1034,46 @@ Literal native scalars change with the orientations but still cancel
 in the commutator. Thus sign tuning within these four bands does not
 repair the mismatch; (39) is unchanged.
 
-Pause this commutator as a lookup source. The retained half-weight
-P component is the concrete mismatch: the middle B_0 preserves P,
-while its independent quarter-phase axes leave a positive R component.
-A changed middle action on P, changed angles, a different source word
-or a different accepted Gram is outside (42). In particular this is
-not an obstruction to the whole shifted-syndrome grammar, an
+For p at least two, the same complete operator has a stronger witness
+that also survives arbitrary axis-angle changes. Choose a nonzero row
+label k with $`v\cdot k=0`$. Such a label exists because this
+hyperplane has dimension p minus one. Then k is absent from
+$`\mathcal J`$. Both P and R commute with $`X_{B_k}`$, and so
+does every Q_j appearing in (40), since j differs from k. All the
+axes of A_v are X type, hence A_v also commutes with $`X_{B_k}`$.
+Equation (40) gives
+
+```math
+[EPE^\dagger,X_{B_k}]=0.                               \qquad(43)
+```
+
+Take a normalized input with address k, bank wire k in its plus
+X eigenstate and all other bank wires zero. The actual unitary echo
+keeps the output in the plus eigenspace of $`X_{B_k}`$, regardless
+of its address motion. The required lookup applies $`Z_{B_k}`$ on
+that address and sends the input to the minus eigenspace. The actual
+and desired outputs are normalized and orthogonal. Therefore
+
+```math
+\left\|EPE^\dagger-\Omega_{a,B}\right\|\ge\sqrt2
+\qquad(p\ge2).                                        \qquad(44)
+```
+
+For the angle extension, replace the exponent on each P_j or Q_j
+by any real angle, retaining the same axes and actual commutator.
+The first image $`A_vPA_v^\dagger`$ still lies in the span of P
+and R. The Q_k factor commutes with both and drops out of their
+conjugation; all remaining factors commute with $`X_{B_k}`$.
+Thus (43)--(44) still hold. This is an operator statement about that
+fixed-axis word, not a claim that arbitrary rotations have the native
+ledger (39). The native T/T-dagger family already has the gap (44).
+
+Pause this commutator as a lookup source. Its coefficient mismatch
+at p=1 and unseen bank row at p at least two are both paid-source
+failures. A changed middle action on P, changed axes, a different
+source word or a different accepted Gram can leave these hypotheses;
+changing only the axis angles does not. In particular this is not
+an obstruction to the whole shifted-syndrome grammar, an
 unrestricted four-layer theorem, or a growing-depth lower bound.
 It does not reverse the constant-depth approximate scalar zero test
 or change the complete-frame frontier.
@@ -1049,7 +1083,9 @@ check every native source column and actual inverse at p=1 and p=2,
 the Pauli coefficients $`3/4`$ and $`1/2+\sqrt2/8`$, and the
 distinct-target bands and ledgers. A p=1 full echo checks the operator
 orientation in (40), and a signed p=2 word checks the unchanged
-coefficient under mixed orientations. Those finite checks challenge the
-literal phase, orientation and coefficient calculation; (38)--(42)
+coefficient under mixed orientations. A separate p=2 full native echo
+checks (43) and the orthogonal witness with squared distance two.
+Those finite checks challenge the literal phase, orientation, coefficient
+and missing-row calculation; (38)--(44)
 are the analytic all-size argument. They are internal evidence, not
 external mathematical review.

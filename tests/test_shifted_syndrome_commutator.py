@@ -1,7 +1,7 @@
 """Exact fixtures for a four-band broad source with a wrong Pauli image.
 
-The retained coefficient excludes this emitted commutator, not all shifted
-syndrome words, four-layer circuits, or approximate complete sources.
+The retained coefficient and missing-row witness exclude this commutator,
+not all shifted syndrome words, four-layer circuits, or complete sources.
 """
 from collections import Counter
 from fractions import Fraction
@@ -101,6 +101,36 @@ class ShiftedSyndromeCommutatorTests(unittest.TestCase):
         self.assertEqual(
             _pauli_echo_coefficient(native_columns(6, signed), 2),
             CQ2(Q2(Fraction(1, 2), Fraction(1, 8))))
+
+    def test_missing_row_commutation_and_complete_norm_witness(self):
+        p, k = 2, 2
+        flip = 1 << (p + k)
+        source = _commutator(p)
+        # Chronological E†, P, E is the actual complete Pauli echo E P E†.
+        echo = _inverse(source) + [('S', p), ('S', p)] + source
+        actual = native_columns(p + (1 << p), echo)
+        self.assertTrue(all(
+            actual[row ^ flip][column ^ flip] == value
+            for row, entries in enumerate(actual)
+            for column, value in enumerate(entries)))
+
+        # Address k, bank k in plus, every other bank wire zero. Lookup
+        # sends this to minus; the actual echo preserves its plus sector.
+        first, second = k, k ^ flip
+        inv_root_two = CQ2(Q2(0, Fraction(1, 2)))
+        output = [(row[first] + row[second]) * inv_root_two
+                  for row in actual]
+        target = [inv_root_two if row == first else
+                  -inv_root_two if row == second else CZ
+                  for row in range(len(actual))]
+        self.assertTrue(all(output[row ^ flip] == value
+                            for row, value in enumerate(output)))
+        self.assertTrue(all(target[row ^ flip] == -value
+                            for row, value in enumerate(target)))
+        self.assertEqual(sum((a.conj() * b for a, b in zip(output, target)),
+                             CZ), CZ)
+        self.assertEqual(sum(((a - b) * (a - b).conj()
+                              for a, b in zip(output, target)), CZ), 2 * CO)
 
     def test_native_bands_ledger_and_anticommuting_axis_count(self):
         for p in (1, 2, 3, 6):
