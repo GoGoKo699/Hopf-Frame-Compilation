@@ -1765,7 +1765,7 @@ plus-Y output; no bank preparation is assumed by the candidate.
 
 <a id="relative-repair-cubic-hadamard"></a>
 
-### 9.4. An entangling cubic phase followed by Hadamards also collapses
+### 9.4. An entangling cubic/Hadamard word also collapses
 
 A paid nonlinear, non-diagonal interlayer can leave both preceding
 premises and still have the wrong complete action. For p at least two,
@@ -1779,6 +1779,7 @@ C=P H_B.
 ```
 
 Each face contributes its four distinct cubic triples exactly once.
+The chronological order for C is the bank Hadamards followed by P.
 Use this C in the corrected family (62). To pay it, the identity
 
 ```math
