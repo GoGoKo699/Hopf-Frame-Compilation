@@ -8,16 +8,16 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: complete coefficients, unpaid joint depth
+## Current checkpoint: paid broad sources, unpaid lookup action
 
-**Verified starting checkpoint:** [PR #239](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/239),
-`a011a62c096c1cb4d940080522218694a6601a9a`, fetched 24 October 2026.
-A two-band coefficient shear now completes the three-address source in five
-layers, with no helpers. Its uniform complete-bank recurrence has linear
-address depth and is paused as a frontier route. A changed native syndrome
-reflection word is also paid, but its acceptance is too thin.
-R96 and the unrestricted depth gap are unchanged. Exact-tree receipts are in the
-PR record. Fetch main before resuming; this is not a pin.
+**Verified starting checkpoint:** [PR #240](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/240),
+`c3cbaad9cb2a1fa762585b39e7e1b446e416210d`, fetched 24 October 2026.
+Complete coefficient assembly remains paid, with linear emitted address depth.
+The normalized broad-baseline syndrome source has ideal Gram gap one half
+for p at least three. A separate four-band shifted-syndrome commutator has
+Pauli-transport error at least one quarter at every p, without a thin-source
+premise. R96 is unchanged. Exact-tree receipts belong in the PR record.
+Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
@@ -101,20 +101,15 @@ transpose-zeta and bank-Hadamard sources retain their quarter and $`1/64`$
 Gram floors. These components and scoped acceptance failures do not exclude
 general nonlocal sources or provide free addressed row flips.
 
-**Latest substantive outcome.** The [complete coefficient shear](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
-acts on arbitrary q-bit banks as $`|c,A,B\rangle\mapsto i^{c\sum B_j}|c,A+cB,B\rangle`$.
-It has two physical T bands, 4q T gates, 8q Cliffords and no helpers.
-Appending it to the paid two-address source completes all eight independent
-coefficients at p=3: 28 T gates, five source layers and 124 Cliffords in the
-raw bank. The actual phase echo costs 56 T gates, at most ten layers and
-250 Cliffords; the indicator echo costs 284 Cliffords. Return is exact.
-
-The uniform complete source for every p at least two has
-$`T=4m-4`$, emitted depth $`2p-1`$ and
-$`G=pm+8m+36`$, with zero clean or dirty helpers. Thus the coefficient
-identity is settled, including every mixed address sector, but its serial
-schedule does not improve the known logarithmic-depth indicator. Fusion
-cannot remove that source depth. The original four-band partial source and its error-two witness remain valid.
+**Retained complete construction.** The [two-band coefficient shear](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
+completes every bank coefficient, including all mixed address sectors.
+For every p at least two its uniform source has $`T=4m-4`$,
+$`G=pm+8m+36`$, emitted depth $`2p-1`$ and no helpers. Its actual
+Pauli echo implements the complete lookup phase exactly. This serial depth does not improve
+the known logarithmic-depth indicator, and fusion cannot remove it.
+The [scalar zero reflection](research/depth/EXPANDER_ZERO_REFLECTION.md) has
+zero clean work and constant depth at fixed accuracy; conjunction alone
+cannot witness dimension-growing fixed-accuracy depth.
 
 The [final-block theorem](research/depth/COUPLED_FINAL_ENCODER.md#bank-independent-final-boundary)
 and [specified full-bank X-motion encoder](research/depth/COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
@@ -123,30 +118,36 @@ $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$, the retained three-layer rounding
 theorem makes complete Pauli transport exact; two layers are excluded for
 p at least three. More source layers may use the approximate contract.
 
-The [syndrome-star continuation](research/depth/COUPLED_FINAL_ENCODER.md#syndrome-star-pulse-boundaries)
-pays an actual wide-T pulse and one-clean accepted source, with controls,
-precision and actual inverses charged. The ideal Gram still has gap at
-least one half for p at least three because it covers at most a 2/m
-fraction of the whole space. Kernel translations also stop the original
-syndrome-reflection/bank-X algebra. These are source-specific limits;
-additional native layers alone do not repair this thin acceptance.
+**Latest source trial.** The [broad-baseline syndrome source](research/depth/COUPLED_FINAL_ENCODER.md#broad-baseline-syndrome-source)
+has accepted block $`(I+Z_{B_0}RF^\dagger RF)/(2\sqrt2)`$, where R tests
+syndrome zero and $`F=T_XT_BT_X`$ is a paid three-band bank pulse.
+The one-clean native schedule, normalization, precision and actual adjoints
+are paid, with constant depth and linear T-count at fixed accuracy.
+Its ideal Gram distance is exactly one half for p at least three; the
+native gap is at least $`1/2-4\epsilon`$ at scalar error epsilon. The
+proof uses the actual row-zero spectator and a target-positive kernel.
+Fewer than $`(m-1)/4`$ thin controlled-reflection insertions cannot repair
+a word whose deletion baseline is this fixed-row source, with arbitrary
+interlayers. This is a call/baseline restriction, not a native-depth bound.
 
-**Next concrete question: change the growing-block operation.**
-Can a joint native word transport $`Z_{Y_0}`$ to the complete lookup sign
-without the two serial bands per added address bit, at every fixed tolerance
-and within the relaxed fusion budgets? A possible input is the product of
-all-bank coordinate shears; its complete binary actions commute, but that
-fact supplies neither a simultaneous native schedule nor cancellation of
-relative phases. Its whole-word resynthesis is unpaid. An alternative Gram
-source needs a broad accepted baseline with the correct lookup sectors,
-rather than a fixed number of thin syndrome reflections around zero acceptance.
+The [shifted-syndrome commutator](research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator)
+changes mechanism: four actual wide T bands, 4m T gates and no helpers.
+Its full Pauli image retains coefficient $`1/2+2^{-(m/2+1)/2-1}`$ on
+$`Z_{B_0}`$, against the target's $`1/m`$, giving error at least one
+quarter for every p. Independent T/T-dagger sign choices cannot repair it.
+This excludes that word, not shifted-syndrome or general four-layer sources.
 
-Pause serial coefficient extension and the tested thin-acceptance word.
-Reducing the p=3 layer constant alone does not move the frontier. Preserve
-the complete observable/Gram contract on arbitrary address, bank, work and
-reference inputs, charging actual inverses and return. A changed mechanism must give $`o(\log(p+2))`$ source depth; constant source depth
-still retains the frame transfer's log-log contribution. No fixed-tolerance
-result gives an all-precision improvement without a separate uniform ledger.
+**Next concrete question: change the complete joint action.**
+Pause serial coefficient extension, fixed-Clifford simultaneous diagonalization,
+fixed-call corrections of a fixed-row baseline, and the tested commutator.
+Can a paid intermediate bank/address word that changes the original probe
+replace the probe-preserving middle band and yield the complete lookup image? Derive that image before optimizing its layer count; another
+change of signs or removal of one symmetry does not establish the identity.
+The first unpaid operation remains a complete source of depth $`o(\log(p+2))`$,
+with simultaneous count, width, precision and arbitrary-work
+return. Growing-call joint words and different accepted Grams remain possible.
+Constant source depth retains the frame transfer's log-log
+term; fixed tolerance alone gives no all-precision improvement.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

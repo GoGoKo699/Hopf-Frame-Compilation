@@ -16,6 +16,8 @@ below moves every bank direction in one band; a different Pauli-centralizer
 argument excludes that particular transversal family as well. Other
 bank-dependent final blocks and sources with more layers remain open.
 These are representation boundaries, not an unrestricted native-depth theorem.
+The later sections pay two syndrome readouts and a shifted-syndrome
+four-band commutator, deriving their complete actions and separate failures.
 
 <a id="native-coupled-encoder"></a>
 
@@ -735,3 +737,319 @@ the finite checks do not prove them. This internal assessment supplies no
 external mathematical review. The first unpaid operation is now a broad
 accepted-sector mechanism with the correct lookup action, not control of
 (25), its native synthesis, or a repair of the stopped fixed-call word.
+
+<a id="broad-baseline-syndrome-source"></a>
+
+### 6.3 A normalized broad baseline does not finish the wide-T trial
+
+The next actual source starts with a broad fixed-row accepted sector,
+so its failure is not inferred from zero acceptance. Retain L, F, R and
+$`C_R`$ from (25)--(26), and define the literal signal rotation
+
+```math
+T_Y=S_qH_qT_qH_qS_q^\dagger
+   =e^{i\pi/8}e^{-i\pi Y_q/8}.
+```
+
+Emit, chronologically,
+
+```math
+L,\ T_Y,\ F,\ C_R,\ F^\dagger,\ C_R^\dagger,
+\ \mathrm{CZ}(q,B_0),\ T_Y^\dagger,\ H_q,\ L.           \qquad(30)
+```
+
+All inverses are actual native reversals. The signal is the only clean
+input. C, B and the scalar-zero compiler's helpers are arbitrary, and
+intermediate motion of the signal is allowed in the approximate compiler.
+In the ideal word, the middle controlled commutator has signal branches
+I and $`U=RF^\dagger RF`$. Put $`c=\cos(\pi/8)`$ and
+$`s=\sin(\pi/8)`$. The two signal boundaries give
+
+```math
+T_Y|0\rangle=e^{i\pi/8}(c|0\rangle+s|1\rangle),\qquad
+\langle0|H_qT_Y^\dagger=e^{-i\pi/8}(s\langle0|+c\langle1|).
+```
+
+Their literal scalars cancel and $`cs=1/(2\sqrt2)`$. Hence the
+complete zero-to-zero block and Gram, before the two L walls, are
+
+```math
+\begin{aligned}
+K_{\rm b}&=\frac{I+Z_{B_0}U}{2\sqrt2},\\
+G_{\rm b}=K_{\rm b}^\dagger K_{\rm b}
+ &=\frac{I+\mathrm{Re}(Z_{B_0}U)}4,
+ &0\le G_{\rm b}\le I/2.                              \qquad(31)
+\end{aligned}
+```
+
+The canonical block is $`LK_{\rm b}L`$. Deleting both controlled
+syndrome calls makes the actual F and its adjoint cancel and leaves
+
+```math
+K_0=\frac{I+Z_{B_0}}{2\sqrt2},\qquad
+K_0^\dagger K_0=\frac{I+Z_{B_0}}4.                    \qquad(32)
+```
+
+Thus the trial has correct half normalization and a baseline of rank
+half the complete input dimension. It does not initialize a row bank
+or assume a clean syndrome.
+
+Each $`T_Y`$ or its actual adjoint uses one T-type gate and six
+Cliffords when S-dagger is expanded as three positive S gates. Its
+signal envelope in (30), including CZ and H, costs two T gates, two
+T layers and sixteen Cliffords. The controlled syndrome word costs
+$`T_0`$ T gates, at most $`pm+G_0+8`$ Cliffords, depth $`d_0`$
+and $`w_0`$ dirty helpers. Consequently one common source/inverse
+ledger, at scalar-zero error epsilon, is
+
+```math
+\begin{aligned}
+T_{\rm b}&\le6m+2T_0+2,&w_{\rm b}&\le w_0,\\
+G_{\rm b,native}&\le2pm+10m+32+2G_0,
+&D_T&\le8+2d_0.                                      \qquad(33)
+\end{aligned}
+```
+
+There is exactly one clean acceptance bit. At fixed epsilon these
+are linear T-count, $`O_\epsilon(p)`$ dirty width,
+$`O(pm)+O_\epsilon(p)`$ Cliffords and constant T-depth. Two
+approximate controlled-reflection calls change the full source by at
+most $`2\epsilon`$ and its accepted Gram by at most
+$`4\epsilon`$. These estimates use the emitted reflection and its
+actual adjoint; they include dirty return and arbitrary references,
+without asserting that the emitted signal branches remain exact.
+
+The paid source nevertheless fails on the correct lookup sectors.
+The syndrome ignores $`B_0`$, and F is a tensor product of identical
+single-wire words. Its $`B_0`$ factor therefore cancels inside U:
+
+```math
+U=I_{B_0}\otimes U_{\rm rest}.                       \qquad(34)
+```
+
+Fix any nonzero address a, and let D denote the dimension of the
+remaining arbitrary inputs, including the whole bank B. On the
+$`B_0=1`$ sector, each of P and $`F^\dagger PF`$ has rank
+$`D/(2m)`$. The two-reflection difference therefore has
+
+```math
+\mathrm{rank}\bigl((I-U)|_{B_0=1}\bigr)\le D/m. \qquad(35)
+```
+
+The target-positive subspace $`B_0=1,B_a=0`$ has dimension D/4.
+When $`m\gt4`$, it intersects the kernel in (35) nontrivially.
+On a unit vector in this intersection, (31) vanishes while
+$`(I+\Omega_{a,B})/4`$ acts as one half. Since both positive
+operators are bounded above by I/2, the complete ideal distance is
+exactly
+
+```math
+\left\|G_{\rm b}-\frac{I+\Omega_{a,B}}4\right\|
+ =\frac12\qquad(p\ge3).                              \qquad(36)
+```
+
+The L walls preserve this distance to the canonical two-bank target.
+The emitted source retains gap at least $`1/2-4\epsilon`$. The
+rank argument grants arbitrary identity helpers and a coherent address;
+restriction to the chosen address fiber already witnesses operator norm.
+
+There is a useful **baseline-relative** statement, without the special
+$`B_0`$ factorization. Let the unaccepted input have dimension D,
+and insert k controlled syndrome reflections into any specified native
+baseline. Deleting those calls defines the baseline unitary and its
+accepted block K_0. Each physical controlled reflection has difference
+rank D/m, on the full signal-plus-input space of dimension 2D.
+Telescoping and compression give
+
+```math
+\mathrm{rank}(K-K_0)\le kD/m.                   \qquad(37)
+```
+
+If a subspace S lies in $`\ker K_0`$ and the desired half-projector
+acts there as I/2, then $`\dim S\gt kD/m`$ forces Gram error at
+least one half. For the fixed-row baseline (32), across all addresses,
+S can be chosen with $`a\ne0,B_0=1,B_a=0`$ and has dimension
+$`D(m-1)/(4m)`$. Thus fewer than $`(m-1)/4`$ such insertions
+cannot repair that baseline. The sharper p=3 result (36) uses (34);
+it is not obtained by silently halving the general physical rank.
+A baseline with no such kernel subspace is outside this stated test.
+
+This pauses the particular broad-baseline trial (30). It does not turn
+thin-call count into native depth: a genuinely joint schedule for a
+growing number of calls, or a different broad baseline already carrying
+the required lookup information, remains a constructive possibility.
+The two-band scalar rotation envelope is paid; the missing operation is
+that complete lookup-dependent joint action. Neither this source failure
+nor the earlier thin-acceptance result changes R96 or excludes unrestricted
+higher-band sources.
+
+The [exact broad-source fixtures](../../tests/test_broad_syndrome_readout.py)
+check all physical columns and the actual inverse of the p=1 canonical
+source, its full accepted block, the half normalization and the two-T
+baseline. This p=1 controlled reflection is an exact Clifford
+specialization, not an execution of the general approximate compiler.
+A p=2 matrix checks the $`B_0`$ spectator, and an exact
+p=3 dimension count checks the two subspaces used in (35). These are
+finite internal checks. The all-size operator, resource and rank claims
+above are analytic and internally audited, not externally reviewed.
+
+<a id="shifted-syndrome-wide-commutator"></a>
+
+## 7. A four-band broad word retains the wrong Pauli coefficient
+
+A different native trial uses no thin reflection or accepted compression.
+Let $`p\ge1`$, $`m=2^p`$, and let a and B be the arbitrary address
+and m-bit bank. Fix the nonzero row label $`v=e_0`$. Define
+
+```math
+\begin{aligned}
+P&=Z_{B_0},&
+P_j&=X_a^{j+v}X_{B_j},& Q_j&=Z_a^jZ_{B_j},\\
+A_v&=\prod_{j\in\mathbb F_2^p}e^{-i\pi P_j/8},&
+B_0&=\prod_{j\in\mathbb F_2^p}e^{-i\pi Q_j/8},&
+E&=A_v^\dagger B_0^\dagger A_vB_0.                    \qquad(38)
+\end{aligned}
+```
+
+Here the subscript on the operator $`B_0`$ denotes the unshifted
+syndrome word; $`B_j`$ inside a Pauli denotes a bank wire. The
+shift matters: the unshifted syndrome never couples the physical
+wire $`B_0`$ to the address. Alternating shifted and unshifted
+words removes that particular spectator argument. Both operators
+in (38) act on the whole Hilbert space, without a clean sector.
+
+### Actual native family and complete action
+
+The Clifford word $`W_v`$ consists of CNOTs from bank wire j to
+address bit i whenever $`(j+v)_i=1`$. Its basis action is
+
+```math
+W_v|a,B\rangle
+ =\left|a+\sum_j(j+v)B_j,B\right\rangle.
+```
+
+It is its own actual inverse and costs pm/2 CNOTs. Emit W_v, H on
+every bank wire, one transversal T band, the same bank Hadamards,
+and the reversed W_v. The literal operator is
+$`\widetilde A_v=e^{im\pi/8}A_v`$ and costs m T gates and
+$`pm+2m`$ Cliffords. For $`\widetilde B_0`$, instead compute each
+address parity $`a\cdot j`$ into bank wire j, apply one transversal
+T band, and undo the parity CNOTs. This has literal operator
+$`\widetilde B_0=e^{im\pi/8}B_0`$, m T gates and pm Cliffords.
+Every band has m distinct physical T targets.
+
+The chronological source is
+
+```math
+\widetilde B_0,\quad\widetilde A_v,\quad\widetilde B_0^\dagger,\quad
+\widetilde A_v^\dagger.
+```
+
+Its four literal scalars cancel, giving
+exactly E in (38). The source and its actual reversed native word have
+
+```math
+T_E=4m,\qquad D_T(E)\le4,\qquad G_E=4pm+4m,
+\qquad w_E=a_{\rm clean}=0.                           \qquad(39)
+```
+
+All inputs and external references remain arbitrary. The Pauli echo
+$`EPE^\dagger`$ costs $`8m`$ T gates, at most eight T layers and
+$`8pm+8m+2`$ Cliffords. These are ledgers for an actual candidate,
+not a claim that its echo implements lookup or returns the desired
+address and bank state.
+
+Put $`R=-iP_0P`$, a Hermitian Pauli. Only P_0 anticommutes with P,
+so the first conjugation is exactly
+
+```math
+A_vPA_v^\dagger=\frac{P+R}{\sqrt2}.
+```
+
+All Q_j commute with P. The axes anticommute with R precisely for
+
+```math
+\mathcal J=\{j:v\cdot j+\mathbf1_{j=0}=1\},
+\qquad r=|\mathcal J|=m/2+1.
+```
+
+The m/2 labels satisfying $`v\cdot j=1`$ are nonzero, and j=0
+adds one more. Consequently the complete echo has the operator formula
+
+```math
+\begin{aligned}
+R'&=B_0^\dagger R B_0
+   =R\prod_{j\in\mathcal J}\frac{I-iQ_j}{\sqrt2},\\
+EPE^\dagger&=A_v^\dagger\frac{P+R'}{\sqrt2}A_v.
+                                                               \qquad(40)
+\end{aligned}
+```
+
+This is a whole-space identity, not an expectation on a prepared bank.
+The Q_j are independent Pauli labels, because each has its own bank
+Z label. Thus only the empty product contributes the original R in
+R', with normalized Pauli coefficient $`2^{-r/2}`$.
+
+### A complete norm witness and its scope
+
+For operators on the address and bank, write
+$`\langle F,G\rangle=2^{-(p+m)}\mathrm{Tr}(F^\dagger G)`$.
+The P component of R' is zero, since conjugation by B_0 preserves P
+and $`\langle P,R\rangle=0`$. Unitary invariance and (40) therefore
+give
+
+```math
+\begin{aligned}
+\langle P,EPE^\dagger\rangle
+ &=\frac12\langle P+R,P+R'\rangle\\
+ &=\frac12+2^{-r/2-1}.                                  \qquad(41)
+\end{aligned}
+```
+
+The required lookup sign is
+$`\Omega_{a,B}=\sum_a|a\rangle\langle a|\otimes Z_{B_a}`$.
+Only its address-zero block contributes to its P coefficient, so
+$`\langle P,\Omega_{a,B}\rangle=1/m`$. Since P is unitary,
+normalized trace is bounded by operator norm. It follows that
+
+```math
+\left\|EPE^\dagger-\Omega_{a,B}\right\|
+ \ge\frac12+2^{-(m/2+1)/2-1}-\frac1m.                    \qquad(42)
+```
+
+The bound is one quarter at p=1 and strictly greater than one quarter
+for every p at least two. It also holds after tensoring arbitrary
+reference or identity-work systems. This exact native candidate fails
+at a dimension-independent requested accuracy even though all four
+bands, Clifford walls and actual inverses are paid. No approximation
+or thin-reflection rank argument enters the proof.
+
+The same coefficient and gap hold with independently chosen T or
+T-dagger orientations on every axis of A_v and B_0, using the actual
+adjoints in E. If the orientation of P_0 is sigma, the first image is
+$`(P+\sigma R)/\sqrt2`$. For B_0 each retained R factor is still
+$`\cos(\pm\pi/4)=1/\sqrt2`$, and both cross coefficients with P
+are zero. The two occurrences of sigma multiply to one in (41).
+Literal native scalars change with the orientations but still cancel
+in the commutator. Thus sign tuning within these four bands does not
+repair the mismatch; (39) is unchanged.
+
+Pause this commutator as a lookup source. The retained half-weight
+P component is the concrete mismatch: the middle B_0 preserves P,
+while its independent quarter-phase axes leave a positive R component.
+A changed middle action on P, changed angles, a different source word
+or a different accepted Gram is outside (42). In particular this is
+not an obstruction to the whole shifted-syndrome grammar, an
+unrestricted four-layer theorem, or a growing-depth lower bound.
+It does not reverse the constant-depth approximate scalar zero test
+or change the complete-frame frontier.
+
+The [exact commutator fixtures](../../tests/test_shifted_syndrome_commutator.py)
+check every native source column and actual inverse at p=1 and p=2,
+the Pauli coefficients $`3/4`$ and $`1/2+\sqrt2/8`$, and the
+distinct-target bands and ledgers. A p=1 full echo checks the operator
+orientation in (40), and a signed p=2 word checks the unchanged
+coefficient under mixed orientations. Those finite checks challenge the
+literal phase, orientation and coefficient calculation; (38)--(42)
+are the analytic all-size argument. They are internal evidence, not
+external mathematical review.
