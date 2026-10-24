@@ -1068,6 +1068,38 @@ Thus (43)--(44) still hold. This is an operator statement about that
 fixed-axis word, not a claim that arbitrary rotations have the native
 ledger (39). The native T/T-dagger family already has the gap (44).
 
+There is also a broader midpoint test with the native A_v fixed.
+Replace B_0 by any unitary B commuting with P, including arbitrary
+address, bank and work motion consistent with that commutation, and
+put $`E_B=A_v^\dagger B^\dagger A_vB`$. The Hermitian unitary
+$`V=A_v^\dagger PA_v=(P-R)/\sqrt2`$ witnesses the failure.
+Cyclic invariance of normalized trace and $`BP=PB`$ give
+
+```math
+\begin{aligned}
+\langle V,E_BPE_B^\dagger\rangle
+ &=\langle P,B^\dagger(A_vPA_v^\dagger)B\rangle
+   =\frac1{\sqrt2},\\
+\langle V,\Omega_{a,B}\rangle&=\frac1{m\sqrt2},\\
+\left\|E_BPE_B^\dagger-\Omega_{a,B}\right\|
+ &\ge\frac{1-1/m}{\sqrt2}.                              \qquad(45)
+\end{aligned}
+```
+
+In the second line the R term vanishes because R is off-diagonal and
+lookup is diagonal. The notation B in E_B denotes the replacement
+unitary; the bank in $`\Omega_{a,B}`$ is unchanged. Arbitrary extra
+work is included by identity extension and normalized trace on the
+full space. In particular, a diagonal middle product with many tags
+$`Z_a^{M_\ell j}Z_{B_j}`$ still commutes with P. Spanning the
+address labels with those tags cannot repair this midpoint mismatch,
+even if it removes every particular missing-row witness. No compiler
+for that proposed product is needed to apply (45).
+The numerical constant in (45) uses the native outer angles of A_v;
+changing that outer operation is outside this stated midpoint bound.
+For the original single-tag axes, (44) separately survives changes
+to all angles, including the outer ones.
+
 Pause this commutator as a lookup source. Its coefficient mismatch
 at p=1 and unseen bank row at p at least two are both paid-source
 failures. A changed middle action on P, changed axes, a different
@@ -1086,6 +1118,6 @@ orientation in (40), and a signed p=2 word checks the unchanged
 coefficient under mixed orientations. A separate p=2 full native echo
 checks (43) and the orthogonal witness with squared distance two.
 Those finite checks challenge the literal phase, orientation, coefficient
-and missing-row calculation; (38)--(44)
+and missing-row calculation; (38)--(45)
 are the analytic all-size argument. They are internal evidence, not
 external mathematical review.
