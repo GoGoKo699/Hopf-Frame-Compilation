@@ -8,15 +8,15 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: paid broad sources, unpaid lookup action
+## Current checkpoint: common-probe sources and relative lookup action
 
-**Verified starting checkpoint:** [PR #240](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/240),
-`c3cbaad9cb2a1fa762585b39e7e1b446e416210d`, fetched 24 October 2026.
-Complete coefficient assembly remains paid, with linear emitted address depth.
-The normalized broad-baseline syndrome source has ideal Gram gap one half
-for p at least three. A separate four-band shifted-syndrome commutator has
-Pauli-transport error at least square root two for p at least two, without a
-thin-source premise. R96 is unchanged. Exact-tree receipts belong in the PR record.
+**Verified starting checkpoint:** [PR #241](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/241),
+`ab84ca271397e11537efb0c29d8bb22693653b70`, fetched 24 October 2026.
+The common-probe source couples every row and changes the probe; its
+four-band graph-phase word has error at least square root two
+for p at least two. Every static bank-diagonal repair at the native angles
+has error above one half for p at least three. R96 is unchanged;
+these are scoped failures. Exact-tree receipts belong in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -118,44 +118,44 @@ $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$, the retained three-layer rounding
 theorem makes complete Pauli transport exact; two layers are excluded for
 p at least three. More source layers may use the approximate contract.
 
-**Latest source trial.** The [broad-baseline syndrome source](research/depth/COUPLED_FINAL_ENCODER.md#broad-baseline-syndrome-source)
-has accepted block $`(I+Z_{B_0}RF^\dagger RF)/(2\sqrt2)`$, where R tests
-syndrome zero and $`F=T_XT_BT_X`$ is a paid three-band bank pulse.
-The one-clean native schedule, normalization, precision and actual adjoints
-are paid, with constant depth and linear T-count at fixed accuracy.
-Its ideal Gram distance is exactly one half for p at least three; the
-native gap is at least $`1/2-4\epsilon`$ at scalar error epsilon. The
-proof uses the actual row-zero spectator and a target-positive kernel.
-Fewer than $`(m-1)/4`$ thin controlled-reflection insertions cannot repair
-a word whose deletion baseline is this fixed-row source, with arbitrary
-interlayers. This is a call/baseline restriction, not a native-depth bound.
+**Latest source trial.** The [common-probe family](research/depth/COUPLED_FINAL_ENCODER.md#common-probe-wide-source)
+uses a shared arbitrary probe with every row in both native pulse frames.
+A complete-graph CZ supplies a third frame, with $`T=4m`$,
+$`D_T\le4`$, $`G=4pm+20m+12`$, one arbitrary work bit
+and zero clean inputs. The complete echo and probe conversion are paid.
+The [two-frame covariance](research/depth/COUPLED_FINAL_ENCODER.md#two-row-local-frame-covariance)
+gives direct error at least square root two and Gram error at least one
+quarter within that alphabet, even with arbitrary tags and more layers.
+The third frame leaves that premise but a [paired singlet witness](research/depth/COUPLED_FINAL_ENCODER.md#common-probe-paired-state)
+still gives error at least square root two for p at least two, including
+pairwise-equal pulse angles and any total-weight bank phase.
 
-The [shifted-syndrome commutator](research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator)
-changes mechanism: four actual wide T bands, 4m T gates and no helpers.
-Its full Pauli image cannot respond to some nonzero bank rows when p is at
-least two, giving error at least $`\sqrt2`$. This persists for arbitrary
-rotation angles on the same axes. At p=1 the native T word has a separate
-one-quarter coefficient gap. These are limits of that commutator family.
+The [relative-fiber spectrum](research/depth/COUPLED_FINAL_ENCODER.md#static-diagonal-common-probe-spectrum)
+excludes every static bank-diagonal dressing of this word at the native
+angles for p at least three, with direct error above one half. Such a
+dressing only changes the common bank basis and cannot give a Hermitian
+lookup sign. This adds no general Gram or depth bound.
+The earlier [broad-baseline](research/depth/COUPLED_FINAL_ENCODER.md#broad-baseline-syndrome-source)
+and [shifted-syndrome](research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator)
+failures retain their separate scopes and reopening conditions.
 
-**Next concrete question: change the complete joint action.**
-Pause serial coefficient extension, fixed-Clifford simultaneous diagonalization,
-fixed-call corrections of a fixed-row baseline, and the tested commutator.
-Can a paid intermediate bank/address word that changes the original probe
-replace the probe-preserving middle band and yield the complete lookup image? Derive that image before optimizing its layer count; another
-angle tuning or removal of one symmetry does not establish the identity.
-The first unpaid operation remains a complete source of depth $`o(\log(p+2))`$,
-with simultaneous count, width, precision and arbitrary-work
-return. Growing-call joint words and different accepted Grams remain possible.
-Constant source depth retains the frame transfer's log-log
-term; fixed tolerance alone gives no all-precision improvement.
+**Next concrete question: change the relative probe action.**
+Pause static diagonal repairs, including nonlinear row phases. Can a paid
+intermediate operation act differently on the two probe fibers
+and yield a relative unitary that first squares to identity, then equals
+the full self-addressed sign $`(-1)^{\pi(B)+B_{s+HB}}`$? A successful
+transport word must establish both on every bank column. Other accepted
+Grams need not use this factorization. The unpaid operation remains a
+qualifying complete source of depth $`o(\log(p+2))`$ with the
+simultaneous count, width, precision and arbitrary-work return ledger.
+Constant source depth retains the frame transfer's log-log term; fixed tolerance gives no all-precision improvement.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
 [Route decisions](research/ROUTE_DECISIONS.md) records stopped mechanisms,
 their reopening conditions and settled questions. Unique attempts and proofs
 remain in their homes; a representation limit does not retire the destination.
-The [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
-needs changed phase algebra or a paid non-Clifford endpoint before reopening.
+The [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction) needs changed phase algebra or a paid non-Clifford endpoint before reopening.
 
 <a id="research-decision-and-stopping-rules"></a>
 <a id="continuing-toward-the-general-answer"></a>
