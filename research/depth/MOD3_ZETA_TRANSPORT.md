@@ -595,11 +595,15 @@ also excludes bank-independent final one-band blocks at those lengths,
 despite arbitrary middle Clifford boundaries and dirty width. A separate
 [full-bank X-motion word](COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
 also has no one-band middle completion, by its rotated-bank centralizer and
-affine response code. Other bank-dependent final blocks or more source layers
-remain open. The [four-band nested-coefficient source](WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
-pays a quartic term together with its adjacent cubic coefficient, but already
-omits five independent coefficients at three addresses. Complete joint
-coefficient assembly remains unpaid; these scoped results do not move R96.
+affine response code. Other bank-dependent final blocks or a sublogarithmic
+source with more layers remain open. The
+[four-band nested-coefficient source](WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
+remains partial. A separate [two-band coefficient shear](WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
+now completes every three-address coefficient in five source layers, with
+28 T gates and no helpers. Its exact all-size recurrence pays the complete
+bank but retains linear emitted address depth. Coefficient coverage is
+settled; a sublogarithmic joint native schedule remains unpaid. Neither
+this completion nor the scoped exclusions move R96.
 
 Exact fixtures: [binary transport and observable identities](../../tests/test_mod3_zeta_transport.py),
 [native batch, actual inverses and signal controls](../../tests/test_mod3_native_batch.py),
