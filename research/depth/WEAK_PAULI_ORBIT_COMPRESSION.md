@@ -221,9 +221,10 @@ Let a,b be arbitrary address bits and d,t,v,w four arbitrary bank
 bits. There is an exact source for the complete cubic normal form
 
 ```math
-f=d+av+bw+abt\pmod2,\qquad
-E Z_d E^\dagger=(-1)^f,\qquad
-T_E=12,\quad D_T(E)=3,\quad G_E=68,\quad w_E=0.       \qquad(8)
+\begin{aligned}
+f&=d+av+bw+abt\pmod2,\qquad E Z_d E^\dagger=(-1)^f,\\
+T_E&=12,\quad D_T(E)=3,\quad G_E=68,\quad w_E=0.       \qquad(8)
+\end{aligned}
 ```
 
 No clean or dirty helper is supplied. The source may have
@@ -313,7 +314,8 @@ X_dZ_aZ_v,\quad X_dZ_bZ_w,\quad X_dZ_aZ_t.            \qquad(14)
 ```
 
 They commute and are physically independent. After H_d their parity
-rows are $`d+v,d+b,d+w,d+a+v,d+b+w,d+a+t`$. From rows
+rows are $`d+v`$, $`d+b`$, $`d+w`$, $`d+a+v`$,
+$`d+b+w`$ and $`d+a+t`$. From rows
 ell_1,...,ell_6 recover $`d=\ell_2+\ell_3+\ell_5`$ and
 $`a=\ell_1+\ell_4`$, then the other four coordinates. The
 fixture emits their invertible basis by twenty CNOT row operations.

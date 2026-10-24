@@ -302,7 +302,11 @@ phase on its affine support: its Choi state's diagonal Pauli stabilizers
 fix the support, and its translation stabilizers give linear phase
 differences. Restricting to this fixed affine edge keeps phase degree at
 most two modulo eight. A diagonal one-band B is C3, with weighted phase
-$`\sum l_ju_j+2\sum q_{jk}u_ju_k+4\sum t_{jkl}u_ju_ku_l\pmod8`$.
+
+```math
+\sum l_ju_j+2\sum q_{jk}u_ju_k+4\sum t_{jkl}u_ju_ku_l\pmod8.
+```
+
 Its difference on flipping only d is quadratic modulo eight; the possible
 remaining cubic coefficient is divisible by eight. Comparing edge phases
 and subtracting $`p(-1)^d=p-2pd`$ would therefore make $`4f`$
@@ -357,10 +361,11 @@ adjoint retains the emitted T phases and reverses every gate.
 The fixed Clifford rewrite is
 
 ```math
-WQW=Q_h=(-1)^h,\qquad
-h=d+\pi(Y)+Y_{a+HY},\qquad
-M'=WH_d(G_{\rm bank}QG_{\rm bank}^\dagger)H_dW
-   =T_XQ_hT_X^\dagger.                              \qquad(14)
+\begin{aligned}
+WQW&=Q_h=(-1)^h,\qquad h=d+\pi(Y)+Y_{a+HY},\\
+M'&=WH_d(G_{\rm bank}QG_{\rm bank}^\dagger)H_dW\\
+  &=T_XQ_hT_X^\dagger.                              \qquad(14)
+\end{aligned}
 ```
 
 There is an explicit complete operator expansion. Let b_u be the
