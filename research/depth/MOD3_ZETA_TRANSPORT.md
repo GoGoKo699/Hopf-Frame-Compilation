@@ -242,10 +242,13 @@ require independent blocks or an unpriced complex Fourier basis.
 
 <a id="paid-indicator-converse"></a>
 
-## 5. A paid converse under the quadratic Clifford budget
+## 5. Paid converses under the quadratic Clifford budget
 
 Conversely, a complete dirty indicator implements the full batch with
-constant query overhead. This uses arbitrary auxiliary banks, not clean
+constant query overhead. The factorwise-return construction below uses
+twelve calls; Section 5.1 reduces this to four by sharing cleanup, and
+needs only two calls for the weaker observable source.
+These constructions use arbitrary auxiliary banks, not clean
 predicate bits. For any table $`f(x)\in\{0,1\}^q`$, let A_f have
 column x equal to f(x), and define the Clifford map
 
@@ -294,6 +297,164 @@ The two-call control construction from Section 3 gives the same depth
 order for the controlled batch. This improves the standalone helper-free
 linear-depth baseline, but inherits its logarithmic depth from the existing
 indicator; it is not an improvement to the general frame frontier.
+
+<a id="shared-cleanup-transport"></a>
+
+### 5.1. Two-call observable transport and four-call full batches
+
+The observable promise permits a further saving: intermediate work need
+not return after each table lookup or even after the complete source.
+Keep the same arbitrary query bank T and predicate bank b. Define
+
+```math
+R_f=C_f I_p C_f,\qquad V_{f,G}=B_G R_f B_G.
+```
+
+On every computational column, including all arbitrary T,b,z,
+
+```math
+\begin{aligned}
+R_f:(x,T,b)&\longmapsto(x,T\oplus e_x,b\oplus f(x)),\\
+V_{f,G}:(x,T,b,z)&\longmapsto
+ (x,T\oplus e_x,b\oplus f(x),\prod_jG_j^{f_j(x)}z).
+\end{aligned}                                                \qquad(14)
+```
+
+The two C_f maps cancel their dependence on the initial T. The two
+B_G maps apply exponents b_j and $`b_j\oplus f_j(x)`$ to the same
+involution, so their product is independent of the initial b. All maps
+are literal phase-free permutations; hence (14) is a full-operator
+identity on coherent inputs and external references. No auxiliary
+bank was initialized. One V uses one indicator call, two C_f maps and
+two disjoint CCX batches.
+
+Write $`a_\sigma=[r_\sigma=1]`$,
+$`\beta_\sigma=[r_\sigma\ne0]`$ and
+$`c_\sigma=[r_\sigma=2]`$, so $`\beta=a\oplus c`$.
+For the first coordinate vector of one block,
+
+```math
+U^{a_\sigma}L^{\beta_\sigma}e_0=A^{r_\sigma}e_0.
+```
+
+At residues 0,1,2 the two-shear maps are I,A,L, respectively. The
+residue-two map differs from $`A^2`$ by a right factor U, which fixes
+e_0. Thus this is an actual change of representative in the allowed
+Pauli centralizer, rather than an approximation of the full batch.
+
+Apply $`V_{\beta,L}`$ followed by $`V_{a,U}`$, reusing T and b.
+Equation (14) returns T after the two toggles, maps the principal bank
+by $`\prod_\sigma U_\sigma^{a_\sigma}L_\sigma^{\beta_\sigma}`$,
+and changes b by c(x). Call this full unitary E_*. The residual
+address-controlled $`X_b^{c(x)}`$ commutes with the transported bank
+observable, so
+
+```math
+E_*P_0E_*^\dagger=\mathcal B_pP_0\mathcal B_p^\dagger
+ \otimes I_{T,b,W}.                                         \qquad(15)
+```
+
+The source itself generally changes b. Its complete Pauli echo restores
+b, T and the indicator's private work W on every input. Replacing each
+ideal indicator call by an emitted approximation of error delta gives
+$`\|E-E_*\|\le2\delta`$ and observable error at most $`4\delta`$.
+With common forward/actual-adjoint indicator bounds, the source ledger is
+
+```math
+\begin{aligned}
+T_E&\le2T_I+28q,&G_E&\le2G_I+4qm+48q,\\
+d_E&\le2d_I+16,&w_E&\le m+q+w_I.
+\end{aligned}                                                \qquad(16)
+```
+
+The resulting indicator echo has four actual indicator/adjoint calls.
+Use its actual emitted adjoint: no approximate indicator is assumed
+involutive, and no intermediate approximate work return is assumed.
+Full-operator telescoping already includes every return error.
+
+There is also a saving for the stronger full batch. Apply
+$`V_{c,U},V_{\beta,L},V_{a,U}`$ chronologically, then one bare
+indicator on T. The three predicate shifts sum to zero. The fourth
+query-bank toggle restores T. The principal action is exactly
+$`U^aL^\beta U^c=A^r`$ on every block, with all private work returned.
+The improved common full-batch ledger is
+
+```math
+\begin{aligned}
+T_{\mathcal B}&\le4T_I+42q,&
+G_{\mathcal B}&\le4G_I+6qm+72q,\\
+d_{\mathcal B}&\le4d_I+24,&
+w_{\mathcal B}&\le m+q+w_I,\qquad\epsilon_{\mathcal B}\le4\delta.
+\end{aligned}                                                \qquad(17)
+```
+
+The fourth call may be an actual adjoint instead, since the ideal
+indicator is self-adjoint. Reversing the emitted construction gives
+the separately charged actual inverse with the same common bounds.
+Both improvements retain zero clean work and the quadratic Clifford
+budget. Substituting the existing exact indicator still gives
+$`O(\log(p+2))`$ depth: these are constant-factor improvements, not
+sublogarithmic constructions or a new general frame bound.
+
+<a id="two-band-transport-screen"></a>
+
+### 5.2. Two native T bands cannot supply the weak observable
+
+For $`p\ge3`$, any zero-clean source E with at most two physical
+T/T-dagger layers has observable error at least
+
+```math
+\tau_* = \frac{\sin(\pi/8)}{2\sqrt2}\approx0.135299          \qquad(18)
+```
+
+in (11), irrespective of its width, Clifford count or intermediate
+address and work movement. This follows from the retained
+[two-layer diagonal rigidity theorem](TWO_LAYER_DIAGONAL_RIGIDITY.md#4-uniform-robust-boolean-query-obstruction),
+after folding the Pauli echo at its center.
+
+Indeed, write $`E=C_2D_2C_1D_1C_0`$ with physical T bands D_i
+and arbitrary Clifford blocks C_i. A one-band encoder sends a Hermitian
+Pauli to a literal Hermitian Clifford, so
+
+```math
+K=C_1D_1(C_0P_0C_0^\dagger)D_1^\dagger C_1^\dagger
+```
+
+is Clifford, including its actual phase. Consequently
+
+```math
+EP_0E^\dagger=C_2D_2K D_2^\dagger C_2^\dagger             \qquad(19)
+```
+
+has two physical T bands, not four. This folding is also proved in
+[R75's two-layer Pauli-image form](FOUR_LAYER_OPERATOR_RIGIDITY.md#1-two-layer-pauli-images-and-commuting-axis-spaces).
+It remains valid when P_0 is tensored with identity on every arbitrary
+helper; E need not preserve any individual register.
+
+The fixed S walls and output Hadamards turn the ideal observable into
+the complete diagonal lookup sign $`(-1)^{Y_x}`$, without changing
+T-depth or norm error. Its Boolean exponent has degree p+1: in
+
+```math
+Y_x=\bigoplus_u Y_u\prod_i(1\oplus x_i\oplus u_i)
+```
+
+each distinct Y_u has a nonzero full-address monomial. For completeness,
+the zero-clean proof of the cited theorem applies to this multivariate
+sign directly. Error below tau_* forces the same actual two-band word
+to preserve every computational Z exactly by R75 operator rounding.
+It is then diagonal C3. The folded observable is also Hermitian, so
+its diagonal entries are literal Boolean signs, of degree at most three.
+It cannot equal the target of degree p+1 greater than three. Distinct
+Boolean diagonal unitaries have distance two, contradicting error below
+tau_*. This argument preserves the observable's sign; a source global
+phase cancels from its actual-adjoint echo.
+
+Thus at least three source T layers are necessary at this fixed error
+threshold. More generally a d-layer source echo folds to at most
+$`2d-2`$ T layers for d at least one, but (18) does not exclude three
+source layers or growing sublogarithmic depth. It is a native two-band
+screen, distinct from the classical multiplication-degree bound below.
 
 <a id="scoped-mod3-limits"></a>
 
@@ -375,7 +536,8 @@ the indicator-based logarithmic compiler meets it, and no
 balanced dirty MOD3 arithmetic is assumed available. The unconditional
 R96 frontier remains unchanged.
 
-Exact fixtures: [binary transport and observable identities](../../tests/test_mod3_zeta_transport.py)
-and [native batch, actual inverses and signal controls](../../tests/test_mod3_native_batch.py).
+Exact fixtures: [binary transport and observable identities](../../tests/test_mod3_zeta_transport.py),
+[native batch, actual inverses and signal controls](../../tests/test_mod3_native_batch.py),
+and [shared cleanup and Pauli-echo folding](../../tests/test_mod3_observable_transport.py).
 Finite fixtures corroborate these reductions and baselines; they do not
 emit a sublogarithmic source or prove an unrestricted depth lower bound.
