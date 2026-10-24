@@ -456,6 +456,53 @@ $`2d-2`$ T layers for d at least one, but (18) does not exclude three
 source layers or growing sublogarithmic depth. It is a native two-band
 screen, distinct from the classical multiplication-degree bound below.
 
+<a id="three-band-transport-exactness"></a>
+
+### 5.3. Three-layer observable approximation must already be exact
+
+The same operator rounding gives a sharper discovery condition at three
+source layers. Let E be any zero-clean native circuit of T-depth at most
+three, P a fixed Hermitian Pauli on its whole physical space, and D a
+Boolean diagonal involution in any fixed Clifford basis. Then
+
+```math
+\|EPE^\dagger-D\|\lt\tau_*
+\quad\Longrightarrow\quad EPE^\dagger=D.                    \qquad(20)
+```
+
+There is no restriction on dirty width, Clifford count, or intermediate
+address and work movement. The premise is a full-operator comparison;
+an initialized-sector promise is not sufficient for this argument.
+
+To prove (20), fold the central source band as in (19). The literal
+Hermitian unitary $`O=EPE^\dagger`$ has at most four T layers. Move to
+the fixed Clifford basis in which D is diagonal. For every computational
+Z, including every dirty-work Z, its distance from D gives
+
+```math
+\|OZO^\dagger-Z\|\le2\|O-D\|\lt2\tau_*.
+```
+
+[R75's four-layer preservation theorem](FOUR_LAYER_OPERATOR_RIGIDITY.md#5-four-layer-preservation-and-the-zero-clean-witness)
+therefore makes O commute with every such Z exactly, simultaneously and
+without a union bound. Thus O is diagonal. Since it is a Hermitian
+involution, its entries are literal signs. Distinct Boolean diagonal
+involutions have distance two, so the assumed error forces O=D.
+The source's global phase cancels in its actual-adjoint echo; no target
+sign or input-dependent phase is discarded.
+
+The fixed S walls and output Hadamards put the target of (11) into this
+form. Hence a source of depth at most three either meets the complete
+MOD3 observable contract exactly or has error at least tau_*. Equivalently,
+below that threshold its relative word
+$`C=(\mathcal B_p^\dagger\otimes I_W)E`$ must commute exactly with
+$`P_0\otimes I_W`$. For p at least three, Section 5.2 excludes two
+source layers, while exact three-layer transport remains open. This
+rounding statement neither excludes that exact construction nor bounds
+growing sublogarithmic source depth. The retained constant-depth
+approximate scalar zero reflection is compatible with this fixed-layer
+threshold; conjunction still supplies no dimension-growing witness.
+
 <a id="scoped-mod3-limits"></a>
 
 ## 6. Classical degree and approximation boundaries
@@ -535,6 +582,13 @@ its weaker Pauli-transport interface. Neither the direct baseline nor
 the indicator-based logarithmic compiler meets it, and no
 balanced dirty MOD3 arithmetic is assumed available. The unconditional
 R96 frontier remains unchanged.
+
+At three source layers, (20) turns the small-fixed-error question into
+an exact joint transport question. A source with more layers may instead
+exploit approximation, provided its complete depth remains sublogarithmic.
+The [weak-orbit revision](WEAK_PAULI_ORBIT_COMPRESSION.md) examines the
+smaller one-coordinate target and the first remaining operation in that
+representation; its failed construction is not an unrestricted exclusion.
 
 Exact fixtures: [binary transport and observable identities](../../tests/test_mod3_zeta_transport.py),
 [native batch, actual inverses and signal controls](../../tests/test_mod3_native_batch.py),
