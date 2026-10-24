@@ -142,9 +142,9 @@ failures retain their separate scopes and reopening conditions.
 **Next concrete question: change the relative probe action.**
 Pause static diagonal repairs, including nonlinear row phases. Can a paid
 intermediate operation act differently on the two probe fibers
-and yield a relative unitary that first squares to identity, then equals
-the full self-addressed sign $`(-1)^{\pi(B)+B_{s+HB}}`$? A successful
-transport word must establish both on every bank column. Other accepted
+and yield $`F_s^2\approx I`$, then $`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$,
+at the requested tolerance? A successful transport word must certify
+both errors on every bank column. Other accepted
 Grams need not use this factorization. The unpaid operation remains a
 qualifying complete source of depth $`o(\log(p+2))`$ with the
 simultaneous count, width, precision and arbitrary-work return ledger.
