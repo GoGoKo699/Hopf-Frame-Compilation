@@ -16,6 +16,14 @@ the latter has a direct central-word proof, but that word reads the fixed
 physical bank bit on the full space. Neither supplies an all-address lookup
 construction. A square-stage commutator gives a complete two-bit
 calibration and identifies precisely why its affine-Pauli extension stops.
+Non-Clifford selector controls are also paid below. A uniform-selector
+witness rejects the common-Fourier dressing family at every size. A separate
+rank argument excludes any one-clean source with at most two completed
+co-moving stage calls and common signal/selector interlayers, without
+assuming a particular path polynomial. A crossing-rank bound also rejects
+every three-stage cell-factorized CCZ conjugation family, including mixed
+Fourier frames. A nonlocal wrapped candidate escapes that rank bound but
+still has an exact three-bit common-vector obstruction.
 
 None of these statements changes R96 or proves a general depth lower bound.
 
@@ -565,6 +573,11 @@ but its full-space action is only $`Z_{Y_0}`$. Other address orbits and a
 uniform all-address source or gap remain open. The square-stage calibration cannot be extrapolated through
 fixed affine-Pauli words.
 
+Sections 8--12 pay nonlinear selector controls and screen the resulting
+three-stage sources. Mixed Fourier frames alone do not repair the
+cell-factorized CCZ family. Nonlocal mixing can escape that rank budget,
+but the specified transpose-zeta repair still fails at three bits.
+
 The next admissible attack must specify a genuinely different accepted
 operator with complete marked cancellation and whole positive-sector
 coverage, using all address coordinates. A uniformly gapped intermediate
@@ -588,3 +601,376 @@ retain the full-address phase in (11d), test its disagreement with lookup,
 and corroborate the translation and moved-zeta identities.
 Finite fixtures corroborate the stated identities and finite certificates;
 they do not replace the all-size arguments or establish an asymptotic source.
+
+<a id="nonclifford-selector-control"></a>
+
+## 8. A paid non-Clifford selector control and its eight-path source
+
+Let P be a product of CCZ gates on q disjoint selector triples
+$`(a_j,b_j,c_j)`$. For an arbitrary signal z, borrow q arbitrary bits
+$`r_j`$ and emit, in chronological order, C,B,C,B, where
+
+```math
+C=\prod_j\mathrm{CCZ}(r_j,b_j,c_j),\qquad
+B=\prod_j\mathrm{CCX}(z,a_j;r_j).
+```
+
+The two C phases add modulo two to
+
+```math
+\sum_j[r_j+(r_j\oplus za_j)]b_jc_j=z\sum_ja_jb_jc_j.
+```
+
+The second B returns every borrowed bit.
+Thus this is the complete controlled-P operator, with literal phase,
+arbitrary signal/selector/work inputs and arbitrary references.
+
+The [shared-root bilinear batch](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#2-pay-for-a-root-controlled-complete-bank-transition)
+pays B with $`T\le6q+(q\bmod2)`$, $`G\le12q+3`$ and four
+T layers. Each C uses q disjoint copies of the four-layer singleton
+CCZ schedule: $`T=7q`$, $`G=10q`$. Consequently
+
+```math
+T_{\mathrm cP}\le26q+2(q\bmod2),\qquad
+G_{\mathrm cP}\le44q+6,\qquad D_T(\mathrm cP)\le16.       \qquad(15)
+```
+
+There are q dirty helpers, zero clean helpers and zero error. Actual
+reversal has the same majorants after reducing adjacent positive S
+powers; inverse Cliffords are not assigned a free cost.
+For any subset A of the selector wires, put $`J=H_APH_A`$.
+Its controlled word is $`H_A,\mathrm cP,H_A`$, adding $`2|A|`$
+Clifford gates and no T layer. This includes genuinely non-Clifford
+entangling selector operations, not only the earlier Clifford mixers.
+
+For a concrete family at $`p\ge2`$, partition row labels into four-row
+cells along label coordinates 0 and 1. In every cell, $`P_{j+1}`$ applies CCZ
+to the three corners other than corner j, for $`j=0,1,2`$; here
+$`q=m/4`$. Choose three matchings whose control coordinates jointly
+cover the address. With one clean signal, define the multiplexors
+
+```math
+\mathcal B_j=|0\rangle\langle0|\otimes R_{C_j}
+ +|1\rangle\langle1|\otimes J_jR_{C_j}J_j,
+\qquad
+U=S_3\mathcal B_3S_2\mathcal B_2S_1\mathcal B_1S_0,       \qquad(16)
+```
+
+where each S_j is an actual signal-only unitary. A multiplexor uses
+controlled J_j, an **uncontrolled** R_Cj, and controlled J_j; no
+controlled whole-stage synthesis is assumed. The accepted block is
+
+```math
+K=\sum_{b_1,b_2,b_3\in\{0,1\}}c_{b_3b_2b_1}
+ A_{3,b_3}A_{2,b_2}A_{1,b_1},\qquad
+A_{j,b}=J_j^bR_{C_j}J_j^b,                              \qquad(17)
+```
+
+with coefficients fixed by the four signal matrix entries along that
+path:
+
+```math
+c_{b_3b_2b_1}=(S_3)_{0b_3}(S_2)_{b_3b_2}(S_1)_{b_2b_1}(S_0)_{b_1\,0}.
+```
+
+Arbitrary eight coefficients are only a screening relaxation,
+not a supplied native linear combination. The three stages and six
+selector controls have depth at most $`3(116)+6(16)=444`$ before
+the charged signal synthesis. Before those signal costs, their simultaneous
+bounds are $`T,b_{\rm dirty}=O(pm)`$ and $`G=O(m^2+pm)`$,
+as allowed by polynomial-overhead fusion; the returned private pool can
+be reused.
+All signal gates, including any requested approximation, retain their
+actual costs and full-word error. This pays the candidate circuit family,
+not its desired acceptance identity.
+
+<a id="uniform-selector-ray"></a>
+
+## 9. A common Fourier frame still has a complete acceptance floor
+
+Take the origin-singleton bank $`Y=e_0`$ at address x=0. On this
+marked fiber, $`n_C=0`$, $`h=s_0`$, and the completed stage is
+
+```math
+R_C|s\rangle=|C^{s_0}s\rangle.                         \qquad(18)
+```
+
+C fixes physical row zero. The right side is therefore a permutation
+within each s_0 sector, so every stage and its actual adjoint fix
+$`|+\rangle^{\otimes m}`$. On the empty bank every R_C is identity.
+If $`J_j=H_sP_jH_s`$, then every J_j also fixes this uniform state:
+$`P_j|0^m\rangle=|0^m\rangle`$. Hence all eight branches in (17)
+fix the same marked vector, while each empty-bank branch is identity.
+For $`s=\sum_b c_b`$, both inputs have acceptance $`a=|s|^2`$.
+Their required Gram values are respectively zero and one half, giving
+
+```math
+\|K^\dagger K-\Pi_+/2\|\ge
+\max\{a,|a-1/2|\}\ge1/4.                              \qquad(19)
+```
+
+This holds for every number of such stages and every coefficient choice,
+including every actual signal circuit. More generally it holds whenever
+all common selector operations preserve the uniform ray with the same
+induced signal action on these two fibers. Arbitrary X-basis-diagonal
+mixers $`H_sDH_s`$, phase-free selector permutations and global selector
+X flips obey this premise. Arbitrary signal interlayers, more signals,
+full-coordinate matching coverage and more precise angles do not repair
+this grammar. A computational-diagonal phase changing the uniform ray,
+or a standalone Hadamard changing its Fourier frame, need not obey it.
+
+If a physical source's complete initialized isometry is within epsilon
+of one in this grammar, its accepted Gram differs by at most
+$`2\epsilon`$, by contraction and unitary norm bounds. The floor is
+then at least $`1/4-2\epsilon`$. This is a source-grammar limit, not
+an obstruction to general non-Clifford selector mixing or native depth.
+
+<a id="coherent-stage-rank-screen"></a>
+
+## 10. A rank budget for arbitrary interleaved complete stage calls
+
+The same origin-singleton fiber gives a stronger short-source screen
+without a common selector eigenvector or a path-polynomial assumption.
+Let $`D=2^m`$ be the selector Hilbert dimension. If a matching C contains
+q disjoint CNOTs on the address, its row permutation fixes $`m/2^q`$
+rows and swaps
+
+```math
+t_C=(m-m/2^q)/2
+```
+
+pairs of nonzero rows. On the $`s_0=1`$ selector sector, the trace
+of that permutation is $`2^{m-1-t_C}`$: each swapped pair must have
+equal bits to contribute a fixed computational basis column. The stage
+is identity on $`s_0=0`$ and an involution on the other sector. Thus
+
+```math
+r_C:=\mathrm{rank}(I-R_C)
+=\frac D4(1-2^{-t_C})\lt D/4.                          \qquad(20)
+```
+
+The identity matching has r_C=0. Actual adjoints have the same restriction
+and rank. These statements concern completed stages; their internal
+native address motion and returned implementation helpers remain paid.
+
+Now use k initialized signal qubits, an arbitrary private dirty register
+of Hilbert dimension W, and h completed stage calls. At their boundaries,
+assume every interlayer preserves the marked-origin and empty-origin
+bank/address fibers and acts identically on the remaining registers after
+identifying those fibers. It may mix signals, selectors and private dirty
+work arbitrarily, including with non-Clifford operations. There is no
+read-only restriction within a completed stage. On the empty fiber each
+query is identity; on the marked fiber its defect rank is
+$`2^kWr_{C_j}`$. Telescoping the two complete source words gives
+
+```math
+\mathrm{rank}(U_{\rm mark}-U_{\rm empty})
+\le2^kW\sum_{j=1}^h r_{C_j}.                           \qquad(21)
+```
+
+Multiplication by the common intervening unitaries preserves rank, and
+rank is subadditive, which proves the estimate. The initialized code has
+dimension DW. Therefore, if
+
+```math
+2^k\sum_jr_{C_j}\lt D,                                \qquad(22)
+```
+
+there is a normalized code vector on which the two complete source
+outputs agree. Any common acceptance map gives identical accepted norms
+on this vector. The target Grams are zero and I/2, so their complete
+Gram error is again at least one quarter. No scalar empty-bank block,
+branch conjugation, accepted unitary fiber or exact clean return has
+been assumed. Ordinary signal-controlled stage calls have no larger
+defect rank. A multiplexor of different stages must instead use its
+actual direct-sum defect rank, or a justified upper bound for it.
+
+For one clean signal, (20)--(22) exclude **every source with at most two
+stage calls**, at every $`p\ge2`$, even with arbitrary common entangling
+interlayers. At p=2 each nonempty matching has $`D=16,r_C=2`$, so
+three calls are also excluded: $`2\cdot3\cdot2=12\lt16`$.
+For p=3, a single-CNOT matching has $`D=256,r_C=48`$; three calls
+give 288, and this rank screen is inconclusive. Equality in (22) with
+the strict sign removed likewise gives no conclusion.
+
+For the particular branch architecture (17), an alternative proof takes
+the intersection of the fixed spaces of all branch-conjugated stages.
+Its dimension is at least $`D-\sum_{j,b}r_{C_j}`$. This also excludes
+arbitrary complex path coefficients under that positive-dimension
+condition, without requiring their realization by signal gates.
+At p=2 with three binary stages, this common space has dimension at
+least four. The all-size two-stage result strengthens the earlier
+specified four-path screen; the earlier explicit calculation and its
+literal phase evidence remain valid.
+
+The perturbation floor $`1/4-2\epsilon`$ from Section 9 also applies
+here. Interlayers that read or move the bank/address differently on the
+two fibers are outside the theorem. So are sufficiently many completed
+stage calls. This is a quantitative limit of the stated source-access
+architecture, not an unrestricted native T-depth bound or a general
+all-address separation theorem.
+
+<a id="selector-crossing-rank"></a>
+
+## 11. Mixed Fourier frames still owe enough selector crossing rank
+
+Changing the Fourier frame can break the uniform ray in Section 9.
+There is nevertheless a larger common fixed subspace to check. On the
+marked origin fiber let $`\mathcal H_0=\{s_0=0\}`$, of dimension
+D/2, with projectors P_0 and P_1 onto the s_0=0 and s_0=1 sectors.
+Every original R_C fixes this entire subspace pointwise.
+
+Consider the binary branch architecture
+$`A_{j,0}=R_{C_j}`$, $`A_{j,1}=V_j^\dagger R_{C_j}V_j`$,
+where V_j is any selector-only unitary. Define its crossing rank
+
+```math
+\rho_j=\mathrm{rank}(P_1V_jP_0).
+```
+
+Inside $`\mathcal H_0`$, intersect the kernels of these crossing
+maps. The resulting subspace has dimension at least
+
+```math
+\dim\mathcal F\ge D/2-\sum_j\rho_j.                    \qquad(23)
+```
+
+For every v in this intersection, both v and V_jv lie in
+$`\mathcal H_0`$. Thus every A_{j,b} fixes v, using the actual
+V_j adjoint. If the right side of (23) is positive, all path products
+fix a common marked vector and are identity on the empty bank. The
+one-quarter Gram floor (19) follows for arbitrary path coefficients.
+This proof concerns the conjugated-branch architecture; arbitrary extra
+interlayers require their own analysis. Satisfying the opposite rank
+inequality is necessary to escape this proof, not sufficient for acceptance.
+
+There is also a useful bound when a dressing is dense but preserves
+$`\mathcal H_0`$. Such a dressing's branch fixes that subspace.
+For each remaining dressing use the defect rank r_C from (20).
+The possibly larger common-fixed subspace
+$`\mathcal F_{\rm fix}=\mathcal H_0\cap\bigcap_j\mathrm{Fix}(V_j^\dagger R_{C_j}V_j)`$ then satisfies
+
+```math
+\dim\mathcal F_{\rm fix}\ge
+D/2-\sum_{j:\,V_j\mathcal H_0\ne\mathcal H_0}r_{C_j}.
+```
+
+At most two such remaining dressings leave a nonzero common subspace,
+because each r_C is strictly below D/4. Hence **any number of stages
+with at most two dressings that move this subspace fails**. In particular,
+a three-stage repair with one computational-diagonal selector dressing
+still has the quarter floor, even when its other two dressings are
+arbitrary non-Clifford unitaries.
+
+More strongly, suppose every V_j is a product over disjoint four-row
+cells, with each cell factor unitarily conjugate to CCZ on three wires
+and identity on the fourth. The conjugators within a cell may be
+arbitrary; Pauli conjugations and partial Fourier walls are included. Only
+the cell containing physical row zero crosses P_0 and P_1. Its factor
+has rank two away from identity, so
+
+```math
+\rho_j\le2(D/16)=D/8.                                 \qquad(24)
+```
+
+The other cell factors are unitary and multiply this rank by their
+dimension. Equivalently one may use disjoint three-wire factors, each
+of defect rank one. Equations (23)--(24) leave dimension at least D/8
+for **every three-stage source in this cell-factorized CCZ family**,
+at every $`p\ge2`$. Its Gram error is at least one quarter. This
+includes frames that all move $`\mathcal H_0`$ and destroy the
+uniform-selector witness. Removing those simpler witnesses does not
+remove this rank deficit.
+
+Independent Pauli multipliers need not have rank-two cell defects and
+are not included in this statement. Different cell partitions at the
+three stages are allowed. More generally, crossing rank is subadditive:
+insert $`I=P_0+P_1`$ between A and B to obtain
+$`\rho(AB)\le\rho(A)+\rho(B)`$. Thus at most three such
+cell-factorized CCZ layers in total across all dressings still give the
+quarter floor, even with intervening walls that preserve
+$`\mathcal H_0`$. Four layers merely make this estimate inconclusive.
+
+The cell factorization is essential. Conjugating a whole growing CCZ
+layer by a selector Clifford that spreads the physical-zero observable
+across many cells can change (24), while keeping its controlled T-depth
+constant. For example the already paid transpose-zeta involution N_p
+has such support; $`V=N_pJN_p^\dagger`$ is controlled with two
+ordinary N_p walls and the controlled J from Section 8. The walls cost
+pm CNOTs per control and no T layers. This is an admissible escape to
+test, not a source or a claim that its crossing rank is sufficient.
+A nonlocal conjugation of only a single CCZ still has total defect rank
+D/8 and does not escape (24). Changing several cells' joint action,
+adding enough stages, or changing bank/address dynamics needs a new
+complete acceptance calculation. These remain source-architecture
+statements and do not bound unrestricted native T-depth.
+
+<a id="nonlocal-selector-scout"></a>
+
+## 12. A nonlocal repair escapes the rank budget but still fails at three bits
+
+The distinction between escaping a screen and obtaining acceptance can
+be checked exactly. At p=3 use matchings $`0\to1`$, $`1\to2`$
+and $`2\to0`$, so every address coordinate is exposed. Repeat the
+following frames in every four-row cell. Masks use the four selector
+wires numbered by their cell corners, with corner zero least significant.
+Here $`J_j=Q_jH_{A_j}P_jH_{A_j}Q_j^\dagger`$ and
+$`Q_j=X^{u_j}Z^{v_j}`$; each P_j omits the indicated corner.
+
+| Stage | Omitted corner | H mask | X mask | Z mask |
+| --- | --- | --- | --- | --- |
+| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 15 | 2 | 1 |
+| 3 | 3 | 3 | 4 | 5 |
+
+All three frames move $`\mathcal H_0`$, and the first breaks the
+uniform-selector ray. Before nonlocal wrapping, the selector vector
+$`(|s=0\rangle+|s=2\rangle)/\sqrt2`$ nevertheless witnesses
+the common fixed space. In its origin cell, the first CCZ is killed by
+zero selector wires 2 and 3; in the second and third frames, H on the
+selector-one $`|+\rangle`$ supplies a zero control. The specified
+Pauli conjugations preserve these zero controls. Other cells cannot
+change s_0. This local explanation works at every p at least two and
+for any matching choices, in agreement with Section 11.
+
+Now wrap the entire growing layer, $`V_j=N_pJ_jN_p^\dagger`$,
+and use branches $`R_{C_j}`$ and $`V_j^\dagger R_{C_j}V_j`$.
+At p=3, the exact crossing ranks are
+
+```math
+(\rho_1,\rho_2,\rho_3)=(48,48,48),\qquad
+48>D/8=32,\qquad \sum_j\rho_j=144>D/2=128.
+```
+
+The cell-factorized rank obstruction is genuinely escaped. Yet all six
+branches and their actual adjoints fix the different normalized vector
+
+```math
+v=(|s=68\rangle+|s=70\rangle)/\sqrt2.
+```
+
+This has selector wire 1 in $`|+\rangle`$, wires 2 and 6 in
+$`|1\rangle`$, and every other wire zero. The complete origin
+stage calculation retains literal phases and both borrowed-bit inputs.
+Every empty-bank branch remains identity, so (19) still gives a quarter
+Gram floor for this specified three-bit source at every signal angle.
+This finite certificate does **not** exclude all nonlocal CCZ words or
+a family patched at this size.
+
+The next construction must change more than these frames or angles and
+first establish complete marked cancellation, then normalized coverage
+of the whole positive sector. Enough crossing rank is only a necessary
+screen in the conjugated-branch architecture. More stages, different
+joint selector operations or bank/address dynamics require a new exact
+acceptance calculation and the same simultaneous resource/return ledger.
+No general native-depth lower bound or improvement to R96 follows here.
+
+Exact fixtures: [nonlinear native controls](../../tests/test_nonlinear_selector_control.py)
+check phases, actual positive-S inverses, dirty return, counts and layers;
+[coherent source ranks](../../tests/test_selector_source_rank.py) check
+the origin/empty restrictions and an initialized-code witness with mixed
+signal/private-work interlayers;
+[mixed and nonlocal frames](../../tests/test_mixed_selector_acceptance.py)
+check exact cell ranks, native cell words, the two displayed witnesses,
+and the wrapped crossing ranks. These corroborate the all-size proofs
+and the explicitly finite counterexample; they do not supply a source.

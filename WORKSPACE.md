@@ -8,13 +8,13 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: fixed-row extraction and the addressed-readout gap
+## Current checkpoint: selector-source rank limits and the all-address gap
 
-**Verified starting checkpoint:** [PR #232](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/232),
-`415e3fe2219e2e73ddc40994bd6494e7f711d343`, checked 24 October 2026.
-One matching now separates address-zero sectors, but its full-space readout
-is a physical bank-bit phase. Paid transport has linear depth; no shallow
-general source is supplied. Exact-tree receipts are in the PR record.
+**Verified starting checkpoint:** [PR #233](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/233),
+`4c4b0c33baff924f35794ca08d1a8c8cc381f2c7`, checked 24 October 2026.
+Non-Clifford controls are paid; complete-query and selector-crossing ranks
+exclude the screened sources. A finite nonlocal repair also fails.
+No qualifying lookup source is supplied. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -96,25 +96,25 @@ the missing indicator itself. Unmixed global-flip batching cannot distinguish
 an eight-row affine cube from the empty bank on the selector-zero fiber.
 These are scoped acceptance failures, not general native-depth bounds.
 
-The [co-moving construction](research/depth/CO_MOVING_LOOKUP_STAGE.md) instead
-moves address, physical bank and selectors together. It commutes with the
-complete lookup charge $`\Omega|x,Y\rangle=(-1)^{Y_x}|x,Y\rangle`$ and has
-zero clean work, depth at most 116, and polynomial fusion budgets. Its basic
-echo has Gram error at least one half on every proper nonempty even bank;
-scalar filtering has a marked/unmarked eigenvalue collision. Transplanting
-the earlier four-path polynomial also fails, with marked acceptance three
-quarters. Sector preservation does not supply sector readout.
+The [co-moving construction](research/depth/CO_MOVING_LOOKUP_STAGE.md) moves
+address, bank and selectors together, preserving complete lookup charge
+$`\Omega|x,Y\rangle=(-1)^{Y_x}|x,Y\rangle`$, with zero clean work,
+depth at most 116 and polynomial fusion budgets. Its echo and four-path
+acceptance failures remain scoped. The [fixed-row central word](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#fixed-row-central-word)
+reads only $`Z_{Y_0}`$ on the whole space; [paid transport](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#address-transport-cost)
+turns it into lookup at linear depth. Free moved zeta or an addressed
+selector flip would assume the missing indicator.
 
-**Latest substantive outcome.** The [fixed-row extraction](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#fixed-row-central-word)
-gives $`[[[R_C,X_{s_0}],X_{s_t}],Z_{s_t}]=Z_{Y_0}`$ on the whole
-space, retaining actual inverses and the nonzero-address phase. One matching
-suffices for address-zero separation, but this physical-bit phase is already
-Clifford. Selector controls, finite separation and earlier acceptance limits
-remain in the same proof home. The
-[transport reduction](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#address-transport-cost)
-pays one-bank translation at depth at most 4p. Conjugating the physical phase
-then gives lookup with linear depth. Free moved zeta or an addressed selector
-flip would assume the missing indicator.
+**Latest substantive outcome.** [Non-Clifford selector controls](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#nonclifford-selector-control)
+pay a three-stage source with all address coordinates exposed. A common
+Fourier-frame witness gives Gram floor one quarter. The [complete-call rank screen](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#coherent-stage-rank-screen)
+gives the same floor with one clean signal and at most two calls at every p,
+or three calls at p=2, under its common bank/address-fiber interlayer premise.
+The [crossing-rank screen](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#selector-crossing-rank)
+excludes every three-stage cell-factorized CCZ conjugation source at all p.
+A tested transpose-zeta repair exceeds that crossing budget at p=3 but
+retains a shared two-term witness and the quarter floor. That finite failure
+does not exclude general nonlocal selector mixing. R96 is unchanged.
 
 **Next concrete question: full-sector acceptance beyond the screened words.**
 Derive an accepted polynomial K with genuinely changed interference, paid
@@ -127,16 +127,16 @@ K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
 ```
 
 or a uniform complete norm approximation within the recovery budget above.
-Retain every arbitrary bank and selector, actual inverses, literal phases
-and off-diagonal terms. Establish marked cancellation before tuning signal
-angles; then prove whole positive-sector coverage. A uniform intermediate
-gap still needs paid normalization. The flip-enlarged algebra has no general
-source or all-address separation proof. Do not revisit the screened
-four-path words or mistake square-stage Clifford dressing for a general
-readout. Acceptance remains unpaid, not recovery or promotion. Even a
-constant-depth source retains log-log depth through the current reductions.
-Address-zero central-word extraction is settled. A next candidate must
-depend on $`Y_x`$ at nonzero addresses without assuming free transport.
+Retain every arbitrary bank and selector, literal phase and off-diagonal term.
+First establish marked cancellation and whole positive-sector coverage;
+then pay normalization, simultaneous count/width and actual inverse costs.
+The candidate must leave the three-stage cell factorization and the tested
+transpose-zeta word. Passing a crossing-rank budget alone is insufficient.
+No general nonlocal selector obstruction follows from the finite failure.
+Address-zero extraction is settled; dependence on $`Y_x`$ at every address
+must be achieved without free transport. Acceptance remains unpaid, not
+recovery or promotion. Even a constant-depth source retains log-log depth
+through the current reductions.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon
