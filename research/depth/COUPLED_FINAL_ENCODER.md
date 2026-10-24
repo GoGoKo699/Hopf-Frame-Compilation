@@ -1121,3 +1121,395 @@ Those finite checks challenge the literal phase, orientation, coefficient
 and missing-row calculation; (38)--(45)
 are the analytic all-size argument. They are internal evidence, not
 external mathematical review.
+
+<a id="common-probe-wide-source"></a>
+
+## 8. Common-probe bands and a paired invariant state
+
+The next source changes the first image as well as the middle action.
+Let d be one arbitrary probe, let a be the p-bit address, and let B
+be the complete bank of $`m=2^p`$ arbitrary bits. Put
+
+```math
+\begin{aligned}
+P&=Z_d,& P_j&=X_dX_a^jX_{B_j},& Q_j&=Y_dZ_a^jZ_{B_j},\\
+A&=\prod_j e^{-i\pi P_j/8},&
+B_{\rm mid}&=\prod_j e^{-i\pi Q_j/8},\\
+C|B\rangle&=(-1)^{\binom{\mathrm{wt}(B)}2}|B\rangle,&
+E_C&=C^\dagger A^\dagger B_{\rm mid}^\dagger C A B_{\rm mid}.
+                                                               \qquad(46)
+\end{aligned}
+```
+
+Every axis in each band anticommutes with P. Each list is independent
+by its distinct bank labels. The desired complete image is
+$`E_CP E_C^\dagger=Z_d\Omega_{a,B}`$. This interface is sufficient
+without preparing d: the fixed word
+$`L=\prod_j\mathrm{CX}(d,B_j)`$ obeys
+$`L(Z_d\Omega_{a,B})L=\Omega_{a,B}`$. Thus
+$`LE_C\,\mathrm{SWAP}(d,B_0)`$ would be a source for the ordinary
+bank probe, adding m+3 Cliffords in each direction. Its complete echo
+would return d. The identities below test the full operator before
+making that inference.
+
+### 8.1. Literal native words and their simultaneous ledger
+
+For A, emit the involutory CNOT word
+
+```math
+W=\prod_j\mathrm{CX}(B_j,d)
+       \prod_{i:j_i=1}\mathrm{CX}(B_j,a_i),
+```
+
+then bank H gates, one transversal T band, the bank H gates and the
+actual reverse of W. This emits $`\widetilde A=e^{im\pi/8}A`$
+with m T gates and $`pm+4m`$ Cliffords. For the middle, let
+$`R_d=S_dH_d`$, whose chronological word is H_d,S_d. Emit
+$`R_d^\dagger`$, CNOTs from d to every bank wire and from a_i to
+B_j when $`j_i=1`$, one transversal bank T band, the reversed
+CNOT list and R_d. It emits
+$`\widetilde B_{\rm mid}=e^{im\pi/8}B_{\rm mid}`$, with m T
+gates and $`pm+2m+6`$ Cliffords. The six probe Cliffords expand
+S-dagger as three positive S gates. Actual reversals have the same
+common bounds. All physical T targets within each band are distinct.
+
+The complete-graph bank phase C is also paid without a quadratic
+Clifford cost. If $`\pi(B)=\mathrm{wt}(B)\bmod2`$, then
+
+```math
+C=i^{\mathrm{wt}(B)-\pi(B)}
+  =\left(\prod_jS_{B_j}\right)S_{\pi(B)}^\dagger.       \qquad(47)
+```
+
+Compute the parity into one existing bank wire, apply S-dagger and
+undo the parity CNOTs. This needs no clean or borrowed parity bit.
+Including the initial bank S gates, C costs $`3m+1`$ elementary
+Cliffords. Its literal reversed native word costs $`5m-1`$ when
+inverse S gates are expanded; that actual inverse is used below,
+even though the completed operator C is an involution.
+
+The chronological source is
+
+```math
+\widetilde B_{\rm mid},\widetilde A,C,
+\widetilde B_{\rm mid}^\dagger,\widetilde A^\dagger,C^\dagger.
+```
+
+The four T-band scalars cancel literally. The simultaneous common
+forward/actual-inverse ledger is
+
+```math
+\begin{aligned}
+T_{E_C}&=4m,&D_T(E_C)&\le4,&G_{E_C}&=4pm+20m+12,\\
+w_{E_C}&=1,&a_{\rm clean}&=0,&\varepsilon_{E_C}&=0.
+                                                               \qquad(48)
+\end{aligned}
+```
+
+The one arbitrary work bit is d. Its motion inside the source is
+allowed. The emitted full Pauli echo has $`8m`$ T gates, at most
+eight T layers and $`8pm+40m+26`$ Cliffords, including
+$`P=S_d^2`$. These are exact ledgers for the candidate; complete
+lookup and work return remain the operator claim to be checked.
+
+<a id="two-row-local-frame-covariance"></a>
+
+### 8.2. Two row-local bank frames retain an address translation
+
+There is an obstruction to using only two such frames, before adding
+C. It permits arbitrary row-dependent address and helper Paulis,
+not merely the linear tags in (46). Suppose the available axes have
+the form
+
+```math
+\mathcal P_j=A_j\otimes H_j\otimes X_{B_j},\qquad
+\mathcal Q_j=B_j^{\rm addr}\otimes K_j\otimes Z_{B_j}.
+                                                               \qquad(49)
+```
+
+Here A_j and $`B_j^{\rm addr}`$ are arbitrary address Paulis;
+H_j and K_j are arbitrary Paulis on probes and other work. Each
+axis has no action on any other bank wire. Allow arbitrary angles,
+orders and repetitions of these rotations, selector-controlled
+versions, and arbitrary unitaries on the work and selectors alone.
+There is no layer-count hypothesis and no assumed preparation of the
+arbitrary bank.
+
+Fix any nonzero address mask u. Let alpha_j and beta_j be the binary
+commutation pairings of $`X_a^u`$ with A_j and
+$`B_j^{\rm addr}`$, respectively. The Hermitian Pauli
+
+```math
+F_u=X_a^u\otimes I_{\rm work}\otimes
+       \prod_j i^{\alpha_j\beta_j}
+                      X_{B_j}^{\beta_j}Z_{B_j}^{\alpha_j}
+                                                               \qquad(50)
+```
+
+commutes with both axes for every j. Its local bank-Z pairing cancels
+alpha_j, and its local bank-X pairing cancels beta_j. It also
+commutes with every permitted work-only operation. Hence every
+completed word in this algebra commutes with F_u, regardless of
+its native implementation cost.
+
+Let the initial probe P be a Hermitian Pauli on work only, as in
+(46). Then every transported probe also commutes with F_u. This
+prevents the complete target $`P\Omega_{a,B}`$ with norm error
+less than square root two. To see the exact witness, choose an
+address a and a computational bank B such that
+
+```math
+B_a+B_{a+u}+\beta_{a+u}=1\pmod2.                    \qquad(51)
+```
+
+The two selected bank bits are distinct, so this is always possible.
+Choose the probe in a plus eigenstate of P and let b denote the full
+product input. The normalized vector
+$`(|b\rangle+F_u|b\rangle)/\sqrt2`$ is in the plus eigenspace
+of F_u. The two terms have opposite target signs by (51), so the
+target sends it to the minus eigenspace. The actual unitary probe
+image keeps it in the plus eigenspace. Their normalized outputs
+are orthogonal, giving direct error at least $`\sqrt2`$.
+
+The same covariance gives a Gram obstruction with arbitrary common
+clean insertion and readout on work only. Since F_u acts trivially
+there, the accepted block and its Gram commute with F_u. On the
+same principal plus-eigenstate, the target
+$`(I+\Omega_{a,B})/4`$ has a minus-eigenspace component of norm
+one quarter; the actual Gram has none. Thus its complete Gram
+error is at least one quarter. The fixed two-bank XOR wall converts
+this statement to $`\Pi_{\rm eq}/2`$ in the canonical interface.
+This is an alphabet restriction: new bank frames, coupled bank axes
+or interlayers outside the stated algebra are not excluded.
+
+For the two frames in (46), (50) reduces to
+$`F_u=X_a^uX_B^{h_u}`$, where $`(h_u)_j=u\cdot j`$.
+The third frame supplied by C genuinely removes these particular
+symmetries at the native angles. For $`p\ge2`$, h_u has even
+weight. Conjugating F_u by the complete-graph C adds bank-Z mask
+h_u, up to its constant Pauli phase. It then anticommutes with
+P_j whenever $`u\cdot j=1`$. Those axes are independent, so
+$`C^\dagger A C`$ does not commute with F_u. Since
+$`E_C=(C^\dagger A^\dagger C)B_{\rm mid}^\dagger A B_{\rm mid}`$
+and the remaining factors commute with F_u, neither does E_C.
+The two-frame argument alone therefore does not reject (46).
+
+<a id="common-probe-paired-state"></a>
+
+### 8.3. The complete third-frame word still has a paired invariant state
+
+A separate witness decides this actual repair. For $`p\ge2`$,
+choose $`u=e_0+e_1`$ and pair every row j with j+u. Let the bank
+be a product of singlets on those disjoint pairs, and set
+
+```math
+|\chi\rangle_a=\frac{|0\rangle+|u\rangle}{\sqrt2},
+\qquad
+|\Psi\rangle=|\chi\rangle_a|0\rangle_d
+       \bigotimes_{\{j,j+u\}}|\psi^-\rangle_{B_jB_{j+u}}.
+                                                               \qquad(52)
+```
+
+The address has $`X_a^u=Z_a^u=+1`$, since $`u\cdot u=0`$.
+Every singlet has both XX and ZZ eigenvalue minus one. Therefore
+
+```math
+(P_j+P_{j+u})|\Psi\rangle=0,\qquad
+(Q_j+Q_{j+u})|\Psi\rangle=0.                          \qquad(53)
+```
+
+The same pair cancellation holds with any probe state: it does not
+initialize d inside either band. Within each frame all axes commute,
+so the ideal A and $`B_{\rm mid}`$ fix this vector exactly.
+Their literal native words multiply it only by $`e^{im\pi/8}`$.
+The bank has definite Hamming weight m/2, so C acts by the scalar
+$`(-1)^{\binom{m/2}2}`$. These phases cancel between the actual
+source calls and their adjoints. Hence E_C and its actual adjoint
+fix $`|\Psi\rangle`$ exactly, as does the full echo
+$`E_CP E_C^\dagger`$.
+
+Every bank wire has zero Z expectation in the singlet product. The
+address is independent of the bank and the probe in (52) has Z
+eigenvalue plus one. Thus
+
+```math
+\langle\Psi|Z_d\Omega_{a,B}|\Psi\rangle=0,
+\qquad
+\left\|E_CP E_C^\dagger-Z_d\Omega_{a,B}\right\|
+ \ge\sqrt2\quad(p\ge2).                              \qquad(54)
+```
+
+This is a complete-state operator witness, not a basis-only test or
+an assumed clean-bank sector. The source is native and all four
+bands are paid; its complete lookup image is wrong.
+
+The cancellation (53) survives arbitrary uniform angles on each
+frame, or more generally angles equal within every paired row
+j,j+u in each frame. C may be replaced by any unitary phase
+depending only on total bank Hamming weight: it is still scalar on
+(52). Actual adjoints cancel that scalar. Arbitrary row-dependent
+angles or phases are not covered; equality within the pairs is an
+essential hypothesis. In particular, this is not an arbitrary-angle
+extension to a general third-frame source or a native-depth bound.
+
+This pauses the uniform common-probe word with total-weight phase
+dressing. It shows why removing the two-frame Pauli covariance was
+insufficient: a different invariant state survives the complete
+circuit. Row-dependent phases can leave this particular witness;
+the next subsection tests that larger diagonal-dressing class.
+
+There is a separate Gram extension within this paired-state grammar.
+Let $`\Pi`$ project the address onto its common plus eigenspace of
+$`X_a^u,Z_a^u`$ and the bank onto the fixed product of singlets,
+with every probe and helper unrestricted. Each paired pulse is identity
+on this subspace; every total-weight bank phase is scalar there.
+Consequently arbitrary repetitions, with probe/helper/selector-only
+interlayers and clean insertion or acceptance on those registers,
+give an accepted Gram G commuting with the principal projector Pi.
+Every $`Z_{B_a}`$ takes the singlet product orthogonally out of it.
+Thus $`\Pi\Omega\Pi=0`$ and
+$`\|(I-\Pi)(I+\Omega)\Pi/4\|=1/4`$, proving Gram error at least
+one quarter. The same statement holds with an arbitrary probe factor
+$`Z_d`$ in the target. This is a paired-code restriction, not an
+extension of the next result to arbitrary accepted sources.
+
+<a id="static-diagonal-common-probe-spectrum"></a>
+
+### 8.4. A static diagonal dressing cannot repair the relative spectrum
+
+Keep the native angles of A and $`B_{\rm mid}`$, but now allow C
+in (46) to be **any** bank-diagonal unitary, without assuming uniform
+row phases, a Clifford implementation or a resource bound. Its two
+probe fibers share the same change of bank basis. Consequently even
+a diagonal C that breaks (52) cannot give the required complete
+image at p at least three.
+
+Here is the complete fiber calculation, with all banks arbitrary.
+The Clifford W in Section 8.1 changes coordinates to
+$`r=d+\pi(B)`$, $`s=a+HB`$, where the p-by-m binary matrix H
+has column j at row label j. Let $`\boldsymbol1_m`$ be the
+all-ones bank mask and put
+
+```math
+M=I+\boldsymbol1_m\boldsymbol1_m^{\mathsf T}+H^{\mathsf T}H,
+\qquad T=\prod_j e^{-i\pi X_{B_j}/8}.
+```
+
+Then $`WAW=T`$. In the Y_r eigenfiber eta, at fixed co-moving
+address s, the middle word is
+
+```math
+D_\eta(s)=\prod_j
+ \exp\!\left[-\frac{i\pi\eta(-1)^{s\cdot j}}8
+                         Z_B^{Me_j}\right],
+\qquad D_-(s)=D_+(s)^\dagger.                         \qquad(55)
+```
+
+The native T scalars in A and the middle cancel in each completed
+source; T and D in (55) use their stated determinant-one rotations.
+C is unchanged by W because it is bank-diagonal. Write
+$`D=D_+(s)`$, $`Z_\pi=\prod_jZ_{B_j}`$. The complete source
+fibers and the off-diagonal probe block of its Pauli image are
+
+```math
+\begin{aligned}
+E_{C,\eta}&=C^\dagger T^\dagger D_\eta^\dagger C T D_\eta,\\
+F_C&=E_{C,+}Z_\pi E_{C,-}^\dagger,\\
+F_C&=L_C F_I L_C^\dagger,
+\qquad L_C=C^\dagger T^\dagger C T.                  \qquad(56)
+\end{aligned}
+```
+
+Indeed $`E_{C,\eta}=L_C E_{I,\eta}`$, since C commutes with
+D_eta. Thus C changes the common bank basis but leaves the spectrum
+of F_C unchanged. The target, in the same Y_r fibers, has both
+off-diagonal blocks equal to the Hermitian unitary
+$`Q_s=(-1)^{\pi(B)+B_{s+HB}}`$. The norm of the complete image
+error on this address fiber is exactly $`\|F_C-Q_s\|`$.
+
+For $`p\ge3`$, binary orthogonality gives $`M^{\mathsf T}M=M^2=I`$
+and $`Mh_t=h_t`$, where $`(h_t)_j=t\cdot j`$. The integer weight
+difference modulo four is
+
+```math
+\mathrm{wt}(My)-\mathrm{wt}(y)
+ =2(\boldsymbol1_m+h_{\boldsymbol1_p})\cdot y\pmod4.
+```
+
+To verify it, orthogonality makes the difference
+additive modulo four; on each basis vector e_j, its value is
+$`2(1+\boldsymbol1_p\cdot j)`$. It follows that, literally,
+
+```math
+D^2=\left(\prod_j S_{B_j}\right)
+             Z_B^{\boldsymbol1_m+h_{s+\boldsymbol1_p}},
+\qquad
+R_s=Z_\pi D^2=\bigotimes_j r_j,\quad r_j\in\{S,S^\dagger\}.
+                                                               \qquad(57)
+```
+
+The potential constant phase here is
+$`\exp[-i\pi m[s=0]/4]=1`$ at p at least three. No scalar is
+dropped. Direct multiplication of (56), using $`D_-=D^\dagger`$,
+now gives
+
+```math
+(DT)F_I(T^\dagger D^\dagger)
+ =T R_s T^\dagger D^{-2}
+ =\bigotimes_j G_j,
+\qquad G_j=T_Xr_jT_X^\dagger r_j,                    \qquad(58)
+```
+
+where $`T_X=e^{-i\pi X/8}`$. In the last equality,
+$`D^{-2}=R_s^\dagger Z_\pi`$ and
+$`r_j^\dagger Z=r_j`$. Either choice of r_j has
+$`G_j^2`$ eigenvalues $`e^{\pm i\beta}`$, with
+
+```math
+\cos\beta=\frac{1+2\sqrt2}{4}.
+```
+
+This follows by multiplying the two single-qubit matrices: their
+squared product has determinant one and trace
+$`1/2+\sqrt2`$. Since $`m\ge8`$ is even, choose four unmatched
+positive spectral signs and cancel the remaining signs in pairs.
+Then $`F_C^2`$ has an eigenvalue $`e^{4i\beta}`$. For any
+Hermitian unitary Q, unitarity and $`Q^2=I`$ imply
+
+```math
+\begin{aligned}
+\|F_C-Q\|&\ge\frac12\|F_C^2-I\|\\
+ &\ge|\sin(2\beta)|\gt\frac12.
+                                                               \qquad(59)
+\end{aligned}
+```
+
+The first inequality uses
+$`F_C^2-I=F_C(F_C-Q)+(F_C-Q)Q`$. Applying it to Q_s proves
+complete Pauli-image error at least one half for every static
+bank-diagonal C at p at least three. This includes nonuniform and
+nonlinear row phase choices regardless of their synthesis cost.
+The stronger square-root-two result (54) retains its separate
+uniform-angle and total-weight-phase scope. Equation (59) assumes
+the native A and middle angles and makes no new accepted-Gram claim.
+
+Pause the entire static bank-diagonal repair in (46) with the fixed
+native A and middle angles. Its first
+unpaid operation is a changed relative probe-fiber unitary: a common
+bank-basis change cannot turn this spectrum into the required
+Hermitian lookup sign. A different interleaving or accepted interface
+must supply its own complete operator identity, native schedule and
+return ledger. R96 and the complete-frame frontier remain unchanged;
+the approximate scalar zero reflection is unaffected.
+
+The [common-probe native fixtures](../../tests/test_common_probe_source.py)
+check every p=1 native source column and its actual inverse, and every
+p=1 co-moving address/bank fiber column with the specified probe
+orientation. At p=2 and p=3 they check the normalized singlet states,
+literal pulse phases, source and inverse return, complete Pauli echo
+and orthogonal target witness. They also check all 2048 p=3 entries
+of (57), both single-qubit spectral orientations in (58), and native
+bands and ledgers through p=6. These finite checks challenge the
+operator formulas; the all-size covariance, paired-state and
+relative-spectrum arguments above are analytic. The proofs and
+fixtures have internal audits, not external mathematical review.
