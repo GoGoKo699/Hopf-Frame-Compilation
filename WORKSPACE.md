@@ -8,14 +8,13 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: relative involution paid, lookup transitions unpaid
+## Current checkpoint: joint mixing screens and the remaining lookup phase
 
-**Verified starting checkpoint:** [PR #242](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/242),
-`7fc9d32fd7bc70764ce09292897e248f315fa387`, fetched 24 October 2026.
-A resynthesized middle pays an exact Hermitian relative block in four
-native bands with zero clean work. Complete lookup still fails for
-the tested diagonal, Hadamard and cubic-phase dressings; a paid broad
-four-path Bell source also has the wrong Gram. R96 is unchanged.
+**Verified starting checkpoint:** [PR #243](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/243),
+`4598492c870b81666f8b149a4c8ccd8efcd8d0b2`, fetched 25 October 2026;
+its post-merge validation and presentation passed. Affine/Fourier dressings have an all-angle transition gap.
+Two Clifford mixers and Bell acceptance expose the remaining lookup phase.
+Their scoped limitations leave R96 unchanged.
 These are scoped failures. Exact-tree receipts belong in the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -117,33 +116,34 @@ $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$, the retained three-layer rounding
 theorem makes complete Pauli transport exact; two layers are excluded for
 p at least three. More source layers may use the approximate contract.
 
-**Latest partial construction.** The [corrected middle](research/depth/COUPLED_FINAL_ENCODER.md#relative-probe-involution-repair)
+**Retained partial construction.** The [corrected middle](research/depth/COUPLED_FINAL_ENCODER.md#relative-probe-involution-repair)
 makes both co-moving probe fibers equal, so $`F_s=E_sZ_\pi E_s^\dagger`$
 is an exact Hermitian involution. Its base source has $`T=4m`$,
 $`D_T\le4`$, $`G=4pm+20m-12`$, one arbitrary probe and zero
 clean work. The new involution statement concerns its relative block; the full transported Pauli was always an involution. Lookup is still unpaid.
-At the fixed native angles, [every diagonal dressing](research/depth/COUPLED_FINAL_ENCODER.md#relative-repair-diagonal-modulus)
-has direct error above one third for p at least three. Every nonempty
-[Hadamard mask](research/depth/COUPLED_FINAL_ENCODER.md#relative-repair-hadamard-mask)
-has error at least square root two; the tested cubic-phase/Hadamard
-interlayer also fails analytically. These are complete transition failures.
 
-Three [probe-asymmetric repairs](research/depth/COUPLED_FINAL_ENCODER.md#probe-asymmetric-paid-trials)
-have paid controls but exact nonreal relative entries at p=3; these finite failures do not exclude all sizes or all asymmetric words.
-The [four-path Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md#four-path-bell-relative-phase)
-has two clean signals, a paid depth-94 schedule and exact Gram error
-one half at every canonical size. Normalization does not select lookup charge.
-Earlier covariance, singlet, spectrum and thin-source failures retain
-their original hypotheses; none is an unrestricted native-depth bound.
+**Latest complete-action results.** [Affine/Fourier dressings](research/depth/COUPLED_FINAL_ENCODER.md#affine-fourier-complete-transition-gap)
+have error at least square root two for p at least two, even with arbitrary
+X-diagonal pulses and computational-diagonal middles in that word. No computational-monomial dressing completes the original native word
+exactly; this separate screen gives no uniform approximation gap.
+For [two bank Clifford mixers separated by diagonal stages](research/depth/COUPLED_FINAL_ENCODER.md#two-clifford-mixer-screen),
+error below one requires a rank-one final mixer aligned with full bank
+complement. This bank-only, fixed-address grammar has an explicit exact
+exception, but its [middle phase derivative](research/depth/COUPLED_FINAL_ENCODER.md#rank-one-mixer-lookup-derivative)
+still computes lookup. Two Hadamard masks in one common affine frame fail.
+The [Bell-envelope identity](research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer)
+preserves the complete charge-readout error on arbitrary auxiliaries;
+address-independent acceptance has sharp Gram floor one quarter.
 
-**Next concrete question: change joint bank transitions.**
-The relative-involution question is settled by the partial construction.
-Pause the tested single-dressing words and swap/weight-phase acceptance.
-Can two noncommuting bank-mixing stages, with a changed middle between
-them, give $`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$ on every bank column?
-Derive that complete action before a new fixture; alternatively construct
-a genuinely different accepted Gram satisfying the retained normalized contract.
-Do not infer lookup from Hermiticity, broad support or normalized acceptance.
+**Next concrete question: pay a non-Clifford joint transition.**
+The earlier instruction to try two mixers is now qualified by these screens.
+Can a changed non-Clifford bank mixer or a nondiagonal middle supply
+$`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$ with a complete native ledger?
+Alternatively, construct an accepted source with genuinely interleaved
+data/auxiliary action beyond the Bell-envelope factorization. Reopen the
+rank-one exception only with a paid shallow lookup-dependent derivative.
+Derive the complete action before another fixture; phase declarations,
+charge preservation and broad support do not supply the missing operation.
 The source still needs $`o(\log(p+2))`$ depth and the simultaneous
 count, width, precision and arbitrary-work return ledger. Completed
 quadratic coordinate rounds retain a logarithmic round requirement;

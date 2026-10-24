@@ -819,3 +819,149 @@ small native Bell conjugations fixing the transpose in (31). They are
 finite internal checks, not a general native emitter or external
 mathematical review; the all-size operator and scheduling claims above
 are analytic.
+
+<a id="bell-acceptance-charge-transfer"></a>
+
+## 10. A complete Bell envelope transfers the same charge to acceptance
+
+The previous failures are not repaired merely by allowing arbitrary broad,
+non-diagonal auxiliary acceptance after the same Bell envelope. The charge identity (31) gives
+an exact consequence for arbitrary acceptance effects. It does not exclude an
+address-dependent acceptance that actually computes the missing charge,
+or a source with genuinely interleaved data and auxiliary dynamics.
+
+Keep the notation of Sections 1--3 and put
+
+```math
+W_{2,x}=W_{x,CY}W_{x,DZ},\qquad
+Q_x=X_C(v_x)X_D(v_x),\qquad
+R_x=Z_Y(v_x)Z_Z(v_x).
+```
+
+Here Y,Z are entire arbitrary auxiliary banks. Equation (31) gives
+$`W_{2,x}^\dagger Q_xW_{2,x}=R_x`$ using the left kernel v_x,
+not the known right kernel e_0. It includes identity on every other
+principal and implementation register.
+
+Let an arbitrary acceptance mechanism on x,Y,Z and additional work have
+effect E, a positive contraction. Neither diagonality nor a chosen
+auxiliary input is assumed. Extend E by identity on C,D and let
+$`W_2=\sum_x|x\rangle\langle x|\otimes W_{2,x}`$. Suppose the
+complete source Gram has the envelope form
+
+```math
+G=W_2(I_{CD}\otimes E)W_2^\dagger.
+```
+
+The notation $`I_{CD}\otimes E`$ permits E to act on or even move the
+address; it only requires that acceptance itself act trivially on C,D.
+Define the coherent direct sums Q and R from Q_x and R_x. Unitary
+invariance of operator norm and (31) give the exact equality
+
+```math
+\left\|G-\frac{I+Q}{4}\right\|
+ =\left\|I_{CD}\otimes E-\frac{I+R}{4}\right\|.      \qquad(34)
+```
+
+All target factors are tensored with identity on arbitrary extra work.
+Thus the same complete lookup charge must be resolved on the auxiliaries,
+with exactly the same error. Coherent off-diagonal auxiliary effects and
+arbitrary accepted unitary fibers do not change (34). It is an equality
+of full operator errors, not a fixed-input probability or a normalized
+trace comparison. Equation (34) remains valid on an external reference.
+
+There is a sharp consequence when E is address independent. For distinct
+addresses x,x', the Vandermonde columns v_x,v_x' are distinct. Choose a
+binary auxiliary difference y+z on which their two characters disagree.
+Then
+
+```math
+\left\|\frac{I+R_x}{4}-\frac{I+R_{x'}}{4}\right\|=\frac12.
+```
+
+The triangle inequality forces
+
+```math
+\max_x\left\|E-\frac{I+R_x}{4}\right\|\ge\frac14.
+                                                               \qquad(35)
+```
+
+The positive contraction $`E=I/4`$ attains one quarter simultaneously
+at every address, so the constant is sharp for this effect class. This
+holds already at p=1. If acceptance is address dependent, (34), rather
+than (35), is the retained statement: implementing its required effect
+is still an unpaid source operation.
+
+No new native gate is assumed. W_2 is the already paid two-copy Bell
+envelope; E and any mechanism realizing it retain their own count,
+depth, width, precision and return obligations. In particular an
+abstract effect satisfying (34) is not a source construction. The
+equivalence does not cover a different envelope whose data and auxiliary
+couplings are interleaved with acceptance.
+
+<a id="hyperplane-permutation-acceptance-gap"></a>
+
+### Pure charge-preserving permutation expansion has two fixed coset vectors
+
+A separate proposed use of the same kernel is to expand within
+$`H_x=\mathrm{im}K_x=\ker(v_x^{\mathsf T})`$. This requires a
+different action from merely preserving charge. Let e=e_0, so
+$`v_x^{\mathsf T}e=1`$, and define the two normalized vectors
+
+```math
+|u_{x,\sigma}\rangle
+ =2^{-(n-1)/2}\sum_{y:v_x^{\mathsf T}y=\sigma}|y\rangle,
+\qquad \sigma\in\{0,1\}.
+```
+
+Every computational-basis permutation preserving both cosets fixes
+both vectors exactly. This includes affine maps y to Ay+c with
+$`v_x^{\mathsf T}A=v_x^{\mathsf T}`$ and
+$`v_x^{\mathsf T}c=0`$. In particular it includes each transvection
+
+```math
+A=I+(K_xa)b^{\mathsf T},\qquad b^{\mathsf T}K_xa=0.
+```
+
+The last condition makes A an involution, and the left-kernel identity
+makes it charge preserving. These assertions do not assume a native
+implementation of arbitrary choices of a,b.
+
+Consider any complete word of such permutations controlled by signals
+or other work, their actual inverses, and arbitrary interlayers acting
+as identity on this tested bank. The address is held fixed between
+these stages; interlayers may be address controlled but may not mix
+different x values. Helpers and acceptance have the same insertion and
+projection for both bank states. On either uniform coset vector every
+controlled permutation acts as identity, so the induced signal/work
+word is exactly the same for sigma=0 and sigma=1. Its accepted Gram
+has equal expectations on these two bank states and any common work
+input.
+
+The desired $`(I+Z(v_x))/4`$ instead has expectations one half and
+zero. Therefore the complete accepted Gram error is at least one
+quarter, regardless of how many permutation calls or selectors are
+used, or what spectral gap an average of those permutations has. For
+a complete unitary phase implementation the corresponding error is
+at least $`\sqrt2`$: its common induced work unitary V obeys
+
+```math
+\|(V-I)\psi\|^2+\|(V+I)\psi\|^2=4
+```
+
+for every normalized work input psi. At least one of the two required
+charge sectors therefore has error at least square root two.
+
+This is a restriction on the specified permutation grammar. Bank phases,
+other bank dynamics, or intermediate address motion can leave it. A
+constant gap for motion within the cosets, by itself, would select
+invariant orbit vectors and would not supply the full desired charge
+sector. The next operation must distinguish the sectors on all bank
+columns; charge preservation and expansion do not establish that readout.
+
+The exact [acceptance-transfer fixtures](../../tests/test_bell_acceptance_transfer.py)
+use literal p=1 Bell matrices on every data and auxiliary column, a
+non-diagonal coherent auxiliary effect, p=1,2 distinct-address charge
+comparisons, and finite hyperplane transvections. They check the native
+orientation and complete-space identities; the all-size reductions and
+scope statements above are analytic, not inferred from finite fixtures.
