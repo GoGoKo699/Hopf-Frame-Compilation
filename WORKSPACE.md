@@ -8,19 +8,21 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: Pauli orbit compression and exact three-layer transport
+## Current checkpoint: joint native transport and the complete-bank gap
 
-**Verified starting checkpoint:** [PR #237](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/237),
-`75db2c1ec57544bfa4842963df1422a9b9456044`, fetched 24 October 2026.
-A two-layer circuit pays one-coordinate Pauli transport, but its composition
-does not transport the complete address orbit. Three-layer approximation below
-the retained gap must already be exact. Exact-tree receipts are in the PR record.
+**Verified starting checkpoint:** [PR #238](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/238),
+`3b04fc2f0655fbbbfff7c3a3ef56f57107b8dbb1`, fetched 24 October 2026.
+A three-layer source now pays joint transport of two address coordinates.
+A four-layer source pays a nested pair of bank coefficients, including a quartic term.
+A bank-independent final block and one specified full-bank X-motion encoder
+cannot complete the three-layer general source.
+The complete-bank construction remains open. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [MOD3 zeta transport](research/depth/MOD3_ZETA_TRANSPORT.md): complete observable contract and three-layer exactness; [weak orbit compression](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md): paid single-coordinate transport and the missing joint action.
+2. [MOD3 zeta transport](research/depth/MOD3_ZETA_TRANSPORT.md): complete observable contract and three-layer exactness; [joint transport](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#joint-two-address-source): the paid two-coordinate source; [coupled final encoders](research/depth/COUPLED_FINAL_ENCODER.md): complete operators and two scoped three-layer boundaries.
 3. [Bank response](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md), [co-moving stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md), and [bank-coupled dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md): retained components and source screens. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
@@ -87,63 +89,60 @@ or $`\tau^2/2^{20}`$ before eight-call fusion. No extra clean recovery flag is u
 and [route decisions](research/ROUTE_DECISIONS.md#source-specific-representation-limits)
 before proposing a new word; their hypotheses are not general depth bounds.
 
-**Retained components.** [Composing stages before a row echo](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
-leaves an exact first-stage background conjugation. A two-row bank has
-coherent Gram error exactly three quarters and dirty-selector dependence.
-Echoing each stage first cancels every background; a four-clean fixed-row
-expander compression is paid. Coherently selecting its row would require
-the missing indicator itself. Unmixed global-flip batching cannot distinguish
-an eight-row affine cube from the empty bank on the selector-zero fiber.
-These are scoped acceptance failures, not general native-depth bounds.
-
-The [co-moving construction](research/depth/CO_MOVING_LOOKUP_STAGE.md) moves
-address, bank and selectors together, preserving complete lookup charge
-$`\Omega|x,Y\rangle=(-1)^{Y_x}|x,Y\rangle`$, with zero clean work,
-depth at most 116 and polynomial fusion budgets. Its echo and four-path
-acceptance failures remain scoped. The [fixed-row central word](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#fixed-row-central-word)
-reads only $`Z_{Y_0}`$ on the whole space; [paid transport](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#address-transport-cost)
-turns it into lookup at linear depth. Free moved zeta or an addressed
-selector flip would assume the missing indicator.
-
+**Retained components.** [Stage and row echoes](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md)
+pay background cancellation and fixed-row compression; coherent row selection
+still requires the missing indicator. The [co-moving construction](research/depth/CO_MOVING_LOOKUP_STAGE.md)
+pays complete lookup-charge preservation with zero clean work and depth at most
+116. The [fixed-row central word](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#fixed-row-central-word)
+reads only $`Z_{Y_0}`$; its paid address transport restores linear depth.
 The [bank-coupled revision](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md)
-pays swap/Hadamard controls and retains arbitrary principal t movement.
-Its specified transpose-zeta generators have an all-size Bell-cell quarter
-floor; the changed p=3 bank-Hadamard source has a complete marked-Gram
-$`1/64`$ floor. These scoped failures and the marked-cancellation question
-remain in that proof home; they do not exclude general nonlocal sources.
+pays swap/Hadamard controls and arbitrary principal t movement. Its specified
+transpose-zeta and bank-Hadamard sources retain their quarter and $`1/64`$
+Gram floors. These components and scoped acceptance failures do not exclude
+general nonlocal sources or provide free addressed row flips.
 
-**Latest substantive outcome.** [One-coordinate orbit compression](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md)
-uses eight T gates, two layers and one arbitrary returned helper. Fixed
-Clifford walls spread its Pauli action across the whole bank. The displayed
-composition has complete observable error two for every p at least two.
-Sequential binary-linear factors must act correctly on an exponentially
-growing prefix span; the resulting rank budget is not a native-depth bound.
-The indicator-based shared-cleanup baseline retains logarithmic depth.
+**Latest substantive outcome.** [Joint two-coordinate transport](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#two-coordinate-lift)
+uses twelve T gates, three layers and no extra work at every bank size.
+Fixed Clifford walls cost $`O(m^2)`$. It is the complete source at p=2;
+for larger p it pays two coordinates only. Its actual echo includes all
+bank, work and reference inputs. The old one-coordinate product still has
+error two, and its prefix-rank requirement remains representation-specific.
 
-**Next concrete question: native transport of the whole address orbit.**
-Seek a zero-clean three-layer E with the exact joint Pauli identity in the
-[complete observable contract](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface),
-with the simultaneous polynomial count/dirty-width budgets. The
+The [four-band nested-coefficient source](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
+pays $`(-1)^{d+bt(a+cv)}`$ with twelve T gates, 34 Cliffords and no
+helpers. Here b,c,t are addresses and d,a,v are arbitrary bank coefficients.
+Its fixed-bank lift costs $`34+pm`$ Cliffords; it still omits independent
+lookup coefficients, so it is a partial construction with full lookup error two.
+
+The [final-block theorem](research/depth/COUPLED_FINAL_ENCODER.md#bank-independent-final-boundary)
+excludes a three-layer source at p at least three when its completed final
+one-band block is independent of the nonconstant coefficient bank, even
+with arbitrary middle Clifford boundaries and dirty width. A fixed output
+Clifford does not repair it. A separate [full-bank X-motion encoder](research/depth/COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
+also fails with any one-band middle, despite moving every bank coordinate.
+Neither result is an unrestricted three-layer exclusion.
+
+**Next concrete question: complete the joint coefficient action.**
+Can the four-band mechanism include the five missing independent coefficients
+at three addresses in one native identity, then combine growing coefficient
+blocks without serial address processing? Pay the
+[complete observable contract](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface)
+and its actual source/adjoint ledger. The two excluded final encoders are paused;
+an unrestricted exact three-layer source remains another possible mechanism. The
 [three-layer rounding theorem](research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness)
 makes any error below $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$ exact; two layers
 are excluded for p at least three. Four or more layers may instead use the
 approximate contract at every fixed tolerance with depth $`o(\log(p+2))`$.
 Every address, bank, work and reference input remains arbitrary. Source work
 may move; its echo and actual inverse must return it. Controlled P_0 suffices
-for controlled indicator. The unpaid identity is joint orbit transport;
-individual coordinate identities do not compose. Constant source depth still
+for controlled indicator. The two-active-coordinate question is settled;
+the two excluded final-encoder mechanisms are paused. Constant source depth still
 retains the transfer's log-log term; fixed tolerance gives no all-precision claim.
 
-The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
-remains available for bank-preserving alternatives. Per-flip error epsilon
-can accumulate sharply to m epsilon even with zero mixed response. Pay any
-coherent row selection, signal mixing and actual inverse. Stop repairs that
-assume a free address-controlled row flip, growing clean history, or precision
-that reconstructs the known depth. If acceptance reduces to two balanced
-unitary branches, apply the
-[direct-square criterion](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout).
-The earlier instruction to calculate the two-active-row background is settled;
-the one-row gap alone still does not give a complete source.
+The [syndrome-star alternative](research/depth/COUPLED_FINAL_ENCODER.md#syndrome-star-coupling)
+pays a scalar reflection and a formal bank-transition identity, but normalized
+complete readout remains unpaid: its leaf-to-center map is many-to-one.
+Neither exponentiating that formal sum nor selecting its bright direction is free.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

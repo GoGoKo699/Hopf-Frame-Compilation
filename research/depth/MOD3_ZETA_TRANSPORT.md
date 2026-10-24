@@ -586,9 +586,20 @@ R96 frontier remains unchanged.
 At three source layers, (20) turns the small-fixed-error question into
 an exact joint transport question. A source with more layers may instead
 exploit approximation, provided its complete depth remains sublogarithmic.
-The [weak-orbit revision](WEAK_PAULI_ORBIT_COMPRESSION.md) examines the
-smaller one-coordinate target and the first remaining operation in that
-representation; its failed construction is not an unrestricted exclusion.
+The [joint-coordinate construction](WEAK_PAULI_ORBIT_COMPRESSION.md#two-coordinate-lift)
+pays two coordinates at every bank size, with twelve T gates, three layers
+and no extra work. It supplies the complete source at p=2 only. Retaining
+its final-block commutation condition cannot extend the construction to
+p at least three. The [coupled-final-block theorem](COUPLED_FINAL_ENCODER.md#bank-independent-final-boundary)
+also excludes bank-independent final one-band blocks at those lengths,
+despite arbitrary middle Clifford boundaries and dirty width. A separate
+[full-bank X-motion word](COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
+also has no one-band middle completion, by its rotated-bank centralizer and
+affine response code. Other bank-dependent final blocks or more source layers
+remain open. The [four-band nested-coefficient source](WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
+pays a quartic term together with its adjacent cubic coefficient, but already
+omits five independent coefficients at three addresses. Complete joint
+coefficient assembly remains unpaid; these scoped results do not move R96.
 
 Exact fixtures: [binary transport and observable identities](../../tests/test_mod3_zeta_transport.py),
 [native batch, actual inverses and signal controls](../../tests/test_mod3_native_batch.py),
