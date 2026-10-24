@@ -957,10 +957,16 @@ Gram floor for this specified three-bit source at every signal angle.
 This finite certificate does **not** exclude all nonlocal CCZ words or
 a family patched at this size.
 
+The [Bell-cell construction](BANK_COUPLED_SELECTOR_DYNAMICS.md#bell-cell-witness)
+now strengthens this specified-frame result to every p at least two,
+including arbitrary repetition, ordering and added bank-controlled swaps.
+The finite witness above remains valid; the all-size argument still does
+not apply to arbitrary nonlocal frames or new generators.
+
 The next construction must change more than these frames or angles and
 first establish complete marked cancellation, then normalized coverage
 of the whole positive sector. Enough crossing rank is only a necessary
-screen in the conjugated-branch architecture. More stages, different
+screen in the conjugated-branch architecture. More stages with changed generators, different
 joint selector operations or bank/address dynamics require a new exact
 acceptance calculation and the same simultaneous resource/return ledger.
 No general native-depth lower bound or improvement to R96 follows here.
