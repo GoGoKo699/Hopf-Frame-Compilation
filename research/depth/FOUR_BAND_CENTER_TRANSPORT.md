@@ -17,7 +17,7 @@ or a change to the complete approximate dirty-indicator frontier.
 | Section D: automatic center preservation | Complete occupied Booleanity forces every D axis to preserve the original center for these fixed endpoints, without complete B matching |
 | Section E: a general original-pair derivative | Arbitrary original endpoints are allowed; the center's logical X direction has a complete two-band Boolean derivative of degree at most three |
 | Section F: paid whole-word resynthesis | With an all-active common endpoint and one support-two matched pair per middle band, the full word has an actual two-band realization with its Clifford cost paid |
-| Section L: genuinely coupled six-wire candidate | A literal four-term Pauli image rules out every one-band output endpoint, with complete clean-return error at least one quarter; this stops the specified candidate, not arbitrary four bands |
+| Section L: genuinely coupled six-wire candidate | A literal four-term Pauli image rules out every one-band output endpoint for all $`2^{10}`$ T/T-dagger orientations of the specified axes, with complete clean-return error at least one quarter; this is not an arbitrary four-band obstruction |
 
 Section D therefore supplies the center premise used in A and C when
 the complete Boolean contract holds. The original equal endpoints and
@@ -1807,7 +1807,7 @@ The following general endpoint test does not depend on the six-wire
 algebra. For a unitary Q and Hermitian Pauli A, define
 
 ```math
-\mu=\max_{P\ {m Hermitian\ Pauli}}
+\mu=\max_{P\ \mathrm{Hermitian\ Pauli}}
        |\mathrm{tr}(PQAQ^\dagger)|/\dim\mathcal H.
 ```
 
@@ -1865,11 +1865,84 @@ Appending unused spectator wires does not change its four Pauli
 coefficients. It is stronger than an exact-return failure, but it is
 not a universal four-band error floor or Boolean-degree theorem.
 
-### L.4. What stops and what can extend
+### L.4. Changing the ten native T orientations does not repair the endpoint
+
+Keep the actual input endpoint and all ten signed Hermitian axes in
+L.1 fixed, but independently replace each T gate by T-dagger. These
+are $`2^{10}`$ actual native words, with ten T-type gates, two middle
+bands and the same common exposure bound of 74 Cliffords. Every word
+still has the complete one-band output-endpoint error floor (L.4).
+The reduction below concerns its transported reflection, not a
+phase-free identification of the complete middle words.
+
+First, changing any D exponent from plus one to minus one multiplies
+the middle on the left by $`S_{d_j}^\dagger`$. All D axes commute,
+so arbitrary D orientation changes give a left Clifford multiplier.
+Their effect on Q is therefore Clifford conjugation.
+
+Next let t_i indicate which of the four tail B exponents are negative.
+Choose the Hermitian Pauli
+
+```math
+P_t=i^{t_1t_4}X_{z_1}^{t_1}X_{z_2}^{t_2}X_{z_3}^{t_3}Z_{z_1}^{t_4}.
+```
+
+It commutes with J and the two core B axes, and conjugates u_i to
+$`(-1)^{t_i}u_i`$. It preserves c,rc,d and changes the sign of dh
+only when the sum of the t_i is odd. Thus conjugation by P_t removes
+all tail B orientation changes, at the cost of another allowed D
+orientation change. The literal identity
+$`T_{-u}=\omega T_u^\dagger`$ contributes scalar factors, but these
+cancel in $`Q=UJU^\dagger`$. Combining this step with the preceding
+D reduction proves that every signed-family Q is Clifford-conjugate
+to one of four probes with positive tail and D exponents and core B
+exponents $`(\alpha,\beta)\in\{+1,-1\}^2`$.
+
+These four cases have an analytic certificate. Write
+$`\Pi_{r\pm}=(I\pm r)/2`$. The core clean reflection is
+$`J_{\rm core}=\Pi_{r+}c+\Pi_{r-}p`$. Conjugating it by the
+signed B core pair and then the positive D core pair gives p for
+$`(\alpha,\beta)=(+1,+1)`$, $`-rp`$ for $`(-1,-1)`$, and
+$`J_{\rm core}`$ for either opposite-sign choice. The first case
+is (L.1). In the second, Q is $`-r`$ times the first probe, so its
+X_1 image is the negative of (L.1).
+
+For the opposite-sign cases put
+
+```math
+A_t=X_{z_1}X_{z_2}X_{z_3}X_w,\qquad
+B_t=Z_{z_1}Z_{z_2}Z_{z_3}Y_w,\qquad
+Q_0=FJ_{\rm core}WF^\dagger.
+```
+
+The identities in L.2, together with
+$`J_{\rm core}cJ_{\rm core}=rc`$ and
+$`J_{\rm core}X_1J_{\rm core}=Z_1X_2`$, give
+
+```math
+\begin{aligned}
+Q_0X_1Q_0
+ &=\Pi_{h+}Z_1X_2+\Pi_{h-}Z_1Y_2B_t\\
+ &=\frac{Z_1X_2(I+h)+Z_1Y_2(A_t+B_t)}2,
+ \qquad hB_t=-A_t.                                  \qquad(L.5)
+\end{aligned}
+```
+
+Again the four Pauli labels are distinct and all coefficient
+magnitudes are one half. A Clifford conjugation permutes signed
+Pauli labels. Consequently each member of the full orientation
+family has a Pauli witness with $`\mu=1/2`$; its witness need not
+remain X_1 after that conjugation. Equations (L.3)--(L.4) apply
+unchanged. This permits arbitrary identity spectators and references,
+but does not grant a full-word scalar equivalence, changed axes,
+arbitrary intervening Cliffords, or a non-Clifford output endpoint.
+
+### L.5. What stops and what can extend
 
 The held candidate is now stopped: its first unavailable operation
 is a one-band output endpoint, which (L.4) excludes at error below
 one quarter. Full Boolean return is therefore unavailable as well.
+Changing only the ten native T/T-dagger orientations cannot reopen it.
 Reopening requires a changed actual input/middle phase algebra or
 an additional paid non-Clifford endpoint mechanism that changes the
 witness, followed by a complete operator and resource proof. Merely
@@ -1886,7 +1959,10 @@ bank or a genuine layer-stable invariant at the requested accuracy.
 
 The [exact fixture](../../tests/test_coupled_pair_endpoint.py) checks
 the actual signed encoders, the center intersection, the full probe
-identity, its actual reversed inverse and the sector calculations
+identity, its actual reversed inverse and the sector calculations.
+It also checks the four reduced core orientations using actual
+adjoints and a mixed tail/D orientation against the Clifford
+reduction and its actual inverse, with all entries retained
 in $`\mathbf Q(\sqrt2,i)`$. The proofs above and an independent
 internal audit establish the scoped conclusions; these finite checks
 and audits are not external mathematical review. No complete-frame
