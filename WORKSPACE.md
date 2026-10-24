@@ -8,20 +8,20 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: bank-coupled dynamics and marked cancellation
+## Current checkpoint: MOD3 reduction and joint Pauli transport
 
-**Verified starting checkpoint:** [PR #234](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/234),
-`40c875c989219c1034cfd9cec62d9bd123f1eb79`, checked 24 October 2026.
-Bank-controlled swaps and Hadamards are paid. A Bell-cell witness excludes
-the specified nonlocal frames at all sizes; a changed finite source also fails.
-No qualifying lookup source is supplied. Exact-tree receipts are in the PR record.
+**Verified starting checkpoint:** [PR #235](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/235),
+`9862ed78dd6470583a8304f95cc163338dcf6f66`, checked 24 October 2026.
+Moved zeta reduces to shared MOD3 blocks; a complete Pauli echo gives the
+indicator. Exact logarithmic-depth components are paid, but a sublogarithmic
+compiler is unpaid. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
-2. [Bank response and row isolation](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md): full background conjugation, exact two-row defect, fixed-row cancellation and unpaid aggregation.
-3. [Co-moving stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md), and [bank-coupled dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md): paid components, source screens and the current marked-cancellation question. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
+2. [MOD3 zeta transport](research/depth/MOD3_ZETA_TRANSPORT.md): fixed binary reduction, paid native baselines, weak complete Pauli transport and the constant-call indicator converse.
+3. [Bank response](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md), [co-moving stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md), and [bank-coupled dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md): retained components and source screens. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -72,10 +72,10 @@ and its [constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRA
 transfer qualifying queries to frames, retaining their log-log contribution.
 Assess success on that complete ledger, not source depth alone.
 
-**Constructive question.** Build a normalized bounded-clean source U with
+**Retained accepted-source interface.** A normalized bounded-clean source U with
 accepted block $`K=J^\dagger UJ`$ and $`K^\dagger K\approx\Pi_{\rm eq}/2`$,
-where $`\Pi_{\rm eq}=(I+\Omega_{x,C}\Omega_{x,D})/2`$, using higher-band
-native interference, or find another complete wide non-Clifford readout.
+where $`\Pi_{\rm eq}=(I+\Omega_{x,C}\Omega_{x,D})/2`$, remains an alternative
+to direct indicator transport. Its complete source is still unpaid.
 The [four-call Gram interface](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
 pays recovery and serial dirty promotion, including arbitrary accepted fibers,
 address motion and actual inverses. Gram error $`\delta\le\tau^2/4096`$
@@ -105,38 +105,37 @@ reads only $`Z_{Y_0}`$ on the whole space; [paid transport](research/depth/ENTAN
 turns it into lookup at linear depth. Free moved zeta or an addressed
 selector flip would assume the missing indicator.
 
-**Latest substantive outcome.** [Bank couplings](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#paid-bank-couplings)
-pay swaps, controlled swaps, Hadamards and controlled Hadamards at T-depth
-4, 16, 2 and 6. Their [complete dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#complete-swap-dynamics)
-retain literal phases and arbitrary principal work t; its movement within
-a source is allowed, and the Gram target must retain $`I_t`$.
-A [Bell-cell witness](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#bell-cell-witness)
-gives the specified transpose-zeta frames a quarter floor at every p at
-least two, in any order or repetition with stages and bank swaps.
-An [inserted bank-Hadamard](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#inside-frame-bank-h-source) breaks that witness, but its exact p=3
-marked eight-path Gram on all 512 work columns obeys $`G\succeq I/3`$,
-forcing a coefficient-independent $`1/64`$ error floor for that finite source.
-This is not a general nonlocal-mixing obstruction. R96 is unchanged.
+The [bank-coupled revision](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md)
+pays swap/Hadamard controls and retains arbitrary principal t movement.
+Its specified transpose-zeta generators have an all-size Bell-cell quarter
+floor; the changed p=3 bank-Hadamard source has a complete marked-Gram
+$`1/64`$ floor. These scoped failures and the marked-cancellation question
+remain in that proof home; they do not exclude general nonlocal sources.
 
-**Next concrete question: a complete marked operator relation.**
-Derive paid branch words and realizable coefficients with $`K\Pi_-=0`$,
-then establish normalized coverage of every positive-sector input:
+**Latest substantive outcome.** A [fixed binary basis](research/depth/MOD3_ZETA_TRANSPORT.md#order-three-blocks)
+reduces moved zeta to disjoint order-three blocks driven by shared signed
+MOD3 sums. Helper-free exact native batches cost at most 8p T layers;
+optional signal control costs at most 16p+8. The [paid converse](research/depth/MOD3_ZETA_TRANSPORT.md#paid-indicator-converse)
+uses twelve complete indicator calls and arbitrary returned work. With
+the retained exact indicator it gives full batches and moved zeta at
+$`T,w=O(m)`$, $`G=O(m^2)`$, depth $`O(\log(p+2))`$, zero clean work.
+This improves the component baseline without changing R96.
 
-```math
-K^\dagger K\,\Pi_-=0,\qquad
-K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
-\Pi_\pm=(I\pm\Omega)/2,
-```
-
-or a uniform complete norm approximation within the recovery budget above.
-Retain every arbitrary bank, selector, principal t input and reference,
-including literal phases and off-diagonal terms. Generic mixing or angle
-tuning cannot supply cancellation when the marked path Gram is positive definite.
-Leave the specified Bell-cell-invariant generators and the rejected finite
-bank-Hadamard word; removing one witness is insufficient. Bank parity alone
-does not distinguish same-bank addresses. Pay simultaneous count/width and
-actual inverses; recovery pays final t return once the complete Gram is proved.
-Use no free addressed transport. Constant source depth still retains log-log depth.
+**Next concrete question: a quantum joint Pauli-transport compiler.**
+Emit a zero-clean unitary E transporting the fixed block Pauli
+$`P_0=X^{Se_0}`$ as in the [complete observable interface](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface),
+with error at most each fixed requested tau, depth $`o(\log(p+2))`$,
+and simultaneous polynomial count/dirty-width budgets. Keep every address,
+bank, private-work and reference input arbitrary. The direct echo and its
+actual inverse give the complete indicator; even signal-controlled indicator
+needs only controlled P_0, not controlled E. Full-batch approximation is
+sufficient but unnecessary: the exact additive-commutator criterion permits
+relative errors commuting with the fixed input Pauli. This weak complete
+transport is the first unpaid step. Classical MOD3 degree only bounds
+multiplicative depth, not unrestricted native T-depth; independent block
+precision accounting does not exclude joint quantum synthesis. Pay final
+work return and the full operator error. Constant source depth still retains
+the transfer's log-log contribution; fixed tolerance gives no all-precision claim.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon
