@@ -8,13 +8,13 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: MOD3 reduction and joint Pauli transport
+## Current checkpoint: weak MOD3 transport and its native two-band limit
 
-**Verified starting checkpoint:** [PR #235](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/235),
-`9862ed78dd6470583a8304f95cc163338dcf6f66`, checked 24 October 2026.
-Moved zeta reduces to shared MOD3 blocks; a complete Pauli echo gives the
-indicator. Exact logarithmic-depth components are paid, but a sublogarithmic
-compiler is unpaid. Exact-tree receipts are in the PR record.
+**Verified starting checkpoint:** [PR #236](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/236),
+`b48086daec39b64a5ab8bbd92c519a28079a827f`, checked 24 October 2026.
+Shared cleanup reduces the weak source to two indicator calls. A native
+gap excludes at most two source T layers at small fixed error; a sublogarithmic
+compiler remains unpaid. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
 Read in this order:
@@ -112,30 +112,29 @@ floor; the changed p=3 bank-Hadamard source has a complete marked-Gram
 $`1/64`$ floor. These scoped failures and the marked-cancellation question
 remain in that proof home; they do not exclude general nonlocal sources.
 
-**Latest substantive outcome.** A [fixed binary basis](research/depth/MOD3_ZETA_TRANSPORT.md#order-three-blocks)
-reduces moved zeta to disjoint order-three blocks driven by shared signed
-MOD3 sums. Helper-free exact native batches cost at most 8p T layers;
-optional signal control costs at most 16p+8. The [paid converse](research/depth/MOD3_ZETA_TRANSPORT.md#paid-indicator-converse)
-uses twelve complete indicator calls and arbitrary returned work. With
-the retained exact indicator it gives full batches and moved zeta at
-$`T,w=O(m)`$, $`G=O(m^2)`$, depth $`O(\log(p+2))`$, zero clean work.
-This improves the component baseline without changing R96.
+**Latest substantive outcome.** [Shared cleanup](research/depth/MOD3_ZETA_TRANSPORT.md#shared-cleanup-transport)
+uses two complete indicator calls for a weak Pauli-transport source and
+four for the full MOD3 batch; the twelve-call factorwise-return construction
+remains a baseline. Intermediate predicate work may change and returns in
+the complete observable echo. The retained exact indicator gives these
+components $`T,w=O(m)`$, $`G=O(m^2)`$ and depth $`O(\log(p+2))`$,
+with zero clean work. These constant-factor savings do not change R96.
 
 **Next concrete question: a quantum joint Pauli-transport compiler.**
-Emit a zero-clean unitary E transporting the fixed block Pauli
-$`P_0=X^{Se_0}`$ as in the [complete observable interface](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface),
-with error at most each fixed requested tau, depth $`o(\log(p+2))`$,
-and simultaneous polynomial count/dirty-width budgets. Keep every address,
-bank, private-work and reference input arbitrary. The direct echo and its
-actual inverse give the complete indicator; even signal-controlled indicator
-needs only controlled P_0, not controlled E. Full-batch approximation is
-sufficient but unnecessary: the exact additive-commutator criterion permits
-relative errors commuting with the fixed input Pauli. This weak complete
-transport is the first unpaid step. Classical MOD3 degree only bounds
-multiplicative depth, not unrestricted native T-depth; independent block
-precision accounting does not exclude joint quantum synthesis. Pay final
-work return and the full operator error. Constant source depth still retains
-the transfer's log-log contribution; fixed tolerance gives no all-precision claim.
+For $`p\ge3`$, the [native two-band screen](research/depth/MOD3_ZETA_TRANSPORT.md#two-band-transport-screen)
+requires at least three source T layers at observable error below
+$`\tau_*=\sin(\pi/8)/(2\sqrt2)\approx0.135299`$.
+Emit a zero-clean E transporting $`P_0=X^{Se_0}`$ under the
+[complete observable contract](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface),
+at every fixed requested tolerance, depth $`o(\log(p+2))`$ and simultaneous
+polynomial count/dirty-width budgets. Every address, bank, work and reference
+input remains arbitrary. Source work may move; the complete echo and actual
+inverse pay its final return. Controlled indicator needs only controlled P_0,
+not controlled E. Full-batch approximation is sufficient but unnecessary;
+relative errors commuting with P_0 are allowed. The two-band screen leaves
+three-layer and growing sublogarithmic sources open. Classical MOD3 degree
+only bounds multiplicative depth. Constant source depth still retains the
+transfer's log-log contribution; fixed tolerance gives no all-precision claim.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon
