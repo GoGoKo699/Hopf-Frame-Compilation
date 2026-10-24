@@ -8,16 +8,15 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: common-probe sources and relative lookup action
+## Current checkpoint: relative involution paid, lookup transitions unpaid
 
-**Verified starting checkpoint:** [PR #241](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/241),
-`ab84ca271397e11537efb0c29d8bb22693653b70`, fetched 24 October 2026.
-The common-probe source couples every row and changes the probe; its
-four-band graph-phase word has error at least square root two
-for p at least two. Every static bank-diagonal repair at the native angles
-has error above one half for p at least three. R96 is unchanged;
-these are scoped failures. Exact-tree receipts belong in the PR record.
-Fetch main before resuming; this is not a pin.
+**Verified starting checkpoint:** [PR #242](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/242),
+`7fc9d32fd7bc70764ce09292897e248f315fa387`, fetched 24 October 2026.
+A resynthesized middle pays an exact Hermitian relative block in four
+native bands with zero clean work. Complete lookup still fails for
+the tested diagonal, Hadamard and cubic-phase dressings; a paid broad
+four-path Bell source also has the wrong Gram. R96 is unchanged.
+These are scoped failures. Exact-tree receipts belong in the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
@@ -118,44 +117,45 @@ $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$, the retained three-layer rounding
 theorem makes complete Pauli transport exact; two layers are excluded for
 p at least three. More source layers may use the approximate contract.
 
-**Latest source trial.** The [common-probe family](research/depth/COUPLED_FINAL_ENCODER.md#common-probe-wide-source)
-uses a shared arbitrary probe with every row in both native pulse frames.
-A complete-graph CZ supplies a third frame, with $`T=4m`$,
-$`D_T\le4`$, $`G=4pm+20m+12`$, one arbitrary work bit
-and zero clean inputs. The complete echo and probe conversion are paid.
-The [two-frame covariance](research/depth/COUPLED_FINAL_ENCODER.md#two-row-local-frame-covariance)
-gives direct error at least square root two and Gram error at least one
-quarter within that alphabet, even with arbitrary tags and more layers.
-The third frame leaves that premise but a [paired singlet witness](research/depth/COUPLED_FINAL_ENCODER.md#common-probe-paired-state)
-still gives error at least square root two for p at least two, including
-pairwise-equal pulse angles and any total-weight bank phase.
+**Latest partial construction.** The [corrected middle](research/depth/COUPLED_FINAL_ENCODER.md#relative-probe-involution-repair)
+makes both co-moving probe fibers equal, so $`F_s=E_sZ_\pi E_s^\dagger`$
+is an exact Hermitian involution. Its base source has $`T=4m`$,
+$`D_T\le4`$, $`G=4pm+20m-12`$, one arbitrary probe and zero
+clean work. The new involution statement concerns its relative block; the full transported Pauli was always an involution. Lookup is still unpaid.
+At the fixed native angles, [every diagonal dressing](research/depth/COUPLED_FINAL_ENCODER.md#relative-repair-diagonal-modulus)
+has direct error above one third for p at least three. Every nonempty
+[Hadamard mask](research/depth/COUPLED_FINAL_ENCODER.md#relative-repair-hadamard-mask)
+has error at least square root two; the tested cubic-phase/Hadamard
+interlayer also fails analytically. These are complete transition failures.
 
-The [relative-fiber spectrum](research/depth/COUPLED_FINAL_ENCODER.md#static-diagonal-common-probe-spectrum)
-excludes every static bank-diagonal dressing of this word at the native
-angles for p at least three, with direct error above one half. Such a
-dressing only changes the common bank basis and cannot give a Hermitian
-lookup sign. This adds no general Gram or depth bound.
-The earlier [broad-baseline](research/depth/COUPLED_FINAL_ENCODER.md#broad-baseline-syndrome-source)
-and [shifted-syndrome](research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator)
-failures retain their separate scopes and reopening conditions.
+Three [probe-asymmetric repairs](research/depth/COUPLED_FINAL_ENCODER.md#probe-asymmetric-paid-trials)
+have paid controls but exact nonreal relative entries at p=3; these finite failures do not exclude all sizes or all asymmetric words.
+The [four-path Bell source](research/depth/CORANK_FOURIER_BELL_SOURCE.md#four-path-bell-relative-phase)
+has two clean signals, a paid depth-94 schedule and exact Gram error
+one half at every canonical size. Normalization does not select lookup charge.
+Earlier covariance, singlet, spectrum and thin-source failures retain
+their original hypotheses; none is an unrestricted native-depth bound.
 
-**Next concrete question: change the relative probe action.**
-Pause static diagonal repairs, including nonlinear row phases. Can a paid
-intermediate operation act differently on the two probe fibers
-and yield $`F_s^2\approx I`$, then $`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$,
-at the requested tolerance? A successful transport word must certify
-both errors on every bank column. Other accepted
-Grams need not use this factorization. The unpaid operation remains a
-qualifying complete source of depth $`o(\log(p+2))`$ with the
-simultaneous count, width, precision and arbitrary-work return ledger.
-Constant source depth retains the frame transfer's log-log term; fixed tolerance gives no all-precision improvement.
+**Next concrete question: change joint bank transitions.**
+The relative-involution question is settled by the partial construction.
+Pause the tested single-dressing words and swap/weight-phase acceptance.
+Can two noncommuting bank-mixing stages, with a changed middle between
+them, give $`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$ on every bank column?
+Derive that complete action before a new fixture; alternatively construct
+a genuinely different accepted Gram satisfying the retained normalized contract.
+Do not infer lookup from Hermiticity, broad support or normalized acceptance.
+The source still needs $`o(\log(p+2))`$ depth and the simultaneous
+count, width, precision and arbitrary-work return ledger. Completed
+quadratic coordinate rounds retain a logarithmic round requirement;
+this does not preclude cross-round native synthesis. Constant source
+depth retains the frame transfer's log-log term and gives no all-precision claim.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
 [Route decisions](research/ROUTE_DECISIONS.md) records stopped mechanisms,
 their reopening conditions and settled questions. Unique attempts and proofs
 remain in their homes; a representation limit does not retire the destination.
-The [closed six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction) needs changed phase algebra or a paid non-Clifford endpoint before reopening.
+The [six-wire scout](research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction) excludes all $`2^{10}`$ T orientations of its fixed axes; reopening needs changed phase algebra or a paid non-Clifford endpoint.
 
 <a id="research-decision-and-stopping-rules"></a>
 <a id="continuing-toward-the-general-answer"></a>

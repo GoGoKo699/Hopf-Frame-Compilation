@@ -1513,3 +1513,586 @@ bands and ledgers through p=6. These finite checks challenge the
 operator formulas; the all-size covariance, paired-state and
 relative-spectrum arguments above are analytic. The proofs and
 fixtures have internal audits, not external mathematical review.
+
+<a id="relative-probe-involution-repair"></a>
+
+## 9. A paid relative-block repair still needs the complete lookup action
+
+The first unpaid relative-spectrum operation in Section 8.4 can be
+performed by changing the middle pulse. This is a partial construction:
+it makes the **relative probe block** an exact Hermitian involution,
+but does not give the lookup sectors. The full transported Pauli
+$`EPE^\dagger`$ was already a Hermitian involution for every unitary E;
+that tautology is different from the additional relative-block property
+proved here.
+
+### 9.1. Correct the two middle fibers and resynthesize the result
+
+Retain A, W, T, D and $`Z_\pi=\prod_jZ_{B_j}`$ from Section 8.
+Replace the physical middle by
+
+```math
+\widehat B=\prod_j
+ \exp\!\left[-\frac{i\pi}{8}Z_\pi Z_a^j Z_{B_j}\right].
+                                                               \qquad(60)
+```
+
+In the co-moving coordinates $`r=d+\pi(B),\ s=a+HB`$, this is
+D_s from (55) on **both** Y_r fibers. Indeed the extra bank parity
+and the address shift give bank mask
+$`\boldsymbol1_m+e_j+H^{\mathsf T}j=Me_j`$. Equivalently, the
+old fibers $`D_+=D_s,D_-=D_s^\dagger`$ have been multiplied by
+
+```math
+|+Y\rangle\langle+Y|_r\otimes I+
+|-Y\rangle\langle-Y|_r\otimes D_s^2.                \qquad(61)
+```
+
+For p at least three, (57) identifies the correction in the second
+fiber as an address-dependent diagonal Clifford. The implementation
+below resynthesizes the corrected middle jointly; it does not assume
+that a controlled Clifford has zero native cost.
+
+Here is an exact one-band implementation of (60), valid for every
+$`p\ge1`$. On the bank implement
+$`V:y\mapsto y+\pi(y)\boldsymbol1_m`$. Since m is even, V is an
+involution. Gather all other bank bits into B_0, fan B_0 into those
+other bits, and repeat the gather. This uses $`3(m-1)`$ CNOTs and
+realizes V on arbitrary inputs. Next add $`a\cdot j`$ into B_j
+for every row j, apply one transversal bank T band, and reverse the
+entire exposure word. The literal operator is
+$`\widetilde{\widehat B}=e^{im\pi/8}\widehat B`$. It costs m T
+gates, one T layer and $`pm+6m-6`$ Cliffords, with no helper or
+clean input.
+
+More generally, let C be a bank unitary in co-moving coordinates and
+let $`C_{\rm phys}=W^\dagger C W`$. Define
+
+```math
+\begin{aligned}
+\widehat E_C&=C_{\rm phys}^\dagger A^\dagger\widehat B^\dagger
+                     C_{\rm phys}A\widehat B,\\
+E_s(C)&=C^\dagger T^\dagger D_s^\dagger C T D_s,\\
+F_s(C)&=E_s(C)Z_\pi E_s(C)^\dagger,\qquad F_s(C)^2=I.
+                                                               \qquad(62)
+\end{aligned}
+```
+
+The source is now independent of the co-moving probe r. Its transported
+physical probe has off-diagonal Y_r blocks both equal to F_s(C).
+The required block remains
+$`Q_s(y)=(-1)^{\pi(y)+y_{s+Hy}}`$. Thus (62) pays the relative
+involution, while $`F_s(C)\approx Q_s`$ remains the complete lookup
+obligation. All addresses, banks, probe states and references are
+arbitrary in this statement.
+
+For C=I, emit chronologically
+
+```math
+\widetilde{\widehat B},\widetilde A,
+\widetilde{\widehat B}^{\dagger},\widetilde A^\dagger.
+```
+The four literal scalars cancel. A common forward/actual-inverse
+ledger is
+
+```math
+T=4m,\qquad D_T\le4,\qquad G=4pm+20m-12,
+\qquad w_{\rm dirty}=1,\quad a_{\rm clean}=0,\quad\varepsilon=0.
+                                                               \qquad(63)
+```
+
+The one arbitrary work bit is d. The safe complete-echo ledger is
+$`8m`$ T gates, depth at most eight, and $`2G+2`$ Cliffords,
+using the actual source inverse and $`Z_d=S_d^2`$. For an emitted
+Clifford $`C_{\rm phys}`$, add its forward and actual-inverse
+Clifford costs to G. No free implementation is granted to an arbitrary
+C in the analytic statements below. These are candidate ledgers,
+not completed lookup or work-return claims.
+
+Without C, the repair still commutes with
+$`X_a^uX_B^{h_u}`$, $`(h_u)_j=u\cdot j`$, for every nonzero u
+when $`p\ge2`$. The parity of h_u is even, and its rowwise signs
+cancel those of the address in (60). The witness from Section 8.2
+therefore gives complete image error at least square root two. This
+does not undo the relative-block repair; it identifies a separate
+missing sector action.
+
+<a id="relative-repair-diagonal-modulus"></a>
+
+### 9.2. Diagonal dressing cannot repair the transition magnitudes
+
+Keep the fixed native angles in (60) and A. Allow C to be any static
+bank-diagonal unitary, with no cost restriction. Put
+$`H_0=T Z_\pi T^\dagger`$. Conjugating the desired identity in
+(62) by TC reduces its two sides to
+
+```math
+(D_s^\dagger C)H_0(C^\dagger D_s),\qquad
+R_s=T Q_s T^\dagger.                                \qquad(64)
+```
+
+Every matrix entry of H_0 has magnitude $`2^{-m/2}`$: each local
+factor is $`(Z-Y)/\sqrt2`$. The left side of (64) has exactly
+these magnitudes, regardless of C. The target has a different
+amount of squared matrix magnitude at large bank displacement.
+This gives a constant error floor, not merely a small individual-entry
+defect.
+
+For $`p\ge3`$, the exact Walsh expansion is
+
+```math
+Q_s=\frac1m\sum_{a,t\in\mathbb F_2^p}
+ (-1)^{t\cdot(s+a)}Z_B^{\boldsymbol1_m+h_t+e_a}.
+                                                               \qquad(65)
+```
+
+All $`m^2`$ masks are distinct: a nonzero h_t has weight m/2,
+which exceeds the weight of $`e_a+e_b`$. For t=0 the m masks
+have weight m-1. For each nonzero t, half have weight m/2-1 and
+half have weight m/2+1.
+
+Normalize Hilbert--Schmidt norm by dividing its square by $`2^m`$.
+Restrict matrix entries to $`|y+y'|\ge k`$, where the addition is
+binary and the bars denote Hamming weight. A conjugated Pauli mask
+of weight w distributes its squared norm over displacements as
+$`\mathrm{Bin}(w,1/2)`$. Distinct masks in (65) remain orthogonal
+after this restriction: their expanded Z/Y Pauli terms have different
+supports, even when their Y displacement masks coincide. Consequently
+the exact restricted squared norms of the left and right sides of
+(64) are
+
+```math
+\begin{aligned}
+P_H&=\Pr[\mathrm{Bin}(m,1/2)\ge k],\\
+P_R&=\frac1m\Pr[\mathrm{Bin}(m-1,1/2)\ge k]\\
+&\quad+\frac{m-1}{2m}\left(
+ \Pr[\mathrm{Bin}(m/2-1,1/2)\ge k]
+ +\Pr[\mathrm{Bin}(m/2+1,1/2)\ge k]\right),\\
+\|F_s(C)-Q_s\|&\ge\sqrt{P_H}-\sqrt{P_R}.
+                                                               \qquad(66)
+\end{aligned}
+```
+
+The last inequality uses the reverse triangle inequality after the
+entry restriction, and the fact that operator norm bounds normalized
+Hilbert--Schmidt norm. Entry restriction is used only for that norm;
+it is not asserted to contract operator norm.
+
+For $`m\ge128`$, choose k=3m/8. Chebyshev's inequality gives
+$`P_H\ge1-16/m`$. Each of the two smaller-binomial tails is at
+most
+$`(8m+16)/(m-4)^2\le16/m`$, while the first term of P_R is at
+most 1/m. Thus $`P_R\le17/m`$ and (66) is greater than one half.
+The four remaining powers of two are finite rational binomial sums:
+
+| m | k | Exact lower bound on P_H | Exact upper bound on P_R |
+|---|---|---|---|
+| 8 | 4 | $`3/5`$ | $`3/20`$ |
+| 16 | 7 | $`3/5`$ | $`3/20`$ |
+| 32 | 12 | $`3/5`$ | $`3/20`$ |
+| 64 | 24 | $`3/5`$ | $`3/20`$ |
+
+All eight comparisons are strict and follow by integer cross
+multiplication of the displayed binomial sums. For example at m=8,
+$`P_H=163/256`$ and $`P_R=37/256`$. The same rational comparisons
+are checked by the fixtures. These bounds give
+$`\sqrt{P_H}-\sqrt{P_R}>\sqrt{3/20}>1/3`$. Therefore
+
+```math
+\|F_s(C)-Q_s\|>\frac13\qquad(p\ge3)                 \qquad(67)
+```
+
+for every static bank-diagonal C, at every co-moving address s.
+The relative block in (62) is already an involution; this new
+obstruction concerns transition magnitudes, not its spectrum.
+It assumes the stated native pulse angles and source word, and
+makes no claim about arbitrary higher-band circuits or accepted
+Gram interfaces.
+
+<a id="relative-repair-hadamard-mask"></a>
+
+### 9.3. A non-diagonal Hadamard mask also has a complete witness
+
+A concrete change outside Section 9.2 is
+$`C=\prod_{j\in S}H_{B_j}`$ for any nonempty set S of bank rows.
+The physical interlayer $`W^\dagger C W`$ makes genuine joint
+address, probe and bank motion. Its native cost is
+$`pm+2m+|S|`$ Cliffords, with no T gates or additional work.
+Both its forward word and actual inverse have this cost. The source
+in (62) therefore has
+
+```math
+T=4m,\qquad D_T\le4,\qquad
+G=6pm+24m+2|S|-12,\qquad w_{\rm dirty}=1,
+\quad a_{\rm clean}=0,\quad\varepsilon=0.             \qquad(68)
+```
+
+This includes masks selected by a nonperiodic quadratic function of
+the row label. It leaves the relative image Hermitian, but it does
+not supply the complete lookup action.
+
+To see this for every nonempty S, choose any q in S. Conjugate the
+actual F_s(C) and target Q_s by TC. The two operators become
+
+```math
+A_s=D_s^\dagger C H_0 C^\dagger D_s,\qquad
+R_s=T C Q_s C^\dagger T^\dagger.
+```
+
+The local q factor in $`C H_0 C^\dagger`$ is
+$`(X_q+Y_q)/\sqrt2`$. Hence A_s anticommutes with Z_q;
+the diagonal D_s does not change that anticommutation.
+At s=0, both bank strings 0 and e_q have Q_0 sign plus one,
+including q=0. In fact the singleton bank e_q has odd parity and
+its selected bit at address $`He_q=q`$ equals one. Set
+
+```math
+|\psi\rangle=\frac{|0\rangle+e^{-i\pi/4}|e_q\rangle}{\sqrt2},
+\qquad |\phi\rangle=T C|\psi\rangle.                \qquad(69)
+```
+
+The q factor of psi is a plus eigenstate of
+$`C^\dagger T^\dagger Z_q T C=(X_q-Y_q)/\sqrt2`$;
+all other bank bits in psi are zero. Therefore phi has Z_q
+eigenvalue plus one and $`R_0|\phi\rangle=|\phi\rangle`$.
+The unitary A_0 sends phi into the minus eigenspace of Z_q.
+Their normalized outputs are orthogonal, proving
+$`\|F_0(C)-Q_0\|\ge\sqrt2`$ for every nonempty S and every
+$`p\ge1`$. Equivalently, psi itself is the complete relative-block
+witness before the TC change of basis. Taking the co-moving probe
+in minus Y turns this into a full native Pauli-image witness with
+plus-Y output; no bank preparation is assumed by the candidate.
+
+<a id="relative-repair-cubic-hadamard"></a>
+
+### 9.4. An entangling cubic/Hadamard word also collapses
+
+A paid nonlinear, non-diagonal interlayer can leave both preceding
+premises and still have the wrong complete action. For p at least two,
+partition the bank into four-row faces along the first two row-label
+coordinates, and set
+
+```math
+P|B\rangle=(-1)^{f(B)}|B\rangle,\qquad
+f(B)=\sum_j B_jB_{j+e_0}B_{j+e_1}\pmod2,\qquad
+C=P H_B.
+```
+
+Each face contributes its four distinct cubic triples exactly once.
+The chronological order for C is the bank Hadamards followed by P.
+Use this C in the corrected family (62). To pay it, the identity
+
+```math
+4abc=a+b+c-(a\mathbin\oplus b)-(a\mathbin\oplus c)
+ -(b\mathbin\oplus c)+(a\mathbin\oplus b\mathbin\oplus c)
+ \pmod8
+```
+
+emits each CCZ with seven T-type gates and ten CNOTs by separately
+computing and uncomputing its three pair parities and its triple parity.
+The four triples of each face run serially; distinct faces use disjoint
+wires and run in parallel. Thus P and its actual native inverse have
+$`T=7m`$, depth at most 28 and at most $`10m`$ Cliffords, with no
+helpers. Including the bank Hadamards and both W walls gives
+$`T(C_{\rm phys})=7m`$, depth at most 28 and
+$`G(C_{\rm phys})\le pm+13m`$. The complete source and its actual
+reverse therefore have the simultaneous safe ledger
+
+```math
+T=18m,\qquad D_T\le60,\qquad G\le6pm+46m-12,
+\qquad b_{\rm extra}=1,\qquad a_{\rm clean}=0.
+```
+
+The extra bit is the arbitrary probe. The complete Pauli echo has
+$`T=36m`$, depth at most 120 and at most $`12pm+92m-22`$ Cliffords.
+These are exact native candidate costs, not a lookup or probe-return
+certificate. The inverse of P is emitted as the actual reversed word;
+its equality to P as a completed operator does not delete either call.
+
+There is an all-size collapse for p at least three. Write
+$`X_\pi=X^{\otimes m}`$ and $`S_\pi=\prod_jS_{B_j}`$. Complementing
+all four bits of a face changes its cubic sum by that face's parity,
+so $`f(B+\boldsymbol1_m)+f(B)=\pi(B)`$. Consequently
+
+```math
+P X_\pi P=X_\pi Z_\pi,\qquad
+C H_0 C^\dagger=e^{im\pi/4}X_\pi S_\pi.
+```
+
+The latter identity uses the literal one-wire factor
+$`(X+Y)/\sqrt2=e^{i\pi/4}XS^\dagger`$. Also
+$`M\boldsymbol1_m=\boldsymbol1_m`$, so
+$`D_s(B+\boldsymbol1_m)=\overline{D_s(B)}`$ and
+$`D_s^\dagger X_\pi D_s=X_\pi D_s^2`$. Applying (57), including
+its scalar, reduces the transformed operator from Section 9.3 to a Pauli:
+
+```math
+A_s=D_s^\dagger C H_0 C^\dagger D_s
+ =X_\pi Z_B^{h_{s+\boldsymbol1_p}}\qquad(p\ge3).
+```
+
+Here $`e^{im\pi/4}=1`$ and $`S_\pi^2=Z_\pi`$ were retained in
+the cancellation. Choose $`s=\boldsymbol1_p`$. Then A_s is $`X_\pi`$,
+which commutes with T, and the complete relative image is exactly
+
+```math
+F_s(C)=C^\dagger T^\dagger X_\pi TC
+      =H_B P X_\pi P H_B=Y^{\otimes m}.
+```
+
+It sends the zero bank to the all-one bank, with literal phase
+$`i^m=1`$, while $`Q_s|0^m\rangle=|0^m\rangle`$. The outputs
+are orthogonal, proving complete image error at least square root two
+for every p at least three. This is a whole relative-block identity;
+the probe-fiber embedding gives the same full native operator witness.
+The exact p=2 fixture separately gives
+$`\langle0|F_{11}(C)|0\rangle=1/8`$, hence column error
+$`\sqrt7/2`$. That finite calculation does not invoke (57) outside
+its p-at-least-three scope.
+
+Thus this specific entangling cubic/Hadamard interlayer is also paused.
+Its common-fiber correction and native controls are paid; the complete
+lookup action fails. This does not exclude other non-diagonal,
+entangling interlayers or general native sources.
+
+This pauses the two dressing classes and the specified cubic word. A changed
+joint bank operation or accepted interface must supply the complete
+lookup-dependent transition action. Merely repairing the relative
+involution, choosing diagonal row phases, or changing the Hadamard
+mask does not do so. R96 and the simultaneous complete-frame
+resource frontier remain unchanged. These source obstructions do
+not contradict the approximate scalar zero-reflection construction
+and do not give an unrestricted native-depth lower bound.
+
+The [relative-probe fixtures](../../tests/test_relative_probe_repair.py)
+check all p=1 source columns and their actual inverse for the basic
+repair. Selected complete p=3 co-moving columns check the relative
+block, its square and the literal native echo. At p=2 and p=3 they
+check the non-diagonal source and actual inverse on selected inputs,
+the normalized witness (69), native/fiber agreement, zero target
+overlap and squared output distance two; a p=1 fixture also checks
+the selected-row q=0 corner. The displacement test uses exact rational
+binomial sums at m=8,16,32,64, without a large dense circuit fixture.
+The cubic/Hadamard fixture checks every native four-row phase column
+and its actual inverse, the p=2 scalar overlap, three p=3 relative
+columns, complete native/fiber echo agreement at both sizes and the
+emitted count ledgers. It uses the actual reversed phase word.
+Native band and Clifford ledgers are checked through p=6. These
+finite checks challenge the identities; the all-size fiber,
+displacement, anticommutation and cubic-collapse arguments are analytic results
+with internal audits, not external mathematical review.
+
+<a id="probe-asymmetric-paid-trials"></a>
+
+## 10. Paid probe-asymmetric repairs: three finite failures and a coordinate boundary
+
+The next three words leave the static bank-diagonal premise of Section 8.4.
+Their native controls are paid, but their tested relative blocks are not
+Hermitian. The witnesses below reject the specified families at one finite
+size; they are not all-size exclusions of asymmetric interlayers. In
+particular, patching that size would require a new complete identity, rather
+than being ruled out by these fixtures.
+
+### 10.1. The changed fibers and their actual relative word
+
+Retain the co-moving coordinates r,s, the rotations T and D=D_+(s), and
+$`Z_\pi=\prod_j Z_{B_j}`$ from (55). Replace the dressing in (46) by a
+probe-controlled bank unitary
+
+```math
+\mathcal C_V
+ =\frac{I+Y_r}{2}\otimes I
+  +\frac{I-Y_r}{2}\otimes V.
+```
+
+Here V is a specified full-space bank unitary. In the original physical
+coordinates the dressing is $`C_V=W\mathcal C_VW`$, with the actual Clifford
+W from Section 8.1. The completed source is still
+$`E_{C_V}=C_V^\dagger A^\dagger B_{\rm mid}^\dagger C_VAB_{\rm mid}`$.
+Thus its two literal fibers are
+
+```math
+\begin{aligned}
+E_+&=T^\dagger D^\dagger TD,\\
+E_-&=V^\dagger T^\dagger DVT D^\dagger,\\
+F_V&=E_+Z_\pi E_-^\dagger
+ =T^\dagger D^\dagger T R_s T^\dagger V^\dagger D^\dagger TV,
+\qquad R_s=Z_\pi D^2.                                    \qquad(70)
+\end{aligned}
+```
+
+No commutation between V and D was used. The target is the same Hermitian
+lookup sign $`Q_s=(-1)^{\pi(B)+B_{s+HB}}`$. In this probe basis the two
+Pauli-image blocks are $`F_V,F_V^\dagger`$; their complete distance from the
+target blocks equals $`\|F_V-Q_s\|`$. The initial target probe remains
+arbitrary throughout.
+
+The rotations in (70) are determinant-one operators. A and the middle
+word are emitted with their literal native scalars, as in Section 8.1;
+the two scalar pairs cancel in the completed source. V and its actual
+adjoint occur explicitly and retain every relative phase. None of the
+following calculations replaces the inverse of a relative-phase shear
+by its identical binary permutation.
+
+### 10.2. Three native choices of V
+
+**Controlled bank parity.** Take $`V=Z_\pi`$. The controlled operation
+$`\mathcal C_V`$ is Clifford: change the probe's Y basis to Z, apply CZ
+from the probe to each bank wire, and undo the basis change. The W walls
+are also Clifford. This repair therefore retains four source T bands,
+$`T=4m`$, $`G=O(pm)`$, one arbitrary probe and no extra helper. It changes
+the two probe fibers differently and is not a static bank-diagonal C.
+
+**Controlled syndrome involution.** For $`p\ge3`$, take
+$`V=U_M`$, where $`U_M|B\rangle=|MB\rangle`$ and M is the binary matrix
+in Section 8.4. Put q=p+1 and let L have first row $`\boldsymbol1_m^\mathsf T`$
+and remaining rows H. Then
+
+```math
+N=M-I=L^\mathsf TL,\qquad LL^\mathsf T=0,\qquad
+\mathrm{rank}L=\mathrm{rank}N=q,
+\qquad N^2=0.                                           \qquad(71)
+```
+
+The rows of L are independent affine truth tables. Their pairwise inner
+products are even for p at least three, including each row's square;
+this proves the zero Gram matrix. Since L is onto and $`L^\mathsf T`$
+is injective, N has rank q. The condition $`2q\le m`$ holds, with equality
+at p=3. No claim of this involution or rank formula is made for p=1,2.
+
+There is a concrete binary basis exposing q disjoint CNOTs. Index the rows
+of L by 0,...,p. Write $`u_i=L^\mathsf Te_i`$; take $`v_0=e_0`$ and
+$`v_i=e_0+e_{e_{i-1}}`$ for $`1\le i\le p`$, where the outer subscripts
+name physical bank rows. Then $`Lv_i=e_i`$. Extend
+$`\{u_i\}`$ to a basis of $`\ker N`$ using vectors k_j. The ordered
+vectors $`u_i,v_i,k_j`$ are independent: applying N to a relation first
+kills every coefficient of v_i, after which independence in the kernel
+finishes the proof. In this basis
+$`M:u_i\mapsto u_i,\ v_i\mapsto v_i+u_i,\ k_j\mapsto k_j`$.
+Gaussian elimination emits the fixed binary basis change and its actual
+reverse with $`O(m^2)`$ CNOTs.
+
+Conditioning these q disjoint CNOTs on the probe gives q Toffolis with a
+shared control. Use the retained [returned private-phase Toffoli](../../docs/DIRTY_SUM_COMPRESSION.md#read-only-affine-controls-with-private-phase-work): eight T
+gates, at most twelve Cliffords, at most eight T layers, and one arbitrary
+phase helper per pair. Its physical T targets are private, so all q
+Toffolis have an actual parallel schedule. Including the probe-basis and
+W walls gives $`T(C_V)\le8q`$, depth at most eight,
+$`G(C_V)=O(m^2)`$, and q exactly returned dirty helpers. The full source
+therefore has
+
+```math
+T\le4m+16(p+1),\qquad D_T\le20,\qquad
+G=O(m^2),\qquad b_{\rm extra}\le p+2,
+\qquad a_{\rm clean}=0.                                \qquad(72)
+```
+
+Here the extra width includes the arbitrary probe. The source may move
+that probe and the principal address/bank; the private phase helpers
+return exactly. This does not claim the desired final indicator return.
+
+**Controlled paired coefficient shear.** Pair every row j with j+e_0,
+choosing the lower row by $`j_0=0`$. Let A and B denote the lower and upper
+banks of q=m/2 bits. Set
+
+```math
+V|A,B\rangle=i^{\mathrm{wt}(B)}|A+B,B\rangle.             \qquad(73)
+```
+
+The complete controlled operation is exactly the
+[two-band coefficient shear](WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
+$`G_c^{(m/2)}`$ with $`c=(I-Y_r)/2`$, after the paid probe basis change.
+It needs no helpers. The W walls contain $`pm+2m`$ CNOTs in total;
+the shear has $`2m`$ T gates, two T bands and $`4m`$ Cliffords; the two
+probe basis changes cost six Cliffords in the positive-S alphabet.
+Consequently common forward/actual-inverse bounds are
+
+```math
+\begin{aligned}
+T(C_V)&=2m,&D_T(C_V)&\le2,&G(C_V)&\le pm+6m+6,\\
+T(E_{C_V})&=8m,&D_T(E_{C_V})&\le8,
+&G(E_{C_V})&\le6pm+24m+24.                              \qquad(74)
+\end{aligned}
+```
+
+There is one arbitrary probe and no other work. The complete Pauli echo
+has $`16m`$ T gates, depth at most sixteen and at most
+$`12pm+48m+50`$ Cliffords, including $`Z_d=S_d^2`$. These are exact
+native ledgers for the candidate, with arbitrary coherent bank, address
+and reference inputs; they do not certify its desired lookup action.
+
+### 10.3. Exact finite witnesses reject the three displayed repairs
+
+At p=3 and s=0, evaluate the complete matrix coefficient
+$`\langle0^8|F_V|0^8\rangle`$ using (70). Every coefficient belongs to
+$`\mathbf Q(\sqrt2,i)`$. For reproducibility, on a bank value y the
+D phase is
+
+```math
+D(y)=\omega^{\mathrm{wt}(My+h_s)-m/2},\qquad
+\omega=(1+i)/\sqrt2,\qquad (h_s)_j=s\cdot j.
+```
+
+The literal one-wire native X rotation is $`HTH`$. At m=8 its transversal
+word is minus the determinant-one T; its four occurrences in (70) cancel
+that scalar. Apply, chronologically, V, T, D-adjoint, V-adjoint,
+T-adjoint, R_s, T, D-adjoint, T-adjoint. This computes the actual relative
+column, including the inverse phase in (73), and gives
+
+| V | Exact imaginary part |
+| --- | --- |
+| $`Z_\pi`$ | $`-21(2+\sqrt2)/4096`$ |
+| $`U_M`$ | $`(846-37\sqrt2)/16384`$ |
+| Paired shear (73) | $`(686-1213\sqrt2)/65536`$ |
+
+Each imaginary part is nonzero, so each tested F_V is non-Hermitian.
+In particular its distance from Q_s is at least the absolute value of
+that imaginary part. These exact small fixtures refute the stated
+uniform identities. They neither exclude all larger instances nor every
+possible repair of the finite case. Additional changes would need a new
+whole-space lookup certificate.
+
+### 10.4. Completed classical coordinate rounds retain a logarithmic requirement
+
+A different proposal would realize Q_s by conjugating a fixed bank Pauli
+through completed low-degree monomial coordinate changes. For every
+fixed s the Boolean exponent
+
+```math
+q_s(B)=\pi(B)+B_{s+HB}
+```
+
+has degree exactly p+1. The upper bound follows by expressing each
+address equality as a product of p affine bank functions. For the lower
+bound restrict the bank to row zero and the p basis rows e_i. Write
+$`z_i=B_{e_i}`$. Then $`HB=z`$, and the selected-row-zero contribution is
+$`B_0[z=s]`$, whose monomial $`B_0\prod_i z_i`$ has coefficient one.
+All other selected-row contributions are independent of B_0, and the
+parity term is linear, so that monomial cannot cancel.
+
+If a common-coordinate realization $`Q_s=V_s Z^\ell V_s^\dagger`$
+uses r monomial rounds whose forward and inverse binary coordinate maps
+have degree at most k, affine boundaries included, then degree composition
+gives $`k^r\ge p+1`$. Arbitrary monomial phases cancel in this conjugation.
+For this exact diagonal-sign grammar, an operator error strictly below
+two already forces the Boolean signs to agree. Thus quadratic completed
+rounds still require logarithmically many rounds. This specializes the
+[existing classical-round boundary](JOINT_ROUTING_INDICATOR_INTERFACES.md#5-classical-round-boundaries-retain-a-logarithmic-degree-requirement)
+to the current co-moving target. This counts completed coordinate rounds;
+it does not preclude native synthesis across those rounds or give an
+unrestricted T-depth bound.
+
+The argument does not apply to a nonlinear shear inserted inside a
+nonmonomial interference word, nor to unrelated probe fibers whose
+relative phases supply the target. The trials above test precisely such
+changed fiber words; their native costs are paid and their finite
+identities fail. The first unpaid operation remains a complete relative
+lookup action at sublogarithmic native depth. No complete-frame frontier
+moves, and the scalar zero-reflection theorem is unchanged.
+
+The [asymmetric-fiber fixtures](../../tests/test_probe_asymmetric_trials.py)
+check the three exact p=3 relative coefficients, the syndrome involution's
+disjoint-CNOT coordinates through p=6, and the top-degree restriction on
+every small fixed syndrome through p=6. The finite coefficient failures
+are distinguished from the analytic native schedules and degree argument.
+They have internal audits, not external mathematical review.

@@ -14,8 +14,9 @@ repair instead has a fully normalized one-clean Gram and maximal lookup
 error at every size. Sections 7--8 pay a normalized source for the thin
 projector using the scalar zero reflection, and then a two-reflection
 source that succeeds completely at n=2 but has an explicit missing
-even-charge subspace at every n at least three. These are statements about the displayed words,
-not general native-depth obstructions. The complete-frame frontier is
+even-charge subspace at every n at least three. Section 9 pays a broad four-path swap/relative-T source, whose coherent
+auxiliary sectors also have exact Gram gap one half. These are statements
+about the displayed words, not general native-depth obstructions. The complete-frame frontier is
 unchanged.
 
 ## 1. The singular Fourier operator and its unpaid dilation
@@ -663,3 +664,158 @@ The additional exact fixtures check the full p=1 Gram, the literal
 source and actual inverse with both arbitrary private-mask values,
 and the p=2 common-kernel witness. These support the analytic proof;
 they are internal verification, not external mathematical review.
+
+<a id="four-path-bell-relative-phase"></a>
+
+## 9. A broad four-path Bell source has the wrong coherent sectors
+
+A changed trial coherently combines a swap and a wide non-Clifford phase,
+without a thin outcome projector. Retain the complete two-copy Bell word
+$`W_{2,x}=W_{x,CY}W_{x,DZ}`$, with all four n-bit banks arbitrary.
+On the two auxiliary banks define
+
+```math
+S=\mathrm{SWAP}_{YZ},\qquad
+B=T_Y^{\otimes n}(T_Z^\dagger)^{\otimes n},\qquad
+B|y,z\rangle=\omega^{|y|-|z|}|y,z\rangle,
+\qquad SBS=B^\dagger.                                  \qquad(27)
+```
+
+Here T_Y denotes literal T gates on bank Y, not a Pauli-Y-axis rotation.
+The weight difference is an ordinary integer. Use two clean signals a,b,
+and emit chronologically
+
+```math
+W_{2,x}^\dagger,\ H_a,\ \mathcal C_a(S),\ H_a,
+\mathcal C_a(B),\ H_a,\ W_{2,x},\ H_b.                 \qquad(28)
+```
+
+Both signals are accepted jointly at zero. The second signal gives a
+paid attenuation, while the first supplies four interfering paths. Every
+inverse in (28) is the actual native reverse. Direct signal multiplication
+and (27) give the **complete** accepted block and Gram:
+
+```math
+\begin{aligned}
+K_{\rm acc,x}&=\frac14W_{2,x}(I+S+B-BS)W_{2,x}^\dagger,\\
+G_x&=W_{2,x}\left[\frac I4+\frac{(B^\dagger-B)S}{8}\right]
+       W_{2,x}^\dagger,\qquad 0\preceq G_x\preceq I/2.
+                                                               \qquad(29)
+\end{aligned}
+```
+
+For the Gram calculation, write the numerator as
+$`(I+B)+(I-B)S`$. Its two squared terms sum to 4I, and each cross
+term equals $`(B^\dagger-B)S`$. This last operator is Hermitian,
+because S exchanges B and its adjoint. No auxiliary label is measured,
+initialized, averaged or erased. Formula (29) includes the off-diagonal
+coherences between swapped outcomes.
+
+### Native parallel controls and the simultaneous ledger
+
+The controlled swap is the retained private-phase Fredkin batch from
+Section 5: 8n T gates, 12n Cliffords, eight T layers and n returned
+private helpers. Shared signal a is only a Clifford control; each row's
+physical T target is private, and its bank targets are disjoint.
+
+The [literal controlled-T word](SIGNAL_INTERLEAVED_KERNEL_SOURCE.md#literal-controlled-t-wall)
+has 70 T gates, 88 Cliffords, at most 70 T layers and four arbitrary
+returned helpers. **All its physical T targets are private.** Its two
+logical controls, including a, occur only as Clifford controls. Give each
+of the 2n controlled T or T-dagger factors in (27) its own four-helper
+pool. The retained word and its actual inverse therefore align in the
+same 70 T layers, with 140n T gates and 176n Cliffords. This proves a
+native shared-control schedule; no standard controlled-T decomposition
+with a shared signal T target is being parallelized.
+
+The two Bell copies also run in parallel: they have disjoint carriers
+and private pools, and their native query words use the common address
+only as Clifford controls. Each outer two-copy wall has depth at most
+eight and uses 2r returned query helpers. The two outer walls, Fredkin
+batch and controlled-phase batch are serial. Reuse their private pools
+only after their certified complete return.
+
+With the notation and physical X-dual envelope of Sections 1 and 5,
+one common forward/actual-inverse ledger for (28) is
+
+```math
+\begin{aligned}
+T_U&\le32r+148n,&D_T(U)&\le94,\\
+G_U&\le4G_W+192n+4c_n+4,
+&b_U&\le2n+\max\{2r,8n\},\qquad a_{\rm clean}=2.
+                                                               \qquad(30)
+\end{aligned}
+```
+
+The 2n term in b_U is the arbitrary Y,Z auxiliary allocation; the two
+principal carriers and address are excluded. The four signal Hadamards
+are included. The physical envelope contributes $`4c_n+4n`$
+Cliffords, and the two Bell walls contain four W calls in total.
+All components are exact native words. If the four W occurrences
+instead have full error at most eta, retaining actual inverse partners,
+source error is at most 4eta and Gram error at most 8eta. These are
+full-space errors, including every private return and reference.
+The simultaneous costs fit the relaxed polynomial source budgets;
+no unpaid normalization or simultaneous-control step remains.
+
+### The entire target sector, not a single outcome, is required
+
+The Bell kernel fixes the target's orientation exactly. Equation (4),
+or direct Pauli propagation through (3), gives
+
+```math
+W_x^\dagger X_A(\ell)W_x
+ =Z_A(K_x^{\mathsf T}\ell)Z_B(\ell),\qquad
+W_{2,x}^\dagger Q_xW_{2,x}=Z_Y(v_x)Z_Z(v_x).            \qquad(31)
+```
+
+The second identity uses $`K_x^{\mathsf T}v_x=0`$. Thus in the
+coordinates inside the W walls, the desired Gram is
+$`(I+Z_Y(v_x)Z_Z(v_x))/4`$, with identity on both data carriers.
+
+Equal-weight auxiliary outcomes have B=I and actual Gram I/4. The
+vacuum y=z=0 is in the correct charge sector, where the desired value
+is I/2. This already gives error at least one quarter for every size.
+There is a sharper coherent witness for every canonical $`n=pm\ge2`$.
+Choose distinct auxiliary coordinates i,j, put $`y=e_i+e_j`$, z=0,
+and use the ordered pair of states $`|y,0\rangle,|0,y\rangle`$.
+On their invariant span the exact Gram from (29) is
+
+```math
+\frac14\begin{pmatrix}1&-i\\i&1\end{pmatrix},       \qquad(32)
+```
+
+with eigenvalues zero and one half. Both states have the same target
+charge $`(-1)^{v_x\cdot y}`$. The desired Gram on their whole span
+is therefore either zero or I/2; it cannot assign the two different
+eigenvalues in (32). Since both complete Grams lie between zero and
+I/2, this proves the exact distance
+
+```math
+\left\|G_x-\Pi_{\rm eq}/2\otimes I_{YZ}\right\|=\frac12
+\qquad(p\ge1),                                        \qquad(33)
+```
+
+and at least $`1/2-8\eta`$ for the stated approximate implementation.
+The witness is coherent in the auxiliary banks. Discarding the off-diagonal
+entries of (32) would lose the full error. Restriction to any fixed address
+is enough for the operator-norm bound on coherent addresses and references.
+
+Pause this particular broad four-path source. Its normalization, native
+controls, actual inverses and arbitrary-input action are paid, but the
+accepted eigenvectors distinguish auxiliary swap coherence instead of the
+required complete lookup charge. More precision or the existing recovery
+cannot change (33). A changed auxiliary coupling must first supply that
+charge-dependent action; arbitrary multipath sources and different
+entangling interlayers are outside this calculation. No complete-indicator
+or frame-depth frontier changes.
+
+The [exact multipath fixtures](../../tests/test_multipath_bell_source.py)
+check a literal one-cell control word with 148 T gates and 192 Cliffords,
+all principal/signal columns at two dirty-helper assignments, the actual
+inverse, and the accepted four-path coefficients. Separate exact checks
+verify the complete two-cell Gram, its coherent eigenvalue witness, and
+small native Bell conjugations fixing the transpose in (31). They are
+finite internal checks, not a general native emitter or external
+mathematical review; the all-size operator and scheduling claims above
+are analytic.

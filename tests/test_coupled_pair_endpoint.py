@@ -128,8 +128,16 @@ J_W = _scale(_add(_axis('IIIIIX'), _axis('IIIIIY')), ROOT_HALF)
 J = _product(J_CORE, J_W)
 
 
-def _middle_image(operator, inverse=False):
-    gates = [_t(axis, sign) for axis, sign in B_AXES + D_AXES]
+def _middle_image(operator, inverse=False, b_exponents=None, d_exponents=None):
+    b_exponents = (1,) * len(B_AXES) if b_exponents is None else b_exponents
+    d_exponents = (1,) * len(D_AXES) if d_exponents is None else d_exponents
+    assert len(b_exponents) == len(B_AXES) and len(d_exponents) == len(D_AXES)
+    exponents = tuple(b_exponents) + tuple(d_exponents)
+    assert set(exponents) <= {-1, 1}
+    # T-dagger is the actual adjoint; replacing the signed axis would
+    # introduce a literal scalar, even though conjugation cancels it.
+    gates = [(_t(axis, sign) if exponent == 1 else _adjoint(_t(axis, sign)))
+             for (axis, sign), exponent in zip(B_AXES + D_AXES, exponents)]
     if inverse:
         gates = [_adjoint(gate) for gate in reversed(gates)]
     for gate in gates:
@@ -201,6 +209,46 @@ class CoupledPairEndpointTests(unittest.TestCase):
         self.assertEqual(_conjugate(w, h), _scale(h, -1))
         self.assertEqual(_product(minus, _conjugate(w, b)),
                          _scale(_product(minus, _axis('IIZZZY')), -1))
+
+    def test_all_core_orientations_and_mixed_tail_clifford_reduction(self):
+        positive = {'YIIIIZ': CO / 2, 'YIYYYI': CO / 2,
+                    'YIXXXX': -CO / 2, 'YIZZZY': -CO / 2}
+        opposite = {'ZXIIII': CO / 2, 'ZXYYYZ': CO / 2,
+                    'ZYXXXX': CO / 2, 'ZYZZZY': CO / 2}
+        for core in itertools.product((1, -1), repeat=2):
+            exponents = core + (1,) * 4
+            probe = _middle_image(J, b_exponents=exponents)
+            expected = (positive if core == (1, 1) else
+                        _scale(positive, -1) if core == (-1, -1) else opposite)
+            self.assertEqual(_conjugate(probe, _axis('XIIIII')), expected)
+            self.assertEqual(_middle_image(probe, inverse=True,
+                                           b_exponents=exponents), J)
+
+        # Three flipped tails are induced by Y_z1 X_z3. Their odd
+        # parity also flips dh in the conjugated D list. The reduced
+        # D orientations are therefore (-,+,-,-), all paid Cliffords
+        # relative to the positive D band.
+        b_exponents, d_exponents = (-1, 1, -1, 1, -1, -1), (-1, 1, -1, 1)
+        actual = _middle_image(J, b_exponents=b_exponents, d_exponents=d_exponents)
+        reduced = _middle_image(J, b_exponents=(-1, 1, 1, 1, 1, 1))
+        witness = _axis('XIIIII')
+        for index in (0, 2, 3):
+            axis, sign = D_AXES[index]
+            s_dagger = _adjoint(_product(_t(axis, sign), _t(axis, sign)))
+            reduced = _conjugate(s_dagger, reduced)
+            witness = _conjugate(s_dagger, witness)
+        tail_pauli = _axis('IIYIXI')
+        reduced = _conjugate(tail_pauli, reduced)
+        witness = _conjugate(tail_pauli, witness)
+        self.assertEqual(actual, reduced)
+        self.assertEqual(len(witness), 1)
+        image = _conjugate(actual, witness)
+        self.assertEqual(len(image), 4)
+        self.assertTrue(all(value.imag == Q2() and abs(value.real) == Q2(HALF)
+                            for value in image.values()))
+        self.assertEqual(_middle_image(actual, inverse=True,
+                                       b_exponents=b_exponents,
+                                       d_exponents=d_exponents), J)
 
 
 if __name__ == '__main__':
