@@ -590,11 +590,148 @@ then $`\|\widetilde D-D\|\le\epsilon(m-1)`$. This is a sufficient
 telescoping estimate, not a necessary precision bound on every changed
 mechanism.
 
-The first unpaid operation is a native unitary or accepted-block readout
-with the required constant normalization on **every** star direction and
-the correct lookup sectors. The scalar reflection component and the formal
-star action do not supply $`K^\dagger K\approx\Pi_{\rm eq}/2`$ or a
-complete indicator. A proposed pulse word must prove that operator identity
-and pay its rotations, precision, actual inverses and work return together.
-No lower bound on arbitrary finite pulse words or higher-layer sources is
-claimed by this decomposition.
+The scalar reflection and the formal star action do not yet supply a
+native readout with constant normalization on **every** star direction.
+The following paid pulse candidate tests that missing operation directly.
+
+<a id="syndrome-star-pulse-boundaries"></a>
+
+### 6.1 The original pulse algebra has a blind translation
+
+For a bank mask v with Hv=0, the translation $`X^v`$ commutes with R_S
+and with every product of bank-X rotations, at arbitrary angles. This
+remains true after arbitrary address-only, selector-only or helper-only
+interlayers, including selector-controlled R_S calls. Thus every ideal
+word in this grammar, its accepted block and its accepted Gram commute
+with $`X^v`$. The claim concerns completed operators, not the native
+boundaries of an approximate scalar-zero compiler.
+
+The complete lookup sign $`\Omega_{a,Y}=(-1)^{Y_a}`$ does not have
+this symmetry: conjugation by $`X^v`$ multiplies it by $`(-1)^{v_a}`$.
+Any nonzero kernel mask therefore gives direct-phase error at least one.
+For the canonical two-bank target, a translation on one bank gives
+
+```math
+\left\|G-\frac{I+\Omega_{a,C}\Omega_{a,D}}4\right\|
+ \ge\frac14                                                     \qquad(24)
+```
+
+whenever G has the stated symmetry. Indeed the target and its translated
+copy differ by norm one half, whereas G is unchanged. The address may be
+coherent; restricting to one address with v_a=1 establishes the norm gap.
+Adding a fixed $`Z_{Y_0}`$ baseline still leaves, at p at least two,
+the kernel mask supported on three distinct rows i,j,i+j. An actual
+implementation within full-word error eta of this ideal grammar retains
+direct gap at least $`1-\eta`$ and Gram gap at least $`1/4-2\eta`$.
+No exact commutation is asserted for its approximate native subwords.
+
+### 6.2 A wide-T changed word pays control but remains thin
+
+Use the fixed Clifford wall $`L:(C,D)\mapsto(C,B=C+D)`$, with
+m CNOTs. It turns the canonical target into
+$`(I+\Omega_{a,B})/4`$; C remains an arbitrary spectator. On B put
+
+```math
+\begin{aligned}
+P&=[a+HB=0],\qquad R=I-2P,\\
+T_X&=H_B T_B H_B,\qquad F=T_X T_B T_X,\\
+U&=R F^\dagger R F,\qquad K=\frac{I-U}{2}.
+\end{aligned}                                                   \qquad(25)
+```
+
+Here T_B applies one literal T on each bank wire. F is an emitted
+three-band word with 3m T gates and 4m Hadamards. Its middle T_B prevents
+the cancellation that would occur if a bank-Z dressing merely conjugated
+R. This is a changed interference mechanism: the exact p=3 fixture below
+shows that its accepted Gram no longer commutes with the kernel
+translation supported on rows 1,2,3.
+
+There is no unpaid controlled F in (25). With one clean acceptance bit q,
+put
+
+```math
+C_R=|0\rangle\langle0|_q\otimes I+
+|1\rangle\langle1|_q\otimes R.
+```
+
+Emit, chronologically,
+
+```math
+L,\ H_q,\ F,\ C_R,\ F^\dagger,\ C_R^\dagger,
+\ Z_q,\ H_q,\ L.                                                \qquad(26)
+```
+
+The middle word is controlled U: its q=0 branch is the actual
+$`F^\dagger F=I`$, and its q=1 branch is (25). The zero-to-zero
+accepted block of (26) is $`L K L`$. To implement C_R, compute
+s=a+HB into the existing address, flip q, apply the paid scalar zero
+reflection on (s,q), undo that flip, and undo the syndrome CNOTs. This
+tests q=1 and s=0 without a second clean bit. All scalar-zero helpers are
+arbitrary dirty inputs. This construction also specifies the actual
+adjoint in (26); an approximate emitted reflection is never replaced by
+an assumed involution.
+
+Write T_0,G_0,w_0,d_0 for the scalar-zero compiler's costs on p+1 bits
+at full error epsilon. One common safe source/inverse ledger is
+
+```math
+\begin{aligned}
+T&=6m+2T_0,& w_{\rm dirty}&=w_0,\\
+G&\le2pm+10m+20+2G_0,& D_T&\le6+2d_0.
+\end{aligned}                                                   \qquad(27)
+```
+
+The 20 term permits X and Z to be expanded using H and positive S.
+There is one clean acceptance bit, no initialized bank, and no hidden
+clean history. Thus at fixed epsilon this candidate has linear T-count,
+dirty width $`O_\epsilon(p)`$, $`O(pm)+O_\epsilon(p)`$ Cliffords,
+and constant depth. These are costs of the failed accepted source, not a
+complete returned indicator. The full-operator estimates include arbitrary
+bank, address, dirty work and reference inputs.
+
+Nevertheless, the exact complete Gram is
+
+```math
+\begin{aligned}
+K^\dagger K&=\frac{I-\mathrm{Re}\,U}{2}
+            =P+P'-PP'-P'P,\qquad P'=F^\dagger PF,\\
+\mathrm{ran}(K)&\subseteq\mathrm{ran}(P)+\mathrm{ran}(P'),\qquad
+\mathrm{rank}(K^\dagger K)\le\frac{2D}{m}.
+\end{aligned}                                                   \qquad(28)
+```
+
+D denotes the entire unaccepted input dimension, including the arbitrary
+C bank and any identity helpers. The syndrome map has rank p, so P has
+rank D/m. The target $`(I+\Omega_{a,B})/4`$ has eigenvalue one half
+on a subspace of dimension D/2. For m greater than four, that subspace
+has a nonzero intersection with the kernel of (28). Consequently
+
+```math
+\left\|K^\dagger K-\frac{I+\Omega_{a,B}}4\right\|
+ \ge\frac12\qquad(p\ge3).                                    \qquad(29)
+```
+
+This failure is independent of the old translation symmetry. Replacing
+the two controlled reflections by an emitted word of error at most
+epsilon and its actual adjoint changes the complete source and K by at
+most 2 epsilon, and its Gram by at most 4 epsilon. The actual native
+candidate therefore retains gap at least $`1/2-4\epsilon`$.
+
+The same rank argument pauses a fixed-call extension with zero accepted
+baseline. If a complete word V contains k such thin reflections and
+deleting them leaves I, telescoping gives
+$`\mathrm{rank}(V-I)\le kD/m`$, even with arbitrary intervening
+unitaries. Acceptance $`(I-V)/2`$ cannot have error below one half at
+k less than m/2. This is a limitation of that baseline and call grammar;
+it is neither a native T-depth bound nor an exclusion of a broad-baseline
+source. Combining many calls into fewer physical bands would need an
+actual native schedule of its own.
+
+The [exact fixtures](../../tests/test_syndrome_star_readout.py) check all
+columns and the actual inverse of the p=1 native two-bank acceptance,
+including its normalization, and two p=3 Gram entries witnessing the
+changed symmetry. The all-size support and error statements are analytic;
+the finite checks do not prove them. This internal assessment supplies no
+external mathematical review. The first unpaid operation is now a broad
+accepted-sector mechanism with the correct lookup action, not control of
+(25), its native synthesis, or a repair of the stopped fixed-call word.

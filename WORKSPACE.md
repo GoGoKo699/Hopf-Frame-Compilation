@@ -8,16 +8,16 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: joint native transport and the complete-bank gap
+## Current checkpoint: complete coefficients, unpaid joint depth
 
-**Verified starting checkpoint:** [PR #238](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/238),
-`3b04fc2f0655fbbbfff7c3a3ef56f57107b8dbb1`, fetched 24 October 2026.
-A three-layer source now pays joint transport of two address coordinates.
-A four-layer source pays a nested pair of bank coefficients, including a quartic term.
-A bank-independent final block and one specified full-bank X-motion encoder
-cannot complete the three-layer general source.
-The complete-bank construction remains open. Exact-tree receipts are in the PR record.
-Fetch main before resuming; this is not a pin.
+**Verified starting checkpoint:** [PR #239](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/239),
+`a011a62c096c1cb4d940080522218694a6601a9a`, fetched 24 October 2026.
+A two-band coefficient shear now completes the three-address source in five
+layers, with no helpers. Its uniform complete-bank recurrence has linear
+address depth and is paused as a frontier route. A changed native syndrome
+reflection word is also paid, but its acceptance is too thin.
+R96 and the unrestricted depth gap are unchanged. Exact-tree receipts are in the
+PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
@@ -101,48 +101,52 @@ transpose-zeta and bank-Hadamard sources retain their quarter and $`1/64`$
 Gram floors. These components and scoped acceptance failures do not exclude
 general nonlocal sources or provide free addressed row flips.
 
-**Latest substantive outcome.** [Joint two-coordinate transport](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#two-coordinate-lift)
-uses twelve T gates, three layers and no extra work at every bank size.
-Fixed Clifford walls cost $`O(m^2)`$. It is the complete source at p=2;
-for larger p it pays two coordinates only. Its actual echo includes all
-bank, work and reference inputs. The old one-coordinate product still has
-error two, and its prefix-rank requirement remains representation-specific.
+**Latest substantive outcome.** The [complete coefficient shear](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
+acts on arbitrary q-bit banks as $`|c,A,B\rangle\mapsto i^{c\sum B_j}|c,A+cB,B\rangle`$.
+It has two physical T bands, 4q T gates, 8q Cliffords and no helpers.
+Appending it to the paid two-address source completes all eight independent
+coefficients at p=3: 28 T gates, five source layers and 124 Cliffords in the
+raw bank. The actual phase echo costs 56 T gates, at most ten layers and
+250 Cliffords; the indicator echo costs 284 Cliffords. Return is exact.
 
-The [four-band nested-coefficient source](research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
-pays $`(-1)^{d+bt(a+cv)}`$ with twelve T gates, 34 Cliffords and no
-helpers. Here b,c,t are addresses and d,a,v are arbitrary bank coefficients.
-Its fixed-bank lift costs $`34+pm`$ Cliffords; it still omits independent
-lookup coefficients, so it is a partial construction with full lookup error two.
+The uniform complete source for every p at least two has
+$`T=4m-4`$, emitted depth $`2p-1`$ and
+$`G=pm+8m+36`$, with zero clean or dirty helpers. Thus the coefficient
+identity is settled, including every mixed address sector, but its serial
+schedule does not improve the known logarithmic-depth indicator. Fusion
+cannot remove that source depth. The original four-band partial source and its error-two witness remain valid.
 
 The [final-block theorem](research/depth/COUPLED_FINAL_ENCODER.md#bank-independent-final-boundary)
-excludes a three-layer source at p at least three when its completed final
-one-band block is independent of the nonconstant coefficient bank, even
-with arbitrary middle Clifford boundaries and dirty width. A fixed output
-Clifford does not repair it. A separate [full-bank X-motion encoder](research/depth/COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
-also fails with any one-band middle, despite moving every bank coordinate.
-Neither result is an unrestricted three-layer exclusion.
+and [specified full-bank X-motion encoder](research/depth/COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
+remain scoped three-layer exclusions. Neither rules out unrestricted exact three-layer sources. Below
+$`\tau_*=\sin(\pi/8)/(2\sqrt2)`$, the retained three-layer rounding
+theorem makes complete Pauli transport exact; two layers are excluded for
+p at least three. More source layers may use the approximate contract.
 
-**Next concrete question: complete the joint coefficient action.**
-Can the four-band mechanism include the five missing independent coefficients
-at three addresses in one native identity, then combine growing coefficient
-blocks without serial address processing? Pay the
-[complete observable contract](research/depth/MOD3_ZETA_TRANSPORT.md#pauli-transport-interface)
-and its actual source/adjoint ledger. The two excluded final encoders are paused;
-an unrestricted exact three-layer source remains another possible mechanism. The
-[three-layer rounding theorem](research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness)
-makes any error below $`\tau_*=\sin(\pi/8)/(2\sqrt2)`$ exact; two layers
-are excluded for p at least three. Four or more layers may instead use the
-approximate contract at every fixed tolerance with depth $`o(\log(p+2))`$.
-Every address, bank, work and reference input remains arbitrary. Source work
-may move; its echo and actual inverse must return it. Controlled P_0 suffices
-for controlled indicator. The two-active-coordinate question is settled;
-the two excluded final-encoder mechanisms are paused. Constant source depth still
-retains the transfer's log-log term; fixed tolerance gives no all-precision claim.
+The [syndrome-star continuation](research/depth/COUPLED_FINAL_ENCODER.md#syndrome-star-pulse-boundaries)
+pays an actual wide-T pulse and one-clean accepted source, with controls,
+precision and actual inverses charged. The ideal Gram still has gap at
+least one half for p at least three because it covers at most a 2/m
+fraction of the whole space. Kernel translations also stop the original
+syndrome-reflection/bank-X algebra. These are source-specific limits;
+additional native layers alone do not repair this thin acceptance.
 
-The [syndrome-star alternative](research/depth/COUPLED_FINAL_ENCODER.md#syndrome-star-coupling)
-pays a scalar reflection and a formal bank-transition identity, but normalized
-complete readout remains unpaid: its leaf-to-center map is many-to-one.
-Neither exponentiating that formal sum nor selecting its bright direction is free.
+**Next concrete question: change the growing-block operation.**
+Can a joint native word transport $`Z_{Y_0}`$ to the complete lookup sign
+without the two serial bands per added address bit, at every fixed tolerance
+and within the relaxed fusion budgets? A possible input is the product of
+all-bank coordinate shears; its complete binary actions commute, but that
+fact supplies neither a simultaneous native schedule nor cancellation of
+relative phases. Its whole-word resynthesis is unpaid. An alternative Gram
+source needs a broad accepted baseline with the correct lookup sectors,
+rather than a fixed number of thin syndrome reflections around zero acceptance.
+
+Pause serial coefficient extension and the tested thin-acceptance word.
+Reducing the p=3 layer constant alone does not move the frontier. Preserve
+the complete observable/Gram contract on arbitrary address, bank, work and
+reference inputs, charging actual inverses and return. A changed mechanism must give $`o(\log(p+2))`$ source depth; constant source depth
+still retains the frame transfer's log-log contribution. No fixed-tolerance
+result gives an all-precision improvement without a separate uniform ledger.
 
 ### Stopped routes, reopening conditions and superseded instructions
 

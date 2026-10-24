@@ -13,9 +13,11 @@ below pays the complete two-address bank, including its joint sector,
 with no initialized or borrowed work. Its final band commutes with the
 residual lookup sign; retaining that condition prevents the same
 three-band mechanism from reaching three address bits. A four-band word
-also pays two nested bank coefficients, including a quartic term, while
-five independent coefficients of the three-address bank remain absent.
-The general joint-transport operation remains unpaid.
+also pays two nested bank coefficients, including a quartic term. A
+separate two-band coefficient shear completes all eight coefficients in
+five source layers, and gives a complete all-size source with linear
+address depth. The missing operation is now a shallower joint assembly;
+the complete source supplied by that serial recurrence retains the old cost.
 
 <a id="one-coordinate-compression"></a>
 
@@ -530,7 +532,7 @@ observable echo has twenty-four T gates, depth at most eight and
 seventy Cliffords, counting $`Z_d=S_d^2`$. It returns every address
 and bank input exactly, with zero implementation error.
 
-### Parameterized partial family and first unpaid operation
+### Parameterized partial family and its omitted coefficients
 
 For every p at least three, the same word acts on three selected address
 bits and three selected bank coefficients, with all other inputs arbitrary
@@ -560,6 +562,203 @@ the physical band and count ledger, and the fixed-bank partial lift.
 These finite checks support the complete analytic identity above; they
 are not an all-p lookup compiler or external mathematical review.
 
+<a id="complete-coefficient-shear"></a>
+
+### Complete coefficient assembly by a two-band shear
+
+The omitted coefficients can be supplied by an actual native word, but
+its serial extension does not improve asymptotic depth. Let c be an
+arbitrary address bit and let A and B be two disjoint q-bit banks. Define
+
+```math
+\begin{aligned}
+G_c^{(q)}
+ &=\prod_{j=0}^{q-1}\exp(i\pi X_{A_j}cB_j/2),\\
+G_c^{(q)}|c,A,B\rangle
+ &=i^{c\sum_j B_j}|c,A+cB,B\rangle.
+\end{aligned}                                                    \qquad(22)
+```
+
+The sum in the scalar exponent is an ordinary integer sum; the bank
+addition is over the binary field. Thus (22) is a full monomial unitary,
+with a retained relative phase, on arbitrary coherent inputs. It is not
+an initialized copy of B, and no helper is used. For each j its four
+Pauli rotations are
+
+```math
+T(X_{A_j})^\dagger T(X_{A_j}Z_{B_j})
+T(X_{A_j}Z_c)T(X_{A_j}Z_cZ_{B_j})^\dagger.          \qquad(23)
+```
+
+Their common scalar phases cancel exactly. All the axes in (23), across
+all j, commute. Their full list need not be independent, so one physical
+band is not asserted. The first two axes for each j form one independent
+list of 2q axes; the last two form another. In the second list, the
+B_j label forces the coefficient of $`X_{A_j}Z_cZ_{B_j}`$ to vanish
+in any relation, and then the A_j label forces the other coefficient
+to vanish. Both lists therefore have a literal schedule on distinct
+physical wires.
+
+Here is that schedule. Apply H to every A_j. Compute each parity
+$`B_j\mathrel{\oplus}=A_j`$, apply T-dagger to all A_j and T to
+all B_j in one band, and undo the parity CNOTs. Next compute
+$`A_j\mathrel{\oplus}=c`$ for every j, then
+$`B_j\mathrel{\oplus}=A_j`$ using the current A_j. Apply T to all
+A_j and T-dagger to all B_j in one band. Undo the latter two CNOT
+lists in reverse order and apply H to all A_j. Each band has 2q
+distinct targets. This emitted word and its actual native reverse have
+
+```math
+T_G=4q,\qquad D_T(G)=2,\qquad G_G=8q,\qquad
+w_G=a_{\rm clean}=0.                               \qquad(24)
+```
+
+The reverse generally differs from the forward unitary by relative
+phases, even though their basis permutations agree. Every echo below
+uses the actual reverse of the emitted gates.
+
+To complete three-address lookup, use addresses $`x_0,x_1,c`$ and
+eight arbitrary ANF coefficients A_0,...,A_3,B_0,...,B_3. Let
+
+```math
+f_A=A_0+x_0A_1+x_1A_2+x_0x_1A_3,
+\qquad f_B=B_0+x_0B_1+x_1B_2+x_0x_1B_3.            \qquad(25)
+```
+
+Use the Section 4 source E on the A bank, so that
+$`EZ_{A_0}E^\dagger=(-1)^{f_A}`$, and append the chronological
+word $`G_c^{(4)}`$. Its complete Pauli image is
+
+```math
+E_3=G_c^{(4)}E,\qquad
+E_3Z_{A_0}E_3^\dagger=(-1)^{f_A+c f_B}.             \qquad(26)
+```
+
+Indeed conjugating a diagonal sign by (22) substitutes
+$`A\mapsto A+cB`$ and cancels the relative phase, giving exactly
+(26). All eight coefficients are independent. In particular the five
+terms missing from (19) are now paid; no bank-coordinate promise is
+being used. The coefficient-coordinate ledger is
+
+```math
+T_{E_3}=28,\qquad D_T(E_3)=5,\qquad
+G_{E_3}=100,\qquad w_{E_3}=a_{\rm clean}=0.          \qquad(27)
+```
+
+The physical bands have sizes 2,4,6,8,8. No cancellation of adjacent
+Clifford gates or unimplemented fusion is included in this ledger.
+Conjugating by the three-bit Möbius bank word and its reverse adds
+24 CNOTs. The raw-bank phase source therefore costs 124 Cliffords;
+its complete $`Z_{Y_0}`$ echo costs 56 T gates, at most ten T layers
+and 250 Cliffords. It implements $`(-1)^{Y_x}`$ with zero complete
+error and returns every address and bank input. Adding bank Hadamards
+on both sides gives the corresponding indicator source at 140
+Cliffords; its actual $`X_{Y_0}=HS^2H`$ echo costs 284 Cliffords,
+with the same T-count, depth bound and zero extra work.
+
+### The all-size recurrence and why this completion is paused
+
+The same construction gives a uniform complete family for every
+$`p\ge2`$, with $`m=2^p`$. Work in the full ANF coefficient bank.
+Apply the Section 4 source on the first four coefficients and the
+first two address bits. For $`k=2,\ldots,p-1`$ in increasing order,
+append $`G_{x_k}^{(2^k)}`$ on coefficient pairs
+$`(A_j,A_{j+2^k})`$, $`0\le j\lt2^k`$. Every other coefficient
+is an arbitrary spectator at that stage. Induction using (26) gives
+
+```math
+E_pZ_{A_0}E_p^\dagger
+ =(-1)^{\sum_{S\subseteq\{0,\ldots,p-1\}}
+              A_S\prod_{i\in S}x_i}.                         \qquad(28)
+```
+
+Equivalently, the inverse basis permutation first folds the upper
+coefficient half into the lower half when $`x_{p-1}=1`$, then
+recurses on that lower half. This accounts for every independent
+coefficient, including mixed address sectors. The source may move the
+coefficient bank, but its literal Pauli echo restores it. Tensoring
+the full operator identity with any reference proves the coherent
+return requirement without a basis-state restriction.
+
+The source and its actual reverse have the simultaneous exact ledgers
+
+```math
+\begin{aligned}
+T_{E_p}&=12+4\sum_{k=2}^{p-1}2^k=4m-4,\\
+D_T(E_p)&\le3+2(p-2)=2p-1,\\
+G_{E_p}&=68+8\sum_{k=2}^{p-1}2^k=8m+36,\\
+w_{E_p}&=a_{\rm clean}=0.
+\end{aligned}                                                   \qquad(29)
+```
+
+After the fixed Möbius wall and its reverse, the raw-bank phase-source
+Clifford count is $`pm+8m+36`$. Its complete phase echo has
+$`T=8m-8`$, depth at most $`4p-2`$ and
+$`G=2pm+16m+74`$. The indicator source adds 2m bank Hadamards;
+its complete indicator echo has
+$`G=2pm+20m+76`$. These are simultaneous zero-error bounds with no
+initialized or borrowed work. Every inverse is emitted and charged.
+
+The displayed native schedule has two serial bands for each new
+address bit, so it retains linear address depth. This is a cost of
+this schedule, not a lower bound on every equivalent circuit.
+Polynomial-overhead fusion does not turn this linear-depth source
+into the required $`o(\log(p+2))`$ source. Merely adding further
+coefficients through the same serial recurrence is therefore paused.
+The next unpaid operation is a changed joint schedule that combines
+growing coefficient blocks at sublogarithmic native depth, or a
+different complete source interface. The five missing coefficients
+at p=3 are no longer an open identity; reducing this finite example
+alone would still not move the complete-frame frontier.
+
+### A distinct all-bank word and the joint scheduling question
+
+There is a different, more redundant source representation. For each
+address coordinate i, apply (22) to every coefficient pair
+$`(A_S,A_{S\cup\{i\}})`$ with i absent from S, using control x_i.
+Call this full-bank relative-phase word $`\Gamma_i`$. Its binary
+permutation is $`M_i=I+x_iN_i`$, where
+
+```math
+(N_iA)_S=
+\begin{cases}
+A_{S\cup\{i\}},&i\notin S,\\
+0,&i\in S.
+\end{cases}
+```
+
+Here $`N_i^2=0`$ and $`N_iN_j=N_jN_i`$, so the completed binary
+maps M_i commute. The zeroth row of their product is the full polynomial
+in (28). Thus any fixed chronological ordering of the actual
+$`\Gamma_i`$ supplies another complete Pauli source. In coefficient
+coordinates its explicit serial ledger is $`T=2pm`$,
+$`G=4pm`$, at most 2p T layers and no helpers. The Möbius walls,
+actual inverse and Pauli echo are paid exactly as above. Polynomial
+count overhead is allowed by fusion; this schedule's depth still fails.
+
+These are **all-bank** pairs, distinct from the economical prefix pairs
+in (29); the prefix binary maps need not commute. Even the all-bank
+native unitaries need not commute: at p=2 with both addresses one,
+reversing their order changes the phase by
+$`(-1)^{A_{\{0,1\}}(A_{\{0\}}+A_{\{1\}})}`$.
+Each ordering nevertheless has the same required Pauli image, because
+its own relative phases cancel in its actual echo. Reordering completed
+binary maps therefore does not justify reordering their physical T gates.
+This identifies a concrete remaining operation: a joint native
+resynthesis of this whole Pauli image, or a different representative,
+with sublogarithmic depth and a complete fixed-tolerance error bound.
+It does not assert that such a resynthesis exists or that this
+representation is necessary for an unrestricted source.
+
+The [coefficient-shear fixtures](../../tests/test_complete_coefficient_shear.py)
+check every native column and actual inverse for one and two pairs,
+the two distinct-target bands and full source ledgers, all address
+rows through six bits, and exact p=3 echo columns for every address,
+every independent raw-bank direction and several dense banks. These
+finite checks challenge the native phase and return identities;
+(22)--(29) supply the all-size analytic proof. Neither is external
+mathematical review.
+
 ## 7. Research consequence and evidence
 
 The two-layer component pays weak transport of a single orbit direction.
@@ -578,11 +777,15 @@ and joint action of two selected coordinates at every bank size, with no
 helper. Its final-block commutation condition explains why adding parity
 terms within that mechanism does not give the whole address orbit.
 The four-band construction adds a quartic term while retaining arbitrary
-bank inputs; its missing five coefficients require a joint completion.
-Neither construction nor either scoped requirement moves the
-complete-frame resource frontier. The known logarithmic-depth complete
-indicator remains the baseline, and the approximate scalar zero-reflection
-result still rules out conjunction alone as a growing fixed-accuracy witness.
+bank inputs. The separate two-band shear completes all three-address
+coefficients in five source layers, and its uniform recurrence pays the
+whole bank with linear address depth. This resolves the missing finite
+coefficient identity but does not improve the known logarithmic-depth
+complete indicator. Pause the serial recurrence as a frontier route;
+a new growing-block schedule or a different interface is needed.
+The scoped three-layer requirements remain representation limits.
+The approximate scalar zero-reflection result still rules out
+conjunction alone as a growing fixed-accuracy witness.
 
 The [exact fixtures](../../tests/test_weak_pauli_orbit_compression.py)
 check the native source, literal Pauli echo, private helper and actual
