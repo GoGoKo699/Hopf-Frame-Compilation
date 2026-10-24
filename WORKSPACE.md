@@ -8,12 +8,12 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: selector-source rank limits and the all-address gap
+## Current checkpoint: bank-coupled dynamics and marked cancellation
 
-**Verified starting checkpoint:** [PR #233](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/233),
-`4c4b0c33baff924f35794ca08d1a8c8cc381f2c7`, checked 24 October 2026.
-Non-Clifford controls are paid; complete-query and selector-crossing ranks
-exclude the screened sources. A finite nonlocal repair also fails.
+**Verified starting checkpoint:** [PR #234](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/234),
+`40c875c989219c1034cfd9cec62d9bd123f1eb79`, checked 24 October 2026.
+Bank-controlled swaps and Hadamards are paid. A Bell-cell witness excludes
+the specified nonlocal frames at all sizes; a changed finite source also fails.
 No qualifying lookup source is supplied. Exact-tree receipts are in the PR record.
 Fetch main before resuming; this is not a pin.
 
@@ -21,7 +21,7 @@ Read in this order:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): general theorems, literal allocations and lower-bound scopes.
 2. [Bank response and row isolation](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md): full background conjugation, exact two-row defect, fixed-row cancellation and unpaid aggregation.
-3. [Co-moving lookup stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), and [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md): paid components, complete acceptance failures and the finite separator. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
+3. [Co-moving stages](research/depth/CO_MOVING_LOOKUP_STAGE.md), [selector readout](research/depth/CO_MOVING_SELECTOR_READOUT.md), [entangling acceptance](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md), and [bank-coupled dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md): paid components, source screens and the current marked-cancellation question. The [coupled-source](research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [matching](research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) proofs retain their earlier scopes.
 4. [One-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout): the paid return and error interfaces.
 5. [Route decisions](research/ROUTE_DECISIONS.md) before reopening an older mechanism; the [research catalogue](research/README.md) locates every research file.
 
@@ -105,20 +105,22 @@ reads only $`Z_{Y_0}`$ on the whole space; [paid transport](research/depth/ENTAN
 turns it into lookup at linear depth. Free moved zeta or an addressed
 selector flip would assume the missing indicator.
 
-**Latest substantive outcome.** [Non-Clifford selector controls](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#nonclifford-selector-control)
-pay a three-stage source with all address coordinates exposed. A common
-Fourier-frame witness gives Gram floor one quarter. The [complete-call rank screen](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#coherent-stage-rank-screen)
-gives the same floor with one clean signal and at most two calls at every p,
-or three calls at p=2, under its common bank/address-fiber interlayer premise.
-The [crossing-rank screen](research/depth/ENTANGLING_SELECTOR_ACCEPTANCE.md#selector-crossing-rank)
-excludes every three-stage cell-factorized CCZ conjugation source at all p.
-A tested transpose-zeta repair exceeds that crossing budget at p=3 but
-retains a shared two-term witness and the quarter floor. That finite failure
-does not exclude general nonlocal selector mixing. R96 is unchanged.
+**Latest substantive outcome.** [Bank couplings](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#paid-bank-couplings)
+pay swaps, controlled swaps, Hadamards and controlled Hadamards at T-depth
+4, 16, 2 and 6. Their [complete dynamics](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#complete-swap-dynamics)
+retain literal phases and arbitrary principal work t; its movement within
+a source is allowed, and the Gram target must retain $`I_t`$.
+A [Bell-cell witness](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#bell-cell-witness)
+gives the specified transpose-zeta frames a quarter floor at every p at
+least two, in any order or repetition with stages and bank swaps.
+An [inserted bank-Hadamard](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#inside-frame-bank-h-source) breaks that witness, but its exact p=3
+marked eight-path Gram on all 512 work columns obeys $`G\succeq I/3`$,
+forcing a coefficient-independent $`1/64`$ error floor for that finite source.
+This is not a general nonlocal-mixing obstruction. R96 is unchanged.
 
-**Next concrete question: full-sector acceptance beyond the screened words.**
-Derive an accepted polynomial K with genuinely changed interference, paid
-selector mixing and a stage family exposing every address coordinate, satisfying
+**Next concrete question: a complete marked operator relation.**
+Derive paid branch words and realizable coefficients with $`K\Pi_-=0`$,
+then establish normalized coverage of every positive-sector input:
 
 ```math
 K^\dagger K\,\Pi_-=0,\qquad
@@ -127,16 +129,14 @@ K^\dagger K\,\Pi_+=\tfrac12\Pi_+,\qquad
 ```
 
 or a uniform complete norm approximation within the recovery budget above.
-Retain every arbitrary bank and selector, literal phase and off-diagonal term.
-First establish marked cancellation and whole positive-sector coverage;
-then pay normalization, simultaneous count/width and actual inverse costs.
-The candidate must leave the three-stage cell factorization and the tested
-transpose-zeta word. Passing a crossing-rank budget alone is insufficient.
-No general nonlocal selector obstruction follows from the finite failure.
-Address-zero extraction is settled; dependence on $`Y_x`$ at every address
-must be achieved without free transport. Acceptance remains unpaid, not
-recovery or promotion. Even a constant-depth source retains log-log depth
-through the current reductions.
+Retain every arbitrary bank, selector, principal t input and reference,
+including literal phases and off-diagonal terms. Generic mixing or angle
+tuning cannot supply cancellation when the marked path Gram is positive definite.
+Leave the specified Bell-cell-invariant generators and the rejected finite
+bank-Hadamard word; removing one witness is insufficient. Bank parity alone
+does not distinguish same-bank addresses. Pay simultaneous count/width and
+actual inverses; recovery pays final t return once the complete Gram is proved.
+Use no free addressed transport. Constant source depth still retains log-log depth.
 
 The [bank-bit response test](research/depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md#1-the-response-test-and-what-two-rows-can-establish)
 remains available for bank-preserving alternatives. Per-flip error epsilon
