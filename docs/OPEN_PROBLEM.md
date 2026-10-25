@@ -239,6 +239,14 @@ The [native shear-fusion study](../research/depth/COEFFICIENT_SHEAR_NATIVE_FUSIO
 gives error two for its calibrated half-band palindrome and at least square
 root two for every word of its uniform-angle bipartite generators. Its common
 Clifford-basis and independent-replica screens keep their separate hypotheses.
+The [coordinate-weighted extension](../research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md)
+requires at least $`\lceil\log_8 p\rceil`$ quarter-angle pulses at error below
+square root two, or $`\Omega_\tau(\log p/\log\log p)`$ arbitrary-angle pulses
+at fixed smaller error. Weights are constant over the tails of each coordinate.
+This counts all pulses, including Clifford pulses, and therefore supplies no
+growing native-depth lower bound. Weighted quarter pulses retain a paid
+thirteen-band compiler; Clifford pulse networks and genuinely changed
+interactions require their own complete source proof.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
