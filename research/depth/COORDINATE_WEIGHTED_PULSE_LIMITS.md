@@ -177,7 +177,7 @@ Suppose every occurrence draws its coordinate angles from an alphabet of
 at most K values modulo $`2\pi`$. At most $`K^t`$ signatures exist, so
 
 ```math
-\mathcal E(V)<\sqrt2\quad\Longrightarrow\quad p\le K^t.
+\mathcal E(V)\lt\sqrt2\quad\Longrightarrow\quad p\le K^t.
                                                                \qquad(6)
 ```
 
@@ -186,12 +186,12 @@ inverse angles. Consequently $`t\ge\lceil\log_8 p\rceil`$ is necessary.
 The weighted compiler in Section 1 pays these pulses, but its thirteen-band
 upper bound does not turn (6) into a native-depth lower bound.
 
-For arbitrary real angles and fixed $`0\le\tau<\sqrt2`$, put
+For arbitrary real angles and fixed $`0\le\tau\lt\sqrt2`$, put
 $`\Delta=\sqrt2-\tau`$. For $`t\ge1`$ let
 $`q=\lfloor4\pi t/\Delta\rfloor+1`$. Partition the angle circle into
 q half-open intervals of length $`2\pi/q`$. If $`p>q^t`$, two signatures
 fall in the same product cell, giving
-$`d_1<2\pi t/q<\Delta/2`$ and contradicting (4). Therefore
+$`d_1\lt2\pi t/q\lt\Delta/2`$ and contradicting (4). Therefore
 
 ```math
 \mathcal E(V)\le\tau\quad\Longrightarrow\quad
