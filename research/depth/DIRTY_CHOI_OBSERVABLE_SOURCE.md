@@ -15,6 +15,11 @@ The [one-bank refinement](#one-bank-polarization) below reduces the principal
 dirty allocation and gives a direct top-phase ledger; the original disjoint-bank
 construction remains a separate exact variant.
 
+The [local HRT compiler and coherent feedback trial](COHERENT_FEEDBACK_SOURCES.md)
+now pay a genuine later key mixer and test a second nonlinear use of the
+retained Fourier outcome. Its complete calibrated action loses the required
+key response, despite returning the arbitrary borrowed register.
+
 These are exact identities and a conditional native reduction. No shallow
 implementation of the missing phase is supplied, and the unconditional
 complete-indicator and general frame frontiers remain unchanged.

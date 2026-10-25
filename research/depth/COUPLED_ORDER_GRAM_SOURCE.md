@@ -423,7 +423,261 @@ At p=1,x=1 on the same w, exact arithmetic instead gives
 The Gram gap is at least one eighth at this size. This distinct trial
 therefore also needs a changed identity, not just a paid extraction.
 
-## 7. Scope, evidence and reopening condition
+<a id="nonrectangular-four-path-acceptance"></a>
+<a id="four-path-accepted-fibers"></a>
+
+## 7. Nonrectangular four-path acceptance
+
+The balanced two-unitary source in Section 2 does not exhaust four-path
+acceptance. The following calculation tests an actual changed polynomial,
+then supplies a separate paid diagnostic with nonpairwise cancellation.
+Neither supplies lookup. The [coherent-feedback source assessment](COHERENT_FEEDBACK_SOURCES.md)
+records the complementary attempt to mix the key after a nonlinear stage.
+
+All operators act on the entire arbitrary data and private space, with
+identity on any external reference. Let A and B be Hermitian involutions
+and put $`\omega=e^{i\pi/4}`$. Two clean signals, uniform preparation and
+uniform acceptance give the nonrectangular candidate
+
+```math
+K=\frac{\omega(I+A)+\bar\omega(B+BAB)}4.
+                                                               \qquad(19)
+```
+
+The four branches are I, A, B and BAB; their literal SELECT is, chronologically,
+$`\mathrm C_a(B),\mathrm C_b(A),\mathrm C_{ab}(B)`$. A subsequent
+$`S_a^\dagger`$ supplies (19) up to the common scalar $`\bar\omega`$,
+which has no effect on its Gram. This describes controls to be paid,
+not free controls of an arbitrary source. At B=I the Gram is correctly
+normalized as $`(I+A)/4`$. Writing S=I+A and T=B+BAB gives
+$`S^2=2I+2A`$ and $`T^2=2I+AB+BA`$, hence the exact full Gram is
+
+```math
+G=K^\dagger K
+ =\frac{4I+2A+\{A,B\}+i([B,A]+[BAB,A])}{16}.
+                                                               \qquad(20)
+```
+
+This candidate has the sharp exact restriction
+
+```math
+G(G-I/2)=0\quad\Longleftrightarrow\quad B=I,
+\qquad B=I\ \Longrightarrow\ G=(I+A)/4.                \qquad(21)
+```
+
+To prove it, the flat-spectrum condition is equivalent to $`Q_*=4G-I`$
+being a Hermitian involution. A simultaneous one-dimensional eigenspace
+with A=a and B=b gives $`Q_*=a(1+b)/2`$, so b must be plus one.
+For a noncommuting two-dimensional block, choose
+$`AB=\mathrm{diag}(e^{i\theta},e^{-i\theta})`$ and A=X.
+With $`c=\cos\theta,s=\sin\theta`$ and $`|c|\lt1`$, (20) becomes
+
+```math
+Q_*=\frac c2I+\frac12X+\left(\frac s2+cs\right)Z.
+                                                               \qquad(22)
+```
+
+Its trace is c. Two eigenvalues from plus or minus one would therefore
+have to be opposite, forcing c=0; at c=0 they are instead plus and minus
+$`1/\sqrt2`$. Such a block is impossible. These blocks exhaust the pair:
+$`A(AB)A=(AB)^\dagger`$ pairs the nonreal eigenphases, while real
+eigenphases give commuting eigenspaces. This proves (21), without a
+prescribed rank for G. Exact lookup in (19) consequently requires A
+already to be its complete sign.
+
+There is also a conservative uniform approximate version, for any target
+Hermitian involution Q, including targets mixing these two-dimensional blocks:
+
+```math
+\left\|G-\frac{I+Q}4\right\|\le\delta\lt\frac1{32}
+\quad\Longrightarrow\quad
+B=I,\qquad\|A-Q\|\le4\delta.                         \qquad(22a)
+```
+
+Indeed, an error below $`1/32`$ puts every eigenvalue of $`Q_*`$ within
+$`1/8`$ of plus or minus one, by the spectral perturbation bound for
+Hermitian operators. A commuting block with b equal to minus one has
+$`Q_*=0`$ and is excluded. In a noncommuting block the eigenvalues are
+$`c/2\pm R`$, where
+$`R^2=1/4+(1-c^2)(1/2+c)^2`$. Both cannot be near the same sign,
+since their sum c lies between minus one and one. Opposite signs imply,
+with $`t=|c|`$, that $`t\lt1/4`$ and $`R\gt7/8+t/2`$.
+However $`R^2\le1/2+t+t^2`$, whereas throughout $`0\le t\le1/4`$,
+
+```math
+\left(\frac78+\frac t2\right)^2
+ -\left(\frac12+t+t^2\right)
+ =\frac3{16}+\left(\frac14-t\right)
+                  \left(\frac5{16}+\frac{3t}4\right)
+ \ge\frac3{16}.
+```
+
+This contradiction proves (22a); the last inequality there follows from
+$`G=(I+A)/4`$. The constant is not asserted optimal. This bounds the displayed
+acceptance polynomial, not arbitrary multipath sources or native T-depth.
+
+### A different four-path polynomial retains genuine cancellation
+
+Now assume $`AB=-BA`$ and choose the physical branch phases
+
+```math
+(U_{00},U_{01},U_{10},U_{11})
+ =(I,\omega A,iB,i\omega BAB),\qquad
+K=\frac{I+\sqrt2 A+iB}{4}.
+                                                               \qquad(23)
+```
+
+The same SELECT followed by $`S_aT_b`$ realizes these phases. Direct
+multiplication gives
+
+```math
+\begin{aligned}
+Q&=\frac{A+iAB}{\sqrt2},&Q'&=\frac{A-iAB}{\sqrt2},\\
+K^\dagger K&=\frac{I+Q}{4},&KK^\dagger&=\frac{I+Q'}4,\\
+K&=e^{i\pi B/4}\frac{\Pi_Q}{\sqrt2},
+&\Pi_Q&=\frac{I+Q}{2}.
+\end{aligned}                                                   \qquad(24)
+```
+
+Both signs are Hermitian involutions with equally sized sectors. Thus K
+annihilates the entire Q-negative sector and has singular value
+$`1/\sqrt2`$ on its entire positive sector. Its output sector is different:
+the polar part in (24) moves it to the Q'-positive sector. There is no
+thin-subspace acceptance deficit.
+
+Every pair sum $`U_j+U_k`$ is invertible: the relative spectra are among
+$`\{\pm\omega\},\{\pm i\},\{\pm\bar\omega\}`$ and the scalar
+minus i, none containing minus one. The zero on the wrong sector therefore
+cannot be explained by cancellation of any two paths. Nor does any
+individual relative branch word equal Q. This disproves a universal
+pairwise-collapse inference; it does not give an asymptotic advantage.
+Here Q is itself a simple rotation of A. Producing cheap A,B for a specified
+lookup Q remains unpaid.
+
+For a completely paid diagnostic take $`A=Z_d,B=X_d`$ on one arbitrary
+data wire. The complete source on two clean signals is chronological:
+
+```math
+H_aH_b,\quad\mathrm{CX}(a,d),\quad\mathrm{CZ}(b,d),\quad
+\mathrm{CCX}(a,b,d),\quad S_aT_b,\quad H_aH_b.
+                                                               \qquad(25)
+```
+
+Its accepted block has $`Q=(Z_d-Y_d)/\sqrt2`$ and
+$`Q'=(Z_d+Y_d)/\sqrt2`$. A literal three-band CCZ uses the parity identity
+
+```math
+4abd=a+b+d-(a\mathbin\oplus b)-(a\mathbin\oplus d)
+ -(b\mathbin\oplus d)+(a\mathbin\oplus b\mathbin\oplus d)
+ \pmod8.                                                     \qquad(26)
+```
+
+Apply T on the three single wires first. Three CNOTs, chronologically
+$`\mathrm{CX}(b,a),\mathrm{CX}(a,d),\mathrm{CX}(d,b)`$, expose
+the independent parities $`a\oplus b,a\oplus d,a\oplus b\oplus d`$;
+apply $`T^\dagger,T^\dagger,T`$ and reverse those CNOTs. Finally expose
+$`b\oplus d`$, apply $`T^\dagger`$, and uncompute. Hadamards on d turn
+this literal CCZ into CCX. Thus (25), including the CZ Hadamard walls,
+has 8 T gates, at most four T bands, 27 forward elementary gates, two clean
+signal inputs and no private helpers. Its actual reverse uses 29 elementary
+gates when $`S^\dagger`$ is expanded into three positive S gates; hence 29
+is a common gate bound, with the same T-count and depth bounds.
+Acceptance denotes the Gram interface; no measurement or postselection
+is inserted into the eventual complete recovery. This three-qubit fixture
+is not a lookup source at arbitrary address length.
+
+<a id="independent-reflection-flatness"></a>
+
+### An independent fourth reflection still has exact flatness rigidity
+
+Replacing $`BAB`$ in (23) by an independent Hermitian involution D does
+not give a new exact flat-Gram family. Let A, B and D be arbitrary Hermitian
+involutions on the same finite complete space, including every dirty input,
+and define
+
+```math
+K_D=\frac{I+\omega A+iB+i\omega D}{4}.
+                                                               \qquad(27)
+```
+
+Then
+
+```math
+K_D^\dagger K_D=\Pi/2\text{ for some orthogonal projector }\Pi
+\quad\Longleftrightarrow\quad D=-A\text{ and }AB=-BA.
+                                                               \qquad(28)
+```
+
+No rank or block-preservation assumption is made on the left side. The
+right side gives exactly (24), so the projector necessarily has half the
+complete dimension. In particular, mixing the two-reflection invariant
+blocks with B cannot evade this statement.
+
+**A finite-dimensional trace-saturation lemma.** Suppose a square matrix V
+on a d-dimensional space obeys $`\mathrm{Tr}(V^\dagger V)=d`$ and
+$`(I+V)^\dagger(I+V)=4\Pi`$. Put $`T=I+V`$ and
+$`k=\mathrm{rank}\Pi`$. Expanding the first identity gives
+
+```math
+\mathrm{Tr}(T^\dagger T)=4k,\qquad
+\Re\mathrm{Tr}T=2k,\qquad T=2\Pi.
+                                                               \qquad(29)
+```
+
+For the last implication, the polar decomposition is $`T=2W\Pi`$, with
+$`W^\dagger W\Pi=\Pi`$. The trace equality gives
+$`\Re\mathrm{Tr}(W\Pi)=k`$, hence
+$`\|W\Pi-\Pi\|_{\rm HS}^2=2k-2\Re\mathrm{Tr}(W\Pi)=0`$.
+Thus $`V=2\Pi-I`$ is a Hermitian unitary. This includes k equal to zero
+or d; no physical trace operation or normalized input is used.
+
+Apply the lemma with
+
+```math
+U=\frac{I+iB}{\sqrt2},\qquad
+R=\frac{\omega(A+iD)}{\sqrt2},\qquad V=U^\dagger R.
+```
+
+Here U is unitary, $`K_D=U(I+V)/(2\sqrt2)`$, and
+$`R^\dagger R=I+i[A,D]/2`$. The trace of the commutator is zero, so
+$`\mathrm{Tr}(V^\dagger V)=d`$. Exact flatness supplies the
+lemma's other hypothesis. Consequently V and R are unitary, forcing
+$`[A,D]=0`$.
+
+It remains to exclude a same-sign A,D sector even if B mixes it with the
+other sector. Define
+
+```math
+P_\pm=\frac{I\pm AD}{2},\qquad
+E=AP_-,\qquad F=AP_+,\qquad R=E+iF.
+```
+
+These are well-defined because A and D commute; $`EF=0`$,
+$`E^2=P_-`$ and $`F^2=P_+`$. Hermiticity of $`U^\dagger R`$ gives
+
+```math
+\{E,B\}+i[B,F]=2F.                                    \qquad(30)
+```
+
+Compress (30) to $`P_+`$. Its anticommutator term vanishes. Multiplying
+the remaining equation by F and taking the trace gives zero on the
+commutator side and $`2\mathrm{rank}P_+`$ on the other side.
+Therefore $`P_+=0`$, so $`D=-A`$. Equation (30) then reduces to
+$`AB=-BA`$. Conversely those two relations reduce (27) to (23), and
+(24) proves exact flatness. This establishes (28) on the complete space.
+
+This theorem concerns the exact polynomial (27), not arbitrary four-path
+sources or unrestricted native depth. The trace-saturation proof does not
+provide a dimension-independent approximate version; the every-fixed-accuracy
+question is not closed by (28). An escape must change the ansatz: for example its branch weights or phases,
+or the Hermitian-involution requirement. For example,
+two-sided dressing $`V^\dagger P W`$ with distinct V and W is outside (28),
+but its controlled implementation is not supplied by the uncontrolled
+conjugation shortcut. Its full cross-term identity and controls remain unpaid.
+
+<a id="7-scope-evidence-and-reopening-condition"></a>
+
+## 8. Scope, evidence and reopening condition
 
 Equations (1)--(13), (15)--(17) are analytic identities and native
 resource bounds. The exact guards in
@@ -434,6 +688,15 @@ noncommuting pair; the actual coherent-address p=1 relative phase; and
 both distinct p=1 sector failures (14), (18). The finite fixtures do
 not prove an asymptotic exclusion. These are internal analytic and
 finite checks, not external mathematical review.
+
+Equations (19)--(30) are separate analytic identities. The exact
+[`test_four_path_accepted_sources.py`](../../tests/test_four_path_accepted_sources.py)
+checks both four-path Grams, the literal native source and actual inverse,
+its arbitrary spectator/reference extension, the moved polar sector,
+and nonpairwise cancellation. An independent-reflection fixture also checks
+the trace-budget decomposition with B mixing the A,D blocks; trace saturation,
+not finite testing, proves (28). These checks do not supply inexpensive
+general branches or their native controls.
 
 The complete-frame frontier is unchanged. The source normalization and
 joint interference are now paid; the first unsupported inference is
@@ -454,3 +717,18 @@ The paid
 approximate scalar zero reflection remains compatible with these
 scoped failures; conjunction is not a dimension-growing fixed-accuracy
 depth witness.
+
+The distinct four-path question is to supply an actual native tuple
+$`U_0,U_1,U_2,U_3`$ whose six cross terms satisfy
+
+```math
+\sum_{j\lt k}(U_j^\dagger U_k+U_k^\dagger U_j)=4Q_x.
+```
+
+For equal-amplitude acceptance this is exactly the required complete Gram;
+an operator error at most $`16\delta`$ in this cross-term identity gives
+Gram error at most delta. Section 7 shows why the zero wrong-sector condition
+does not justify imposing pairwise cancellation or a fixed accepted polar
+part. A candidate must still pay its SELECT controls and actual inverses,
+retain all private inputs, and prove the full uniform identity before it can
+use the existing complete recovery.
