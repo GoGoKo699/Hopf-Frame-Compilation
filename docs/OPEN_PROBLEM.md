@@ -272,8 +272,10 @@ pay individual encoded Hadamards in at most sixteen T bands without helpers.
 Their complete calibrated feedback word still has error two. The
 [four-path diagnostic](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
 shows that accepted output motion can survive genuine joint interference,
-but supplies no complete lookup source. These are component and source-family
-results, with no change to the bounds above.
+but supplies no complete lookup source. Its independent-reflection extension
+collapses under exact flatness, including arbitrary invariant-block mixing;
+no approximate rigidity follows. These component and source-family results
+leave the bounds above unchanged.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 

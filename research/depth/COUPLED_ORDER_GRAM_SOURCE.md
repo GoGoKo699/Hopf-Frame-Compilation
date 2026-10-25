@@ -586,6 +586,95 @@ Acceptance denotes the Gram interface; no measurement or postselection
 is inserted into the eventual complete recovery. This three-qubit fixture
 is not a lookup source at arbitrary address length.
 
+<a id="independent-reflection-flatness"></a>
+
+### An independent fourth reflection still has exact flatness rigidity
+
+Replacing $`BAB`$ in (23) by an independent Hermitian involution D does
+not give a new exact flat-Gram family. Let A, B and D be arbitrary Hermitian
+involutions on the same finite complete space, including every dirty input,
+and define
+
+```math
+K_D=\frac{I+\omega A+iB+i\omega D}{4}.
+                                                               \qquad(27)
+```
+
+Then
+
+```math
+K_D^\dagger K_D=\Pi/2\text{ for some orthogonal projector }\Pi
+\quad\Longleftrightarrow\quad D=-A\text{ and }AB=-BA.
+                                                               \qquad(28)
+```
+
+No rank or block-preservation assumption is made on the left side. The
+right side gives exactly (24), so the projector necessarily has half the
+complete dimension. In particular, mixing the two-reflection invariant
+blocks with B cannot evade this statement.
+
+**A finite-dimensional trace-saturation lemma.** Suppose a square matrix V
+on a d-dimensional space obeys $`\mathrm{Tr}(V^\dagger V)=d`$ and
+$`(I+V)^\dagger(I+V)=4\Pi`$. Put $`T=I+V`$ and
+$`k=\mathrm{rank}\Pi`$. Expanding the first identity gives
+
+```math
+\mathrm{Tr}(T^\dagger T)=4k,\qquad
+\Re\mathrm{Tr}T=2k,\qquad T=2\Pi.
+                                                               \qquad(29)
+```
+
+For the last implication, the polar decomposition is $`T=2W\Pi`$, with
+$`W^\dagger W\Pi=\Pi`$. The trace equality gives
+$`\Re\mathrm{Tr}(W\Pi)=k`$, hence
+$`\|W\Pi-\Pi\|_{\rm HS}^2=2k-2\Re\mathrm{Tr}(W\Pi)=0`$.
+Thus $`V=2\Pi-I`$ is a Hermitian unitary. This includes k equal to zero
+or d; no physical trace operation or normalized input is used.
+
+Apply the lemma with
+
+```math
+U=\frac{I+iB}{\sqrt2},\qquad
+R=\frac{\omega(A+iD)}{\sqrt2},\qquad V=U^\dagger R.
+```
+
+Here U is unitary, $`K_D=U(I+V)/(2\sqrt2)`$, and
+$`R^\dagger R=I+i[A,D]/2`$. The trace of the commutator is zero, so
+$`\mathrm{Tr}(V^\dagger V)=d`$. Exact flatness supplies the
+lemma's other hypothesis. Consequently V and R are unitary, forcing
+$`[A,D]=0`$.
+
+It remains to exclude a same-sign A,D sector even if B mixes it with the
+other sector. Define
+
+```math
+P_\pm=\frac{I\pm AD}{2},\qquad
+E=AP_-,\qquad F=AP_+,\qquad R=E+iF.
+```
+
+These are well-defined because A and D commute; $`EF=0`$,
+$`E^2=P_-`$ and $`F^2=P_+`$. Hermiticity of $`U^\dagger R`$ gives
+
+```math
+\{E,B\}+i[B,F]=2F.                                    \qquad(30)
+```
+
+Compress (30) to $`P_+`$. Its anticommutator term vanishes. Multiplying
+the remaining equation by F and taking the trace gives zero on the
+commutator side and $`2\mathrm{rank}P_+`$ on the other side.
+Therefore $`P_+=0`$, so $`D=-A`$. Equation (30) then reduces to
+$`AB=-BA`$. Conversely those two relations reduce (27) to (23), and
+(24) proves exact flatness. This establishes (28) on the complete space.
+
+This theorem concerns the exact polynomial (27), not arbitrary four-path
+sources or unrestricted native depth. The trace-saturation proof does not
+provide a dimension-independent approximate version; the every-fixed-accuracy
+question is not closed by (28). An escape must change the ansatz: for example its branch weights or phases,
+or the Hermitian-involution requirement. For example,
+two-sided dressing $`V^\dagger P W`$ with distinct V and W is outside (28),
+but its controlled implementation is not supplied by the uncontrolled
+conjugation shortcut. Its full cross-term identity and controls remain unpaid.
+
 <a id="7-scope-evidence-and-reopening-condition"></a>
 
 ## 8. Scope, evidence and reopening condition
@@ -600,12 +689,14 @@ both distinct p=1 sector failures (14), (18). The finite fixtures do
 not prove an asymptotic exclusion. These are internal analytic and
 finite checks, not external mathematical review.
 
-Equations (19)--(26) are separate analytic identities. The exact
+Equations (19)--(30) are separate analytic identities. The exact
 [`test_four_path_accepted_sources.py`](../../tests/test_four_path_accepted_sources.py)
 checks both four-path Grams, the literal native source and actual inverse,
 its arbitrary spectator/reference extension, the moved polar sector,
-and nonpairwise cancellation. These checks do not supply inexpensive
-general A,B or their native controls.
+and nonpairwise cancellation. An independent-reflection fixture also checks
+the trace-budget decomposition with B mixing the A,D blocks; trace saturation,
+not finite testing, proves (28). These checks do not supply inexpensive
+general branches or their native controls.
 
 The complete-frame frontier is unchanged. The source normalization and
 joint interference are now paid; the first unsupported inference is

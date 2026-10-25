@@ -92,35 +92,27 @@ These are reusable components; neither completes lookup.
 
 The [local HRT gate compiler](research/depth/COHERENT_FEEDBACK_SOURCES.md)
 pays any one-coordinate encoded native gate through two exact quadratic shears.
-Encoded Hadamards need at most sixteen T layers and no helper qubits; top and
-singleton coordinates need eight. These are paid non-Clifford key mixers,
-not free Clifford walls or a parallel implementation of the whole basis.
-The complete retained-outcome feedback word cancels its borrowed register
-but loses the required key dependence; its calibrated residual-probe error
-is exactly two at every r at least two. Feeding both retained labels into
-the final query introduces explicit dirty-bank motion and still has error
-two. The exact missing correction must cancel that motion while retaining
-the full residual phase.
+Encoded Hadamards need at most sixteen T layers and no helpers; top and
+singleton coordinates need eight. No parallel whole-basis schedule follows.
+The two complete feedback trials have error-two witnesses: the first loses
+key dependence, and the second introduces uncancelled dirty-bank motion.
+Their proof home records the exact actions, size ranges and missing correction.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
 The [three-block extension](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md#three-block-late-key-mixing)
-permits any global third-level first block and genuinely non-Clifford bank
-fibers, but gives error at least one quarter when the two later diagonal
-third-level blocks have Clifford walls preserving the key algebra and the target label degree exceeds
-six. It covers lookup at p at least seven and the residual HRT probe at
-r at least eight. Initial key motion alone does not escape. The older sharp
-Clifford-fiber block count remains valid; none is a growing native-depth bound.
+permits a global third-level first block and two later diagonal third-level
+blocks. It gives error at least one quarter when later Clifford walls preserve
+the key algebra and target degree exceeds six, despite initial key motion.
+Its proof owns the full hypotheses and lookup/probe thresholds.
+Neither result is a growing native-depth bound.
 
 The [one-bank polarization](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md#one-bank-polarization)
 uses four residual-phase calls, or eight probe-source calls, and paid quadratic
 queries to give the complete indicator. Principal extra dirty allocation is
 $`3m-2`$, plus one reusable private pool; a direct top-phase source needs
-$`2m-2`$. All constants, output aliases and return errors are paid.
-Standard and group-based Choi completions still collapse to paid queries;
-parallel carrier-only readout loses the input dependence. Relabelling a group
-Bell outcome requires the unpaid in-place key conversion. The cubic bent dual
-therefore remains a dense kernel, not a complete diagonal implementation.
+$`2m-2`$. Its proof also records the Choi-completion and readout failures.
+The cubic bent dual remains a dense kernel, not a complete diagonal source.
 
 [Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) still pays
 $`I+N_x`$ in sixteen bands. An added-generator embedding now reduces its
@@ -140,8 +132,10 @@ The [four-path accepted-source study](research/depth/COUPLED_ORDER_GRAM_SOURCE.m
 exhibits a native diagnostic with exact half-projector Gram and nontrivial
 accepted output motion: no pair of its four paths cancels on the rejected
 sector. A separate calibrated nonrectangular family collapses to an already
-required target below Gram error one thirty-second. The diagnostic does not
-supply lookup.
+required target below Gram error one thirty-second. For the diagnostic's
+phases, even three independent reflection branches collapse to its original
+anticommuting pair under exact flatness. This does not prove approximate
+rigidity or supply lookup; general multipath branches remain open.
 
 **Next question:** can a native multipath source retain that accepted-output
 freedom while its full Gram selects the complete lookup sector? For four

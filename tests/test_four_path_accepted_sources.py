@@ -1,4 +1,4 @@
-"""Exact full-space guards for two nonrectangular acceptance polynomials.
+"""Exact full-space guards for four-path acceptance polynomials.
 
 The native example is a three-qubit diagnostic, not an asymptotic lookup
 source. No comparison quotients by a scalar phase or drops rejected outputs.
@@ -156,6 +156,93 @@ class FourPathAcceptedSourceTests(unittest.TestCase):
         for j, l in combinations(range(4), 2):
             self.assertNotEqual(_det2(add(paths[j], paths[l])), CZ)
             self.assertNotEqual(multiply(adjoint(paths[j]), paths[l]), q)
+
+    def test_independent_reflection_split_and_trace_saturation(self):
+        ident = eye(4)
+        zero = scale(ident, CZ)
+        a = native_columns(2, [('Z', 0)])
+        x = native_columns(2, [('H', 0), ('Z', 0), ('H', 0)])
+        mixing_b = native_columns(2, [('H', 1)])
+        block = [[CO if i == j and i < 2 else CZ for j in range(4)]
+                 for i in range(4)]
+        z2 = native_columns(1, [('Z', 0)])
+        x2 = native_columns(1, [('H', 0), ('Z', 0), ('H', 0)])
+        noncommuting_d = [[(z2 if i < 2 else x2)[i % 2][j % 2]
+                          if i // 2 == j // 2 else CZ for j in range(4)]
+                         for i in range(4)]
+        same_sign_d = multiply(a, add(scale(block, 2), scale(ident, -CO)))
+        # The A,D blocks are invariant, but B creates superpositions across
+        # them. Thus the rejection fixture does not assume B preserves them.
+        self.assertEqual(_commutator(a, block), zero)
+        self.assertEqual(_commutator(noncommuting_d, block), zero)
+        self.assertNotEqual(_commutator(a, noncommuting_d), zero)
+        self.assertNotEqual(_commutator(mixing_b, block), zero)
+
+        def trace(matrix):
+            return sum(matrix[j][j] for j in range(4))
+
+        cases = [(noncommuting_d, mixing_b, False),
+                 (same_sign_d, mixing_b, False),
+                 (scale(a, -CO), multiply(mixing_b, x), True)]
+        for d, b, flat in cases:
+            with self.subTest(flat=flat, d=d):
+                for reflection in (a, b, d):
+                    self.assertEqual(adjoint(reflection), reflection)
+                    self.assertEqual(multiply(reflection, reflection), ident)
+                s = _sum(ident, scale(a, OMEGA), scale(b, CI),
+                         scale(d, CI * OMEGA))
+                k = scale(s, QUARTER)
+                u = scale(add(ident, scale(b, CI)), INVROOT)
+                r = scale(add(a, scale(d, CI)), OMEGA * INVROOT)
+                v = multiply(adjoint(u), r)
+                t = add(ident, v)
+                self.assertEqual(s, scale(add(u, r), ROOT))
+                self.assertEqual(k, scale(multiply(u, t), INVROOT * HALF))
+                self.assertEqual(multiply(adjoint(u), u), ident)
+                self.assertEqual(multiply(adjoint(r), r),
+                                 add(ident, scale(_commutator(a, d), CI * HALF)))
+                self.assertEqual(trace(multiply(adjoint(r), r)), CQ2(4))
+                self.assertEqual(trace(multiply(adjoint(v), v)), CQ2(4))
+                self.assertEqual(trace(multiply(adjoint(t), t)),
+                                 trace(t) + trace(t).conj())
+                g = multiply(adjoint(k), k)
+                self.assertEqual(multiply(g, add(g, scale(ident, -HALF))) == zero,
+                                 flat)
+                if flat:
+                    # Extract the projector from the independently summed
+                    # paths; exact saturation identifies T with its positive
+                    # square root, rather than merely matching singular values.
+                    projector = scale(g, 2)
+                    self.assertEqual(adjoint(projector), projector)
+                    self.assertEqual(multiply(projector, projector), projector)
+                    self.assertEqual(trace(projector), CQ2(2))
+                    self.assertEqual(multiply(adjoint(t), t), scale(projector, 4))
+                    self.assertEqual(trace(t), 2 * trace(projector))
+                    self.assertEqual(t, scale(projector, 2))
+                    polar = scale(multiply(t, projector), HALF)
+                    self.assertEqual(multiply(adjoint(polar), polar), projector)
+                    defect = add(polar, scale(projector, -CO))
+                    self.assertEqual(trace(multiply(adjoint(defect), defect)), CZ)
+                    self.assertEqual(adjoint(v), v)
+                    self.assertEqual(multiply(v, v), ident)
+                    self.assertEqual(d, scale(a, -CO))
+                    self.assertEqual(add(multiply(a, b), multiply(b, a)), zero)
+
+        # The remaining same-sign sector cannot satisfy equation (30), even
+        # with this B mixing sectors: its compressed commutator has trace zero
+        # against F, whereas the required right side has positive trace four.
+        e = multiply(a, add(ident, scale(block, -CO)))
+        f = multiply(a, block)
+        r = scale(add(a, scale(same_sign_d, CI)), OMEGA * INVROOT)
+        self.assertEqual(r, add(e, scale(f, CI)))
+        self.assertEqual(multiply(e, f), zero)
+        self.assertEqual(multiply(f, f), block)
+        lhs = add(add(multiply(e, mixing_b), multiply(mixing_b, e)),
+                  scale(_commutator(mixing_b, f), CI))
+        compressed = multiply(multiply(block, lhs), block)
+        self.assertEqual(trace(multiply(f, compressed)), CZ)
+        self.assertEqual(trace(multiply(f, scale(f, 2))), CQ2(4))
+        self.assertNotEqual(lhs, scale(f, 2))
 
     def test_literal_three_qubit_source_block_and_actual_reverse(self):
         word = _source()
