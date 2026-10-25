@@ -8,14 +8,14 @@ complete Hopf frames. Manuscript drafting is a separate task.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
-## Current checkpoint: joint mixing screens and the remaining lookup phase
+## Current checkpoint: equivalent lookup phase and interleaved acceptance
 
-**Verified starting checkpoint:** [PR #243](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/243),
-`4598492c870b81666f8b149a4c8ccd8efcd8d0b2`, fetched 25 October 2026;
-its post-merge validation and presentation passed. Affine/Fourier dressings have an all-angle transition gap.
-Two Clifford mixers and Bell acceptance expose the remaining lookup phase.
-Their scoped limitations leave R96 unchanged.
-These are scoped failures. Exact-tree receipts belong in the PR record. Fetch main before resuming; this is not a pin.
+**Verified starting checkpoint:** [PR #244](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/244),
+`a7a7cd213cf6df366a4c4e26261628caa645b03c`, fetched 25 October 2026;
+its post-merge validation and presentation passed. The rank-one phase is
+resource-equivalent to the complete indicator. Interleaved Clifford-fiber
+acceptance has a separate clean-signal and affine-query limitation.
+R96 is unchanged. Exact-tree receipts belong in the PR record. Fetch main before resuming; this is not a pin.
 
 Read in this order:
 
@@ -135,20 +135,20 @@ The [Bell-envelope identity](research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-a
 preserves the complete charge-readout error on arbitrary auxiliaries;
 address-independent acceptance has sharp Gram floor one quarter.
 
-**Next concrete question: pay a non-Clifford joint transition.**
-The earlier instruction to try two mixers is now qualified by these screens.
-Can a changed non-Clifford bank mixer or a nondiagonal middle supply
-$`F_s\approx(-1)^{\pi(B)+B_{s+HB}}`$ with a complete native ledger?
-Alternatively, construct an accepted source with genuinely interleaved
-data/auxiliary action beyond the Bell-envelope factorization. Reopen the
-rank-one exception only with a paid shallow lookup-dependent derivative.
-Derive the complete action before another fixture; phase declarations,
-charge preservation and broad support do not supply the missing operation.
-The source still needs $`o(\log(p+2))`$ depth and the simultaneous
-count, width, precision and arbitrary-work return ledger. Completed
-quadratic coordinate rounds retain a logarithmic round requirement;
-this does not preclude cross-round native synthesis. Constant source
-depth retains the frame transfer's log-log term and gives no all-precision claim.
+**Revision and next concrete question.** The [rank-one phase reduction](research/depth/COUPLED_FINAL_ENCODER.md#rank-one-indicator-equivalence)
+uses two calls in either direction, a paid four-T-band control bank and
+only arbitrary dirty work. It preserves the target resource orders;
+the displayed diagonal phase is not an easier intermediate problem.
+Its full commutant freedom permits address/work-moving representatives,
+but their complete Pauli derivative still needs a paid native synthesis.
+The [interleaved Clifford Gram screen](research/depth/CORANK_FOURIER_BELL_SOURCE.md#interleaved-clifford-gram-rigidity)
+also applies beyond the Bell envelope: below quarter Gram error,
+two clean signals need at least p/3 literal affine-address XOR queries.
+This is a query-grammar limitation, not an unrestricted T-depth bound.
+Can genuine non-Clifford conditional dynamics or cross-round native
+synthesis supply the complete derivative or accepted Gram at sublogarithmic
+depth? Derive its complete action and simultaneous count, width, precision
+and return ledger first. The paid frame transfer still retains its log-log term.
 
 ### Stopped routes, reopening conditions and superseded instructions
 
