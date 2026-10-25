@@ -4,13 +4,13 @@
 [Dirty cubic-phase compiler](DIRTY_CUBIC_PHASE_COMPILER.md) ·
 [Complete derivative contract](BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence)
 
-Coordinate-dependent quarter angles retain a paid thirteen-band compiler.
-They do not remove the need to distinguish coordinates across an entire
-pulse word: two equal angle signatures retain the paired-sector obstruction,
-and sufficiently close signatures give a quantitative version. This bounds
-the number of specified pulses, not native T-depth. In particular, useful
-coordinate-dependent Clifford pulses cost no T-depth and remain available
-as bank interlayers. No general frame bound changes.
+Coordinate-dependent and arbitrary tail-dependent quarter angles retain a
+paid thirteen-band compiler. A directed cube filtration gives exact error
+two for every pulse-only word shorter than p, including arbitrary real
+edge angles. For coordinate-only weights, equal or nearby angle signatures
+give an additional obstruction even to longer words. These count specified
+pulses, not native T-depth: Clifford networks can cross the filtration at
+zero T-depth. No general frame bound changes.
 
 ## 1. Pulse grammar and a paid weighted compiler
 
@@ -173,6 +173,12 @@ This comparison includes all helper return errors and arbitrary references.
 
 ## 3. Pulse-count consequences
 
+The signature consequences below retain information about coordinate
+collisions in words of any length. For short pulse-only words,
+[Section 5](#tail-dependent-filtration) gives the stronger necessity
+$`t\ge p`$ at every error strictly below two, without an angle alphabet
+or coordinate-only weight restriction.
+
 Suppose every occurrence draws its coordinate angles from an alphabet of
 at most K values modulo $`2\pi`$. At most $`K^t`$ signatures exist, so
 
@@ -205,7 +211,8 @@ For $`t=0`$, V is identity and its complete target error is two: choose
 an address with one selected coordinate and set that singleton coefficient
 to one. A fixed number of real-angle pulses is therefore insufficient for
 arbitrarily many coordinates at any target error below square root two.
-The real-angle estimate does not exclude every sublogarithmic pulse count.
+The real-angle estimate alone does not exclude every sublogarithmic pulse
+count; the directed-filtration theorem below does so in this grammar.
 
 ## 4. The free-Clifford escape must remain open
 
@@ -218,21 +225,117 @@ common invariant-sector calculation. This operation is a paid Clifford,
 with no helper and zero T-depth.
 
 Accordingly, a growing number of Clifford pulses interleaved with a few
-non-Clifford pulses is not excluded by (6) or (7). The total-pulse signature
-can grow while the T-depth charge does not. No normal form eliminating
-those Clifford interlayers has been proved here. Arbitrary edge-dependent
-weights, which can depend on S as well as i, also lie outside (1), as do
-additional bank transformations and address motion.
+non-Clifford pulses is not excluded by these pulse-count results. The
+total-pulse signature and cube propagation can grow while the T-depth
+charge does not. No normal form eliminating arbitrary Clifford interlayers
+has been proved here. Tail-dependent weights lie outside (1), but the
+filtration below still excludes short words using them. Additional bank
+transformations and address motion need their own complete action analysis.
 
-The useful next source question is whether a specified sequence of paid
-Clifford bank transformations and a few nonlinear pulses can supply the
-complete lookup derivative. Its all-size action, actual inverse, accuracy,
-count, width and work return remain necessary. Signature separation alone
-is not a construction. The complete-indicator and frame frontiers remain
-unchanged.
+The [Clifford-interleaved analysis](CLIFFORD_INTERLEAVED_LOOKUP.md) and
+[coherent central transport](COHERENT_CENTRAL_TRANSPORT.md) address changed
+complete-source mechanisms. Every candidate still needs its all-size
+action, actual inverse, accuracy, count, width and work return. Signature
+separation or propagation alone is not a construction. The complete-indicator
+and frame frontiers remain unchanged.
 
 The [exact fixtures](../../tests/test_coordinate_weighted_pulses.py) check
 weighted native phases, actual inverses and arbitrary helper return, the
 embedded signature collision, and the Clifford escape from a chosen paired
 sector. The all-size bounds follow from the identities and packing argument
 above, rather than from the finite fixtures.
+
+<a id="tail-dependent-filtration"></a>
+
+## 5. Tail-dependent pulses and a directed cube filtration
+
+Allow each edge $`(S,i)`$ of a pulse to choose its own real angle
+$`\theta_{S,i}`$ and independently choose either signed or unsigned type
+from (1). All tails still have one parity. These gates commute because
+targets and controls occupy opposite parity banks, and repeated targets
+carry the same X axis. No other bank gates or address motion are included.
+
+For integer quarter angles, the common forward/actual-inverse ledger (2)
+is unchanged. Reduce each edge residue independently as
+$`k_{S,i}=2\ell_{S,i}+e_{S,i}\pmod8`$. Its even part uses (3). After
+Hadamards on the tail bank, the odd part has phase exponent
+
+```math
+b-2ab\quad\hbox{or}\quad-b+2x_i b+2ab-4x_iab\pmod8.
+```
+
+There are still at most m active linear variables, $`Q\le2r`$ quadratic
+occurrences and $`C\le r`$ cubic occurrences. The proof of (2) therefore
+applies without tail independence, including arbitrary returned helpers.
+No native cost is asserted for arbitrary real angles.
+
+**Directed-filtration theorem.** For any word V of t such pulses,
+
+```math
+t\lt p\quad\Longrightarrow\quad
+\mathcal E(V)=2.                                                \qquad(8)
+```
+
+Consequently error strictly below two requires at least p total pulses,
+regardless of their angles, order, repetitions or edge types.
+
+Fix the invariant address block $`x=1^p`$. A signed edge then becomes
+an ordinary controlled rotation. Let $`\mathcal H_h`$ be the bank subspace
+where every $`A_S`$ with $`|S|\lt h`$ is zero and all other bank bits are
+arbitrary. Every pulse P and its actual inverse satisfy
+
+```math
+P\mathcal H_h\subseteq\mathcal H_{h-1}\qquad(1\le h\le p).
+                                                               \qquad(9)
+```
+
+Indeed, separate the commuting edge factors whose tail rank is at most
+$`h-2`$. Their controls have rank at most $`h-1`$ and vanish on
+$`\mathcal H_h`$, so apply these identity factors first. Every remaining
+factor targets rank at least $`h-1`$ and preserves the constraints of
+$`\mathcal H_{h-1}`$. Commutativity is essential: later activation of a
+control cannot invalidate this ordering argument.
+
+Take the bank basis vector b whose only nonzero bit is $`A_{[p]}`$.
+It lies in $`\mathcal H_p`$. Applying the t pulses of $`V^\dagger`$ in
+their actual reversed order leaves it in $`\mathcal H_{p-t}`$. If
+$`t\lt p`$, the empty-subset bit is still zero, so
+
+```math
+VZ_{A_\varnothing}V^\dagger|1^p,b\rangle=|1^p,b\rangle,
+\qquad Q|1^p,b\rangle=-|1^p,b\rangle.
+```
+
+This gives distance two on one normalized input, the maximal possible
+unitary distance, proving (8). The zero bits are a legal witness input,
+not initialized resources supplied to the compiler.
+
+There is a sharper certificate for longer words. Scan the pulse parities
+in the chronological order in which $`V^\dagger`$ applies them, starting
+with h=p. A pulse can lower h only when its tail parity equals
+$`h-1\pmod2`$; otherwise the same proof gives
+$`P\mathcal H_h\subseteq\mathcal H_h`$. Decrement h on a match, leave
+it unchanged otherwise, and stop if it reaches zero. If h remains positive,
+the same witness proves
+error two. Thus the reversed parity word must contain the length-p
+alternating subsequence $`p-1,p-2,\ldots,0\pmod2`$. Passing this
+certificate is necessary, not sufficient, for complete lookup.
+
+If a native implementation obeys
+$`\|\widetilde V-V\otimes I_{\rm work}\|\le\varepsilon`$, its target
+derivative error is at least $`2-2\varepsilon`$ whenever this certificate
+applies. Two-term unitary telescoping gives this bound, including all
+work return and reference inputs, without a bank-size factor.
+
+The filtration does not count non-Clifford rounds. Choose a nested chain
+$`S_h=\{0,\ldots,h-1\}`$ and apply, in descending h order, the p gates
+$`e^{i\pi X_{A_{S_{h-1}}}n_{S_h}/2}`$. Each is the Clifford in (3),
+and the top-only input reaches $`A_\varnothing=1`$, up to its retained
+scalar $`i^p`$. This crosses the whole filtration at zero T-depth; it does
+not implement complete lookup. A nonlocal CNOT from $`A_{[p]}`$ to
+$`A_\varnothing`$ also escapes the cube-edge propagation premise.
+
+The [Clifford-interleaved fixtures](../../tests/test_clifford_interleaved_lookup.py)
+check the tail-dependent native phases, actual inverses, dirty/reference
+return and ledgers, the short-word and parity-scan witnesses, and the
+Clifford-chain escape. The all-size statement follows from (9).
