@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #249](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/249),
-`b8eafb48576b29ee17059e6ced0ec3191cdd6b62`, fetched 25 October 2026.
-Its reviewed tree passed 1,778 tests, the full local gate, PR CI and post-merge CI.
+Baseline: [PR #250](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/250),
+`c9b9bd680e0240d8018411b76bb4028aa72f23c9`, fetched 25 October 2026.
+Its reviewed tree passed 1,789 tests, the full local gate and all pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -22,7 +22,7 @@ They supply neither a faster complete indicator nor a stronger general frame bou
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
-2. [Clifford-interleaved lookup](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): the two-block boundary and the growing block count with Clifford fibers; [central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) isolates a partial character basis, while the [dirty Choi source](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) reduces a single residual probe to the complete indicator.
+2. [Clifford-interleaved lookup](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): two-block and later-key-mixing boundaries; [central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) isolates a partial character basis, while the [dirty Choi source](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md#one-bank-polarization) gives a smaller one-bank extraction from the residual probe.
 3. [Clifford projector Grams](research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): the accepted-source boundary; [paid recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) supplies the separate return interface.
 4. [Route decisions](research/ROUTE_DECISIONS.md): check the precise failed mechanism and its reopening condition before choosing another word.
 
@@ -92,20 +92,23 @@ These are reusable components; neither completes lookup.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
-A separate sharp screen now requires at least p globally third-level blocks
-below derivative error $`\sqrt2`$ when each block holds the address and has
-Clifford bank/work fibers. Arbitrary address-algebra-preserving Clifford
-interlayers are included. This is a source-block count, not native T-depth;
-genuine non-Clifford fibers and address-superposition dynamics remain open.
+The [three-block extension](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md#three-block-late-key-mixing)
+permits any global third-level first block and genuinely non-Clifford bank
+fibers, but gives error at least one quarter when the two later diagonal
+third-level blocks have Clifford walls preserving the key algebra and the target label degree exceeds
+six. It covers lookup at p at least seven and the residual HRT probe at
+r at least eight. Initial key motion alone does not escape. The older sharp
+Clifford-fiber block count remains valid; none is a growing native-depth bound.
 
-The [complete dirty Choi calculation](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md)
-reduces the standard corrected teleportation word to one quadratic XOR query.
-Its remaining HRT probe correction is not a harmless work action. Four calls
-to that residual phase, or eight calls to a source transporting one Pauli to
-it, give the complete indicator with paid dirty arithmetic and constant
-additional depth. Full in-place HRT synthesis is unnecessary for this interface.
-The remaining diagonal phase has an explicit cubic bent dual; its Fourier
-kernel does not by itself implement that diagonal phase.
+The [one-bank polarization](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md#one-bank-polarization)
+uses four residual-phase calls, or eight probe-source calls, and paid quadratic
+queries to give the complete indicator. Principal extra dirty allocation is
+$`3m-2`$, plus one reusable private pool; a direct top-phase source needs
+$`2m-2`$. All constants, output aliases and return errors are paid.
+Standard and group-based Choi completions still collapse to paid queries;
+parallel carrier-only readout loses the input dependence. Relabelling a group
+Bell outcome requires the unpaid in-place key conversion. The cubic bent dual
+therefore remains a dense kernel, not a complete diagonal implementation.
 
 [Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) still pays
 $`I+N_x`$ in sixteen bands. An added-generator embedding now reduces its
@@ -114,17 +117,22 @@ affine Clifford observables, with arbitrary residual fibers and a paid cubic
 middle. The basis is not supplied: if it lies in the Clifford hierarchy, its
 level is at least $`\lfloor p/2\rfloor+2`$. This does not bound native depth.
 
-**Next question:** can the single residual HRT probe, or the partial character
-basis and its cubic middle jointly, be synthesized at sublogarithmic native
-depth within the polynomial address overhead? These are sufficient interfaces,
-not necessary representations of every direct source. Exploit the unrestricted
-probe-commuting fibers; do not reconstruct the full HRT map by default.
-A three-cubic-block attempt must use genuinely non-Clifford fixed-address
-fibers or leave the preserved address algebra. Standard dirty teleportation,
-bank Hadamards alone, and angle tuning of the failed Clifford-zeta frame do
-not supply that change. Require an all-size complete operator identity before
-extending native schedules. The accepted-Gram alternative still owes complete
-sector selection.
+An [approximate cache bound](research/depth/SHARED_PREFIX_QUERY_AUDIT.md#approximate-cache-capacity)
+also closes a small-fingerprint shortcut: bank-independent encoding followed
+by an address-blind bank reader and actual inverse decoding needs
+$`c\ge p+2\log_2(1-\varepsilon^2/2)`$ clean bits at error below square root
+two, even with arbitrary dirty and bank mixing. A faster isolated zero test
+does not supply the complete bank operation.
+
+**Next question:** can a joint residual-probe word mix the full key after its
+first cubic stage and couple retained Bell outcomes into later query inputs,
+so its complete parity blocks give the desired probe? Keep every dirty outcome;
+require an all-size operator identity before extending native schedules.
+The partial central basis and its cubic middle remain an alternative joint
+target. Both are sufficient interfaces, not necessary representations of a
+general source. Exploit arbitrary probe-commuting fibers rather than requiring
+full HRT synthesis. Later key mixing, four or more blocks, bank-touching
+encoding and the accepted-Gram route remain open within the original budgets.
 
 ## Stopped routes, reopening conditions and superseded instructions
 

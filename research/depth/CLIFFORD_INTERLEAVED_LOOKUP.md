@@ -12,9 +12,14 @@ the second may be any diagonal third-level unitary surrounded by arbitrary
 Cliffords. The complete lookup derivative has a uniform error floor in this
 class, including arbitrary work and address movement.
 
-This is a two-block obstruction. It does not give a growing lower bound on
-unrestricted native T-depth, exclude three such blocks, or change the general
-frame frontier.
+The arbitrary-frame statement is a two-block obstruction. It does not give a
+growing lower bound on unrestricted native T-depth or exclude three blocks
+with unrestricted Clifford interlayers. A separate
+[three-block theorem](#three-block-late-key-mixing) below permits genuinely
+non-Clifford bank/work fibers but requires the two later Clifford walls to
+preserve the key algebra. Its one-quarter error floor applies when the target
+Pauli-label degree exceeds six, including the residual HRT probe at sufficiently
+large size. Neither result changes the general frame frontier.
 
 ## 1. Complete model and claim
 
@@ -347,6 +352,211 @@ of Section 5 is lost; monomiality alone does not restore it. The
 check the structural boundary, including a nonmonomial controlled-H example,
 the sharp gap and complete coordinate transport. They do not replace the
 all-size argument above.
+
+<a id="three-block-late-key-mixing"></a>
+
+### 5.2 Three cubic blocks require later key mixing
+
+The fixed-address fibers may now be genuinely non-Clifford. Nevertheless,
+three cubic blocks still cannot transport a sufficiently high-degree Pauli
+label when the two later stages preserve the key algebra. The first block
+may be an arbitrary global third-level unitary, including key/work motion.
+This is a three-block source theorem, not a growing native-depth lower bound.
+
+Let x be any number of key bits and B include every arbitrary bank and helper.
+For a Hermitian Pauli-fiber target write
+
+```math
+T=\sum_x|x\rangle\langle x|\otimes T_x,
+\qquad T_x=\lambda(x)X^{a(x)}Z^{b(x)},
+\qquad d_{\rm lab}(T)=\max_j\{\deg a_j,\deg b_j\}.
+```
+
+The degrees are Boolean ANF degrees of binary labels; the literal scalar
+$`\lambda(x)`$ is retained in T but does not enter this definition. Consider
+
+```math
+V=C_3D_3C_2D_2U,
+\qquad U\in\mathcal C_3,
+\qquad D_2,D_3\text{ diagonal in }\mathcal C_3,           \qquad(5b)
+```
+
+where $`C_2,C_3`$ are arbitrary global Cliffords preserving the key-Z algebra.
+They may affinely relabel x and mix every bank/work wire. The diagonal blocks
+need not have Clifford fibers. For every Hermitian Pauli P,
+
+```math
+d_{\rm lab}(T)\gt6
+\quad\Longrightarrow\quad
+\|VPV^\dagger-T\|\ge\frac14.                            \qquad(5c)
+```
+
+All key, bank, helper and reference inputs are included. V need not return
+its work separately. If an emitted source is within epsilon of (5b) on this
+complete space, its derivative gap is at least $`1/4-2\varepsilon`$.
+
+**A width-independent Clifford rounding lemma.** For diagonal third-level D
+and Hermitian Cliffords K,L,
+
+```math
+\|DKD^\dagger-L\|\lt\frac14
+\quad\Longrightarrow\quad DKD^\dagger=L.                \qquad(5d)
+```
+
+Corresponding Clifford columns with distinct affine supports have modulus
+overlap at most $`1/\sqrt2`$. Diagonal conjugation changes no support or
+modulus, so the small error first forces all corresponding supports to agree.
+On each common support their entry ratio is $`\lambda\omega^{q(t)}`$,
+where $`\omega=e^{i\pi/4}`$, t parametrizes that affine support, and q is a
+weighted cubic phase polynomial modulo eight. The same global lambda works
+across all columns: every Clifford column is obtained from its zero column
+by a conjugated Pauli, so all its nonzero entries share one scalar times
+fourth-root phases. Affine substitution preserves diagonal third-level phases.
+
+A nonzero multilinear polynomial of degree at most three modulo eight is
+nonzero on at least one eighth of the Boolean cube. To see this, take the full
+finite difference of a nonzero maximal-degree monomial; on every complementary
+fiber at least one of at most eight entries must be nonzero. Thus, if q is
+nonconstant, each eighth-root value has probability at most seven eighths.
+Put $`\delta=2\sin(\pi/8)`$ and $`\mu=\mathbb E\omega^q`$. Distinct roots are
+separated by delta, hence
+
+```math
+|\mu|^2\le1-\frac{7\delta^2}{64},\qquad
+\mathbb E|\lambda\omega^q-1|^2
+ \ge2-2|\mu|\ge\frac{7\delta^2}{64}\gt\frac1{16}.
+```
+
+The first bound uses
+$`\sum_{i\lt j}\alpha_i\alpha_j\ge7/64`$ for the root probabilities.
+This contradicts the column-error promise. Every column ratio is therefore
+constant. These constants lie in one coset of the eighth roots; two distinct
+ones cannot both be within one quarter of one. The whole operator is one
+scalar multiple of L. Hermiticity restricts that scalar to plus or minus one,
+and the error excludes minus one. This proves (5d).
+
+**The first probe image is forced to hold the key.** Suppose the error in
+(5c) were smaller than one quarter. Set
+$`W=C_3D_3C_2D_2`$ and $`K=UPU^\dagger`$, a Hermitian global Clifford.
+For each key Z, $`R=W^\dagger ZW`$ is a signed key-Z Pauli, and
+
+```math
+\|KRK^\dagger-R\|\le2\|VPV^\dagger-T\|\lt\frac12.
+```
+
+Distinct signed Hermitian Paulis are separated by at least square root two,
+so K fixes all these R exactly. They span the key-Z algebra; K consequently
+holds every key value and has Clifford bank/work fibers. This argument allows
+arbitrary key motion inside U, rather than assuming it absent.
+
+Put $`B=C_2D_2KD_2^\dagger C_2^\dagger`$ and
+$`T'=C_3^\dagger TC_3`$. Each fiber of $`D_3^\dagger T'D_3`$ is a Hermitian
+Clifford. Remove the fiber of $`C_2`$ and apply (5d) to the corresponding
+$`D_2`$ and K fibers. Exact equality follows at every key:
+$`D_3BD_3^\dagger=T'`$. In particular B has Clifford fibers. A global Clifford
+preserving the key algebra has a constant invertible bank/work symplectic
+matrix, with only fiber signs and an affine key relabeling varying. These
+operations preserve the maximum label degree, so
+$`d_{\rm lab}(T')=d_{\rm lab}(T)`$.
+
+**The middle has third-level images of every bank Pauli.** For a fixed bank
+Pauli R define
+
+```math
+L=K\bigl[D_2^\dagger(C_2^\dagger RC_2)D_2\bigr]K^\dagger.
+```
+
+This is a global Clifford. Moreover
+$`D_2LD_2^\dagger=C_2^\dagger(BRB^\dagger)C_2`$ is pointwise Pauli, hence
+monomial. Since diagonal conjugation cannot change column supports, L is a
+monomial Clifford. It follows that
+$`D_2(LD_2^\dagger L^\dagger)L`$ is third-level: its parenthesized diagonal
+factors are diagonal third-level phases, a group closed under affine
+substitution. Clifford conjugation then proves
+$`BRB^\dagger\in\mathcal C_3`$ globally.
+
+**The final phase permits label degree at most six.** Write the Pauli labels
+of $`T'_x`$ as a,b. Since $`B=D_3^\dagger T'D_3`$, its bank permutation is
+$`z\mapsto z+a(x)`$. Therefore
+$`BZ_jB^\dagger=(-1)^{a_j(x)}Z_j`$. The preceding global third-level property
+implies $`\deg a_j\le3`$.
+
+Similarly $`A_j=BX_jB^\dagger`$ has the fixed permutation $`z\mapsto z+e_j`$.
+Thus $`X_jA_j`$ is diagonal third-level. Its phase on the basis column z=0
+is a fourth root because $`A_j`$ is a Hermitian Pauli on every key fiber.
+It consequently has the form $`i^{r_j(x)}`$ with a multilinear polynomial
+$`r_j`$ of degree at most three modulo four. This follows by dividing the even
+modulo-eight coefficients of its diagonal third-level phase; Boolean Möbius
+inversion justifies the division. The zero column is an operator witness,
+not an initialized work resource.
+
+Write $`D_{3,x}|z\rangle=\omega^{d_x(z)}|z\rangle`$. Direct action, including
+$`\lambda(x)^2=(-1)^{a(x)\cdot b(x)}`$, gives
+
+```math
+A_j|x,0\rangle
+ =(-1)^{b_j(x)}\omega^{\Delta_jd_x(a(x))-\Delta_jd_x(0)}
+       |x,e_j\rangle,\qquad
+\Delta_jd(z)=d(z+e_j)-d(z).                              \qquad(5e)
+```
+
+For completeness, the bank-dependent part of a global diagonal third-level
+phase has the form
+
+```math
+d_x(z)=d_0(x)+\sum_j\ell_j(x)z_j
+ +2\sum_{j\lt k}q_{jk}(x)z_jz_k
+ +4\sum_{j\lt k\lt l}c_{jkl}z_jz_kz_l\pmod8.
+```
+
+Here $`\ell_j`$ has constant, twice-linear and four-times-quadratic key
+coefficients; $`q_{jk}`$ has a constant and twice-linear key coefficients;
+and $`c_{jkl}`$ is constant. The exponent difference in (5e) is even. Dividing
+it by two modulo four gives
+
+```math
+\begin{aligned}
+\frac{\Delta_jd_x(a)-\Delta_jd_x(0)}2
+\equiv{}&-\ell_j(x)a_j+\sum_{k\ne j}q_{jk}(x)a_k
+ -2\sum_{k\ne j}q_{jk}(x)a_ja_k\\
+ &+2\sum_{k\lt l,\ k,l\ne j}c_{jkl}a_ka_l\pmod4.
+\end{aligned}                                                   \qquad(5f)
+```
+
+This polynomial has degree at most six modulo four. Indeed a degree-three
+Boolean function, written as an XOR of monomials M_t, has integer lift
+$`\sum_tM_t-2\sum_{t\lt u}M_tM_u`$ modulo four, of degree at most six.
+Terms multiplied by two in (5f) require only Boolean products; the
+four-times-quadratic part of $`\ell_j`$ vanishes modulo four. Equation (5e)
+now expresses $`2b_j`$ as a degree-at-most-six polynomial modulo four.
+Its coefficients are even by Möbius inversion, giving $`\deg b_j\le6`$.
+Thus $`d_{\rm lab}(T')\le6`$, the required contradiction.
+
+For complete coefficient lookup $`d_{\rm lab}(Q)=p`$, so (5c) applies for
+p at least seven. It also applies directly to the
+[residual HRT probe](DIRTY_CHOI_OBSERVABLE_SOURCE.md#2-the-hrt-correction-does-not-disappear-on-the-chosen-probe).
+For a full key z and arbitrary carrier y,
+
+```math
+\Xi_r(z,y)=(-1)^{\lambda_r(f_r(z))}
+           (-1)^{\lambda_r((1+f_r(z))y)}.
+```
+
+At fixed z this is a literal Hermitian Z Pauli on y. The label on the singleton
+carrier coordinate $`y_{\{i\}}`$ is $`[e_{[r]\setminus\{i\}}]f_r(z)`$,
+of Boolean degree r-1: its unique highest-degree term is the product of the
+corresponding singleton key coefficients. Hence for r at least eight the same
+one-quarter floor holds when the two later stages preserve the full z-key
+algebra. The sign $`(-1)^{\lambda_r(f_r(z))}`$ is retained and cannot remove
+this label obstruction.
+
+A three-block construction must therefore mix the relevant key algebra at a
+later stage, or use a different source architecture. Arbitrary non-Clifford
+bank fibers alone do not suffice under (5b). Four or more blocks, later key
+mixing, and unrestricted joint native synthesis remain outside this theorem.
+Neither a new complete source nor a stronger general frame bound follows.
+The [phase and degree fixtures](../../tests/test_residual_probe_key_mixing.py)
+check finite proof ingredients; the argument above establishes the all-size gap.
 
 ## 6. A long physical Clifford frame and its calibrated repair
 

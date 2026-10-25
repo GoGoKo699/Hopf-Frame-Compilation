@@ -11,6 +11,9 @@ supply inverse evaluation. However, the missing correction can be weakened
 to one complete transported probe: that weaker source already supplies the
 whole indicator through a four-corner dirty-product identity. Its remaining
 phase is the Boolean Walsh dual of an explicitly cubic bent phase.
+The [one-bank refinement](#one-bank-polarization) below reduces the principal
+dirty allocation and gives a direct top-phase ledger; the original disjoint-bank
+construction remains a separate exact variant.
 
 These are exact identities and a conditional native reduction. No shallow
 implementation of the missing phase is supplied, and the unconditional
@@ -83,6 +86,63 @@ cost is two w-Hadamard layers, w CNOTs and a register cycle implemented by
 two w-wire swaps. The principal C, A and B inputs remain arbitrary; their
 individual return is not asserted. Reversing (2) gives the actual inverse
 with the same bounds.
+
+### 1.1 A group-adapted Bell word still retains a forward query
+
+For the HRT maps $`f=f_r,k=k_r`$ defined below, the augmentation ideal has
+group law $`c\circ a=c+a+ca`$, with every element its own inverse and
+$`k(c\circ a)=k(c)+k(a)`$. Let $`G_{CA}`$ be the
+[paid complete algebra-key action](OUTPUT_ALIASED_CHARACTER_SOURCE.md#6-a-paid-algebra-key-multiplication-does-not-yet-convert-the-key)
+$`|c,a,z\rangle\mapsto|c,c\circ a,z\rangle`$ and write
+$`Q_{AB}=Q_k(A;B)`$. A group-adapted Bell multiplication followed by the
+forward k correction has the exact normal form
+
+```math
+\begin{aligned}
+Q_{AB}G_{CA}Q_{AB}&=G_{CA}Q_k(C;B),\\
+\mathcal T_G
+ &=Q_{AB}H_CG_{CA}Q_{AB}H_A
+  =H_CG_{CA}Q_k(C;B)H_A.                               \qquad(2a)
+\end{aligned}
+```
+
+The two query values are $`k(a)`$ and $`k(c\circ a)`$, whose sum is
+$`k(c)`$; $`Q_{AB}`$ also commutes with $`H_C`$. Thus this identity includes
+every arbitrary principal input. With $`w=2^r-1,d=2^w`$, its full kernel is
+
+```math
+\mathcal T_G|c,a,z\rangle
+ =d^{-1}\sum_{t,u}(-1)^{a\cdot(c\circ u)+t\cdot c}
+       |t,u,z+k(c)\rangle.                             \qquad(2b)
+```
+
+The Fourier variable before the group multiplication is $`c\circ u`$,
+which proves the displayed phase and normalization. For common forward and
+actual-inverse bounds of the two paid components, the reduced word uses
+$`t_k+t_G`$ T gates, depth at most $`d_k+d_G`$, at most
+$`g_k+g_G+2w`$ total native gates, and
+$`\max(h_k,h_G)`$ returned private helpers. It has zero error and no clean
+inputs; individual return of the principal C,A,B registers is not asserted.
+
+Even on the diagnostic column $`a=z=0`$, putting $`b=k(c)`$ leaves the
+inverse-character phase $`(-1)^{t\cdot f(b)}`$. Replacing $`H_C`$ with the
+group-character transform would remove this particular phase, but that
+transform is $`H_CF_r^\dagger`$, an unpaid in-place coordinate change.
+Likewise, an ordinary Clifford Bell basis $`B_0`$ with its second label u
+replaced by $`k(u)`$ is exactly $`B_0(I\otimes F_r^\dagger)`$. A complete
+implementation of that relabelled basis therefore pays the in-place map,
+with identical operator error and work-return contract; its out-of-place
+query does not supply it. These observations concern the specified words,
+not arbitrary joint synthesis or a weaker transported probe.
+
+There is also a direct check on parallel copies of (2). Any readout P
+diagonal in their output carrier labels y pulls back to
+$`H_A P(A)H_A`$, with identity on all original C and B registers: the
+query and CNOT in (2) commute with that carrier readout. The same identity
+holds for a carrier-controlled product XOR on an untouched arbitrary output
+bank. Consequently this parallel carrier-only readout cannot recover an
+input-C-dependent inverse product. Later interactions or key mixing are
+outside this observation.
 
 ## 2. The HRT correction does not disappear on the chosen probe
 
@@ -316,6 +376,112 @@ normalizes count and width. The
 retains its own log-log contribution. These are sufficient reductions;
 no converse from an arbitrary indicator to $`S_r`$ or $`\Xi_r`$ is claimed.
 
+<a id="one-bank-polarization"></a>
+
+### 5.1 One dirty bank and an output-aliased carrier
+
+The quadratic inverse permits the four corners to share a single arbitrary
+bank. Put $`n=m-1`$ and now let a,B each have n augmentation coordinates.
+For arbitrary augmentation elements B,u,v, the explicit unordered-pair
+formula for $`k_p`$ gives
+
+```math
+k_p(B)+k_p(B+u)+k_p(B+u+v)+k_p(B+v)=uv.                 \qquad(13a)
+```
+
+The linear terms cancel, and each unordered disjoint pair contributes
+$`u_Iv_J+v_Iu_J`$, exactly its coefficient in uv. No constant-coordinate
+product is omitted: every augmentation element has constant zero and square
+zero. With $`u=f_p(a)`$ and $`v=f_p(a+\iota(x))`$, equation (3) says
+$`uv+u+v=f_p(\iota(x))`$.
+
+Let $`R=Q_{k_p}(B;Y_{\ne\varnothing})`$ be the paid quadratic query and
+let L add B to those same output coordinates by n CNOTs. Use (8) on the
+full output bank $`\overline B=(Y_\varnothing,B)`$. Call this query U;
+it adds u to B and toggles the arbitrary physical wire $`Y_\varnothing`$.
+Let V enclose U with the p-CNOT key shift and its inverse, so that V adds
+v to B and also toggles $`Y_\varnothing`$. Execute chronologically
+
+```math
+R,\ L,\ U,\ R,\ V,\ R,\ L,\ U^\dagger,\ R,\ V^\dagger,
+\ X_{Y_\varnothing}.                                  \qquad(13b)
+```
+
+The four R calls see $`B,B+u,B+u+v,B+v`$, so they add uv by (13a).
+The two L calls add $`B+(B+u+v)=u+v`$. Both a and B return.
+The four constant-coordinate toggles cancel; the final literal
+$`X=HS^2H`$ supplies the formal unit at a cost of four native gates.
+Thus Y gains $`1+f_p(\iota(x))=\prod_i(1+x_ie_i)`$. The same two upper-zeta
+walls as in Section 4 turn this into the complete indicator. Every input
+column is included, so the identity also holds on coherent inputs and
+arbitrary references.
+
+There is a further safe alias in (6). Its key z occupies the disjoint
+physical registers $`a,\overline B`$, while the carrier y can occupy
+$`Y_{\ne\varnothing}`$ together with m additional dirty wires. These
+sets remain disjoint during the complement permutations in (8). The ideal
+whole query returns y on every arbitrary input; between query calls those
+same output wires may therefore be targets of R and L. No output coordinate
+or carrier coordinate is initialized. The principal extra dirty allocation
+is a(n), B(n), and the additional carrier part(m), totaling $`3m-2`$.
+A direct $`S_r`$ phase source needs no carrier and uses only $`2m-2`$.
+
+Write $`t_{k,p},g_{k,p},d_{k,p},h_{k,p}`$ for the common bounds of
+$`Q_{k_p}`$; the un-subscripted k bounds still refer to $`Q_{k_r}`$.
+The same arithmetic proof gives
+$`g_{k,p}\le(p-1)(152\rho_p+64s_p)+3(m-1)`$ and
+$`d_{k,p}\le40`$, with its cited T-count and helper bounds. All g counts
+include T gates. With the $`\Xi_r`$ source of Section 5, (13b) gives
+
+```math
+\begin{aligned}
+T_I&\le4t_\Xi+8t_k+4t_{k,p},\\
+D_T(I)&\le4d_\Xi+8d_k+4d_{k,p}\le4d_\Xi+480,\\
+G_{\rm all}(I)&\le4g_\Xi+8g_k+4g_{k,p}+pm+22m+4p+2,\\
+w_I&\le3m-2+\max(h_\Xi,h_k,h_{k,p}),\\
+\varepsilon_I&\le4\epsilon,\qquad a_{\rm clean}=0.       \qquad(13c)
+\end{aligned}
+```
+
+The Clifford overhead is pm for the zeta walls, 20m for four copies of
+the Hadamard/complement walls in (8), 4p for the two V key-shift pairs,
+$`2(m-1)`$ for the two L additions, and four for the final X.
+For a direct complete $`S_r\otimes I`$ phase source with error epsilon
+and common bounds $`t_S,g_S,d_S,h_S`$, the carrier and the eight
+$`Q_{k_r}`$ calls disappear:
+
+```math
+\begin{aligned}
+T_I&\le4t_S+4t_{k,p},\\
+D_T(I)&\le4d_S+4d_{k,p}\le4d_S+160,\\
+G_{\rm all}(I)&\le4g_S+4g_{k,p}+pm+22m+4p+2,\\
+w_I&\le2m-2+\max(h_S,h_{k,p}),\\
+\varepsilon_I&\le4\epsilon,\qquad a_{\rm clean}=0.       \qquad(13d)
+\end{aligned}
+```
+
+Finally, the weaker derivative-only promise (12) gives
+
+```math
+\begin{aligned}
+T_I&\le8t_W+8t_k+4t_{k,p},\\
+D_T(I)&\le8d_W+8d_k+4d_{k,p}\le8d_W+480,\\
+G_{\rm all}(I)&\le8g_W+8g_k+4g_{k,p}+pm+22m+4p+10,\\
+w_I&\le3m-2+\max(h_W,h_k,h_{k,p}),\\
+\varepsilon_I&\le4\epsilon,\qquad a_{\rm clean}=0.       \qquad(13e)
+\end{aligned}
+```
+
+The extra eight gates are again four literal Z insertions. In all three
+ledgers, keep the private pool disjoint from the principal registers and
+reuse it sequentially. Four complete source errors telescope to
+$`4\epsilon`$ even with the carrier alias and approximate intermediate
+return. Use the actual native adjoints in (13b); reversing the completed
+word has the same bounds. The improvement is in principal dirty allocation;
+four quadratic queries replace four bilinear product queries, so no lower
+arithmetic count or new asymptotic depth is asserted. Both variants retain
+their full-input proofs and polynomial-overhead guarantees.
+
 ## 6. The remaining phase is a cubic bent dual
 
 The phase in (7) has a useful explicit structure. Let $`n=m-1`$ and
@@ -360,8 +526,16 @@ The concrete positive question is whether $`D_{g_p}`$, whose Walsh dual
 $`g_p^*`$ is cubic, admits a shallow **complete diagonal implementation**,
 or whether a source can meet (12) directly with the simultaneous dirty-work
 and error bounds.
-The four-corner reduction proves the payoff of that weaker phase target
-without requiring an in-place HRT permutation or a full coherent correction.
-The [exact fixtures](../../tests/test_complete_observable_bases.py) check
-finite instances and ledgers; the displayed identities prove the all-size
-claims.
+The [one-bank reduction](#one-bank-polarization) gives the smaller dirty
+allocation for this weaker phase target without requiring an in-place HRT
+permutation or a full coherent correction. For $`r\ge8`$, the
+[three-block theorem](CLIFFORD_INTERLEAVED_LOOKUP.md#three-block-late-key-mixing)
+gives a one-quarter residual-probe error floor when the two later diagonal
+cubic blocks have Clifford walls preserving the full z-key algebra, even with arbitrary first-stage
+key/work motion. A three-block candidate must therefore change that later
+key action or leave the stated architecture; unrestricted native depth is
+not bounded by this screen.
+The [original exact fixtures](../../tests/test_complete_observable_bases.py)
+and [one-bank and Bell-word fixtures](../../tests/test_residual_probe_key_mixing.py)
+check finite instances and ledgers; the displayed identities prove the
+all-size claims.
