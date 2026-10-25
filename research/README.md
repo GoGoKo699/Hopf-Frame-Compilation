@@ -240,9 +240,9 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Weak Pauli orbit compression](depth/WEAK_PAULI_ORBIT_COMPRESSION.md) — native single-coordinate and joint two-coordinate sources, complete two-address lookup, four-band nested coefficients, [two-band coefficient shear and complete assembly](depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear) with a paused linear-depth recurrence, and scoped product/prefix-rank/final-block limits
 - [Native fusion of complete coefficient shears](depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) — exact completed exchanges, failed half-band regrouping, a uniform-angle bipartite word gap, and scoped common-Clifford-basis and dirty-replica screens
 - [Coordinate-weighted pulse limits](depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md) — paid coordinate and tail-dependent quarter angles, robust signature collisions, and the directed-filtration lower bound on total pulses; Clifford pulses are not charged as T layers
-- [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — a complete two-cubic-block gap with arbitrary Clifford address/work mixing, a sharp growing block count for held-address Clifford fibers, and the failed long physical Clifford-zeta frame
+- [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — the two-block gap, sharp Clifford-fiber block count, and a three-block requirement for later key mixing even with an arbitrary global third-level prefix; the long physical Clifford-zeta frame remains failed
 - [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) — the Pfaffian mask-frame normal form, completed-shear rank limit, paid sixteen-band linear factor, and a partial character-basis reduction with a scoped hierarchy obstruction
-- [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — an all-input one-query normal form and four-phase/eight-source complete-indicator extraction with paid arbitrary-dirty arithmetic
+- [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — complete standard/group Bell diagnostics and four-phase/eight-source extraction, with one-bank polarization and safe output/carrier aliases reducing dirty width
 - [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — paid address/tag and bank-motion sources, scoped three-layer boundaries, the corrected relative involution, and complete-transition failures of retained repairs
 - [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — actual joint word, robust direct square readout for balanced two-unitary sources, paid anchors and two distinct finite failed bank-moving trials
 - [Affine orbit reflection source](depth/AFFINE_ORBIT_REFLECTION_SOURCE.md) — paid fixed-point-free charge-preserving motion and orbit coordinates, exact diagonal phase cochains, sharp phase-degree scope and a failed local anchor
@@ -367,7 +367,7 @@ individual limitations do not obstruct the later complete-column compiler.
 | [Common-source rearrangement](depth/COMMON_SOURCE_REUSE.md) | Stale-monitor and fresh-bank counterexamples; return mechanism still required. |
 | [Protected unary source](depth/PROTECTED_UNARY_SOURCE.md) | One preparation across groups; removes only source-boundary overhead. |
 | [Windowed predicates](depth/WINDOWED_GROUP_PREDICATES.md) | Consumed activity caches with exact inactive cancellation. |
-| [Shared-prefix queries](depth/SHARED_PREFIX_QUERY_AUDIT.md) | Cache capacity, refresh and correction costs; special affine promises are separate. |
+| [Shared-prefix queries](depth/SHARED_PREFIX_QUERY_AUDIT.md) | Exact and approximate full-bank cache capacity with arbitrary dirty mixing, plus refresh and correction costs; special affine promises are separate. |
 | [Retained-source fusion](depth/RETAINED_SOURCE_FUSION.md) | Paid fusion and stabilizer completion; ordered complementary transport remains. |
 
 ## Session records and designs

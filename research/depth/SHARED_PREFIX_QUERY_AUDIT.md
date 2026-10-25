@@ -1,4 +1,4 @@
-# Exact shared-prefix query interfaces and their limits
+# Shared-prefix query interfaces and their limits
 
 **Preserved research study.** This note is outside the selected A–D proof chain. Its outcome and limits are indexed in the [research archive](../README.md); historical proposals are not current work orders. The local mathematical statements retain their stated hypotheses.
 
@@ -7,7 +7,7 @@
 
 Retaining a dirty prefix indicator does not by itself make a later query
 independent of its unknown offset. This chapter identifies that residue,
-proves a capacity bound for an explicitly restricted exact cache reader,
+proves exact and approximate capacity bounds for restricted cache readers,
 and gives a native positive example with one additional clean baseline.
 A charged two-group identity then isolates the correction needed to share
 a prefix boundary. Its generic correction still contains a fresh lookup.
@@ -130,6 +130,95 @@ The proof is a direct orthogonal-program argument, consistent with
 [Nielsen and Chuang, *Programmable quantum gate arrays* (1997)](https://arxiv.org/abs/quant-ph/9703032).
 The orthogonality principle is inherited; the support-rank calculation
 above states its application to this cache contract explicitly.
+
+<a id="approximate-cache-capacity"></a>
+
+### 3.1 Approximate arbitrary-bank readers still need linear clean capacity
+
+Let the preserved prefix x have p bits, put $`m=2^p`$, and give the
+cache c initialized bits A and an arbitrary d-dimensional dirty register
+W. All initialized work belongs to A. The encoder is bank-independent
+and has the form
+
+```math
+E=\sum_x|x\rangle\langle x|\otimes E_x,
+\qquad E_x\text{ unitary on }AW.
+```
+
+The middle processor B acts on AW and the entire arbitrary m-bit bank
+Y, but never accesses x, even by a Clifford gate. It may mix dirty
+inputs and bank basis states arbitrarily. The final uncoder is the
+actual $`E^\dagger`$ and touches only x, A, W. Thus the completed
+word is $`U=E^\dagger B E`$. Write J for insertion of
+$`A=0^c`$ and require
+
+```math
+\|UJ-JD\|\le\varepsilon\lt\sqrt2,
+\qquad
+D|x,Y,w\rangle=(-1)^{Y_x}|x,Y,w\rangle.
+```
+
+This is the full initialized-isometry norm: all address, bank, dirty
+and reference inputs, and return of A and W, are included. Then
+
+```math
+2^c\ge m(1-\varepsilon^2/2)^2,
+\qquad
+c\ge p+2\log_2(1-\varepsilon^2/2).
+```
+
+In particular $`c\ge p-O_\varepsilon(1)`$ at any fixed error below
+$`\sqrt2`$. At zero error this recovers the exact m-row capacity
+bound in Section 3.
+
+Test the permitted dirty input $`I_W/d`$. After encoding, the cache
+density operator and its purity are
+
+```math
+\rho_x=E_x\left(|0^c\rangle\langle0^c|\otimes I_W/d\right)E_x^\dagger,
+\qquad \mathrm{Tr}(\rho_x^2)=1/d.
+```
+
+For each sign vector $`s\in\{+1,-1\}^m`$ choose the basis bank
+$`Y(s)`$ with $`(-1)^{Y(s)_x}=s_x`$. The diagonal bank block
+$`B_s=\langle Y(s)|B|Y(s)\rangle`$ is a contraction on AW, even
+if B mixes bank states. For any pure cache input in the encoded clean
+subspace, multiplying the full error bound by the actual encoder gives
+squared vector error at most $`\varepsilon^2`$ against $`s_x`$
+times that input. Averaging over the maximally mixed dirty input and
+putting $`H_s=(B_s+B_s^\dagger)/2`$ gives
+
+```math
+s_x\mathrm{Tr}(H_s\rho_x)\ge a,
+\qquad a=1-\varepsilon^2/2\gt0,
+\qquad \|H_s\|\le1.
+```
+
+Choose the signs independently and uniformly. With
+$`R_s=\sum_xs_x\rho_x`$, trace-norm duality and Cauchy--Schwarz
+imply
+
+```math
+\begin{aligned}
+ma&\le\mathrm{Tr}(H_sR_s)\le\|R_s\|_1,\\
+\mathbb E_s\|R_s\|_1
+&\le\sqrt{2^c d\,\mathbb E_s\mathrm{Tr}(R_s^2)}\\
+&=\sqrt{2^c d\sum_x\mathrm{Tr}(\rho_x^2)}
+ =\sqrt{2^c m}.
+\end{aligned}
+```
+
+Squaring proves the bound. The dirty dimension cancels despite arbitrary
+internal mixing. These are necessary tests of the full norm, with no
+inference from measurement success to coherent accuracy.
+
+The [spectral promotion window](MSS_SPECTRAL_PROMOTION.md#7-compression-sources-and-the-larger-sufficient-window)
+allows complete sources with $`c=o(\log p)`$, but cannot supply the
+missing capacity of this prefix-blind cache. Continued address access by
+B, an encoder that touches Y, address motion such as swapping x into the
+cache, or a different completed word leaves the stated hypotheses. A
+scalar zero-test need not realize every bank sign vector. This is a
+capacity bound for the displayed interface, not a native-depth bound.
 
 ## 4. A scoped capacity consequence for arbitrary window-row readers
 
