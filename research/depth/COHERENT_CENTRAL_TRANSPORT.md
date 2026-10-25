@@ -486,7 +486,7 @@ obey
 Indeed, put $`\widetilde A_{ab}=B^\dagger P_{ab}B`$. The double commutator
 $`[[R,\widetilde A_{ij}],\widetilde A_{kl}]`$ is scalar $`\pm I`$,
 because $`BRB^\dagger`$ is Clifford. For the c witness above, its ideal
-counterpart is a nonidentity Pauli, at distance two from either scalar.
+counterpart is a nonidentity Hermitian Pauli, at distance two from either scalar.
 Two telescoping estimates bound their distance by the left side of (19).
 Thus the uniform pair-image error is at least one third. Arbitrary private
 work and reference inputs are included.
