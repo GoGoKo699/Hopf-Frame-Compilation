@@ -839,8 +839,8 @@ R_x=Z_Y(v_x)Z_Z(v_x).
 ```
 
 Here Y,Z are entire arbitrary auxiliary banks. Equation (31) gives
-$`W_{2,x}^\dagger Q_xW_{2,x}=R_x`$ using the left kernel v_x,
-not the known right kernel e_0. It includes identity on every other
+$`W_{2,x}^\dagger Q_xW_{2,x}=R_x`$ using the left kernel $`v_x`$,
+not the known right kernel $`e_0`$. It includes identity on every other
 principal and implementation register.
 
 Let an arbitrary acceptance mechanism on x,Y,Z and additional work have
@@ -855,7 +855,7 @@ G=W_2(I_{CD}\otimes E)W_2^\dagger.
 
 The notation $`I_{CD}\otimes E`$ permits E to act on or even move the
 address; it only requires that acceptance itself act trivially on C,D.
-Define the coherent direct sums Q and R from Q_x and R_x. Unitary
+Define the coherent direct sums Q and R from $`Q_x`$ and $`R_x`$. Unitary
 invariance of operator norm and (31) give the exact equality
 
 ```math
@@ -871,7 +871,7 @@ of full operator errors, not a fixed-input probability or a normalized
 trace comparison. Equation (34) remains valid on an external reference.
 
 There is a sharp consequence when E is address independent. For distinct
-addresses x,x', the Vandermonde columns v_x,v_x' are distinct. Choose a
+addresses $`x,x'`$, the Vandermonde columns $`v_x,v_{x'}`$ are distinct. Choose a
 binary auxiliary difference y+z on which their two characters disagree.
 Then
 
@@ -892,7 +892,7 @@ holds already at p=1. If acceptance is address dependent, (34), rather
 than (35), is the retained statement: implementing its required effect
 is still an unpaid source operation.
 
-No new native gate is assumed. W_2 is the already paid two-copy Bell
+No new native gate is assumed. $`W_2`$ is the already paid two-copy Bell
 envelope; E and any mechanism realizing it retain their own count,
 depth, width, precision and return obligations. In particular an
 abstract effect satisfying (34) is not a source construction. The
@@ -905,7 +905,7 @@ couplings are interleaved with acceptance.
 
 A separate proposed use of the same kernel is to expand within
 $`H_x=\mathrm{im}K_x=\ker(v_x^{\mathsf T})`$. This requires a
-different action from merely preserving charge. Let e=e_0, so
+different action from merely preserving charge. Let $`e=e_0`$, so
 $`v_x^{\mathsf T}e=1`$, and define the two normalized vectors
 
 ```math

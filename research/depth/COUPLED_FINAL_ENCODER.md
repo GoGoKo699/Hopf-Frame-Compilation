@@ -2123,11 +2123,11 @@ L|y\rangle=|Ay+b\rangle,\qquad A\in\mathrm{GL}(m,2).
 Take either $`C=H_B L`$ or $`C=L H_B`$, where
 $`H_B=H^{\otimes m}`$. The affine offset b is arbitrary; no initialization
 of bank bits is allowed. For this subsection allow T to be any unitary
-diagonal in the joint X basis, and D_s to be any computational-diagonal
+diagonal in the joint X basis, and $`D_s`$ to be any computational-diagonal
 unitary. Retain the same source form
 $`E_s=C^\dagger T^\dagger D_s^\dagger C T D_s`$ and
 $`F_s=E_sZ_\pi E_s^\dagger`$. This analytic generality supplies no free
-native implementation of T or D_s. Write $`\mathbf1=\boldsymbol1_m`$
+native implementation of T or $`D_s`$. Write $`\mathbf1=\boldsymbol1_m`$
 and $`H_0=T Z_\pi T^\dagger`$. Conjugating actual and target by TC gives
 
 ```math
@@ -2155,9 +2155,9 @@ with a single fixed displacement v in every column:
 For the first row, conjugation of each $`Z^u`$ by $`C H_0 C^\dagger`$
 returns $`(-1)^{(A^{-\mathsf T}\mathbf1)\cdot u}Z^u`$; the
 joint computational eigenspaces are one dimensional. The second row
-follows by first using H_B and then applying L. The affine offset can
+follows by first using $`H_B`$ and then applying L. The affine offset can
 change the phase of a column but not its displacement. The diagonal
-D_s in (71) likewise changes only the column phase. Thus for every y,
+$`D_s`$ in (71) likewise changes only the column phase. Thus for every y,
 
 ```math
 \mathcal A_s|y\rangle=\gamma_{s,y}|y+v\rangle,
@@ -2171,8 +2171,8 @@ distinct at p=2, has support among
 \mathbf1+h_t+e_a,\qquad a,t\in\mathbb F_2^p.
 ```
 
-None of these masks equals $`\mathbf1`$: h_0 is zero, and each
-nonzero h_t has weight $`m/2\ge2`$, whereas e_a has weight one.
+None of these masks equals $`\mathbf1`$: $`h_0`$ is zero, and each
+nonzero $`h_t`$ has weight $`m/2\ge2`$, whereas $`e_a`$ has weight one.
 For $`C=H_B L`$, the corresponding X-displacement masks of
 $`C Q_s C^\dagger`$ are $`A^{-\mathsf T}(\mathbf1+h_t+e_a)`$;
 for $`C=L H_B`$ they are $`A(\mathbf1+h_t+e_a)`$. Affine
@@ -2202,7 +2202,7 @@ resource is supplied to the source.
 
 ### 11.2. The native costs are paid, but do not repair the transition
 
-Suppose L is emitted using g_L elementary Cliffords in a common
+Suppose L is emitted using $`g_L`$ elementary Cliffords in a common
 forward/actual-inverse bound, with CNOTs, swaps expanded into CNOTs,
 and X expanded as HSSH. Both displayed choices of C have a physical
 implementation $`C_{\rm phys}=W^\dagger C W`$ with
@@ -2232,10 +2232,10 @@ operator action, not an unpaid control or uncounted native gate.
 ### 11.3. No monomial dressing gives exact lookup at the native angles
 
 Return here to the native product $`T=\prod_j e^{-i\pi X_j/8}`$
-and the corrected middle D_s of Section 9.1. A separate exact statement
+and the corrected middle $`D_s`$ of Section 9.1. A separate exact statement
 covers every computational-monomial C on the bank, including nonlinear basis permutations and arbitrary diagonal
 phases, without granting it a free implementation. Such a C preserves
-the fact that every entry of H_0 has modulus $`2^{-m/2}`$. Thus the
+the fact that every entry of $`H_0`$ has modulus $`2^{-m/2}`$. Thus the
 actual $`\mathcal A_s`$ in (71) has that same modulus everywhere.
 The transformed target is
 $`\mathcal R_s=T\mathrm{diag}(f)T^\dagger`$, where
@@ -2302,7 +2302,7 @@ g(x)\cdot g(y)=x\cdot y,
 The map g is bijective and fixes zero. For all x,x',y, (78) implies
 $`[g(x+x')+g(x)+g(x')]\cdot g(y)=0`$. Surjectivity in y makes
 the bracket zero. Hence g is linear and orthogonal, and sigma is affine.
-But (76) would then make the exponent of Q_s affine as well. This
+But (76) would then make the exponent of $`Q_s`$ affine as well. This
 contradicts its degree p+1 from Section 10.4 whenever p is at least two.
 Consequently **no computational-monomial C**, even with a nonlinear
 permutation and arbitrary phases, supplies exact complete lookup in this
@@ -2311,8 +2311,13 @@ on C was used.
 
 This exact screen does **not** give a dimension-independent approximation
 gap for arbitrary monomial dressings. The diagonal restriction only gives
-$`\|F_s(C)-Q_s\|\ge(\sum_S\widehat f(S)^2 2^{-|S|})^{1/2}-2^{-m/2}`$,
-which can be small; it must not be promoted to a fixed-accuracy exclusion.
+
+```math
+\|F_s(C)-Q_s\|\ge
+\left(\sum_S\widehat f(S)^2 2^{-|S|}\right)^{1/2}-2^{-m/2}.
+```
+
+This bound can be small; it must not be promoted to a fixed-accuracy exclusion.
 The robust result (73) has the separate affine/Fourier hypotheses and
 already excludes angle tuning or a changed diagonal middle in that word.
 Neither result excludes a genuinely different nonmonomial interlayer,
@@ -2472,9 +2477,11 @@ q_s(Lz)=z_0+g_s(z_1,\ldots,z_{m-1}).                   \qquad(T6)
 Let $`R`$ be the involutory CNOT gather $`z_0\mapsto z_0+\sum_{j\ne0}z_j`$ and set
 
 ```math
-C_1=H_{B_0}R,\qquad C_2=U_LH_{B_0},\qquad
-D_s|z\rangle=(-1)^{z_0g_s(z_{\ne0})}|z\rangle,\qquad
-E_s=C_2D_sC_1.                                         \qquad(T7)
+\begin{aligned}
+C_1&=H_{B_0}R,& C_2&=U_LH_{B_0},\\
+D_s|z\rangle&=(-1)^{z_0g_s(z_{\ne0})}|z\rangle,\\
+E_s&=C_2D_sC_1.
+\end{aligned}                                                \qquad(T7)
 ```
 
 The gather maps $`P`$ to $`Z_0`$, so $`C_1PC_1^\dagger=X_0`$. The exact complete
