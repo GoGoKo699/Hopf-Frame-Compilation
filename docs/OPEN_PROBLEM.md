@@ -267,6 +267,13 @@ The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
 those proof homes; they do not strengthen the general frontier above.
+The [local HRT compiler and feedback trial](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
+pay individual encoded Hadamards in at most sixteen T bands without helpers.
+Their complete calibrated feedback word still has error two. The
+[four-path diagnostic](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
+shows that accepted output motion can survive genuine joint interference,
+but supplies no complete lookup source. These are component and source-family
+results, with no change to the bounds above.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 

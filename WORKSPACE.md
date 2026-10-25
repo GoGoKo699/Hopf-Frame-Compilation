@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #250](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/250),
-`c9b9bd680e0240d8018411b76bb4028aa72f23c9`, fetched 25 October 2026.
-Its reviewed tree passed 1,789 tests, the full local gate and all pre-merge CI.
+Baseline: [PR #251](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/251),
+`65966835f2ea795ba35a583fa57c86a7d805ad69`, verified 25 October 2026.
+Its reviewed tree passed 1,798 tests, the full local gate and all pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -90,6 +90,18 @@ with returned arbitrary helpers. The [half-band exchange](research/depth/COEFFIC
 pays its actual non-diagonal correction in four bands and $`3m`$ T gates.
 These are reusable components; neither completes lookup.
 
+The [local HRT gate compiler](research/depth/COHERENT_FEEDBACK_SOURCES.md)
+pays any one-coordinate encoded native gate through two exact quadratic shears.
+Encoded Hadamards need at most sixteen T layers and no helper qubits; top and
+singleton coordinates need eight. These are paid non-Clifford key mixers,
+not free Clifford walls or a parallel implementation of the whole basis.
+The complete retained-outcome feedback word cancels its borrowed register
+but loses the required key dependence; its calibrated residual-probe error
+is exactly two at every r at least two. Feeding both retained labels into
+the final query introduces explicit dirty-bank motion and still has error
+two. The exact missing correction must cancel that motion while retaining
+the full residual phase.
+
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
 The [three-block extension](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md#three-block-late-key-mixing)
@@ -124,15 +136,23 @@ $`c\ge p+2\log_2(1-\varepsilon^2/2)`$ clean bits at error below square root
 two, even with arbitrary dirty and bank mixing. A faster isolated zero test
 does not supply the complete bank operation.
 
-**Next question:** can a joint residual-probe word mix the full key after its
-first cubic stage and couple retained Bell outcomes into later query inputs,
-so its complete parity blocks give the desired probe? Keep every dirty outcome;
-require an all-size operator identity before extending native schedules.
-The partial central basis and its cubic middle remain an alternative joint
-target. Both are sufficient interfaces, not necessary representations of a
-general source. Exploit arbitrary probe-commuting fibers rather than requiring
-full HRT synthesis. Later key mixing, four or more blocks, bank-touching
-encoding and the accepted-Gram route remain open within the original budgets.
+The [four-path accepted-source study](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
+exhibits a native diagnostic with exact half-projector Gram and nontrivial
+accepted output motion: no pair of its four paths cancels on the rejected
+sector. A separate calibrated nonrectangular family collapses to an already
+required target below Gram error one thirty-second. The diagnostic does not
+supply lookup.
+
+**Next question:** can a native multipath source retain that accepted-output
+freedom while its full Gram selects the complete lookup sector? For four
+equal-weight branch unitaries, derive the sum of all six relative cross terms,
+not a scalar kernel or one successful column. Pay the branch controls and
+actual inverse, then use the existing recovery and promotion. The concrete
+retained-outcome feedback word is now tested and stopped; changing its mixer
+alone is not a substitute for restoring the lost key response. Joint residual
+probe synthesis and clique-only central conjugation remain alternatives.
+All source interfaces are sufficient routes, not necessary representations of
+the unrestricted compiler.
 
 ## Stopped routes, reopening conditions and superseded instructions
 

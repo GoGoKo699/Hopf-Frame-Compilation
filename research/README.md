@@ -196,6 +196,7 @@ Each home separates its paid native operations from its first unpaid conversion.
 
 - [Exact two-layer quadratic queries with one returned dirty qubit](depth/QUADRATIC_NATIVE_QUERY.md)
 - [Parallel weighted-cubic phases with returned dirty work](depth/DIRTY_CUBIC_PHASE_COMPILER.md) — an exact thirteen-band compiler with shared logical controls and paid coefficient-cube parity layers
+- [Local HRT operations and complete coherent feedback](depth/COHERENT_FEEDBACK_SOURCES.md) — exact sixteen-band encoded Hadamards without helpers, complete retained-outcome feedback and its calibrated failure
 - [Balanced native compilation of the HRT algebra permutations](depth/BALANCED_ALGEBRA_PERMUTATION.md)
 - [Full-input algebra queries and fast returned multiplication](depth/ALGEBRA_QUERY_EXTRACTION.md)
 - [A complete bank from one nonlinear algebra source](depth/FULL_BANK_CHARACTER_TRANSPORT.md) — [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map) · [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
