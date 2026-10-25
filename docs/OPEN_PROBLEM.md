@@ -225,6 +225,7 @@ stated hypotheses. They are not unrestricted growing-depth lower bounds.
 | Bounded-clean two-band projector-Gram source | [Direct Gram-defect screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen): tiny positive asymptotic error floor for each fixed clean count k, using $`M_k=2^{2k+1}(2^k-1)`$ Clifford summands; $`M_2=96`$. This is not an exclusion at every moderate tolerance or for growing/accuracy-dependent k |
 | Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. Higher-band words need not satisfy this premise |
 | MOD3 joint Pauli transport | [Native-layer theorem](../research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness): at most three source T layers give either exact complete transport or error at least $`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary dirty width and register motion. Two layers are excluded for p at least three; unrestricted exact three-layer existence remains open |
+| Complete lookup from two cubic blocks | [Clifford-frame theorem](../research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): for p at least three, $`V=CDU`$, with C arbitrary Clifford, D diagonal third-level and U any third-level unitary, has complete Pauli-derivative error at least $`\sin(\pi/8)`$. Arbitrary dirty width and Clifford address/work mixing are included. This contains all native two-T-layer sources but gives no growing-depth lower bound or general frame converse |
 | Interleaved Clifford acceptance | [Projector-Gram theorem](../research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): with held address and arbitrary fixed Clifford interlayers on data, auxiliaries and clean signals, below quarter Gram error the target is exact. One clean signal has floor one half; two clean signals require at least p/3 literal affine-address XOR queries. This does not bound jointly synthesized native depth or non-Clifford conditional dynamics |
 
 Useful components include a paid [scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md)
@@ -243,10 +244,17 @@ The [coordinate-weighted extension](../research/depth/COORDINATE_WEIGHTED_PULSE_
 requires at least $`\lceil\log_8 p\rceil`$ quarter-angle pulses at error below
 square root two, or $`\Omega_\tau(\log p/\log\log p)`$ arbitrary-angle pulses
 at fixed smaller error. Weights are constant over the tails of each coordinate.
-This counts all pulses, including Clifford pulses, and therefore supplies no
-growing native-depth lower bound. Weighted quarter pulses retain a paid
-thirteen-band compiler; Clifford pulse networks and genuinely changed
-interactions require their own complete source proof.
+The [directed filtration](../research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md#tail-dependent-filtration)
+strengthens the short-word conclusion: even with arbitrary tail-dependent
+angles, fewer than p total pulses give exact error two. It still counts
+Clifford pulses. Arbitrary quarter-angle edge weights retain the paid
+thirteen-band compiler. The [long physical Clifford-frame trial](../research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md#6-a-long-physical-clifford-frame-and-its-calibrated-repair)
+and its actual zero-address repair fail on a complete invariant sector;
+angle tuning does not repair that family.
+The [central-transport factorization](../research/depth/COHERENT_CENTRAL_TRANSPORT.md)
+pays $`I+N_x`$ in sixteen bands, leaving the coherent even-subset map unpaid.
+Its completed-mask rank limit is representation-specific, and its full-map
+interface is sufficient rather than necessary for a general source.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in

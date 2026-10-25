@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #247](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/247),
-`044fe481e1b98d09c5a81ead0e6ce2409ede82e9`, fetched 25 October 2026.
-Its reviewed tree passed 1,761 tests, the full local gate, PR CI and post-merge CI.
+Baseline: [PR #248](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/248),
+`1701e39425a00fb1120f3d9dc33e5fc9d93ab194`, fetched 25 October 2026.
+Its reviewed tree passed 1,767 tests, the full local gate, PR CI and post-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -22,7 +22,7 @@ They supply neither a faster complete indicator nor a stronger general frame bou
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
-2. [Coordinate-weighted pulses](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md): paid quarter-angle weights, signature collisions and their Clifford-interlayer escape; [native shear fusion](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) retains the earlier complete-action gaps, and the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
+2. [Clifford-interleaved lookup](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): the two-cubic-block boundary and the failed long-frame construction; [coherent central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) isolates the remaining even-subset map, and the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
 3. [Clifford projector Grams](research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): the accepted-source boundary; [paid recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) supplies the separate return interface.
 4. [Route decisions](research/ROUTE_DECISIONS.md): check the precise failed mechanism and its reopening condition before choosing another word.
 
@@ -90,23 +90,32 @@ with returned arbitrary helpers. The [half-band exchange](research/depth/COEFFIC
 pays its actual non-diagonal correction in four bands and $`3m`$ T gates.
 These are reusable components; neither completes lookup.
 
-The [weighted-pulse theorem](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md)
-extends the paired-sector screen to angles depending on the coordinate but
-not the edge's tail. At error below square root two, quarter-angle words need
-at least $`\lceil\log_8 p\rceil`$ total pulses; arbitrary real angles need
-$`\Omega_\tau(\log p/\log\log p)`$ pulses at fixed error tau. Every weighted
-quarter pulse still has a thirteen-band dirty-return compiler.
-These are pulse-count bounds, not unrestricted native-depth bounds:
-even-angle pulses are Clifford and can separate the coordinate signatures.
+The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) gives
+complete derivative error at least $`\sin(\pi/8)`$ for p at least three
+when the source is $`V=CDU`$: C is any Clifford, D is diagonal third-level,
+and U is any third-level unitary. It allows arbitrary Clifford address/work
+mixing and includes two weighted-cubic pulses and every source with at most
+two native T layers. It gives no growing-depth lower bound. A specified
+long Clifford-zeta frame with three nonlinear blocks also fails: its
+zero-address-calibrated native word has error two, and real-angle tuning
+retains a square-root-two gap.
 
-**Next question:** can a specified Clifford pulse network interleaved with a
-few non-Clifford pulses supply the complete derivative with sublogarithmic
-native depth? Edge weights depending on the tail and changed address motion
-are separate possibilities. Derive the all-size action and simultaneous
-resource/error/return ledger first. Distinct signatures only escape the
-collision proof; they do not establish lookup. Right commutant freedom does
-not repair a wrong derivative. The accepted-source alternative still needs
-its complete projector Gram outside the recorded screens.
+[Tail-dependent quarter pulses](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md#tail-dependent-filtration)
+retain thirteen-band compilation, but pulse-only words need at least p
+total pulses below error two. Clifford pulses still cost zero T-depth.
+[Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) pays
+$`I+N_x`$ in sixteen bands and identifies the unpaid coherent even-subset
+map $`F_{\mathcal K(x)}`$. Its fixed-mask normal form retains the exact
+right-commutant freedom; its completed-shear rank bound is representation-specific.
+
+**Next question:** can genuinely nonmonomial intermediate dynamics implement
+the coherent even-subset map, or supply the complete derivative directly,
+using at least three interacting cubic blocks and sublogarithmic native
+depth? A new source must change the failed Clifford-zeta transition, not
+only its baseline calibration or angles. Derive its all-size action and
+simultaneous resource/error/return ledger first. The full central map is a
+sufficient interface, not a necessary form of every source. The accepted
+projector-Gram alternative retains its separate complete-sector obligation.
 
 ## Stopped routes, reopening conditions and superseded instructions
 
