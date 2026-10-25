@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #248](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/248),
-`1701e39425a00fb1120f3d9dc33e5fc9d93ab194`, fetched 25 October 2026.
-Its reviewed tree passed 1,767 tests, the full local gate, PR CI and post-merge CI.
+Baseline: [PR #249](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/249),
+`b8eafb48576b29ee17059e6ced0ec3191cdd6b62`, fetched 25 October 2026.
+Its reviewed tree passed 1,778 tests, the full local gate, PR CI and post-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -22,7 +22,7 @@ They supply neither a faster complete indicator nor a stronger general frame bou
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
-2. [Clifford-interleaved lookup](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): the two-cubic-block boundary and the failed long-frame construction; [coherent central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) isolates the remaining even-subset map, and the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
+2. [Clifford-interleaved lookup](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): the two-block boundary and the growing block count with Clifford fibers; [central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) isolates a partial character basis, while the [dirty Choi source](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) reduces a single residual probe to the complete indicator.
 3. [Clifford projector Grams](research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): the accepted-source boundary; [paid recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) supplies the separate return interface.
 4. [Route decisions](research/ROUTE_DECISIONS.md): check the precise failed mechanism and its reopening condition before choosing another word.
 
@@ -90,32 +90,41 @@ with returned arbitrary helpers. The [half-band exchange](research/depth/COEFFIC
 pays its actual non-diagonal correction in four bands and $`3m`$ T gates.
 These are reusable components; neither completes lookup.
 
-The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) gives
-complete derivative error at least $`\sin(\pi/8)`$ for p at least three
-when the source is $`V=CDU`$: C is any Clifford, D is diagonal third-level,
-and U is any third-level unitary. It allows arbitrary Clifford address/work
-mixing and includes two weighted-cubic pulses and every source with at most
-two native T layers. It gives no growing-depth lower bound. A specified
-long Clifford-zeta frame with three nonlinear blocks also fails: its
-zero-address-calibrated native word has error two, and real-angle tuning
-retains a square-root-two gap.
+The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
+its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
+A separate sharp screen now requires at least p globally third-level blocks
+below derivative error $`\sqrt2`$ when each block holds the address and has
+Clifford bank/work fibers. Arbitrary address-algebra-preserving Clifford
+interlayers are included. This is a source-block count, not native T-depth;
+genuine non-Clifford fibers and address-superposition dynamics remain open.
 
-[Tail-dependent quarter pulses](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md#tail-dependent-filtration)
-retain thirteen-band compilation, but pulse-only words need at least p
-total pulses below error two. Clifford pulses still cost zero T-depth.
-[Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) pays
-$`I+N_x`$ in sixteen bands and identifies the unpaid coherent even-subset
-map $`F_{\mathcal K(x)}`$. Its fixed-mask normal form retains the exact
-right-commutant freedom; its completed-shear rank bound is representation-specific.
+The [complete dirty Choi calculation](research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md)
+reduces the standard corrected teleportation word to one quadratic XOR query.
+Its remaining HRT probe correction is not a harmless work action. Four calls
+to that residual phase, or eight calls to a source transporting one Pauli to
+it, give the complete indicator with paid dirty arithmetic and constant
+additional depth. Full in-place HRT synthesis is unnecessary for this interface.
+The remaining diagonal phase has an explicit cubic bent dual; its Fourier
+kernel does not by itself implement that diagonal phase.
 
-**Next question:** can genuinely nonmonomial intermediate dynamics implement
-the coherent even-subset map, or supply the complete derivative directly,
-using at least three interacting cubic blocks and sublogarithmic native
-depth? A new source must change the failed Clifford-zeta transition, not
-only its baseline calibration or angles. Derive its all-size action and
-simultaneous resource/error/return ledger first. The full central map is a
-sufficient interface, not a necessary form of every source. The accepted
-projector-Gram alternative retains its separate complete-sector obligation.
+[Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) still pays
+$`I+N_x`$ in sixteen bands. An added-generator embedding now reduces its
+remaining factor to a fixed partial character basis on $`\binom p2`$ commuting
+affine Clifford observables, with arbitrary residual fibers and a paid cubic
+middle. The basis is not supplied: if it lies in the Clifford hierarchy, its
+level is at least $`\lfloor p/2\rfloor+2`$. This does not bound native depth.
+
+**Next question:** can the single residual HRT probe, or the partial character
+basis and its cubic middle jointly, be synthesized at sublogarithmic native
+depth within the polynomial address overhead? These are sufficient interfaces,
+not necessary representations of every direct source. Exploit the unrestricted
+probe-commuting fibers; do not reconstruct the full HRT map by default.
+A three-cubic-block attempt must use genuinely non-Clifford fixed-address
+fibers or leave the preserved address algebra. Standard dirty teleportation,
+bank Hadamards alone, and angle tuning of the failed Clifford-zeta frame do
+not supply that change. Require an all-size complete operator identity before
+extending native schedules. The accepted-Gram alternative still owes complete
+sector selection.
 
 ## Stopped routes, reopening conditions and superseded instructions
 

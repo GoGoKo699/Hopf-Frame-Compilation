@@ -188,7 +188,7 @@ local proof additions from imported synthesis or lower-bound premises.
 | Product compression and amplification | Low–Wiebe Lemma 13; Fang–Lin–Tong Lemma 3/Appendix D; Berry et al. Eqs. (7)–(15); Brassard et al. Eq. (8); F10–F11/F20 | Failure history, LCU, and amplification; local complete-isometry error and literal-phase accounting |
 | Dirty-query depth and unary reuse | F29–F34/F36–F37 | Controlled Clifford circuits, grouped selection, phase synthesis, arithmetic, reusable references, and bilinear recursion; local all-dirty return and width allocation |
 
-The [complete F1–F51 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+The [complete F1–F53 register](reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
 provides primary URLs, versions, exact locators, and comparison-only sources.
 The [related-work map](RELATED_WORK.md) separates established ingredients
 from the frame-specific construction; bounded source checking certifies

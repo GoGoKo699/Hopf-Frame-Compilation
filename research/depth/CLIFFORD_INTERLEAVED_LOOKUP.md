@@ -236,6 +236,118 @@ assumption includes all work-return errors. The theorem itself already allows
 arbitrary work and intermediate address motion; only initialized-work promises
 fall outside it.
 
+<a id="clifford-fiber-block-bound"></a>
+
+### 5.1 A sharp boundary for third-level blocks with Clifford fibers
+
+Nonmonomial bank mixing alone does not escape every block-count obstruction.
+There is a sharp growing bound for sources preserving the address algebra
+at every stage and whose completed third-level blocks are Clifford on each
+address fiber. This is a source-class bound, not an unrestricted native T-depth theorem.
+
+Let B contain the entire coefficient bank and every arbitrary helper. Consider
+q blocks
+
+```math
+U_j=\sum_x|x\rangle\langle x|\otimes U_{j,x},
+\qquad U_j\in\mathcal C_3,
+\qquad U_{j,x}\text{ Clifford on B}.
+```
+
+Interleave them with arbitrary global Cliffords preserving the address algebra:
+each such Clifford sends x to a fixed invertible affine function of x,
+independent of B. It may apply nonmonomial Clifford bank/work dynamics and
+address-controlled Pauli displacements. It cannot create an address superposition from an address basis input or
+replace an address bit by a bank-dependent value; arbitrary coherent address
+inputs are still included. Let P be any fixed Hermitian Pauli. Then
+
+```math
+q\lt p\quad\Longrightarrow\quad
+\|VPV^\dagger-Q\|\ge\sqrt2.                              \qquad(5a)
+```
+
+The promise includes every bank, helper and reference input. V need not return
+its helpers separately. The complete derivative target is identity on them.
+
+If P has a nonzero address-X label, its conjugate by V translates the address
+by a nonzero vector under the net invertible affine address map. Its output on
+an address basis input is orthogonal to Q's output. This already gives the
+square-root-two floor, independently of q. It remains to consider probes
+commuting with every address Z; address-Z factors contribute only fiber signs.
+
+**The third-level condition makes the fiber tableau affine.** Fix a bank Pauli
+R and one block U. The operator $`K=U(I\otimes R)U^\dagger`$ is a global
+Clifford, while its fixed-address fibers are signed Paulis. Write v(x) for their
+binary bank labels. Since $`KX_{x_i}K^\dagger`$ is a global Pauli, its bank label
+is independent of x. Computing that label fiberwise gives
+
+```math
+v(x+e_i)+v(x)=\text{a constant binary vector}.
+```
+
+Thus every first Boolean difference of v is constant and v is affine. Apply
+this to a generating set of bank Paulis: every entry of the binary symplectic
+matrix $`S_U(x)`$ is affine in x. This conclusion follows from the actual
+third-level unitary; it does not assume that U is an affine XOR-query macro.
+
+An address-algebra-preserving global Clifford has an address-independent bank
+symplectic matrix. Indeed its conjugate of a bank Pauli is one global Pauli
+commuting with all address Z's; only its sign can depend on the address fiber.
+The remaining degree argument is the
+[physical-label argument for affine queries](GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md#physical-signs-for-the-literal-gaussian-query-grammar),
+now justified intrinsically for all the third-level blocks above. The net bank
+tableau is a product of q affine matrices and constant matrices, with fixed
+affine address substitutions. Each entry has Boolean
+degree at most q. The transported P is a signed bank Pauli in every output
+address fiber, with bank label degree at most q as well.
+
+The target Q has bank-label coordinate $`\prod_{i=1}^p x_i`$ at
+$`Z_{c_{[p]}}`$, so its label vector has degree exactly p. If q is smaller than
+p, the labels differ at some address. Distinct signed Hermitian Paulis have
+operator distance at least square root two, proving (5a). The fixed invertible
+Möbius bank Clifford preserves the maximum degree of a label vector, so the
+same conclusion holds for ordinary addressed lookup.
+
+Both boundaries are sharp in this source class. With no third-level block,
+$`V=H_{A_\varnothing}`$ and $`P=Z_{A_\varnothing}`$ give a derivative
+$`X_{A_\varnothing}`$ that anticommutes with every Q fiber. Their squared
+difference is $`2I`$, attaining exactly square root two. Conversely the p
+[completed coordinate factors](COEFFICIENT_SHEAR_NATIVE_FUSION.md#1-complete-coordinate-exchanges-and-physical-half-bands)
+$`\Gamma_i`$ give the exact complete derivative. Each is a third-level block
+with Clifford fibers: after its tail-bank Hadamards, each edge has the diagonal
+phase exponent $`2x_i b-4x_iab`$ modulo eight. Their existing native ledger is
+paid in that source's proof; block-count sharpness does not assert optimal
+native depth.
+
+If an actual emitted source is within epsilon of such a V in complete operator
+norm, including every work input, its derivative error is at least
+$`\sqrt2-2\varepsilon`$. The actual adjoint has the same approximation error.
+
+For three blocks and p at least four, a successful candidate must therefore
+leave at least one of the two structural premises: it must have genuinely
+non-Clifford fixed-address bank/work fibers or move the address outside the
+preserved address algebra. Bank Hadamards and arbitrary fixed Clifford bank
+mixers are already included. Neither escape is prohibited by (5a), and no
+unrestricted three-block or growing native-depth lower bound follows.
+
+The earlier two-block rounding proof does not simply iterate beyond its
+Clifford middle. In a three-block factorization the middle observable can be
+$`C_2D_2KD_2^\dagger C_2^\dagger`$ with K Clifford, yet be monomial without
+being Clifford. The exact three-coordinate source already permits the
+translation
+
+```math
+X_{c_\varnothing}X_{c_{\{0\}}}^{x_0}
+X_{c_{\{1\}}}^{x_1}X_{c_{\{0,1\}}}^{x_0x_1},
+```
+
+which contains a controlled-controlled X. Thus the stabilizer-column premise
+of Section 5 is lost; monomiality alone does not restore it. The
+[complete observable fixtures](../../tests/test_complete_observable_bases.py)
+check the structural boundary, including a nonmonomial controlled-H example,
+the sharp gap and complete coordinate transport. They do not replace the
+all-size argument above.
+
 ## 6. A long physical Clifford frame and its calibrated repair
 
 The following candidate gives every coordinate its own place in a growing

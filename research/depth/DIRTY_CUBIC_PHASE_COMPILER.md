@@ -10,6 +10,15 @@ phase targets supply the parallelism; an exact derivative returns them.
 The construction below assembles the existing R91 primitive. It is a
 paid component, not a complete lookup source or a general depth improvement.
 
+For related catalytic synthesis, [Folkertsma, Mertz, Strelchuk and Subramanian,
+arXiv:2609.40144v1](https://arxiv.org/html/2609.40144v1), Lemmas 18/20 and
+Theorem 23, restore arbitrary work using finite-field phase cycles at fixed
+hierarchy level. Their total-depth theorem and this explicit native T-band
+ledger measure different resources. The present construction assembles the
+retained R91 Gray-word primitive; no priority claim for catalytic diagonal
+synthesis is made. [F52](../../docs/reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries)
+records the comparison and its growing-level limitation.
+
 ## 1. A complete diagonal compiler
 
 Let z contain n arbitrary logical bits. Keep a list of Q signed quadratic
