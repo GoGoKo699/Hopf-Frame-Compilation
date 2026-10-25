@@ -183,22 +183,23 @@ not count normalization or its controlled use, remains unpaid.
 
 ## Paid source interfaces and their limits
 
-| Interface or component | What is paid; what is not |
-|---|---|
-| [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) | Bounded clean banks and constant-amplitude complete blocks can be removed with charged actual inverses, leakage and arbitrary off-code cancellation; this supplies no shallow source |
-| [Spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | At fixed tolerance, depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address-sharing and uniform precision budgets are premises. Exact sector invariance avoids the general leakage multiplier |
-| [Scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md) | Zero clean work, $`T,G=O(pL_\tau+L_\tau^2)`$, $`b=O(p)`$, $`D_T=O(L_\tau^2)`$, with $`L_\tau=1+\log_2(1/\tau)`$. [Coupled quarter-phase sources](../research/depth/COUPLED_QUARTER_PHASE_SOURCE.md) and [full matching stages](../research/depth/QUARTER_PHASE_MATCHING_LIMITS.md) are paid components; four-path acceptance retains coherent error, while the changed expander gap covers one row only. The complete source remains unpaid |
-| [Complete fermionic lift](../research/depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) | Native lifting and arbitrary auxiliary-mode decoding are paid. The full spectral-phase contract and sparse-column obstruction force growing filter length for the literal fixed-auxiliary expander word; displayed coherent centering also has linear address depth |
-| [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two calls extract a complete addressed observable with charged return; nonlinear observable synthesis is still missing |
-| [MOD3 joint Pauli transport](../research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness) | At most three source T layers give either exact complete transport or error at least $`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary dirty width and register motion. Two layers are excluded for p at least three; unrestricted exact three-layer existence remains open. [Joint two-coordinate transport](../research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#two-coordinate-lift) is paid at twelve T gates, three layers and no extra work, but does not cover the remaining address coordinates |
-| [Complete coefficient assembly](../research/depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear) | The four-band nested source remains a partial component. A separate two-band shear completes all p=3 coefficients with 28 T gates and five source layers, no helpers and exact complete return. Its uniform complete source has $`T=4m-4`$, $`G=pm+8m+36`$ and emitted depth $`2p-1`$. This linear-depth recurrence is paused; the unpaid operation is a sublogarithmic joint schedule, not coefficient coverage |
-| [Paired projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | One clean signal with accepted Gram $`K^\dagger K=\Pi_{\rm eq}/2`$ suffices; accepted unitary fibers and intermediate address motion are unrestricted. A shallow source selecting this lookup sector is not supplied |
-| [Joint two-clean Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) | Joint-code reflection is Clifford. Four-call recovery and full dirty promotion give error $`128\sqrt\delta`$; $`\delta\le\tau^2/2^{20}`$ supplies tolerance tau/8 before fusion. The source is still unpaid |
-| [Squared-product interface](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#squared-product-interface) | Successful coupled-order interference already gives a direct zero-clean reflection. More generally, a [balanced two-unitary source](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout) with Gram error delta supplies a squared relative word with error at most $`4\delta+4\sqrt\delta`$. These reductions supply no qualifying source |
+The complete source remains the missing operation. The interfaces below
+preserve a full operator or accepted-Gram contract; their native wrappers
+are paid, but none supplies a sublogarithmic source. Quantitative candidate
+failures and reopening conditions belong in the
+[route decisions](../research/ROUTE_DECISIONS.md), with one proof home per result.
 
-For the one-clean interface, let $`n_c=pm`$ denote one carrier-bank size.
-[Four U/actual-adjoint calls](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) followed by serial dirty promotion give the
-complete zero-clean ledger
+| Complete interface | Paid reduction and remaining obligation |
+|---|---|
+| [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two actual source/adjoint calls extract the addressed observable with complete work return. The nonlinear source still needs native synthesis |
+| [Rank-one phase and derivative](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) | Two-call reductions in both directions preserve the fixed-accuracy sublogarithmic-depth, linear-count/width and quadratic-gate targets. The reverse pays a four-T-band shared-control bank and arbitrary returned dirty work. A general derivative source needs at least m/2 T gates below error $`1/\sqrt2`$; this is a count consequence, not a depth bound. The canonical diagonal phase is an equivalent target, not an easier missing primitive |
+| [Projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | Accepted Gram $`K^\dagger K\approx\Pi_{\rm eq}/2`$ suffices with one clean signal; accepted private fibers and intermediate address motion are unrestricted. The complete zero-clean recovery ledger is below |
+| [Joint two-clean Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) | Joint-code reflection is Clifford. Four-call recovery and full dirty promotion give error $`128\sqrt\delta`$; $`\delta\le\tau^2/2^{20}`$ supplies tolerance tau/8 before fusion. A qualifying normalized source is still required |
+| [Balanced two-unitary acceptance](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout) | Gram error delta supplies a direct zero-clean squared relative word with error at most $`4\delta+4\sqrt\delta`$. No additional signal control or promotion is needed for that extraction; the unitary identity remains to be constructed |
+| [Clean-source promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) and [spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) | Constant-amplitude complete blocks can be promoted with charged actual inverses, leakage and off-code cancellation. Spectral promotion has depth $`O_\tau(d_V+k+1)`$ and polynomial overhead for $`k=o(\log(p+2))`$; native address sharing and uniform precision budgets remain premises. Exact sector invariance removes the general leakage multiplier |
+
+For the one-clean Gram interface, let $`n_c=pm`$ denote one carrier-bank
+size. Four U/actual-adjoint calls followed by serial dirty promotion give
 
 ```math
 \begin{aligned}
@@ -209,39 +210,35 @@ b_{\rm out}&\le2n_c+b_U+2.
 \end{aligned}
 ```
 
-Gram error delta gives complete error at most
-$`64\sqrt\delta`$; request $`\delta\le\tau^2/4096`$.
-The six-call alternative retains its linear-error and 48-call promoted ledger.
-All costs use the requested precision. The normalized lookup sector remains unpaid.
+Gram error delta gives complete error at most $`64\sqrt\delta`$;
+request $`\delta\le\tau^2/4096`$. The six-call alternative retains its
+linear-error and 48-call promoted ledger. All costs use the requested precision.
 
-The relevant exclusions have different hypotheses:
+The following results constrain broad source classes while retaining their
+stated hypotheses. They are not unrestricted growing-depth lower bounds.
 
-| Source class | Established exclusion and boundary |
+| Source class | Quantitative boundary |
 |---|---|
 | General two-band unitary compression | [Rank–norm theorem](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen): exact $`K=\alpha I_p`$, $`\alpha>0`$, needs $`k\ge(2/3)\log_2p-(1/3)\log_2\log_2p-O(1)`$. Fixed-error growing-clean sources remain outside its shrinking approximate floor |
 | Native read-only two-band compression | [Complete-bank Fourier bound](../research/depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md): amplitude $`1/\sqrt2`$ and relative error at most $`1/8`$ require $`k\ge\lceil(p-3)/2\rceil`$ when actual Clifford boundaries fix the address. No flatness, exact return or dirty-width bound is assumed |
 | One-clean two-band projector-Gram source | [Principal-angle screen](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap): for $`p\ge3`$, Gram error at most $`1/256`$ is impossible even with intermediate address motion. More source bands or another clean allocation are outside this screen |
-| Bounded-clean two-band projector-Gram source | [Direct Gram-defect screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen): tiny positive asymptotic error floor for each fixed clean count k, using $`M_k=2^{2k+1}(2^k-1)`$ Clifford summands; $`M_2=96`$. Not an exclusion at every moderate tolerance or for growing/accuracy-dependent k |
-| Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. General higher-band words need not satisfy this premise |
-| Three-layer source with bank-independent final block | [Bank-fiber theorem](../research/depth/COUPLED_FINAL_ENCODER.md#bank-independent-final-boundary): for p at least three, a completed final one-band block independent of the nonconstant coefficient bank cannot supply exact transport or error below the retained three-layer gap. Arbitrary middle Clifford boundaries, dirty width and a fixed output Clifford are covered. Bank-dependent final blocks and more source layers remain outside |
-| Specified full-bank X-motion final encoder | [Rotated-bank centralizer theorem](../research/depth/COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary): for p at least three, the paid syndrome-CNOT/transversal-X-rotation encoder has no one-band middle completion, even with arbitrary Clifford core and identity helpers. Its affine bank-X response code gives a nonisotropic witness. This excludes that bank-moving word, not general bank-dependent final blocks or four-or-more-layer sources |
-| Syndrome reflections around zero or fixed-row acceptance | [Thin-source bounds](../research/depth/COUPLED_FINAL_ENCODER.md#syndrome-star-pulse-boundaries) and [normalized broad trial](../research/depth/COUPLED_FINAL_ENCODER.md#broad-baseline-syndrome-source): the paid broad trial has exact ideal Gram distance one half for p at least three. A baseline-relative rank bound excludes fewer than $`(m-1)/4`$ thin controlled-reflection insertions into a word whose deletion baseline is the fixed-row source, with arbitrary interlayers. A different lookup-dependent baseline or jointly synthesized growing-call word remains outside; call count is not native depth |
-| Specified shifted-syndrome commutator | [Four-band native trial](../research/depth/COUPLED_FINAL_ENCODER.md#shifted-syndrome-wide-commutator): 4m T gates and no helpers, but complete Pauli-transport error at least square root two for p at least two, even at arbitrary rotation angles on the same axes; the native p=1 gap is at least one quarter. The missing row response excludes this commutator family without a thin-source assumption. A changed middle action, axes, full word or accepted Gram remains outside |
-| Common-probe pulses and diagonal bank repair | [Paid four-band family](../research/depth/COUPLED_FINAL_ENCODER.md#common-probe-wide-source): both frames change the probe through every bank row. Two row-local frames retain an address-shifting covariance, giving direct error at least square root two and Gram error at least one quarter. The graph-CZ third frame breaks that covariance but has a paired-state error at least square root two for p at least two. At fixed native angles, [every static bank-diagonal repair](../research/depth/COUPLED_FINAL_ENCODER.md#static-diagonal-common-probe-spectrum) has direct error above one half for p at least three: the relative probe spectrum is invariant. A changed relative-fiber action or accepted interface remains outside; the spectral result gives no new general Gram or native-depth bound |
-| Corrected relative probe and changed acceptance | [Relative involution repair](../research/depth/COUPLED_FINAL_ENCODER.md#relative-probe-involution-repair) has an exact Hermitian relative block in four native bands, zero clean work and linear T-count. Complete lookup remains wrong: diagonal dressings have direct error above one third for p at least three, every nonempty Hadamard mask has error at least square root two, and the tested cubic interlayer also fails. [Three asymmetric trials](../research/depth/COUPLED_FINAL_ENCODER.md#probe-asymmetric-paid-trials) have finite p=3 failures, not all-size exclusions. The separate [four-path Bell source](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#four-path-bell-relative-phase) pays two-clean normalization and depth-94 controls but has exact Gram error one half. Changed joint bank transitions or another complete accepted interface remain open |
-| Joint bank mixing screens | [Affine/Fourier dressing](../research/depth/COUPLED_FINAL_ENCODER.md#affine-fourier-complete-transition-gap) has error at least square root two for either affine/Hadamard order, even for arbitrary X-diagonal pulses and diagonal middles in the same word. The original native word has no exact monomial dressing; no uniform approximate exclusion follows from that separate result. The [bank-only two-Clifford grammar](../research/depth/COUPLED_FINAL_ENCODER.md#two-clifford-mixer-screen) has error at least one except for an aligned rank-one final mixer whose explicit completion still needs a lookup-dependent diagonal derivative. Active extra work, general address motion and unrestricted native sources remain outside these hypotheses |
-| Rank-one phase equivalence | The [complete reductions](../research/depth/COUPLED_FINAL_ENCODER.md#rank-one-indicator-equivalence) use two source calls in either direction; the reverse adds a four-T-band shared-control bank and arbitrary returned dirty work. They preserve the fixed-accuracy sublogarithmic-depth, linear-count/width and quadratic-gate targets. A general derivative source needs at least m/2 T gates below error one over square root two; this is a count bound, not a growing depth bound |
-| Interleaved Clifford acceptance | The [projector-Gram theorem](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#interleaved-clifford-gram-rigidity) covers arbitrary fixed Clifford interlayers on data, auxiliaries and clean signals with held address. Below quarter Gram error the target is exact; one clean signal has floor one half, and two clean signals require at least p/3 literal affine-address XOR queries. This does not bound jointly synthesized native depth or non-Clifford conditional dynamics |
-| Bell-envelope acceptance | [Arbitrary auxiliary effects](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer) inherit exactly the same full operator error for the transported charge. Address-independent effects have sharp Gram floor one quarter. Pure charge-preserving permutation expansion with held address and bank-independent interlayers also has a quarter floor, regardless of its spectral gap. Interleaved data/auxiliary dynamics, bank phases and other source grammars remain outside |
-| Wide Clifford filters | [Sharp lookup correlation](../research/depth/CLIFFORD_LOOKUP_FIXED_SPACE.md) is $`(p+1)/2^p`$ for $`p\ge2`$; normalized Clifford averages cannot separate the two full lookup eigenspaces by a constant gap. Coefficient and call bounds are not native-depth bounds |
+| Bounded-clean two-band projector-Gram source | [Direct Gram-defect screen](../research/depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen): tiny positive asymptotic error floor for each fixed clean count k, using $`M_k=2^{2k+1}(2^k-1)`$ Clifford summands; $`M_2=96`$. This is not an exclusion at every moderate tolerance or for growing/accuracy-dependent k |
+| Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. Higher-band words need not satisfy this premise |
+| MOD3 joint Pauli transport | [Native-layer theorem](../research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness): at most three source T layers give either exact complete transport or error at least $`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary dirty width and register motion. Two layers are excluded for p at least three; unrestricted exact three-layer existence remains open |
+| Interleaved Clifford acceptance | [Projector-Gram theorem](../research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): with held address and arbitrary fixed Clifford interlayers on data, auxiliaries and clean signals, below quarter Gram error the target is exact. One clean signal has floor one half; two clean signals require at least p/3 literal affine-address XOR queries. This does not bound jointly synthesized native depth or non-Clifford conditional dynamics |
 
-Completed address return does not establish native read-only sharing.
-The [route decisions](../research/ROUTE_DECISIONS.md) record the precise
-limitations and reopening conditions for normalized kernel, signal-interleaved,
-scalar/Bell, orbit and fermionic sources. The
-[working checkpoint](../WORKSPACE.md#main-unfinished-route-and-exact-missing-operation)
-identifies the next complete-operator question. None of the recorded source
-trials supplies the missing complete shallow source or changes the general frontier.
+Useful components include a paid [scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md)
+with zero clean work and constant depth at fixed accuracy, native quadratic
+queries, joint two-coordinate transport, and complete coefficient assembly.
+Their resource ledgers and remaining composition costs are in the
+[component catalogue](../research/README.md#constructive-components-and-source-candidates)
+and [route decisions](../research/ROUTE_DECISIONS.md#complete-sources-and-promotion).
+The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
+[Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
+and particular failed native words keep their individual hypotheses in
+those proof homes; they do not strengthen the general frontier above.
+The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
+question without turning a component or representation limit into a new premise.
 
 ## Constant-depth frontier
 
