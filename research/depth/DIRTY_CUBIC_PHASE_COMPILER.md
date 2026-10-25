@@ -85,7 +85,7 @@ uses 4Q T gates, 4Q CNOTs and at most four T bands.
 
 ### Cancel the corrections together with the requested cubics
 
-Make a list of Q+C triples: the Q correction triples (u_j,v_j,h_j),
+Make a list of Q+C triples: the Q correction triples $`(u_j,v_j,h_j)`$,
 followed by the C requested triples. Give each triple (u,v,c) a fresh
 private k. For one triple use the closed three-dimensional Gray walk.
 Its visited control subsets before returning to the empty subset are

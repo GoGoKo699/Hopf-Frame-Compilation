@@ -203,7 +203,7 @@ Their spectral square roots commute abstractly. A common Clifford
 diagonalizer, however, does not exist for any two distinct coordinates,
 even after tensoring arbitrary identity helpers.
 
-In X/Z label order, the binary symplectic matrix of C_i is
+In X/Z label order, the binary symplectic matrix of $`C_i`$ is
 
 ```math
 F_i=\mathrm{diag}(I+N_i,I+N_i^{\mathsf T}).
@@ -286,11 +286,11 @@ notation a,b,c,d of Section 2:
 
 | Face | Address | Top coefficient | Middle coefficients | Target on a |
 | --- | --- | --- | --- | --- |
-| A | $`(1,0)`$ | $`d=0`$ | $`|10\rangle_{b,c}`$ | $`-Z_a`$ |
-| B | $`(1,1)`$ | $`d=1`$ | $`(|10\rangle-|01\rangle)_{b,c}/\sqrt2`$ | $`+Z_a`$ |
+| A | $`(1,0)`$ | $`d=0`$ | $`\lvert10\rangle_{b,c}`$ | $`-Z_a`$ |
+| B | $`(1,1)`$ | $`d=1`$ | $`(\lvert10\rangle-\lvert01\rangle)_{b,c}/\sqrt2`$ | $`+Z_a`$ |
 
 On both faces, every $`E(\alpha)`$ and $`E_x(\alpha)`$
-acts as $`e^{i\alpha X_a}`$. Every O or O_x acts as identity:
+acts as $`e^{i\alpha X_a}`$. Every O or $`O_x`$ acts as identity:
 on face A the top control is zero; on face B,
 $`(X_b+X_c)|\psi^-\rangle=0`$ and $`n_b+n_c=1`$.
 The conditional signs agree because both address bits in face B are one,
