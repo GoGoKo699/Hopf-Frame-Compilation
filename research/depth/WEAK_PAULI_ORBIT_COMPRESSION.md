@@ -750,6 +750,13 @@ with sublogarithmic depth and a complete fixed-tolerance error bound.
 It does not assert that such a resynthesis exists or that this
 representation is necessary for an unrestricted source.
 
+The [native fusion analysis](COEFFICIENT_SHEAR_NATIVE_FUSION.md) now pays
+the completed-coordinate exchange phase and the physical half-band correction.
+It also proves maximal error for the calibrated half-band regrouping and a
+uniform error floor for the separately paid bipartite pulse grammar.
+Those scoped results supersede simply regrouping the two halves or repeating
+uniform-angle parity layers; general native resynthesis remains open.
+
 The [coefficient-shear fixtures](../../tests/test_complete_coefficient_shear.py)
 check every native column and actual inverse for one and two pairs,
 the two distinct-target bands and full source ledgers, all address

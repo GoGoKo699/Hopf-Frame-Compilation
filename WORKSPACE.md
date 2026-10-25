@@ -11,18 +11,18 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #245](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/245),
-`39d4c4c436d9751f7b80aec9eb92a51b7ebd3f73`, fetched 25 October 2026.
-Its reviewed tree passed 1,741 tests, the full local gate and presentation CI.
+Baseline: [PR #246](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/246),
+`55ec296410431d2661fd18c23833b9aaef6367a5`, fetched 25 October 2026.
+Its reviewed tree passed 1,741 tests and the full local gate; post-merge validation and presentation CI passed.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
-The latest results identify equivalent tasks and limits of source classes.
+The latest results pay native phase components and identify limits of source classes.
 They supply neither a faster complete indicator nor a stronger general frame bound.
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
-2. [Bank mixing and lookup phase](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence): complete derivative/indicator reductions and their native costs.
+2. [Native shear fusion](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md): paid half-band exchanges, bipartite mixing and complete-action gaps; the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
 3. [Clifford projector Grams](research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): the accepted-source boundary; [paid recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) supplies the separate return interface.
 4. [Route decisions](research/ROUTE_DECISIONS.md): check the precise failed mechanism and its reopening condition before choosing another word.
 
@@ -84,25 +84,26 @@ when comparing a candidate with the complete indicator and frame contracts.
 
 ### Latest substantive outcomes and resumption question
 
-The [rank-one reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence)
-uses two calls in either direction, a four-T-band shared-control bank and only
-returned arbitrary dirty work. General representatives have the full commutant
-freedom $`V=(D_s\otimes I)J`$, $`[J,X_0]=0`$, including address/work motion.
-This identifies possible synthesis freedom; it does not pay for J or V.
+The [dirty cubic-phase compiler](research/depth/DIRTY_CUBIC_PHASE_COMPILER.md)
+pays arbitrary shared-control weighted cubic phases in at most 13 T bands,
+with returned arbitrary helpers. The [half-band exchange](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md)
+pays its actual non-diagonal correction in four bands and $`3m`$ T gates.
+These are reusable components; neither completes lookup.
 
-[Clifford projector-Gram rigidity](research/depth/CLIFFORD_PROJECTOR_GRAM.md)
-is separate: below quarter Gram error, a net address-controlled Clifford source
-has the target Gram exactly. One clean signal has floor one half. In the
-read-only affine-XOR query grammar, two clean signals require $`3q\ge p`$.
-The query-count result does not bound joint native resynthesis or unrestricted
-T-depth. The [mixing screens](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md)
-also retain their exact-only, fixed-address or specified-word hypotheses.
+The zero-address-calibrated coordinate regrouping has complete error two.
+A different, fully paid bipartite grammar has error at least square root two
+for every word of its uniform-angle generators, including arbitrary repetitions.
+Its two calibrated quarter-angle words have error two. Common-Clifford
+diagonalization and independent replica shortcuts have separate scoped limits.
+None is an unrestricted native-depth lower bound.
 
-**Next question:** can a genuinely non-Clifford conditional operation, changed
-address-motion mechanism, or joint native synthesis supply either complete
-source interface with the required sublogarithmic depth? For a chosen word,
-derive its complete action and simultaneous resource/error/return ledger first.
-Locate its first unpaid lookup operation before building another finite fixture.
+**Next question:** can a specified coordinate-dependent interaction, new bank
+interlayer or changed address motion distinguish the paired lookup sectors
+and supply the complete derivative with sublogarithmic depth? Derive the
+all-size source action and simultaneous resource/error/return ledger first.
+Right commutant freedom preserves an existing derivative; it does not repair
+the wrong regrouped word. The accepted-source alternative still needs its
+complete projector Gram outside the recorded Clifford and acceptance screens.
 
 ## Stopped routes, reopening conditions and superseded instructions
 
