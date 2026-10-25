@@ -314,7 +314,11 @@ nor arbitrary repetitions and shared-angle tuning repair (9).
 
 Coordinate-dependent weights, new bank interlayers and address motion
 can break this paired-face premise. They require a new complete-action
-calculation; they are not excluded by (9).
+calculation; they are not excluded by (9). The subsequent
+[coordinate-signature theorem](COORDINATE_WEIGHTED_PULSE_LIMITS.md) treats
+weights that depend on the coordinate but remain constant over its tails.
+It bounds total pulse count, including Clifford pulses; it does not bound
+native T-depth or cover arbitrary edge-dependent weights.
 
 If an actual implementation is within epsilon of one of these ideal
 words on the complete space, its transported probe is within
@@ -359,8 +363,10 @@ not provide a shallow lookup source, and the common-Clifford-basis and
 independent-replica shortcuts retain the stated limitations.
 
 The next unpaid operation is a complete native transition that
-distinguishes the two invariant lookup sectors, for example through a
-specified coordinate-dependent interaction or changed address motion.
+distinguishes the two invariant lookup sectors. The
+[weighted-pulse continuation](COORDINATE_WEIGHTED_PULSE_LIMITS.md) identifies
+Clifford pulse networks between non-Clifford pulses, tail-dependent edge
+weights and changed address motion as separate remaining possibilities.
 Its complete Pauli derivative, actual inverse, uniform requested accuracy,
 count, width and return must be proved together. Right commutant freedom
 does not correct an already wrong derivative.

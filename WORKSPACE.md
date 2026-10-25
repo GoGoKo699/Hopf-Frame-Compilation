@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #246](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/246),
-`55ec296410431d2661fd18c23833b9aaef6367a5`, fetched 25 October 2026.
-Its reviewed tree passed 1,741 tests and the full local gate; post-merge validation and presentation CI passed.
+Baseline: [PR #247](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/247),
+`044fe481e1b98d09c5a81ead0e6ce2409ede82e9`, fetched 25 October 2026.
+Its reviewed tree passed 1,761 tests, the full local gate, PR CI and post-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -22,7 +22,7 @@ They supply neither a faster complete indicator nor a stronger general frame bou
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
-2. [Native shear fusion](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md): paid half-band exchanges, bipartite mixing and complete-action gaps; the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
+2. [Coordinate-weighted pulses](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md): paid quarter-angle weights, signature collisions and their Clifford-interlayer escape; [native shear fusion](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) retains the earlier complete-action gaps, and the [two-call derivative reduction](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) retains the source contract.
 3. [Clifford projector Grams](research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): the accepted-source boundary; [paid recovery](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) supplies the separate return interface.
 4. [Route decisions](research/ROUTE_DECISIONS.md): check the precise failed mechanism and its reopening condition before choosing another word.
 
@@ -90,20 +90,23 @@ with returned arbitrary helpers. The [half-band exchange](research/depth/COEFFIC
 pays its actual non-diagonal correction in four bands and $`3m`$ T gates.
 These are reusable components; neither completes lookup.
 
-The zero-address-calibrated coordinate regrouping has complete error two.
-A different, fully paid bipartite grammar has error at least square root two
-for every word of its uniform-angle generators, including arbitrary repetitions.
-Its two calibrated quarter-angle words have error two. Common-Clifford
-diagonalization and independent replica shortcuts have separate scoped limits.
-None is an unrestricted native-depth lower bound.
+The [weighted-pulse theorem](research/depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md)
+extends the paired-sector screen to angles depending on the coordinate but
+not the edge's tail. At error below square root two, quarter-angle words need
+at least $`\lceil\log_8 p\rceil`$ total pulses; arbitrary real angles need
+$`\Omega_\tau(\log p/\log\log p)`$ pulses at fixed error tau. Every weighted
+quarter pulse still has a thirteen-band dirty-return compiler.
+These are pulse-count bounds, not unrestricted native-depth bounds:
+even-angle pulses are Clifford and can separate the coordinate signatures.
 
-**Next question:** can a specified coordinate-dependent interaction, new bank
-interlayer or changed address motion distinguish the paired lookup sectors
-and supply the complete derivative with sublogarithmic depth? Derive the
-all-size source action and simultaneous resource/error/return ledger first.
-Right commutant freedom preserves an existing derivative; it does not repair
-the wrong regrouped word. The accepted-source alternative still needs its
-complete projector Gram outside the recorded Clifford and acceptance screens.
+**Next question:** can a specified Clifford pulse network interleaved with a
+few non-Clifford pulses supply the complete derivative with sublogarithmic
+native depth? Edge weights depending on the tail and changed address motion
+are separate possibilities. Derive the all-size action and simultaneous
+resource/error/return ledger first. Distinct signatures only escape the
+collision proof; they do not establish lookup. Right commutant freedom does
+not repair a wrong derivative. The accepted-source alternative still needs
+its complete projector Gram outside the recorded screens.
 
 ## Stopped routes, reopening conditions and superseded instructions
 
