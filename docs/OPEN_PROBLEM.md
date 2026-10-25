@@ -229,10 +229,16 @@ stated hypotheses. They are not unrestricted growing-depth lower bounds.
 
 Useful components include a paid [scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md)
 with zero clean work and constant depth at fixed accuracy, native quadratic
-queries, joint two-coordinate transport, and complete coefficient assembly.
+queries, joint two-coordinate transport, complete coefficient assembly, and an
+exact [thirteen-band weighted-cubic phase compiler](../research/depth/DIRTY_CUBIC_PHASE_COMPILER.md)
+with shared logical controls and returned arbitrary dirty work.
 Their resource ledgers and remaining composition costs are in the
 [component catalogue](../research/README.md#constructive-components-and-source-candidates)
 and [route decisions](../research/ROUTE_DECISIONS.md#complete-sources-and-promotion).
+The [native shear-fusion study](../research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md)
+gives error two for its calibrated half-band palindrome and at least square
+root two for every word of its uniform-angle bipartite generators. Its common
+Clifford-basis and independent-replica screens keep their separate hypotheses.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in

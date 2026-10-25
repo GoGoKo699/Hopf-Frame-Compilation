@@ -195,6 +195,7 @@ These are complete interfaces and conditional transfers, not constructions of th
 Each home separates its paid native operations from its first unpaid conversion. A scalar predicate, forward XOR query, inverse-column formula or trace character is not by itself a normalized complete indicator.
 
 - [Exact two-layer quadratic queries with one returned dirty qubit](depth/QUADRATIC_NATIVE_QUERY.md)
+- [Parallel weighted-cubic phases with returned dirty work](depth/DIRTY_CUBIC_PHASE_COMPILER.md) — an exact thirteen-band compiler with shared logical controls and paid coefficient-cube parity layers
 - [Balanced native compilation of the HRT algebra permutations](depth/BALANCED_ALGEBRA_PERMUTATION.md)
 - [Full-input algebra queries and fast returned multiplication](depth/ALGEBRA_QUERY_EXTRACTION.md)
 - [A complete bank from one nonlinear algebra source](depth/FULL_BANK_CHARACTER_TRANSPORT.md) — [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map) · [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
@@ -237,6 +238,7 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Bank-coupled selector dynamics](depth/BANK_COUPLED_SELECTOR_DYNAMICS.md) — paid bank swaps/Hadamards and their signal controls, complete principal-work dynamics, an all-size Bell-cell witness for the specified nonlocal frames, and a finite bank-Hadamard source excluded by its complete marked path Gram
 - [MOD3 zeta transport](depth/MOD3_ZETA_TRANSPORT.md) — binary order-three blocks, paid native baselines and shared cleanup, a native two-band exclusion, and exactness of three-layer observable approximation below the fixed gap; sublogarithmic joint transport remains unpaid
 - [Weak Pauli orbit compression](depth/WEAK_PAULI_ORBIT_COMPRESSION.md) — native single-coordinate and joint two-coordinate sources, complete two-address lookup, four-band nested coefficients, [two-band coefficient shear and complete assembly](depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear) with a paused linear-depth recurrence, and scoped product/prefix-rank/final-block limits
+- [Native fusion of complete coefficient shears](depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) — exact completed exchanges, failed half-band regrouping, a uniform-angle bipartite word gap, and scoped common-Clifford-basis and dirty-replica screens
 - [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — paid address/tag and bank-motion sources, scoped three-layer boundaries, the corrected relative involution, and complete-transition failures of retained repairs
 - [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — actual joint word, robust direct square readout for balanced two-unitary sources, paid anchors and two distinct finite failed bank-moving trials
 - [Affine orbit reflection source](depth/AFFINE_ORBIT_REFLECTION_SOURCE.md) — paid fixed-point-free charge-preserving motion and orbit coordinates, exact diagonal phase cochains, sharp phase-degree scope and a failed local anchor
