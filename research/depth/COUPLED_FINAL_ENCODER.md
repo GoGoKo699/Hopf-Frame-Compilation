@@ -2519,3 +2519,163 @@ the aligned rank-one construction. Its middle is evaluated as a truth-table
 diagonal, explicitly not as a scalable native implementation. These finite
 checks support the identities and boundaries; they do not replace the
 all-size proof or supply the missing phase compiler.
+
+<a id="rank-one-indicator-equivalence"></a>
+
+### 12.4. The phase derivative is a complete-indicator problem
+
+The rank-one exception admits a quantitative converse. This prevents the
+phase in (T7) from being treated as an easier primitive merely because its
+truth table is diagonal. Throughout this subsection $`p\ge3`$, $`m=2^p`$,
+and every address, bank, work and reference input is arbitrary.
+Let $`c=z_0`$ and introduce the *formal* string $`w`$ with
+$`w_0=0`$ and $`w_j=z_j`$ for $`j\ne0`$. No physical zero input is introduced.
+Since $`H\boldsymbol1_m=0`$ and $`m`$ is even, (T6) explicitly reads
+
+```math
+g_s(z_{\ne0})=\sum_{j\ne0}z_j+w_{s+Hw},\qquad
+\Gamma_s=(-1)^{g_s(z_{\ne0})}.                         \qquad(T8)
+```
+
+**From a derivative to the full indicator.** Allow a native unitary V on
+the address, bank and arbitrary work, with no diagonal or fixed-address
+restriction. Suppose its complete relative action satisfies
+
+```math
+\|V X_0 V^\dagger-(\Gamma_s X_0)\otimes I_{\rm work}\|
+ \le\eta.                                             \qquad(T9)
+```
+
+The source V need not return its work separately. Its actual inverse in
+(T9) must be emitted, and the displayed complete operator promise includes
+all work return. Let K be the Clifford shear
+$`|x,y\rangle\mapsto|x+Hy,y\rangle`$, let $`H_B`$ denote the bank Hadamards,
+and retain $`C_2=U_LH_{B_0}`$. Then the literal word
+
+```math
+\widetilde I_p=
+ H_B Z_\pi K C_2 V X_0 V^\dagger C_2^\dagger K H_B       \qquad(T10)
+```
+
+approximates the complete indicator $`I_p`$, tensored with the identity on
+work, within eta. Indeed $`C_2(\Gamma_s X_0)C_2^\dagger=Q_s`$,
+$`KQ_sK=Z_\pi\Omega_x`$, and $`H_B\Omega_xH_B=I_p`$.
+These are operator identities, so neither coherent address motion inside V
+nor entanglement with a reference changes the estimate.
+If t, d and G are common bounds for the emitted V and its actual native
+inverse, with b work wires, one simultaneous ledger for (T10) is
+
+```math
+T\le2t,\qquad D_T\le2d,\qquad
+G_{I}\le2G+pm+6m+4,\qquad b_I=b.                      \qquad(T11)
+```
+
+Here G counts **all** elementary native gates. Each K has pm/2 CNOTs;
+the two $`C_2`$ walls cost 2m gates, the bank Hadamards cost 2m,
+$`Z_\pi=S_B^2`$ costs 2m, and $`X_0=H_{B_0}S_{B_0}^2H_{B_0}`$ costs four.
+No extra clean or dirty input is added by these walls.
+
+In particular, an implementation within delta of $`D_s\otimes I`$ gives
+$`\eta\le2\delta`$. The actual derivative promise (T9) is weaker than that
+standalone approximation. At zero error its complete solution set is
+
+```math
+V=(D_s\otimes I)J,\qquad [J,X_0]=0.                   \qquad(T12)
+```
+
+This follows by multiplying the exact conjugation identity by
+$`D_s^\dagger`$ on the left and D on the right. J may be nondiagonal, may
+move the address and work, and need not return them on its own. Its action
+cancels in the actual relative word. A phase independent of c is only the
+diagonal part of this larger freedom. None of this makes J free to synthesize.
+
+The [complete-indicator nullity bound](INDICATOR_PAULI_NULLITY.md) now gives
+an unrestricted **count** consequence for every V satisfying (T9):
+if $`\eta\lt1/\sqrt2`$, then $`2t\ge m-1`$, hence $`t\ge m/2`$.
+For a standalone delta approximation of D, it is enough that
+$`\delta\lt1/(2\sqrt2)`$. This uses the full indicator produced by (T10),
+not a degree argument about a selected diagonal representation. It does
+not imply a growing T-depth lower bound when dirty width may grow.
+
+**From the indicator to the displayed phase.** Conversely, suppose a
+native $`\widetilde I_p`$ approximates $`I_p\otimes I`$ within delta, with
+common forward/actual-inverse bounds $`T_I,d_I,G_I,b_I`$ and zero clean
+inputs. Add an arbitrary m-bit
+bank R. Apply the Clifford shear $`s\mapsto x=s+Hw`$ and define
+
+```math
+A_c=\prod_{j\ne0}{\rm CCX}(c,z_j;R_j),\qquad
+\Omega_x(R)=(-1)^{R_x}.                                \qquad(T13)
+```
+
+A leaves both $`R_0`$ and x unchanged. On every complete column,
+
+```math
+A_c\Omega_x(R) A_c\Omega_x(R)
+       =(-1)^{c w_x}I_R.                               \qquad(T14)
+```
+
+In particular, the arbitrary value of $`R_0`$ cancels even when $`x=0`$.
+Realize each Omega by bank Hadamards around the indicator. Use the actual
+query adjoint in one of the two calls, giving
+$`A_c\widetilde\Omega^\dagger A_c\widetilde\Omega`$.
+The operator error is at most $`2\delta`$. Multiply by the Clifford phase
+$`\prod_{j\ne0}{\rm CZ}(c,z_j)`$ and undo the address shear. Equations
+(T8) and (T14) then give $`D_s\otimes I_{R,\rm work}`$ within $`2\delta`$.
+No bank row was initialized, no postselection was used, and R and all query
+work return in the same complete operator estimate.
+
+The shared-control Toffoli bank A has a literal four-T-band construction
+without any helper. Put $`k=m-1`$. Its Hadamard-conjugated sign phase is
+$`(-1)^{c\sum_{j\ne0}z_jR_j}`$. The integer phase-polynomial identity is
+
+```math
+\begin{aligned}
+4c\sum_{j\ne0}z_jR_j
+&\equiv kc+\sum_{j\ne0}\bigl[z_j+R_j-(c\mathbin\oplus z_j)
+ -(c\mathbin\oplus R_j)\\
+&\hspace{42mm}-(z_j\mathbin\oplus R_j)
+ +(c\mathbin\oplus z_j\mathbin\oplus R_j)\bigr]\pmod8.
+\end{aligned}                                          \qquad(T15)
+```
+
+Since $`k\equiv7\pmod8`$, emit the c term as one T-dagger. In the first
+band apply that gate together with T on every $`z_j,R_j`$. In the second,
+compute both families $`c\oplus z_j`$ and $`c\oplus R_j`$ into their
+respective wires, apply T-dagger to all of them, and undo the CNOTs.
+The third band computes $`z_j\oplus R_j`$ into $`R_j`$, applies T-dagger,
+and uncomputes. The fourth similarly computes
+$`c\oplus z_j\oplus R_j`$ into $`R_j`$ and applies T. Every parity map
+is invertible and restored; every physical T band uses distinct wires.
+Shared CNOT controls incur Clifford scheduling, not extra T layers.
+The phase core uses $`6k+1`$ T gates and 10k CNOTs. Hadamards on the k
+R targets on both sides yield A with
+$`T_A=6k+1`$, $`D_T(A)\le4`$, and $`G_A=18k+1`$.
+The actual inverse has the same ledger.
+
+Using these words in (T14), with a three-gate native implementation of
+each CZ, gives the simultaneous reverse-reduction bounds
+
+```math
+\begin{aligned}
+T_D&\le2T_I+12m-10,& D_T(D)&\le2d_I+8,\\
+G_D&\le2G_I+pm+43m-37,& b_D&\le m+b_I,\\
+\|\widetilde D-D_s\otimes I\|&\le2\delta.&
+\end{aligned}                                          \qquad(T16)
+```
+
+The additive gate count includes pm CNOTs for the two address shears,
+4m query Hadamards, two A words, and $`3(m-1)`$ gates for the parity phase.
+All additional workspace is dirty. Thus, at fixed requested accuracy,
+the displayed phase and the complete indicator have equivalent
+sublogarithmic-depth targets up to constant call factors and additive
+constant T-depth, with the same linear count/width and quadratic gate
+orders. Equation (T12) leaves a genuinely different, potentially useful
+source representative open, but paying for that representative is still
+the complete transport problem. No general depth frontier changes here.
+
+[Exact reduction fixtures](../../tests/test_rank_one_indicator_equivalence.py)
+check the physical four-band phase polynomial and actual reverse,
+all auxiliary-bank columns including row zero, the complete forward
+operator, and a nondiagonal address/work-moving gauge. They verify these
+reductions, not a new native implementation of D or the indicator.
