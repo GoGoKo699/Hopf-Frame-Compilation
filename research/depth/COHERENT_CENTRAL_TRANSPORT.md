@@ -316,3 +316,190 @@ The [exact fixtures](../../tests/test_clifford_interleaved_lookup.py)
 corroborate the binary commutator, Pfaffian, derivative and rank identities.
 The all-size claims and native ledger follow from the displayed algebra
 and the returned-dirty Gray word, rather than from the finite fixtures.
+
+<a id="partial-character-diagonalizer"></a>
+
+## 5. A partial character transform with arbitrary residual fibers
+
+The full returned map (12) is stronger than necessary. An additional arbitrary
+bank lets a source move every coefficient sector while a final probe echo
+returns that bank. This gives a different sufficient interface: diagonalize
+the central characters, with no prescribed coordinates on their residual fibers.
+The character-dependent middle is a paid cubic phase; the fixed transform
+itself remains unpaid at sublogarithmic native depth.
+
+### Embed every coefficient input in a formal unit
+
+Work in the square-zero algebra on the p labels and an additional generator
+$`e_0`$. Complement the coefficient labels by writing
+
+```math
+\widehat c=\sum_{S\subseteq[p]}c_{[p]\setminus S}e_S,
+\qquad u=1+d+e_0\widehat c.
+```
+
+All m coefficients of c and all $`m-1`$ nonconstant coefficients of d are
+arbitrary physical inputs. The displayed 1 is a formal algebraic constant,
+with no physical wire or initialized-input assumption. Multiplication by
+$`e_i`$ on $`\widehat c`$ is precisely the lowering map $`N_i`$ on c.
+For alternating K, put
+
+```math
+g_K=\prod_{i\lt j}(1+K_{ij}e_ie_j),\qquad
+\mathcal A_K:\quad
+(\widehat c,d)\longmapsto
+\bigl(g_K\widehat c,\ g_K(1+d)-1\bigr).                 \qquad(14)
+```
+
+This is a phase-free Clifford involution on all $`2m-1`$ coefficient wires.
+Its c action is $`F_K`$. Its affine d action is retained, rather than claimed
+to return inside the source. The group law is
+$`\mathcal A_K\mathcal A_L=\mathcal A_{K+L}`$.
+
+Let $`q=\binom p2`$ and let s be the q pair coefficients $`d_{\{i,j\}}`$.
+Under (14), $`s\mapsto s+K`$. Define $`r=g_su`$; its pair coefficients
+are zero. Omitting those formal zero coordinates, the map
+
+```math
+\mathcal S:\quad u\longmapsto
+\bigl(s,\ r\text{ with its pair coordinates omitted}\bigr)
+```
+
+is a permutation of all $`2m-1`$ physical bits. Its inverse is $`u=g_sr`$.
+There are $`2m-1-q`$ arbitrary residual bits; no extra zero-filled bank is
+introduced. Since $`g_{s+K}g_K=g_s`$, one has
+
+```math
+\mathcal S\mathcal A_K\mathcal S^\dagger
+ =X_s^K\otimes I_{\rm residual},\qquad
+B=H_s\mathcal S,\qquad
+B\mathcal A_KB^\dagger=Z_s^K\otimes I_{\rm residual}.  \qquad(15)
+```
+
+Thus a common character transform exists. Arbitrary unitaries inside the
+joint character fibers give other valid transforms; (15) does not prescribe
+their residual coordinates. Another sufficient choice is
+$`B=H_{\rm pairs}F_{p+1}^\dagger`$ using the
+[HRT source](FULL_BANK_CHARACTER_TRANSPORT.md): multiplication by $`g_K`$
+adds K only to its additive pair coordinates. Its known compiler retains
+logarithmic depth. Requiring that entire HRT coordinate change is unnecessary
+for the interface (15).
+
+### A paid coherent middle and the complete source ledger
+
+The fixed B acts on bank and work, independently of the original address x.
+For the clique matrix $`\mathcal K(x)`$, its coherent diagonal middle is
+
+```math
+D=\prod_{i\lt j}\mathrm{CCZ}(x_i,x_j,s_{ij}),\qquad
+\mathcal A(x)=B^\dagger D B.                            \qquad(16)
+```
+
+The cubic-only dirty compiler pays D with at most eight T bands,
+$`8q`$ T gates, $`8q`$ CNOTs and q returned arbitrary helpers. Its total
+native gate count is therefore $`16q`$, with zero error and no clean input.
+All shared address and character controls are included.
+
+Let $`B_0`$ be a specified ideal transform satisfying (15), including identity
+on any private work in that conjugation identity. B itself need not return
+that work between calls. Suppose a literal native $`\widetilde B`$ has
+full operator error at most eta relative to $`B_0`$, common forward and
+actual-inverse bounds $`d_B,t_B,g_B`$, and $`h_B`$ private dirty wires.
+Here $`g_B`$ counts every elementary native gate, including T gates.
+Combine (16) with the paid $`\mathsf J`$ from (11):
+
+```math
+\widetilde V=\mathsf J\widetilde B^\dagger D\widetilde B.
+```
+
+In the ideal source, the c action is $`(I+N_x)F_{\mathcal K(x)}`$ and is
+independent of d. Consequently the root-probe conjugation is exactly Q,
+tensored with identity on d and every private helper. The actual adjoint
+of the source cancels the arbitrary intermediate d action. Equations
+(6)--(7) and unitary telescoping give the complete bounds
+
+```math
+\begin{aligned}
+D_T(\widetilde V)&\le2d_B+24,&
+T(\widetilde V)&\le2t_B+8q+4pm,\\
+G_{\rm all}(\widetilde V)&\le2g_B+16q+8pm+2m,&
+w_{\rm extra}&\le m-1+h_B+\max(q,pm/4),\\
+\|\widetilde VZ_{A_\varnothing}\widetilde V^\dagger
+        -Q\otimes I_{\rm work}\|&\le4\eta.
+\end{aligned}                                                   \qquad(17)
+```
+
+The conservative width keeps B's private pool separate and reuses the
+returned cubic-middle and J pools. Error (17) includes every address, bank,
+work and external-reference input, including all final return errors.
+The actual reversed source has the same common resource bounds. The
+[two-call derivative readout](BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence)
+then gives the complete indicator with twice the source depth and T-count,
+the same derivative error, and its already paid Clifford walls.
+
+An exact simultaneous identity on pair generators proves (15) for every K.
+For an approximate transform, separate generator errors must be accumulated
+over the up to q factors or replaced by a direct uniform bound on the whole
+coherent middle. A per-generator tolerance is not automatically the complete
+source tolerance in (17).
+
+### The forward diagonalizer requires growing hierarchy level
+
+The partial interface does not admit a bounded Clifford-hierarchy shortcut.
+If an exact B satisfying (15) belongs to hierarchy level $`\mathcal C_k`$,
+then
+
+```math
+k\ge\lfloor p/2\rfloor+2.                              \qquad(18)
+```
+
+This concerns B, not its inverse. The explicit HRT choice above has
+$`B^\dagger=F_{p+1}H_{\rm pairs}\in\mathcal C_3`$; the hierarchy is not
+closed under taking adjoints. Neither hierarchy statement pays native depth.
+
+For the proof, let $`\mathcal A_{ij}`$ denote (14) with only pair ij present.
+Starting from any physical Pauli R, conjugation by B puts
+$`BRB^\dagger`$ in $`\mathcal C_{k-1}`$. Each group commutator with a
+Pauli character image lowers the hierarchy level by one; after $`k-1`$
+commutators the result is scalar. Conjugating back, the corresponding nested
+commutators of R with $`\mathcal A_{ij}`$ must therefore be scalar.
+
+For a Clifford with binary symplectic matrix $`S_{ij}`$, the Pauli label
+of a commutator is multiplied by $`S_{ij}-I`$. On c, this increment is
+$`N_iN_j`$ on X labels. Choose R to flip $`c_{[p]}`$ in the original
+coefficient ordering. Products for any sequence of disjoint pairs remain
+nonzero through $`\lfloor p/2\rfloor`$ factors: they move that label to
+the coordinate with those labels removed. The affine d translation and
+identity private work do not cancel this c block. This proves (18).
+
+There is a uniform third-level error floor as well. For p at least four,
+any $`B\in\mathcal C_3`$ and Hermitian Pauli targets for two disjoint pairs
+obey
+
+```math
+\|B\mathcal A_{ij}B^\dagger-P_{ij}\|\le\epsilon_{ij},\quad
+\|B\mathcal A_{kl}B^\dagger-P_{kl}\|\le\epsilon_{kl}
+\quad\Longrightarrow\quad
+4\epsilon_{ij}+2\epsilon_{kl}\ge2.                     \qquad(19)
+```
+
+Indeed, put $`\widetilde A_{ab}=B^\dagger P_{ab}B`$. The double commutator
+$`[[R,\widetilde A_{ij}],\widetilde A_{kl}]`$ is scalar $`\pm I`$,
+because $`BRB^\dagger`$ is Clifford. For the c witness above, its ideal
+counterpart is a nonidentity Pauli, at distance two from either scalar.
+Two telescoping estimates bound their distance by the left side of (19).
+Thus the uniform pair-image error is at least one third. Arbitrary private
+work and reference inputs are included.
+
+These are limits on a common character diagonalizer, not growing lower
+bounds on unrestricted native T-depth or complete-indicator error. A circuit
+outside $`\mathcal C_3`$ may still have constant native depth; joint synthesis
+of $`B^\dagger D B`$ need not implement B separately. The remaining question
+is whether nonmonomial native dynamics can pay this partial character
+transform, or its whole coherent conjugation, within the complete
+sublogarithmic-depth and polynomial-overhead budgets.
+
+The [complete observable-basis fixtures](../../tests/test_complete_observable_bases.py)
+check the free pair action, arbitrary residual sectors and disjoint-pair
+commutators. The all-size identities, hierarchy argument and native/error
+ledger are the analytic claims above.

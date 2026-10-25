@@ -192,6 +192,8 @@ failures and reopening conditions belong in the
 | Complete interface | Paid reduction and remaining obligation |
 |---|---|
 | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) | Two actual source/adjoint calls extract the addressed observable with complete work return. The nonlinear source still needs native synthesis |
+| [Single HRT residual probe](../research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) | Four residual-phase calls, or eight calls to a source transporting one Pauli to that phase, give the complete indicator with constant-depth dirty arithmetic and polynomial address overhead. The standard coherent dirty teleportation word reduces to one quadratic XOR query and does not supply the missing correction |
+| [Partial central character basis](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#partial-character-diagonalizer) | Resolving only the pair characters of an affine unit action suffices, with arbitrary residual fibers, an eight-band cubic middle and the sixteen-band linear factor. The fixed basis or its jointly synthesized use remains unpaid; full HRT coordinate conversion is sufficient but unnecessary |
 | [Rank-one phase and derivative](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) | Two-call reductions in both directions preserve the fixed-accuracy sublogarithmic-depth, linear-count/width and quadratic-gate targets. The reverse pays a four-T-band shared-control bank and arbitrary returned dirty work. A general derivative source needs at least m/2 T gates below error $`1/\sqrt2`$; this is a count consequence, not a depth bound. The canonical diagonal phase is an equivalent target, not an easier missing primitive |
 | [Projector-Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) | Accepted Gram $`K^\dagger K\approx\Pi_{\rm eq}/2`$ suffices with one clean signal; accepted private fibers and intermediate address motion are unrestricted. The complete zero-clean recovery ledger is below |
 | [Joint two-clean Gram readout](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) | Joint-code reflection is Clifford. Four-call recovery and full dirty promotion give error $`128\sqrt\delta`$; $`\delta\le\tau^2/2^{20}`$ supplies tolerance tau/8 before fusion. A qualifying normalized source is still required |
@@ -226,6 +228,7 @@ stated hypotheses. They are not unrestricted growing-depth lower bounds.
 | Actual Clifford signal image | [Compression screen](../research/depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap): if $`U^\dagger Z_aU`$ is Clifford, Gram error is at least $`1/(2\sqrt2)`$ for $`p\ge1`$, including arbitrary Clifford address motion. Higher-band words need not satisfy this premise |
 | MOD3 joint Pauli transport | [Native-layer theorem](../research/depth/MOD3_ZETA_TRANSPORT.md#three-band-transport-exactness): at most three source T layers give either exact complete transport or error at least $`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary dirty width and register motion. Two layers are excluded for p at least three; unrestricted exact three-layer existence remains open |
 | Complete lookup from two cubic blocks | [Clifford-frame theorem](../research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md): for p at least three, $`V=CDU`$, with C arbitrary Clifford, D diagonal third-level and U any third-level unitary, has complete Pauli-derivative error at least $`\sin(\pi/8)`$. Arbitrary dirty width and Clifford address/work mixing are included. This contains all native two-T-layer sources but gives no growing-depth lower bound or general frame converse |
+| Held-address third-level blocks with Clifford fibers | [Intrinsic label theorem](../research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md#clifford-fiber-block-bound): fewer than p blocks give complete derivative error at least $`\sqrt2`$, including arbitrary work and address-algebra-preserving Clifford interlayers. Both the gap and block count are sharp. This counts source blocks, not jointly synthesized native depth; non-Clifford fixed-address fibers and genuine address mixing remain outside |
 | Interleaved Clifford acceptance | [Projector-Gram theorem](../research/depth/CLIFFORD_PROJECTOR_GRAM.md#interleaved-clifford-gram-rigidity): with held address and arbitrary fixed Clifford interlayers on data, auxiliaries and clean signals, below quarter Gram error the target is exact. One clean signal has floor one half; two clean signals require at least p/3 literal affine-address XOR queries. This does not bound jointly synthesized native depth or non-Clifford conditional dynamics |
 
 Useful components include a paid [scalar zero reflection](../research/depth/EXPANDER_ZERO_REFLECTION.md)
@@ -252,9 +255,12 @@ thirteen-band compiler. The [long physical Clifford-frame trial](../research/dep
 and its actual zero-address repair fail on a complete invariant sector;
 angle tuning does not repair that family.
 The [central-transport factorization](../research/depth/COHERENT_CENTRAL_TRANSPORT.md)
-pays $`I+N_x`$ in sixteen bands, leaving the coherent even-subset map unpaid.
-Its completed-mask rank limit is representation-specific, and its full-map
-interface is sufficient rather than necessary for a general source.
+pays $`I+N_x`$ in sixteen bands. Its partial character-basis reduction retains
+arbitrary residual fibers and pays the remaining cubic middle. If that basis
+belongs to the Clifford hierarchy, its level must be at least
+$`\lfloor p/2\rfloor+2`$; at p at least four a third-level basis has simultaneous
+generator-image error at least one third. These constrain a sufficient common
+basis, not unrestricted native depth or every direct observable source.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
