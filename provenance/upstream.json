@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "recorded_at_utc": "2026-10-19T09:43:49Z",
+  "recorded_at_utc": "2026-10-26T10:26:09Z",
   "current_repository": "GoGoKo699/Hopf-Frame-Compilation",
   "upstreams": [
     {
       "repository": "GoGoKo699/Hopf-QBP",
       "tracked_branch": "main",
-      "tracked_commit": "99e5ee5fc77004f662462e5d088e2a583d032f6a",
+      "tracked_commit": "bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b",
       "role": "current authority for Hopf-QBP conventions, gradient protocols, task boundaries, and statistical-accuracy statements"
     },
     {
@@ -29,26 +29,63 @@
     ]
   },
   "upstream_reconciliation": {
-    "previous_main_commit": "a9885317cf998a7df87ca07ba86e3bd4f0f419ef",
-    "reviewed_main_commit": "99e5ee5fc77004f662462e5d088e2a583d032f6a",
-    "commits_reviewed": 1,
-    "reviewed_at_utc": "2026-10-19T09:43:49Z",
+    "previous_main_commit": "99e5ee5fc77004f662462e5d088e2a583d032f6a",
+    "reviewed_main_commit": "bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b",
+    "commits_reviewed": 3,
+    "reviewed_at_utc": "2026-10-26T10:26:09Z",
     "changed_upstream_paths": [
+      "CITATION.cff",
       "README.md",
-      "REPRODUCIBILITY.md",
       "docs/CLAIM_SUPPORT.md",
       "docs/ENGINEERING_GUIDE.md",
+      "docs/METHOD_COMPARISON.md",
       "docs/OBSERVABLES_AND_READOUT.md",
       "docs/OPTIMIZED_COMPILATION.md",
-      "docs/STATISTICAL_ACCURACY.md"
+      "docs/STATISTICAL_ACCURACY.md",
+      "figures/paper/ansatz_circuit.png",
+      "figures/paper/hopf-tree.svg",
+      "figures/paper/hopf-tree.tex",
+      "figures/paper/hopf_checkpoint_Uchk.png",
+      "figures/paper/hopf_checkpoint_complex_magnitude_depth2_4q.png",
+      "figures/paper/hopf_checkpoint_real_depth2_4q.png",
+      "figures/paper/hopf_complex_phase_4q.png",
+      "figures/paper/hopf_frame_W_gatelevel_4q.png",
+      "figures/paper/hopf_frame_complex_magnitude_4q.png",
+      "figures/paper/hopf_frame_real_4q.png",
+      "learning/ANCHOR.md",
+      "learning/MILESTONES.md",
+      "qbp_optimized_resource_ledger.py",
+      "qbp_resource_ledger.py",
+      "qbp_validation/tests/test_documentation.py",
+      "references/bibliography.bib",
+      "references/paper-bibliography.md",
+      "review/PAPER_MAP.md",
+      "review/README.md",
+      "review/paper-map.json",
+      "science/README.md",
+      "science/accuracy-resources.md",
+      "science/balanced-differential.md",
+      "science/checkpoints.md",
+      "science/conclusion.md",
+      "science/endmatter.md",
+      "science/four-qubit-example.md",
+      "science/global-complex.md",
+      "science/global-real.md",
+      "science/motivation.md",
+      "science/proofs-and-compilation.md",
+      "science/reverse-task.md",
+      "verification/README.md"
     ],
     "relevant_changes": [
-      "documentation-only consolidation removes repeated explanations and nonclaims from seven Markdown files; no source code, tests, circuit builders, decoders, or theorem formulas changed",
-      "raw coordinatewise l_infinity remains the primary finite-shot target; normalized-frame and natural-gradient conditioning, the ambient-sphere phase metric, and matched controlled-observable costs remain unchanged",
-      "the claim table retains the singular-coordinate distinction: zero-weight magnitude records vanish, while individual phase records need not vanish",
-      "the exact multiplexed compiler remains distinct from the direct-angle compiler and retains its initialized clean-flag contract"
+      "the complete arXiv:2610.14177v1 scientific account, paper figures and bibliography, reviewer crosswalk, and Nielsen–Chuang 30-milestone bridge are integrated as source exposition and navigation",
+      "the reproduction guide moves from REPRODUCIBILITY.md to verification/README.md; review/README.md replaces docs/CLAIM_SUPPORT.md",
+      "the executable edits change only the two ledger scripts' scope labels/docstrings and the documentation test's read path; no circuit builder, decoder, resource formula, numerical fixture, or scientific implementation changes",
+      "the exact multiplexed compiler is attributed to Appendix B.10 rather than called repository-only; it remains outside the direct-angle setting and requires an initialized clean flag returned to zero for every system input",
+      "the complete inverse-frame contract, forward state-column replacement with later operations fixed, and checkpoint active-interface scope are preserved; common-phase freedom in the existing four-qubit QBP example does not relax this repository's literal-phase contract",
+      "raw coordinatewise l_infinity remains the primary finite-shot target; normalized-frame and natural-gradient conditioning, the ambient-sphere phase metric, and matched phase-calibrated controlled-observable costs remain unchanged",
+      "zero-weight magnitude records vanish, while individual phase records need not vanish"
     ],
-    "local_resolution": "Reviewed the full one-commit diff and its seven changed Markdown paths. Updated current-baseline references and provenance checks only. No foundational correction or scientific implementation port is required. Preserved both earlier reconciliations, original file lineage, historical seed, and frozen fallback; the frame resource frontier and operator contracts are unchanged."
+    "local_resolution": "Reviewed all three commits and 41 changed paths: 29 added, ten modified, one removed and one renamed. Updated current-baseline references, upstream source locators, reconciliation records and provenance checks. No foundational correction or scientific implementation port is required. Preserved all three earlier reconciliations, original file lineage, historical seed and frozen fallback; R96, selected R79 and the complete operator/work-return contracts are unchanged."
   },
   "project_native_paths": [
     "compiler_robust_hopf/tree_structure.py",
@@ -108,6 +145,28 @@
         "the upstream claim map is repaired and documentation-integrity checks are added; circuit builders, decoders, and the headline sampling theorem are unchanged"
       ],
       "local_resolution": "Reviewed the five-commit upstream diff. Existing output-task, metric, and controlled-observable boundaries remain applicable. Scoped the zero-record statements in docs/QBP_CONSEQUENCE.md and SYNC.md explicitly to magnitude coordinates. Updated current-baseline references and provenance tests. Preserved the previous reconciliation, original file lineage, historical seed, and frozen fallback; no scientific implementation or approved layout was changed."
+    },
+    {
+      "previous_main_commit": "a9885317cf998a7df87ca07ba86e3bd4f0f419ef",
+      "reviewed_main_commit": "99e5ee5fc77004f662462e5d088e2a583d032f6a",
+      "commits_reviewed": 1,
+      "reviewed_at_utc": "2026-10-19T09:43:49Z",
+      "changed_upstream_paths": [
+        "README.md",
+        "REPRODUCIBILITY.md",
+        "docs/CLAIM_SUPPORT.md",
+        "docs/ENGINEERING_GUIDE.md",
+        "docs/OBSERVABLES_AND_READOUT.md",
+        "docs/OPTIMIZED_COMPILATION.md",
+        "docs/STATISTICAL_ACCURACY.md"
+      ],
+      "relevant_changes": [
+        "documentation-only consolidation removes repeated explanations and nonclaims from seven Markdown files; no source code, tests, circuit builders, decoders, or theorem formulas changed",
+        "raw coordinatewise l_infinity remains the primary finite-shot target; normalized-frame and natural-gradient conditioning, the ambient-sphere phase metric, and matched controlled-observable costs remain unchanged",
+        "the claim table retains the singular-coordinate distinction: zero-weight magnitude records vanish, while individual phase records need not vanish",
+        "the exact multiplexed compiler remains distinct from the direct-angle compiler and retains its initialized clean-flag contract"
+      ],
+      "local_resolution": "Reviewed the full one-commit diff and its seven changed Markdown paths. Updated current-baseline references and provenance checks only. No foundational correction or scientific implementation port is required. Preserved both earlier reconciliations, original file lineage, historical seed, and frozen fallback; the frame resource frontier and operator contracts are unchanged."
     }
   ]
 }

@@ -22,6 +22,7 @@ corollaries are collected in the [publication scope](manuscript/PUBLICATION_SCOP
 | [Current depth frontier](docs/OPEN_PROBLEM.md) | Locate the proved resource bounds and the remaining one-clean question |
 | [Research catalogue](research/README.md) | Find the endpoint proof dependencies, earlier constructions, and scoped limits |
 | [Working checkpoint](WORKSPACE.md) | Resume the active research question and its full operator/resource contract |
+| [LLM guide](llms.txt) | Follow the source-of-truth, scope and evidence rules |
 
 ## Target and resource contract
 
@@ -48,8 +49,8 @@ This includes every system input, dirty work entangled with any reference,
 literal phases, and clean-work leakage. Return error is included in this
 same norm; Result B returns its dirty registers exactly. Source preparation,
 queries, and actual inverses are charged. There are no measurements, resets,
-or free supplied precision sources. Certified classical coefficient and
-table generation are accounted for separately from quantum gate counts.
+postselection, QRAM or free supplied precision sources. Certified classical
+coefficient and table generation are separate from quantum gate counts.
 
 ## Four principal results
 
@@ -67,8 +68,7 @@ S=\Theta(N),\qquad D=\Theta\!\left(n+\frac{N}{n+m}\right).
 
 The worst-case CNOT count alone is $`\Theta(N)`$ for $`n\ge2`$, even
 with free one-qubit gates and unrestricted clean workspace; it is zero for
-$`n=1`$. The [exact proof](docs/COMPILER_THEOREM.md) combines a borrowed-suffix
-echo, a direct flagged schedule, and coherently routed parallel subframes.
+$`n=1`$. The [exact proof](docs/COMPILER_THEOREM.md) covers every clean budget.
 
 For the approximate results, put
 
@@ -105,30 +105,21 @@ T^\star=\Theta\!\left(\sqrt{NL}+L+\frac{NL}{b}\right).
 ```
 
 At exactly $`b=B`$ and $`L\ge\max\{6,n\}`$, the base-width count
-also matches: $`T^\star=\Theta(N+L)`$. Its proof charges growing
-precision sources, borrowed-signal recovery, exact dirty-bank queries, and
-the layerwise baseline covering low precision and bounded dimension.
-The [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors)
-retain their own workspace reservations.
+also matches: $`T^\star=\Theta(N+L)`$. No general matching claim is made
+at base width with $`L\lt n`$ or throughout $`B\lt b\lt2B`$.
+Result C adds no T-depth bound.
 
-**D. Optimal T-count with all-precision T-depth bounds.** For every
-$`n\ge1`$ and integer $`L\ge6`$, [one clean qubit suffices](research/depth/UNIFORM_SUBTREE_DEPTH.md) at these
-family-specific dirty reservations:
-
-| Target | Dirty reservation | Proof |
-|---|---|---|
-| Complete real frame | $`b\ge17(L+n+7)`$ | [Uniform subtree-depth theorem, R79](research/depth/UNIFORM_SUBTREE_DEPTH.md) |
-| Phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ | [R79 with literal phase composition](research/depth/UNIFORM_SUBTREE_DEPTH.md) |
-
-R79 gives one circuit with absolute constants.
-
-With $`\ell=\log_2(n+2)`$ and $`\lambda=\log_2(n+L+2)`$, put
+**D. Optimal T-count with all-precision T-depth bounds.** The selected
+[uniform subtree-depth theorem, R79](research/depth/UNIFORM_SUBTREE_DEPTH.md),
+uses one clean qubit at $`b\ge17B`$, with the family-specific B above,
+for every integer $`n\ge1,L\ge6`$. Put
 
 ```math
-F(n,L)=\min\{nL,(L+\ell)\lambda\}.
+\ell=\log_2(n+2),\qquad
+F(n,L)=\min\{nL,(L+\ell)\log_2(n+L+2)\}.
 ```
 
-Then
+One circuit, with absolute constants and full error at most $`2^{-L}`$, gives
 
 ```math
 T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
@@ -141,51 +132,11 @@ the interval above the literal lower threshold is nonempty. In the
 high-precision regime $`L>N/n^2`$, the stronger depth bound is
 $`O(NL/b^2+L)`$, with the same count and Clifford budgets.
 
-The error is at most $`2^{-L}`$ in the full initialized-isometry norm.
-Source preparation, queries, actual inverses, and work return are charged.
-T-depth allows arbitrary Clifford interlayers and is distinct from total
-depth. The complex extension charges its literal leaf-phase diagonal and
-composes both factors on the same workspace. Unrestricted depth optimality
-remains open. R79 makes the native subtree-projector decoder's source costs
-uniform in precision and combines it with the retained
-[one-clean terminal and fallback schedules, R72](research/depth/ONE_CLEAN_DEPTH.md).
-The earlier [real](research/depth/ALL_PRECISION_DEPTH.md) and
-[complex](research/depth/COMPLEX_FRAME_DEPTH.md) two-clean theorems retain
-their stated proofs and allocations; the
-[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md) retains its supporting
-query and precision schedules.
-
-At every fixed $`0\lt\eta\le1/64`$, this recovers
-$`D_T=O_\eta(N/b^2+\log^2(n+2))`$, with optimal
-$`T=O_\eta(\sqrt N+N/b)`$ and $`G=O_\eta(N)`$ at the same dirty
-thresholds. The original [fixed-accuracy result, R78](research/depth/SUBTREE_PROJECTOR_DECODER.md),
-remains its proof home for native subtree reflections and coherent label
-erasure. Count and depth match through
-$`b\le\sqrt N/\log_2(n+2)`$ when the eligible interval is nonempty.
-R79 also gives $`O(\log^2 n)`$ depth at $`b=\Theta(\sqrt{NL})`$
-for $`L=\Theta(\log n)`$, so the error may decrease as an inverse
-polynomial in n.
-
-The stronger research [theorem R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
-gives, for every integer $`n\ge1,L\ge6`$ and $`\ell=\log_2(n+2)`$,
-
-```math
-D_T=O(NL/b^2+L+\ell),\qquad
-T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL).
-```
-
-It preserves one clean qubit, original real/complex widths, and full
-initialized-isometry error, including signs, zeros, phases and dirty/reference
-inputs. Borrowed-precision sources, fast references and direct prefix
-programming remove the precision restriction. Optimal depth remains open; selected manuscript Result D
-remains R79.
-
-The [research catalogue](research/README.md#large-workspace-t-depth)
-retains the earlier refinements and their useful proof components.
-
-The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford gates.
-The [full statements](manuscript/PUBLICATION_SCOPE.md) retain the additional
-regimes, complex extensions, and older schedules useful at smaller reservations.
+T-depth allows arbitrary Clifford interlayers and differs from total depth.
+The all-precision constructions in B–D use $`G=O(NL)`$ elementary Clifford
+gates. The [proof map](docs/README.md#d-simultaneous-frame-t-count-and-t-depth)
+connects R79 to its native decoder, terminal schedules and
+[uniform baseline](docs/UNIFORM_PRECISION_DEPTH.md).
 
 <a id="two-open-resource-gaps"></a>
 <a id="linear-count-endpoint-and-remaining-depth-gap"></a>
@@ -198,37 +149,28 @@ regimes, complex extensions, and older schedules useful at smaller reservations.
 
 ## Additional resource points and remaining depth gap
 
-Result C includes every column, literal phase, actual inverse, and workspace
-return in the common full-isometry contract. Its matching statements retain
-the displayed banked threshold and exact-base precision condition.
-The following distinct allocations remain useful:
+The strongest unconditional research upper, [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md),
+improves the general depth bound to
 
-| Resource point | Current guarantee |
-|---|---|
-| Sharper complex endpoint, $`\eta=2^{-N},a=2,b=N+n+7,n\ge3`$ | $`2N-1\le T^\star\le O(N)`$ for both complete real and phase-dressed complex magnitude frames; saves one dirty qubit relative to the one-clean complex allocation |
-| All precisions, $`a=1`$, $`L\ge6`$, sufficient $`b=\Theta(\sqrt{NL}+L+n)`$ | [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives absolute $`D_T=O(L+\log_2(n+2))`$, optimal T-count and $`G=O(NL)`$ for both frame families; optimal depth remains open |
+```math
+D_T=O(NL/b^2+L+\ell),\qquad
+T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL).
+```
 
-The [sharper two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint)
-uses a packed literal diagonal. Result B covers allocations with sufficient
-clean work even when Result C's dirty reservation is unavailable. Result D
-supplies simultaneous count/depth guarantees on its own circuit; C adds no
-T-depth bound. R96 includes fixed accuracy and inverse-polynomial error
-in n; earlier special allocations remain in the linked frontier and catalogue.
-The [resource statement](docs/OPEN_PROBLEM.md) gives the matching intervals
-and remaining optimal-depth question; the [research index](research/README.md)
-retains supporting constructions and the limits of specific interfaces.
+It retains one clean qubit, $`b\ge17B`$, every integer $`n\ge1,L\ge6`$,
+and full initialized-isometry error at most $`2^{-L}`$. Selected Result D
+remains R79. At sufficient $`b=\Theta(\sqrt{NL}+L+n)`$, R96 gives
+$`D_T=O(L+\ell)`$. **Optimal general T-depth remains open:** at fixed
+accuracy and square-root dirty width, the gap is $`\Omega(1)`$ versus
+$`O(\log n)`$.
 
-The depth lower bounds distinguish the available clean workspace:
-
-| Clean workspace | Current obstruction for an explicit complete frame |
-|---|---|
-| Zero clean qubits | At error $`2^{-L}`$ with integer $`L\ge3`$, at least five T layers are necessary, at arbitrary dirty width |
-| One clean qubit | Four layers are excluded at sufficiently small error for Pauli or Hermitian-Clifford midpoints, or bounded inner clean spread; the unrestricted case remains open |
-
-The [depth frontier](docs/OPEN_PROBLEM.md#constant-depth-frontier) gives the
-precise thresholds, proof links, and necessary growth of all four layer
-sizes in any hypothetical arbitrarily accurate one-clean sequence.
-These obstructions do not settle optimal large-width depth.
+The [resource frontier](docs/OPEN_PROBLEM.md) owns the complete bounds and
+scoped lower results; [WORKSPACE](WORKSPACE.md) identifies the first unpaid
+operation. The [publication scope](manuscript/PUBLICATION_SCOPE.md) retains
+the distinct [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint),
+[diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors),
+and smaller-workspace allocations. Earlier constructions and useful components
+remain in the [research catalogue](research/README.md#large-workspace-t-depth).
 
 ## Operational consequence
 

@@ -63,11 +63,13 @@ links each fact to its local restatement and implementation.
 The tracked `Hopf-QBP/main` baseline is
 
 ```text
-99e5ee5fc77004f662462e5d088e2a583d032f6a
+bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b
 ```
 
 and is reconciled in [SYNC](../SYNC.md) and
 [upstream provenance](../provenance/upstream.json).
+The upstream [paper crosswalk](https://github.com/GoGoKo699/Hopf-QBP/blob/bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b/review/README.md)
+locates its complete scientific statements and executable checks.
 
 Q1–Q7 fix the complete inverse-frame record, shared magnitude parities,
 separate phase stream, and phase-calibrated controlled access to a Hermitian

@@ -20,7 +20,7 @@ they become necessary to interpret or correct an established claim there.
 The provenance record tracks:
 
 - `GoGoKo699/Hopf-QBP/main` at
-  `99e5ee5fc77004f662462e5d088e2a583d032f6a`;
+  `bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b`;
 - the historical research seed
   `GoGoKo699/Hopf-QBP/ancilla-depth-robustness-2026` at
   `9cc564f493caff62b847fc362df522a68c6e83bf`.
@@ -123,6 +123,37 @@ foundational correction requires a local scientific port. Current-baseline
 references and provenance checks advance together, with both earlier
 reconciliations, file lineage, historical seed, and frozen fallback preserved.
 The complete-frame resource frontier and operator contracts are unchanged.
+
+## Reconciliation completed on 2026-10-26
+
+The three commits from `99e5ee5fc77004f662462e5d088e2a583d032f6a` to
+`bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b` were reviewed across all 41
+changed paths: 29 added, ten modified, one removed and one renamed.
+
+Upstream integrates the complete [arXiv:2610.14177v1 account](https://github.com/GoGoKo699/Hopf-QBP/tree/bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b/science),
+paper figures and bibliography, reviewer crosswalk and Nielsen–Chuang learning
+bridge. The claim map now lives in
+[review/README.md](https://github.com/GoGoKo699/Hopf-QBP/blob/bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b/review/README.md);
+the reproduction guide moves to `verification/README.md`. The only Python
+edits change the two ledger scripts' scope labels/docstrings and the
+documentation test's read path. Circuit builders, decoders, resource formulas,
+numerical fixtures and scientific implementations are unchanged.
+
+The corrected attribution places exact multiplexed recompilation in
+[Appendix B.10](https://github.com/GoGoKo699/Hopf-QBP/blob/bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b/science/proofs-and-compilation.md#A2.SS10).
+It remains outside direct-angle compilation and requires one initialized clean
+flag, returned to zero for every system input. The complete inverse-frame,
+forward state-column and checkpoint active-interface distinctions remain
+intact, as do the raw-coordinate accuracy target, metric conditioning,
+ambient-sphere phase convention, singular magnitude/phase distinction and
+calibrated controlled-observable costs. The existing four-qubit example's
+common-phase freedom does not relax this repository's literal-phase contract.
+
+No foundational correction requires a local scientific port. Current-baseline
+references and provenance checks advance together; all three earlier
+reconciliations, file lineage, historical seed and frozen fallback are retained.
+R96, selected R79 and the complete operator/work-return requirements are
+unchanged.
 
 ## Synchronization procedure
 
