@@ -617,9 +617,137 @@ character fibers, or merely listing the moves (29), likewise leaves the
 cost unpaid. Repairing only the basis inside the physical Bell zero
 branch remains excluded by (26).
 
-<a id="7-verification-and-remaining-operation"></a>
+## 10. A diagonal seed in an invariant stabilizer basis cannot suffice
 
-## 10. Verification and remaining operation
+There is a separate exact restriction on the starting reflection. Let
+$`Q_x\otimes I_h`$ act on the m bank qubits and h arbitrary helpers.
+Choose any stabilizer basis that every query permutes up to phases;
+equivalently, its Pauli Lagrangian is invariant under every query's
+binary symplectic action. The basis may mix bank and helper wires.
+Let R be any Hermitian involution diagonal in this basis. Its Boolean
+sign function may have arbitrary degree and complexity.
+
+For $`p\ge2`$, no fixed unitary E can satisfy
+
+```math
+E Q_xR Q_x^\dagger E^\dagger=X_x\otimes I_h
+\qquad\text{for all }x\in\mathbb F_2^p.               \qquad(30)
+```
+
+Thus an arbitrarily nonlinear diagonal seed in preserved stabilizer
+coordinates does not solve the complete probe. E need not be Clifford,
+monomial or shallow. This statement concerns exact operators; no
+constant-error extension is asserted.
+
+### Common affine fixed points have the wrong possible cardinalities
+
+Write $`\mathcal V`$ for the binary Pauli space of dimension
+$`2(m+h)`$. For the field shear, the symplectic deviations
+$`N_x=F_x-I`$ of every nonzero address have the same image W and
+kernel $`W^\perp`$. Here W is the m-dimensional isotropic space
+spanned by X on the v bank and Z on the u bank; helper labels lie in
+the kernel. These facts only require invertibility of every nonzero
+pencil matrix, so they also apply to repeated smaller-field blocks.
+
+Let $`\mathcal L`$ be the invariant Pauli Lagrangian of the chosen
+stabilizer basis, of dimension $`m+h`$, and set
+
+```math
+r=\dim(W/(W\cap\mathcal L)).
+```
+
+Computational labels for this basis identify with
+$`\mathcal V/\mathcal L`$ through the symplectic pairing. Their
+query permutations can be affine, even though the original field
+shears are linear. The linear deviation of each generator has image
+in the same r-dimensional projection of W. Consequently their common
+linear fixed space has dimension t with $`t\ge m+h-pr`$.
+
+That space also contains the projection of $`W^\perp`$. The
+restriction of the symplectic pairing between $`\mathcal L`$ and W
+has rank r, because $`\mathcal L^\perp=\mathcal L`$. Therefore
+
+```math
+\dim(\mathcal L\cap W^\perp)=m+h-r,
+\qquad
+\dim((W^\perp+\mathcal L)/\mathcal L)=h+r.
+```
+
+Combining the two lower bounds gives
+
+```math
+t\ge h+\max\{m-pr,r\}
+ \ge h+\left\lceil\frac{m}{p+1}\right\rceil.          \qquad(31)
+```
+
+The affine common fixed-point equations either have no solution or
+have one coset of this linear fixed space. Their number of basis
+labels is therefore zero or at least
+$`2^{h+\lceil m/(p+1)\rceil}`$. Existence of a common affine fixed
+label must not be assumed.
+
+### Complete lookup forces exactly two helper fibers
+
+All the reflections $`R_x=Q_xRQ_x^\dagger`$ are diagonal in the
+chosen basis. If (30) held, their joint sign patterns would be all
+$`2^m`$ strings, with exactly $`2^h`$ basis columns per pattern.
+The source group law permutes these patterns by the regular
+translation of their m coordinates.
+
+For any nonzero x, precisely $`2^{m/2}`$ sign patterns are fixed by
+this translation. The trace of $`Q_x\otimes I_h`$ is exactly
+$`2^{m/2+h}`$. Its trace comes only from these fixed-pattern fibers,
+each of dimension $`2^h`$. As in (27)–(28), saturation of the sum of
+their maximum possible real traces forces the query to be the
+identity on every such fiber. This accounts for phases and arbitrary
+helper mixing; a permutation of columns inside a fixed fiber would
+not suffice.
+
+Every computational label fixed by all query permutations must have
+a constant joint sign pattern. Conversely, both constant-pattern
+fibers are fixed pointwise by every query by the saturation argument.
+The common permutation fixed set must therefore have exactly
+$`2^{h+1}`$ columns. But for $`p\ge2`$,
+$`\lceil2^p/(p+1)\rceil\ge2`$, contradicting both possible
+cardinalities in (31). This proves (30) impossible.
+
+### A small affine example with no common fixed label
+
+The empty case in (31) occurs already at p=2. Write
+$`\mathbb F_4=\mathbb F_2[t]/(t^2+t+1)`$ and use the trace-Fourier
+coordinates on v, where the query is the phase
+$`(-1)^{\mathrm{Tr}(\lambda uw)}`$. The following is a Clifford
+stabilizer basis, indexed by $`b,c\in\mathbb F_4`$:
+
+```math
+|b,c\rangle_{\mathcal L}
+ =\frac12\sum_{a\in\mathbb F_4}
+      (-1)^{\mathrm{Tr}(ca)}|u=a,w=ta+b\rangle.
+```
+
+Since $`\mathrm{Tr}(za^2)=\mathrm{Tr}(z^2a)`$ in this field,
+the query permutes its labels, with literal phase one, by
+
+```math
+(b,c)\longmapsto(b,c+(\lambda t)^2+\lambda b).        \qquad(32)
+```
+
+The generator $`\lambda=1`$ fixes only labels with $`b=t+1`$;
+$`\lambda=t`$ fixes only those with $`b=1`$. Thus each nonzero
+query has four fixed labels, but there is no common fixed label.
+There are six two-point orbits and one four-point orbit. The original
+computational basis instead has four common fixed labels. Neither
+basis can support the two constant sign fibers required by (30).
+
+This screen does not exclude seeds that are nondiagonal in every
+query-invariant stabilizer basis, general non-stabilizer joint
+coordinates, or a different source family. A synthesis using one of
+those mechanisms still needs its complete native ledger.
+
+<a id="7-verification-and-remaining-operation"></a>
+<a id="10-verification-and-remaining-operation"></a>
+
+## 11. Verification and remaining operation
 
 `tests/test_field_shear_intertwiner.py` checks the displayed field
 examples, all nonzero pencil ranks and the sparse native ledger
@@ -643,9 +771,17 @@ negative eigenvector, invariant rank ten, mean export $`3/8`$ and the
 opposite pair signs used in (26). A separate complete operator fixture
 reconstructs (28) with noncommuting one-helper blocks, checking every
 probe and the helper-dependent cocycle rather than assuming scalar phases.
+An explicit four-wire Clifford basis checks (32) on every query and
+column, including its empty common affine fixed set, its nontrivial
+linear fixed space and both orbit counts. This guards against replacing
+the zero-or-coset alternative in (31) by an unjustified fixed-point
+existence claim.
 
-The first unpaid all-size operation is native synthesis of E and
-its actual inverse with the width, gate and depth budgets in (11).
-The source query and the representation-theoretic existence result
-are complete. A fast decoder remains open; R96 and the selected
-manuscript lane are unchanged.
+For the full-intertwiner route, the first unpaid all-size operation is
+native synthesis of E and its actual inverse within (11). The alternative
+[encoded dirty-copy interface](ENCODED_DIRTY_COPY_INTERFACE.md) can use
+a suitable transported companion without synthesizing that particular
+decoder; its complete copy and return operations still need payment.
+The source query and representation-theoretic existence result are
+complete. Neither route currently supplies a new depth bound; R96 and
+the selected manuscript lane are unchanged.

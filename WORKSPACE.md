@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #260](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/260),
-`9257cbe48e30b9b12fef03def2bb9217757d0133`, 26 October 2026.
-Its reviewed tree passed 1,944 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #261](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/261),
+`7af17ad3468103a85c9da8686526f947c58a78c4`, 27 October 2026.
+Its reviewed tree passed 1,953 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -73,6 +73,7 @@ optimal frame depth or give a new all-precision theorem.
 | Interface | First unpaid operation |
 | --- | --- |
 | [Complete Pauli derivative](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) | Synthesize a native source with the required full-space derivative. Two actual source/adjoint calls extract the indicator; its canonical diagonal phase is an equivalent target. |
+| [Encoded dirty copy](research/depth/ENCODED_DIRTY_COPY_INTERFACE.md) | Jointly synthesize the encoded bank transition and its complete copy interaction with a physical output bank. Their echo returns the carrier; no physical implementation of its abstract decoder is required. |
 | [Accepted projector Gram](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) | Synthesize a normalized source with $`K^\dagger K\approx\Pi_{\rm eq}/2`$ on every data/dirty input. Accepted fibers and intermediate address motion may be arbitrary. |
 
 Use the proof home's [one-clean](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
@@ -98,11 +99,6 @@ Two opposite interleaved queries escape these premises. For a fixed
 requires at least $`\lceil p/8\rceil`$ literal affine queries at error
 below $`\gamma/4`$. This is a query-grammar bound, not native-depth optimality.
 
-The [two-address pilot](research/depth/TWO_ADDRESS_INTERLEAVED_PILOT.md)
-constructs the whole small family with controlled Hadamards and a paid fixed
-Clifford decoder. Its complete native source and actual inverse provide a
-benchmark, not an all-size depth improvement.
-
 The [non-Clifford seed-spread bound](research/depth/NONCLIFFORD_SEED_SPREAD.md)
 requires an exponentially broad Pauli-label span for bounded affine-query
 count, even at constant operator error and with an arbitrary fixed decoder.
@@ -123,17 +119,26 @@ sector. Dense tower queries and multiplication-XOR batches have paid
 eight-band implementations. The nonlinear in-place decoder maps remain unpaid.
 Preserving the physical Bell zero fiber fails even the weaker lookup probe;
 exact probe freedom is a helper-valued gauge commuting with all lookup X's.
+For p at least two, an exact seed diagonal in any query-invariant stabilizer
+basis also fails, including arbitrary helpers and a non-Clifford final decoder.
 
-**Next question:** jointly compile or replace the recursive decoder,
-including its nonlinear coordinate controls, actual inverse and returned work.
-Literal level-by-level synthesis already uses at least p minus one T bands;
-making each cell faster cannot meet the discovery depth target. Its
-read-only affine-query factorization also has a growing degree obstruction.
-Use the recursion as an exact target for joint synthesis, not as a shallow
-algorithm. A different joint probe gauge or source pencil remains possible.
-The alternative remains a jointly designed extensive non-Clifford seed and
-nonlocal decoder for the interleaved tree family. Serial address controls
-or a generic spectral decomposition retain an unpaid or excessive cost.
+The [three-band source theorem](research/depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md)
+now excludes every zero-clean native source of depth at most three for p at
+least seven below complete observable error
+$`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary register motion and dirty width.
+The proof forces the final two absorbed Pauli bands to preserve the address;
+it does not assume that restriction. This is a constant source-depth bound,
+not a growing frame-depth lower bound or a statement about initialized work.
+
+**Next question:** jointly synthesize the field seed and its encoded copy
+interaction, or construct another complete source beyond the three-band
+boundary. A returned dirty carrier permits its abstract decoder to cancel
+globally; the physical output interaction still needs a paid native word.
+For one field-query orbit, an address-independent Clifford copy has a uniform
+error floor; ordinary Pauli table readout recovers only affine tables. The
+recursive decoder remains an exact target, but separate levels cost at least
+p minus one bands. Joint resynthesis, a different seed or a different pencil
+must include actual inverses, every input sector and complete work return.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),

@@ -498,6 +498,65 @@ class FieldShearIntertwinerTests(unittest.TestCase):
         self.assertEqual(counts, [Counter({1: 16, 8: 30}),
                                   Counter({1: 2, 2: 7, 4: 14, 8: 23})])
 
+    def test_invariant_stabilizer_basis_can_have_no_common_affine_fixed_label(self):
+        # In trace-Fourier v coordinates this Clifford basis is
+        # |b,c> -> (1/2) sum_a (-1)^Tr(ca) |a, t*a+b> over F4.
+        # Returning the last register through its trace-Fourier wall
+        # gives a basis for the original shear, not just a phase model.
+        def trace_fourier(first):
+            return [('CX', first, first + 1), ('CX', first + 1, first),
+                    ('H', first), ('H', first + 1)]
+
+        word = []
+        for left, right in ((0, 2), (1, 3)):
+            word += [('CX', left, right), ('CX', right, left),
+                     ('CX', left, right)]
+        word += trace_fourier(0)
+        word += [('CX', 0, 3), ('CX', 1, 2), ('CX', 1, 3)]
+        word += trace_fourier(2)
+        basis_change = native_columns(4, word)
+        inverse = native_columns(4, _inverse(word))
+        self.assertEqual(inverse, adjoint(basis_change))
+        self.assertEqual(multiply(inverse, basis_change), eye(16))
+
+        actions = []
+        for address in range(4):
+            product = _field_product(address, 2, _MODULI[2])
+            offset = _field_product(product, product, _MODULI[2])
+            permutation = []
+            for label in range(16):
+                b, c = label & 3, label >> 2
+                shift = offset ^ _field_product(address, b, _MODULI[2])
+                permutation.append(b | ((c ^ shift) << 2))
+            source = _permutation_matrix([_shear(2, address, column)
+                                          for column in range(16)])
+            actual = multiply(inverse, multiply(source, basis_change))
+            self.assertEqual(actual, _permutation_matrix(permutation))
+            self.assertEqual(sum(row == column for column, row in enumerate(permutation)),
+                             16 if address == 0 else 4)
+            actions.append(permutation)
+
+        common_fixed = {label for label in range(16)
+                        if all(action[label] == label for action in actions)}
+        self.assertEqual(common_fixed, set())
+        # Removing the affine offsets leaves a two-dimensional common
+        # linear fixed space.  Nonemptiness of the affine equations is
+        # not a consequence of this dimension or of the positive traces.
+        linear_fixed = {label for label in range(16)
+                        if all(action[label] ^ action[0] == label for action in actions)}
+        self.assertEqual(linear_fixed, {0, 4, 8, 12})
+        unseen, sizes = set(range(16)), Counter()
+        while unseen:
+            representative = min(unseen)
+            orbit = {action[representative] for action in actions}
+            unseen.difference_update(orbit)
+            sizes[len(orbit)] += 1
+        self.assertEqual(sizes, Counter({2: 6, 4: 1}))
+        self.assertEqual(sum(all(_shear(2, x, b) == b for x in range(4))
+                             for b in range(16)), 4)
+        self.assertEqual(sum(all(_translation(2, x, b) == b for x in range(4))
+                             for b in range(16)), 2)
+
     def test_exact_probe_gauge_with_noncommuting_helper_blocks(self):
         # Work in the bank's joint X basis.  A one-qubit helper is arbitrary;
         # the gauge can rotate it differently on every sign string.
