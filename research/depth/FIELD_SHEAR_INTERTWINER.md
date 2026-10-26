@@ -381,7 +381,245 @@ $`R_0X_0R_0`$ is not Pauli, certifying that $`R_0`$ is not a
 Clifford unitary. This is a finite joint source-and-decoder witness;
 no all-size seed or decoder efficiency follows from it.
 
-## 7. Verification and remaining operation
+## 7. A punctured regular coordinate, with an exact spectator count
+
+The source representation has a useful full-space normal form. Regard u
+and v as field elements and split a field coordinate into the first p
+polynomial coefficients z and the remaining $`k-p`$ coefficients t.
+Define a computational permutation A by
+
+```math
+A|u,z,t\rangle=
+\begin{cases}
+|u,u(z+t)\rangle,&u\ne0,\\
+|0,z+t\rangle,&u=0.
+\end{cases}
+\qquad
+A^\dagger Q_x A|u,z,t\rangle
+ =|u,z+x[\,u\ne0\,],t\rangle.                         \qquad(21)
+```
+
+Here z and t occupy disjoint polynomial coordinates; their sum denotes
+that concatenated field element. Multiplication by nonzero u is a
+bijection, while the second branch preserves every zero-sector state.
+Thus $`k-p`$ spectator qubits can be factored out exactly. The inverse
+coordinate change divides by u only on the nonzero branch. Neither this
+nonlinear permutation nor its actual inverse has been paid natively.
+
+This is the largest possible exact identity factor, even after an
+arbitrary change of quantum basis. From (8),
+
+```math
+d_0=2^{k-p}(2^k+2^p-1),\qquad
+d_{z\ne0}=2^{k-p}(2^k-1),\qquad
+\gcd_z d_z=2^{k-p}.                                   \qquad(22)
+```
+
+The gcd follows because $`2^k-1`$ is odd and the two parenthesized
+integers differ by $`2^p`$. An identity factor on r qubits divides every
+joint character multiplicity by $`2^r`$. Consequently at least $`k+p`$
+active bank qubits remain. Adding arbitrary identity helpers multiplies
+all multiplicities equally and does not reduce this active minimum.
+In particular, a sole p-qubit translation register with all other
+qubits as spectators cannot represent the source at growing p.
+
+There is also a robust version within exact group representations.
+If an alternative representation has a mismatched character multiplicity,
+choose a unit vector in the larger character sector orthogonal to the
+smaller one. Character orthogonality gives average squared address
+discrepancy two on that vector. The identity term contributes zero, so
+
+```math
+\max_x\|B_x-W_x\|\ge\sqrt{\frac{2m}{m-1}}.             \qquad(23)
+```
+
+This applies, in particular, to an exact representation with too many
+identity spectators. It does not assume that an approximate circuit with
+an inexact group law has this form, and it is not a native-depth bound.
+
+## 8. Growing addresses require redistribution of the Bell fibers
+
+The p=2 construction uses $`d=u`$. That convention cannot persist for
+$`p\ge3`$, even if the entire basis inside the zero fiber is changed.
+To see the precise missing operation, Bell-transform each pair of
+physical wires differing in the first address bit. Collect the two-bit
+Bell labels with second address bit zero into a k-bit string a, and
+those with second address bit one into b, in matching order of the
+remaining address bits. Put $`d=a+b`$.
+
+Let $`R_0`$ be the physical-bank projector corresponding to $`d=0`$
+in these Bell coordinates. Equivalently, on every four-wire coset of
+$`\langle e_0,e_1\rangle`$, it is the joint positive eigenspace of
+$`X^{\otimes4}`$ and $`Z^{\otimes4}`$. Its dimension is $`D=2^k`$.
+The residual translation subgroup
+$`H=\langle e_2,\ldots,e_{p-1}\rangle`$ has size
+$`h=2^{p-2}`$ and preserves this projector. Every nonidentity element
+permutes the residual Bell cells in pairs. On $`R_0`$, its trace is
+$`2^{k/2}`$, so its negative eigenspace has dimension
+$`(2^k-2^{k/2})/2`$.
+
+The source projector $`P_0`$ onto $`u=0`$ is fixed pointwise by every
+query. For a candidate E define
+
+```math
+P=EP_0E^\dagger,\qquad
+\epsilon=\|P-R_0\|,\qquad
+\eta=\max_x\|EQ_xE^\dagger-W_x\|.
+```
+
+The projectors have equal rank, hence
+$`\epsilon=\|(I-R_0)EP_0\|`$. A negative target eigenvector inside
+$`R_0`$ has projection onto P of norm at least
+$`\sqrt{1-\epsilon^2}`$. Since the conjugated source acts identically
+on P, the negative eigenspace yields
+
+```math
+\eta\ge2\sqrt{1-\epsilon^2}.                          \qquad(24)
+```
+
+In particular, mapping the whole source zero fiber onto the whole target
+zero fiber forces error two. A small perturbation of that assignment
+cannot repair it.
+
+The necessary redistribution is extensive in mean as well. Let
+$`\Pi_H=h^{-1}\sum_{y\in H}W_y`$. On $`R_0`$ this common-positive
+projector has rank $`J=(D+(h-1)2^{k/2})/h`$. Averaging squared
+intertwinement errors on P gives
+$`\mathrm{tr}((I-\Pi_H)P)\le D(h-1)\eta^2/(2h)`$.
+Because $`R_0`$ commutes with $`\Pi_H`$, its overlap with P is at
+most J plus this error term. Therefore
+
+```math
+\frac{\mathrm{tr}(P_0E^\dagger(I-R_0)EP_0)}{D}
+\ge\frac{h-1}{h}
+       \left(1-2^{-k/2}-\frac{\eta^2}{2}\right).        \qquad(25)
+```
+
+At p=3, an exact decoder must export at least $`6/16`$ of the
+zero-fiber mass on average; at growing p this fraction tends to one.
+An exact decoder has worst-case leakage one. Tensoring both projectors
+with arbitrary helper identities multiplies D and J equally and leaves
+(24) and (25) unchanged.
+
+### Even the weaker lookup probe cannot preserve this fiber
+
+The same zero-fiber convention also fails when only the complete probe
+(10) is required. Set $`S_x=EQ_xE^\dagger`$ and
+$`\delta=\max_x\|S_xX_0S_x^\dagger-X_x\|`$. Then
+
+```math
+\delta+2\epsilon\ge1,\qquad p\ge3.                    \qquad(26)
+```
+
+Here is a full-space witness. On wires zero through seven take
+$`\psi=\Phi^+_{01}\Phi^+_{23}\Phi^-_{45}\Phi^-_{67}`$,
+where $`\Phi^\pm=(|00\rangle\pm|11\rangle)/\sqrt2`$;
+use positive Bell pairs on the remaining wires. The equal signs within
+each quartet put $`\psi\in R_0`$. With $`a=e_0,z=e_2`$,
+$`X_a\psi=X_0\psi`$ and $`X_{z+a}\psi=-X_z\psi`$.
+Also $`\|(S_x-I)\psi\|\le2\epsilon`$ because every $`S_x`$
+fixes P pointwise.
+
+Put $`\kappa=\delta+2\epsilon`$,
+$`v=X_0\psi,w=X_z\psi,b=S_zv,c=S_{z+a}v`$. The probe errors
+give $`\|b-w\|,\|c+w\|\le\kappa`$ and
+$`\|(S_a-I)v\|\le\kappa`$. The exact source group law then gives
+$`\|b-c\|\le\kappa`$. All four vectors are unit, hence
+
+```math
+2\kappa^2\ge\|b-w\|^2+\|c+w\|^2
+ =4-2\mathop{\rm Re}\langle w,b-c\rangle
+ \ge4-2\kappa,
+```
+
+which forces $`\kappa\ge1`$. Thus exact preservation of the zero
+fiber has probe error at least one. Arbitrary helpers and references can
+be tensored into the witness; no basis-state promise is used. These are
+restrictions on this fiber assignment, not on unrestricted decoders.
+
+## 9. Exact probe freedom and the remaining constructive choice
+
+The weaker probe nevertheless has useful freedom. Suppose only
+$`S_xX_0S_x^\dagger=X_x\otimes I`$ is exact on every arbitrary
+helper input.
+The group law implies $`S_xX_yS_x^\dagger=X_{x+y}`$ for all x and y.
+In the joint X eigenbasis, S therefore permutes the bank eigenvalue
+strings exactly as W does, with a unitary action $`C_x(b)`$ on the
+helper fiber over each string b. The group law is the cocycle equation
+
+```math
+C_{x+y}(b)=C_x(W_yb)C_y(b).                            \qquad(27)
+```
+
+For nonzero x, precisely $`2^k`$ strings are fixed by $`W_x`$.
+The source character equals $`2^k`$ times the helper dimension.
+Its trace is the sum of $`\mathrm{tr}(C_x(b))`$ over these fixed
+strings. The real part of each trace is at most the helper dimension; equality
+of their sum forces $`C_x(b)=I`$ on every fixed string. Thus the
+cocycle is trivial on every stabilizer. The literal source character is
+essential here; untracked address-dependent phases would not justify
+this saturation.
+
+Choose one representative $`b_0`$ per orbit and a translation
+$`t_b`$ taking it to b. Define $`D_b=C_{t_b}(b_0)`$; the stabilizer
+identity makes this independent of the choice of translation. Then
+$`C_x(b)=D_{W_xb}D_b^\dagger`$, proving the exact characterization
+
+```math
+S_x=D(W_x\otimes I)D^\dagger,
+\qquad [D,X_y\otimes I]=0\quad\text{for every }y.       \qquad(28)
+```
+
+The gauge may act nontrivially within each helper fiber; it need not be
+scalar diagonal on the full space. Consequently $`D^\dagger E`$ is a
+full simultaneous intertwiner.
+Conversely, multiplying any such intertwiner by any D in this
+commutant preserves every probe. D is an abstract gauge and has no
+free native implementation; it can cancel from the desired probe,
+so optimizing the probe may still be cheaper than synthesizing one
+particular full intertwiner. No approximate version of (28) is asserted.
+
+A concrete recoupling mechanism is visible in the orbit modules.
+The source has $`2^k`$ fixed basis states and
+$`(2^k-1)2^{k-p}`$ free translation orbits. The target also has
+periodic strings, whose stabilizers are proper nonzero subgroups.
+For subgroups $`H\subset K\subseteq G=\mathbb F_2^p`$ with
+$`\dim(K/H)=2`$, the three intermediate subgroups obey
+
+```math
+\bigoplus_{H\subset L\subset K}\mathbb C[G/L]
+ \simeq \mathbb C[G/H]\oplus2\mathbb C[G/K].           \qquad(29)
+```
+
+This follows by Fourier transforming the four-element quotient and
+counting each character, then inducing to G. In that quotient it is the elementary
+conversion of three two-point modules into one regular module and
+two trivial modules. At p=3, the source orbit counts are sixteen fixed
+and thirty free orbits; the target has two fixed, seven size-two,
+fourteen size-four and twenty-three free orbits. Their character ranks
+are $`(46,30,\ldots,30)`$, but their computational orbits must be
+redistributed. Equation (29) identifies a local representation-theoretic
+move, not a native routing algorithm or a cost bound.
+
+The [recursive field-shear decoder](RECURSIVE_FIELD_SHEAR_DECODER.md)
+now supplies a constructive all-size choice of E using finite-field
+coordinate changes and Fourier transforms. Its intermediate zero fiber
+is common-fixed for two previously decoded half-banks; the subsequent
+half-bank decoders redistribute the physical Bell fibers. Retaining
+$`d=u`$ in those intermediate coordinates therefore differs from retaining
+the physical projector $`R_0`$ excluded above.
+
+Native synthesis of the recursion's punctured affine relabeling and
+field multiplication, or a cheaper joint choice using the probe freedom
+(28), is the next operation. These coordinate maps have no free depth or
+helper budget. Computing a canonical stabilizer and matching all
+character fibers, or merely listing the moves (29), likewise leaves the
+cost unpaid. Repairing only the basis inside the physical Bell zero
+branch remains excluded by (26).
+
+<a id="7-verification-and-remaining-operation"></a>
+
+## 10. Verification and remaining operation
 
 `tests/test_field_shear_intertwiner.py` checks the displayed field
 examples, all nonzero pencil ranks and the sparse native ledger
@@ -396,6 +634,15 @@ all four source blocks and complete probes agree literally. Its
 physical T bands, the non-Clifford seed witness and the complete
 source/indicator ledgers are checked as well. The component operator
 identities include every one of the five arbitrary cubic masks.
+
+The continuation fixtures check (21) on all p=3 columns and addresses,
+including the zero branch and the one spectator qubit; the character
+multiplicity gcd and all computational orbit counts agree with (22).
+Sparse exact p=3 checks verify the Bell zero-fiber code, its residual
+negative eigenvector, invariant rank ten, mean export $`3/8`$ and the
+opposite pair signs used in (26). A separate complete operator fixture
+reconstructs (28) with noncommuting one-helper blocks, checking every
+probe and the helper-dependent cocycle rather than assuming scalar phases.
 
 The first unpaid all-size operation is native synthesis of E and
 its actual inverse with the width, gate and depth budgets in (11).
