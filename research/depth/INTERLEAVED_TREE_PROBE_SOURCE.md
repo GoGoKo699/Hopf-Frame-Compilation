@@ -191,7 +191,7 @@ times quadratic CZ phases. The $`2^{\binom{k}{3}}`$ choices give distinct
 families separated by two in maximum generator operator norm: some
 Boolean derivative of the difference of two cubics is nonzero. A fixed
 binary change of generator basis gives the same example for (8)'s Gram
-matrix; the separation remains two since corresponding monomial Paulis
+matrix; the separation remains two since corresponding monomial operators
 have identical translations and differ only by signs.
 
 On W physical wires, a circuit with at most t T gates has at most
@@ -346,7 +346,7 @@ r\langle E\rangle_\psi,\ s\langle F\rangle_\psi
 \langle E\rangle_\psi^2+\langle F\rangle_\psi^2\le1.
 ```
 
-For $`2\delta<\gamma`$ these inequalities contradict each other.
+For $`2\delta\lt\gamma`$ these inequalities contradict each other.
 No particular joint sign sector is assumed to be present. Therefore
 
 ```math
@@ -414,3 +414,35 @@ arbitrary fixed decoder, sharpness of (11), affine/projective covariance,
 the target mismatch (14), and both boundary examples. The controlled
 order-three word and its actual inverse are checked on every native
 basis column.
+
+<a id="nonclifford-seed-decoder-condition"></a>
+
+## 4. A non-Clifford seed also constrains the actual decoder
+
+Suppose $`R=D_0KD_0^\dagger`$ is genuinely non-Clifford up to scalar,
+where $`D_0`$ is third-level and K is a Hermitian Clifford. Let
+$`C_x`$ be any queried Clifford family, and let E be the actual fixed
+decoder on the complete work space. If even one selected target has
+$`E^\dagger P_xE`$ Clifford, put
+
+```math
+T_x=C_x^\dagger E^\dagger P_xE C_x,\qquad
+\|EC_xRC_x^\dagger E^\dagger-P_x\|=\|R-T_x\|.
+```
+
+Here $`T_x`$ is Clifford. At error strictly below $`\sqrt2/4`$, the
+[third-level rounding lemma](NATIVE_CLIFFORD_TRANSPORT.md#1-a-robust-exactness-lemma-for-every-third-level-source)
+forces $`D_0KD_0^\dagger`$ to equal $`T_x`$ up to scalar, contradicting
+the premise on R. This proves an error floor $`\sqrt2/4`$ for that
+selected target, independently of the number of queried Clifford stages.
+
+In particular, a decoder with $`E^\dagger`$ third-level is excluded.
+A single weighted-cubic decoder in fixed Clifford coordinates satisfies
+that adjoint premise: negating its phase polynomial preserves the same
+weighted-cubic form. No inverse-closure assertion is made for a general
+third-level unitary. Leaving this hierarchy class globally is also
+insufficient: every selected pullback $`E^\dagger P_xE`$ must avoid the
+Clifford class at the stated accuracy. A viable source must therefore
+change both its intermediate reflection and the selected action of its
+paid decoder. All statements concern the actual complete operators,
+including arbitrary dirty/reference inputs.

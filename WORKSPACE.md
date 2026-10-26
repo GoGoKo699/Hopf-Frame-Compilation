@@ -109,6 +109,10 @@ address queries and a paid fixed decoder, or jointly synthesize a native
 word outside the bounded-lift grammar. Check its entire commutation pattern
 before decoder synthesis. A fixed dressing that cancels through every query
 does not change the mechanism; serial address controls retain the old cost.
+For a third-level-dressed Clifford seed, the
+[decoder condition](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#nonclifford-seed-decoder-condition)
+also requires every selected target pullback to be non-Clifford below
+error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
