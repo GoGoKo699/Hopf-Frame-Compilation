@@ -133,6 +133,7 @@ The table identifies dependencies rather than repeating their proofs.
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
 | [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | R96 terminal: native coarse instructions and global-prefix fine-mask queries. |
+| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | Isolated one-clean rotation: three recovery calls and removal of an exterior dirty basis change; precision depth remains linear. |
 | [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95 logarithmic-depth law on its stated growing-precision range. |
 | [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: sparse correction to a coarse frame implemented at final accuracy. |
 | [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Borrowed calibration reduces initialized scratch; full-space approximation includes dirty return. |
@@ -196,7 +197,7 @@ Each home separates its paid native operations from its first unpaid conversion.
 
 - [Exact two-layer quadratic queries with one returned dirty qubit](depth/QUADRATIC_NATIVE_QUERY.md)
 - [Parallel weighted-cubic phases with returned dirty work](depth/DIRTY_CUBIC_PHASE_COMPILER.md) — an exact thirteen-band compiler with shared logical controls and paid coefficient-cube parity layers
-- [Local HRT operations and complete coherent feedback](depth/COHERENT_FEEDBACK_SOURCES.md) — exact sixteen-band encoded Hadamards without helpers, complete retained-outcome feedback and its calibrated failure
+- [Local HRT operations and complete coherent feedback](depth/COHERENT_FEEDBACK_SOURCES.md) — exact sixteen-band encoded Hadamards, the fixed-Clifford feedback normal form, and a complete repair that computes the inverse coordinate instead of the required forward coordinate
 - [Balanced native compilation of the HRT algebra permutations](depth/BALANCED_ALGEBRA_PERMUTATION.md)
 - [Full-input algebra queries and fast returned multiplication](depth/ALGEBRA_QUERY_EXTRACTION.md)
 - [A complete bank from one nonlinear algebra source](depth/FULL_BANK_CHARACTER_TRANSPORT.md) — [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map) · [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
@@ -242,7 +243,7 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Native fusion of complete coefficient shears](depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) — exact completed exchanges, failed half-band regrouping, a uniform-angle bipartite word gap, and scoped common-Clifford-basis and dirty-replica screens
 - [Coordinate-weighted pulse limits](depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md) — paid coordinate and tail-dependent quarter angles, robust signature collisions, and the directed-filtration lower bound on total pulses; Clifford pulses are not charged as T layers
 - [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — the two-block gap, sharp Clifford-fiber block count, and a three-block requirement for later key mixing even with an arbitrary global third-level prefix; the long physical Clifford-zeta frame remains failed
-- [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) — the Pfaffian mask-frame normal form, completed-shear rank limit, paid sixteen-band linear factor, and a partial character-basis reduction with a scoped hierarchy obstruction
+- [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) — the Pfaffian normal form, paid linear factor, partial character basis, and [sharp polarization-query bounds](depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration), including orbit-diagonal phases and controlled work
 - [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — complete standard/group Bell diagnostics and four-phase/eight-source extraction, with one-bank polarization and safe output/carrier aliases reducing dirty width
 - [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — paid address/tag and bank-motion sources, scoped three-layer boundaries, the corrected relative involution, and complete-transition failures of retained repairs
 - [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — actual joint word, robust direct square readout for balanced two-unitary sources, paid anchors and two distinct finite failed bank-moving trials

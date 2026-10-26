@@ -138,6 +138,10 @@ def _feedback_integer(state, word, r):
         elif name == 'Z':
             state = {value: -amplitude if (value >> args[0]) & 1 else amplitude
                      for value, amplitude in state.items()}
+        elif name == 'CZ':
+            left, right = args
+            state = {value: -amplitude if ((value >> left) & (value >> right) & 1)
+                     else amplitude for value, amplitude in state.items()}
         elif name == 'DK':
             index = args[0]
             state = {value: -amplitude if (_quadratic_inverse(bank(value, index) << 1, r) >> top) & 1
@@ -187,6 +191,20 @@ def _both_label_feedback_target(r, basis):
     phase = ((b >> (width - 1)) ^ ((_quadratic_inverse(v, r) ^ v) >> width)) & 1
     moved = basis ^ reflected ^ (reflected << (2 * width))
     return moved, -1 if phase else 1
+
+
+def _feedback_normal_form(r, unsigned=False):
+    """P-dagger M P, with a fixed Clifford middle and actual query replay."""
+    width = (1 << r) - 1
+    prefix = ([('CX', 2 * width + wire, wire) for wire in range(width)]
+              + [('Q', 1, 0)])
+    middle = [('CX', (width ^ subset) - 1, 2 * width + subset - 1)
+              for subset in range(1, width)]
+    if not unsigned:
+        middle += [('Z', 3 * width - 1)]
+        middle += [('CZ', left - 1, (width ^ left) - 1)
+                   for left in range(1, width) if left < (width ^ left)]
+    return prefix + middle + list(reversed(prefix))
 
 
 class CoherentFeedbackSourcesTests(unittest.TestCase):
@@ -379,6 +397,78 @@ class CoherentFeedbackSourcesTests(unittest.TestCase):
             self.assertEqual(_both_label_feedback_target(r, basis), (basis, 1))
             top_coefficient = 1 << width
             self.assertEqual((_hrt_unit(_quadratic_inverse(top_coefficient, r), r) >> width) & 1, 1)
+
+    def test_feedback_clifford_normal_form_and_complete_motion_cancellation(self):
+        for r in (1, 2, 3):
+            width = (1 << r) - 1
+            mask = (1 << width) - 1
+            normal = _feedback_normal_form(r)
+            motion = _feedback_normal_form(r, unsigned=True)
+            columns = (range(1 << (3 * width)) if r <= 2 else
+                       [c | (a << width) | (b << (2 * width))
+                        for c in (0, 1, mask, mask // 3)
+                        for a in (0, 3, mask, mask // 5)
+                        for b in (0, 7, mask, mask // 7)])
+            for basis in columns:
+                moved, sign = _both_label_feedback_target(r, basis)
+                self.assertEqual(_feedback_integer({basis: 1}, normal, r), {moved: sign})
+                self.assertEqual(_feedback_integer({basis: 1}, motion, r), {moved: 1})
+                self.assertEqual(_feedback_integer({basis: 1}, normal + motion, r), {basis: sign})
+                self.assertEqual(_feedback_integer({basis: 1}, motion + normal, r), {basis: sign})
+            # A nontrivial relative phase and an untouched reference are
+            # retained by the complete signed permutation and its inverse.
+            occupied = (1 << (3 * width)) - 1
+            state = {occupied: 1, (occupied // 3) | (1 << (3 * width)): -2}
+            expected = {}
+            for basis, amplitude in state.items():
+                moved, sign = _both_label_feedback_target(r, basis)
+                expected[moved] = sign * amplitude
+            self.assertEqual(_feedback_integer(state, normal, r), expected)
+            self.assertEqual(_feedback_integer(expected, list(reversed(normal)), r), state)
+
+    def test_returned_inverse_phase_proxy_and_forward_phase_witness(self):
+        proxy = [('Q', 1, 0), ('DK', 0), ('Q', 1, 0)]
+        for r in (1, 2, 3):
+            width = (1 << r) - 1
+            mask = (1 << width) - 1
+            # Exhaust all C,A inputs at r<=3. An occupied B bank and a
+            # reference label must return, not merely the source controls.
+            for c in range(1 << width):
+                for a in range(1 << width):
+                    b = (c ^ a) ^ mask
+                    basis = c | (a << width) | (b << (2 * width)) | (1 << (3 * width))
+                    value = (c << 1) ^ _quadratic_inverse(a << 1, r)
+                    inverse_phase = (_quadratic_inverse(value, r) >> width) & 1
+                    expected = {basis: -1 if inverse_phase else 1}
+                    self.assertEqual(_feedback_integer({basis: 1}, proxy, r), expected)
+                    if r <= 2:
+                        self.assertEqual((_hrt_unit(value, r) >> width) & 1, inverse_phase)
+        for r in range(3, 7):
+            width = (1 << r) - 1
+            c = sum(1 << ((1 << bit) - 1) for bit in range(r))
+            self.assertEqual(_feedback_integer({c: 1}, proxy, r), {c: 1})
+            self.assertEqual((_hrt_unit(c << 1, r) >> width) & 1, 1)
+
+    def test_forward_phase_pauli_image_has_uniform_pauli_column_gap(self):
+        # Complete seven-wire r=3 action, not only the singleton subspace.
+        # A different Pauli flip mask has orthogonal output columns. For
+        # the same mask, test every Hermitian Pauli sign below exactly.
+        r, width, flip = 3, 7, 1
+        forward, _ = _hrt_tables(r)
+        signs = [1 - 2 * (((forward[basis] ^ forward[basis ^ flip]) >> (width - 1)) & 1)
+                 for basis in range(1 << width)]
+        for z_mask in range(1 << width):
+            for orientation in (-1, 1):
+                if z_mask & flip:
+                    # Hermitian Y-type phases are imaginary on basis
+                    # columns, at squared distance exactly two from ±1.
+                    max_squared_column_distance = 2
+                else:
+                    pauli_signs = [orientation * (-1 if (basis & z_mask).bit_count() & 1 else 1)
+                                   for basis in range(1 << width)]
+                    max_squared_column_distance = max(
+                        (target - pauli) ** 2 for target, pauli in zip(signs, pauli_signs))
+                self.assertGreaterEqual(max_squared_column_distance, 2)
 
 
 if __name__ == '__main__':

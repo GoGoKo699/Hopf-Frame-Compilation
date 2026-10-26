@@ -285,8 +285,9 @@ and changes none of its T or width bounds.
 
 The first word returns its dirty bank but loses the desired key response;
 the repair introduces key-dependent bank motion without the target phase.
-Jointly cancelling that motion while preserving the required residual phase
-is unpaid. These two explicit failures do not exclude other feedback words.
+Section 5 cancels that motion exactly, but exposes a different inverse-coordinate
+phase. Preserving the required forward phase remains unpaid. These specified
+failures do not exclude other feedback words.
 
 ## 4. Evidence and remaining source question
 
@@ -301,3 +302,102 @@ complete residual-probe identity, or a different sufficient accepted-Gram
 contract, with sublogarithmic depth and the simultaneous count, width and
 accuracy bounds. Serially applying all local mixers is not a faster source.
 Neither the component nor this failed feedback word changes R96.
+
+<a id="complete-feedback-motion-repair"></a>
+
+## 5. A complete motion repair exposes the inverse phase
+
+The motion in (8) has a direct cancellation. Define the returned quadratic
+query and Clifford bank addition
+
+```math
+P=Q_k(A;C)\,\mathrm{CX}(B;C),\qquad
+P|c,a,b\rangle=|c+b+k(a),a,b\rangle.
+```
+
+These two additions commute and are involutions, so $`P=P^\dagger`$.
+On the transformed registers define
+
+```math
+M|v,a,b\rangle=(-1)^{b_\Omega+q_\Omega(v)}
+                 |v,a,b+R(v)\rangle.
+```
+
+M is a fixed Clifford: one Z on $`b_\Omega`$, complementary-pair CZs
+on v, and the linear CNOT shear $`R(v)`$ into B. Its phase is unchanged
+by that shear because $`R(v)_\Omega=0`$. Substitution in (8) proves
+the complete operator identity
+
+```math
+\mathcal K=PMP.                                         \qquad(10)
+```
+
+Thus the feedback probe itself has a direct compiler with two actual
+$`Q_k`$ occurrences and $`O(w)`$ Clifford gates. It needs zero clean
+inputs and only the query's private pool, with common forward/actual-inverse
+T-count at most $`2t_k`$ and T-depth at most $`2d_k\le80`$. This is
+a compiler for $`\mathcal K`$, not for the desired residual phase.
+
+Let $`C_R|v,a,b\rangle=|v,a,b+R(v)\rangle`$ and put $`L=PC_RP`$.
+Then L is exactly the unsigned motion of $`\mathcal K`$; both are
+involutions and commute. Consequently
+
+```math
+\mathcal K L=D_{b_\Omega+q_\Omega(c+b+k(a))}.
+```
+
+Here $`D_h`$ denotes the diagonal sign $`(-1)^h`$. Polarization gives
+$`q(z+b)=q(z)+q(b)+\lambda(zb)`$. Multiplying the last display by
+$`Z_{b_\Omega}D_{q_\Omega(b)}D_{\lambda(b(c+k(a)))}`$ therefore
+removes B completely and leaves $`D_{q_\Omega(c+k(a))}`$. These are
+paid corrections: the bilinear phase is Clifford after conjugation by
+$`Q_k(A;C)`$, and every query is actually reversed. The resulting phase
+also has the shorter direct word $`Q_k(A;C)D_{q_\Omega(c)}Q_k(A;C)`$.
+
+Adding the known top-coordinate sign yields the natural fully returned proxy
+
+```math
+\begin{aligned}
+\mathcal P_{\rm inv}
+ &=Q_k(A;C)D_{k_\Omega(c)}Q_k(A;C),\\
+\mathcal P_{\rm inv}|c,a,b\rangle
+ &=(-1)^{k_\Omega(c+k(a))}|c,a,b\rangle.
+\end{aligned}                                             \qquad(11)
+```
+
+Its middle is Clifford because $`k_\Omega(c)=c_\Omega+q_\Omega(c)`$.
+It has the same two-query T-count/depth bounds as (10), with no B bank
+needed. Every C,A input and query helper returns; this is a full operator
+identity, including arbitrary external references.
+
+The target instead has exponent $`f_\Omega(c+k(a))`$. At $`r=1,2`$,
+$`f=k`$, and (11) does match it. For every $`r\ge3`$, choose
+$`a=0`$ and $`c=\sum_{i=1}^r e_i`$. No two supported singleton terms
+partition $`\Omega`$, whereas the product of all singleton factors does:
+
+```math
+k_\Omega(c)=0,\qquad f_\Omega(c)=1.
+```
+
+Thus (11) has complete operator error exactly two at every such size.
+Work return is now paid; the remaining discrepancy is the forward versus
+inverse coordinate, not an uncancelled borrowed outcome.
+
+There is a broader but explicitly restricted repair boundary. Suppose a
+completed unitary preserves A and, on each computational sector $`A=a`$,
+is Clifford on all remaining physical wires. This includes any composition
+of $`\mathcal K`$ and interlayers with that same property, allowing arbitrary
+Clifford mixing on C,B and arbitrary private work. Its error against
+$`\Xi_r\otimes I`$ is at least $`1/\sqrt2`$ for $`r\ge3`$.
+
+Indeed, at $`a=0`$ the target is $`D_{f_\Omega(c)}`$. Conjugating the X
+on singleton coordinate $`c_{\{1\}}`$ gives a signed flip whose sign
+contains the monomial $`\prod_{i=2}^r c_{\{i\}}`$ and is not affine.
+Its distance from every Hermitian Pauli is at least $`\sqrt2`$: a
+different flip support gives orthogonal basis outputs; the same support
+has either imaginary Pauli phases or a real affine sign that disagrees
+somewhere. A Clifford conjugate of X is Pauli, while conjugation changes
+by at most twice the unitary error. This proves the stated floor even
+with arbitrary private inputs. Mixing A or using non-Clifford conditional
+bank dynamics leaves the premise. Neither this boundary nor the failure
+of (11) is an unrestricted native-depth lower bound.
