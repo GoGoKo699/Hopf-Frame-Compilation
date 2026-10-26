@@ -423,3 +423,147 @@ and recovery conjugations, literal phases, and native ledgers. Small
 matrices also distinguish the scalar seed from a non-scalar Clifford
 mask example. These fixtures support the identities; the all-precision
 error and the source-class statements use the analytic arguments above.
+
+## 8. Exactly which accepted blocks three-call recovery returns
+
+The half-unitary scalar block is sufficient but not necessary. Let Q now
+be any unitary, set $`K=J^\dagger QJ`$, and let W be the desired unitary
+on the complete input space. With $`Z=I-2JJ^\dagger`$ and
+$`F=-QZQ^\dagger ZQ`$, the exact characterization is
+
+```math
+FJ=JW
+\quad\Longleftrightarrow\quad
+K=W\left(\frac32P-I\right)
+\quad\hbox{for some orthogonal projector }P.
+```
+
+No commutation between P and W is required. Indeed the accepted block is
+$`3K-4KK^\dagger K`$. If it equals W, then
+$`H=W^\dagger K=3K^\dagger K-4(K^\dagger K)^2`$ is Hermitian.
+Substitution of K=WH gives $`3H-4H^3=I`$. Since K is a contraction,
+the spectrum of H lies in [-1,1]; factoring the scalar equation gives
+
+```math
+1-3h+4h^3=(h+1)(2h-1)^2,
+\qquad
+H=\frac32P-I.
+```
+
+Conversely this H gives accepted block W. Since FJ and JW are
+isometries, an accepted unitary block leaves no rejected component,
+proving the complete returned-work equality.
+
+There is also an exact stability identity for every Hermitian contraction
+H when K=WH. Writing $`E=FJ-JW`$ gives
+
+```math
+E^\dagger E
+=2I-2(3H-4H^3)
+=8(H+I)(H-I/2)^2,
+\qquad
+\|E\|^2=\left\|8(H+I)(H-I/2)^2\right\|.
+```
+
+This includes all leakage and dirty return. The two allowed amplitudes
+have different stability: perturbing h=1/2 gives error proportional to
+the perturbation, whereas $`h=-1+\epsilon`$ gives squared error
+$`8\epsilon(3/2-\epsilon)^2`$. The projector-amplitude option therefore
+does not automatically inherit the linear error estimate of Section 3.
+Producing either admissible accepted block with the required native
+resources remains a separate construction problem.
+
+## 9. A balanced scalar product and its paid native cost
+
+A concrete alternative joins scalar words without requiring a
+Majorana-preserving loader. Suppose the unitary U has one distinguished signal a and
+otherwise arbitrary inputs, with
+$`(U+U^\dagger)/2=cI`$ and $`Z_aUZ_a=U^\dagger`$.
+On two identical copies let $`C=\mathrm{CZ}_{a,b}`$ and let
+$`\Sigma`$ swap the complete copies. Define
+
+```math
+R=U_A C U_B C,\qquad
+\mathcal G=Z_aZ_bC\Sigma.
+```
+
+Writing U=cI+A, its skew part anticommutes with the signal Z.
+C changes the second skew part to $`Z_aA_B`$, which anticommutes
+with the first. Hence $`(R+R^\dagger)/2=c^2I`$ on every input.
+$`\mathcal G`$ is a Hermitian Clifford involution: it exchanges the two twisted
+child words while reversing each, so $`\mathcal G R\mathcal G=R^\dagger`$.
+The scalar-product identity permits unequal c values, but this physical
+swap grading uses identical children.
+
+The grading can be converted to a Pauli with a paid native word.
+For children of width n, the signal factor is
+$`g=Z_aZ_b\mathrm{CZ}_{a,b}\mathrm{SWAP}_{a,b}`$.
+The chronological word
+
+```math
+\mathrm{CX}_{a,b},\quad
+\mathrm{CH}_{b,a},\quad
+\mathrm{CX}_{b,a}
+```
+
+conjugates g to $`Z_a`$. A literal controlled H uses two T gates:
+$`\mathrm{CH}=V\mathrm{CZ}V^\dagger`$ with
+$`V=SHTHS^\dagger`$ and $`VZV^\dagger=H`$.
+Inverse Bell transforms on the n-1 core pairs change their SWAPs to CZs.
+The resulting grading is $`Z_a\prod_j\mathrm{CZ}_{x_j,y_j}`$.
+Toffolis with these control pairs and common target a remove that product.
+
+For m=n-1 pairs, the combined CCZ phase exponent, in units of pi/4, is
+
+```math
+ma+\sum_j\left[
+x_j+y_j-(a\mathbin\oplus x_j)-(a\mathbin\oplus y_j)
+-(x_j\mathbin\oplus y_j)+(a\mathbin\oplus x_j\mathbin\oplus y_j)
+\right].
+```
+
+Aggregate the common target phase modulo eight and compute each of the
+four parity families on existing core wires, applying its phase and
+uncomputing. Together with H on the common target before and after,
+this gives the Toffoli product with $`6m+(m\bmod2)`$ T gates,
+at most five T layers and O(m) elementary Cliffords. No helper is
+initialized. Thus a normalizer N with $`N\mathcal G N^\dagger=Z_a`$ costs
+two additional T gates and at most seven T layers when n is at least two.
+For n=1 only the two-layer controlled H is needed.
+
+Set $`U_{\rm new}=NRN^\dagger`$ and use actual inverses throughout.
+Starting from the literal Clifford $`U_1=\exp(i\pi X/4)`$, including
+its Clifford scalar, iteration at dyadic width w gives
+
+```math
+\frac{U_w+U_w^\dagger}{2}=2^{-w/2}I,\qquad
+Z_aU_wZ_a=U_w^\dagger,\qquad
+J^\dagger U_wJ=2^{-w/2}I.
+```
+
+This is an exact one-clean scalar block on w-1 arbitrary dirty inputs.
+It is not a returned-work rotation: its rejected norm is
+$`\sqrt{1-2^{-w}}`$. It also supplies only this sequence of coefficients,
+not an arbitrary-angle program. For dyadic w at least two, the emitted
+word has
+
+```math
+T=6w\log_2w-7w+6,\qquad
+G=O(w\log w),\qquad
+D_T\le9w-14.
+```
+
+The T recurrence is T(2)=4 and $`T(w)=2T(w/2)+6w-6`$ for w at
+least four; the depth recurrence pays both child words and both
+normalizers. Native commutation checks of this particular word, including
+equal-axis cancellation and Clifford absorption, still found growing
+dependencies at bounded widths. They do not prove an all-size or
+unrestricted depth lower bound. Thus this paid attempt currently has
+linear depth and superlinear count, and does not improve R96.
+
+The [native fixtures](../../tests/test_joint_precision_rotation.py)
+check literal small joins, their actual inverses and ledgers, and the
+projector-amplitude recovery with noncommuting W and P. The remaining
+precision task is to produce a scalar or projector-amplitude accepted
+block, or directly its complete recovery, with linear count and
+sublinear precision depth while paying every initialization and return.

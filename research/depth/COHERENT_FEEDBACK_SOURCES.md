@@ -401,3 +401,128 @@ by at most twice the unitary error. This proves the stated floor even
 with arbitrary private inputs. Mixing A or using non-Clifford conditional
 bank dynamics leaves the premise. Neither this boundary nor the failure
 of (11) is an unrestricted native-depth lower bound.
+
+<a id="pair-star-hadamard-fusion"></a>
+
+## 6. Simultaneous encoded Hadamards on an intersecting pair family
+
+Let $`\mathcal A`$ be a family of two-element subsets of the r algebra
+generators. All $`w=2^r-1`$ coefficient inputs remain arbitrary. Using
+the local shears from Section 1, put
+
+```math
+B_{\mathcal A}=\prod_{S\in\mathcal A}B_S,\qquad
+C_{\mathcal A}=\prod_{S\in\mathcal A}C_S,\qquad
+z(y)=\sum_{S\in\mathcal A}y_Se_S,\qquad
+g_z=\prod_{S\in\mathcal A}(1+y_Se_S).
+```
+
+Each $`C_S`$ fixes every singleton and pair coordinate, including all
+other selected controls. Thus the $`C_S`$ commute, their product is an
+involution, and its complete action is $`C_{\mathcal A}(y)=g_z y`$.
+The $`B_S`$ also commute. Logical commutation alone does not give a
+native schedule for either product.
+
+For a selected pair S, direct conjugation gives
+
+```math
+C_{\mathcal A}X_SC_{\mathcal A}:\quad
+y\longmapsto(1+e_S)y+e_Sg_z.                            \qquad(12)
+```
+
+Indeed, after the middle flip the selected pair word changes from z to
+$`z+e_S`$, so its final multiplier is $`g_z(1+e_S)`$. The desired
+$`FX_SF^\dagger`$ has the same action with the last term replaced by
+$`e_S`$. Their exact discrepancy is $`e_S(g_z+1)`$.
+
+Suppose every two members of $`\mathcal A`$ intersect. Then this
+discrepancy vanishes for every selected S. Also $`B_{\mathcal A}`$
+commutes with each selected X, while its Z image is
+$`Z_SD_{y_i y_j}`$ for $`S=\{i,j\}`$. The latter equals
+$`FZ_SF^\dagger`$ and is unchanged by $`C_{\mathcal A}`$.
+Consequently $`U_{\mathcal A}=C_{\mathcal A}B_{\mathcal A}`$ has
+the same X and Z images as F on the whole selected matrix algebra.
+For $`H_{\mathcal A}=\prod_{S\in\mathcal A}H_S`$, this proves
+
+```math
+FH_{\mathcal A}F^\dagger
+ =C_{\mathcal A}B_{\mathcal A}H_{\mathcal A}
+       B_{\mathcal A}C_{\mathcal A}.                    \qquad(13)
+```
+
+This is a full-space identity with literal phases. It neither initializes
+nor prescribes the other coefficient fibers.
+
+### A star has a paid twenty-four-band implementation
+
+Take $`\mathcal A=\{\{i,j\}:j\in J\}`$, with $`k=|J|\ge1`$.
+The C product is one quadratic XOR shear. Its controls are the pair
+coordinates $`y_{\{i,j\}}`$; its sources exclude i and its targets
+contain i. No selected pair coordinate is a target. Thus all its source
+and control wires are disjoint from the complete target set, even though
+individual terms may share sources or targets. The number of terms and
+the number of distinct targets are, respectively,
+
+```math
+E=k(2^{r-2}-1),\qquad
+h=2^{r-1}-2^{r-1-k}-k.                                \qquad(14)
+```
+
+For h, count subsets containing i and at least one j, then exclude the k
+selected pairs. Hadamards on these h targets turn the shear into a cubic
+phase with E occurrences. The [returned-dirty cubic compiler](DIRTY_CUBIC_PHASE_COMPILER.md#1-a-complete-diagonal-compiler)
+pays it in eight T bands, $`8E`$ T gates, $`16E+2h`$ total native
+gates and E arbitrary helpers. Shared logical controls are included.
+
+The B product is cheaper: after Hadamards on its k targets it is a
+shared-root CCZ batch, with root $`y_i`$ and disjoint pairs
+$`(y_j,y_{\{i,j\}})`$. Section 2's schedule pays four T bands,
+$`6k+(k\bmod2)`$ T gates and at most $`12k+3`$ Clifford gates,
+including those target Hadamards, without helpers.
+
+Using these schedules in (13) gives common forward/actual-inverse bounds
+
+```math
+\begin{aligned}
+D_T&\le24,\qquad T\le16E+12k+2(k\bmod2),\\
+G_{\rm Cliff}&\le16E+4h+25k+6,\\
+G_{\rm all}&\le32E+4h+37k+2(k\bmod2)+6,\\
+w_{\rm extra}&\le E,\qquad a_{\rm clean}=0,
+\qquad\epsilon=0.
+\end{aligned}                                             \qquad(15)
+```
+
+The private pool is reused only after each completed C shear returns it.
+The actual reverse flips every native phase and reduces positive-S powers
+modulo four as in Section 2; (15) includes that reverse. The central
+Hadamards cost k Clifford gates. Empty shears can be omitted, and for one
+selected pair the sixteen-band helper-free construction remains available.
+These are simultaneous native bounds, not a claim that separately emitted
+local Hadamards can run concurrently.
+
+### Disjoint pairs obstruct the same full-space regrouping
+
+Equation (12)'s discrepancy need not vanish for disjoint pairs. For
+$`\mathcal A=\{\{1,2\},\{3,4\}\}`$, compare (13)'s right side
+with the true encoded Hadamard on input zero. Both have four equally
+weighted pair labels. At the label where both pair bits are one, the true
+output also has $`y_{1234}=1`$, whereas the proposed regrouping has it
+zero. Their squared column distance is therefore $`1/2`$.
+
+For all six pairs on four labels, the true output is uniform over their
+64 pair words t and has
+
+```math
+y_{1234}=t_{12}t_{34}+t_{13}t_{24}+t_{14}t_{23}.
+```
+
+The regrouped word sets that coordinate to zero: the singleton values
+vanish and $`g_t t=t`$ on four labels. The displayed Pfaffian is one
+for 28 pair words, giving squared column distance $`7/8`$. Extra
+generators may stay zero in both witnesses.
+
+These failures concern the full encoded-Hadamard identity. When the pairs
+exclude the dummy generator, the [weaker central probe source](COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
+can tolerate motion in the other coefficient fibers. Its correctness is
+a separate complete-probe identity. The star compiler does not yet supply
+a sublogarithmic schedule for all pairs or change the general frame bound.

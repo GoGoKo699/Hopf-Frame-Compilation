@@ -709,3 +709,195 @@ complete lookup projector. The weaker root-probe interface also need not
 realize F as a separate word; its separate readout remains essential.
 The [polarization fixtures](../../tests/test_central_polarization.py) check
 the algebra, ranks, shifted cliques, orbit phase and literal one-signal boundaries.
+
+<a id="weak-pair-gauge-source"></a>
+
+## 7. A weak pair gauge removes the full-basis correction
+
+The complete carrier action needs less than the full affine action (14).
+Retain the dummy-generator embedding of Section 5, with $`p\ge2`$,
+$`m=2^p`$, $`q=\binom p2`$, and all $`2m-1`$ nonconstant inputs arbitrary:
+
+```math
+y=d+e_0\widehat c,\qquad s=(d_{ij})_{1\le i\lt j\le p},
+\qquad g_s=\prod_{i\lt j}(1+s_{ij}e_ie_j).
+```
+
+Let C be the product of the local $`C_{\{i,j\}}`$ matchings from the
+[local HRT compiler](COHERENT_FEEDBACK_SOURCES.md#1-an-exact-local-change-of-hrt-coordinates),
+over pairs excluding the dummy generator. Its exact action is
+
+```math
+C:y\longmapsto g_s y,\qquad C^2=I.                    \qquad(30)
+```
+
+There is no constant coefficient in y. Each matching therefore preserves
+every selected pair coordinate; all its targets have degree at least three.
+Consequently their controls stay fixed, the completed matchings commute,
+and their product is multiplication by $`g_s`$. Since $`g_s^2=1`$, C is an
+involution. This algebra does not parallelize the overlapping native gates.
+
+For an alternating K, put $`k_2=\sum_{i\lt j}K_{ij}e_ie_j`$ and let
+$`Q_K:y\mapsto y+k_2`$ toggle its pair coordinates. Rightmost-first
+composition gives the full physical action
+
+```math
+C Q_K C(y)=g_{s+K}(g_s y+k_2)
+          =g_K y+g_{s+K}k_2.                           \qquad(31)
+```
+
+The additive term contains no $`e_0`$. Hence
+$`\widehat c\mapsto g_K\widehat c`$ exactly, independently of every
+arbitrary d input. The other coefficients may move. With
+$`K=\mathcal K(x)`$, the source $`V=\mathsf J C Q_K C`$ therefore has the
+required complete root-probe derivative by (6)--(7). The actual source
+inverse cancels the arbitrary intermediate work motion in that derivative.
+No d input is initialized or discarded.
+
+### Conditional native and error ledger
+
+The pair toggle $`Q_{\mathcal K(x)}`$ is the shared-address batch
+$`\prod_{i\lt j}\mathrm{CCX}(x_i,x_j;d_{ij})`$. H on its q targets turns it
+into q cubic phases. The eight-band dirty compiler gives
+$`T\le8q`$, $`D_T\le8`$, $`G_{\rm all}\le18q`$ and q returned private
+dirty helpers, including both H walls. No clean input is used.
+
+Suppose an actual native $`\widetilde C`$ approximates $`C\otimes I`$
+in full operator norm by eta, with common forward/actual-inverse bounds
+$`t_C,d_C,g_C,h_C`$. Use
+$`\widetilde V=\mathsf J\widetilde C Q_K\widetilde C^\dagger`$. Then
+
+```math
+\begin{aligned}
+T(\widetilde V)&\le2t_C+8q+4pm,&
+D_T(\widetilde V)&\le2d_C+24,\\
+G_{\rm all}(\widetilde V)&\le2g_C+18q+8pm+2m,&
+w_{\rm extra}&\le m-1+h_C+\max(q,pm/4),\\
+\|\widetilde V-V\|&\le2\eta,&
+\|\widetilde VZ_{A_\varnothing}\widetilde V^\dagger-Q\otimes I\|
+ &\le4\eta.
+\end{aligned}                                                   \qquad(32)
+```
+
+Here $`w_{\rm extra}`$ excludes x and the principal c bank. It includes
+all $`m-1`$ arbitrary d wires and keeps C's private pool separate from the
+returned Q/J pool. Every actual inverse has the same common bounds.
+Unitary telescoping includes intermediate leakage and all references.
+The usual two-call probe readout doubles the source T-count and T-depth
+and gives the complete indicator; it does not supply C. A direct
+implementation of the entire conjugation with only its
+probe guarantee can be weaker than this sufficient full-C approximation.
+
+### Which simultaneous-Hadamard correction can be omitted
+
+For the selected pair family, let $`E=F_{p+1}H_{\rm pairs}F_{p+1}^\dagger`$
+and let B toggle each $`y_{ij}`$ by $`y_i y_j`$. Regrouping the individual
+encoded-Hadamard palindromes into $`C B H_{\rm pairs}B C`$ does not give E.
+The [intersecting-family audit](COHERENT_FEEDBACK_SOURCES.md#pair-star-hadamard-fusion)
+proves the first disjoint-pair witnesses.
+In particular, the six pairs on four labels give squared zero-column error
+7/8: the true output contains a quartic Pfaffian that the regrouped word lacks.
+
+The full simultaneous encoding uses
+$`T(y)=g_s(1+y+s_2)-1`$, with $`s_2=\sum_{i\lt j}s_{ij}e_ie_j`$.
+It preserves all pair and singleton coordinates and has actual inverse
+$`T^{-1}(y)=g_s(1+y)-1+s_2`$; it need not be an involution. For a selected
+pair S, direct substitution gives
+$`T X_S T^{-1}(y)=(1+e_S)(1+y)-1`$, the action of $`FX_SF^\dagger`$.
+B commutes with $`X_S`$, while its Z image is $`Z_SD_{q_S}`$, unchanged
+by T. Thus TB has F's selected-pair Pauli images, proving
+$`E=T B H_{\rm pairs}B T^{-1}`$ with that actual inverse.
+Relative to C, T's additional translation is $`g_s(1+s_2)-1`$.
+It has no dummy-generator component. Thus repairing that full encoding is
+unnecessary for (31); its failed full-Hadamard column does not refute the
+weaker root source. Exact star batches do have a paid 24-band encoded-Hadamard
+schedule, but parallel execution of different stars is not supplied.
+
+The alternative E sandwich also has a paid middle. The inverse HRT pair
+coordinate is $`k_{ij}(y)=y_{ij}+y_i y_j`$, so
+
+```math
+\mathcal A_{\mathcal K(x)}=E\widetilde D(x)E,\qquad
+\widetilde D(x)=(-1)^{\sum_{i\lt j}x_ix_j(y_{ij}+y_i y_j)}. \qquad(33)
+```
+
+Allocate q arbitrary outer bits $`h_{ij}`$ and a separate reusable q-bit
+Gray pool. Set
+$`U=\prod_{i\lt j}\mathrm{CCX}(x_i,x_j;h_{ij})`$ and
+$`D=\prod_{i\lt j}\mathrm{CCZ}(h_{ij},y_i,y_j)\mathrm{CZ}(h_{ij},y_{ij})`$.
+Chronological $`U,D,U^\dagger,D^\dagger`$ gives the phase in (33), since
+the two D exponents differ by $`x_ix_j(y_i y_j+y_{ij})`$. Every helper
+returns. The cubic-only compiler prices U at 8q T and 18q total gates,
+and D at 8q T and 19q total gates, including $`\mathrm{CZ}=H\mathrm{CX}H`$.
+Thus the complete middle and its actual inverse have
+
+```math
+T\le32q,\qquad D_T\le32,\qquad G_{\rm all}\le74q,
+\qquad w\le2q,\qquad a_{\rm clean}=0,\qquad\epsilon=0. \qquad(34)
+```
+
+All shared controls and literal phases are included. This pays the middle
+of this particular sandwich; it does not pay E or its joint use.
+
+### A cheap truncation and a nonmonomial trial still fail
+
+The involution $`C_0(y)=(1+s_2)y`$ preserves all pair controls. Multiplication
+by the homogeneous degree-two form $`s_2`$ flips
+$`\lfloor|S|/2\rfloor\bmod2`$ on coefficient labels and squares to zero.
+Splitting into the two directed XOR shears therefore implements C_0 in
+sixteen T bands. With $`R=q(2^{p-1}-1)`$ raw monomial occurrences, valid
+bounds are $`T\le8R`$, $`G_{\rm all}\le16R+4m`$ and at most R returned
+dirty helpers, with zero clean inputs. Nevertheless,
+
+```math
+C_0Q_KC_0(y)=(1+k_2+s_2k_2)y+k_2+s_2k_2.             \qquad(35)
+```
+
+The carrier retains the unwanted $`s_2k_2`$ term. At p at least four, use
+$`s_2=e_1e_2`$, $`k_2=e_3e_4`$ and
+$`\widehat c=e_{[p]\setminus\{1,2,3,4\}}`$: its root sign differs from
+the target. Even at $`s_2=0`$, a clique on the first four active labels
+has a nonzero quartic Pfaffian omitted by $`1+k_2`$. Both are exact error-two
+probe witnesses, unaffected by improved gate precision.
+
+A genuinely nonmonomial variation also has a direct failure. At p=4,
+restrict to the invariant sector
+$`y=s_2+e_0(1+c_2+z e_{1234})`$, with pair banks ordered
+$`(12,13,14,23,24,34)`$. Here
+$`C_0:(s,c,z)\mapsto(s,c+s,z+\sum_{j=1}^6s_jc_{7-j})`$.
+For any six-bit physical Hadamard mask a, put
+$`E_a=C_0H_s^aC_0`$ and $`V_a=E_aX_s^{\mathbf1}E_a`$.
+Fourier summation in the $`X_z=\pm1`$ sectors gives
+
+```math
+V_aZ_zV_a^\dagger
+ =X_s^aX_c^aZ_s^aX_z^{|a|\bmod2}Z_z.                 \qquad(36)
+```
+
+On the zero vector this is $`|a,a,|a|\bmod2\rangle`$ with positive amplitude,
+whereas the central clique probe gives minus the zero vector. The empty
+mask has error two and all 63 nonempty masks have error at least square root
+two. This is a specified p=4 source-family failure, not a restriction on
+arbitrary nonmonomial dynamics.
+
+The higher matching terms can be displayed without treating them as free.
+Let $`q(v)`$ be the quadratic correction in the HRT inverse, and let
+$`\gamma_j(s_2)`$ sum all products of j pairwise-disjoint selected edges.
+Then $`q^{\circ j}(s_2)=\gamma_{2^j}(s_2)`$ and
+
+```math
+g_s=\prod_{j\ge0}\bigl(1+q^{\circ j}(s_2)\bigr),       \qquad(37)
+```
+
+with iterates zero beyond the available degree. For the first identity,
+partitioning $`2^{j+1}`$ distinct edges into two unordered equal groups has
+odd multiplicity. In the product, the multinomial coefficient for the
+binary decomposition of any matching size is odd. This proves (37).
+Its minimum degrees double, but computing these iterates or controlling
+their products is not a free operation or a native-depth lower bound.
+
+The first unpaid operation remains the whole $`C Q_{\mathcal K(x)}C`$
+conjugation, or a different native word with the same complete root image.
+The [pair-gauge fixtures](../../tests/test_pair_gauge_fusion.py) check the
+full arbitrary-bank identity, probe, middle, truncation and changed-word
+witnesses. No sublogarithmic source or new general frame bound follows.

@@ -83,7 +83,166 @@ def _three_call_word(word, flag):
         + minus_identity)
 
 
+def _halmos_dilation(target, hermitian, square_root):
+    """Unitary dilation of K=target*hermitian; no commuting promise."""
+    block = target @ hermitian
+    return np.block([[block, target @ square_root @ target.conj().T],
+                     [square_root, -block.conj().T]])
+
+
+def _common_target_toffolis(pairs, target):
+    """Five T bands for the documented shared-target phase polynomial."""
+    count = len(pairs)
+    if not count:
+        return []
+    word = [('H', target)] + [('S', target)] * ((count % 8) // 2)
+    word += [('T', target)] * (count % 2)
+    word += [('T', wire) for pair in pairs for wire in pair]
+    for side in (0, 1):
+        parity = [('CX', target, pair[side]) for pair in pairs]
+        word += parity + [('TDG', pair[side]) for pair in pairs] + _adjoint(parity)
+    parity = [('CX', left, right) for left, right in pairs]
+    word += parity + [('TDG', right) for _, right in pairs] + _adjoint(parity)
+    parity = ([('CX', target, right) for _, right in pairs]
+              + [('CX', left, right) for left, right in pairs])
+    word += parity + [('T', right) for _, right in pairs] + _adjoint(parity)
+    return word + [('H', target)]
+
+
+def _join_normalizer(half_width):
+    left, right = 0, half_width
+    v = [('SDG', left), ('H', left), ('T', left), ('H', left), ('S', left)]
+    controlled_h = (_adjoint(v) + [('H', left), ('CX', right, left), ('H', left)]
+                    + v)
+    word = [('CX', left, right)] + controlled_h + [('CX', right, left)]
+    pairs = [(wire, half_width + wire) for wire in range(1, half_width)]
+    for a, b in pairs:
+        word += [('CX', a, b), ('H', a)]
+    return word + _common_target_toffolis(pairs, left)
+
+
+def _balanced_scalar_word(level):
+    if not level:
+        # exp(i*pi*X/4), including the scalar omega from (HS)^3.
+        return [('H', 0), ('SDG', 0), ('H', 0)] + [('S', 0), ('H', 0)] * 3
+    half = 1 << (level - 1)
+    child = _balanced_scalar_word(level - 1)
+    right_child = [(name, *(wire + half for wire in wires))
+                   for name, *wires in child]
+    normalizer = _join_normalizer(half)
+    cz = [('H', half), ('CX', 0, half), ('H', half)]
+    return _adjoint(normalizer) + cz + right_child + cz + child + normalizer
+
+
+def _physical_t_depth(word):
+    """ASAP native wire dependencies, charging zero time to Cliffords."""
+    wire_depth = {}
+    for name, *wires in word:
+        layer = max((wire_depth.get(wire, 0) for wire in wires), default=0)
+        layer += name in ('T', 'TDG')
+        for wire in wires:
+            wire_depth[wire] = layer
+    return max(wire_depth.values(), default=0)
+
+
 class JointPrecisionRotationTests(unittest.TestCase):
+    def test_three_call_projector_gauge_without_commuting_target(self):
+        target = np.kron(_rotation(.31), I2)
+        identity = np.eye(4)
+        projector = (identity + np.kron(X, Z)) / 2
+        self.assertGreater(np.linalg.norm(target @ projector - projector @ target), .1)
+        hermitian = 1.5 * projector - identity
+        source = _halmos_dilation(target, hermitian, np.sqrt(3) * projector / 2)
+        flag_z = np.diag([1.] * 4 + [-1.] * 4)
+        embedding = np.eye(8)[:, :4]
+        recovered = -source @ flag_z @ source.conj().T @ flag_z @ source
+        np.testing.assert_allclose(source.conj().T @ source, np.eye(8),
+                                   atol=ATOL, rtol=0)
+        np.testing.assert_allclose(recovered @ embedding, embedding @ target,
+                                   atol=ATOL, rtol=0)
+        # A generic polar phase is retained, even at exact half normalization.
+        phase = np.cos(.23) * identity + 1j * np.sin(.23) * (2 * projector - identity)
+        phased = target @ phase
+        source = _halmos_dilation(phased, identity / 2, np.sqrt(3) * identity / 2)
+        recovered = -source @ flag_z @ source.conj().T @ flag_z @ source
+        np.testing.assert_allclose(recovered @ embedding, embedding @ phased,
+                                   atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(recovered @ embedding - embedding @ target), .2)
+
+    def test_projector_gauge_stability_includes_rejected_output(self):
+        target = np.kron(_rotation(-.27), I2)
+        identity = np.eye(4)
+        projector = (identity + np.kron(X, Z)) / 2
+        positive, negative = .53, -.98
+        hermitian = positive * projector + negative * (identity - projector)
+        root = (np.sqrt(1 - positive ** 2) * projector
+                + np.sqrt(1 - negative ** 2) * (identity - projector))
+        source = _halmos_dilation(target, hermitian, root)
+        embedding = np.eye(8)[:, :4]
+        flag_z = np.diag([1.] * 4 + [-1.] * 4)
+        recovered = -source @ flag_z @ source.conj().T @ flag_z @ source
+        error = recovered @ embedding - embedding @ target
+        expected = 8 * (hermitian - identity / 2) @ (hermitian - identity / 2) @ (hermitian + identity)
+        np.testing.assert_allclose(error.conj().T @ error, expected, atol=ATOL, rtol=0)
+        polynomial = 3 * hermitian - 4 * np.linalg.matrix_power(hermitian, 3)
+        leakage = recovered[4:, :4]
+        np.testing.assert_allclose(leakage.conj().T @ leakage,
+                                   identity - polynomial @ polynomial, atol=ATOL, rtol=0)
+        self.assertGreater(np.linalg.norm(leakage), .1)
+        self.assertGreater(np.linalg.norm(error),
+                           np.linalg.norm(recovered[:4, :4] - target))
+
+    def test_balanced_scalar_source_native_grade_inverse_and_counts(self):
+        # Structural fixtures only: this source deliberately retains rejection.
+        for level in (1, 2):
+            width = 1 << level
+            half = width // 2
+            word = _positive_cliffords(_balanced_scalar_word(level))
+            actual = _word_matrix(width, word)
+            identity = np.eye(1 << width)
+            grade = _word_matrix(width, [('Z', 0)])
+            scalar = 2. ** (-width / 2)
+            np.testing.assert_allclose((actual + actual.conj().T) / 2,
+                                       scalar * identity, atol=ATOL, rtol=0)
+            np.testing.assert_allclose(grade @ actual @ grade, actual.conj().T,
+                                       atol=ATOL, rtol=0)
+            inverse = _word_matrix(width, _positive_cliffords(_adjoint(word)))
+            np.testing.assert_allclose(inverse @ actual, identity, atol=ATOL, rtol=0)
+            embedding = identity[:, ::2]  # Only physical wire zero is initialized.
+            np.testing.assert_allclose(embedding.conj().T @ actual @ embedding,
+                                       scalar * np.eye(1 << (width - 1)), atol=ATOL, rtol=0)
+            rejected = actual @ embedding - scalar * embedding
+            np.testing.assert_allclose(rejected.conj().T @ rejected,
+                                       (1 - scalar ** 2) * np.eye(1 << (width - 1)),
+                                       atol=ATOL, rtol=0)
+            swap = [gate for a in range(half)
+                    for gate in [('CX', a, a + half), ('CX', a + half, a),
+                                 ('CX', a, a + half)]]
+            old_grade = _word_matrix(width, swap + [('H', half), ('CX', 0, half),
+                                                    ('H', half), ('Z', 0), ('Z', half)])
+            normalizer = _word_matrix(width, _positive_cliffords(_join_normalizer(half)))
+            np.testing.assert_allclose(normalizer @ old_grade @ normalizer.conj().T,
+                                       grade, atol=ATOL, rtol=0)
+        for level in (1, 2, 3, 4):
+            width = 1 << level
+            word = _positive_cliffords(_balanced_scalar_word(level))
+            for native in (word, _positive_cliffords(_adjoint(word))):
+                self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in native),
+                                 6 * width * level - 7 * width + 6)
+                self.assertLessEqual(_physical_t_depth(native), 9 * width - 14)
+                self.assertTrue(all(gate[0] in ('H', 'S', 'CX', 'T', 'TDG') for gate in native))
+                self.assertEqual(max(wire for gate in native for wire in gate[1:]), width - 1)
+        # Three disjoint control pairs exercise aggregation of the shared phase.
+        pairs = [(1, 2), (3, 4), (5, 6)]
+        word = _positive_cliffords(_common_target_toffolis(pairs, 0))
+        expected = np.zeros((128, 128), complex)
+        for value in range(128):
+            flip = sum(((value >> a) & 1) * ((value >> b) & 1) for a, b in pairs) % 2
+            expected[value ^ flip, value] = 1
+        np.testing.assert_allclose(_word_matrix(7, word), expected, atol=ATOL, rtol=0)
+        self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in word), 19)
+        self.assertEqual(_physical_t_depth(word), 5)
+
     def test_chart_coverage_and_available_tail_means(self):
         # Every angle has a nearest chart within pi/8, leaving a strict margin
         # to pi/6. That margin permits terminating certified chart selection.

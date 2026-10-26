@@ -257,23 +257,24 @@ thirteen-band compiler. The [long physical Clifford-frame trial](../research/dep
 and its actual zero-address repair fail on a complete invariant sector;
 angle tuning does not repair that family.
 The [central-transport factorization](../research/depth/COHERENT_CENTRAL_TRANSPORT.md)
-pays $`I+N_x`$ in sixteen bands. Its partial character-basis reduction retains
-arbitrary residual fibers and pays the remaining cubic middle. If that basis
-belongs to the Clifford hierarchy, its level must be at least
-$`\lfloor p/2\rfloor+2`$; at p at least four a third-level basis has simultaneous
-generator-image error at least one third. These constrain a sufficient common
-basis, not unrestricted native depth or every direct observable source.
-Its [polarization audit](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
-pays the shared multiplicative derivative in 32 bands, but the desired and
-cheap transports differ by the unpaid coherent zeta homomorphism. Sharp
-direct and central half-Gram query bounds also allow orbit-diagonal phases
-and controlled work; joint native synthesis and the weaker root-probe interface remain open.
+pays $`I+N_x`$ in sixteen bands and isolates a partial character basis.
+Its hierarchy constraints apply to that sufficient basis, not unrestricted
+native depth. The [polarization audit](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
+pays the shared derivative but retains an unpaid zeta homomorphism;
+its sharp query bounds keep their specified interlayer hypotheses.
+The [weaker pair-gauge source](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
+realizes the required root image through $`C Q_K C`$ plus the paid linear
+factor, with arbitrary auxiliary motion cancelled by its actual inverse.
+Joint native synthesis remains unpaid. Its proof separates the unnecessary
+full-encoding correction from the failed truncation and Hadamard trials.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
 those proof homes; they do not strengthen the general frontier above.
 The [local HRT compiler and feedback trial](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
 pay individual encoded Hadamards in at most sixteen T bands without helpers.
+Joint fusion pays a pair star in twenty-four bands with returned dirty helpers;
+disjoint pairs obstruct that particular full-space regrouping.
 Their complete calibrated feedback word still has error two. Cancelling the
 second trial's work motion produces an inverse-coordinate phase, which still
 has error two against the forward-coordinate target for r at least three. The
@@ -284,10 +285,11 @@ collapses under exact flatness, including arbitrary invariant-block mixing;
 no approximate rigidity follows. These component and source-family results
 leave the bounds above unchanged.
 The [joint precision rotation](../research/depth/JOINT_PRECISION_ROTATION.md)
-reduces an isolated one-clean source to three recovery calls and omits an
-exterior dirty basis change. Its complete error is below $`7\,2^{-q}`$ and
-its native T-depth is at most $`12q+96`$; it retains linear precision depth
-and supplies no coherently addressed replacement for R96.
+simplifies an isolated one-clean source but retains linear precision depth.
+Exact three-call recovery also admits $`K=W(3P/2-I)`$ for an orthogonal
+projector P, with complete leakage and return accounted for. A paid balanced
+scalar join retains linear depth and superlinear count. These components
+supply no coherently addressed replacement for R96.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 
