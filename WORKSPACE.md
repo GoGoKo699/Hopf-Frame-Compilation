@@ -11,16 +11,16 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #257](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/257),
-`5a357c0c4cdb6ebc6f17b1bb3fdfe3aa3afc4ce9`, 26 October 2026.
-Its reviewed tree passed 1,886 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #258](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/258),
+`f635f5733259ddb280e5b3d3fd45a4182e8be6e7`, 26 October 2026.
+Its reviewed tree passed 1,907 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
 Use the [research catalogue](research/README.md) to find its proof dependencies.
-The latest nonmonomial-source and readout results are integrated; none improves R96.
+The latest interleaved-source results are integrated; none improves R96.
 
 <a id="current-depth-frontier"></a>
 
@@ -82,39 +82,43 @@ they do not construct the source.
 
 ### Latest substantive outcomes and resumption question
 
-The [four-band Clifford-involution compiler](research/depth/CLIFFORD_INVOLUTION_SOURCE.md)
-removes the first source block as an independent search variable. Its
-[exact Galois screen](research/depth/CLIFFORD_INVOLUTION_SOURCE.md#galois-outer-symmetry-screen)
-constrains the combined outer word; fourth-root phases require even Clifford
-displacement rank. This arithmetic screen supplies no approximate error floor.
-The [Hadamard-pair trial](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md#nonmonomial-hadamard-pair-screen)
-with its specified first coupling has error at least 1/16 for every later
-Clifford wall and cubic-sign batch. Weighted phases escape that proof.
-The [Fourier-swap source](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md#fourier-swap-fixed-coefficient-face)
-completes the fixed-top-coefficient face, but reduces to a quadratic finite
-difference. The direct phase costs 28 T gates in eight bands without helpers.
-Its common address-independent readout has a separate 1/2 error floor when
-that top coefficient becomes arbitrary.
+The [interleaved tree probe](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md)
+pays a later address query and a fixed Fourier wall. Pulling lookup through
+that word gives a Pauli family with full commutation rank $`m=2^p`$.
+This is an explicit complete target algebra, including literal signs and
+arbitrary dirty inputs; canonical target coordinates do not pay a source decoder.
 
-**Next question:** choose and pay the two outer conjugations
-$`A=C_3D_3C_2D_2`$ so the complete peeled lookup observable
-$`A^\dagger Q A`$ is Clifford, using genuinely later address participation
-and retaining the simultaneous polynomial discovery budgets. A successful
-fixed-coefficient face must also work when that coefficient is arbitrary.
-The [Clifford-symmetry normal form](research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md)
-screens qualifying Clifford-to-Clifford images; it does not force arbitrary
-three-block walls to preserve the address algebra.
+The [one-query gaps](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#one-query-orbit-gaps)
+exclude a single linear XOR query at error below $`\gamma=\sqrt{2-\sqrt2}`$,
+even with an arbitrary non-Clifford starting reflection and fixed decoder.
+Affine offsets retain a covariance gap $`\gamma/2`$ for $`p\ge2`$.
+Two opposite interleaved queries escape these premises. For a fixed
+**Clifford** starting reflection, however, the
+[faithful phase-lift bound](research/depth/CLIFFORD_ORBIT_QUERY_RANK.md)
+requires at least $`\lceil p/8\rceil`$ literal affine queries at error
+below $`\gamma/4`$. This is a query-grammar bound, not native-depth optimality.
 
-Two concrete alternatives are joint synthesis of the
+The [two-address pilot](research/depth/TWO_ADDRESS_INTERLEAVED_PILOT.md)
+constructs the whole small family with controlled Hadamards and a paid fixed
+Clifford decoder. Its complete native source and actual inverse provide a
+benchmark, not an all-size depth improvement.
+
+**Next question:** construct the complete interleaved tree family from a
+genuinely non-Clifford starting reflection using multiple noncommuting
+address queries and a paid fixed decoder, or jointly synthesize a native
+word outside the bounded-lift grammar. Check its entire commutation pattern
+before decoder synthesis. A fixed dressing that cancels through every query
+does not change the mechanism; serial address controls retain the old cost.
+For a third-level-dressed Clifford seed, the
+[decoder condition](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#nonclifford-seed-decoder-condition)
+also requires every selected target pullback to be non-Clifford below
+error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
+
+The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
+[weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
 [reduced central gauge](research/depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge)
-or the [minimal-tree probe](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source).
-The latter has optimal-order count but linear address depth; its eight-band
-forward XOR query does not supply the in-place inverse. The
-[syndrome bound](research/depth/FIXED_READOUT_SYNDROME_BOUND.md)
-also excludes an arbitrary fixed final readout after low-degree Pauli
-transport. The readout must participate in the address-dependent computation
-or leave that transport grammar. These components do not improve the retained
-logarithmic indicator. In the separate
+and [minimal-tree probe](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source)
+remain component alternatives under their separate scoped screens. In the separate
 [precision route](research/depth/JOINT_PRECISION_ROTATION.md), joint recovery
 beyond the separately paid two-path pilots remains open.
 
