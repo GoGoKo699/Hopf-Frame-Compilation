@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #251](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/251),
-`65966835f2ea795ba35a583fa57c86a7d805ad69`, verified 25 October 2026.
-Its reviewed tree passed 1,798 tests, the full local gate and all pre-merge CI.
+Baseline: [PR #252](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/252),
+`c61a2a8e5fd42bef18f9f40fcc625b8eb0ecc239`, verified 26 October 2026.
+Its reviewed tree passed 1,815 tests, the full local gate and all pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -94,9 +94,16 @@ The [local HRT gate compiler](research/depth/COHERENT_FEEDBACK_SOURCES.md)
 pays any one-coordinate encoded native gate through two exact quadratic shears.
 Encoded Hadamards need at most sixteen T layers and no helpers; top and
 singleton coordinates need eight. No parallel whole-basis schedule follows.
-The two complete feedback trials have error-two witnesses: the first loses
-key dependence, and the second introduces uncancelled dirty-bank motion.
-Their proof home records the exact actions, size ranges and missing correction.
+The feedback trials have error-two witnesses. Cancelling the second word's
+work motion gives a complete inverse-coordinate phase, while the target
+requires the forward coordinate. The repaired word still fails for r at least
+three; fixed-key Clifford bank repairs have a separate constant error floor.
+
+The [joint precision primitive](research/depth/JOINT_PRECISION_ROTATION.md)
+uses a certified Clifford chart, three recovery calls and an omitted exterior
+dirty basis change. It simplifies an isolated complete rotation, including
+literal phase and return. Its precision depth remains linear; the programmed
+masked-tail interaction is the first growing word still requiring synthesis.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
@@ -118,33 +125,27 @@ The cubic bent dual remains a dense kernel, not a complete diagonal source.
 $`I+N_x`$ in sixteen bands. An added-generator embedding now reduces its
 remaining factor to a fixed partial character basis on $`\binom p2`$ commuting
 affine Clifford observables, with arbitrary residual fibers and a paid cubic
-middle. The basis is not supplied: if it lies in the Clifford hierarchy, its
-level is at least $`\lfloor p/2\rfloor+2`$. This does not bound native depth.
+middle. The basis remains unpaid. The [clique polarization audit](research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
+finds that the desired transport and the paid linear factor have the same
+cheap multiplicative derivative; their difference is the unpaid coherent zeta
+homomorphism. Sharp direct and accepted-Gram query bounds constrain integration
+with specified interlayers; allowing orbit-dependent phases retains the bound.
+These query bounds and the basis's hierarchy level do not bound native depth.
 
-An [approximate cache bound](research/depth/SHARED_PREFIX_QUERY_AUDIT.md#approximate-cache-capacity)
-also closes a small-fingerprint shortcut: bank-independent encoding followed
-by an address-blind bank reader and actual inverse decoding needs
-$`c\ge p+2\log_2(1-\varepsilon^2/2)`$ clean bits at error below square root
-two, even with arbitrary dirty and bank mixing. A faster isolated zero test
-does not supply the complete bank operation.
+The [four-path study](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
+retains a native half-projector diagnostic with accepted output motion and no
+cancelling pair. Its calibrated and independent-reflection limits have their
+own hypotheses; general multipath lookup and approximate rigidity remain open.
 
-The [four-path accepted-source study](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
-exhibits a native diagnostic with exact half-projector Gram and nontrivial
-accepted output motion: no pair of its four paths cancels on the rejected
-sector. A separate calibrated nonrectangular family collapses to an already
-required target below Gram error one thirty-second. For the diagnostic's
-phases, even three independent reflection branches collapse to its original
-anticommuting pair under exact flatness. This does not prove approximate
-rigidity or supply lookup; general multipath branches remain open.
-
-**Next question:** can a native multipath source retain that accepted-output
-freedom while its full Gram selects the complete lookup sector? For four
-equal-weight branch unitaries, derive the sum of all six relative cross terms,
-not a scalar kernel or one successful column. Pay the branch controls and
-actual inverse, then use the existing recovery and promotion. The concrete
-retained-outcome feedback word is now tested and stopped; changing its mixer
-alone is not a substitute for restoring the lost key response. Joint residual
-probe synthesis and clique-only central conjugation remain alternatives.
+**Next question:** can the clique-dependent central conjugation, or only its
+required root-probe image, be synthesized jointly with nonmonomial native
+bank dynamics? Cheap polarization alone leaves the required normalization
+unpaid. General multipath acceptance and joint residual-probe synthesis remain
+alternatives; the repaired feedback word is stopped at its forward/inverse
+coordinate mismatch. In parallel, test unrestricted synthesis of the complete
+masked-tail precision interaction, preserving its scalar block and full return.
+Any success needs a fresh complete-circuit ledger, including the transfer's
+log-log term and every remaining precision-sized word.
 All source interfaces are sufficient routes, not necessary representations of
 the unrestricted compiler.
 

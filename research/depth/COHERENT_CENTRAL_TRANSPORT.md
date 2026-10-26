@@ -503,3 +503,209 @@ The [complete observable-basis fixtures](../../tests/test_complete_observable_ba
 check the free pair action, arbitrary residual sectors and disjoint-pair
 commutators. The all-size identities, hierarchy argument and native/error
 ledger are the analytic claims above.
+
+<a id="clique-polarization-integration"></a>
+
+## 6. Cheap polarization and its sharp coherent-query cost
+
+Write $`F(x)=F_{\mathcal K(x)}`$ and $`J(x)=I+N_x`$ for their binary
+bank actions. The quadratic clique map obeys
+
+```math
+\mathcal K(x+y)+\mathcal K(x)+\mathcal K(y)=x\wedge y,
+\qquad
+F(x+y)F(x)F(y)=I+N_xN_y=[e_x,o_y].                 \qquad(20)
+```
+
+Thus its polarization is cheap even though F itself remains unpaid at
+sublogarithmic native depth. The same cocycle appears in
+$`J(x)J(y)J(x+y)=I+N_xN_y`$. Their product removes it:
+
+```math
+\rho_x=J(x)F(x)=\prod_i(I+x_iN_i),\qquad
+\rho_x\rho_y=\rho_{x+y}.                              \qquad(21)
+```
+
+These identities follow from (1)--(3), or by expanding the even and odd
+subset products. Equation (21) is the complete zeta action, so replacing F
+by the full zeta is not a cheaper construction.
+
+For $`p\ge2`$, four paid parity halves compile the polarization on arbitrary
+coefficient inputs, with arbitrary coherent x,y, zero clean work and
+
+```math
+D_T\le32,\qquad T\le8pm,\qquad
+G_{\rm all}\le16pm+4m,\qquad w_{\rm dirty}\le pm/4.     \qquad(22)
+```
+
+The same returned pool is reused after each half; reversing the four actual
+native words gives the same ledger. At p at most one the polarization is
+identity. Cheap polarization does not by itself integrate the quadratic map.
+
+### Fixed-address polarization loses the quadratic refinement
+
+On central character s, write
+$`\chi_s(K)=(-1)^{\sum_{i\lt j}s_{ij}K_{ij}}`$ and let S be the symmetric
+zero-diagonal matrix with upper triangle s. Then
+
+```math
+\chi_s(\mathcal K(x))=(-1)^{q_s(x)},\qquad
+q_s(x)=\sum_{i\lt j}s_{ij}x_ix_j,\qquad
+\chi_s(x\wedge y)=(-1)^{x^{\mathsf T}Sy}.              \qquad(23)
+```
+
+All characters occur: in the complemented algebra ordering of Section 5,
+the orbit of the unit 1 under $`F_K`$ is free, since the pair coefficients
+of $`g_K`$ are K. Its Hilbert span is the regular representation of the
+central group. This is a subspace for a lower-bound witness, not a supplied
+initialized resource for a construction.
+
+If x has at least three active coordinates, take S to be a triangle on
+three of them. Then $`Sx=0`$ but $`q_s(x)=1`$. The trivial character and this
+character therefore agree on every query $`F_{x\wedge y}`$, for every y,
+while the required phase has opposite signs. Arbitrary coherent y queries
+and character-independent interlayers cannot distinguish them, regardless of
+query count. The resulting direct-unitary error is at least square root two;
+for the half-projector Gram it is at least one quarter. Varying the first
+argument or mixing central character sectors leaves this restricted screen.
+
+### A precise quantum-query model
+
+Allow a query with coherent controls u,v whose character fiber is
+
+```math
+Q_s|u,v,w\rangle=\chi_s(u\wedge v)|u,v,w\rangle.        \qquad(24)
+```
+
+Interlayers, preparation and acceptance may depend on the original address x
+and act arbitrarily on quantum work, but are independent of s. Clean or dirty
+work and arbitrary accepted output fibers are allowed. No physical cost for
+these interlayers is asserted. The oracle is (24), not an arbitrary
+character-dependent gate. A fixed unconditional central Clifford $`F_{K_0}`$
+may also be included; all such scalar characters commute and accumulate
+into one offset K_0 independent of x.
+
+After t queries, every resulting matrix or accepted block has expansion
+
+```math
+A_s=\chi_s(K_0)\sum_{\mathrm{rank}R\le2t}\chi_s(R)A_R. \qquad(25)
+```
+
+Each query contributes only rank-at-most-two character labels. Matrix
+multiplication convolves labels, rank is subadditive, and character-independent
+interlayers or compression preserve their support. This includes coherent
+Fourier sums over query labels; it does not assume a classical query schedule.
+
+For a full unitary or initialized isometry approximating
+$`\chi_s(\mathcal K(x))I`$, if
+$`\mathrm{rank}(\mathcal K(x)+K_0)>2t`$, the target Fourier coefficient in
+(25) vanishes. Uniformly average normalized squared Hilbert--Schmidt error
+over s. Both norm terms are one and the cross term is zero, giving average
+two. Some character sector therefore has operator/isometry error at least
+$`\sqrt2`$.
+
+For an accepted block with target Gram
+$`(I+\chi_s(\mathcal K(x))I)/4`$, the offset cancels from $`A_s^\dagger A_s`$,
+whose Fourier support has rank at most 4t. If
+$`\mathrm{rank}\mathcal K(x)>4t`$, its target Fourier coefficient is I/4
+while the actual one is zero. The normalized trace and
+$`|\mathrm{Tr}(E)/d|\le\|E\|`$ give complete Gram error at least 1/4.
+No condition on the accepted polar action was used.
+
+Put $`h=\lfloor p/2\rfloor`$. The worst-case clique rank is 2h. A fixed
+offset cannot reduce the worst-case direct rank: for even p, the Pfaffian
+of $`K_0+\mathcal K(x)`$ is a multilinear polynomial whose top monomial
+$`\prod_i x_i`$ has coefficient one. Indeed the all-clique perfect matchings
+are odd in number, while using a K_0 edge omits its two vertex variables.
+The polynomial is nonzero on some Boolean input, giving rank p. For odd p,
+apply the same argument on any p-1 principal coordinates. Consequently
+
+```math
+t\ge h\quad\text{for direct error below }\sqrt2,
+\qquad
+t\ge\lceil h/2\rceil\quad\text{for Gram error below }1/4. \qquad(26)
+```
+
+### Both query bounds are attained
+
+An explicit fixed-mask decomposition avoids adaptive rank factorization.
+For $`1\le j\le h`$, let
+
+```math
+a_j=e_{2j-1}+\sum_{k>2j}e_k,\qquad
+b_j=e_{2j}+\sum_{k>2j}e_k,\qquad D_x=\mathrm{diag}(x),
+\qquad
+\mathcal K(x)=\sum_{j=1}^{h}(D_xa_j)\wedge(D_xb_j).     \qquad(27)
+```
+
+Each term supplies all edges from its pair to later coordinates, and no
+edge within that later tail. Their sum is exactly the clique matrix.
+The product of h polarization queries therefore implements F(x) exactly.
+
+For the Gram, divide these h terms into two lists of length at most
+$`t=\lceil h/2\rceil`$, defining $`K_1(x)+K_2(x)=\mathcal K(x)`$. Pad a
+shorter list with zero queries. One signal selects the two lists coherently;
+t calls implement $`\mathrm{SELECT}_s=\mathrm{diag}(\chi_s(K_1),\chi_s(K_2))`$.
+With convention $`R_y(\theta)=\exp(-i\theta Y)`$, use
+
+```math
+U_s=R_y(-\pi/8)\,\mathrm{SELECT}_s\,R_y(3\pi/8),
+\qquad
+\langle0|U_s|0\rangle
+ =\frac{\chi_s(K_1)+\chi_s(K_2)}{2\sqrt2}.             \qquad(28)
+```
+
+Its Gram is exactly $`(I+\chi_s(\mathcal K(x))I)/4`$. The accepted sign
+can depend on the character; recovery is allowed to retain that polar
+freedom. Only one acceptance signal is initialized. The unequal boundary
+angles are essential for the factor one half in the projector Gram.
+
+These boundaries have exact native words. Put C=SH. Then
+$`CTC^\dagger=e^{i\pi/8}R_y(\pi/8)`$ and $`HZ=R_y(\pi/4)`$.
+Use $`(HZ)CTC^\dagger`$ for PREP and $`CT^\dagger C^\dagger`$ for POST;
+their opposite scalar phases cancel literally in the complete word.
+They add two T-type gates, with their actual inverses. The oracle upper
+bound does not supply a free native branch-controlled query or label
+workspace; those operations still require their own full allocation proof.
+
+Equations (26)--(28) determine this coherent-query model exactly. They do
+not bound unrestricted native T-depth. There is also a useful extension
+which permits some physical mixing of central characters.
+
+### Orbit phases still leave a rank-distance boundary
+
+Use the regular-orbit basis $`|g_K\rangle`$. A polarization query translates
+K by $`u\wedge v`$, of rank at most two. Permit additional interlayers
+of the form $`\sum_K|g_K\rangle\langle g_K|\otimes U_K`$, with arbitrary
+unitaries on work, preparation and acceptance on that work. These can depend
+on K, unlike the preceding character-independent interlayers. After t queries,
+an input at K reaches only $`K+K_0+R`$ with $`\mathrm{rank}R\le2t`$.
+Fixed unconditional central offsets remain allowed and accumulate into K_0.
+The desired direct output is orthogonal to that support whenever
+$`\mathrm{rank}(\mathcal K(x)+K_0)>2t`$, again giving error square root two.
+Two accepted paths from input coordinates differing by rank greater than 4t
+have disjoint final-coordinate support. Their Gram matrix element is zero,
+whereas the target between $`|g_0\rangle`$ and $`|g_{\mathcal K(x)}\rangle`$
+is 1/4. Thus (26) remains sharp in this larger model as well.
+
+For example, at p=4 a single physical Z on the top coefficient restricts to
+
+```math
+|g_K\rangle\longmapsto
+(-1)^{K_{12}K_{34}+K_{13}K_{24}+K_{14}K_{23}}|g_K\rangle. \qquad(29)
+```
+
+Its central-character matrix has every entry of magnitude 1/8, since the
+three complementary pairs give three independent quadratic Fourier sums.
+It therefore mixes even character differences of rank four at zero T-depth,
+leaving the first model's premise. Nevertheless it is an orbit phase and
+cannot overcome the extended rank-distance bound. This orbit calculation
+does not supply a source on all arbitrary coefficient inputs. A successful
+changed word must leave the relevant model through other bank dynamics or
+joint native synthesis, rather than add these phases alone.
+
+The Gram target here is the half-projector of the central F action, not the
+complete lookup projector. The weaker root-probe interface also need not
+realize F as a separate word; its separate readout remains essential.
+The [polarization fixtures](../../tests/test_central_polarization.py) check
+the algebra, ranks, shifted cliques, orbit phase and literal one-signal boundaries.
