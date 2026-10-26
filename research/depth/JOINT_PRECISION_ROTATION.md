@@ -676,3 +676,151 @@ R96 and the isolated general-angle bound above are unchanged.
 The [three exact fixtures](../../tests/test_two_path_precision_bypass.py)
 check all native columns and actual inverses, a noncommuting W/P source,
 the completion-independent error identity, and its sharp leakage witness.
+
+<a id="actual-clifford-signal-precision"></a>
+
+## 11. A Clifford image of the actual signal leaves no recovery gain
+
+The [four-band Clifford-involution compiler](CLIFFORD_INVOLUTION_SOURCE.md)
+does not by itself supply a precision source. This follows by applying the
+existing [one-clean Clifford-compression lemma](CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap)
+to the actual accepted signal, rather than to an unrelated transported probe.
+Let Q be any source with one clean signal a, put
+
+```math
+A=Q^\dagger Z_aQ,\qquad M=J^\dagger AJ,
+\qquad K=J^\dagger QJ,\qquad G=K^\dagger K=(I+M)/2,
+```
+
+and assume A is Clifford. It is also Hermitian, so the compression lemma
+makes every eigenvalue of M belong to $`\{0,\pm1/\sqrt2,\pm1\}`$.
+Consequently
+
+```math
+\mathrm{spec}(G)\subseteq
+\left\{0,\frac12,1,\frac{2-\sqrt2}{4},\frac{2+\sqrt2}{4}\right\}.
+```
+
+For the three-call word F, its accepted block is
+$`B=K(3I-4G)`$. A Gram eigenvalue g gives accepted singular value
+$`\sqrt g\,|3-4g|`$. Among the displayed possibilities, g=1 gives one;
+every other g gives at most $`\cos(\pi/8)`$. If G differs from identity,
+choose a unit right singular vector v for such a smaller value. For any
+complete unitary target W, the full isometry identity gives
+
+```math
+\|(FJ-JW)v\|^2
+=2-2\mathrm{Re}\langle Wv,Bv\rangle
+\ge2-2\cos(\pi/8).
+```
+
+Thus complete recovered error strictly below $`2\sin(\pi/16)`$ forces
+G=I. In that case $`QJ=JK`$ already returns the signal exactly and
+$`FJ=-JK`$: the direct source with a paid literal minus has exactly the
+same complete error to W, including all dirty-return error. In particular,
+exact recovery $`K=W(3P/2-I)`$ forces P=0, since its nonzero P sector
+would require the unavailable Gram eigenvalue one quarter.
+
+For the compiler's source grammar $`Q=CDB`$, with Clifford C,B and diagonal
+third-level D, the actual image A is Clifford for every signal choice:
+negating D's weighted cubic phase keeps $`D^\dagger`$ diagonal third-level,
+and the Clifford boundaries preserve that level in
+$`Q^\dagger=B^\dagger D^\dagger C^\dagger`$.
+Arbitrary Clifford boundary mixing therefore does not change this conclusion.
+Knowing only that some other specified Pauli has a Clifford image would not
+establish the hypothesis on A. A genuinely composed source whose actual
+signal image is non-Clifford remains eligible. This is an application of
+the retained compression lemma, not a new general precision-depth bound.
+
+<a id="biased-two-path-precision"></a>
+
+## 12. A paid unequal-path pilot also reduces to a direct branch
+
+An unequal signal seed leaves the balanced two-path grammar in Section 10.
+The literal chronological one-qubit word H,T,H,T,H has two T gates and
+zero-state probability three quarters. Call its unitary S and use
+
+```math
+Q=S_a^\dagger\,\mathrm{diag}(U,V)\,S_a,
+\qquad K=\frac{3U+V}{4}=\frac14U(3I+R),
+\qquad R=U^\dagger V.
+```
+
+Here U and V are separately paid native words on the entire target/dirty
+space. Their controlled implementation is an additional cost of Q; it is
+not granted for free by this formula. No precision-dependent signal state
+is supplied. Put $`T_R=(R+R^\dagger)/2`$. Direct multiplication gives
+
+```math
+\begin{aligned}
+G&=\frac{5I+3T_R}{8},\\
+B=3K-4KK^\dagger K
+ &=\frac1{16}U(3I-7R-9R^\dagger-3R^2),\\
+\Lambda=I-B^\dagger B
+ &=\frac{27}{32}(I-T_R)(I+T_R)^2.
+\end{aligned}
+```
+
+The positive operator Lambda is the complete rejected Gram of FJ, for
+every unitary completion with this K. Exact recovery requires Lambda=0.
+Since R is unitary, this is equivalent to $`R^2=I`$, and then
+$`B=-UR=-V`$. Thus exact recovery implements an already supplied branch.
+The projector-amplitude form is retained, with $`P=(I-R)/2`$ and
+$`W=-V`$; no commutation of W with P is required.
+
+There is also a uniform approximate reduction. Write D=B+V. Functional
+calculus of the unitary R gives
+
+```math
+D^\dagger D
+=\frac9{32}(5I-3T_R)(I-T_R)(I+T_R),
+\qquad (D^\dagger D)^2\preceq12\Lambda.
+```
+
+For the inequality, on $`-1\le t\le1`$ the ratio of the two sides before
+the constant 12 is $`(3/32)(5-3t)^2(1-t)\le12`$; endpoints follow by
+continuity. If the complete recovered error to W is at most epsilon,
+then $`\|B-W\|\le\epsilon`$ and $`\|\Lambda\|\le\epsilon^2`$.
+Therefore
+
+```math
+\|-V-W\|\le\epsilon+12^{1/4}\sqrt\epsilon
+\le3\sqrt\epsilon\qquad(0\le\epsilon\le1).
+```
+
+Requesting complete recovered error at most $`2^{-2L}/9`$ suffices for
+direct error $`2^{-L}`$; $`2L+4`$ integer accuracy bits suffice. The direct
+word -V uses V's T count, T-depth and dirty allocation, with at most twelve
+additional elementary Cliffords for the literal minus. Thus a uniform
+family whose separately paid branches have linear precision count/work and
+sublinear precision depth already provides a direct branch with those same
+asymptotic bounds after the constant-factor accuracy rescaling. This
+comparison requires the separate branch words; a cheaply synthesized
+joint completion need not supply them or their resource bounds.
+
+The pilot does genuinely leave the Clifford-signal hypothesis. Take U=I
+and let V=R be the two-CNOT order-three permutation on two arbitrary wires.
+Its controlled version is two seven-T Toffolis, so the source above has
+18 T gates, at most fourteen T bands and 22 elementary Cliffords; its
+literal three-call recovery has 54 T gates, at most 42 bands and 82
+Cliffords. These are common actual-inverse bounds with one clean signal,
+two arbitrary data/work wires and no additional helpers. Let P project onto
+the two nontrivial cube-root eigenspaces of R. Then
+
+```math
+G=I-\frac9{16}P,\qquad M=2G-I=I-\frac98P.
+```
+
+The eigenvalue minus one eighth in M is excluded by Section 11, proving
+that the actual signal image is non-Clifford. Nevertheless the accepted
+recovery singular value on P is $`5\sqrt7/16`$. Every complete unitary
+target consequently has recovered error at least
+$`\sqrt{2-5\sqrt7/8}`$. This exact native trial changes the signal image
+but does not give a precision-scaling construction.
+
+The [signal and biased-path fixtures](../../tests/test_precision_signal_and_bias.py)
+retain all native columns, actual inverses, rejected Grams and the exact
+non-Clifford-signal witness. The single unequal-path pilot stops at its
+direct-branch reduction; other weights, additional paths and jointly
+compiled sources remain open. R96 and the general precision frontier
+are unchanged.

@@ -226,3 +226,121 @@ check the quotient/module matrices, exact source order, arbitrary pair
 keys, the first difference from the Pfaffian representation, and an
 actual returned-dirty native batch. Their finite checks do not replace
 the all-size algebra or supply the missing shallow compiler.
+
+<a id="minimal-tree-source"></a>
+
+## 4. A smaller tree source has linear count and no private work
+
+A further specialization removes the pair representation itself. It is a
+sparse version of the [affine-pencil source](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md),
+with one coefficient carrier, no extra field coordinates and no Vandermonde
+change. Its native baseline still has linear address depth. The gain is in
+paid count and width, not in the depth frontier.
+
+For every nonempty subset S, let $`i(S)=\min S`$ and
+$`\pi(S)=S\setminus\{i(S)\}`$. On coefficient columns define
+
+```math
+T_xe_S=x_{i(S)}e_{\pi(S)},\qquad T_xe_\varnothing=0,
+\qquad A_x=I+T_x.
+```
+
+There are exactly $`m-1`$ directed edges. Every edge lowers subset size, so
+$`T_x^{p+1}=0`$ and
+
+```math
+A_x^{-1}=\sum_{k=0}^{p}T_x^k,
+\qquad e_\varnothing^{\mathsf T}A_x^{-1}
+ =\sum_{S\subseteq[p]}\left(\prod_{i\in S}x_i\right)e_S^{\mathsf T}.
+                                                               \qquad(11)
+```
+
+Indeed each S has exactly one path to the root: delete its labels in increasing
+order. Its path weight is the full address monomial on S. The direct source
+
+```math
+V|x,c\rangle=|x,A_xc\rangle,
+\qquad VZ_{c_\varnothing}V^\dagger=Q                  \qquad(12)
+```
+
+therefore has the complete probe. V, rather than its inverse, is the quadratic
+forward map: each carrier bit changes by a sum of $`x_i c_S`$ terms. All x and
+c inputs are arbitrary, and (12) tensors with every reference. There is no
+pair key, root-completion word or private initialized coefficient.
+
+### Literal native schedule and actual inverse
+
+Let $`N_i`$ delete i only when i is the smallest label of its column subset.
+Set $`B_i=I+x_iN_i`$. Each B_i is a disjoint carrier matching of
+$`r_i=2^{p-i}`$ shared-control Toffolis. A product $`N_iN_j`$ vanishes whenever
+$`i\le j`$: after deleting j, the remaining minimum is larger than j.
+Consequently, in rightmost-first operator notation,
+
+```math
+A_x=B_1B_2\cdots B_p.                                  \qquad(13)
+```
+
+The emitted chronological order is p down to 1. Reversing that actual native
+word gives $`A_x^{-1}`$ and its long path products; it is not replaced by a
+fresh quadratic query. The [shared-control compiler](COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge)
+pays each matching in four T bands with $`6r_i+(r_i\bmod2)`$ T gates,
+$`12r_i`$ non-S Cliffords, and a reduced root power of S.
+
+Since the $`r_i`$ are powers of two and sum to $`m-1`$, only $`r_i=1`$
+contributes an odd T count. Only $`r_i=2,4`$ contribute nonzero root S powers.
+After reducing adjacent S powers modulo four, their total count is at most
+three forward and five in the actual inverse. Safe common bounds for
+$`p\ge1`$ are therefore
+
+```math
+\begin{aligned}
+T_V&=6m-5,\qquad D_T(V)\le4p,\\
+G_{\rm Cliff}(V)&\le12(m-1)+5,\qquad G_V\le18m-12,\\
+w_{\rm private}&=0,\qquad a_{\rm clean}=0,\qquad\epsilon=0.
+                                                               \qquad(14)
+\end{aligned}
+```
+
+Every basis column has literal phase one. The source and its actual inverse
+use no private work. Two source appearances give the coefficient-lookup
+phase by (12), with the usual complete-indicator readout. For an ordinary
+addressed bank, also pay the fixed Möbius bank change and its inverse,
+$`O(pm)`$ Cliffords; they add no T gates or dirty work.
+The [complete-probe count bound](NATIVE_INDICATOR_SHARING.md#complete-probe-support-count)
+makes (14) order-optimal in T-count for this interface at $`p\ge2`$, with
+zero private work; no optimal constant is asserted. Its depth remains linear,
+whereas the retained general indicator already has logarithmic depth. Thus
+(14) is a count/width alternative, not an improved complete-frame upper bound.
+
+### The full forward XOR query is also paid
+
+On a separate arbitrary m-bit output t, the complete query
+
+```math
+Q_A:\ |x,c,t,w\rangle\longmapsto|x,c,t+A_xc,w\rangle
+```
+
+adds c by m CNOTs and applies all $`m-1`$ bilinear edge terms to t.
+The edge parents are precisely the $`m/2`$ subsets not containing label 1.
+Hadamards on those output coordinates turn the edge terms into one cubic
+phase batch with $`m-1`$ returned dirty helpers. The eight-band compiler and
+both Hadamard walls give common forward/actual-inverse bounds
+
+```math
+\begin{aligned}
+T_{Q_A}&\le8(m-1),\qquad D_T(Q_A)\le8,\\
+G_{Q_A}&\le18m-16,\qquad w_{Q_A}\le m-1,\\
+a_{\rm clean}&=0,\qquad\epsilon=0.                     \qquad(15)
+\end{aligned}
+```
+
+The separate output t is excluded from $`w_{Q_A}`$ and must be allocated
+when this query is used inside another source. This is exact on every
+output and helper input, but does not implement A in place or supply its
+inverse for free. A constant number of these affine-in-x linear shears, interleaved with
+fixed binary carrier maps, has bounded address degree; broader Gaussian
+restrictions retain their separately stated hypotheses. A faster in-place word or
+nonmonomial complete readout still needs its own native construction.
+The [tree fixtures](../../tests/test_minimal_tree_probe.py) check the unique-path
+identity, source orientation, literal native schedule and actual inverse,
+and the complete forward query with arbitrary dirty helpers.

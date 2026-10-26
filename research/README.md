@@ -133,7 +133,7 @@ The table identifies dependencies rather than repeating their proofs.
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
 | [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | R96 terminal: native coarse instructions and global-prefix fine-mask queries. |
-| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | Isolated one-clean rotation, projector-amplitude recovery, and a complete-error direct bypass for paid balanced two-path branches; general precision depth remains linear. |
+| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | Isolated one-clean rotation, projector-amplitude recovery, actual-signal Clifford threshold, and complete-error bypasses for separately paid balanced and 3:1 branches; general precision depth remains linear. |
 | [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95 logarithmic-depth law on its stated growing-precision range. |
 | [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: sparse correction to a coarse frame implemented at final accuracy. |
 | [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Borrowed calibration reduces initialized scratch; full-space approximation includes dirty return. |
@@ -244,8 +244,10 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Coordinate-weighted pulse limits](depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md) — paid coordinate and tail-dependent quarter angles, robust signature collisions, and the directed-filtration lower bound on total pulses; Clifford pulses are not charged as T layers
 - [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — the two-block gap, sharp Clifford-fiber block count, and a three-block requirement for later key mixing even with an arbitrary global third-level prefix; the long physical Clifford-zeta frame remains failed
 - [Clifford involution source](depth/CLIFFORD_INVOLUTION_SOURCE.md) — four native bands, linear T count and no helpers for every traceless Hermitian Clifford; exact and approximate reduction to two outer target conjugations
+- [Complete Clifford symmetries of lookup](depth/LOOKUP_CLIFFORD_SYMMETRIES.md) — exact normal form separating permitted Fourier mixing from affine permutations with quadratic phase defect; arbitrary dirty helpers and genuine address/bank movement remain covered
+- [Joint address, carrier and helper source](depth/JOINT_ADDRESS_HELPER_SOURCE.md) — paid twenty-band quartic-face trial, an all-final-Clifford support gap, and an explicit returned-work repair; no all-size shallow source
 - [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) — [reduced pair-register gauge](depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge), general carrier-linear root criterion, four-band root completion, partial character basis, and sharp scoped polarization-query bounds
-- [Ordered-matching probe source](depth/ORDERED_MATCHING_PROBE_SOURCE.md) — a different all-size carrier representation with one matching per subset, common-point native fusion, and a complete paid linear-depth baseline
+- [Ordered-matching probe source](depth/ORDERED_MATCHING_PROBE_SOURCE.md) — one matching per subset, common-point native fusion, and a minimal-tree specialization with linear T count and no private work; depth remains linear
 - [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — complete standard/group Bell diagnostics and four-phase/eight-source extraction, with one-bank polarization and safe output/carrier aliases reducing dirty width
 - [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — paid address/tag and bank-motion sources, scoped three-layer boundaries, the corrected relative involution, and complete-transition failures of retained repairs
 - [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — actual joint word, robust direct square readout for balanced two-unitary sources, paid anchors and two distinct finite failed bank-moving trials
@@ -263,7 +265,7 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Phase-signal and coherent-frame interfaces for complete queries](depth/PHASE_SIGNAL_QUERY_LIMITS.md)
 - [Dirty geometric phase loops and the complete-bank cost](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md)
 - [Joint detuning and the cost of independent fine-angle replacement](depth/JOINT_DETUNING_PRECISION_LIMITS.md)
-- [Native sharing required by a complete approximate indicator](depth/NATIVE_INDICATOR_SHARING.md)
+- [Native sharing and complete-probe support](depth/NATIVE_INDICATOR_SHARING.md) — unrestricted incidence and robust linear source-count constraints; no growing-depth conclusion
 - [The count cost of replacing two indicators by many](depth/MULTIWAY_QUERY_COST_BARRIER.md)
 - [A source-count barrier for symplectic commutator readout](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) — [universal-probe conversion](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#6-universal-pauli-probes-contain-a-complete-dirty-indicator) · [all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally) · [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
 - [An exact T-count barrier for the separate Walsh dual readout](depth/DUAL_FRAME_READOUT_BARRIER.md)

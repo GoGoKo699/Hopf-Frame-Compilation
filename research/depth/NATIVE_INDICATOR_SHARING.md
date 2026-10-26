@@ -223,3 +223,116 @@ The [focused fixtures](../../tests/test_native_indicator_sharing.py)
 check native support propagation and the signed-translation distinction.
 The all-width incidence and block bounds are analytic statements above;
 finite fixtures do not prove an asymptotic depth obstruction.
+
+<a id="complete-probe-support-count"></a>
+
+## 6. The complete probe requires a linear number of source T gates
+
+A stronger count condition applies when one Pauli image is the entire lookup
+phase. Let the physical width be $`n=p+m+w`$, with w arbitrary work wires,
+and let P be a Hermitian Pauli. Suppose an actual native source V satisfies
+
+```math
+A=VPV^\dagger,\qquad
+\|A-Q_p\|\le\epsilon,\qquad
+Q_p|x,Y,W\rangle=(-1)^{Y_x}|x,Y,W\rangle.
+```
+
+There is no initialized input, and V may move every register. Return is
+required by the complete target observable, not separately of V. Then
+
+```math
+\begin{aligned}
+\epsilon\lt1&\quad\Longrightarrow\quad
+ \text{active T occurrences for P}\ge m+p-1,\\
+\epsilon\lt2\sin(\pi/8)&\quad\Longrightarrow\quad
+ T(V)\ge m+p,\\
+\epsilon=0&\quad\Longrightarrow\quad T(V)\ge m+p+1.       \qquad(9)
+\end{aligned}
+```
+
+These are source T-count bounds. They are distinct from the
+[complete indicator's unitary-nullity bound](INDICATOR_PAULI_NULLITY.md),
+which applies directly to a query word. Neither statement gives growing
+native depth with the permitted exponential physical width.
+
+**Signed Pauli symmetries give a robust support inclusion.** For a nonzero
+operator B, let L(B) span the differences between labels in its Pauli support.
+A Hermitian Pauli R obeys $`RBR=\sigma B`$ for some
+$`\sigma\in\{+1,-1\}`$ precisely when its commutation character is constant
+on that support. Its label therefore belongs to $`L(B)^\perp`$.
+
+For $`Q_p`$, write R's X mask as (a,b,d) on the address, bank and work.
+Conjugation replaces its sign by $`(-1)^{Y_{x+a}+b_{x+a}}`$.
+An arbitrary bank rules out every nonzero a. When a is zero, a common sign
+is possible exactly for the two constant bank masks b; d and every Z mask
+are free. Thus the signed-symmetry label space has dimension
+$`n+w+1`$. Every forbidden signed comparison has norm exactly two, because
+it compares two different diagonal sign functions. In particular,
+
+```math
+RAR=\sigma A,\quad\epsilon\lt1
+\quad\Longrightarrow\quad RQ_pR=\sigma Q_p,
+\qquad L(Q_p)\subseteq L(A).                              \qquad(10)
+```
+
+Otherwise telescoping would give $`2\le2\epsilon`$. The target's exact
+Pauli expansion also identifies the difference space explicitly:
+
+```math
+\begin{aligned}
+Q_p&=\frac1m\sum_{u,t\in\mathbb F_2^p}
+ (-1)^{u\cdot t}Z_x^t Z_{Y_u},\\
+L(Q_p)&=\{\text{address Z masks and even-parity bank Z masks}\},\\
+\dim L(Q_p)&=p+m-1.                                    \qquad(11)
+\end{aligned}
+```
+
+Its work masks vanish, and this space is isotropic. Equations (10)--(11)
+and Section 1 prove the first line of (9), including arbitrary work and
+references. Small individual Fourier coefficients are not used as a
+continuity argument.
+
+**Saturating that support count would make the source third-level.** Collect
+the Clifford gates of the actual word into one final Clifford C, leaving
+native T-angle Pauli rotations about fixed labels $`a_1,\ldots,a_t`$.
+Their literal scalar factors are retained. If $`\mathcal W`$ is their binary
+span, Pauli conjugation gives
+$`L(A)\subseteq C\mathcal W`$, where C denotes its symplectic action on
+labels. If $`t\le m+p-1`$, (10)--(11) force equality throughout:
+
+```math
+L(Q_p)=L(A)=C\mathcal W,\qquad \dim\mathcal W=m+p-1.
+```
+
+Hence every collected axis commutes with every other. A simultaneous
+Clifford diagonalization makes their actual product a weighted cubic phase,
+so V belongs to the third Clifford-hierarchy level and A is a Hermitian
+Clifford. For p at least two, $`Y_x`$ has Boolean degree p+1 and $`Q_p`$
+is not Clifford. The
+[diagonal-sign threshold](CLIFFORD_INTERLEAVED_LOOKUP.md#2-two-elementary-clifford-thresholds)
+therefore gives $`\|A-Q_p\|\ge2\sin(\pi/8)`$, proving the second line
+of (9). The strict threshold and the distinction between total and active
+T counts are retained.
+
+For the exact last line of (9), put $`r=m+p-1`$ and suppose t=r+1.
+If the collected axis span has dimension r, the same isotropic argument
+applies. Otherwise all r+1 axes are independent. At each active rotation,
+the previous support and its translate by the new axis are disjoint;
+every old coefficient survives and the affine support dimension increases
+by exactly one. An inactive rotation does nothing. Exact final dimension
+r therefore leaves one inactive occurrence, which can be omitted without
+changing the probe image. The resulting r-T source contradicts the bound
+already proved. This argument uses exact support, not a continuity claim
+for nonzero approximation error.
+
+Support dimension itself can grow by r in a single physical band:
+conjugating $`X_1\cdots X_r`$ by parallel T gates gives
+$`\bigotimes_{j=1}^r(X_j+Y_j)/\sqrt2`$, with affine support dimension r.
+A fixed Clifford can supply that input probe from any specified nonidentity
+Pauli. Consequently (9) does not turn into a logarithmic-depth obstruction
+when $`n\ge m+p`$; one must control more than support growth per band.
+The [complete-probe fixtures](../../tests/test_complete_probe_support_count.py)
+check the signed-symmetry gap, target support, independent-axis growth,
+literal native propagation and this one-band limitation. They do not
+establish an asymptotic depth bound.

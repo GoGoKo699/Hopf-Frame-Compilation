@@ -11,14 +11,14 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #254](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/254),
-`aa14ef3f8fcfa8fe1e5f72f5c7013716b2b38579`, verified 26 October 2026.
-Its reviewed tree passed 1,846 tests, the full local gate and all pre-merge CI.
+Baseline: [PR #255](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/255),
+`40cd701d47b6e2e0144bbc5c79184b0a3607a63b`, verified 26 October 2026.
+Its reviewed tree passed 1,864 tests, the full local gate and all pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
-The latest results pay a universal Clifford-involution source and reduce the central gauge.
-They supply neither a faster complete indicator nor a stronger general frame bound.
+The latest work sharpens complete-source symmetry, count and recovery constraints.
+The smaller tree source improves component count/width, not the depth frontier.
 Start with these four routes:
 
 1. [Resource frontier](docs/OPEN_PROBLEM.md): strongest general theorems and exact domains.
@@ -93,6 +93,11 @@ For $`A=C_3D_3C_2D_2`$, exact completion is equivalent to
 $`A^\dagger Q A`$ being Clifford. Two eight-band cubic-sign outer phases
 would give a twenty-band source; the outer factors remain unconstructed.
 Arbitrary late address mixing is allowed in this search.
+The [joint address/helper trial](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md)
+creates the quartic sign but needs a paid carrier repair; no final Clifford alone suffices.
+The [complete Clifford-symmetry normal form](research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md)
+separates allowed Fourier mixing from affine permutations whose lookup phase
+defect is quadratic. It permits genuine address/bank movement and is exact only.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
@@ -111,10 +116,13 @@ strictly larger family than this representation. Its low-row degree bound
 is a gauge-class constraint, not a native-depth lower bound.
 
 The [ordered-matching source](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md)
-has a different carrier representation: one consecutive matching per subset
-replaces each Pfaffian sum. Its all-size probe and returned native baseline
-are exact, with $`O(p2^p)`$ count/width and $`O(p)`$ depth. Common-point
-interval batches fuse, but a sublogarithmic joint compiler is still missing.
+replaces each Pfaffian sum by one matching. Its [minimal-tree specialization](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source)
+needs $`6m-5`$ T gates, at most $`4p`$ bands and no private work. Its complete
+forward XOR query takes eight bands, but does not supply the in-place inverse.
+The retained indicator already has logarithmic depth; faster joint synthesis remains open.
+The [complete-probe support bound](research/depth/NATIVE_INDICATOR_SHARING.md#complete-probe-support-count)
+forces linear source T count even with arbitrary register motion. It makes the
+tree count optimal in order, but cannot force growing depth at the allowed width.
 
 The earlier [weak pair gauge](research/depth/COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
 retains its distinct full-space identity, omitted affine correction, and
@@ -127,13 +135,11 @@ and [half-band exchange](research/depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md)
 remain useful paid components. None completes the general indicator.
 
 The [joint precision primitive](research/depth/JOINT_PRECISION_ROTATION.md)
-retains the one-clean chart, three-call recovery and omitted exterior dirty
-conjugation. Exact recovery permits $`K=W(3P/2-I)`$ without requiring W and P
-to commute. The [balanced two-path pilot](research/depth/JOINT_PRECISION_ROTATION.md#two-path-recovery-bypass)
-now has direct words $`-UV^\dagger U`$ and $`-VU^\dagger V`$, each within
-square root two times the complete recovered error. The resource bypass
-requires independently paid branch words; cheap joint completion alone
-supplies no cheap branches. General precision depth remains linear.
+retains the one-clean chart and projector-amplitude recovery. A Clifford image
+of the actual accepted signal forces unit acceptance below error $`2\sin(\pi/16)`$.
+Paid balanced branches have a direct alternating-word bypass; the paid 3:1 pilot
+has a direct branch within $`3\sqrt\epsilon`$ of any recovered unitary target.
+Both comparisons require separately paid branches. General precision depth remains linear.
 
 **Next question:** choose the two outer conjugations so the complete peeled
 lookup observable is Clifford, with the simultaneous polynomial discovery
@@ -141,8 +147,8 @@ budgets and arbitrary address mixing. The reduced exterior and ordered-matching
 gauges are concrete alternative targets for joint synthesis. A finite-size identity must extend to a
 uniform all-size native rule; restoring logarithmically many serial grade
 computations does not improve the frontier. In precision, seek joint recovery
-or another accepted source beyond the independently paid balanced two-path
-pilot. Any success needs a fresh complete-circuit ledger, including the
+or another accepted source beyond the separately paid two-path pilots.
+Any success needs a fresh complete-circuit ledger, including the
 transfer's log-log term and every remaining precision-sized word. These are
 sufficient routes, not necessary representations of an unrestricted compiler.
 
