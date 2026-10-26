@@ -5,7 +5,8 @@ helper and genuine address-mixing conclusions separate from depth claims.
 """
 import unittest
 
-from tests.exact_matrices import CZ, adjoint, native_columns
+from tests.exact_matrices import CO, CZ, adjoint, multiply, native_columns
+from tests.test_common_probe_source import ROOT_HALF
 from tests.test_joint_lookup_pauli_source import _inverse
 
 
@@ -267,6 +268,32 @@ class LookupCliffordSymmetriesTests(unittest.TestCase):
             pair_shift[p + 3].add(0)
             self.assertEqual(polynomial ^ _polynomial_substitute(polynomial, pair_shift),
                              {3})
+
+    def test_nonclifford_hard_hadamard_has_exact_diagonal_sign_distance(self):
+        p, width, hard_wire = 2, 6, 5
+        r = native_columns(width, [('H', hard_wire)])
+        conjugate = _sandwich_lookup(r, p)
+        z = native_columns(width, [('S', hard_wire), ('S', hard_wire)])
+        image = multiply(multiply(conjugate, z), adjoint(conjugate))
+        # This generator image is literally X_c12 CZ_x1,x2. Its sign
+        # has degree two, so it is not a Pauli and the conjugate is not
+        # Clifford, despite its controlled one-qubit Hadamard form.
+        expected_word = [('H', hard_wire), ('S', hard_wire), ('S', hard_wire),
+                         ('H', hard_wire), ('H', 1), ('CX', 0, 1), ('H', 1)]
+        self.assertEqual(image, native_columns(width, expected_word))
+        self.assertEqual(_degree([((value >> 0) & (value >> 1)) & 1
+                                  for value in range(1 << width)]), 2)
+        difference = [[a - b for a, b in zip(row_a, row_b)]
+                      for row_a, row_b in zip(conjugate, z)]
+        squared = multiply(adjoint(difference), difference)
+        delta_squared = CO + CO - ROOT_HALF - ROOT_HALF
+        self.assertEqual(squared,
+                         [[delta_squared if row == column else CZ
+                           for column in range(1 << width)] for row in range(1 << width)])
+        # Check the literal conjugate and its actual inverse as full operators.
+        self.assertEqual(conjugate, adjoint(conjugate))
+        self.assertEqual(_sandwich_lookup(native_columns(width, _inverse([('H', hard_wire)])), p),
+                         adjoint(conjugate))
 
     def test_ordinary_bank_affine_masks_match_empty_and_singleton_coefficients(self):
         p, m = 3, 8

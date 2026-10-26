@@ -5,8 +5,8 @@
 [Complete Clifford correlation](CLIFFORD_LOOKUP_FIXED_SPACE.md)
 
 There is an exact normal form for every Clifford R whose lookup conjugate
-QRQ is also Clifford. The characterization imposes no prior restriction on address, coefficient-bank
-or helper mixing. Every such R factors into a Clifford fixing a specified
+QRQ is also Clifford. The characterization imposes no prior restriction
+on address, coefficient-bank or helper mixing. Every such R factors into a Clifford fixing a specified
 computational algebra and a monomial Clifford satisfying an explicit
 Boolean quadratic condition. The first factor has no remaining restriction;
 all nontrivial compatibility is in that affine permutation condition.
@@ -15,10 +15,13 @@ It may affinely relabel addresses, but cannot mix their linear forms with
 coefficient or helper coordinates. The two-address exception admits genuine
 address/high-coefficient swaps.
 
-This characterizes an intersection of two Clifford groups. It is not a
-classification of all three-block sources, and it supplies no approximation
-floor or growing native-depth lower bound. A general intermediate observable
-in the source search need not be Clifford on either side of lookup.
+This characterizes an intersection of two Clifford groups. A separate
+uniform rounding lemma gives distance at least $`1/\sqrt2`$ from the
+Clifford group whenever QRQ is not Clifford. It makes the symmetry screen
+robust at complete probe error below $`1/(2\sqrt2)`$. Neither result
+classifies all three-block sources or gives a growing native-depth lower
+bound: a general intermediate observable need not be Clifford on either
+side of lookup.
 
 <a id="full-clifford-symmetry-normal-form"></a>
 
@@ -94,7 +97,8 @@ so its maximally entangled stabilizer Choi state is that of a Clifford.
 
 The statement concerns exact equality, not small entrywise error. In
 particular, no uniform rounding radius follows merely by comparing the
-individual Choi amplitudes as the register width grows.
+individual Choi amplitudes as the register width grows. Section 6 instead
+proves a uniform radius using complete Pauli-image gaps.
 
 ## 3. Computational support can move only in affine-derivative directions
 
@@ -297,10 +301,105 @@ address values, completing the proof for R.
 At p=3 the preserved derivative layer is quadratic and $`\Delta_a q`$
 is only affine, so the threshold includes p=3. At p=2 that layer is
 linear and can change under the defect; the conclusion is false, as the
-following exact example shows. No approximate algebra-normalization claim
-is inferred from this degree-symbol argument.
+two-address example below shows. Approximate consequences use the separate
+rounding lemma next, rather than an approximate degree-symbol argument.
 
-## 6. The two-address exception and genuine nonmonomial symmetries
+<a id="uniform-boolean-sign-rounding"></a>
+
+## 6. A uniform Clifford rounding gap for every Boolean sign
+
+This lemma is not specific to lookup. Let $`Q_f|v\rangle=(-1)^{f(v)}|v\rangle`$
+for any Boolean function f on all physical wires. For Cliffords R and C,
+including their actual phases,
+
+```math
+\|Q_f R Q_f-C\|\lt\frac1{\sqrt2}
+\quad\Longrightarrow\quad Q_f R Q_f\in\mathcal C_2.     \qquad(10)
+```
+
+Thus, if $`Q_fRQ_f`$ is not Clifford, its distance from every Clifford is
+at least $`1/\sqrt2`$. The statement remains true after optimizing a
+common phase on C. Its radius is independent of width and helper count.
+All norms are complete operator norms, including arbitrary reference systems.
+The conclusion is Clifford membership, not literal equality to the particular C.
+
+**The exact Pauli gap.** For any Hermitian Pauli P, $`Q_f P Q_f`$ has
+the same basis permutation as P, and its phases are P's phases times a
+Boolean derivative sign. If this image is not Pauli, its distance from
+every signed Hermitian Pauli is at least square root two. A different X
+mask gives orthogonal column destinations. With the same X mask, multiply
+by $`P^\dagger`$: the comparison is between a Boolean sign and a diagonal
+Pauli with scalar in $`\{1,-1,i,-i\}`$. An imaginary scalar gives distance
+square root two in every entry; a real scalar either gives exact equality
+or disagrees by two on some column. This is the general form of the
+[complete Pauli-image gap](INDICATOR_PAULI_NULLITY.md#3-a-uniform-pauli-image-gap-makes-the-count-robust).
+
+Suppose the norm in (10) is epsilon below the stated radius. Put
+$`P_i=RZ_iR^\dagger`$. Since $`Q_f`$ commutes every computational Z,
+unitary telescoping gives
+
+```math
+\|Q_fP_iQ_f-CZ_iC^\dagger\|\le2\varepsilon\lt\sqrt2.
+```
+
+The Pauli gap forces every $`Q_fP_iQ_f`$ to be exactly Pauli. Define
+$`\mathcal L_f`$ by (3), for this general f. It is a linear translation
+space: the sum of two affine-derivative directions again has an affine
+derivative. The full label space of Paulis with Pauli images under $`Q_f`$
+is precisely
+
+```math
+\mathcal P_f=Z_{\rm all}\oplus X_{\mathcal L_f},
+\qquad \mathcal P_f^\perp=Z_{\mathcal L_f^\perp}.
+```
+
+The labels $`R\langle Z\rangle R^\dagger`$ form a Lagrangian contained
+in $`\mathcal P_f`$. Its symplectic centralizer is itself, so it contains
+$`Z_{\mathcal L_f^\perp}`$. Consequently R pulls those latter Z labels
+back to computational Z Paulis exactly.
+
+Choose invertible linear coordinates with soft translations $`\mathcal L_f`$
+and complementary hard coordinates z. Every soft coordinate derivative of
+f is affine. In the Boolean ANF, this excludes every monomial of degree at
+least three that contains a soft coordinate. Hence
+
+```math
+f=q+h(z),\qquad \deg q\le2.
+```
+
+The exact pullbacks above now give the same factorization $`R=SM`$ as
+Section 4, with M monomial Clifford and S fixing every hard Z literally.
+The factor $`Q_h`$ commutes S and $`Q_q`$ is Clifford, so
+$`C_S=Q_fSQ_f=Q_qSQ_q`$ is Clifford. It follows that the diagonal sign
+
+```math
+D=M^\dagger Q_f M Q_f
+```
+
+is within epsilon of the Clifford $`M^\dagger C_S^\dagger C`$.
+The retained [diagonal-sign threshold](CLIFFORD_INTERLEAVED_LOOKUP.md#2-two-elementary-clifford-thresholds)
+says that a diagonal sign within strict distance
+$`\delta=2\sin(\pi/8)=\sqrt{2-\sqrt2}`$ of a Clifford, even allowing
+its common scalar, is itself Clifford. Since
+$`1/\sqrt2\lt\delta`$, D is Clifford. Multiplying the actual factors
+back shows that $`Q_fRQ_f`$ is Clifford, proving (10).
+
+The radius is not claimed optimal. For p=2 lookup, take $`R=H_{c_{12}}`$.
+The low Clifford factor commutes R, and the exact conjugate is
+
+```math
+\begin{aligned}
+A=QRQ&=\frac{Z_{c_{12}}+X_{c_{12}}\mathrm{CZ}_{x_1,x_2}}{\sqrt2},\\
+(A-Z_{c_{12}})^\dagger(A-Z_{c_{12}})&=(2-\sqrt2)I.
+\end{aligned}                                                   \qquad(11)
+```
+
+A is not Clifford: it maps $`Z_{c_{12}}`$ to the non-Pauli Clifford
+$`X_{c_{12}}\mathrm{CZ}_{x_1,x_2}`$. Nevertheless its distance from
+$`Z_{c_{12}}`$ is exactly delta. This retains the distinction between
+the proved lower radius and a concrete nearby non-Clifford example.
+
+## 7. The two-address exception and genuine nonmonomial symmetries
 
 At p=2, the high factor is the cubic sign
 $`(-1)^{c_{12}x_1x_2}`$. Swapping $`x_1`$ and $`c_{12}`$ preserves
@@ -317,7 +416,7 @@ nonmonomial helper/bank fibers through S. Its lookup conjugate remains
 Clifford on every physical input. Conversely, a lone Hadamard on an
 address or a coefficient of degree at least two violates (3)--(4).
 
-## 7. A specific necessary screen inside the peeling search
+## 8. The necessary screen at exact and finite probe error
 
 Suppose the [two-outer-conjugation search](CLIFFORD_INVOLUTION_SOURCE.md#two-outer-conjugations)
 succeeds exactly, so
@@ -331,15 +430,32 @@ Z type, with its literal sign retained. Both
 
 ```math
 R=A P A^\dagger,\qquad
-Q R Q=A(KPK^\dagger)A^\dagger                         \qquad(10)
+Q R Q=A(KPK^\dagger)A^\dagger                         \qquad(12)
 ```
 
 are Cliffords: $`D_2`$ commutes each input probe, $`C_2`$ maps it to
 a Pauli, and the third-level $`D_3`$ maps that Pauli to a Clifford.
 Thus every such R must obey (1)--(4), normalize the hard-Z algebra, and,
 for p at least three, normalize the address-Z algebra. This supplies a
-concrete necessary condition on proposed outer factors. If K is monomial, it applies to the
-whole computational Z algebra. For a genuinely nonmonomial K, the
+concrete necessary condition on proposed outer factors.
+
+The same exact conclusions hold when the complete probe has finite error
+
+```math
+\|A K A^\dagger-Q\|\le\eta\lt\frac1{2\sqrt2}.
+```
+
+The two operators $`R=APA^\dagger`$ and
+$`R'=A(KPK^\dagger)A^\dagger`$ are still actual Cliffords by the same
+argument. Telescoping the approximate probe gives
+$`\|QRQ-R'\|\le2\eta\lt1/\sqrt2`$. Lemma (10) therefore puts
+$`R\in\mathcal G_Q`$ exactly. Its hard-algebra normalization and, for
+p at least three, its address-algebra normalization follow from the exact
+classification. This is a statement about complete probe error, not about
+an individual matrix entry or an unreturned source block.
+
+If K is monomial, the screen applies to the whole computational Z algebra.
+For a genuinely nonmonomial K, the
 intersection of that algebra with its K image may be smaller or even
 trivial. The argument does not replace non-Clifford intermediate images
 by Cliffords or exclude arbitrary three-block sources. All outer phase counts,
@@ -347,5 +463,6 @@ Clifford gates, arbitrary work, actual inverses and complete return must
 still be paid. The [exact fixtures](../../tests/test_lookup_clifford_symmetries.py)
 check the affine-derivative space, a complete genuinely mixed two-address
 Clifford example, the literal low/high conjugation, the characteristic
-degree symbols and their threshold, and excluded support directions.
+degree symbols and their threshold, excluded support directions, and the
+literal non-Clifford distance witness (11).
 No general frame frontier changes here.
