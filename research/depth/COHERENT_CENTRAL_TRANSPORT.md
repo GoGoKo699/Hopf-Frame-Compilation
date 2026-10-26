@@ -901,3 +901,189 @@ conjugation, or a different native word with the same complete root image.
 The [pair-gauge fixtures](../../tests/test_pair_gauge_fusion.py) check the
 full arbitrary-bank identity, probe, middle, truncation and changed-word
 witnesses. No sublogarithmic source or new general frame bound follows.
+
+<a id="reduced-carrier-gauge"></a>
+
+## 8. Only the pair register is needed, and the probe leaves more freedom
+
+The higher auxiliary coefficients in (30) are unnecessary for the source
+interface. Return to the original downward coefficient ordering of Section 1.
+Use an independent q-bit pair register s and the m-bit carrier c, both entirely
+arbitrary, and define the phase-free permutation
+
+```math
+U_F|s,c\rangle=|s,F_s c\rangle,
+\qquad F_s=\prod_{i\lt j}(I+s_{ij}N_iN_j).
+```
+
+The central group law gives $`U_F^2=I`$. If Q_K adds K to s, then
+
+```math
+U_F Q_K U_F|s,c\rangle=|s+K,F_Kc\rangle.                \qquad(38)
+```
+
+This proves the complete carrier action without supplying any higher d
+coordinates or an initialized unit coefficient. The q pair inputs replace
+the $`m-1`$ additional inputs in (32). Only the root row of the linear
+completion is needed, so replace the full J by the smaller involution
+
+```math
+L_x:\ c_\varnothing\longmapsto
+c_\varnothing+\sum_i x_i c_{\{i\}},
+\qquad c_S\longmapsto c_S\quad(S\ne\varnothing).
+```
+
+With $`K=\mathcal K(x)`$, use $`V=U_FQ_KU_F L_x`$, with L on the right.
+The root row of its inverse is the complete lookup row
+$`\mathrm{row}_\varnothing L_xF_K=\sum_{S\subseteq\mathrm{supp}(x)}e_S^{\mathsf T}`$
+by (6)--(7). The pair register moves inside V and returns under its actual
+inverse in $`VZ_{A_\varnothing}V^\dagger`$. No promise on s, c or a
+reference is used.
+
+### Paid factors and the reduced conditional ledger
+
+For one pair i,j, its factor in U_F is a shared-control batch
+
+```math
+\prod_{S:\,S\cap\{i,j\}=\varnothing}
+ \mathrm{CCX}(s_{ij},c_{S\cup\{i,j\}};c_S).
+```
+
+The $`r=m/4`$ carrier pairs are disjoint. Hadamards on their targets and
+the [four-band shared-control phase word](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+therefore give, including the target Hadamards,
+
+```math
+D_T\le4,\qquad T\le6r+(r\bmod2),\qquad
+G_{\rm Cliff}\le12r+3,\qquad
+G_{\rm all}\le18r+(r\bmod2)+3.                         \qquad(39)
+```
+
+There are no private helpers or clean inputs. The actual native inverse has
+the same majorants; replace inverse S by three S gates and reduce each
+adjacent root S power modulo four, as allowed by the literal identity $`S^4=I`$.
+The literal phase is one on every basis column. Serial composition
+of all q factors gives q times these bounds. Their completed permutations
+commute, but the overlapping carrier wires do not give a parallel native
+schedule. In particular this explicit baseline has depth at most 4q, not
+sublogarithmic depth.
+
+L is a shared-target batch of p Toffolis. Two Hadamards on the root carrier
+turn it into p CCZ gates sharing that root, with otherwise disjoint control
+pairs $`(x_i,c_{\{i\}})`$. The same four-band word gives common forward
+and actual-inverse bounds
+
+```math
+D_T(L)\le4,\qquad T(L)\le6p+(p\bmod2),\qquad
+G_{\rm Cliff}(L)\le10p+5,\qquad
+G_{\rm all}(L)\le16p+(p\bmod2)+5,
+```
+
+with no private helpers or clean inputs and literal error zero. Thus the
+smaller source removes both the higher auxiliary bank and the full J word;
+(11) remains a useful paid full linear map in its other applications.
+
+If an actual native $`\widetilde U_F`$ approximates $`U_F\otimes I`$
+within eta in full operator norm, with common forward/actual-inverse bounds
+$`t_F,d_F,g_F,h_F`$, use
+$`\widetilde V=\widetilde U_FQ_K\widetilde U_F^\dagger L_x`$.
+The paid Q from (32) and the smaller L give
+
+```math
+\begin{aligned}
+T(\widetilde V)&\le2t_F+8q+6p+(p\bmod2),&
+D_T(\widetilde V)&\le2d_F+12,\\
+G_{\rm all}(\widetilde V)&\le2g_F+18q+16p+(p\bmod2)+5,&
+w_{\rm extra}&\le q+\max(h_F,q),\\
+\|\widetilde V-V\|&\le2\eta,&
+\|\widetilde VZ_{A_\varnothing}\widetilde V^\dagger-Q\otimes I\|
+ &\le4\eta.
+\end{aligned}                                                   \qquad(40)
+```
+
+Here Q in the last line is the complete lookup sign, not the pair toggle.
+The helper count excludes x and c and includes the q arbitrary pair bits.
+The source-private pool and the q Gray bits are reused: Q is exactly identity
+on its whole private pool, including any components left by an approximate
+source call, so the same full-operator telescoping argument remains valid.
+This lowers the sufficient source's auxiliary allocation and the paid
+completion cost; it supplies no better asymptotic depth. Two actual source
+calls still pay the complete indicator readout.
+
+### Exact freedom for carrier-linear gauges
+
+Requiring (38) for every pair translation would overprescribe the weaker
+probe. Let $`H_s\in\mathrm{GL}(m,\mathbb F_2)`$ be any family, define
+$`U_H|s,c\rangle=|s,H_sc\rangle`$, and put
+
+```math
+\ell_x=e_\varnothing^{\mathsf T}+\sum_i x_i e_{\{i\}}^{\mathsf T},
+\qquad v_x=\sum_{S\subseteq\mathrm{supp}(x)}e_S^{\mathsf T},
+\qquad V_H=U_HQ_{\mathcal K(x)}U_H^\dagger L_x.
+```
+
+The position of L matters for a general H. Its actual inverse sends the carrier
+to $`L_xH_{s+\mathcal K(x)}H_s^{-1}c`$. Thus the complete root derivative
+is correct if and only if
+
+```math
+\ell_x H_{s+\mathcal K(x)}=v_xH_s
+\quad\text{for every }s,x.                              \qquad(41)
+```
+
+Arbitrary monomial phases on U_H do not change this criterion: they cancel
+in conjugation of the diagonal probe. No phase-dependent error is discarded.
+For a phase-free U_H, approximation by a full native operator gives the same
+resource and telescoping bounds as (40), with the H costs substituted.
+
+Equation (41) has a useful exact parametrization before invertibility is
+imposed. Choose arbitrary row-vector-valued functions a(s) and b_i(s), and set
+
+```math
+f_s(x)=a(s+\mathcal K(x))+\sum_i x_i b_i(s+\mathcal K(x)),
+\qquad
+\mathrm{row}_S H_s=\sum_{T\subseteq S}f_s(\mathbf1_T).   \qquad(42)
+```
+
+All sums are binary. Boolean interpolation gives $`v_xH_s=f_s(x)`$.
+Since the zero and singleton cliques vanish, the empty and singleton rows
+of H_s are exactly a(s) and b_i(s); hence the other side of (41) is also
+f_s(x). Conversely, every solution of (41) has this form by taking its first
+p+1 rows. Every H_s must separately be invertible for U_H to be a physical
+permutation. That condition is not supplied by interpolation.
+
+The freedom is strictly larger than $`H_s=F_sH_0`$. At p=4, write
+$`t=\{1,2,3,4\}`$, let e_S denote a coefficient column, and define
+
+```math
+u_s=s_{12}s_{13}e_\varnothing+s_{13}e_{12}
+                   +s_{12}e_{13}+e_{123},\qquad
+H_s=F_s+u_se_t^{\mathsf T}.                             \qquad(43)
+```
+
+The column u obeys (42) with $`a(s)=s_{12}s_{13}`$ and every b_i zero,
+since $`f_s(x)=(s_{12}+x_1x_2)(s_{13}+x_1x_3)`$.
+Moreover $`e_t^{\mathsf T}F_s^{-1}u_s=0`$: F_s fixes the top row and u has
+zero top coefficient. Therefore $`I+F_s^{-1}u_se_t^{\mathsf T}`$ is an
+invertible rank-one shear, proving every H_s invertible. Yet for s zero
+and K supported on pair 12,
+$`u_K=e_{13}+e_{123}`$ differs from $`F_Ku_0=e_3+e_{123}`$.
+Thus $`H_K\ne F_KH_0`$ and full carrier transport (38) fails, while the
+complete probe remains exact. This example demonstrates allowed freedom;
+it is not a faster native compiler.
+
+There is also a precise algebraic constraint on this gauge class. If every
+entry of a and b_i has Boolean degree at most d in the q pair variables,
+f_s has address degree at most $`2d+1`$. When $`2d+1\lt p`$, (42) gives
+an identically zero top row, contradicting invertibility. Consequently
+
+```math
+d\ge\lfloor p/2\rfloor.                               \qquad(44)
+```
+
+This is a constraint on an address-independent carrier-linear gauge's low
+rows. It is neither a native-depth lower bound nor an obstruction to a joint
+source that mixes the address or uses nonmonomial dynamics. The reduced
+[fixtures](../../tests/test_reduced_pair_gauge.py) check complete arbitrary
+pair/carrier action, literal paid factors, the interpolation criterion and
+its strictly weaker example. The general frame frontier remains unchanged.
