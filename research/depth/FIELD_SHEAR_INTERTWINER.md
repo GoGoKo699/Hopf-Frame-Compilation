@@ -334,7 +334,9 @@ d=u,\qquad r=(Cu)\cdot v,\qquad s=u\cdot v+d_0d_1
 ```
 
 On $`d=0`$, use $`(r,s)=(v_1,v_0)`$, preserving all four
-arbitrary input states. Apply H to r only when $`d\ne0`$. Then
+arbitrary input states. Apply H to r unconditionally: both generators
+are the identity on this entire four-dimensional zero sector, so any
+basis change there preserves their action. No nonzero flag is needed. Then
 convert back using $`a=F_d(r,s)`$, $`b=a+d`$, and apply the two
 Bell basis transforms. Equation (18) has the required signs
 $`(-1)^{\chi_0}`$ and $`(-1)^{\chi_1}`$. Hence both generators
@@ -344,24 +346,21 @@ The native word implements each $`F_d`$ with two controlled powers
 of C, using the identity
 $`F_d=C^{\,2d_0+(d_0\mathbin\oplus d_1)}`$. Each controlled C
 or its inverse is two ordinary Toffolis. A separate Toffoli adds
-$`d_0d_1`$ in (19). For the conditional H use
-$`R=SHTHS^\dagger`$, which satisfies $`RZR^\dagger=H`$:
-a negative-controlled CCZ conjugated by R gives H when $`d=0`$,
-and an unconditional H changes this to H when $`d\ne0`$.
-Expand the Toffolis and CCZ using the retained four-band native
-word, and implement every inverse literally.
+$`d_0d_1`$ in (19). Expand those Toffolis using the retained four-band
+native word, and implement every inverse literally. The intervening
+Fourier change is just one ordinary Hadamard.
 
-The resulting E and its actual inverse each contain 72 T or
-inverse-T gates, 117 CNOTs, 35 Hadamards and 16 positive S gates:
-240 gates in 42 chronological T bands, with no helper wires.
+The resulting E and its actual inverse each contain 63 T or
+inverse-T gates, 107 CNOTs and 23 Hadamards:
+193 gates in 36 chronological T bands, with no helper wires.
 Combining this decoder with (5), where $`s=5`$, gives the common
 forward/actual-inverse ledgers:
 
 | Native word | T gates | T bands at most | Total gates | Total wires | Clean wires |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Fixed four-bank decoder E | 72 | 42 | 240 | 4 | 0 |
-| Coherent source $`V=E Q E^\dagger`$ | 184 | 92 | 564 | 11 | 0 |
-| Complete indicator $`V X_0 V^\dagger`$ | 368 | 184 | 1132 | 11 | 0 |
+| Fixed four-bank decoder E | 63 | 36 | 193 | 4 | 0 |
+| Coherent source $`V=E Q E^\dagger`$ | 166 | 80 | 470 | 11 | 0 |
+| Complete indicator $`V X_0 V^\dagger`$ | 332 | 160 | 944 | 11 | 0 |
 
 The source and indicator use five arbitrary returned cubic masks;
 their total width also includes two address wires. These are finite
@@ -372,7 +371,8 @@ $`R_0=E^\dagger X_0E`$. With basis integers ordered by wire weights
 1, 2, 4 and 8, the exact test obtains
 
 ```math
-R_0X_0R_0|0\rangle=\frac{|1\rangle+|5\rangle}{\sqrt2}.
+R_0X_0R_0|0\rangle=
+\frac{|1\rangle+|5\rangle-|9\rangle+|13\rangle}{2}.
                                                                \qquad(20)
 ```
 

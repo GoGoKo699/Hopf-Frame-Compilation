@@ -124,7 +124,7 @@ word and actual inverse. Its uniform all-size implementation is unpaid and
 must genuinely mix basis states beyond a fixed Clifford change of coordinates.
 This is an algebraically compatible construction with a finite native
 benchmark, not a new depth theorem. Try extending its Bell-pair and
-conditional-Fourier recoupling before generic spectral synthesis.
+Fourier recoupling before generic spectral synthesis.
 The alternative remains a jointly designed extensive non-Clifford seed and
 nonlocal decoder for the interleaved tree family. Serial address controls
 or a generic spectral decomposition retain an unpaid or excessive cost.

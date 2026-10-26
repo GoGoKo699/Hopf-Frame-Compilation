@@ -158,22 +158,14 @@ def _field_basis(d0=0, d1=1, r=2, s=3):
             + [('CX', d0, d1)])
 
 
-def _conditional_h_nonzero(d0=0, d1=1, r=2):
-    # R=S H T H S^-1 satisfies R Z R^-1=H, with literal phase.
-    rotation = [('S', r)] * 3 + [('H', r), ('T', r), ('H', r), ('S', r)]
-    controlled_twice = (_inverse(rotation) + _shared_ccz(d0, [(d1, r)])
-                        + rotation)
-    # H * H^((1+d0)(1+d1)) = H^(d0 OR d1).
-    negative = _native_x(d0) + _native_x(d1)
-    return [('H', r)] + negative + controlled_twice + negative
-
-
 def _p2_native_decoder():
     """Fixed four-qubit decoder, without initialized or borrowed wires."""
     # Input u0,u1,v0,v1; output physical wire labels 0,1,2,3.
     word = [('H', 2), ('H', 3)]
     word += _field_basis() + _native_swap(2, 3) + _field_toffoli(0, 1, 3)
-    word += _conditional_h_nonzero()
+    # Both generators are identity on the entire u=0 sector, so this
+    # Fourier change is unconditional and needs no nonzero flag.
+    word += [('H', 2)]
     # a=r*u+s*C*u; b=a+u. Convert (u,a) to (a,b).
     word += _field_basis()
     word += [('CX', 2, 0), ('CX', 3, 1)]
@@ -337,20 +329,20 @@ class FieldShearIntertwinerTests(unittest.TestCase):
                              _permutation_matrix([basis ^ (1 << address)
                                                   for basis in range(16)]))
         # The fixed pulled-back seed R=E^-1 X0 E is genuinely non-Clifford:
-        # conjugating X0 by R produces two nonzero entries in column zero.
+        # conjugating X0 by R produces four nonzero entries in column zero.
         seed = multiply(multiply(reverse, x0), actual)
         witness = multiply(multiply(seed, x0), seed)
         self.assertEqual([row[0] for row in witness],
-                         [CO * Q2(0, Fraction(1, 2)) if row in (1, 5) else CZ
-                          for row in range(16)])
+                         [CO * Fraction(-1 if row == 9 else 1, 2)
+                          if row in (1, 5, 9, 13) else CZ for row in range(16)])
         for native in (word, _inverse(word)):
             counts = Counter(gate[0] for gate in native)
-            self.assertEqual(counts['T'] + counts['TDG'], 72)
-            self.assertEqual(counts['CX'], 117)
-            self.assertEqual(counts['H'], 35)
-            self.assertEqual(counts['S'], 16)
-            self.assertEqual(len(native), 240)
-            self.assertEqual(len(_bands(native)), 42)
+            self.assertEqual(counts['T'] + counts['TDG'], 63)
+            self.assertEqual(counts['CX'], 107)
+            self.assertEqual(counts['H'], 23)
+            self.assertEqual(counts['S'], 0)
+            self.assertEqual(len(native), 193)
+            self.assertEqual(len(_bands(native)), 36)
             self.assertEqual({wire for gate in native for wire in gate[1:]},
                              set(range(4)))
             for band in _bands(native):
@@ -366,8 +358,8 @@ class FieldShearIntertwinerTests(unittest.TestCase):
         source = _inverse(decoder) + query + decoder
         indicator = _inverse(source) + _native_x(2) + source
         self.assertEqual(width, 11)
-        for word, t_count, total, bands in ((source, 184, 564, 92),
-                                           (indicator, 368, 1132, 184)):
+        for word, t_count, total, bands in ((source, 166, 470, 80),
+                                           (indicator, 332, 944, 160)):
             for native in (word, _inverse(word)):
                 counts = Counter(gate[0] for gate in native)
                 self.assertEqual(counts['T'] + counts['TDG'], t_count)
