@@ -7,10 +7,11 @@ helper values and literal phases, including reversed physical words.
 """
 from collections import Counter
 from fractions import Fraction
+from math import gcd
 import unittest
 
 from tests.exact_matrices import (
-    CO, CZ, Q2, adjoint, eye, multiply, native_columns, zeros,
+    CO, CZ, Q2, Gate, adjoint, apply_word, eye, multiply, native_columns, zeros,
 )
 from tests.test_bent_query_baseline import _compact_toffoli
 from tests.test_coherent_feedback_sources import _shared_ccz
@@ -173,6 +174,33 @@ def _p2_native_decoder():
     # Bell transform on the two physical pairs.
     word += [('H', 0), ('CX', 0, 1), ('H', 2), ('CX', 2, 3)]
     return word
+
+
+def _bell_zero_basis(p):
+    """Sparse columns of the Bell difference-zero sector, not a decoder."""
+    m, k = 1 << p, 1 << (p - 1)
+    word = [gate for pair in range(0, m, 2)
+            for gate in (Gate('H', (pair,)), Gate('CX', (pair, pair + 1)))]
+    columns = []
+    for labels in range(1 << k):
+        basis = sum((((labels >> (2 * block)) & 3) * 5) << (4 * block)
+                    for block in range(m // 4))
+        columns.append(apply_word(word, {basis: CO}))
+    return columns
+
+
+def _state_inner(left, right):
+    return sum((value.conj() * right.get(basis, CZ)
+                for basis, value in left.items()), CZ)
+
+
+def _state_pauli(state, x_mask=0, z_mask=0):
+    return {basis ^ x_mask: value * (-1) ** ((basis & z_mask).bit_count() % 2)
+            for basis, value in state.items()}
+
+
+def _state_translate(p, address, state):
+    return {_translation(p, address, basis): value for basis, value in state.items()}
 
 
 class FieldShearIntertwinerTests(unittest.TestCase):
@@ -369,6 +397,162 @@ class FieldShearIntertwinerTests(unittest.TestCase):
                                     for gate in native for wire in gate[1:]))
                 for band in _bands(native):
                     self.assertEqual(len({gate[1] for gate in band}), len(band))
+
+    def test_p3_zero_fiber_residual_action_and_forced_export(self):
+        # The source zero fiber is pointwise fixed by every shear.  The
+        # proposed Bell zero fiber has residual + and - eigenspaces instead.
+        columns = _bell_zero_basis(3)
+        self.assertEqual(len(columns), 16)
+        self.assertEqual([[_state_inner(a, b) for b in columns] for a in columns],
+                         eye(16))
+        for address in range(8):
+            for basis in range(16):
+                self.assertEqual(_shear(3, address, basis << 4), basis << 4)
+            for labels, state in enumerate(columns):
+                expected = labels if address < 4 else (labels >> 2) | ((labels & 3) << 2)
+                self.assertEqual(_state_translate(3, address, state), columns[expected])
+        # The residual permutation has four singleton and six two-point
+        # orbits.  Averaging its full action gives rank ten, not sixteen.
+        residual = [(labels >> 2) | ((labels & 3) << 2) for labels in range(16)]
+        unseen, orbit_sizes = set(range(16)), Counter()
+        while unseen:
+            first = min(unseen)
+            orbit = {first, residual[first]}
+            orbit_sizes[len(orbit)] += 1
+            unseen.difference_update(orbit)
+        self.assertEqual(orbit_sizes, Counter({1: 4, 2: 6}))
+        invariant_trace = sum(((_state_inner(state, state)
+                                + _state_inner(state, _state_translate(3, 4, state)))
+                               * Fraction(1, 2) for state in columns), CZ)
+        self.assertEqual(invariant_trace, CO * 10)
+        self.assertEqual((CO * 16 - invariant_trace) * Fraction(1, 16),
+                         CO * Fraction(3, 8))
+        minus = {basis: (columns[1].get(basis, CZ) - columns[4].get(basis, CZ))
+                 * Q2(0, Fraction(1, 2))
+                 for basis in columns[1].keys() | columns[4].keys()}
+        minus = {basis: value for basis, value in minus.items() if value != CZ}
+        self.assertEqual(_state_inner(minus, minus), CO)
+        self.assertEqual(_state_translate(3, 4, minus),
+                         {basis: -value for basis, value in minus.items()})
+
+    def test_p3_weak_probe_witness_in_bell_zero_code(self):
+        # Phi+_01 Phi+_23 Phi-_45 Phi-_67 is in the zero fiber, but
+        # its two-X logical signs differ between residual-translated blocks.
+        state = _bell_zero_basis(3)[4]
+        self.assertEqual(len(state), 16)
+        self.assertEqual(_state_inner(state, state), CO)
+        for block in (0x0f, 0xf0):
+            self.assertEqual(_state_pauli(state, x_mask=block), state)
+            self.assertEqual(_state_pauli(state, z_mask=block), state)
+        self.assertEqual(_state_pauli(state, x_mask=0x03), state)
+        self.assertEqual(_state_pauli(state, x_mask=0x30),
+                         {basis: -value for basis, value in state.items()})
+        v = _state_pauli(state, x_mask=1)
+        w = _state_pauli(state, x_mask=1 << 4)
+        self.assertEqual(_state_pauli(state, x_mask=1 << 1), v)
+        self.assertEqual(_state_pauli(state, x_mask=1 << 5),
+                         {basis: -value for basis, value in w.items()})
+        # This is the pair of exact target identities used in the
+        # all-size unit-vector argument delta + 2 epsilon >= 1.
+        self.assertEqual(_state_inner(v, v), CO)
+        self.assertEqual(_state_inner(w, w), CO)
+
+    def test_p3_field_coordinates_spectators_and_orbit_redistribution(self):
+        # A is a phase-free coordinate permutation, with every zero-sector
+        # column retained.  It is a finite identity, not a paid native word.
+        forward = []
+        for basis in range(256):
+            u, coordinate = basis & 15, basis >> 4
+            v = _field_product(u, coordinate, _MODULI[3]) if u else coordinate
+            forward.append(u | (v << 4))
+        self.assertEqual(set(forward), set(range(256)))
+        inverse = [forward.index(basis) for basis in range(256)]
+        for basis in range(256):
+            self.assertEqual(inverse[forward[basis]], basis)
+            if not basis & 15:
+                self.assertEqual(forward[basis], basis)
+            for address in range(8):
+                actual = inverse[_shear(3, address, forward[basis])]
+                expected = basis ^ ((address << 4) if basis & 15 else 0)
+                self.assertEqual(actual, expected)
+                self.assertEqual(actual >> 7, basis >> 7)  # One spectator.
+        # Count complete character eigenspaces independently from fixed
+        # columns.  Their gcd is two, so a second spectator is impossible.
+        characters = [sum(_shear(3, address, basis) == basis for basis in range(256))
+                      for address in range(8)]
+        dimensions = [sum((-1) ** ((character & address).bit_count() % 2) * value
+                          for address, value in enumerate(characters)) // 8
+                      for character in range(8)]
+        self.assertEqual(dimensions, [46] + [30] * 7)
+        self.assertEqual(gcd(*dimensions), 2)
+        # Matching these dimensions does not match computational orbits.
+        counts = []
+        for action in (_shear, _translation):
+            unseen, sizes = set(range(256)), Counter()
+            while unseen:
+                representative = min(unseen)
+                orbit = {action(3, address, representative) for address in range(8)}
+                sizes[len(orbit)] += 1
+                unseen.difference_update(orbit)
+            counts.append(sizes)
+        self.assertEqual(counts, [Counter({1: 16, 8: 30}),
+                                  Counter({1: 2, 2: 7, 4: 14, 8: 23})])
+
+    def test_exact_probe_gauge_with_noncommuting_helper_blocks(self):
+        # Work in the bank's joint X basis.  A one-qubit helper is arbitrary;
+        # the gauge can rotate it differently on every sign string.
+        gauges = []
+        for basis in range(16):
+            word = ([('H', 0)] if basis & 1 else [])
+            word += [('S', 0)] if basis & 2 else []
+            word += [('H', 0)] if basis & 4 else []
+            gauges.append(native_columns(1, word))
+        blocks = [[multiply(gauges[_translation(2, address, basis)],
+                            adjoint(gauges[basis])) for basis in range(16)]
+                  for address in range(4)]
+        self.assertNotEqual(blocks[1][1], eye(2))
+        self.assertTrue(all(value != CZ for value in blocks[1][1][0]))
+        for x in range(4):
+            for y in range(4):
+                for basis in range(16):
+                    self.assertEqual(multiply(blocks[x][_translation(2, y, basis)],
+                                              blocks[y][basis]), blocks[x ^ y][basis])
+        # Recover an orbit-transversal gauge from the cocycle itself.
+        recovered = [None] * 16
+        unseen = set(range(16))
+        while unseen:
+            representative = min(unseen)
+            for address in range(4):
+                basis = _translation(2, address, representative)
+                candidate = blocks[address][representative]
+                if recovered[basis] is None:
+                    recovered[basis] = candidate
+                self.assertEqual(recovered[basis], candidate)
+                unseen.discard(basis)
+        self.assertNotEqual(recovered, gauges)  # Gauge is fixed only per orbit.
+        for address in range(4):
+            actual, translation = zeros(32), zeros(32)
+            for basis in range(16):
+                image = _translation(2, address, basis)
+                self.assertEqual(multiply(recovered[image], adjoint(recovered[basis])),
+                                 blocks[address][basis])
+                if image == basis:
+                    self.assertEqual(blocks[address][basis], eye(2))
+                for source in range(2):
+                    translation[2 * image + source][2 * basis + source] = CO
+                    for target in range(2):
+                        actual[2 * image + target][2 * basis + source] = (
+                            blocks[address][basis][target][source])
+            self.assertEqual(multiply(actual, actual), eye(32))
+            self.assertEqual(sum((actual[j][j] for j in range(32)), CZ),
+                             CO * (32 if address == 0 else 8))
+            probe = [[CO * (-1) ** ((j // 2) & 1) if i == j else CZ
+                      for j in range(32)] for i in range(32)]
+            target = [[CO * (-1) ** (((j // 2) >> address) & 1) if i == j else CZ
+                       for j in range(32)] for i in range(32)]
+            self.assertEqual(multiply(multiply(actual, probe), adjoint(actual)), target)
+            if address == 1:
+                self.assertNotEqual(actual, translation)
 
 
 if __name__ == '__main__':

@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #259](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/259),
-`aa9c7688af9edee297860ffd394c1b0cf153e127`, 26 October 2026.
-Its reviewed tree passed 1,931 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #260](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/260),
+`9257cbe48e30b9b12fef03def2bb9217757d0133`, 26 October 2026.
+Its reviewed tree passed 1,944 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -115,16 +115,22 @@ For a third-level-dressed Clifford seed, the
 also requires every selected target pullback to be non-Clifford below
 error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
 
-**Next question:** synthesize the fixed decoder in the
-[field-shear construction](research/depth/FIELD_SHEAR_INTERTWINER.md).
-Its fully paid affine query and the original commuting lookup permutation
-have identical complete group characters at every size, so one simultaneous
-unitary intertwiner exists. The two-bit decoder now has an exact native
-word and actual inverse. Its uniform all-size implementation is unpaid and
-must genuinely mix basis states beyond a fixed Clifford change of coordinates.
-This is an algebraically compatible construction with a finite native
-benchmark, not a new depth theorem. Try extending its Bell-pair and
-Fourier recoupling before generic spectral synthesis.
+The [field-shear construction](research/depth/FIELD_SHEAR_INTERTWINER.md)
+now has an [explicit all-size recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md),
+in addition to its exact native two-bit word. The recursion uses finite-field
+coordinate changes and Clifford Fourier transforms, including every zero
+sector. Dense tower queries and multiplication-XOR batches have paid
+eight-band implementations. The nonlinear in-place decoder maps remain unpaid.
+Preserving the physical Bell zero fiber fails even the weaker lookup probe;
+exact probe freedom is a helper-valued gauge commuting with all lookup X's.
+
+**Next question:** jointly compile or replace the recursive decoder,
+including its nonlinear coordinate controls, actual inverse and returned work.
+Literal level-by-level synthesis already uses at least p minus one T bands;
+making each cell faster cannot meet the discovery depth target. Its
+read-only affine-query factorization also has a growing degree obstruction.
+Use the recursion as an exact target for joint synthesis, not as a shallow
+algorithm. A different joint probe gauge or source pencil remains possible.
 The alternative remains a jointly designed extensive non-Clifford seed and
 nonlocal decoder for the interleaved tree family. Serial address controls
 or a generic spectral decomposition retain an unpaid or excessive cost.
