@@ -14,8 +14,10 @@ one-band block whose completed action is independent of the residual bank,
 even if its native gates temporarily move those wires. A second construction
 below moves every bank direction in one band; a different Pauli-centralizer
 argument excludes that particular transversal family as well. Other
-bank-dependent final blocks and sources with more layers remain open.
-These are representation boundaries, not an unrestricted native-depth theorem.
+bank-dependent final blocks are now covered at p at least seven by the
+[unrestricted three-band source theorem](THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md).
+The smaller-address cases and sources with more layers retain their separate
+questions. The proofs on this page remain scoped representation boundaries.
 The source families below retain their complete actions and separate failures.
 The broader [bank-mixing screens and phase/indicator reductions](BANK_MIXING_AND_LOOKUP_PHASE.md)
 have their own proof home.
@@ -488,8 +490,10 @@ at three source layers. It permits arbitrary bank/address motion in a
 putative middle, arbitrary identity helpers, and a fixed output Clifford
 on G_bank: the last is absorbed into B. The retained three-layer
 rounding theorem extends it to complete error strictly below tau_*.
-It does not exclude a different bank-dependent final encoder, a changed
-nonmonomial input Clifford wall, or a source with four or more layers.
+This particular proof does not exclude a different bank-dependent final
+encoder or a changed nonmonomial input Clifford wall. The linked unrestricted
+three-band theorem supplies that broader exclusion at p at least seven;
+sources with four or more layers remain outside both results.
 
 Decorating the axes with private Z tags does not change this result:
 conjugation by $`\prod_j\mathrm{CZ}(Y_j,r_j)`$ adds those tags

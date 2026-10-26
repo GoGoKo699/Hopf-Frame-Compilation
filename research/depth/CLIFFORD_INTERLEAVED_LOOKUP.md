@@ -12,9 +12,11 @@ the second may be any diagonal third-level unitary surrounded by arbitrary
 Cliffords. The complete lookup derivative has a uniform error floor in this
 class, including arbitrary work and address movement.
 
-The arbitrary-frame statement is a two-block obstruction. It does not give a
-growing lower bound on unrestricted native T-depth or exclude three blocks
-with unrestricted Clifford interlayers. A separate
+The arbitrary-frame statement here is a two-block obstruction. A separate
+[native three-band theorem](THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md) now
+excludes every zero-clean three-layer lookup source for p at least seven;
+its physical-axis hypothesis does not cover arbitrary third-level blocks.
+Neither theorem gives a growing native-depth lower bound. The
 [three-block theorem](#three-block-late-key-mixing) below permits genuinely
 non-Clifford bank/work fibers but requires the two later Clifford walls to
 preserve the key algebra. Its one-quarter error floor applies when the target

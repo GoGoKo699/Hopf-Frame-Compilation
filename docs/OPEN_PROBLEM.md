@@ -191,6 +191,7 @@ resource ledger at the requested source precision.
 | Interface | Authoritative contract and recovery |
 |---|---|
 | Complete Pauli derivative | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) and the [phase/indicator equivalence](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) include arbitrary input and helper action, actual adjoints and complete return. The canonical phase is an equivalent target, not a cheaper primitive. |
+| Encoded dirty copy | [Joint carrier/copy interface](../research/depth/ENCODED_DIRTY_COPY_INTERFACE.md): a complete echo cancels an abstract decoder on returned dirty work. The encoded transition and its interaction with a physical output bank must both have native implementations; the decoder's existence alone supplies neither. |
 | Accepted projector Gram | A normalized source must supply $`K^\dagger K\approx\Pi_{\rm eq}/2`$ on every data/dirty input. [One-clean recovery](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) permit arbitrary accepted private fibers and intermediate address motion; their ledgers include leakage, actual inverses and dirty promotion. |
 | Alternative complete readouts | The [single HRT residual probe](../research/depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md#one-bank-polarization), [partial central character basis](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#partial-character-diagonalizer) and [balanced two-unitary acceptance](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#balanced-two-unitary-gram-readout) retain distinct sufficient promises and paid extraction words. |
 | Clean-source promotion | [Serial promotion](../research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) and [spectral promotion](../research/depth/MSS_SPECTRAL_PROMOTION.md) retain their own clean-count, native-sharing, precision and leakage hypotheses. A completed source boundary alone does not establish native address sharing. |
@@ -204,6 +205,15 @@ locate the detailed constructions and failed words. A source-class obstruction,
 logical-query count or component improvement does not establish unrestricted
 native-depth optimality. The [working checkpoint](../WORKSPACE.md) selects the
 next complete-operator question.
+
+For the zero-clean Pauli-source interface, the
+[three-band source theorem](../research/depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md)
+excludes native source depth at most three for addresses of at least seven
+bits at complete observable error below
+$`\sin(\pi/8)/(2\sqrt2)`$. Clifford interlayers, intermediate address
+motion and arbitrary dirty width are unrestricted. This is a constant
+bound on a source whose Pauli derivative is lookup; it is not a growing
+frame-depth lower bound or a theorem about initialized-clean sources.
 
 ## Constant-depth frontier
 

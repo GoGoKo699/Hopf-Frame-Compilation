@@ -497,9 +497,11 @@ MOD3 observable contract exactly or has error at least tau_*. Equivalently,
 below that threshold its relative word
 $`C=(\mathcal B_p^\dagger\otimes I_W)E`$ must commute exactly with
 $`P_0\otimes I_W`$. For p at least three, Section 5.2 excludes two
-source layers, while exact three-layer transport remains open. This
-rounding statement neither excludes that exact construction nor bounds
-growing sublogarithmic source depth. The retained constant-depth
+source layers. The later [three-band source theorem](THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md)
+excludes exact three-layer transport for p at least seven, so (20) gives
+the same tau_* error floor there. The rounding argument itself neither
+excludes an exact construction nor bounds growing source depth. The retained
+constant-depth
 approximate scalar zero reflection is compatible with this fixed-layer
 threshold; conjunction still supplies no dimension-growing witness.
 
@@ -584,7 +586,9 @@ balanced dirty MOD3 arithmetic is assumed available. The unconditional
 R96 frontier remains unchanged.
 
 At three source layers, (20) turns the small-fixed-error question into
-an exact joint transport question. A source with more layers may instead
+an exact joint transport question, now excluded at p at least seven by the
+[unrestricted source theorem](THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md).
+A source with more layers may instead
 exploit approximation, provided its complete depth remains sublogarithmic.
 The [joint-coordinate construction](WEAK_PAULI_ORBIT_COMPRESSION.md#two-coordinate-lift)
 pays two coordinates at every bank size, with twelve T gates, three layers
@@ -595,8 +599,8 @@ also excludes bank-independent final one-band blocks at those lengths,
 despite arbitrary middle Clifford boundaries and dirty width. A separate
 [full-bank X-motion word](COUPLED_FINAL_ENCODER.md#full-bank-x-motion-boundary)
 also has no one-band middle completion, by its rotated-bank centralizer and
-affine response code. Other bank-dependent final blocks or a sublogarithmic
-source with more layers remain open. The
+affine response code. The newer theorem covers all final blocks at p at
+least seven; a sublogarithmic source with more layers remains open. The
 [four-band nested-coefficient source](WEAK_PAULI_ORBIT_COMPRESSION.md#four-band-nested-coefficient-source)
 remains partial. A separate [two-band coefficient shear](WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear)
 now completes every three-address coefficient in five source layers, with
