@@ -249,3 +249,85 @@ conjugation whose peeled image is Clifford, with qualifying native costs.
 The [exact fixtures](../../tests/test_clifford_involution_source.py) check
 quadratic compression, all columns of the four-band word, literal phases,
 actual inverses and independently specified nonmonomial Clifford examples.
+
+<a id="galois-outer-symmetry-screen"></a>
+
+## 5. An exact Galois screen for the two outer phases
+
+The arithmetic of the actual outer word gives another necessary condition,
+including when K is nonmonomial. Let sigma be the automorphism of
+$`\mathbb Q(\sqrt2,i)`$ fixing i and sending $`\sqrt2`$ to its negative.
+It commutes with complex conjugation and sends
+$`\omega=e^{i\pi/4}`$ to $`-\omega`$. For each diagonal weighted cubic,
+write its phase exponent modulo eight as
+
+```math
+d_j(z)=k_j+\sum_u a_{j,u}z_u
+       +2\sum_{u\lt v}b_{j,uv}z_uz_v
+       +4\sum_{u\lt v\lt t}c_{j,uvt}z_uz_vz_t,
+\qquad (\ell_j)_u=a_{j,u}\bmod2.
+```
+
+Thus $`\sigma(D_j)=(-1)^{k_j}Z^{\ell_j}D_j`$. Every native Clifford
+word changes only by a common sign under sigma: H changes sign while S
+and CNOT are fixed. Applying sigma to the complete A in (7) therefore gives
+
+```math
+\sigma(A)A^\dagger=\varepsilon E,\qquad
+E=C_3Z^{\ell_3}D_3C_2Z^{\ell_2}C_2^\dagger D_3^\dagger C_3^\dagger,
+\qquad \varepsilon\in\{+1,-1\}.                       \qquad(9)
+```
+
+E is an actual Clifford: $`C_2Z^{\ell_2}C_2^\dagger`$ is a Pauli,
+and third-level $`D_3`$ maps it to a Clifford. The sign epsilon accounts
+for the literal native representatives and disappears only in conjugation.
+This identity does not discard an input-dependent phase or require any
+initialized wire.
+
+For a Hermitian Clifford K, let $`r=\mathrm{rank}(S_K-I)`$ over
+$`\mathbb F_2`$. The [Clifford Pauli-support theorem](CLEAN_CODE_CLIFFORD_RIGIDITY.md#11-the-support-budget-for-k-at-least-three)
+gives one affine support of size $`2^r`$, with coefficient magnitudes
+$`2^{-r/2}`$. Hermiticity makes every coefficient real, so the nonzero
+coefficients are exactly $`\pm2^{-r/2}`$. Hermitian Paulis are fixed by
+sigma, including their entries involving i. Consequently
+
+```math
+\sigma(K)=(-1)^rK.                                    \qquad(10)
+```
+
+Suppose now that the complete target is a rational matrix, as is every
+diagonal Boolean sign Q, and that $`Q=AKA^\dagger`$ holds exactly.
+Applying sigma and using (9)--(10) proves
+
+```math
+E Q E^\dagger=(-1)^rQ,
+\qquad Q E Q=(-1)^rE.                                 \qquad(11)
+```
+
+For complete lookup, E therefore belongs to the
+[complete Clifford-symmetry group](LOOKUP_CLIFFORD_SYMMETRIES.md).
+Its normal form applies with every arbitrary helper included. In particular,
+at $`p\ge3`$ E must normalize the address-Z algebra. This condition is
+on the displayed combined Clifford E, not separately on $`C_2,C_3`$;
+it does not forbid all late address motion.
+
+If both outer diagonals take fourth-root values, then their linear
+coefficients are even, $`\ell_2=\ell_3=0`$, and $`E=I`$. Exact completion
+then requires even r. This includes cubic-sign batches, S gates and
+controlled-S phases. It excludes an odd-rank Hermitian-Clifford target K
+for those outer phases, but does not force K to be monomial:
+$`K=H\otimes H`$ has r=2, rational Pauli coefficients, and trivial
+intersection between its computational Z algebra and its K image.
+
+Odd linear phases need the full condition (11). For example,
+$`A=HT`$, $`K=T^\dagger XT=(X-Y)/\sqrt2`$ and $`Q=Z`$ obey
+$`AKA^\dagger=Q`$ with r=1. Here $`E=X`$ anticommutes with Q, as required.
+Thus extending the even-rank conclusion to arbitrary weighted cubic phases
+would be false.
+
+These are exact arithmetic constraints. Galois conjugation is not continuous
+in the chosen complex norm, so this argument gives no uniform approximate
+error floor. It neither constructs the two outer factors nor bounds general
+native T-depth. The [exact fixtures](../../tests/test_clifford_involution_source.py)
+check the Galois word identity, its Clifford image, displacement-rank parity,
+fourth-root and odd-linear examples, and the surviving nonmonomial pair.
