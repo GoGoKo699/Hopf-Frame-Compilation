@@ -11,16 +11,16 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #256](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/256),
-`884ae056a039c022fa897b8fb74678b93579b29b`, 26 October 2026.
-Its reviewed tree passed 1,886 tests, the full local gate and all final pre-merge CI.
+Verified baseline: [PR #257](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/257),
+`5a357c0c4cdb6ebc6f17b1bb3fdfe3aa3afc4ce9`, 26 October 2026.
+Its reviewed tree passed 1,886 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
 Use the [research catalogue](research/README.md) to find its proof dependencies.
-The latest source and symmetry results are integrated; none improves R96.
+The latest nonmonomial-source and readout results are integrated; none improves R96.
 
 <a id="current-depth-frontier"></a>
 
@@ -83,11 +83,24 @@ they do not construct the source.
 ### Latest substantive outcomes and resumption question
 
 The [four-band Clifford-involution compiler](research/depth/CLIFFORD_INVOLUTION_SOURCE.md)
-removes the first source block as an independent search variable.
+removes the first source block as an independent search variable. Its
+[exact Galois screen](research/depth/CLIFFORD_INVOLUTION_SOURCE.md#galois-outer-symmetry-screen)
+constrains the combined outer word; fourth-root phases require even Clifford
+displacement rank. This arithmetic screen supplies no approximate error floor.
+The [Hadamard-pair trial](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md#nonmonomial-hadamard-pair-screen)
+with its specified first coupling has error at least 1/16 for every later
+Clifford wall and cubic-sign batch. Weighted phases escape that proof.
+The [Fourier-swap source](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md#fourier-swap-fixed-coefficient-face)
+completes the fixed-top-coefficient face, but reduces to a quadratic finite
+difference. The direct phase costs 28 T gates in eight bands without helpers.
+Its common address-independent readout has a separate 1/2 error floor when
+that top coefficient becomes arbitrary.
+
 **Next question:** choose and pay the two outer conjugations
 $`A=C_3D_3C_2D_2`$ so the complete peeled lookup observable
-$`A^\dagger Q A`$ is Clifford, allowing arbitrary late address mixing
-and retaining the simultaneous polynomial discovery budgets.
+$`A^\dagger Q A`$ is Clifford, using genuinely later address participation
+and retaining the simultaneous polynomial discovery budgets. A successful
+fixed-coefficient face must also work when that coefficient is arbitrary.
 The [Clifford-symmetry normal form](research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md)
 screens qualifying Clifford-to-Clifford images; it does not force arbitrary
 three-block walls to preserve the address algebra.
@@ -96,8 +109,12 @@ Two concrete alternatives are joint synthesis of the
 [reduced central gauge](research/depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge)
 or the [minimal-tree probe](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source).
 The latter has optimal-order count but linear address depth; its eight-band
-forward XOR query does not supply the in-place inverse. These components do
-not improve the retained logarithmic indicator. In the separate
+forward XOR query does not supply the in-place inverse. The
+[syndrome bound](research/depth/FIXED_READOUT_SYNDROME_BOUND.md)
+also excludes an arbitrary fixed final readout after low-degree Pauli
+transport. The readout must participate in the address-dependent computation
+or leave that transport grammar. These components do not improve the retained
+logarithmic indicator. In the separate
 [precision route](research/depth/JOINT_PRECISION_ROTATION.md), joint recovery
 beyond the separately paid two-path pilots remains open.
 

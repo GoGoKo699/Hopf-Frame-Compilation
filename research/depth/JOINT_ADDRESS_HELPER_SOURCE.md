@@ -9,8 +9,10 @@ coordinates through Bell changes and swaps. It creates the required quartic
 matching phase, but also moves carrier bits. Two anticommuting Pauli
 coefficients prove that no final Clifford wall completes this trial.
 The actual missing carrier correction is paid below, giving a complete
-finite-face phase circuit. Neither result supplies an all-size shallow
-lookup source or changes R96.
+finite-face phase circuit. The [nonmonomial Hadamard-pair screen](#nonmonomial-hadamard-pair-screen)
+below excludes a distinct first coupling for arbitrary later Clifford walls
+and cubic-sign phases; an explicit weighted-phase word escapes its coefficient
+screen. None supplies an all-size shallow lookup source or changes R96.
 
 ## 1. The complete quartic face and the preceding rank failure
 
@@ -244,3 +246,349 @@ check the complete operator identity, both noncommuting Pauli coefficients,
 literal native pieces, actual inverses and the returned finite-face repair.
 These fixed checks support the displayed analytic identities, not an
 asymptotic compiler.
+
+<a id="nonmonomial-hadamard-pair-screen"></a>
+
+## 5. A nonmonomial Hadamard-pair source still needs a changed coupling
+
+The Clifford-symmetry screen need not constrain every computational Z
+probe of a nonmonomial first image. On u,v, the Hermitian Clifford
+$`H_uH_v`$ exchanges the Z and X algebras, whose intersection consists
+only of the identity. This is a different first image from the paired
+swaps in Section 2. Its complete action nevertheless has a separate
+obstruction for the following natural outer coupling.
+
+Keep all eight logical wires of (1), two arbitrary helpers u,v and any
+further arbitrary work. Define
+
+```math
+K_H=Z_rH_uH_v,\qquad
+D_2=\mathrm{CCZ}(u,x_1,x_2)\mathrm{CCZ}(v,x_3,x_4),
+\qquad R_H=D_2K_HD_2.
+                                                               \qquad(11)
+```
+
+The first image $`K_H`$ is traceless, Hermitian and Clifford. Let
+$`C_2,C_3`$ be arbitrary Cliffords on the whole physical register, with
+no address, carrier or helper preservation requirement. Let
+$`D_3|z\rangle=(-1)^{g(z)}|z\rangle`$, where g is any Boolean
+polynomial of degree at most three on all those wires. Thus D_3 may be
+an arbitrary cubic-sign batch, not just the single CCZ in Section 2.
+For
+
+```math
+B_H=C_3D_3C_2R_HC_2^\dagger D_3^\dagger C_3^\dagger
+```
+
+the complete error obeys
+
+```math
+\boxed{\ \|B_H-Q_\square\otimes I_{\rm work}\|\ge1/16.\ }
+                                                               \qquad(12)
+```
+
+The claim is about the specified K_H and D_2 with arbitrary later
+Clifford mixing and cubic-sign D_3. It does not exclude general weighted
+cubic phases, other first images or other first couplings. No source is
+silently controlled, initialized or replaced by a projective inverse.
+
+### Two commuting support classes anticommute across the partition
+
+Conjugation in (11) gives the exact Hermitian operator
+
+```math
+R_H=\frac{Z_r}{2}\left[
+ Z_uZ_v+Z_uX_v\mathrm{CZ}(x_3,x_4)
+ +X_uZ_v\mathrm{CZ}(x_1,x_2)
+ +X_uX_v\mathrm{CZ}(x_1,x_2)\mathrm{CZ}(x_3,x_4)\right].
+                                                               \qquad(13)
+```
+
+Use $`\mathrm{CZ}(i,j)=(I+Z_i+Z_j-Z_iZ_j)/2`$. Its complete
+Pauli support consists of 25 distinct labels in two classes:
+
+| Class | Labels and coefficient magnitudes |
+| --- | --- |
+| E | One label $`e=Z_rZ_uZ_v`$ of magnitude 1/2, and the sixteen labels $`Z_rX_uX_v\prod_{i=1}^4Z_{x_i}^{s_i}`$, each of magnitude 1/8 |
+| O | Four labels $`Z_rX_uZ_vZ_{x_1}^{s_1}Z_{x_2}^{s_2}`$ and four labels $`Z_rZ_uX_vZ_{x_3}^{s_3}Z_{x_4}^{s_4}`$, each of magnitude 1/4 |
+
+Each class is mutually commuting, while every E label anticommutes
+with every O label. The sixteen-label part of E is an affine four-flat
+L in binary Pauli-label space, and $`e\notin L`$. Identity extensions
+on arbitrary work preserve these statements, as does simultaneous
+Clifford conjugation. Coefficient signs from the CZ expansions are
+retained in (13); only the upper estimates below discard their signs.
+
+### A cubic-sign Pauli image has a commuting affine support
+
+For a Hermitian Pauli P with computational displacement a,
+$`D_3PD_3`$ is P times the Boolean derivative sign
+$`(-1)^{g(z+a)+g(z)}`$. Its exponent q is quadratic and satisfies
+$`q(z+a)=q(z)`$. A quadratic Boolean sign has Walsh support an affine
+space of size $`2^{2h}=4^h`$, with every nonzero coefficient of magnitude
+$`2^{-h}`$ for some integer h at least zero.
+
+For completeness, let B be q's alternating polar form. Squaring its
+normalized Walsh coefficient gives
+
+```math
+\widehat{(-1)^q}(s)^2
+ =2^{-w}\sum_{t\in\ker B}(-1)^{q(t)+q(0)+s\cdot t}.
+                                                               \qquad(14)
+```
+
+The restriction $`q(t)+q(0)`$ is linear on $`\ker B`$. Thus the
+sum is nonzero on one affine coset of $`(\ker B)^\perp`$, where its
+value is $`2^{-\mathrm{rank}B}`$. Alternating binary forms
+have even rank $`2h`$, proving the claim. Invariance under a additionally
+puts every supported Fourier label s in $`a^\perp`$. Consequently
+all Pauli terms $`PZ^s`$ commute, including their literal Hermitian
+phases. Their binary labels form the same affine-size support.
+
+It follows that, for any Hermitian Pauli P, the operator
+$`C_2^\dagger D_3C_3^\dagger PC_3D_3C_2`$ has a commuting affine
+support F of size $`4^h`$, with coefficient magnitudes $`2^{-h}`$.
+This statement includes arbitrary mixing by both Clifford walls.
+
+### Every resulting Pauli coefficient is at most one half
+
+Normalized trace against P expresses its coefficient in B_H as the
+Pauli inner product of R_H with the preceding operator. Since F is
+commuting, it cannot intersect both E and O. If it intersects O, the
+absolute inner product is at most
+
+```math
+2^{-h}\frac{\min(4^h,8)}4\le\frac12.                  \qquad(15)
+```
+
+For E, h=0 gives at most 1/2. If $`h=1,2`$ and $`e\in F`$,
+the intersection $`F\cap L`$ is a proper affine subspace of F,
+because $`e\notin L`$. It has size at most $`4^h/2`$, and hence
+
+```math
+2^{-h}\left(\frac12+\frac{4^h}{16}\right)=\frac38.
+                                                               \qquad(16)
+```
+
+If $`e\notin F`$, the bound instead is
+$`2^{-h}\min(4^h,16)/8\le1/2`$. For $`h\ge3`$, even the
+entire E support gives at most $`(1/2+16/8)2^{-h}\le5/16`$.
+These cases prove the uniform bound
+
+```math
+\max_P
+ \left|2^{-w}\mathrm{Tr}(PB_H)\right|\le1/2.    \qquad(17)
+```
+
+The coefficient ceiling itself is sharp: D_3=I retains the coefficient
+1/2 of e, and a Clifford can move e to any specified nonidentity Pauli.
+No claim is made that the complete error bound (12) is sharp.
+
+For the target, averaging over the independent c_1,c_2,d inputs in (1)
+leaves only addresses with $`a=b=0`$. Therefore
+
+```math
+2^{-w}\mathrm{Tr}\bigl(Z_r(Q_\square\otimes I)\bigr)
+ =\Pr[a=b=0]=(3/4)^2=9/16.                            \qquad(18)
+```
+
+The normalized Pauli trace of an operator is bounded by its operator
+norm. Equations (17)--(18) prove (12), on every input and after tensoring
+any external reference. Extra arbitrary wires cannot dilute either
+normalized coefficient.
+
+### Weighted outer phases leave this screen
+
+The cubic-sign restriction is essential. Set
+
+```math
+C_2=(HSH)_u(HSH)_v,\qquad D_3=T_uT_v,\qquad C_3=I.
+```
+
+With literal adjoints,
+$`(HSH)^\dagger T^\dagger X T(HSH)=H`$. Thus, for
+$`P=Z_rX_uX_v`$, its pullback through the two later factors is K_H.
+Equation (13) now gives the actual coefficient
+
+```math
+2^{-w}\mathrm{Tr}(PB_H)
+ =\frac12\left(\frac12+\frac14+\frac14+\frac18\right)
+ =9/16.                                              \qquad(19)
+```
+
+These are allowed weighted third-level outer phases, but they are not
+Boolean-sign phases. Their Pauli images can have noncommuting support,
+so (17) cannot be extended to them. The complete action of this particular
+word is nevertheless still wrong:
+
+```math
+B_H=Z_r[(1-a)X_u-aY_u][(1-b)X_v-bY_v].                \qquad(20)
+```
+
+Each helper axis is X at its zero address product and minus Y at its
+one product. The coefficients at $`Z_rX_uX_v`$ and $`Z_rY_uX_v`$
+are respectively $`9/16`$ and $`-3/16`$, since the two address pairs
+are independent. These Paulis anticommute. As in Section 3, at least one
+remains absent from any computational-diagonal target after every final
+Clifford F, including arbitrary additional work. Consequently this
+specific weighted word satisfies
+$`\|FB_HF^\dagger-Q_\square\otimes I\|\ge3/16`$.
+
+Thus (19) escapes one screen, while (20) diagnoses its complete residual
+action. Neither gives lookup or an all-size source. For sign-only
+discovery, changing K_H or its first coupling is necessary. General
+weighted discovery remains open and requires a changed full operator.
+
+The [exact nonmonomial fixtures](../../tests/test_nonmonomial_source_screen.py)
+check (13) on every active column, its two support classes, quadratic
+Walsh support and commutation, the target coefficient (18), and the
+literal weighted-phase escape (19). The unrestricted later-Clifford
+and all-helper scope of (12) is analytic, not inferred from finite tests.
+
+<a id="fourier-swap-fixed-coefficient-face"></a>
+
+## 6. A Fourier-dressed swap completes the fixed-coefficient face
+
+A changed nonmonomial Clifford gives a positive complete identity. It
+implements the seven-wire target
+
+```math
+Q_1=(-1)^{r+a v+b u+ab},\qquad a=x_1x_2,\quad b=x_3x_4. \qquad(21)
+```
+
+Here u,v are arbitrary logical coefficient bits, identified with
+$`c_2,c_1`$ respectively. Equation (21) is the d=1 restriction of (1),
+stated as a separate complete seven-wire operator. No initialized d is
+supplied, and tensoring (21) with identity on an arbitrary d does not
+implement (1).
+
+Let $`B=\mathrm{CX}(u;v)H_u`$ and define
+
+```math
+\begin{aligned}
+K_F&=Z_r H_v\mathrm{SWAP}(u,v)H_v,\\
+U_F&=H_vB\,\mathrm{CCX}(u,v;r),\\
+D_2&=\mathrm{CCZ}(u,x_1,x_2)\mathrm{CCZ}(v,x_3,x_4),\\
+C_2&=H_rB^\dagger H_v,\qquad
+D_3=\mathrm{CCZ}(r,u,v),\qquad C_3=H_r,\\
+V_F&=C_3D_3C_2D_2U_F.
+\end{aligned}                                                   \qquad(22)
+```
+
+K_F is a traceless Hermitian Clifford, genuinely nonmonomial on u,v.
+Its preserved computational Pauli intersection on that pair is trivial:
+it sends $`Z_u,Z_v`$ to $`X_v,X_u`$. The first source satisfies
+$`U_F Z_rU_F^\dagger=K_F`$ because B maps CZ to SWAP.
+
+Put $`R_a=Z_uX_v`$ and $`R_b=X_uZ_v`$. They commute with each other
+and with the dressed swap. Direct Pauli multiplication gives the literal
+cross sign
+
+```math
+D_2K_FD_2=(-1)^{ab}R_a^aR_b^bK_F.                     \qquad(23)
+```
+
+The Clifford $`B^\dagger H_v`$ maps $`R_a,R_b`$ to $`Z_v,Z_u`$
+and the dressed swap to CZ. Thus the observable after C_2 is
+$`X_r\mathrm{CZ}(u,v)(-1)^{a v+b u+ab}`$. Conjugation by D_3 adds
+another CZ to the X_r factor and cancels that background exactly; the
+last H_r restores Z_r. Consequently
+
+```math
+V_F Z_rV_F^\dagger=Q_1\otimes I_{\rm work}.             \qquad(24)
+```
+
+There is no residual carrier translation or helper phase. This success
+changes the earlier coupling and therefore does not contradict Section 3.
+
+### Literal native cost
+
+The one-pair shared-root CCZ compiler inside U_F costs seven T gates in
+four bands and ten Cliffords. Its two root Hadamards, B and H_v add five
+Cliffords, giving $`G_{\rm all}(U_F)=22`$. The two returned-dirty cubic batches
+in (22) cost respectively 16 and eight T gates, eight bands each, and
+32 and 16 total gates. C_2 and C_3 add four and one Cliffords. The
+same bounds hold for the actual inverse:
+
+```math
+T_{V_F}=31,\qquad D_T(V_F)\le20,\qquad G_{\rm all}(V_F)=75,
+\qquad w_{\rm extra}=2,\qquad a_{\rm clean}=0.          \qquad(25)
+```
+
+The two extra wires are arbitrary Gray masks returned after each batch;
+one is reused by D_3. The literal phase word $`V_F^\dagger,Z_r,V_F`$
+therefore costs 62 T gates, at most 40 bands and 152 total gates,
+including two S gates for Z_r. Its error is zero, with every logical,
+mask and reference input allowed. This finite count is not a comparison
+with the full variable-coefficient face or an all-size lookup bound.
+
+The word also has an ordinary classical normal form. Put
+$`M=\mathrm{CCX}(u,v;r)`$ and
+$`T_{ab}=\mathrm{CCX}(x_1,x_2;u)\mathrm{CCX}(x_3,x_4;v)`$.
+Then the same logical source and completed phase satisfy
+
+```math
+V_F=M T_{ab} M,\qquad
+Q_1=Z_r T_{ab}\mathrm{CZ}(u,v)T_{ab}\mathrm{CZ}(u,v).
+```
+
+Indeed $`B^\dagger H_vD_2H_vB=X_u^aX_v^b`$. The source translates
+u,v by a,b and r by $`av+bu+ab`$; its completed probe returns every
+carrier. Each helper-free Toffoli costs seven T gates, four bands and
+19 total gates. The middle two occupy disjoint triples, so the direct
+source costs 28 T gates, at most 12 bands and $`G_{\rm all}=76`$, with no
+extra wires. The direct phase costs 28 T gates, at most eight bands and
+$`G_{\rm all}=84`$, also with no extra wires. These are literal finite
+simplifications of (24), not a new all-size mechanism: the successful
+nonmonomial pilot reduces to three ordinary Toffoli stages and a
+quadratic finite difference.
+
+<a id="common-readout-four-corner-gap"></a>
+
+### Why a common later readout cannot supply arbitrary d
+
+The direct extension of (22) has a uniform obstruction, even when the
+common later readout is an arbitrary unitary. Let P,R be commuting
+Hermitian Paulis, K any Hermitian Clifford, and
+
+```math
+O_{ab}=P^aR^b K R^bP^a,\qquad a,b\in\{0,1\}.
+```
+
+All other registers, including d and any work, remain arbitrary. The
+same unitary W must complete all four address fibers. It may mix those
+other registers freely, but it holds the address and is independent of
+a,b. Since $`KPK`$ is a Hermitian Pauli,
+
+```math
+O_{00}O_{10}O_{11}O_{01}
+ =(KPK)R(KPK)R\in\{+I,-I\}.                            \qquad(26)
+```
+
+The same four-corner product after W is still that scalar. In contrast,
+the desired fibers $`Q_{ab}=(-1)^{r+a c_1+b c_2+ab d}`$ obey
+$`Q_{00}Q_{10}Q_{11}Q_{01}=Z_d`$. Their product has distance two from
+either scalar on the full arbitrary-d space. Telescoping four unitary
+factors proves
+
+```math
+\max_{a,b}\|W O_{ab}W^\dagger-Q_{ab}\otimes I\|\ge1/2.  \qquad(27)
+```
+
+For the concrete address products in (21), the four fibers can be taken
+at $`x_2=x_4=1`$, with $`x_1=a,x_3=b`$. The theorem applies only when
+the later word is the same held-address operation on those four fibers.
+It includes arbitrary later weighted phases on the other registers and
+arbitrary helper width. Later address-dependent operations, genuine
+address motion, or a changed first coupling need a fresh analysis.
+The scalar minus sign allowed by (26) is exactly what makes the d=1
+positive identity possible; it cannot encode an arbitrary coefficient.
+
+The [Fourier-swap fixtures](../../tests/test_fourier_swap_face.py) check
+every seven-wire column, the nonmonomial Clifford and its first source,
+both actual native cubic inverses on arbitrary masks, the common ledger,
+and examples of both signs in (26). Equations (23)--(27), rather than
+those finite checks, establish the complete identities and scoped gap.
+The next construction must change the later address participation or
+leave this two-Pauli coupling grammar; repeating the fixed-coefficient
+pilot does not supply the missing uniform source.

@@ -7,7 +7,7 @@ from itertools import product
 import unittest
 
 from tests.exact_matrices import (
-    CI, CO, CZ, adjoint, multiply, native_columns,
+    CI, CO, CZ, CQ2, Q2, adjoint, multiply, native_columns, scale,
 )
 from tests.test_common_probe_source import ROOT_HALF
 from tests.test_joint_lookup_pauli_source import _inverse
@@ -105,6 +105,44 @@ def _diagonal(width, phases):
              for column in range(1 << width)] for row in range(1 << width)]
 
 
+def _galois(matrix):
+    """Fix i and reverse sqrt(2), retaining exact rational components."""
+    return [[CQ2(Q2(entry.real.a, -entry.real.b),
+                 Q2(entry.imag.a, -entry.imag.b))
+             for entry in row] for row in matrix]
+
+
+def _pauli(width, x, z):
+    phase = ROOTS[2 * (x & z).bit_count() % 8]
+    return [[phase * (-1 if (column & z).bit_count() % 2 else 1)
+             if row == column ^ x else CZ
+             for column in range(1 << width)] for row in range(1 << width)]
+
+
+def _displacement_rank(matrix, width):
+    """Recover all generator images exactly; reject a non-Clifford matrix."""
+    paulis = [_pauli(width, label & ((1 << width) - 1), label >> width)
+              for label in range(1 << (2 * width))]
+    columns = []
+    for bit in range(2 * width):
+        image = multiply(multiply(matrix, paulis[1 << bit]), adjoint(matrix))
+        label = next((i for i, candidate in enumerate(paulis)
+                      if image == candidate or image == scale(candidate, -1)), None)
+        if label is None:
+            raise AssertionError('non-Clifford Pauli image')
+        columns.append(label ^ (1 << bit))
+    pivots = {}
+    for column in columns:
+        while column:
+            pivot = column.bit_length() - 1
+            if pivot in pivots:
+                column ^= pivots[pivot]
+            else:
+                pivots[pivot] = column
+                break
+    return len(pivots)
+
+
 class CliffordInvolutionSourceTests(unittest.TestCase):
     def test_quadratic_compression_includes_odd_hyperbolic_and_radical_parts(self):
         fixtures = [([0, 0, 0], []),
@@ -200,6 +238,78 @@ class CliffordInvolutionSourceTests(unittest.TestCase):
             self.assertEqual(multiply(multiply(source, probe), inverse), target)
             self.assertEqual(target, adjoint(target))
             self.assertEqual(sum((target[i][i] for i in range(1 << width)), CZ), CZ)
+
+    def test_hermitian_clifford_galois_sign_matches_displacement_rank(self):
+        fixtures = [(1, [('H', 0)], 1),
+                    (2, [('H', 0), ('H', 1)], 2),
+                    (3, [('H', 0), ('H', 1), ('H', 2)], 3),
+                    (3, [('Z', 0)], 0),
+                    (3, [('Z', 0), ('CX', 1, 2), ('CX', 2, 1), ('CX', 1, 2)], 2)]
+        for width, word, rank in fixtures:
+            matrix = native_columns(width, word)
+            self.assertEqual(matrix, adjoint(matrix))
+            self.assertEqual(_displacement_rank(matrix, width), rank)
+            self.assertEqual(_galois(matrix), scale(matrix, (-1) ** rank))
+            support = []
+            for x, z in product(range(1 << width), repeat=2):
+                product_matrix = multiply(_pauli(width, x, z), matrix)
+                coefficient = sum((product_matrix[i][i] for i in range(1 << width)), CZ)
+                coefficient /= 1 << width
+                if coefficient != CZ:
+                    self.assertEqual(coefficient.imag, 0)
+                    self.assertEqual(coefficient.abs2(), Q2(1) / (1 << rank))
+                    support.append(coefficient)
+            self.assertEqual(len(support), 1 << rank)
+
+        # An even-rank nonmonomial Clifford can have no nonidentity shared Z.
+        pair = native_columns(2, [('H', 0), ('H', 1)])
+        z_paulis = [_pauli(2, 0, z) for z in range(4)]
+        shared = [z for z in range(4)
+                  if any(multiply(multiply(pair, z_paulis[z]), pair) == scale(p, sign)
+                         for p in z_paulis for sign in (1, -1))]
+        self.assertEqual(shared, [0])
+        self.assertTrue(all(entry != CZ for row in pair for entry in row))
+
+    def test_outer_galois_defect_is_the_literal_combined_clifford(self):
+        width = 3
+        c2 = native_columns(width, [('H', 0), ('CX', 0, 1), ('S', 2), ('H', 1)])
+        c3 = native_columns(width, [('CX', 1, 2), ('H', 2), ('S', 0)])
+        identity = _diagonal(width, [0] * 8)
+        for odd in (False, True):
+            phases2, phases3 = [], []
+            for value in range(8):
+                x, y, z = [(value >> bit) & 1 for bit in range(3)]
+                phases2.append((1 if odd else 2) * x + (3 if odd else 6) * y
+                               + 2 * x * z + 4 * x * y * z)
+                phases3.append((7 if odd else 4) * z + 2 * y * z + 4 * x * y * z)
+            d2, d3 = _diagonal(width, phases2), _diagonal(width, phases3)
+            z2, z3 = _pauli(width, 0, 3 if odd else 0), _pauli(width, 0, 4 if odd else 0)
+            self.assertEqual(_galois(d2), multiply(z2, d2))
+            self.assertEqual(_galois(d3), multiply(z3, d3))
+            a = multiply(multiply(multiply(c3, d3), c2), d2)
+            e = multiply(multiply(c2, z2), adjoint(c2))
+            e = multiply(multiply(d3, e), adjoint(d3))
+            e = multiply(multiply(multiply(c3, z3), e), adjoint(c3))
+            # The three H gates contribute the literal common minus sign.
+            self.assertEqual(multiply(_galois(a), adjoint(a)), scale(e, -1))
+            _displacement_rank(e, width)  # Checks every Pauli generator image.
+            if not odd:
+                self.assertEqual(e, identity)
+
+    def test_odd_linear_phase_allows_odd_rank_with_required_anticommutation(self):
+        h = native_columns(1, [('H', 0)])
+        t = native_columns(1, [('T', 0)])
+        x, z = _pauli(1, 1, 0), _pauli(1, 0, 1)
+        a = multiply(h, t)
+        k = multiply(multiply(adjoint(t), x), t)
+        self.assertEqual(k, adjoint(k))
+        self.assertEqual(_displacement_rank(k, 1), 1)
+        self.assertEqual(_galois(k), scale(k, -1))
+        self.assertEqual(multiply(multiply(a, k), adjoint(a)), z)
+        e = multiply(multiply(h, z), h)
+        self.assertEqual(e, x)
+        self.assertEqual(multiply(_galois(a), adjoint(a)), scale(e, -1))
+        self.assertEqual(multiply(multiply(e, z), adjoint(e)), scale(z, -1))
 
 
 if __name__ == '__main__':

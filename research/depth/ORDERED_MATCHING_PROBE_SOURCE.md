@@ -341,6 +341,10 @@ inverse for free. A constant number of these affine-in-x linear shears, interlea
 fixed binary carrier maps, has bounded address degree; broader Gaussian
 restrictions retain their separately stated hypotheses. A faster in-place word or
 nonmonomial complete readout still needs its own native construction.
+An [arbitrary fixed carrier readout](FIXED_READOUT_SYNDROME_BOUND.md) appended
+to affine-query Pauli preprocessing also retains a linear query-stage
+requirement at fixed small complete error. Its syndrome-covering bound does
+not cover address-moving or jointly interleaved non-Gaussian sources.
 The [tree fixtures](../../tests/test_minimal_tree_probe.py) check the unique-path
 identity, source orientation, literal native schedule and actual inverse,
 and the complete forward query with arbitrary dirty helpers.
