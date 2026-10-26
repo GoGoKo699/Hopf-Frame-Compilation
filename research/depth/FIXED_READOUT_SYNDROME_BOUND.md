@@ -31,14 +31,14 @@ Q_x=(-1)^{\sum_{S\subseteq[p]}c_S\prod_{i\in S}x_i}\otimes I_H
 \qquad (v_x)_S=\prod_{i\in S}x_i.                         \qquad(1)
 ```
 
-The m binary labels v_x are independent: indexed by the support of x,
+The m binary labels $`v_x`$ are independent: indexed by the support of x,
 their matrix is the subset-zeta matrix, triangular with diagonal one in
 an inclusion-compatible order. Thus every string of m joint eigenvalues
-of the Q_x occurs on a carrier computational state, with any helper state.
+of the $`Q_x`$ occurs on a carrier computational state, with any helper state.
 This is a test of the full operator contract, not an initialized carrier
 supplied to a construction.
 
-Fix a nonidentity Hermitian Pauli P on B. Suppose C_x is a source whose
+Fix a nonidentity Hermitian Pauli P on B. Suppose $`C_x`$ is a source whose
 literal probe images are signed Hermitian Paulis,
 
 ```math
@@ -48,7 +48,7 @@ P_x=C_xPC_x^\dagger=\sigma_x\tau(a(x)),\qquad
 
 Here a(x) is the full binary X/Z label, including every helper coordinate.
 Only its coordinate degrees are bounded. The signs may be arbitrary
-functions of x. The C_x need not be Clifford for this general statement;
+functions of x. The $`C_x`$ need not be Clifford for this general statement;
 only their specified images in (2) must be Pauli.
 
 Let U be one fixed unitary on B, independent of x. It may mix all carrier
@@ -62,7 +62,7 @@ with fixed-address fibers $`V_x=UC_x`$ and require
 
 This is the complete operator norm, equivalent to the coherent block
 condition with address retained. It includes every dirty input and any
-external reference. Neither C_x nor U must return its work separately.
+external reference. Neither $`C_x`$ nor U must return its work separately.
 There is no additional address-dependent stage after U in this grammar.
 If an emitted source is within eta of this complete ideal source and has
 probe error tau, unitary telescoping gives (3) with $`\delta\le\tau+2\eta`$.
@@ -77,7 +77,7 @@ M_d=\sum_{j=0}^{\min(d,p)}\binom pj,
 \qquad r=\left\lfloor\frac{m\delta^2}{4}\right\rfloor.
 ```
 
-**Theorem.** Under (1)--(3), the P_x commute pairwise. Their binary-label
+**Theorem.** Under (1)--(3), the $`P_x`$ commute pairwise. Their binary-label
 span has some dimension $`R\le M_d`$, and
 
 ```math
@@ -93,14 +93,14 @@ M_d\ge m\bigl[1-H_2(\delta^2/4)\bigr].                \qquad(5)
 
 ### Small complete error first forces commutation
 
-Choose a common positive eigenstate of all Q_x and pull it back through U.
+Choose a common positive eigenstate of all $`Q_x`$ and pull it back through U.
 Equation (3), applied to that state, gives
 
 ```math
 \langle P_x\rangle\ge1-\delta^2/2.
 ```
 
-If two Hermitian involutions P_x and P_y anticommute, then
+If two Hermitian involutions $`P_x`$ and $`P_y`$ anticommute, then
 $`\langle P_x\rangle^2+\langle P_y\rangle^2\le1`$.
 Indeed the square of $`sP_x+tP_y`$ is $`(s^2+t^2)I`$; choose s,t to
 be the two expectations. Two expectations at least $`1-\delta^2/2`$
@@ -117,11 +117,11 @@ Write the Boolean expansion of the label vector as
 a(x)=\sum_{S:\,|S|\le d}a_S\prod_{i\in S}x_i.
 ```
 
-Its values lie in the span of at most M_d coefficient vectors, so their
-rank R is at most M_d, independently of physical width. A commuting
+Its values lie in the span of at most $`M_d`$ coefficient vectors, so their
+rank R is at most $`M_d`$, independently of physical width. A commuting
 signed-Pauli family of label rank R has exactly $`2^R`$ joint syndrome
 strings. They form an affine binary code $`\mathcal C\subseteq\mathbb F_2^m`$:
-choose R independent generators; every other P_x is their product with
+choose R independent generators; every other $`P_x`$ is their product with
 a fixed sign. Every assignment to the independent generators occurs,
 since its joint projector has rank $`2^{w-R}`$.
 
@@ -141,7 +141,7 @@ must be covered by the $`2^R`$ radius-r Hamming balls, proving (4).
 Overlaps of these balls only make the necessary inequality stronger.
 The binomial-sum bound
 $`\sum_{j\le r}\binom mj\le2^{mH_2(r/m)}`$, together with monotonicity
-of H_2 below one half, proves (5). This bound follows directly by expanding
+of $`H_2`$ below one half, proves (5). This bound follows directly by expanding
 $`(t+(1-t))^m`$ at $`t=r/m`$; the r=0 case is exact.
 
 ## 3. Consequences for the paid affine queries
@@ -167,7 +167,7 @@ $`\cosh t\le\exp(t^2/2)`$ and minimization of the moment parameter.
 For $`d\gt p/2`$, (6) is immediate. The exact-error conclusion d at least
 p is stronger than this tail estimate at delta zero.
 
-Now take C_x to consist of q fixed-address Clifford query stages, each
+Now take $`C_x`$ to consist of q fixed-address Clifford query stages, each
 with binary symplectic entries affine in x, interleaved with arbitrary
 address-independent Clifford walls on B. The resulting symplectic matrix
 is a product of q affine matrices and constant matrices. Its entries, and

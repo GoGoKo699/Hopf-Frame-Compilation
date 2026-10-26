@@ -272,7 +272,7 @@ The first image $`K_H`$ is traceless, Hermitian and Clifford. Let
 $`C_2,C_3`$ be arbitrary Cliffords on the whole physical register, with
 no address, carrier or helper preservation requirement. Let
 $`D_3|z\rangle=(-1)^{g(z)}|z\rangle`$, where g is any Boolean
-polynomial of degree at most three on all those wires. Thus D_3 may be
+polynomial of degree at most three on all those wires. Thus $`D_3`$ may be
 an arbitrary cubic-sign batch, not just the single CCZ in Section 2.
 For
 
@@ -287,8 +287,8 @@ the complete error obeys
                                                                \qquad(12)
 ```
 
-The claim is about the specified K_H and D_2 with arbitrary later
-Clifford mixing and cubic-sign D_3. It does not exclude general weighted
+The claim is about the specified $`K_H`$ and $`D_2`$ with arbitrary later
+Clifford mixing and cubic-sign $`D_3`$. It does not exclude general weighted
 cubic phases, other first images or other first couplings. No source is
 silently controlled, initialized or replaced by a projective inverse.
 
@@ -352,8 +352,8 @@ This statement includes arbitrary mixing by both Clifford walls.
 
 ### Every resulting Pauli coefficient is at most one half
 
-Normalized trace against P expresses its coefficient in B_H as the
-Pauli inner product of R_H with the preceding operator. Since F is
+Normalized trace against P expresses its coefficient in $`B_H`$ as the
+Pauli inner product of $`R_H`$ with the preceding operator. Since F is
 commuting, it cannot intersect both E and O. If it intersects O, the
 absolute inner product is at most
 
@@ -380,11 +380,11 @@ These cases prove the uniform bound
  \left|2^{-w}\mathrm{Tr}(PB_H)\right|\le1/2.    \qquad(17)
 ```
 
-The coefficient ceiling itself is sharp: D_3=I retains the coefficient
+The coefficient ceiling itself is sharp: $`D_3=I`$ retains the coefficient
 1/2 of e, and a Clifford can move e to any specified nonidentity Pauli.
 No claim is made that the complete error bound (12) is sharp.
 
-For the target, averaging over the independent c_1,c_2,d inputs in (1)
+For the target, averaging over the independent $`c_1,c_2,d`$ inputs in (1)
 leaves only addresses with $`a=b=0`$. Therefore
 
 ```math
@@ -407,7 +407,7 @@ C_2=(HSH)_u(HSH)_v,\qquad D_3=T_uT_v,\qquad C_3=I.
 
 With literal adjoints,
 $`(HSH)^\dagger T^\dagger X T(HSH)=H`$. Thus, for
-$`P=Z_rX_uX_v`$, its pullback through the two later factors is K_H.
+$`P=Z_rX_uX_v`$, its pullback through the two later factors is $`K_H`$.
 Equation (13) now gives the actual coefficient
 
 ```math
@@ -436,7 +436,7 @@ $`\|FB_HF^\dagger-Q_\square\otimes I\|\ge3/16`$.
 
 Thus (19) escapes one screen, while (20) diagnoses its complete residual
 action. Neither gives lookup or an all-size source. For sign-only
-discovery, changing K_H or its first coupling is necessary. General
+discovery, changing $`K_H`$ or its first coupling is necessary. General
 weighted discovery remains open and requires a changed full operator.
 
 The [exact nonmonomial fixtures](../../tests/test_nonmonomial_source_screen.py)
@@ -475,7 +475,7 @@ V_F&=C_3D_3C_2D_2U_F.
 \end{aligned}                                                   \qquad(22)
 ```
 
-K_F is a traceless Hermitian Clifford, genuinely nonmonomial on u,v.
+$`K_F`$ is a traceless Hermitian Clifford, genuinely nonmonomial on u,v.
 Its preserved computational Pauli intersection on that pair is trivial:
 it sends $`Z_u,Z_v`$ to $`X_v,X_u`$. The first source satisfies
 $`U_F Z_rU_F^\dagger=K_F`$ because B maps CZ to SWAP.
@@ -489,10 +489,10 @@ D_2K_FD_2=(-1)^{ab}R_a^aR_b^bK_F.                     \qquad(23)
 ```
 
 The Clifford $`B^\dagger H_v`$ maps $`R_a,R_b`$ to $`Z_v,Z_u`$
-and the dressed swap to CZ. Thus the observable after C_2 is
-$`X_r\mathrm{CZ}(u,v)(-1)^{a v+b u+ab}`$. Conjugation by D_3 adds
-another CZ to the X_r factor and cancels that background exactly; the
-last H_r restores Z_r. Consequently
+and the dressed swap to CZ. Thus the observable after $`C_2`$ is
+$`X_r\mathrm{CZ}(u,v)(-1)^{a v+b u+ab}`$. Conjugation by $`D_3`$ adds
+another CZ to the $`X_r`$ factor and cancels that background exactly; the
+last $`H_r`$ restores $`Z_r`$. Consequently
 
 ```math
 V_F Z_rV_F^\dagger=Q_1\otimes I_{\rm work}.             \qquad(24)
@@ -503,11 +503,11 @@ changes the earlier coupling and therefore does not contradict Section 3.
 
 ### Literal native cost
 
-The one-pair shared-root CCZ compiler inside U_F costs seven T gates in
-four bands and ten Cliffords. Its two root Hadamards, B and H_v add five
+The one-pair shared-root CCZ compiler inside $`U_F`$ costs seven T gates in
+four bands and ten Cliffords. Its two root Hadamards, B and $`H_v`$ add five
 Cliffords, giving $`G_{\rm all}(U_F)=22`$. The two returned-dirty cubic batches
 in (22) cost respectively 16 and eight T gates, eight bands each, and
-32 and 16 total gates. C_2 and C_3 add four and one Cliffords. The
+32 and 16 total gates. $`C_2`$ and $`C_3`$ add four and one Cliffords. The
 same bounds hold for the actual inverse:
 
 ```math
@@ -516,9 +516,9 @@ T_{V_F}=31,\qquad D_T(V_F)\le20,\qquad G_{\rm all}(V_F)=75,
 ```
 
 The two extra wires are arbitrary Gray masks returned after each batch;
-one is reused by D_3. The literal phase word $`V_F^\dagger,Z_r,V_F`$
+one is reused by $`D_3`$. The literal phase word $`V_F^\dagger,Z_r,V_F`$
 therefore costs 62 T gates, at most 40 bands and 152 total gates,
-including two S gates for Z_r. Its error is zero, with every logical,
+including two S gates for $`Z_r`$. Its error is zero, with every logical,
 mask and reference input allowed. This finite count is not a comparison
 with the full variable-coefficient face or an all-size lookup bound.
 
