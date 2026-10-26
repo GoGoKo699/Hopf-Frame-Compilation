@@ -262,34 +262,34 @@ Its hierarchy constraints apply to that sufficient basis, not unrestricted
 native depth. The [polarization audit](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
 pays the shared derivative but retains an unpaid zeta homomorphism;
 its sharp query bounds keep their specified interlayer hypotheses.
-The [weaker pair-gauge source](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
-realizes the required root image through $`C Q_K C`$ plus the paid linear
-factor, with arbitrary auxiliary motion cancelled by its actual inverse.
-Joint native synthesis remains unpaid. Its proof separates the unnecessary
-full-encoding correction from the failed truncation and Hadamard trials.
+The [reduced pair gauge](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge)
+uses only pair controls and the carrier; its echo and four-band root shear
+supply the complete probe. Joint synthesis remains unpaid. General carrier-linear
+gauges admit more freedom, with a scoped low-row degree requirement.
+The [four-band Clifford source](../research/depth/CLIFFORD_INVOLUTION_SOURCE.md)
+reduces three-block discovery to two outer conjugations making the complete
+peeled target Clifford. It pays the first block, not those missing factors.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
 those proof homes; they do not strengthen the general frontier above.
-The [local HRT compiler and feedback trial](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
-pay individual encoded Hadamards in at most sixteen T bands without helpers.
-Joint fusion pays a pair star in twenty-four bands with returned dirty helpers;
-disjoint pairs obstruct that particular full-space regrouping.
-Their complete calibrated feedback word still has error two. Cancelling the
-second trial's work motion produces an inverse-coordinate phase, which still
-has error two against the forward-coordinate target for r at least three. The
-[four-path diagnostic](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
+The [ordered-matching source](../research/depth/ORDERED_MATCHING_PROBE_SOURCE.md)
+replaces Pfaffian sums by one matching per subset. Its exact complete probe
+has a paid linear-depth baseline; faster joint synthesis remains open.
+The [HRT compiler and feedback trials](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
+retain their paid individual/star words and distinct failed complete actions.
+The [four-path diagnostic](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
 shows that accepted output motion can survive genuine joint interference,
 but supplies no complete lookup source. Its independent-reflection extension
 collapses under exact flatness, including arbitrary invariant-block mixing;
 no approximate rigidity follows. These component and source-family results
 leave the bounds above unchanged.
 The [joint precision rotation](../research/depth/JOINT_PRECISION_ROTATION.md)
-simplifies an isolated one-clean source but retains linear precision depth.
-Exact three-call recovery also admits $`K=W(3P/2-I)`$ for an orthogonal
-projector P, with complete leakage and return accounted for. A paid balanced
-scalar join retains linear depth and superlinear count. These components
-supply no coherently addressed replacement for R96.
+retains linear precision depth and exact recovery for $`K=W(3P/2-I)`$.
+Its [balanced two-path pilot](../research/depth/JOINT_PRECISION_ROTATION.md#two-path-recovery-bypass)
+has direct alternating-word replacements with a square-root-two complete-error
+factor when the branch words are paid. Cheap joint completion alone supplies
+no cheap branches. These components do not replace R96's addressed source.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 

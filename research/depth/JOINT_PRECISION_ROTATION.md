@@ -567,3 +567,112 @@ projector-amplitude recovery with noncommuting W and P. The remaining
 precision task is to produce a scalar or projector-amplitude accepted
 block, or directly its complete recovery, with linear count and
 sublinear precision depth while paying every initialization and return.
+
+<a id="two-path-recovery-bypass"></a>
+
+## 10. Balanced two-path recovery has a direct native bypass
+
+The projector-amplitude option suggests a concrete pilot: interfere two
+native unitaries U and V on the complete target/dirty space, using one
+Hadamard-prepared signal, to obtain $`K=(U+V)/2`$. This pilot has an
+exact simplification. Its recovery can be replaced by either of two
+ordinary native words, with at most a square-root-two error factor and
+no initialized signal. This conclusion also holds for any other unitary
+completion Q with that same accepted block.
+
+Set $`A=-UV^\dagger U`$ and $`B=-VU^\dagger V`$, retaining both
+literal minus signs. For an arbitrary complete unitary target W and
+$`E=FJ-JW`$, the full-error identity is
+
+```math
+E^\dagger E
+=\frac12\left[(A-W)^\dagger(A-W)+(B-W)^\dagger(B-W)\right].
+```
+
+In particular, if the complete recovered error is at most epsilon, then
+
+```math
+\|A-W\|,\ \|B-W\|\le\sqrt2\,\epsilon.
+```
+
+These are full operator bounds, including every dirty input and reference;
+neither branch is assumed to return work before the argument. To verify
+the identity, put $`R=U^\dagger V`$. Direct multiplication gives
+
+```math
+3K-4KK^\dagger K
+=-\frac12U(R^\dagger+R^2)=\frac{A+B}{2}.
+```
+
+For every unitary completion, isometry of FJ and JW gives
+
+```math
+E^\dagger E=2I-W^\dagger(3K-4KK^\dagger K)
+-(3K-4KK^\dagger K)^\dagger W,
+```
+
+which proves the claim.
+For the canonical source
+$`Q=H_a\,\mathrm{diag}(U,V)\,H_a`$, there is also the literal identity
+
+```math
+F=H_a\,\mathrm{diag}(A,B)\,H_a.
+```
+
+Thus its rejected block is (A-B)/2. Discarding that block would lose the
+condition which makes both direct words accurate. The factor square root
+of two is sharp: take U=I, V=T and W=-T-dagger on one qubit. Then A=W,
+whereas B=-T-squared differs from W, and the error identity is exactly
+half the squared B error. All phases in this witness are literal.
+
+Exact recovery occurs precisely when A=B=W. Equivalently,
+
+```math
+R^3=I,\qquad W=-UR^\dagger,
+\qquad P=I-\frac{I+R+R^2}{3},
+\qquad K=W\left(\frac32P-I\right).
+```
+
+Here P is the spectral projector onto the two nontrivial cube-root
+eigenspaces of R. This provides genuine noncommuting W/P examples, but
+does not synthesize W for free: the direct word already implements it.
+For example, let R be the order-three two-CNOT permutation on target t
+and dirty wire d, choose the literal $`W=H_tT_tH_t`$, and put
+$`U=-WR`$, $`V=-WR^2`$. The associated P does not commute with W.
+The canonical Q has an explicit native implementation: apply R,
+signal-controlled R, and -W between the signal Hadamards. The two
+controlled CNOTs are two seven-T Toffolis. This implementation has
+15 T gates, and its three-call recovery has 45; either bypass word has
+three before further simplification. This is a bounded demonstration of
+the reduction, not a new arbitrary-angle family.
+
+More generally, let $`(t_U,d_U,g_U)`$ and $`(t_V,d_V,g_V)`$ bound the
+T count, T-depth and elementary Clifford count of the literal branches
+and their actual inverses. The two alternatives have simultaneous bounds
+
+```math
+\begin{array}{c|ccc}
+ &T&D_T&G\\ \hline
+A&2t_U+t_V&2d_U+d_V&2g_U+g_V+O(1)\\
+B&t_U+2t_V&d_U+2d_V&g_U+2g_V+O(1).
+\end{array}
+```
+
+Choose one complete row according to the desired resource tradeoff; minima
+from different rows are not a simultaneous ledger. The branches use the
+same physical target/dirty space, their actual inverses reuse it, and the
+signal is absent. The literal -I costs zero T gates and at most twelve
+H/S Cliffords via $`XZXZ=-I`$, with $`X=HS^2H`$ and $`Z=S^2`$.
+Requesting complete recovered error $`2^{-L}/\sqrt2`$ is sufficient for direct error
+$`2^{-L}`$; one additional integer accuracy bit suffices.
+
+This reduces the pilot built from separately paid branches to direct
+alternating-word synthesis. A cheap joint Q does not by itself supply
+cheap independent branch words; the resource comparison assumes those
+words are available. The result does not exclude such a joint source,
+a joint synthesis of the alternating word, unequal or additional paths,
+other signal phases, or accepted blocks without this two-unitary form.
+R96 and the isolated general-angle bound above are unchanged.
+The [three exact fixtures](../../tests/test_two_path_precision_bypass.py)
+check all native columns and actual inverses, a noncommuting W/P source,
+the completion-independent error identity, and its sharp leakage witness.
