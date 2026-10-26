@@ -8,8 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
-PREVIOUS_HOPF_QBP_MAIN = "a9885317cf998a7df87ca07ba86e3bd4f0f419ef"
-CURRENT_HOPF_QBP_MAIN = "99e5ee5fc77004f662462e5d088e2a583d032f6a"
+PREVIOUS_HOPF_QBP_MAIN = "99e5ee5fc77004f662462e5d088e2a583d032f6a"
+CURRENT_HOPF_QBP_MAIN = "bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b"
 
 
 class ProvenanceTests(unittest.TestCase):
@@ -60,37 +60,63 @@ class ProvenanceTests(unittest.TestCase):
             CURRENT_HOPF_QBP_MAIN,
         )
         self.assertEqual(reconciliation["previous_main_commit"], PREVIOUS_HOPF_QBP_MAIN)
-        self.assertEqual(reconciliation["commits_reviewed"], 1)
-        self.assertEqual(len(reconciliation["changed_upstream_paths"]), 7)
-        self.assertTrue(all(
-            path.endswith(".md") for path in reconciliation["changed_upstream_paths"]
-        ))
+        self.assertEqual(reconciliation["commits_reviewed"], 3)
+        paths = reconciliation["changed_upstream_paths"]
+        self.assertEqual(len(paths), 41)
+        self.assertEqual(len(set(paths)), len(paths))
+        self.assertEqual(
+            {path for path in paths if path.endswith(".py")},
+            {
+                "qbp_optimized_resource_ledger.py",
+                "qbp_resource_ledger.py",
+                "qbp_validation/tests/test_documentation.py",
+            },
+        )
+        self.assertEqual(sum(path.startswith("science/") for path in paths), 12)
+        for path in (
+            "docs/CLAIM_SUPPORT.md",
+            "review/README.md",
+            "verification/README.md",
+            "science/proofs-and-compilation.md",
+        ):
+            self.assertIn(path, paths)
         joined = " ".join(reconciliation["relevant_changes"]).lower()
         self.assertIn("raw coordinatewise", joined)
         self.assertIn("natural-gradient", joined)
         self.assertIn("metric", joined)
         self.assertIn("controlled-observable", joined)
-        self.assertIn("documentation-only", joined)
+        self.assertIn("scope labels/docstrings", joined)
+        self.assertIn("scientific implementation", joined)
+        self.assertIn("appendix b.10", joined)
+        self.assertIn("initialized clean flag returned to zero", joined)
+        self.assertIn("complete inverse-frame contract", joined)
+        self.assertIn("literal-phase contract", joined)
 
     def test_previous_reconciliation_and_file_lineage_are_retained(self) -> None:
         history = self.payload["upstream_reconciliation_history"]
         self.assertTrue(history)
         previous = history[-1]
         self.assertEqual(previous["reviewed_main_commit"], PREVIOUS_HOPF_QBP_MAIN)
-        self.assertEqual(previous["commits_reviewed"], 5)
+        self.assertEqual(previous["commits_reviewed"], 1)
         self.assertEqual(
             previous["previous_main_commit"],
-            "faddc98da5c1fdd07ce42df2b04ca7b6ce3e2582",
+            "a9885317cf998a7df87ca07ba86e3bd4f0f419ef",
         )
-        self.assertEqual(len(history), 2)
+        self.assertEqual(len(history), 3)
         self.assertEqual(history[0]["commits_reviewed"], 10)
+        self.assertEqual(history[1]["commits_reviewed"], 5)
         self.assertEqual(
             history[0]["previous_main_commit"],
             "9957815767ef3649275960fd5e860fb91725ff26",
         )
         self.assertEqual(
-            history[0]["reviewed_main_commit"], previous["previous_main_commit"],
+            history[0]["reviewed_main_commit"],
+            "faddc98da5c1fdd07ce42df2b04ca7b6ce3e2582",
         )
+        for earlier, later in zip(history, history[1:]):
+            self.assertEqual(
+                earlier["reviewed_main_commit"], later["previous_main_commit"],
+            )
         self.assertEqual(
             previous["reviewed_main_commit"],
             self.payload["upstream_reconciliation"]["previous_main_commit"],

@@ -82,7 +82,7 @@ contained in `Hopf-QBP`.
 The tracked `Hopf-QBP/main` baseline is
 
 ```text
-99e5ee5fc77004f662462e5d088e2a583d032f6a
+bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b
 ```
 
 and is reconciled in [`SYNC.md`](../../SYNC.md) and
@@ -743,11 +743,15 @@ Möttönen and coauthors introduced the uniformly controlled rotation language
 for state preparation.  Bergholm and coauthors developed the corresponding
 general uniformly controlled one-qubit gates.
 
-The earlier Hopf-QBP compiler follows this route: compute the shared lower-
-suffix-zero predicate into one clean flag, then apply a smaller multiplexed
+The earlier Hopf-QBP compiler in
+[Appendix B.10](https://github.com/GoGoKo699/Hopf-QBP/blob/bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b/science/proofs-and-compilation.md#A2.SS10)
+follows this route: compute the shared lower-suffix-zero predicate into one
+initialized clean flag, then apply a smaller multiplexed
 rotation selected by the prefix and flag.  This already shows that the complete
 Hopf frame can be compiled with linear asymptotic gate count and constant
-additional workspace.
+additional workspace, with the flag returned to zero. This is exact
+multiplexed recompilation outside the direct-angle compiler setting; it does
+not provide an arbitrary dirty-flag implementation or a native T-depth bound.
 
 At strict zero workspace, inserting identity blocks into one full-width
 multiplexor is not enough.  Although the logical block table is sparse, the

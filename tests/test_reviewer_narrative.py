@@ -420,7 +420,7 @@ class ReviewerNarrativeTests(unittest.TestCase):
         )
         self.assertEqual(
             current["tracked_commit"],
-            "99e5ee5fc77004f662462e5d088e2a583d032f6a",
+            "bcc7333c94cd6bd5f1c4abeb559594b7777b6b0b",
         )
 
         literature = json.loads(
