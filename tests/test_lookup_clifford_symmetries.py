@@ -84,6 +84,37 @@ def _sandwich_lookup(matrix, p):
              for column, entry in enumerate(entries)] for row, entries in enumerate(matrix)]
 
 
+def _polynomial_product(left, right):
+    result = set()
+    for a in left:
+        for b in right:
+            monomial = a | b  # Boolean squares reduce before collecting.
+            if monomial in result:
+                result.remove(monomial)
+            else:
+                result.add(monomial)
+    return result
+
+
+def _polynomial_substitute(polynomial, forms):
+    result = set()
+    for monomial in polynomial:
+        term = {0}
+        for wire, form in enumerate(forms):
+            if monomial >> wire & 1:
+                term = _polynomial_product(term, form)
+        result.symmetric_difference_update(term)
+    return result
+
+
+def _lookup_polynomial(p):
+    return {(1 << (p + subset)) | subset for subset in range(1 << p)}
+
+
+def _polynomial_degree(polynomial):
+    return max((monomial.bit_count() for monomial in polynomial), default=-1)
+
+
 class LookupCliffordSymmetriesTests(unittest.TestCase):
     def test_complete_affine_derivative_space_and_small_address_exceptions(self):
         # Includes one fully arbitrary helper. Exhaustive p=2 checks every
@@ -157,6 +188,85 @@ class LookupCliffordSymmetriesTests(unittest.TestCase):
                 low = _low_word(p)
                 self.assertEqual(_sandwich_lookup(r, p),
                                  native_columns(width, low + [('H', wire)] + low))
+
+    def test_top_symbol_alone_misses_the_two_address_exception(self):
+        # The address/top-coefficient swap preserves the highest exterior
+        # form for every p. The next derivative layer detects it only when
+        # that layer survives a quadratic defect (p at least three).
+        for p in (2, 3, 4):
+            width = p + (1 << p) + 1
+            top_wire = p + (1 << p) - 1
+            forms = [{1 << wire} for wire in range(width)]
+            forms[0], forms[top_wire] = forms[top_wire], forms[0]
+            polynomial = _lookup_polynomial(p)
+            top_symbol = {((1 << p) - 1) | (1 << top_wire)}
+            self.assertEqual(_polynomial_substitute(top_symbol, forms), top_symbol)
+            defect = polynomial ^ _polynomial_substitute(polynomial, forms)
+            self.assertEqual(_polynomial_degree(defect), p)
+            self.assertEqual(_polynomial_degree(defect) <= 2, p == 2)
+            address_mask = (1 << p) - 1
+            derivative_symbols = [{address_mask ^ (1 << i)} for i in range(p)]
+            # These are exact derivatives by c_[p]\{i}, before substitution.
+            for i, symbol in enumerate(derivative_symbols):
+                direction_wire = p + (address_mask ^ (1 << i))
+                shifted = [{1 << wire} for wire in range(width)]
+                shifted[direction_wire].add(0)
+                self.assertEqual(polynomial ^ _polynomial_substitute(polynomial, shifted),
+                                 symbol)
+            essential_span = 0
+            moved_span = 0
+            for symbol in derivative_symbols:
+                essential_span |= next(iter(symbol))
+                moved = _polynomial_substitute(symbol, forms)
+                self.assertEqual(len(moved), 1)
+                moved_span |= next(iter(moved))
+            self.assertEqual(essential_span, address_mask)
+            self.assertEqual(moved_span, (address_mask ^ 1) | (1 << top_wire))
+            self.assertNotEqual(moved_span, address_mask)
+
+    def test_affine_address_relabeling_and_soft_translations_remain_allowed(self):
+        for p in (3, 4):
+            width = p + (1 << p) + 1
+            # Address involution x1 -> x1+x0+1, with its induced dual
+            # coefficient transformation. This is an actual affine map,
+            # including the Boolean reductions x0*x0=x0.
+            address_forms = [{1 << i} for i in range(p)]
+            address_forms[1] = {1 << 1, 1 << 0, 0}
+            forms = [{1 << wire} for wire in range(width)]
+            forms[:p] = address_forms
+            for subset in range(1 << p):
+                forms[p + subset] = set()
+            for subset in range(1 << p):
+                transformed = _polynomial_substitute({subset}, address_forms)
+                for target in transformed:
+                    forms[p + target].add(1 << (p + subset))
+            # Certify actual invertibility of the complete affine map.
+            for wire in range(width):
+                self.assertEqual(_polynomial_substitute(forms[wire], forms), {1 << wire})
+            polynomial = _lookup_polynomial(p)
+            self.assertEqual(_polynomial_substitute(polynomial, forms), polynomial)
+            # Its hard outputs have no soft translation dependence.
+            hard = ((1 << p) - 1) | sum(1 << (p + subset)
+                                       for subset in range(1 << p)
+                                       if subset.bit_count() >= 2)
+            for wire, form in enumerate(forms):
+                if hard >> wire & 1:
+                    self.assertTrue(all(not monomial & ~hard for monomial in form))
+            for wire in range(p):
+                self.assertTrue(all(not monomial & ~((1 << p) - 1)
+                                    for monomial in forms[wire]))
+            # Moving a soft translation into the address violates the
+            # characteristic hard algebra, even with an arbitrary helper.
+            leaked = [{1 << wire} for wire in range(width)]
+            leaked[0].add(1 << p)  # c_empty -> address x0
+            defect = polynomial ^ _polynomial_substitute(polynomial, leaked)
+            self.assertGreater(_polynomial_degree(defect), 2)
+            # A constant pair-coefficient shift, in contrast, has exactly
+            # a quadratic defect and is an allowed Clifford symmetry.
+            pair_shift = [{1 << wire} for wire in range(width)]
+            pair_shift[p + 3].add(0)
+            self.assertEqual(polynomial ^ _polynomial_substitute(polynomial, pair_shift),
+                             {3})
 
     def test_ordinary_bank_affine_masks_match_empty_and_singleton_coefficients(self):
         p, m = 3, 8

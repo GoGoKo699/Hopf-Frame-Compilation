@@ -96,8 +96,8 @@ Arbitrary late address mixing is allowed in this search.
 The [joint address/helper trial](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md)
 creates the quartic sign but needs a paid carrier repair; no final Clifford alone suffices.
 The [complete Clifford-symmetry normal form](research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md)
-separates allowed Fourier mixing from affine permutations whose lookup phase
-defect is quadratic. It permits genuine address/bank movement and is exact only.
+forces address-algebra preservation at p at least three whenever a Clifford's
+lookup conjugate is also Clifford. Its two-bit exception and exact scope are explicit.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.

@@ -5,11 +5,15 @@
 [Complete Clifford correlation](CLIFFORD_LOOKUP_FIXED_SPACE.md)
 
 There is an exact normal form for every Clifford R whose lookup conjugate
-QRQ is also Clifford. It allows arbitrary address, coefficient-bank and
-helper mixing. Every such R factors into a Clifford fixing a specified
+QRQ is also Clifford. The characterization imposes no prior restriction on address, coefficient-bank
+or helper mixing. Every such R factors into a Clifford fixing a specified
 computational algebra and a monomial Clifford satisfying an explicit
 Boolean quadratic condition. The first factor has no remaining restriction;
 all nontrivial compatibility is in that affine permutation condition.
+For p at least three, every such Clifford normalizes the address-Z algebra.
+It may affinely relabel addresses, but cannot mix their linear forms with
+coefficient or helper coordinates. The two-address exception admits genuine
+address/high-coefficient swaps.
 
 This characterizes an intersection of two Clifford groups. It is not a
 classification of all three-block sources, and it supplies no approximation
@@ -201,7 +205,102 @@ $`(-1)^{f(\pi(v))+f(v)}`$. A diagonal sign is Clifford exactly when
 its Boolean exponent has degree at most two. This proves (1) in both
 directions, without constraining address motion to be absent in M.
 
-## 5. Genuine address mixing remains in the monomial factor
+<a id="characteristic-address-algebra"></a>
+
+## 5. The hard algebra is characteristic, and so is the address algebra
+
+First, every R in $`\mathcal G_Q`$ normalizes the entire hard-Z algebra.
+Write the affine permutation in (1) as $`\pi(v)=Bv+b`$. Adding a Boolean
+quadratic to f does not change $`\mathcal L_f`$: every derivative of that
+quadratic is affine. Affine substitution gives
+
+```math
+\mathcal L_{f\circ\pi}=B^{-1}\mathcal L_f.
+```
+
+Thus (1) forces $`B\mathcal L_f=\mathcal L_f`$. By (4), B preserves
+the soft translation space. Every hard output of pi consequently depends
+only on hard inputs. M normalizes the hard-Z algebra, and S fixes it
+pointwise. In particular, the remaining affine condition can equivalently
+be written
+
+```math
+\deg\bigl(h(\alpha(z))+h(z)\bigr)\le2,
+\qquad h(z)=\sum_{|S|\ge2}c_Sx^S,                      \qquad(7)
+```
+
+where alpha is pi's induced invertible affine map on the hard coordinates.
+The omitted low factor is quadratic before and after affine substitution.
+This is algebra normalization, not pointwise fixation of every hard value.
+
+**Address-algebra theorem.** If $`p\ge3`$, every R in $`\mathcal G_Q`$
+normalizes the address-Z algebra itself. Thus its conjugates of address
+Z generators are signed products of address Z generators, with no bank or
+helper factors. The induced address permutation may be any affine map
+that meets the remaining condition (1); it need not be the identity.
+
+Here is an invariant proof that keeps Boolean degree reductions explicit.
+Let V be the vector space of linear coordinate forms on the full physical
+register. The associated graded algebra of the Boolean-degree filtration
+is the commutative square-zero, or characteristic-two exterior, algebra
+on V. Indeed $`v_i^2=v_i`$ lowers degree, so a square vanishes in the
+leading symbol. An invertible affine substitution acts on degree k symbols
+by the exterior power of its linear pullback; affine offsets affect only
+lower degree.
+
+Put $`d=c_{[p]}`$ and $`\mathcal A=\langle x_1,\ldots,x_p\rangle`$.
+The unique degree-(p+1) symbol of f is
+
+```math
+\omega=d\wedge x_1\wedge\cdots\wedge x_p,
+\qquad \mathcal U=\langle d,x_1,\ldots,x_p\rangle.      \qquad(8)
+```
+
+Because the defect in (1) is quadratic, pi preserves omega and therefore
+its essential linear span $`\mathcal U`$. For an exterior form, the
+essential span is the span of all contractions leaving one linear form;
+for a collection, take the sum of those spans. This construction is
+equivariant under invertible linear maps. In particular it recovers
+$`\mathcal U`$ from (8).
+
+Let $`\mathcal E=\mathrm{ann}(\mathcal U)`$ be the translation subspace
+on which all address forms and d vanish. It is B-invariant. Taking the
+finite difference **before** affine substitution gives the exact identity
+
+```math
+\Delta_a f=\sum_{S\subsetneq[p]}(a_c)_Sx^S,
+\qquad a\in\mathcal E.                                \qquad(9)
+```
+
+The top term has already disappeared. These differences have degree at
+most p-1, and their degree-(p-1) symbols span exactly
+
+```math
+\mathcal W=\Lambda^{p-1}\mathcal A.
+```
+
+Writing $`q=f\circ\pi+f`$, finite differences obey
+
+```math
+(\Delta_{Ba}f)\circ\pi=\Delta_a f+\Delta_a q.
+```
+
+The last term is affine. For $`p\ge3`$, the degree-(p-1) layer is of
+degree at least two, so it is unaffected by that error. Since B permutes
+$`\mathcal E`$, its linear pullback preserves $`\mathcal W`$. The
+essential span of $`\Lambda^{p-1}\mathcal A`$ is $`\mathcal A`$:
+the wedges omitting one address form already have essential spans whose
+sum is all of $`\mathcal A`$. Therefore pi preserves the address linear
+forms. Its affine offsets supply only the signed Z factors. S fixes all
+address values, completing the proof for R.
+
+At p=3 the preserved derivative layer is quadratic and $`\Delta_a q`$
+is only affine, so the threshold includes p=3. At p=2 that layer is
+linear and can change under the defect; the conclusion is false, as the
+following exact example shows. No approximate algebra-normalization claim
+is inferred from this degree-symbol argument.
+
+## 6. The two-address exception and genuine nonmonomial symmetries
 
 At p=2, the high factor is the cubic sign
 $`(-1)^{c_{12}x_1x_2}`$. Swapping $`x_1`$ and $`c_{12}`$ preserves
@@ -218,7 +317,7 @@ nonmonomial helper/bank fibers through S. Its lookup conjugate remains
 Clifford on every physical input. Conversely, a lone Hadamard on an
 address or a coefficient of degree at least two violates (3)--(4).
 
-## 6. A specific necessary screen inside the peeling search
+## 7. A specific necessary screen inside the peeling search
 
 Suppose the [two-outer-conjugation search](CLIFFORD_INVOLUTION_SOURCE.md#two-outer-conjugations)
 succeeds exactly, so
@@ -232,19 +331,21 @@ Z type, with its literal sign retained. Both
 
 ```math
 R=A P A^\dagger,\qquad
-Q R Q=A(KPK^\dagger)A^\dagger                         \qquad(7)
+Q R Q=A(KPK^\dagger)A^\dagger                         \qquad(10)
 ```
 
 are Cliffords: $`D_2`$ commutes each input probe, $`C_2`$ maps it to
 a Pauli, and the third-level $`D_3`$ maps that Pauli to a Clifford.
-Thus every such R must obey (1)--(4). This supplies a concrete necessary
-condition on proposed outer factors. If K is monomial, it applies to the
+Thus every such R must obey (1)--(4), normalize the hard-Z algebra, and,
+for p at least three, normalize the address-Z algebra. This supplies a
+concrete necessary condition on proposed outer factors. If K is monomial, it applies to the
 whole computational Z algebra. For a genuinely nonmonomial K, the
 intersection of that algebra with its K image may be smaller or even
 trivial. The argument does not replace non-Clifford intermediate images
 by Cliffords or exclude arbitrary three-block sources. All outer phase counts,
 Clifford gates, arbitrary work, actual inverses and complete return must
 still be paid. The [exact fixtures](../../tests/test_lookup_clifford_symmetries.py)
-check the affine-derivative space, a complete genuinely mixed Clifford
-example, the literal low/high conjugation, and excluded support directions.
+check the affine-derivative space, a complete genuinely mixed two-address
+Clifford example, the literal low/high conjugation, the characteristic
+degree symbols and their threshold, and excluded support directions.
 No general frame frontier changes here.

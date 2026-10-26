@@ -270,7 +270,7 @@ The [four-band Clifford source](../research/depth/CLIFFORD_INVOLUTION_SOURCE.md)
 reduces three-block discovery to two outer conjugations making the complete
 peeled target Clifford. It pays the first block, not those missing factors.
 The [exact Clifford symmetries](../research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md)
-have a full normal form, while [complete-probe support](../research/depth/NATIVE_INDICATOR_SHARING.md#complete-probe-support-count)
+preserve the address algebra for p at least three; [complete-probe support](../research/depth/NATIVE_INDICATOR_SHARING.md#complete-probe-support-count)
 forces linear source T count. Neither gives growing native depth.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
