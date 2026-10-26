@@ -267,13 +267,20 @@ Its [polarization audit](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-
 pays the shared multiplicative derivative in 32 bands, but the desired and
 cheap transports differ by the unpaid coherent zeta homomorphism. Sharp
 direct and central half-Gram query bounds also allow orbit-diagonal phases
-and controlled work; joint native synthesis and the weaker root-probe interface remain open.
+and controlled work. The [weaker pair-gauge source](../research/depth/COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
+now realizes the required root image through $`C Q_K C`$ plus the paid linear
+factor; arbitrary auxiliary motion cancels under its actual inverse. Its joint
+native synthesis remains unpaid. A quadratic truncation and its partial-Hadamard
+dressings fail; the full encoded-Hadamard affine correction is unnecessary
+for this weaker source.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
 those proof homes; they do not strengthen the general frontier above.
 The [local HRT compiler and feedback trial](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
 pay individual encoded Hadamards in at most sixteen T bands without helpers.
+Joint fusion pays a pair star in twenty-four bands with returned dirty helpers;
+disjoint pairs obstruct that particular full-space regrouping.
 Their complete calibrated feedback word still has error two. Cancelling the
 second trial's work motion produces an inverse-coordinate phase, which still
 has error two against the forward-coordinate target for r at least three. The
@@ -287,7 +294,11 @@ The [joint precision rotation](../research/depth/JOINT_PRECISION_ROTATION.md)
 reduces an isolated one-clean source to three recovery calls and omits an
 exterior dirty basis change. Its complete error is below $`7\,2^{-q}`$ and
 its native T-depth is at most $`12q+96`$; it retains linear precision depth
-and supplies no coherently addressed replacement for R96.
+and supplies no coherently addressed replacement for R96. Exact three-call
+recovery more generally admits $`K=W(3P/2-I)`$ with an arbitrary orthogonal
+projector P, including its complete leakage guarantee. A paid balanced scalar
+join still has linear depth and superlinear count. Neither result changes
+the general frontier.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 

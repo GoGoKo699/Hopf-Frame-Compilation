@@ -11,13 +11,13 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Baseline: [PR #252](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/252),
-`c61a2a8e5fd42bef18f9f40fcc625b8eb0ecc239`, verified 26 October 2026.
-Its reviewed tree passed 1,815 tests, the full local gate and all pre-merge CI.
+Baseline: [PR #253](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/253),
+`a1ea2ea46c2fffd00a1f70b6dce73df6106b80e2`, verified 26 October 2026.
+Its reviewed tree passed 1,835 tests, the full local gate and all pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
-The latest results pay native phase components and identify limits of source classes.
+The latest results simplify the required probe and broaden exact recovery.
 They supply neither a faster complete indicator nor a stronger general frame bound.
 Start with these four routes:
 
@@ -92,8 +92,10 @@ These are reusable components; neither completes lookup.
 
 The [local HRT gate compiler](research/depth/COHERENT_FEEDBACK_SOURCES.md)
 pays any one-coordinate encoded native gate through two exact quadratic shears.
-Encoded Hadamards need at most sixteen T layers and no helpers; top and
-singleton coordinates need eight. No parallel whole-basis schedule follows.
+Individual encoded Hadamards need at most sixteen T layers and no helpers.
+[Intersecting pair families](research/depth/COHERENT_FEEDBACK_SOURCES.md#pair-star-hadamard-fusion)
+admit joint fusion; a star costs at most twenty-four bands with returned dirty
+helpers. Disjoint pairs obstruct the same regrouping. No whole-basis schedule follows.
 The feedback trials have error-two witnesses. Cancelling the second word's
 work motion gives a complete inverse-coordinate phase, while the target
 requires the forward coordinate. The repaired word still fails for r at least
@@ -102,8 +104,10 @@ three; fixed-key Clifford bank repairs have a separate constant error floor.
 The [joint precision primitive](research/depth/JOINT_PRECISION_ROTATION.md)
 uses a certified Clifford chart, three recovery calls and an omitted exterior
 dirty basis change. It simplifies an isolated complete rotation, including
-literal phase and return. Its precision depth remains linear; the programmed
-masked-tail interaction is the first growing word still requiring synthesis.
+literal phase and return. Exact recovery also permits an accepted block
+$`K=W(3P/2-I)`$ for any orthogonal projector P, without requiring P to commute
+with W. A paid balanced scalar join still has linear depth and superlinear
+count. The complete programmed interaction remains to be synthesized.
 
 The [two-block theorem](research/depth/CLIFFORD_INTERLEAVED_LOOKUP.md) retains
 its $`\sin(\pi/8)`$ floor with arbitrary Clifford address/work mixing.
@@ -121,33 +125,29 @@ $`3m-2`$, plus one reusable private pool; a direct top-phase source needs
 $`2m-2`$. Its proof also records the Choi-completion and readout failures.
 The cubic bent dual remains a dense kernel, not a complete diagonal source.
 
-[Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md) still pays
-$`I+N_x`$ in sixteen bands. An added-generator embedding now reduces its
-remaining factor to a fixed partial character basis on $`\binom p2`$ commuting
-affine Clifford observables, with arbitrary residual fibers and a paid cubic
-middle. The basis remains unpaid. The [clique polarization audit](research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
-finds that the desired transport and the paid linear factor have the same
-cheap multiplicative derivative; their difference is the unpaid coherent zeta
-homomorphism. Sharp direct and accepted-Gram query bounds constrain integration
-with specified interlayers; allowing orbit-dependent phases retains the bound.
-These query bounds and the basis's hierarchy level do not bound native depth.
+[Central transport](research/depth/COHERENT_CENTRAL_TRANSPORT.md#weak-pair-gauge-source)
+now has a smaller complete root-probe source. With pair word s, the fixed
+involution $`C(y)=g_s y`$ gives $`C Q_K C`$ whose carrier action is exactly
+multiplication by $`g_K`$. Its remaining motion stays in auxiliary fibers and
+cancels under the actual inverse. The paid sixteen-band linear factor completes
+the source. Full encoded Hadamards need an additional affine correction;
+that correction is irrelevant to this weaker source. The conditional ledger
+pays all helpers and bounds the complete derivative error.
 
-The [four-path study](research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
-retains a native half-projector diagnostic with accepted output motion and no
-cancelling pair. Its calibrated and independent-reflection limits have their
-own hypotheses; general multipath lookup and approximate rigidity remain open.
+A sixteen-band quadratic truncation and its tested partial-Hadamard dressings
+fail the required probe. These failures constrain those explicit words.
+[Polarization query bounds](research/depth/COHERENT_CENTRAL_TRANSPORT.md#clique-polarization-integration)
+and the character basis's hierarchy level do not bound unrestricted native depth.
 
-**Next question:** can the clique-dependent central conjugation, or only its
-required root-probe image, be synthesized jointly with nonmonomial native
-bank dynamics? Cheap polarization alone leaves the required normalization
-unpaid. General multipath acceptance and joint residual-probe synthesis remain
-alternatives; the repaired feedback word is stopped at its forward/inverse
-coordinate mismatch. In parallel, test unrestricted synthesis of the complete
-masked-tail precision interaction, preserving its scalar block and full return.
-Any success needs a fresh complete-circuit ledger, including the transfer's
-log-log term and every remaining precision-sized word.
-All source interfaces are sufficient routes, not necessary representations of
-the unrestricted compiler.
+**Next question:** synthesize the joint $`C Q_{K(x)} C`$ word, possibly together
+with its linear factor, at sublogarithmic address depth and qualifying count
+and width. Genuinely different nonmonomial bank dynamics remain eligible;
+separately compiling C is only one sufficient route. In parallel, seek a native
+scalar or projector-amplitude precision block, or its complete recovery,
+with sublinear precision depth and linear count. Any success needs a fresh
+complete-circuit ledger, including the transfer's log-log term and every
+remaining precision-sized word. These interfaces are sufficient routes,
+not necessary representations of the unrestricted compiler.
 
 ## Stopped routes, reopening conditions and superseded instructions
 
