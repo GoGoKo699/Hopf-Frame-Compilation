@@ -11,16 +11,16 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #258](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/258),
-`f635f5733259ddb280e5b3d3fd45a4182e8be6e7`, 26 October 2026.
-Its reviewed tree passed 1,907 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #259](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/259),
+`aa9c7688af9edee297860ffd394c1b0cf153e127`, 26 October 2026.
+Its reviewed tree passed 1,931 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
 Use the [research catalogue](research/README.md) to find its proof dependencies.
-The latest interleaved-source results are integrated; none improves R96.
+The latest source and decoder screens are integrated; none improves R96.
 
 <a id="current-depth-frontier"></a>
 
@@ -103,16 +103,31 @@ constructs the whole small family with controlled Hadamards and a paid fixed
 Clifford decoder. Its complete native source and actual inverse provide a
 benchmark, not an all-size depth improvement.
 
-**Next question:** construct the complete interleaved tree family from a
-genuinely non-Clifford starting reflection using multiple noncommuting
-address queries and a paid fixed decoder, or jointly synthesize a native
-word outside the bounded-lift grammar. Check its entire commutation pattern
-before decoder synthesis. A fixed dressing that cancels through every query
-does not change the mechanism; serial address controls retain the old cost.
+The [non-Clifford seed-spread bound](research/depth/NONCLIFFORD_SEED_SPREAD.md)
+requires an exponentially broad Pauli-label span for bounded affine-query
+count, even at constant operator error and with an arbitrary fixed decoder.
+A paid two-band tensor seed supplies that spread, but its plain local
+inverse decoder has error at least one half for the tree family. A localized
+nonlinear patch or more elaborate fixed Clifford spreading does not meet
+the requirement.
 For a third-level-dressed Clifford seed, the
 [decoder condition](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#nonclifford-seed-decoder-condition)
 also requires every selected target pullback to be non-Clifford below
 error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
+
+**Next question:** synthesize the fixed decoder in the
+[field-shear construction](research/depth/FIELD_SHEAR_INTERTWINER.md).
+Its fully paid affine query and the original commuting lookup permutation
+have identical complete group characters at every size, so one simultaneous
+unitary intertwiner exists. The two-bit decoder now has an exact native
+word and actual inverse. Its uniform all-size implementation is unpaid and
+must genuinely mix basis states beyond a fixed Clifford change of coordinates.
+This is an algebraically compatible construction with a finite native
+benchmark, not a new depth theorem. Try extending its Bell-pair and
+Fourier recoupling before generic spectral synthesis.
+The alternative remains a jointly designed extensive non-Clifford seed and
+nonlocal decoder for the interleaved tree family. Serial address controls
+or a generic spectral decomposition retain an unpaid or excessive cost.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
