@@ -269,13 +269,16 @@ gauges admit more freedom, with a scoped low-row degree requirement.
 The [four-band Clifford source](../research/depth/CLIFFORD_INVOLUTION_SOURCE.md)
 reduces three-block discovery to two outer conjugations making the complete
 peeled target Clifford. It pays the first block, not those missing factors.
+The [Clifford symmetries](../research/depth/LOOKUP_CLIFFORD_SYMMETRIES.md) preserve
+the address algebra for p at least three, with uniform $`1/\sqrt2`$ rounding; [complete-probe support](../research/depth/NATIVE_INDICATOR_SHARING.md#complete-probe-support-count)
+forces linear source T count. Neither gives growing native depth.
 The [bank-mixing screens](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md),
 [Bell-envelope limits](../research/depth/CORANK_FOURIER_BELL_SOURCE.md#bell-acceptance-charge-transfer),
 and particular failed native words keep their individual hypotheses in
 those proof homes; they do not strengthen the general frontier above.
 The [ordered-matching source](../research/depth/ORDERED_MATCHING_PROBE_SOURCE.md)
-replaces Pfaffian sums by one matching per subset. Its exact complete probe
-has a paid linear-depth baseline; faster joint synthesis remains open.
+replaces Pfaffian sums by one matching per subset. Its minimal-tree specialization
+has $`6m-5`$ T gates and no private work, but retains linear depth.
 The [HRT compiler and feedback trials](../research/depth/COHERENT_FEEDBACK_SOURCES.md)
 retain their paid individual/star words and distinct failed complete actions.
 The [four-path diagnostic](../research/depth/COUPLED_ORDER_GRAM_SOURCE.md#four-path-accepted-fibers)
@@ -286,10 +289,9 @@ no approximate rigidity follows. These component and source-family results
 leave the bounds above unchanged.
 The [joint precision rotation](../research/depth/JOINT_PRECISION_ROTATION.md)
 retains linear precision depth and exact recovery for $`K=W(3P/2-I)`$.
-Its [balanced two-path pilot](../research/depth/JOINT_PRECISION_ROTATION.md#two-path-recovery-bypass)
-has direct alternating-word replacements with a square-root-two complete-error
-factor when the branch words are paid. Cheap joint completion alone supplies
-no cheap branches. These components do not replace R96's addressed source.
+Its balanced and 3:1 two-path pilots admit direct replacements when branch
+words are separately paid. A Clifford actual-signal image forces unit acceptance
+below a fixed complete-error threshold. These do not replace R96's addressed source.
 The [working checkpoint](../WORKSPACE.md) selects the next complete-operator
 question without turning a component or representation limit into a new premise.
 
