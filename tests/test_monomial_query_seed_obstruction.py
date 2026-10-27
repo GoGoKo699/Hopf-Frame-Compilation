@@ -124,3 +124,32 @@ class MonomialQuerySeedObstructionTests(unittest.TestCase):
                 self.assertGreater((2 - kappa_squared) / 4, 0)
             else:
                 self.assertEqual(real_part, scale(eye(4), 0))
+
+
+    def test_full_hadamard_field_pilot_has_order_three_obstruction(self):
+        # Chronological CZ, HH, CZ, HH is the literal two-wire V.
+        cz = [('H', 1), ('CX', 0, 1), ('H', 1)]
+        word = cz + [('H', 0), ('H', 1)] + cz + [('H', 0), ('H', 1)]
+        v = native_columns(2, word)
+        self.assertEqual(multiply(multiply(v, v), v), eye(4))
+        self.assertNotEqual(v, eye(4))
+        self.assertEqual(multiply(adjoint(v), v), eye(4))
+        # I+V+V^-1 is three times the +1 spectral projector. This proves
+        # Re(V)>=-I/2 and (V+I)^dagger(V+I)>=I exactly, without numerics.
+        projector_three = add(eye(4), add(v, adjoint(v)))
+        self.assertEqual(projector_three, adjoint(projector_three))
+        self.assertEqual(multiply(projector_three, projector_three),
+                         scale(projector_three, 3))
+        fixed = [CZ, CO, -CO, CZ]
+        image = [sum((v[i][j] * fixed[j] for j in range(4)), CZ)
+                 for i in range(4)]
+        self.assertEqual(image, fixed)
+        # Regrouped two-cell tensor check includes every arbitrary column;
+        # it is a fixture for, not a replacement of, the all-size tensor proof.
+        vv = [[v[i // 4][j // 4] * v[i % 4][j % 4]
+               for j in range(16)] for i in range(16)]
+        self.assertEqual(multiply(multiply(vv, vv), vv), eye(16))
+        fixed_tensor = [a * b for a in fixed for b in fixed]
+        image_tensor = [sum((vv[i][j] * fixed_tensor[j] for j in range(16)), CZ)
+                        for i in range(16)]
+        self.assertEqual(image_tensor, fixed_tensor)

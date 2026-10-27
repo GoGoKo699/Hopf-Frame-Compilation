@@ -170,6 +170,60 @@ copy. Merely adding nonlinear phases to a reversible seed in the
 query eigenbasis cannot do so. A finite nonmonomial word escaping (2)
 is included in the fixtures; escape is not a complete construction.
 
+### The full-Hadamard field seed passes the screen but still fails
+
+A concrete mixing pilot shows why (8) is only necessary. In the field
+query's diagonal coordinates, let $`R=H^{\otimes2k}`$ on its two
+k-qubit banks. For nonzero a the sign
+$`(-1)^{v\cdot M_au}`$ is a nondegenerate quadratic phase, because
+$`M_a`$ is invertible. Its Walsh transform has constant modulus
+$`2^k`$: summing first over v fixes exactly one u for every linear
+character. Consequently every entry of $`B_a=RQ_aR`$ has modulus
+$`2^{-k}`$.
+
+For any nonzero b, Q_b has trace $`2^k`$. Choose a computational
+basis column z with $`Q_b(z)=-1`$. Exactly
+$`(2^{2k}+2^k)/2`$ rows have the opposite Q_b sign. In those rows
+the commutator column is twice the corresponding B_a entry, and
+it vanishes in the other rows. Thus
+
+```math
+\|[RQ_aR,Q_b]\|^2
+ \ge\|[B_a,Q_b]|z\rangle\|^2
+ =2+2^{1-k}>2\qquad(a,b\ne0).                       \qquad(9)
+```
+
+This seed therefore passes every independent-pair condition in (8).
+Nevertheless every complete copy has error at least one half.
+Take the nonzero address $`e_0`$ whose pencil matrix is I. Its diagonal
+query is $`Q_{e_0}=\prod_{j=1}^k\mathrm{CZ}(u_j,v_j)`$. The product
+of the two seed-orbit elements at zero and $`e_0`$ is
+
+```math
+W=R_0R_{e_0}=RQ_{e_0}RQ_{e_0}=V^{\otimes k},
+\qquad
+V=(H\otimes H)\mathrm{CZ}(H\otimes H)\mathrm{CZ},     \qquad(10)
+```
+
+up to regrouping the physical wire pairs. The two factors in V are
+reflections through the complements of $`|--\rangle`$ and
+$`|11\rangle`$, whose overlap has modulus one half. Their product
+has eigenvalues $`1,1,e^{2\pi i/3},e^{-2\pi i/3}`$. Hence
+$`W^3=I`$, and W has a positive-one eigenvector: on each pair
+$`(|01\rangle-|10\rangle)/\sqrt2`$ is fixed by both reflections.
+
+The actual copied product $`A=C(W\otimes I_Y)C^\dagger`$ has only
+cube roots of unity as eigenvalues. The target
+$`W\otimes X_{Y_0}X_{Y_{e_0}}`$ has a negative-one eigenvector.
+On that vector the difference has norm at least one, since every
+singular value of $`A+I`$ is at least one. Two-factor telescoping
+costs at most $`2\eta`$, proving $`\eta\ge1/2`$.
+
+The same argument survives arbitrary identity helpers. It closes this
+specific Clifford mixing pilot at constant error, while leaving
+other nonmonomial seeds open. Strong cross-commutators alone do not
+supply the required complete copy algebra.
+
 ## 4. Exact finite evidence
 
 `tests/test_monomial_query_seed_obstruction.py` checks arbitrary
@@ -177,7 +231,9 @@ non-Hermitian monomial phases, shifted address planes, the physical
 field-query Fourier basis, arbitrary helper mixing in the seed, and
 a nonmonomial escape example. Rational and native quarter-angle seeds
 check the exact cross-commutator identity, its positive-error screen
-and its square-root-two boundary. The output-word witness has a literal
+and its square-root-two boundary. A native two-wire full-Hadamard
+pilot checks its cubic identity, spectral projector and fixed vector,
+which tensor to the all-size copy obstruction. The output-word witness has a literal
 minus-one eigenvector, giving distance two without a numerical
 singular-value estimate. These tests support the identities; the
 all-size result follows from the argument above.
