@@ -222,7 +222,28 @@ $`Q_x^\dagger P_fQ_x`$ is affine in x. The required sign is therefore
 affine as well. A nonaffine table cannot have a physical Pauli companion,
 regardless of the seed's Pauli spread. Non-Pauli companions remain open.
 
-## 5. Exact finite evidence and next construction
+## 5. Two stronger screens for candidate pairs
+
+The [output-axis span bound](COPY_AXIS_SPAN.md) permits a general
+non-Clifford copy. For a degree-d Clifford query orbit, every absorbed
+Pauli-rotation description of the copy must have
+$`r_X\ge m(1-\eta^2/2)^2-M_d(p)`$ at error $`\eta\lt\sqrt2`$,
+where $`r_X`$ counts independent physical X directions in its projected
+axis span. For one field shear, exact copying needs at least
+$`m-p-1`$ such directions and T gates. This excludes localized
+corrections but is compatible with the linear count budget; it gives
+no growing depth bound.
+
+Independently, the [monomial-seed screen](MONOMIAL_QUERY_SEED_OBSTRUCTION.md)
+gives copy error at least one half for p at least two whenever the seed
+is monomial in a simultaneous query eigenbasis. More generally it
+suffices that the original query algebra commute with its seed-conjugated
+image. The copy may be completely arbitrary and non-Clifford. The proof
+uses a four-word identity and includes arbitrary unitary seeds and
+helpers. A seed must therefore mix the query eigenspaces beyond this
+class, as well as admit the extensive physical copy interaction.
+
+## 6. Exact finite evidence and next construction
 
 `tests/test_encoded_dirty_copy_interface.py` checks a native one-bit
 source with a non-Pauli seed, a noncanonical copy interaction, its

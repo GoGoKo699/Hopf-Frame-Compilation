@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #261](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/261),
-`7af17ad3468103a85c9da8686526f947c58a78c4`, 27 October 2026.
-Its reviewed tree passed 1,953 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #262](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/262),
+`b8720489d0dbc5c2e6b0557ff8165ccc94b9b77b`, 27 October 2026.
+Its reviewed tree passed 1,963 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -112,15 +112,10 @@ also requires every selected target pullback to be non-Clifford below
 error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
 
 The [field-shear construction](research/depth/FIELD_SHEAR_INTERTWINER.md)
-now has an [explicit all-size recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md),
-in addition to its exact native two-bit word. The recursion uses finite-field
-coordinate changes and Clifford Fourier transforms, including every zero
-sector. Dense tower queries and multiplication-XOR batches have paid
-eight-band implementations. The nonlinear in-place decoder maps remain unpaid.
-Preserving the physical Bell zero fiber fails even the weaker lookup probe;
-exact probe freedom is a helper-valued gauge commuting with all lookup X's.
-For p at least two, an exact seed diagonal in any query-invariant stabilizer
-basis also fails, including arbitrary helpers and a non-Clifford final decoder.
+has an [all-size recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md)
+and paid eight-band query/multiplication-XOR components. Its nonlinear
+in-place maps remain unpaid. The linked proofs retain the Bell-zero-fiber,
+helper-valued gauge and invariant-stabilizer seed screens.
 
 The [three-band source theorem](research/depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md)
 now excludes every zero-clean native source of depth at most three for p at
@@ -130,10 +125,17 @@ The proof forces the final two absorbed Pauli bands to preserve the address;
 it does not assume that restriction. This is a constant source-depth bound,
 not a growing frame-depth lower bound or a statement about initialized work.
 
+The [copy-axis theorem](research/depth/COPY_AXIS_SPAN.md) requires extensive
+non-Clifford output-axis span, compatible with linear count. The
+[query-algebra theorem](research/depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md)
+excludes monomial seeds in query eigen-coordinates below copy error one half.
+Both are scoped screens; their proof homes give the broader hypotheses.
+
 **Next question:** jointly synthesize the field seed and its encoded copy
 interaction, or construct another complete source beyond the three-band
 boundary. A returned dirty carrier permits its abstract decoder to cancel
 globally; the physical output interaction still needs a paid native word.
+Prioritize joint eigenspace mixing with an extensive non-Clifford copy.
 For one field-query orbit, an address-independent Clifford copy has a uniform
 error floor; ordinary Pauli table readout recovers only affine tables. The
 recursive decoder remains an exact target, but separate levels cost at least
