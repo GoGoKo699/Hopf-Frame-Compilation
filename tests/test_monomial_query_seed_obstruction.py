@@ -1,7 +1,10 @@
 """Exact seed-class identity, arbitrary phases, helpers and its scope."""
+from fractions import Fraction
 import unittest
 
-from tests.exact_matrices import CO, CZ, CI, adjoint, eye, multiply, native_columns
+from tests.exact_matrices import (
+    CO, CZ, CI, add, adjoint, eye, multiply, native_columns, scale,
+)
 from tests.test_field_shear_intertwiner import _permutation_matrix, _shear
 
 
@@ -81,3 +84,43 @@ class MonomialQuerySeedObstructionTests(unittest.TestCase):
         transported = multiply(multiply(seed, queries[1]), adjoint(seed))
         self.assertNotEqual(multiply(queries[2], transported),
                             multiply(transported, queries[2]))
+
+
+    def test_quantitative_cross_commutator_and_hermitian_part(self):
+        queries = [_diagonal([CO * (-1) ** ((x & z).bit_count() % 2)
+                              for z in range(4)]) for x in range(4)]
+        xx = _permutation_matrix([z ^ 3 for z in range(4)])
+        # This exact rational unitary is deliberately not a Hermitian
+        # reflection. No native synthesis is asserted for the rational case.
+        rational = add(scale(eye(4), Fraction(24, 25)),
+                       scale(xx, CI * Fraction(7, 25)))
+        # A literal native Pauli T rotation, with its scalar phase retained.
+        boundary = native_columns(2, [('H', 0), ('H', 1), ('CX', 0, 1),
+                                       ('T', 1), ('CX', 0, 1),
+                                       ('H', 0), ('H', 1)])
+        for seed, kappa_squared in (
+                (rational, Fraction(672, 625) ** 2), (boundary, Fraction(2))):
+            self.assertEqual(multiply(seed, adjoint(seed)), eye(4))
+            self.assertNotEqual(seed, adjoint(seed))
+            b_a = multiply(multiply(seed, queries[1]), adjoint(seed))
+            orbit = _orbit(queries, seed)
+            w = _plane(orbit, 0, 1, 2)
+            formula = eye(4)
+            for factor in (queries[1], b_a, queries[2], b_a,
+                           queries[2], queries[1]):
+                formula = multiply(formula, factor)
+            self.assertEqual(w, formula)
+            commutator = add(multiply(b_a, queries[2]),
+                             scale(multiply(queries[2], b_a), -1))
+            displacement = add(w, scale(eye(4), -1))
+            self.assertEqual(multiply(adjoint(commutator), commutator),
+                             scale(eye(4), kappa_squared))
+            self.assertEqual(multiply(adjoint(displacement), displacement),
+                             scale(eye(4), kappa_squared))
+            real_part = scale(add(w, adjoint(w)), Fraction(1, 2))
+            self.assertEqual(real_part,
+                             scale(eye(4), 1 - kappa_squared / 2))
+            if seed == rational:
+                self.assertGreater((2 - kappa_squared) / 4, 0)
+            else:
+                self.assertEqual(real_part, scale(eye(4), 0))

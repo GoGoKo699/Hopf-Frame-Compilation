@@ -113,15 +113,59 @@ at each address additionally differs from Q by at most delta, orbit
 distance is at most $`\epsilon+2\delta`$ and the same argument gives
 $`\widetilde\eta+2\epsilon+4\delta\ge1/2`$.
 
-A general candidate can also be screened directly. If its alternating
-four-word product W has $`\|W-I\|\le\kappa`$, the same telescoping
-comparison gives $`4\eta\ge2-2\kappa`$: the actual conjugated W
-is within kappa of I, while the desired $`W\otimes X^{\rm plane}`$
-is within kappa of $`I\otimes X^{\rm plane}`$. This sufficient
-screen does not assert that all nonmonomial seeds have a large defect.
+### A quantitative cross-commutator requirement
 
-A successful source must break the commuting-algebra condition enough
-to avoid this identity, while retaining a complete, cheaply synthesized
+There is a direct screen for an arbitrary unitary seed, without a
+monomial approximation or the cross-commutation assumption (1). Fix
+independent a,b and let W be the alternating word (2) with c=0.
+Because Q and B are representations by Hermitian involutions,
+
+```math
+W=Q_a(B_aQ_bB_aQ_b)Q_a,\qquad
+\kappa_{a,b}=\|W-I\|=\|[B_a,Q_b]\|.               \qquad(6)
+```
+
+For the norm equality, right multiplication of
+$`[B_a,Q_b]=B_aQ_b-Q_bB_a`$ by $`B_aQ_b`$ gives
+$`B_aQ_bB_aQ_b-I`$. All multipliers are unitary; R itself need
+not be Hermitian.
+
+Write $`\operatorname{Re}W=(W+W^\dagger)/2`$. Unitarity gives
+$`(W-I)^\dagger(W-I)=2I-2\operatorname{Re}W`$, hence
+
+```math
+\operatorname{Re}W\ge(1-\kappa_{a,b}^2/2)I.
+```
+
+The actual four-word copy product is $`C(W\otimes I_Y)C^\dagger`$.
+It has the same lower bound on its Hermitian part. The target is
+$`W\otimes X^{\rm plane}`$; on the nonempty negative eigenspace
+of the four-output X word its Hermitian part is at most
+$`-(1-\kappa_{a,b}^2/2)I`$. Testing the difference on any unit
+vector in that sector proves distance at least
+$`2-\kappa_{a,b}^2`$ whenever that number is positive. Four-factor
+telescoping therefore yields
+
+```math
+\eta\ge\max\{0,(2-\kappa_{a,b}^2)/4\}.
+                                                               \qquad(7)
+```
+
+Consequently every independent pair must satisfy
+
+```math
+\eta<1/2\quad\Longrightarrow\quad
+\|[RQ_aR^\dagger,Q_b]\|\ge\sqrt{2-4\eta}.        \qquad(8)
+```
+
+In particular exact copying requires each of these norms to be at
+least square root two. The condition is necessary, not sufficient:
+passing this two-query screen supplies neither the entire copy
+interaction nor a native implementation. The argument uses the
+complete operator norm, not an average commutator measure.
+
+A successful source must thus mix the original and transported query
+algebras quantitatively, while retaining a complete, cheaply synthesized
 copy. Merely adding nonlinear phases to a reversible seed in the
 query eigenbasis cannot do so. A finite nonmonomial word escaping (2)
 is included in the fixtures; escape is not a complete construction.
@@ -131,7 +175,9 @@ is included in the fixtures; escape is not a complete construction.
 `tests/test_monomial_query_seed_obstruction.py` checks arbitrary
 non-Hermitian monomial phases, shifted address planes, the physical
 field-query Fourier basis, arbitrary helper mixing in the seed, and
-a nonmonomial escape example. The output-word witness has a literal
+a nonmonomial escape example. Rational and native quarter-angle seeds
+check the exact cross-commutator identity, its positive-error screen
+and its square-root-two boundary. The output-word witness has a literal
 minus-one eigenvector, giving distance two without a numerical
 singular-value estimate. These tests support the identities; the
 all-size result follows from the argument above.
