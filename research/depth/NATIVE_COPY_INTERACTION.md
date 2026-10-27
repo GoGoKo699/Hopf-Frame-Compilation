@@ -40,55 +40,23 @@ complete operator error by the maximum discrepancy in (1). Then
 Arbitrary Clifford interlayers, carrier/output mixing and arbitrary
 helpers are permitted. This is a count bound; it is not a depth bound.
 
-Absorb all Cliffords in C into a fixed Clifford label map and t
-Pauli-axis eighth rotations, writing $`C=EC_0`$. Let L be the binary
-span of their full Pauli labels, so $`\dim L\le t`$. Conjugation by
-each rotation preserves every full-label coset modulo L, and preserves
-the Hilbert--Schmidt norm within that coset. Individual Pauli
-coefficients need not be preserved.
+The [projected-axis proof](COPY_AXIS_SPAN.md) is the authoritative home
+for this bound and its refinement. It preserves Hilbert--Schmidt mass in
+output-label cosets of the absorbed rotation-axis span, including arbitrary
+coefficient interference. If that span has $`r_X`$ independent physical-X
+directions, the stronger bound replaces t by $`r_X\le t`$. It also
+allows arbitrary unitary seeds and arbitrary rotation angles.
 
-Expand $`R=\sum_v r_v\tau(v)`$ in normalized Hermitian Paulis, with
-$`\sum_v r_v^2=1`$. For a fixed v, let $`v_x`$ be its label after
-$`C_0Q_x`$. Its output projection has degree at most d. The coset
-$`v_x+L`$ can meet the target output-label sector
-$`\pi_Y=(e_x,0)`$ only if
-
-```math
-(e_x,0)\in\pi_Yv_x+\pi_YL.                            \qquad(3)
-```
-
-As x varies, the right-hand vectors lie in the span of at most
-$`M_d(p)+\dim L`$ vectors: the ANF coefficients of $`\pi_Yv_x`$
-and the fixed projected axis space. Distinct target unit labels are
-independent, so at most $`M_d(p)+t`$ addresses meet (3).
-
-Let $`w_x`$ be the initial squared coefficient mass in all full-label
-cosets meeting the desired output sector. The preceding count gives
-
-```math
-m^{-1}\sum_xw_x\le\min\{1,(M_d(p)+t)/m\}.
-```
-
-Preservation of each coset's mass bounds the actual final mass in that
-sector by $`w_x`$, including interference among coefficients within a
-coset. The target in (1) has normalized Hilbert--Schmidt norm one and
-lies wholly in this sector. Cauchy--Schwarz and Jensen consequently give
-
-```math
-1-\eta^2/2
- \le m^{-1}\sum_x\sqrt{w_x}
- \le\sqrt{\min\{1,(M_d(p)+t)/m\}},
-```
-
-which proves (2). For the one-query field shear, d is one. Thus exact
-copying needs $`t\ge m-p-1`$; for $`\eta\lt\sqrt2`$ it needs
+For the one-query field shear, d is one. Exact copying needs
+$`t\ge m-p-1`$; for $`\eta\lt\sqrt2`$ it needs
 
 ```math
 t\ge m(1-\eta^2/2)^2-p-1.                            \qquad(4)
 ```
 
-This linear count is compatible with the discovery budget. It gives no
-growing lower bound on native T depth.
+This linear count is compatible with the discovery budget and gives no
+growing native-depth lower bound. The native components and distinct dual
+support arguments below retain their own proofs.
 
 ## 2. A genuine one-band non-Clifford copy component
 

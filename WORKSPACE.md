@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #262](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/262),
-`b8720489d0dbc5c2e6b0557ff8165ccc94b9b77b`, 27 October 2026.
-Its reviewed tree passed 1,963 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #263](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/263),
+`5be277172912caeb3e307a17e441161ea1a7bdeb`, 27 October 2026.
+Its reviewed tree passed 1,977 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -123,6 +123,13 @@ For [affine Pauli-query orbits](research/depth/PAULI_ORBIT_COPY_SCREEN.md),
 Clifford dual probes give a copy-error floor of one quarter for p at least two.
 This includes a one-band copy; the non-Pauli field shear is outside that premise.
 The native one-bit endpoint uses its actual inverse and returns all work.
+
+The [copy-axis bound](research/depth/COPY_AXIS_SPAN.md) requires extensive
+physical-X span, compatible with linear count. The
+[seed-mixing bound](research/depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md)
+requires strong cross-commutators on every independent address pair;
+monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
+field seed passes the mixing test but still has a half-error spectral floor.
 
 **Next question:** jointly synthesize a field-orbit seed and a copy interaction
 that leaves these screened classes. A Clifford wall mixing carrier and output
