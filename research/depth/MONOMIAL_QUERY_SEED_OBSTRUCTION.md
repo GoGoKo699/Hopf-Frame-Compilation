@@ -1,7 +1,8 @@
 # Commuting original and transported query algebras obstruct copying
 
 [Encoded copy contract](ENCODED_DIRTY_COPY_INTERFACE.md) ·
-[Field shear](FIELD_SHEAR_INTERTWINER.md)
+[Field shear](FIELD_SHEAR_INTERTWINER.md) ·
+[Complete copy grading](DIRTY_COPY_GRADING.md)
 
 The encoded-copy interface allows arbitrary unitary seeds and arbitrary
 non-Clifford copy interactions. Even with that freedom, a seed monomial

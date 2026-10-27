@@ -11,16 +11,16 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #262](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/262),
-`b8720489d0dbc5c2e6b0557ff8165ccc94b9b77b`, 27 October 2026.
-Its reviewed tree passed 1,963 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #263](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/263),
+`5be277172912caeb3e307a17e441161ea1a7bdeb`, 27 October 2026.
+Its reviewed tree passed 1,977 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
 Use the [research catalogue](research/README.md) to find its proof dependencies.
-The latest source and decoder screens are integrated; none improves R96.
+The source, decoder and copy screens are integrated; none improves R96.
 
 <a id="current-depth-frontier"></a>
 
@@ -84,69 +84,66 @@ they do not construct the source.
 ### Latest substantive outcomes and resumption question
 
 The [interleaved tree probe](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md)
-pays a later address query and a fixed Fourier wall. Pulling lookup through
-that word gives a Pauli family with full commutation rank $`m=2^p`$.
-This is an explicit complete target algebra, including literal signs and
-arbitrary dirty inputs; canonical target coordinates do not pay a source decoder.
+gives a complete target algebra with full commutation rank, including literal
+signs and arbitrary dirty inputs. Its one-query spectral/covariance gaps,
+[Clifford-orbit rank bound](research/depth/CLIFFORD_ORBIT_QUERY_RANK.md) and
+[non-Clifford seed-spread bound](research/depth/NONCLIFFORD_SEED_SPREAD.md)
+retain their stated query and seed hypotheses. Canonical target coordinates
+and extensive Pauli support do not pay a source decoder.
 
-The [one-query gaps](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#one-query-orbit-gaps)
-exclude a single linear XOR query at error below $`\gamma=\sqrt{2-\sqrt2}`$,
-even with an arbitrary non-Clifford starting reflection and fixed decoder.
-Affine offsets retain a covariance gap $`\gamma/2`$ for $`p\ge2`$.
-Two opposite interleaved queries escape these premises. For a fixed
-**Clifford** starting reflection, however, the
-[faithful phase-lift bound](research/depth/CLIFFORD_ORBIT_QUERY_RANK.md)
-requires at least $`\lceil p/8\rceil`$ literal affine queries at error
-below $`\gamma/4`$. This is a query-grammar bound, not native-depth optimality.
-
-The [non-Clifford seed-spread bound](research/depth/NONCLIFFORD_SEED_SPREAD.md)
-requires an exponentially broad Pauli-label span for bounded affine-query
-count, even at constant operator error and with an arbitrary fixed decoder.
-A paid two-band tensor seed supplies that spread, but its plain local
-inverse decoder has error at least one half for the tree family. A localized
-nonlinear patch or more elaborate fixed Clifford spreading does not meet
-the requirement.
-For a third-level-dressed Clifford seed, the
-[decoder condition](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md#nonclifford-seed-decoder-condition)
-also requires every selected target pullback to be non-Clifford below
-error $`\sqrt2/4`$. A single weighted-cubic decoder cannot meet that condition.
-
-The [field-shear construction](research/depth/FIELD_SHEAR_INTERTWINER.md)
-has an [all-size recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md)
-and paid eight-band query/multiplication-XOR components. Its nonlinear
-in-place maps remain unpaid. The linked proofs retain the Bell-zero-fiber,
-helper-valued gauge and invariant-stabilizer seed screens.
+The [field shear](research/depth/FIELD_SHEAR_INTERTWINER.md) has a paid
+eight-band query and an [exact recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md).
+Dense tower queries and multiplication-XOR batches are paid; its nonlinear
+in-place maps remain unpaid. Bell-zero-fiber preservation fails even the
+weaker lookup probe. For p at least two, a seed diagonal in any query-invariant
+stabilizer basis fails, including arbitrary helpers and a non-Clifford decoder.
 
 The [three-band source theorem](research/depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md)
-now excludes every zero-clean native source of depth at most three for p at
-least seven below complete observable error
-$`\sin(\pi/8)/(2\sqrt2)`$, with arbitrary register motion and dirty width.
-The proof forces the final two absorbed Pauli bands to preserve the address;
-it does not assume that restriction. This is a constant source-depth bound,
-not a growing frame-depth lower bound or a statement about initialized work.
+excludes every zero-clean native source of depth at most three for p at least
+seven below complete observable error $`\sin(\pi/8)/(2\sqrt2)`$.
+The proof forces the final two absorbed Pauli bands to preserve the address,
+with arbitrary Clifford interlayers, register motion and dirty width.
+This is a constant source-depth bound, not a growing frame-depth lower bound.
 
-The [copy-axis theorem](research/depth/COPY_AXIS_SPAN.md) requires extensive
-non-Clifford output-axis span, compatible with linear count. The
-[query-algebra theorem](research/depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md)
-excludes monomial seeds in query eigen-coordinates below copy error one half.
-Both are scoped screens; their proof homes give the broader hypotheses.
+The [copy-grading criterion](research/depth/DIRTY_COPY_GRADING.md) now
+characterizes exact copying of arbitrary unitary families: every word with
+nonzero occurrence parity must have zero trace. Spectral multiplicity yields
+constant robust word tests. Field-orbit reflection pairs have a common
+same-sign sector and cannot approximate an anticommuting pair below
+$`\sqrt{2-\sqrt2}`$. Nevertheless a copyable all-size noncommuting family
+exists. Its wire-translation query retains linear depth; moving it to the
+field query leaves its seed and copy unpaid.
 
-**Next question:** jointly synthesize the field seed and its encoded copy
-interaction, or construct another complete source beyond the three-band
-boundary. A returned dirty carrier permits its abstract decoder to cancel
-globally; the physical output interaction still needs a paid native word.
-Prioritize joint eigenspace mixing with an extensive non-Clifford copy.
-For one field-query orbit, an address-independent Clifford copy has a uniform
-error floor; ordinary Pauli table readout recovers only affine tables. The
-recursive decoder remains an exact target, but separate levels cost at least
-p minus one bands. Joint resynthesis, a different seed or a different pencil
-must include actual inverses, every input sector and complete work return.
+[Native copy components](research/depth/NATIVE_COPY_INTERACTION.md) supply
+a one-band non-Clifford interaction and necessary T-count and dual-support
+bounds. Product magic with output-only Clifford mixing and the specified
+coded two-band family fail the exact field-copy requirement at growing size.
+These are scoped constructions and screens, not a general one-band exclusion.
+For [affine Pauli-query orbits](research/depth/PAULI_ORBIT_COPY_SCREEN.md),
+Clifford dual probes give a copy-error floor of one quarter for p at least two.
+This includes a one-band copy; the non-Pauli field shear is outside that premise.
+The native one-bit endpoint uses its actual inverse and returns all work.
+
+The [copy-axis bound](research/depth/COPY_AXIS_SPAN.md) requires extensive
+physical-X span, compatible with linear count. The
+[seed-mixing bound](research/depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md)
+requires strong cross-commutators on every independent address pair;
+monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
+field seed passes the mixing test but still has a half-error spectral floor.
+
+**Next question:** jointly synthesize a field-orbit seed and a copy interaction
+that leaves these screened classes. A Clifford wall mixing carrier and output
+before the phase gates, or noncommuting carrier phase axes, is a concrete next
+ansatz. First derive the complete dual readout and parity relations, then pay
+the native word, actual inverse and every input sector. Arbitrary untouched
+helpers do not rescue the coded product-magic class. A returned dirty carrier
+can cancel its abstract decoder globally only after its physical copy is paid.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
 [reduced central gauge](research/depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge)
 and [minimal-tree probe](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source)
-remain component alternatives under their separate scoped screens. In the separate
+remain component alternatives under their separate screens. In the separate
 [precision route](research/depth/JOINT_PRECISION_ROTATION.md), joint recovery
 beyond the separately paid two-path pilots remains open.
 
