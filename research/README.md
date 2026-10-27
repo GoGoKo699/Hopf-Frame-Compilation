@@ -190,6 +190,9 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Bank mixing and the complete lookup phase](depth/BANK_MIXING_AND_LOOKUP_PHASE.md) — scoped mixing screens and the rank-one phase/indicator resource equivalence, including arbitrary address/work motion within the derivative gauge
 - [Table-specific probes and the remaining joint-word freedom](depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
 - [Encoded dirty copy without a synthesized decoder](depth/ENCODED_DIRTY_COPY_INTERFACE.md) — jointly paid carrier/copy interactions supply a physical indicator; an address-independent Clifford copy has a uniform error floor for one field-query orbit
+- [Exact dirty copying as a parity grading](depth/DIRTY_COPY_GRADING.md) — a complete criterion for arbitrary unitary families, robust word tests, field-pair rigidity and a noncommuting all-size calibration
+- [Native copy interactions and dual readout](depth/NATIVE_COPY_INTERACTION.md) — paid non-Clifford components, an extensive copy T-count floor, and exact support screens for specified product-magic and coded families
+- [Affine Pauli-orbit copy screen](depth/PAULI_ORBIT_COPY_SCREEN.md) — a one-quarter error floor with Clifford dual probes, the native one-bit endpoint and the paid dirty-mask gauge
 - [Joint bank routing and the complete dirty indicator](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
 ## Constructive components and source candidates
