@@ -86,6 +86,10 @@ In fact (2)--(3) need no virtual encoding or commutativity assumption:
 any directly specified unitary family $`R_x`$ and C satisfying (2)
 give the same complete indicator. Equation (1) is one constructive way
 to search for that family.
+The [exact parity-grading criterion](DIRTY_COPY_GRADING.md) characterizes
+which unitary families admit such a C and gives robust word tests. It also
+exhibits a noncommuting all-size family; an abstract copy implementer still
+needs its own native synthesis.
 
 ## 2. Native resources, error and entry into the frame transfer
 
@@ -231,7 +235,18 @@ support fixture tests the Clifford-copy obstruction with a genuinely
 non-Clifford seed. These are finite contract checks, not an all-size
 source/copy compiler.
 
-The constructive task is to choose the seed and a genuinely non-Clifford
-copy jointly, with complete action and the budgets in (4). The field
-query is already paid. Global dirty-bank cancellation removes the need
-to emit an abstract decoder only after this companion is supplied.
+The [native-copy chapter](NATIVE_COPY_INTERACTION.md) extends the Clifford
+screen to an extensive T-count floor and a dual-support requirement. It
+supplies a one-band non-Clifford component, but excludes the specified
+product-magic/output-only mixing and coded two-band field-copy families
+at growing size. These classes do not exhaust native one-band copies.
+The separate [affine Pauli-orbit screen](PAULI_ORBIT_COPY_SCREEN.md) gives
+a one-quarter error floor with Clifford dual probes, including native
+one-band copies, for p at least two. The field shear is not a Pauli query.
+
+The constructive task remains a jointly paid seed and interaction satisfying
+(2) within (4). A Clifford wall mixing carrier and output before the phase
+gates, or noncommuting carrier phase axes, leaves the screened product classes.
+Its complete dual readout and every arbitrary-input sector must be proved.
+The field query is already paid; global dirty-carrier cancellation removes
+the need to emit an abstract decoder only after this companion is supplied.
