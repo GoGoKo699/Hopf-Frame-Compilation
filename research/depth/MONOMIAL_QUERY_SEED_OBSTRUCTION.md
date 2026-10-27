@@ -130,11 +130,11 @@ $`[B_a,Q_b]=B_aQ_b-Q_bB_a`$ by $`B_aQ_b`$ gives
 $`B_aQ_bB_aQ_b-I`$. All multipliers are unitary; R itself need
 not be Hermitian.
 
-Write $`\operatorname{Re}W=(W+W^\dagger)/2`$. Unitarity gives
-$`(W-I)^\dagger(W-I)=2I-2\operatorname{Re}W`$, hence
+Write $`\mathrm{Re}W=(W+W^\dagger)/2`$. Unitarity gives
+$`(W-I)^\dagger(W-I)=2I-2\mathrm{Re}W`$, hence
 
 ```math
-\operatorname{Re}W\ge(1-\kappa_{a,b}^2/2)I.
+\mathrm{Re}W\ge(1-\kappa_{a,b}^2/2)I.
 ```
 
 The actual four-word copy product is $`C(W\otimes I_Y)C^\dagger`$.
@@ -154,7 +154,7 @@ telescoping therefore yields
 Consequently every independent pair must satisfy
 
 ```math
-\eta<1/2\quad\Longrightarrow\quad
+\eta\lt1/2\quad\Longrightarrow\quad
 \|[RQ_aR^\dagger,Q_b]\|\ge\sqrt{2-4\eta}.        \qquad(8)
 ```
 
