@@ -174,6 +174,13 @@ the seed. Right multiplication by a unitary commuting with every
 $`Q_x`$ can change that source family. Neither freedom supplies the
 native copy in (2).
 
+The [weak-probe domain theorem](WEAK_PROBE_PAULI_DOMAIN.md) restricts a
+decoder used only for the complete one-probe relation, including Pauli
+source-helper queries. Independent finite cells cannot be repaired by outer
+Clifford mixing alone. The [augmented recoupler](AUGMENTED_FIELD_RECOUPLER.md)
+does pay a different all-size source and complete probe echo, but retains
+linear depth; it does not supply a shallow jointly encoded copy interaction.
+
 ## 4. A Clifford copy has a uniform error floor
 
 Let R be any Hermitian involution on the full carrier, including any

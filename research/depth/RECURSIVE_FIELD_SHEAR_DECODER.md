@@ -20,9 +20,17 @@ dense multiplication matrices of a field tower. R96 is unchanged.
 The later [projective recoupler](PROJECTIVE_FIELD_RECOUPLER.md) jointly compiles
 the two conditional coordinate maps at p equal to three, with a different
 allowed zero fiber. Its full eight-wire decoder costs 172 T gates in at most
-83 bands and has no extra helper. The projective identity is general, but
-enumerating its fibers grows exponentially in bank width; the uniform native
-obligation and the separate-level depth limitation below remain.
+83 bands without extra helpers, or 148 T gates in at most 39 bands with six
+returned dirty helpers. Projective-fiber enumeration remains exponential.
+
+The [augmented recoupler](AUGMENTED_FIELD_RECOUPLER.md) instead includes a
+moving Pauli helper query on both sides. It pays a uniform native decoder
+with two multiplication-XOR batches per level and a complete returned-helper
+indicator echo. Its depth remains linear in p. This changes the query
+representation; it does not pay the identity-helper coordinate maps below.
+The [sector-degree barrier](FIELD_SECTOR_DEGREE_BARRIER.md) explains why
+helper-affine stages in a fixed helper frame cannot compress to a bounded
+number, while leaving unrestricted joint native words outside that screen.
 
 ## 1. A compatible tower and address pencil
 

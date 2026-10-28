@@ -15,6 +15,11 @@ calibration of the recursive construction. Enumerating the projective lines is
 exponential in bank width, so the construction does not improve R96 or supply
 the uniform depth bound required by the frame transfer.
 
+[Section 6](#coupled-six-helper-allocation) gives a second complete allocation:
+148 T gates in at most 39 bands, with six additional returned arbitrary helpers.
+It preserves the zero-extra-helper allocation below as a distinct width/depth
+tradeoff; neither finite construction is a uniform source-depth improvement.
+
 <a id="projective-fiber-identity"></a>
 
 ## 1. Homogeneity of the complete conditional cell
@@ -260,3 +265,202 @@ at each level. The useful new target is the joint projective-line action in
 must compress these factors or change their representation while retaining
 the full operator identity and paid work return. Neither a constant-depth
 source nor a new frame-depth theorem is established here.
+
+<a id="coupled-six-helper-allocation"></a>
+
+## 6. Coupled reflections and a six-helper allocation
+
+The four projective corrections can share one reflection selector. Their six
+displacement terms can also occupy one private-helper phase batch. Both changes
+retain the complete literal operator, with a newly specified zero fiber.
+
+### 6.1 One common reflection, with its selector phase paid
+
+Use the same Hermitian Pauli labels and reflection (8), and abbreviate
+
+```math
+\begin{aligned}
+J_A&=J(19,50;32),\\
+J_{B,64}&=J(156,228;64),& J_{B,112}&=J(156,228;112),\\
+J_{C,44}&=J(89,247;44),& J_{C,87}&=J(89,247;87).
+\end{aligned}
+```
+
+The following signed identities are exact:
+
+```math
+\begin{aligned}
+C_4C_1^\dagger&=J_{B,112}J_A,&
+C_5C_1^\dagger&=J_AJ_{B,64},\\
+C_6C_1^\dagger&=J_AJ_{C,44},&
+C_7C_1^\dagger&=-J_{C,87}J_A.                    \qquad(10)
+\end{aligned}
+```
+
+In the third identity, changing the earlier C-reflection probe to 44 permits
+the same A-reflection with probe 32 in every row. These identities follow by
+multiplying the signed Pauli matrices; the fixture independently compares them
+with the field trace-Fourier matrices. Every J is a Hermitian Clifford
+involution, with the same independent commuting-axis premises as in Section 4.
+
+Let $`f_D(U)`$ indicate the line represented by D, including its zero point.
+Write the four binary U coordinates as $`u_0,u_1,u_2,u_3`$. Their common selector is
+
+```math
+g(U)=\bigoplus_{D=4}^7 f_D(U)=u_2\lor u_3.        \qquad(11)
+```
+
+For nonzero U exactly one nonbaseline line is selected, or none on the baseline
+line. At zero all four line predicates are one, and g is zero. Emit the line-5
+B reflection and line-6 C reflection first, the common A reflection next, then
+the line-4 B and line-7 C reflections. On every nonzero line this chronological
+order selects exactly the required pair in (10).
+
+The common A selector needs its literal relative phase. For $`P=P_{32}`$,
+which is the single physical $`Z_{V_1}`$, one has
+
+```math
+(iP)^{u_2}(iP)^{u_3}(-iP)^{u_2u_3}
+   =i^{u_2\lor u_3}P^{u_2\lor u_3}.              \qquad(12)
+```
+
+The first two factors are Clifford controlled-iP words. The last is a
+Clifford-conjugated four-T relative Toffoli. Conjugation by the common two-T
+preparation from Section 4 produces $`i^gJ_A^g`$, at eight T gates in four
+bands. Each of the four remaining selected reflections costs the same eight
+T gates and four bands and contributes $`(-i)^{f_D}`$. A CZ in the line-7
+coordinates supplies its required $`(-1)^{f_7}`$ sign. Thus, on nonzero U,
+
+```math
+i^g(-i)^{\sum_{D=4}^7f_D}=1.                     \qquad(13)
+```
+
+The linear corrections therefore cost **40 T gates in 20 bands**. All line
+coordinate changes and their actual inverses are included. On the entire
+zero fiber the chosen linear cell is the fixed Clifford
+
+```math
+-J_{C,87}J_{B,112}J_{C,44}J_{B,64}C_1.           \qquad(14)
+```
+
+The four relative phases multiply to one there; the minus sign in (14) comes
+from the line-7 CZ. Section 2 proves that this full zero-sector action is
+permitted. No zero column or scalar sign is discarded.
+
+<a id="private-mask-quartic-batch"></a>
+
+### 6.2 Sixteen-band quartic batching with arbitrary private helpers
+
+The [R91 private-mask word](DIRTY_CUBIC_PHASE_COMPILER.md) gives
+$`F(a,b;h)=(-i)^{ab}Z_h^{ab}`$ using four T gates on an arbitrary private
+helper h. Its affine version is useful here. Write
+$`a=\ell_a\oplus\kappa_a`$, $`b=\ell_b\oplus\kappa_b`$, with binary
+linear forms $`\ell_a,\ell_b`$ that do not involve h. Visit helper parity
+vertices $`0,\ell_a,\ell_a\oplus\ell_b,\ell_b`$ and return to zero.
+At the vertex indexed by a subset J of the two forms, use T with orientation
+$`(-1)^{|J|+\sum_{j\in J}\kappa_j}`$. The resulting literal operator is
+
+```math
+\widetilde F(a,b;h)
+ =i^{\kappa_a\kappa_b}(-i)^{ab}Z_h^{ab}.          \qquad(15)
+```
+
+The scalar factor in (15) is essential: it is the constant term of the affine
+finite difference. Equivalently, the T-phase exponent is
+$`2\kappa_a\kappa_b-2ab+4hab`$ modulo eight. This identity permits repeated,
+dependent, overlapping and constant affine forms, without a clean assumption.
+
+Set $`U=\widetilde F(a,b;h)`$ and
+$`V=H_h\widetilde F(c,d;h)H_h`$. The same chronological commutator as in (7)
+gives
+
+```math
+V^\dagger U^\dagger VU=(-1)^{abcd}I_h.             \qquad(16)
+```
+
+Both affine scalar factors cancel against their actual inverses. Assign a
+distinct private helper to each of Q quartic terms and run corresponding
+Gray-vertex T gates in parallel. All T targets in a band are distinct;
+principal-to-helper parity CNOTs leave the principal inputs unchanged.
+Shared principal controls therefore cause no interference between helper
+actions. For L equal to the sum of the four linear support sizes over all
+terms, the forward and actual-inverse bounds are
+
+```math
+T=16Q,\qquad D_T\le16,\qquad G=20Q+4L,
+\qquad b_{\rm dirty}=Q,\qquad b_{\rm clean}=0.    \qquad(17)
+```
+
+The gate count includes sixteen T gates and four Hadamards per helper, plus
+four visits to each linear support. Both values of every helper have scalar
+identity action in (16), so the return identity also holds for arbitrary
+helper entanglement and external references. This parallel allocation uses
+private masks instead of the compact eight-band logical borrow in Section 3.
+
+For the p=3 displacement, encode an affine form by its binary mask and constant.
+U occupies bits 0 through 3, and Fourier-V occupies bits 4 through 7. The six
+quartic products are specified by the following four-form rows:
+
+| Term | First form | Second form | Third form | Fourth form |
+| --- | --- | --- | --- | --- |
+| 1 | (15, 1) | (5, 1) | (4, 0) | (16, 0) |
+| 2 | (15, 1) | (5, 1) | (8, 0) | (32, 0) |
+| 3 | (14, 1) | (7, 1) | (13, 0) | (144, 0) |
+| 4 | (14, 1) | (7, 1) | (6, 0) | (224, 0) |
+| 5 | (6, 1) | (11, 1) | (15, 0) | (160, 0) |
+| 6 | (6, 1) | (11, 1) | (5, 0) | (240, 0) |
+
+These are the two binary zero predicates for each of the three nonzero-shift
+lines, its scalar coordinate, and its Fourier-V displacement pairing. Their
+linear supports sum to L=60. The phase batch has 96 T gates, 16 bands and
+360 total gates. Hadamard walls on all four V coordinates convert it into
+the complete XOR displacement, giving **368 total gates** in either direction.
+
+All displacements can be moved after the coupled linear word: at nonzero U
+only one line is active, while at U=0 every displacement vanishes. Thus this
+reordering also retains the specified zero fiber. Six arbitrary helpers at
+physical wires 8 through 13 suffice and return literally.
+
+### 6.3 Complete allocation and its verification
+
+Including the original Fourier/coordinate walls and the two parallel full
+four-address intertwiners gives the following second allocation:
+
+| Complete native word | T count | T bands | Forward total gates | Actual inverse gates | Physical wires | Extra helpers |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Coupled $`\widehat R_3`$ | 136 | 36 | 980 | 984 | 14 | 6 |
+| Coupled $`\widehat E_3`$ | 148 | 39 | 1,110 | 1,166 | 14 | 6 |
+
+Both words have zero approximation error and zero clean inputs. The actual
+inverse reverses the entire word, including the zero-cell Clifford and private
+helper batches. Its elementary-gate count is kept distinct because the native
+alphabet emits S-dagger with positive S powers. The complete identity is
+
+```math
+\widehat E_3(Q_x^{(3)}\otimes I_6)\widehat E_3^\dagger
+   =W_x\otimes I_6.                              \qquad(18)
+```
+
+The [coupled native fixture](../../tests/test_coupled_projective_recoupler.py)
+checks the literal affine constant in (15), all five-wire quartic columns and
+actual inverses with affine shifts, and all 3,072 private-helper sector matrices
+for the six-term batch. The latter checks both columns of each helper for every
+principal input and both actual orientations; tensor independence proves the
+complete fourteen-wire identity without constructing a dense matrix of that
+size. Independent field and signed-Pauli formulas check (10), all 240 nonzero
+linear-cell columns, and every zero-cell column in (14). Integer arithmetic in
+$`\mathbb Z[\omega]/2^d`$ then checks every complete logical column, both actual
+inverses, all eight addresses in (18), and every physical T-band target list.
+
+This does not replace the 172-T, 83-band zero-extra-helper allocation. At a
+general field size the common selector is the nonzero predicate on
+$`\dim_{\mathbb F_2}F=m/4`$ binary coordinates, with that growing Boolean degree.
+The finite two-bit OR in (11) does not pay it at bounded depth, and the line
+list remains exponential. Coupling the recursive levels still requires a
+separate uniform construction within the stated budgets.
+
+The [augmented recoupler](AUGMENTED_FIELD_RECOUPLER.md) supplies such an
+all-size native cell after explicitly changing the helper query. It retains
+linear depth across levels; the [sector-degree theorem](FIELD_SECTOR_DEGREE_BARRIER.md)
+limits compression by fixed-frame helper-affine stages. Neither result
+changes the two identity-helper finite allocations established here.
