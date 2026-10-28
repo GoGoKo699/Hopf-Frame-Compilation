@@ -345,7 +345,7 @@ error eta, an output dual $`J=C^\dagger Z_{Y_j}C`$ obeys
 \le2\eta.
 ```
 
-When J is Clifford and $`2\eta<1/\sqrt2`$, every one of these four
+When J is Clifford and $`2\eta\lt1/\sqrt2`$, every one of these four
 relations must therefore be exact, contradicting the enumeration.
 Every one-band native copy has Clifford Pauli output duals, so
 
@@ -399,7 +399,7 @@ Pauli rotation axes. The complete error is
 \eta=\max_x\|EQ_xE^\dagger-W_x\otimes I_h\|.
 ```
 
-If $`\eta<1`$, then
+If $`\eta\lt1`$, then
 
 ```math
 \mathrm{rank}\bigl(\langle\ ,\ \rangle|_{A\times\mathcal F}\bigr)
@@ -415,7 +415,7 @@ An involutive wire permutation sends every Pauli to a commuting
 Pauli: in binary labels the relevant symplectic pairing vanishes
 because the permutation matrix is symmetric. Any two unequal
 commuting Hermitian Paulis have operator distance two, including
-opposite signs. Thus the image is fixed exactly when $`\eta<1`$.
+opposite signs. Thus the image is fixed exactly when $`\eta\lt1`$.
 
 The common target fixed-label space consists of $`X_{\rm all}`$,
 $`Z_{\rm all}`$ and helper Paulis, of dimension $`2+2h`$.
