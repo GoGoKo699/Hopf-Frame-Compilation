@@ -6,6 +6,53 @@ The scripts provide a readable orientation, resource ledgers, source checks,
 exact verification receipts, and rendered presentation checks. They do not
 replace the analytic proof.
 
+## Research validation
+
+Run commands from the repository root. During an edit, select the affected
+modules below; the [verification catalogue](../docs/reference/VERIFICATION_CATALOGUE.md#catalogue-index)
+owns their detailed evidence contracts and maps the other research components.
+Use [WORKSPACE](../WORKSPACE.md) for the current question, not this command map.
+
+| Changed material | Focused checks |
+| --- | --- |
+| Working documents, links and mathematical syntax | [`test_repository_navigation`](../tests/test_repository_navigation.py), [`test_reviewer_narrative`](../tests/test_reviewer_narrative.py), [`test_presentation`](../tests/test_presentation.py) |
+| [Augmented field recoupler](../research/depth/AUGMENTED_FIELD_RECOUPLER.md) | [`test_augmented_field_recoupler`](../tests/test_augmented_field_recoupler.py) |
+| [Projective field recoupler](../research/depth/PROJECTIVE_FIELD_RECOUPLER.md), both native allocations | [`test_projective_field_recoupler`](../tests/test_projective_field_recoupler.py), [`test_coupled_projective_recoupler`](../tests/test_coupled_projective_recoupler.py) |
+| [Weak complete-probe domain](../research/depth/WEAK_PROBE_PAULI_DOMAIN.md) | [`test_weak_probe_pauli_domain`](../tests/test_weak_probe_pauli_domain.py) |
+| [Clifford-sector degree barrier](../research/depth/FIELD_SECTOR_DEGREE_BARRIER.md) and signed helper tableaux | [`test_field_sector_degree`](../tests/test_field_sector_degree.py), [`test_field_sector_tableaux`](../tests/test_field_sector_tableaux.py) |
+
+For example, the working-document checks run with:
+
+```bash
+python -m unittest tests.test_repository_navigation tests.test_reviewer_narrative tests.test_presentation
+```
+
+Use the same `python -m unittest tests.<module>` form for the affected scientific
+suites. A bounded fixture checks its stated identities and implementation;
+the linked proof retains responsibility for all-size claims and scope.
+
+Before merging, run the complete local gate on the final reviewed tree:
+
+```bash
+python -m compileall -q compiler_robust_hopf scripts tests validate.py
+python scripts/reviewer_walkthrough.py
+python scripts/coarse_frame_native_example.py
+python scripts/complex_coarse_native_example.py
+python scripts/residual_qbp_native_example.py --q 16
+python validate.py --quiet
+python scripts/verify_fault_tolerant.py
+python scripts/check_upstream_sync.py --offline
+python scripts/unified_resource_ledger.py --n 12 --format json
+python scripts/strict_zero_echo_ledger.py --n 12 --format json
+```
+
+Complete focused [visual checks](#visual-checks) for changed mathematics and
+pages before the memory-heavy numerical suite; full presentation CI covers
+the complete corpus. Focused tests support iteration and do not replace this
+final gate or required CI. Record the tested commit/tree and command results
+in the review record. Expected scientific receipts stay unchanged unless the
+underlying evidence is intentionally regenerated and reviewed.
+
 ## Technical walkthrough
 
 ```bash

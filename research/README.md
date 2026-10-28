@@ -2,12 +2,12 @@
 
 [Selected claims](../manuscript/PUBLICATION_SCOPE.md) · [Resource frontier](../docs/OPEN_PROBLEM.md) · [Core proof map](../docs/README.md) · [Working checkpoint](../WORKSPACE.md)
 
-This is a topic catalogue, not a second frontier statement or a sequence of
-research instructions. Each claim has one proof home; that home supplies its
-hypotheses, resource/error ledger, literal phases, actual inverses and return
-contract. A method-specific obstruction is not a lower bound for every compiler.
-Stopped and superseded routes are assessed once in the
-[route decisions](ROUTE_DECISIONS.md).
+Use this catalogue to locate a proof or recover a dependency without replaying
+sessions. Entries give the mathematical role and limiting scope; the linked
+proof owns the hypotheses, formulas, resource/error ledger, phases, inverses
+and return contract. Keep route assessments and reopening conditions in
+[route decisions](ROUTE_DECISIONS.md), and the active task in WORKSPACE.
+A method-specific obstruction is not a lower bound for every compiler.
 
 Use the [minimal count-proof chain](../docs/README.md#c-one-clean-compilation-and-its-corollaries)
 for selected dependencies. Use the [working checkpoint](../WORKSPACE.md)
@@ -20,6 +20,7 @@ has a separate task-level guarantee.
 | One-clean count and earlier endpoint methods | [Endpoint results](#endpoint-results) |
 | General depth constructions and promised families | [Large-workspace T-depth](#large-workspace-t-depth) |
 | Complete indicator interfaces and paid promotion | [Query transfers](#complete-query-transfers-and-clean-source-promotion) |
+| Encoded copy, field decoders and their screens | [Copy interfaces](#encoded-copy-and-field-bank-tools) · [Field source chain](#field-query-and-decoder-chain) |
 | Source mechanisms and their limitations | [Components](#constructive-components-and-source-candidates) · [Scoped limits](#source-specific-limits-and-failed-compositions) |
 | Native lower bounds and the focused scout | [Boolean rigidity](#native-boolean-rigidity-and-clean-code-structure) · [Physical pairs](#original-physical-pairs-and-the-four-band-scout) |
 | Restricted query/source grammars | [Read-only transport](#read-only-queries-and-source-transport-classes) |
@@ -187,24 +188,30 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Clean-sector parallelism: what the native schedule actually buys](depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
 - [Dirty-tree compilation from complete branch differences](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
 - [Which incomplete indicator interfaces still contain the full operation](depth/WEAKER_INDICATOR_INTERFACES.md)
-- [Bank mixing and the complete lookup phase](depth/BANK_MIXING_AND_LOOKUP_PHASE.md) — scoped mixing screens and the rank-one phase/indicator resource equivalence, including arbitrary address/work motion within the derivative gauge
+- [Bank mixing and the complete lookup phase](depth/BANK_MIXING_AND_LOOKUP_PHASE.md) — Complete phase/indicator equivalence; derivative gauge permits address/work motion.
 - [Table-specific probes and the remaining joint-word freedom](depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md)
-- [Encoded dirty copy without a synthesized decoder](depth/ENCODED_DIRTY_COPY_INTERFACE.md) — jointly paid carrier/copy interactions supply a physical indicator; an address-independent Clifford copy has a uniform error floor for one field-query orbit
-- [Exact dirty copying as a parity grading](depth/DIRTY_COPY_GRADING.md) — a complete criterion for arbitrary unitary families, robust word tests, field-pair rigidity and a noncommuting all-size calibration
-- [Native copy interactions and dual readout](depth/NATIVE_COPY_INTERACTION.md) — paid components, extensive copy T count, support screens, and a width-independent 3/32 floor for product THT-dagger seeds with Clifford output duals
-- [Complete one-band copy feasibility](depth/ONE_BAND_COPY_FEASIBILITY.md) — signed Walsh support spaces and spectra, the exact carrier fixed-point criterion, and a native triple-axis joint-wall family with zero complete seed space and a $`1/\sqrt6`$ copy-error floor despite passing the tensor screen
-- [Clifford output-dual grading](depth/CLIFFORD_DUAL_COPY_GRADING.md) — every exact one-band copy, even with an arbitrary unitary seed, requires an extensive binary abelianization of each dual's symplectic orbit group; explicit relation words give robust certificates
-- [Affine Pauli-orbit copy screen](depth/PAULI_ORBIT_COPY_SCREEN.md) — a one-quarter error floor with Clifford dual probes, the native one-bit endpoint and the paid dirty-mask gauge
-- [Extensive non-Clifford copy-axis span](depth/COPY_AXIS_SPAN.md) — quotient-sector weight gives a robust output-axis and T-count requirement, with no growing depth conclusion
-- [Monomial query-seed copy obstruction](depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md) — commuting original and seed-conjugated query algebras force a four-word identity and copy error at least one half, even with an arbitrary physical copy
-- [Four-address Clifford seed and physical copy](depth/FIELD_COPY_CLIFFORD_PILOT.md) — a noncommuting central-sector grading, a paid native copy and a complete 288-T, 96-band finite indicator with seven arbitrary dirty wires
-- [Flat-seed field bank and six-T decoder](depth/FLAT_FIELD_BANK_PILOT.md) — a genuinely non-Clifford graded four-address bank, a three-band decoder with a full Clifford intertwiner completion, and a complete 72-T, 28-band indicator with three returned dirty wires; no all-size depth improvement
-- [Projective field recoupler](depth/PROJECTIVE_FIELD_RECOUPLER.md) — complete eight-address native decoders: 172 T gates and at most 83 bands without extra helpers, or 148 T gates and at most 39 bands with six returned dirty helpers; shared reflection phases and private quartic batching retain every zero-fiber column, while line enumeration remains exponential
-- [Complete field decoder Pauli domain](depth/FIELD_DECODER_PAULI_DOMAIN.md) — robust absorbed-axis rank and T-count floor $`2m-2`$ for complete field intertwiners, including moving Clifford target helpers; independent finite cells fail after arbitrary joint outer Clifford walls
-- [Weak complete-probe Pauli domain](depth/WEAK_PROBE_PAULI_DOMAIN.md) — degree-sensitive Reed--Muller domain and axis bounds for the transported probe alone; a low-weight field-kernel argument yields independent-cell error floor $`1/12`$ from three address bits, improved to $`1/4`$ from five bits, including linear Pauli helper queries and moving decoded helpers
-- [Disjoint-span two-band field decoders](depth/TWO_BAND_FIELD_DECODER_OBSTRUCTION.md) — a uniform error floor for partial or full bands with zero span intersection, including arbitrary source identity helpers and Clifford target-helper motion; shared-span cancellation remains outside the theorem
-- [Scalar-field radical copy screen](depth/SCALAR_FIELD_RADICAL_COPY_SCREEN.md) — algebra-automorphism equivariance forces a square-zero shear image and a four-address relation for every address embedding, giving direct-copy error at least one half and output-dual copy error at least one quarter
-- [Clifford seed copy structure](depth/CLIFFORD_SEED_COPY_STRUCTURE.md) — projectively involutive seeds with commuting symplectic orbits have a 1/64 field-copy floor at p at least seven for arbitrary copies; every Clifford seed has a $`\sin(\pi/8)`$ floor at p at least nine when the copy has one physical T band
+### Encoded copy and field-bank tools
+
+The interface, copy feasibility and decoder contracts are distinct. Use the
+linked scopes before combining a seed, query and physical copy. Numerical
+allocations stay in their proof homes; finite pilots establish no all-size gain.
+
+- [Encoded dirty copy without a synthesized decoder](depth/ENCODED_DIRTY_COPY_INTERFACE.md) — Physical indicator from jointly paid carrier transition and copy; the abstract decoder need not be synthesized.
+- [Exact dirty copying as a parity grading](depth/DIRTY_COPY_GRADING.md) — Exact parity grading for arbitrary unitary families, robust word tests, and a noncommuting calibration.
+- [Native copy interactions and dual readout](depth/NATIVE_COPY_INTERACTION.md) — Native components, copy count/support screens, and product-seed rigidity with Clifford output duals.
+- [Complete one-band copy feasibility](depth/ONE_BAND_COPY_FEASIBILITY.md) — Walsh support plus the carrier fixed point; the triple-axis joint-wall family fails despite passing the tensor screen.
+- [Clifford output-dual grading](depth/CLIFFORD_DUAL_COPY_GRADING.md) — Extensive dual-orbit abelianization for one-band copies with arbitrary seeds; robust relation-word certificates.
+- [Affine Pauli-orbit copy screen](depth/PAULI_ORBIT_COPY_SCREEN.md) — Clifford-dual error floor, one-bit endpoint and paid dirty-mask gauge; field shear has a different scope.
+- [Extensive non-Clifford copy-axis span](depth/COPY_AXIS_SPAN.md) — Robust output-axis and T-count requirement; no growing depth conclusion.
+- [Monomial query-seed copy obstruction](depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md) — Commuting query and seed-conjugated algebras fail even with an arbitrary physical copy.
+- [Four-address Clifford seed and physical copy](depth/FIELD_COPY_CLIFFORD_PILOT.md) — Four-address central-sector grading and complete native indicator; finite construction.
+- [Flat-seed field bank and six-T decoder](depth/FLAT_FIELD_BANK_PILOT.md) — Four-address non-Clifford bank, six-T decoder and complete indicator; finite construction.
+- [Projective field recoupler](depth/PROJECTIVE_FIELD_RECOUPLER.md) — Eight-address decoders with and without returned helpers; exponential line enumeration limits scaling.
+- [Complete field decoder Pauli domain](depth/FIELD_DECODER_PAULI_DOMAIN.md) — Full-intertwiner axis/count bound; independent cells fail even with joint Clifford walls and moving helpers.
+- [Weak complete-probe Pauli domain](depth/WEAK_PROBE_PAULI_DOMAIN.md) — Weaker complete-probe domain and independent-cell error floors, including moving decoded helpers.
+- [Disjoint-span two-band field decoders](depth/TWO_BAND_FIELD_DECODER_OBSTRUCTION.md) — Disjoint absorbed spans fail at fixed error; overlapping spans remain outside the screen.
+- [Scalar-field radical copy screen](depth/SCALAR_FIELD_RADICAL_COPY_SCREEN.md) — Scalar-shear algebra-automorphism model fails for every address embedding.
+- [Clifford seed copy structure](depth/CLIFFORD_SEED_COPY_STRUCTURE.md) — Separate commuting-symplectic-orbit and one-band-copy screens for Clifford seeds.
 - [Joint bank routing and the complete dirty indicator](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
 ## Constructive components and source candidates
@@ -212,15 +219,15 @@ These are complete interfaces and conditional transfers, not constructions of th
 Each home separates its paid native operations from its first unpaid conversion. A scalar predicate, forward XOR query, inverse-column formula or trace character is not by itself a normalized complete indicator.
 
 - [Exact two-layer quadratic queries with one returned dirty qubit](depth/QUADRATIC_NATIVE_QUERY.md)
-- [Parallel weighted-cubic phases with returned dirty work](depth/DIRTY_CUBIC_PHASE_COMPILER.md) — an exact thirteen-band compiler with shared logical controls and paid coefficient-cube parity layers
-- [Local HRT operations and complete coherent feedback](depth/COHERENT_FEEDBACK_SOURCES.md) — exact local encoded Hadamards, [twenty-four-band pair-star fusion](depth/COHERENT_FEEDBACK_SOURCES.md#pair-star-hadamard-fusion), and complete feedback repairs that retain the forward/inverse-coordinate mismatch
+- [Parallel weighted-cubic phases with returned dirty work](depth/DIRTY_CUBIC_PHASE_COMPILER.md) — Paid parallel cubic phase compiler with shared controls and coefficient-cube parity layers.
+- [Local HRT operations and complete coherent feedback](depth/COHERENT_FEEDBACK_SOURCES.md) · [twenty-four-band pair-star fusion](depth/COHERENT_FEEDBACK_SOURCES.md#pair-star-hadamard-fusion) — Encoded Hadamards and complete feedback repairs; forward/inverse-coordinate mismatch remains.
 - [Balanced native compilation of the HRT algebra permutations](depth/BALANCED_ALGEBRA_PERMUTATION.md)
 - [Full-input algebra queries and fast returned multiplication](depth/ALGEBRA_QUERY_EXTRACTION.md)
 - [A complete bank from one nonlinear algebra source](depth/FULL_BANK_CHARACTER_TRANSPORT.md) — [quadratic-inverse component](depth/FULL_BANK_CHARACTER_TRANSPORT.md#5-the-quadratic-inverse-has-a-paid-xor-query-not-a-paid-in-place-map) · [coherent-correction audit](depth/FULL_BANK_CHARACTER_TRANSPORT.md#6-the-choi-basis-is-paid-its-coherent-x-correction-is-not)
 - [Direct output readout and the weaker algebra-source contract](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md) — [direct output version](depth/OUTPUT_ALIASED_CHARACTER_SOURCE.md#3-the-arbitrary-key-correction-has-the-same-weaker-return-interface)
 - [Complete observable transport and the shared-key source limit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
 - [A nonhomomorphic affine-pencil source for the complete bank](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md) — [paired projector-Gram interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) · [one-clean two-band case](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) · [four-call recovery](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) · [joint two-clean recovery](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) · [latent-center interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
-- [A paid constant-depth approximate zero reflection](depth/EXPANDER_ZERO_REFLECTION.md) — [exact shared address stage](depth/EXPANDER_ZERO_REFLECTION.md#synchronized-anchored-generator-stage), [mixed-selector return failure](depth/EXPANDER_ZERO_REFLECTION.md#mixed-selector-commutator), [paid quarter-phase stage](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage), and [actual one-clean source](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source) with a nontrivial accepted fiber but wrong complete-bank Gram
+- [A paid constant-depth approximate zero reflection](depth/EXPANDER_ZERO_REFLECTION.md) · [exact shared address stage](depth/EXPANDER_ZERO_REFLECTION.md#synchronized-anchored-generator-stage) · [mixed-selector return failure](depth/EXPANDER_ZERO_REFLECTION.md#mixed-selector-commutator) · [paid quarter-phase stage](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage) · [actual one-clean source](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source) — Paid zero reflection and quarter-phase source; complete-bank Gram remains wrong.
 - [Coherent counters: an exact odd-key code and the missing native schedule](depth/COHERENT_COUNTER_SOURCE.md) — [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
 - [Exact arithmetic with virtual Boolean functions and dirty work](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
 - [Complete bank difference: a paid nonlinear merge and its depth cost](depth/COMPLETE_BANK_DIFFERENCE.md)
@@ -238,6 +245,8 @@ Each home separates its paid native operations from its first unpaid conversion.
 
 Use these only with their stated actual-boundary, fiber, normalization or source-call premises. The read-only two-band compression bound differs from the one-clean two-band Gram screen in the pencil proof; neither is a dimension-growing unrestricted depth theorem.
 
+### Band, selector and transport screens
+
 - [Complete two-band sources with native read-only address](depth/READ_ONLY_TWO_BAND_SOURCE_GAP.md)
 - [A Clifford-sum gap excludes bounded-clean two-band indicator sources](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md) — [rank--norm refinement](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#10-rank-norm-bounds-sharpen-the-exact-and-finite-error-source-screen) · [bounded-clean projector-Gram screen](depth/FIXED_CLIFFORD_SUM_SOURCE_GAP.md#bounded-clean-two-band-gram-screen)
 - [Clifford averages cannot select the complete lookup eigenspace](depth/CLIFFORD_LOOKUP_FIXED_SPACE.md)
@@ -246,52 +255,61 @@ Use these only with their stated actual-boundary, fiber, normalization or source
 - [Simultaneous output parities and native support rank](depth/SIMULTANEOUS_OUTPUT_PARITY_LIMITS.md)
 - [Limits of structured frames for spectral promotion](depth/SPECTRAL_PROMOTION_FRAME_LIMITS.md)
 - [Crossed cubic kernels and complete observable transport](depth/CROSSED_CUBIC_KERNEL_SOURCE.md) — [normalized forward source](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-forward-gram-source) · [Clifford signal-image gap](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#clifford-signal-gram-gap) · [normalized half-bilinear trial](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-half-bilinear-source) · [XOR-carry trial and changed acceptance question](depth/CROSSED_CUBIC_KERNEL_SOURCE.md#normalized-xor-carry-source); constructed words retain wrong lookup sectors
-- [Signal-interleaved kernel sources](depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) — complete native Grams, unequal-branch rejection, all-call tail-bank commutant obstruction, and a changed-bank three-query finite failure
-- [Coupled quarter-phase sources](depth/COUPLED_QUARTER_PHASE_SOURCE.md) — paid two-stage and four-path words, full-bank relative action, scalar-filter collision, coherent Gram defect and exact row-selective partial source
-- [Quarter-phase matching limits](depth/QUARTER_PHASE_MATCHING_LIMITS.md) — simultaneous matching ledger, row covariance, heterogeneous-signature and bipartition invariants, and a uniform one-row dressed-expander gap
-- [Complete bank response and row isolation](depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md) — surviving background conjugation, exact two-row defect, fixed-row SELECT, aggregation costs and the restricted affine-cube collision
-- [Co-moving lookup stages](depth/CO_MOVING_LOOKUP_STAGE.md) — paid charge-preserving bank motion, exact global echo, even-bank and transplanted four-path failures, and the remaining complete acceptance identity
-- [Co-moving selector readout](depth/CO_MOVING_SELECTOR_READOUT.md) — paid address-relative Hadamard tags and their controlled sources, full-bank sector identity, covariant orbit-pair singlet limit, and affine singleton transport
-- [Entangling selector acceptance](depth/ENTANGLING_SELECTOR_ACCEPTANCE.md) — paid Clifford/non-Clifford selector controls; complete-call and cell-crossing rank limits; retained finite nonlocal evidence, sector separator, fixed-row central word, paid address-transport boundary and square-stage affine-Pauli limit
-- [Bank-coupled selector dynamics](depth/BANK_COUPLED_SELECTOR_DYNAMICS.md) — paid bank swaps/Hadamards and their signal controls, complete principal-work dynamics, an all-size Bell-cell witness for the specified nonlocal frames, and a finite bank-Hadamard source excluded by its complete marked path Gram
-- [MOD3 zeta transport](depth/MOD3_ZETA_TRANSPORT.md) — binary order-three blocks, paid native baselines and shared cleanup, a native two-band exclusion, and exactness of three-layer observable approximation below the fixed gap; sublogarithmic joint transport remains unpaid
-- [Weak Pauli orbit compression](depth/WEAK_PAULI_ORBIT_COMPRESSION.md) — native single-coordinate and joint two-coordinate sources, complete two-address lookup, four-band nested coefficients, [two-band coefficient shear and complete assembly](depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear) with a paused linear-depth recurrence, and scoped product/prefix-rank/final-block limits
-- [Native fusion of complete coefficient shears](depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) — exact completed exchanges, failed half-band regrouping, a uniform-angle bipartite word gap, and scoped common-Clifford-basis and dirty-replica screens
-- [Coordinate-weighted pulse limits](depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md) — paid coordinate and tail-dependent quarter angles, robust signature collisions, and the directed-filtration lower bound on total pulses; Clifford pulses are not charged as T layers
-- [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — the two-block gap, sharp Clifford-fiber block count, and a three-block requirement for later key mixing even with an arbitrary global third-level prefix; the long physical Clifford-zeta frame remains failed
-- [Unrestricted three-band lookup sources](depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md) — point-mask rank and native-axis independence force the last two absorbed bands to preserve the address for p at least five; the degree-six boundary excludes every three-layer source for p at least seven, with a uniform complete-error floor
-- [Clifford involution source](depth/CLIFFORD_INVOLUTION_SOURCE.md) — four native bands, linear T count and no helpers for every traceless Hermitian Clifford; two-outer-conjugation reduction and an exact Galois symmetry screen
-- [Complete Clifford symmetries of lookup](depth/LOOKUP_CLIFFORD_SYMMETRIES.md) — exact normal form, uniform operator-norm rounding and address-algebra preservation for p at least three, with arbitrary dirty helpers and a genuine two-bit address/bank-mixing exception
-- [Joint address, carrier and helper source](depth/JOINT_ADDRESS_HELPER_SOURCE.md) — paid quartic-face trials and repair, a nonmonomial Hadamard-pair gap with a weighted-phase escape, and the fixed-coefficient versus arbitrary-coefficient boundary; no all-size shallow source
-- [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) — [reduced pair-register gauge](depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge), general carrier-linear root criterion, four-band root completion, partial character basis, and sharp scoped polarization-query bounds
-- [Ordered-matching probe source](depth/ORDERED_MATCHING_PROBE_SOURCE.md) — one matching per subset, common-point native fusion, and a minimal-tree specialization with linear T count and no private work; depth remains linear
-- [Fixed-readout syndrome bound](depth/FIXED_READOUT_SYNDROME_BOUND.md) — complete lookup requires near-full syndrome dimension after low-degree Pauli transport, even with an arbitrary fixed non-Clifford readout; a query-grammar bound, not native-depth optimality
-- [Interleaved tree-probe algebra](depth/INTERLEAVED_TREE_PROBE_SOURCE.md) — paid later-address wall, literal Pauli phases, full commutation rank, and one-query error floors allowing arbitrary non-Clifford probes; two opposite queries leave those premises
-- [Clifford-orbit query rank](depth/CLIFFORD_ORBIT_QUERY_RANK.md) — faithful normal-Pauli phase lift and multiplicative group rank require at least ceiling(p/8) literal affine queries for a Clifford starting reflection and arbitrary fixed decoder, even at small fixed error
-- [Two-address interleaved pilot](depth/TWO_ADDRESS_INTERLEAVED_PILOT.md) — a complete controlled-Hadamard family with a paid fixed Clifford decoder, native source and actual inverse; a finite benchmark, not an asymptotic gain
-- [Non-Clifford seed spread](depth/NONCLIFFORD_SEED_SPREAD.md) — exact Pauli-algebra and robust quantum random-access bounds force a broad seed for bounded affine queries; a paid extensive seed and its local-decoder limit separate seed count from native depth
-- [Field-shear intertwiner](depth/FIELD_SHEAR_INTERTWINER.md) — paid query and native two-bit decoder, spectator count, Bell-fiber redistribution, helper-valued probe freedom, and exclusion of exact seeds diagonal in any query-invariant stabilizer basis
-- [Recursive field-shear decoder](depth/RECURSIVE_FIELD_SHEAR_DECODER.md) — all-size identity-helper algebraic intertwiner with full zero sectors, dense native queries and paid multiplication-XOR batches; the original in-place maps remain uncompiled, while the augmented helper-query construction pays a different complete decoder
-- [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) — uniform native field-plus-Pauli-helper intertwiner with shared moving helpers and complete indicator return; two multiplication-XOR batches per level give $`16(p-1)`$ decoder bands and the specific relaxed fusion count/width/gate budgets, but depth still fails the discovery target
-- [Clifford-sector degree barrier](depth/FIELD_SECTOR_DEGREE_BARRIER.md) — helper shift rank and helper-tableau degree at least $`p-1`$ for full field intertwiners with Clifford sectors; the augmented construction attains the degree, so fixed-frame helper-affine stages cannot compress to a bounded number, while unrestricted native words remain outside the screen
-- [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — complete standard/group Bell diagnostics and four-phase/eight-source extraction, with one-bank polarization and safe output/carrier aliases reducing dirty width
-- [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — paid address/tag and bank-motion sources, scoped three-layer boundaries, the corrected relative involution, and complete-transition failures of retained repairs
-- [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — actual joint word, robust direct square readout for balanced two-unitary sources, paid anchors and two distinct finite failed bank-moving trials
-- [Affine orbit reflection source](depth/AFFINE_ORBIT_REFLECTION_SOURCE.md) — paid fixed-point-free charge-preserving motion and orbit coordinates, exact diagonal phase cochains, sharp phase-degree scope and a failed local anchor
-- [Transverse orbit reflections](depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md) — arbitrary controlled-dressing normalization, a paid non-diagonal square-root trial and its all-size sector error; the affine orbit is a charge-preserving native change of coordinates
-- [Boolean reflection Gram sources](depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md) — exact spectral Boolean queries without clean work, paid controlled quarter phases, full reflection-product Gram criterion and the flat-mixer sector obstruction
-- [A normalized scalar-kernel partial source](depth/SCALAR_KERNEL_FILTER_SOURCE.md) — correct-charge support, native/error ledger and fixed-diagonal rigidity; a paid rank-one determinant query still has a thin, wrong-sector scalar echo
-- [Corank-one Fourier kernels and Bell acceptance](depth/CORANK_FOURIER_BELL_SOURCE.md) — complete Bell dilation, normalized thin and broad sources, coherent-sector failures, and transfer of the complete charge-readout error to auxiliary acceptance
+- [Signal-interleaved kernel sources](depth/SIGNAL_INTERLEAVED_KERNEL_SOURCE.md) — Complete Grams and tail-bank commutant screen; changed-bank three-query trial fails.
+- [Coupled quarter-phase sources](depth/COUPLED_QUARTER_PHASE_SOURCE.md) — Paid path words, complete relative action and row-selective partial source; scalar and Gram defects remain.
+- [Quarter-phase matching limits](depth/QUARTER_PHASE_MATCHING_LIMITS.md) — Matching/row-covariance invariants and the one-row dressed-expander gap.
+- [Complete bank response and row isolation](depth/BANK_BIT_RESPONSE_AND_ROW_ISOLATION.md) — Two-row defect, fixed-row SELECT and aggregation costs; affine-cube collision is scoped.
+- [Co-moving lookup stages](depth/CO_MOVING_LOOKUP_STAGE.md) — Paid bank motion and global echo; retained trials fail complete acceptance.
+- [Co-moving selector readout](depth/CO_MOVING_SELECTOR_READOUT.md) — Address-relative tags and full-bank sectors; covariant orbit-pair singlet limit.
+- [Entangling selector acceptance](depth/ENTANGLING_SELECTOR_ACCEPTANCE.md) — Paid selector controls, call/crossing-rank limits and retained nonlocal components; affine-Pauli screen is scoped.
+- [Bank-coupled selector dynamics](depth/BANK_COUPLED_SELECTOR_DYNAMICS.md) — Paid bank/signal controls and Bell-cell witness; the bank-Hadamard trial fails its full Gram.
+- [MOD3 zeta transport](depth/MOD3_ZETA_TRANSPORT.md) — Paid order-three baselines and two-band/three-layer screens; sublogarithmic joint transport remains unpaid.
+- [Weak Pauli orbit compression](depth/WEAK_PAULI_ORBIT_COMPRESSION.md) · [two-band coefficient shear and complete assembly](depth/WEAK_PAULI_ORBIT_COMPRESSION.md#complete-coefficient-shear) — Paid coefficient shears and complete assembly; the paused recurrence has linear depth and scoped rank limits.
+- [Native fusion of complete coefficient shears](depth/COEFFICIENT_SHEAR_NATIVE_FUSION.md) — Complete exchanges; regrouping, fixed-angle and common-basis/replica screens.
+- [Coordinate-weighted pulse limits](depth/COORDINATE_WEIGHTED_PULSE_LIMITS.md) — Paid quarter angles and total-pulse bounds; Clifford pulses are not T layers.
+- [Clifford-interleaved lookup](depth/CLIFFORD_INTERLEAVED_LOOKUP.md) — Clifford-fiber block limits and later-key-mixing requirement; the long Clifford-zeta trial fails.
+- [Unrestricted three-band lookup sources](depth/THREE_BAND_LOOKUP_SOURCE_OBSTRUCTION.md) — Unrestricted zero-clean three-band source screen with a fixed complete-error floor; no growing frame-depth bound.
+### Probe and orbit mechanisms
+
+- [Clifford involution source](depth/CLIFFORD_INVOLUTION_SOURCE.md) — Paid four-band traceless Hermitian-Clifford source and scoped conjugation/Galois screens.
+- [Complete Clifford symmetries of lookup](depth/LOOKUP_CLIFFORD_SYMMETRIES.md) — Exact lookup normal form, robust rounding and address preservation; two-bit mixing exception.
+- [Joint address, carrier and helper source](depth/JOINT_ADDRESS_HELPER_SOURCE.md) — Paid quartic trials/repair and weighted-phase alternative; fixed and arbitrary coefficients have different scope.
+- [Coherent central transport](depth/COHERENT_CENTRAL_TRANSPORT.md) · [reduced pair-register gauge](depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge) — Carrier-linear root criterion, four-band completion and scoped polarization-query bounds.
+- [Ordered-matching probe source](depth/ORDERED_MATCHING_PROBE_SOURCE.md) — Paid matching fusion and minimal-tree query; depth remains linear.
+- [Fixed-readout syndrome bound](depth/FIXED_READOUT_SYNDROME_BOUND.md) — Near-full syndrome requirement after low-degree Pauli transport; query grammar, not unrestricted depth.
+- [Interleaved tree-probe algebra](depth/INTERLEAVED_TREE_PROBE_SOURCE.md) — Paid later-address wall and one-query error floors with arbitrary probes; opposite-query words lie outside.
+- [Clifford-orbit query rank](depth/CLIFFORD_ORBIT_QUERY_RANK.md) — Literal affine-query lower bound with a Clifford starting reflection and arbitrary fixed decoder.
+- [Two-address interleaved pilot](depth/TWO_ADDRESS_INTERLEAVED_PILOT.md) — Complete controlled-Hadamard source, paid decoder and actual inverse; finite benchmark.
+- [Non-Clifford seed spread](depth/NONCLIFFORD_SEED_SPREAD.md) — Exact and robust seed-spread bounds; extensive paid seed does not imply shallow decoding.
+### Field query and decoder chain
+
+The algebraic decoder, augmented native decoder and sector-degree screen use
+different helper contracts. Follow those contracts through the complete echo.
+
+- [Field-shear intertwiner](depth/FIELD_SHEAR_INTERTWINER.md) — Paid field query, two-bit decoder and helper-valued probe freedom; invariant-stabilizer seeds fail.
+- [Recursive field-shear decoder](depth/RECURSIVE_FIELD_SHEAR_DECODER.md) — All-size algebraic intertwiner and paid XOR batches; original in-place maps remain uncompiled.
+- [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) — Uniform paid field/helper intertwiner and full return within relaxed fusion budgets; linear depth remains.
+- [Clifford-sector degree barrier](depth/FIELD_SECTOR_DEGREE_BARRIER.md) — Sharp helper-tableau degree requirement for Clifford sectors; fixed-frame affine-stage screen only.
+### Gram, Bell and scalar-source screens
+
+- [Dirty Choi teleportation and a sufficient residual probe](depth/DIRTY_CHOI_OBSERVABLE_SOURCE.md) — Complete Bell diagnostics and residual-probe extraction; paid polarization and width reductions.
+- [Coupled final encoders](depth/COUPLED_FINAL_ENCODER.md) — Paid address/tag and bank-motion components; retained repairs fail complete transition.
+- [Coupled order interference](depth/COUPLED_ORDER_GRAM_SOURCE.md) — Balanced two-unitary square readout and paid anchors; two finite bank-moving trials fail.
+- [Affine orbit reflection source](depth/AFFINE_ORBIT_REFLECTION_SOURCE.md) — Paid charge-preserving motion and phase cochains; scoped degree bound and failed local anchor.
+- [Transverse orbit reflections](depth/TRANSVERSE_ORBIT_REFLECTION_SOURCE.md) — Controlled-dressing normalization; paid non-diagonal trial has an all-size sector error.
+- [Boolean reflection Gram sources](depth/BOOLEAN_REFLECTION_GRAM_SOURCE.md) — Paid spectral queries/quarter phases and full Gram criterion; flat-mixer sector obstruction.
+- [A normalized scalar-kernel partial source](depth/SCALAR_KERNEL_FILTER_SOURCE.md) — Normalized partial source and fixed-diagonal rigidity; paid determinant query has the wrong scalar sector.
+- [Corank-one Fourier kernels and Bell acceptance](depth/CORANK_FOURIER_BELL_SOURCE.md) — Complete Bell dilation and normalized sources; coherent-sector failures and acceptance-error transfer.
 - [Two complete key-mixing tests for observable transport](depth/KEY_MIXING_OBSERVABLE_SCREENS.md)
 - [Gaussian compression with a small clean signal](depth/GAUSSIAN_COMPRESSION_SOURCE_LIMITS.md)
-- [Clifford projector-Gram rigidity](depth/CLIFFORD_PROJECTOR_GRAM.md) — singular accepted Grams of fully interleaved Clifford fibers; clean-signal rigidity and a separate read-only affine-query count boundary
+- [Clifford projector-Gram rigidity](depth/CLIFFORD_PROJECTOR_GRAM.md) — Interleaved Clifford-fiber Gram rigidity; separate read-only affine-query bound.
 - [Involutory Gaussian loops and their unsquared scalar limit](depth/INVOLUTORY_GAUSS_SOURCE_LIMITS.md)
 - [Scalar phases of closed Gaussian circuits have bounded degree](depth/GAUSSIAN_SCALAR_LOOP_OBSTRUCTION.md)
 - [Complete-input limits of two approximate equality filters](depth/APPROXIMATE_INDICATOR_FILTER_LIMITS.md)
 - [Phase-signal and coherent-frame interfaces for complete queries](depth/PHASE_SIGNAL_QUERY_LIMITS.md)
 - [Dirty geometric phase loops and the complete-bank cost](depth/DIRTY_GEOMETRIC_PHASE_LOOPS.md)
 - [Joint detuning and the cost of independent fine-angle replacement](depth/JOINT_DETUNING_PRECISION_LIMITS.md)
-- [Native sharing and complete-probe support](depth/NATIVE_INDICATOR_SHARING.md) — unrestricted incidence and robust linear source-count constraints; no growing-depth conclusion
+- [Native sharing and complete-probe support](depth/NATIVE_INDICATOR_SHARING.md) — Incidence and robust linear source-count constraints; no growing-depth conclusion.
 - [The count cost of replacing two indicators by many](depth/MULTIWAY_QUERY_COST_BARRIER.md)
 - [A source-count barrier for symplectic commutator readout](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md) — [universal-probe conversion](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#6-universal-pauli-probes-contain-a-complete-dirty-indicator) · [all R98 word-query budgets](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#7-the-complete-r98-word-query-interface-follows-conditionally) · [Walsh phase attempt](depth/SYMPLECTIC_MODULE_QUERY_BARRIER.md#71-a-dense-walsh-phase-program-does-not-supply-the-faster-source)
 - [An exact T-count barrier for the separate Walsh dual readout](depth/DUAL_FRAME_READOUT_BARRIER.md)
@@ -404,90 +422,111 @@ individual limitations do not obstruct the later complete-column compiler.
 
 ## Session records and designs
 
-These records preserve decisions, failed attempts, supporting derivations and
-the scope known at each checkpoint. Their next-step instructions are historical
-unless reaffirmed in the working checkpoint. A design prompt is not a theorem.
-The records below keep every retained outcome and design discoverable from
-this catalogue.
+Consult these when a proof or route decision leaves an unresolved derivation,
+failed attempt or design choice to recover. They retain the scope known at the
+time; their instructions are historical unless WORKSPACE reaffirms them.
+Prompts are labelled **design**, and do not establish results. Cross-topic
+records are filed under their principal mechanism; original filenames remain
+searchable. Every retained record is linked below.
 
-- [Continuation: amplitude-uniform source limits and a paid joint detuning](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
-- [Revision: complete bank motion is paid; a shallow source remains missing](depth/BANK_MOTION_CONTINUATION_RESULT.md)
-- [Five-hour design: move precision into borrowed work](depth/BORROWED_PRECISION_BRIDGE_PROMPT.md)
-- [Borrowed precision and direct programming: execution outcome](depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
-- [Branch-orientation depth session](depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
-- [Five-hour design: carry the workspace through the catalogue](depth/CATALOGUE_BOOTSTRAP_PROMPT.md)
-- [Catalogue bootstrap session: the local compiler carries its workspace](depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
-- [Revision: constant translations and approximate query transfer](depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
-- [Revision: fix one genuine parity before counting matrix features](depth/CENTRAL_PARITY_REVISION_RESULT.md)
-- [Revision: one algebra source serves the whole indicator bank](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
-- [Clean-code revision and a paid algebra recovery](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
-- [Revision: a paid clean-source route to the dirty indicator](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
-- [Revision: clean-transition phase and representation cost](depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
-- [Revision: weaker coherent sources and uniform all-active one-pair closure](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
-- [Product-coin continuation: causal batching and recursive depth](depth/COIN_CONTINUATION_SESSION_RESULT.md)
-- [Revision: the computational phase and the complete native source](depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+[Sources/readout](#source-acceptance-and-readout-records) ·
+[Transfers](#transfer-and-promotion-records) ·
+[Depth/precision](#complete-frame-depth-and-precision-records) ·
+[Native transport](#read-only-query-and-native-transport-records) ·
+[Clean codes/pairs](#clean-code-and-physical-pair-records)
+
+### Source, acceptance and readout records
+
+- [Amplitude-uniform source limits and a paid joint detuning](depth/AMPLITUDE_UNIFORM_SOURCE_RESULT.md)
+- [Complete bank motion is paid; a shallow source remains missing](depth/BANK_MOTION_CONTINUATION_RESULT.md)
+- [One algebra source serves the whole indicator bank](depth/CHARACTER_SOURCE_REVISION_RESULT.md)
+- [Weaker coherent sources and uniform all-active one-pair closure](depth/COHERENT_SOURCE_AND_ONE_PAIR_RESULT.md)
 - [Coupled incidence, signed normalization and a complete inverse query](depth/COUPLED_INCIDENCE_SESSION_RESULT.md)
-- [Joint encodings: unrestricted one-clean two-layer Boolean rigidity](depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
-- [Revision: pay the readout before claiming a shallower source](depth/DIRTY_KEY_REVISION_RESULT.md)
+- [Pay the readout before claiming a shallower source](depth/DIRTY_KEY_REVISION_RESULT.md)
+- [Spectral promotion, zero tests and complete sources](depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
+- [Gaussian readout, scalar phases and physical-center transport](depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
+- [Complete joint indicators and growing native displacement](depth/JOINT_INDICATOR_SESSION_RESULT.md)
+- [The complete selective word remains unpaid](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
+- [Native sharing and table-specific indicator probes](depth/NATIVE_SHARING_SESSION_RESULT.md)
+- [Keep the destination, change the source mechanism](depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
+- [Complete transitions from overlapping two-band sources](depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
+- [Parallel access is paid; selective dynamics remain missing](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
+- [Pay parallel promotion, then test the complete source](depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
+- [Native source scope and complete projector readout](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
+- [Two-band source obstruction and the continuing physical-pair scout](depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+- [Zero-character source certificates and an intrinsic transport test](depth/ZERO_CHARACTER_SESSION_RESULT.md)
+
+### Transfer and promotion records
+
+- [A paid clean-source route to the dirty indicator](depth/CLEAN_PROMOTION_SESSION_RESULT.md)
 - [Dirty-query reformulation: execution outcome](depth/DIRTY_QUERY_SESSION_RESULT.md)
-- [Revision: spectral promotion, zero tests and complete sources](depth/EXPANDER_AND_SOURCE_SCOPE_REVISION_RESULT.md)
-- [Revision: retain the native middle and bound its probe action](depth/EXTERNAL_CENTER_SESSION_RESULT.md)
-- [Five-layer query continuation: a normalizer gap and two mechanism tests](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
-- [Four-layer query closure: follow-up outcome](depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
-- [Five-hour design: read the complete flag and pay precision once](depth/FULL_FLAG_DEPTH_PROMPT.md)
-- [Complete flags and local precision: execution outcome](depth/FULL_FLAG_DEPTH_SESSION_RESULT.md)
-- [Revision: Gaussian readout, scalar phases and physical-center transport](depth/GAUSSIAN_AND_CENTER_REVISION_RESULT.md)
-- [Five-hour design: general magnitudes from exposed clean space](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md)
-- [General-magnitude recovery: session result](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
-- [Revision: keep the depth destination, relax the source count requirement](depth/INDICATOR_FUSION_REVISION_RESULT.md)
-- [Five-hour design: factor the interval recovery](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md)
-- [Interval-recovery factorization: session result](depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
-- [Joint decoder and terminal depth session](depth/JOINT_DEPTH_SESSION_RESULT.md)
-- [Revision: complete joint indicators and growing native displacement](depth/JOINT_INDICATOR_SESSION_RESULT.md)
-- [Revision: joint defects, bounded relations, and the complete probe task](depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
-- [Algebraic side results from the joint orientation session](depth/JOINT_ORIENTATION_DISCOVERY_NOTES.md)
-- [Five-hour design: joint orientation and recovery](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md)
-- [Joint orientation and recovery: session result](depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
-- [Revision: the complete selective word remains unpaid](depth/JOINT_SELECTIVE_CONTINUATION_RESULT.md)
-- [Unrestricted two-layer queries: joint constraints and native return](depth/JOINT_TRANSFER_SESSION_RESULT.md)
-- [Revision: where the remaining native cubic defect can live](depth/MIDDLE_DEFECT_SESSION_RESULT.md)
-- [Native defects close the five-layer read-only degree gap](depth/NATIVE_DEFECT_SESSION_RESULT.md)
-- [Native partial conjugation: cube relations and returned phase mechanisms](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
-- [Revision: native sharing and table-specific indicator probes](depth/NATIVE_SHARING_SESSION_RESULT.md)
-- [Native Clifford transport and nonlinear returned characters](depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
-- [Revision: non-Pauli clean codes and the cost of changing representations](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
-- [Revision: keep the destination, change the source mechanism](depth/OBSERVABLE_SOURCE_REVISION_RESULT.md)
-- [Revision: logical transport, native algebra costs, and the remaining depth question](depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
-- [Five-hour design: the unrestricted one-clean four-layer gap](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md)
-- [One-clean four-layer session: outer misalignment and the remaining gap](depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
-- [Overlap-one closure and the cost of the cycle source](depth/ONE_OVERLAP_SESSION_RESULT.md)
-- [Revision: use Booleanity before resynthesizing negative singletons](depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
-- [Continuation: complete transitions from overlapping two-band sources](depth/OVERLAPPING_SOURCE_SESSION_RESULT.md)
-- [Revision: parallel access is paid; selective dynamics remain missing](depth/PARALLEL_ACCESS_REVISION_RESULT.md)
-- [Revision: pay parallel promotion, then test the complete source](depth/PARALLEL_PROMOTION_AND_KERNEL_REVISION_RESULT.md)
-- [The in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
-- [Five-hour design: precision without repeated long-prefix work](depth/PRECISION_TERMINAL_PROMPT.md)
-- [Precision-terminal session: grouping the noncommuting middle](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
-- [Historical revision: native source scope and complete projector readout](depth/READOUT_AND_NATIVE_SOURCE_REVISION_RESULT.md)
-- [Runnable prompt for a five-hour depth research session](depth/RESEARCH_SESSION_PROMPT.md)
-- [Fixed-accuracy depth research session: execution record](depth/RESEARCH_SESSION_RESULT.md)
+- [Keep the depth destination, relax the source count requirement](depth/INDICATOR_FUSION_REVISION_RESULT.md)
 - [Restored-address queries and the complete-frame transfer](depth/RESTORED_ADDRESS_SESSION_RESULT.md)
-- [Returned-query invariants: execution outcome](depth/RETURNED_QUERY_SESSION_RESULT.md)
-- [Native axes, scalar return and the missing relation](depth/RETURNED_RELATIONS_SESSION_RESULT.md)
-- [Revision: global native matching and the exact readout cost](depth/SHARED_CENTER_SESSION_RESULT.md)
+
+### Complete-frame depth and precision records
+
+- [Runnable prompt for a five-hour depth research session](depth/RESEARCH_SESSION_PROMPT.md) — design
+- [Fixed-accuracy depth research session: execution record](depth/RESEARCH_SESSION_RESULT.md)
+- [Read the complete flag and pay precision once](depth/FULL_FLAG_DEPTH_PROMPT.md) — design
+- [Complete flags and local precision: execution outcome](depth/FULL_FLAG_DEPTH_SESSION_RESULT.md)
+- [General magnitudes from exposed clean space](depth/GENERAL_MAGNITUDE_RECOVERY_PROMPT.md) — design
+- [General-magnitude recovery: session result](depth/GENERAL_MAGNITUDE_RECOVERY_SESSION_RESULT.md)
+- [Branch-orientation depth session](depth/BRANCH_ORIENTATION_SESSION_RESULT.md)
+- [Joint orientation and recovery](depth/JOINT_ORIENTATION_RECOVERY_PROMPT.md) — design
+- [Joint orientation and recovery: session result](depth/JOINT_ORIENTATION_RECOVERY_SESSION_RESULT.md)
+- [Algebraic side results from the joint orientation session](depth/JOINT_ORIENTATION_DISCOVERY_NOTES.md)
+- [Joint decoder and terminal depth session](depth/JOINT_DEPTH_SESSION_RESULT.md)
+- [Factor the interval recovery](depth/INTERVAL_RECOVERY_FACTORIZATION_PROMPT.md) — design
+- [Interval-recovery factorization: session result](depth/INTERVAL_RECOVERY_FACTORIZATION_SESSION_RESULT.md)
+- [Product-coin continuation: causal batching and recursive depth](depth/COIN_CONTINUATION_SESSION_RESULT.md)
+- [Move precision into borrowed work](depth/BORROWED_PRECISION_BRIDGE_PROMPT.md) — design
+- [Borrowed precision and direct programming: execution outcome](depth/BORROWED_PRECISION_BRIDGE_SESSION_RESULT.md)
+- [Carry the workspace through the catalogue](depth/CATALOGUE_BOOTSTRAP_PROMPT.md) — design
+- [Catalogue bootstrap session: the local compiler carries its workspace](depth/CATALOGUE_BOOTSTRAP_SESSION_RESULT.md)
+- [Precision without repeated long-prefix work](depth/PRECISION_TERMINAL_PROMPT.md) — design
+- [Precision-terminal session: grouping the noncommuting middle](depth/PRECISION_TERMINAL_SESSION_RESULT.md)
+- [Compose the terminal with returned borrowed work](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md) — design
+- [Whole-terminal session: logarithmic general depth](depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+- [Precision-uniform follow-up: execution record](depth/UNIFORM_PRECISION_SESSION_RESULT.md)
+
+### Read-only query and native transport records
+
+- [Unrestricted two-layer queries: joint constraints and native return](depth/JOINT_TRANSFER_SESSION_RESULT.md)
+- [Three-layer queries: execution outcome](depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
+- [Three-layer revision: a native degree invariant and a paid cubic query](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
+- [Four-layer query closure: follow-up outcome](depth/FOUR_LAYER_QUERY_SESSION_RESULT.md)
+- [Five-layer query continuation: a normalizer gap and two mechanism tests](depth/FIVE_LAYER_QUERY_SESSION_RESULT.md)
+- [Native defects close the five-layer read-only degree gap](depth/NATIVE_DEFECT_SESSION_RESULT.md)
 - [Six-layer Pauli comparisons and diagonal-source bounds](depth/SIX_LAYER_TRANSPORT_SESSION_RESULT.md)
 - [Span-preserving comparisons and the cost of returned sources](depth/SPAN_PRESERVING_SESSION_RESULT.md)
-- [Revision: remove the matrix core before counting its features](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
-- [Five-hour design: compose the terminal with returned borrowed work](depth/TERMINAL_SOURCE_GAUGE_PROMPT.md)
-- [Whole-terminal session: logarithmic general depth](depth/TERMINAL_SOURCE_GAUGE_SESSION_RESULT.md)
+- [Returned-query invariants: execution outcome](depth/RETURNED_QUERY_SESSION_RESULT.md)
+- [Native axes, scalar return and the missing relation](depth/RETURNED_RELATIONS_SESSION_RESULT.md)
+- [Native partial conjugation: cube relations and returned phase mechanisms](depth/NATIVE_PARTIAL_ACTION_SESSION_RESULT.md)
+- [Native Clifford transport and nonlinear returned characters](depth/NATIVE_TRANSPORT_SESSION_RESULT.md)
 - [Three native bands and a noncommutative return mechanism](depth/THREE_BAND_NONLINEAR_SESSION_RESULT.md)
-- [Three-layer revision: a native degree invariant and a paid cubic query](depth/THREE_LAYER_NATIVE_SESSION_RESULT.md)
-- [Three-layer queries: execution outcome](depth/THREE_LAYER_QUERY_SESSION_RESULT.md)
-- [Two-band source obstruction and the continuing physical-pair scout](depth/TWO_BAND_SOURCE_GAP_SESSION_RESULT.md)
+- [Overlap-one closure and the cost of the cycle source](depth/ONE_OVERLAP_SESSION_RESULT.md)
 - [Overlap-two sources, bounded-core transport, and commuting inverse pivots](depth/TWO_OVERLAP_SESSION_RESULT.md)
 - [Unbounded paired cores and controlled-Pauli transport](depth/UNBOUNDED_CONTROL_SESSION_RESULT.md)
-- [Precision-uniform follow-up: execution record](depth/UNIFORM_PRECISION_SESSION_RESULT.md)
-- [Zero-character source certificates and an intrinsic transport test](depth/ZERO_CHARACTER_SESSION_RESULT.md)
+- [The in-place permutation checkpoint](depth/PERMUTATION_BRIDGE_SESSION_RESULT.md)
+
+### Clean-code and physical-pair records
+
+- [The unrestricted one-clean four-layer gap](depth/ONE_CLEAN_FOUR_LAYER_PROMPT.md) — design
+- [One-clean four-layer session: outer misalignment and the remaining gap](depth/ONE_CLEAN_FOUR_LAYER_SESSION_RESULT.md)
+- [Joint encodings: unrestricted one-clean two-layer Boolean rigidity](depth/DIAGONAL_ENCODING_SESSION_RESULT.md)
+- [Clean-code revision and a paid algebra recovery](depth/CLEAN_CODE_ALGEBRA_SESSION_RESULT.md)
+- [Non-Pauli clean codes and the cost of changing representations](depth/NONPAULI_BOUNDARY_SESSION_RESULT.md)
+- [Logical transport, native algebra costs, and the remaining depth question](depth/OCCUPIED_TRANSPORT_SESSION_RESULT.md)
+- [Clean-transition phase and representation cost](depth/CLEAN_TRANSITION_PHASE_SESSION_RESULT.md)
+- [The computational phase and the complete native source](depth/COMPUTATIONAL_PHASE_SESSION_RESULT.md)
+- [Constant translations and approximate query transfer](depth/CENTRAL_COCYCLE_SESSION_RESULT.md)
+- [Joint defects, bounded relations, and the complete probe task](depth/JOINT_NONPAULI_TRANSPORT_SESSION_RESULT.md)
+- [Global native matching and the exact readout cost](depth/SHARED_CENTER_SESSION_RESULT.md)
+- [Retain the native middle and bound its probe action](depth/EXTERNAL_CENTER_SESSION_RESULT.md)
+- [Where the remaining native cubic defect can live](depth/MIDDLE_DEFECT_SESSION_RESULT.md)
+- [Fix one genuine parity before counting matrix features](depth/CENTRAL_PARITY_REVISION_RESULT.md)
+- [Remove the matrix core before counting its features](depth/STRUCTURAL_PAIR_REVISION_RESULT.md)
+- [Use Booleanity before resynthesizing negative singletons](depth/ORIGINAL_PAIR_COLLAPSE_RESULT.md)
 
 ## Attribution and reproducibility
 
