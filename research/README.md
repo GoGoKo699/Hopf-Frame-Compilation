@@ -195,6 +195,8 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Affine Pauli-orbit copy screen](depth/PAULI_ORBIT_COPY_SCREEN.md) — a one-quarter error floor with Clifford dual probes, the native one-bit endpoint and the paid dirty-mask gauge
 - [Extensive non-Clifford copy-axis span](depth/COPY_AXIS_SPAN.md) — quotient-sector weight gives a robust output-axis and T-count requirement, with no growing depth conclusion
 - [Monomial query-seed copy obstruction](depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md) — commuting original and seed-conjugated query algebras force a four-word identity and copy error at least one half, even with an arbitrary physical copy
+- [Four-address Clifford seed and physical copy](depth/FIELD_COPY_CLIFFORD_PILOT.md) — a noncommuting central-sector grading, a paid native copy and a complete 288-T, 96-band finite indicator with seven arbitrary dirty wires
+- [Clifford seed symplectic structure](depth/CLIFFORD_SEED_COPY_STRUCTURE.md) — commuting symplectic orbit actions force a 128-word scalar relation and a 1/64 copy-error floor for the field query at p at least seven; arbitrary copies and helpers are included
 - [Joint bank routing and the complete dirty indicator](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
 ## Constructive components and source candidates

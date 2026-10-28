@@ -265,9 +265,16 @@ The separate [affine Pauli-orbit screen](PAULI_ORBIT_COPY_SCREEN.md) gives
 a one-quarter error floor with Clifford dual probes, including native
 one-band copies, for p at least two. The field shear is not a Pauli query.
 
-The constructive task remains a jointly paid seed and interaction satisfying
-(2) within (4). A Clifford wall mixing carrier and output before the phase
-gates, or noncommuting carrier phase axes, leaves the screened product classes.
-Its complete dual readout and every arbitrary-input sector must be proved.
-The field query is already paid; global dirty-carrier cancellation removes
-the need to emit an abstract decoder only after this companion is supplied.
+The [four-address Clifford pilot](FIELD_COPY_CLIFFORD_PILOT.md) now pays
+a noncommuting seed and physical copy in the same field coordinates, giving
+a complete zero-clean finite indicator. Its central Pauli commutators also
+illustrate the [symplectic-orbit restriction](CLIFFORD_SEED_COPY_STRUCTURE.md):
+at p at least seven, a projectively involutive Clifford seed with commuting
+symplectic orbit actions has copy error at least 1/64, even with arbitrary C.
+
+The all-size task remains a jointly paid pair satisfying (2) within (4).
+For a Clifford seed, noncommuting symplectic dynamics are therefore necessary
+at arbitrarily small fixed error; non-Clifford seeds are another possibility.
+The complete dual readout, native inverse and every arbitrary-input sector
+must still be proved. Global dirty-carrier cancellation removes the abstract
+decoder only after the physical companion is paid.

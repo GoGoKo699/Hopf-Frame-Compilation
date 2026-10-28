@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #263](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/263),
-`5be277172912caeb3e307a17e441161ea1a7bdeb`, 27 October 2026.
-Its reviewed tree passed 1,977 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #264](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/264),
+`7e18502ce12c8a502a473998d77a60e00eab124c`, 27 October 2026.
+Its reviewed tree passed 1,985 tests, the full local gate and qualifying pre-merge CI.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -114,15 +114,11 @@ $`\sqrt{2-\sqrt2}`$. Nevertheless a copyable all-size noncommuting family
 exists. Its wire-translation query retains linear depth; moving it to the
 field query leaves its seed and copy unpaid.
 
-[Native copy components](research/depth/NATIVE_COPY_INTERACTION.md) supply
-a one-band non-Clifford interaction and necessary T-count and dual-support
-bounds. Product magic with output-only Clifford mixing and the specified
-coded two-band family fail the exact field-copy requirement at growing size.
-These are scoped constructions and screens, not a general one-band exclusion.
-For [affine Pauli-query orbits](research/depth/PAULI_ORBIT_COPY_SCREEN.md),
-Clifford dual probes give a copy-error floor of one quarter for p at least two.
-This includes a one-band copy; the non-Pauli field shear is outside that premise.
-The native one-bit endpoint uses its actual inverse and returns all work.
+[Native copy components](research/depth/NATIVE_COPY_INTERACTION.md) retain
+their one-band component, dual-support bounds and product/coded-family screens.
+The [affine Pauli-query screen](research/depth/PAULI_ORBIT_COPY_SCREEN.md)
+has a quarter-error floor with Clifford dual probes; it does not cover the
+non-Pauli field shear or exclude all one-band field copies.
 
 The [copy-axis bound](research/depth/COPY_AXIS_SPAN.md) requires extensive
 physical-X span, compatible with linear count. The
@@ -131,13 +127,21 @@ requires strong cross-commutators on every independent address pair;
 monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
 field seed passes the mixing test but still has a half-error spectral floor.
 
-**Next question:** jointly synthesize a field-orbit seed and a copy interaction
-that leaves these screened classes. A Clifford wall mixing carrier and output
-before the phase gates, or noncommuting carrier phase axes, is a concrete next
-ansatz. First derive the complete dual readout and parity relations, then pay
-the native word, actual inverse and every input sector. Arbitrary untouched
-helpers do not rescue the coded product-magic class. A returned dirty carrier
-can cancel its abstract decoder globally only after its physical copy is paid.
+The [four-address Clifford pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md)
+now pays a noncommuting seed and its physical copy in the field coordinates.
+Its exact indicator uses 288 T gates, at most 96 bands and seven arbitrary
+dirty wires. The cheaper query also improves the direct decoder to 300 T,
+160 bands and three dirty wires. Both finite words have fully paid inverses.
+The [symplectic-orbit theorem](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md)
+gives error at least 1/64 for p at least seven when a Clifford seed's orbit
+has commuting symplectic actions, even for an arbitrary copy. The pilot lies
+inside this class, so retaining its Pauli-valued commutators cannot scale.
+
+**Next question:** jointly construct a Clifford seed with noncommuting
+symplectic orbit and a paid copy, or a genuinely non-Clifford alternative.
+Start with complete grade/sign relations; then synthesize coherent sector
+control, the native inverse and full return. The finite pilot makes these
+operations concrete but does not provide their all-size version.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
