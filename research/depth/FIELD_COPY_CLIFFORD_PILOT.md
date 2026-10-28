@@ -261,12 +261,28 @@ wire at the CCZ boundary. Every carrier and mask returns after the
 full echo, with literal phases preserved on all input columns and
 external references.
 
-These are finite upper bounds, not an optimality claim. The earlier
-four-row decoder pilot has its own smaller dirty allocation; the
-new construction is a different resource point: 288 rather than 332
-T gates and at most 96 rather than 160 bands, with seven rather than
-five dirty wires and more total gates. A scalable result still needs
-a uniform seed/copy pair on arbitrary address lengths.
+### The improved query also benefits the direct decoder
+
+The existing [four-wire decoder](FIELD_SHEAR_INTERTWINER.md#6-a-paid-four-wire-decoder-for-two-address-bits)
+has 63 T gates, at most 36 bands and 193 total gates per direction.
+Its direct indicator uses four decoder calls, two coherent queries
+and one physical X, paid as H,S,S,H. Substituting (7) therefore gives
+another complete native word, with 300 T gates, at most 160 bands,
+892 total gates and only the three returned query masks as dirty work.
+No separate carrier bank is used in that direct construction.
+
+| Four-address construction | T gates | T bands at most | Total gates | Dirty wires |
+| --- | ---: | ---: | ---: | ---: |
+| Previously recorded direct decoder and five-cube query | 332 | 160 | 944 | 5 |
+| Direct decoder with the three-cube query (7) | 300 | 160 | 892 | 3 |
+| Noncommuting seed/copy with the same query | 288 | 96 | 1868 | 7 |
+
+These are finite upper bounds, not optimality claims. Against the improved
+direct decoder, the copy construction saves 12 T gates and 64 bands,
+using four additional dirty wires and more total gates. Both new words
+and their actual inverses are included in the retained emitter and ledger
+fixtures. A scalable result still needs a uniform seed/copy pair on
+arbitrary address lengths.
 Moreover, the [symplectic-orbit theorem](CLIFFORD_SEED_COPY_STRUCTURE.md)
 prevents extending the pilot's Pauli-valued commutator structure to
 p at least seven at copy error below 1/64. A Clifford extension must
@@ -287,7 +303,8 @@ factors, their actual inverses, and all sixteen output-X blocks of
 the full copy. Equality on these complete blocks includes off-sector
 coherences. The query and its actual inverse are tested on all 512
 address/carrier/mask columns. Exact gate and band checks cover the
-common 13-wire allocation and both directions of the indicator word.
+common 13-wire copy allocation and the nine-wire direct-decoder allocation,
+with both directions of each indicator word.
 An additional assembled-word check exercises every address with nonzero
 dirty inputs in both actual native directions, guarding the register wiring.
 The complete echo follows from these full-space component identities

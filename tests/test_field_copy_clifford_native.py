@@ -13,7 +13,7 @@ from tests.exact_matrices import (
 from tests.test_bent_query_baseline import _compact_ccz
 from tests.test_dirty_indicator_depth import _exact_phase_action
 from tests.test_field_copy_clifford_pilot import _pauli, _seed_and_orbit, _seed_words
-from tests.test_field_shear_intertwiner import _pencil_columns, _shear
+from tests.test_field_shear_intertwiner import _native_x, _p2_native_decoder, _pencil_columns, _shear
 from tests.test_joint_lookup_pauli_source import _bands, _inverse
 from tests.test_t_depth import _word
 
@@ -106,6 +106,16 @@ def _indicator_word():
     return _inverse(source) + _inverse(copy) + source + copy
 
 
+def _decoder_indicator_word():
+    # The improved query is also available to the existing direct decoder.
+    # Address 0,1; physical output 2..5; returned dirty masks 6..8.
+    decoder = [(g[0], *(wire + 2 for wire in g[1:]))
+               for g in _p2_native_decoder()]
+    query, _ = _three_cube_query()
+    source = _inverse(decoder) + query + decoder
+    return _inverse(source) + _native_x(2) + source
+
+
 class FieldCopyCliffordNativeTests(unittest.TestCase):
     def test_native_control_core_and_all_sector_factors(self):
         r, orbit = _seed_and_orbit()
@@ -187,12 +197,15 @@ class FieldCopyCliffordNativeTests(unittest.TestCase):
         query, _ = _three_cube_query()
         copy = _copy_word()
         indicator = _indicator_word()
+        decoder_indicator = _decoder_indicator_word()
         expected = {
             'query': (24, 8, 58, 9),
             'copy': (96, 32, 792, 8),
             'indicator': (288, 96, 1868, 13),
+            'decoder_indicator': (300, 160, 892, 9),
         }
-        for name, word in (('query', query), ('copy', copy), ('indicator', indicator)):
+        for name, word in (('query', query), ('copy', copy), ('indicator', indicator),
+                           ('decoder_indicator', decoder_indicator)):
             for actual in (word, _inverse(word)):
                 counts = Counter(g[0] for g in actual)
                 t, depth, gates, width = expected[name]
@@ -218,6 +231,13 @@ class FieldCopyCliffordNativeTests(unittest.TestCase):
                           | (10 << 6) | ((7 - address) << 10))
                 self.assertEqual(apply_word(gates, {column: CO}),
                                  {column ^ (1 << (6 + address)): CO})
+        decoder = _decoder_indicator_word()
+        for actual in (decoder, _inverse(decoder)):
+            gates = [Gate(g[0], tuple(g[1:])) for g in actual]
+            for address in range(4):
+                column = address | (10 << 2) | ((7 - address) << 6)
+                self.assertEqual(apply_word(gates, {column: CO}),
+                                 {column ^ (1 << (2 + address)): CO})
 
 
 if __name__ == '__main__':

@@ -130,8 +130,8 @@ field seed passes the mixing test but still has a half-error spectral floor.
 The [four-address Clifford pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md)
 now pays a noncommuting seed and its physical copy in the field coordinates.
 Its exact indicator uses 288 T gates, at most 96 bands and seven arbitrary
-dirty wires: better finite count/depth, with two more dirty wires than the old
-decoder pilot. No abstract decoder is left unpaid in this finite word.
+dirty wires. The cheaper query also improves the direct decoder to 300 T,
+160 bands and three dirty wires. Both finite words have fully paid inverses.
 The [symplectic-orbit theorem](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md)
 gives error at least 1/64 for p at least seven when a Clifford seed's orbit
 has commuting symplectic actions, even for an arbitrary copy. The pilot lies
