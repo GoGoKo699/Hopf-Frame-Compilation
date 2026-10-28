@@ -383,6 +383,12 @@ every level; the
 still applies. The finite six-T identity does not supply that missing
 uniform construction, and R96 remains unchanged.
 
+The [projective recoupler](PROJECTIVE_FIELD_RECOUPLER.md) uses this full
+six-T intertwiner on both half banks to pay the next finite size. Its
+eight-address decoder has 172 T gates and at most 83 bands without extra
+helpers. Joint reflection phases and zero-fiber freedom reduce that word;
+the exponential projective-line count still prevents uniform scaling.
+
 <a id="uniform-extension-axis-test"></a>
 
 ### A necessary test for extending the full intertwiner
@@ -436,3 +442,13 @@ arbitrary three-band designs or a weaker probe-only construction. The
 [fixed-Pauli fixture](../../tests/test_flat_field_bank_duals.py) checks
 the two-control kernel, a failed eight-wire disjoint extension and
 the target Pauli-distance premise exactly.
+
+The stronger [Pauli-domain theorem](FIELD_DECODER_PAULI_DOMAIN.md) requires
+absorbed-axis span at least $`2m-2`$ at p at least three, below error
+one-third for identity or residual-field helpers and below $`\sqrt2/6`$
+for arbitrary Clifford helper motion. It excludes independent finite cells
+even after arbitrary joint outer Clifford walls. The separate
+[two-band theorem](TWO_BAND_FIELD_DECODER_OBSTRUCTION.md) gives a fixed
+error floor when the two absorbed spans have zero intersection, including
+partial bands. Neither statement excludes a coupled three-band decoder
+or the weaker complete-probe contract.

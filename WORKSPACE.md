@@ -11,15 +11,13 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #267](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/267),
-`68f0ce342bf105e4b3aa3b1a7c5d76c3f579998b`, 28 October 2026.
-Its reviewed tree passed 2,020 tests locally and in both CI versions, plus the full gate and presentation checks.
-Fetch current main; this baseline is not a pin. Exact-tree receipts belong in the PR record.
+Verified baseline: [PR #268](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/268),
+`156f2cd4f5bc2e3c3d1f4afec17b31d0627764d3`, 28 October 2026.
+Its reviewed tree passed 2,035 tests locally and in both CI versions, plus the full gate and presentation checks.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
 Use the [research catalogue](research/README.md) to find its proof dependencies.
-The source, decoder and copy screens are integrated; none improves R96.
 
 <a id="current-depth-frontier"></a>
 
@@ -123,27 +121,29 @@ requires strong cross-commutators on every independent address pair;
 monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
 field seed passes the mixing test but still has a half-error spectral floor.
 
-The [flat-seed four-address pilot](research/depth/FLAT_FIELD_BANK_PILOT.md) has a six-T,
-three-band decoder and a complete 72-T, 28-band indicator with three dirty wires.
-Its full intertwiner has a Clifford completion; no uniform decoder is yet paid.
-The [Clifford-seed bounds](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md) give
-error at least 1/64 for p at least seven for projectively involutive seeds with commuting symplectic orbits,
-even for an arbitrary copy. For p at least nine, every Clifford seed has one-band
-copy error at least $`\sin(\pi/8)`$, without an orbit-commutation assumption.
+The [flat four-address pilot](research/depth/FLAT_FIELD_BANK_PILOT.md) retains its six-T decoder and complete 72-T indicator.
+The [projective recoupler](research/depth/PROJECTIVE_FIELD_RECOUPLER.md) now pays an exact eight-address full decoder:
+172 T gates, at most 83 bands, eight arbitrary wires and no extra helpers. Selected reflection phases cancel jointly.
+Projective-line enumeration grows exponentially in field degree; this is a finite calibration.
 
-[One-band copy feasibility](research/depth/ONE_BAND_COPY_FEASIBILITY.md)
-gives signed Walsh slices, their spectrum and the complete carrier fixed point.
-All output probes alone can miss wrong carrier action. The triple-axis joint walls
-pass the tensor screen but have zero complete seed space for p at least two,
-and full copy error at least $`1/\sqrt6`$ for every unitary seed. This family is stopped.
-The [Clifford-dual grading](research/depth/CLIFFORD_DUAL_COPY_GRADING.md) requires each
-output dual's symplectic orbit group to have binary abelianization rank at least
-$`m-p-1`$ exactly. An odd-order pair gives an explicit robust word obstruction.
-The [seed fingerprint](research/depth/NATIVE_COPY_INTERACTION.md#seed-coefficient-rigidity)
-excludes product THT-dagger seeds below 3/32 for every one-band field copy at p at least two.
-**Next question:** extend the flat decoder uniformly, allowing the complete probe's
-commutant freedom, with sublogarithmic depth and polynomial discovery budgets.
-The joint seed/copy alternative remains open; two-band V and one-band C would give 42 bands conditionally.
+[Pauli-domain rigidity](research/depth/FIELD_DECODER_PAULI_DOMAIN.md) requires absorbed-axis rank at least $`2m-2`$,
+including moving Clifford helpers. Independent finite cells fail even with joint outer Clifford walls.
+The [two-band screen](research/depth/TWO_BAND_FIELD_DECODER_OBSTRUCTION.md) excludes disjoint
+absorbed spans at fixed error; shared-span collisions and coupled three-band words remain open.
+The [scalar-field radical model](research/depth/SCALAR_FIELD_RADICAL_COPY_SCREEN.md)
+has a four-address identity for every address embedding; changing its address space does not repair it.
+These restrictions do not exclude the weaker complete-probe decoder contract.
+
+The [Clifford-seed bounds](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md) retain their
+commuting-orbit and one-band-copy scopes. The [seed fingerprint](research/depth/NATIVE_COPY_INTERACTION.md#seed-coefficient-rigidity)
+excludes product THT-dagger seeds below 3/32 for one-band field copies at p at least two.
+[Complete copy feasibility](research/depth/ONE_BAND_COPY_FEASIBILITY.md) still requires
+the carrier equation; triple-axis joint walls have zero full seed space.
+[Clifford-dual grading](research/depth/CLIFFORD_DUAL_COPY_GRADING.md) requires binary
+abelianization rank at least $`m-p-1`$; explicit relation words give robust floors.
+**Next question:** jointly resynthesize the projective corrections and recursive levels,
+using zero-sector and complete-probe freedom, within sublogarithmic depth and polynomial budgets.
+The joint seed/copy alternative remains open; no uniform decoder or improved R96 bound is supplied.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),

@@ -17,6 +17,13 @@ words. Compiling the recursion one level at a time also retains a depth
 cost at every level. The query itself is fully paid below, even for the
 dense multiplication matrices of a field tower. R96 is unchanged.
 
+The later [projective recoupler](PROJECTIVE_FIELD_RECOUPLER.md) jointly compiles
+the two conditional coordinate maps at p equal to three, with a different
+allowed zero fiber. Its full eight-wire decoder costs 172 T gates in at most
+83 bands and has no extra helper. The projective identity is general, but
+enumerating its fibers grows exponentially in bank width; the uniform native
+obligation and the separate-level depth limitation below remain.
+
 ## 1. A compatible tower and address pencil
 
 Write $`K_1=\mathbb F_2`$. For $`j\ge2`$, define
