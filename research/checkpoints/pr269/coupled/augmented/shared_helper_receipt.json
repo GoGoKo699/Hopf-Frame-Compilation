@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "p": 2,
+      "core_qubits": 4,
+      "shared_moving_helper_qubits": 1,
+      "helper_X_sectors": 2,
+      "address_column_comparisons": 128,
+      "actual_inverse_sector_columns": 32
+    },
+    {
+      "p": 3,
+      "core_qubits": 8,
+      "shared_moving_helper_qubits": 3,
+      "helper_X_sectors": 8,
+      "address_column_comparisons": 16384,
+      "actual_inverse_sector_columns": 2048
+    }
+  ],
+  "verdict": "PASS",
+  "scope": "exactCliffordsectorfixtureforaugmentedalgebraicidentity;retainedmultiplicationXORproofownsnativeledger;overall16(p\u22121)bandsnotconstant"
+}

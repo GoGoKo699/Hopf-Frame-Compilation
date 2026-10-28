@@ -1,0 +1,78 @@
+{
+  "head": "1d477dd658ec5433526c89d879473831e4f8dcd3",
+  "tree": "37e229dd37c99c78c94665d6b18405cede886047",
+  "source_manifest": [
+    {
+      "path": "WORKSPACE.md",
+      "sha256": "f98c80c55d2e1672c62e4b40917be4fe8cf24c9e5d9674f77baeef1ed30dc45a"
+    },
+    {
+      "path": "docs/reference/VERIFICATION_CATALOGUE.md",
+      "sha256": "a2bcb086584104437525884b0277c5d91ff6480f99a614f216c7dce855d1d26e"
+    },
+    {
+      "path": "research/README.md",
+      "sha256": "151819833299fd8524c5234d74c5a1510bfdef6674df7684629c2a7466cd6bba"
+    },
+    {
+      "path": "research/ROUTE_DECISIONS.md",
+      "sha256": "0f14e282ea4fd35165c9af7b245a63b02414da622090b4876949de736323c28d"
+    },
+    {
+      "path": "research/depth/ENCODED_DIRTY_COPY_INTERFACE.md",
+      "sha256": "c8409673dc7653c1818d71214166a4ba6dd19fd89505bb506a94bcea5047d04d"
+    },
+    {
+      "path": "research/depth/FIELD_DECODER_PAULI_DOMAIN.md",
+      "sha256": "100dc9e05012ce8fe4f206aeead17ffdd961300b19efb128f290143d0640cdf3"
+    },
+    {
+      "path": "research/depth/FLAT_FIELD_BANK_PILOT.md",
+      "sha256": "561a8cfecf2a355b743cf22444303c01ef3e9fcaca5e7842e9b2b77437789781"
+    },
+    {
+      "path": "research/depth/PROJECTIVE_FIELD_RECOUPLER.md",
+      "sha256": "ed2fdd766e2b9e66ce198bb29e7c38c1adff523565caa2b94d4c7c60c23de97b"
+    },
+    {
+      "path": "research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md",
+      "sha256": "2ad074ac6a17ed9a976494a65fe7b6804f0437f4f6f58309a04be6bb878f576a"
+    },
+    {
+      "path": "research/depth/SCALAR_FIELD_RADICAL_COPY_SCREEN.md",
+      "sha256": "c58f42e9f3fecba5c9670d25f20125d29c83848c90f2261843235e02b72d31c5"
+    },
+    {
+      "path": "research/depth/TWO_BAND_FIELD_DECODER_OBSTRUCTION.md",
+      "sha256": "f83824566118da9db177fd269d4b9fa69c3e027b093220e79dc7496173090a0b"
+    }
+  ],
+  "pages": 12,
+  "diagrams": 5,
+  "unique_math_expressions": 464,
+  "protected_math_occurrences": 578,
+  "failures": 0,
+  "report_sha256": "7d5b76a80b6d1e0088e75495c252800490df8c2c925e3dcb618c94718affd0e3",
+  "manual_views": [
+    {
+      "file": "projective-pairs-desktop.png",
+      "sha256": "42c941d4f5bbcb4d05cf6f217314dacd69cb28247ef79582527ad4c7f8b38428"
+    },
+    {
+      "file": "projective-ledger-narrow.png",
+      "sha256": "142738489c1829fcf47ad6ada5c08e5fa35093c4f7346a461f1e2c8c405de175"
+    },
+    {
+      "file": "domain-quotient-narrow.png",
+      "sha256": "31d3b10b59f57c1ae5a24f2e5848bb4990fd2bbee17cd4fd35c85ba45683b87b"
+    },
+    {
+      "file": "radical-averaging-desktop.png",
+      "sha256": "508c7c3421fa0840aaeca3d54e9192b45a7240b195aace90d58397ce883fb1c9"
+    },
+    {
+      "file": "two-band-gap-narrow.png",
+      "sha256": "eb94d71e6956be393b9a73f9e67566b8863c233bc2a5220536235514eac2ab7f"
+    }
+  ]
+}

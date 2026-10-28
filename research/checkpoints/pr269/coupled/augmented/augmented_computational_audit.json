@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "method": "Exact integer amplitudes; computational helper basis",
+  "scope": "Full algebraic primitive word, not a separately emitted native multiplication circuit",
+  "source_sha256": "ed91d49ddd780cd579c294b6f2ac1ab840c5120b161e37086b835bdf0630036d",
+  "cases": [
+    {
+      "p": 2,
+      "core_qubits": 4,
+      "moving_helper_qubits": 1,
+      "complete_computational_basis_columns": 32,
+      "address_column_comparisons": 128,
+      "actual_reversed_algebraic_word_columns": 32,
+      "fixed_common_normalization_exponent": 6,
+      "all_zero_U_columns_included": true
+    },
+    {
+      "p": 3,
+      "core_qubits": 8,
+      "moving_helper_qubits": 3,
+      "complete_computational_basis_columns": 2048,
+      "address_column_comparisons": 16384,
+      "actual_reversed_algebraic_word_columns": 2048,
+      "fixed_common_normalization_exponent": 24,
+      "all_zero_U_columns_included": true
+    }
+  ],
+  "seconds": 33.957392172000255
+}

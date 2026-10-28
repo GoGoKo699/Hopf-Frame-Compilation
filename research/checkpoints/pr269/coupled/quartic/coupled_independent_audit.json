@@ -1,0 +1,225 @@
+{
+  "verdict": "PASS",
+  "paired_field_identities": 4,
+  "linear_full_columns": 256,
+  "linear_actual_inverse_columns": 256,
+  "complete_intertwiner_columns": 2048,
+  "independent_assembly": "directfieldcellandPauliGaussianmatrices;CQ2bottomword;allvaluesexactdyadic",
+  "helper_return": "3072exact2x2sectorchecksinthequarticbatchreceipt;tensoridentityonall6helpers",
+  "ledgers": {
+    "recoupler_forward": {
+      "T": 136,
+      "bands": 36,
+      "gates": 980,
+      "width": 14,
+      "counts": {
+        "CX": 466,
+        "H": 216,
+        "S": 162,
+        "TDG": 68,
+        "T": 68
+      }
+    },
+    "recoupler_inverse": {
+      "T": 136,
+      "bands": 36,
+      "gates": 984,
+      "width": 14,
+      "counts": {
+        "H": 216,
+        "CX": 466,
+        "T": 68,
+        "TDG": 68,
+        "S": 166
+      }
+    },
+    "decoder_forward": {
+      "T": 148,
+      "bands": 39,
+      "gates": 1110,
+      "width": 14,
+      "counts": {
+        "CX": 514,
+        "H": 260,
+        "S": 188,
+        "TDG": 68,
+        "T": 80
+      }
+    },
+    "decoder_inverse": {
+      "T": 148,
+      "bands": 39,
+      "gates": 1166,
+      "width": 14,
+      "counts": {
+        "H": 260,
+        "CX": 514,
+        "S": 244,
+        "TDG": 80,
+        "T": 68
+      }
+    }
+  },
+  "phase_cases": [
+    [
+      0,
+      [
+        1,
+        1,
+        1,
+        1
+      ],
+      0
+    ],
+    [
+      1,
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      0
+    ],
+    [
+      2,
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      0
+    ],
+    [
+      3,
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      0
+    ],
+    [
+      4,
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      1
+    ],
+    [
+      5,
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      1
+    ],
+    [
+      6,
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      1
+    ],
+    [
+      7,
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      1
+    ],
+    [
+      8,
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      1
+    ],
+    [
+      9,
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      1
+    ],
+    [
+      10,
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      1
+    ],
+    [
+      11,
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      1
+    ],
+    [
+      12,
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      1
+    ],
+    [
+      13,
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      1
+    ],
+    [
+      14,
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      1
+    ],
+    [
+      15,
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      1
+    ]
+  ]
+}

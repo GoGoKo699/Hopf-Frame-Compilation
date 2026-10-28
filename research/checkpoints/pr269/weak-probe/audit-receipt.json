@@ -1,0 +1,38 @@
+{
+  "scope": "Unmerged continuation checkpoint; not part of PR269 qualification",
+  "base_commit": "1d477dd658ec5433526c89d879473831e4f8dcd3",
+  "base_tree": "37e229dd37c99c78c94665d6b18405cede886047",
+  "command": "python research/checkpoints/pr269/weak-probe/weak_probe_domain_audit.py -v",
+  "repository_root_resolution": "Nearest ancestor containing WORKSPACE.md and tests/; exercised by this exported copy",
+  "python": "3.12.14",
+  "files": {
+    "WEAK_PROBE_PAULI_DOMAIN.md": "b969ca7c51cd0a744175575cd3b0756e0b2fd3eafbfd57820a177a38e6b5a681",
+    "weak_probe_domain_audit.py": "baaff6e9870cfb544055a9923e2c6b9094014b2da2ad5f6230db2642157c4e58",
+    "WEAK_PROBE_HOSTILE_AUDIT.md": "70c1868ec92b6680dd11185fb2996eaf417fe9ff8ad4ce5c65ba91607409eb7f",
+    "HANDOFF.md": "ddd6f792ce129e3d9fe258b7560b56bb62c0941886d43aa8bff116f81d40fbee",
+    "audit.log": "0d8b72b5e19ca1fbe3ced6939795e8e97cf4090e81ed25378b7df9c70193f9a5"
+  },
+  "dependencies": {
+    "tests/test_field_decoder_pauli_domain.py": "e930824718a00c783198c0d20acad35d23c6f613daad4ef1e2bc6c619a57030a",
+    "tests/test_flat_field_bank_native.py": "307900bccf3c58faeb4484414873209a5cd43be3ecb69e8baec26ea3f8656631",
+    "tests/test_one_band_copy_feasibility.py": "10b933af35c893059c844ef50620a61212d3a03bb6dc6e1ff481677ad33d8bbc",
+    "tests/exact_matrices.py": "51d4192c29d5798a11616e316bade934eb9fc30766b187171919c2a3a983df05"
+  },
+  "tests": 7,
+  "seconds": 1.186,
+  "status": "PASS",
+  "robust_general_result": "Degree-d Clifford query, epsilon<2^(-d-1): dim H<=m+M_d+2q; symplectic rank H<=2M_d+2q; absorbed-axis rank>=m-M_d",
+  "exact_additive_result": "Additive degree-d Clifford query: dim H<=2M_d+2q; absorbed-axis rank>=2m-2M_d",
+  "field_kernel_result": "p>=2, exact or epsilon<1/(3m): pure bank Z kernel dimension<=1; dim H<=p+2+2q; absorbed-axis rank>=2m-p-2",
+  "independent_cell_error_floor": {
+    "p>=3": "1/12",
+    "p>=5": "1/4"
+  },
+  "p2_calibration": "Actual native decoder saturates domain dimension4, RM(1,2) X projection dimension3, pure bank Z kernel {I,Z_all} dimension1; spectators add2q",
+  "scope_limits": [
+    "Full-space probe contract only; no full endpoint assumption",
+    "q counts all non-bank physical qubits, including moving helpers",
+    "Uniform floor applies to independent D cells plus identity spectators in E and arbitrary outer Clifford walls",
+    "No growing depth lower bound; R96 unchanged"
+  ]
+}

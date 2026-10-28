@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "scope": "focused unmerged continuation checks only; no full repository gate claimed",
+  "recorded_utc": "2026-10-28T16:36:36.600110+00:00",
+  "base_commit": "1d477dd658ec5433526c89d879473831e4f8dcd3",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "commands": [
+    {
+      "path": "quartic/private_quartic_batch.py",
+      "exit_code": 0
+    },
+    {
+      "path": "coupled_projective.py",
+      "exit_code": 0
+    },
+    {
+      "path": "quartic/audit_coupled.py",
+      "exit_code": 0
+    },
+    {
+      "path": "augmented/shared_helper_fixture.py",
+      "exit_code": 0
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 4271,
+      "sha256": "a6a1e37404ef9bd39f4497d587967b8ee6b601250ddffb9d5b139893e03f66c0"
+    },
+    "augmented/AUGMENTED_RECOUPLER_AUDIT.md": {
+      "bytes": 9627,
+      "sha256": "7d3b48120cf134359628cb884c68849f878d1f72426f74f7c7ff5aefb7d0b94f"
+    },
+    "augmented/AUGMENTED_RECOUPLER_CANDIDATE.md": {
+      "bytes": 9454,
+      "sha256": "17843000dd95be798fc8155161b0882bbf160e8099a31eaef29c6a67eab65309"
+    },
+    "augmented/shared_helper_fixture.py": {
+      "bytes": 4751,
+      "sha256": "66f325e4f580b7f5aa8ba3f238df611cc4bd8d73702f110e2d7f574a2af9a0e3"
+    },
+    "augmented/shared_helper_receipt.json": {
+      "bytes": 604,
+      "sha256": "f50f46697ffe8c95abe83ecc2cca46a610dfbbae8e5173866fd43f64e8530100"
+    },
+    "coupled_projective.py": {
+      "bytes": 5639,
+      "sha256": "177499c9bfcd83d7dafb1d2399a399a5c1d3db015d6a518ac29eddcddf650fb1"
+    },
+    "coupled_receipt.json": {
+      "bytes": 1218,
+      "sha256": "29f460bb92a6865c598b8e9bd27c632ab04e0aa7757624302e19018a51318cdc"
+    },
+    "quartic/COUPLED_INDEPENDENT_AUDIT.md": {
+      "bytes": 6038,
+      "sha256": "59199f6f0a3df11d942b43dad241d6c30d201abc474ff1046fd40b13da34a9b2"
+    },
+    "quartic/QUARTIC_BATCH_HANDOFF.md": {
+      "bytes": 6259,
+      "sha256": "192547a95c21fe8ec05aa8bb37c9a173108cef82105d061b1b25e5291c725de3"
+    },
+    "quartic/audit_coupled.py": {
+      "bytes": 5663,
+      "sha256": "c5c430e892a72be17437a0a809873996846e9c83f4b5673ef6daf915c90f99a3"
+    },
+    "quartic/batch_receipt.json": {
+      "bytes": 1416,
+      "sha256": "88ac591f27ef0934dfa6e96bf949e8d91bd50c9852e3a396718dbb56f5facc35"
+    },
+    "quartic/coupled_independent_audit.json": {
+      "bytes": 2750,
+      "sha256": "90d7a55aad4aaaaf6245e02a7f8a8c428c98576a317b2ab851fddb96b2d757d5"
+    },
+    "quartic/private_quartic_batch.py": {
+      "bytes": 5065,
+      "sha256": "b61bf8724e78a184bd5662f7879d78a8a15319be3d76fa9bc1ccb2085f7ea60a"
+    }
+  }
+}

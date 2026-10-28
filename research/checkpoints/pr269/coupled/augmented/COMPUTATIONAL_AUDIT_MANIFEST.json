@@ -1,0 +1,51 @@
+{
+  "scope": "Append-only independent augmented-recoupler audit; existing focused qualification files unchanged",
+  "base_commit": "1d477dd658ec5433526c89d879473831e4f8dcd3",
+  "python": "3.12.14",
+  "command": "python research/checkpoints/pr269/coupled/augmented/augmented_computational_audit.py",
+  "repository_root_resolution": "Nearest ancestor WORKSPACE.md; exported copy exercised",
+  "audited_proof_sha256": "17843000dd95be798fc8155161b0882bbf160e8099a31eaef29c6a67eab65309",
+  "author_sector_fixture_sha256": "66f325e4f580b7f5aa8ba3f238df611cc4bd8d73702f110e2d7f574a2af9a0e3",
+  "new_files": [
+    {
+      "path": "research/checkpoints/pr269/coupled/augmented/AUGMENTED_COMPUTATIONAL_AUDIT.md",
+      "sha256": "3232b39cb50288af95d02a790429dd9667663d8bc2fdb5779bd40f11b0bc2d20",
+      "bytes": 6814
+    },
+    {
+      "path": "research/checkpoints/pr269/coupled/augmented/augmented_computational_audit.py",
+      "sha256": "ed91d49ddd780cd579c294b6f2ac1ab840c5120b161e37086b835bdf0630036d",
+      "bytes": 7685
+    },
+    {
+      "path": "research/checkpoints/pr269/coupled/augmented/augmented_computational_audit.json",
+      "sha256": "75dc15840607042d97193c1d5e5649170cd262daca27873e03660a740a277890",
+      "bytes": 969
+    }
+  ],
+  "cases": [
+    {
+      "p": 2,
+      "core_qubits": 4,
+      "moving_helper_qubits": 1,
+      "complete_computational_basis_columns": 32,
+      "address_column_comparisons": 128,
+      "actual_reversed_algebraic_word_columns": 32,
+      "fixed_common_normalization_exponent": 6,
+      "all_zero_U_columns_included": true
+    },
+    {
+      "p": 3,
+      "core_qubits": 8,
+      "moving_helper_qubits": 3,
+      "complete_computational_basis_columns": 2048,
+      "address_column_comparisons": 16384,
+      "actual_reversed_algebraic_word_columns": 2048,
+      "fixed_common_normalization_exponent": 24,
+      "all_zero_U_columns_included": true
+    }
+  ],
+  "seconds": 33.957392172000255,
+  "status": "PASS",
+  "native_scope": "Direct full computational-basis algebraic primitive word; native addition costs rely on retained multiplication-XOR theorem"
+}

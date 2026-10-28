@@ -1,0 +1,69 @@
+{
+  "linear": {
+    "T": 40,
+    "bands": 20,
+    "gates": 577,
+    "width": 8,
+    "counts": {
+      "CX": 199,
+      "H": 176,
+      "S": 162,
+      "TDG": 20,
+      "T": 20
+    }
+  },
+  "recoupler": {
+    "T": 136,
+    "bands": 36,
+    "gates": 980,
+    "width": 14,
+    "counts": {
+      "CX": 466,
+      "H": 216,
+      "S": 162,
+      "TDG": 68,
+      "T": 68
+    }
+  },
+  "decoder": {
+    "T": 148,
+    "bands": 39,
+    "gates": 1110,
+    "width": 14,
+    "counts": {
+      "CX": 514,
+      "H": 260,
+      "S": 188,
+      "TDG": 68,
+      "T": 80
+    }
+  },
+  "inverse_recoupler": {
+    "T": 136,
+    "bands": 36,
+    "gates": 984,
+    "width": 14,
+    "counts": {
+      "H": 216,
+      "CX": 466,
+      "T": 68,
+      "TDG": 68,
+      "S": 166
+    }
+  },
+  "inverse_decoder": {
+    "T": 148,
+    "bands": 39,
+    "gates": 1166,
+    "width": 14,
+    "counts": {
+      "H": 260,
+      "CX": 514,
+      "S": 244,
+      "TDG": 80,
+      "T": 68
+    }
+  },
+  "verified": "all240nonzeroUfibralcolumns;all256linearactualinversecolumns;effective8wireunitarityandall8queryintertwiners;privatehelpersverifiedinquarticbatchreceipt",
+  "scope": "scratchonly;uniformhigharitynonzeroPredicateandcoupledlevelsremainunpaid"
+}

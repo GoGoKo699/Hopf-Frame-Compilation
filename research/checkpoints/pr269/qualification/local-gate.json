@@ -1,0 +1,145 @@
+{
+  "tree": "37e229dd37c99c78c94665d6b18405cede886047",
+  "start_utc": "2026-10-28T15:54:44.974761+00:00",
+  "python": "3.12.14",
+  "env": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "compiler_robust_hopf",
+        "scripts",
+        "tests",
+        "validate.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.048,
+      "log": "01.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/reviewer_walkthrough.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.114,
+      "log": "02.log",
+      "bytes": 1492,
+      "sha256": "009e125b2842af553a76edd26341eff694ab30298055e92357daea6693f76c36"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/coarse_frame_native_example.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.147,
+      "log": "03.log",
+      "bytes": 654,
+      "sha256": "f40c4c0674a3253c73907223f8886a323be593e3918482c2953029282ceb4181"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/complex_coarse_native_example.py"
+      ],
+      "returncode": 0,
+      "seconds": 4.331,
+      "log": "04.log",
+      "bytes": 687,
+      "sha256": "1c7b36094d2bfb33c9a59c04d3c957f26dfe7cd6735a547def18ee6ca398d8bc"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/residual_qbp_native_example.py",
+        "--q",
+        "16"
+      ],
+      "returncode": 0,
+      "seconds": 0.896,
+      "log": "05.log",
+      "bytes": 572,
+      "sha256": "fb632fe3e41effdeb485855f854ad1a95efd20a304a0ac5a62465dc8f7d3699f"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "validate.py",
+        "--quiet"
+      ],
+      "returncode": 0,
+      "seconds": 1820.267,
+      "log": "06.log",
+      "bytes": 2187,
+      "sha256": "7ee5da6cd99644929eb0c88f2580945361d22bdee9c71849695aacba15eb7f68",
+      "observed_tests": 2054,
+      "observed_test_seconds": 1819.807,
+      "observed_ok": true
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/verify_fault_tolerant.py"
+      ],
+      "returncode": 0,
+      "seconds": 29.146,
+      "log": "07.log",
+      "bytes": 333,
+      "sha256": "92411bb616caeea2df7483074976d98045e590d8cfaf40489d2d24d97b398b41"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/check_upstream_sync.py",
+        "--offline"
+      ],
+      "returncode": 0,
+      "seconds": 0.055,
+      "log": "08.log",
+      "bytes": 179,
+      "sha256": "9a9a52357a02a728d5e23b4504c8b4bb9feddb258a9802cb4bbc0019d842f702"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/unified_resource_ledger.py",
+        "--n",
+        "12",
+        "--format",
+        "json"
+      ],
+      "returncode": 0,
+      "seconds": 0.112,
+      "log": "09.log",
+      "bytes": 21515,
+      "sha256": "f30f3c10cbdbb26f2bac2e5b9f0b80360a60f4ebc16817fcf83f326ec3c1f144"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/strict_zero_echo_ledger.py",
+        "--n",
+        "12",
+        "--format",
+        "json"
+      ],
+      "returncode": 0,
+      "seconds": 0.139,
+      "log": "10.log",
+      "bytes": 1401,
+      "sha256": "eabb80c1b95980fdc72cc5bca76bc44b23ff16c98337815a726654d7fb0db87d"
+    }
+  ],
+  "elapsed_seconds": 1856.258,
+  "end_utc": "2026-10-28T16:25:41.232825+00:00",
+  "final_tree": "37e229dd37c99c78c94665d6b18405cede886047"
+}

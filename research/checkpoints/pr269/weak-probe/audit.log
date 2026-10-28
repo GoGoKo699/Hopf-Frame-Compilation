@@ -1,0 +1,12 @@
+test_actual_p2_decoder_saturates_exact_dimension_and_z_kernel (__main__.WeakProbeDomainAuditTests.test_actual_p2_decoder_saturates_exact_dimension_and_z_kernel) ... ok
+test_derivative_characterization_and_symplectic_radical (__main__.WeakProbeDomainAuditTests.test_derivative_characterization_and_symplectic_radical) ... ok
+test_exact_field_z_kernel_can_only_contain_constant_affine_masks (__main__.WeakProbeDomainAuditTests.test_exact_field_z_kernel_can_only_contain_constant_affine_masks) ... ok
+test_field_four_cubes_are_literal_scalars_with_helpers (__main__.WeakProbeDomainAuditTests.test_field_four_cubes_are_literal_scalars_with_helpers) ... ok
+test_independent_cell_rank_survives_joint_clifford_walls (__main__.WeakProbeDomainAuditTests.test_independent_cell_rank_survives_joint_clifford_walls) ... ok
+test_noncommuting_cube_can_have_negative_scalar (__main__.WeakProbeDomainAuditTests.test_noncommuting_cube_can_have_negative_scalar) ... ok
+test_radius_two_code_bound_and_weight_four_boundary (__main__.WeakProbeDomainAuditTests.test_radius_two_code_bound_and_weight_four_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.186s
+
+OK
