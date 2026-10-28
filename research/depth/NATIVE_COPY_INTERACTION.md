@@ -12,6 +12,12 @@ This chapter gives an extensive T-count floor for arbitrary copies,
 a dual-readout rank test, and exact failures of two concrete product
 constructions. The unrestricted one-band field-copy problem remains open.
 
+The [complete one-band feasibility reduction](ONE_BAND_COPY_FEASIBILITY.md)
+gives exact affine Walsh support spaces, their spectrum and the remaining
+carrier fixed-point equations for arbitrary joint Clifford walls. Output
+dual signatures alone are insufficient; the reduced equations still need
+a uniform native seed and copy.
+
 Throughout, $`m=2^p`$ with $`p\ge1`$, Y is the physical m-qubit output bank, and
 $`R_x=Q_xRQ_x^\dagger`$ is a family of Hermitian involutions on the
 full arbitrary carrier A. The fixed interaction C must satisfy
