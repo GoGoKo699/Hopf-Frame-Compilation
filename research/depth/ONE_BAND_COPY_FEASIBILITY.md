@@ -17,6 +17,12 @@ constructing or rejecting a specified copy. It supplies neither a successful all
 field seed nor a new frame-depth theorem. The native seed and its inverse
 remain separate synthesis obligations.
 
+Two further necessary conditions guide the remaining search: the
+[Clifford-seed one-band floor](CLIFFORD_SEED_COPY_STRUCTURE.md#one-band-clifford-seed)
+forces a genuinely non-Clifford seed at growing address size, while the
+[dual-group grading](CLIFFORD_DUAL_COPY_GRADING.md) applies to arbitrary
+unitary seeds. Neither replaces the complete fixed-point equations below.
+
 An explicit triple-axis joint-wall family below pays 3m T gates in one
 band and passes the binary tensor check, but has zero complete seed space
 for $`p\ge2`$. Its full copy error is at least $`1/\sqrt6`$ for any
