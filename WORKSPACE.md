@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #266](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/266),
-`2217955f3c0149d80917b5edf88939f9f655098e`, 28 October 2026.
-Its reviewed tree passed 2,009 tests locally and in both CI versions, plus the full gate and presentation checks.
+Verified baseline: [PR #267](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/267),
+`68f0ce342bf105e4b3aa3b1a7c5d76c3f579998b`, 28 October 2026.
+Its reviewed tree passed 2,020 tests locally and in both CI versions, plus the full gate and presentation checks.
 Fetch current main; this baseline is not a pin. Exact-tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
@@ -123,9 +123,9 @@ requires strong cross-commutators on every independent address pair;
 monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
 field seed passes the mixing test but still has a half-error spectral floor.
 
-The [four-address pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md) pays
-the seed, copy and inverses: 288 T gates, at most 96 bands and seven dirty
-wires. Its cheaper query gives the direct decoder 300 T, 160 bands and three dirty wires.
+The [flat-seed four-address pilot](research/depth/FLAT_FIELD_BANK_PILOT.md) has a six-T,
+three-band decoder and a complete 72-T, 28-band indicator with three dirty wires.
+Its full intertwiner has a Clifford completion; no uniform decoder is yet paid.
 The [Clifford-seed bounds](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md) give
 error at least 1/64 for p at least seven for projectively involutive seeds with commuting symplectic orbits,
 even for an arbitrary copy. For p at least nine, every Clifford seed has one-band
@@ -139,11 +139,11 @@ and full copy error at least $`1/\sqrt6`$ for every unitary seed. This family is
 The [Clifford-dual grading](research/depth/CLIFFORD_DUAL_COPY_GRADING.md) requires each
 output dual's symplectic orbit group to have binary abelianization rank at least
 $`m-p-1`$ exactly. An odd-order pair gives an explicit robust word obstruction.
-**Next question:** construct changed joint walls with this grading and a genuinely
-non-Clifford $`R=VPV^\dagger`$, then solve the full carrier equations. Two-band V
-and a one-band copy would give at most 42 indicator bands; this remains conditional.
-Price every inverse and common budget. Empty kernels reject exact instances;
-approximation needs quantitative certificates. The [whole-table alternative](research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md#5-what-this-changes-and-what-it-leaves-unpaid) remains unpaid.
+The [seed fingerprint](research/depth/NATIVE_COPY_INTERACTION.md#seed-coefficient-rigidity)
+excludes product THT-dagger seeds below 3/32 for every one-band field copy at p at least two.
+**Next question:** extend the flat decoder uniformly, allowing the complete probe's
+commutant freedom, with sublogarithmic depth and polynomial discovery budgets.
+The joint seed/copy alternative remains open; two-band V and one-band C would give 42 bands conditionally.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),

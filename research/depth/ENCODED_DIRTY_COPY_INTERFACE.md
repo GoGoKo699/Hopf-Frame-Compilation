@@ -273,6 +273,11 @@ at p at least seven, a projectively involutive Clifford seed with commuting
 symplectic orbit actions has copy error at least 1/64, even with arbitrary C.
 
 The all-size task remains a jointly paid pair satisfying (2) within (4).
+The later [flat four-address bank](FLAT_FIELD_BANK_PILOT.md) supplies a
+genuinely non-Clifford seed, a 12-T six-band physical copy, and a cheaper
+direct indicator through its six-T three-band decoder. Extending that
+complete probe decoder uniformly is another concrete route; its finite
+word does not settle either all-size interface.
 For a Clifford seed, noncommuting symplectic dynamics are therefore necessary
 at arbitrarily small fixed error; non-Clifford seeds are another possibility.
 The complete dual readout, native inverse and every arbitrary-input sector

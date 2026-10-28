@@ -10,7 +10,9 @@ $`THT^\dagger`$ has a two-T, one-band copy interaction with no helpers.
 That observation does not supply a compatible all-size field-orbit seed.
 This chapter gives an extensive T-count floor for arbitrary copies,
 a dual-readout rank test, and exact failures of two concrete product
-constructions. The unrestricted one-band field-copy problem remains open.
+constructions. Sections 7--8 add a Pauli-coefficient test and a uniform
+error floor for an extensively supported product seed with arbitrary
+Clifford embedding, for copies with a Clifford output dual. The unrestricted one-band field-copy problem remains open.
 
 The [complete one-band feasibility reduction](ONE_BAND_COPY_FEASIBILITY.md)
 gives exact affine Walsh support spaces, their spectrum and the remaining
@@ -335,11 +337,203 @@ does not extend that all-size theorem to repeated query cores.
 The [native fixtures](../../tests/test_native_copy_interaction.py)
 retain this exact finite calculation, native checks of its signed label
 conventions, the full one-band component and inverse, and a small
-complete coded-copy/dual fixture. The analytic all-size statements
-are Sections 1--5.
+complete coded-copy/dual fixture. Their associated analytic all-size
+statements are Sections 1--5.
 
 The remaining constructive target is a native interaction whose
 carrier/output mixing or carrier phase axes escape these specific
 support restrictions, jointly with a compatible seed. The extensive
 T-count floor permits such a construction within the discovery count
 budget; its complete action and depth still have to be paid.
+
+<a id="seed-coefficient-rigidity"></a>
+<a id="unique-maximum-pauli-coefficient"></a>
+
+## 7. A unique largest Pauli coefficient obstructs Clifford-dual copies
+
+The next two screens concern the seed, allowing arbitrary joint Clifford
+walls in the copy. Suppose a selected physical output dual
+$`J=C^\dagger Z_{Y_t}C`$ is Clifford. Every one-band native copy has
+this property, as established in the
+[dual reduction](CLIFFORD_DUAL_COPY_GRADING.md#1-one-output-dual-gives-an-independently-graded-clifford-orbit).
+For a copy with complete error eta, that reduction also gives the direct form
+
+```math
+\|J(R_x\otimes I_Y)J^\dagger
+       -(-1)^{[x=t]}(R_x\otimes I_Y)\|\le2\eta.       \qquad(14)
+```
+
+Expand the Hermitian seed in the Hermitian Pauli section,
+$`R=\sum_v r_v\tau(v)`$. Suppose its largest absolute coefficient
+is unique, at label $`v_*`$, and write
+
+```math
+a=|r_{v_*}|,\qquad b=\max_{v\ne v_*}|r_v|,\qquad g=a-b>0.
+```
+
+Include zero coefficients in this maximum. For any Clifford U and
+$`s\in\{1,-1\}`$, the inequality
+$`\|URU^\dagger-sR\|\lt g`$ forces
+$`U\tau(v_*)U^\dagger=s\tau(v_*)`$.
+If the largest label moved elsewhere, the coefficient discrepancy at
+its image would be at least a-b. If it stayed at that label with the
+wrong sign, the discrepancy would be 2a. An individual Pauli coefficient
+is bounded by normalized Hilbert--Schmidt norm, which is bounded by
+operator norm. This argument does not require rigidity of the whole seed.
+
+Every queried seed has the same unique maximum, at the literal signed
+Pauli $`P_x=Q_x\tau(v_*)Q_x^\dagger`$. Thus $`\eta\lt g/2`$
+would force
+
+```math
+JP_xJ^\dagger=(-1)^{[x=t]}P_x\quad\text{for every }x. \qquad(15)
+```
+
+For the field query and $`p\ge2`$, choose two independent address
+directions and their four-address affine plane through t. The xor of
+its four labels is zero, because the field symplectic action is affine.
+The ordered product of the four literal Paulis is therefore a nonzero
+scalar times identity. Conjugating by J must fix that scalar, while
+(15) negates it because t occurs once. Consequently
+
+```math
+\eta\ge\frac{a-b}{2}\qquad(p\ge2).                   \qquad(16)
+```
+
+This includes arbitrary identity helpers and fixed Clifford embeddings:
+neither changes the coefficient magnitudes. A single Clifford output
+dual at t suffices. Exact copying is excluded whenever the maximum is
+unique, however small its gap. Uniqueness alone gives no uniform
+approximation floor as the width grows.
+
+More generally, (16) holds for a Clifford query whose symplectic entries
+have Boolean degree at most d when $`p\ge d+1`$. Use an affine cube
+with d+1 independent directions through t. Its label xor is the vanishing
+finite difference, so its ordered Pauli product is again scalar.
+Literal phases are retained; the proof never assumes that scalar is +1.
+This extension needs no additive query law beyond the stated degree.
+
+<a id="product-seed-clifford-dual-gap"></a>
+
+## 8. Product A seeds have a uniform Clifford-dual gap
+
+Consider the extensive native component
+
+```math
+R=A^{\otimes w}\otimes I_h,\qquad
+A=THT^\dagger=X/2+Y/2+Z/\sqrt2,\qquad w\ge1.
+```
+
+An arbitrary fixed Clifford embedding of all active and helper wires
+is allowed. Its
+[two-band preparation and actual inverse](NONCLIFFORD_SEED_SPREAD.md#an-extensive-seed-with-a-paid-two-band-source)
+are already paid. The following bound concerns every copy with the
+selected Clifford output dual in (14), including every one-band copy:
+
+```math
+\eta\ge\frac3{32}\qquad\text{for the field query and }p\ge2.
+                                                               \qquad(17)
+```
+
+The constant is independent of w, the helper count, and the fixed
+embedding. It does not apply to an arbitrary two-band seed or to a
+deeper copy whose relevant output dual is non-Clifford.
+
+### A Pauli fingerprint fixes the active pairs
+
+Work first before the fixed embedding. Let $`\tau_0`$ denote normalized
+trace, and for a Hermitian Pauli P define
+
+```math
+q_R(P)=\tau_0(RPRP).
+```
+
+On an active wire its values on I,X,Y,Z are respectively
+$`1,-1/2,-1/2,0`$; every helper factor contributes one. Hence the
+product value is zero if an active Z occurs, and otherwise equals
+$`(-1/2)^k`$, where k counts active X/Y factors. In particular,
+q equals one exactly on the full helper Pauli subgroup H. Its value
+$`-1/2`$ occurs exactly on one active X or Y times any helper Pauli.
+The latter level is separated from every other possible value by at
+least $`3/8`$; the level one is separated by at least $`3/4`$.
+
+Suppose a Clifford U and a sign s satisfy
+$`\delta=\|URU^\dagger-sR\|\lt3/16`$. Telescoping the two R
+factors gives
+
+```math
+|q_R(U^\dagger P U)-q_R(P)|\le2\delta\lt3/8.         \qquad(18)
+```
+
+The binary symplectic action therefore preserves H and the
+$`-1/2`$ level exactly. The helper label space H is nondegenerate,
+so its orthogonal complement, the active Pauli space, is preserved too.
+No active image can acquire a helper attachment. Inside this complement
+the $`-1/2`$ labels are exactly $`X_i,Y_i`$. Their only nonzero
+pairings are $`\langle X_i,Y_i\rangle=1`$. Thus U permutes the
+active paired planes and, within each plane, sends X,Y to signed X,Y,
+possibly swapped. Its helper action may be any Clifford.
+
+### Every remaining nonexact signed action has a constant gap
+
+On one active pair write the X,Y image signs as epsilon,zeta. The literal
+relation $`Z=-iXY`$ fixes the Z sign as their product without a swap,
+and as minus their product with a swap. The exact cell overlap is
+
+```math
+\tau_0(AUAU^\dagger)=
+\begin{cases}
+(\epsilon+\zeta)/4+\epsilon\zeta/2,&\text{without a swap},\\
+(\epsilon+\zeta)/4-\epsilon\zeta/2,&\text{with a swap}.
+\end{cases}                                                   \qquad(19)
+```
+
+Its possible values are $`1,-1,1/2,-1/2,0`$. The full overlap factors,
+since permuting identical A cells leaves R unchanged. It is either
+plus or minus one, giving an exact signed symmetry, or has absolute
+value at most one half. In the latter case, the normalized
+Hilbert--Schmidt distance from either signed target is at least one.
+This contradicts the assumed operator error below $`3/16`$. Therefore
+
+```math
+\|URU^\dagger-sR\|\lt3/16
+\quad\Longrightarrow\quad URU^\dagger=sR.             \qquad(20)
+```
+
+Conjugating U back through a fixed outer Clifford proves the same
+rigidity for every allowed embedding, including one mixing active and
+helper wires. No physical fingerprint measurement is being supplied;
+q is only a mathematical invariant used in the proof.
+
+The unique largest coefficient of R is at
+$`Z_1\cdots Z_w\otimes I_h`$, with magnitude $`2^{-w/2}`$.
+Every other magnitude is at most $`1/\sqrt2`$ times that value.
+If the copy error were below $`3/32`$, (14) and (20) would force exact
+signed symmetry at every address, and hence exact signed transport of
+this unique Pauli. Section 7's scalar-plane contradiction proves (17).
+For a degree-d Clifford query the same argument gives (17) when
+$`p\ge d+1`$.
+
+For an actual unitary seed and query within operator distances epsilon
+and delta of this ideal class, while retaining a Clifford output dual,
+full-operator telescoping gives the stable form
+
+```math
+\eta_{\rm actual}+2\epsilon+4\delta\ge3/32.            \qquad(21)
+```
+
+These are distances to the specified class; small commutators do not
+by themselves establish them.
+
+The [exact fingerprint fixtures](../../tests/test_seed_fingerprint.py)
+check native Pauli values with an arbitrary helper, all 720 two-wire
+symplectic actions, all 24 literal one-cell Cliffords and their signed
+overlap values, and scalar four-address products with literal phases.
+The analytic arguments above establish the all-size scope.
+
+For $`p\ge2`$, a seed eligible for exact field copying with Clifford
+output duals must therefore have a degenerate largest Pauli magnitude. The
+[flat field-bank pilot](FLAT_FIELD_BANK_PILOT.md) supplies a finite
+non-Clifford alternative with equal coefficient magnitudes and complete
+abstract grading. It requires its own paid decoder and copy; degeneracy
+alone does not give the singleton dual symmetries or carrier return.

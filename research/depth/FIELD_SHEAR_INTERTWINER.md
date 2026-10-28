@@ -303,6 +303,11 @@ does not compile that change into native gates.
 
 ## 6. A paid four-wire decoder for two address bits
 
+The later [flat-bank decoder](FLAT_FIELD_BANK_PILOT.md) supplies a different
+six-T, three-band full intertwiner at this size. The construction below
+retains its punctured-coordinate mechanism and exact native fixtures;
+neither finite word establishes an all-size shallow decoder.
+
 There is also a native p=2 decoder, independent of the canonical
 eigenbasis choice in (17). It uses only the four bank wires. The
 following construction explains its full action, including the zero
