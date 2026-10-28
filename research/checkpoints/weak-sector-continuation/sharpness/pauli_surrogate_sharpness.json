@@ -1,0 +1,212 @@
+{
+  "status": "PASS",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "arithmetic": "Exact int64 matrices; integer bounds checked; no SVD or floating norm estimates",
+  "cases": [
+    {
+      "m": 4,
+      "selected_gamma_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "k": 4,
+      "full_bank_columns": 16,
+      "odd_sector_columns": 8,
+      "complete_unitarity_gram": "S_eo S_oe=S_oe S_eo=kI",
+      "all_commuting_involution_blocks": "PASS",
+      "all_joint_eigenvalue_columns": "PASS",
+      "surrogate_relation": "product A_i=I",
+      "independent_bank_product": "product B_i=Z_copy",
+      "errors": [
+        {
+          "observable": 0,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 4
+        },
+        {
+          "observable": 1,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 4
+        },
+        {
+          "observable": 2,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 4
+        },
+        {
+          "observable": 3,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 4
+        }
+      ]
+    },
+    {
+      "m": 4,
+      "selected_gamma_indices": [
+        1,
+        2,
+        3
+      ],
+      "k": 3,
+      "full_bank_columns": 16,
+      "odd_sector_columns": 8,
+      "complete_unitarity_gram": "S_eo S_oe=S_oe S_eo=kI",
+      "all_commuting_involution_blocks": "PASS",
+      "all_joint_eigenvalue_columns": "PASS",
+      "surrogate_relation": "product A_i=I",
+      "independent_bank_product": "product B_i=Z_copy",
+      "errors": [
+        {
+          "observable": 0,
+          "norm_squared_numerator": 0,
+          "norm_squared_denominator": 1
+        },
+        {
+          "observable": 1,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 3
+        },
+        {
+          "observable": 2,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 3
+        },
+        {
+          "observable": 3,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 3
+        }
+      ]
+    },
+    {
+      "m": 8,
+      "selected_gamma_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "k": 8,
+      "full_bank_columns": 256,
+      "odd_sector_columns": 128,
+      "complete_unitarity_gram": "S_eo S_oe=S_oe S_eo=kI",
+      "all_commuting_involution_blocks": "PASS",
+      "all_joint_eigenvalue_columns": "PASS",
+      "surrogate_relation": "product A_i=I",
+      "independent_bank_product": "product B_i=Z_copy",
+      "errors": [
+        {
+          "observable": 0,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 1,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 2,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 3,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 4,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 5,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 6,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        },
+        {
+          "observable": 7,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 8
+        }
+      ]
+    },
+    {
+      "m": 8,
+      "selected_gamma_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "k": 7,
+      "full_bank_columns": 256,
+      "odd_sector_columns": 128,
+      "complete_unitarity_gram": "S_eo S_oe=S_oe S_eo=kI",
+      "all_commuting_involution_blocks": "PASS",
+      "all_joint_eigenvalue_columns": "PASS",
+      "surrogate_relation": "product A_i=I",
+      "independent_bank_product": "product B_i=Z_copy",
+      "errors": [
+        {
+          "observable": 0,
+          "norm_squared_numerator": 0,
+          "norm_squared_denominator": 1
+        },
+        {
+          "observable": 1,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 2,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 3,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 4,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 5,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 6,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        },
+        {
+          "observable": 7,
+          "norm_squared_numerator": 4,
+          "norm_squared_denominator": 7
+        }
+      ]
+    }
+  ],
+  "seconds": 0.41965664899908006,
+  "scope": "Commuting observables and a full unitary only. The optional Clifford query family has Boolean degree exactly p=log2(m), no additive group premise, and no coherent native compiler ledger."
+}

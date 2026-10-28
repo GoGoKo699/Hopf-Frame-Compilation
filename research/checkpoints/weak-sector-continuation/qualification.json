@@ -1,0 +1,52 @@
+{
+  "scope": "Scratch follow-up only; not part of frozen PR270",
+  "status": "PASS",
+  "tests": 6,
+  "seconds": 0.485,
+  "python": "3.12.14",
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<frozen-repository> python test_weak_sector_degree.py -v",
+  "repository_head": "378e23c02a6c03d5f9fe8d694fb5a733c4ffce86",
+  "repository_tree": "fc1fb46d64268a0cb8cf9694f36a9ac45dfb9e37",
+  "presentation_preflight": {
+    "WEAK_SECTOR_DEGREE.md": {
+      "github_math": [],
+      "numbering": [],
+      "comparisons": [],
+      "protected_boundaries": []
+    },
+    "HANDOFF.md": {
+      "github_math": [],
+      "numbering": [],
+      "comparisons": [],
+      "protected_boundaries": []
+    }
+  },
+  "files": {
+    "independent-audit.md": "22ccab7c75443dce3f8e7eee262acf45c71f8b6a0812f89074e535db76238314",
+    "test_weak_sector_degree.py": "00774ed05584b5332fe7db3f66d3b9ec37efc6532e2a7e2442d256a88ffc35db",
+    "WEAK_SECTOR_DEGREE.md": "a25f3db740233cb74e8c6b7646f59ac7ab022f8040db202b0435c143cded74ed",
+    "tests.log": "c83ef4a87ce59d73a6042c9d1d720d7d0ac47d5dc44b3cf3858d48da055afa3c",
+    "HANDOFF.md": "0d8670f9215aa44ca39cea1a56155509c0d6540075504318ccff1014b669938f"
+  },
+  "dependencies": {
+    "tests/field_sector_tableaux.py": "d0344d4231ed50f57774bb09705589fdb2c9db75c88a8e0e4f8b1194354325e7",
+    "tests/exact_matrices.py": "51d4192c29d5798a11616e316bade934eb9fc30766b187171919c2a3a983df05",
+    "tests/test_recursive_field_shear_decoder.py": "bbeb174ec68806f09d244ce965e420129130b8b37c4c3fdeb7a78cc53dd90147",
+    "tests/test_projective_field_recoupler.py": "a778a61074e6acc4d35b48b4b144ec17fba62e025aa9dec99413aa659e4f77d6"
+  },
+  "claims": [
+    "Clifford sectors, weak complete probe error <sqrt(2): seed degree and helper rank >=p-d",
+    "Affine query: p-1 affine core stages even for weak probe",
+    "Exact arbitrary-unitary sectors with Pauli seeds retain degree/rank theorem",
+    "Pauli-seed-only robust radius min(sqrt(2-sqrt(2)),2/sqrt(m)), improved m-1 denominator for Q0=I",
+    "Degree-two reversible helper motion L plus affine core stages k: L+k>=1+ceil(log2(p-1)) in specified stage grammar"
+  ],
+  "limits": [
+    "No full endpoint or square-zero query assumption",
+    "No unrestricted physical T-depth bound",
+    "Uniform sqrt(2) rounding requires exact Clifford sectors",
+    "Array-level radius sharpness is not a low-degree query construction"
+  ],
+  "sharpness_receipt_sha256": "743483e3ae4994bebbe32fca2189f522553a34d83e48f1b4743baba3490bec38",
+  "process_seconds": 0.5944284299985156
+}

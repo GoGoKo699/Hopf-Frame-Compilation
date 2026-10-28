@@ -1,0 +1,11 @@
+test_anticommutation_and_parity_mismatch_bounds (__main__.WeakSectorDegreeTests.test_anticommutation_and_parity_mismatch_bounds) ... ok
+test_augmented_seed_cocycle_and_top_active_coefficient (__main__.WeakSectorDegreeTests.test_augmented_seed_cocycle_and_top_active_coefficient) ... ok
+test_exact_nonclifford_sectors_with_projective_helper_query (__main__.WeakSectorDegreeTests.test_exact_nonclifford_sectors_with_projective_helper_query) ... ok
+test_nonclifford_pauli_seed_does_not_allow_uniform_pauli_rounding (__main__.WeakSectorDegreeTests.test_nonclifford_pauli_seed_does_not_allow_uniform_pauli_rounding) ... ok
+test_reversible_helper_tree_raises_degree_and_returns_helpers (__main__.WeakSectorDegreeTests.test_reversible_helper_tree_raises_degree_and_returns_helpers) ... ok
+test_split_translation_family_attains_every_degree_tradeoff (__main__.WeakSectorDegreeTests.test_split_translation_family_attains_every_degree_tradeoff) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.485s
+
+OK

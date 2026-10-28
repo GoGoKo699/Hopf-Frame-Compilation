@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "Scratch follow-up only; no frozen PR270 edits",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "tests": 3,
+  "cases": 4,
+  "m_values": [
+    4,
+    8
+  ],
+  "seconds_total": 1.004888112001936,
+  "exact_norms": {
+    "all_gamma": "2/sqrt(m)",
+    "seed_exact": "B0=A0; all other errors 2/sqrt(m-1)"
+  },
+  "query_scope": "Individually Clifford seed queries have Boolean degree exactly p=log2(m), not a low-degree query counterexample.",
+  "files": {
+    "PAULI_SURROGATE_SHARPNESS.md": "d0e60a127387909da31a24d0367d44d6c4f080b5cab4f0b369303d19e8356d8a",
+    "pauli_surrogate_sharpness.py": "392ef97855f6de207083f80a1a3e5cc7bf60a0cb85722cbfa536923ce9b82af5",
+    "pauli_surrogate_sharpness.json": "fea3045b77ed6db500886f4c869bbd01c17a28a3b8a6ab6e00f0ca80db8ce06c",
+    "tests.log": "277afbcf1e1d763072a73003d1778ed88810f4f7f7c7c96312f794b312359fdc"
+  },
+  "unitary_columns_across_cases": 544
+}

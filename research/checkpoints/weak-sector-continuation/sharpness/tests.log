@@ -1,0 +1,8 @@
+test_complete_surrogate_banks_and_exact_norms (__main__.PauliSurrogateSharpnessTests.test_complete_surrogate_banks_and_exact_norms) ... ok
+test_jordan_wigner_anticommutation_every_column (__main__.PauliSurrogateSharpnessTests.test_jordan_wigner_anticommutation_every_column) ... ok
+test_seed_queries_and_full_boolean_degree (__main__.PauliSurrogateSharpnessTests.test_seed_queries_and_full_boolean_degree) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.437s
+
+OK
