@@ -11,9 +11,9 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #264](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/264),
-`7e18502ce12c8a502a473998d77a60e00eab124c`, 27 October 2026.
-Its reviewed tree passed 1,985 tests, the full local gate and qualifying pre-merge CI.
+Verified baseline: [PR #265](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/265),
+`97ade196941b6d8780556bbfa1585d311beee6f2`, 28 October 2026.
+Its reviewed tree passed 1,996 tests in both qualifying CI versions; the local gate exited zero.
 Fetch current main before continuing; this baseline is not a pin.
 Exact commit/tree receipts belong in the PR record.
 
@@ -83,13 +83,10 @@ they do not construct the source.
 
 ### Latest substantive outcomes and resumption question
 
-The [interleaved tree probe](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md)
-gives a complete target algebra with full commutation rank, including literal
-signs and arbitrary dirty inputs. Its one-query spectral/covariance gaps,
+The [tree-probe algebra](research/depth/INTERLEAVED_TREE_PROBE_SOURCE.md),
 [Clifford-orbit rank bound](research/depth/CLIFFORD_ORBIT_QUERY_RANK.md) and
 [non-Clifford seed-spread bound](research/depth/NONCLIFFORD_SEED_SPREAD.md)
-retain their stated query and seed hypotheses. Canonical target coordinates
-and extensive Pauli support do not pay a source decoder.
+retain their exact query/seed scopes. Target coordinates and support do not pay decoding.
 
 The [field shear](research/depth/FIELD_SHEAR_INTERTWINER.md) has a paid
 eight-band query and an [exact recursive decoder](research/depth/RECURSIVE_FIELD_SHEAR_DECODER.md).
@@ -127,21 +124,24 @@ requires strong cross-commutators on every independent address pair;
 monomial query-eigenbasis seeds have a half-error floor. The full-Hadamard
 field seed passes the mixing test but still has a half-error spectral floor.
 
-The [four-address Clifford pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md)
-now pays a noncommuting seed and its physical copy in the field coordinates.
-Its exact indicator uses 288 T gates, at most 96 bands and seven arbitrary
-dirty wires. The cheaper query also improves the direct decoder to 300 T,
-160 bands and three dirty wires. Both finite words have fully paid inverses.
+The [four-address pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md) pays
+the seed, copy and inverses: 288 T gates, at most 96 bands and seven dirty
+wires. Its cheaper query gives the direct decoder 300 T, 160 bands and three dirty wires.
 The [symplectic-orbit theorem](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md)
-gives error at least 1/64 for p at least seven when a Clifford seed's orbit
+gives error at least 1/64 for p at least seven when an involutory Clifford seed's orbit
 has commuting symplectic actions, even for an arbitrary copy. The pilot lies
 inside this class, so retaining its Pauli-valued commutators cannot scale.
 
-**Next question:** jointly construct a Clifford seed with noncommuting
-symplectic orbit and a paid copy, or a genuinely non-Clifford alternative.
-Start with complete grade/sign relations; then synthesize coherent sector
-control, the native inverse and full return. The finite pilot makes these
-operations concrete but does not provide their all-size version.
+[One-band copy feasibility](research/depth/ONE_BAND_COPY_FEASIBILITY.md)
+gives signed Walsh slices, their spectrum and the complete carrier fixed point.
+All output probes alone can miss wrong carrier action. The triple-axis joint walls
+pass the tensor screen but have zero complete seed space for p at least two,
+and full copy error at least $`1/\sqrt6`$ for every unitary seed. This family is stopped.
+**Next question:** solve the complete equations for changed joint walls and $`R=VPV^\dagger`$.
+Two-band V and a one-band copy would give at most 42 indicator bands; no such family is known.
+Every inverse and common budget is due. Retire exact ansatzes with no compatible seed;
+approximations require their own error certificates. Small fixtures must check a derived rule.
+If only necessary screens remain, reassess the [whole two-bank table word](research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md#5-what-this-changes-and-what-it-leaves-unpaid).
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
