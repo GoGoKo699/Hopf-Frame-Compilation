@@ -15,6 +15,10 @@ not exclude every Clifford seed at this address size.
 
 This is a finite complete-operator pilot. Its four addresses do not give
 an all-size source or improve the general frame-depth frontier.
+The later [flat-seed pilot](FLAT_FIELD_BANK_PILOT.md) gives a different
+commuting bank and a cheaper 72-T, 28-band direct indicator with three
+dirty wires. The noncommuting central-sector construction here remains
+a distinct algebraic and native calibration.
 
 ## 1. The physical seed and query
 
