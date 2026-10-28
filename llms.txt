@@ -6,12 +6,13 @@ Canonical repository: https://github.com/GoGoKo699/Hopf-Frame-Compilation
 
 ## Start by task
 
-- Continuing research: fetch current main, then read [WORKSPACE](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md) and its current proof-home links. Historical session prompts do not override that checkpoint.
+- Continuing research: inspect the worktree, fetch current main and compare intervening changes, then read [WORKSPACE](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/WORKSPACE.md). Follow its current dependency branch and next unpaid operation; historical session prompts do not override the checkpoint.
 - Understanding the result: [README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/README.md) gives the target and selected A–D claims; [REVIEW](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/REVIEW.md) explains their mechanisms.
 - Checking a theorem: [PUBLICATION_SCOPE](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/manuscript/PUBLICATION_SCOPE.md) owns selected statements and literal reservations; [docs/README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/README.md) maps proof dependencies.
 - Checking the current frontier: [OPEN_PROBLEM](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/OPEN_PROBLEM.md) owns general resource bounds, their matching intervals and scoped lower bounds.
 - Choosing a mechanism: [ROUTE_DECISIONS](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/ROUTE_DECISIONS.md) owns failed mechanisms and their reopening conditions. [research/README](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/research/README.md) is the complete proof-home catalogue.
 - Reproducing evidence: [VERIFICATION](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/VERIFICATION.md) routes to tests and receipts; [the finite-evidence catalogue](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/reference/VERIFICATION_CATALOGUE.md) records their exact scopes.
+- Running checks: [research validation](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/scripts/README.md#research-validation) owns the focused test map and complete final gate. Use the evidence catalogue for other components; keep exact-tree receipts in the review record.
 - Checking attribution: [SOURCE_MAP](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/SOURCE_MAP.md), [RELATED_WORK](https://raw.githubusercontent.com/GoGoKo699/Hopf-Frame-Compilation/main/docs/RELATED_WORK.md) and machine-readable provenance distinguish imported premises from local contributions.
 
 ## Scientific contract
@@ -39,6 +40,6 @@ The [state-based QBP supplement](https://raw.githubusercontent.com/GoGoKo699/Hop
 
 Finite checks support named identities, phases, inverses, work return and ledgers. They do not prove universal asymptotic claims. Internal audits are not external peer review or formal proof certification; no general native emitter is claimed.
 
-Preserve one proof home per claim, stable identifiers and inbound anchors. Front pages route; they do not accumulate session histories. Keep useful component proofs and scoped failed attempts when a stronger headline supersedes their old benchmark.
+Preserve one proof home per claim, stable identifiers and inbound anchors. Follow WORKSPACE's update-ownership map: replace its checkpoint when the next action changes, revise the affected route assessment, and index new proof homes without copying their outcome inventories across maps. Keep useful component proofs, scoped failed attempts and unfinished records when a stronger headline supersedes an old benchmark. This guide retains stable contracts; WORKSPACE owns the live research choice.
 
 Use the exact consulted commit and CITATION.cff for attribution. MIT licensed. Contact: gogoko699@gmail.com.
