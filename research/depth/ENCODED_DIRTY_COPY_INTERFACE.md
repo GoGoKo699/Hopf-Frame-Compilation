@@ -278,6 +278,15 @@ genuinely non-Clifford seed, a 12-T six-band physical copy, and a cheaper
 direct indicator through its six-T three-band decoder. Extending that
 complete probe decoder uniformly is another concrete route; its finite
 word does not settle either all-size interface.
+Full intertwiners must also meet the
+[Pauli-domain requirement](FIELD_DECODER_PAULI_DOMAIN.md), including with
+moving Clifford helpers, and the
+[disjoint-span two-band screen](TWO_BAND_FIELD_DECODER_OBSTRUCTION.md).
+These conditions do not restrict a decoder required only to transport the
+complete physical probe. For the Clifford-dual alternative, an associative
+algebra preserved by scalar-field shears has a
+[four-address relation](SCALAR_FIELD_RADICAL_COPY_SCREEN.md) for every
+address embedding; changing the field basis does not repair that model.
 For a Clifford seed, noncommuting symplectic dynamics are therefore necessary
 at arbitrarily small fixed error; non-Clifford seeds are another possibility.
 The complete dual readout, native inverse and every arbitrary-input sector
