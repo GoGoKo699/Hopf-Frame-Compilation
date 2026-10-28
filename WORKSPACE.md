@@ -11,11 +11,10 @@ Manuscript drafting and the changed-decoder supplement are separate tasks.
 
 ## Current checkpoint
 
-Verified baseline: [PR #265](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/265),
-`97ade196941b6d8780556bbfa1585d311beee6f2`, 28 October 2026.
-Its reviewed tree passed 1,996 tests in both qualifying CI versions; the local gate exited zero.
-Fetch current main before continuing; this baseline is not a pin.
-Exact commit/tree receipts belong in the PR record.
+Verified baseline: [PR #266](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/266),
+`2217955f3c0149d80917b5edf88939f9f655098e`, 28 October 2026.
+Its reviewed tree passed 2,009 tests locally and in both CI versions, plus the full gate and presentation checks.
+Fetch current main; this baseline is not a pin. Exact-tree receipts belong in the PR record.
 
 Read the [resource frontier](docs/OPEN_PROBLEM.md) for general theorems,
 then the [route decisions](research/ROUTE_DECISIONS.md) for the chosen mechanism.
@@ -127,21 +126,24 @@ field seed passes the mixing test but still has a half-error spectral floor.
 The [four-address pilot](research/depth/FIELD_COPY_CLIFFORD_PILOT.md) pays
 the seed, copy and inverses: 288 T gates, at most 96 bands and seven dirty
 wires. Its cheaper query gives the direct decoder 300 T, 160 bands and three dirty wires.
-The [symplectic-orbit theorem](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md)
-gives error at least 1/64 for p at least seven when an involutory Clifford seed's orbit
-has commuting symplectic actions, even for an arbitrary copy. The pilot lies
-inside this class, so retaining its Pauli-valued commutators cannot scale.
+The [Clifford-seed bounds](research/depth/CLIFFORD_SEED_COPY_STRUCTURE.md) give
+error at least 1/64 for p at least seven for projectively involutive seeds with commuting symplectic orbits,
+even for an arbitrary copy. For p at least nine, every Clifford seed has one-band
+copy error at least $`\sin(\pi/8)`$, without an orbit-commutation assumption.
 
 [One-band copy feasibility](research/depth/ONE_BAND_COPY_FEASIBILITY.md)
 gives signed Walsh slices, their spectrum and the complete carrier fixed point.
 All output probes alone can miss wrong carrier action. The triple-axis joint walls
 pass the tensor screen but have zero complete seed space for p at least two,
 and full copy error at least $`1/\sqrt6`$ for every unitary seed. This family is stopped.
-**Next question:** solve the complete equations for changed joint walls and $`R=VPV^\dagger`$.
-Two-band V and a one-band copy would give at most 42 indicator bands; no such family is known.
-Every inverse and common budget is due. Retire exact ansatzes with no compatible seed;
-approximations require their own error certificates. Small fixtures must check a derived rule.
-If only necessary screens remain, reassess the [whole two-bank table word](research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md#5-what-this-changes-and-what-it-leaves-unpaid).
+The [Clifford-dual grading](research/depth/CLIFFORD_DUAL_COPY_GRADING.md) requires each
+output dual's symplectic orbit group to have binary abelianization rank at least
+$`m-p-1`$ exactly. An odd-order pair gives an explicit robust word obstruction.
+**Next question:** construct changed joint walls with this grading and a genuinely
+non-Clifford $`R=VPV^\dagger`$, then solve the full carrier equations. Two-band V
+and a one-band copy would give at most 42 indicator bands; this remains conditional.
+Price every inverse and common budget. Empty kernels reject exact instances;
+approximation needs quantitative certificates. The [whole-table alternative](research/depth/TABLE_SPECIFIC_INDICATOR_INTERFACES.md#5-what-this-changes-and-what-it-leaves-unpaid) remains unpaid.
 
 The [four-band Clifford front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
 [weighted outer-phase route](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
@@ -151,8 +153,7 @@ remain component alternatives under their separate screens. In the separate
 [precision route](research/depth/JOINT_PRECISION_ROTATION.md), joint recovery
 beyond the separately paid two-path pilots remains open.
 
-A finite-size identity must extend to a uniform all-size native rule.
-Restoring serial grade computations retains the old cost. Any proposed gain
+A finite-size identity needs a uniform all-size rule; serial grade computations retain the old cost. Any gain
 needs a fresh complete-circuit ledger, including transfer, precision words,
 actual inverses, leakage and work return.
 
@@ -189,8 +190,7 @@ analytic proof or external technical review.
 
 <a id="refurnishing-policy"></a>
 
-Each claim has one proof home. Entry pages route to those homes; preserve unique
-attempts, stable identifiers, inbound anchors, scientific tests and receipt hashes.
+Each claim has one proof home. Preserve unique attempts, stable identifiers, inbound anchors, tests and receipt hashes.
 Change mechanisms when complete synthesis restores the old cost.
 
 ## Restore and verify

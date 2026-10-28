@@ -18,6 +18,12 @@ carrier fixed-point equations for arbitrary joint Clifford walls. Output
 dual signatures alone are insufficient; the reduced equations still need
 a uniform native seed and copy.
 
+The [Clifford-dual grading theorem](CLIFFORD_DUAL_COPY_GRADING.md) further
+requires an extensive binary abelianization of each output dual's
+symplectic orbit group, even for an arbitrary unitary seed. A separate
+[one-band Clifford-seed theorem](CLIFFORD_SEED_COPY_STRUCTURE.md#one-band-clifford-seed)
+has a constant error floor without any orbit-commutation assumption.
+
 Throughout, $`m=2^p`$ with $`p\ge1`$, Y is the physical m-qubit output bank, and
 $`R_x=Q_xRQ_x^\dagger`$ is a family of Hermitian involutions on the
 full arbitrary carrier A. The fixed interaction C must satisfy

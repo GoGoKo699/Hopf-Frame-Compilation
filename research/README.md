@@ -193,11 +193,12 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Exact dirty copying as a parity grading](depth/DIRTY_COPY_GRADING.md) — a complete criterion for arbitrary unitary families, robust word tests, field-pair rigidity and a noncommuting all-size calibration
 - [Native copy interactions and dual readout](depth/NATIVE_COPY_INTERACTION.md) — paid non-Clifford components, an extensive copy T-count floor, and exact support screens for specified product-magic and coded families
 - [Complete one-band copy feasibility](depth/ONE_BAND_COPY_FEASIBILITY.md) — signed Walsh support spaces and spectra, the exact carrier fixed-point criterion, and a native triple-axis joint-wall family with zero complete seed space and a $`1/\sqrt6`$ copy-error floor despite passing the tensor screen
+- [Clifford output-dual grading](depth/CLIFFORD_DUAL_COPY_GRADING.md) — every exact one-band copy, even with an arbitrary unitary seed, requires an extensive binary abelianization of each dual's symplectic orbit group; explicit relation words give robust certificates
 - [Affine Pauli-orbit copy screen](depth/PAULI_ORBIT_COPY_SCREEN.md) — a one-quarter error floor with Clifford dual probes, the native one-bit endpoint and the paid dirty-mask gauge
 - [Extensive non-Clifford copy-axis span](depth/COPY_AXIS_SPAN.md) — quotient-sector weight gives a robust output-axis and T-count requirement, with no growing depth conclusion
 - [Monomial query-seed copy obstruction](depth/MONOMIAL_QUERY_SEED_OBSTRUCTION.md) — commuting original and seed-conjugated query algebras force a four-word identity and copy error at least one half, even with an arbitrary physical copy
 - [Four-address Clifford seed and physical copy](depth/FIELD_COPY_CLIFFORD_PILOT.md) — a noncommuting central-sector grading, a paid native copy and a complete 288-T, 96-band finite indicator with seven arbitrary dirty wires
-- [Clifford seed symplectic structure](depth/CLIFFORD_SEED_COPY_STRUCTURE.md) — commuting symplectic orbit actions force a 128-word scalar relation and a 1/64 copy-error floor for the field query at p at least seven; arbitrary copies and helpers are included
+- [Clifford seed copy structure](depth/CLIFFORD_SEED_COPY_STRUCTURE.md) — projectively involutive seeds with commuting symplectic orbits have a 1/64 field-copy floor at p at least seven for arbitrary copies; every Clifford seed has a $`\sin(\pi/8)`$ floor at p at least nine when the copy has one physical T band
 - [Joint bank routing and the complete dirty indicator](depth/JOINT_ROUTING_INDICATOR_INTERFACES.md)
 
 ## Constructive components and source candidates
