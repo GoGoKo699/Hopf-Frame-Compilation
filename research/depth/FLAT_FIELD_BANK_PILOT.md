@@ -452,3 +452,9 @@ even after arbitrary joint outer Clifford walls. The separate
 error floor when the two absorbed spans have zero intersection, including
 partial bands. Neither statement excludes a coupled three-band decoder
 or the weaker complete-probe contract.
+
+For that weaker contract, the separate [probe-domain theorem](WEAK_PROBE_PAULI_DOMAIN.md)
+now gives independent four-wire cells an error floor of $`1/12`$ for
+$`p\ge3`$ and $`1/4`$ for $`p\ge5`$, even with arbitrary joint outer
+Clifford walls. The positive four-address cell saturates its exact domain
+bound; the failure concerns its uncoupled extension, not this finite word.

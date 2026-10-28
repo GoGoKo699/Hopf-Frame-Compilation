@@ -12,6 +12,10 @@ decoded helper register has an arbitrary Clifford action.
 
 The conclusion concerns axis rank and T count. It gives no growing T-depth
 bound and does not apply to a decoder constrained only on one physical probe.
+That weaker contract has a separate [Pauli-domain theorem](WEAK_PROBE_PAULI_DOMAIN.md):
+independent four-wire cells still fail at fixed error after arbitrary joint
+outer Clifford walls. Its proof also permits projectively additive Pauli
+source-helper queries, including the augmented recoupler's moving helpers.
 In particular it does not improve R96 or pay an all-size decoder.
 
 <a id="robust-pauli-domain"></a>
