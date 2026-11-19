@@ -16,6 +16,10 @@ the structured family. The sign normalization is retained prior work;
 the common native conjugator and its complete resource ledger supply the
 new compiler.
 
+## Subsequent fixed-accuracy improvements
+
+For the complete [positive balanced frame](POSITIVE_HAAR_FINGERPRINT.md), protecting one short logical suffix and approximating the full last-one tag gives $`D_T=O_L(N/b^2+\log\log(n+4))`$ at the exact balanced allocation $`b\ge17(n+13)`$, with the same T and Clifford counts. Polynomial-width circuits suffice at fixed precision. The [rotation bank](DIRTY_ROTATION_BANK.md) gives the same depth for one arbitrary effectively prescribed real rotation per level at the real R80 allocation. The [prefix profile theorem](PREFIX_ROTATION_PROFILES.md) also allows distinct rotation lists below different upper prefixes. Arbitrary independent node signs still cost two complete Boolean phase tables. The exact balanced specialization and the general signed and complex R80 bounds below retain their original contracts.
+
 ## 1. Statement and input promise
 
 Fix an integer $`L\ge6`$, put $`\eta=2^{-L}`$, and let

@@ -566,9 +566,9 @@ pairing rank of the two active middle T-axis spans are fixed. Consequently,
 any four-layer sequence approaching zero error for the witness must have
 minimum crossing rank tending to infinity over all four-layer
 decompositions. That qualitative closure argument supplies no quantitative
-rate. The independent elementary proof in [R74, Section 5.1](depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
-gives an explicit gap $`2^{-O_a(r^2)}`$ and minimum crossing rank
-$`\Omega_a(\sqrt L)`$ for error $`2^{-L}`$. It does not use the
+rate. The [cyclotomic refinement](depth/FOUR_LAYER_LINEAR_PRECISION.md) of R74, Section 5.1,
+gives an explicit gap $`2^{-O_a(r+1)}`$ and minimum crossing rank
+$`\Omega_a(L)`$ for error $`2^{-L}`$. It does not use the
 polynomial-limit premise below or establish an unrestricted five-layer
 lower bound with positive clean work.
 

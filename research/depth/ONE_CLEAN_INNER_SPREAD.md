@@ -385,19 +385,21 @@ t_{\min}
 
 In a displayed four-layer native circuit, $`t_A`$ counts clean-active
 axes in the first layer. The encoder $`V_2^\dagger`$ reads the
-second half backwards, so $`t_B`$ counts them in the last layer. Together
-with R74 this gives the following necessary growth in a hypothetical
-arbitrarily accurate sequence:
+second half backwards, so $`t_B`$ counts them in the last layer.
+The [native-interface refinement](ONE_CLEAN_NATIVE_INTERFACES.md#from-core-ranks-to-physical-crossings)
+strengthens the two spread bounds because the core pairing form has
+rank at most the number of clean-active axes. Together with the
+[linear middle-crossing bound](FOUR_LAYER_LINEAR_PRECISION.md), this gives:
 
 | Native layer | Necessary number of active T/T-dagger gates |
 |---|---|
-| First | $`\Omega(\log\log L)`$ clean-active axes |
-| Second | $`\Omega(\sqrt L)`$ from middle crossing rank |
-| Third | $`\Omega(\sqrt L)`$ from middle crossing rank |
-| Fourth | $`\Omega(\log\log L)`$ clean-active axes |
+| First | $`\Omega(L)`$ clean-active axes |
+| Second | $`\Omega(L)`$ from middle crossing rank |
+| Third | $`\Omega(L)`$ from middle crossing rank |
+| Fourth | $`\Omega(L)`$ clean-active axes |
 
-These are necessary resource conditions, not a construction and not
-an unrestricted five-layer lower bound.
+These necessary conditions hold for every four-layer presentation of the
+one-clean rotation witness. Unrestricted one-clean depth remains open.
 
 The theorem includes genuinely non-Clifford midpoints. For example,
 on one qubit $`U=THT`$ sends X to

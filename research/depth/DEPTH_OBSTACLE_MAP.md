@@ -317,13 +317,13 @@ obstruction in the [representation limits](FOUR_LAYER_REPRESENTATION_LIMITS.md)
 rules out unrestricted same-space phase-polynomial descent, including
 one extra dirty wire; it does not rule out descent with more workspace.
 The necessary growth conditions
-$`r_{\min}=\Omega(\sqrt L)`$ and
-$`t_{\min}=\Omega(\log\log L)`$ concern increasing precision L,
+$`r_{\min}=\Omega(L)`$ and
+$`t_{\min}=\Omega(L)`$ concern increasing precision L,
 not increasing n at fixed accuracy. Here $`r_{\min}`$ minimizes over
 native four-layer representations, and $`t_{\min}`$ minimizes both encoder
 spreads over all compatible representations and splits. R97 adds that
 both outer-axis misalignment dimensions must diverge in every such
-representation.
+representation. The [one-clean interface bounds](ONE_CLEAN_NATIVE_INTERFACES.md) strengthen this rotation-witness requirement to $`\Omega(L)`$ for each adjacent crossing and the shared middle dimension.
 
 ### Why this witness cannot establish dimension-growing depth
 

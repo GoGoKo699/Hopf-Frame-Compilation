@@ -421,3 +421,9 @@ use its temporary coefficient/address changes in this sufficient
 interface, but still owes arbitrary-table native encoding/access and
 the simultaneous count, width and depth bounds. This transfer relaxation
 alone is not an unconditional improvement of the frame frontier.
+
+The [prescribed scalar-table transfer](PRESCRIBED_SCALAR_TABLES.md)
+uses a single Boolean phase per packed position. It audits the active
+output characters and iterates to bounded terminal height. Its scalar
+depth is multiplied by the number of stages, and an exact source on a
+sufficiently dense family of tables already supplies its premise.

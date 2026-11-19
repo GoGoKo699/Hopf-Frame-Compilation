@@ -469,6 +469,21 @@ has unequal absolute product traces on the two sectors, excluding even
 an arbitrary sector-exchanging unitary with those actions. The sufficient
 certificate remains valid when a common flip is available.
 
+### Precision requirements at the three native interfaces
+
+The [occupied sparse-probe argument](ONE_CLEAN_NATIVE_INTERFACES.md)
+covers a general exact clean midpoint. For the rotation witness at
+initialized error $`2^{-L}`$, every four-layer presentation with one clean
+wire requires $`\Omega(L)`$ for each consecutive pairing rank and for
+$`\dim(L_2\cap L_3)`$. The four quantities count the actual transported
+native axis spaces. The middle pairing bound also follows for any fixed
+clean budget from [R74](FOUR_LAYER_LINEAR_PRECISION.md).
+
+For an otherwise silent $`k`$-bit address with positive bit response and
+exact terminal clean return, the two outer-to-middle pairing ranks and
+the common middle dimension must each be $`\Omega(k)`$. These conclusions
+permit arbitrarily wide four-layer architectures.
+
 ## 7. Verification and dependency boundary
 
 The proofs use R73's ring arithmetic, R74's elementary finite-boundary

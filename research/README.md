@@ -173,6 +173,23 @@ These promised-family or retained-interface results keep their own hypotheses. R
 - [A sharp normalization limit for entry-indexed frame encodings](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 - [Preparation map for the remaining depth problem](depth/DEPTH_OBSTACLE_MAP.md)
 
+The [prescribed scalar transfer](depth/PRESCRIBED_SCALAR_TABLES.md) and
+[shared rotation profiles](depth/PREFIX_ROTATION_PROFILES.md) distinguish
+conditional general depth from unconditional depth for structured complete
+frames. The [source reductions](depth/RETURNED_MASK_AND_ZERO_TEST.md),
+[gate distribution](depth/NATIVE_LAYER_COUNT_DISTRIBUTION.md) and
+[quartic mixing witness](depth/QUARTIC_FRAME_MIXING.md) have separate scopes.
+The structured proofs use the [dirty rotation bank](depth/DIRTY_ROTATION_BANK.md),
+[positive Haar construction](depth/POSITIVE_HAAR_FINGERPRINT.md),
+[gatewise read-only equality](depth/GATEWISE_READ_ONLY_EQUALITY.md),
+[sparse word lookup](depth/SPARSE_WORD_AND_FRAME.md) and
+[bounded-nesting Haar defects](depth/SPARSE_HAAR_DEFECTS.md).
+The fixed-layer results have separate proofs for the [zero-clean scalar gap](depth/FOUR_LAYER_SCALAR_GAP.md),
+[precision dependence](depth/FOUR_LAYER_LINEAR_PRECISION.md)
+and [one-clean interfaces](depth/ONE_CLEAN_NATIVE_INTERFACES.md).
+The [November evidence index](archive/november-2026/README.md) locates
+the supporting finite checks and alternatives.
+
 ## Complete query transfers and clean-source promotion
 
 These are complete interfaces and conditional transfers, not constructions of the missing shallow source. Completed return does not imply native read-only sharing, and logical call lower bounds are not unrestricted T-depth bounds.
@@ -288,7 +305,7 @@ different helper contracts. Follow those contracts through the complete echo.
 
 - [Field-shear intertwiner](depth/FIELD_SHEAR_INTERTWINER.md) — Paid field query, two-bit decoder and helper-valued probe freedom; invariant-stabilizer seeds fail.
 - [Recursive field-shear decoder](depth/RECURSIVE_FIELD_SHEAR_DECODER.md) — All-size algebraic intertwiner and paid XOR batches; original in-place maps remain uncompiled.
-- [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) — Uniform paid field/helper intertwiner and full return within relaxed fusion budgets; linear depth remains.
+- [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) — Uniform field/helper intertwiner with full return. Four calls to the established dirty indicator give a logarithmic-depth decoder within the relaxed fusion budgets.
 - [Clifford-sector degree barrier](depth/FIELD_SECTOR_DEGREE_BARRIER.md) — Sharp helper-tableau degree requirement for Clifford sectors; fixed-frame affine-stage screen only.
 ### Gram, Bell and scalar-source screens
 

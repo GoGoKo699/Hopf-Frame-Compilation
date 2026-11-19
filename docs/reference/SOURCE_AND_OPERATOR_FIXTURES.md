@@ -208,9 +208,9 @@ These tests do not prove the imported theorem. The separate
 [bounded checks](../../tests/test_four_layer_crossing_rank.py) of
 the symplectic normal form with intersecting spans, native boundary words
 attaining the normalization bound, and the abstract cubic-bias family.
-The elementary initialized-observable proof gives an explicit
-$`2^{-O_a(r^2)}`$ gap and minimum crossing rank
-$`\Omega_a(\sqrt L)`$. Its phase-digit and two-sided projector identities
+The [cyclotomic refinement](../../research/depth/FOUR_LAYER_LINEAR_PRECISION.md) gives an explicit
+$`2^{-O_a(r+1)}`$ gap and minimum crossing rank
+$`\Omega_a(L)`$. Its phase-digit and two-sided projector identities
 have finite checks in the same suite; the width-independent gap and
 rank bound are analytic. No native realization of the abstract scalar
 family is inferred.
@@ -221,8 +221,7 @@ extension, arbitrary Hermitian-Clifford boundaries, common active-axis
 commutants, and the distinction between rare-sector trace deficits and
 operator norm. The unrestricted zero-clean five-layer lower bound follows
 from the analytic commutant and phase-quantization proof, not from finite
-enumeration. Neither the tests nor that theorem establish an unrestricted positive-clean
-five-layer bound or a uniform scalar gap.
+enumeration. The [sparse-probe proof](../../research/depth/FOUR_LAYER_SCALAR_GAP.md) gives a separate width-independent scalar and exceptional-rank gap, including a single-address exclusion for $`k\ge7`$. [Further finite checks](../../tests/test_native_gap_refinements.py) cover the support, cyclotomic and occupied-interface identities. The unrestricted positive-clean five-layer bound remains open.
 The [one-clean midpoint proof](../../research/depth/ONE_CLEAN_MIDPOINT_RIGIDITY.md),
 R76, has [bounded checks](../../tests/test_one_clean_midpoint_rigidity.py)
 of dependent-axis phase layers, diagonal Clifford extraction, native

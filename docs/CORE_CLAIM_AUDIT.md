@@ -219,7 +219,7 @@ reduction and the cited polynomial-limit theorem yield a positive error
 gap for each fixed clean budget. The elementary initialized-sector
 argument in [R74, Section 5.1](../research/depth/FOUR_LAYER_CROSSING_RANK.md#51-quantitative-rigidity-on-the-initialized-sector)
 now makes that threshold explicit without the limit premise. At four
-layers it gives minimum middle crossing rank $`\Omega_a(\sqrt L)`$.
+layers it gives minimum middle crossing rank $`\Omega_a(L)`$.
 The separate [operator-rigidity theorem R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md)
 requires at least five layers for the zero-clean witness at integer
 $`L\ge3`$, with arbitrary dirty width. Its one-clean consequence is

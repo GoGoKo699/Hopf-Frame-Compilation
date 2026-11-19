@@ -14,18 +14,15 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-Scientific baseline: [PR #270](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/270),
-merged as `30dc60d31e252d135327d0384af3311b4741414e`, 29 October 2026.
-Its reviewed tree `fc1fb46d64268a0cb8cf9694f36a9ac45dfb9e37` passed
-2,087 tests, the ten-command local gate and all five head checks; the PR
-retains exact receipts. Later maintenance commits may leave this scientific
-baseline unchanged: inspect the actual branch and intervening diff.
-
-**Current bottleneck:** the augmented field recoupler pays uniform decoding
-and complete helper return, but its depth is linear in the address length.
-Compress the complete source beyond the fixed-frame helper-affine stage
-grammar. Helper-basis motion or non-Clifford sector intermediates remain
-eligible; weaker complete-probe and joint seed/copy routes remain open.
+The 19 November integration extends the inspected base
+[ae613bf](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/ae613bf8e8a38f6d0407c25910b83d69f01a2733).
+The [integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fnovember-frame-handoff)
+identify the reviewed tree.
+The previous scientific checkpoint was [PR #270](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/270).
+The active question is how many sequential native T layers a compiler needs
+when it knows the table in advance and receives its address in superposition.
+The [November evidence index](research/archive/november-2026/README.md)
+locates the original derivations, replayable fixtures and exploratory notes.
 
 <a id="current-depth-frontier"></a>
 
@@ -41,44 +38,54 @@ Result C's one-clean count frontier is established.
 
 ## Main unfinished route and exact missing operation
 
-For p address bits and $`m=2^p`$, the sufficient source target is
+A restricted family of complete real frames already contains every prescribed
+Boolean table. One such frame, its actual inverse and two CNOTs implement
+the XOR of the table value into an arbitrary target with work return.
+Consequently a lower bound for these prescribed queries can constrain
+every general frame compiler at the corresponding allocation.
+[Boolean query inside a frame](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
 
-```math
-I_p|x,Y,w\rangle=|x,Y\mathbin\oplus e_x,w\rangle
-```
+In the constructive direction, [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
+accepts a complete **word** query. A separate [scalar transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md)
+uses prescribed sign tables across widths with an iterated-logarithm cost.
+A doubly logarithmic scalar source suffices for sublogarithmic full-frame
+depth at fixed precision. The proof charges its terminal, inverse and work.
+The [word-query accuracy result](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+and the scalar amplification argument have different source hypotheses.
 
-at every fixed requested tolerance tau, with zero clean inputs,
-$`T,b_{\rm dirty}=O_\tau(m)`$, $`G=O_\tau(m^2)`$ and
-$`D_T=o(\log(p+2))`$. All address, output, work and reference inputs are
-arbitrary; full operator error includes every return error. Intermediate
-register motion is permitted. This sufficient route does not restrict an
-unrestricted frame compiler's representation.
-
-[Polynomial-overhead fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
-permits discovery at fixed polynomial overhead on a smaller address;
-[bounded-clean promotion](research/depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
-pays leakage and off-code cancellation. [R98 transfer](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-and its [constant-accuracy extension](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-retain a log-log contribution. Constant source depth alone does not settle
-optimal frame depth or give a new all-precision theorem.
+**Resumption question.** For the marked feedback edge encoding a known
+truth table, a constant-depth native matrix–vector XOR is already paid.
+Can a circuit emit the selected edge’s literal cycle sign on the coherent
+address and return arbitrary borrowed work? Insert the forward and reverse
+costs into the scalar-to-frame recurrence and check whether the assembled
+depth is $`o(\log n)`$ at square-root width. A lower bound can instead use
+the deepest-layer family above and must allow arbitrary Clifford
+interlayers, table-specific compilation and the allowed dirty width.
 
 ### Latest substantive outcomes and resumption question
 
-| Open for the current task | What it settles or constrains |
-| --- | --- |
-| [Augmented recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md) | Paid moving-helper decoder and complete echo. At most $`16(p-1)`$ decoder bands and $`64(p-1)+16`$ indicator bands; count, width and gates fit relaxed fusion budgets, depth does not. |
-| [Sector-degree barrier](research/depth/FIELD_SECTOR_DEGREE_BARRIER.md) | Clifford-sector intertwiners need helper-tableau degree at least $`p-1`$; fixed-frame helper-affine words need at least $`p-1`$ stages. This does not bound unrestricted native depth. |
-| [Field decisions](research/ROUTE_DECISIONS.md#field-recoupling) and [finite calibrations](research/ROUTE_DECISIONS.md#finite-field-calibrations) | Uniform recoupling dependencies and the retained four/eight-address words. |
-| [Decoder screens](research/ROUTE_DECISIONS.md#field-decoder-screens) | Full-intertwiner and weaker complete-probe domains; independent-cell and disjoint-span exclusions with their exact hypotheses. |
-| [Seed/copy decisions](research/ROUTE_DECISIONS.md#seed-and-copy) | Complete carrier equation, grading and seed restrictions for the alternative joint construction. |
+At $`b=\Theta(\sqrt N)`$, [prefix-shared rotations](research/depth/PREFIX_ROTATION_PROFILES.md)
+give sublogarithmic depth on complete real frames with $`q=n^{o(1)}`$
+arbitrary top levels and one rotation per lower depth within each resulting
+subtree. Independent deepest-layer entries still include every Boolean table.
+The [four-layer scalar gap](research/depth/FOUR_LAYER_SCALAR_GAP.md)
+closes the zero-clean exactly silent single-mark route at seven or more
+address bits. It concerns a different allocation from the general one-clean gap.
 
-**Next action:** write a complete candidate relation outside the blocked stage
-grammar, specifying helper motion and the actual inverse before optimizing
-its native word. Derive uniform depth, count, simultaneous width, gates and
-error/return. Compare against the source target and charge frame transfer
-before claiming an improvement. Uniform field division and recovery are no
-longer the unpaid step of the augmented route; the earlier identity-helper
-decoder retains its separate scope.
+The augmented field recoupler has an exact logarithmic-depth construction
+using the established dirty indicator. Its gate and width ledgers fit the
+relaxed discovery regime. Replacing that indicator with the resulting
+decoder supplies no sublogarithmic recurrence.
+[Logarithmic augmented field recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md#7-a-logarithmic-depth-decoder-for-the-full-augmented-query)
+
+The complete indicator remains a sufficient alternative. For a p-bit
+address and $`m=2^p`$, it must toggle the selected bit of an arbitrary
+bank and return every helper. At each fixed full-operator tolerance,
+the target has zero clean inputs, $`O(m)`$ T gates and dirty qubits,
+$`O(m^2)`$ elementary Cliffords and $`o(\log(p+2))`$ native T-depth. Reopen a field-decoder, mask or fixed-layer route when
+it supplies a mechanism for changing this scaling or a lower bound on the
+actual frame model. [Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) ·
+[Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
 
 <a id="the-two-useful-source-interfaces"></a>
 

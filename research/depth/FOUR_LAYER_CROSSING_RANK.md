@@ -4,7 +4,7 @@
 
 Four-layer approximation at fixed clean budget has a quantitative structural
 condition: the minimum symplectic pairing rank of the two active middle
-T layers grows at least as the square root of the accuracy exponent for
+T layers grows at least linearly in the accuracy exponent for
 the complete-frame witness below. This result, R74, gives an explicit
 initialized-sector gap at each rank. The separate [operator-rigidity
 theorem](FOUR_LAYER_OPERATOR_RIGIDITY.md), R75, excludes four layers
@@ -262,7 +262,12 @@ budget.
 
 ## 5.1. Quantitative rigidity on the initialized sector
 
-The bounded-rank obstruction also has an elementary quantitative proof.
+The sharpened [cyclotomic cluster estimate](FOUR_LAYER_LINEAR_PRECISION.md)
+gives a $`2^{-O_a(r+1)}`$ initialized error floor and minimum crossing
+rank $`\Omega_a(L)`$ at error $`2^{-L}`$. Both apply for fixed clean
+budget and arbitrary dirty width. The original elementary derivation
+below records the quadratic exponent and the conditional boundary form
+used in the linear refinement.
 It uses the initialized observables themselves and does not require the
 polynomial-limit premise of Section 5. Fix a clean budget a, let
 $`\Pi=|0^a\rangle\langle0^a|\otimes I`$, and let P be a
@@ -532,12 +537,20 @@ must satisfy
 \boxed{\qquad \mathcal T_a(r)\ge2L-2.\qquad}
 ```
 
-For every fixed clean budget this is a necessary
+With this initial estimate, every fixed clean budget gives a necessary
 $`r=\Omega_a(\sqrt L)`$ condition, valid for the minimum over all native
 four-layer representations. The same bound applies to each middle
 layer's number of active T gates. Idle padding handles fewer than a
 clean qubits. This does not bound unrestricted four-layer width or
 prove a five-layer obstruction for a positive clean budget.
+
+The [linear estimate](FOUR_LAYER_LINEAR_PRECISION.md) replaces
+$`\mathcal T_a(r)`$ by $`(8r+a+4\log_2 K+1)\sum_{j=0}^{K-1}[2(K-1)]^j`$,
+with the same inequality against $`2L-2`$. For $`a=1`$ this is
+$`259(8r+10)`$. Consequently the necessary minimum middle crossing rank
+and both middle active T counts are $`\Omega_a(L)`$.
+The one-clean [interface theorem](ONE_CLEAN_NATIVE_INTERFACES.md) also
+controls the two outer crossings and the common middle-axis subspace.
 
 For three layers, peeling the two outer layers leaves a diagonal middle
 word, so the same argument applies with m=0. It supplies an elementary
@@ -605,11 +618,8 @@ ring closure. **No native four-layer realization of this abstract
 family is claimed.** Its support and unitarity constraints would
 require a separate argument.
 
-An unrestricted scalar extension must control the scaled bias as
-crossing rank grows, with native support and unitarity retained.
-[R75](FOUR_LAYER_OPERATOR_RIGIDITY.md) instead uses operator norm and
-exact Pauli commutants to prove a zero-clean five-layer obstruction. It
-also reduces any near-one scalar pair to discrete phases in a common
-active-axis algebra, but does not decide whether native rare-sector
-phases realize a scalar counterexample. Positive-clean unrestricted
-five-layer rigidity remains open. Optimal depth remains an open problem.
+The [sparse-probe theorem](FOUR_LAYER_SCALAR_GAP.md) isolates the
+full-space scalar value one uniformly even as crossing rank grows. The
+abstract example above concerns possible limits near one third.
+Closure of unrestricted native scalar coefficients at those intermediate
+values, and unrestricted positive-clean five-layer rigidity, remain open.
