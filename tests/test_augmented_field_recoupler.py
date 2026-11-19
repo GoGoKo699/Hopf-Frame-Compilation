@@ -10,13 +10,15 @@ import unittest
 
 import numpy as np
 
+from tests.test_balanced_algebra_permutation import _hrt_f, _hrt_k, _ring_product
 from tests.test_dirty_indicator_depth import _exact_phase_action
 from tests.test_field_shear_intertwiner import _translation
 from tests.test_joint_lookup_pauli_source import _bands, _inverse
 from tests.test_projective_field_recoupler import (
     fourier_word, linear_word, ring_matrix, equal_ring, adjoint_ring)
 from tests.test_recursive_field_shear_decoder import (
-    _tower_product as mul, _tower_trace as trace, _address_field, _tower_shear)
+    _tower_product as mul, _tower_trace as trace, _address_field, _tower_shear,
+    _tower_inverse)
 
 
 @lru_cache(None)
@@ -172,6 +174,53 @@ def _complete_algebraic_columns(top):
     return columns, normalization
 
 
+def _superset_zeta(word, bits):
+    """Change between the group basis and the square-zero monomials."""
+    for axis in range(bits):
+        for index in range(1 << bits):
+            if index & (1 << axis) and word & (1 << index):
+                word ^= 1 << (index ^ (1 << axis))
+    return word
+
+
+@lru_cache(None)
+def _xor_product(bits, left, right):
+    return _superset_zeta(_ring_product(_superset_zeta(left, bits),
+                                        _superset_zeta(right, bits)), bits)
+
+
+def _paired_translation(bits, selector, first, second, program, inverse=False):
+    # Each add reads the *current* program on its full, arbitrary bank.
+    steps = ('second', 'toggle', 'second', 'first', 'toggle', 'first',
+             'second', 'toggle', 'second', 'toggle', 'swap')
+    for step in reversed(steps) if inverse else steps:
+        if step == 'toggle':
+            program ^= 1 << selector
+        elif step == 'first':
+            first ^= _xor_product(bits, second, program)
+        elif step == 'second':
+            second ^= _xor_product(bits, first, program)
+        else:
+            first, second = second, first
+    return first, second, program
+
+
+def _clock_decoder(top, selector, core, program, inverse=False):
+    half = 1 << (top - 1)
+    mask = (1 << half) - 1
+    multiplier = _address_field(top, half)
+    if inverse:
+        first, second, returned = _paired_translation(
+            top - 1, selector, core & mask, core >> half, program, inverse=True)
+        u = mul(top, _tower_inverse(top, multiplier), first ^ second)
+        return _tower_shear(top, selector, u | (first << half)), returned
+    field = _tower_shear(top, selector, core)
+    u, v = field & mask, field >> half
+    first, second, returned = _paired_translation(
+        top - 1, selector, v, v ^ mul(top, multiplier, u), program)
+    return first | (second << half), returned
+
+
 class AugmentedFieldRecouplerTests(unittest.TestCase):
     def test_relative_trace_two_product_formula_and_zero_cell(self):
         for level in (2, 3):
@@ -263,6 +312,70 @@ class AugmentedFieldRecouplerTests(unittest.TestCase):
                          * _helper_phase(2, address, middle))
                 self.assertEqual(phase, -1 if (column >> address) & 1 else 1)
         self.assertTrue(without_query_fails)
+
+
+    def test_four_indicator_calls_translate_occupied_banks_and_return_program(self):
+        for bits in (1, 2):
+            width = 1 << bits
+            for selector in range(width):
+                for first in range(1 << width):
+                    for second in range(1 << width):
+                        for program in range(1 << width):
+                            moved = _paired_translation(bits, selector, first, second, program)
+                            self.assertEqual(moved, (_translation(bits, selector, first),
+                                                     _translation(bits, selector, second),
+                                                     program))
+                            self.assertEqual(_paired_translation(bits, selector, *moved,
+                                                                 inverse=True),
+                                             (first, second, program))
+
+    def test_log_decoder_actual_top_helper_shift_and_all_core_columns(self):
+        for top in (2, 3):
+            half = 1 << (top - 1)
+            size = 1 << top
+            # Extract the Fourier-label shift from the original trace phases (1).
+            shifts = [sum((_helper_phase(top, x, 1 << (size + j)) < 0) << j
+                          for j in range(half - 1)) for x in range(size)]
+            offset = half // 2 - 1
+            clock = {shifts[h] >> offset: h for h in range(half)}
+            self.assertEqual(len(clock), half)
+            self.assertEqual(shifts[:half], shifts[half:])
+            for label in range(1 << (half - 1)):
+                selector = clock[label >> offset]
+                for core in range(1 << size):
+                    program = (core ^ label) & ((1 << half) - 1)
+                    decoded, returned = _clock_decoder(top, selector, core, program)
+                    self.assertEqual(returned, program)
+                    self.assertEqual(_clock_decoder(top, selector, decoded, returned, True),
+                                     (core, program))
+                    for x, delta in enumerate(shifts):
+                        next_selector = clock[(label ^ delta) >> offset]
+                        self.assertEqual(next_selector, selector ^ (x % half))
+                        source = _tower_shear(top, x, core)
+                        self.assertEqual(_clock_decoder(top, next_selector, source, program),
+                                         (_translation(top, x, decoded), program))
+
+    def test_two_hrt_conjugations_restore_shared_head_and_translate_both_tails(self):
+        for bits in (1, 2):
+            width = 1 << bits
+            tail_mask = (1 << width) - 1
+            for selector in range(width):
+                singleton_mask = sum(((selector >> i) & 1) << (1 << i)
+                                     for i in range(bits))
+                # J=F X F^-1 acts on nonempty subset coefficients. The low
+                # constant is structurally absent, while both tails are full.
+                for head in range(0, 1 << width, 2):
+                    for first in range(1 << width):
+                        for second in range(1 << width):
+                            current = head
+                            for bank in (first, second):
+                                coefficients = current | (_superset_zeta(bank, bits) << width)
+                                out = _hrt_f(_hrt_k(coefficients, bits + 1) ^ singleton_mask,
+                                             bits + 1)
+                                current = out & tail_mask
+                                self.assertEqual(_superset_zeta(out >> width, bits),
+                                                 _translation(bits, selector, bank))
+                            self.assertEqual(current, head)
 
 
 if __name__ == '__main__':

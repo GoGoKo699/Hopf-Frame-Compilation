@@ -27,6 +27,9 @@ gives an explicit constant-auxiliary lift, its exact full-occupation
 spectral error contract, a fixed-branching obstruction, and the
 still-unpaid coherent centering operation.
 
+
+**Gatewise read-only extension.** A different family of elementary-matrix permutations implements the complete zero-test XOR at fixed tolerance in constant native T-depth while preserving the tested computational wires at every gate. Distinct tests can therefore share an address while using disjoint private work. This gives a constant-depth occupation phase on the full subspace of banks with bounded weight. The proof also identifies the low relative rank of the simultaneous invariant projector. [Read-only equality and sparse lookup](GATEWISE_READ_ONLY_EQUALITY.md)
+
 ## 1. The supplied CNOT expander and its representation
 
 Anshu, Balasubramanian, Haferkamp, Harrow and Tan,

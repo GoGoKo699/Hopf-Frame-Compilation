@@ -3,9 +3,8 @@
 [Current frontier](../../docs/OPEN_PROBLEM.md) · [Three-layer obstruction](CLEAN_AWARE_DEPTH_OBSTRUCTION.md) · [Crossing-rank obstruction](FOUR_LAYER_CROSSING_RANK.md) · [Research index](../README.md)
 
 This result, R75, gives a width-independent obstruction at four T
-layers in the zero-clean, arbitrary-dirty model. Its premise is operator
-norm closeness. It does not require a uniform gap for scalar four-layer
-Pauli-transfer coefficients, and does not assert such a scalar gap.
+layers in the zero-clean, arbitrary-dirty model. Sections 1–6 use operator norm. Section 7 gives a uniform full-space
+scalar gap and an exact exceptional-rank bound via sparse Pauli probes.
 
 Put
 
@@ -295,14 +294,23 @@ crossing-rank bound. R76 also shows that the operator-rigidity proof
 extends to commuting phase-polynomial layers with dependent axes. The
 unrestricted one-clean case still permits a non-Clifford midpoint.
 
-## 7. What remains open for scalar overlaps
+<a id="7-what-remains-open-for-scalar-overlaps"></a>
 
-Let $`x=2^{-q}\mathrm{Tr}(AB)`$ for two two-layer Hermitian
-Pauli images. The existence of a dimension-independent gap below one
-for all unequal A,B remains open. The operator-rigidity theorem does
-not establish that gap.
+## 7. Scalar overlaps and a single exceptional address
 
-There is a useful exact reduction. Sections 1–3 work also with
+Let $`x=2^{-q}\mathrm{Tr}(AB)`$ for the two midpoint observables.
+The [sparse-probe proof](FOUR_LAYER_SCALAR_GAP.md) gives
+$`e=(1-x)/2=0`$ or $`e\ge(1-\cos(\pi/12))/8`$. Moreover,
+$`\mathrm{rank}(BA-I)/2^q\lt\sin^2(\pi/24)/2`$ forces $`A=B`$.
+Thus a positive change of one physical output bit confined to one
+$`k`$-bit address is impossible for $`k\ge7`$, with zero clean bits and
+arbitrary dirty work, even if the address may move. The rank estimate
+gives this threshold independently of how weak the response is.
+For complete dirty indicators and controlled flips with at least seven
+controls, and an explicit complete real or complex frame at $`n\ge9`$,
+the same proof gives the operator error floor $`\tau`$ from Section 5.
+
+The common-axis reduction gives a complementary estimate. Sections 1–3 also apply with
 $`\varepsilon=\|A-B\|_{2,\mathrm{tr}}`$, because multiplication by
 unitaries preserves this norm. Thus whenever
 
@@ -320,14 +328,8 @@ x=1\quad\text{or}\quad
 1-x\ge(1-1/\sqrt2)\,2^{-d_I}
 ```
 
-within this near-one regime. A nontrivial phase confined to rare joint
-eigensectors could have a small normalized-trace deficit, while its
-operator distance from identity is still at least
-$`\sqrt{2-\sqrt2}`$. Whether such increasingly rare central phases
-actually arise from native pairs of two-layer Pauli images is not
-settled by this reduction. It is a remaining realization question,
-not a counterexample asserted here.
-
-This explains why full-space operator approximation admits the
-five-layer obstruction even while the scalar four-layer closure
-question and positive-clean frontier remain unresolved.
+within this near-one regime. The sparse-probe argument uses the independence
+of the physical T axes to test the remaining directions individually.
+The full-space result allows arbitrary dirty width. Section 6 and the
+[one-clean interface bounds](ONE_CLEAN_NATIVE_INTERFACES.md) give the
+separate consequences on an initialized sector.

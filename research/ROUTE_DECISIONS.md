@@ -66,13 +66,26 @@ Start with a complete interface; consult component families only when the propos
 
 <a id="field-recoupling"></a>
 
+### Prescribed tables, masks and earlier source attempts
+
+| Route | Paid result | First operation or condition for reopening |
+| --- | --- | --- |
+| [Table encoded by a marked feedback edge](depth/PRESCRIBED_SCALAR_TABLES.md) | A table-specific binary matrix–vector XOR fits the scalar count and width budgets at constant T-depth. | Extract the literal sign of the selected cycle, pay for the inverse, and evaluate the complete frame recurrence. |
+| [Odd masks and raw zero tests](depth/RETURNED_MASK_AND_ZERO_TEST.md) | Matching hidden sectors allow convolutional recovery. Exact off-address silence allows a raw zero test even when other registers move. | Construct a native source meeting its stated promise on all occupied sectors. The [zero-clean four-layer gap](depth/FOUR_LAYER_SCALAR_GAP.md) closes a single-address four-layer search for seven or more bits. |
+| Matching, two visits and occupation encoders | The two-visit observable characterization prices a complete readout. The early cyclic-ring and encoder barriers apply to their respective lane and pulse classes. | A native encoder must realize the joint readout on arbitrary borrowed banks. Representation multiplicities and counts of monomial incidences alone do not price it. |
+| Trace inversion and clock sources | A trace-inverse bit can supply a zero test. Clock constructions encode the target in their spectrum. | Price the coherent bit or a complete spectral readout. Ordinary recurrence visits retain the old cost. |
+
+The [source archive](archive/november-2026/README.md) preserves the
+matching, encoder, joint-readout, trace and clock proofs with their model
+restrictions and original fixtures.
+
 ## Field queries and recoupling
 
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
 | [Field-shear intertwiner](depth/FIELD_SHEAR_INTERTWINER.md) | The paid query has the full lookup character. Monomial/Clifford decoders and a preserved physical Bell zero fiber fail. An exact seed diagonal in any query-invariant stabilizer basis fails at p at least two, even with arbitrary helpers and a non-Clifford decoder. | Jointly design a seed outside those preserved diagonal algebras and its physical decoder or encoded copy companion. Exact output-probe gauge freedom cancels from the seed; source-centralizer freedom and a changed pencil remain possible. A zero-branch basis repair alone cannot work. |
 | [Recursive field-shear decoder](depth/RECURSIVE_FIELD_SHEAR_DECODER.md) | The identity-helper algebraic decoder includes every zero sector, with paid dense queries and multiplication-XOR batches but unpaid uniform in-place coordinate maps. Separately implemented levels retain a depth contribution. | The augmented source below changes the helper query and pays a different uniform decoder. Neither its linear stage count nor a faster isolated arithmetic call meets the sublogarithmic-depth target. |
-| [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) | An explicit moving Pauli helper query permits two native multiplication-XOR batches per level, shared helpers, and complete readout return. The decoder uses at most $`16(p-1)`$ bands; the direct indicator uses at most $`64(p-1)+16`$, with $`O(mp^3)`$ T count, $`O(mp^2)`$ dirty width and $`O(m^2p^2)`$ gates. | The specific relaxed fusion budgets are paid, but depth remains linear in p. Compress the complete source across levels while retaining the source helper query and every actual inverse; omitting that query breaks the identity. |
+| [Augmented field recoupler](depth/AUGMENTED_FIELD_RECOUPLER.md) | The levelwise decoder uses at most $`16(p-1)`$ bands. The compressed decoder uses four calls to the existing dirty indicator plus a constant number of native layers, for $`O(\log(p+2))`$ depth with complete helper return. | Reopen this route for a directly synthesized shift shear or an independent source with sublogarithmic depth. Substituting this decoder back into the indicator still pays its indicator calls. |
 | [Clifford-sector degree barrier](depth/FIELD_SECTOR_DEGREE_BARRIER.md) | A linear Pauli helper query needs shift rank at least $`p-1`$ for a Clifford-sector field intertwiner. Its helper-dependent symplectic matrix has degree at least $`p-1`$, including moving Clifford core spectators. The augmented construction attains that degree. | A fixed helper frame with helper-affine symplectic stages needs at least $`p-1`$ stages. Leave that grammar through paid helper motion or non-Clifford sector intermediates, or use only the weaker complete-probe endpoint. This is not a native T-depth lower bound for unrestricted circuits. |
 
 <a id="finite-field-calibrations"></a>

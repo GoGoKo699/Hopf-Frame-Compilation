@@ -385,3 +385,9 @@ and actual adjoints, recovery of the individual line projectors, and
 exact probability/support estimates with occupied helper inputs. It
 checks finite native geometry, not the analytic constant-call composition
 theorem, an asymptotic approximate source or an improved frontier.
+
+The [iterated scalar-table transfer and its precision argument](PRESCRIBED_SCALAR_TABLES.md#3-precision-and-completed-address-return)
+use a growing number of stages. They give an explicit amplifier for
+scalar sources that preserve completed address sectors and a coherent
+tilted-projector example quantifying the error of repeating that vote
+when address motion persists at a completed boundary.

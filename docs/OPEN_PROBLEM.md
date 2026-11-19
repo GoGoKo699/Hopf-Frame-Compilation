@@ -136,7 +136,30 @@ retain independent component proofs. Their statements and dependencies
 belong in the [depth catalogue](../research/README.md#large-workspace-t-depth),
 not in competing current-frontier narratives.
 
+### Complete real frames with shared rotations
+
+For $`q=n^{o(1)}`$, allow arbitrary rotations on the upper q levels. Inside
+each resulting prefix subtree, require a shared actual rotation at each lower
+depth. At fixed precision and square-root dirty width, the complete frame
+has $`D_T=O_L(\log(q+\log(n+4)+2))=o(\log n)`$ with one clean qubit,
+$`T=O_L(\sqrt N)`$, $`G=O_L(N)`$ and full return. Polylogarithmic q
+gives doubly logarithmic depth. The general family permits independent
+deepest-level entries. [Proof and related families](../research/depth/PREFIX_ROTATION_PROFILES.md)
+
 ## Complete query transfer and constructive target
+
+A [prescribed scalar sign](../research/depth/PRESCRIBED_SCALAR_TABLES.md)
+also suffices under simultaneous exact query bounds across admissible widths.
+At fixed L the resulting depth is
+
+```math
+D_T=O_L\!\left(N/b^2+\log\log(n+4)+(1+\log^*(n+2))d(n+O_L(1))\right).
+```
+
+Here d is the additive depth of the scalar source. The transfer pays for
+routing and a bounded-height terminal. A doubly logarithmic d improves
+the square-root-width order. Constructing such a source for arbitrary
+prescribed entries remains open.
 
 [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 accepts a zero-clean arbitrary-table XOR query whose completed address
@@ -251,7 +274,8 @@ floor for every fixed number t of first-band axes anticommuting with the
 incoming clean Pauli, independently of dirty width and crossing rank.
 Minimizing over both two-band encoders and every native representation,
 error $`2^{-L}`$ requires $`t_{\min}=\Omega(\log\log L)`$.
-This excludes bounded spread, not growing spread or general four layers.
+For the rotation witness, the [one-clean interface argument](../research/depth/ONE_CLEAN_NATIVE_INTERFACES.md)
+sharpens this to a linear-in-L count of clean-active axes at both ends.
 
 ### Outer-axis overlap
 
@@ -268,15 +292,23 @@ must remain allowed.
 
 ### Middle crossing rank and the remaining gap
 
-[R74](../research/depth/FOUR_LAYER_CROSSING_RANK.md) gives a positive
-four-layer gap for every fixed clean budget a and bounded middle crossing
-rank, with explicit rigidity gap $`2^{-O_a(r^2)}`$.
-For $`2^{-L}\lt c_0`$, its minimum over decompositions obeys
-$`r_{\min}=\Omega_a(\sqrt L)`$. Together with R77, all four
-layer sizes must grow in a hypothetical arbitrarily accurate one-clean
-sequence. Growing rank is not excluded. The one-clean unrestricted
-five-layer lower bound and the separate four-layer Hilbert–Schmidt gap
-remain open. These constant-layer results do not match R96 asymptotically.
+For the R74 rotation witness with fixed clean count a and middle crossing
+rank r, the [precision estimate](../research/depth/FOUR_LAYER_LINEAR_PRECISION.md)
+is $`2^{-O_a(r+1)}`$. Achieving error $`2^{-L}`$ requires $`r_{\min}=\Omega_a(L)`$
+as L grows. With one clean qubit, the [adjacent crossings and common middle
+directions](../research/depth/ONE_CLEAN_NATIVE_INTERFACES.md) also grow linearly
+in L. These rank requirements allow large ranks within four layers.
+
+At zero clean count the [scalar gap](../research/depth/FOUR_LAYER_SCALAR_GAP.md)
+settles the four-layer Hilbert–Schmidt question and rules out an exactly
+silent single-address response at seven or more address bits. An unrestricted
+one-clean five-layer lower bound for the rotation witness remains open.
+
+Two further restrictions apply at fixed precision. Some targets require
+$`\Omega(\sqrt N)`$ T gates [outside the two widest layers](../research/depth/NATIVE_LAYER_COUNT_DISTRIBUTION.md)
+under an $`O(\sqrt N)`$ T budget. An [explicit quartic family](../research/depth/QUARTIC_FRAME_MIXING.md)
+requires linearly growing basis-mixing resources and admits constant native
+depth. Both restrictions are compatible with constant depth at large width.
 
 ## Boolean-query lower bounds and the focused scout
 
