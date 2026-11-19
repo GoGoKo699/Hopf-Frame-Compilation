@@ -16,8 +16,7 @@ initialized workspace. The angles below use the prescribed
 Write $`k=n-1`$ and let $`f`$ be the binary sum of $`\lfloor k/4\rfloor`$ disjoint products of
 four prefix bits. Choose the upper real Hopf angles zero and at the final level choose
 $`\theta_x=\pi f(x)`$. The deepest real canonical domain is $`[0,2\pi)`$. In this convention
-the block is
-$`\left(\begin{smallmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{smallmatrix}\right)`$,
+the block is $`R_y(\theta)=\cos(\theta)I-i\sin(\theta)Y`$,
 so each final block is $`(-1)^{f(x)}I_2`$. Thus the complete frame is exactly the sign on each
 prefix, tensored with identity on the final physical bit. Zero incoming node weights at these
 canonical boundary angles leave the addressed complete-layer product well defined. In the
