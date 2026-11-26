@@ -37,8 +37,8 @@ evaluation, without an efficient-preprocessing claim.
 | Strongest general depth upper | R96: $`O(NL/b^2+L+\log_2(n+2))`$ on the same circuit as optimal-order T-count and $`G=O(NL)`$ |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem; R96 is the stronger research result |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus constant unrestricted lower depth remains open |
-| Main constructive question | A complete approximate dirty indicator with sublogarithmic address depth and simultaneous resource budgets |
-| Focused lower question | Actual original physical-pair transport beyond the proved four-band eligibility classes; no general four-band degree ceiling is known |
+| Main constructive question | Complete scalar entry readout for prescribed self-inverse shear tables, at the scalar transfer's depth, count, width and precision budgets |
+| General lower question | A growing native T-depth bound on the prescribed Boolean-table frame family, allowing table-specific compilation, arbitrary Clifford interlayers and the admitted dirty width |
 
 The [working checkpoint](../WORKSPACE.md#current-checkpoint-native-source-scope-and-complete-readout)
 identifies the current question and first unpaid operation. The [route decisions](../research/ROUTE_DECISIONS.md)
@@ -161,6 +161,15 @@ routing and a bounded-height terminal. A doubly logarithmic d improves
 the square-root-width order. Constructing such a source for arbitrary
 prescribed entries remains open.
 
+It suffices to construct scalar entry signs for the fixed binary shears
+$`A_C=\left(\begin{smallmatrix}I&C\\0&I\end{smallmatrix}\right)`$.
+The [four-call reduction](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
+uses actual inverses, cancels a fixed source phase, returns two or three
+extra dirty address bits and multiplies complete source error by at most
+four. These matrices are already self-inverse Clifford operations on their
+physical banks. That fact does not provide the coherent binary-index entry
+readout; the scalar source and its precision hypotheses remain unpaid.
+
 [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 accepts a zero-clean arbitrary-table XOR query whose completed address
 and helpers return. Intermediate address motion is allowed. For every
@@ -186,7 +195,7 @@ simultaneous budgets at that requested accuracy. It supplies no source.
 R91 has logarithmic d; a smaller d is not obtained merely by relaxing
 the address convention. No uniform growing-L improvement is asserted.
 
-The main sufficient target, for $`m=2^p`$, is
+An alternative sufficient target, for $`m=2^p`$, is the complete indicator
 
 ```math
 I_p|x,Y,w\rangle=|x,Y\mathbin\oplus e_x,w\rangle,\qquad |Y|=m,
@@ -213,6 +222,7 @@ resource ledger at the requested source precision.
 
 | Interface | Authoritative contract and recovery |
 |---|---|
+| Prescribed scalar entry | [Self-inverse shear tables](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) suffice through four calls with no additional initialized work. Their scalar readout, rather than applying or inverting the bank shear, is the remaining source problem. |
 | Complete Pauli derivative | [Observable transport](../research/depth/OBSERVABLE_TRANSPORT_SOURCE.md) and the [phase/indicator equivalence](../research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) include arbitrary input and helper action, actual adjoints and complete return. The canonical phase is an equivalent target, not a cheaper primitive. |
 | Encoded dirty copy | [Joint carrier/copy interface](../research/depth/ENCODED_DIRTY_COPY_INTERFACE.md): a complete echo cancels an abstract decoder on returned dirty work. The [exact grading criterion](../research/depth/DIRTY_COPY_GRADING.md) permits noncommuting families, while [native copy screens](../research/depth/NATIVE_COPY_INTERACTION.md) restrict specified interactions. The encoded transition and physical output interaction still need jointly paid native words. |
 | Accepted projector Gram | A normalized source must supply $`K^\dagger K\approx\Pi_{\rm eq}/2`$ on every data/dirty input. [One-clean recovery](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) and [joint two-clean recovery](../research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) permit arbitrary accepted private fibers and intermediate address motion; their ledgers include leakage, actual inverses and dirty promotion. |

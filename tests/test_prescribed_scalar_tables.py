@@ -50,7 +50,115 @@ def nullity(matrix):
     return len(columns) - binary_rank(columns)
 
 
+def shear_table_completion(table):
+    """The fixed binary shear whose upper-right block is the supplied table."""
+    size = len(table)
+    identity = np.eye(size, dtype=int)
+    return np.block([[identity, table], [np.zeros_like(identity), identity]])
+
+
+def bit_flip_matrix(width, bit):
+    size = 1 << width
+    return np.eye(size, dtype=int)[:, [basis ^ (1 << bit) for basis in range(size)]]
+
+
+def four_call_scalar_difference(source, row_block_flip, column_block_flip):
+    """Chronological V, X_a, V-dagger, X_b, V, X_a, V-dagger, X_b."""
+    reverse = source.conj().T
+    return (column_block_flip @ reverse @ row_block_flip @ source
+            @ column_block_flip @ reverse @ row_block_flip @ source)
+
+
 class PrescribedScalarTablesTests(unittest.TestCase):
+    def test_shear_completion_and_four_calls_on_every_two_bit_table(self):
+        # The source address is (alpha, u, beta, v), followed by one
+        # arbitrary dirty spectator. Full matrices include every block-bit
+        # and spectator input, rather than only the selected upper-right block.
+        row_flip = bit_flip_matrix(5, 4)
+        column_flip = bit_flip_matrix(5, 2)
+        for word in range(16):
+            table = np.array([(word >> bit) & 1 for bit in range(4)]).reshape(2, 2)
+            with self.subTest(table=word):
+                completed = shear_table_completion(table)
+                np.testing.assert_array_equal(completed @ completed % 2, np.eye(4))
+                nilpotent = completed ^ np.eye(4, dtype=int)
+                np.testing.assert_array_equal(nilpotent @ nilpotent % 2,
+                                              np.zeros((4, 4)))
+                source = np.kron(np.diag(1 - 2 * completed.reshape(-1)), np.eye(2, dtype=int))
+                actual = four_call_scalar_difference(source, row_flip, column_flip)
+                expected = np.kron(np.diag(1 - 2 * np.tile(table, (2, 2)).reshape(-1)),
+                                   np.eye(2, dtype=int))
+                np.testing.assert_array_equal(actual, expected)
+
+    def test_shear_completion_four_bit_and_odd_arity_padding(self):
+        # These four-bit tables cover the zero, identity and dense nonsymmetric
+        # cases. The final table duplicates an unused row-address bit of a
+        # three-bit function; the complete output must return that pad too.
+        tables = [
+            np.zeros((4, 4), dtype=int),
+            np.eye(4, dtype=int),
+            np.array([(0xACE1 >> bit) & 1 for bit in range(16)]).reshape(4, 4),
+        ]
+        three_bit_table = np.array([(0xB4 >> bit) & 1 for bit in range(8)]).reshape(2, 4)
+        tables.append(np.vstack((three_bit_table, three_bit_table)))
+        row_flip = bit_flip_matrix(6, 5)
+        column_flip = bit_flip_matrix(6, 2)
+        for index, table in enumerate(tables):
+            with self.subTest(table=index):
+                completed = shear_table_completion(table)
+                np.testing.assert_array_equal(completed @ completed % 2, np.eye(8))
+                source = np.diag(1 - 2 * completed.reshape(-1))
+                actual = four_call_scalar_difference(source, row_flip, column_flip)
+                expected = np.diag(1 - 2 * np.tile(table, (2, 2)).reshape(-1))
+                np.testing.assert_array_equal(actual, expected)
+                if index == len(tables) - 1:
+                    pad_flip = bit_flip_matrix(6, 4)
+                    np.testing.assert_array_equal(pad_flip @ actual @ pad_flip, actual)
+
+    def test_four_call_source_adjoint_with_address_motion_and_clean_leakage(self):
+        # This is a source-interface fixture, not a claimed native emitter.
+        # Physical order: alpha, u, beta, v, clean, arbitrary dirty work.
+        # J includes every logical and dirty basis column. Its operator-norm
+        # bounds also hold after tensoring any external reference.
+        table = np.array([[0, 1], [1, 1]])
+        completed = shear_table_completion(table)
+        ideal_source = np.kron(np.diag(1 - 2 * completed.reshape(-1)), np.eye(4))
+        target = np.kron(np.diag(1 - 2 * np.tile(table, (2, 2)).reshape(-1)), np.eye(4))
+        identity = np.eye(64)
+        initialization = identity[:, [basis for basis in range(64) if not (basis & 2)]]
+        clean_projector = initialization @ initialization.T
+        row_flip = bit_flip_matrix(6, 5)
+        column_flip = bit_flip_matrix(6, 3)
+        row_z = np.diag([(-1) ** ((basis >> 5) & 1) for basis in range(64)])
+        column_z = np.diag([(-1) ** ((basis >> 3) & 1) for basis in range(64)])
+        logical_z = np.diag([(-1) ** ((basis >> 4) & 1) for basis in range(64)])
+        perturbation = (row_z @ column_z @ bit_flip_matrix(6, 4)
+                        @ bit_flip_matrix(6, 1) @ bit_flip_matrix(6, 0))
+        angle, phase = 0.05, 0.37
+        source = (np.exp(1j * phase)
+                  * (np.cos(angle) * identity + 1j * np.sin(angle) * perturbation)
+                  @ ideal_source)
+        np.testing.assert_allclose(source.conj().T @ source, identity, atol=1e-12)
+        error = np.linalg.norm((np.exp(-1j * phase) * source - ideal_source)
+                               @ initialization, 2)
+        inverse_error = np.linalg.norm((np.exp(1j * phase) * source.conj().T - ideal_source)
+                                       @ initialization, 2)
+        self.assertLessEqual(inverse_error, error + 1e-12)
+        self.assertGreater(np.linalg.norm((identity - clean_projector) @ source
+                                          @ initialization, 2), 0.01)
+        self.assertGreater(np.linalg.norm(source @ logical_z - logical_z @ source, 2), 0.01)
+
+        actual = four_call_scalar_difference(source, row_flip, column_flip)
+        returned_error = np.linalg.norm((actual - target) @ initialization, 2)
+        self.assertGreater(returned_error, error)
+        self.assertLessEqual(returned_error, 4 * error + 1e-12)
+        # Four forward calls retain the source's fixed phase and are not the
+        # actual-adjoint wrapper. This guards against that mistaken replacement.
+        wrong_forward_word = (column_flip @ source @ row_flip @ source
+                              @ column_flip @ source @ row_flip @ source)
+        wrong_error = np.linalg.norm((wrong_forward_word - target) @ initialization, 2)
+        self.assertGreater(wrong_error, max(4 * error, 0.5))
+
     def test_shifted_nearest_even_tables_recover_all_two_bit_signs(self):
         # The nearest even-parity table to an odd table flips entry zero.
         # Translating the address first moves that single defect to the shift.
