@@ -178,6 +178,9 @@ conditional general depth bound, with a
 [fixed-error pair-reflection wrapper](depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
 and its more general
 [full-space signed-gap premise](depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source).
+The [one-clean decision alternative](depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
+amplifies before imposing complete return, allowing raw garbage and a
+nonflat acceptance gap only on the initialized code.
 The [square-root-width corollary](depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 states the weaker source target needed for a first asymptotic improvement;
 the [two-band spectral screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
@@ -206,7 +209,7 @@ These are complete interfaces and conditional transfers, not constructions of th
 
 - [R98 — From native query depth to complete-frame depth](depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 - [Constant-accuracy readouts and the complete frame transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-- [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
+- [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), including the [width-independent raw-decision T-count bound](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
 - [Short-label permutation wrappers with paired dirty arrays](depth/PAIRED_PERMUTATION_ROUTING.md)
 - [Polynomial source overhead can be absorbed by a paid indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 - [Removing a bounded clean bank from a complete XOR query](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) — [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)

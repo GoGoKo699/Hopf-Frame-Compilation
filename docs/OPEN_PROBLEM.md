@@ -156,10 +156,8 @@ At fixed L the resulting depth is
 D_T=O_L\!\left(N/b^2+\log\log(n+4)+(1+\log^*(n+2))d(n+O_L(1))\right).
 ```
 
-Here d is the additive depth of the scalar source. The transfer pays for
-routing and a bounded-height terminal. A doubly logarithmic d improves
-the square-root-width order. Constructing such a source for arbitrary
-prescribed entries remains open.
+Here d is the additive source depth; routing and the bounded-height terminal
+are paid. A general doubly logarithmic source remains open.
 
 For a sufficiently accurate fixed-error scalar source, exact preservation of
 the original computational address sectors on every physical input permits
@@ -171,19 +169,18 @@ D_T=O_L\!\left(N/b^2+\log\log(n+4)
  +h\log(h+2)d(n+O_L(1))\right).
 ```
 
-The same one-clean allocation, optimal-order T-count and linear Clifford
-budget hold. The wrapper uses the actual source and its inverse, with no
-initialized vote bank or controlled source. This improves the accuracy cost
-of the transfer; it supplies no shallow scalar source and does not change R96.
+The same allocation and count budgets hold, with actual inverses and no
+initialized vote bank or controlled source. R96 remains unchanged.
 
-A weaker algebraic target is a [full-space signed gap](../research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source):
-for zero-clean V and $`S=X_t`$, the Hermitian part of
-$`V^\dagger S V S`$ has sign $`D_f\otimes I`$ and absolute
-eigenvalues at least a uniform $`\gamma\gt0`$. Its magnitudes may
-vary and V may move the address. For a first improvement at
-$`b=\lceil K_L\sqrt N\rceil`$, it suffices to construct this source
-only with T-count and dirty width $`O(2^{a/2})`$, Clifford count
-$`O(2^a)`$ and depth d(a). The
+Two weaker algebraic targets are a [zero-clean full-space signed gap](../research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
+and a [one-clean coherent decision](../research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source).
+For the latter, J initializes only c and $`M=J^\dagger V^\dagger Z_cVJ`$
+has sign $`D_f\otimes I`$ and a uniform positive gap on the entire
+initialized code. V may move the address and leave garbage; the rejected
+clean sector needs no prescribed sign. Amplify on the same signal before
+paid XOR promotion. For either source, a first improvement at
+$`b=\lceil K_L\sqrt N\rceil`$ needs only T-count and dirty width
+$`O(2^{a/2})`$, Clifford count $`O(2^a)`$ and depth d(a). The
 [square-root-width corollary](../research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 gives $`T=O_L(\sqrt N)`$, $`G=O_L(N)`$ and
 
@@ -198,14 +195,17 @@ constant-depth source. The [two-band gap screen](../research/depth/FOUR_LAYER_SC
 rules out a constant-gap source with at most two raw T bands for all
 tables; it is not a general growing-depth lower bound.
 
-It suffices to construct scalar entry signs for the fixed binary shears
-$`A_C=\left(\begin{smallmatrix}I&C\\0&I\end{smallmatrix}\right)`$.
-The [four-call reduction](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
-uses actual inverses, cancels a fixed source phase, returns two or three
-extra dirty address bits and multiplies complete source error by at most
-four. These matrices are already self-inverse Clifford operations on their
-physical banks. That fact does not provide the coherent binary-index entry
-readout; the scalar source and its precision hypotheses remain unpaid.
+The [raw-decision count bound](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
+forces worst-case $`\Omega(2^{a/2})`$ T-count even with arbitrary
+width, garbage and arbitrarily small strict bias at a fixed Pauli readout.
+A vanishing gap cannot buy a uniformly smaller-order raw count. This gives
+no growing-depth bound; single-address predicates already admit
+[constant-depth fixed-error reflections](../research/depth/EXPANDER_ZERO_REFLECTION.md).
+
+The [four-call shear reduction](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) makes scalar entry signs
+for known self-inverse binary shears sufficient, with actual inverses,
+fixed phases, borrowed address bits and error paid. A cheap physical shear
+does not provide its coherent binary-index entry readout.
 
 [Conditional R98](../research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 accepts a zero-clean arbitrary-table XOR query whose completed address

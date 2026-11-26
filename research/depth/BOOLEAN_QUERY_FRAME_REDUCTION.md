@@ -229,6 +229,163 @@ valid after exact native rewrites and must be stable at a fixed
 operator error. The present reduction exposes this question without
 claiming its answer.
 
+<a id="raw-decision-count"></a>
+
+### 4.1 Raw decisions already require square-root T-count
+
+Even a raw decision with arbitrarily small positive bias has a
+width-independent worst-case T-count bound. The source may move the
+address, use arbitrarily many clean and dirty wires, and leave arbitrary
+garbage. Its output test is a fixed Hermitian Pauli. The signed-Pauli
+rotation normal form is the one used in the inherited
+[finite-width circuit counting](../../docs/FAULT_TOLERANT_COMPILER.md#102-fixed-width-coherent-counting)
+and the [returned-channel count](NATIVE_LAYER_COUNT_DISTRIBUTION.md#2-a-description-that-does-not-pay-for-dirty-width).
+The argument here counts raw bias functions directly, without the return
+or fixed-accuracy premises of those bounds. The LKS/GKW counting lineage
+and its imported scope remain in the [source catalogue](../../docs/reference/SOURCE_CATALOGUE.md).
+
+Let $`a\ge1`$, $`t\ge0`$, and let V be a native word with at most t
+T/T-dagger gates and arbitrary Clifford interlayers. For an a-bit
+computational input x, define
+
+```math
+b_V(x)=\langle x,0\cdots0|V^\dagger P_{\rm out}V|x,0\cdots0\rangle.
+```
+
+All nonaddress inputs are set to zero only to define this mathematical
+witness. A promise for arbitrary dirty inputs includes that witness;
+no runtime initialization of the dirty pool is being supplied. Allow
+the physical width, native word and fixed output Pauli to depend on the
+table. Across all such choices, the number of distinct bias functions is
+at most
+
+```math
+\#\{b_V:T(V)\le t\}
+\le (t+1)\,2^{\,2(t+1)^2+a(t+1)+2(t+1)}.                 \qquad(10)
+```
+
+In particular, suppose every Boolean table f has a source satisfying
+
+```math
+(-1)^{f(x)}b_V(x)>0\qquad\hbox{for every }x.              \qquad(11)
+```
+
+The positive bias may depend on x, f and a, with no uniform lower bound.
+If t is a common T-count ceiling for those sources, then
+
+```math
+2^a\le \log_2(t+1)+2(t+1)^2+a(t+1)+2(t+1),
+\qquad t=\Omega(2^{a/2}).                               \qquad(12)
+```
+
+#### A finite description independent of physical width
+
+First fix the actual count k and put $`r=k+1`$. Moving the Cliffords
+to one boundary expresses $`V^\dagger P_{\rm out}V`$ as one Hermitian
+Pauli $`P_0`$ conjugated successively by k signed Pauli rotations
+$`e^{-i\pi P_j/8}`$. The sign of $`P_j`$ absorbs a T-dagger
+orientation, and the circuit's common scalar cancels. Write
+
+```math
+P_j=i^{s_j}X(\alpha_j)Z(\beta_j),\qquad
+s_j\in\mathbb Z_4,\qquad 0\le j\le k.
+```
+
+The physical binary vectors may have any length. Record only
+
+```math
+\begin{aligned}
+B_{ij}&=\beta_i\mathbin\cdot\alpha_j,\qquad s=(s_0,\ldots,s_k),\\
+K&=\ker\!\left(u\longmapsto\sum_j u_j\alpha_j\right)
+       \subseteq\mathbb F_2^r,\\
+L(u)&=\left(\sum_j u_j\beta_j\right)_{\rm address}.
+\end{aligned}                                                   \qquad(13)
+```
+
+These data use at most $`r^2+2r+r^2+ar`$ bits: store B, the phases,
+an r-by-r binary basis description of K, and the matrix of L. Counting
+all such descriptions overcounts unrealizable data, which is harmless.
+For the ordered product $`P(u)=P_0^{u_0}\cdots P_k^{u_k}`$, define
+
+```math
+\phi(u)=\sum_j s_ju_j+2\sum_{i\lt j}B_{ij}u_iu_j\pmod4.
+```
+
+Literal Pauli multiplication gives
+
+```math
+P(u)=i^{\phi(u)}
+ X\!\left(\sum_j u_j\alpha_j\right)
+ Z\!\left(\sum_j u_j\beta_j\right),
+```
+
+and therefore
+
+```math
+\langle x,0|P(u)|x,0\rangle=
+\begin{cases}
+0,&u\notin K,\\
+i^{\phi(u)}(-1)^{L(u)\cdot x},&u\in K.
+\end{cases}                                                     \qquad(14)
+```
+
+The phases in (14) can include plus or minus i: an ordered product of
+Hermitian Paulis need not itself be Hermitian. They must be retained.
+
+The matrix $`B+B^{\mathsf T}`$ supplies every commutation sign.
+Conjugating a Pauli product Q by a new rotation leaves it unchanged
+when it commutes with the axis, and otherwise gives
+
+```math
+e^{i\pi P_j/8}Qe^{-i\pi P_j/8}
+=\frac{Q+iP_jQ}{\sqrt2}.
+```
+
+Thus the coefficients of the formal expansion in the ordered products
+P(u) are determined by B and the fixed rotation rule. Physical
+dependencies among the generators do not need separate assumptions:
+expand formally, then evaluate each term by (14). Different formal
+products that represent the same physical Pauli are automatically
+combined in that evaluation. Equations (13)--(14) consequently determine
+the entire real function $`b_V(x)`$. There are at most
+$`2^{2r^2+ar+2r}`$ descriptions at count k. Summing over
+$`0\le k\le t`$ proves (10).
+
+Every bias function satisfying (11) determines a unique Boolean table.
+Covering all $`2^{2^a}`$ tables gives (12), without discretizing or
+lower-bounding their positive biases. This proof also allows arbitrarily
+many initialized computational-zero inputs and does not require any
+of them to return.
+
+#### Signed-gap sources and the count-slack boundary
+
+The same conclusion applies to a raw
+[full-space signed-gap source](PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
+with a fixed Pauli signal S. In
+
+```math
+\mathcal H=\mathrm{Re}(V^\dagger S V S),\qquad
+\mathrm{sgn}(\mathcal H)=D_f\otimes I,
+```
+
+include the last S as one additional generator and take the real part
+of (14). The description now has $`r=k+2`$ generators and the same
+asymptotic size. The sign promise makes its zero-work expectation have
+strictly the sign of f. Hence these raw sources also require worst-case
+$`T(V)=\Omega(2^{a/2})`$, independently of the positive gap's size.
+A non-Pauli output test or signal is not a free additional primitive in
+this argument; its native implementation needs its own accounting.
+
+In particular, no compiler for every a-bit table can have the uniform
+raw bound $`T(V)=O(2^{a/2}/q(a))`$ for an unbounded function q merely
+by weakening its bias or gap. This leaves table-dependent savings on
+easy functions possible. It does not lower-bound the T-count of an
+amplified implementation by its number of source appearances times
+$`T(V)`$, or exclude joint native resynthesis across those appearances.
+The conclusion is about T-count; it gives no growing T-depth lower
+bound at unrestricted width. The depth question in Section 4 remains
+open.
+
 ## 5. Evidence boundary
 
 [The bounded native tests](../../tests/test_boolean_query_frame_reduction.py)
@@ -238,5 +395,11 @@ column, retain literal signs and the actual inverse, and include an
 entangled-reference check. A separate small native perturbation has
 nonzero clean leakage and verifies the two-error hybrid numerically.
 These fixtures audit the identities and contract; the arbitrary-size
-statements follow from the proofs above. They establish no asymptotic
-query lower bound.
+statements follow from the proofs above. The
+[raw-decision fixtures](../../tests/test_raw_decision_count.py) separately
+check the signed Pauli cocycle with dependent axes, the compressed
+description against actual native conjugation, the extra signal in a
+pair source, and physically different workspace embeddings with the
+same witness bias. The counting bound is the analytic finite-description
+argument above; these bounded checks establish no growing-depth lower
+bound.
