@@ -645,7 +645,11 @@ recovery without a fresh clock. None of these interfaces constructs
 the required general native source.
 
 **The two-band screen still applies.** In the c=0 and c=1 blocks write
-$`R=\bigl(\begin{smallmatrix}M&B_0\\B_0^\dagger&N_0\end{smallmatrix}\bigr)`$.
+
+```math
+R=\begin{pmatrix}M&B_0\\B_0^\dagger&N_0\end{pmatrix}.
+```
+
 Then $`\mathcal H=\mathrm{diag}(M,-N_0)`$. From R squared equal to
 identity, $`MB_0+B_0N_0=0`$ and
 $`B_0B_0^\dagger=I-M^2`$. These identities pair every eigenvalue of
