@@ -173,10 +173,13 @@ These promised-family or retained-interface results keep their own hypotheses. R
 - [A sharp normalization limit for entry-indexed frame encodings](depth/ENTRY_INDEXED_ENCODING_LIMIT.md)
 - [Preparation map for the remaining depth problem](depth/DEPTH_OBSTACLE_MAP.md)
 
-The [prescribed scalar transfer](depth/PRESCRIBED_SCALAR_TABLES.md) and
-[shared rotation profiles](depth/PREFIX_ROTATION_PROFILES.md) distinguish
-conditional general depth from unconditional depth for structured complete
-frames. The [source reductions](depth/RETURNED_MASK_AND_ZERO_TEST.md),
+The [prescribed scalar transfer](depth/PRESCRIBED_SCALAR_TABLES.md) gives a
+conditional general depth bound. Its chapter also contains the
+[self-inverse shear source reduction](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
+and [thin-kernel rank screen](depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction).
+[Shared rotation profiles](depth/PREFIX_ROTATION_PROFILES.md) give
+unconditional depth for structured complete frames.
+The [source reductions](depth/RETURNED_MASK_AND_ZERO_TEST.md),
 [gate distribution](depth/NATIVE_LAYER_COUNT_DISTRIBUTION.md) and
 [quartic mixing witness](depth/QUARTIC_FRAME_MIXING.md) have separate scopes.
 The structured proofs use the [dirty rotation bank](depth/DIRTY_ROTATION_BANK.md),

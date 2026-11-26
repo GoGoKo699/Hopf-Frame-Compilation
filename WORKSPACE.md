@@ -14,11 +14,11 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 19 November integration extends the inspected base
-[ae613bf](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/ae613bf8e8a38f6d0407c25910b83d69f01a2733).
-The [integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fnovember-frame-handoff)
-identify the reviewed tree.
-The previous scientific checkpoint was [PR #270](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/270).
+The 26 November checkpoint starts from
+[263792b](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/263792b9f9c9cc012c0146cb9593929da2346d65),
+the merged [PR #272](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/272).
+The [shear-readout integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fscalar-shear-readout)
+identify the reviewed tree for this continuation.
 The active question is how many sequential native T layers a compiler needs
 when it knows the table in advance and receives its address in superposition.
 The [November evidence index](research/archive/november-2026/README.md)
@@ -53,16 +53,30 @@ depth at fixed precision. The proof charges its terminal, inverse and work.
 The [word-query accuracy result](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
 and the scalar amplification argument have different source hypotheses.
 
-**Resumption question.** For the marked feedback edge encoding a known
-truth table, a constant-depth native matrix–vector XOR is already paid.
-Can a circuit emit the selected edge’s literal cycle sign on the coherent
-address and return arbitrary borrowed work? Insert the forward and reverse
-costs into the scalar-to-frame recurrence and check whether the assembled
-depth is $`o(\log n)`$ at square-root width. A lower bound can instead use
-the deepest-layer family above and must allow arbitrary Clifford
-interlayers, table-specific compilation and the allowed dirty width.
+**Resumption question.** Can a compiler read a binary entry of a known
+self-inverse CNOT shear as a scalar sign on a coherent address, returning
+arbitrary borrowed work? [Four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
+makes this restricted source sufficient for every prescribed table, with
+two or three additional dirty address bits and complete error at most four
+times source error. Invertibility, a cheap inverse and bounded clean
+promotion are already available. The remaining operation is a joint
+coherently indexed Pauli commutator or another complete scalar entry readout.
+Insert its actual forward/reverse costs into the scalar-to-frame recurrence;
+the assembled target is $`o(\log n)`$ at square-root width. A source with
+$`d(a)=O(\log\log(a+4))`$ and the stated simultaneous budgets suffices.
+Retain the transfer's exactness or precision/amplification hypotheses.
 
-### Latest substantive outcomes and resumption question
+The marked feedback-edge pencil remains an alternative encoding with a paid
+constant-depth matrix–vector XOR. Its [thin invariant-projector readout](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
+cannot produce the full scalar sign with bounded clean work and polynomially
+many insertions when the erased word fixes the code and the address sectors
+are preserved. Reopen that extraction by changing its signal support or
+baseline, rather than merely conjugating the same small projector. A lower
+bound for the general problem can instead use the deepest-layer family
+above and must allow arbitrary Clifford interlayers, table-specific
+compilation and the allowed dirty width.
+
+### Other retained results and alternatives
 
 At $`b=\Theta(\sqrt N)`$, [prefix-shared rotations](research/depth/PREFIX_ROTATION_PROFILES.md)
 give sublogarithmic depth on complete real frames with $`q=n^{o(1)}`$

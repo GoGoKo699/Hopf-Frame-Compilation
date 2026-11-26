@@ -14,7 +14,7 @@ not prove universal statements or asymptotic optimality.
 
 | Analytic result | Finite fixtures |
 | --- | --- |
-| [Scalar transfer and table density](../../research/depth/PRESCRIBED_SCALAR_TABLES.md) | [Scalar tables](../../tests/test_prescribed_scalar_tables.py) exercises row routing, the marked edge and density correction. |
+| [Scalar transfer and table encodings](../../research/depth/PRESCRIBED_SCALAR_TABLES.md) | [Scalar tables](../../tests/test_prescribed_scalar_tables.py) exercises row routing, the marked edge and density correction; it also checks every two-bit shear table, selected larger and odd-arity tables, and the four-call actual-adjoint error bound with address motion, clean leakage, dirty work and a fixed phase. These fixtures are not a native scalar emitter. |
 | [Prefix-shared rotations](../../research/depth/PREFIX_ROTATION_PROFILES.md) | [Prefix and defect fixtures](../../tests/test_prefix_rotation_profiles.py) exercise the rotation and defect identities. [Read-only equality](../../tests/test_read_only_field_equality.py) checks the field comparator ingredients. |
 | [Gate populations outside wide layers](../../research/depth/NATIVE_LAYER_COUNT_DISTRIBUTION.md) and [quartic frame mixing](../../research/depth/QUARTIC_FRAME_MIXING.md) | [Layer counts](../../tests/test_native_layer_count_distribution.py) and [quartic fixtures](../../tests/test_quartic_frame_mixing.py) check finite instances and the native dirty echo. |
 | [Scalar gap](../../research/depth/FOUR_LAYER_SCALAR_GAP.md) and [precision refinement](../../research/depth/FOUR_LAYER_LINEAR_PRECISION.md) | [Native gap fixtures](../../tests/test_native_gap_refinements.py) exercise finite ingredients of the zero-clean and precision arguments. |

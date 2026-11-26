@@ -17,7 +17,7 @@ priority or a claim that every route must be revisited.
 
 | Proposed work | Decision section |
 | --- | --- |
-| Complete indicator, encoded copy or rank-one phase | [Complete interfaces](#complete-interfaces) |
+| Scalar table, complete indicator, encoded copy or rank-one phase | [Complete interfaces](#complete-interfaces) |
 | Field query, recursive decoder or helper motion | [Field recoupling](#field-recoupling) |
 | Small field pilot or a coupled decoder | [Finite calibrations](#finite-field-calibrations) · [decoder/probe screens](#field-decoder-screens) |
 | Joint seed and physical copy | [Seed/copy criteria and screens](#seed-and-copy) |
@@ -44,7 +44,8 @@ Start with a complete interface; consult component families only when the propos
 
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
-| [Polynomial-overhead complete source](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Fusion, controlled use, return and count normalization are paid; the known source retains logarithmic depth. | A complete sublogarithmic source with uniform precision and simultaneous polynomial budgets. A single-output predicate is insufficient. |
+| [Scalar entries of self-inverse shears](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) | Every raw truth table embeds in a fixed Clifford shear with a literal inverse. Four scalar source/actual-inverse calls recover its sign, cancel a fixed source phase and preserve the source resource orders with two or three borrowed address bits. | Supply the coherent scalar entry readout or synthesize the joint indexed Pauli commutator. A cheap bank shear is not that readout. Charge all-width budgets and the exactness or precision hypotheses of the scalar-to-frame transfer. |
+| [Polynomial-overhead complete source](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Fusion, controlled use, return and count normalization are paid; the known source retains logarithmic depth. | A complete sublogarithmic indicator source with uniform precision and simultaneous polynomial budgets. A scalar predicate does not satisfy this indicator interface; the scalar transfer above is a separate sufficient route. |
 | [Encoded dirty copy](depth/ENCODED_DIRTY_COPY_INTERFACE.md) | A joint transition/copy echo gives the physical indicator while cancelling an abstract encoding on its returned dirty carrier. Polynomial-overhead fusion and R98 then apply. | Pay the encoded bank transition and its physical copy interaction, including actual inverses and full operator error. The abstract decoder need not be implemented, but its existence does not price either word. Use the grading and native-copy screens below before tuning a candidate. |
 | [Rank-one phase and complete indicator](depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) | Two-call reductions in both directions preserve the target resource orders, with a paid four-T-band control bank and arbitrary returned auxiliary work. General source representatives have the full commutant freedom of the probe X. | Treat the phase as an equivalent target, not an easier compiler. Seek a paid native representative with the complete derivative and return promise, possibly using address/work motion or synthesis across coordinate rounds. The linear T-count consequence gives no growing depth bound. |
 
@@ -70,7 +71,7 @@ Start with a complete interface; consult component families only when the propos
 
 | Route | Paid result | First operation or condition for reopening |
 | --- | --- | --- |
-| [Table encoded by a marked feedback edge](depth/PRESCRIBED_SCALAR_TABLES.md) | A table-specific binary matrix–vector XOR fits the scalar count and width budgets at constant T-depth. | Extract the literal sign of the selected cycle, pay for the inverse, and evaluate the complete frame recurrence. |
+| [Table encoded by a marked feedback edge](depth/PRESCRIBED_SCALAR_TABLES.md) | A table-specific binary matrix–vector XOR fits the scalar count and width budgets at constant T-depth. The [rank screen](depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction) excludes polynomially many thin invariant-projector insertions with bounded clean work, preserved address sectors and an erased baseline fixing the code. | Extract the literal selected-cycle sign through a larger signal support, a different baseline or another complete readout. Pay the inverse and evaluate the full frame recurrence; the screen is not a native-depth lower bound. |
 | [Odd masks and raw zero tests](depth/RETURNED_MASK_AND_ZERO_TEST.md) | Matching hidden sectors allow convolutional recovery. Exact off-address silence allows a raw zero test even when other registers move. | Construct a native source meeting its stated promise on all occupied sectors. The [zero-clean four-layer gap](depth/FOUR_LAYER_SCALAR_GAP.md) closes a single-address four-layer search for seven or more bits. |
 | Matching, two visits and occupation encoders | The two-visit observable characterization prices a complete readout. The early cyclic-ring and encoder barriers apply to their respective lane and pulse classes. | A native encoder must realize the joint readout on arbitrary borrowed banks. Representation multiplicities and counts of monomial incidences alone do not price it. |
 | Trace inversion and clock sources | A trace-inverse bit can supply a zero test. Clock constructions encode the target in their spectrum. | Price the coherent bit or a complete spectral readout. Ordinary recurrence visits retain the old cost. |
