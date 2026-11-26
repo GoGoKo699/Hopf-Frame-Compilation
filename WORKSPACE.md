@@ -15,9 +15,9 @@ the question changes; proofs and route assessments stay in their linked homes.
 ## Current checkpoint
 
 The 26 November checkpoint starts from
-[d950d49](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/d950d4906b81ec8a58b3564329599920deaa6409),
-the merged [PR #274](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/274).
-The [signed-gap integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Ffull-space-signed-gap)
+[cb0cf8e](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/cb0cf8e94fe101f8005c6f34b5640839ddce3436),
+the merged [PR #275](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/275).
+The [coherent-decision integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fcoherent-decision-source)
 identify the reviewed tree for this continuation.
 The active question is how many sequential native T layers a compiler needs
 when it knows the table in advance and receives its address in superposition.
@@ -56,16 +56,21 @@ have different source hypotheses. A fixed-error scalar source with exact
 physical address preservation is one sufficient premise. More generally,
 a [full-space signed gap](research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
 permits nonflat spectra and completed address motion, with logarithmic
-amplification cost and no additional clean qubits.
+amplification cost and no additional clean qubits. A
+[one-clean coherent decision](research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
+weakens the source requirement further: amplify on its initialized code
+before promoting it to complete return. The raw source may leave garbage,
+and its rejected clean sector need not carry the table's prescribed sign.
 
 **Resumption question.** Can a genuinely joint native word V turn a known
-table f into a constant full-space signed gap? For an arbitrary signal t,
-set $`S=X_t`$, $`R=V^\dagger S V`$ and
-$`\mathcal H=(RS+SR)/2`$. Require
-$`\mathrm{sgn}(\mathcal H)=D_f\otimes I`$ and
-$`|\mathcal H|\succeq\gamma I`$ for a uniform $`\gamma\gt0`$.
-Pay V and its actual reverse with zero clean inputs, T-count and dirty
-width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$.
+table f into a uniformly biased one-clean decision? Let J append
+$`c=0`$, put $`M=J^\dagger V^\dagger Z_cVJ`$, and require
+$`\mathrm{sgn}(M)=D_f\otimes I`$ and
+$`|M|\succeq\gamma I`$ for a uniform $`\gamma\gt0`$.
+Pay V and its actual reverse with one clean input, T-count and dirty
+width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$. The sign
+condition holds on the entire initialized code, including arbitrary dirty
+and reference inputs; basis-state success probabilities alone do not imply it.
 The [square-root-width transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 then needs only
 $`(1+\log^*a)\log(3+\log^*a)d(a)=o(\log a)`$.
@@ -75,27 +80,35 @@ improvement at $`b=K_L\sqrt N`$. An all-width source theorem can wait.
 The [two-source-band screen](research/depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
 forces an exponentially small gap for a single marked table and its
 Pauli-balanced lift, independent of width or address motion. A search
-within this Pauli-signal interface must therefore move beyond two raw
-T bands and use nontrivial joint transport. The
+within the full-space Pauli-signal interface must therefore move beyond two raw
+T bands and use nontrivial joint transport. The one-clean decision proof
+also records why code compression does not evade that screen. The
 [four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
 still makes scalar entry readout for known self-inverse CNOT shears a
-sufficient concrete target. Amplify each correct full-space entry gap
+sufficient concrete target. Amplify each correct entry decision or full-space gap
 before applying that reduction; the four raw gapped signals need not
 themselves compose into a gapped signal.
 
-One concrete next word is $`V_C=U_C^\dagger E_CU_C`$, with U and E each
-one native T band with paid Clifford frames. Derive its full prescribed
-sign identity for arbitrary C, using genuinely nonmonomial transport of
-the middle axes. The three-band example in the screen proves that this
-family escapes the two-band inequality; it does not supply that identity.
+A [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source) now excludes
+read-only sources whose entire address dependence is a table-independent
+conjugation around one table unitary, even when the boundary moves the code.
+For Pauli address gauges, a table-dependent outer Clifford still fails at
+square-root width. Reopen with table dependence inside the non-Gaussian code
+preparation, genuinely interleaved table/address actions, or physical address
+motion; prove the complete compressed sign within the native budgets.
 
 The parallel lower-bound question remains unrestricted returned-query
-depth with arbitrary Clifford interlayers. A Clifford spectral-volume
-argument now screens two-band sources, but its bounded-active-spectrum
-step does not iterate to additional native bands. A growing-depth bound
-needs a new invariant. The immediate research deliverable is an all-size
-native source meeting the displayed budgets, or such an invariant;
+depth with arbitrary Clifford interlayers; the two-band argument does
+not iterate to additional native bands. The [raw-decision count bound](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
+already forces worst-case $`\Omega(2^{a/2})`$ native T-count, even
+with arbitrary width, garbage and arbitrarily small strict bias. A shrinking
+gap therefore cannot buy a uniform smaller-order raw count. This is a count
+bound, not a growing-depth bound. The immediate research deliverable is an all-size
+native source meeting the displayed budgets, or a new growing-depth invariant;
 the precision wrapper and fixed-layer screens do not supply either.
+An isolated marked address is not a candidate for a growing fixed-error
+depth lower bound: [expander zero reflections](research/depth/EXPANDER_ZERO_REFLECTION.md)
+already have constant depth at every fixed accuracy.
 
 The marked feedback-edge pencil remains an alternative encoding with a paid
 constant-depth matrix–vector XOR. Its [thin invariant-projector readout](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)

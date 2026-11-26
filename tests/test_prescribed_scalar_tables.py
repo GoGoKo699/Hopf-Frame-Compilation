@@ -62,6 +62,28 @@ def bit_flip_matrix(width, bit):
     return np.eye(size, dtype=int)[:, [basis ^ (1 << bit) for basis in range(size)]]
 
 
+def cnot_matrix(width, control, target):
+    """Literal CNOT permutation, with bit zero the least significant wire."""
+    size = 1 << width
+    permutation = [basis ^ (((basis >> control) & 1) << target)
+                   for basis in range(size)]
+    return np.eye(size, dtype=int)[:, permutation]
+
+
+def one_clean_decision_dilation(compression):
+    """Matrix fixture with J-dagger V-dagger Z_c V J equal to compression.
+
+    The clean signal is the first wire. This canonical unitary completion
+    is used to test the recovery identity, not as an unpaid native source.
+    """
+    values, vectors = np.linalg.eigh(compression)
+    accepted = ((vectors * np.sqrt(np.clip((1 + values) / 2, 0, 1)))
+                @ vectors.conj().T)
+    rejected = ((vectors * np.sqrt(np.clip((1 - values) / 2, 0, 1)))
+                @ vectors.conj().T)
+    return np.block([[accepted, -rejected], [rejected, accepted]])
+
+
 def four_call_scalar_difference(source, row_block_flip, column_block_flip):
     """Chronological V, X_a, V-dagger, X_b, V, X_a, V-dagger, X_b."""
     reverse = source.conj().T
@@ -84,6 +106,162 @@ def cubic_pair_reflection_word(signal, reflection):
 
 
 class PrescribedScalarTablesTests(unittest.TestCase):
+    def test_one_t_clean_decision_has_a_different_rejected_sector_sign(self):
+        # Each source is an actual word of CNOT, H, X and exactly one T.
+        # Physical order: address, clean c. Extra address CNOTs and an X
+        # extend the two-wire construction to nonconstant affine parities.
+        hadamard = normalized_hadamard(1)
+        gamma = 1 / np.sqrt(2)
+        for address_bits, parity_mask, offset in ((1, 1, 0), (2, 3, 0), (3, 5, 1)):
+            with self.subTest(address_bits=address_bits, mask=parity_mask, offset=offset):
+                width = address_bits + 1
+                size = 1 << width
+                identity = np.eye(size)
+                initialization = identity[:, ::2]
+                clean_z = np.diag([(-1) ** (basis & 1) for basis in range(size)])
+                source_c = cnot_matrix(width, 1, 0) @ cnot_matrix(width, 0, 1)
+                local_h = np.kron(np.eye(1 << (address_bits - 1)),
+                                  np.kron(hadamard, np.eye(2)))
+                source_k = cnot_matrix(width, 1, 0) @ local_h
+                local_t = np.diag([np.exp(1j * np.pi / 4) if basis & 2 else 1
+                                   for basis in range(size)])
+                address_change = identity
+                for address_bit in range(1, address_bits):
+                    if parity_mask & (1 << address_bit):
+                        address_change = (cnot_matrix(width, address_bit + 1, 1)
+                                          @ address_change)
+                if offset:
+                    address_change = bit_flip_matrix(width, 1) @ address_change
+                source = source_c @ source_k @ local_t @ source_k.conj().T @ address_change
+                signs = np.array([(-1) ** ((address & parity_mask).bit_count() + offset)
+                                  for address in range(1 << address_bits)])
+                target = np.diag(signs)
+                full_target = np.kron(target, np.eye(2))
+
+                np.testing.assert_allclose(source.conj().T @ source, identity, atol=1e-12)
+                reflection = source.conj().T @ clean_z @ source
+                address_z = np.diag([(-1) ** ((basis >> 1) & 1)
+                                     for basis in range(size)])
+                address_y_signal_x = np.kron(
+                    np.eye(1 << (address_bits - 1)),
+                    np.kron(np.array([[0, -1j], [1j, 0]]), np.array([[0., 1.], [1., 0.]])))
+                expected_reflection = (address_change.conj().T
+                                       @ (gamma * (address_z + address_y_signal_x))
+                                       @ address_change)
+                np.testing.assert_allclose(reflection, expected_reflection, atol=1e-12)
+                compression = initialization.conj().T @ reflection @ initialization
+                accepted = initialization.conj().T @ source @ initialization
+                np.testing.assert_allclose(compression, gamma * target, atol=1e-12)
+                np.testing.assert_allclose(compression,
+                                           2 * accepted.conj().T @ accepted - np.eye(len(target)),
+                                           atol=1e-12)
+                pair = reflection @ clean_z
+                hermitian_pair = (pair + pair.conj().T) / 2
+                np.testing.assert_allclose(hermitian_pair,
+                                           gamma * full_target @ clean_z, atol=1e-12)
+                self.assertAlmostEqual(np.linalg.norm(
+                    hermitian_pair / gamma - full_target, 2), 2, places=12)
+                clean_projector = initialization @ initialization.conj().T
+                self.assertGreater(np.linalg.norm(
+                    (identity - clean_projector) @ source @ initialization, 2), 0.8)
+                self.assertGreater(np.linalg.norm(
+                    source @ full_target - full_target @ source, 2), 0.2)
+
+    def test_clean_decision_amplifies_nonflat_work_with_address_motion(self):
+        # Physical order: clean c, address x0,x1, arbitrary dirty d.
+        # M mixes x1 and depends on d, but has the exact sign Z_x0.
+        # A right change acts only on the rejected input sector, while a
+        # left change moves addresses and dirty outputs on the clean code.
+        # Both are allowed; the raw source neither returns its clean bit
+        # nor satisfies the prescribed sign on the whole physical space.
+        pauli_x = np.array([[0., 1.], [1., 0.]])
+        pauli_z = np.diag([1., -1.])
+        hadamard = normalized_hadamard(1)
+        code_identity = np.eye(8)
+        identity = np.eye(16)
+        initialization = identity[:, :8]
+        clean_z = np.kron(pauli_z, code_identity)
+        target = np.kron(pauli_z, np.eye(4))
+        first_axis = np.kron(np.eye(2), np.kron(pauli_x, pauli_z))
+        second_axis = np.kron(np.eye(2), np.kron(pauli_z, pauli_x))
+        magnitude = 0.75 * code_identity + 0.15 * first_axis + 0.05 * second_axis
+        expected_compression = target @ magnitude
+        rejected_change = np.kron(hadamard, np.eye(4))
+        off_code_change = np.block([[code_identity, np.zeros((8, 8))],
+                                    [np.zeros((8, 8)), rejected_change]])
+        output_motion = np.kron(np.eye(2),
+                                np.kron(hadamard, np.kron(np.eye(2), hadamard)))
+        source = (output_motion @ one_clean_decision_dilation(expected_compression)
+                  @ off_code_change)
+        reflection = source.conj().T @ clean_z @ source
+        compression = initialization.conj().T @ reflection @ initialization
+        pair = reflection @ clean_z
+        hermitian_pair = (pair + pair.conj().T) / 2
+        full_target = np.kron(np.eye(2), target)
+        address_z1 = np.kron(np.eye(2), np.kron(pauli_z, np.eye(2)))
+        np.testing.assert_allclose(source.conj().T @ source, identity, atol=1e-12)
+        np.testing.assert_allclose(compression, expected_compression, atol=1e-12)
+        np.testing.assert_allclose(hermitian_pair @ initialization,
+                                   initialization @ compression, atol=1e-12)
+        np.testing.assert_allclose(compression @ target, target @ compression, atol=1e-12)
+        spectrum = np.linalg.eigvalsh(target @ compression)
+        self.assertAlmostEqual(spectrum[0], 0.55, places=12)
+        self.assertAlmostEqual(spectrum[-1], 0.95, places=12)
+        self.assertGreater(np.linalg.norm(
+            compression @ address_z1 - address_z1 @ compression, 2), 0.2)
+        self.assertGreater(np.linalg.norm(
+            source @ full_target - full_target @ source, 2), 1)
+        self.assertGreater(np.linalg.norm(
+            hermitian_pair @ full_target - full_target @ hermitian_pair, 2), 1)
+
+        amplified = cubic_pair_reflection_word(pair, clean_z)
+        accepted = initialization.conj().T @ amplified @ initialization
+        polynomial = (3 * compression - np.linalg.matrix_power(compression, 3)) / 2
+        error = amplified @ initialization - initialization @ target
+        np.testing.assert_allclose((accepted + accepted.conj().T) / 2,
+                                   polynomial, atol=1e-12)
+        np.testing.assert_allclose(accepted @ compression, compression @ accepted, atol=1e-12)
+        np.testing.assert_allclose(error.conj().T @ error,
+                                   2 * (code_identity - target @ polynomial), atol=1e-12)
+        self.assertLess(np.linalg.norm(error, 2),
+                        np.linalg.norm(pair @ initialization - initialization @ target, 2))
+        # This is a full initialized-isometry comparison; it includes the
+        # surviving rejected-signal amplitude instead of discarding it.
+        projector = initialization @ initialization.conj().T
+        self.assertGreater(np.linalg.norm((identity - projector)
+                                          @ amplified @ initialization, 2), 0.1)
+        self.assertGreater(np.linalg.norm(amplified - full_target, 2), 1)
+
+    def test_basis_decision_bias_does_not_control_coherent_dirty_inputs(self):
+        # All computational dirty inputs report the right value with bias
+        # 1/4. The dirty |-> state instead has signed bias -1/2. A spectral
+        # sign filter strengthens this wrong answer rather than correcting
+        # it, so basis probabilities cannot establish the source premise.
+        pauli_x = np.array([[0., 1.], [1., 0.]])
+        pauli_z = np.diag([1., -1.])
+        target = np.kron(pauli_z, np.eye(2))
+        compression = np.kron(pauli_z, 0.25 * np.eye(2) + 0.75 * pauli_x)
+        source = one_clean_decision_dilation(compression)
+        identity = np.eye(8)
+        initialization = identity[:, :4]
+        clean_z = np.kron(pauli_z, np.eye(4))
+        reflection = source.conj().T @ clean_z @ source
+        actual_compression = initialization.conj().T @ reflection @ initialization
+        np.testing.assert_allclose(actual_compression, compression, atol=1e-12)
+        np.testing.assert_allclose(np.diag(target) * np.diag(compression),
+                                   np.full(4, 0.25), atol=1e-12)
+        self.assertAlmostEqual(np.linalg.eigvalsh(target @ compression)[0], -0.5, places=12)
+
+        pair = reflection @ clean_z
+        amplified = cubic_pair_reflection_word(pair, clean_z)
+        wrong_input = np.array([1., -1., 0., 0.]) / np.sqrt(2)
+        ideal = initialization @ target @ wrong_input
+        initial_error = np.linalg.norm(pair @ initialization @ wrong_input - ideal)
+        final_error = np.linalg.norm(amplified @ initialization @ wrong_input - ideal)
+        self.assertAlmostEqual(initial_error ** 2, 3, places=12)
+        self.assertAlmostEqual(final_error ** 2, 27 / 8, places=12)
+        self.assertGreater(final_error, initial_error)
+
     def test_signed_gap_allows_nonflat_spectrum_and_completed_address_motion(self):
         # Physical order: address x0,x1, arbitrary signal t, arbitrary dirty d.
         # V moves x0 across the target sign sectors, but that left motion

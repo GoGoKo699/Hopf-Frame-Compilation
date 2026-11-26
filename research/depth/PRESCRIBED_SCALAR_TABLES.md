@@ -404,7 +404,9 @@ sign sectors, but magnitudes within them can vary with address and work.
 Neither V nor its actual inverse has to preserve those sectors. A gap
 only on an initialized code does not establish this interface; the
 earlier bounded-clean XOR promotion does not automatically promote a
-raw signed-gap promise.
+raw signed-gap promise. The [one-clean decision route](#one-clean-decision-source)
+below instead amplifies on the initialized code before promoting the
+resulting complete query.
 
 **Whole-unitary proof.** The reflection identities give
 $`[\mathcal H,S]=[\mathcal H,R]=0`$. Consequently D, as a
@@ -452,6 +454,375 @@ full-volume counts without additional source savings. The
 permits arbitrary width and address motion, and forces an exponentially
 small gap for a single marked table and its Pauli-balanced lift.
 
+<a id="one-clean-decision-source"></a>
+
+### Amplify a one-clean decision before imposing complete return
+
+An actual source can instead use one initialized decision signal c.
+Let J insert $`c=0`$, let V act on c, an a-bit address and arbitrary
+work, and put
+
+```math
+ S=Z_c,\qquad R=V^\dagger S V,\qquad
+ A=J^\dagger VJ,\qquad M=J^\dagger RJ=2A^\dagger A-I.
+```
+
+For $`D=D_f\otimes I_{\mathrm{work}}`$, require
+
+```math
+ \mathrm{sgn}(M)=D,\qquad |M|\succeq\gamma I,
+ \qquad 0\lt\gamma\le1.
+```
+
+Equivalently, $`[M,D]=0`$ and $`DM\succeq\gamma I`$. The accepted
+Gram $`A^\dagger A`$ can have any spectrum bounded below by
+$`(1+\gamma)/2`$ on the f=0 subspace and bounded above by
+$`(1-\gamma)/2`$ on the f=1 subspace. Its accepted polar factor is
+unrestricted. V may move the address, leave arbitrary quantum garbage
+and fail to return c. Its rejected-sector sign need not have the
+prescribed address labeling. All bounds concern the actual V and its
+actual inverse, with no source-return premise.
+
+This is a coherent decision condition on every input in each target
+sign subspace, including arbitrary dirty states and references. It is
+stronger than a success probability checked only on computational
+dirty inputs, or a small signed bias averaged over dirty inputs.
+The exact sign subspaces also matter: a spectral gap with a rotated
+positive/negative decomposition does not meet this condition.
+
+**Two checks on candidate decision sources.** Suppose a candidate
+preserves every address and has fibers
+$`V_x=G_xV_0G_x^\dagger`$, where $`G_x`$ preserves the clean-zero
+code. Then $`G_x`$ commutes with S, its restriction $`g_x=J^\dagger G_xJ`$
+is unitary, and
+
+```math
+ M_x=g_xM_0g_x^\dagger.
+```
+
+Every address therefore has the same compressed spectrum. Such a
+family cannot be positive definite at one address and negative definite
+at another, so it cannot decide a nonconstant table with the required
+gap. This check does not apply when the gauge moves the clean code or
+when the source mixes addresses.
+
+A separate rank check applies to a general accepted projector Pi.
+For any specified accepting input subspace with isometry $`J_E`$ and
+dimension $`R_E`$,
+
+```math
+ \mathrm{rank}(J_E^\dagger V^\dagger\Pi VJ_E)
+ \le\mathrm{rank}(\Pi)=r.
+```
+
+If $`r\lt R_E`$, its compression has a kernel and
+$`2J_E^\dagger V^\dagger\Pi VJ_E-I`$ has a minus-one eigenvalue.
+It cannot have a positive gap on that entire accepting subspace.
+For a read-only source, this can be applied to all dirty inputs at one
+accepting address. With address motion, use the actual global accepted
+projector and accepting input subspace; a rank counted only in one
+address fiber is not a bound on the coupled operation. A kernel on a
+prescribed rejecting subspace is allowed by the decision premise.
+
+**Recovery on the same clean signal.** Set
+$`W=RS`$ and $`\mathcal H=(RS+SR)/2`$. Reflection identities give
+
+```math
+ [\mathcal H,S]=[\mathcal H,R]=0,\qquad
+ \mathcal HJ=JM.
+```
+
+Use the same real-polynomial QSP word, now with physical phases
+$`e^{i\phi Z_c}`$ on the existing clean signal. For its exact
+phase-list unitary U and realized polynomial $`\widehat p`$,
+
+```math
+ \tfrac12(U+U^\dagger)=\widehat p(\mathcal H),\qquad
+ [U,\mathcal H]=0.
+```
+
+Writing $`B=J^\dagger UJ`$, the intertwining identity implies
+$`[B,M]=0`$, hence $`[B,D]=0`$. Therefore the complete initialized
+error, including leakage out of c=0, satisfies the exact identity
+
+```math
+ (UJ-JD)^\dagger(UJ-JD)
+ =2I-B^\dagger D-DB
+ =2\bigl(I-D\widehat p(M)\bigr).
+```
+
+For requested $`0\lt\epsilon\le1/2`$, use the bounded odd sign
+polynomial from F55 at degree
+$`q=O(\gamma^{-1}\log(1/\epsilon))`$, with approximation error
+$`\epsilon^2/16`$ outside the gap. Certify the phase factorization
+to the same polynomial error. The last identity gives initialized
+error at most $`\epsilon/2`$. Compile the q+1 physical single-qubit
+phases with total literal operator error at most $`\epsilon/2`$,
+using F5 as above. The emitted word then obeys
+$`\|UJ-JD\|\le\epsilon`$. The same bound holds for its actual
+inverse by the initialized-isometry inverse identity; it does not
+require exact clean return by the approximant.
+
+There are exactly 2q appearances of V or its actual adjoint. For
+common source bounds $`T_V,G_V,d_V,w_V`$, where w excludes the
+address and c, the amplified scalar has common forward/inverse bounds
+
+```math
+ \begin{aligned}
+ T_U&\le2qT_V+O\!\left(q\log\frac{q+1}{\epsilon}\right),\\
+ G_U&\le2qG_V+O\!\left(q\log\frac{q+1}{\epsilon}\right),\\
+ d_U&\le2qd_V+O\!\left(q\log\frac{q+1}{\epsilon}\right),\\
+ w_U&\le w_V,\qquad a_{\mathrm{clean}}=1.
+ \end{aligned}
+```
+
+No fresh phase-estimation clock, controlled V, reset or postselection
+is used. The original decision bias is not a per-call error summed
+over the filter: it supplies the spectral premise for that one word.
+
+**Promotion after amplification.** To produce a zero-clean scalar for
+f, separately compile the explicit lifted table $`g(x,t)=t f(x)`$.
+This is an additional table invocation, not a free controlled source.
+Amplify its one-clean decision to initialized error
+$`\epsilon=\tau/32`$. Conjugation by $`H_t`$ makes a one-clean XOR
+of f into arbitrary t. The [serial one-clean promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+uses eight appearances of that amplified query or its actual inverse,
+has full error at most $`16\epsilon`$, and permits arbitrary address
+motion and off-code behavior. Its final Z echo uses two promoted
+query appearances and gives the scalar at full operator error at most
+$`32\epsilon=\tau`$.
+
+Thus the zero-clean scalar uses exactly 32q appearances of the raw
+lifted-table V or its actual adjoint, with common bounds
+
+```math
+ \begin{aligned}
+ T_\tau&\le32qT_V+O\!\left(q\log\frac{q+1}{\tau}\right)+O(1),\\
+ G_\tau&\le32qG_V+O\!\left(q\log\frac{q+1}{\tau}\right)+O(1),\\
+ D_\tau&\le32qd_V+O\!\left(q\log\frac{q+1}{\tau}\right)+O(1),\\
+ w_\tau&\le w_V+4,\qquad a_{\mathrm{clean}}=0.
+ \end{aligned}
+```
+
+The four extra arbitrary wires are the lifted old target, former clean
+signal, promotion toggle and final XOR target. Each pool is reused
+sequentially. Fixed positive gamma therefore supplies the same
+logarithmic precision cost as the full-space source, with one additional
+source-address bit and constant allocation factors.
+
+**A native example separating the premises.** On address bit x and
+clean signal c, define actual Clifford words and one T gate by
+
+```math
+ C=\mathrm{CX}_{x\to c}\mathrm{CX}_{c\to x},\qquad
+ K=\mathrm{CX}_{x\to c}H_x,\qquad V=CKT_xK^\dagger.
+```
+
+Rightmost factors act first. The native T conjugate is, up to its
+common scalar, $`e^{-i\pi X_xX_c/8}`$; that scalar cancels in R.
+Since $`C^\dagger Z_cC=Z_x`$, direct Pauli conjugation gives
+
+```math
+ R=\frac{Z_x+Y_xX_c}{\sqrt2},\qquad
+ M=\frac{Z_x}{\sqrt2},\qquad
+ \mathcal H=\frac{Z_xZ_c}{\sqrt2}.
+```
+
+This one-T-band decision has gap $`1/\sqrt2`$ but its full-space
+sign is $`Z_xZ_c`$, not $`Z_x\otimes I_c`$. V is nonmonomial and
+does not return c. A Clifford address change extends the example to
+every nonconstant affine parity at every address size. It separates
+the source hypotheses; it supplies no arbitrary-table depth bound.
+
+The [projector-Gram recovery](NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
+already permits arbitrary accepted partial isometries, but uses a
+prescribed approximately flat Gram $`\Pi/2`$ and a fixed polynomial.
+The present decision premise uses nonflat spectra separated across one
+half. The [sampled-vote source](RETURNED_MASK_AND_ZERO_TEST.md#4-sampling-with-arbitrary-dirty-origins-and-normalizing-size)
+already obtains a compressed sign gap for its specific sampler. Here
+QSP on the existing clean signal supplies logarithmic precision
+recovery without a fresh clock. None of these interfaces constructs
+the required general native source.
+
+**The two-band screen still applies.** In the c=0 and c=1 blocks write
+
+```math
+R=\begin{pmatrix}M&B_0\\B_0^\dagger&N_0\end{pmatrix}.
+```
+
+Then $`\mathcal H=\mathrm{diag}(M,-N_0)`$. From R squared equal to
+identity, $`MB_0+B_0N_0=0`$ and
+$`B_0B_0^\dagger=I-M^2`$. These identities pair every eigenvalue of
+M strictly between minus one and one with the same eigenvalue of
+$`-N_0`$, with its multiplicity. The two blocks have equal size and
+R and S are both balanced involutions, so their remaining endpoint
+multiplicities also agree. Hence the two block spectra coincide.
+For a table with smaller nonempty sign fraction epsilon, the full
+$`\mathcal H`$ has that same fraction. The
+[two-band spectral bound](FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
+therefore still excludes a uniform constant-gap decision source with
+at most two raw T bands for all single-mark tables. The clean decision
+interface does not circumvent that result or give a growing-depth
+lower bound.
+
+<a id="fixed-boundary-decision-source"></a>
+
+**Fixed boundaries cannot decode every table at square-root width.**
+The code-preserving gauge check above leaves code-moving boundaries
+open. A separate information bound applies when all table dependence
+is confined to one unitary between fixed boundaries. Suppose the source
+preserves the address and its fibers on w physical signal/work qubits
+are
+
+```math
+ V_f(x)=F^\dagger G_x W_f G_x^\dagger F,
+ \qquad x\in\{0,1\}^a.
+```
+
+F and every $`G_x`$ are independent of f. They may be arbitrary
+unitaries and may move the clean-zero code. The table-dependent
+$`W_f`$ is also arbitrary. Let $`D=2^w`$, let J insert the one
+clean signal, and define
+
+```math
+ \begin{aligned}
+ S&=Z_c,\qquad S_x=G_x^\dagger F S F^\dagger G_x,
+ \qquad P_x=\frac{I+S_x}{2},\\
+ M_f(x)&=J^\dagger V_f(x)^\dagger S V_f(x)J,
+ \qquad \tau_w(A)=\frac{\mathrm{Tr}(A)}D.
+ \end{aligned}
+```
+
+Assume that every table has the coherent decision promise
+$`(-1)^{f(x)}M_f(x)\succeq\gamma I`$ at every address, for a
+common positive gap gamma. The normalized compressed bias satisfies
+
+```math
+ \begin{aligned}
+ b_f(x)&=\frac2D\mathrm{Tr}(M_f(x))\\
+ &=\frac2D\mathrm{Tr}(P_x W_f^\dagger S_x W_f)\\
+ &=\tau_w(W_f^\dagger S_x W_f S_x),
+ \qquad (-1)^{f(x)}b_f(x)\ge\gamma.
+ \end{aligned}
+```
+
+The last equality uses $`\mathrm{Tr}(S_x)=0`$. It does not need
+the balanced-spectrum argument or a prescribed rejected-sector sign.
+For the normalized Choi vector
+
+```math
+ |\Phi_D\rangle=\frac1{\sqrt D}\sum_{j=0}^{D-1}|j\rangle|j\rangle,
+ \qquad |W_f\rangle=(I\otimes W_f)|\Phi_D\rangle,
+```
+
+the fixed Hermitian involution $`S_x^{\mathsf T}\otimes S_x`$
+has expectation
+
+```math
+ \langle W_f|S_x^{\mathsf T}\otimes S_x|W_f\rangle=b_f(x).
+```
+
+Its sign outcome recovers bit $`f(x)`$ with error at most
+$`(1-\gamma)/2`$. Thus the $`2^a`$ independently prescribed table
+bits have a quantum random-access encoding in $`2w`$ qubits.
+[F54](../../docs/reference/SOURCE_CATALOGUE.md),
+[Nayak's Theorem 2.3](https://arxiv.org/abs/quant-ph/9904093), gives
+
+```math
+ 2w\ge\alpha(\gamma)2^a,
+ \qquad \alpha(\gamma)=1-H_2\!\left(\frac{1-\gamma}{2}\right),
+ \qquad
+ \gamma\le\sqrt{\frac{4\ln(2)w}{2^a}}.
+```
+
+The last inequality follows from
+$`\alpha(\gamma)\ge\gamma^2/(2\ln2)`$. A constant positive gap
+therefore requires $`w=\Omega(2^a)`$, irrespective of the gate count
+or depth of the three constituent unitaries. At
+$`w=O(2^{a/2})`$ the common gap is at most $`O(2^{-a/4})`$.
+The Choi state and its measurement are proof objects, not assumed
+physical resources of the source. The
+[non-Clifford seed-spread screen](NONCLIFFORD_SEED_SPREAD.md#3-a-robust-bound-from-the-independent-commuting-half)
+uses the same imported information bound on a compressed Pauli algebra;
+the present application encodes the table in the program unitary and
+does not assume Pauli label degree or a small support algebra.
+
+**A table-dependent outer Clifford can still have a short descriptor.**
+Suppose instead that $`G_x=\prod_{j=1}^a Q_j^{x_j}`$ for fixed
+commuting Pauli generators and $`F_f=L_fF_0`$, where $`F_0`$ is
+fixed and $`L_f`$ is an arbitrary table-dependent Clifford. Set
+
+```math
+ Q'_{f,j}=L_f^\dagger Q_jL_f,\qquad
+ G'_{f,x}=\prod_{j=1}^a(Q'_{f,j})^{x_j},\qquad
+ W'_f=L_f^\dagger W_fL_f.
+```
+
+Then $`V_f(x)=F_0^\dagger G'_{f,x}W'_fG_{f,x}^{\prime\dagger}F_0`$.
+The signed Pauli images have a description of at most
+$`a(2w+2)`$ classical bits, including their phases. Append this
+description as a classical register to $`|W'_f\rangle`$. A fixed
+decoder reads that register and uses the corresponding
+$`S_{f,x}^{\mathsf T}\otimes S_{f,x}`$ measurement. The descriptor
+is counted in the encoding, rather than supplied to a table-dependent
+decoder for free. The same theorem therefore gives
+
+```math
+ 2w+a(2w+2)\ge\alpha(\gamma)2^a.
+```
+
+At constant gap this implies $`w=\Omega(2^a/(a+1))`$ and still
+excludes square-root width for this specified outer-Clifford family.
+
+**Application to a paid twelve-band table word.** Let $`a=2r`$,
+$`m=2^r`$, and index two dirty banks A and B by
+$`i,j\in\{0,1\}^r`$. Write
+$`Z_u^i=\prod_kZ_{u_k}^{i_k}`$ and similarly for v. For an arbitrary
+binary table C, define
+
+```math
+ \begin{gathered}
+ A_u=\prod_i e^{-i\pi X_cX_{A_i}Z_u^i/8},\qquad
+ B_v=\prod_j e^{-i\pi Y_cX_{B_j}Z_v^j/8},\\
+ E_C=\prod_{i,j}\mathrm{CZ}_{A_i,B_j}^{C_{ij}},\qquad
+ F_C=L_CA_0B_0,\\
+ K_C=A_u^\dagger(E_CB_v^\dagger E_C)A_u(E_CB_vE_C),\qquad
+ K_0=A_u^\dagger B_v^\dagger A_uB_v,\\
+ V_C=F_C^\dagger K_CK_0^\dagger F_C.
+ \end{gathered}
+```
+
+Each pulse has m commuting independent Pauli axes and is one native T
+band after Clifford transport. Actual conjugated T gates introduce a
+common scalar which cancels with the actual inverses in the displayed
+word. For Clifford $`L_C`$ the source uses $`12m`$ T gates, at most
+twelve T bands, two m-qubit dirty banks, and one clean signal. Its
+Clifford count is $`O(m^2+G_L)`$, where $`G_L`$ bounds either
+native direction of $`L_C`$; thus it meets the proposed
+$`T,w=O(m)`$, $`G=O(m^2)`$ budgets when $`G_L=O(m^2)`$.
+
+Nevertheless the bank-Z gauge
+
+```math
+ G_{uv}=\prod_i Z_{A_i}^{i\cdot u}\prod_j Z_{B_j}^{j\cdot v}
+```
+
+conjugates $`A_0,B_0`$ to $`A_u,B_v`$ and commutes with
+$`E_C`$. Hence $`K_CK_0^\dagger=G_{uv}W_CG_{uv}^\dagger`$
+for an address-independent $`W_C`$. The gauge has a fixed commuting
+Pauli generator for each of the a address bits. The fixed-boundary
+bound applies when $`L_C`$ is table independent, and its counted
+descriptor corollary applies to an arbitrary outer Clifford
+$`L_C`$. Neither case supplies a uniform constant-gap decision for
+every C, despite the paid native gate budgets.
+
+These bounds concern the displayed read-only factorization. More
+general table-dependent boundaries not covered by the short-descriptor
+corollary, a table-dependent Clifford interleaved inside non-Gaussian
+code preparation, further table/address interleaving, and physical
+address motion remain outside their scope. They give no unrestricted
+query-width or T-depth lower bound.
+
 ### Substitution in the frame recurrence
 
 For each early stage of remaining height m, request
@@ -491,9 +862,9 @@ Together with §1's short-stage sum this proves the displayed bound.
 The original small-dimension and narrow-width R96 fallbacks retain the
 literal dirty thresholds and the sole final clean qubit. A source with
 a sufficiently strong explicit precision-uniform ledger can still be
-called directly. The fixed-error scalar premise above or a zero-clean
-full-space signed gap with fixed positive gamma supplies the same
-logarithmic amplification factor.
+called directly. The fixed-error scalar premise above, a zero-clean
+full-space signed gap, or the one-clean decision source with fixed
+positive gamma supplies the same logarithmic amplification factor.
 
 <a id="square-root-width-signed-gap-transfer"></a>
 
@@ -501,7 +872,8 @@ logarithmic amplification factor.
 
 An all-width source is unnecessary for a first general improvement at
 square-root dirty width. Suppose that for every prescribed a-bit table
-a terminating classical compiler supplies the signed-gap source above,
+a terminating classical compiler supplies either the zero-clean
+full-space signed-gap source or the one-clean decision source above,
 with a uniform constant $`\gamma\gt0`$ and simultaneous bounds
 
 ```math
