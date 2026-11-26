@@ -407,7 +407,12 @@ its chronological stage number would fail this accounting at the
 full-volume terminal.
 
 Finally,
-$`\sum_m k_m d(n+O_L(1))=O_L(H_n\log(H_n+2)d(n+O_L(1)))`$.
+
+```math
+ \sum_m k_m d(n+O_L(1))
+ =O_L\!\left(H_n\log(H_n+2)d(n+O_L(1))\right).
+```
+
 Together with §1's short-stage sum this proves the displayed bound.
 The original small-dimension and narrow-width R96 fallbacks retain the
 literal dirty thresholds and the sole final clean qubit. A source with
