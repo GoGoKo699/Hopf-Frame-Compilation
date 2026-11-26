@@ -44,14 +44,17 @@ Start with a complete interface; consult component families only when the propos
 
 The [scalar precision wrapper](depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
 now amplifies fixed full-operator accuracy with logarithmically many actual
-source calls and no clean vote bank. It requires exact preservation of the
-original computational address sectors on every physical input. Generic
-coherent address error still needs its own precision guarantee; the native
-scalar readout remains the next operation to construct.
+source calls and no clean vote bank. Exact physical address preservation
+is one sufficient premise. The more general
+[full-space signed-gap condition](depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
+allows nonflat spectra and address motion while requiring exactly the
+prescribed positive and negative eigenspaces. Generic coherent basis error
+still needs its own precision guarantee; the native source remains unpaid.
 
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
-| [Scalar entries of self-inverse shears](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) | Every raw truth table embeds in a fixed Clifford shear with a literal inverse. Four scalar source/actual-inverse calls recover its sign, cancel a fixed source phase and preserve the source resource orders with two or three borrowed address bits. | Supply the coherent scalar entry readout or synthesize the joint indexed Pauli commutator. A cheap bank shear is not that readout. Charge all-width budgets and the exactness or precision hypotheses of the scalar-to-frame transfer. |
+| [Scalar entries of self-inverse shears](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) | Every raw truth table embeds in a fixed Clifford shear with a literal inverse. Four scalar source/actual-inverse calls recover its sign, cancel a fixed source phase and preserve the source resource orders with two or three borrowed address bits. | Supply a complete entry scalar or amplify a correct full-space entry gap before the four-call reduction. A cheap bank shear is not the readout. The first square-root-width improvement does not require an all-width source. |
+| [Full-space signed-gap source](depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source) | A constant gap with exactly the prescribed sign amplifies with logarithmic accuracy overhead, no controlled V and no clean signal. The [two-band screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources) forces exponentially small gaps for a single marked table and its Pauli-balanced lift, with arbitrary work and address motion. | Construct a genuinely joint native source beyond two raw T bands within the square-root count/width and linear Clifford budgets. Charge any shrinking gap. An initialized-code gap, rotated sign sectors or a non-Pauli signal needs its own complete interface; no growing-depth lower bound follows. |
 | [Polynomial-overhead complete source](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) | Fusion, controlled use, return and count normalization are paid; the known source retains logarithmic depth. | A complete sublogarithmic indicator source with uniform precision and simultaneous polynomial budgets. A scalar predicate does not satisfy this indicator interface; the scalar transfer above is a separate sufficient route. |
 | [Encoded dirty copy](depth/ENCODED_DIRTY_COPY_INTERFACE.md) | A joint transition/copy echo gives the physical indicator while cancelling an abstract encoding on its returned dirty carrier. Polynomial-overhead fusion and R98 then apply. | Pay the encoded bank transition and its physical copy interaction, including actual inverses and full operator error. The abstract decoder need not be implemented, but its existence does not price either word. Use the grading and native-copy screens below before tuning a candidate. |
 | [Rank-one phase and complete indicator](depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence) | Two-call reductions in both directions preserve the target resource orders, with a paid four-T-band control bank and arbitrary returned auxiliary work. General source representatives have the full commutant freedom of the probe X. | Treat the phase as an equivalent target, not an easier compiler. Seek a paid native representative with the complete derivative and return promise, possibly using address/work motion or synthesis across coordinate rounds. The linear T-count consequence gives no growing depth bound. |

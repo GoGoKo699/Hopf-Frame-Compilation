@@ -176,7 +176,12 @@ These promised-family or retained-interface results keep their own hypotheses. R
 The [prescribed scalar transfer](depth/PRESCRIBED_SCALAR_TABLES.md) gives a
 conditional general depth bound, with a
 [fixed-error pair-reflection wrapper](depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
-for exactly preserved computational address sectors. Its chapter also contains the
+and its more general
+[full-space signed-gap premise](depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source).
+The [square-root-width corollary](depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
+states the weaker source target needed for a first asymptotic improvement;
+the [two-band spectral screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
+does not establish a growing-depth lower bound. The scalar chapter also contains the
 [self-inverse shear source reduction](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
 and [thin-kernel rank screen](depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction).
 [Shared rotation profiles](depth/PREFIX_ROTATION_PROFILES.md) give

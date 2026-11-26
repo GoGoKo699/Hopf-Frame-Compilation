@@ -84,6 +84,59 @@ def cubic_pair_reflection_word(signal, reflection):
 
 
 class PrescribedScalarTablesTests(unittest.TestCase):
+    def test_signed_gap_allows_nonflat_spectrum_and_completed_address_motion(self):
+        # Physical order: address x0,x1, arbitrary signal t, arbitrary dirty d.
+        # V moves x0 across the target sign sectors, but that left motion
+        # commutes with X_t and cancels from V-dagger X_t V. Its remaining
+        # perturbation mixes x1 and depends on d, so H is nonflat even within
+        # a sign sector. This checks a genuinely weaker source premise than
+        # completed computational-address preservation. Analytic rotations
+        # are a matrix fixture; the theorem separately pays native synthesis.
+        dimension = 16
+        identity = np.eye(dimension)
+        signal = bit_flip_matrix(4, 1)
+        address_x1 = bit_flip_matrix(4, 2)
+        dirty_z = np.diag([(-1) ** (basis & 1) for basis in range(dimension)])
+        projector = (identity + address_x1 @ dirty_z) / 2
+        pauli_y = np.array([[0, -1j], [1j, 0]])
+        signal_y = np.kron(np.eye(4), np.kron(pauli_y, np.eye(2)))
+        angle = np.pi / 6
+        perturbation = (identity + (np.cos(angle) - 1) * projector
+                        + 1j * np.sin(angle) * projector @ signal_y)
+        controlled_sign = np.diag([
+            (-1) ** (((basis >> 3) & 1) * ((basis >> 1) & 1))
+            for basis in range(dimension)
+        ])
+        address_motion = np.kron(normalized_hadamard(1), np.eye(8))
+        source = address_motion @ controlled_sign @ perturbation
+        target = np.diag([(-1) ** ((basis >> 3) & 1) for basis in range(dimension)])
+        address_z1 = np.diag([(-1) ** ((basis >> 2) & 1) for basis in range(dimension)])
+        np.testing.assert_allclose(source.conj().T @ source, identity, atol=1e-12)
+        self.assertGreater(np.linalg.norm(source @ target - target @ source, 2), 1)
+
+        pair = source.conj().T @ signal @ source @ signal
+        hermitian_pair = (pair + pair.conj().T) / 2
+        expected = target @ (identity + (np.cos(2 * angle) - 1) * projector)
+        np.testing.assert_allclose(hermitian_pair, expected, atol=1e-12)
+        self.assertGreater(np.linalg.norm(
+            hermitian_pair @ address_z1 - address_z1 @ hermitian_pair, 2), 0.4)
+        np.testing.assert_allclose(hermitian_pair @ target,
+                                   target @ hermitian_pair, atol=1e-12)
+        signed_spectrum = np.linalg.eigvalsh(target @ hermitian_pair)
+        self.assertAlmostEqual(signed_spectrum[0], 0.5, places=12)
+        self.assertAlmostEqual(signed_spectrum[-1], 1, places=12)
+
+        amplified = cubic_pair_reflection_word(pair, signal)
+        polynomial = (3 * hermitian_pair - np.linalg.matrix_power(hermitian_pair, 3)) / 2
+        np.testing.assert_allclose((amplified + amplified.conj().T) / 2,
+                                   polynomial, atol=1e-12)
+        np.testing.assert_allclose(amplified @ target, target @ amplified, atol=1e-12)
+        np.testing.assert_allclose(
+            (amplified - target).conj().T @ (amplified - target),
+            2 * (identity - target @ polynomial), atol=1e-12)
+        self.assertLess(np.linalg.norm(amplified - target, 2),
+                        np.linalg.norm(pair - target, 2))
+
     def test_cubic_pair_reflection_on_a_full_dirty_source(self):
         # Physical order: two address bits x, auxiliary bit t, arbitrary
         # dirty bit d. Every source column is included. The source preserves

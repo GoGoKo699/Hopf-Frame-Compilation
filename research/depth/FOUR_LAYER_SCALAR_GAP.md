@@ -126,3 +126,194 @@ test still applies to that sign. Thus $`n\ge9`$ gives the same zero-clean error 
 complete real frame and for its complex realization. The
 [canonical frame domains](../../docs/HOPF_INTERFACE.md#canonical-domains) admit these angles and
 phases.
+
+<a id="two-band-signed-gap-sources"></a>
+
+## A two-band source cannot give a uniform sparse signed gap
+
+The [full-space signed-gap wrapper](PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
+can use a correct full-space spectral sign without first approximating a scalar
+unitary. The following screen applies to that weaker source. Let V have at most
+two physical T/T-dagger bands, let S be a Hermitian Pauli, and put
+
+```math
+ W=V^\dagger S V S,\qquad \mathcal H=\tfrac12(W+W^\dagger).
+```
+
+All w physical qubits are arbitrary inputs. Suppose
+$`|\mathcal H|\succeq\gamma I`$, with $`\gamma\gt0`$, and let
+$`0\lt\varepsilon\le1/2`$ be the smaller relative dimension of its positive
+and negative eigenspaces. Then
+
+```math
+ \gamma\le\frac{\sqrt\varepsilon}{1-\sqrt\varepsilon}.\qquad\text{(1)}
+```
+
+In particular, if the sign is the prescribed scalar phase for a single marked
+a-bit address, tensored with identity on every other wire, then
+
+```math
+ \gamma\le\frac{2^{-a/2}}{1-2^{-a/2}}.\qquad\text{(2)}
+```
+
+The same conclusion holds for the complementary sign. There is no width,
+T-count or Clifford-count restriction, and no address-preservation assumption.
+
+### Native normal form and the Clifford trace bound
+
+Write the actual native word as
+$`V=C_2T_2C_1T_1C_0`$, allowing empty bands, and set
+
+```math
+ \begin{aligned}
+ J&=T_1C_0,\\
+ A&=T_2^\dagger C_2^\dagger S C_2T_2,\qquad
+ B=J S J^\dagger,\\
+ K&=(C_1^\dagger A C_1)B.
+ \end{aligned}
+```
+
+A physical T band sends each Pauli, under conjugation, to a Hermitian Clifford:
+each active wire contributes a Pauli or $`(X\pm Y)/\sqrt2`$. Thus A and B
+are literal Hermitian Cliffords, K is a literal Clifford, and
+
+```math
+ W=J^\dagger KJ,\qquad \mathcal H=J^\dagger\mathrm{Re}(K)J.\qquad\text{(3)}
+```
+
+No common phase of V survives this identity.
+
+Let M be K's binary symplectic matrix, let
+$`r=\mathrm{rank}_{\mathbb F_2}(M-I)`$, and write
+$`\tau(K)=2^{-w}\mathrm{Tr}K`$. The adjoint action on the Pauli
+basis is a signed permutation. Its trace is $`|\mathrm{Tr}K|^2`$;
+the signs on the fixed-label space $`\ker(M-I)`$ form a character. Hence
+
+```math
+ \tau(K)=0\quad\hbox{or}\quad |\tau(K)|^2=2^{-r}.\qquad\text{(4)}
+```
+
+In the nonzero case every fixed-label Pauli commutes with K literally. The
+fixed space has dimension $`2w-r`$ and symplectic radical of dimension at
+most r. When $`r\lt w`$, it contains at least $`w-r`$ symplectic pairs. A Clifford
+coordinate change makes K identity on those qubits, so it acts on at most r
+effective qubits; for $`r\ge w`$ this bound is automatic. This is a spectral
+argument, not an emitted decoder. Every
+nonempty eigenspace of K consequently occupies at least a $`2^{-r}`$
+fraction of the full space.
+
+Apply this to the smaller sign sector, replacing K by $`-K`$ if necessary.
+If the trace is nonzero, $`\varepsilon\ge2^{-r}`$ and therefore
+$`|\tau(K)|\le\sqrt\varepsilon`$. Since every positive eigenvalue of
+$`\mathrm{Re}K`$ is at least gamma and every negative one is at least
+minus one,
+
+```math
+ \gamma(1-\varepsilon)-\varepsilon
+ \le\mathrm{Re}\tau(K)\le\sqrt\varepsilon.
+```
+
+Rearrangement gives (1). If the trace is zero, the stronger bound
+$`\gamma\le\varepsilon/(1-\varepsilon)`$ gives the same conclusion.
+
+### A Pauli-balanced lift retains the obstruction
+
+Let f mark one a-bit address and add an independent bit u. The balanced table
+$`g(x,u)=f(x)\oplus u`$ has equal positive and negative multiplicities, but
+it still cannot have a uniform two-band source gap. Assume
+$`\mathrm{sgn}\mathcal H=D_g\otimes I`$, and define
+
+```math
+ D'=\mathrm{sgn}(\mathrm{Re}K)=J D_g J^\dagger,
+ \qquad Q=J Z_u J^\dagger,\qquad \varepsilon=2^{-a}.
+```
+
+Identity factors are suppressed. Q is a Hermitian Clifford because J contains
+only one native T band. In normalized Hilbert--Schmidt norm,
+
+```math
+ \|D'-Q\|_{2,\mathrm{tr}}=2\sqrt\varepsilon,\qquad
+ \|KQ-QK\|_{2,\mathrm{tr}}\le4\sqrt\varepsilon.\qquad\text{(5)}
+```
+
+The second inequality uses $`[K,D']=0`$. Every literal nonidentity Clifford
+has distance at least $`\delta_{\mathrm C}=\sqrt{2-\sqrt2}`$ from I in
+this norm: (4) bounds a nonscalar's real normalized trace by
+$`1/\sqrt2`$, and the scalar cases are eighth roots of unity. Therefore
+
+```math
+ 4\sqrt\varepsilon\lt\delta_{\mathrm C}
+ \quad\Longrightarrow\quad [K,Q]=0.
+```
+
+This holds for $`a\ge5`$. The Clifford $`L=QK`$ now satisfies
+$`\mathrm{Re}L=Q\mathrm{Re}K`$ and
+$`\mathrm{sgn}(\mathrm{Re}L)=QD'=J D_fJ^\dagger`$.
+Its gap is unchanged and its negative fraction is epsilon. Applying (1) to L
+proves (2) for the balanced table as well.
+
+The conclusion tolerates a small error in the sign eigenspaces. If
+$`\|\mathrm{sgn}\mathcal H-D_g\otimes I\|_{\mathrm{op}}\le\delta`$,
+replace the right side of (5) by $`2\delta+4\sqrt\varepsilon`$. Whenever
+this is below $`\delta_{\mathrm C}`$, K and Q still commute. The two
+Hermitian involutions $`Q\mathrm{sgn}(\mathrm{Re}K)`$ and
+$`J D_fJ^\dagger`$ are then within delta in operator norm. For
+$`\delta\lt2`$ their negative ranks agree, so (2) still follows. For the
+unbalanced sparse target, this rank-stability argument alone suffices.
+
+This is a zero-clean full-space screen for a Pauli signal and at most two
+native source bands. It does not cover initialized-subspace sources,
+non-Pauli signals or more source bands. A general nonlinear balancing mask
+need not give a Clifford Q, so the balancing argument is specific to the
+Pauli lift above. No growing lower bound on general native T-depth follows.
+
+### Why the trace-support proof does not iterate to the next band
+
+For three source bands, (3) can leave a two-band unitary rather than a
+Clifford. Even a fixed positive gap and a large trace no longer force bounded
+effective spectral support. Let C fan out one bit c to m bits y, let
+$`E=\prod_{i=1}^m T_{y_i}`$, and take $`m\equiv1\pmod8`$, $`m\ge9`$.
+The actual two-band word has full diagonal action
+
+```math
+ K_m=E^\dagger CEC,\qquad
+ K_m|c,y\rangle=\omega^{c(m-2|y|)}|c,y\rangle,
+ \qquad\omega=e^{i\pi/4}.
+```
+
+Its normalized trace is $`1/2+2^{-m/2-1}`$, its real-part gap is
+$`1/\sqrt2`$, and its negative fraction is
+$`1/4-2^{-(m+3)/2}`$. The four nontrivial eigenvalue multiplicities are
+$`2^{m-2}\pm2^{(m-3)/2}`$, each occurring twice; eigenvalue one also has
+multiplicity $`2^m`$. Their greatest common divisor is
+$`2^{(m-3)/2}`$. Thus a factorization into an effective operator tensored
+with identity needs at least $`(m+5)/2`$ effective qubits, despite the
+uniformly large trace.
+
+The same native construction works for every positive m. At $`m=3`$ it has
+gap $`1/\sqrt2`$ and negative fraction $`1/8`$, violating (1). Thus even
+the displayed two-band inequality cannot be carried unchanged to three bands.
+
+This example also occurs in the actual next source normal form. Append a
+qubit q. On c, a representative target $`y_1`$, and q, the three commuting
+independent axes
+
+```math
+ P_1=Z_cY_q,\qquad P_2=Z_{y_1}Y_q,\qquad
+ P_3=Z_cZ_{y_1}Y_q
+```
+
+give the one-band word
+$`F=\exp(i\pi(P_1+P_2-P_3)/8)`$ up to a common phase, with
+$`F X_qF^\dagger=\mathrm{CZ}_{c,y_1}H_q`$. A Hadamard on
+$`y_1`$ and a Clifford change of the target-bank coordinates produce a
+one-band U satisfying $`U X_qU^\dagger=C H_q`$. For the three-band source
+$`V=U^\dagger E U`$, its Pauli pair signal is unitarily conjugate to
+$`K_m\otimes I_q`$. Its spectral sign is not asserted to be an arbitrary
+prescribed diagonal table. The example blocks an iteration of the Clifford
+support argument; it neither supplies the missing readout nor excludes a
+different spectral-volume bound.
+
+The [finite gap fixtures](../../tests/test_native_gap_refinements.py) check
+the full normal form on the returned-helper two-band CCZ, a literal one-band
+realization of the displayed Pauli image, and the next-band multiplicities.
