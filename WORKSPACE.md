@@ -89,13 +89,13 @@ sufficient concrete target. Amplify each correct entry decision or full-space ga
 before applying that reduction; the four raw gapped signals need not
 themselves compose into a gapped signal.
 
-The constructive target is joint address-dependent motion of the initialized
-code, with the known dense table carried by paid Clifford operations.
-Address gauges that preserve the code keep the compressed spectra unchanged;
-they cannot distinguish both truth values. A single thin accepted projector
-also cannot give a positive gap on a larger code. These checks leave
-nonflat acceptance and joint non-Gaussian interference available, without
-requiring an arbitrary-table source to return its work before amplification.
+A [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source) now excludes
+read-only sources whose entire address dependence is a table-independent
+conjugation around one table unitary, even when the boundary moves the code.
+For Pauli address gauges, a table-dependent outer Clifford still fails at
+square-root width. Reopen with table dependence inside the non-Gaussian code
+preparation, genuinely interleaved table/address actions, or physical address
+motion; prove the complete compressed sign within the native budgets.
 
 The parallel lower-bound question remains unrestricted returned-query
 depth with arbitrary Clifford interlayers; the two-band argument does

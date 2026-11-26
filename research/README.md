@@ -181,6 +181,8 @@ and its more general
 The [one-clean decision alternative](depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
 amplifies before imposing complete return, allowing raw garbage and a
 nonflat acceptance gap only on the initialized code.
+Its [fixed-boundary information screen](depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
+rules out address-conjugated table programs at the desired width.
 The [square-root-width corollary](depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 states the weaker source target needed for a first asymptotic improvement;
 the [two-band spectral screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)

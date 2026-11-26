@@ -661,6 +661,164 @@ at most two raw T bands for all single-mark tables. The clean decision
 interface does not circumvent that result or give a growing-depth
 lower bound.
 
+<a id="fixed-boundary-decision-source"></a>
+
+**Fixed boundaries cannot decode every table at square-root width.**
+The code-preserving gauge check above leaves code-moving boundaries
+open. A separate information bound applies when all table dependence
+is confined to one unitary between fixed boundaries. Suppose the source
+preserves the address and its fibers on w physical signal/work qubits
+are
+
+```math
+ V_f(x)=F^\dagger G_x W_f G_x^\dagger F,
+ \qquad x\in\{0,1\}^a.
+```
+
+F and every $`G_x`$ are independent of f. They may be arbitrary
+unitaries and may move the clean-zero code. The table-dependent
+$`W_f`$ is also arbitrary. Let $`D=2^w`$, let J insert the one
+clean signal, and define
+
+```math
+ \begin{aligned}
+ S&=Z_c,\qquad S_x=G_x^\dagger F S F^\dagger G_x,
+ \qquad P_x=\frac{I+S_x}{2},\\
+ M_f(x)&=J^\dagger V_f(x)^\dagger S V_f(x)J,
+ \qquad \tau_w(A)=\frac{\mathrm{Tr}(A)}D.
+ \end{aligned}
+```
+
+Assume that every table has the coherent decision promise
+$`(-1)^{f(x)}M_f(x)\succeq\gamma I`$ at every address, for a
+common positive gap gamma. The normalized compressed bias satisfies
+
+```math
+ \begin{aligned}
+ b_f(x)&=\frac2D\mathrm{Tr}(M_f(x))\\
+ &=\frac2D\mathrm{Tr}(P_x W_f^\dagger S_x W_f)\\
+ &=\tau_w(W_f^\dagger S_x W_f S_x),
+ \qquad (-1)^{f(x)}b_f(x)\ge\gamma.
+ \end{aligned}
+```
+
+The last equality uses $`\mathrm{Tr}(S_x)=0`$. It does not need
+the balanced-spectrum argument or a prescribed rejected-sector sign.
+For the normalized Choi vector
+
+```math
+ |\Phi_D\rangle=\frac1{\sqrt D}\sum_{j=0}^{D-1}|j\rangle|j\rangle,
+ \qquad |W_f\rangle=(I\otimes W_f)|\Phi_D\rangle,
+```
+
+the fixed Hermitian involution $`S_x^{\mathsf T}\otimes S_x`$
+has expectation
+
+```math
+ \langle W_f|S_x^{\mathsf T}\otimes S_x|W_f\rangle=b_f(x).
+```
+
+Its sign outcome recovers bit $`f(x)`$ with error at most
+$`(1-\gamma)/2`$. Thus the $`2^a`$ independently prescribed table
+bits have a quantum random-access encoding in $`2w`$ qubits.
+[F54](../../docs/reference/SOURCE_CATALOGUE.md),
+[Nayak's Theorem 2.3](https://arxiv.org/abs/quant-ph/9904093), gives
+
+```math
+ 2w\ge\alpha(\gamma)2^a,
+ \qquad \alpha(\gamma)=1-H_2\!\left(\frac{1-\gamma}{2}\right),
+ \qquad
+ \gamma\le\sqrt{\frac{4\ln(2)w}{2^a}}.
+```
+
+The last inequality follows from
+$`\alpha(\gamma)\ge\gamma^2/(2\ln2)`$. A constant positive gap
+therefore requires $`w=\Omega(2^a)`$, irrespective of the gate count
+or depth of the three constituent unitaries. At
+$`w=O(2^{a/2})`$ the common gap is at most $`O(2^{-a/4})`$.
+The Choi state and its measurement are proof objects, not assumed
+physical resources of the source. The
+[non-Clifford seed-spread screen](NONCLIFFORD_SEED_SPREAD.md#3-a-robust-bound-from-the-independent-commuting-half)
+uses the same imported information bound on a compressed Pauli algebra;
+the present application encodes the table in the program unitary and
+does not assume Pauli label degree or a small support algebra.
+
+**A table-dependent outer Clifford can still have a short descriptor.**
+Suppose instead that $`G_x=\prod_{j=1}^a Q_j^{x_j}`$ for fixed
+commuting Pauli generators and $`F_f=L_fF_0`$, where $`F_0`$ is
+fixed and $`L_f`$ is an arbitrary table-dependent Clifford. Set
+
+```math
+ Q'_{f,j}=L_f^\dagger Q_jL_f,\qquad
+ G'_{f,x}=\prod_{j=1}^a(Q'_{f,j})^{x_j},\qquad
+ W'_f=L_f^\dagger W_fL_f.
+```
+
+Then $`V_f(x)=F_0^\dagger G'_{f,x}W'_fG_{f,x}^{\prime\dagger}F_0`$.
+The signed Pauli images have a description of at most
+$`a(2w+2)`$ classical bits, including their phases. Append this
+description as a classical register to $`|W'_f\rangle`$. A fixed
+decoder reads that register and uses the corresponding
+$`S_{f,x}^{\mathsf T}\otimes S_{f,x}`$ measurement. The descriptor
+is counted in the encoding, rather than supplied to a table-dependent
+decoder for free. The same theorem therefore gives
+
+```math
+ 2w+a(2w+2)\ge\alpha(\gamma)2^a.
+```
+
+At constant gap this implies $`w=\Omega(2^a/(a+1))`$ and still
+excludes square-root width for this specified outer-Clifford family.
+
+**Application to a paid twelve-band table word.** Let $`a=2r`$,
+$`m=2^r`$, and index two dirty banks A and B by
+$`i,j\in\{0,1\}^r`$. Write
+$`Z_u^i=\prod_kZ_{u_k}^{i_k}`$ and similarly for v. For an arbitrary
+binary table C, define
+
+```math
+ \begin{gathered}
+ A_u=\prod_i e^{-i\pi X_cX_{A_i}Z_u^i/8},\qquad
+ B_v=\prod_j e^{-i\pi Y_cX_{B_j}Z_v^j/8},\\
+ E_C=\prod_{i,j}\mathrm{CZ}_{A_i,B_j}^{C_{ij}},\qquad
+ F_C=L_CA_0B_0,\\
+ K_C=A_u^\dagger(E_CB_v^\dagger E_C)A_u(E_CB_vE_C),\qquad
+ K_0=A_u^\dagger B_v^\dagger A_uB_v,\\
+ V_C=F_C^\dagger K_CK_0^\dagger F_C.
+ \end{gathered}
+```
+
+Each pulse has m commuting independent Pauli axes and is one native T
+band after Clifford transport. Actual conjugated T gates introduce a
+common scalar which cancels with the actual inverses in the displayed
+word. For Clifford $`L_C`$ the source uses $`12m`$ T gates, at most
+twelve T bands, two m-qubit dirty banks, and one clean signal. Its
+Clifford count is $`O(m^2+G_L)`$, where $`G_L`$ bounds either
+native direction of $`L_C`$; thus it meets the proposed
+$`T,w=O(m)`$, $`G=O(m^2)`$ budgets when $`G_L=O(m^2)`$.
+
+Nevertheless the bank-Z gauge
+
+```math
+ G_{uv}=\prod_i Z_{A_i}^{i\cdot u}\prod_j Z_{B_j}^{j\cdot v}
+```
+
+conjugates $`A_0,B_0`$ to $`A_u,B_v`$ and commutes with
+$`E_C`$. Hence $`K_CK_0^\dagger=G_{uv}W_CG_{uv}^\dagger`$
+for an address-independent $`W_C`$. The gauge has a fixed commuting
+Pauli generator for each of the a address bits. The fixed-boundary
+bound applies when $`L_C`$ is table independent, and its counted
+descriptor corollary applies to an arbitrary outer Clifford
+$`L_C`$. Neither case supplies a uniform constant-gap decision for
+every C, despite the paid native gate budgets.
+
+These bounds concern the displayed read-only factorization. More
+general table-dependent boundaries not covered by the short-descriptor
+corollary, a table-dependent Clifford interleaved inside non-Gaussian
+code preparation, further table/address interleaving, and physical
+address motion remain outside their scope. They give no unrestricted
+query-width or T-depth lower bound.
+
 ### Substitution in the frame recurrence
 
 For each early stage of remaining height m, request
