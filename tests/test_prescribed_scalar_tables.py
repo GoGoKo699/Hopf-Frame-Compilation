@@ -69,7 +69,130 @@ def four_call_scalar_difference(source, row_block_flip, column_block_flip):
             @ column_block_flip @ reverse @ row_block_flip @ source)
 
 
+def involution_rotation(involution, angle):
+    """Exact matrix fixture for exp(i angle S), with S Hermitian and S^2=I."""
+    return (np.cos(angle) * np.eye(len(involution))
+            + 1j * np.sin(angle) * involution)
+
+
+def cubic_pair_reflection_word(signal, reflection):
+    """A matrix QSP fixture, not a native emitter or a recursive compiler."""
+    word = involution_rotation(reflection, -np.pi / 3)
+    for angle in (np.pi / 3, np.pi / 3, -np.pi / 3):
+        word = word @ signal @ involution_rotation(reflection, angle)
+    return word
+
+
 class PrescribedScalarTablesTests(unittest.TestCase):
+    def test_cubic_pair_reflection_on_a_full_dirty_source(self):
+        # Physical order: two address bits x, auxiliary bit t, arbitrary
+        # dirty bit d. Every source column is included. The source preserves
+        # x, but its entangling perturbation moves both t and d. These are
+        # complete operator norms, so an external reference is also allowed.
+        identity = np.eye(2)
+        pauli_x = np.array([[0, 1], [1, 0]], dtype=complex)
+        pauli_y = np.array([[0, -1j], [1j, 0]], dtype=complex)
+        pauli_z = np.diag([1., -1.])
+        table = (0, 1, 1, 1)
+        source = np.zeros((16, 16), dtype=complex)
+        ideal_source = np.zeros_like(source)
+        phase = 0.37
+        for address, value in enumerate(table):
+            ideal_block = np.kron(pauli_z if value else identity, identity)
+            perturbation = (
+                involution_rotation(np.kron(pauli_z, identity), 0.03 + 0.008 * address)
+                @ involution_rotation(np.kron(pauli_z, pauli_z), 0.02 - 0.003 * address)
+                @ involution_rotation(np.kron(pauli_x, pauli_y), 0.045 + 0.005 * address)
+            )
+            block = slice(4 * address, 4 * (address + 1))
+            source[block, block] = np.exp(1j * phase) * perturbation @ ideal_block
+            ideal_source[block, block] = ideal_block
+
+        full_identity = np.eye(16)
+        reflection = np.kron(np.eye(4), np.kron(pauli_x, identity))
+        target = np.kron(np.diag(1 - 2 * np.array(table)), np.eye(4))
+        auxiliary_z = np.kron(np.eye(4), np.kron(pauli_z, identity))
+        dirty_z = np.kron(np.eye(8), pauli_z)
+        np.testing.assert_allclose(source.conj().T @ source, full_identity, atol=1e-12)
+        for address_z in (np.kron(pauli_z, np.eye(8)),
+                          np.kron(identity, np.kron(pauli_z, np.eye(4)))):
+            np.testing.assert_allclose(source @ address_z, address_z @ source, atol=1e-12)
+        self.assertGreater(np.linalg.norm(source @ auxiliary_z - auxiliary_z @ source, 2), 0.05)
+        self.assertGreater(np.linalg.norm(source @ dirty_z - dirty_z @ source, 2), 0.05)
+
+        source_error = np.linalg.norm(np.exp(-1j * phase) * source - ideal_source, 2)
+        signal = source.conj().T @ reflection @ source @ reflection
+        phase_free = np.exp(-1j * phase) * source
+        np.testing.assert_allclose(
+            signal, phase_free.conj().T @ reflection @ phase_free @ reflection, atol=1e-12)
+        np.testing.assert_allclose(reflection @ signal @ reflection, signal.conj().T, atol=1e-12)
+        initial_error = np.linalg.norm(signal - target, 2)
+        self.assertGreater(initial_error, 0.05)
+        self.assertLessEqual(initial_error, 2 * source_error + 1e-12)
+
+        word = cubic_pair_reflection_word(signal, reflection)
+        hermitian_signal = (signal + signal.conj().T) / 2
+        polynomial = (3 * hermitian_signal - np.linalg.matrix_power(hermitian_signal, 3)) / 2
+        np.testing.assert_allclose((word + word.conj().T) / 2, polynomial, atol=1e-12)
+        np.testing.assert_allclose(word.conj().T @ word, full_identity, atol=1e-12)
+        # The all-size construction factorizes one degree-k QSP word. It
+        # cannot recursively reuse this cubic output with the same S: the
+        # pair-reflection relation has not been retained by that output.
+        self.assertGreater(np.linalg.norm(reflection @ word @ reflection - word.conj().T, 2),
+                           0.001)
+        # The signal is not just a two-dimensional scalar-angle test copied
+        # over spectators: its Hermitian part depends on the dirty state.
+        first_block = hermitian_signal[:4, :4]
+        self.assertGreater(np.linalg.norm(first_block - np.trace(first_block) * np.eye(4) / 4, 2),
+                           0.001)
+
+        final_error = np.linalg.norm(word - target, 2)
+        self.assertLess(final_error, initial_error / 4)
+        self.assertLessEqual(final_error, np.sqrt(3) * initial_error ** 2 / 2 + 1e-12)
+        self.assertAlmostEqual(final_error ** 2,
+                               2 * np.linalg.norm(full_identity - target @ polynomial, 2), places=12)
+        # Forward substitution would retain the source's unknown common phase.
+        wrong_signal = source @ reflection @ source @ reflection
+        self.assertGreater(np.linalg.norm(wrong_signal - target, 2), 0.5)
+
+    def test_cubic_pair_reflection_keeps_one_dimensional_endpoints(self):
+        # The simultaneous one-dimensional reflection blocks can have either
+        # reflection sign and either W endpoint. No extra phase is permitted.
+        for eigenvalue, reflection_sign in product((-1, 1), repeat=2):
+            with self.subTest(eigenvalue=eigenvalue, reflection=reflection_sign):
+                signal = np.array([[eigenvalue]], dtype=complex)
+                reflection = np.array([[reflection_sign]], dtype=complex)
+                word = cubic_pair_reflection_word(signal, reflection)
+                np.testing.assert_allclose(word, signal, atol=1e-12)
+
+    def test_cubic_pair_reflection_cannot_remove_an_address_basis_tilt(self):
+        # A small coherent address rotation gives an exact involution with
+        # the wrong spectral subspaces. Endpoint-preserving QSP keeps those
+        # subspaces, even though V is close to the intended scalar source.
+        # Physical order: x, t, arbitrary dirty d.
+        angle = 0.07
+        address_rotation = np.array([[np.cos(angle), -np.sin(angle)],
+                                     [np.sin(angle), np.cos(angle)]])
+        tilt = np.kron(address_rotation, np.eye(4))
+        ideal_source = np.diag([(-1) ** (((basis >> 2) & 1) * ((basis >> 1) & 1))
+                                for basis in range(8)])
+        source = np.exp(0.37j) * tilt @ ideal_source @ tilt.conj().T
+        reflection = bit_flip_matrix(3, 1)
+        target = np.diag([(-1) ** ((basis >> 2) & 1) for basis in range(8)])
+        self.assertGreater(np.linalg.norm(source @ target - target @ source, 2), 0.1)
+        self.assertLess(np.linalg.norm(np.exp(-0.37j) * source - ideal_source, 2), 0.15)
+
+        signal = source.conj().T @ reflection @ source @ reflection
+        np.testing.assert_allclose(signal, tilt @ target @ tilt.conj().T, atol=1e-12)
+        np.testing.assert_allclose(signal @ signal, np.eye(8), atol=1e-12)
+        word = cubic_pair_reflection_word(signal, reflection)
+        np.testing.assert_allclose(word, signal, atol=1e-12)
+        initial_error = np.linalg.norm(signal - target, 2)
+        final_error = np.linalg.norm(word - target, 2)
+        self.assertAlmostEqual(initial_error, 2 * np.sin(angle), places=12)
+        self.assertAlmostEqual(final_error, initial_error, places=12)
+        self.assertGreater(final_error, np.sqrt(3) * initial_error ** 2 / 2)
+
     def test_shear_completion_and_four_calls_on_every_two_bit_table(self):
         # The source address is (alpha, u, beta, v), followed by one
         # arbitrary dirty spectator. Full matrices include every block-bit

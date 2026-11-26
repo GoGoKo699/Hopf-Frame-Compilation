@@ -161,6 +161,21 @@ routing and a bounded-height terminal. A doubly logarithmic d improves
 the square-root-width order. Constructing such a source for arbitrary
 prescribed entries remains open.
 
+For a sufficiently accurate fixed-error scalar source, exact preservation of
+the original computational address sectors on every physical input permits
+[pair-reflection amplification](../research/depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification).
+Writing $`h=1+\log^*(n+2)`$, the resulting conditional depth is
+
+```math
+D_T=O_L\!\left(N/b^2+\log\log(n+4)
+ +h\log(h+2)d(n+O_L(1))\right).
+```
+
+The same one-clean allocation, optimal-order T-count and linear Clifford
+budget hold. The wrapper uses the actual source and its inverse, with no
+initialized vote bank or controlled source. This improves the accuracy cost
+of the transfer; it supplies no shallow scalar source and does not change R96.
+
 It suffices to construct scalar entry signs for the fixed binary shears
 $`A_C=\left(\begin{smallmatrix}I&C\\0&I\end{smallmatrix}\right)`$.
 The [four-call reduction](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)

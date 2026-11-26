@@ -42,6 +42,13 @@ Start with a complete interface; consult component families only when the propos
 
 ### Complete interfaces and resource-preserving reductions
 
+The [scalar precision wrapper](depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
+now amplifies fixed full-operator accuracy with logarithmically many actual
+source calls and no clean vote bank. It requires exact preservation of the
+original computational address sectors on every physical input. Generic
+coherent address error still needs its own precision guarantee; the native
+scalar readout remains the next operation to construct.
+
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
 | [Scalar entries of self-inverse shears](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) | Every raw truth table embeds in a fixed Clifford shear with a literal inverse. Four scalar source/actual-inverse calls recover its sign, cancel a fixed source phase and preserve the source resource orders with two or three borrowed address bits. | Supply the coherent scalar entry readout or synthesize the joint indexed Pauli commutator. A cheap bank shear is not that readout. Charge all-width budgets and the exactness or precision hypotheses of the scalar-to-frame transfer. |

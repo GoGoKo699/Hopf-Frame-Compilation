@@ -174,7 +174,9 @@ These promised-family or retained-interface results keep their own hypotheses. R
 - [Preparation map for the remaining depth problem](depth/DEPTH_OBSTACLE_MAP.md)
 
 The [prescribed scalar transfer](depth/PRESCRIBED_SCALAR_TABLES.md) gives a
-conditional general depth bound. Its chapter also contains the
+conditional general depth bound, with a
+[fixed-error pair-reflection wrapper](depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
+for exactly preserved computational address sectors. Its chapter also contains the
 [self-inverse shear source reduction](depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
 and [thin-kernel rank screen](depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction).
 [Shared rotation profiles](depth/PREFIX_ROTATION_PROFILES.md) give

@@ -191,40 +191,252 @@ many completed long calls and a different terminal hypothesis.
 
 One sufficient fixed-accuracy alternative requires exact preservation
 of every computational address sector at each completed scalar
-boundary on all physical clean/dirty sectors. After bounded-clean
-promotion suppose the fixed full error is at most
-$`\epsilon_0\le10^{-3}`$. Form the XOR of $`g(x)`$ by Hadamards
-on the extra input of $`t g(x)`$. Record $`k`$ votes into fresh
-zero bits with the same dirty core. At fixed $`x`$, the wrong-record
-Kraus operator at each step has norm at most $`\epsilon_0`$ and later
-calls leave earlier votes alone. Orthogonality of records bounds the
-squared mass of wrong majorities by $`2^k\epsilon_0^k`$ for odd
-$`k`$. Majority phase and actual uncomputation give clean-code error
-$`2(2\epsilon_0)^{k/2}`$. Apply this to $`u g(x)`$, conjugate by
-Hadamards on $`u`$, promote the $`k`$ votes at error factor
-$`8\cdot2^k`$, and extract a scalar by the Z echo. The resulting
-full error is at most $`32(\sqrt{8\epsilon_0})^k`$. The promotion
-and the exact majority cost $`\mathrm{poly}(1/\tau)`$ for requested
-error $`\tau`$, with at most two extra scalar address bits. [Promotion,
-§§3–4](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
-
-Request $`\tau_m=c2^{-L}/(1+h(m))^2`$. The reserve absorbs each
-polynomial amplification cost in the volume terms, and the achieved
-frame depth is
+boundary on all physical clean/dirty sectors. With this premise, the
+two-reflection construction below amplifies fixed full-operator accuracy
+using logarithmically many actual source calls, one arbitrary signal
+qubit and no initialized votes. Write $`H_n=1+\log^*(n+2)`$. At the
+same fixed-L allocations and error as §1, its conditional frame bound is
 
 ```math
- O_L\!\left(N/b^2+\log\log(n+4)
- +(1+\log^*(n+2))^{C_1}d(n+O_L(1))\right)
+\begin{aligned}
+ T&=O_L(\sqrt N+N/b),\qquad G=O_L(N),\\
+ D_T&=O_L\!\left(N/b^2+\log\log(n+4)
+       +H_n\log(H_n+2)d(n+O_L(1))\right).
+\end{aligned}
 ```
 
-for a fixed constant $`C_1`$. The other resource bounds from §1 hold.
-A source with an explicit precision-uniform ledger of the required
-polynomial form can also be called directly. To see why generic
-constant coherent leakage is insufficient for this particular vote,
-tilt the $`|1\rangle`$ projector by angle $`\theta`$ and control
-every vote XOR on that same tilted projector. Each call has error
-$`2|\sin\theta|`$. The only records are all-zero and all-one on the
-two tilted sectors; every odd majority returns the same tilted phase.
+It retains one final clean qubit. A shallow fixed-accuracy scalar source
+is still a premise; the unconditional frontier is unchanged.
+
+<a id="pair-reflection-scalar-amplification"></a>
+
+### Amplification using two reflections
+
+**Promote before amplifying.** Let the original scalar source use a fixed
+$`c_0`$ clean qubits. For a p-bit table $`f(x)`$, compile the lifted
+table $`t f(x)`$. Hadamards on t give an approximate XOR of f into
+that old target. Apply [complete XOR promotion, §§3–4](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+to a distinct arbitrary output z, then conjugate the promoted query by
+Hadamards on z. Rename z as t. This gives a zero-clean physical unitary V
+approximating $`D_{tf}`$ on its entire address/signal/work space. The old
+target, former clean bank and every promotion helper are arbitrary dirty
+work. The promotion error is at most $`8\cdot2^{c_0}`$ times the
+original source error; thus a fixed original tolerance suffices. Its
+count, width and depth overhead is constant because $`c_0`$ is fixed.
+Only one lifted scalar address bit is used in the original call.
+
+The original source preserves x on all physical sectors, as do its
+actual inverse and all other promotion gates. Hence V exactly preserves
+x even off the original initialized code. It need not preserve the new
+signal t. This establishes the physical premise used below, rather than
+inferring it from an initialized-isometry estimate. A zero-clean source
+already satisfying this premise can be used directly.
+
+Let $`0\lt\epsilon_0\le10^{-3}`$ be the fixed promoted error. Allow
+a common source phase $`e^{i\theta_f}`$, independent of x, t and work,
+and suppose
+
+```math
+ \|V-e^{i\theta_f}(D_{tf}\otimes I_{\mathrm{work}})\|_{\mathrm{op}}
+ \le\epsilon_0.
+```
+
+Set
+
+```math
+ S=X_t,\qquad R=V^\dagger S V,\qquad W=RS,\qquad
+ \mathcal H=\tfrac12(W+W^\dagger),\qquad c=1-2\epsilon_0^2.
+```
+
+The operators S and R are exact Hermitian involutions, and
+$`SWS=W^\dagger`$. At fixed x, put $`\sigma_x=(-1)^{f(x)}`$.
+The ideal commutator is $`\sigma_x I`$, so the two actual source
+appearances give
+
+```math
+ \|W_x-\sigma_x I\|\le2\epsilon_0,\qquad
+ \sigma_x\mathcal H_x\succeq cI.
+```
+
+The second inequality follows by expanding
+$`(W_x-\sigma_x I)^\dagger(W_x-\sigma_x I)=2I-2\sigma_x\mathcal H_x`$.
+The common source phase cancels exactly. The proof only needs a fixed
+$`\epsilon_0\lt1/\sqrt2`$, so that $`c\gt0`$; the displayed
+smaller tolerance also covers the retained vote alternative below.
+
+Jordan's decomposition for two reflections applies separately inside
+each preserved x-sector. On a two-dimensional block, a mathematical
+basis change puts S at Z and W at
+$`\lambda I+i\sqrt{1-\lambda^2}X`$, with
+$`\lambda\in[-1,1]`$ and $`\sigma_x\lambda\ge c`$.
+Each reflection has eigenvalues plus and minus one on such a block,
+so W and every phase rotation have determinant one there.
+This basis change is used only in the proof. The physical phase rotation
+is always $`e^{i\phi S}=e^{i\phi X_t}`$ on the same arbitrary signal.
+
+For odd $`k\ge1`$, define the explicit majority polynomial
+
+```math
+ p_k(\lambda)=
+ 2\sum_{j=(k+1)/2}^{k}\binom{k}{j}
+   \left(\frac{1+\lambda}{2}\right)^j
+   \left(\frac{1-\lambda}{2}\right)^{k-j}-1.
+```
+
+It is a real odd degree-k polynomial, bounded by one in absolute value
+on $`[-1,1]`$, with $`p_k(\pm1)=\pm1`$. Viewing the sum as a
+binomial majority and applying the bounded-sum tail estimate gives
+
+```math
+ 1-\sigma p_k(\lambda)\le2e^{-kc^2/2}
+ \quad\hbox{whenever}\quad \sigma\lambda\ge c,
+ \qquad \sigma\in\{-1,1\}.
+```
+
+The real-polynomial quantum signal processing (QSP) theorem of
+Gilyén–Su–Low–Wiebe, [F55](../../docs/reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries),
+v1 Theorems 3–5 and Corollary 10, pp. 8–14, supplies a common list
+$`\phi_0,\ldots,\phi_k`$ for the operator-order word
+
+```math
+ U_\Phi=e^{i\phi_0S}
+          \prod_{j=1}^{k}\left(W e^{i\phi_jS}\right).
+```
+
+The rightmost factor acts first. On each two-dimensional block this is
+an SU(2) matrix with upper-left polynomial P satisfying
+$`\mathrm{Re}\,P=p_k`$. Every such matrix has Hermitian part
+$`(\mathrm{Re}\,P)I`$, so the same physical word satisfies
+
+```math
+ \tfrac12(U_\Phi+U_\Phi^\dagger)=p_k(\mathcal H).
+```
+
+No circuit extracts a real part or projects onto a chosen block: this
+identity controls the whole unitary on every block. The phase list is
+common to all addresses and all dirty eigenvectors. On a one-dimensional
+block write $`S=s`$, $`R=r`$, where $`s,r\in\{-1,1\}`$, and
+$`\lambda=rs\in\{-1,1\}`$. The physical word is
+$`\lambda^k e^{is\sum_j\phi_j}`$. QSP at the endpoints gives
+$`P(\lambda)=\lambda^k e^{i\sum_j\phi_j}`$, so its Hermitian
+part is again $`p_k(\lambda)`$. Since k is odd and
+$`p_k(\pm1)=\pm1`$, exact phase factorization gives the literal
+endpoint signs on both choices of s.
+
+For a certified finite phase list, it suffices that its realized
+polynomial $`\widehat p=\mathrm{Re}\,P`$ obey
+$`\|\widehat p-p_k\|_{[-1,1]}\le\delta`$. The constructive
+factorization in the cited theorem and corollary permits any positive
+delta. An arbitrarily fine certified phase list is sufficient; no
+classical runtime bound is needed here. The exact unitary associated
+with that list still has Hermitian part $`\widehat p(\mathcal H)`$, including
+the one-dimensional blocks. Therefore
+
+```math
+ \|U_{\Phi,x}-\sigma_x I\|^2
+ =2\|I-\sigma_x\widehat p(\mathcal H_x)\|
+ \le4e^{-kc^2/2}+2\delta.
+```
+
+For requested $`0\lt\tau\le1/2`$, take
+$`\delta=\tau^2/16`$ and the least odd
+$`k\ge(4/c^2)\ln(8/\tau)`$. The last bound is at most
+$`3\tau^2/16`$, so phase factorization and polynomial approximation
+together contribute less than $`\tau/2`$ in operator norm.
+
+**Native phase rotations and complete ledger.** Compile each of the
+$`k+1`$ rotations $`e^{i\phi_jX_t}`$ at literal operator error
+$`\tau/[2(k+1)]`$ using the phase-calibrated one-qubit synthesis
+primitive [F5](../../docs/reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries),
+Lemma 2.3. The summed rotation error is at most $`\tau/2`$. Thus the
+emitted word has full error at most tau against
+$`D_f\otimes I_{t,\mathrm{work}}`$, including every dirty input and
+external reference. All source appearances use the same actual V or
+its actual adjoint; their original constant error establishes the
+spectral gap and is not summed afresh over the QSP repetitions.
+
+Let $`T_V,G_V,d_V`$ be common bounds for V and its actual inverse.
+There are exactly $`2k`$ such appearances and $`2k`$ Pauli X gates.
+The actual native inverse of the full word is charged in the same
+positive-S alphabet. Common forward/inverse bounds are
+
+```math
+\begin{aligned}
+ T_\tau&\le2kT_V+O\!\left(k\log\frac{k+1}{\tau}\right),\\
+ G_\tau&\le2kG_V+O\!\left(k\log\frac{k+1}{\tau}\right),\\
+ D_\tau&\le2kd_V+O\!\left(k\log\frac{k+1}{\tau}\right),\\
+ w_\tau&\le w_V+1,\qquad a_{\mathrm{clean}}=0.
+\end{aligned}
+```
+
+Here $`w_V`$ excludes x and the signal t but includes all promoted
+work; t becomes the one additional dirty qubit of the final scalar.
+One pool is reused sequentially throughout. Since
+$`k=O(1+\log(1/\tau))`$, the local synthesis term is
+$`O((1+\log(1/\tau))^2)`$. No controlled V, initialized signal,
+measurement or postselection is used. This is one degree-k QSP word
+factorized from the original pair of reflections; it does not assume
+that an amplified cubic word still obeys $`SUS=U^\dagger`$.
+
+### Substitution in the frame recurrence
+
+For each early stage of remaining height m, request
+$`\tau_m=c_L/(1+h(m))^2`$, with the function h of §1 and a
+sufficiently small fixed $`c_L=O(2^{-L})`$. There are constantly many
+chronological source slots per stage and bounded multiplicity per h,
+so the added errors sum within a fixed share of the final tolerance.
+The amplified degree is $`k_m=O_L(\log(h(m)+2))`$.
+
+The early-stage arity margin $`r-C'\chi`$ in §1 absorbs these
+logarithmic call factors in all volume terms after increasing its
+fixed constant A. In particular, the inherited factor
+$`2^{-4\chi(m)}`$ still bounds summable T-count, Clifford-count
+and volume-depth contributions after absorbing $`k_m`$.
+The one lifted input and the fixed promotion reservation only change
+allocation constants. All other local gates total at most
+$`O_L(H_n\log^2(H_n+2))=O_L(\log\log(n+4))`$, with one shared
+dirty pool and no new clean supply.
+
+The initial full-address sign words, the bounded-height terminal and
+the complex phase words each have constantly many source occurrences.
+Assign them fixed L-dependent tolerances, independently of n. Their
+amplification therefore has constant overhead, preserving the
+$`O_L(\sqrt N+N/b)`$ T-count and $`O_L(N)`$ Clifford bound at
+full scalar volume. Shrinking every later tolerance according only to
+its chronological stage number would fail this accounting at the
+full-volume terminal.
+
+Finally,
+$`\sum_m k_m d(n+O_L(1))=O_L(H_n\log(H_n+2)d(n+O_L(1)))`$.
+Together with §1's short-stage sum this proves the displayed bound.
+The original small-dimension and narrow-width R96 fallbacks retain the
+literal dirty thresholds and the sole final clean qubit. A source with
+a sufficiently strong explicit precision-uniform ledger can still be
+called directly; the fixed-error amplification uses its separate exact
+address-sector premise.
+
+### Retained vote alternative and the address condition
+
+The earlier vote construction remains an elementary, less efficient
+proof under the same exact address-preservation premise. Convert a
+lifted sign to an XOR, record odd k votes in fresh zero bits with the
+same dirty core, phase their majority and reverse the actual recording.
+At fixed x each wrong-record Kraus operator has norm at most
+$`\epsilon_0`$; orthogonality of records bounds wrong-majority
+squared mass by $`2^k\epsilon_0^k`$. Its clean-code error is at most
+$`2(2\epsilon_0)^{k/2}`$. Applying this to $`u f(x)`$, promoting
+the votes at error factor $`8\cdot2^k`$ and taking the Z echo gives
+full error $`32(\sqrt{8\epsilon_0})^k`$. This uses at most two
+lifted address bits and polynomial overhead in $`1/\tau`$; the QSP
+construction supersedes that precision cost in the frame recurrence.
+
+Generic coherent address motion does not satisfy either amplification
+premise. For the vote example, tilt the $`|1\rangle`$ projector by
+angle theta and control every vote XOR on that same tilted projector.
+Each call has error $`2|\sin\theta|`$, but every odd majority returns
+the same tilted phase. For QSP, the separation into the prescribed
+$`\sigma_x`$ sectors similarly requires their exact preservation;
+spectral rounding alone does not correct rotated address eigenspaces.
 
 ## 4. A paid matrix-vector product and the missing readout
 

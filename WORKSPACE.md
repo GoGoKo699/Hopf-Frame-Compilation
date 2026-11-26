@@ -15,9 +15,9 @@ the question changes; proofs and route assessments stay in their linked homes.
 ## Current checkpoint
 
 The 26 November checkpoint starts from
-[263792b](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/263792b9f9c9cc012c0146cb9593929da2346d65),
-the merged [PR #272](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/272).
-The [shear-readout integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fscalar-shear-readout)
+[c0e5192](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/c0e51927884a3ded3f9d6bb5f0771cb50b48a3e3),
+the merged [PR #273](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/273).
+The [scalar-precision integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fscalar-qsp-precision)
 identify the reviewed tree for this continuation.
 The active question is how many sequential native T layers a compiler needs
 when it knows the table in advance and receives its address in superposition.
@@ -51,7 +51,11 @@ uses prescribed sign tables across widths with an iterated-logarithm cost.
 A doubly logarithmic scalar source suffices for sublogarithmic full-frame
 depth at fixed precision. The proof charges its terminal, inverse and work.
 The [word-query accuracy result](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-and the scalar amplification argument have different source hypotheses.
+and the [scalar precision wrapper](research/depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
+have different source hypotheses. For a scalar source that preserves the
+original computational address sectors exactly on every physical input,
+fixed sufficiently small error now suffices with logarithmic amplification
+cost in the requested inverse error and no additional clean qubits.
 
 **Resumption question.** Can a compiler read a binary entry of a known
 self-inverse CNOT shear as a scalar sign on a coherent address, returning
@@ -64,7 +68,11 @@ coherently indexed Pauli commutator or another complete scalar entry readout.
 Insert its actual forward/reverse costs into the scalar-to-frame recurrence;
 the assembled target is $`o(\log n)`$ at square-root width. A source with
 $`d(a)=O(\log\log(a+4))`$ and the stated simultaneous budgets suffices.
-Retain the transfer's exactness or precision/amplification hypotheses.
+Use the paid pair-reflection wrapper for a fixed-error source with that exact
+sector preservation. If a candidate moves the address at completed boundaries,
+retain a separate precision-uniform ledger; the wrapper does not remove that
+error. The remaining task is the native source itself, rather than a growing
+clean vote bank or another precision interface.
 
 The marked feedback-edge pencil remains an alternative encoding with a paid
 constant-depth matrix–vector XOR. Its [thin invariant-projector readout](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
