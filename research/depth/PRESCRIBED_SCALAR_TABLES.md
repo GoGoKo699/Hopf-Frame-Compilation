@@ -179,7 +179,9 @@ For the restricted self-inverse matrices in §5, a direct four-call reduction
 replaces this density criterion. It works for every table, including singular
 crossing matrices, and also has a complete approximate-source guarantee.
 
-## 3. Precision and completed address return
+<a id="precision-and-completed-address-return"></a>
+
+## 3. Precision and full-space sign return
 
 For sources at physical isometry error $`\epsilon`$, including
 arbitrary leakage, the same density correction has error at most
@@ -205,8 +207,10 @@ same fixed-L allocations and error as §1, its conditional frame bound is
 \end{aligned}
 ```
 
-It retains one final clean qubit. A shallow fixed-accuracy scalar source
-is still a premise; the unconditional frontier is unchanged.
+It retains one final clean qubit. The full-space signed-gap condition
+below is a weaker sufficient premise for the same amplification: it
+allows nonflat spectra and completed address motion. A qualifying native
+source is still a premise; the unconditional frontier is unchanged.
 
 <a id="pair-reflection-scalar-amplification"></a>
 
@@ -378,6 +382,76 @@ measurement or postselection is used. This is one degree-k QSP word
 factorized from the original pair of reflections; it does not assume
 that an amplified cubic word still obeys $`SUS=U^\dagger`$.
 
+<a id="full-space-signed-gap-source"></a>
+
+### A full-space signed gap suffices
+
+The amplification does not require V to approximate $`D_{tf}`$, or
+to preserve every address. Let V be an actual zero-clean native word
+on an a-bit address, an arbitrary signal t and arbitrary work. Define
+S, R, W and $`\mathcal H`$ as above. For
+$`D=D_f\otimes I_{t,\mathrm{work}}`$, it suffices that
+
+```math
+ \mathrm{sgn}(\mathcal H)=D,\qquad
+ |\mathcal H|\succeq\gamma I,\qquad 0\lt\gamma\le1.
+```
+
+These are full-physical-space statements. Equivalently, D commutes
+with $`\mathcal H`$ and $`D\mathcal H\succeq\gamma I`$.
+The positive and negative eigenspaces must be the prescribed Boolean
+sign sectors, but magnitudes within them can vary with address and work.
+Neither V nor its actual inverse has to preserve those sectors. A gap
+only on an initialized code does not establish this interface; the
+earlier bounded-clean XOR promotion does not automatically promote a
+raw signed-gap promise.
+
+**Whole-unitary proof.** The reflection identities give
+$`[\mathcal H,S]=[\mathcal H,R]=0`$. Consequently D, as a
+spectral function of $`\mathcal H`$, commutes with S, R and every
+QSP word $`U_\Phi`$. Jordan's two-reflection decomposition and the
+one-dimensional endpoint argument above apply on the entire physical
+space, without selecting computational address sectors. Thus
+
+```math
+ \tfrac12(U_\Phi+U_\Phi^\dagger)=\widehat p(\mathcal H),
+ \qquad
+ (U_\Phi-D)^\dagger(U_\Phi-D)
+   =2\bigl(I-D\widehat p(\mathcal H)\bigr).
+```
+
+For $`0\lt\tau\le1/2`$, the bounded odd sign polynomial of
+[F55](../../docs/reference/SOURCE_CATALOGUE.md#5-fault-tolerant-sources-and-contribution-boundaries),
+v1 Lemma 25, has degree
+$`q=O(\gamma^{-1}\log(1/\tau))`$, is bounded by one on
+$`[-1,1]`$, and approximates the sign function to
+$`\tau^2/16`$ on $`[-1,-\gamma]\cup[\gamma,1]`$.
+Certify its QSP factorization to uniform error $`\tau^2/16`$.
+The displayed identity then bounds the whole-unitary error by
+$`\tau/2`$. Endpoint values need only have that accuracy; no
+postselection or scalar real-part extraction is performed.
+Compile the physical rotations $`e^{i\phi X_t}`$ with total
+literal error at most $`\tau/2`$, as above.
+
+The same forward/inverse ledger holds with k replaced by q:
+$`2q`$ actual V/V-adjoint appearances, local synthesis cost
+$`O(q\log((q+1)/\tau))`$ in each gate/depth bound, one reused
+arbitrary signal and no clean work. The explicit majority polynomial
+also works, with $`O(\gamma^{-2}\log(1/\tau))`$ degree; Lemma 25
+gives the sharper gap dependence. For fixed positive gamma, both give
+the logarithmic accuracy cost used in the frame recurrence.
+
+This is a more flexible algebraic source target, not a construction of
+it. Once supplied, a constant gap yields a complete fixed-accuracy scalar
+with constant source-call overhead. If gamma decreases with arity, the
+factor $`\gamma^{-1}`$ must be charged even at fixed final accuracy.
+In particular, multiplying raw $`O(2^{a/2})`$ T and $`O(2^a)`$
+Clifford budgets by an unbounded factor does not preserve the desired
+full-volume counts without additional source savings. The
+[two-source-band screen](FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
+permits arbitrary width and address motion, and forces an exponentially
+small gap for a single marked table and its Pauli-balanced lift.
+
 ### Substitution in the frame recurrence
 
 For each early stage of remaining height m, request
@@ -417,8 +491,65 @@ Together with §1's short-stage sum this proves the displayed bound.
 The original small-dimension and narrow-width R96 fallbacks retain the
 literal dirty thresholds and the sole final clean qubit. A source with
 a sufficiently strong explicit precision-uniform ledger can still be
-called directly; the fixed-error amplification uses its separate exact
-address-sector premise.
+called directly. The fixed-error scalar premise above or a zero-clean
+full-space signed gap with fixed positive gamma supplies the same
+logarithmic amplification factor.
+
+<a id="square-root-width-signed-gap-transfer"></a>
+
+### The first improvement needs only square-root source width
+
+An all-width source is unnecessary for a first general improvement at
+square-root dirty width. Suppose that for every prescribed a-bit table
+a terminating classical compiler supplies the signed-gap source above,
+with a uniform constant $`\gamma\gt0`$ and simultaneous bounds
+
+```math
+ T_V,w_V=O(2^{a/2}),\qquad G_V=O(2^a),\qquad
+ d_V=O(d(a)),
+```
+
+where $`d\ge1`$ is nondecreasing and the bounds include the actual
+inverse. Then, for every fixed $`L\ge6`$, a sufficiently large fixed
+$`K_L`$ gives a one-clean general frame compiler at
+$`b=\lceil K_L\sqrt N\rceil`$, complete error $`2^{-L}`$, and
+
+```math
+ \begin{aligned}
+ T&=O_L(\sqrt N),\qquad G=O_L(N),\\
+ D_T&=O_L\!\left(\log\log(n+4)
+       +H_n\log(H_n+2)d(n+C_L)\right),
+ \qquad H_n=1+\log^*(n+2).
+ \end{aligned}
+```
+
+Here $`C_L`$ is a fixed arity allowance. In the early stages of §1,
+the source arity is at most $`n-(A-C')\chi(m)+O_L(1)`$ and
+$`q_m=O_L(\log(h(m)+2))`$. Increasing A makes both
+$`\sum_m q_m2^{a_m/2}=O_L(\sqrt N)`$ and
+$`\sum_m q_m2^{a_m}=O_L(N)`$. The full-volume initial, terminal
+and complex-phase calls have fixed L-dependent tolerances and arity at
+most $`n+C_L`$, so there are only constantly many of them at constant
+amplification overhead. The largest source fits a fixed multiple of
+$`\sqrt N`$ dirty wires. The concurrently live routing and metadata
+banks cost $`N^{o(1)}`$; choose $`K_L`$ to hold both and reuse the
+source pool sequentially. Finite dimensions use the R96 fallback.
+This proves the stated width and count bounds without postulating a
+source at narrower allocations. It does not establish an all-width
+interpolation theorem.
+
+The precise sufficient depth target is
+
+```math
+ (1+\log^*(a+2))\log(3+\log^*(a+2))\,d(a)=o(\log a).
+```
+
+For example, $`d(a)=O(\log a/\log\log a)`$ already suffices;
+a doubly logarithmic source is a stronger goal than necessary.
+An unspecified $`d=o(\log a)`$ does not by itself control the
+iterated-logarithm multiplier. Even a constant-depth source leaves
+the current transfer's $`O_L(\log\log n)`$ routing/recursion term;
+this first improvement would not settle optimal frame depth.
 
 ### Retained vote alternative and the address condition
 
@@ -435,13 +566,15 @@ full error $`32(\sqrt{8\epsilon_0})^k`$. This uses at most two
 lifted address bits and polynomial overhead in $`1/\tau`$; the QSP
 construction supersedes that precision cost in the frame recurrence.
 
-Generic coherent address motion does not satisfy either amplification
+Generic coherent address motion need not satisfy the signed-gap
 premise. For the vote example, tilt the $`|1\rangle`$ projector by
 angle theta and control every vote XOR on that same tilted projector.
 Each call has error $`2|\sin\theta|`$, but every odd majority returns
-the same tilted phase. For QSP, the separation into the prescribed
-$`\sigma_x`$ sectors similarly requires their exact preservation;
-spectral rounding alone does not correct rotated address eigenspaces.
+the same tilted phase. For QSP, spectral rounding similarly leaves
+the rotated sign eigenspaces unchanged. The exact condition is the
+prescribed sign of $`\mathcal H`$, rather than completed preservation
+of every address by V. Motion within a correct sign sector, or motion
+that cancels from the two-reflection signal, is allowed.
 
 ## 4. A paid matrix-vector product and the missing readout
 
@@ -595,6 +728,13 @@ completed wrapper does too, so the amplification hypothesis of §3 is
 retained. Generic initialized-isometry approximation alone still does not
 establish that stronger hypothesis.
 
+Alternatively, a zero-clean full-space signed-gap source for each
+$`h_C`$ can first be amplified to a complete entry scalar at error
+$`\tau/4`$, then used in the four-call reduction. Constant source
+gap preserves the square-root-width corollary of §3 as well. This
+argument does not assume that the product of four raw gapped signals
+retains the required sign or a gap.
+
 **The unpaid operation.** Applying the Clifford shear to $`2m`$ physical
 bank bits does not implement its scalar entry table on $`2\log_2(2m)`$
 binary address bits. For fixed indices, conjugating $`X_{Z,v}`$ by the
@@ -671,4 +811,10 @@ four-call extraction on every two-bit table, selected larger tables and an
 odd-arity table with arbitrary padding. A perturbed source fixture includes
 address motion, nonzero clean leakage, arbitrary dirty inputs and a fixed
 phase, and checks the actual-adjoint error bound. It is not a native emitter.
+The QSP fixtures check the full dirty-space polynomial, literal endpoints
+and the failure to correct a tilted sign basis. A nonflat gapped fixture
+also moves a completed address across sign sectors while its two-reflection
+operator has the correct sign and mixes addresses within each sector.
+Its rotations are analytic matrices; the theorem separately pays native
+synthesis and every actual inverse.
 The asymptotic packing, density, rank and frame bounds above are analytic.

@@ -1,13 +1,18 @@
 """Finite fixtures for the four-band scalar gap and linear interface bounds."""
 from itertools import combinations, product
-from math import comb, cos, inf, pi, sin, sqrt
+from math import comb, cos, gcd, inf, pi, sin, sqrt
 import unittest
 
 import numpy as np
 
 from tests.test_four_layer_crossing_rank import _binary_basis, _weighted_phase_fixture
+from tests.test_dirty_indicator_depth import (
+    _ccz_two_layers, _exact_phase_action, _parity_basis,
+)
 from tests.test_one_band_walsh_blocks import _affine_spaces
-from tests.test_operator_source_compiler import I2, X, Y, Z, _pauli
+from tests.test_operator_source_compiler import I2, X, Y, Z, _pauli, _word_matrix
+from tests.test_outer_axis_normalizer import _tableau
+from tests.test_t_depth import _inverse, _word
 
 
 def _valuation(vector):
@@ -150,3 +155,123 @@ class NativeGapRefinementTests(unittest.TestCase):
             self.assertLessEqual(len(_binary_basis(form)), len(_binary_basis(rows)))
         self.assertEqual(sum(6**i for i in range(4)), 259)
         self.assertEqual(sum(126**i for i in range(64)), (126**64 - 1) // 125)
+
+
+class TwoBandSignedGapTests(unittest.TestCase):
+    def test_full_native_normal_form_and_sharp_sparse_fraction(self):
+        # This actual two-band CCZ returns its arbitrary helper. The native
+        # Clifford suffix supplies a common omega phase, so a forward call
+        # cannot silently replace the actual adjoint in the pair signal.
+        width = 4
+        schedule = _ccz_two_layers(0, 1, 2, 3)
+        phase_word = [('S', 2), ('H', 2)] * 3
+        c0 = _word_matrix(width, schedule[0][1])
+        t1 = _word_matrix(width, schedule[1][1])
+        c1 = _word_matrix(width, schedule[2][1] + schedule[3][1])
+        t2 = _word_matrix(width, schedule[4][1])
+        c2 = _word_matrix(width, schedule[5][1] + phase_word)
+        source = _word_matrix(width, _word(schedule) + phase_word)
+        self.assertEqual(sum(kind == 'T' for kind, _ in schedule), 2)
+        np.testing.assert_allclose(source, c2 @ t2 @ c1 @ t1 @ c0,
+                                   atol=3e-13)
+        signal = _pauli(width, {2: X})
+        j = t1 @ c0
+        a = t2.conj().T @ c2.conj().T @ signal @ c2 @ t2
+        b = j @ signal @ j.conj().T
+        k = c1.conj().T @ a @ c1 @ b
+        word = source.conj().T @ signal @ source @ signal
+        expected = np.diag([(-1) ** ((z & 1) * ((z >> 1) & 1))
+                            for z in range(1 << width)])
+        np.testing.assert_allclose(word, expected, atol=3e-13)
+        np.testing.assert_allclose(word, j.conj().T @ k @ j, atol=3e-13)
+        self.assertGreater(np.linalg.norm(source @ signal @ source @ signal
+                                         - expected, 2), 1)
+        # Test the spectral statement on every logical/helper column, not
+        # only a selected clean sector or a trace of the intended table.
+        symplectic, _ = _tableau(k, width)
+        difference = (symplectic + np.eye(2 * width, dtype=int)) % 2
+        rows = [sum(int(bit) << i for i, bit in enumerate(row))
+                for row in difference]
+        rank = len(_binary_basis(rows))
+        tau = np.trace(k) / (1 << width)
+        spectrum = np.linalg.eigvalsh((k + k.conj().T) / 2)
+        epsilon = np.count_nonzero(spectrum < 0) / len(spectrum)
+        gamma = min(abs(spectrum))
+        self.assertEqual(rank, 2)
+        self.assertAlmostEqual(abs(tau) ** 2, 2 ** -rank)
+        self.assertEqual(epsilon, 0.25)
+        self.assertAlmostEqual(gamma, 1)
+        self.assertAlmostEqual(gamma, sqrt(epsilon) / (1 - sqrt(epsilon)))
+        # The conservative Pauli-balanced rounding threshold really starts
+        # at five marked address bits.
+        clifford_gap = sqrt(2 - sqrt(2))
+        self.assertLess(4 * sqrt(2 ** -5), clifford_gap)
+        self.assertGreaterEqual(4 * sqrt(2 ** -4), clifford_gap)
+
+    def test_next_band_pair_source_has_a_real_gap_outside_two_band_bound(self):
+        # A one-band Pauli image realizes CNOT(c,y1) H(q); a Clifford bank
+        # change turns that CNOT into the full fanout. Both U and its actual
+        # inverse are paid below, giving a three-band raw source.
+        width, m, q = 5, 3, 4
+        basis = _parity_basis([0, 1, q], [5, 6, 7])
+        pre = [('S', q)] * 3 + [('H', q)] + basis
+        post = (list(reversed(basis)) + [('H', q), ('S', q), ('H', 1)]
+                + [('CX', 1, wire) for wire in range(2, m + 1)])
+        u_schedule = [('C', pre),
+                      ('T', [('TDG', 0), ('TDG', 1), ('T', q)]),
+                      ('C', post)]
+        e_schedule = [('T', [('T', wire) for wire in range(1, m + 1)])]
+        source_schedule = u_schedule + e_schedule + _inverse(u_schedule)
+        self.assertEqual(sum(kind == 'T' for kind, _ in source_schedule), 3)
+        u = _word_matrix(width, _word(u_schedule))
+        e = _word_matrix(width, _word(e_schedule))
+        c = _word_matrix(width, [('CX', 0, wire)
+                                 for wire in range(1, m + 1)])
+        signal = _pauli(width, {q: X})
+        expected_image = c @ _pauli(width, {q: (X + Z) / sqrt(2)})
+        np.testing.assert_allclose(u @ signal @ u.conj().T,
+                                   expected_image, atol=4e-13)
+        source = _word_matrix(width, _word(source_schedule))
+        k = e.conj().T @ c @ e @ c
+        word = source.conj().T @ signal @ source @ signal
+        np.testing.assert_allclose(word, u.conj().T @ k @ u, atol=4e-13)
+        spectrum = np.linalg.eigvalsh((word + word.conj().T) / 2)
+        epsilon = np.count_nonzero(spectrum < 0) / len(spectrum)
+        gamma = min(abs(spectrum))
+        self.assertEqual(epsilon, 1 / 8)
+        self.assertAlmostEqual(gamma, 1 / sqrt(2))
+        self.assertGreater(gamma, sqrt(epsilon) / (1 - sqrt(epsilon)))
+        self.assertAlmostEqual(np.trace(k).real / len(k),
+                               0.5 + 2 ** (-m / 2 - 1))
+
+    def test_gapped_next_band_trace_does_not_bound_effective_spectral_width(self):
+        # Count the exact whole-space spectrum without allocating matrices
+        # of dimension 2**(m+1). The small emitted word independently checks
+        # the diagonal action underlying the binomial multiplicities.
+        m = 9
+        fanout = [('CX', 0, wire) for wire in range(1, m + 1)]
+        word = (fanout + [('T', wire) for wire in range(1, m + 1)]
+                + fanout + [('TDG', wire) for wire in range(1, m + 1)])
+        for z in range(1 << (m + 1)):
+            expected = ((z & 1) * (m - 2 * (z >> 1).bit_count())) % 8
+            self.assertEqual(_exact_phase_action(z, word), (z, expected))
+        for m in (9, 17):
+            residues = [sum(comb(m, weight) for weight in range(m + 1)
+                            if weight % 4 == residue) for residue in range(4)]
+            high, low = 2 ** (m - 2), 2 ** ((m - 3) // 2)
+            self.assertEqual(residues, [high + low, high + low,
+                                        high - low, high - low])
+            multiplicities = [2 ** m] + residues
+            common = gcd(*multiplicities)
+            self.assertEqual(common, low)
+            effective_bits = m + 1 - (common.bit_length() - 1)
+            self.assertEqual(effective_bits, (m + 5) // 2)
+            dimension = 2 ** (m + 1)
+            eigenvalues = np.exp(1j * pi * (1 - 2 * np.arange(4)) / 4)
+            tau = (2 ** m + sum(count * value for count, value
+                               in zip(residues, eigenvalues))) / dimension
+            self.assertAlmostEqual(tau.real, 0.5 + 2 ** (-m / 2 - 1))
+            self.assertAlmostEqual(tau.imag, 0)
+            self.assertAlmostEqual(min(abs(eigenvalues.real)), 1 / sqrt(2))
+            self.assertEqual((residues[2] + residues[3]) / dimension,
+                             0.25 - 2 ** (-(m + 3) / 2))

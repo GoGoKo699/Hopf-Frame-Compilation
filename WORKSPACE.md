@@ -15,9 +15,9 @@ the question changes; proofs and route assessments stay in their linked homes.
 ## Current checkpoint
 
 The 26 November checkpoint starts from
-[c0e5192](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/c0e51927884a3ded3f9d6bb5f0771cb50b48a3e3),
-the merged [PR #273](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/273).
-The [scalar-precision integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fscalar-qsp-precision)
+[d950d49](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/d950d4906b81ec8a58b3564329599920deaa6409),
+the merged [PR #274](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/274).
+The [signed-gap integration review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Ffull-space-signed-gap)
 identify the reviewed tree for this continuation.
 The active question is how many sequential native T layers a compiler needs
 when it knows the table in advance and receives its address in superposition.
@@ -48,31 +48,54 @@ every general frame compiler at the corresponding allocation.
 In the constructive direction, [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 accepts a complete **word** query. A separate [scalar transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md)
 uses prescribed sign tables across widths with an iterated-logarithm cost.
-A doubly logarithmic scalar source suffices for sublogarithmic full-frame
-depth at fixed precision. The proof charges its terminal, inverse and work.
+A sufficiently sublogarithmic scalar source improves full-frame depth
+at fixed precision. The proof charges its terminal, inverse and work.
 The [word-query accuracy result](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
 and the [scalar precision wrapper](research/depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
-have different source hypotheses. For a scalar source that preserves the
-original computational address sectors exactly on every physical input,
-fixed sufficiently small error now suffices with logarithmic amplification
-cost in the requested inverse error and no additional clean qubits.
+have different source hypotheses. A fixed-error scalar source with exact
+physical address preservation is one sufficient premise. More generally,
+a [full-space signed gap](research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
+permits nonflat spectra and completed address motion, with logarithmic
+amplification cost and no additional clean qubits.
 
-**Resumption question.** Can a compiler read a binary entry of a known
-self-inverse CNOT shear as a scalar sign on a coherent address, returning
-arbitrary borrowed work? [Four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
-makes this restricted source sufficient for every prescribed table, with
-two or three additional dirty address bits and complete error at most four
-times source error. Invertibility, a cheap inverse and bounded clean
-promotion are already available. The remaining operation is a joint
-coherently indexed Pauli commutator or another complete scalar entry readout.
-Insert its actual forward/reverse costs into the scalar-to-frame recurrence;
-the assembled target is $`o(\log n)`$ at square-root width. A source with
-$`d(a)=O(\log\log(a+4))`$ and the stated simultaneous budgets suffices.
-Use the paid pair-reflection wrapper for a fixed-error source with that exact
-sector preservation. If a candidate moves the address at completed boundaries,
-retain a separate precision-uniform ledger; the wrapper does not remove that
-error. The remaining task is the native source itself, rather than a growing
-clean vote bank or another precision interface.
+**Resumption question.** Can a genuinely joint native word V turn a known
+table f into a constant full-space signed gap? For an arbitrary signal t,
+set $`S=X_t`$, $`R=V^\dagger S V`$ and
+$`\mathcal H=(RS+SR)/2`$. Require
+$`\mathrm{sgn}(\mathcal H)=D_f\otimes I`$ and
+$`|\mathcal H|\succeq\gamma I`$ for a uniform $`\gamma\gt0`$.
+Pay V and its actual reverse with zero clean inputs, T-count and dirty
+width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$.
+The [square-root-width transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
+then needs only
+$`(1+\log^*a)\log(3+\log^*a)d(a)=o(\log a)`$.
+Even $`d(a)=O(\log a/\log\log a)`$ suffices for a first general
+improvement at $`b=K_L\sqrt N`$. An all-width source theorem can wait.
+
+The [two-source-band screen](research/depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
+forces an exponentially small gap for a single marked table and its
+Pauli-balanced lift, independent of width or address motion. A search
+within this Pauli-signal interface must therefore move beyond two raw
+T bands and use nontrivial joint transport. The
+[four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
+still makes scalar entry readout for known self-inverse CNOT shears a
+sufficient concrete target. Amplify each correct full-space entry gap
+before applying that reduction; the four raw gapped signals need not
+themselves compose into a gapped signal.
+
+One concrete next word is $`V_C=U_C^\dagger E_CU_C`$, with U and E each
+one native T band with paid Clifford frames. Derive its full prescribed
+sign identity for arbitrary C, using genuinely nonmonomial transport of
+the middle axes. The three-band example in the screen proves that this
+family escapes the two-band inequality; it does not supply that identity.
+
+The parallel lower-bound question remains unrestricted returned-query
+depth with arbitrary Clifford interlayers. A Clifford spectral-volume
+argument now screens two-band sources, but its bounded-active-spectrum
+step does not iterate to additional native bands. A growing-depth bound
+needs a new invariant. The immediate research deliverable is an all-size
+native source meeting the displayed budgets, or such an invariant;
+the precision wrapper and fixed-layer screens do not supply either.
 
 The marked feedback-edge pencil remains an alternative encoding with a paid
 constant-depth matrix–vector XOR. Its [thin invariant-projector readout](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)

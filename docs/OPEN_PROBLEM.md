@@ -141,8 +141,8 @@ not in competing current-frontier narratives.
 For $`q=n^{o(1)}`$, allow arbitrary rotations on the upper q levels. Inside
 each resulting prefix subtree, require a shared actual rotation at each lower
 depth. At fixed precision and square-root dirty width, the complete frame
-has $`D_T=O_L(\log(q+\log(n+4)+2))=o(\log n)`$ with one clean qubit,
-$`T=O_L(\sqrt N)`$, $`G=O_L(N)`$ and full return. Polylogarithmic q
+has $`D_T=O_L(\log(q+\log(n+4)+2))`$, hence $`o(\log n)`$, with
+one clean qubit, $`T=O_L(\sqrt N)`$, $`G=O_L(N)`$ and full return. Polylogarithmic q
 gives doubly logarithmic depth. The general family permits independent
 deepest-level entries. [Proof and related families](../research/depth/PREFIX_ROTATION_PROFILES.md)
 
@@ -175,6 +175,28 @@ The same one-clean allocation, optimal-order T-count and linear Clifford
 budget hold. The wrapper uses the actual source and its inverse, with no
 initialized vote bank or controlled source. This improves the accuracy cost
 of the transfer; it supplies no shallow scalar source and does not change R96.
+
+A weaker algebraic target is a [full-space signed gap](../research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source):
+for zero-clean V and $`S=X_t`$, the Hermitian part of
+$`V^\dagger S V S`$ has sign $`D_f\otimes I`$ and absolute
+eigenvalues at least a uniform $`\gamma\gt0`$. Its magnitudes may
+vary and V may move the address. For a first improvement at
+$`b=\lceil K_L\sqrt N\rceil`$, it suffices to construct this source
+only with T-count and dirty width $`O(2^{a/2})`$, Clifford count
+$`O(2^a)`$ and depth d(a). The
+[square-root-width corollary](../research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
+gives $`T=O_L(\sqrt N)`$, $`G=O_L(N)`$ and
+
+```math
+D_T=O_L(\log\log(n+4)+h\log(h+2)d(n+C_L)).
+```
+
+Thus $`d(a)=O(\log a/\log\log a)`$ already suffices for
+$`o(\log n)`$ frame depth. This is conditional, does not interpolate
+to every width, and does not establish optimal depth even for a
+constant-depth source. The [two-band gap screen](../research/depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
+rules out a constant-gap source with at most two raw T bands for all
+tables; it is not a general growing-depth lower bound.
 
 It suffices to construct scalar entry signs for the fixed binary shears
 $`A_C=\left(\begin{smallmatrix}I&C\\0&I\end{smallmatrix}\right)`$.
