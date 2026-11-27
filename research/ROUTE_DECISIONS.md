@@ -225,6 +225,7 @@ restrictions and original fixtures.
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
 | [Programmed rotation depth](depth/PROGRAMMED_ROTATION_DEPTH.md) | Exact half-amplitude dyadic rotations, shared word loading and a two-basis Pauli echo remove the linear precision depth through $`L\le cn`$. The standalone $`2^{O(L)}`$ selector volume fits the global budgets in this range. | Reduce the selector and local catalogue volume to extend the precision range. Long table loading still has logarithmic depth. |
+| [Unrestricted precision count–depth tradeoff](depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) | R103 forces linear T-depth at linear T-count and fixed clean count in the precision-dominated regime. Arbitrary Clifford interlayers, address motion, dirty work and approximate return are included. | At $`L\ge N`$ a sublinear depth compiler must trade away the linear T-count or the fixed clean budget. Intermediate precision and fixed-accuracy depth have separate gaps. |
 | [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | A Clifford image of the actual signal forces unit acceptance below error 2sin(π/16). Separately paid balanced branches admit a direct alternating-word bypass, and the paid 3:1 pilot admits a direct branch within 3√ε of the recovered unitary. | Use the actual-signal and branch-resource premises in their stated classes. R99 provides a different rotation source with larger local volume. |
 
 ## Source-specific representation limits
@@ -310,8 +311,9 @@ Old precision-envelope and local-compiler next steps are superseded by
 precision ranges, with [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
 R100 spends exponential volume only on a short fixed core. Its two seed
 bases improve the operator error without increasing the number of long
-table queries. Extending to larger precision needs a cheaper chunk or
-fewer sequential chunks. The [literal two-basis recovery](depth/GEOMETRIC_CHUNK_DEPTH.md#9-slot-lower-bounds-for-the-two-basis-recovery)
+table queries. Improving the intermediate precision range needs a cheaper
+chunk or fewer sequential chunks. R103 settles the regime $`L\ge N`$ at
+the simultaneous one-clean linear T-count budget. The [literal two-basis recovery](depth/GEOMETRIC_CHUNK_DEPTH.md#9-slot-lower-bounds-for-the-two-basis-recovery)
 also needs at least quadratic width in L for disjoint linear-size precision payloads.
 Applying the promotion to arbitrary-table
 rows still needs an exactly silent source sector. A

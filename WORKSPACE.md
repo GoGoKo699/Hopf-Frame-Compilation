@@ -16,8 +16,7 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 The current continuation started from the verified [R102 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/283)
 at [0733f51](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/0733f51447f24bfe80cc293d02a678093fb791ab).
-The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor)
-raises the one-clean floor to five bands and the [rare-cycle test](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) raises the zero-clean floor to six at small fixed error.
+The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor) raises the one-clean floor to five bands. The [rare cycle](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) gives six with zero clean work at small fixed error.
 
 <a id="current-depth-frontier"></a>
 
@@ -29,6 +28,7 @@ with the same simultaneous budgets as [all-precision R96](research/depth/ALL_PRE
 [R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md) gives sublinear precision depth
 for $`\log_2 L=o(n)`$. [R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$.
 The fixed-accuracy gap at square-root dirty width is constant to logarithmic.
+[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$: every one-clean $`O(L)`$-T compiler has worst-case depth $`\Omega(L)`$ even with unrestricted dirty width and approximate return.
 [R79 remains selected Result D](manuscript/PUBLICATION_SCOPE.md).
 
 ## Main unfinished route and exact missing operation

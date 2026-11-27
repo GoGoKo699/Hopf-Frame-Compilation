@@ -35,6 +35,7 @@ evaluation, without an efficient-preprocessing claim.
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
 | General depth upper | R96 at all precisions. R99–R102 improve the precision term in overlapping ranges at the same simultaneous budgets. |
+| Precision-dominated depth | [R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean input and $`T=O(L)`$. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus a five-band unrestricted lower bound remains open |
 | Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
@@ -104,8 +105,8 @@ T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+L+\ell),\qquad \ell=\log_2(n+2).
 ```
 
-The T-count is optimal at eligible allocations. At fixed accuracy and square-root
-dirty width, the general depth gap is constant lower versus logarithmic upper.
+The T-count is optimal at eligible allocations. At fixed accuracy and square-root dirty width, the general depth gap is constant lower versus logarithmic upper.
+**Precision lower bound R103.** With k clean inputs and unrestricted dirty width, a uniform deepest rotation forces $`D_T T\ge (L-\log_2 25)^2/((k+1)\ln 4)`$ in the complete initialized-isometry norm. At $`L\ge N`$ and the R96 width thresholds, $`D_T=\Theta(L)`$ is worst-case optimal at the simultaneous one-clean $`T=O(L)`$, $`G=O(NL)`$ budgets. [Proof](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md)
 
 [R99](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) gives the same budgets
 with depth $`O(NL/b^2+\ell+\log_2^2(L+2))`$ through $`L\le cn`$.
@@ -116,8 +117,7 @@ $`n^{1/4}\le L\le2^{c'n}`$ with $`a=\log_2(L+2)`$ and depth
 D_T=O\!\left(NL/b^2+\min\{(1+L/n)a^2,\ (1+L/n)a+L^{1/8}\ell\}\right).
 ```
 
-At $`b=\Theta(\sqrt{NL})`$, R100 gives $`o(L)`$ for $`\log_2 L=o(n)`$.
-[R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\ell)`$ for $`6\le L\le2^{c''n}`$.
+At $`b=\Theta(\sqrt{NL})`$, R100 gives $`o(L)`$ for $`\log_2 L=o(n)`$. [R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\ell)`$ for $`6\le L\le2^{c''n}`$.
 The bounds match worst-case depth where $`NL/b^2`$ dominates.
 
 **Selected Result D: [R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md).**

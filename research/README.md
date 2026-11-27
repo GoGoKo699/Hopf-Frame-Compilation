@@ -134,6 +134,7 @@ The table identifies dependencies rather than repeating their proofs.
 | [Geometric source chunks](depth/GEOMETRIC_CHUNK_DEPTH.md) | R100 extends the sublinear precision term to subexponential L with fixed-source acceleration and unchanged whole-word mask volume. |
 | [Grouped programmed precision](depth/GROUPED_PROGRAMMED_PRECISION.md) | R101 jointly programs geometrically sized groups, paying fine leakage only on candidate slots. |
 | [Compact programme precision](depth/COMPACT_PROGRAM_PRECISION.md) | R102 computes residual coefficients by returned threshold arithmetic, with linear local coarse depth and constantly many groups through quadratic precision. Promoting each full fixed source once extends the bound through small exponential precision. |
+| [Precision count–depth tradeoff](depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) | R103 lower-bounds the product of native T-depth and T-count with arbitrary dirty width and approximate return. It matches R96 in the precision-dominated regime. |
 | [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | R96 component: separated precision scratch, global-prefix addresses and complete recovery. |
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |

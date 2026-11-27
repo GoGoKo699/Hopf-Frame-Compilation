@@ -20,6 +20,7 @@ Use [WORKSPACE](../WORKSPACE.md) for the current question, not this command map.
 | [Geometric source chunks](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) | [`test_tensor_sector_geometric_chunks`](../tests/test_tensor_sector_geometric_chunks.py) |
 | [Grouped programmed precision](../research/depth/GROUPED_PROGRAMMED_PRECISION.md) | [`test_grouped_programmed_precision`](../tests/test_grouped_programmed_precision.py) |
 | [Compact programme precision](../research/depth/COMPACT_PROGRAM_PRECISION.md) | [`test_compact_program_precision`](../tests/test_compact_program_precision.py) |
+| [Precision count–depth tradeoff](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) | [`test_precision_count_depth_tradeoff`](../tests/test_precision_count_depth_tradeoff.py), [`test_shallow_source_obstruction`](../tests/test_shallow_source_obstruction.py) |
 | [Augmented field recoupler](../research/depth/AUGMENTED_FIELD_RECOUPLER.md) | [`test_augmented_field_recoupler`](../tests/test_augmented_field_recoupler.py) |
 | [Projective field recoupler](../research/depth/PROJECTIVE_FIELD_RECOUPLER.md), both native allocations | [`test_projective_field_recoupler`](../tests/test_projective_field_recoupler.py), [`test_coupled_projective_recoupler`](../tests/test_coupled_projective_recoupler.py) |
 | [Weak complete-probe domain](../research/depth/WEAK_PROBE_PAULI_DOMAIN.md) | [`test_weak_probe_pauli_domain`](../tests/test_weak_probe_pauli_domain.py) |
