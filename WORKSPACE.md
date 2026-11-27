@@ -61,13 +61,8 @@ or can a joint word enforce the same orthogonality without that shift?
 The [shifted-sector promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
 pays complete return for a shareable exactly false-silent probe with
 $`p^{o(1)}`$ cleans. The [distributed counter](research/depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
-pays its local visits in $`O((\log\log(p+4))^3)`$ T-depth. Its common shift
-still costs logarithmic depth. Independent exact shift repairs fail.
-The [monomial clock test](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-clock-repair-bank)
-also rules out sublogarithmic classical reversible rounds for the literal
-four-corner bank, even with address- and table-dependent repairs and a
-fixed full-bank error. A joint quantum word can leave this phase-degree
-restriction.
+pays local visits in $`O((\log\log(p+4))^3)`$ T-depth. Its common shift costs logarithmic depth.
+[Low-degree monomial repairs](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-clock-repair-bank) fail in the literal bank at fixed error.
 
 A separate sufficient route gives the correct signed gap on diagonal blocks of
 $`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum

@@ -992,7 +992,7 @@ nonzero evaluation. In particular at least
 $`2^{p-4ks}-1`$ false mismatch values have nonzero F.
 
 On a false mismatch the normalized uniform vector on
-$`\{je:0\le j<Q\}`$, tensored with the private zero column, belongs
+$`\{je:0\le j\lt Q\}`$, tensored with the private zero column, belongs
 to $`P_e`$. The sum of the output-orbit entries of $`P_eD_eP_e`$
 on that column is $`F(e)/Q`$, even if the permutation of $`D_e`$
 moves all the private work. Thus exact false silence implies
@@ -1045,7 +1045,7 @@ In the literal bank of disjoint row clocks and flags, activate
 one false row by its output Fourier value. Keep all other rows
 inactive and put both arbitrary flags of each inactive row in
 plus states. Its corners and flags then act as identity on this
-chosen input. A uniform literal-phase full bank error $`\tau<1`$ therefore forces
+chosen input. A uniform literal-phase full bank error $`\tau\lt1`$ therefore forces
 $`\nu_e\le\tau/2`$ in each false row. All the corresponding
 overlap factors are positive.
 
