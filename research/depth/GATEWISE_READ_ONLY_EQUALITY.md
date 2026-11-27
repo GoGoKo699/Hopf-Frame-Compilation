@@ -26,6 +26,37 @@ Use the existing bounded-clean promotion on the $`k+2=13`$ initialized bits for 
 
 For $`r`$ private output instances in parallel, the per-instance error $`\delta`$ implies at most $`r\delta`$ joint full error by telescoping, allowing shared read-only inputs. This bound alone needs $`\delta=O(\tau/r)`$ to certify the entire product. The constant-depth fixed-tolerance theorem gives no such uniform precision improvement.
 
+<a id="linear-rank-field-select"></a>
+
+### Linear T-count from binary multiplication rank
+
+The field shear also admits a schedule with $`O(h)`$ T gates and
+private dirty wires, $`O(h^2)`$ elementary Cliffords and constant
+native T-depth. [F57](../../docs/reference/SOURCE_CATALOGUE.md) gives
+the uniform rank bound for binary field multiplication. In any fixed
+binary basis it yields a decomposition
+
+```math
+a w=\sum_{j=1}^{O(h)} d_j\,\ell_j(a) m_j(w),
+```
+
+with field constants $`d_j`$ and binary linear forms $`\ell_j,m_j`$.
+One can find a decomposition by finite search and check it on pairs
+of basis vectors. After Hadamards on the field output word, term j is
+a phase on the three parities $`\ell_j(a),m_j(w),d_j\cdot z`$ and
+the fixed number of selector literals. Use the same private phase
+word as above. For any affine parity control substitute its shared
+Clifford controls into the private mask, charging at most $`O(h)`$
+Cliffords per term. The number of T gates and dirty masks per term
+is constant. These masks remain disjoint across terms and the
+shared input is read-only at every gate. Each of the constant number
+of field basis frames costs at most $`O(h^2)`$ elementary CNOTs
+by binary elimination. The SELECT schedule and its actual reverse
+therefore have the claimed simultaneous bounds. At fixed tolerance
+the same substitution gives $`T,b_{\rm dirty}=O_\tau(n)`$ and
+$`G=O_\tau(n^2)`$ for the returned zero test above. The rank improvement
+leaves the rowwise accumulation and joint-projector rank bounds intact.
+
 ## Sparse occupied lookup
 
 Take a $`p`$-bit address and $`m=2^p`$ rows. Suppose the unknown occupied word has weight at most $`K`$, allowing arbitrary coherent superpositions over all such words and entanglement with a reference. Give row $`v`$ a private dirty target $`t_v`$ and an approximate complete comparator $`U_v`$ for $`s=v`$. For the row use

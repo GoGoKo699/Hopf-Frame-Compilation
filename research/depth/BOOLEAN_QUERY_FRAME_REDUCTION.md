@@ -194,6 +194,104 @@ the full scalar-extraction question to XOR queries with these explicit
 target and row-count charges; a small trace or matrix element of a
 scalar sign does not satisfy their full-operator premise.
 
+<a id="near-uniform-positive-frames"></a>
+
+### Strictly positive deepest layers arbitrarily close to uniform
+
+The query reduction already applies to a strictly positive two-angle
+family. Fix a density window $`0\lt\rho\lt1`$ and choose
+an integer $`k\ge3`$ with $`\sin(\pi/k)\le\rho`$. Put
+$`\Delta=\pi/(2k)`$. Let $`W_f`$ set every upper angle to $`\pi/4`$
+and the deepest angle at x to $`\pi/4+\Delta f(x)`$. The frame
+$`W_0`$ for the identically zero table is the positive balanced frame.
+These are complete positive frames with zero prescribed leaf phases.
+The balanced upper layers send the root to $`|+^s\rangle|0\rangle`$,
+so the normalized leaf densities $`2^{s+1}|\langle x,t|W_f|0^{s+1}\rangle|^2`$
+at the two leaves below x are one when $`f(x)=0`$ and $`1\pm\sin(2\Delta)`$ when
+$`f(x)=1`$. Thus every density belongs to $`[1-\rho,1+\rho]`$.
+
+The common complete upper word cancels with its adjoint. Consequently
+
+```math
+W_f W_0^\dagger=\sum_x |x\rangle\langle x|\otimes R_y(\Delta f(x)),
+\qquad
+(W_f W_0^\dagger)^k=U_f .                                  \qquad(9a)
+```
+
+Use actual frame words $`V_f,V_0`$ and the actual inverse $`V_0^\dagger`$
+in $`A=(V_fV_0^\dagger)^k`$. If each frame has full initialized-isometry
+error at most $`\eta`$, A approximates $`U_f`$ with error at most $`2k\eta`$.
+Use $`C A C A^\dagger`$ from (2), with CNOT to an arbitrary borrowed
+target. The query error is at most $`4k\eta`$, including all work and
+reference correlations. At each hybrid boundary the ideal word returns
+the clean inputs, and all actual adjoints obey the same error as their
+forward words. With common forward resource bounds T,G,d for the two
+frame circuits, the query has
+
+```math
+T_{\rm query}\le 4kT,\qquad G_{\rm query}\le8kG+2,\qquad
+D_{T,\rm query}\le4kd .                                      \qquad(9b)
+```
+
+The same physical allocation is used. As in Section 2, the query
+target comes from the old dirty pool and the old last logical bit joins
+the query's dirty work. One may pad either frame implementation with
+untouched work within the common allocation. Invoking both frame
+compilers at precision $`L+\lceil\log_2(4k)\rceil`$ suffices for
+query error $`2^{-L}`$. Any literal width threshold for the chosen
+frame compiler must be met at this increased precision.
+
+**Converse for this family.** Suppose there is a complete initialized-
+isometry implementation of $`Q_f^{(u)}`$ on the s-bit address and
+arbitrary target u, using at most one external clean bit and b arbitrary
+dirty inputs. In the frame use u from the b dirty wires and allow the
+old last logical bit t to serve as an arbitrary work wire inside the
+query, together with the other $`b-1`$ dirty inputs. This gives the query
+its full dirty allocation, which it returns on the ideal trajectory.
+
+Write $`B=C_u(R_y(\Delta)_t)`$ and $`E=\mathrm{CZ}_{u,t}`$.
+The exact word in operator order is
+
+```math
+E Q_f^{(u)} B (Q_f^{(u)})^\dagger B^\dagger E
+ = (W_fW_0^\dagger)\otimes I_u .                             \qquad(9c)
+```
+
+On fixed x and u, the middle four factors return u and rotate t by
+$`\Delta[(u\oplus f(x))-u]=\Delta(1-2u)f(x)`$. The two E factors
+reverse that rotation precisely at $`u=1`$, since $`ZYZ=-Y`$.
+Each identity holds on arbitrary t and u, including superpositions.
+Both query calls are unconditional. To emit B, use the identity
+
+```math
+B=R_y(\Delta/2)_t\,\mathrm{CNOT}_{u\to t}\,
+ R_y(-\Delta/2)_t\,\mathrm{CNOT}_{u\to t}.
+```
+
+Synthesize its two literal determinant-one rotations to any fixed
+requested tolerance with no extra work and take the actual inverse of
+the emitted B. If the query error is $`\epsilon_Q`$, the B word error
+is $`\epsilon_B`$ and the paid balanced-word error is $`\epsilon_0`$,
+then composing (9c) after that balanced word gives complete $`W_f`$
+error at most $`2\epsilon_Q+2\epsilon_B+\epsilon_0`$. All three
+can be chosen at most one fifth of the final tolerance. The same b
+dirty wires and sole initialized wire suffice on every call. Relative
+to the balanced word, the extra T-count and depth are at most twice
+the query's plus a fixed rotation synthesis cost, and the extra
+Clifford count is bounded by four times the forward query's plus the
+fixed local gates.
+
+At fixed precision and square-root dirty width, the paid
+[positive balanced compiler](POSITIVE_HAAR_FINGERPRINT.md) fits its
+sufficient width $`b\ge17(n+13)`$ for all sufficiently large n. It has
+$`O_L(\log\log(n+4))`$ T-depth, $`O_L(\sqrt N)`$ T-count, and
+$`O_L(N)`$ Clifford count on one circuit. Equations (9a)--(9c) therefore
+give a two-way sublogarithmic-depth transfer between arbitrary returned
+Boolean XOR and this positive family, with the stated fixed changes in
+precision and allocation constants. The converse applies to the family
+with independent angles only at the deepest layer and pays the balanced
+circuit once.
+
 ## 4. What a growing lower bound would now need
 
 Fix $`\eta_0>0`$ and a dirty allocation b. If a Boolean table f requires

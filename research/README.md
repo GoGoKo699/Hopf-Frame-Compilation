@@ -181,6 +181,10 @@ and its more general
 The [one-clean decision alternative](depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
 amplifies before imposing complete return, allowing raw garbage and a
 nonflat acceptance gap only on the initialized code.
+The [recorded-address recovery](depth/PRESCRIBED_SCALAR_TABLES.md#recorded-address-decision-source)
+can instead start from correctly signed diagonal address blocks and
+bounded total off-diagonal coupling. Its comparison charges angular
+error once and pays the clean-sector visit factor on leakage.
 Its [fixed-boundary information screen](depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
 rules out address-conjugated table programs at the desired width.
 An [interior Clifford](depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
@@ -208,6 +212,9 @@ The structured proofs use the [dirty rotation bank](depth/DIRTY_ROTATION_BANK.md
 The fixed-layer results have separate proofs for the [zero-clean scalar gap](depth/FOUR_LAYER_SCALAR_GAP.md),
 [precision dependence](depth/FOUR_LAYER_LINEAR_PRECISION.md)
 and [one-clean interfaces](depth/ONE_CLEAN_NATIVE_INTERFACES.md).
+[Quantitative decision bias](depth/ROBUST_DECISION_BIAS.md) bounds
+the margin for typical tables through three unrestricted native T bands
+and gives the sharp limiting error of the deepest-corner frame family.
 The [November evidence index](archive/november-2026/README.md) locates
 the supporting finite checks and alternatives.
 
@@ -217,7 +224,7 @@ These are complete interfaces and conditional transfers, not constructions of th
 
 - [R98 — From native query depth to complete-frame depth](depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 - [Constant-accuracy readouts and the complete frame transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-- [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), including the [width-independent raw-decision T-count bound](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
+- [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), including [near-uniform positive frames](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#near-uniform-positive-frames) and the [width-independent raw-decision T-count bound](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
 - [Short-label permutation wrappers with paired dirty arrays](depth/PAIRED_PERMUTATION_ROUTING.md)
 - [Polynomial source overhead can be absorbed by a paid indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 - [Removing a bounded clean bank from a complete XOR query](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) — [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)

@@ -14,12 +14,11 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 27 November checkpoint starts from [d6d7dfd](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/d6d7dfd5ae1b0b2dfbcf07066ed6b03510d4f786),
-the merged [PR #277](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/277).
-The [separated-decision review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fseparated-decision-margin)
-identify the reviewed tree for this continuation.
-The active question is how many sequential native T layers a compiler needs when it knows the table in advance and receives its address in superposition.
-The [November evidence index](research/archive/november-2026/README.md) locates the original derivations, replayable fixtures and exploratory notes.
+The 27 November continuation verified the merged [PR #278](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/278)
+at [858e395](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/858e395737d8309b2fe86e4da2a37c84c6dad663)
+as its starting `main`. The [decision-bias review and exact-tree checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Frobust-decision-depth)
+identify the current continuation. The [November evidence index](research/archive/november-2026/README.md)
+locates earlier derivations and fixtures.
 
 <a id="current-depth-frontier"></a>
 
@@ -35,12 +34,10 @@ Result C's one-clean count frontier is established.
 
 ## Main unfinished route and exact missing operation
 
-A restricted family of complete real frames already contains every prescribed
-Boolean table. One such frame, its actual inverse and two CNOTs implement
-the XOR of the table value into an arbitrary target with work return.
-Consequently a lower bound for these prescribed queries can constrain
-every general frame compiler at the corresponding allocation.
-[Boolean query inside a frame](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md)
+[Prescribed XOR embeds in a complete real frame](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md).
+The [strictly positive version](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#near-uniform-positive-frames)
+retains lookup in an arbitrarily narrow fixed near-uniform density window.
+Lookup also suffices for that subclass with one paid balanced frame.
 
 In the constructive direction, [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
 accepts a complete **word** query. A separate [scalar transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md)
@@ -59,48 +56,50 @@ weakens the source requirement further: amplify on its initialized code
 before promoting it to complete return. The raw source may leave garbage,
 and its rejected clean sector need not carry the table's prescribed sign.
 
-**Resumption question.** Can a genuinely joint native word V turn a known
-table f into a uniformly biased one-clean decision? Let J append
-$`c=0`$, put $`M=J^\dagger V^\dagger Z_cVJ`$, and require
-$`\mathrm{sgn}(M)=D_f\otimes I`$ and
-$`|M|\succeq\gamma I`$ for a uniform $`\gamma\gt0`$.
+**Resumption question.** Can a genuinely joint native word V give the
+correct signed gap on the diagonal blocks of
+$`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum
+in each preserved work sector? The labels may include the address
+and any dirty inputs. The paid
+[quantum records](research/depth/PRESCRIBED_SCALAR_TABLES.md#expander-quantum-address-tags)
+then complete the sign with no final clean-width penalty. The
+[linear-tag route](research/depth/PRESCRIBED_SCALAR_TABLES.md#summable-address-motion)
+uses CNOTs alone if the sum over all address differences is bounded.
+Both charge angular error separately from clean leakage.
 Pay V and its actual reverse with one clean input, T-count and dirty
-width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$. The sign
-condition holds on the entire initialized code, including arbitrary dirty
-and reference inputs; basis-state success probabilities alone do not imply it.
-The [square-root-width transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
-then needs only
-$`(1+\log^*a)\log(3+\log^*a)d(a)=o(\log a)`$.
-Even $`d(a)=O(\log a/\log\log a)`$ suffices for a first general
-improvement at $`b=K_L\sqrt N`$. An all-width source theorem can wait.
+width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$.
+Depth $`O(\log a/\log\log a)`$ still suffices at
+$`b=K_L\sqrt N`$. A source that proves the full compressed sign directly
+can use the [smaller original amplification factor](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer).
+Plain diagonal success cannot support a general short-tag repair.
+The [native adversary](research/depth/PRESCRIBED_SCALAR_TABLES.md#adaptive-classical-tag-limit)
+defeats short deterministic classical tags even when chosen from its
+description. Its sectorwise row sum permits quantum recovery.
 
-The [two-source-band screen](research/depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
-forces an exponentially small gap for a single marked table and its
-Pauli-balanced lift, independent of width or address motion. A search
-within the full-space Pauli-signal interface must therefore move beyond two raw
-T bands and use nontrivial joint transport. The one-clean decision proof
-also records why code compression does not evade that screen. The
-[four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
-still makes scalar entry readout for known self-inverse CNOT shears a
-sufficient concrete target. Amplify each correct entry decision or full-space gap
-before applying that reduction; the four raw gapped signals need not
-themselves compose into a gapped signal.
+The [four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
+still gives a concrete entry readout target for known self-inverse CNOT
+shears. Amplify each decision before applying that reduction.
 
-The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source) excludes the stated read-only programs and outer-Clifford extension. The
-[interior-Clifford word](research/depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
-retains table-sized decoder data, but its singlets, explicit boundary repair
-and [all-ones spectrum](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
-do not supply a universal decision; exception handling and changed words remain open.
-The new [two-address-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
-excludes constant bias for most tables in that factorization, including
-work-only boundary repairs of the affine Gauss phase, regardless of dirty
-width. Its anticommutator construction is sharp; three alternating blocks
-escape on Walsh tables with a paid native word.
-Resume with a complete compressed-sign identity for a genuinely joint source,
-including repeated address alternation or physical address motion.
+The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
+and [interior-Clifford spectrum](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
+screen their stated read-only programs and conjugating boundaries.
+The [two-address-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
+still excludes work-only endpoint repairs of the affine Gauss phase.
+A [single additive group visit](research/depth/PRESCRIBED_SCALAR_TABLES.md#single-projective-group-insertion)
+and [paired Pauli frames](research/depth/PRESCRIBED_SCALAR_TABLES.md#paired-pauli-one-commuting-wall)
+give sharper tests for alternation. The paid cubic escape changes both
+the middle and the endpoints. Its polynomial polarization retains the
+large-degree cost for arbitrary tables.
 
-The parallel lower-bound question remains unrestricted returned-query depth with arbitrary
-Clifford interlayers; the two-band argument does not iterate to additional native bands.
+The [unrestricted three-band bias theorem](research/depth/ROBUST_DECISION_BIAS.md)
+forces exponentially small average signed bias for typical tables and
+gives a sharp limiting three-layer corner-frame error. The
+four-band problem reaches two differently decorated stabilizer Choi
+states. Typical constant-gap tables require exponentially large middle
+crossing rank. The [exact cancellation witness](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
+shows that large absolute cubic ranks can coexist with unit overlap.
+The first unpaid lower-bound step is a relative compression theorem
+that survives the arbitrary middle Clifford.
 The [raw-decision count bound](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
 is now tight for strict computational-basis bias: a [paid controlled Gauss word](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
 represents every table with square-root T-count/width and constant native depth.
