@@ -74,4 +74,3 @@ class PrecisionCountDepthTradeoffTests(unittest.TestCase):
         det = (3 * transfer - 1) * (3 * transfer - 1)
         self.assertEqual(_valuation(det), -2)
         self.assertEqual(det * Q2(det.a, -det.b), Fraction(49, 4))
-
