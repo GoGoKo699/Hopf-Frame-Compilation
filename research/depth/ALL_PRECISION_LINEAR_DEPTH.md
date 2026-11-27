@@ -5,6 +5,9 @@
 [Global borrowed-precision stage](GLOBAL_BORROWED_PRECISION_STAGE.md) ·
 [Retained all-precision R79 theorem](UNIFORM_SUBTREE_DEPTH.md)
 
+[R99](PROGRAMMED_ROTATION_DEPTH.md) reduces the precision term when
+$`L\le cn`$, reusing the allocation and full-error contract below.
+
 **Theorem R96.** The small-workspace
 opening and a directly prefix-programmed high-precision terminal fit together
 at every accuracy. The terminal queries the actual data of its local native

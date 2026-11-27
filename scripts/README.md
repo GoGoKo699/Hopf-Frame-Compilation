@@ -16,6 +16,7 @@ Use [WORKSPACE](../WORKSPACE.md) for the current question, not this command map.
 | Changed material | Focused checks |
 | --- | --- |
 | Working documents, links and mathematical syntax | [`test_repository_navigation`](../tests/test_repository_navigation.py), [`test_reviewer_narrative`](../tests/test_reviewer_narrative.py), [`test_math_typography`](../tests/test_math_typography.py), [`test_presentation`](../tests/test_presentation.py) |
+| [Programmed rotation depth](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) | [`test_logarithmic_precision_depth`](../tests/test_logarithmic_precision_depth.py) |
 | [Augmented field recoupler](../research/depth/AUGMENTED_FIELD_RECOUPLER.md) | [`test_augmented_field_recoupler`](../tests/test_augmented_field_recoupler.py) |
 | [Projective field recoupler](../research/depth/PROJECTIVE_FIELD_RECOUPLER.md), both native allocations | [`test_projective_field_recoupler`](../tests/test_projective_field_recoupler.py), [`test_coupled_projective_recoupler`](../tests/test_coupled_projective_recoupler.py) |
 | [Weak complete-probe domain](../research/depth/WEAK_PROBE_PAULI_DOMAIN.md) | [`test_weak_probe_pauli_domain`](../tests/test_weak_probe_pauli_domain.py) |

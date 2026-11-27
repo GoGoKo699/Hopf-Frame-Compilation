@@ -34,10 +34,10 @@ evaluation, without an efficient-preprocessing claim.
 | Question | Strongest established statement or remaining obligation |
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
-| Strongest general depth upper | R96: $`O(NL/b^2+L+\log_2(n+2))`$ on the same circuit as optimal-order T-count and $`G=O(NL)`$ |
-| Selected Result D | R79 remains the selected all-precision count/depth theorem; R96 is the stronger research result |
+| General depth upper | R96 at all precisions. R99 improves the precision term through $`L\le cn`$ with the same simultaneous budgets. |
+| Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus constant unrestricted lower depth remains open |
-| Main constructive question | Complete scalar entry readout for prescribed self-inverse shear tables, at the scalar transfer's depth, count, width and precision budgets |
+| Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
 | General lower question | A growing native T-depth bound on the prescribed Boolean-table frame family, allowing table-specific compilation, arbitrary Clifford interlayers and the admitted dirty width |
 
 The [working checkpoint](../WORKSPACE.md#current-checkpoint-native-source-scope-and-complete-readout)
@@ -88,7 +88,7 @@ saves one dirty qubit for the complex family relative to Result C.
 
 ## Large-width T-depth
 
-**Strongest general upper: R96.** For every integer $`n\ge1,L\ge6`$,
+**All-precision upper R96.** For every integer $`n\ge1,L\ge6`$,
 the [all-precision theorem](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md)
 uses one external clean qubit and retains the literal thresholds
 
@@ -105,14 +105,17 @@ T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+L+\ell),\qquad \ell=\log_2(n+2).
 ```
 
-The T-count is worst-case optimal at eligible allocations. The depth
-formula is an upper bound, not an unrestricted optimality theorem.
-At sufficient $`b=\Theta(\sqrt{NL}+L+n)`$ it gives
-$`D_T=O(L+\ell)`$; at fixed accuracy and square-root dirty width,
-the unresolved interval is $`\Omega(1)`$ versus $`O(\log n)`$.
-This concerns the prescribed complex magnitude completion, not arbitrary
-complex-unitary synthesis. No practical crossover or scalable native
-emitter is claimed.
+The T-count is worst-case optimal at eligible allocations. At fixed accuracy
+and square-root dirty width, the open depth interval is constant to logarithmic.
+
+**Growing-precision improvement R99.** For an absolute $`c\gt0`$ and
+$`6\le L\le cn`$, [programmed rotations](../research/depth/PROGRAMMED_ROTATION_DEPTH.md)
+give $`D_T=O(NL/b^2+\ell+\log_2^2(L+2))`$ with the same thresholds,
+count, Clifford, clean, and full-error bounds for both frame families.
+At $`b=\Theta(\sqrt{NL})`$, precision $`L=\log^C n`$ for fixed $`C\gt1`$
+now has $`O(\log n)`$ depth. At $`L=\Theta(n)`$ inside the stated
+range it has $`O(\log^2 n)`$ depth.
+Worst-case depth is $`\Theta(NL/b^2)`$ at eligible $`b\le\sqrt{NL/(\ell+\log_2^2(L+2))}`$.
 
 **Selected Result D: R79.** The
 [uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
@@ -130,11 +133,8 @@ simultaneously: $`T^\star=\Theta(NL/b)`$ and
 $`D_T^\star=\Theta(NL/b^2)`$. Its high-precision branch has
 $`D_T=O(NL/b^2+L)`$ when $`L\gt N/n^2`$.
 
-R78's subtree decoder, R80–R85's promised-family/terminal results,
-R86–R90's fixed-accuracy improvements and R92–R95's precision refinements
-retain independent component proofs. Their statements and dependencies
-belong in the [depth catalogue](../research/README.md#large-workspace-t-depth),
-not in competing current-frontier narratives.
+The [depth catalogue](../research/README.md#large-workspace-t-depth)
+indexes the earlier theorem and component proofs.
 
 ### Complete real frames with shared rotations
 
@@ -170,7 +170,7 @@ D_T=O_L\!\left(N/b^2+\log\log(n+4)
 ```
 
 The same allocation and count budgets hold, with actual inverses and no
-initialized vote bank or controlled source. R96 remains unchanged.
+initialized vote bank or controlled source.
 
 Two weaker algebraic targets are a [zero-clean full-space signed gap](../research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
 and a [one-clean coherent decision](../research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source).
