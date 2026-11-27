@@ -84,10 +84,9 @@ and [matched-program consequence](QBP_CONSEQUENCE.md).
 
 The [publication scope](../manuscript/PUBLICATION_SCOPE.md) owns the
 selected formulas, precision ranges and literal reservations. The
-[resource frontier](OPEN_PROBLEM.md) distinguishes those claims from
-the strongest research upper bound, R96, and the remaining depth question.
-R79 remains selected Result D. This page maps dependencies rather than
-restating their resource ledgers.
+[resource frontier](OPEN_PROBLEM.md) gives the research upper bounds
+R96 and R99, and the remaining depth question. R79 remains selected
+Result D.
 
 | Claim | Local construction | Imported premises and boundary |
 |---|---|---|
@@ -95,7 +94,8 @@ restating their resource ledgers.
 | B: sufficient-clean T-count, R12–R16 | [Fault-tolerant compiler](FAULT_TOLERANT_COMPILER.md): compact source, complete residual corrections and shared-source composition | F1–F5 and F10–F11; sufficient clean allocation, complete targets and elementary Clifford accounting |
 | C: one-clean count, R64–R65 | [Uniform growing-source theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#11-precision-uniform-one-clean-count) and [banked theorem](../research/endpoint/GROWING_SOURCE_COMPILER.md#12-optimal-banked-count-frontier), with R25's small-dimension baseline | F2–F5, F8–F9, F11 and F19–F20 through R17/R20/R25/R62/R63; exact-base and doubled-base matching have different hypotheses; no T-depth consequence |
 | D: one-clean simultaneous count/depth, R79 | [Uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's native spectral decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and R72's one-clean terminal, width/precision splice and literal diagonal | Existing descendant-source, native query, recovery and conditional-work premises; all per-call precision, protected storage, actual inverses and leakage are charged; no unrestricted depth optimum |
-| Stronger research upper, R96 | [All-precision linear-depth theorem](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md): borrowed precision, fast references and directly programmed terminal | Existing exact bounded-control, source, recovery and query premises; same one-clean real/complex reservations and full operator contract; no new imported premise, efficient-preprocessing or general-emitter claim |
+| All-precision research upper, R96 | [Linear precision depth](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Existing source, recovery and query premises, with the original widths and full operator contract |
+| Growing-precision improvement, R99 | [Programmed rotation depth](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) | Lagrange completion and retained native queries support the new zero-clean rotation; the full-frame splice preserves the R96 budgets through $`L\le cn`$ |
 
 The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
 retains the full statements, separate state-based QBP results and earlier
@@ -175,7 +175,7 @@ second general resource ledger.
 | [Affine orientations R83](../research/depth/AFFINE_ORIENTATION_DEPTH.md) and [deterministic frames R84](../research/depth/DETERMINISTIC_FRAME_DEPTH.md) | Existing sign gauge/queries plus paid triangular affine leaf maps and short-tag marker corrections, or exact selected involutions, signed strings and last-deviation inverse; no free in-place permutation. |
 | [Geometric-band R85](../research/depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md) | GKW-based sources, R78 reflections, native queries/echoes, sign/phase composition and the logarithmic-height R81 terminal. Coarse bins, upper-frame unloading, local flag transport and a temporarily clean dirty output word are proved locally. |
 
-None of these scoped families replaces the strongest general upper R96.
+The general upper bounds and their precision ranges are in the [frontier](OPEN_PROBLEM.md).
 The detailed [source register](reference/SOURCE_CATALOGUE.md) distinguishes
 local proof additions from imported synthesis or lower-bound premises.
 

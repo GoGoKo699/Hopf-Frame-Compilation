@@ -222,7 +222,8 @@ restrictions and original fixtures.
 
 | Route | Present assessment | What would justify continuing |
 | --- | --- | --- |
-| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | A Clifford image of the actual signal forces unit acceptance below error 2sin(π/16). Separately paid balanced branches admit a direct alternating-word bypass; the paid 3:1 pilot admits a direct branch within 3√ε of the recovered unitary. Cheap joint completion need not supply those branches. | Seek joint synthesis or another accepted-source family with sublinear precision depth and linear count, then pay coherent chart selection and every remaining R96 serial word. The actual-signal premise and branch-resource premise have separate scopes. |
+| [Programmed rotation depth](depth/PROGRAMMED_ROTATION_DEPTH.md) | Exact half-amplitude dyadic rotations, shared word loading and a two-basis Pauli echo remove the linear precision depth through $`L\le cn`$. The standalone $`2^{O(L)}`$ selector volume fits the global budgets in this range. | Reduce the selector and local catalogue volume to extend the precision range. Long table loading still has logarithmic depth. |
+| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | A Clifford image of the actual signal forces unit acceptance below error 2sin(π/16). Separately paid balanced branches admit a direct alternating-word bypass, and the paid 3:1 pilot admits a direct branch within 3√ε of the recovered unitary. | Use the actual-signal and branch-resource premises in their stated classes. R99 provides a different rotation source with larger local volume. |
 
 ## Source-specific representation limits
 
@@ -300,8 +301,9 @@ The earlier zero-clean-only discovery restriction, one-band inverse-square-root-
 search and unpaid flat-sector alignment are superseded by
 [clean promotion and paid recovery](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md).
 Old precision-envelope and local-compiler next steps are superseded by
-[R94–R96](depth/ALL_PRECISION_LINEAR_DEPTH.md); their useful components remain
-indexed. The [research catalogue](README.md#session-records-and-designs)
+[R99 programmed rotations](depth/PROGRAMMED_ROTATION_DEPTH.md) in their
+precision range and [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
+The [research catalogue](README.md#session-records-and-designs)
 retains every outcome and design document. Consult [WORKSPACE](../WORKSPACE.md)
 for the live question rather than treating an old session's final paragraph
 as an instruction.

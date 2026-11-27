@@ -116,8 +116,8 @@ Additional endpoint derivations and their assumptions remain in
 
 ## Large-workspace T-depth
 
-R96 is the strongest unconditional general upper theorem; R79 remains
-selected Result D. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
+R96 covers all precisions, and R99 improves its precision term for
+$`L\le cn`$. R79 remains selected Result D. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
 owns the formulas, literal allocations and remaining optimal-depth question.
 The table identifies dependencies rather than repeating their proofs.
 
@@ -129,12 +129,13 @@ The table identifies dependencies rather than repeating their proofs.
 | [Uniform catalogue precision](depth/UNIFORM_CATALOGUE_PRECISION.md) | R92 absolute catalogue envelope; retains the other precision regimes. |
 | [Grouped catalogue precision](depth/GROUPED_CATALOGUE_PRECISION.md) | R93 growing-precision grouped correction with shared matrix-unit sources. |
 | [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 complete local-workspace transfer through dirty selection. |
-| [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96 strongest all-precision general upper theorem, with original simultaneous budgets. |
+| [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96 general upper theorem for all precisions, with original simultaneous budgets. |
+| [Programmed rotation depth](depth/PROGRAMMED_ROTATION_DEPTH.md) | R99 keeps those budgets and replaces additive L by $`\log^2(L+2)`$ through $`L\le cn`$. |
 | [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | R96 component: separated precision scratch, global-prefix addresses and complete recovery. |
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
 | [Direct-prefix high-precision terminal](depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | R96 terminal: native coarse instructions and global-prefix fine-mask queries. |
-| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | Isolated one-clean rotation, projector-amplitude recovery, actual-signal Clifford threshold, and complete-error bypasses for separately paid balanced and 3:1 branches; general precision depth remains linear. |
+| [Joint precision rotation](depth/JOINT_PRECISION_ROTATION.md) | Isolated one-clean rotation, projector-amplitude recovery, actual-signal Clifford threshold and paid balanced and 3:1 branches. |
 | [Logarithmic precision depth](depth/LOGARITHMIC_PRECISION_DEPTH.md) | R95 logarithmic-depth law on its stated growing-precision range. |
 | [Coarse flags and sparse correction](depth/COARSE_FLAG_SPARSE_CORRECTION.md) | R95 opening: sparse correction to a coarse frame implemented at final accuracy. |
 | [Small-workspace descendant source](depth/SMALL_WORKSPACE_DESCENDANT_SOURCE.md) | Borrowed calibration reduces initialized scratch; full-space approximation includes dirty return. |

@@ -149,8 +149,8 @@ connects R79 to its native decoder, terminal schedules and
 
 ## Additional resource points and remaining depth gap
 
-The strongest unconditional research upper, [R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md),
-improves the general depth bound to
+[R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives the
+all-precision depth and count bounds
 
 ```math
 D_T=O(NL/b^2+L+\ell),\qquad
@@ -158,11 +158,12 @@ T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL).
 ```
 
 It retains one clean qubit, $`b\ge17B`$, every integer $`n\ge1,L\ge6`$,
-and full initialized-isometry error at most $`2^{-L}`$. Selected Result D
-remains R79. At sufficient $`b=\Theta(\sqrt{NL}+L+n)`$, R96 gives
-$`D_T=O(L+\ell)`$. **Optimal general T-depth remains open:** at fixed
-accuracy and square-root dirty width, the gap is $`\Omega(1)`$ versus
-$`O(\log n)`$.
+and full initialized-isometry error at most $`2^{-L}`$.
+[R99](research/depth/PROGRAMMED_ROTATION_DEPTH.md) improves the depth
+to $`O(NL/b^2+\ell+\log_2^2(L+2))`$ through $`L\le cn`$ for an absolute c,
+with the same simultaneous budgets. Selected Result D remains R79.
+At fixed accuracy and square-root dirty width, the open general
+T-depth gap is $`\Omega(1)`$ versus $`O(\log n)`$.
 
 The [resource frontier](docs/OPEN_PROBLEM.md) owns the complete bounds and
 scoped lower results; [WORKSPACE](WORKSPACE.md) identifies the first unpaid
