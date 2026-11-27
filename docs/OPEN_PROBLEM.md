@@ -34,7 +34,7 @@ evaluation, without an efficient-preprocessing claim.
 | Question | Strongest established statement or remaining obligation |
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
-| General depth upper | R96 at all precisions. R99 improves the precision term through $`L\le cn`$ with the same simultaneous budgets. |
+| General depth upper | R96 at all precisions. R99 and R100 improve the precision term in overlapping ranges with the same simultaneous budgets. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus constant unrestricted lower depth remains open |
 | Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
@@ -97,31 +97,31 @@ uses one external clean qubit and retains the literal thresholds
 | Real Hopf frame | $`b\ge17(L+n+7)`$ |
 | Prescribed phase-dressed complex magnitude frame | $`b\ge17(L+n+8)`$ |
 
-On one native circuit, with absolute constants and full error at most
-$`2^{-L}`$, it gives
+It gives the following bounds on one native circuit with full error at most $`2^{-L}`$.
 
 ```math
 T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+L+\ell),\qquad \ell=\log_2(n+2).
 ```
 
-The T-count is worst-case optimal at eligible allocations. At fixed accuracy
-and square-root dirty width, the open depth interval is constant to logarithmic.
+The T-count is optimal at eligible allocations. At fixed accuracy and square-root
+dirty width, the general depth gap is constant lower versus logarithmic upper.
 
-**Growing-precision improvement R99.** For an absolute $`c\gt0`$ and
-$`6\le L\le cn`$, [programmed rotations](../research/depth/PROGRAMMED_ROTATION_DEPTH.md)
-give $`D_T=O(NL/b^2+\ell+\log_2^2(L+2))`$ with the same thresholds,
-count, Clifford, clean, and full-error bounds for both frame families.
-At $`b=\Theta(\sqrt{NL})`$, precision $`L=\log^C n`$ for fixed $`C\gt1`$
-now has $`O(\log n)`$ depth. At $`L=\Theta(n)`$ inside the stated
-range it has $`O(\log^2 n)`$ depth.
-Worst-case depth is $`\Theta(NL/b^2)`$ at eligible $`b\le\sqrt{NL/(\ell+\log_2^2(L+2))}`$.
+[R99](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) gives the same budgets
+with depth $`O(NL/b^2+\ell+\log_2^2(L+2))`$ through $`L\le cn`$.
+[R100](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) retains them for
+$`n^{1/4}\le L\le2^{c'n}`$ with $`a=\log_2(L+2)`$ and depth
 
-**Selected Result D: R79.** The
-[uniform subtree-depth theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md)
-retains the same count, Clifford, error and one-clean width guarantees.
-With $`B_D=L+n+7`$ for real frames or $`B_D=L+n+8`$ for the
-complex completion, define
+```math
+D_T=O\!\left(NL/b^2+\min\{(1+L/n)a^2,\ (1+L/n)a+L^{1/8}\ell\}\right).
+```
+
+At $`b=\Theta(\sqrt{NL})`$, R100 gives $`O(\log^2 n)`$ for
+$`L=\Theta(n)`$ and $`o(L)`$ for $`\log_2 L=o(n)`$ in its range.
+Both bounds match worst-case depth where $`NL/b^2`$ dominates.
+
+**Selected Result D: [R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md).**
+Use the same simultaneous guarantees and write the width threshold as $`17B_D`$. Define
 
 ```math
 F(n,L)=\min\{nL,(L+\ell)\log_2(n+L+2)\}.

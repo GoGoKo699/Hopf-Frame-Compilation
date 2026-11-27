@@ -161,7 +161,10 @@ It retains one clean qubit, $`b\ge17B`$, every integer $`n\ge1,L\ge6`$,
 and full initialized-isometry error at most $`2^{-L}`$.
 [R99](research/depth/PROGRAMMED_ROTATION_DEPTH.md) improves the depth
 to $`O(NL/b^2+\ell+\log_2^2(L+2))`$ through $`L\le cn`$ for an absolute c,
-with the same simultaneous budgets. Selected Result D remains R79.
+with the same simultaneous budgets. [R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md)
+extends the improvement to subexponentially growing L, using short
+geometric source chunks and the same table-query budgets.
+Selected Result D remains R79.
 At fixed accuracy and square-root dirty width, the open general
 T-depth gap is $`\Omega(1)`$ versus $`O(\log n)`$.
 

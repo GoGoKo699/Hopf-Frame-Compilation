@@ -681,8 +681,9 @@ ideal $`U=W\otimes I_b`$, multiplying the forward error by
 $`V^\dagger`$ on the left and $`U^\dagger`$ on the right gives
 $`\|V^\dagger J_1-J_1 U^\dagger\|=\|VJ_1-J_1 U\|`$. This includes the
 same initialized flag and returned dirty/reference inputs. The
-arbitrary-table depth gap at fixed accuracy and the unrestricted
-precision range beyond R99 remain open.
+arbitrary-table depth gap at fixed accuracy remains open.
+[R100](GEOMETRIC_CHUNK_DEPTH.md) improves the depth at larger
+precision by promoting short fixed-source chunks.
 
 On eligible allocations with
 

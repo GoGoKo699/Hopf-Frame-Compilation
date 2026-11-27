@@ -301,8 +301,14 @@ The earlier zero-clean-only discovery restriction, one-band inverse-square-root-
 search and unpaid flat-sector alignment are superseded by
 [clean promotion and paid recovery](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md).
 Old precision-envelope and local-compiler next steps are superseded by
-[R99 programmed rotations](depth/PROGRAMMED_ROTATION_DEPTH.md) in their
-precision range and [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
+[R99 programmed rotations](depth/PROGRAMMED_ROTATION_DEPTH.md) and
+[R100 geometric chunks](depth/GEOMETRIC_CHUNK_DEPTH.md) in their
+precision ranges, with [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
+R100 spends exponential volume only on a short fixed core. Its two seed
+bases improve the operator error without increasing the number of long
+table queries. Extending to larger precision needs a cheaper chunk or
+fewer sequential chunks. Applying the promotion to arbitrary-table
+rows still needs an exactly silent source sector.
 The [research catalogue](README.md#session-records-and-designs)
 retains every outcome and design document. Consult [WORKSPACE](../WORKSPACE.md)
 for the live question rather than treating an old session's final paragraph

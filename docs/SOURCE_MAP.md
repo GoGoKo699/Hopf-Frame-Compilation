@@ -96,6 +96,7 @@ Result D.
 | D: one-clean simultaneous count/depth, R79 | [Uniform subtree theorem](../research/depth/UNIFORM_SUBTREE_DEPTH.md), using [R78's native spectral decoder](../research/depth/SUBTREE_PROJECTOR_DECODER.md) and R72's one-clean terminal, width/precision splice and literal diagonal | Existing descendant-source, native query, recovery and conditional-work premises; all per-call precision, protected storage, actual inverses and leakage are charged; no unrestricted depth optimum |
 | All-precision research upper, R96 | [Linear precision depth](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Existing source, recovery and query premises, with the original widths and full operator contract |
 | Growing-precision improvement, R99 | [Programmed rotation depth](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) | Lagrange completion and retained native queries support the new zero-clean rotation; the full-frame splice preserves the R96 budgets through $`L\le cn`$ |
+| Higher-precision improvement, R100 | [Geometric source chunks](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) | Exact local Clifford combinations, returned dirty conjunctions and tensor failure projectors accelerate fixed sources while keeping full mask volumes |
 
 The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
 retains the full statements, separate state-based QBP results and earlier

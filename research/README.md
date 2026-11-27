@@ -116,8 +116,8 @@ Additional endpoint derivations and their assumptions remain in
 
 ## Large-workspace T-depth
 
-R96 covers all precisions, and R99 improves its precision term for
-$`L\le cn`$. R79 remains selected Result D. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
+R96 covers all precisions. R99 and R100 improve its precision term in
+overlapping ranges. R79 remains selected Result D. The [frontier statement](../docs/OPEN_PROBLEM.md#large-width-t-depth)
 owns the formulas, literal allocations and remaining optimal-depth question.
 The table identifies dependencies rather than repeating their proofs.
 
@@ -131,6 +131,7 @@ The table identifies dependencies rather than repeating their proofs.
 | [Portable workspace catalogue](depth/PORTABLE_WORKSPACE_CATALOGUE.md) | R94 complete local-workspace transfer through dirty selection. |
 | [All-precision linear depth](depth/ALL_PRECISION_LINEAR_DEPTH.md) | R96 general upper theorem for all precisions, with original simultaneous budgets. |
 | [Programmed rotation depth](depth/PROGRAMMED_ROTATION_DEPTH.md) | R99 keeps those budgets and replaces additive L by $`\log^2(L+2)`$ through $`L\le cn`$. |
+| [Geometric source chunks](depth/GEOMETRIC_CHUNK_DEPTH.md) | R100 extends the sublinear precision term to subexponential L with fixed-source acceleration and unchanged whole-word mask volume. |
 | [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | R96 component: separated precision scratch, global-prefix addresses and complete recovery. |
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
