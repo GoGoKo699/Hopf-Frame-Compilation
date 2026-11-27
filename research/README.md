@@ -183,6 +183,12 @@ amplifies before imposing complete return, allowing raw garbage and a
 nonflat acceptance gap only on the initialized code.
 Its [fixed-boundary information screen](depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
 rules out address-conjugated table programs at the desired width.
+An [interior Clifford](depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
+retains table-sized decoder information, but paired-row singlets defeat the natural
+graph/shear choices, and an explicit symmetry breaker still has the wrong sign.
+An [all-ones spectral obstruction](depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
+excludes every conjugating boundary for the universal literal-table middle-word prescription;
+separate constant-table handling, preprocessing and other words remain open.
 The [square-root-width corollary](depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 states the weaker source target needed for a first asymptotic improvement;
 the [two-band spectral screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
@@ -269,7 +275,7 @@ Each home separates its paid native operations from its first unpaid conversion.
 - [Parallel affine detuning: a paid batch and the remaining composition](depth/PARALLEL_AFFINE_DETUNING.md)
 - [Four abstract Pauli representations can return any Boolean phase](depth/SCALAR_REPRESENTATION_PRODUCT.md)
 - [A noncommutative cycle character with complete dirty return](depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
-- [A Gauss-sum table encoding and its missing dirty query](depth/GAUSS_SUM_QUERY_ENCODING.md)
+- [A Gauss-sum table encoding and its missing dirty query](depth/GAUSS_SUM_QUERY_ENCODING.md) · [paid constant-depth raw decisions](depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions), tight in T-count but false on fixed dirty product superpositions
 - [Gaussian inverse extraction: an exact identity and its paid boundary](depth/GAUSSIAN_INVERSE_EXTRACTION.md)
 - [Weighted-chain factorization of finite Haar trees](depth/WEIGHTED_CHAIN_FACTORIZATION.md)
 

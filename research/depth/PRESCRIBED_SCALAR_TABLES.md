@@ -823,6 +823,392 @@ code preparation, further table/address interleaving, and physical
 address motion remain outside their scope. They give no unrestricted
 query-width or T-depth lower bound.
 
+<a id="interior-clifford-decision-source"></a>
+
+### An interior Clifford can give table-sized decoder information
+
+Keep the twelve-band middle word above, but replace its preparation by
+$`F_C=A_0L_CB_0`$, with the rightmost operator acting first. This
+retains the displayed $`12m`$ T-count, twelve-band upper bound and
+$`O(m^2+G_L)`$ Clifford ledger. All native pulse scalars cancel with
+their actual inverses. Put $`w=2m+1`$ and define
+
+```math
+ \begin{aligned}
+ \Gamma_{C;u,v}&=L_C^\dagger A_0^\dagger G_{uv}A_0L_C,\\
+ W'_C&=L_C^\dagger A_0^\dagger W_CA_0L_C,
+ \qquad D_0=B_0Z_cB_0^\dagger.
+ \end{aligned}
+```
+
+The exact source and transformed Choi signal are
+
+```math
+ V_C=B_0^\dagger\Gamma_{C;u,v}W'_C\Gamma_{C;u,v}^\dagger B_0,
+ \qquad S_C(u,v)=\Gamma_{C;u,v}^\dagger D_0\Gamma_{C;u,v}.
+```
+
+Thus $`|W'_C\rangle`$ is decoded by
+$`S_C(u,v)^{\mathsf T}\otimes S_C(u,v)`$. For
+$`p_i^0=X_cX_{A_i}`$ and $`U(u)=\{i:i\cdot u=1\}`$,
+
+```math
+ A_0^\dagger G_{uv}A_0
+   =G_{uv}\prod_{i\in U(u)}e^{-i\pi p_i^0/4}.
+```
+
+The address generators have become Clifford involutions, generally
+not Paulis. A sufficient common descriptor records the signed images
+under $`L_C`$ of the $`m-1`$ axes with $`i\ne0`$ and the a
+Pauli generators of $`G_{uv}`$. It costs at most
+$`(m-1+a)(2w+2)`$ classical bits. The zero-index axis is never
+selected. At $`w=O(m)`$ this descriptor can already have table-sized
+$`O(m^2)`$ information, so the earlier short-descriptor bound does
+not directly exclude this preparation.
+
+**The larger dependence survives in the actual measurement family.**
+For $`L_C=E_C`$, set
+
+```math
+ p_i=E_Cp_i^0E_C=X_cX_{A_i}Z_B^{C_{i,*}},\qquad
+ q_j=Y_cX_{B_j},\qquad d_{ij}=1+C_{ij}\pmod2.
+```
+
+At $`v=0`$, abbreviate $`G_u=G_{u0}`$. Then
+$`\Gamma_{C;u,0}=G_u\prod_{i\in U(u)}e^{-i\pi p_i/4}`$
+commutes with every $`Z_{B_j}`$. Direct conjugation gives
+
+```math
+ D_0Z_{B_j}D_0=-i q_jZ_{B_j}=-Y_cY_{B_j}.
+```
+
+The $`p_i`$ commute with each other, while
+$`p_iq_j=(-1)^{d_{ij}}q_jp_i`$ and $`G_u`$ commutes with
+$`q_j`$. With the ordinary integer
+$`s_j(u)=\sum_{i\in U(u)}d_{ij}`$, the literal Pauli identity is
+
+```math
+ S_C(u,0)Z_{B_j}S_C(u,0)
+   =-i\,i^{s_j(u)}
+      \left(\prod_{\substack{i\in U(u)\\d_{ij}=1}}p_i\right)
+      q_jZ_{B_j}.
+```
+
+Its A-bank X support is exactly
+$`\{i:i\cdot u=1,\ C_{ij}=0\}`$: no other factor acts on A,
+and the distinct $`X_{A_i}`$ factors cannot cancel. Choosing
+$`u=e_\ell`$ with $`i_\ell=1`$ recovers every entry of every
+row $`i\ne0`$. Row zero enters none of these gauges, including
+those with nonzero v, and changes none of the measurements. Therefore
+the normalized measurement families have exactly
+$`2^{m(m-1)}`$ distinct values. Their exact fixed-length information
+content is $`m(m-1)`$ bits. This distinction also holds for the
+two-register Choi measurements: they identify S up to a scalar sign,
+and $`SZ_{B_j}S`$ is unchanged by that sign.
+
+This concerns exact descriptions of this specified decoder family.
+It is not a bound on approximate descriptions, source width, or all
+possible Choi normalizations. It establishes a genuine failure of
+the previous short-descriptor argument in this normal form; it does
+not establish a coherent decision gap. The next two tests address
+that separate requirement.
+
+<a id="paired-row-decision-obstruction"></a>
+
+### Paired rows leave an exact wrong-sign subspace
+
+Let $`r\ge1`$ and suppose C has identical paired rows,
+
+```math
+ C_{(k,0),j}=C_{(k,1),j}=D_{kj}.
+```
+
+Put one singlet on each A pair, leaving the entire B bank arbitrary:
+
+```math
+ |\psi^-\rangle=\frac{|01\rangle-|10\rangle}{\sqrt2},\qquad
+ |\omega_A\rangle=\bigotimes_k|\psi^-\rangle_{A_{k,0}A_{k,1}},
+ \qquad
+ \mathcal D_A=\mathcal H_c\otimes
+     \mathrm{span}\{|\omega_A\rangle\}\otimes\mathcal H_B.
+```
+
+The identity $`(X_1+X_2)|\psi^-\rangle=0`$ implies that
+$`A_u`$ acts as identity on this subspace whenever $`u=(p,0)`$:
+the two character signs in each pair coincide. This also applies
+to $`A_0`$. Every computational component of a singlet has odd
+pair parity, so $`E_C`$ preserves the subspace and restricts to
+$`Z_B^\kappa`$, where $`\kappa_j=\sum_kD_{kj}\pmod2`$.
+Every B pulse preserves it as well. Consequently, for every v,
+
+```math
+ (K_CK_0^\dagger)|_{\mathcal D_A}=I
+ \qquad\text{when }u=(p,0).
+```
+
+Indeed, the A pulse is identity there and the remaining factors
+in each commutator are actual inverses.
+
+The subspace $`\mathcal D_A`$ is precisely the simultaneous
+minus-one eigenspace of the swaps exchanging the two wires in each
+A pair. Any boundary commuting with those swaps preserves it.
+The fixed $`A_0,B_0`$ commute with the swaps, so the interior
+preparation has this property whenever $`L_C`$ does. Hence, for
+every B-bank vector beta, its clean compression obeys
+
+```math
+ M_C((p,0),v)(|\omega_A\rangle|\beta\rangle)
+       =|\omega_A\rangle|\beta\rangle,
+ \qquad M_C=J^\dagger V_C^\dagger Z_cV_CJ.
+```
+
+For any nonzero D choose $`D_{pj}=1`$ and set
+$`u=(p,0),v=j`$. The prescribed sign is negative, whereas the
+displayed positive eigenspace has dirty dimension $`2^m`$.
+Thus every positive coherent gap fails. This entangled dirty input
+is an allowed witness, not an initialized circuit resource.
+
+The condition holds for $`L_C=E_C`$ and both CNOT table shears
+
+```math
+ \Sigma_C^{A\to B}:|a,b\rangle\longmapsto|a,b+C^{\mathsf T}a\rangle,
+ \qquad
+ \Sigma_C^{B\to A}:|a,b\rangle\longmapsto|a+Cb,b\rangle.
+```
+
+Identical rows make the first shear invariant under exchanging the
+two A controls; the second adds the same bit to both A targets.
+Both commute with every paired swap. No column duplication is needed.
+The column version uses B singlets and last-bit-zero v, with arbitrary u.
+
+For the symmetric case $`C=D\otimes J_2`$, B singlets may also
+be imposed. The graph phase and both shears then have literal scalar
+$`(-1)^{\sum_{k,l}D_{kl}}`$ on the two-dimensional signal subspace:
+each pair has odd Z parity, and $`X\otimes X`$ has singlet
+eigenvalue minus one. That scalar cancels with its actual inverse.
+The native T-pulse scalars cancel in the same forward/inverse pairs,
+so the resulting identity is literal. These preserved-subspace
+arguments do not exclude an arbitrary boundary that moves the code
+away from the exhibited subspaces.
+
+<a id="explicit-symmetry-breaker-failure"></a>
+
+### A paid symmetry breaker avoids those subspaces but still fails
+
+Use the first pair in each bank and define the constant-size Clifford
+$`L_*=U_1U_0`$, again with the rightmost gate first:
+
+```math
+ \begin{aligned}
+ U_0&=\mathrm{CX}_{c\to B_0}H_{B_0}H_cS_c^\dagger,\\
+ U_1&=Z_{A_0}Z_{B_0}\mathrm{CX}_{A_0\to A_1}
+       \mathrm{CX}_{B_0\to B_1}H_{A_0}H_{B_0}
+       \mathrm{SWAP}_{c,A_0}.
+ \end{aligned}
+```
+
+An index inside a gate or Pauli subscript denotes a bank qubit;
+the standalone $`B_0`$ still denotes the zero-address pulse.
+Z and SWAP have their usual fixed H,S,CNOT expansions, so this
+boundary adds no T gates, clean qubits or growing Clifford cost.
+Literal Pauli transport gives
+
+```math
+ L_*Y_cL_*^\dagger=-X_{A_0}X_{A_1},\qquad
+ L_*(Y_cX_{B_0})L_*^\dagger=-X_{B_0}X_{B_1}.
+```
+
+Both input Paulis anticommute with $`D_0=B_0Z_cB_0^\dagger`$.
+Their images stabilize the corresponding A and B singlet subspaces.
+Thus the positive eigenspace of $`L_*D_0L_*^\dagger`$ has zero
+intersection with either subspace. The preceding $`A_0`$ preserves
+both. For repeated-block C, $`E_C`$ also commutes with the two
+displayed stabilizers. Consequently the preparation with
+$`L_C=E_CL_*`$ has a clean code with zero intersection with
+both previously exhibited subspaces.
+
+Nevertheless, take $`m=2,C=J_2,u=v=0`$. Propagating the Pauli
+observable through the specified native word gives exactly
+
+```math
+ V_C^\dagger Z_cV_C
+  =Z_c\frac{3I-X_{B_0}}4
+    +X_c\frac{I+X_{B_0}}4(Q_1+Q_2-Q_3),
+```
+
+where
+
+```math
+ \begin{aligned}
+ Q_1&=Z_{A_0}Y_{A_1}\frac{Z_{B_1}+Y_{B_1}}{\sqrt2},\\
+ Q_2&=X_{A_0}X_{A_1}\frac{Z_{B_1}-Y_{B_1}}{\sqrt2},\\
+ Q_3&=Y_{A_0}Z_{A_1}X_{B_1}.
+ \end{aligned}
+```
+
+The three Q operators are pairwise anticommuting Hermitian involutions;
+this also checks that the displayed reflection squares to identity.
+Its twelve Pauli terms comprise two with $`Z_c`$ and ten with
+$`X_c`$. Clean-zero compression therefore yields
+
+```math
+ M_C(0,0)=\frac{3I-X_{B_0}}4.
+```
+
+Its eigenvalues are one half and one. Every computational dirty basis
+input to this five-qubit word has positive bias three quarters,
+although the selected table entry is one. The whole active compression
+has the wrong sign, beyond the previously identified singlet witnesses.
+
+For every larger power-of-two m, put $`J_2`$ in the first two rows
+and columns of C and set all other entries to zero. Put the additional
+A and B pairs in singlets. At address zero their X sums vanish;
+$`E_C`$ and $`L_*`$ act only on the active first pairs. This is an
+invariant subspace on which the entire source restricts to the
+five-qubit word above. Its compression and wrong sign persist at
+every size; for $`m\ge4`$ these are nonconstant tables. Spectator
+native pulse scalars cancel with the actual inverses as before.
+
+The [interior-decision fixtures](../../tests/test_interior_decision.py)
+check the finite operator identities; the explicit recovery and
+spectator arguments above supply their arbitrary-size scope.
+This paid repair shows that avoiding the known singlet subspaces
+is insufficient, including on the embedded nonconstant tables.
+By itself it does not exclude every other boundary. A separate
+spectral test below treats all conjugating boundaries for a different,
+constant-table family.
+
+<a id="boundary-independent-spectral-obstruction"></a>
+
+### An all-ones table defeats every conjugating boundary of this middle word
+
+The literal-table prescription $`V_C=F_C^\dagger K_CK_0^\dagger F_C`$
+cannot give a correct one-clean decision for every C, even if its
+conjugating boundary is an arbitrary unitary. The obstruction is the
+all-ones table $`C=J_m`$ at every $`m=2^r`$, $`r\ge1`$.
+This concerns that prescribed middle word and its mutually inverse
+boundaries; separate treatment or preprocessing of the table is not
+being excluded.
+
+**A spectral arc and a half-dimensional code.** Let Q be a unitary
+on an even-dimensional space of dimension d. Suppose a spectral
+subspace of dimension greater than $`d/2`$ lies in an arc
+$`\{e^{it}:\phi\le t\le\phi+\omega\}`$, where
+$`0\le\omega\le\pi`$. Every rank-$`d/2`$ projector P has a
+unit vector psi in the intersection of its range with that subspace.
+Rotating the arc to its midpoint gives
+
+```math
+ |\langle\psi,Q\psi\rangle|\ge\cos(\omega/2),
+ \qquad
+ \|PQ\psi\|\ge|\langle\psi,Q\psi\rangle|.
+```
+
+Consequently
+
+```math
+ \langle\psi|Q^\dagger(2P-I)Q|\psi\rangle
+   =2\|PQ\psi\|^2-1\ge\cos\omega.
+```
+
+For one clean signal, $`JJ^\dagger=(I+Z_c)/2`$ has rank
+$`d/2`$. For any boundary F take $`P=FJJ^\dagger F^\dagger`$;
+the compressed observable of $`V=F^\dagger QF`$ is the compression
+of the preceding operator to that code, expressed through the
+isometry $`FJ`$. Hence
+
+```math
+ \lambda_{\max}(J^\dagger V^\dagger Z_cVJ)\ge\cos\omega.
+```
+
+**The all-ones middle word has such an arc.** For $`C=J_m`$,
+every $`p_i=X_cX_{A_i}`$ commutes with every transported axis
+
+```math
+ E_C(Y_cX_{B_j})E_C=Y_cX_{B_j}Z_A^{\rm all}.
+```
+
+The two Pauli anticommutations cancel. Address-dependent character
+signs do not change this relation, so $`K_C=I`$ literally and
+$`Q=K_0^\dagger`$.
+
+At address zero, simultaneous X-bank eigenvalues
+$`\epsilon_i,\eta_j\in\{\pm1\}`$ reduce the two pulses to
+$`A=e^{-i\alpha X_c}`$ and $`B=e^{-i\beta Y_c}`$, where
+
+```math
+ \alpha=\frac\pi8\sum_i\epsilon_i,\qquad
+ \beta=\frac\pi8\sum_j\eta_j.
+```
+
+The signal-qubit commutator $`A^\dagger B^\dagger AB`$ has
+eigenvalues $`e^{\pm i\theta}`$, with
+
+```math
+ \cos\theta=1-2\sin^2\alpha\sin^2\beta.
+```
+
+For a uniform bank eigenassignment let $`s=\sum_i\epsilon_i`$
+and $`p=s/2`$, an integer because m is even. Its residue probabilities
+are
+
+```math
+ \begin{aligned}
+ q_0&=\Pr(p\equiv0\bmod4)=\frac14+\delta,\\
+ q_2&=\Pr(p\equiv2\bmod4)=\frac14-\delta,\\
+ \Pr(p\text{ odd})&=\frac12,\qquad \delta=2^{-m/2-1}.
+ \end{aligned}
+```
+
+For example, these follow from
+$`\mathbb E e^{i\pi p/2}=2^{-m/2}`$ and
+$`\mathbb E(-1)^p=0`$, together with the conjugate Fourier moment.
+The two banks are independent in this spectral count. The fraction
+with eigenvalue one is $`2q_0-q_0^2`$. If both residues are odd,
+the two eigenvalues are $`e^{\pm i\pi/3}`$; these blocks have
+fraction one quarter, contributing one eighth to each eigenvalue.
+Taking the adjoint preserves those fractions. Therefore Q has a
+spectral subspace with eigenphases in $`[0,\pi/3]`$ and fractional dimension
+
+```math
+ 2q_0-q_0^2+\frac18
+   =\frac9{16}+\frac32\delta-\delta^2>\frac12.
+```
+
+The lemma yields, for every conjugating boundary F,
+
+```math
+ \lambda_{\max}(J^\dagger V^\dagger Z_cVJ)\ge\frac12.
+```
+
+The all-ones table requires a negative definite compression at any
+positive decision gap, so no such boundary succeeds. Actual native
+pulse scalars cancel within each commutator, and the boundary and
+its actual inverse cancel their common scalar; no projective change
+of the spectrum was made.
+
+Extra arbitrary dirty registers on which the middle word is identity
+preserve all spectral fractions. At any other address, the Walsh
+character signs merely permute the independent bank eigenassignments,
+so every address block has the same spectrum. The lemma thus also
+applies to the complete address-register direct sum and permits F
+to move the address: the required table sign is negative identity
+on that entire register. The one-clean, rank-half premise and the
+unchanged middle word remain essential to this statement.
+
+The [spectral fixtures](../../tests/test_interior_decision.py) check
+the small native middle word and residue-count identities; the arc
+and intersection arguments give the arbitrary-boundary, all-size
+conclusion. The earlier paired-row and explicit-repair results retain
+their separate nonconstant counterfamilies. This stronger obstruction
+excludes a universal prescription using the literal table in this
+fixed conjugated middle word. It does not exclude separate compilation
+of constant tables, table complementation or other preprocessing with
+changed surroundings, independent input/output boundaries, or a
+changed middle word. Other asymmetric boundaries for the remaining
+nonconstant tables remain open. No unrestricted query-width or
+growing T-depth lower bound follows.
+
 ### Substitution in the frame recurrence
 
 For each early stage of remaining height m, request

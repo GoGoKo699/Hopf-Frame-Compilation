@@ -196,10 +196,11 @@ rules out a constant-gap source with at most two raw T bands for all
 tables; it is not a general growing-depth lower bound.
 
 The [raw-decision count bound](../research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
-forces worst-case $`\Omega(2^{a/2})`$ T-count even with arbitrary
-width, garbage and arbitrarily small strict bias at a fixed Pauli readout.
-A vanishing gap cannot buy a uniformly smaller-order raw count. This gives
-no growing-depth bound; single-address predicates already admit
+forces worst-case $`\Omega(2^{a/2})`$ T-count with arbitrary width, garbage and arbitrarily small strict bias at a fixed Pauli readout.
+It is tight: [controlled Gauss decisions](../research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
+attain square-root T-count/width and constant depth for every table's strict basis bias.
+Their compressed sign fails on fixed product superpositions. A growing-depth invariant must
+use more, such as a uniform bias, coherent sign or return; single-address predicates also admit
 [constant-depth fixed-error reflections](../research/depth/EXPANDER_ZERO_REFLECTION.md).
 
 The [four-call shear reduction](../research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables) makes scalar entry signs
