@@ -129,6 +129,33 @@ class NativeGapRefinementTests(unittest.TestCase):
                 self.assertTrue(all(x.bit_count() <= 1 << digit
                                     for x in points if coefficients[x]))
 
+    def test_four_counter_corners_expose_false_row_overlap(self):
+        identity = np.eye(4)
+        fourier_zero = np.ones(4) / 2
+        projector = np.outer(fourier_zero, fourier_zero)
+        shift = np.diag([1, 1, 1, -1])
+        conjugated = shift.conj().T @ projector @ shift
+        flag_a = (np.kron(projector, np.kron(X, I2))
+                  + np.kron(identity - projector, identity))
+        flag_b = (np.kron(conjugated, np.kron(I2, X))
+                  + np.kron(identity - conjugated, identity))
+        corner = np.kron(identity, np.diag([1, 1, 1, -1]))
+        comparison = (flag_b @ corner @ flag_a @ corner
+                      @ flag_b @ corner @ flag_a @ corner)
+
+        overlap = np.linalg.norm(projector @ shift @ projector, 2)
+        self.assertAlmostEqual(overlap, 0.5)
+        monitored = np.kron(fourier_zero, [1, 0, 0, 0])
+        self.assertAlmostEqual(np.vdot(monitored, comparison @ monitored).real,
+                               1 - 2 * overlap**2)
+        self.assertAlmostEqual(np.linalg.norm(comparison @ monitored - monitored),
+                               2 * overlap)
+
+        inactive_clock = np.array([1, -1, 0, 0]) / sqrt(2)
+        inactive_columns = np.kron(inactive_clock[:, None], identity)
+        np.testing.assert_allclose(comparison @ inactive_columns, inactive_columns,
+                                   atol=2e-12, rtol=0)
+
     def test_cyclotomic_filtration_and_minimum_stratum(self):
         rng = np.random.default_rng(74025)
         roots = np.vstack((np.eye(4, dtype=int), -np.eye(4, dtype=int)))

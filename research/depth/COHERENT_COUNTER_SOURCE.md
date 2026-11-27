@@ -3,7 +3,8 @@
 [Complete source target](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) ·
 [Clean-source promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) ·
 [Paid affine phase batches](PARALLEL_AFFINE_DETUNING.md) ·
-[Distributed counter and common shift](#distributed-cyclic-counter)
+[Distributed counter and common shift](#distributed-cyclic-counter) ·
+[Monomial clock repair](#monomial-clock-repair-bank)
 
 A counter gives an exact complete indicator identity with logarithmically
 many clean wires. A precise phase-gradient state is unnecessary: one
@@ -944,3 +945,145 @@ with no equality predicate needed in that reduction. The standard
 uses initialized fanout copies and the nonnative cyclic eigenbasis.
 A read-only, few-clean native modulo-three row with the required
 exact return and depth remains unpaid.
+
+<a id="monomial-clock-repair-bank"></a>
+
+## 12. Monomial clock repair and dense-bank error
+
+Let e be a p-bit mismatch, set $`Q=2^k>p`$, and let $`P_e`$ be
+the distributed-counter projector onto
+$`\sum_i e_i\theta_i=0\bmod Q`$ in the clocks' Fourier keys. Equivalently,
+it averages translation $`z\mapsto z+e`$ on the computational
+clock labels. For nonzero e, every orbit has length Q. Let the repair
+$`D_e`$ be monomial on the clocks and arbitrary private work, with phase
+$`\omega^{q_e(z,h)}`$ on input $`z,h`$ for $`\omega=\zeta_8`$. For each
+fixed j, assume the three Boolean digits of $`q_e(je,0)`$ have degree at
+most s in e. The j dependence is unrestricted. The repair may depend
+on the row and the entire prescribed table.
+
+### Exact silence requires high address-phase degree
+
+Set $`\lambda=1-\omega`$ and
+
+```math
+F(e)=\sum_{j=0}^{Q-1}\omega^{q_e(je,0)}.
+```
+
+At e zero its value is $`Q\omega^{q_0(0,0)}`$, of
+$`\lambda`$-valuation $`4k`$. Two is totally ramified in $`\mathbb Z[\zeta_8]`$, since
+$`\lambda`$ has norm two and $`2`$ is associated to $`\lambda^4`$.
+
+For a phase digit of weight $`2^b`$, expand its binary algebraic
+normal form. Every nonconstant monomial M contributes the factor
+$`1+(\omega^{2^b}-1)M(e)`$, with any constant phase retained. A
+coefficient of a degree-a monomial in a product of these factors
+is divisible by $`\lambda^{\lceil a/s\rceil}`$, since at least
+that many nonconstant factors must cover those a variables.
+Use the Boolean relations $`e_i^2=e_i`$. For s zero, all nonconstant coefficients vanish.
+
+Thus F modulo $`\lambda^{4k+1}`$ is a nonzero multilinear polynomial
+of degree at most $`4ks`$. A nonzero multilinear polynomial of
+degree d over any coefficient ring is nonzero on at least
+$`2^{p-d}`$ Boolean inputs. Choose a nonzero coefficient of highest
+degree and take the finite difference in its variables. The
+same nonzero coefficient is obtained on every assignment of
+the complement. Each complementary fiber therefore contains a
+nonzero evaluation. In particular at least
+$`2^{p-4ks}-1`$ false mismatch values have nonzero F.
+
+On a false mismatch the normalized uniform vector on
+$`\{je:0\le j<Q\}`$, tensored with the private zero column, belongs
+to $`P_e`$. The sum of the output-orbit entries of $`P_eD_eP_e`$
+on that column is $`F(e)/Q`$, even if the permutation of $`D_e`$
+moves all the private work. Thus exact false silence implies
+$`p\le4ks`$.
+
+### Nonzero false compression is quantized
+
+Use normalized uniform clock-orbit vectors and computational
+private columns as an orthonormal basis of $`P_e`$. Each entry
+of $`P_e D_e P_e`$ is $`1/Q`$ times a sum S of at most Q eighth
+roots. A nonzero S satisfies $`|S|\ge1/Q`$. Its absolute field
+norm is $`|S|^2|\sigma(S)|^2`$, a nonzero integer, and the other
+complex embedding obeys $`|\sigma(S)|\le Q`$ by the same sum.
+Consequently
+
+```math
+\nu_e=\|P_eD_eP_e\|\ne0\quad\Longrightarrow\quad
+\nu_e\ge Q^{-2}.
+```
+
+### The literal bank forces logarithmically many nonlinear rounds
+
+For a false row put $`P=P_e`$ and $`Q'=D_e^\dagger P_eD_e`$.
+Use the two completed flag XORs $`B_P,B_{Q'}`$ on private flags
+a,b, respectively. With the output in its active Fourier value,
+each Toffoli corner is the phase $`C(a,b)=(-1)^{ab}`$. In the
+chronological word
+
+```math
+ C,\ B_P,\ C,\ B_{Q'},\ C,\ B_P^\dagger,\ C,\ B_{Q'}^\dagger,
+```
+
+the block returning the two flags from zero to zero is
+
+```math
+ E=\sum_{\alpha,\beta\in\{0,1\}}
+      (-1)^{\alpha\beta} Q'_\beta P_\alpha Q'_\beta P_\alpha ,
+```
+
+with $`P_1=P,P_0=I-P`$ and similarly for Q'. Only the third
+corner contributes a sign on paths returning both flags to zero.
+For $`\psi\in\mathrm{ran}(P)`$ the formula gives
+$`E\psi=(I-Q'-P Q')\psi`$. Choose a unit vector there maximizing
+$`\langle\psi,Q'\psi\rangle=\|Q'P\|^2=\nu_e^2`$. The actual
+row output has real overlap $`1-2\nu_e^2`$ with the input, whose
+ideal false-row action is identity. This calculation permits
+noncommuting P and Q'.
+
+In the literal bank of disjoint row clocks and flags, activate
+one false row by its output Fourier value. Keep all other rows
+inactive and put both arbitrary flags of each inactive row in
+plus states. Its corners and flags then act as identity on this
+chosen input. A uniform literal-phase full bank error $`\tau<1`$ therefore forces
+$`\nu_e\le\tau/2`$ in each false row. All the corresponding
+overlap factors are positive.
+
+Activate the M bad false rows at one address and use their product
+of maximizing inputs, with other rows inactive as above. The overlap
+with the ideal output is at most $`(1-2Q^{-4})^M`$. The error promise forces
+this overlap to be at least $`1-\tau^2/2`$, hence
+$`M\le C_\tau Q^4`$. A common translated template gives at least
+$`2^{p-4ks}-1`$ bad rows at each address. Even for row-dependent
+templates with the same degree bound, averaging their bad
+addresses gives some address with at least this many bad rows.
+Consequently $`4ks\ge p-4k-O_\tau(1)`$.
+
+For a hardwired table, an unwanted active false row can instead
+be disabled on a private unit vector in $`\ker P\cap\ker Q'`$.
+Each rank fraction is $`1/Q`$, so this intersection is nonempty
+for $`Q>2`$. No flag moves and the four identical phases cancel.
+The matching row is exact for every D because both projections
+are identity. Hence the same product estimate applies to bad
+false rows in any fixed table's support.
+
+For any fixed enabled set of density c, average the bad
+mismatch counts over all addresses for only those rows. Some
+address then has at least $`c(2^{p-4ks}-1)`$ bad enabled rows.
+The argument also applies when the clean counter is reused sequentially.
+Every flag returns its initialized counter, so the fixed-address row
+actions are still a product on the disjoint clocks and flags.
+
+For a classical reversible implementation with t Toffoli rounds
+and bounded-degree diagonal phase exponents, the fixed-j input
+restriction $`z_i=je_i`$ is Boolean-linear in e. Each wire's
+degree grows by at most two per Toffoli round. Computing the
+three bits of the accumulated exponent modulo eight multiplies
+degree by at most a constant. Thus $`s=O(2^t)`$ and the literal
+bank needs $`t\ge\log_2p-\log_2k-O_\tau(1)`$. In particular this
+is logarithmic at $`k=\lceil\log_2(p+1)\rceil`$. This is a bound
+on that monomial reversible-round implementation. A general
+native word may resynthesize its monomial action through
+nonmonomial intermediate operations. Shared row clocks, a
+different extraction word, and nonmonomial repairs also fall
+outside the bank obstruction.
