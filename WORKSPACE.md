@@ -28,7 +28,7 @@ with the same simultaneous budgets as [all-precision R96](research/depth/ALL_PRE
 [R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md) gives sublinear precision depth
 for $`\log_2 L=o(n)`$. [R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$.
 [R104](research/depth/EXACT_KEY_COVER_PRECISION.md) makes the additive precision term sublinear for $`2^{cn}\le L=o(N)`$ at the original widths. The fixed-accuracy gap stays five bands to logarithmic at square-root width.
-[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean and $`O(L)`$ T gates. [R105](research/depth/CLEAN_SPACE_PRECISION_DEPTH.md) comes within a logarithmic factor of R103 when the clean budget grows through $`\Theta(L^{3/4})`$.
+[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean and $`O(L)`$ T gates. [R105](research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix) attains polylogarithmic depth with nearly linear returned clean space at the same counts and dirty width.
 [R79 remains selected Result D](manuscript/PUBLICATION_SCOPE.md).
 
 ## Main unfinished route and exact missing operation

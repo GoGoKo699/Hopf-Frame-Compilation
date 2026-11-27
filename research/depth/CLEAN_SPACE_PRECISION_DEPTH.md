@@ -6,26 +6,34 @@
 
 **Theorem R105.** Fix a sufficiently small absolute $`c\gt0`$.
 For integers $`n\ge1`$, $`L\ge6`$ and $`L\ge2^{cn}`$, put
-$`N=2^n`$ and choose an integer $`1\le t\le L^{3/4}`$.
+$`N=2^n`$ and choose an integer $`1\le t\le L`$.
 Every prescribed real complete Hopf frame and prescribed complex magnitude
 completion has a native Clifford+T word and its actual reverse with
 initialized-isometry error $`2^{-L}`$, at most $`1+C_{\rm cl}(t+1)`$
 external clean inputs, and the literal R96 dirty thresholds
 $`b\ge17(L+n+7)`$ and $`b\ge17(L+n+8)`$, respectively.
-The simultaneous resources are
+For a fixed polynomial $`P_{\rm c}`$, the simultaneous bounds are
 
 ```math
-T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
-D_T=O(NL/b^2+L\log_2(t+2)/t).
+\begin{aligned}
+T&=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\\
+D_T&=O\!\left(NL/b^2+(L/t+P_{\rm c}(n))\log_2(t+2)\right).
+\end{aligned}
 ```
 
-All additional clean inputs return exactly. The norm includes the
-original clean output, all logical columns, arbitrary dirty inputs and
-references. For $`L\ge N`$, R103 gives the lower bound
-$`\Omega(L/(k+1))`$ on worst-case depth at $`O(L)`$ T gates with
-$`k`$ external clean inputs. Taking $`k=1+C_{\rm cl}(t+1)`$ puts the
-upper bound within a factor $`O(\log_2(k+2))`$. Here $`NL/b^2=O(1)`$.
-At $`t=1`$ R96 gives the bound with one clean input.
+For $`1\le t\le L^{3/4}`$, the depth is
+$`O(NL/b^2+L\log_2(t+2)/t)`$. At $`t=1`$ R96 gives this
+bound with one clean input. All additional clean inputs return
+exactly. The error includes the original clean output, all logical
+columns, arbitrary dirty inputs and references.
+
+For $`L\ge N`$ at the stated width, $`T=O(L)`$ and $`NL/b^2=O(1)`$.
+R103 gives worst-case depth $`\Omega(L/(k+1))`$ with $`k`$ external
+clean inputs at that T count. For any sufficiently large fixed u,
+taking $`t=\max\{1,\lfloor L/\log_2^u(L+2)\rfloor\}`$ uses
+$`k=O(L/\log_2^u(L+2))`$ clean inputs and
+$`D_T=O(\log_2^{u+1}(L+2))`$. This is within a logarithmic factor
+of the lower bound at that clean allocation.
 
 ## 1. A linear-size menu with a shared comb selector
 
@@ -228,8 +236,9 @@ native T-depth is
 O((L/t+P(n))\log_2(t+2)).
 ```
 
-Since $`t\le L^{3/4}`$, the $`L/t`$ term absorbs every fixed
-polynomial in n and the coarse depth. The real part and final
+For $`t\le L^{3/4}`$, the $`L/t`$ term absorbs every fixed
+polynomial in n and the coarse depth. Section 6 reschedules the
+coarse work for larger t. The real part and final
 complex phase use the original shift to $`L+1`$ at the same t.
 The shifted literal real width matches the complex threshold.
 The exact full-code substitutions preserve the original
@@ -243,3 +252,179 @@ check the dyadic menu weights and propagate the actual native one-hot
 axis-extraction word and its reverse on every tested initialized column.
 The controlled-Pauli sweeps, rolling coordinate changes and all-size
 frame splice are analytic.
+
+<a id="structured-coarse-prefix"></a>
+
+## 6. Structured coarse schedules for larger t
+
+The serial coarse gate program in the
+[direct-prefix terminal](DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md#5-exact-coarse-programming-with-short-selection-queries)
+can be replaced at complete native boundaries. Keep the original
+coarse matrices, gates within each matching, mode arenas and
+conditioned prefix. Their structure allows polynomially many
+R91 queries with local mode bits in the address.
+
+### Exact prefixed operations
+
+Retain P, X, H, d, z and w from the direct-prefix terminal.
+The local mode registers use at most $`h+O(1)`$ bits, including
+any original mode flags. The optional presence bit w, when used,
+is preserved for the entire visit. Let $`e=H`$, or $`e=H\wedge w`$
+for a presence-guarded visit.
+
+**Permutations and signs.** A family of phase-free permutations
+$`\pi_P`$ of the local mode labels has a common Beneš stride
+schedule by [the exact routing construction](../endpoint/DISJOINT_BLOCK_COMPILER.md#dirty-only-routing-and-boolean-phases).
+Each stage toggles one physical mode bit by a Boolean table on
+P and all other mode bits. Emit its complete R91 XOR directly
+into that bit. The table has zero rows on $`e=0`$ and excludes
+the target. All local modes, including occupied padding, have
+the specified permutation. Where signed normalization is a
+monomial, retain its separate literal Boolean sign in the
+prescribed order.
+
+The original two-bit clock implements the known center phase
+$`i^f`$, with f including e. Use
+$`Z_4 X_4^f Z_4^\dagger X_4^{-f}`$ with its rightmost factor
+first. The high-bit XOR of $`X_4^f`$ reads the unchanged low
+clock bit, and the low-bit XOR excludes its own target. These
+are complete exact R91 queries. The identity
+$`Z_4 X_4^f Z_4^\dagger X_4^{-f}=i^f I`$ includes arbitrary
+clock inputs and their references. Squaring the clock phase
+gives $`(-1)^f`$. Its conjugate lift on arbitrary r is the
+same $`i^f`$ times the guarded sign $`(-1)^{rf}`$, with r
+unchanged. On inactive rows the increment is identity, so the
+two actual clock phases cancel.
+
+**Addressed native symbols.** For a fixed one- or two-qubit gate
+G, the relevant exact table f excludes the gate's changing
+operands. Toggle $`z`$ by $`ef`$, apply $`C_{e\wedge z}(G)`$
+with the inherited exact bounded control, then actually reverse
+the query. This acts on $`e=1,z=0`$ as the selected G and
+returns z. It is identity on $`e=0`$ for arbitrary z. All fine
+words leave the physical z untouched, including on their
+rejected columns. For genuinely small residual words, use the
+same old tuple-and-type selectors with f depending only on P.
+The original data, flags and local metadata remain physical
+operands of the selected gates. They are excluded from those
+program addresses. A size-polynomial residual word and
+polynomial common support require only polynomially many such
+queries. Returned helper positions can be reused exactly as in
+the original program.
+
+For a disjoint matching of oriented two-level gates, use an
+exact permutation $`\rho_P`$ mapping every ordered edge to a
+pair differing on one fixed physical bit. Complete this
+permutation arbitrarily on unused labels, and use identity
+words on unused pairs. Keep the original exact native
+single-qubit word at every pair, including its phase, and pad
+their lists with identities. With the other mode bits as the
+pair address, emit the bounded symbol alphabet at each
+chronological position by the addressed-symbol operation.
+Undo $`\rho_P`$ by its actual reverse. The selected physical
+bit never enters the query address. This gives the same
+logical matching on the whole mode space and restores all
+helpers. Each layer needs $`O(h+1)`$ permutation queries
+plus the maximum native length of its single-qubit words
+times a fixed alphabet size.
+
+**Walsh and conjugate lift.** A block Walsh on aligned dyadic
+blocks is one addressed H per local bit, enabled on the blocks
+in which that bit lies in the varying suffix. Its enabling
+predicate excludes its target. Use an exact permutation and
+reverse to handle a nonaligned block arrangement. For a
+complex native coarse symbol in the conjugate lift, include
+unchanged r as one further selector bit and emit the actual
+conjugate symbol on its second branch. Real permutations and
+Walsh gates are unchanged. A fixed finite native phase targeting
+r instead keeps its inherited support and excludes r from
+the programming table. Equality is of the complete lifted
+operators, so internal physical T locations need not agree.
+
+### The complete coarse ledger
+
+The [R69 coarse remainder](HIGH_PRECISION_DEPTH.md#6-every-remaining-native-word-is-affordable-in-depth)
+uses the following operators in the retained complete frame assembly.
+
+* The [growing-source arenas](../endpoint/GROWING_SOURCE_COMPILER.md#4-full-unitary-mode-arenas-and-exact-guards)
+  use polynomially many exact mode permutations for packs,
+  fresh-cell injections, signed normalization and routing.
+  These move original local mode coordinates and return all
+  external work. The fixed native splitters and bounded
+  multiplier, type, rare-label, power and guard arithmetic
+  have a polynomial-size native ledger. They retain the
+  original stable physical controls in the P-only symbol
+  program.
+* The initial source and final tag use
+  [disjoint state extensions](../endpoint/DISJOINT_BLOCK_COMPILER.md#4-disjoint-reflection-and-state-sources).
+  Their coarse state preparers are block Hopf words with at
+  most $`h+O(1)`$ addressed two-level matching layers.
+  The inverse-polynomial-in-local-dimension accuracy of
+  each coarse rotation gives a native single-qubit word
+  of length polynomial in h. Retain the actual
+  determinant-one words and all literal phases. Block Walsh
+  and known center phases are the exact operations above.
+  The chart still uses the same coarse operator and its
+  actual inverse.
+* The only generic adjacent-row SU mesh in this assembly
+  is for the original fixed-height bottom. Its
+  [blocks](../endpoint/GROWING_SOURCE_COMPILER.md#1-statement-clipping-and-the-fixed-anchor)
+  have dimension $`2^{d_0}`$ for an absolute constant
+  $`d_0`$. The [disjoint block mesh](../endpoint/DISJOINT_BLOCK_COMPILER.md#3-coarse-synthesis-with-a-linear-block-entry-budget)
+  consequently has a constant number of matching layers.
+  Its native single-qubit words have the same coarse accuracy
+  and polynomial length. The initial and final state
+  extensions use the block Hopf preparers above. The
+  growing coarse matrices in the overlap calculation are
+  realized by the original local kernel stream. Retain its
+  existing fine sources, coefficient positions and guards.
+
+Thus the constant-group assembly has at most $`P_1(n)`$ coarse
+query and controlled-gate visits for a fixed polynomial $`P_1`$.
+A full logical table uses only P, the $`h+O(1)`$ mode or signal
+bits, and a fixed number of guard or clock bits. The small
+residual gate tables read P and the fixed enabling flags.
+These are at most $`C N`$ rows and one output bit per query.
+Neither metadata helper banks nor precision words join a
+query address. R91 uses the same exclusive $`B_Q=\lfloor b/2\rfloor`$
+pool. The total new coarse T and Clifford counts are
+
+```math
+O(P_1(n)(\sqrt N+N/b+1)),\qquad O(P_1(n)(N+1)).
+```
+
+Its native T-depth is
+$`O(P_1(n)(\log_2(n+2)+N/b^2))`$.
+Because $`L\ge2^{cn}`$, the fixed polynomial is absorbed in
+the simultaneous count and volume envelopes. The additive
+non-source native depth is polynomial in n. Returned clock
+bits and bounded gate-control helpers fit the inherited room
+outside R91 and the live precision core. On the active program
+code the replacement has the old action on all occupied modes
+and dirty work. The code remains valid after every old fine
+word because z is disjoint. When the macro is inactive it is
+literal identity for arbitrary occupied program and mode bits.
+Keep every actual coarse inverse and fine replay at its old
+boundary.
+
+For bounded local height and the retained R72 bottom, the
+fallback uses a constant number of native addressed-layer
+words at precision $`L+O(1)`$. These have the same exact
+unpaired or paired geometric sources and complete masks.
+Use the unchanged R91 masks and replace the sources by
+Sections 1–4. For $`n\le3`$ the same fallback applies to the
+entire input. The final R72 complex diagonal similarly has
+a constant number of packed masks and geometric-source
+visits at the shifted precision. Cases with bounded L also
+have bounded n and can use R96.
+
+The Section 5 source estimate is valid for $`t\le L`$, since
+each retained core may use its own shorter final chunk.
+Adding the polynomial coarse depth proves the extended
+bound with a larger fixed $`P_{\rm c}`$. At every source
+boundary the new initialized wires return on the full
+original space, even if an earlier approximation has
+occupied an old signal or dirty work. The coarse scheduling
+never uses the new clean bank. All exact substitutions and
+actual inverses therefore preserve the initialized-isometry
+error, literal phases and complete dirty/reference contract.

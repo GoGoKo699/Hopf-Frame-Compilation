@@ -35,7 +35,7 @@ evaluation, without an efficient-preprocessing claim.
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
 | General depth upper | R96 at all precisions. R99–R102 and [R104](../research/depth/EXACT_KEY_COVER_PRECISION.md) improve the precision term at the same budgets. R104 gives sublinear additive depth through $`L=o(N)`$ in its high-precision range. |
-| Precision-dominated depth | [R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean input and $`T=O(L)`$. With up to $`\Theta(L^{3/4})`$ clean inputs, [R105](../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md) matches the clean-dependent lower bound within a logarithmic factor. |
+| Precision-dominated depth | [R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean input and $`T=O(L)`$. [R105](../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix) reaches polylogarithmic depth using nearly linear clean space, with the same count and dirty width. It comes within a logarithmic factor of R103 up to $`t=L/P(n)`$ for a fixed polynomial. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus a five-band unrestricted lower bound remains open |
 | Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |

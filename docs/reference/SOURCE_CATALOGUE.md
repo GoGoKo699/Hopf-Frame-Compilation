@@ -348,10 +348,12 @@ R96 budgets, with t set by count slack and key permutation cost.
 an explicit larger-clean allocation for $`L\ge2^{cn}`$. A weighted
 comb and native one-hot Pauli extraction give linear-cost short
 geometric sources. Rolling Clifford coordinate changes keep the
-complete cost linear in total source width. With $`O(t)`$ clean inputs
-for $`t\le L^{3/4}`$, its additive precision depth is $`O(L\log(t+2)/t)`$
-at the R96 dirty thresholds and gate counts. The extra clean inputs
-return exactly.
+complete cost linear in total source width. The
+[structured coarse schedule](../../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix)
+uses exact prefixed matchings and Boolean phases. With $`O(t)`$ clean
+inputs for $`t\le L`$, the additive precision depth is
+$`O((L/t+P(n))\log(t+2))`$ at the R96 dirty thresholds and counts.
+The extra clean inputs return exactly.
 
 For R79, the selected all-precision envelope is
 
