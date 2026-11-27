@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F60 and R12–R102: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
+| F1–F60 and R12–R103: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -331,6 +331,11 @@ rotation with complete error control. R79 remains selected Result D.
 [R102](../../research/depth/COMPACT_PROGRAM_PRECISION.md) gives additive depth
 $`O((1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$. It uses F60 for
 compact arithmetic and clean-key reuse for longer geometric sources.
+
+[R103](../../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) proves the unrestricted
+precision count–depth tradeoff using native-band Smith exponents and the
+algebraic norm of a determinant on the complete initialized channel. At
+$`L\ge N`$, it matches R96 at one clean input and linear T-count.
 
 For R79, the selected all-precision envelope is
 

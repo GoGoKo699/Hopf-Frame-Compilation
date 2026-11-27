@@ -1,10 +1,11 @@
-"""Finite fixtures for the four-band scalar gap and linear interface bounds."""
+"""Finite fixtures for scalar gaps, a rare frame cycle, and interface bounds."""
 from itertools import combinations, product
 from math import comb, cos, gcd, inf, pi, sin, sqrt
 import unittest
 
 import numpy as np
 
+from compiler_robust_hopf.frames import complex_magnitude_frame_matrix, real_frame_matrix
 from tests.test_four_layer_crossing_rank import _binary_basis, _weighted_phase_fixture
 from tests.test_dirty_indicator_depth import (
     _ccz_two_layers, _exact_phase_action, _parity_basis,
@@ -38,6 +39,27 @@ def _mobius_table(values):
 
 
 class NativeGapRefinementTests(unittest.TestCase):
+    def test_complete_hopf_suffix_gives_the_rare_signed_three_cycle(self):
+        prefix_bits = 3
+        dimension = 1 << (prefix_bits + 2)
+        for marked_prefix in (0, 5, 7):
+            angles = np.zeros(dimension - 1)
+            penultimate_node = (1 << prefix_bits) + marked_prefix
+            deepest_node = (1 << (prefix_bits + 1)) + 2 * marked_prefix
+            angles[[penultimate_node - 1, deepest_node - 1]] = pi / 2
+
+            expected = np.eye(dimension)
+            base = 4 * marked_prefix
+            expected[base:base + 4, base:base + 4] = np.eye(4)[:, [2, 0, 1, 3]]
+            expected[:, [base + 1, base + 2]] *= -1
+            real = real_frame_matrix(angles)
+            complex_frame = complex_magnitude_frame_matrix(angles, np.zeros(dimension))
+            np.testing.assert_allclose(real, expected, atol=2e-12, rtol=0)
+            np.testing.assert_allclose(complex_frame, expected, atol=2e-12, rtol=0)
+            np.testing.assert_array_equal(expected @ expected @ expected, np.eye(dimension))
+            self.assertAlmostEqual(np.linalg.norm(real - np.eye(dimension), "fro")**2 / dimension,
+                                   1.5 / (1 << prefix_bits))
+
     def test_affine_support_incidence_and_scalar_threshold(self):
         spaces = [set(points) for _, _, points in _affine_spaces(3)]
         for support in spaces:
@@ -106,6 +128,33 @@ class NativeGapRefinementTests(unittest.TestCase):
                 coefficients = _mobius_table(bits) % 2
                 self.assertTrue(all(x.bit_count() <= 1 << digit
                                     for x in points if coefficients[x]))
+
+    def test_four_counter_corners_expose_false_row_overlap(self):
+        identity = np.eye(4)
+        fourier_zero = np.ones(4) / 2
+        projector = np.outer(fourier_zero, fourier_zero)
+        shift = np.diag([1, 1, 1, -1])
+        conjugated = shift.conj().T @ projector @ shift
+        flag_a = (np.kron(projector, np.kron(X, I2))
+                  + np.kron(identity - projector, identity))
+        flag_b = (np.kron(conjugated, np.kron(I2, X))
+                  + np.kron(identity - conjugated, identity))
+        corner = np.kron(identity, np.diag([1, 1, 1, -1]))
+        comparison = (flag_b @ corner @ flag_a @ corner
+                      @ flag_b @ corner @ flag_a @ corner)
+
+        overlap = np.linalg.norm(projector @ shift @ projector, 2)
+        self.assertAlmostEqual(overlap, 0.5)
+        monitored = np.kron(fourier_zero, [1, 0, 0, 0])
+        self.assertAlmostEqual(np.vdot(monitored, comparison @ monitored).real,
+                               1 - 2 * overlap**2)
+        self.assertAlmostEqual(np.linalg.norm(comparison @ monitored - monitored),
+                               2 * overlap)
+
+        inactive_clock = np.array([1, -1, 0, 0]) / sqrt(2)
+        inactive_columns = np.kron(inactive_clock[:, None], identity)
+        np.testing.assert_allclose(comparison @ inactive_columns, inactive_columns,
+                                   atol=2e-12, rtol=0)
 
     def test_cyclotomic_filtration_and_minimum_stratum(self):
         rng = np.random.default_rng(74025)

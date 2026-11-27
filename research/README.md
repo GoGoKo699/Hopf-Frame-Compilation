@@ -134,6 +134,7 @@ The table identifies dependencies rather than repeating their proofs.
 | [Geometric source chunks](depth/GEOMETRIC_CHUNK_DEPTH.md) | R100 extends the sublinear precision term to subexponential L with fixed-source acceleration and unchanged whole-word mask volume. |
 | [Grouped programmed precision](depth/GROUPED_PROGRAMMED_PRECISION.md) | R101 jointly programs geometrically sized groups, paying fine leakage only on candidate slots. |
 | [Compact programme precision](depth/COMPACT_PROGRAM_PRECISION.md) | R102 computes residual coefficients by returned threshold arithmetic, with linear local coarse depth and constantly many groups through quadratic precision. Promoting each full fixed source once extends the bound through small exponential precision. |
+| [Precision count–depth tradeoff](depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) | R103 lower-bounds the product of native T-depth and T-count with arbitrary dirty width and approximate return. It matches R96 in the precision-dominated regime. |
 | [Global borrowed-precision stage](depth/GLOBAL_BORROWED_PRECISION_STAGE.md) | R96 component: separated precision scratch, global-prefix addresses and complete recovery. |
 | [Fast capped geometric reference](depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | R96 component: shorter exact cap and full-space actual-inverse comparison. |
 | [Polynomial-precision bridge](depth/POLYNOMIAL_PRECISION_DEPTH.md) | Intermediate theorem through its stated polynomial-precision range. |
@@ -217,8 +218,9 @@ The fixed-layer results have separate proofs for the [zero-clean scalar gap](dep
 [precision dependence](depth/FOUR_LAYER_LINEAR_PRECISION.md)
 and [one-clean interfaces](depth/ONE_CLEAN_NATIVE_INTERFACES.md).
 [Quantitative decision bias](depth/ROBUST_DECISION_BIAS.md) bounds
-the margin for typical tables through three unrestricted native T bands
-and gives the sharp limiting error of the deepest-corner frame family.
+the margin for typical tables through three unrestricted native T bands.
+[Complete return](depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor)
+excludes four native bands for typical deepest-corner frames at the sharp limiting error.
 The [November evidence index](archive/november-2026/README.md) locates
 the supporting finite checks and alternatives.
 
@@ -277,14 +279,14 @@ Each home separates its paid native operations from its first unpaid conversion.
 - [Complete observable transport and the shared-key source limit](depth/OBSERVABLE_TRANSPORT_SOURCE.md)
 - [A nonhomomorphic affine-pencil source for the complete bank](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md) — [paired projector-Gram interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#paired-projector-readout) · [one-clean two-band case](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-band-projector-gram-gap) · [four-call recovery](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout) · [joint two-clean recovery](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout) · [latent-center interface](depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#latent-center-readout)
 - [A paid constant-depth approximate zero reflection](depth/EXPANDER_ZERO_REFLECTION.md) · [exact shared address stage](depth/EXPANDER_ZERO_REFLECTION.md#synchronized-anchored-generator-stage) · [mixed-selector return failure](depth/EXPANDER_ZERO_REFLECTION.md#mixed-selector-commutator) · [paid quarter-phase stage](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-selector-stage) · [actual one-clean source](depth/EXPANDER_ZERO_REFLECTION.md#quarter-phase-flip-difference-source) — Paid zero reflection and quarter-phase source; complete-bank Gram remains wrong.
-- [Coherent counters: an exact odd-key code and the missing native schedule](depth/COHERENT_COUNTER_SOURCE.md) — [counter revision](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing)
+- [Coherent counters: an exact odd-key code and the missing native schedule](depth/COHERENT_COUNTER_SOURCE.md) — [one-pass limits](depth/COHERENT_COUNTER_SOURCE.md#9-one-pass-row-filters-clean-dimension-error-and-dirty-mixing) · [distributed counters](depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
 - [Exact arithmetic with virtual Boolean functions and dirty work](depth/VIRTUAL_FUNCTION_ARITHMETIC.md)
 - [Complete bank difference: a paid nonlinear merge and its depth cost](depth/COMPLETE_BANK_DIFFERENCE.md)
 - [A complete indicator from fermionic bank motion](depth/BANK_MOTION_WALSH_INDICATOR.md) — [full spectral error](depth/BANK_MOTION_WALSH_INDICATOR.md#fermionic-spectral-error-contract) · [paid expander lift](depth/BANK_MOTION_WALSH_INDICATOR.md#expander-fermionic-lift) · [sparse-word obstruction](depth/BANK_MOTION_WALSH_INDICATOR.md#sparse-expander-lift-obstruction)
 - [A paid Majorana Walsh probe and its restricted source cost](depth/MAJORANA_WALSH_QUERY.md)
 - [Selective inversion, dirty scalar echoes, and independent-row cost](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md) — [distance-profile audit](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#51-a-complete-distance-certificate-and-the-native-scheduling-gap) · [joint fixed-angle resynthesis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#52-joint-resynthesis-pays-one-special-angle-detuning-call) · [joint decoding analysis](depth/SELECTIVE_INVERSION_DIRTY_INDICATOR.md#53-joint-clifford-decoding-of-the-relative-call-still-stops)
 - [Parallel affine detuning: a paid batch and the remaining composition](depth/PARALLEL_AFFINE_DETUNING.md)
-- [Four abstract Pauli representations can return any Boolean phase](depth/SCALAR_REPRESENTATION_PRODUCT.md)
+- [Pauli representation products](depth/SCALAR_REPRESENTATION_PRODUCT.md) — [two-visit width](depth/SCALAR_REPRESENTATION_PRODUCT.md#two-visit-marked-width) · [fixed-error returned words](depth/SCALAR_REPRESENTATION_PRODUCT.md#two-visit-returned-word-packing)
 - [A noncommutative cycle character with complete dirty return](depth/NONCOMMUTATIVE_CYCLE_CHARACTER.md)
 - [A Gauss-sum table encoding and its missing dirty query](depth/GAUSS_SUM_QUERY_ENCODING.md) · [paid constant-depth raw decisions](depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions), tight in T-count but false on fixed dirty product superpositions
 - [Gaussian inverse extraction: an exact identity and its paid boundary](depth/GAUSSIAN_INVERSE_EXTRACTION.md)

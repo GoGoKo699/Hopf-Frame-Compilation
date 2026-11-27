@@ -628,3 +628,131 @@ check exact dyadic menu weights, complete chunk transport, occupied
 priority selections, tensor bad overlap and both dirty-port sectors
 of the capped reference. The all-size native schedule and frame splice
 use the analytic arguments above.
+
+## 9. Slot lower bounds for the two-basis recovery
+
+The recovery in Section 2 uses physical slots with exact initialized keys
+and independently sized payloads. In its ideal exact-slot comparison,
+accuracy $`2^{-L}`$ requires $`\Omega(2^k L)`$ slots with k-bit keys,
+$`k\ge2`$, for any two shift lists on mutually unbiased seed bases.
+Two arbitrary fixed Clifford key frames, which may mix all key and
+spectator registers, still require $`\Omega(2^{\lfloor k/2\rfloor}L)`$
+slots when the recovery retains the same compared payload action.
+The bounds apply to this recovery and physical-slot model.
+
+### Arbitrary masks in the two seed bases
+
+Let h slots have separate arbitrary k-bit keys. Each dirty seed label
+in each basis specifies an arbitrary XOR shift of the full key bank.
+The failure projector includes every label with no zero shifted key,
+irrespective of how selection handles multiple zero keys.
+For a fixed original key string A and common seed dimension D, let
+$`P_j(A)`$ be the bad seed projector of basis j and
+$`r_j(A)=\mathrm{rank}(P_j(A))/D`$.
+
+For any fixed pair of seed labels, one per basis, simultaneous no-zero
+failure excludes at most two of the $`2^k`$ key values in each slot.
+Average over uniform independent original keys and over both seed labels.
+This gives $`\mathbb E_A[r_1(A)r_2(A)]\ge(1-2^{1-k})^h`$,
+so some A attains at least that product. The two seed bases have
+cross-overlap magnitude $`D^{-1/2}`$. In that sector,
+
+```math
+\|P_1P_2\|_{\mathrm F}^2=D r_1r_2,
+\qquad \mathrm{rank}(P_1P_2)\le D\min(r_1,r_2).
+```
+
+The maximum over physical input key sectors therefore satisfies
+
+```math
+\mu=\max_A\|P_1(A)P_2(A)\|\ge(1-2^{1-k})^{h/4}.
+```
+
+This includes the tensor cover by taking the products of the seed bases
+and counting all physical slots in h. The averaging exhibits a bad
+sector for the full-space operator comparison. It places no probability
+assumption on the input and no size restriction on the shift lists.
+
+### Two fixed Clifford key frames
+
+Consider the binary Pauli label spaces of the signed computational key
+tests after conjugating by each of two fixed Clifford circuits. Each frame
+has h commuting k-dimensional blocks $`S_{i,j}`$, one per key. Blocks in
+one frame are independent. Put $`r=\lfloor k/2\rfloor`$. We can select
+r labels in every block, independent even across both frames. To see
+this, take r copies of each block as a list of subspaces. A sublist
+involving $`j_1,j_2`$ distinct blocks in the two frames has span dimension
+at least $`k\max(j_1,j_2)\ge r(j_1+j_2)`$, at least its number of members.
+
+For completeness, any list satisfying that dimension condition admits
+independent representatives. Induct on the list size. If a nonempty
+proper sublist is tight, choose representatives there by induction.
+They span its full span. Quotient by this span. The remaining dimension
+conditions follow by adjoining the tight sublist to each set of
+remaining members. Choose representatives in the quotient and lift them.
+If every nonempty proper sublist is strict, choose a nonzero vector from
+the last member and quotient by its line. Each remaining sublist loses
+at most one dimension, so induction still applies. For one member the
+condition guarantees a nonzero vector.
+
+Sign each selected Pauli so the corresponding zero key has eigenvalue
++1. In each frame require a nonzero syndrome on the r selected directions
+of every block. The resulting projector $`P'_i`$ is contained in the
+failure projector $`P_i`$, with normalized rank $`a=(1-2^{-r})^h`$.
+The two selected label spans have zero intersection. Trace orthogonality
+of distinct Paulis consequently gives $`\tau(P'_1P'_2)=a^2`$, where
+$`\tau`$ is normalized trace on the cover space. This argument permits
+noncommuting frames. Since $`P'_1P'_2`$ has rank at most a times the
+cover dimension, and its squared Frobenius norm is $`\mathrm{Tr}(P'_1P'_2)`$,
+
+```math
+\|P_1P_2\|\ge\|P'_1P'_2\|\ge\sqrt a=(1-2^{-r})^{h/2}.
+```
+
+The positive overlap rules out orthogonal failure spaces. The ranges
+need not intersect. The two results have different key hypotheses.
+The first allows controlled shift lists outside any fixed Clifford frame.
+
+### Converting overlap into error of the literal recovery
+
+Use the exact Section 2 comparison factors with
+$`\phi=\pi/4`$, $`\alpha=e^{i\phi}`$, and involutions M and
+$`\bar B`$ with $`\{M,\bar B\}=0`$. Set
+$`\mu=\|P_1P_2\|`$. Pick a normalized principal vector u with
+$`P_1u=u`$ and $`P_1P_2P_1u=\mu^2u`$. For $`0\lt\mu\lt1`$,
+write $`P_2u=\mu^2u+\mu\sqrt{1-\mu^2}\,v`$ with v normalized
+and $`P_1v=0`$. Start with $`u\otimes|+\rangle`$ for an M-eigenvector
+$`|+\rangle`$ of eigenvalue +1. The rightmost mirror is identity
+there. The adjacent $`A_2(\phi)`$ sends its positive M component to
+$`zu+(1-\alpha)\mu\sqrt{1-\mu^2}\,v`$, where
+$`z=\alpha+(1-\alpha)\mu^2`$. The next mirror sends the v term
+to the negative M sector. The remaining rotations do not mix these
+sectors. In the positive sector the final u coefficient is $`z^2`$,
+and the v coefficient has magnitude
+$`|z|\,|1-\alpha|\,\mu\sqrt{1-\mu^2}`$.
+The ideal u and v coefficients are $`\alpha^2`$ and zero.
+
+For $`\mu\le1/\sqrt2`$, the v coefficient gives error
+$`\Omega(\mu)`$ since $`|z|\ge\cos(\phi/2)`$. For larger $`\mu`$,
+the u discrepancy obeys
+
+```math
+|z^2-\alpha^2|
+\ge\mu^2|1-\alpha|(2-|1-\alpha|),
+```
+
+including $`\mu=1`$. Thus the quoted error forces $`\mu=O(2^{-L})`$.
+Taking logarithms and using $`-\log(1-x)\le2x`$ for
+$`0\le x\le1/2`$ gives both slot bounds. This conversion uses the
+displayed common tensor-factor payload action and exact slot code.
+
+With disjoint $`\Omega(L)`$-wire payloads, as in the
+[delayed promotion of the complete geometric word](COMPACT_PROGRAM_PRECISION.md#6-promote-the-complete-geometric-word-once),
+the shift-list bound requires $`\Omega(2^kL^2)`$ physical wires.
+The fixed Clifford bound also forces at least quadratic width. Enlarging
+the seed or changing exact selection priorities therefore cannot extend
+this architecture to precision-dominated width $`b=O(L)`$. Possible
+changes include an exact complementary one-bit key, shared physical
+payloads, a recovery that uses nonorthogonal failures differently, or
+joint local and recovery words that no longer admit the exact-slot
+comparison. The general growing-precision depth frontier remains open.

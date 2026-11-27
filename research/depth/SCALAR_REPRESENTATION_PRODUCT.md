@@ -18,6 +18,12 @@ retained native five-layer conjecture. It identifies information that a
 successful degree lower bound must retain: the source circuits and their
 common placement in the native layer sequence.
 
+For [two projective address visits](#two-visit-marked-width), exact
+signed conjugation can require exponential work, with a matching
+[paid representation](#paid-two-visit-exact-table). Completely returned
+words in this shape also have a [width-independent fixed-error screen](#two-visit-returned-word-packing)
+from the overlap of their two target eigenprobe sectors.
+
 ## 1. A family of Pauli generators carrying an arbitrary table
 
 Let a be positive, let $`Q=2^a`$, and identify the bank labels with
@@ -488,3 +494,218 @@ verify the Pauli commutators, literal translation action and group law,
 canonical-source identity, returned scalar on every work column, actual
 inverse source word, and exact source gate counts in small instances.
 The arbitrary-width conclusion is the analytic construction above.
+
+<a id="two-visit-marked-width"></a>
+
+## 8. Two projective visits need exponential work for exact false silence
+
+The four-factor scalar identity above is distinct from a two-factor observable conjugation. Let $`x\in H=\mathbb F_2^r`$, let B and C be arbitrary projective unitary representations on q work qubits, and put $`S_x=B_xC_x`$, normalized at zero. Their fixed work conjugators may contain arbitrary noncommuting dynamics. Let P and Q be Hermitian observables with $`P^2=\Pi_P`$, $`Q^2=\Pi_Q`$, and both projectors of rank $`2^{q-k}`$. Allow different supports. Suppose
+
+```math
+\|S_xPS_x^\dagger-Q\|\le\delta\quad(x\ne0),\qquad
+\|P+Q\|\le\eta\lt2.
+```
+
+At $`\delta=0`$, writing $`m=2^r`$ and $`\beta=2^{-k}(1-\eta/2)`$, one necessarily has
+
+```math
+q\ge(m-1)\beta/4.
+```
+
+The same width order holds for $`\delta\le(1-\eta/2)/(4\pi m)`$. This is a representation bound, independent of the actual T-depth and arbitrary dirty width. A read-only row probe with exactly two interior affine Pauli visits and two affine Pauli endpoints has this form on the subspace fixing the endpoints' two clean-X syndromes. Its dimension satisfies $`r\ge p-2k`$. Absorb the endpoint target signs, which are one character, by multiplying P and Q by Z on one analytical borrowed qubit and multiplying B by the conjugating X character there. This keeps the support fraction and changes q by one. Exact clean-sector preservation and the stated row conjugation give the displayed contract directly. When false return is approximate, the observable error delta must also include any false-sector leakage.
+
+For $`g\ne0`$ write $`P_g=B_gPB_g^\dagger`$ and $`Q_g=B_gQB_g^\dagger`$. The projective laws give the exact conjugation identity
+
+```math
+B_g^\dagger S_xB_g\ \propto\ S_{g+x}S_g^\dagger.
+```
+
+Both sides are proportional to $`B_{g+x}C_xB_g^\dagger`$. With exact false silence, conjugation by S_x fixes every $`Q_g`$ for $`g\ne0,x`$, and sends $`Q_x`$ to $`P_x`$. For approximate false silence these comparisons have errors at most $`2\delta`$ and $`\delta`$, respectively.
+
+Set $`U_g=\exp(i\pi Q_g/2)`$ and $`V_g=\exp(i\pi P_g/2)`$. Encode a subset W of nonzero labels by the normalized Choi vector of the ordered product $`U_W=\prod_{g\in W}U_g`$. No such encoding or measurement is supplied to the compiler. On its $`2q`$ analytical qubits measure the effect $`(I-\mathrm{Re}\mathcal T_x)/2`$, where $`\mathcal T_x(K)=S_xKS_x^\dagger`$ is a unitary on operator coordinates. If x is absent the detection probability is zero. If x is present, only U_x changes, to V_x, and all other factors cancel in the trace. With normalized trace $`\tau`$, the detection probability is
+
+```math
+\frac{1-\mathrm{Re}\tau(U_x^\dagger V_x)}2
+=\frac14\bigl(\|\Pi_P-\Pi_Q\|_{2,\tau}^2+\|P-Q\|_{2,\tau}^2\bigr)
+\ge\beta.
+```
+
+Indeed $`\mathrm{Re}\tau(QP)\le -2^{-k}+\eta 2^{-k}`$ by $`Q(P+Q)`$, and $`\tau(\Pi_P\Pi_Q)\le2^{-k}`$. The squared-distance expression also applies to marked comparisons specified by Frobenius contrast instead of near negation. Under independent uniform subset bits, the detection event conveys at least beta/2 bits of mutual information about membership of x. Summing the single-bit mutual informations is bounded by the Holevo information $`2q`$, by independence, the conditional mutual-information chain rule and data processing. This proves the stated width bound.
+
+For nonzero delta, each wrong conjugation changes its exponential by at most $`\pi\delta`$ by Duhamel's formula. Its difference is supported on the union of two rank-$`2^{q-k}`$ projectors, so the normalized trace-norm error per factor is at most $`2\pi\delta 2^{-k}`$. The product hybrid keeps the mark's exact one-factor replacement and bounds detection error by $`\pi m\delta 2^{-k}`$. The displayed delta threshold bounds absent detection above by beta/4 and present detection from below by 3beta/4. A detection event thus has posterior probability at least 3/4 of membership and occurs with probability at least 3beta/8. The same information bound gives the asserted constant-fraction width. At k=0 with an exact flip, the $`2^{m-1}`$ subset products are exactly Hilbert–Schmidt orthogonal, as their conjugation signs differ at every membership discrepancy. This sharpens the zero-clean constant to $`q\ge(m-1)/2`$ in that case.
+
+<a id="two-visit-translation-rank"></a>
+
+### Exact signed tables have a derivative-rank bound
+
+Suppose instead $`S_xPS_x^\dagger=(-1)^{f(x)}P`$ exactly, with f(0)=0. Then for every y the same group identity gives
+
+```math
+S_xP_yS_x^\dagger=(-1)^{f(x+y)+f(y)}P_y.
+```
+
+Let R be the binary rank of the displayed derivative table. Select R independent columns. Products of the actual conjugations by S_x can flip any one selected observable and fix the others, by solving the linear system for that sign pattern. The preceding subset encoding on these columns now gives $`q\ge R/(4\cdot2^k)`$, or $`q\ge R/2`$ when k=0 and the products are orthogonal. The proof needs exact signed conjugation. A general compressed signed gap before returned amplification does not imply it.
+
+The translation matrix with entries $`f(x+y)`$ is convolution by f in the binary group algebra $`\mathbb F_2[t_1,\ldots,t_r]/(t_i^2)`$, where $`t_i`$ is one plus the ith group generator. Its rank drops by at most one on subtracting row zero from all rows. For odd total truth parity the constant algebra coefficient is one, so f is a unit and R=m−1. More generally choose a nonzero algebra monomial $`t_S`$ of smallest degree d. Multiply inputs using only complementary variables and project the products onto monomials containing S. In the complement this is multiplication by a unit, because the coefficient of $`t_S`$ has constant term one. Thus $`R\ge2^{r-d}-1`$.
+
+For uniformly random truth bits, the algebra coefficients are independently uniform since the change of coordinates is invertible. The probability that degrees zero through two all vanish is $`2^{-1-r-\binom r2}`$. A union bound over at most $`2^{O(p(k+1))}`$ affine endpoint cosets of codimension at most 2k therefore gives $`d\le2`$ on every available coset with probability tending to one, for $`k=p^{o(1)}`$. A constant sign normalization affects only the degree-r algebra monomial. Thus typical exact signed tables have the same exponential width order even after an adaptive endpoint restriction. This condition concerns the two-visit representation of an exact observable, rather than the four-factor scalar return of (6).
+
+<a id="paid-two-visit-exact-table"></a>
+
+## 9. A paid two-visit exact table at exponential width
+
+Let x=(u,v) with $`|u|=k\le r`$, and put $`m'=2^{r-k}`$. Give the compiler k clean bits A and an arbitrary bank with an even independent Majorana Pauli list containing $`\Gamma_j`$ for all $`j\in\mathbb F_2^{r-k}`$ and spare axes. Its width is $`O(m')`$. Define B_x to translate A by u and map each indexed $`\Gamma_j`$ to $`\Gamma_{j+v}`$, fixing spare axes. These signed Clifford translations form a projective representation, since their prescribed action on the full Pauli frame determines each product up to scalar. Let W on A=a be the ordered Pauli $`W_a=X^{s(a)}Z^{t(a)}`$ satisfying
+
+```math
+W_a\Gamma_jW_a^\dagger=(-1)^{f(a,j)}\Gamma_j.
+```
+
+Any signature is possible because pairing with the full independent even frame is invertible. On A=0, $`B_x W B_x^\dagger W^\dagger`$ preserves A and conjugates $`\Gamma_0`$ with sign $`(-1)^{f(u,v)+f(0,0)}`$ on every arbitrary bank column. A fixed anticommuting Pauli corrects the constant sign if needed.
+
+For a literal two-visit implementation with affine Pauli address controls, use r further arbitrary bits z and the fixed work word $`U=\sum_z|z\rangle\langle z|\otimes B_z`$. Then $`A_x=U X_z^x U^\dagger`$ acts on the bank by B_x times a monomial unitary on z, because $`B_{z+x}B_z^\dagger\propto B_x`$. The z coefficient can depend on x,z but acts trivially on the bank. It cancels in $`A_x W A_x^\dagger W^\dagger`$, where W is independent of z. The two actual address representations are A_x and $`W A_x^\dagger W^\dagger`$. They are fixed-unitary conjugates of the same affine Pauli representation, and include every incoming z and reference input.
+
+To compile U, factor B_z into the affine A translation and r−k addressed Majorana coordinate translations. Each such translation consists of $`m'/2`$ disjoint Majorana swaps. On pair (a,b), $`\exp(-i\pi P_{ab}/4)`$ with $`P_{ab}=i\Gamma_a\Gamma_b`$ swaps the two axes with one minus sign and fixes the others. A fixed Pauli corrects the unwanted signs, and its controlled version is Clifford. The other controlled factors are exact:
+
+```math
+\mathrm{ctrl}_z\exp(-i\pi P_{ab}/4)
+=T(P_{ab})T(Z_zP_{ab})^\dagger,
+\qquad T(P)=e^{i\pi/8}e^{-i\pi P/8}.
+```
+
+The two T scalars cancel. The axes for a matching commute and are independent. A fixed work Clifford takes them to distinct Z targets, at $`O((m'+2)^2)`$ elementary Cliffords including its actual reverse. One private T band implements the first factors, and CNOTs from the selected z bit to the same targets realize the second private T band. Each controlled translation thus uses m' T gates, two T bands and no private helper. The affine A translation is Clifford. This proves common bounds for U and its actual inverse.
+
+To implement W, use the [exact k-bit dirty indicator](NONUNIFORM_DIRTY_INDICATOR.md) toggling one bit of an arbitrary $`2^k`$-bit bank. Before and after that toggle, apply a fixed Clifford matrix shear adding the binary parity of all X masks whose corresponding bank bits are one. Actually reverse the indicator. The two old bank contributions cancel on every column, giving the X part of W with literal phase one. The Z part uses separately the same echo with controlled-Z shears, so its unknown offsets and phases also cancel. Emit the two factors in their prescribed order. This uses $`O(2^k)`$ T gates and dirty work, $`O(2^km')`$ elementary Cliffords and $`O(\log(k+2))`$ T-depth. For k=0 the fixed W is directly a Pauli.
+
+The comparison and its actual inverse have common bounds
+
+```math
+\begin{aligned}
+T&=O((r-k)m'+2^k),
+&G&=O((r-k+1)(m'+2)^2+2^km'+r),\\
+D_T&=O(r-k+\log(k+2)),
+&b_{\rm dirty}&=O(m'+2^k+r),\quad a_{\rm clean}=k.
+\end{aligned}
+```
+
+Every original address bit stays read-only at the completed Clifford boundaries. The inverse uses a constant-factor positive-S expansion. A fixed Clifford identifies the target Z with $`\Gamma_0`$. For returned XOR into an arbitrary separate target, conjugate a CZ between these two targets by the completed comparison, using its actual inverse, and multiply by the original CZ. Hadamards on the new target turn the resulting exact phase into XOR. All bank inputs, z, A and private helpers return on the entire initialized code, with no cost beyond constant factors in the ledger. For $`k\le r/2`$ the specified Majorana bank gives width $`\Theta(m')`$, matching the order of the restricted lower bound for typical exact tables before any endpoint loss. The width and native depth do not improve the general frame frontier.
+
+<a id="two-visit-returned-word-packing"></a>
+
+## 10. Fixed-error packing for completely returned two-visit words
+
+Suppose an actual read-only comparison word has work fibers
+
+```math
+V_x=\lambda_x P_x A' B_x C_x A R_x,
+```
+
+where A,A' are arbitrary fixed work unitaries, B,C projective representations of the additive address group, and P,R affine Pauli endpoints with binary-linear labels after absorbing their zero-address factors. The phase $`\lambda_x`$ may be arbitrary. All fixed words can have arbitrary native depth and dirty width. In particular, a gatewise read-only word with at most three native T bands has this shape and two internal visits. The two internal visit representatives can be any fixed-unitary conjugates of affine Pauli families.
+
+Let J append k clean ancillas and leave target t and every dirty wire arbitrary. Consider either a returned Boolean XOR word $`U_x=X_t^{f(x)}`$ or the deepest-corner frame $`U_x=(X_t Z_t)^{f(x)}`$, with the identity on other work and arbitrary refs. Assume the full initialized-isometry promise
+
+```math
+\|V_xJ-JU_x\|_{\mathrm{op}}\le\epsilon\qquad\text{for all }x.
+```
+
+The proof also works with unit-modulus target-only eigenphases whose ratio is $`(-1)^{f(x)}`$, on a fixed Pauli eigenbasis. It concerns complete returned words, not a raw signed-gap decision with arbitrary garbage.
+
+Restrict to the linear subspace H on which the two endpoint Paulis preserve the clean code. Their clean-X labels impose at most 2k equations, so $`r=\dim H\ge p-2k`$. Adding a fixed affine address shift moves a chosen coset to zero if needed. Let
+
+```math
+\mathcal L=\{h\in H:\ x\mapsto f(x+h)+f(x)\text{ is affine on }H\}.
+```
+
+It is a subspace, since the derivative in a sum of directions is the sum of one derivative and the other shifted derivative. Then necessarily
+
+```math
+2^{-2k-1}\le |\mathcal L|2^{-r}
+ +(1-|\mathcal L|2^{-r})(12\epsilon)^2.
+```
+
+In particular, with one actual compiler-clean wire and error at most $`2^{-6}`$, typical tables cannot have such a returned word irrespective of dirty width or fixed middle-word depth. This is not a lower bound on native words with three or more genuine internal visits, or on circuits that move the address physically.
+
+### Lifted target parity removes scalar and projective phases
+
+For a work operator K write $`K^{[2]}=K\otimes\overline K`$. Both B and C become ordinary representations under this lift, with the phases canceling. The lifted endpoint Paulis are ordinary representations too, and every lifted Pauli commutes with every other lifted Pauli, as scalar Pauli commutators cancel. No doubled physical word is emitted.
+
+Let $`\sigma=X_t`$ for XOR and $`\sigma=Y_t`$ for the deepest-corner frame. Take the fixed mathematical code with two copies of the k clean zero bits and target parity $`\sigma\otimes\bar\sigma=-1`$. Let $`J'`$ be its insertion isometry. Its relative rank is $`\mu=2^{-2k-1}`$ because each eigenspace of the Pauli parity has half the dimension on the clean tensor code. Every lifted endpoint Pauli preserves this parity, even if its individual factor negates sigma, because the two signs multiply to one. Hence the endpoints preserve $`J'`$ for all x in H. The ideal lift $`U_x^{[2]}`$ restricted to this sector is precisely the scalar $`s(x)=(-1)^{f(x)}`$, for both target choices. For the XZ corner, $`X_tZ_t=-iY_t`$, so its tensor product with its complex conjugate is the lifted target parity itself.
+
+The actual lifted initialized-isometry error is at most $`2\epsilon`$ by a two-term tensor hybrid; its restriction to the parity sector has the same bound. Define two fixed isometries
+
+```math
+E=A^{[2]}J',\qquad F=(A'^{[2]})^\dagger J'.
+```
+
+Write $`p_x,r_x`$ for the restricted lifted endpoints and set $`L_x=p_x^\dagger r_x^\dagger`$. Their representations commute, so L is ordinary. Removing the lifted endpoints and the fixed factors from the promised action proves
+
+```math
+\|C_x^{[2]}E-s(x)(B_x^{[2]})^\dagger F L_x\|\le2\epsilon.
+```
+
+The state spaces E and F need not coincide, so no additional marked-word approximation is charged. By changing the constant phase of F, assume s(0)=1, which does not alter affine-derivative directions.
+
+### Returned word overlaps force an approximate character relation
+
+For brevity suppress the superscript [2] on B,C. Fix h and define $`A_h=F^\dagger B_hF`$. With $`y=x+h`$, compare the two isometries in the preceding display on the pair x,y. The ordinary representation identities give
+
+```math
+\left\|E^\dagger C_h E-s(x)s(x+h)L_x^\dagger A_h L_{x+h}\right\|
+\le4\epsilon.
+```
+
+The same comparison at x=0 gives $`E^\dagger C_h E`$ within $`4\epsilon`$ of $`s(h)A_h L_h`$. Since $`L_{x+h}=L_xL_h`$, subtraction and right multiplication give
+
+```math
+\left\|L_x^\dagger A_h L_x-d_h(x) A_h\right\|\le8\epsilon,
+\qquad d_h(x)=s(x)s(x+h)s(h).
+```
+
+If h is outside $`\mathcal L`$, d_h is not a character of H. Choose x,y for which $`d_h(x+y)\ne d_h(x)d_h(y)`$. Compose the comparison twice at x and y and compare it to the one at x+y. Since the signs differ and conjugation is isometric, $`2\|A_h\|\le24\epsilon`$. Thus $`\|A_h\|\le12\epsilon`$ for every h outside L.
+
+### Translated-code packing gives the fixed-error bound
+
+For a transversal of the $`M=2^r/|\mathcal L|`$ cosets form the projector $`\Pi_x=B_xFF^\dagger B_x^\dagger`$. In total Hilbert dimension D each has rank $`R=\mu D`$. Any two distinct x,y in the transversal have a difference outside L. Their joint trace overlap is the squared Frobenius norm of $`A_{x+y}`$, at most $`R(12\epsilon)^2`$. Positivity and trace Cauchy--Schwarz applied to the sum give
+
+```math
+(MR)^2/D\le\mathrm{Tr}\Bigl(\sum_x\Pi_x\Bigr)^2
+\le MR+M(M-1)R(12\epsilon)^2.
+```
+
+Division by $`M^2R`$ proves the claimed lower bound. This proof uses arbitrary fixed E,F and the actual returned target action. It makes no assertion about approximate-sign witnesses before complete return.
+
+For a fixed large H and nonzero h the differences $`f(x+h)+f(x)`$ of a uniformly random table are independent uniform bits over the $`2^{r-1}`$ input pairs. The probability they agree with any affine value function is at most $`2^{r+1-2^{r-1}}`$. A union bound over h and all affine endpoint cosets of codimension at most 2k shows that, for fixed k, almost all tables have $`\mathcal L=\{0\}`$ on every possible retained H. At k=1 and error $`2^{-6}`$, $`(12\epsilon)^2=9/256<1/8$. The inequality requires $`[H:\mathcal L]\le8`$ because the index is a power of two. The theorem applies directly to tested deepest-corner frame columns and does not require a separate frame-to-XOR inverse call. Four physical read-only T bands generally leave three genuinely interior projective visits. Grouping two there requires a further closure or commutation argument, absent from the proof above.
+
+<a id="biased-two-visit-approximate-row"></a>
+
+## 11. Fixed false error allows a polynomial-width two-visit row
+
+The exponential width in §8 needs exact or sufficiently accurate false action. For a fixed rational $`0\lt\delta\lt1/2`$, choose a power of two $`M=O((p+1)/\delta^2)`$ and a multiset of M binary characters $`\chi_j`$ on $`\mathbb F_2^p`$ satisfying
+
+```math
+\beta_x=\frac1M\sum_j\chi_j(x),\qquad \beta_0=1,\qquad
+|\beta_x|\le\delta\quad(x\ne0).
+```
+
+Independent uniform characters and the independent-sign tail bound give simultaneous existence by a union bound. Finite search of the integer sums supplies the table. Use M independent Pauli Majoranas on an arbitrary $`M/2`$-qubit bank, and define
+
+```math
+R=M^{-1/2}\sum_j\Gamma_j,\qquad
+R_x=B_xRB_x^\dagger=M^{-1/2}\sum_j\chi_j(x)\Gamma_j,
+```
+
+where the projective Pauli family B_x supplies the indicated signs. Its coordinate generators are the Pauli solutions to the binary dual-pairing equations of §9. Their controlled gates are Clifford and cost $`O(pM)`$ elementary Cliffords, with the address read-only. Both R and R_x are Hermitian involutions. Set $`C_x=R B_x^\dagger R`$, so $`S_x=B_xC_x=R_xR`$. Anticommutation gives the full-space identity
+
+```math
+S_x R S_x^\dagger=-R+2\beta_xR_x.
+```
+
+Choose a fixed work Clifford identifying $`\Gamma_0`$ with the target Z. Implement a fixed loader F with $`F\Gamma_0 F^\dagger=R`$. At each of $`\log_2 M`$ stages, split every current supported axis into an equal sum of itself and one unused partner. The disjoint pairs have independent commuting axes $`i\Gamma_a\Gamma_b`$ and each split uses one Pauli T rotation with its sign chosen to give the positive coefficient. Its common fixed Clifford frame costs $`O(M^2)`$ elementary gates per stage and puts all the rotations in one physical private T band. This exact F uses M−1 T gates and no helper. Use the actual $`F\Gamma_0 F^\dagger`$ to implement R. The chirality Pauli D of the even frame, the normalized product of all its generators, anticommutes with each generator. Thus the emitted comparison $`F^\dagger D S_x F`$ exactly negates $`\Gamma_0`$ at x=0 and preserves it to operator error at most $`2\delta`$ on every false x. Its actual inverse has the same observable errors. The common ledger is $`T=O(M)`$, $`G=O(M^2\log M+pM)`$, $`D_T=O(\log M)`$, $`b_{\rm dirty}=O(M)`$, and zero clean bits. Both visits, all fixed loader occurrences and their actual adjoints are charged. All arbitrary dirty and reference inputs obey the operator comparison.
+
+This per-row error cannot be substituted into a dense independent product. Let $`n_\chi`$ count the multiplicity of character chi. Parseval gives
+
+```math
+\sum_{x\ne0}|\beta_x|^2
+=2^p\sum_\chi(n_\chi/M)^2-1\ge 2^p/M-1.
+```
+
+For the literal target-Z echo the false row's full error equals $`2|\beta_x|`$. At any fixed address, every nonzero mismatch occurs in one false row. If an independent tensor product of row words has full error $`\tau\lt1`$ for every occupation subset, each row has eigenangles at most $`\alpha=2\arcsin(\tau/2)`$ in absolute value after factoring its ideal sign. Choose one largest absolute eigenangle per row. The positive chosen angles must sum to at most alpha, since a first partial sum exceeding alpha would still be below pi and would give a violating subset. The negative angles obey the same bound. Hence the sum of squared row errors is bounded by $`4\alpha^2`$, independent of the number of rows. The displayed Parseval estimate requires $`M=\Omega_\tau(2^p)`$ in that independent schedule. To use this approximate gap for dense lookup one must change the joint native schedule or the coherence of the false responses. A polynomial-width standalone probe at fixed tolerance does not supply that operation.

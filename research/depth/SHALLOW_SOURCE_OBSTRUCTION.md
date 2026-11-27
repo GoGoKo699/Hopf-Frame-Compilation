@@ -13,6 +13,10 @@ at width at least four. These are constant-depth obstructions for
 full-input source primitives, not growing depth lower bounds or lower
 bounds for an initialized-clean complete-frame compiler.
 
+[Section 6](#6-native-depth-at-the-exact-t-count-minimum) gives a
+separate depth result at exact minimum T count. It allows initialized
+stabilizer helpers under exact complete return.
+
 The later [clean-aware obstruction](CLEAN_AWARE_DEPTH_OBSTRUCTION.md)
 uses the transfer alphabet below inside the initialized-projector sum.
 It proves a one-clean frame gap and a separate three-layer obstruction
@@ -256,11 +260,12 @@ keeps this projector sum and proves robustness on initialized columns
 without making that full-space inference. Its fixed-clean frame bounds
 therefore do not change the scope of the source theorem above.
 
-The result does not establish source depth optimality, a lower bound for
-a source loader, an additive cost across source calls, or a growing
-unrestricted complete-frame depth bound. A joint compiler may avoid
+The robust two-layer result does not establish source depth optimality,
+a lower bound for a source loader, an additive cost across source calls,
+or a growing unrestricted complete-frame depth bound. A joint compiler may avoid
 approximating this source as an isolated full-input primitive. The
-complete-frame and state-based resource frontiers remain unchanged.
+[complete-frame precision tradeoff](PRECISION_COUNT_DEPTH_TRADEOFF.md) uses a
+different witness and gives a lower bound directly on the compiled frame.
 
 The [bounded checks](../../tests/test_shallow_source_obstruction.py) audit
 native two-layer words, exact rational subset grids, the optimized
@@ -268,3 +273,278 @@ coefficient gaps, native source witnesses with dirty extensions, and
 the small-width two-layer constructions. Their finite matrices support
 these identities; the uniform exclusion and robustness follow from the
 proofs above.
+
+## 6. Native depth at the exact T-count minimum
+
+Let $`m\ge2`$. At its minimum T count $`2m-4`$, every exact native
+implementation of $`M_m`$ has T-depth $`2m-4`$. At minimum T count
+$`2m-2`$, the least achievable T-depth for either control value of
+$`C(M_m)`$ is $`2m-3`$. An exact minimum-count schedule of the
+controlled source has at most one two-gate T band. All its other
+nonempty T bands contain a single gate.
+
+The statements allow arbitrary Clifford interlayers, arbitrary dirty
+helpers, and any number of initialized stabilizer helpers. The exact
+action includes every logical and dirty input with complete helper
+return. The hypotheses use the
+[exact T-count minima](../../docs/OPERATOR_SOURCE_COMPILER.md#exact-source-costs-including-returned-helpers).
+
+### Leading Pauli coefficients constrain each band
+
+Use Hermitian Pauli labels over the binary symplectic space, with
+$`\langle a,p\rangle`$ the commutation bit of labels a and p. For a
+Pauli expansion with coefficients in $`\mathbb Z[1/\sqrt2]`$, its
+least denominator exponent is the smallest $`d\ge0`$ for which
+scaling all coefficients by $`(\sqrt2)^d`$ puts them in
+$`\mathbb Z[\sqrt2]`$. Reduce these scaled coefficients modulo
+$`\sqrt2`$ to obtain a vector over $`\mathbb F_2`$. At the least
+exponent this vector is nonzero. Call its support the leading support.
+
+Clifford conjugation preserves d. Conjugation by a T or T-dagger
+increases d by at most one. When it increases d by one, the leading
+vector of the result is obtained from the previous leading vector
+by the binary linear map
+
+```math
+e_p\longmapsto
+\begin{cases}
+e_p+e_{p+a},&\langle a,p\rangle=1,\\
+0,&\langle a,p\rangle=0,
+\end{cases}
+```
+
+where a is the rotation-axis label. The active terms acquire
+coefficients of magnitude $`1/\sqrt2`$, and their signs disappear in
+the reduction. The inactive coefficient gets the extra factor
+$`\sqrt2`$ from the new scaling.
+
+Pull all fixed Cliffords to the input end of the complete word.
+The axes of each original physical T band remain commuting and
+independent because they are Clifford images of distinct single-wire
+Z labels. Let A be their binary span. Translating a Pauli label by
+any element of A leaves every commutation bit with the band's axes
+invariant. When each gate increases the exponent by one, the
+band's output leading vector is constant on each coset of A and
+vanishes on cosets inactive under any of its axes. A fully active
+basis label contributes the sum of all its translations by A. A
+label that is inactive for one axis contributes zero.
+
+Write $`C_{\rm cl}`$ for the span of the clean Z labels, after fixed
+Cliffords change the given stabilizer initialization to zero. Use
+the source test Pauli $`P=Z_{m-1}`$, tensored with identities on any
+control and dirty work. Propagate
+
+```math
+P\sum_{z\in C_{\rm cl}}Z^z
+```
+
+by conjugation through the actual word. The sum is the initialized
+clean projector times its integer rank factor. Exact return makes
+the final observable the prescribed conjugated logical P times the
+same sum, including identity on dirty work. Its exponent equals the
+exact minimum T count in each case, as also verified below. The initial
+exponent is zero, so every actual T increases it by one. Reversing a
+band of r T gates must decrease the exponent by r.
+
+Suppose at a reverse boundary that the leading support has the form
+
+```math
+p+C+\{0,d_0\},\qquad d_0\notin C,
+```
+
+where C is either $`C_{\rm cl}`$ or its span with the control Z label.
+The labels p and $`p+d_0`$ have no clean component. Every axis in the preceding band belongs
+to $`C+\langle d_0\rangle`$, by translation invariance of the
+leading support. The individual axes must be active on each label
+in the support. Elements of C commute with every supported label.
+Thus each axis lies in $`d_0+C`$.
+
+All these axes commute with the true clean Z labels. Their reverse
+preserves the initialized cylinder and its observable stays a
+logical expansion times the same clean stabilizer sum. On the
+cylinder each axis restricts, up to sign, to its label modulo
+$`C_{\rm cl}`$. Repeated axes after this restriction combine into
+a Clifford or identity for each pair of T rotations, and the
+restricted rotations commute. The logical denominator exponent
+equals that of the full expansion because the clean sum repeats its
+coefficients without additional factors. Hence the number of
+distinct restricted axis labels must be at least r to realize the
+necessary exponent decrease. If $`C=C_{\rm cl}`$, the band is
+therefore a singleton. If C also contains control Z, there are
+at most two gates. In the two-gate case the projected axes are
+$`d_0`$ and $`d_0+Z_{\rm control}`$. Their coefficient rotations
+have angles $`\pm\pi/4`$. The angles cancel in one control branch
+and add to $`\pm\pi/2`$ in the other, giving a signed swap of the
+two mixed labels there.
+
+### Uncontrolled reflection
+
+Put $`t=m-2`$, $`q=2^{-t}`$ and $`\Gamma_*=\Gamma_{m-1}`$. The
+Pauli P anticommutes with $`\Gamma_*`$ and commutes with every other
+source generator. The output logical expansion is
+
+```math
+Q=M_m P M_m=(1-q)P-\sum_{j=0}^{t}2^{-(t+j)/2}A_j,
+\qquad A_j=P\Gamma_*\Gamma_j .
+```
+
+The labels of P and the Hermitian Paulis $`A_j`$ are distinct and
+pairwise anticommuting. For $`t>0`$, the two leading coefficients
+are those on P and $`A_t`$, with exponent $`2t`$. This proves
+the exponent premise for the minimum-count word. For $`t=0`$
+the exact source is Clifford and there are no T bands to consider.
+
+After reversing $`\ell\lt t`$ singleton bands, the coefficient
+magnitudes consist of the following entries on distinct labels.
+
+- One parked magnitude $`2^{-j/2}`$ for each $`1\le j\le\ell`$.
+- A remaining coefficient of magnitude
+  $`2^{-\ell/2}(1-2^\ell q)`$.
+- The untouched magnitudes $`2^{-(t+j)/2}`$ for
+  $`0\le j\le t-\ell`$.
+
+The two leading labels are the remaining coefficient and the
+last untouched one, with exponent $`2t-\ell>\ell`$. With the
+clean sum their support has the two-label form above for
+$`C=C_{\rm cl}`$. The next band is a singleton. Its projected
+axis is the sum of those two labels, which commutes with every
+other label by pairwise anticommutation. The rotated magnitudes
+are the absolute sum and difference of the two old magnitudes,
+each divided by $`\sqrt2`$. They give the new parked magnitude
+and the new remaining coefficient in the displayed list. This
+proves the list inductively, regardless of the signs of individual
+coefficients or rotations.
+
+At $`\ell=t`$ the remaining coefficient vanishes. The nonzero
+magnitudes are now
+
+```math
+2^{-1/2},2^{-2/2},\ldots,2^{-t/2},2^{-t/2}.
+```
+
+The top pair again forces a singleton. Its equal magnitudes combine
+to one coefficient of magnitude $`2^{-(t-1)/2}`$ and one zero
+coefficient. Repeating this equal-pair step removes another t
+singleton bands and leaves one coefficient of magnitude one. Thus
+the exact minimum-count word has $`2t=2m-4`$ singleton bands.
+
+### Controlled reflection
+
+Use control value one. Conjugating the entire word by X on the
+control proves the other case. Ignore the clean sum while describing
+coefficients separately on the two control branches. Start with
+coefficient vectors $`u=P`$ and $`v=Q`$ in the zero and one branches.
+The physical coefficients on the I and Z control labels are
+$`(u+v)/2`$ and $`(u-v)/2`$. This gives exponent $`2t+2`$.
+For $`t=0`$ the vectors are on distinct labels with magnitude one,
+so the same exponent formula holds.
+
+For $`\ell\lt t`$, the first $`\ell`$ reverse gates produce the same
+magnitude list for v as in the uncontrolled proof. The branch u uses
+the same two axis labels at each step, possibly with a different
+rotation sign. Its untouched partner always starts at coefficient
+zero. The rotation assigns equal magnitudes to the new parked label
+and the label that still carries the remaining coefficient. Thus
+u has the same parked magnitudes as v and a remaining magnitude
+$`2^{-\ell/2}`$. Its exponent is at most $`\ell`$, strictly less
+than that of v. The two leading labels in v therefore occur with
+both control dressings in the leading support of the full expansion.
+Here C includes control Z. A proposed two-gate band would act by a
+signed permutation on each branch, preserving both branch exponents.
+Their strict inequality would keep the combined exponent unchanged,
+contradicting the required decrease. The next band is therefore a
+singleton. This proves that the first t reverse bands are singletons.
+
+At this point the branches share all parked magnitudes. In addition,
+u has its final remaining label and v has its untouched $`A_0`$
+label, with equal magnitudes $`2^{-t/2}`$ on these distinct labels.
+The shared parked terms each have only one nonzero control dressing
+after folding, since their two branch magnitudes are equal. The
+two distinct unmatched labels instead have both dressings and give
+exponent $`t+2`$. They force a band of size at most two.
+
+A two-gate band swaps these two labels in one control branch. It
+aligns the nonzero magnitude on a single label across the branches.
+If this band instead has one gate, it splits the unmatched magnitude
+on each branch into a pair of magnitudes $`2^{-(t+1)/2}`$. The
+two split labels now have just one nonzero control dressing each.
+They are the only leading pair at exponent $`t+1`$, so the next band
+is a singleton. On each branch the two consecutive rotations of the
+same logical axis restore one coefficient of magnitude $`2^{-t/2}`$
+on the pair. The required new exponent t forces them onto the
+same label across branches. Separate labels would again give
+exponent $`t+2`$ after folding.
+
+In either case, the expansion now has one control dressing on each
+label of the equal-pair list from the uncontrolled proof. These
+dressed labels are still pairwise anticommuting because their
+control factors are only I or Z. The equal-pair collapse forces
+the remaining t bands to be singletons. Thus the count-minimum
+depth is at least $`2t+1=2m-3`$, and only the two middle gates can
+share a band. The middle argument also covers $`t=0`$, where the
+parked list is empty.
+
+The [controlled source circuit](../../docs/OPERATOR_SOURCE_COMPILER.md#1-the-operator-source-and-its-exact-native-circuit)
+attains the bound. In its middle, write the first split and its
+reverse around the controlled X as
+
+```math
+R_0 C(X_0) R_0^\dagger
+=R_0\bigl[C(X_0) R_0^\dagger C(X_0)^\dagger\bigr]C(X_0).
+```
+
+Let $`D_0=i\Gamma_0\Gamma_1`$ be the Pauli axis of $`R_0`$.
+Conjugating it by $`C(X_0)`$ gives $`Z_{\rm control}D_0`$.
+These two Pauli axes are commuting and independent. One Clifford
+basis change sends them to distinct physical Z axes, so the two
+actual signed T rotations fit one native band. The two outer
+sequences have t T gates each. The rearrangement keeps the native
+inverse and the literal scalar of the original source.
+
+The exact count hypothesis is essential to this proof. It ensures
+one exponent gain at every actual T and thereby constrains the
+leading support of every band.
+
+### Tradeoff for an approximate isolated source
+
+The [precision determinant bound](PRECISION_COUNT_DEPTH_TRADEOFF.md#precision-count-depth-tradeoff)
+also applies to an approximate $`M_m`$ through the following reduction.
+Suppose an actual word V for $`M_m`$ has T count T, native T-depth d,
+k clean inputs and complete initialized-isometry error $`\epsilon`$.
+Put $`s=\min\{m,\log_2(1/\epsilon)\}`$, using $`s=m`$ if
+$`\epsilon=0`$. For sufficiently large s the bounds satisfy
+
+```math
+(T+1)(d+1)=\Omega\!\left(\frac{s^2}{k+3}\right).
+```
+
+Fix the angle $`\cos(2\theta)=1/3`$ from the determinant bound.
+Use the [signed coefficient grid](../../docs/OPERATOR_SOURCE_COMPILER.md#2-exact-signed-dyadic-coefficients)
+to choose fixed Pauli masks $`P_0,P_1`$ for its cosine and sine.
+For a selector bit b, the ideal word
+$`W_b=M_m P_b M_m^\dagger P_b`$ has Hermitian part $`c_b I`$,
+where $`c_b`$ is the selected grid value. A Hadamard on an additional
+flag a, two a-controlled visits to $`P_b`$ around $`W_b`$, and a final
+Hadamard give the accepted block
+
+```math
+\frac{W_b+P_b W_b P_b}{2}=c_b I.
+```
+
+The mask is $`P_0(P_0P_1)^b`$. Its singly controlled Pauli is
+Clifford. A Clifford basis change to a single Pauli axis gives
+constant T cost and depth for the doubly controlled Pauli.
+
+The [two-flag rotation and three-call recovery](../../docs/OPERATOR_SOURCE_COMPILER.md#4-two-flags-encode-a-suffix-controlled-rotation)
+use this block with a and b initialized. The grid error gives
+$`O(2^{-m})`$ full initialized-isometry error for the ideal-source
+circuit. Its reflection tests only a and b. Substitute V and its
+actual inverse for the two source visits in each block. The inverse
+has the same initialized-isometry error by unitary multiplication.
+A six-term isometry hybrid adds at most $`6\epsilon`$, since every
+ideal intermediate keeps the source helpers in their initialized
+cylinder. This constructs the target angle with k plus two clean
+inputs, error $`O(2^{-m}+\epsilon)`$, T count $`O(T+1)`$ and native
+T-depth $`O(d+1)`$. The determinant bound gives the displayed tradeoff.
+In particular a fixed-clean, linear-count implementation with
+exponentially small source error requires linear native T-depth.

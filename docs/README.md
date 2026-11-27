@@ -107,6 +107,7 @@ precision ranges.** Their statements and open optimality gap are in the
 | [Geometric source chunks, R100](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) | Short zero-clean loader chunks with tensor-sector accuracy, and unchanged mask-query volume |
 | [Grouped programmed precision, R101](../research/depth/GROUPED_PROGRAMMED_PRECISION.md) | A shared coarse and residual programme per group lowers near-linear precision depth |
 | [Compact programme precision, R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) | Coarse field phases and returned threshold arithmetic use one compact angle row per outer prefix |
+| [Precision count–depth tradeoff, R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) | Unrestricted lower bound matching R96 when precision dominates the optimal T-count |
 | [Global borrowed-precision stage](../research/depth/GLOBAL_BORROWED_PRECISION_STAGE.md) and [fast capped reference](../research/depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | Separate initialized precision scratch from coarse geometry; compare on the full space |
 | [Polynomial-precision bridge](../research/depth/POLYNOMIAL_PRECISION_DEPTH.md) | Three charged coarse contractions |
 | [Direct-prefix terminal](../research/depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | Fixed fine-mask sequence and explicitly programmed shorter native coarse word |
