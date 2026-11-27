@@ -665,6 +665,387 @@ at most two raw T bands for all single-mark tables. The clean decision
 interface does not circumvent that result or give a growing-depth
 lower bound.
 
+<a id="recorded-address-decision-source"></a>
+
+### Record a short address label before reading a moving source
+
+Let $`M=J^\dagger V^\dagger Z_cVJ`$ for a raw one-clean source V.
+Write $`M_{xy}`$ for its computational address blocks on the entire
+arbitrary work space. Suppose the diagonal blocks have the prescribed
+sign and gap, in the sense that $`(-1)^{f(x)}M_{xx}\succeq\gamma I`$.
+Let h be a k-bit label for which $`h(x)\ne h(y)`$ whenever $`x\ne y`$
+and $`M_{xy}\ne0`$. To use this promise the compiler must supply h
+and pay its full returned XOR into the tag register. For example, if
+all nonzero differences $`x\oplus y`$ in the off-diagonal support lie
+in a supplied set $`\mathcal S`$, a linear h exists for any k with
+$`2^k\gt|\mathcal S|`$. A uniformly chosen binary k-by-a matrix kills
+each prescribed nonzero difference with probability $`2^{-k}`$.
+Finite search gives a valid matrix, and at most ak CNOTs compute its
+label with no T layer or private work.
+
+Append k clean tags, record h coherently, and apply V on its original
+registers. Measuring the same output $`Z_c`$ as in the original source
+now gives the compressed observable
+
+```math
+M'_{xy}=[h(x)=h(y)]M_{xy}.
+```
+
+This is a matrix-entry identity on the entire initialized code. In
+particular the dirty input need not factor across address blocks or
+from a reference. It makes M' block diagonal with sign $`D_f`$ and gap
+$`\gamma`$. V can move the address and the record can remain in the
+raw output. The actual adjoint reverses both V and the record. If
+instead the principal blocks of M on the two prescribed sign sectors
+already have the uniform signed gap, h only needs to separate the
+off-diagonal blocks between *opposite* signs. Within either sign sector,
+pinching to the h blocks preserves the positive lower bound.
+
+For fixed k and fixed positive gamma this is another sufficient source
+for the [square-root-width transfer](#square-root-width-signed-gap-transfer).
+In the same-signal recovery replace S by $`2JJ^\dagger-I`$, with J now
+inserting all k+1 initialized bits. Keep R as the conjugate of the
+single measured $`Z_c`$. The identities $`\mathcal HJ=JM'`$ and
+$`[R,\mathcal H]=[S,\mathcal H]=0`$ are unchanged. The QSP phases
+$`e^{i\phi S}`$ use the $`2^{k+1}-1`$ nonidentity Z products in the
+expansion of S and exact Clifford parity exposure. Omitting its identity
+term gives only one common scalar for the entire source, independent of
+the input. This scalar cancels in the subsequent
+[clean-code XOR promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#1-the-source-is-a-complete-query-not-a-prepared-state).
+For the lifted table, amplify first and then promote k+1 clean bits
+with their actual reversals. With k fixed the promotion costs only a
+constant factor and the final scalar has literal phase and complete
+return. The degree and per-phase accuracy remain as in the one-clean
+recovery. A linear tag adds $`O(ak)`$ Cliffords per raw source call, and
+the tags become a constant number of borrowed wires after promotion.
+The source's T-count, Clifford count, width and sublogarithmic-depth
+criterion are therefore preserved in the frame transfer. Any growing
+tag budget needs a new resource and accuracy ledger.
+
+<a id="summable-address-motion"></a>
+
+**Small total coupling permits many differences.** Let $`M^{(u)}`$
+keep precisely the blocks $`M_{x,x\oplus u}`$ of M. It has norm
+$`\max_x\|M_{x,x\oplus u}\|`$, since it is a block diagonal operator
+times an address translation. Suppose the diagonal signed gap is
+$`\gamma\gt0`$ and the source has the uniform bound
+
+```math
+\sum_{u\ne0}\|M^{(u)}\|\le B
+```
+
+for a fixed B, also for every lifted table used in promotion. For a
+linear k-bit tag, the expected sum of the norms of surviving nonzero
+differences is at most $`B2^{-k}`$. Use a certified upper bound on B
+and a positive lower bound on gamma with strict slack in the search.
+The finitely many block norms of a native word admit certified
+evaluation. For fixed $`0\lt\tau\le1/2`$ take
+$`k=O_{B,\gamma}(1+\log(1/\tau))`$ so the tagged compression M' is
+within $`\delta=\gamma\tau/32`$ of the diagonal compression
+$`M^{(0)}`$. Both spectra avoid the interval of radius
+$`\gamma-\delta`$ about zero. The integral representation of the
+sign by the sum of resolvents at $`\pm it`$, for $`t\ge0`$, gives
+
+```math
+\|\mathrm{sgn}(M')-D_f\otimes I\|
+\le \frac{2\delta}{\pi}\int_0^\infty
+       \frac{dt}{(\gamma-\delta)^2+t^2}
+=\frac{\delta}{\gamma-\delta}.
+```
+
+Here the difference of each resolvent is the product of the two
+resolvents with the perturbation inserted. The bound is in full
+operator norm, including noncommuting compression errors.
+
+To promote at tolerance tau, amplify the lifted decision to the
+*actual* sign of M' with initialized-isometry error
+$`\epsilon=\tau/(64\cdot2^{k+1})`$, up to its common scalar.
+After the target Hadamards, compare with the exact clean-sector
+extension of that unitary, as in
+[promotion §4](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#4-approximate-clean-return-still-gives-a-full-operator-query).
+Only the discrepancy from this extension costs $`8\cdot2^{k+1}\epsilon`$.
+The extension's clean-sector unitary is within
+$`\delta/(\gamma-\delta)`$ of the ideal XOR. The disjoint-sector
+estimate there charges this second error only twice. After the final
+Z echo the sum of these two terms is still below tau. Applying
+the leakage multiplier directly to the address mixing would lose
+the gain from the tag.
+
+At fixed B and gamma, all native overheads of this recovery are
+polynomial in $`1/\tau`$. The QSP degree is
+$`O_\gamma(1+\log(1/\tau)+k)`$. Each phase has at most
+$`2^{k+1}-1`$ parity terms synthesized to a precision with logarithm
+$`O_{B,\gamma}(1+\log(1/\tau))`$. Linear recording costs ak CNOTs.
+Serial promotion visits $`2^{k+1}`$ sectors and reuses its returned
+zero-test pool. Thus there is a fixed exponent C for which a raw
+source with the square-root T-count and width and linear-volume
+Clifford count yields a complete zero-clean scalar with
+
+```math
+\begin{aligned}
+T_\tau&=O_{B,\gamma}(\tau^{-C}2^{a/2}),&
+G_\tau&=O_{B,\gamma}(\tau^{-C}2^a),\\
+D_\tau&=O_{B,\gamma}(\tau^{-C}(d(a)+1)),&
+w_\tau&=w_V+O_{B,\gamma}(\tau^{-C}).
+\end{aligned}
+```
+
+These bounds include the actual reverse. The lifted arity adds one
+to a and the width uses that source's work bound. In the
+[square-root-width recurrence](#square-root-width-signed-gap-transfer),
+early-stage inverse tolerances are polynomial in $`h(m)+2`$.
+Increasing the arity margin absorbs the resulting polynomial factors
+in counts and width. The full-volume sources still have fixed
+L-dependent tolerances. The new frame depth at fixed L is
+$`O_{L,B,\gamma}(\log\log(n+4)+H_n^{O(1)}(d(n+C_L)+1))`$
+with the same simultaneous frame counts and width, using the usual
+nondecreasing depth envelope d. In particular
+$`d(a)=O(\log a/\log\log a)`$ still suffices. This conditional
+route requires a paid bound on the total off-diagonal coupling.
+Correct diagonal blocks by themselves supply no such bound.
+
+**A uniform recording rule needs long tags for unrestricted motion.**
+Fix a sign table and let S be a set of m addresses of a common sign
+$`s\in\{+1,-1\}`$, with m at least half the address count. Consider
+any read-only recording isometry that maps an arbitrary R-dimensional
+helper, at each address x, into an environment of dimension $`2^kR`$.
+This includes arbitrary quantum records, not just computational tags.
+The recording acts independently of the unknown source observable and
+does not act on its original work B. Allow B to have dimension at least
+mR, padding to a power of two if needed.
+
+Take the maximally entangled input between the mR-dimensional address
+and helper subspace supported on S and an mR-dimensional subspace of B.
+After recording and tracing out its environment, the density matrix
+$`\rho`$ on address and B has rank at most $`2^kR`$. Its address
+diagonal blocks obey $`\rho_{xx}\preceq I_B/(mR)`$ by isometry in
+each address fiber. Let P be its spectral projector on eigenvalues
+at least $`t/(mR)`$ for a fixed $`t\gt2`$. The projector is supported
+on S and satisfies
+
+```math
+P_{xx}\preceq I_B/t,\qquad
+\mathrm{Tr}(P\rho)\ge 1-t2^k/m .
+```
+
+Indeed $`P\preceq(mR/t)\rho`$, and at most $`2^kR`$ nonzero
+eigenvalues are omitted. Set $`M=D_f\otimes I_B-2sP`$. This is
+a Hermitian involution since P lies in the s sector. Its diagonal
+blocks satisfy the prescribed gap $`1-2/t`$. It is a legitimate
+abstract one-clean decision observable: on its negative eigenspace
+flip the clean output and on its positive eigenspace leave it fixed.
+On the entangled input above the recorded observable has signed
+expectation at most $`-1+2t2^k/m`$. Thus a uniform read-only recorder
+requires $`k\ge\log_2 m-O_t(1)`$ merely to guarantee a positive signed
+gap for every such M. The argument allows arbitrary dirty padding in
+the recorder. It makes no native cost claim for this adversarial M
+and does not bound quantum records chosen from a particular source's
+description.
+
+<a id="adaptive-classical-tag-limit"></a>
+
+**A shallow decision defeats every small classical recording.**
+
+The address tag in the preceding construction may depend on the emitted
+source. Even allowing this choice, uniformly signed address diagonals
+alone do not yield a bounded-size deterministic classical recording.
+The following source has one clean signal, $`O_\epsilon(a)`$ T gates,
+elementary Cliffords, and dirty wires, and $`O_\epsilon(1)`$ native
+T-depth for any fixed $`0\lt\epsilon\lt1/4`$. The same bounds include
+its actual inverse. Every address diagonal has signed gap at least
+$`1/2-\epsilon`$. For every address function h with fewer than
+$`2^{a-2}/3`$ tags, even if chosen knowing the source, the recorded
+compression has a signed expectation at most $`-1+\epsilon`$.
+
+Let $`a\ge4`$, let $`f(x)=x_1`$, and reserve four fixed anchor
+addresses $`B_0,\ldots,B_3`$ with prefix $`01`$. Set the last two
+bits of $`B_0`$ to zero and obtain the other anchors by varying just
+those bits. Four arbitrary dirty lists of $`a-2`$ bits encode
+addresses $`A_0,\ldots,A_3`$ with prefix $`00`$. Write z for all four
+list words. On address X, let $`U_z`$ first apply Hadamards to the last
+two bits and then perform the four transpositions $`(A_j,B_j)`$ in a
+fixed order. Define the projector
+
+```math
+P=\sum_z |z\rangle\langle z|\otimes U_z|B_0\rangle\langle B_0|U_z^\dagger,
+```
+
+tensored with identity on private helpers. For every z the four
+images of the anchors under the transposition product are distinct
+because that product is a permutation. The normalized state defining
+P in that sector is uniform on the four images, all of which have
+first bit zero. If the four $`A_j`$ are distinct, the four images are
+exactly those $`A_j`$. This description gives a full operator on the
+entire arbitrary list register, including repetitions and coherences.
+
+The ideal source toggles c by $`x_1`$ and on the range of P.
+These actions commute because P lies in the $`x_1=0`$ sector. Its
+clean-code observable is
+
+```math
+M_0=D_f\otimes I-2P,
+\qquad
+(-1)^{f(x)}(M_0)_{xx}\succeq\tfrac12 I.
+```
+
+Indeed $`P_{xx}\preceq I/4`$, with no condition on the dirty list or
+the private work. To implement the second toggle, conjugate the
+complete XOR at the single marked address $`B_0`$ by $`U_z`$ and its
+actual inverse.
+
+**Native transposition.** For any one of the address pairs A,B, let
+K toggle an arbitrary shared helper w by
+$`[x=A]\oplus[x=B]`$. It is two complete zero-test XORs with the
+address shifted by A or B and shifted back by CNOTs and X gates.
+The [zero-reflection proof](EXPANDER_ZERO_REFLECTION.md) supplies a
+fixed-error complete zero-test XOR with $`O_\epsilon(a)`$ T-count,
+Clifford count and dirty work at $`O_\epsilon(1)`$ native T-depth.
+Its padding-sector product for the phase also works for the XOR,
+since at the zero unpadded address exactly one padding shift triggers
+the ideal XOR. The same full-operator hybrid pays the at most four
+padded calls. In particular the zero-test word may move the address
+internally.
+
+Let L add $`w(A\oplus B)`$ into X, with all other wires returned.
+This is one parallel batch of $`O(a)`$ Toffolis and CNOTs. Each
+Toffoli uses its own private phase helper, so w and the list input
+bits enter only as shared Clifford controls. The predicate in K is
+invariant under translation by $`A\oplus B`$. The chronological
+echo $`K,L,K^\dagger,L^\dagger`$ therefore adds
+$`(A\oplus B)([x=A]\oplus[x=B])`$ to X and returns w in the exact
+comparison. This is the desired transposition on every input, with
+the list values preserved. When A and B coincide the same identity
+gives the identity permutation. All approximate inverse calls in
+the emitted echo use the actual reversals.
+
+There are four transpositions in $`U_z`$ and four in its actual
+inverse. Each has at most four appearances of the complete zero-test
+word or its inverse. The marked-address XOR for $`B_0`$ adds one
+call. With each complete zero-test XOR accurate to $`\epsilon/66`$,
+the 33-call hybrid makes the source within $`\epsilon/2`$ of its
+ideal unitary. Thus its actual compressed observable M obeys
+$`\|M-M_0\|\le\epsilon`$. This proves the diagonal gap and all the
+stated resource bounds. All zero-test and translation pools can be
+reused at ideal returned boundaries by a full-operator hybrid.
+
+**Failure of adaptive classical tagging.** If h has fewer than
+$`2^{a-2}/3`$ values, four distinct addresses with prefix $`00`$ share
+one value of h. Set the dirty list to these four labels and take X
+uniform on them. This vector is in the positive f sector and is a
+minus-one eigenvector of $`M_0`$. Copying h into initialized tags has
+the same tag on every component of the vector, so its recorded
+expectation remains minus one. The recorded observable of the actual
+source differs by at most $`\epsilon`$, by compression of the same
+unitary conjugation. The input is allowed even though other dirty
+lists may contain duplicates. For this source such a classical tag
+repair therefore needs at least $`a-3`$ tag bits. The counterexample
+concerns the stated deterministic classical recording with tags left
+untouched by the source. Other source repairs require a separate argument. Its table f itself
+has a Clifford decision.
+
+**Quantum tags from a single-band Pauli orbit.** The same example
+also screens one family of source-dependent quantum records. Suppose
+the range projector of the record isometry at x is
+$`Q_x=D_xQ_0D_x^\dagger`$, where each $`D_x`$ is a Pauli and $`Q_0`$
+is the image of k initialized bits under a common one-band native word.
+The word and Pauli labels may be chosen knowing the source. Undoing the
+last Clifford leaves $`Q_0=EPE^\dagger`$, where E is a diagonal T band
+and P a stabilizer projector of codimension k in qubit count. Let
+L be the span of the stabilizer X labels, of dimension $`r\le k`$.
+Every Q keeps the computational cosets of L invariant and has rank
+zero or one on each. For P the diagonal stabilizer sum gives constant
+diagonal $`2^{-r}`$ on an active coset and zero on an inactive one.
+E preserves each coset and the Pauli translates permute them.
+
+Among the $`2^{a-2}`$ prefix-00 addresses, some coset is active on
+at least $`2^{a-2+r-k}`$ by averaging their ranks. The unit sphere
+on that coset has a one-eighth net of cardinality at most
+$`17^{2^{r+1}}`$. For $`k=o(\log a)`$, four of its active address
+lines have normalized vectors within one eighth of the same net
+point. Use those four addresses as the dirty list in the native
+example. In the recorded code take equal amplitudes on the four
+addresses with their corresponding helper vectors. The bad-projector
+expectation is the squared norm of the mean of these four vectors,
+at least $`(7/8)^2`$. The signed observable therefore has expectation
+at most $`1-2(7/8)^2+\epsilon\lt0`$. A common orbit encoder with sublogarithmic
+clean width needs to leave this one-band representation to repair
+the native example. Two noncommuting encoder bands can change the
+coset structure, and their full-space behavior remains open.
+
+<a id="expander-quantum-address-tags"></a>
+
+**Quantum records suppress couplings within each work sector.**
+Partition the principal input into p computational label wires and
+an arbitrary work register. The label x can include both the address
+and any designated dirty input bits. Assume each label-diagonal
+block has the prescribed sign and gap $`\gamma\gt0`$, with the sign
+depending only on the address. Allow a common orthogonal decomposition
+of the remaining work into sectors z preserved by all $`M_{xy}`$. A
+single sector is allowed. Suppose that
+
+```math
+\max_{x,z}\sum_{y\ne x}\|M_{xy}|_z\|\le B
+```
+
+for a uniform constant B, also for all lifted tables. This is a proof
+premise that requires no circuit to find z. It allows a dense union of
+coupling graphs over dirty inputs.
+
+The [read-only field expander](GATEWISE_READ_ONLY_EQUALITY.md) has
+selector branches $`G_j(x)`$ representing $`I+B_0(x)N_j`$, where
+$`B_0`$ is the linear field embedding, $`N_j^2=0`$, and padded branches
+have $`N_j=0`$. Thus $`G_j(x)^\dagger G_j(y)=G_j(x\oplus y)`$
+literally. Let $`J_0`$ prepare the two field bits in states $`|1\rangle`$
+and $`|{-}\rangle`$, leaving all other work arbitrary. Its range is
+orthogonal to the invariant space at every nonzero parameter. Apply
+Hadamards on the eleven clean selector bits and the paid SELECT, then
+keep the selector and field outputs as the record. SELECT returns all
+private masks exactly, so their identity factors are implicit:
+
+```math
+E_x=2^{-11/2}\sum_{j=0}^{2^{11}-1}|j\rangle\otimes G_j(x)J_0,
+\qquad E_x^\dagger E_y=J_0^\dagger A_{x\oplus y}J_0.
+```
+
+Here A is the lazy field average, so the overlap is I at x=y and has
+operator norm at most an absolute $`c\lt1`$ otherwise. Use L copies
+with private selectors, field words and masks. The common label is
+read-only at every record gate, so all copies align their native T layers.
+With the [linear-rank field schedule](GATEWISE_READ_ONLY_EQUALITY.md#linear-rank-field-select),
+the record and actual reverse have $`13L`$ clean inputs,
+$`T,b_{\rm dirty}=O(L(p+1))`$, $`G=O(L(p+1)^2)`$ and constant
+T-depth. Applying the source only on its original wires gives
+
+```math
+M'_{xy}=M_{xy}\otimes(E_x^\dagger E_y)^{\otimes L},
+\qquad \|M'-M^{(0)}\|\le Bc^L.
+```
+
+For the bound, replace off-diagonal blocks within each work sector
+by their norms. The resulting real symmetric matrix has row sums at
+most $`Bc^L`$, which bounds its operator norm. The sector sum takes
+its maximum, including arbitrary work superpositions and references.
+
+Take $`L=O_{B,\gamma}(1+\log(1/\tau))`$ to make $`Bc^L\le\gamma\tau/32`$.
+Apply the preceding sign perturbation and exact clean-sector comparison
+with $`k=13L`$. The sign error avoids the promotion multiplier, and the
+complete scalar costs polynomial overhead in $`1/\tau`$. Here p may be as large as the total source width. At fixed tau the
+record uses at most square-root count and width and linear-volume
+Clifford count even if every principal dirty wire is tagged. For the
+variable-tolerance early stages the extra overhead is polynomial in
+$`1/\tau`$, including the multiplicative width factor. The arity
+margin and fixed-tolerance full-volume calls give the same frame
+consequence as for the linear tags.
+
+For the [adaptive classical counterexample](#adaptive-classical-tag-limit),
+the exact four-list sectors have row sum at most $`3/2`$. Its approximate
+native source can be chosen within $`O(\gamma\tau)`$ of the ideal
+compressed observable using the retained zero-test precision ledger.
+Quantum recording contracts the comparison error. Allocate both
+that error and $`Bc^L`$ within $`\gamma\tau/32`$ and the same
+complete repair follows. For arbitrary tables the signed diagonal
+blocks and their row-sum bound remain to be realized.
+
 <a id="two-address-block-margin"></a>
 
 ### Two separated address blocks have a width-independent bias bound
@@ -893,6 +1274,156 @@ word below, arbitrary independent boundaries around such a word,
 joint table/address interleaving, or general native depth. The paid
 Walsh example makes that distinction explicit. The general frame
 frontier is unchanged.
+
+<a id="single-projective-group-insertion"></a>
+
+### One projective group insertion has an exact row-bias characterization
+
+Three alternating address blocks allow the Walsh construction above. Consider the form
+
+```math
+V_f(u,v)=A'_{f,u}B_{f,v}A_{f,u},
+\qquad v\in G=\mathbb F_2^r,
+```
+
+where the two outer signal/work unitaries are independent, and the middle family is a projective representation of G. The factors may all depend on the entire table. The address is read-only. Scalar phases of the family cancel in conjugation, so the result includes affine Pauli-frame banks with fixed signal/work changes of basis absorbed into the outer unitaries. One initialized signal c, arbitrary dirty width, and unrestricted garbage are allowed.
+
+Let $`b_u(v)`$ be the normalized trace of the compressed observable $`J^\dagger V_f(u,v)^\dagger Z_cV_f(u,v)J`$ on the initialized code. For a function g of v write $`\widehat g(\chi)=|G|^{-1}\sum_v g(v)\chi(v)`$ for its normalized Fourier coefficients, with $`\chi(v)\in\{\pm1\}`$. Every such program satisfies
+
+```math
+\sum_\chi |\widehat b_u(\chi)|\le1\quad\text{for each }u.
+```
+
+To prove the bound, let $`\tau(X)=\mathrm{Tr}(X)/D`$ on the D-dimensional signal/work space and suppress f. As above the normalized clean bias is
+
+```math
+b_u(v)=\tau(Q_u B_v R_u B_v^\dagger),
+\quad R_u=A_u Z_c A_u^\dagger,
+\quad Q_u=(A'_u)^\dagger Z_c A'_u.
+```
+
+Both observables have unit normalized Hilbert--Schmidt norm. The conjugations by $`B_v`$ are an ordinary representation of G on that Hilbert space. Let $`\Pi_\chi`$ be its orthogonal projection on character $`\chi`$. Fourier transformation and Cauchy--Schwarz give
+
+```math
+\widehat b_u(\chi)=\langle \Pi_\chi Q_u,\Pi_\chi R_u\rangle_\tau,
+\qquad
+\sum_\chi |\widehat b_u(\chi)|\le
+\Bigl(\sum_\chi\|\Pi_\chi Q_u\|_\tau^2\Bigr)^{1/2}
+\Bigl(\sum_\chi\|\Pi_\chi R_u\|_\tau^2\Bigr)^{1/2}=1.
+```
+
+**Complete converse.** Every real row family with Fourier norm at most one can be realized with the exact compressed observable $`b_u(v)I`$, on the entire arbitrary dirty space, using one common projective Pauli family $`B_v`$. For $`r\ge1`$ use $`m+2`$ pairwise anticommuting Hermitian Pauli Majoranas, $`m=|G|`$, one for each character and two dummy axes. These exist on $`(m+2)/2`$ work qubits by the Jordan--Wigner Pauli list. For row u put $`\beta_\chi=\widehat b_u(\chi)`$, $`L=\sum_\chi|\beta_\chi|`$, and take
+
+```math
+\begin{aligned}
+R&=\sum_\chi\sqrt{|\beta_\chi|}\,\Gamma_\chi+\sqrt{1-L}\,\Gamma_*,\\
+Q&=\sum_\chi\mathrm{sgn}(\beta_\chi)\sqrt{|\beta_\chi|}\,\Gamma_\chi+\sqrt{1-L}\,\Gamma_{**}.
+\end{aligned}
+```
+
+Both are Hermitian involutions. Choose $`B_v`$ so that $`B_v\Gamma_\chi B_v^\dagger=\chi(v)\Gamma_\chi`$ and both dummy axes are fixed. On an even-sized Majorana frame a product over an even subset flips exactly that subset under conjugation. To flip an odd subset, use its odd complement. Apply this rule to the character signs of each standard generator of G, making a Hermitian Pauli representative $`P_i`$ for its action. Set $`B_v=P_1^{v_1}\cdots P_r^{v_r}`$. Pauli multiplication makes this a projective representation. Each controlled tensor Pauli is a Clifford circuit of $`O(m)`$ elementary gates, using a control-Z for a negative sign and Clifford basis changes for its nonidentity local factors. The shared middle word and its actual inverse therefore have zero T gates and $`O(rm)`$ elementary Cliffords. They use no additional helper beyond the Majorana work bank.
+
+On c and this work choose the outer blocks
+
+```math
+A_u=\frac1{\sqrt2}\begin{pmatrix}I&-R\\R&I\end{pmatrix},\qquad
+A'_u=\frac1{\sqrt2}\begin{pmatrix}I&Q\\-Q&I\end{pmatrix}.
+```
+
+Multiplying their two clean-signal blocks gives the exact compression $`\{B_v^\dagger Q B_v,R\}/2=b_u(v)I`$. The two distinct dummy axes contribute zero to the anticommutator. The complete converse is an abstract source characterization with a paid middle word. The outer blocks need their own native synthesis when applied to a proposed compiler.
+
+**Margin.** For a prescribed row $`s_u(v)\in\{\pm1\}`$, the best margin in this architecture is
+
+```math
+\max_{\|\beta\|_1\le1}\min_v s_u(v)\sum_\chi\beta_\chi\chi(v)
+=\min_{\mu\in\mathcal P(G)}\max_\chi
+     \left|\sum_v\mu(v)s_u(v)\chi(v)\right|..
+```
+
+The equality is finite bilinear minimax over the real unit $`\ell_1`$ ball and the probability simplex, followed by $`\ell_1`$/$`\ell_\infty`$ duality. Necessity uses normalized trace after a full signed operator gap, and sufficiency uses the complete converse. The same middle word works for every row, so the table margin is the minimum of the displayed value over rows. Uniform $`\mu`$ gives $`\gamma\le\max_\chi |\widehat s_u(\chi)|`$. At even r the bent row $`s_u(v)=(-1)^{v_1v_2+\cdots+v_{r-1}v_r}`$ has every Fourier magnitude $`2^{-r/2}`$, by multiplying the two-bit Fourier transforms. This bound is attained abstractly by $`b_u=2^{-r/2}s_u`$, whose Fourier $`\ell_1`$ norm is one. In contrast each Walsh row is a character, and the previously paid Walsh circuit attains gap one. One group-like visit to v thus does not suffice for arbitrary tables. Test a non-group-like family or separated v visits to leave this restriction.
+
+<a id="paired-pauli-one-commuting-wall"></a>
+
+### Paired affine Pauli visits around a commuting T wall have a quadratic margin bound
+
+Consider the changed read-only source
+
+```math
+V_f(u,v)=A'_{f,u} B_v^\dagger W_f B_v A_{f,u},
+```
+
+with arbitrary independent u-boundaries, B a projective Pauli representation of G, and W a fixed product of commuting Pauli T or T-adjoint rotations. It may depend on the whole table. Allow any number of commuting axes, even dependent ones, in W. A fixed Clifford frame for all those axes is included by changing B and the outer boundaries. The architecture has two v visits with a non-Clifford interlayer, so the single-insertion theorem need not apply.
+
+For an axis $`P_i`$ and sign $`\epsilon_i\in\{\pm1\}`$ write the literal rotation as $`T(P_i)^{\epsilon_i}=e^{i\epsilon_i\pi/8}e^{-i\epsilon_i\pi P_i/8}`$, and let $`\ell_i(v)`$ be the commutation bit of $`B_v`$ with $`P_i`$. It is affine linear as a Boolean function, and linear when the representation is normalized at zero. Since all axes commute,
+
+```math
+E_v=B_v^\dagger W_f B_v W_f^\dagger
+=\prod_i\exp\bigl(i\epsilon_i\pi\ell_i(v)P_i/4\bigr).
+```
+
+Absorb the fixed W into the initial boundary. In one common simultaneous axis eigenbasis, the adjoint action of E on $`|s\rangle\langle t|`$ is multiplication by $`i^{q(v)}`$, where
+
+```math
+q(v)=\sum_i \epsilon_i\,\frac{p_i(s)-p_i(t)}2\,\ell_i(v)\pmod4
+   =q_0+\sum_j a_j v_j+2\sum_{j\lt k}b_{jk}v_jv_k\pmod4.
+```
+
+Here $`p_i(s),p_i(t)\in\{\pm1\}`$ are the axis eigenvalues, $`a_j\in\mathbb Z_4`$, $`b_{jk}\in\mathbb F_2`$, and $`q_0\in\mathbb Z_4`$. The second equality follows by expanding each Boolean parity as an integer modulo four. Group eigenoperators by their common phase function into mutually orthogonal spaces. The normalized trace proof above now gives $`b_u(v)=\sum_q\beta_{u,q}i^{q(v)}`$ with $`\sum_q|\beta_{u,q}|\le1`$, possibly complex coefficients. Consequently a full signed margin on a row forces
+
+```math
+\gamma\le \max_q\bigl|\mathbb E_v s_u(v)i^{q(v)}\bigr|.
+```
+
+This condition is independent of width, number of commuting axes and the boundary unitaries. A uniform random sign row has correlation at most $`O(r/2^{r/2})`$ with all these phases with probability tending to one. More explicitly the probability that the maximum exceeds $`t`$ is at most $`4\cdot4^{r+1}\,2^{\binom r2}\exp(-2^r t^2/4)`$, by applying the independent-sign exponential bound to the real and imaginary parts and counting the possible q.
+
+There is also an explicit adversarial row. Set $`s(v)=(-1)^{\sum_j v_{3j-2}v_{3j-1}v_{3j}}`$ using disjoint triples. Every phase $`i^{q(v)}`$ has third additive multiplicative derivative one. For each linear term this follows from binary addition modulo four, and twice each quadratic term has this property because its ordinary third Boolean derivative is zero. Three Cauchy--Schwarz applications therefore bound the correlation by $`\|s\|_{U^3}`$, where $`\|s\|_{U^3}^8=\mathbb E_{v,h_1,h_2,h_3}\prod_{\omega\in\{0,1\}^3}\mathcal C^{|\omega|}s(v+\sum_j\omega_j h_j)`$ and $`\mathcal C`$ is complex conjugation. For each triple, the cubic derivative is the determinant over $`\mathbb F_2`$ of the three direction columns. Exactly $`(8-1)(8-2)(8-4)=168`$ of the $`2^9`$ direction matrices are nonsingular. Independence across triples gives
+
+```math
+\gamma\le(1-2\cdot168/512)^{\lfloor r/3\rfloor/8}
+       =(11/32)^{\lfloor r/3\rfloor/8}.
+```
+
+**Arbitrary middle with one-band endpoints.** The same quadratic margin bound holds for arbitrary fixed W, even with many noncommuting layers, if each outer u-boundary has at most one native T band on signal/work for each fixed u. Fixed Clifford frames can be included without changing this conclusion. For one such endpoint write $`R=D P D^\dagger`$, with P a Pauli and D a commuting product of Pauli T rotations. An outer Clifford conjugates both P and the rotation axes and is therefore already included in this expression. A direct multiplication on the axes that anticommute with P gives
+
+```math
+B_vR B_v^\dagger=\chi_P(v)G_v R,\qquad
+G_v=\prod_{i:\{P_i,P\}=0}(i\epsilon_iP_i)^{\ell_i(v)}.
+```
+
+Here $`\chi_P`$ is the character of the Pauli P under conjugation by $`B_v`$. The $`G_v`$ commute for all v because their axes belong to the same commuting band. Likewise write $`B_v Q B_v^\dagger=\chi_{P'}(v)H_vQ`$, with the family $`H_v`$ commuting in its own basis. The bias with the arbitrary middle W is therefore
+
+```math
+\begin{aligned}
+b_u(v)&=\tau\bigl((B_vQB_v^\dagger)W(B_vRB_v^\dagger)W^\dagger\bigr)\\
+ &=\chi_P(v)\chi_{P'}(v)\tau(RW^\dagger H_v Q W G_v)\\
+ &=\chi_P(v)\chi_{P'}(v)\langle WR,H_v(QW)G_v\rangle_\tau.
+\end{aligned}
+```
+
+Left multiplication by H and right multiplication by G commute even when their bases differ. On $`|h_s\rangle\langle g_t|`$, the simultaneous eigenphases are products of powers $`i^{\pm\ell_i(v)}`$. Including the two characters, they are exactly of the generalized quadratic form above. Both fixed Hilbert--Schmidt vectors have norm one, so the same orthogonal-space argument and cubic row apply. This proof places no native count or depth restriction on W.
+
+In fact, for arbitrary middle W, a single boundary that is a character vector under $`\mathrm{Ad} B_v`$ already forces the Fourier $`\ell_1`$ bound above. Factor its character out of the first line above and use the one remaining group matrix coefficient. This includes one Clifford endpoint paired with any other endpoint. To escape both bounds while retaining the same paired Pauli address frames, both probes must have more than one character and at least one must leave the one-band architecture. The remaining source still needs a complete compressed sign after those changes.
+
+**A paid escape for the cubic row.** For the explicit disjoint-triple cubic $`f(v)`$ above, its polarization has the form $`f(k+z)=f(k)+f(z)+\theta(k)\cdot\phi(z)`$. For each triple, use its six mixed terms, writing each as a product of one monomial in k and one in z, both of degree at most two. Borrow arbitrary registers k and t, with t one bit per mixed term. Write $`D_{c g}`$ for the diagonal phase $`(-1)^{c g}`$. Use
+
+```math
+\begin{aligned}
+B_v&=X_k^v,\qquad A=D_{c[f(k)+t\cdot\phi(k)]}H_c,\\
+A'&=H_cD_{c[t\cdot\phi(k)]},\\
+W|c,k,t\rangle&=(-1)^{c f(k)}|c,k,t+\theta(k)\rangle.
+\end{aligned}
+```
+
+The two probes are $`R=X_c(-1)^{f(k)+t\cdot\phi(k)}`$ and $`Q=X_c(-1)^{t\cdot\phi(k)}`$. Under conjugation by W, $`B_vRB_v^\dagger`$ gains the term $`f(k)`$ from the signal phase and replaces t by $`t+\theta(k)`$. The exponent becomes $`f(k+v)+f(k)+(t+\theta(k))\cdot\phi(k+v)=f(v)+t\cdot\phi(k+v)`$. Thus
+
+```math
+W(B_vRB_v^\dagger)W^\dagger=(-1)^{f(v)}B_vQB_v^\dagger,
+\qquad
+(A'B_v^\dagger W B_v A)^\dagger Z_c (A'B_v^\dagger W B_v A)
+ =(-1)^{f(v)}Z_c.
+```
+
+This is a full physical operator identity with only the eventual readout signal initialized. The $`t+\theta(k)`$ update uses affine gates and Toffolis on distinct target bits. The other table-dependent terms are diagonal phases of arity at most four. Use the retained read-only private-wire phase batches on disjoint arbitrary helpers. They leave all principal controls available in Clifford interactions, including the shared c, so the T layers align across triples. The forward word and actual reverse use $`O(r)`$ T gates, elementary Cliffords and dirty work at constant native T-depth with zero implementation error. The raw source may move its dirty t bank. This restricted construction escapes the preceding architecture bounds using a changed middle and changed endpoints. General polarization incurs the large-degree monomial-source cost and gives no general frame-depth improvement.
 
 <a id="fixed-boundary-decision-source"></a>
 

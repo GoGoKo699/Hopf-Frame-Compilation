@@ -300,9 +300,9 @@ four-layer floor $`\rho/2\approx0.135299`$, where
 $`\rho=\sin(\pi/8)/\sqrt2`$, at arbitrary dirty width.
 Thus integer $`L\ge3`$ requires at least five T layers with zero
 clean work. Sharpness is not claimed for the four-layer floor.
-R73 also gives a positive three-layer threshold at every fixed clean
-budget; a separate explicit one-clean witness needs three layers for
-$`L\ge8`$. Zero leaf phases include these witnesses in the complex family.
+The [deepest-corner family](../research/depth/ROBUST_DECISION_BIAS.md#a-direct-complete-frame-error-floor)
+has limiting worst-case three-layer error $`\sqrt{2-\sqrt2}`$, with arbitrary
+dirty width and any fixed polynomial clean budget. The asymptotic depth gap above remains open.
 
 ### One-clean midpoint restrictions
 
