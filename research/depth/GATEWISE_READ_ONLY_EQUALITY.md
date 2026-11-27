@@ -38,6 +38,69 @@ There is also a growing-sparsity bound. Write $`L'=1+\log_2(2\max(1,K)/\tau)`$ f
 
 For the literal independent clean-row reflection before any promotion, the loss on dense occupations is genuine even with exact fixed-point rotations. The lazy walk above has 1040 identity terms against 1008 involutions, so $`A_a\succeq I/64`$ at every parameter. On a false row, the overlap of the initial clean code with the returned state of the selective sign word on any unit product input $`\psi`$ is $`1-2\|A_a^N\psi\|^2`$. If a uniform error below one is claimed on all occupations, using a single active false row already forces this real overlap to be positive. It is at most $`1-2\cdot64^{-2N}`$. For $`Y`$ all ones, a fixed address and a product of private inputs, the one selected row is exact and the $`m-1`$ false-row overlaps multiply. To keep the literal signed overlap at least $`1-\tau^2/2`$ one needs $`(1-2\cdot64^{-2N})^{m-1}\ge 1-\tau^2/2`$, so $`N=\Omega(\log m)`$ at fixed $`\tau\lt 1`$. This applies to the stated independent walk and its clean-code reflection. Joint filtering, different walks and recompiled promotions require their own analysis.
 
+<a id="sparse-code-preprocessing"></a>
+
+### Reversible preprocessing cannot make an arbitrary bank sparse
+
+The sparse promise above cannot be obtained on the entire input code
+by adding dirty wires and applying a clever unitary. This limitation
+is a sharp dimension statement, independent of the gate model.
+
+Let Q physical qubits have k initialized inputs, with embedding
+$`J:\mathbb C^{2^{Q-k}}\to\mathbb C^{2^Q}`$. All other inputs,
+including the address and any extra work, are arbitrary. On $`q\ge1`$ designated
+occupation wires let $`P_K`$ select Hamming weight at most K, tensored
+with identity on every other wire. Define
+
+```math
+B(q,K)=\sum_{j=0}^K\binom qj,
+\qquad 0\le K\le q.
+```
+
+There exists a unitary U with uniform leakage
+$`\|(I-P_K)UJ\|_{\rm op}\lt1`$ if and only if
+
+```math
+B(q,K)\ge 2^{q-k}.
+```
+
+Indeed $`\mathrm{rank}\,P_K=2^{Q-q}B(q,K)`$. If this is smaller
+than the initialized code dimension $`2^{Q-k}`$, the map $`P_KUJ`$
+has a unit kernel vector. Its leakage is exactly one, contradicting
+the strict bound. Conversely, when the rank condition holds, map an
+orthonormal basis of the initialized code into $`\mathrm{im}\,P_K`$
+and extend to a unitary; its leakage is exactly zero. This converse
+asserts abstract existence, with no native synthesis or efficiency claim.
+In particular, allowing small nonzero uniform leakage gives no slack
+in the dimension requirement.
+
+Dirty padding multiplies both dimensions equally. Address motion,
+intermediate garbage, external references and a fixed unitary change
+of occupation basis do not evade the conclusion. With zero clean
+inputs it forces $`K=q`$. With one clean input, binomial symmetry
+gives the exact threshold $`K\ge\lfloor q/2\rfloor`$: for even q,
+the lower half excluding the middle term has dimension strictly less
+than half the full bank, whereas for odd q the lower half through
+$`(q-1)/2`$ has exactly half the dimension.
+
+More generally, for $`K\le q/2`$ the binomial bound
+$`B(q,K)\le2^{qH_2(K/q)}`$ gives
+
+```math
+k\ge q\,[1-H_2(K/q)].
+```
+
+Here $`H_2`$ is binary entropy. The binomial bound follows by weighting
+the sum with success probability $`K/q`$; each term through K has
+weight at least $`2^{-qH_2(K/q)}`$. Endpoint $`K=0`$ is immediate.
+Thus $`K=o(q)`$ requires at least $`q-o(q)`$ clean inputs. For the
+indicator bank $`q=2^p`$ and fixed K, already
+$`\log_2 B(2^p,K)=O_K(p)`$ requires $`k\ge2^p-O_K(p)`$.
+The growing-sparsity regime above also has $`K=o(q)`$. It cannot
+be upgraded to a bounded-clean complete source by whole-code
+sparsification. A joint source that never enters this occupation
+promise is outside the statement.
+
 ## A single joint projector and its limitation
 
 For $`m=2^p`$ rows and selector $`s`$, there is nevertheless a joint constant-accuracy projection filter whose contraction is independent of $`m`$. Choose a prime $`h=\Theta(p+1)`$ large enough that $`(hm^2+2m)2^{-h}\lt 1`$. Search for a binary linear map $`B:\mathbb F_2^p\to F`$ such that all nonzero $`B(v)`$ avoid $`\mathbb F_2`$ and lie in distinct Frobenius orbits. A random binary linear map works with positive probability: the images of two distinct nonzero words are independent uniform field elements, so the union over all ordered pairs and all $`h`$ Frobenius powers costs at most $`hm^2/2^h`$. Include the $`2m/2^h`$ cost of small-field hits. One can equivalently embed first in a linear subspace avoiding 1 and choose an ordinary binary basis for its coordinates. For general $`B`$ implement each address-dependent coefficient as the appropriate XOR of the original address bits inline in the shear monomials, with still polynomial overhead.
@@ -50,4 +113,6 @@ By the same *single* Kazhdan gap its complement contracts uniformly independent 
 
 The joint filter changes only a thin subspace when a row is removed. Writing $`P_*=\prod_vJ_v`$ gives $`P_s-P_*=(I-J_s)\prod_{v\ne s}J_v`$. These difference projectors are pairwise orthogonal, so their ranks sum to at most the full workspace dimension. In coherent address direct sum the normalized rank of $`R_s-R_*`$ is at most $`1/m`$, where $`R_s=I-2P_s`$. For any word with $`q`$ such reflected calls replace each by its corresponding address-independent complete $`R_*`$. The normalized rank of the difference is at most $`q/m`$ by telescoping, even with arbitrary unitary interlayers, and the normalized Hilbert–Schmidt distance is at most $`2\sqrt{q/m}`$. Compression on $`k'`$ clean bits adds a factor $`2^{k'/2}`$. If the erased word has a fixed normalized Hilbert–Schmidt gap from the desired occupation measurement, a bounded number of these ideal projectors cannot close it. Individually approximated calls also contribute their explicitly accumulated full errors. The estimate includes dependence of the $`J_v`$ on occupied words and is independent of their ranks. It controls this product-projector readout and quantitatively explains why a common gap for the joint walk alone does not improve the frame scaling.
 
-The [field equality fixtures](../../tests/test_read_only_field_equality.py) enumerate finite parameter orbits, independent CRT lifts and projector rank profiles. The uniform spectral-gap and physical error bounds use the analytical argument above.
+This rank argument uses commuting fixed-space projectors, not tensor-product coordinates. In any fixed unitary representation of a product of independent finite groups, averaging each factor gives such commuting projectors. Changing only that representation retains the same bound when selecting s still removes exactly its factor. A coupled group image or a changed address-dependent representation requires a new analysis.
+
+The [field equality fixtures](../../tests/test_read_only_field_equality.py) enumerate finite parameter orbits, independent CRT lifts and projector rank profiles. The uniform spectral-gap, physical error and sparse-code dimension bounds use the analytical arguments above.

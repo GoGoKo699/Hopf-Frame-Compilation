@@ -14,9 +14,9 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 27 November checkpoint starts from [1fb5d04](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/1fb5d0453987eed459ee61b2eaec7013cc1c7ad4),
-the merged [PR #276](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/276).
-The [interior-decision review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Finterior-decision-calibration)
+The 27 November checkpoint starts from [d6d7dfd](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/d6d7dfd5ae1b0b2dfbcf07066ed6b03510d4f786),
+the merged [PR #277](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/277).
+The [separated-decision review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fseparated-decision-margin)
 identify the reviewed tree for this continuation.
 The active question is how many sequential native T layers a compiler needs when it knows the table in advance and receives its address in superposition.
 The [November evidence index](research/archive/november-2026/README.md) locates the original derivations, replayable fixtures and exploratory notes.
@@ -86,18 +86,18 @@ sufficient concrete target. Amplify each correct entry decision or full-space ga
 before applying that reduction; the four raw gapped signals need not
 themselves compose into a gapped signal.
 
-The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
-excludes the stated read-only programs and outer-Clifford extension.
-An [interior Clifford](research/depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
-gives table-sized decoder data, but [paired-row singlets](research/depth/PRESCRIBED_SCALAR_TABLES.md#paired-row-decision-obstruction)
-defeat swap-preserving boundaries, including the graph phase and both table shears.
-The [explicit symmetry breaker](research/depth/PRESCRIBED_SCALAR_TABLES.md#explicit-symmetry-breaker-failure)
-avoids those sectors yet fails on arbitrarily large nonconstant tables.
-The [all-ones spectral obstruction](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
-excludes every conjugating boundary for this unchanged middle word as a universal literal-table prescription.
-Separate constant-table handling or preprocessing can escape; asymmetric boundaries for other tables remain open.
-Resume with a complete compressed-spectrum identity for a changed word or an explicit exception/preprocessing scheme.
-Joint table/address interleaving and physical address motion inside the word remain constructive alternatives.
+The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source) excludes the stated read-only programs and outer-Clifford extension. The
+[interior-Clifford word](research/depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
+retains table-sized decoder data, but its singlets, explicit boundary repair
+and [all-ones spectrum](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
+do not supply a universal decision; exception handling and changed words remain open.
+The new [two-address-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
+excludes constant bias for most tables in that factorization, including
+work-only boundary repairs of the affine Gauss phase, regardless of dirty
+width. Its anticommutator construction is sharp; three alternating blocks
+escape on Walsh tables with a paid native word.
+Resume with a complete compressed-sign identity for a genuinely joint source,
+including repeated address alternation or physical address motion.
 
 The parallel lower-bound question remains unrestricted returned-query depth with arbitrary
 Clifford interlayers; the two-band argument does not iterate to additional native bands.
@@ -137,14 +137,14 @@ relaxed discovery regime. Replacing that indicator with the resulting
 decoder supplies no sublogarithmic recurrence.
 [Logarithmic augmented field recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md#7-a-logarithmic-depth-decoder-for-the-full-augmented-query)
 
-The complete indicator remains a sufficient alternative. For a p-bit
-address and $`m=2^p`$, it must toggle the selected bit of an arbitrary
-bank and return every helper. At each fixed full-operator tolerance,
-the target has zero clean inputs, $`O(m)`$ T gates and dirty qubits,
-$`O(m^2)`$ elementary Cliffords and $`o(\log(p+2))`$ native T-depth. Reopen a field-decoder, mask or fixed-layer route when
-it supplies a mechanism for changing this scaling or a lower bound on the
-actual frame model. [Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) ·
-[Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
+The complete indicator remains sufficient: on a p-bit address and arbitrary
+$`m=2^p`$ bank, toggle the selected bit and return every helper with
+zero clean inputs, fixed full-operator error, $`O(m)`$ T gates and dirty
+qubits, $`O(m^2)`$ Cliffords and $`o(\log(p+2))`$ native T-depth.
+[Sparse-bank preprocessing](research/depth/GATEWISE_READ_ONLY_EQUALITY.md#sparse-code-preprocessing)
+cannot upgrade the sparse source: weight $`o(m)`$ needs at least $`m-o(m)`$
+clean inputs under any uniform intermediate leakage below one.
+[Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) · [Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
 
 <a id="the-two-useful-source-interfaces"></a>
 

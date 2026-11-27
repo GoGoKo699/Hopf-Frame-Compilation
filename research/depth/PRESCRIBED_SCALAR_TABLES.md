@@ -665,6 +665,235 @@ at most two raw T bands for all single-mark tables. The clean decision
 interface does not circumvent that result or give a growing-depth
 lower bound.
 
+<a id="two-address-block-margin"></a>
+
+### Two separated address blocks have a width-independent bias bound
+
+Independent input and output preparations do not by themselves supply a
+decision source. There is a quantitative obstruction when the entire
+read-only source factors into just two address blocks. Let the prescribed
+sign table be $`S\in\{\pm1\}^{h\times\ell}`$ and suppose
+
+```math
+V_f(u,v)=B_{f,v}A_{f,u}.
+```
+
+The two families act on the same signal/work space. They may be arbitrary
+unitaries, depend on the entire table f, and leave arbitrary garbage.
+Their respective address dependence is only on u and only on v; the
+physical address registers remain unchanged. Table-dependent but
+address-independent input, middle and output unitaries on signal/work
+can be absorbed into these two factors. In particular, the endpoint
+unitaries need not be each other's inverses. A word with further
+alternating address dependence, a gate depending jointly on u and v,
+or physical address motion need not have this factorization.
+
+Let J insert one clean signal $`c=0`$, let D be the full signal/work
+dimension, and use $`\tau(X)=\mathrm{Tr}(X)/D`$. Suppress f in the
+factors and put
+
+```math
+M_{uv}=J^\dagger V_f(u,v)^\dagger Z_cV_f(u,v)J,
+\qquad b_{uv}=\frac2D\mathrm{Tr}(M_{uv}).
+```
+
+If $`S_{uv}M_{uv}\succeq\gamma I`$ for every address, then
+$`S_{uv}b_{uv}\ge\gamma`$. Even the weaker promise that every
+computational dirty input has signed bias at least gamma implies this
+trace inequality. For either premise,
+
+```math
+\gamma\le\frac{\|S\|_{\rm op}}{\sqrt{h\ell}}.
+```
+
+**Proof.** Since $`JJ^\dagger=(I+Z_c)/2`$ and the output observable
+is traceless, cyclicity gives the exact normalization
+
+```math
+b_{uv}=\tau\!\left[(A_uZ_cA_u^\dagger)
+                         (B_v^\dagger Z_cB_v)\right].
+```
+
+Both factors are Hermitian involutions and therefore unit vectors in
+the real normalized Hilbert--Schmidt space. Write their coordinates in
+any orthonormal real basis as row vectors $`r_u,t_v`$. The ordinary
+matrix operator norm and Frobenius Cauchy--Schwarz inequality give
+
+```math
+\begin{aligned}
+\gamma h\ell
+&\le\sum_{u,v}S_{uv}\langle r_u,t_v\rangle\\
+&\le\|S\|_{\rm op}
+      \left(\sum_u\|r_u\|^2\right)^{1/2}
+      \left(\sum_v\|t_v\|^2\right)^{1/2}\\
+&=\|S\|_{\rm op}\sqrt{h\ell}.
+\end{aligned}
+```
+
+Neither the number of dirty wires nor any native gate count occurs in
+this argument. It is a bound on a quantitative margin, not merely on
+which strict sign patterns can appear.
+
+For $`a=2r`$, $`m=2^r`$ and the Walsh table
+$`S_{uv}=(-1)^{u\cdot v}`$, orthogonality gives
+$`SS^{\mathsf T}=mI`$. Consequently
+
+```math
+\gamma\le m^{-1/2}=2^{-a/4}.
+```
+
+Row or column permutations and sign changes preserve the matrix norm.
+Moreover the obstruction concerns far more than this single table.
+For a uniformly random $`m\times m`$ sign matrix and any fixed
+$`\gamma\gt0`$, the fraction permitting the stated one-clean bias is
+at most
+
+```math
+\Pr\{\|S\|_{\rm op}\ge\gamma m\}
+\le 2\exp\!\left(2m\ln9-\frac{\gamma^2m^2}{8}\right).
+```
+
+To see the estimate directly, take a one-quarter net of the real unit
+sphere with at most $`9^m`$ points. Maximizing on the two nets loses
+at most a factor two in the operator norm. For any two fixed unit
+vectors x,y, the independent signs in $`x^{\mathsf T}Sy`$ have
+squared coefficients summing to one. The exponential-moment bound
+$`\Pr\{|x^{\mathsf T}Sy|\ge t\}\le2e^{-t^2/2}`$ and a union
+bound prove the display. Thus only an exponentially small fraction of
+tables can have a fixed positive margin in this two-block class. This
+probabilistic counting is an analytic statement, not a sampled test.
+
+**Clean inputs and approximate factorization.** With k clean inputs,
+write $`P=JJ^\dagger`$, of rank $`D/2^k`$, and retain a fixed
+traceless Pauli readout Z. Now
+
+```math
+\begin{aligned}
+b_{uv}&=\frac{2^k}{D}\mathrm{Tr}(J^\dagger V_f^\dagger ZV_fJ)\\
+&=\tau\!\left[A_u(2^kP-I)A_u^\dagger B_v^\dagger ZB_v\right],\\
+\tau((2^kP-I)^2)&=2^k-1,\\
+\gamma&\le\sqrt{2^k-1}\,
+                 \frac{\|S\|_{\rm op}}{\sqrt{h\ell}}.
+\end{aligned}
+```
+
+The same proof applies because only the first vector norm changes.
+For the Walsh table, a constant margin therefore needs
+$`k\ge\log_2(1+\gamma^2m)`$ clean inputs in this factorization;
+arbitrary additional dirty width does not replace them. The output
+measurement is still the one fixed traceless Pauli, not joint
+acceptance of all k initialized bits.
+
+If an actual source $`\widetilde V`$ is only approximately factored,
+with $`\|(\widetilde V_f(u,v)-B_vA_u)J\|\le\eta`$ uniformly,
+the two compressed observables differ by at most $`2\eta`$.
+The corresponding bounds therefore hold with $`\gamma-2\eta`$
+on the left. This uses initialized-isometry error and includes garbage
+and leakage; no full-space approximation outside the initialized code
+is needed. The estimate follows by expanding the two products of
+isometries around the common readout Z. More generally the actual
+source may move addresses if its complete initialized isometry is
+within eta of the displayed read-only direct-sum source; the same
+compression estimate still applies.
+
+**Application to a single affine-address Boolean phase.** Suppose a
+completed diagonal work word has phase $`(-1)^{q_f(x,w)}`$, where
+$`q_f`$ is affine over the binary field in the read-only address x,
+with arbitrary work-dependent coefficients. Splitting the address into
+u and v gives commuting factors
+$`D_f(u,v)=D_{f,0}D_{f,L}(u)D_{f,R}(v)`$.
+Arbitrary table-dependent signal/work input and output unitaries can
+then be absorbed into two factors of the required form. The bound
+therefore excludes a universal constant-bias repair by those endpoints
+alone. The [paid controlled Gauss phase](GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
+has exactly this affine-address exponent; its private helpers return
+identically and may also be included in the arbitrary endpoints.
+This application permits changed, independent boundary codes. It does
+not exclude multiple noncommuting phases with table/address operations
+between them, or endpoints that move the physical address.
+
+**The anticommutator mechanism attains the one-clean bound.** Let
+$`\Gamma_1,\ldots,\Gamma_m`$ be pairwise anticommuting Hermitian
+involutions on arbitrary dirty work. For a Walsh table define
+
+```math
+R_u=\frac1{\sqrt m}\sum_vS_{uv}\Gamma_v,
+\qquad Q_v=\Gamma_v,
+\qquad \frac12\{R_u,Q_v\}=\frac{S_{uv}}{\sqrt m}I.
+```
+
+The anticommutation relations imply $`R_u^2=Q_v^2=I`$. In signal
+block coordinates choose
+
+```math
+A_u=\frac1{\sqrt2}
+ \begin{pmatrix}I&-R_u\\R_u&I\end{pmatrix},
+\qquad
+B_v=\frac1{\sqrt2}
+ \begin{pmatrix}I&Q_v\\-Q_v&I\end{pmatrix}.
+```
+
+These are unitaries, and their complete clean-code compression is
+
+```math
+J^\dagger(B_vA_u)^\dagger Z_c(B_vA_u)J
+=\frac12\{R_u,Q_v\}
+=\frac{S_{uv}}{\sqrt m}I.
+```
+
+Thus scalar anticommutators remove dependence on every dirty input but
+retain exactly the vanishing normalization. This is an abstract
+sharpness construction, not a native synthesis of the $`R_u`$ family.
+The preceding bound applies to arbitrary two-block unitaries, not only
+to this Majorana realization.
+
+**Three address blocks already escape, with a paid native word.** For
+r-bit halves u,v and an arbitrary r-bit bank w, define
+
+```math
+A_u|c,w\rangle=|c\mathbin\oplus(u\cdot w),w\rangle,
+\qquad B_v|c,w\rangle=|c,w\mathbin\oplus v\rangle.
+```
+
+Direct action on every basis column gives
+
+```math
+A_uB_vA_u=X_c^{u\cdot v}X_w^v,
+\qquad A_uB_vA_uB_v=X_c^{u\cdot v}.
+```
+
+The three-block word has full compressed sign $`S_{uv}I`$ and gap
+one, with permitted dirty motion. The fourth block returns w. Both
+identities preserve all coherent addresses and arbitrary references.
+For an actual native realization write
+$`A_u=H_c(\prod_i\mathrm{CCZ}(c,u_i,w_i))H_c`$ and implement
+each CCZ by the retained eight-T, eight-CNOT Gray phase cycle on its
+own arbitrary helper. At each of the eight steps the phase gates
+have distinct private targets; shared controls cost no extra T band.
+The two A calls use two such batches. The $`B_v`$ calls are r CNOTs
+each. Commuting the signal Hadamards through B cancels the middle pair,
+so the complete four-block word and its actual native inverse satisfy
+
+```math
+T=16r,\qquad D_T\le16,\qquad
+G_{\rm Cliff}=18r+2,\qquad w_{\rm dirty}=2r.
+```
+
+For the three-block raw decision the Clifford count is $`17r+2`$;
+all other displayed bounds are the same. The private helpers always
+return exactly, and no initialized bank is assumed. The
+[exact fixtures](../../tests/test_separated_decision_margin.py) check
+the anticommutator compression and the literal native escape on all
+logical and dirty columns. The all-size margin and resource statements
+follow from the proofs above.
+
+This closes two separated address blocks as a universal constant-bias
+source. It does not close the already alternating interior-Clifford
+word below, arbitrary independent boundaries around such a word,
+joint table/address interleaving, or general native depth. The paid
+Walsh example makes that distinction explicit. The general frame
+frontier is unchanged.
+
 <a id="fixed-boundary-decision-source"></a>
 
 **Fixed boundaries cannot decode every table at square-root width.**
