@@ -14,11 +14,10 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 27 November continuation started from [PR #279](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/279) at
-[7e26670](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/7e2667046e47114d03c5244795ef4092b3da41c3).
-The verified relative-bias and shifted-sector promotion are in [PR #280](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/280).
-The precision reviews are [R99](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/281),
-[R100](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/282) and [R101–R102](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fgrouped-programmed-precision).
+The current continuation started from the verified [R102 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/283)
+at [0733f51](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/0733f51447f24bfe80cc293d02a678093fb791ab).
+The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor)
+raises the one-clean floor to five bands and the [rare-cycle test](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) raises the zero-clean floor to six at small fixed error.
 
 <a id="current-depth-frontier"></a>
 
@@ -56,13 +55,14 @@ weakens the source requirement further: amplify on its initialized code
 before promoting it to complete return. The raw source may leave garbage,
 and its rejected clean sector need not carry the table's prescribed sign.
 
-**Resumption question.** Can a native-shareable row probe preserve
-its target Z exactly at false addresses and approximately negate it
-at the match, with $`p^{o(1)}`$ clean bits and $`o(\log p)`$ T-depth?
+**Resumption question.** Can distributed counters enforce a common odd
+Fourier-key shift in $`o(\log p)`$ native T-depth on arbitrary dirty inputs,
+or can a joint word enforce the same orthogonality without that shift?
 The [shifted-sector promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
-pays complete return given exact clean-sector preservation and this
-probe, or a joint clean indicator. The [counter](research/depth/COHERENT_COUNTER_SOURCE.md#5-what-remains-unpaid-in-joint-arithmetic)
-owes shallow row arithmetic. [Monomial branch SELECT](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-select-with-accepted-work-motion) still needs logarithmic Toffoli depth with few clean inputs.
+pays complete return for a shareable exactly false-silent probe with
+$`p^{o(1)}`$ cleans. The [distributed counter](research/depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
+pays its local visits in $`O((\log\log(p+4))^3)`$ T-depth. Its common shift
+still costs logarithmic depth. Independent exact shift repairs fail.
 
 A separate sufficient route gives the correct signed gap on diagonal blocks of
 $`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum
@@ -93,16 +93,14 @@ excludes endpoint repairs of the affine Gauss phase. The
 retains the boundary, additive-visit and paired-Pauli scopes.
 
 The [unrestricted three-band bias theorem](research/depth/ROBUST_DECISION_BIAS.md)
-forces exponentially small average signed bias for typical tables and
-gives a sharp limiting three-layer corner-frame error. The
-four-band problem reaches two differently decorated stabilizer Choi
-states. Typical constant-gap tables require exponentially large middle
-crossing rank. The [exact cancellation witness](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
-shows that large absolute cubic ranks can coexist with unit overlap.
-The [complementary-span bound](research/depth/ROBUST_DECISION_BIAS.md#four-band-complementary-spans)
-excludes another four-band family at any width, including full crossing
-rank. The [relative paired-band bound](research/depth/RELATIVE_FOUR_BAND_BIAS.md)
-controls dense geometries with small total pairing deficiency. For
+forces exponentially small average signed bias for typical tables. Complete
+return and the actual inverse let a sparse Pauli probe extend its sharp
+error floor to four bands for a fixed clean count. At five bands a one-clean
+compiler needs [large axis intersections](research/depth/ROBUST_DECISION_BIAS.md#complete-return-five-band-intersection)
+at both ends. Remove that intersection hypothesis or strengthen the
+[prefix and suffix spreading test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-pauli-spreading).
+The [four-band decision screens](research/depth/ROBUST_DECISION_BIAS.md#four-band-complementary-spans)
+still concern raw decision bias. For
 arbitrary depth at square-root T-count, [temporal cut and Gram
 codes](research/depth/TEMPORAL_AXIS_BIAS.md) require square-root-scale cut
 ranks and dense anticommutation under the stated sign promises. One
@@ -118,6 +116,8 @@ Two product superpositions give opposite deterministic answers at every
 address, so strict basis signs alone cannot prove growing depth.
 An isolated marked address cannot force growing fixed-error depth:
 [expander zero reflections](research/depth/EXPANDER_ZERO_REFLECTION.md) already have constant depth.
+Exact [two-visit row readouts](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#two-visit-marked-width)
+need exponential width for sublinear clean count. Fixed-error dense-row fusion still needs simultaneous error control.
 
 The [feedback-edge pencil](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
 still needs a changed signal support or baseline. The lower route has to

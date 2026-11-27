@@ -10,8 +10,15 @@ The statement allows arbitrary Clifford walls, including physical address
 motion, and places no bound on either width or gate count. It already holds
 when the dirty bank is averaged in the computational basis. The complete
 one-clean decision condition implies this weaker bias requirement.
-The [four-band result below](#four-band-complementary-spans)
+The [four-band decision screen](#four-band-complementary-spans)
 covers complementary axis spans even at large middle crossing rank.
+The [complete-frame lower bound](#complete-return-four-band-floor)
+uses the initialized isometry and its actual adjoint to exclude every
+four-band word for a typical complete deepest-corner frame.
+A [two-table complete frame](#complete-return-two-table-frame)
+extends this floor to any polynomial clean count.
+A [rare three-cycle frame](#zero-clean-six-band-floor) requires
+six bands at small fixed error in the zero-clean model.
 
 ## 1. Statement and normalization
 
@@ -476,7 +483,9 @@ large $`a`$, almost every deepest-corner frame requires at least four
 physical T layers at error $`\eta`$. This allows arbitrary dirty
 width, counts and Clifford interlayers, including approximate work
 return. It also holds for the complex magnitude family by taking zero
-leaf phases. The limiting error floor on this corner family is sharp:
+leaf phases. The [complete-return test](#complete-return-four-band-floor)
+below strengthens the depth floor to five layers at the same error.
+The limiting error floor on this corner family is sharp:
 the single target Clifford $`HZ=R_y(\pi/4)`$ is a zero-T
 approximation with full operator error $`\sqrt{2-\sqrt2}`$ from
 both possible target rotations. The fixed-error lower bound improves
@@ -976,9 +985,537 @@ input zero, the ideal adjoint has the same computational decision
 outcome f(x) as the ideal forward frame. Apply the same error floor
 and first-pair bound to the reverse to screen the original last pair.
 At fixed error below $`\sqrt{2-\sqrt2}`$ and polynomial clean count,
-typical complete corners thus require exponential rank at all three
-adjacent pairs if achieved in four bands. The forward and reverse
-probability estimates can use half of the same failure budget.
+these decision tests impose exponential cross-commutation rank at all
+three adjacent pairs of a hypothetical four-band complete corner.
+The [complete-isometry test below](#complete-return-four-band-floor)
+excludes even that case when the clean count stays a fixed fraction below
+the address width.
 This inference uses the complete initialized action of the frame and
 its adjoint. An arbitrary moving raw decision can rotate its sign
 subspaces into different addresses under reversal.
+
+<a id="complete-return-four-band-floor"></a>
+
+## 10. Complete return excludes four bands
+
+Let $`a`$ be the number of deepest address bits and let $`f`$ be a
+uniform Boolean table. Write $`W_f`$ for the complete deepest-corner
+frame from Section 5, tensored with the dirty identity, and let
+$`J`$ append $`k`$ initialized zeros. Fix
+$`\eta\lt\sqrt{2-\sqrt2}`$ and $`\delta\gt0`$. For all sufficiently
+large $`a`$, with probability at least $`1-e^{-a}`$, every native word
+satisfying $`\|VJ-e^{i\phi}JW_f\|\le\eta`$ with
+$`k\le(1-\delta)a`$ has at least five physical T bands. This
+covers arbitrary Clifford interlayers, moving addresses, unrestricted
+dirty width, arbitrary dirty inputs with references, and the actual
+inverse. Zero leaf phases give the same bound for the prescribed
+complex magnitude-completion family. The error threshold is sharp
+by the single target Clifford in Section 5.
+
+### Three-band traces with Pauli probes
+
+Use the target $`Y`$ eigenbasis, with label $`b=0`$ for its positive
+eigenvector. The eigenvalue of $`XZ`$ is $`-i(-1)^b`$. A fixed
+target Clifford implements this choice of coordinates. For signed
+Hermitian Paulis $`P,Q`$ and a word $`B`$ with at most three
+physical T bands, test the complex profile
+
+```math
+h(x)=\tau_{\mathrm{dirty}}\langle x,b,0^k|P^\dagger B Q B^\dagger|x,b,0^k\rangle .
+```
+
+Here $`\tau_{\mathrm{dirty}}`$ is normalized trace, and $`b`$ is
+fixed. Both quadratures of these profiles have an
+$`\epsilon`$-net in normalized $`L^2`$ with logarithmic cardinality
+$`\mathrm{poly}(a+k+1+\log(1/\epsilon))`$. To see this, first vary
+all $`a+k+1`$ computational coordinates and let $`L_z`$ be their
+Pauli $`Z`$ character at Walsh label $`z`$. The ambient Fourier
+coefficient is $`\tau(QB^\dagger(L_zP^\dagger)B)`$. Apply Sections 2–5
+to the actual word $`B^\dagger`$, with fixed output Pauli $`Q`$ and
+affine scalar Pauli probe $`L_zP^\dagger`$. In the notation of
+Section 2 the Choi overlap is $`\langle B_z^\dagger|\psi\rangle`$.
+The adjoint retains affine Pauli labels and bounded-degree
+modulo-four phase digits, so the tableau and scalar reconstruction
+apply to this ket, including when the trace is complex.
+The bounds on individual overlaps use modulus and thus apply to both
+quadratures. Restrict to the desired slice after approximating at
+ambient accuracy $`\epsilon 2^{-(k+1)/2}`$.
+
+Set $`r_x=(-1)^{f(x)}`$ and define the two challenges
+
+```math
+ v_{u,+}(x)=(r_x+r_{x+u})/2,\qquad
+ v_{u,-}(x)=(r_{x+u}-r_x)/2 .
+```
+
+For both quadratures $`g`$ of every profile above, both $`b`$, and
+every affine hyperplane $`H`$ of addresses or the full address
+space, a common event gives
+
+```math
+ \big|\mathbb E_x\,1_H(x)v_{u,\pm}(x)g(x)\big|
+ \le p(a+k+1)2^{-a/2}
+```
+
+for an absolute polynomial $`p`$. In fact use
+$`\epsilon=2^{-a/2}`$ in the net and clip each quadrature to
+$`[-1,1]`$. Multiplying an approximant by $`1_H`$ and
+symmetrizing or antisymmetrizing under $`x\mapsto x+u`$ gives a
+Rademacher test with normalized $`L^2`$ norm at most one. Apply
+Section 5 and union over the net, all $`u,H,b`$, and both signs
+and quadratures. The polynomial can absorb a union over
+$`0\le k\le a`$, with failure probability at most $`e^{-a}/2`$.
+Also on this event, after allocating the remaining failure budget,
+each challenge used below is nonzero on at least one third of
+every such $`H`$. For $`u\ne0`$ these counts use independent
+address pairs, each with multiplicity at most two in $`H`$.
+For $`u=0`$ the plus challenge has full support and the minus
+challenge is unused.
+
+### Complete action gives a correlation for every translating probe
+
+A Pauli $`P`$ that commutes with every clean $`Z`$ preserves the
+initialized code. Let $`u`$ be its address translation and
+$`v`$ its target eigenbit translation. On target eigenbit $`b=0`$,
+the ideal conjugated Pauli $`W_f(J^\dagger P J)W_f^\dagger`$
+agrees on each column with $`J^\dagger P J`$ times phase
+
+```math
+ \xi_{u,v,0}(x)=
+ \begin{cases}
+ i^{f(x)-f(x+u)},&v=0,\\
+ i^{f(x)+f(x+u)},&v=1.
+ \end{cases}
+```
+
+At $`b=1`$ the phase is conjugated. Thus for $`v=1`$ its
+real part is $`v_{u,+}`$, and for $`v=0,u\ne0`$ its imaginary
+part on $`b=0`$ is $`v_{u,-}`$. On the respective challenge
+supports the ideal phase is a signed real or imaginary unit.
+
+The [actual initialized inverse identity](BOOLEAN_QUERY_FRAME_REDUCTION.md#approximation-leakage-and-the-actual-inverse)
+gives $`\|V^\dagger J-e^{-i\phi} JW_f^\dagger\|\le\eta`$.
+Apply it to a lifted column with any unit dirty input, then apply
+$`P`$ and the forward approximation on the initialized code. The
+two comparisons are between unit vectors at distance at most
+$`\eta`$ each. Their real spherical angles are at most
+$`2\arcsin(\eta/2)`$ each, so the real overlap of the actual and
+ideal conjugated vectors is at least
+
+```math
+ \gamma(\eta)=2(1-\eta^2/2)^2-1\gt0 .
+```
+
+The trace with comparison Pauli $`P^\dagger`$ and conjugation
+$`VPV^\dagger`$ therefore has the correct signed quadrature at
+least $`\gamma(\eta)`$ on each challenge column. This remains
+true after dirty averaging. Any nonzero logical translation
+gives correlation at least $`\gamma(\eta)/3`$ in the full
+address space.
+
+### Sparse physical activation and the four-band exclusion
+
+Work in binary symplectic Pauli labels. Let $`C_Z`$ be the span
+of initialized $`Z`$ labels and $`L`$ the span of logical
+address and target eigenbit $`Z`$ labels. Pull Clifford walls
+to the output and write $`V=B E_1`$, where $`E_1`$ is the
+first physical band in the common input frame. Its independent
+Pauli axes span an isotropic space $`A_1`$. If $`B`$ has at
+most three bands, every Pauli in
+$`A_1^\perp\cap C_Z^\perp`$ commutes with $`E_1`$ and has
+a three-band trace. The correlation lower bound forces it to
+have zero logical translation. Taking symplectic orthogonals
+gives $`L\subseteq A_1+C_Z`$.
+
+For the exclusion, start with a target-flipping Pauli and vary
+every address and dirty Pauli label, the target eigenbit
+$`Z`$, and all clean $`Z`$ labels. These variations preserve
+clean and still flip the target eigenbit. In the independent
+axis coordinates their commutation syndromes have an annihilator
+identified with $`A_1\cap\mathrm{span}(Z_b,C_Z)`$, of dimension
+at most $`k+1`$. Any coset of a binary space of codimension
+$`j`$ has a representative of weight at most $`j`$, by
+choosing independent pivot columns for its constraints. Thus
+some target-flipping Pauli $`P`$ anticommutes with at most
+$`k+1`$ individual physical axes. Conjugating through an
+anticommuting T rotation splits a Pauli into two signed terms
+with coefficient magnitudes $`2^{-1/2}`$. The Pauli expansion
+of $`E_1P E_1^\dagger`$ therefore has coefficient
+$`\ell^1`$ norm at most $`2^{(k+1)/2}`$. Combining its
+terms with the three-band trace bound gives correlation at most
+$`2^{(k+1)/2}p(a+k+1)2^{-a/2}`$, which tends to zero under
+the stated clean bound. This contradicts complete return.
+
+<a id="complete-return-pauli-spreading"></a>
+
+### Any longer word must spread the translating probes at both ends
+
+For $`d\ge3`$, let $`F`$ be the first $`d-3`$ bands in
+the common input frame of a $`d`$-band word. The same trace
+comparison forces every clean-preserving Pauli $`P`$ with
+nonzero logical translation to have
+
+```math
+ \|FPF^\dagger\|_{\mathrm{Pauli},1}
+ \ge\frac{\gamma(\eta)2^{a/2}}{3p(a+k+1)} .
+```
+
+Here the norm sums absolute coefficients in the normalized
+orthogonal Pauli basis. In particular the sum of the prefix
+axis spans with $`C_Z`$ contains $`L`$, by applying the
+bound to Paulis commuting with that sum. Also start with the
+label of $`P`$ and collect axes that anticommute with some
+term entering their own band. All final labels lie in the
+translate of the span of these axes. If this span has binary
+dimension $`j`$, then the Pauli coefficient norm above
+is at most $`2^{j/2}`$ by normalized Hilbert–Schmidt norm one
+and Cauchy–Schwarz. Thus $`j\ge a-O(\log(a+k+2))`$ at fixed
+error. Applying the same calculation to the actual adjoint
+gives the corresponding suffix constraints. The ideal adjoint
+conjugates the literal phases and preserves the challenge
+supports. These spreading bounds allow a single wide band to
+activate many axes.
+
+<a id="complete-return-five-band-intersection"></a>
+
+## 11. A five-band axis-intersection requirement
+
+Use the same typical deepest corners and fixed error as in Section 10.
+With zero or one clean input, for every actual five-band decomposition
+the first two axis spans in the common Clifford frame must intersect
+in dimension at least $`a-O(\log(a+2))`$. The last two obey the
+same bound. These are binary dimensions of intersections, distinct
+from the ranks of cross-commutation matrices. The result allows
+arbitrary dirty width and still leaves five-band words with large
+intersections open.
+
+Write $`V=B E_2 E_1`$ with $`B`$ using the remaining three
+bands. Let $`A_1,A_2`$ be the two early axis spans,
+$`r=\dim(A_1\cap A_2)`$, and suppose
+$`r\le a-C\log(a+2)`$ for a sufficiently large constant
+$`C`$ depending on the error. First strengthen
+$`L\subseteq A_1+A_2+C_Z`$ from Section 10 to
+$`L\subseteq A_1+C_Z`$. To do so use probes commuting with
+$`A_1+C_Z`$. Their $`E_2`$ syndrome space has codimension
+$`\dim(A_2\cap(A_1+C_Z))\le r+k`$ in the independent physical
+axis coordinates. Since $`L\subseteq A_1+A_2+C_Z`$, any
+logical translation of these probes is a linear function of their
+$`E_2`$ syndrome. If that function were nonzero, it would
+be nonzero on an echelon basis word of weight at most $`r+k+1`$.
+Such a probe is unchanged by $`E_1`$, and its coefficient norm
+after $`E_2`$ is at most $`2^{(r+k+1)/2}`$, contradicting
+the prefix bound. The stronger inclusion follows. In particular
+$`A_1\cap C_Z^\perp`$ is logical-diagonal by isotropy.
+
+If $`k=1`$, let $`K_*`$ be the binary sum of all actual
+$`E_1`$ axes anticommuting with the clean $`Z_c`$.
+For $`k=0`$ set $`K_*=0`$. Choose one logical coordinate
+label $`T_0`$ among the address and target eigenbit $`Z`$ labels
+outside $`C_Z+\mathrm{span}(K_*)`$. Choose a Pauli $`P`$
+that anticommutes with $`T_0`$ and commutes with $`C_Z`$
+and $`K_*`$. The combined activity syndrome on the
+concatenated physical axis lists can be chosen of weight at
+most $`r+k+2`$. Indeed the linear map from the concatenated
+axis coefficients to physical Pauli labels has kernel dimension
+$`r`$. The annihilator of the allowed syndrome variations is
+the preimage of $`C_Z+\mathrm{span}(T_0,K_*)`$, of dimension at
+most $`r+k+2`$. The same pivot argument as in Section 10
+then supplies the claimed weight. Write its two activity weights
+as $`\ell_1,\ell_2`$.
+
+### Removing the first band while controlling clean overlap
+
+Put $`Q=E_1^\dagger P E_1`$, $`Q_c=J^\dagger Q J`$,
+$`\Pi=JJ^\dagger`$, and $`V_\mathrm{tail}=V E_1^\dagger`$.
+The exact trace identity uses the original physical inverse,
+
+```math
+ J^\dagger V_\mathrm{tail}P V_\mathrm{tail}^\dagger J
+ =(V^\dagger J)^\dagger Q(V^\dagger J).
+```
+
+Only clean-preserving Pauli terms of $`Q`$ survive in $`Q_c`$.
+They differ in label from $`P`$ by vectors in
+$`A_1\cap C_Z^\perp`$ and hence share the same nontrivial
+logical translation $`(u,v)`$. Thus on each $`(x,b)`$ column
+$`W_f Q_c W_f^\dagger`$ agrees with $`Q_c`$ times the phase
+$`\xi_{u,v,b}(x)`$ of Section 10.
+
+When $`k=0`$, $`Q_c^\dagger Q_c=I`$. For $`k=1`$
+write the conjugation as $`Q=P G\exp(iH_1)`$, where $`G`$
+is the product of the activated clean-preserving Pauli quarter
+turns and $`H_1`$ is the signed $`\pi/4`$ sum of the
+activated clean-anticommuting axes. All these axes commute.
+The compression of $`\exp(iH_1)`$ is the restriction of
+$`\cos(H_1)`$ because $`Z_c H_1 Z_c=-H_1`$. Both
+$`P`$ and $`G`$ preserve clean, so
+$`Q_c^\dagger Q_c=J^\dagger\cos^2(H_1)J`$. The number of axes
+in $`H_1`$ is even because $`P`$ commutes with $`K_*`$.
+If there are none the square is $`I`$. Otherwise
+$`\cos(2H_1)`$ is a signed Hermitian Pauli $`K`$, the
+product of these axes up to sign, with label neither zero
+(by axis independence) nor $`Z_c`$ (which could not belong
+to $`A_1`$ in the presence of any such axis). This product
+preserves clean and is logical-diagonal. Thus the square is
+the projection $`(I+J^\dagger KJ)/2`$.
+
+For each $`(x,b)`$ choose a dirty basis diagonalizing this
+projection on that block. If $`K`$ has nonzero dirty support,
+half of the dirty columns have projected square one at every
+$`(x,b)`$. If $`K`$ has no dirty support, the active
+columns are cut out by one nontrivial affine equation in
+$`(x,b)`$. Choose $`b`$ so its slice is all addresses or an
+affine hyperplane $`H`$. In all cases at least half the dirty
+columns have projected square one at each $`x\in H`$.
+
+The tested profile is
+
+```math
+ h(x)=\tau_{\mathrm{dirty}}
+ \langle x,b,0^k|Q^\dagger\Pi V_\mathrm{tail}
+     P V_\mathrm{tail}^\dagger|x,b,0^k\rangle .
+```
+
+A dirty column with square zero contributes zero. For an
+initialized logical-dirty unit column $`w`$ of square one,
+$`Q_cw`$ is a unit vector. Pair the actual vectors
+$`V^\dagger J Q_cw`$ and $`Q V^\dagger Jw`$.
+Each is within $`\eta`$ of the version with actual
+$`V^\dagger J`$ replaced by $`e^{-i\phi}JW_f^\dagger`$.
+The ideal inner product is exactly $`\xi_{u,v,b}(x)`$, so the
+two-angle comparison gives the correct signed quadrature at
+least $`\gamma(\eta)`$ on the challenge support.
+After dirty averaging, the signed quadrature there is at least
+$`\gamma(\eta)/2`$ on $`H`$. The masked correlation is
+therefore at least $`\gamma(\eta)/12`$.
+
+Finally expand $`Q^\dagger`$ and $`E_2 P E_2^\dagger`$
+in Paulis, at coefficient norm at most
+$`2^{\ell_1/2}`$ and $`2^{\ell_2/2}`$ respectively.
+The clean projection has Pauli coefficient norm one. Every
+remaining term has a three-band trace. Scalar Pauli products
+can rotate its real and imaginary quadratures by a power of
+$`i`$, already covered by the same event. The correlation
+upper bound is consequently
+$`2^{(r+k+2)/2}p(a+k+1)2^{-a/2}`$, which contradicts the
+positive lower bound for the assumed $`r`$. Apply the
+same argument to the actual adjoint to obtain the last-pair
+statement. All projections in this argument are trace probes
+on the initialized isometry, and incur no physical preparation
+or postselection cost.
+
+<a id="complete-return-two-table-frame"></a>
+
+## 12. Two random Hopf levels force a nonisotropic logical span
+
+For every fixed $`\eta\lt\sqrt{2-\sqrt2}`$ and every fixed
+$`M\gt0`$, a different typical family of complete frames
+requires at least five physical T bands even with up to
+$`a^M`$ clean inputs. Here $`a`$ is again the number of
+deepest address bits. For an actual five-band word with
+$`k`$ initialized inputs, the forward and reverse first-pair
+axis intersections each have dimension at least
+$`a-k-O(\log(a+k+2))`$. These statements hold with probability
+at least $`1-e^{-a}`$ for sufficiently large $`a`$, over
+the two independent tables below. The five-band test needs only
+one expansion through an exposed physical band.
+
+### The literal two-table frame
+
+Use computational logical coordinates $`(x,y,b)`$, where
+$`x`$ has $`a-1`$ bits and $`y,b`$ are single bits.
+Take independent uniform Boolean tables $`g(x)`$ and
+$`f(x,y)`$. The penultimate angle is $`\pi g(x)/2`$,
+with the actual complete suffix predicate $`b=0`$.
+It produces a signed permutation $`F_g`$ that on that
+sector applies $`K_y^{g(x)}`$ for $`K=XZ`$. The deepest
+angle is $`\pi f(x,y)`$. As $`R_y(\pi)=-I`$, this
+produces the same scalar $`(-1)^{f(x,y)}`$ on both
+$`b`$ columns. Call this diagonal $`G_f`$. All earlier
+angles are zero, so the complete product is $`W=G_fF_g`$.
+For the complex frame use magnitude operator $`F_g`$ and
+leaf phases $`\pi f(x,y)`$ on both $`b`$ values.
+
+Restrict to clean-preserving Pauli probes $`P`$ commuting with
+$`Z_b`$, tested on $`b=0`$. Write their address
+translation as $`(u,t)`$ and their binary $`Z_y`$
+label as $`z_y(P)`$. Suppose $`(u,t)\ne0`$ and
+choose the largest of the four masks
+
+```math
+ H_{u,p,q}=\{(x,y):g(x)=p,\ g(x+u)=q\}.
+```
+
+Its density is at least one quarter. On this mask, conjugation
+through $`F_g`$ agrees with the fixed scalar Pauli
+$`Q_+=K_y^q P K_y^{-p}`$. It translates the address by
+$`d=(u,t+p+q)`$, which is nonzero because $`p=q`$
+on a nonempty mask if $`u=0`$. Putting $`z=(x,y)`$
+and $`S_{d,s}(z)=(-1)^{f(z+s)+f(z+s+d)}`$, the ideal forward
+conjugation on the mask equals $`S_{d,0}(z)Q_+`$.
+For the reverse, use $`Q_-=K_y^{-q}P K_y^p`$. The
+two deepest signs are evaluated at $`(x,y+p)`$ and
+$`(x+u,y+p+t)`$, so ideal reverse conjugation equals
+$`S_{(u,t),(0,p)}(z)Q_-`$. In either direction the phase
+relative to the comparison Pauli is a real sign. Its fixed
+scalar Pauli factor can be included by choosing a quadrature.
+
+If instead $`(u,t)=0`$ and $`z_y(P)=1`$, both deepest
+signs cancel. On $`b=0`$, conjugation of $`Z_y`$
+by $`K_y`$ or its inverse changes sign. Thus the ideal test
+compares with $`P`$ itself and has the sign
+$`(-1)^{g(x)}`$ in either direction, over the full
+address space.
+
+### Common sign tests and the axis bounds
+
+For fixed $`g`$, use Section 10's three-band trace nets
+on this computational basis. Test their net points against
+$`1_{H_{u,p,q}}S_{d,s}`$ for all masks and all nonzero
+$`d`$, with $`s`$ a fixed translation of the bit
+$`y`$. For each $`d`$, the products of $`f`$ signs
+on the unordered pairs $`\{z+s,z+s+d\}`$ are independent
+Rademachers. Each coefficient in the masked correlation sums
+at most two bounded net values and divides by $`2^a`$.
+The sum of squared coefficients is at most $`2^{1-a}`$.
+The separate sign test $`(-1)^{g(x)}`$, repeated on the
+two $`y`$ values, has the same bound without conditioning.
+Hoeffding, the union bound and the net approximation give a
+common correlation upper bound $`p(a+k+1)2^{-a/2}`$ for
+both tests, uniformly over the masks, all Pauli probes and
+three-band words, and every $`k\le a^M`$. The polynomial
+absorbs union over the finite mask labels and clean counts.
+Allocate half the failure budget to each table. In the first
+test conditioning on $`g`$ fixes all masks before sampling
+$`f`$.
+
+The complete forward and actual inverse errors give the same
+two-angle comparison as Section 10, now using the appropriate
+comparison Pauli above. It holds pointwise on arbitrary dirty
+columns. Thus every probe with $`(u,t,z_y(P))\ne0`$
+gives correlation at least $`\gamma(\eta)/4`$ in one of
+these tests. This holds for the approximation to $`W`$ and
+the actual adjoint approximation to $`W^\dagger`$.
+
+Put $`C_*=C_Z+\mathrm{span}(Z_b)`$ and
+
+```math
+ L_* =\mathrm{span}(Z_{x_1},\ldots,Z_{x_{a-1}},Z_y,X_y).
+```
+
+The detectable probes are precisely those in
+$`C_*^\perp`$ with nonzero pairing against $`L_*`$.
+As in the spreading argument, for a $`d`$-band word,
+the required correlation forces
+
+```math
+ L_*\subseteq A_1+\cdots+A_{d-3}+C_*.
+```
+
+Indeed a Pauli in the orthogonal of the right side commutes
+through the whole prefix, leaving a three-band trace. With at
+most four bands the inclusion is impossible. The logical
+$`X_y,Z_y`$ pair commutes with $`C_*`$ and still
+anticommutes when either element is changed by an element of
+$`C_*`$. Two lifts into the single isotropic span
+$`A_1`$ would commute.
+
+If the word has five bands, let
+$`j=\dim(A_2\cap(A_1+C_*))`$. For probes commuting with
+$`A_1+C_*`$ their detected labels
+$`(u,t,z_y(P))`$ are linear functions of their $`E_2`$
+syndrome by the prefix inclusion. At least one such function
+is nonzero, since $`L_*\subseteq A_1+C_*`$ is impossible.
+The $`E_2`$ syndrome space has codimension $`j`$ and
+thus has an echelon basis with weight at most $`j+1`$
+per vector. Some basis vector has a detectable label.
+Its Pauli commutes through $`E_1`$ and the
+$`E_2`$ expansion has coefficient norm at most
+$`2^{(j+1)/2}`$. The three-band correlation upper bound
+therefore forces $`j\ge a-O(\log(a+k+2))`$. Since
+$`j\le\dim(A_1\cap A_2)+k+1`$, this gives the
+claimed first-pair bound, and applying it to the actual adjoint
+gives the last-pair bound. Large intersections at five bands
+remain possible under these conditions.
+
+<a id="zero-clean-six-band-floor"></a>
+
+## 13. A rare three-cycle requires six bands with zero clean inputs
+
+For any fixed $`\eta\lt\sin(\pi/24)/2`$ and all sufficiently
+large address sizes, an explicit complete frame needs at least six
+physical T bands at full operator error $`\eta`$ in the
+zero-clean model. Arbitrary dirty width, gate counts, Clifford
+interlayers, physical address motion and common approximation phases
+are allowed. The bound also holds for the complex magnitude completion
+with zero leaf phases.
+
+Fix one marked prefix of $`p`$ bits and call the last two
+logical bits $`y,b`$. Outside that prefix, set every angle to
+zero. At the marked prefix set the penultimate angle on $`y`$
+to $`\pi/2`$, with its actual suffix predicate $`b=0`$.
+Set the deepest angle on $`b`$ to $`\pi/2`$ at
+the marked prefix extended by $`y=0`$. All other angles
+vanish. The ordered frame $`W`$ fixes the unmarked blocks.
+On the marked $`(y,b)`$ block its literal signed action is
+
+```math
+ |00\rangle\mapsto |10\rangle,qquad
+ |10\rangle\mapsto-|01\rangle,qquad
+ |01\rangle\mapsto-|00\rangle,qquad
+ |11\rangle\mapsto |11\rangle.
+```
+
+The sign product on the cycle is positive, so the spectrum includes
+$`1,e^{2\pi i/3},e^{-2\pi i/3}`$. Write
+$`\|\cdot\|_{2,\tau}`$ for the normalized Hilbert–Schmidt norm.
+The marked block has trace one on four dimensions, and tensoring
+the dirty identity leaves the normalized norm unchanged. Hence
+
+```math
+ \|W-I\|_{2,\tau}=\sqrt{3/2}\,2^{-p/2}.
+```
+
+Suppose $`V`$ has at most five physical bands and
+$`\|V-cW\|\le\eta`$ for a common phase $`|c|=1`$.
+Then $`\|V-cI\|_{2,\tau}\le\eta+\sqrt{3/2}\,2^{-p/2}`$.
+Let $`A`$ be the isotropic span of its first physical
+band's axes in the input frame. For any Hermitian Pauli $`P`$
+in $`A^\perp`$, the conjugation $`VPV^\dagger`$ uses at
+most four bands because $`P`$ commutes with the first one.
+By the [four-band mean Pauli gap](FOUR_LAYER_SCALAR_GAP.md#mean-error-exceptional-rank-and-complete-operators),
+either $`VPV^\dagger=P`$ or
+
+```math
+ \|VPV^\dagger-P\|_{2,\tau}
+ \ge 2\sqrt{(1-\cos(\pi/12))/8}=\sin(\pi/24).
+```
+
+On the other hand, inserting and subtracting $`cI`$ in
+the conjugation gives distance at most $`2\|V-cI\|_{2,\tau}`$.
+For sufficiently large $`p`$ this is strictly below the gap.
+Thus $`V`$ commutes with every Pauli in $`A^\perp`$.
+Expanding in the Pauli basis shows that its support lies in
+$`(A^\perp)^\perp=A`$. A Clifford diagonalizes this
+isotropic algebra. In that basis the diagonal entries remain
+in the native ring $`\mathbb Z[i,1/\sqrt2]`$ and have
+unit modulus. By the
+[unit-circle classification](FOUR_LAYER_OPERATOR_RIGIDITY.md#4-discrete-phases-in-the-common-commutant)
+they are eighth roots of unity.
+
+For an eigenvector of $`cW`$ with eigenvalue $`\lambda`$,
+the norm of $`V-\lambda I`$ on that vector is at most
+$`\eta`$. Normality of $`V`$ puts an eighth root
+within $`\eta`$ of $`\lambda`$. In particular some
+eighth roots $`\zeta_0,\zeta_1`$ approximate
+$`c,ce^{2\pi i/3}`$, respectively. Their ratio satisfies
+
+```math
+ |\overline{\zeta_0}\zeta_1-e^{2\pi i/3}|\le2\eta.
+```
+
+The nearest eighth root to $`e^{2\pi i/3}`$ is at
+distance $`2\sin(\pi/24)`$, contradicting the assumed
+error. The comparison to the identity uses the full physical
+operator. Initialization of even one extra clean qubit would
+leave its other input sector outside that norm guarantee.

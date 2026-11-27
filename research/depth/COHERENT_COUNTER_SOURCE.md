@@ -2,7 +2,8 @@
 
 [Complete source target](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) ·
 [Clean-source promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) ·
-[Paid affine phase batches](PARALLEL_AFFINE_DETUNING.md)
+[Paid affine phase batches](PARALLEL_AFFINE_DETUNING.md) ·
+[Distributed counter and common shift](#distributed-cyclic-counter)
 
 A counter gives an exact complete indicator identity with logarithmically
 many clean wires. A precise phase-gradient state is unnecessary: one
@@ -19,7 +20,10 @@ catalyst, or logical commutation do not pay either obligation.
 The revision in Sections 9--10 separates this counter from a different
 dirty-key mechanism. It proves a clean-dimension/error tradeoff for
 one-pass row filters and pays an exact full-bank echo, whose emitted
-native depth remains linear. Neither result changes the general frontier.
+native depth remains linear. Section 11 pays parallel local clock
+visits and reduces exact row comparison to a joint repair. That
+repair still costs logarithmic native T-depth in the available
+realization. These results leave the general frontier unchanged.
 
 ## 1. Registers and the complete modular operation
 
@@ -683,3 +687,260 @@ present native realization still retains linear depth. Improving its
 initialization is no longer the next question; a qualifying whole echo
 must change its native boundary mechanism or supply a different complete
 source with the simultaneous budgets.
+
+<a id="distributed-cyclic-counter"></a>
+
+## 11. Parallel counter visits and the missing common shift
+
+The row sum can be moved from a shared arithmetic target to a shared
+read-only control. This gives a sublogarithmic raw counter visit using
+only logarithmically many clean inputs. Two completed flags then
+suffice for exact comparison if the clocks admit a suitable common
+shift. The shift has an exact logarithmic-depth implementation. No
+sublogarithmic implementation is supplied here.
+
+### 11.1 A paid flag for an arbitrary dirty key sum
+
+For row $`u`$, put $`e=x\oplus u`$, $`k=\lceil\log_2(p+1)\rceil`$
+and $`Q=2^k>p`$. Use a clean $`k`$-bit register C and completely
+arbitrary $`k`$-bit clocks $`G_1,\ldots,G_p`$. The complete counter
+visit is
+
+```math
+S_e|j,z_1,\ldots,z_p\rangle
+   =|j,z_1+je_1,\ldots,z_p+je_p\rangle ,
+```
+
+with additions modulo Q. Use the
+[private Remaud–Vandaele adder](../../docs/PARALLEL_DIRTY_LOOKUP.md#exact-modular-adders).
+An m-bit call has $`T,G=O(m\log(m+2))`$ and
+$`D_T=O(\log^2(m+2))`$, with no additional work. The first
+operand can change within the call and returns at its end.
+
+For one clock allocate k arbitrary k-bit addend registers
+$`a_0,\ldots,a_{k-1}`$. Let $`L_{\mathrm{sum}}`$ add their sum into
+the clock. Compute that sum into a root addend by a balanced tree of
+private adders, add the root into the clock and reverse the tree.
+Every addend returns. Disjoint additions within each level give
+$`D_T=O(\log^3(k+2))`$ and $`T,G=O(k^2\log(k+2))`$.
+
+Let J add $`2^rj_re_i`$ into each addend $`a_r`$ in parallel. On its
+suffix of $`k-r`$ bits, apply the
+[read-only signed-increment echo](../../docs/PARALLEL_DIRTY_LOOKUP.md#a-read-only-controlled-increment-using-two-additions)
+with two fast private adders. Its literal is $`j_re_i`$. Toggle the
+low bit of its own arbitrary helper word by a returned private-phase
+Toffoli with controls $`j_r,x_i`$. If the row literal is complemented,
+also add $`j_r`$ by CNOT into that helper bit. No public control is a
+target and every other gate acts on private work. Thus J returns
+all increment helpers, with $`D_T=O(\log^2(k+2))`$ and
+$`T,G=O(k^2\log(k+2))`$. Its combined helper width is $`O(k^2)`$.
+
+Execute chronologically $`L_{\mathrm{sum}}^\dagger,J,L_{\mathrm{sum}},J^\dagger`$.
+The two initial addend sums cancel, leaving $`\sum_r2^rj_re_i=je_i`$
+in the clock and returning the addends. The p clocks have disjoint
+private pools and share only read-only j and x, so the complete visit
+and its actual reverse both have
+$`T,G=O(pk^2\log(k+2))`$, dirty width $`O(pk^2)`$ and
+$`D_T=O(\log^3(k+2))=o(\log(p+2))`$.
+
+Write $`\theta=(\theta_1,\ldots,\theta_p)`$ for the dirty Fourier
+keys, with the Fourier convention of (3), and put
+
+```math
+w_e(\theta)=\sum_i e_i\theta_i\bmod Q,\qquad
+P_e(\theta)=[w_e(\theta)=0].
+```
+
+Here $`P_e`$ is a projector on the entire clock space.
+For $`A_e=H_C^{\otimes k}S_eH_C^{\otimes k}`$, the clean compression
+$`J_C^\dagger A_eJ_C`$ equals $`P_e`$. The key-sector compression
+is the uniform sum of the Q phases
+$`\exp(2\pi i j w_e(\theta)/Q)`$. Thus $`A_e`$ sends $`C=0^k`$
+exactly to zero or into its orthogonal complement in each key sector.
+Conjugate the returned XOR at $`C=0^k`$ by $`A_e`$ and its actual reverse.
+The resulting flag $`B_e`$ toggles any arbitrary target by $`P_e`$
+on the entire $`C=0^k`$ code. It returns C and the arithmetic helpers
+with the same resource orders as $`S_e`$. All clock superpositions
+and references are allowed.
+
+### 11.2 Exact comparison from two flags
+
+Suppose a unitary D acts only on the clocks and possibly additional
+arbitrary private work. The required condition (23) is
+
+```math
+ P_e D P_e=0\quad\text{for every }e\ne0.
+```
+
+One sufficient condition is that every nonzero Fourier transition
+of D have displacement $`(r,\ldots,r)`$ for an odd r modulo Q.
+Then it changes $`w_e`$ by $`r|e|`$, which is nonzero modulo Q for
+$`0\lt|e|\le p`$. No choice or initialization of r is needed.
+
+The two projections $`P_e`$ and $`D^\dagger P_eD`$ are orthogonal for
+$`e\ne0`$, since their product equals zero by (23). They are both
+identity for $`e=0`$. In particular they commute on every address
+sector. Use $`B_e`$ and $`D^\dagger B_eD`$ as the two flag words on
+arbitrary private bits a and b. Apply a target Toffoli at all four
+corners of these two flag toggles, reversing the two flags in the
+last two edges. In their common projector sectors the four target
+toggles have parity
+```math
+ at+(a+\beta)t+(a+\beta)(t+\gamma)+a(t+\gamma)=\beta\gamma
+ \quad\text{over }\mathbb F_2 ,
+```
+
+where t is the initial value of b and $`\beta,\gamma`$ are the
+projector eigenvalues. The flag predicates act on the clocks and
+private work only. The full result is therefore the completed XOR
+of $`[e=0]`$. The clean counter, clocks, flags and all helpers return
+exactly, including for arbitrary reference extensions. The reverse
+uses the actual native reversals for each flag and D.
+
+The word uses four completed flags, two of each type, four private
+Toffolis and four appearances of D or its actual reverse. It reuses
+the same k clean counter bits throughout. With a native read-only
+shift satisfying (23), depth $`o(\log(p+2))`$ and polynomial counts
+and width for D and its reverse would give a qualifying row source.
+Use disjoint row banks and the
+[shifted-sector row promotion](PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion),
+then polynomial-overhead fusion and the
+[approximate query transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md).
+An approximation to a D satisfying (23) preserves the clean counter
+sector exactly, but the four-call hybrid only bounds its comparison
+error by four times the D error per row. That bound alone does not
+justify a fixed-error parallel full bank.
+
+### 11.3 An exact shift and the cost of making it joint
+
+The diagonal phase
+
+```math
+D(z_1,\ldots,z_p)=(-1)^{\mathrm{MSB}(\sum_i z_i\bmod Q)}
+```
+
+depends only on the modular sum and is antiperiodic under increasing
+one clock by $`Q/2`$. Its Fourier support consists of common odd
+displacements. A paid variant uses the
+[masked sum accumulator](../../docs/DIRTY_SUM_COMPRESSION.md#1-the-sum-interface-and-imported-primitives)
+with one arbitrary k-bit accumulator a. In the chronological
+accumulate–$`Z_{\mathrm{MSB}(a)}`$–actual-reverse word, its phase is
+
+```math
+ (-1)^{\mathrm{MSB}(a+\sum_i z_i+g(h)\bmod Q)}.
+```
+
+The work-dependent offset $`a+g(h)`$ is fixed in each preserved
+computational work sector and leaves the same Fourier support.
+Every work bit returns. The exact construction has polynomial p
+counts and dirty width, zero clean inputs and $`O(k)=O(\log(p+2))`$
+native T-depth. A literal classical encoder of the most significant
+sum bit cannot give sublogarithmic Toffoli depth: restricting each
+summand to its low bit gives an elementary symmetric polynomial of
+degree $`Q/2\le p`$. This restriction is about producing that bit
+with classical reversible gates.
+
+The ideal common shift by one factors into p independent prescribed
+phase gradients. These have nonnative roots when $`Q>8`$. A shared
+global shift could cost only constantly many error contributions,
+but sharing the physical clocks among all rows also merges their
+counter adds into sums of the row control words:
+$`\sum_{u:u_i\ne x_i}j_u`$ into clock i. Commutation of the completed
+adds does not give a parallel native schedule for those shared
+targets. A separate joint construction is needed in either case.
+
+### 11.4 Exact independent shift words require many clock bits
+
+Suppose $`D`$ is a tensor product of B native blocks on disjoint
+nonempty clock groups with arbitrary private work. Test it on the
+Fourier input tuple zero. For one block, the support of its Fourier
+output tuples $`r`$ is invariant under $`r\mapsto(1+8v)r`$
+simultaneously on its coordinates. Indeed the native entries and the
+normalized Fourier-zero input lie in $`\mathbb Q(\zeta_8)`$.
+The cyclotomic automorphism fixing $`\zeta_8`$ carries each nonzero
+output matrix element on private work to the matrix element with
+that transformed tuple. For $`Q\lt8`$ one can use the identity
+automorphism.
+
+Select one coordinate per block and one supported output tuple per
+block. A selected residue zero already violates (23) for the
+corresponding one-coordinate mismatch. Otherwise each selected
+residue has a 2-adic valuation in $`\{0,\ldots,k-1\}`$. If $`B>7k`$,
+eight selected residues share a valuation t. Their odd normalized
+residues have nine partial sums modulo eight. Two coincide, giving
+a nonempty subset with normalized sum zero modulo eight. When
+$`k-t>3`$, multiply the tuple of any one of these blocks by
+$`1+8v`$ to cancel the remaining multiple of eight modulo
+$`2^{k-t}`$. Its selected odd residue is a unit, so such v exists.
+When $`k-t\le3`$, the sum already vanishes modulo $`2^{k-t}`$.
+
+The supported combined Fourier output thus lies in $`P_e`$ for e
+supported on that nonempty subset, as does the all-zero input.
+The corresponding private-work operator is a tensor product of
+nonzero matrices, so $`P_eDP_e\ne0`$. Consequently (23) requires
+$`B\le7k`$. This includes nonmonomial local shift words with arbitrary
+private work. It does not bound a joint native circuit whose clocks
+interact.
+
+At $`p=Q-1`$ condition (23) imposes a stronger joint target. Every
+supported output tuple from the Fourier-zero input must have no
+nonempty subset summing to zero modulo Q. Its Q partial sums in
+any order then exhaust $`\mathbb Z_Q`$. Swapping two adjacent
+entries changes only one partial sum, which must remain the same.
+Hence all entries equal one r, whose additive order is Q and thus
+whose parity is odd. On the Fourier-zero input, D must therefore
+have output supported on the common odd-key subspace
+
+```math
+ \mathrm{span}\{|\chi_r\rangle^{\otimes p}:r\text{ odd}\}
+ \otimes\mathcal H_{\rm private}.
+```
+
+For $`Q>8`$, even two nonempty independent exact blocks cannot
+meet this condition: after fixing a supported tuple of the first
+block, all supported tuples of the second must have the same
+fixed odd label. Its Galois orbit contains another label. This
+necessity concerns one physical input column of the joint repair,
+including all its arbitrary work. It does not imply a general
+native T-depth bound.
+
+<a id="odd-parity-row-kernel"></a>
+
+### 11.5 An odd-parity row kernel suffices for the complete indicator
+
+Let $`h:\mathbb F_2^p\to\mathbb F_2`$ be a fixed row predicate, and let
+$`H_{x,u}=h(x+u)`$. Over $`\mathbb F_2`$, convolution by h squares to
+$`(\sum_x h(x))I`$. Indeed the terms for distinct summands cancel in
+pairs, and each identical pair has group sum zero. Thus an odd truth
+parity makes H a binary involution. Apply H to the arbitrary bank
+with $`O(4^p)`$ CNOTs by binary elimination. Apply the exact parallel
+row phases $`(-1)^{h(x+u)(HY)_u}`$, then actually reverse the CNOT
+word. Their total phase is $`(-1)^{(H^2Y)_x}=(-1)^{Y_x}`$, with
+every bank and work input returned. The row flags can use dirty
+comparison targets and an exact controlled-Z echo. A row compiler with
+gatewise read-only sharing, no clean inputs, polynomial row costs and
+sublogarithmic native depth therefore suffices through
+[full-bank fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md). The
+[exact sector cover](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+also permits a fixed number of clean inputs per row, with constant
+overhead. At growing clean count the cover depth must be paid. Both
+approximate row synthesis and approximate promotion need a joint error
+bound because several row predicates may be true at the same address.
+
+For a modulus $`Q=2^k\le p`$, every predicate
+$`h(e)=[\sum_i a_i e_i\equiv t\pmod Q]`$ has even truth parity. The
+coefficients of $`\prod_i(1+z^{a_i})`$ modulo $`z^Q-1`$ give these
+truth parities over $`\mathbb F_2`$. Each factor vanishes at one,
+and $`z^Q-1=(z+1)^Q`$, so the product vanishes in the quotient.
+Small dyadic moduli therefore cannot be used individually in this
+convolution recovery. In contrast, at least one residue predicate
+of $`|e|\bmod 3`$ has odd truth parity for every p. Evaluate
+$`(1+z)^p`$ at either primitive cube root in $`\mathbb F_4`$ to see
+that the residue coefficients cannot all vanish.
+
+The exact modulo-three row thus gives another sufficient operation,
+with no equality predicate needed in that reduction. The standard
+[quantum fanout construction](https://arxiv.org/abs/quant-ph/9903046)
+uses initialized fanout copies and the nonnative cyclic eigenbasis.
+A read-only, few-clean native modulo-three row with the required
+exact return and depth remains unpaid.

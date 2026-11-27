@@ -36,7 +36,7 @@ evaluation, without an efficient-preprocessing claim.
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
 | General depth upper | R96 at all precisions. R99–R102 improve the precision term in overlapping ranges at the same simultaneous budgets. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
-| Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus constant unrestricted lower depth remains open |
+| Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus a five-band unrestricted lower bound remains open |
 | Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
 | General lower question | A growing native T-depth bound on the prescribed Boolean-table frame family, allowing table-specific compilation, arbitrary Clifford interlayers and the admitted dirty width |
 
@@ -298,11 +298,11 @@ $`c_0=\sqrt{2-(2+\sqrt2)/\sqrt3}\approx0.169714`$.
 [R75](../research/depth/FOUR_LAYER_OPERATOR_RIGIDITY.md) gives the
 four-layer floor $`\rho/2\approx0.135299`$, where
 $`\rho=\sin(\pi/8)/\sqrt2`$, at arbitrary dirty width.
-Thus integer $`L\ge3`$ requires at least five T layers with zero
-clean work. Sharpness is not claimed for the four-layer floor.
-The [deepest-corner family](../research/depth/ROBUST_DECISION_BIAS.md#a-direct-complete-frame-error-floor)
-has limiting worst-case three-layer error $`\sqrt{2-\sqrt2}`$, with arbitrary
-dirty width and any fixed polynomial clean budget. The asymptotic depth gap above remains open.
+The [rare two-level cycle](../research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) raises the zero-clean floor to six bands at $`\eta\lt\sin(\pi/24)/2`$ for sufficiently large n.
+For typical [complete deepest-corner frames](../research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor),
+four bands have the sharp limiting worst-case error $`\sqrt{2-\sqrt2}`$
+at any fixed clean count and arbitrary dirty width. A [two-table witness](../research/depth/ROBUST_DECISION_BIAS.md#complete-return-two-table-frame) allows any fixed polynomial clean budget. With one clean input,
+five bands require [large axis intersections](../research/depth/ROBUST_DECISION_BIAS.md#complete-return-five-band-intersection) at both ends.
 
 ### One-clean midpoint restrictions
 

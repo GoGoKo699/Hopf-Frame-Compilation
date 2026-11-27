@@ -1,10 +1,11 @@
-"""Finite fixtures for the four-band scalar gap and linear interface bounds."""
+"""Finite fixtures for scalar gaps, a rare frame cycle, and interface bounds."""
 from itertools import combinations, product
 from math import comb, cos, gcd, inf, pi, sin, sqrt
 import unittest
 
 import numpy as np
 
+from compiler_robust_hopf.frames import complex_magnitude_frame_matrix, real_frame_matrix
 from tests.test_four_layer_crossing_rank import _binary_basis, _weighted_phase_fixture
 from tests.test_dirty_indicator_depth import (
     _ccz_two_layers, _exact_phase_action, _parity_basis,
@@ -38,6 +39,27 @@ def _mobius_table(values):
 
 
 class NativeGapRefinementTests(unittest.TestCase):
+    def test_complete_hopf_suffix_gives_the_rare_signed_three_cycle(self):
+        prefix_bits = 3
+        dimension = 1 << (prefix_bits + 2)
+        for marked_prefix in (0, 5, 7):
+            angles = np.zeros(dimension - 1)
+            penultimate_node = (1 << prefix_bits) + marked_prefix
+            deepest_node = (1 << (prefix_bits + 1)) + 2 * marked_prefix
+            angles[[penultimate_node - 1, deepest_node - 1]] = pi / 2
+
+            expected = np.eye(dimension)
+            base = 4 * marked_prefix
+            expected[base:base + 4, base:base + 4] = np.eye(4)[:, [2, 0, 1, 3]]
+            expected[:, [base + 1, base + 2]] *= -1
+            real = real_frame_matrix(angles)
+            complex_frame = complex_magnitude_frame_matrix(angles, np.zeros(dimension))
+            np.testing.assert_allclose(real, expected, atol=2e-12, rtol=0)
+            np.testing.assert_allclose(complex_frame, expected, atol=2e-12, rtol=0)
+            np.testing.assert_array_equal(expected @ expected @ expected, np.eye(dimension))
+            self.assertAlmostEqual(np.linalg.norm(real - np.eye(dimension), "fro")**2 / dimension,
+                                   1.5 / (1 << prefix_bits))
+
     def test_affine_support_incidence_and_scalar_threshold(self):
         spaces = [set(points) for _, _, points in _affine_spaces(3)]
         for support in spaces:
