@@ -111,6 +111,216 @@ on the Gaussian work lie outside the argument. Such a repair must
 provide and price those gates; an uncomputed affine inverse is the
 missing computation, not a free operation.
 
+<a id="constant-depth-raw-decisions"></a>
+
+### A paid raw decision attains the square-root count bound
+
+The Gauss encoding does supply every prescribed table as the strict sign
+of a raw Pauli bias at constant native T-depth. Its control can be paid
+within the same count envelope. This makes the
+[raw-decision count bound](BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
+asymptotically tight, while retaining the distinction between computational
+diagonal entries and the complete coherent decision condition.
+
+Use the matrix and registers from Sections 1--2. There are
+$`E=(2H-2)+(2J-2)=m-2`$ variable tree edges. Absorb the constant parts
+of negative literals into $`A_0`$, giving
+
+```math
+y^{\mathsf T}A(x)z
+ =y^{\mathsf T}A_0z+
+   \sum_{e=1}^{E}x_{i(e)}y_{u(e)}z_{v(e)}
+\quad\text{over }\mathbb F_2.
+```
+
+Initialize only one signal c. All y,z inputs and private implementation
+helpers remain arbitrary. The mathematical zero-work witness used by
+the raw-count theorem is not a runtime initialization.
+
+**Literal private-wire schedules.** For stable controls u,v, define
+
+```math
+p(d;u,v)=d-(d\oplus u)-(d\oplus v)+(d\oplus u\oplus v)
+        =(4d-2)uv.
+```
+
+The [R91 relative phase](PARALLEL_BILINEAR_WORD_QUERY.md#1-a-phase-derivative-on-an-arbitrary-dirty-wire)
+$`F(u,v;d)=\exp(i\pi p/4)`$ has the following chronological cyclic
+schedule. The last CNOT returns the private dirty d.
+
+| Current parity on d | Phase gate | Following CNOT |
+| --- | --- | --- |
+| $`d`$ | $`T_d`$ | $`\mathrm{CX}(u,d)`$ |
+| $`d\oplus u`$ | $`T_d^\dagger`$ | $`\mathrm{CX}(v,d)`$ |
+| $`d\oplus u\oplus v`$ | $`T_d`$ | $`\mathrm{CX}(u,d)`$ |
+| $`d\oplus v`$ | $`T_d^\dagger`$ | $`\mathrm{CX}(v,d)`$ |
+
+Thus F uses four T gates and four CNOTs, with T gates only on d.
+For an exact Toffoli $`Q(u,v;d,h)`$, reserve a separate private dirty
+phase helper h and use
+
+```math
+\sum_{\lambda\in\mathbb F_2^3}(-1)^{|\lambda|}
+ (h\oplus\lambda_1u\oplus\lambda_2v\oplus\lambda_3d)
+ \equiv4uvd\pmod8.
+```
+
+Visit the parity labels
+$`000,100,110,010,011,111,101,001,000`$ in that cyclic Gray order.
+At the first eight vertices apply $`T_h^{(-1)^{|\lambda|}}`$;
+each edge is one CNOT from the changed coordinate into h. The
+resulting CCZ returns h. Sandwich it between two $`H_d`$ gates.
+This is the [private-phase Toffoli](../../docs/DIRTY_SUM_COMPRESSION.md#read-only-affine-controls-with-private-phase-work)
+with eight T gates, eight CNOTs and two Hadamards. Only h receives T
+gates; only the private d receives Hadamards. Both F and Q therefore
+batch on disjoint private targets even with overlapping original
+controls. Every inverse below is the actual reversed native word.
+
+**Paying controlled D.** For its constant bilinear part, reserve m
+private dirty wires $`d_i`$, put
+$`F_0=\prod_iF(y_i,c;d_i)`$, and let the Clifford L toggle
+$`d_i`$ by $`(A_0z)_i`$. Emit chronologically
+
+```math
+F_0^\dagger,\quad L,\quad F_0,\quad L^\dagger.
+```
+
+The exact difference
+
+```math
+p(d_i\oplus s_i;y_i,c)-p(d_i;y_i,c)
+ \equiv4s_i y_i c\pmod8
+```
+
+proves the full-space phase
+$`(-1)^{c\,y^{\mathsf T}A_0z}`$ and returns every row helper.
+It costs $`8m`$ T gates, eight T layers and
+$`2\,\mathrm{nnz}(A_0)+8m`$ elementary Cliffords. In particular,
+the dense table-dependent quadratic part is not charged one T gate
+per matrix entry.
+
+For each variable edge reserve a separate pair $`d_e,h_e`$ and emit
+
+```math
+\begin{aligned}
+F_e&=F(y_{u(e)},z_{v(e)};d_e),&
+Q_e&=Q(c,x_{i(e)};d_e,h_e),\\
+&F_e^\dagger,\quad Q_e,\quad F_e,\quad Q_e^\dagger .
+\end{aligned}
+```
+
+Its phase difference is
+
+```math
+p(d_e\oplus c x_{i(e)};y_{u(e)},z_{v(e)})
+-p(d_e;y_{u(e)},z_{v(e)})
+\equiv4c x_{i(e)}y_{u(e)}z_{v(e)}\pmod8.
+```
+
+Each quartic echo has 24 T gates and 28 elementary Cliffords, and
+returns both helpers exactly. Run all edges in the same four stages:
+the first F inverses, the Q words, the F words, and the actual Q
+inverses. This takes at most 24 T layers. Every T target and every
+Hadamard target is private; shared c,x,y,z wires are only stable
+Clifford controls. All parity CNOTs are counted, with no free fanout.
+The two remaining controlled linear terms are
+$`\mathrm{CZ}(c,y_s)\mathrm{CZ}(c,z_t)`$, each emitted as H--CX--H.
+These factors give the literal controlled $`D_x`$ on arbitrary inputs.
+
+**The complete compression and resource ledger.** Put
+$`H_W=H^{\otimes2m}`$ and $`U_x=H_WD_xH_W`$. Emit
+$`H_c,H_W,C_c(D_x),H_W,H_c`$ chronologically. The ordinary
+work Hadamards cancel on the c=0 branch, so no controlled-H primitive
+is needed. The resulting principal unitary and observable are
+
+```math
+\begin{aligned}
+V_f&=H_cC_c(U_x)H_c
+ =\frac12
+ \begin{pmatrix}
+ I+U_x&I-U_x\\
+ I-U_x&I+U_x
+ \end{pmatrix},\\
+V_f^\dagger Z_cV_f
+ &=\begin{pmatrix}U_x&0\\0&-U_x\end{pmatrix}.
+\end{aligned}
+```
+
+With disjoint helper pools of sizes m and 2E, the same emitted word
+and its actual inverse obey
+
+```math
+\begin{aligned}
+T(V_f)&=8m+24E=32m-48,\\
+G(V_f)&\le2\,\mathrm{nnz}(A_0)+12m+28E+8
+       =2\,\mathrm{nnz}(A_0)+40m-48,\\
+D_T(V_f)&\le32,\\
+w_{\rm dirty}&=2m+(m+2E)=5m-4.
+\end{aligned}
+```
+
+The dirty width excludes the address and initialized signal, and
+includes y,z. The Clifford count includes the two compiled CZs,
+$`4m`$ work Hadamards and two signal Hadamards. Every private helper
+returns exactly for arbitrary inputs and external references.
+The principal y,z work need not return.
+
+Let J initialize only c. Its entire compression is
+$`\sum_x|x\rangle\langle x|\otimes U_x\otimes I_{\rm private}`$.
+Every computational work word w has the same diagonal entry:
+
+```math
+\langle w|U_x|w\rangle
+=2^{-2m}\sum_{y,z}(-1)^{y^{\mathsf T}A(x)z+e_s^{\mathsf T}y+e_t^{\mathsf T}z}
+=2^{-m}(-1)^{f(x)}.
+```
+
+This proves a strict raw bias with the prescribed sign even on every
+computational dirty input. It supplies no promise on arbitrary dirty
+superpositions. The eigenvalue multiplicities remain
+
+```math
+n_\pm(x)=\frac{2^{2m}\pm2^m(-1)^{f(x)}}2>0.
+```
+
+Two fixed product inputs show the failure directly:
+
+```math
+\begin{aligned}
+|\chi_+\rangle&=H_W|0_y,0_z\rangle=|+\rangle^{\otimes2m},\\
+|\chi_-\rangle&=H_W|e_s,0_z\rangle,\\
+U_x|\chi_+\rangle&=|\chi_+\rangle,&
+U_x|\chi_-\rangle&=-|\chi_-\rangle.
+\end{aligned}
+```
+
+Only the $`y_s`$ factor changes from plus to minus in the second
+state. The two phase values are respectively zero and one, independent
+of both x and f. Thus V leaves the initialized signal at zero on
+$`\chi_+`$ and toggles it to one on $`\chi_-`$, with both product
+states and every private helper returned. No entangled dirty witness
+is needed to contradict the coherent sign condition.
+
+Because $`m=O(2^{a/2})`$, this construction attains the
+$`\Omega(2^{a/2})`$ worst-case raw T-count lower bound with
+$`O(2^{a/2})`$ dirty width, $`O(2^a)`$ Clifford count and constant
+native T-depth. Consequently, counting raw strict-bias functions with
+commuting physical bands cannot yield growing depth for that class.
+The bias is exponentially small in m, and the complete compression
+has both signs at every address. A growing-depth argument must use
+information absent from unrestricted strict-sign patterns, such as
+a uniform quantitative computational-basis bias, the coherent sign
+condition, or complete return. In particular, this construction does
+not exclude a depth bound under a uniform quantitative basis-bias
+premise. It changes neither the complete-query nor frame frontier.
+
+The [bounded exact fixtures](../../tests/test_controlled_gauss_decision.py)
+check every logical/helper column of the native quartic echo and the
+complete small principal compression, including all computational dirty
+diagonals and the two fixed product witnesses. The all-size ledger and
+parallel schedule are proved analytically above; the fixtures do not
+simulate a large complete source.
+
 ## 4. Scope check for low-degree Boolean phase branches
 
 A separate restricted architecture selects a Boolean phase

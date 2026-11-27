@@ -386,6 +386,22 @@ The conclusion is about T-count; it gives no growing T-depth lower
 bound at unrestricted width. The depth question in Section 4 remains
 open.
 
+**The raw count is tight even at constant depth.** The
+[paid controlled Gauss construction](GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
+realizes every a-bit table with $`T,w=O(2^{a/2})`$, $`G=O(2^a)`$
+and at most 32 physical T layers. Every computational dirty input has
+bias $`2^{-m}(-1)^{f(x)}`$, where $`m=O(2^{a/2})`$.
+Its private helpers return, but its principal dirty work need not.
+Two fixed product superpositions give opposite deterministic signal
+answers at every address, so it fails the coherent sign premise.
+Thus even a band-structured count of these raw bias patterns cannot
+force growing depth at an unspecified square-root count constant.
+A sharper count constant is a separate question. A depth invariant
+must use information absent from unrestricted strict-sign patterns,
+such as a uniform quantitative bias, the coherent sign condition or
+complete return. In particular, the tiny-bias construction does not
+exclude a bound that uses only a fixed positive basis-state bias.
+
 ## 5. Evidence boundary
 
 [The bounded native tests](../../tests/test_boolean_query_frame_reduction.py)
