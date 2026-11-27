@@ -18,10 +18,8 @@ The 27 November checkpoint starts from [1fb5d04](https://github.com/GoGoKo699/Ho
 the merged [PR #276](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/276).
 The [interior-decision review and checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Finterior-decision-calibration)
 identify the reviewed tree for this continuation.
-The active question is how many sequential native T layers a compiler needs when it
-knows the table in advance and receives its address in superposition.
-The [November evidence index](research/archive/november-2026/README.md)
-locates the original derivations, replayable fixtures and exploratory notes.
+The active question is how many sequential native T layers a compiler needs when it knows the table in advance and receives its address in superposition.
+The [November evidence index](research/archive/november-2026/README.md) locates the original derivations, replayable fixtures and exploratory notes.
 
 <a id="current-depth-frontier"></a>
 
@@ -91,13 +89,15 @@ themselves compose into a gapped signal.
 The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
 excludes the stated read-only programs and outer-Clifford extension.
 An [interior Clifford](research/depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
-really gives table-sized decoder data. Nevertheless, [paired-row singlets](research/depth/PRESCRIBED_SCALAR_TABLES.md#paired-row-decision-obstruction)
-defeat every boundary preserving the pair swaps, including the graph phase and both table shears.
-A paid [explicit symmetry breaker](research/depth/PRESCRIBED_SCALAR_TABLES.md#explicit-symmetry-breaker-failure)
-avoids those sectors but still has the wrong compressed sign on an all-size embedded family.
-Other boundaries remain open. Resume with an identity controlling the complete compressed
-spectrum; removing an individual bad sector is insufficient. Genuine table/address
-interleaving and physical address motion remain constructive alternatives.
+gives table-sized decoder data, but [paired-row singlets](research/depth/PRESCRIBED_SCALAR_TABLES.md#paired-row-decision-obstruction)
+defeat swap-preserving boundaries, including the graph phase and both table shears.
+The [explicit symmetry breaker](research/depth/PRESCRIBED_SCALAR_TABLES.md#explicit-symmetry-breaker-failure)
+avoids those sectors yet fails on arbitrarily large nonconstant tables.
+The [all-ones spectral obstruction](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
+excludes every conjugating boundary for this unchanged middle word as a universal literal-table prescription.
+Separate constant-table handling or preprocessing can escape; asymmetric boundaries for other tables remain open.
+Resume with a complete compressed-spectrum identity for a changed word or an explicit exception/preprocessing scheme.
+Joint table/address interleaving and physical address motion inside the word remain constructive alternatives.
 
 The parallel lower-bound question remains unrestricted returned-query depth with arbitrary
 Clifford interlayers; the two-band argument does not iterate to additional native bands.

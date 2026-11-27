@@ -7,11 +7,12 @@ these five-qubit fixtures check conventions and the exact base identity.
 """
 
 from fractions import Fraction
+from math import comb
 import unittest
 
 import numpy as np
 
-from tests.exact_matrices import CQ2, CZ, native_columns
+from tests.exact_matrices import CO, CQ2, CZ, adjoint, eye, multiply, native_columns
 from tests.test_operator_source_compiler import (
     ATOL, X, Y, Z, _adjoint, _pauli, _word_matrix,
 )
@@ -181,6 +182,59 @@ class InteriorDecisionTests(unittest.TestCase):
                 self.assertEqual(actual, expected, (row, column))
         # This is exactly M=(3I-X_B0)/4, not just its diagonal. It has
         # positive eigenvalues 1/2 and 1 although the selected entry is one.
+
+    def test_all_ones_middle_has_a_majority_short_spectral_arc(self):
+        # Proof home: PRESCRIBED_SCALAR_TABLES.md,
+        # #boundary-independent-spectral-obstruction. For C=J_m the
+        # analytic commuting-axis identity gives K_C=I, so Q=K0-dagger.
+        # Evaluate that literal native word on every physical column.
+        pulse_a, pulse_b = _pulses()
+        k0 = pulse_b + pulse_a + _adjoint(pulse_b) + _adjoint(pulse_a)
+        middle = native_columns(WIDTH, _adjoint(k0))
+
+        # Verify translation symmetry before extracting the bank-X blocks;
+        # this does not assume the desired spectral multiplicities.
+        for bank in range(16):
+            for signal in (0, 1):
+                for row in range(32):
+                    self.assertEqual(middle[row][2 * bank + signal],
+                                     middle[row ^ (bank << 1)][signal])
+        identity = eye(2)
+        identity_multiplicity = positive_arc_multiplicity = negative_arc_multiplicity = 0
+        for character in range(16):
+            block = [[sum((middle[2 * bank + output][signal]
+                           * (-1 if (character & bank).bit_count() % 2 else 1)
+                           for bank in range(16)), CZ)
+                      for signal in (0, 1)] for output in (0, 1)]
+            self.assertEqual(multiply(adjoint(block), block), identity)
+            if block == identity:
+                identity_multiplicity += 2
+            else:
+                # Q^2-Q+I=0 and trace one give one root exp(+i*pi/3)
+                # and one exp(-i*pi/3), exactly in this two-dimensional block.
+                self.assertEqual(multiply(block, block),
+                                 [[block[row][column] - identity[row][column]
+                                   for column in (0, 1)] for row in (0, 1)])
+                self.assertEqual(block[0][0] + block[1][1], CO)
+                positive_arc_multiplicity += 1
+                negative_arc_multiplicity += 1
+        self.assertEqual((identity_multiplicity, positive_arc_multiplicity,
+                          negative_arc_multiplicity), (24, 4, 4))
+        self.assertGreater(identity_multiplicity + positive_arc_multiplicity, 32 // 2)
+
+        # Independent integer binomial sums check the residue probabilities
+        # at three small sizes. Their all-size derivation is in the proof.
+        for m in (2, 4, 8):
+            with self.subTest(bank_size=m):
+                counts = [sum(comb(m, k) for k in range(m + 1)
+                              if (m // 2 - k) % 4 == residue)
+                          for residue in range(4)]
+                q0 = Fraction(counts[0], 1 << m)
+                qodd = Fraction(counts[1] + counts[3], 1 << m)
+                self.assertEqual(q0, Fraction(1, 4) + Fraction(1, 1 << (m // 2 + 1)))
+                self.assertEqual(qodd, Fraction(1, 2))
+                self.assertGreater(2 * q0 - q0 * q0 + qodd * qodd / 2,
+                                   Fraction(1, 2))
 
 
 if __name__ == '__main__':

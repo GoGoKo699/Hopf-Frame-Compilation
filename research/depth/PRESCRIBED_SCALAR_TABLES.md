@@ -1073,10 +1073,141 @@ The [interior-decision fixtures](../../tests/test_interior_decision.py)
 check the finite operator identities; the explicit recovery and
 spectator arguments above supply their arbitrary-size scope.
 This paid repair shows that avoiding the known singlet subspaces
-is insufficient. It does not exclude other asymmetric or
-table-dependent boundaries, or prove that every successful source
-must change the middle word. No general native-depth improvement
-or growing-depth lower bound follows from these tests.
+is insufficient, including on the embedded nonconstant tables.
+By itself it does not exclude every other boundary. A separate
+spectral test below treats all conjugating boundaries for a different,
+constant-table family.
+
+<a id="boundary-independent-spectral-obstruction"></a>
+
+### An all-ones table defeats every conjugating boundary of this middle word
+
+The literal-table prescription $`V_C=F_C^\dagger K_CK_0^\dagger F_C`$
+cannot give a correct one-clean decision for every C, even if its
+conjugating boundary is an arbitrary unitary. The obstruction is the
+all-ones table $`C=J_m`$ at every $`m=2^r`$, $`r\ge1`$.
+This concerns that prescribed middle word and its mutually inverse
+boundaries; separate treatment or preprocessing of the table is not
+being excluded.
+
+**A spectral arc and a half-dimensional code.** Let Q be a unitary
+on an even-dimensional space of dimension d. Suppose a spectral
+subspace of dimension greater than $`d/2`$ lies in an arc
+$`\{e^{it}:\phi\le t\le\phi+\omega\}`$, where
+$`0\le\omega\le\pi`$. Every rank-$`d/2`$ projector P has a
+unit vector psi in the intersection of its range with that subspace.
+Rotating the arc to its midpoint gives
+
+```math
+ |\langle\psi,Q\psi\rangle|\ge\cos(\omega/2),
+ \qquad
+ \|PQ\psi\|\ge|\langle\psi,Q\psi\rangle|.
+```
+
+Consequently
+
+```math
+ \langle\psi|Q^\dagger(2P-I)Q|\psi\rangle
+   =2\|PQ\psi\|^2-1\ge\cos\omega.
+```
+
+For one clean signal, $`JJ^\dagger=(I+Z_c)/2`$ has rank
+$`d/2`$. For any boundary F take $`P=FJJ^\dagger F^\dagger`$;
+the compressed observable of $`V=F^\dagger QF`$ is the compression
+of the preceding operator to that code, expressed through the
+isometry $`FJ`$. Hence
+
+```math
+ \lambda_{\max}(J^\dagger V^\dagger Z_cVJ)\ge\cos\omega.
+```
+
+**The all-ones middle word has such an arc.** For $`C=J_m`$,
+every $`p_i=X_cX_{A_i}`$ commutes with every transported axis
+
+```math
+ E_C(Y_cX_{B_j})E_C=Y_cX_{B_j}Z_A^{\rm all}.
+```
+
+The two Pauli anticommutations cancel. Address-dependent character
+signs do not change this relation, so $`K_C=I`$ literally and
+$`Q=K_0^\dagger`$.
+
+At address zero, simultaneous X-bank eigenvalues
+$`\epsilon_i,\eta_j\in\{\pm1\}`$ reduce the two pulses to
+$`A=e^{-i\alpha X_c}`$ and $`B=e^{-i\beta Y_c}`$, where
+
+```math
+ \alpha=\frac\pi8\sum_i\epsilon_i,\qquad
+ \beta=\frac\pi8\sum_j\eta_j.
+```
+
+The signal-qubit commutator $`A^\dagger B^\dagger AB`$ has
+eigenvalues $`e^{\pm i\theta}`$, with
+
+```math
+ \cos\theta=1-2\sin^2\alpha\sin^2\beta.
+```
+
+For a uniform bank eigenassignment let $`s=\sum_i\epsilon_i`$
+and $`p=s/2`$, an integer because m is even. Its residue probabilities
+are
+
+```math
+ \begin{aligned}
+ q_0&=\Pr(p\equiv0\bmod4)=\frac14+\delta,\\
+ q_2&=\Pr(p\equiv2\bmod4)=\frac14-\delta,\\
+ \Pr(p\text{ odd})&=\frac12,\qquad \delta=2^{-m/2-1}.
+ \end{aligned}
+```
+
+For example, these follow from
+$`\mathbb E e^{i\pi p/2}=2^{-m/2}`$ and
+$`\mathbb E(-1)^p=0`$, together with the conjugate Fourier moment.
+The two banks are independent in this spectral count. The fraction
+with eigenvalue one is $`2q_0-q_0^2`$. If both residues are odd,
+the two eigenvalues are $`e^{\pm i\pi/3}`$; these blocks have
+fraction one quarter, contributing one eighth to each eigenvalue.
+Taking the adjoint preserves those fractions. Therefore Q has a
+spectral subspace with eigenphases in $`[0,\pi/3]`$ and fractional dimension
+
+```math
+ 2q_0-q_0^2+\frac18
+   =\frac9{16}+\frac32\delta-\delta^2>\frac12.
+```
+
+The lemma yields, for every conjugating boundary F,
+
+```math
+ \lambda_{\max}(J^\dagger V^\dagger Z_cVJ)\ge\frac12.
+```
+
+The all-ones table requires a negative definite compression at any
+positive decision gap, so no such boundary succeeds. Actual native
+pulse scalars cancel within each commutator, and the boundary and
+its actual inverse cancel their common scalar; no projective change
+of the spectrum was made.
+
+Extra arbitrary dirty registers on which the middle word is identity
+preserve all spectral fractions. At any other address, the Walsh
+character signs merely permute the independent bank eigenassignments,
+so every address block has the same spectrum. The lemma thus also
+applies to the complete address-register direct sum and permits F
+to move the address: the required table sign is negative identity
+on that entire register. The one-clean, rank-half premise and the
+unchanged middle word remain essential to this statement.
+
+The [spectral fixtures](../../tests/test_interior_decision.py) check
+the small native middle word and residue-count identities; the arc
+and intersection arguments give the arbitrary-boundary, all-size
+conclusion. The earlier paired-row and explicit-repair results retain
+their separate nonconstant counterfamilies. This stronger obstruction
+excludes a universal prescription using the literal table in this
+fixed conjugated middle word. It does not exclude separate compilation
+of constant tables, table complementation or other preprocessing with
+changed surroundings, independent input/output boundaries, or a
+changed middle word. Other asymmetric boundaries for the remaining
+nonconstant tables remain open. No unrestricted query-width or
+growing T-depth lower bound follows.
 
 ### Substitution in the frame recurrence
 

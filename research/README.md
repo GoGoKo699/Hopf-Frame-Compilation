@@ -186,6 +186,9 @@ rules out address-conjugated table programs at the desired width.
 An [interior Clifford](depth/PRESCRIBED_SCALAR_TABLES.md#interior-clifford-decision-source)
 retains table-sized decoder information, but paired-row singlets defeat the natural
 graph/shear choices, and an explicit symmetry breaker still has the wrong sign.
+An [all-ones spectral obstruction](depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
+excludes every conjugating boundary for the universal literal-table middle-word prescription;
+separate constant-table handling, preprocessing and other words remain open.
 The [square-root-width corollary](depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
 states the weaker source target needed for a first asymptotic improvement;
 the [two-band spectral screen](depth/FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources)
