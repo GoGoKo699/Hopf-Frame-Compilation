@@ -797,7 +797,11 @@ early-stage inverse tolerances are polynomial in $`h(m)+2`$.
 Increasing the arity margin absorbs the resulting polynomial factors
 in counts and width. The full-volume sources still have fixed
 L-dependent tolerances. The new frame depth at fixed L is
-$`O_{L,B,\gamma}(\log\log(n+4)+H_n^{O(1)}(d(n+C_L)+1))`$
+
+```math
+O_{L,B,\gamma}\!\left(\log\log(n+4)+H_n^{O(1)}(d(n+C_L)+1)\right)
+```
+
 with the same simultaneous frame counts and width, using the usual
 nondecreasing depth envelope d. In particular
 $`d(a)=O(\log a/\log\log a)`$ still suffices. This conditional
@@ -1376,7 +1380,24 @@ Here $`p_i(s),p_i(t)\in\{\pm1\}`$ are the axis eigenvalues, $`a_j\in\mathbb Z_4`
 
 This condition is independent of width, number of commuting axes and the boundary unitaries. A uniform random sign row has correlation at most $`O(r/2^{r/2})`$ with all these phases with probability tending to one. More explicitly the probability that the maximum exceeds $`t`$ is at most $`4\cdot4^{r+1}\,2^{\binom r2}\exp(-2^r t^2/4)`$, by applying the independent-sign exponential bound to the real and imaginary parts and counting the possible q.
 
-There is also an explicit adversarial row. Set $`s(v)=(-1)^{\sum_j v_{3j-2}v_{3j-1}v_{3j}}`$ using disjoint triples. Every phase $`i^{q(v)}`$ has third additive multiplicative derivative one. For each linear term this follows from binary addition modulo four, and twice each quadratic term has this property because its ordinary third Boolean derivative is zero. Three Cauchy--Schwarz applications therefore bound the correlation by $`\|s\|_{U^3}`$, where $`\|s\|_{U^3}^8=\mathbb E_{v,h_1,h_2,h_3}\prod_{\omega\in\{0,1\}^3}\mathcal C^{|\omega|}s(v+\sum_j\omega_j h_j)`$ and $`\mathcal C`$ is complex conjugation. For each triple, the cubic derivative is the determinant over $`\mathbb F_2`$ of the three direction columns. Exactly $`(8-1)(8-2)(8-4)=168`$ of the $`2^9`$ direction matrices are nonsingular. Independence across triples gives
+There is also an explicit adversarial row. Set
+$`s(v)=(-1)^{\sum_j v_{3j-2}v_{3j-1}v_{3j}}`$ using disjoint triples.
+Every phase $`i^{q(v)}`$ has third multiplicative derivative one.
+Binary addition modulo four proves this for each linear term. Twice
+each quadratic term has this property because its third Boolean
+derivative vanishes. Three Cauchy--Schwarz applications therefore
+bound the correlation by $`\|s\|_{U^3}`$, where
+
+```math
+\|s\|_{U^3}^8=\mathbb E_{v,h_1,h_2,h_3}
+ \prod_{\omega\in\{0,1\}^3}\mathcal C^{|\omega|}
+ s\left(v+\sum_j\omega_j h_j\right)
+```
+
+and $`\mathcal C`$ is complex conjugation. For each triple, the cubic
+derivative is the determinant over $`\mathbb F_2`$ of the three
+direction columns. Exactly $`(8-1)(8-2)(8-4)=168`$ of the $`2^9`$
+direction matrices are nonsingular. Independence across triples gives
 
 ```math
 \gamma\le(1-2\cdot168/512)^{\lfloor r/3\rfloor/8}
@@ -1414,7 +1435,16 @@ W|c,k,t\rangle&=(-1)^{c f(k)}|c,k,t+\theta(k)\rangle.
 \end{aligned}
 ```
 
-The two probes are $`R=X_c(-1)^{f(k)+t\cdot\phi(k)}`$ and $`Q=X_c(-1)^{t\cdot\phi(k)}`$. Under conjugation by W, $`B_vRB_v^\dagger`$ gains the term $`f(k)`$ from the signal phase and replaces t by $`t+\theta(k)`$. The exponent becomes $`f(k+v)+f(k)+(t+\theta(k))\cdot\phi(k+v)=f(v)+t\cdot\phi(k+v)`$. Thus
+The two probes are $`R=X_c(-1)^{f(k)+t\cdot\phi(k)}`$ and
+$`Q=X_c(-1)^{t\cdot\phi(k)}`$. Conjugating $`B_vRB_v^\dagger`$ by W
+adds $`f(k)`$ from the signal phase and replaces t by $`t+\theta(k)`$.
+The resulting exponent satisfies
+
+```math
+ f(k+v)+f(k)+(t+\theta(k))\cdot\phi(k+v)=f(v)+t\cdot\phi(k+v).
+```
+
+Thus
 
 ```math
 W(B_vRB_v^\dagger)W^\dagger=(-1)^{f(v)}B_vQB_v^\dagger,
