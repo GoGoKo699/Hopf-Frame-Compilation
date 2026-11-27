@@ -314,6 +314,17 @@ condition, or complete return. In particular, this construction does
 not exclude a depth bound under a uniform quantitative basis-bias
 premise. It changes neither the complete-query nor frame frontier.
 
+Changing only the signal/work endpoint unitaries cannot in general
+repair the bias. The completed controlled phase is affine in the
+read-only address, so it factors into commuting left- and right-address
+phases. The [two-address-block margin bound](PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
+therefore applies even with arbitrary independent, table-dependent
+unitaries at its two ends, including on all returned private helpers.
+For the Walsh sign table with $`a=2r`$ and $`H=2^r`$, its uniform
+signed bias is at most $`H^{-1/2}`$ with one clean input, regardless of dirty width.
+Genuinely interleaved phases or physical address motion are outside
+this endpoint-only repair statement.
+
 The [bounded exact fixtures](../../tests/test_controlled_gauss_decision.py)
 check every logical/helper column of the native quartic echo and the
 complete small principal compression, including all computational dirty
