@@ -11,6 +11,8 @@ import unittest
 
 import numpy as np
 
+from tests.test_operator_source_compiler import _adjoint, _pauli, _word_matrix
+
 
 IDENTITY = np.eye(2, dtype=complex)
 X = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -311,6 +313,61 @@ class TensorSectorGeometricChunkTests(unittest.TestCase):
                 elif enabled and middle <= word < right:
                     expected -= middle - left
                 self.assertEqual((value, dirty), (expected, flag))
+
+    def test_native_one_hot_axis_extraction_returns_clean_scratch(self):
+        def controlled_h(control, target):
+            basis = [('SDG', target), ('H', target), ('T', target),
+                     ('H', target), ('S', target)]
+            controlled_z = [('H', target), ('CX', control, target), ('H', target)]
+            return _adjoint(basis) + controlled_z + basis
+
+        first_flag, second_flag = 1, 2
+        first_scratch, second_scratch = 3, 4
+        toggles = (controlled_h(first_flag, first_scratch)
+                   + controlled_h(second_flag, second_scratch))
+        controlled_axes = [('CX', first_scratch, 0), ('H', 0),
+                           ('CX', second_scratch, 0), ('H', 0)]
+        extraction = toggles + controlled_axes + toggles
+        rotation = (extraction + [('T', first_scratch), ('TDG', second_scratch)]
+                    + _adjoint(extraction))
+        center = [('SDG', 0), ('CX', first_flag, 0),
+                  ('CX', second_flag, 0), ('S', 0)]
+        select = rotation + center + _adjoint(rotation)
+        actual = _word_matrix(5, select)
+        expected = np.zeros_like(actual)
+        expected[:2, :2] = IDENTITY
+        for flag, axis, sign in ((first_flag, X, 1), (second_flag, Z, -1)):
+            projector = (IDENTITY - axis) / 2
+            phase = IDENTITY + (np.exp(1j * sign * math.pi / 4) - 1) * projector
+            start = 1 << flag
+            expected[start:start + 2, start:start + 2] = _conjugate(phase.conj().T, Y)
+        np.testing.assert_allclose(actual[:, :6], expected[:, :6], atol=4e-14, rtol=0)
+        np.testing.assert_allclose(_word_matrix(5, _adjoint(select))[:, :6],
+                                   expected.conj().T[:, :6], atol=4e-14, rtol=0)
+
+    def test_one_hot_clifford_sweep_pays_signed_suffix_axes(self):
+        controls = (3, 4, 5)
+        parity = 6
+        toggles = [('CX', control, parity) for control in controls]
+        endpoints = [('Z', 3), ('SDG', 0), ('CX', 3, 0), ('S', 0),
+                     ('CX', 4, 0), ('Z', 5), ('SDG', 1), ('CX', 5, 1), ('S', 1)]
+        common = toggles + [('CX', parity, 2)] + _adjoint(toggles)
+        strict_suffix = toggles[:2] + [('H', 1), ('CX', parity, 1), ('H', 1)]
+        word = endpoints + common + strict_suffix + toggles[2:] + _adjoint(toggles)
+        actual = _word_matrix(7, word)
+        actual_reverse = _word_matrix(7, _adjoint(word))
+        expected = np.zeros_like(actual)
+        axes = (-_pauli(3, {0: Y, 1: Z, 2: X}), _pauli(3, {0: X, 1: Z, 2: X}),
+                -_pauli(3, {1: Y, 2: X}))
+        expected[:8, :8] = np.eye(8)
+        columns = list(range(8))
+        for control, axis in zip(controls, axes):
+            start = 1 << control
+            expected[start:start + 8, start:start + 8] = axis
+            columns.extend(range(start, start + 8))
+        np.testing.assert_allclose(actual[:, columns], expected[:, columns], atol=2e-15, rtol=0)
+        np.testing.assert_allclose(actual_reverse[:, columns], expected.conj().T[:, columns],
+                                   atol=2e-15, rtol=0)
 
     def test_capped_reference_ray_returns_the_arbitrary_dirty_port(self):
         for levels in (1, 2, 3):

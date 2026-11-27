@@ -318,6 +318,11 @@ gives sublinear additive depth for $`2^{cn}\le L=o(N)`$ at the original
 widths. A cheaper selector or payload chunk would extend the gain. R103 settles $`L\ge N`$ at
 the simultaneous one-clean linear T-count budget. The [literal two-basis recovery](depth/GEOMETRIC_CHUNK_DEPTH.md#9-slot-lower-bounds-for-the-two-basis-recovery)
 also needs at least quadratic width in L for disjoint linear-size precision payloads.
+[R105](depth/CLEAN_SPACE_PRECISION_DEPTH.md) uses additional initialized
+wires to implement linear-cost short chunks and yields depth within a
+logarithmic factor of R103 at $`L\ge N`$ in its clean-budget range. A
+compact initialized selector with paid promotion would be needed to use
+the same mechanism at one clean without the slot-count overhead.
 Applying the promotion to arbitrary-table
 rows still needs an exactly silent source sector. A
 [monomial SELECT screen](depth/COHERENT_COUNTER_SOURCE.md#monomial-select-with-accepted-work-motion)

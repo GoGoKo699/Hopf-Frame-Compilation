@@ -2,7 +2,8 @@
 
 [Geometric chunk depth](GEOMETRIC_CHUNK_DEPTH.md) ·
 [Compact program precision](COMPACT_PROGRAM_PRECISION.md) ·
-[Precision count–depth tradeoff](PRECISION_COUNT_DEPTH_TRADEOFF.md)
+[Precision count–depth tradeoff](PRECISION_COUNT_DEPTH_TRADEOFF.md) ·
+[Larger clean allocation](CLEAN_SPACE_PRECISION_DEPTH.md)
 
 **Theorem R104.** For an absolute $`c\gt0`$, let $`n\ge1`$ and $`L\ge6`$
 be integers with $`2^{cn}\le L\le N=2^n`$. Keep the real and complex literal

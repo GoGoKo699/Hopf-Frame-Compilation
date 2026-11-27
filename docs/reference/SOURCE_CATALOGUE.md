@@ -344,6 +344,15 @@ reuses short payloads across the long source. It gives additive depth
 $`O(L\log_2(t+2)/t)`$ for $`2^{cn}\le L\le N`$ at the original simultaneous
 R96 budgets, with t set by count slack and key permutation cost.
 
+[R105](../../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md) gives
+an explicit larger-clean allocation for $`L\ge2^{cn}`$. A weighted
+comb and native one-hot Pauli extraction give linear-cost short
+geometric sources. Rolling Clifford coordinate changes keep the
+complete cost linear in total source width. With $`O(t)`$ clean inputs
+for $`t\le L^{3/4}`$, its additive precision depth is $`O(L\log(t+2)/t)`$
+at the R96 dirty thresholds and gate counts. The extra clean inputs
+return exactly.
+
 For R79, the selected all-precision envelope is
 
 ```math
