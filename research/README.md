@@ -228,7 +228,7 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Short-label permutation wrappers with paired dirty arrays](depth/PAIRED_PERMUTATION_ROUTING.md)
 - [Polynomial source overhead can be absorbed by a paid indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
 - [Removing a bounded clean bank from a complete XOR query](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) — [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
-- [Parallel clean-source promotion: packing and spectral alternatives](depth/PARALLEL_CLEAN_PROMOTION.md)
+- [Parallel clean-source promotion: packing and spectral alternatives](depth/PARALLEL_CLEAN_PROMOTION.md) — [shifted-sector votes](depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
 - [Spectral clean-source promotion with paid paving frames](depth/MSS_SPECTRAL_PROMOTION.md) — [seven-selector alternative](depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)
 - [Clean-sector parallelism: what the native schedule actually buys](depth/CLEAN_SECTOR_PARALLELISM_AUDIT.md)
 - [Dirty-tree compilation from complete branch differences](depth/DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md)
@@ -380,6 +380,9 @@ thresholds. These are separate from the constructive chain.
 The unrestricted two-band and zero-clean three-band Boolean statements coexist with conditional clean-code components. The complete one-clean three-band case split is in the pair-collapse and central-parity homes; its conservative error radius is not an arbitrary-fixed-accuracy growing-depth bound.
 
 - [A robust linear T-count bound for the complete dirty indicator](depth/INDICATOR_PAULI_NULLITY.md)
+- [Temporal Pauli-axis overlap and anticommutation cuts](depth/TEMPORAL_AXIS_BIAS.md) — exact bias descriptions and coherent-sign requirements at arbitrary depth
+- [Pauli-axis dependence and orthogonal components](depth/AXIS_TRAJECTORY_BIAS.md) — coherent sign and [linear trace test for complete return](depth/AXIS_TRAJECTORY_BIAS.md#linear-trace-cut-dependence)
+- [Relative four-band bias with paired halves](depth/RELATIVE_FOUR_BAND_BIAS.md) — dense midpoint-law inverse and complete returned frame test
 - [Joint transfer constraints for unrestricted two-layer queries](depth/UNRESTRICTED_TWO_LAYER_QUERY.md)
 - [Two native T layers: diagonal rigidity and its clean-work boundary](depth/TWO_LAYER_DIAGONAL_RIGIDITY.md)
 - [Three native T layers: a degree bound and a paid cubic query](depth/THREE_LAYER_NATIVE_STRUCTURE.md)

@@ -14,11 +14,11 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 27 November continuation verified the merged [PR #278](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/278)
-at [858e395](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/858e395737d8309b2fe86e4da2a37c84c6dad663)
-as its starting `main`. The [decision-bias review and exact-tree checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Frobust-decision-depth)
-identify the current continuation. The [November evidence index](research/archive/november-2026/README.md)
-locates earlier derivations and fixtures.
+The second 27 November continuation verified merged [PR #279](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/279)
+at [7e26670](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/7e2667046e47114d03c5244795ef4092b3da41c3)
+as its starting `main`. The [review and exact-tree checks](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Faxis-overlap-bias)
+identify this continuation. The [November evidence index](research/archive/november-2026/README.md)
+locates earlier derivations.
 
 <a id="current-depth-frontier"></a>
 
@@ -56,8 +56,15 @@ weakens the source requirement further: amplify on its initialized code
 before promoting it to complete return. The raw source may leave garbage,
 and its rejected clean sector need not carry the table's prescribed sign.
 
-**Resumption question.** Can a genuinely joint native word V give the
-correct signed gap on the diagonal blocks of
+**Resumption question.** Can a native-shareable row probe preserve
+its target Z exactly at false addresses and approximately negate it
+at the match, with $`p^{o(1)}`$ clean bits and $`o(\log p)`$ T-depth?
+The [shifted-sector promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
+pays complete return given exact clean-sector preservation and this
+probe, or a joint clean indicator. The [counter](research/depth/COHERENT_COUNTER_SOURCE.md#5-what-remains-unpaid-in-joint-arithmetic)
+owes shallow row arithmetic. Fingerprints still incur false-row error.
+
+A separate sufficient route gives the correct signed gap on diagonal blocks of
 $`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum
 in each preserved work sector? The labels may include the address
 and any dirty inputs. The paid
@@ -80,16 +87,10 @@ The [four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-
 still gives a concrete entry readout target for known self-inverse CNOT
 shears. Amplify each decision before applying that reduction.
 
-The [fixed-boundary information bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#fixed-boundary-decision-source)
-and [interior-Clifford spectrum](research/depth/PRESCRIBED_SCALAR_TABLES.md#boundary-independent-spectral-obstruction)
-screen their stated read-only programs and conjugating boundaries.
-The [two-address-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
-still excludes work-only endpoint repairs of the affine Gauss phase.
-A [single additive group visit](research/depth/PRESCRIBED_SCALAR_TABLES.md#single-projective-group-insertion)
-and [paired Pauli frames](research/depth/PRESCRIBED_SCALAR_TABLES.md#paired-pauli-one-commuting-wall)
-give sharper tests for alternation. The paid cubic escape changes both
-the middle and the endpoints. Its polynomial polarization retains the
-large-degree cost for arbitrary tables.
+The [separated-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
+excludes endpoint repairs of the affine Gauss phase. The
+[source route register](research/ROUTE_DECISIONS.md#complete-sources-and-promotion)
+retains the boundary, additive-visit and paired-Pauli scopes.
 
 The [unrestricted three-band bias theorem](research/depth/ROBUST_DECISION_BIAS.md)
 forces exponentially small average signed bias for typical tables and
@@ -98,27 +99,29 @@ four-band problem reaches two differently decorated stabilizer Choi
 states. Typical constant-gap tables require exponentially large middle
 crossing rank. The [exact cancellation witness](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
 shows that large absolute cubic ranks can coexist with unit overlap.
-The first unpaid lower-bound step is a relative compression theorem
-that survives the arbitrary middle Clifford.
+The [complementary-span bound](research/depth/ROBUST_DECISION_BIAS.md#four-band-complementary-spans)
+excludes another four-band family at any width, including full crossing
+rank. The [relative paired-band bound](research/depth/RELATIVE_FOUR_BAND_BIAS.md)
+controls dense geometries with small total pairing deficiency. For
+arbitrary depth at square-root T-count, [temporal cut and Gram
+codes](research/depth/TEMPORAL_AXIS_BIAS.md) require square-root-scale cut
+ranks and dense anticommutation under the stated sign promises. One
+[orthogonal component](research/depth/AXIS_TRAJECTORY_BIAS.md#same-component-symplectic-strengthening)
+must carry the dependence, shared span and noncommuting rank. For complete
+return, [linear traces](research/depth/AXIS_TRAJECTORY_BIAS.md#linear-trace-cut-dependence)
+also require dependence within the halves of every chronological cut.
 The [raw-decision count bound](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
 is now tight for strict computational-basis bias: a [paid controlled Gauss word](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
 represents every table with square-root T-count/width and constant native depth.
-Every computational dirty input has the correct exponentially small bias, yet two fixed
-product superpositions give opposite deterministic answers at every address. Counting these
-strict-sign patterns cannot prove growing depth; a new invariant must use a quantitative bias
-requirement, coherent sign or complete return. The deliverable remains a qualifying source or such an invariant.
+Every computational dirty input has the correct exponentially small bias.
+Two product superpositions give opposite deterministic answers at every
+address, so strict basis signs alone cannot prove growing depth.
 An isolated marked address cannot force growing fixed-error depth:
 [expander zero reflections](research/depth/EXPANDER_ZERO_REFLECTION.md) already have constant depth.
 
-The marked feedback-edge pencil remains an alternative encoding with a paid
-constant-depth matrix–vector XOR. Its [thin invariant-projector readout](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
-cannot produce the full scalar sign with bounded clean work and polynomially
-many insertions when the erased word fixes the code and the address sectors
-are preserved. Reopen that extraction by changing its signal support or
-baseline, rather than merely conjugating the same small projector. A lower
-bound for the general problem can instead use the deepest-layer family
-above and must allow arbitrary Clifford interlayers, table-specific
-compilation and the allowed dirty width.
+The [feedback-edge pencil](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
+still needs a changed signal support or baseline. The lower route has to
+handle substantial total dependence within the halves of a native cut.
 
 ### Other retained results and alternatives
 
@@ -130,11 +133,9 @@ The [four-layer scalar gap](research/depth/FOUR_LAYER_SCALAR_GAP.md)
 closes the zero-clean exactly silent single-mark route at seven or more
 address bits. It concerns a different allocation from the general one-clean gap.
 
-The augmented field recoupler has an exact logarithmic-depth construction
-using the established dirty indicator. Its gate and width ledgers fit the
-relaxed discovery regime. Replacing that indicator with the resulting
-decoder supplies no sublogarithmic recurrence.
-[Logarithmic augmented field recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md#7-a-logarithmic-depth-decoder-for-the-full-augmented-query)
+The [augmented field recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md#7-a-logarithmic-depth-decoder-for-the-full-augmented-query)
+uses the established logarithmic-depth indicator within the discovery budgets.
+Substituting it back into the indicator still pays those query calls.
 
 The complete indicator remains sufficient: on a p-bit address and arbitrary
 $`m=2^p`$ bank, toggle the selected bit and return every helper with

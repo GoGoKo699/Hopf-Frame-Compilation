@@ -229,12 +229,15 @@ such rounds. This concerns that arithmetic representation and its
 gate-by-gate schedule; it is not an unrestricted native T-depth bound.
 Whole-word quantum resynthesis may leave this representation.
 
-There is a second independent scheduling obligation. Giving all m rows
-their own initialized counters uses m k clean counter wires. Reusing
-one counter gives (12). A shallow row primitive alone supplies neither
-a legal parallel full-bank schedule nor a native parallel clean-removal
-word. The shared odd-key bank removes gradient preparation and its
-precision cost, but does not initialize these m counters.
+Giving all m rows their own initialized counters uses m k clean
+counter wires, and serial reuse gives (12). The later
+[shifted-sector promotion](PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
+pays the complete bank schedule from a native-shareable, exactly
+silent false-row source. The exact counter identity has the required
+sector action for one row. To use this route, pay the row's modular
+accumulation and actual reverse at sublogarithmic T-depth with
+private T targets and read-only address boundaries. A generic
+approximation of (1) does not preserve exact silence on false rows.
 
 Nor may all W calls simply be merged before one readout. Since
 
@@ -245,11 +248,49 @@ Nor may all W calls simply be merged before one readout. Since
 their product on one counter/accumulator is independent of x. The
 interleaved reflections are essential to the proven source identity.
 
-The concrete next question is a returned joint modular accumulation or
-a whole-bank counter echo of sublogarithmic native depth, on arbitrary
-banks and with only O(log p) clean wires. Such a word must pay its own
-simultaneous count, depth, precision and return budgets. The present
-identity does not exclude one, and does not construct one.
+The next question is a returned, shareable modular accumulation for
+one exact-silent row, or a different complete counter echo. Either
+needs a sublogarithmic native schedule with the stated simultaneous
+count, precision and return bounds.
+
+### Exact cancellation with a uniform phase seed
+
+A uniform seed on k bits cannot replace modular accumulation by
+arbitrarily low-degree binary phases with exact false-row cancellation.
+Suppose each $`q_r:\mathbb F_2^p\to\mathbb F_2`$ has degree at most
+$`d\ge1`$, with $`q_r(0)=0`$, and
+
+```math
+2^{-k}\sum_{r\in\mathbb F_2^k}(-1)^{q_r(x)}=[x=0].
+```
+
+Then $`k\ge\lceil p/d\rceil`$. Put $`s=\lceil p/d\rceil`$. The
+Hamming weight of each $`q_r`$ is divisible by $`2^{s-1}`$. Indeed,
+expand the parity of its monomial values as the integer sum over
+nonempty selections of monomials. A selection of j monomials has
+coefficient $`(-2)^{j-1}`$ and its product uses at most $`dj`$ variables.
+Summing that term over x gives divisibility by
+$`2^{j-1+\max(0,p-dj)}`$, which is a multiple of $`2^{s-1}`$.
+Exact cancellation means half the seeds give one at each nonzero x,
+so the total weight is $`(2^p-1)2^{k-1}`$. The odd factor gives the
+claimed bound. It is sharp. Partition x into s blocks of at most d
+bits and take $`q_r`$ to be the parity of the block ORs selected by r.
+At any nonzero x some block OR is one, so exactly half the seeds give
+each sign. The sharpness claim concerns the phase family.
+
+For eighth-root phases $`\omega^{q_r(x)}`$, $`\omega=e^{i\pi/4}`$,
+assume each of the three binary digits of $`q_r`$ has degree at most d.
+The indicator of each phase value has degree at most $`3d`$, so its
+weight is divisible by $`2^{\lceil p/(3d)\rceil-1}`$. Sum the exact
+phase-average identity over x and expand in the independent basis
+$`1,\omega,\omega^2,\omega^3`$, using $`\omega^4=-1`$. The coefficient
+of 1 is $`2^k`$ and has the same divisibility. Thus
+$`k\ge\lceil p/(3d)\rceil-1`$ in this variant.
+
+Both bounds concern exact cancellation by literal low-degree phases
+with uniform weights. In particular $`k,d=p^{o(1)}`$ cannot give this
+exact-silent comparison. Approximate cancellation or native
+interference outside this phase average calls for a separate analysis.
 
 ## 6. The whole product is a Hamming-shell observable
 

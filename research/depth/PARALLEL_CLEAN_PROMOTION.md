@@ -19,7 +19,10 @@ whole-space gap for Clifford frames. The later
 [MSS construction](MSS_SPECTRAL_PROMOTION.md) pays a different global
 frame family with native non-Clifford Boolean phases, including their
 T cost, and widens the sufficient window to clean count sublogarithmic
-in p. Neither reduction constructs the missing shallow source itself.
+in p. The [shifted sector votes in Section 8](#random-shift-clean-promotion)
+use a short dirty label and widen the window to $`k=p^{o(1)}`$ after
+charged indicator fusion. The same votes also accept exact-silent
+individual row comparators. A shallow source remains a premise.
 
 ## 1. Source contract and native sharing
 
@@ -855,3 +858,308 @@ bypasses this permutation and pays a larger conditional source window.
 The first unpaid radix operation above remains a limitation of the
 structured packing mechanism, rather than a barrier to promotion by
 other native dynamics.
+
+<a id="random-shift-clean-promotion"></a>
+
+## 8. Clean-source promotion by shifted sector votes
+
+A short arbitrary seed is enough to choose a favorable sector among
+parallel copies. At fixed final error $`\tau\gt0`$, the resulting
+zero-clean promotion has depth $`O_\tau(d_V+\log(k+2))`$ and multiplies
+the source counts and width by $`O_\tau(2^k)`$, with additional
+$`2^{O_\tau(k+1)}`$ resources. For exact source-sector preservation the
+required source error is a constant depending only on $`\tau`$.
+This includes clean counts of order $`\log p`$ in the polynomial-overhead
+indicator envelope. The construction uses neither a packing permutation
+nor a supplied uniform seed. An actual shallow clean source is still a
+premise.
+
+### 8.1 Selective source copies and dirty mask shifts
+
+Use the complete $`k`$-clean query and the native sharing hypothesis of §1.
+Write $`q`$ for the output length, $`Z`$ for the new arbitrary output in its
+Fourier basis, and $`F=f(x)\cdot Z`$. Start with $`k\ge2`$, put
+$`M=2^k`$, $`h=M/4`$, and give the $`h`$ copies disjoint clean-bank masks
+$`A_j`$, old outputs $`T_j`$ and private dirty work. The original
+$`A=(A_j)_{j=1}^h`$ is arbitrary. The cases $`k=0,1`$ use the identity
+wrapper or the retained bounded-clean promotion directly.
+
+Use the selective echo of §2 without the weight bit $`t_j`$. For its
+stable control $`u`$, set
+
+```math
+ K_j=\prod_{\ell=1}^q\mathrm{CCZ}(e_j,T_{j,\ell},Z_\ell),\qquad
+ C_j:e_j\longmapsto e_j+u[A_j=0^k].
+```
+
+Use the two-echo word of §2 with $`D_j=V_j^\dagger K_j V_j`$.
+Exactly as there, with an exact source it gives
+$`(-1)^{uF[A_j=0^k]}`$. Here $`K_j`$ uses the private-target cubic phase
+receipt in §2 and $`C_j`$ uses the read-only conjunction on $`k+1`$
+literals. There are four $`V_j`$/actual-inverse appearances, all on
+private work except for the unchanged address. The control $`u`$ enters
+only in $`C_j`$. The word on $`u=0`$ is exactly identity, with the actual
+inverses even for a leaking source.
+
+For an exactly sector-preserving approximate source $`[V,P]=0`$,
+the completed copy is the identity on the entire $`A_j\ne0^k`$
+subspace. On $`A_j=0^k`$ its error from the ideal phase is at most
+$`2\eta`$, where $`\eta=\|VJ-JQ_f\|`$. In particular the selective
+copy preserves every computational $`A_j`$ sector exactly. This is a
+property of the completed echo, even if V mixes nonzero A labels.
+Thus a parallel batch has error at most $`2K\eta`$ on a sector with
+$`K`$ active copies. Arbitrary entanglement among copies and with a
+reference does not change this signed-sector bound. The simultaneous
+native schedule is that of §2, with distinct private T targets and
+shared $`x,Z,u`$ read-only at the relevant boundaries. Hadamards on u
+convert the controlled batch into an XOR of $`F(K\bmod2)`$ into u.
+For an approximate source, use the actual inverse of this trial
+word whenever an inverse is needed.
+
+For each of three lists, and for each of its $`D=2^r`$ labels, store
+$`t`$ independent offsets $`s^{(i,v,j)}\in\mathbb F_2^{hk}`$.
+For a trial, XOR the chosen offset into A before the batch and undo
+it afterward. This is an exact operation on arbitrary A and the
+arbitrary label register. Apply the retained $`r`$-bit complete dirty
+indicator to the label and a borrowed $`D`$-bit bank, use the hardwired
+binary matrix of offset columns as a CNOT shear from that bank to A,
+actually reverse the indicator and repeat the shear. The unknown old
+bank cancels. This costs $`O(D)`$ T gates and dirty work and
+$`O(D(hk+1))`$ elementary Cliffords, with depth $`O(\log(r+2))`$.
+There is no lookup of the full prescribed table in this mask step.
+
+### 8.2 One set of masks works on every input sector
+
+Choose all offsets independently and uniformly before compiling the
+word. At any fixed original A, a single trial has
+$`K\sim\mathrm{Binomial}(h,1/M)`$, so $`\mathbb EK=1/4`$ and
+$`\Pr(K=1)\ge3/16`$ by Bernoulli's inequality. Call a label good at A
+if at least one of its $`t`$ trials has $`K=1`$ and all have
+$`K\le K_0`$. Given a fixed $`\delta\gt0`$, take $`t,K_0`$ depending
+only on $`\delta`$ so that
+
+```math
+ (13/16)^t+\frac{t}{4(K_0+1)}\le\delta.
+```
+
+This bounds the bad-label probability using independence and Markov's
+inequality. At fixed A the membership bits are independent Bernoulli
+variables across label entries and lists. No independence between
+different A values is needed.
+
+Use the tensor Z, X and Y eigenbases on the same $`r`$ dirty label
+qubits. For list i let $`P_i(A)`$ be its bad-label projector in basis i.
+Each transition matrix between two bases is a $`D\times D`$ unitary
+with entries of magnitude $`D^{-1/2}`$. [Tropp, Lemma 18](https://www.tropp.caltech.edu/papers/Tro08-Linear-Independence-preprint.pdf)
+applies to two independent Bernoulli restrictions of any such matrix.
+Choose a small rational $`\mu\gt0`$, then choose
+$`16\delta^{1/4}\lt \mu`$. A moment order $`m\ge hk+4`$ and a power of two
+$`D=O_\mu((hk+1)^4)`$ can satisfy
+$`13\ln D\le m\le D/2`$, $`D\ge(2m)^4`$ and $`D\ge1/\delta`$.
+These inequalities hold with $`m=hk+4`$ at large k and uniform
+constants. For the finitely many other k, use bounded-clean promotion
+at those k. For Bernoulli probabilities below $`\delta`$, couple by
+inclusion into independent restrictions of probability $`\delta`$.
+With $`\lambda=1/4,u=2`$ the lemma bounds the chance of
+$`\|P_i(A)P_j(A)\|\ge\mu`$ by $`2^{-2m}`$. The union over the three
+pairs and $`2^{hk}`$ A values has probability less than one. A finite
+search with exact algebraic matrix tests supplies a deterministic list
+with strict slack. Thus, simultaneously on all original mask sectors,
+
+```math
+ \|P_i(A)P_j(A)\|\le\mu\qquad(i\ne j).
+```
+
+### 8.3 Coherent votes and arbitrary dirty errors
+
+A basis-i vote is the OR of its t trial answers $`g_j=F(K_j\bmod2)`$.
+Use arbitrary dirty trial targets $`b_j`$ and the completed trial XOR
+words just described. For each nonempty subset $`S`$ of trials, take
+the mixed difference of the phase $`(-1)^{v_i\prod_{j\in S}b_j}`$
+over all $`2^{|S|}`$ corners of those XORs. At a corner, conjugate the
+phase by its chronological XOR word and *actual* reverse. With exact
+trial XORs the product is
+$`(-1)^{v_i\prod_{j\in S}g_j}`$ by the binary mixed-difference identity.
+Taking all nonempty S implements controlled OR, since its Boolean
+algebraic normal form is the sum of all nonempty square-free monomials.
+All trial targets and work return ideally. The central phases are
+returned conjunction words of arity at most $`t+1`$, and t is a
+constant at fixed $`\mu`$. Place H on vote $`v_i`$ before and after the
+controlled sign, using the appropriate Clifford basis change and its
+actual inverse on the label. This uses three initially zero vote bits
+in total, with no initialized trial targets.
+
+Every ideal good label records F and returns the rest exactly. On that
+sector, replacing each actual trial XOR or inverse by its ideal version
+costs at most $`2K_0\eta`$ in norm. The replacement bound applies to
+each ideal intermediate state since the trial words, offsets and
+observable controls preserve the relevant labels. Let $`L_t=2t3^t`$
+be a uniform upper bound on the number of trial appearances in a
+single controlled OR. The entire recording unitary on a good sector
+has error at most $`\xi=2L_tK_0\eta`$, uniformly even on arbitrary
+old vote and trial-target inputs. Every completed actual vote preserves
+x, Z, A and its label in the chosen basis. To see this for A, restore
+the applied XOR offset after each trial and use the exact inactive
+cancellation and active-sector preservation above. There is also exact
+return of the auxiliary indicator bank and its work for each mask call.
+
+For the proof compare each actual vote recording with a unitary which
+uses the exact record on its good sectors and the actual vote fibers on
+its bad sectors. The good and bad sectors are invariant for the actual
+recording, so this comparison is unitary and has full norm difference
+at most $`\xi`$. Fix x,Z,A. On the incoming vote-zero block, the
+comparison's wrong-record Kraus operator $`W_i`$ is a contraction
+supported on both sides by $`P_i(A)\otimes I`$, where the identity
+acts on the other registers. The correct-record Kraus operator has the form
+$`C_i=(I-P_i)+P_iD_iP_i`$, with $`\|D_i\|\le1`$. This admits arbitrary
+private dynamics and entanglement on bad labels. In particular adjacent
+wrong records have norm at most $`\mu`$. When the first and third
+records are wrong and the second is correct, the norm is at most
+
+```math
+ \|P_3(I-P_2)P_1\|+\|P_3P_2D_2P_2P_1\|
+ \le \mu+2\mu^2.
+```
+
+Later votes leave earlier record bits untouched. The four wrong-majority
+histories are orthogonal in the three record bits, so their total
+amplitude norm is at most $`2(\mu+2\mu^2)`$. Apply the literal majority
+phase $`\prod_{i\lt j}\mathrm{CZ}(v_i,v_j)`$ and reverse the *actual*
+three recordings. Replacing all records and their reverses by their
+comparison unitaries costs at most $`6\xi`$. The three-clean
+initialized phase thus has error at most
+
+```math
+ \varepsilon_3\le4(\mu+2\mu^2)+6\xi.
+```
+
+This direct-sum bound includes all x,Z,A superpositions, arbitrary
+label inputs, work return and reference extensions. Conjugate by H on
+Z to get a three-clean complete XOR approximant. Use the retained
+three-clean bounded promotion, whose full-error factor is $`64`$.
+For example choose $`\mu`$ so $`4(\mu+2\mu^2)\le\tau/128`$ and choose
+$`\eta`$ so $`6\xi\le\tau/128`$. The choices occupy this order, with
+no tolerance dependence on $`k`$ in the exact-sector case.
+
+For a leaking source with initialized error $`\epsilon`$, compare each
+V to its exact block extension within $`2\epsilon`$ as in
+[clean promotion §4](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#4-approximate-clean-return-still-gives-a-full-operator-query).
+This exact extension is used only in the proof. The physical batch
+contains four forward/actual-inverse source stages, so each trial
+has full norm error at most $`8h\epsilon`$ from its exact-extension trial,
+including every inactive mask. Do the whole comparison in full norm;
+the emitted vote is not assumed to preserve A for this variant.
+The same construction thus works with $`\xi=8L_t h\epsilon`$ and
+$`\epsilon=O_\tau(2^{-k})`$ sufficiently small, with source resources
+evaluated along that precision schedule.
+
+### 8.4 Native ledger and normalized indicators
+
+For a fixed final tolerance, $`t,K_0,L_t`$ and all visit counts above
+are constants. All bounds on V and on its actual inverse use the same
+majorants. With $`P(k)=O((k+3)^3)`$ denoting the returned zero-test
+count/width allowance, the common final forward and inverse bounds are
+
+```math
+\begin{aligned}
+ T_E&\le O_\tau\bigl(h(T_V+q+P(k))+D\bigr),\\
+ G_E&\le O_\tau\bigl(h(G_V+q+P(k))+D(hk+1)\bigr),\\
+ w_E&\le O_\tau\bigl(h(b_V+q+k+P(k))+D+r\bigr),\\
+ D_T(E)&\le O_\tau(d_V+\log(k+2)).
+\end{aligned}
+```
+
+The counts include every offset indicator, its dense shear and its
+actual reversal. Simultaneous width includes all live source copies,
+the label, offset indicator and its work, dirty trial targets, and
+both old and new promotion banks as required. Offset controlled-XOR
+availability comes from the complete short dirty indicator, not from
+dirty fan-out. The fixed final wrapper may move Z, but the parallel
+trial schedule uses Z only as a read-only Fourier word.
+
+For a complete indicator source on b address bits, set $`q=2^b`$.
+Suppose $`T_V,b_V\le2^b\mathrm{poly}(b)`$ and
+$`G_V\le4^b\mathrm{poly}(b)`$, with $`d_V=o(\log(b+2))`$.
+When $`k(b)=O(\log(b+2))`$, the promoted costs have only polynomial
+address overhead and the [root fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+absorbs it. More generally $`k(b)=b^{o(1)}`$ still suffices. Choose a
+nondecreasing majorant $`\bar k(p)=\max_{b\le p}k(b)`$ and use an exact
+suffix of length $`s=\lceil C_\tau(\bar k(p)+\log_2(p+2))\rceil`$ in
+that proof, with source arity $`b=p-s`$. For large p it is positive.
+The proof of the fusion depends only on the full source error
+$`\tau/8`$ and the aggregate resource ledger. The loss $`2^{-s}`$ in
+root volume absorbs the factor $`2^{O_\tau(k(b)+1)}`$ and all fixed
+polynomial address factors. The exact suffix has
+$`O_\tau(\log(s+2))=o(\log p)`$ T-depth. Thus the normalized
+indicator has $`T,w=O_\tau(2^p)`$, $`G=O_\tau(4^p)`$ and
+$`D_T=o(\log p)`$ at fixed error, without initialized work. The leaking
+case requires these source budgets uniformly at the displayed
+shrinking tolerance. The [complete approximate query transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md)
+would then improve general fixed-precision frame depth at square-root
+width. The normalization argument uses the complete indicator's exact
+suffix, and does not supply the same absorption for a generic scalar
+source at full table arity.
+
+### 8.5 A single clean zero probe can suffice
+
+For each fixed row v, let $`V_v`$ have $`k`$ clean bits, one measured
+arbitrary target t and arbitrary private work. Require the native
+address-sharing hypothesis above and exact invariance of the clean
+code, with arbitrary action on private dirty work. At fixed x put
+$`M_v(x)=J^\dagger V_{v,x}^\dagger Z_tV_{v,x}J`$. The probe promises
+
+```math
+ M_v(x)=Z_t\quad(x\ne v),\qquad \|M_v(v)+Z_t\|\le\eta.
+```
+
+Thus the false row needs only exact preservation of the measured
+target value, with arbitrary private garbage and target phases. On
+the matching row only the stated complete observable error is needed.
+The two-echo word of §8.1 on the active clean sector has action
+$`M_v(x)Z_t`$ when the stable trial control and the row output character
+are one. The later echo returns private work to within the observable
+error. A complete initialized XOR comparator is one way to supply
+this probe. Fixed literal offsets let one zero probe serve every row.
+
+A raw matcher can even move its initialized work if it flips the
+measured target deterministically on the matching row and preserves
+that value deterministically on every false row. In that case
+$`Z_t V_{v,x}J=(-1)^{[x=v]}V_{v,x}J Z_t`$, so the actual
+$`V_{v,x}^\dagger Z_t V_{v,x}Z_t`$ echo gives the literal phase and
+returns the entire initialized code. Replacing the two $`Z_t`$ factors
+by CZs from a new arbitrary target and adding Hadamards on that target
+gives a clean-code-invariant XOR comparator. The old target is then
+borrowed work. All added gates are Clifford, and every source visit
+has its actual inverse.
+
+Give each row private source copies, all using the same short dirty
+label and offset lists. In each controlled batch use the row output
+character $`Z_v`$ where the preceding proof uses $`F`$. A false row's
+completed selective echo is exactly identity across its whole dirty
+space. Its clean-code phases cancel in conjugation and its other
+clean-mask sectors cancel by the exact selective identity. At each x,
+only row v=x can contribute an action or error. Thus the good sets
+are those of $`A_x`$ and obey the same uniform pair-product bound.
+Every conditional trial returns its original masks exactly even when
+it acts imperfectly on private work. The coherent record proof above
+applies on every x,Z,A sector with target sign $`(-1)^{Z_x}`$.
+No approximation error is summed over false rows.
+
+The native batches use disjoint private T targets across rows. Only
+x, the output character word and stable trial control are shared,
+in read-only positions at those boundaries. The offset can be copied
+into every row's masks by the same Clifford shear after one short
+indicator call, because its two applications cancel the common old
+indicator bank on each row. Hence there is no new T-depth multiplier.
+Safe T, G and dirty-width bounds are those in §8.4 multiplied by
+$`2^p`$ for a p-bit address, taking $`q=1`$ and the worst row costs
+in that ledger. If row counts and workspace are polynomial in p and
+$`k=p^{o(1)}`$, the same exact suffix absorbs the total
+$`2^{p+O_\tau(k+\log(p+2))}`$ costs. A native row comparator with
+sublogarithmic depth and these hypotheses would therefore give a
+normalized complete indicator. The current constant-accuracy
+[expander equality](GATEWISE_READ_ONLY_EQUALITY.md) is exact on the
+matching row and approximate on all false rows. That precision
+profile does not meet the false-row hypothesis here. The retained
+[odd-key counter](COHERENT_COUNTER_SOURCE.md) provides the exact
+row contract but still owes shallow native joint modular arithmetic.
