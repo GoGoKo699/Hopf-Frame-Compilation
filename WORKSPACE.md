@@ -14,11 +14,11 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The 27 November continuation started from [PR #279](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/279)
-at [7e26670](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/7e2667046e47114d03c5244795ef4092b3da41c3).
-The [relative-bias and clean-promotion review](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/280)
-records the [4b30dec](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/4b30dec4b33bbc1afaa4e2a88c613c8c19c41aa7)
-tree used to start the [R99 continuation](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Flogarithmic-precision-depth).
+The 27 November continuation started from [PR #279](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/279) at
+[7e26670](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/7e2667046e47114d03c5244795ef4092b3da41c3).
+The verified relative-bias and shifted-sector promotion are in [PR #280](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/280).
+The precision reviews are [R99](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/281),
+[R100](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/282) and [R101–R102](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pulls?q=is%3Apr+head%3Aresearch%2Fgrouped-programmed-precision).
 
 <a id="current-depth-frontier"></a>
 
@@ -27,9 +27,9 @@ tree used to start the [R99 continuation](https://github.com/GoGoKo699/Hopf-Fram
 [R99](research/depth/PROGRAMMED_ROTATION_DEPTH.md) gives
 $`O(NL/b^2+\log(n+2)+\log^2(L+2))`$ depth through $`L\le cn`$
 with the same simultaneous budgets as [all-precision R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md).
-The [frontier](docs/OPEN_PROBLEM.md#large-width-t-depth) owns both ranges.
-At fixed accuracy and square-root dirty width, logarithmic upper versus
-constant lower native T-depth remains open.
+[R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md) gives sublinear precision depth
+for $`\log_2 L=o(n)`$. [R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$.
+The fixed-accuracy gap at square-root dirty width is constant to logarithmic.
 [R79 remains selected Result D](manuscript/PUBLICATION_SCOPE.md).
 
 ## Main unfinished route and exact missing operation
@@ -62,7 +62,7 @@ at the match, with $`p^{o(1)}`$ clean bits and $`o(\log p)`$ T-depth?
 The [shifted-sector promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
 pays complete return given exact clean-sector preservation and this
 probe, or a joint clean indicator. The [counter](research/depth/COHERENT_COUNTER_SOURCE.md#5-what-remains-unpaid-in-joint-arithmetic)
-owes shallow row arithmetic. Fingerprints still incur false-row error.
+owes shallow row arithmetic. [Monomial branch SELECT](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-select-with-accepted-work-motion) still needs logarithmic Toffoli depth with few clean inputs.
 
 A separate sufficient route gives the correct signed gap on diagonal blocks of
 $`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum

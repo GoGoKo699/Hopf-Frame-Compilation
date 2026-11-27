@@ -292,6 +292,87 @@ with uniform weights. In particular $`k,d=p^{o(1)}`$ cannot give this
 exact-silent comparison. Approximate cancellation or native
 interference outside this phase average calls for a separate analysis.
 
+### Monomial SELECT with accepted work motion
+
+Uniform SELECT can also move all the branch work. Consider k selector
+bits prepared and recombined by Hadamards, and r additional initialized
+bits tested for zero at the output. At each fixed address x the branch
+indexed by the selector t is monomial in the computational basis. It
+may implement any address-dependent permutation of the additional
+clean and arbitrary dirty wires, with literal eighth-root phases.
+The selector is unchanged inside SELECT. Let $`K_x`$ denote the
+accepted compression, including both initialized tests.
+
+Suppose $`K_0\ne0`$ and $`K_x=0`$ for every nonzero x.
+If, at fixed computational work input and selector, output bits have
+Boolean degree at most $`D_o`$ in the p address bits and the phase
+exponent has integer multilinear degree at most $`D_\phi`$
+modulo eight, then
+
+```math
+p\le rD_o+4k\max\{D_o,D_\phi\}.
+```
+
+Here all degrees may depend on the circuit family. In the native
+monomial grammar of NOT, CNOT and Toffoli with standard diagonal
+Clifford+T phases, d disjoint Toffoli rounds give the sharper
+$`p\le(r+4k)2^d`$. Even false norm strictly below
+$`2^{-4k}`$ forces exact false silence in this SELECT grammar.
+Thus subpolynomially many initialized bits still need logarithmic
+Toffoli depth in the branches. These statements allow branch work
+motion and an arbitrary nonzero marked block.
+
+Fix a computational dirty input with nonzero marked output and a
+Walsh output character detecting that output. Multiply its matrix
+element by the uniform selector denominator and the Walsh-vector
+normalization denominator. The numerator is a sum of $`2^k`$
+eighth roots or zero, with each summand the branch phase times that
+output character and the r accepted-output literals. Exact false
+silence makes the resulting function $`c[x=0]`$ for
+$`c\ne0`$. The Walsh character is an added phase with exponent
+four times a Boolean polynomial of degree at most $`D_o`$,
+regarded modulo eight.
+
+Use the prime $`\lambda=1-\omega`$ of $`\mathbb Z[\omega]`$.
+Its norm is two, and 2 is a unit times $`\lambda^4`$
+since the reduction of the eighth cyclotomic polynomial modulo 2
+has one ramified prime. Equivalently, the four factors
+$`1-\omega^j`$ for odd j multiply to 2 and each ratio
+$`(1-\omega^j)/(1-\omega)`$ is an algebraic integer of norm one.
+All four conjugates of c have modulus at most $`2^k`$,
+so $`v_\lambda(c)\le4k`$.
+
+Expand a phase polynomial into the product of its factors
+$`1+(\omega^{a_S}-1)\prod_{i\in S}x_i`$.
+Each nonconstant factor brings at most $`D_\phi`$ variables
+and at least one $`\lambda`$. Include the Walsh phase with
+degree $`D_o`$. For one accepted-output literal the integer
+parity expansion of a Boolean degree-$`D_o`$ function
+has terms from j monomials using at most $`jD_o`$ variables
+with coefficient divisible by $`2^{j-1}`$. Hence
+the r literals allow up to $`rD_o`$ variables without
+a valuation cost. Every term that reaches the full address monomial
+must otherwise pay at least one $`\lambda`$ per
+$`\max(D_o,D_\phi)`$ variables. Sums preserve this
+divisibility, and the full address coefficient of $`c[x=0]`$
+is $`(-1)^pc`$. This proves the inequality.
+
+For the native version, every computational label has degree at
+most $`2^d`$. Instead of expanding the total phase exponent,
+expand each physical phase as $`1+(\omega^j-1)b`$, where
+b is the current Boolean label. A term from u monomials has
+valuation at least $`1+4(u-1)\ge u`$. For CZ, use
+$`1-2b_1 b_2`$ and expand the two labels, with the same
+bound on the sum of the two monomial counts. This pays at
+least one prime per $`2^d`$ variables outside the free
+output-literal allowance. For the approximate claim, any nonzero
+computational entry has a numerator with integer norm of magnitude
+at least one and three other conjugates of size at most $`2^k`$.
+After division by the selector denominator, that entry has modulus
+at least $`2^{-4k}`$. A uniformly smaller block norm
+therefore gives zero. Internal nonmonomial branch interference and
+a joint readout without independent row acceptance remain open.
+
 ## 6. The whole product is a Hamming-shell observable
 
 The E operators do commute, on the entire space and even outside the

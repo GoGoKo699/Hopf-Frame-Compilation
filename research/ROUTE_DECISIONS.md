@@ -301,8 +301,26 @@ The earlier zero-clean-only discovery restriction, one-band inverse-square-root-
 search and unpaid flat-sector alignment are superseded by
 [clean promotion and paid recovery](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md).
 Old precision-envelope and local-compiler next steps are superseded by
-[R99 programmed rotations](depth/PROGRAMMED_ROTATION_DEPTH.md) in their
-precision range and [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
+[R99 programmed rotations](depth/PROGRAMMED_ROTATION_DEPTH.md) and
+[R100 geometric chunks](depth/GEOMETRIC_CHUNK_DEPTH.md) in their
+precision ranges, with [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
+R100 spends exponential volume only on a short fixed core. Its two seed
+bases improve the operator error without increasing the number of long
+table queries. Extending to larger precision needs a cheaper chunk or
+fewer sequential chunks. Applying the promotion to arbitrary-table
+rows still needs an exactly silent source sector. A
+[monomial SELECT screen](depth/COHERENT_COUNTER_SOURCE.md#monomial-select-with-accepted-work-motion)
+includes arbitrary branch permutations and a nonzero marked block.
+Reopen with interfering paths inside a branch or a shared readout.
+[R101](depth/GROUPED_PROGRAMMED_PRECISION.md) groups fine corrections and
+pays graph leakage for polynomially many candidate slots, regardless of
+the number of occupied keys. Its near-linear upper uses R100 loaders.
+[R102](depth/COMPACT_PROGRAM_PRECISION.md) replaces the full correction table
+by exact arithmetic on the original angle row and uses field phases to
+pay constant native depth per coarse layer. At higher precision it promotes
+the complete exact-key loader once, reducing the cost paid per chunk.
+The remaining fixed-accuracy
+bottleneck is the native depth of loading an arbitrary full table.
 The [research catalogue](README.md#session-records-and-designs)
 retains every outcome and design document. Consult [WORKSPACE](../WORKSPACE.md)
 for the live question rather than treating an old session's final paragraph

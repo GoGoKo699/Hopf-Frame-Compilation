@@ -17,7 +17,7 @@ a premise of the current compiler.
 | C1–C5: exact synthesis imports | [Imported toolkit](#1-imported-state-preparation-toolkit) | Core premises for A |
 | H1–H9 and Q1–Q7: inherited interfaces | [Hopf](#2-inherited-hopf-operator-interface) and [QBP](#3-inherited-qbp-interface) | Shared operator and output contracts |
 | R1–R11: exact compiler results | [Exact results](#4-results-established-in-this-repository) | Core and supporting results for A |
-| F1–F59 and R12–R99: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
+| F1–F60 and R12–R102: finite-precision register | [Fault-tolerant register](#5-fault-tolerant-sources-and-contribution-boundaries) | Mixed register; each row retains its actual scope and review status |
 | Detailed literature comparison | [Extended lineage](#extended-lineage-for-the-core-and-its-supporting-constructions) | Attribution and comparison detail |
 | Developmental depth and endpoint studies | [Research literature](../../research/RELATED_WORK.md) | Research record; not additional principal results |
 | State-based QBP literature | [Separate supplement](../../supplements/state_based_qbp/RELATED_WORK.md) | Separate task and decoder contracts |
@@ -187,6 +187,7 @@ from the exact clean-workspace size–depth theorem.
 | F57 | [Ballet and Rolland, arXiv:2410.12383v1](https://arxiv.org/pdf/2410.12383v1), Theorem 4.1 with base field and number of factors both two | binary field multiplication has tensor rank linear in extension degree | The [field SELECT ledger](../../research/depth/GATEWISE_READ_ONLY_EQUALITY.md#linear-rank-field-select) pays one private affine phase per rank term, with quadratic Clifford count. The reference supplies the rank bound. The native schedule, arbitrary-input action and overlap recovery are local arguments |
 | F58 | [Tropp, On the Linear Independence of Spikes and Sines](https://www.tropp.caltech.edu/papers/Tro08-Linear-Independence-preprint.pdf), Lemma 18 | tail bound for independent Bernoulli row and column restrictions of a flat contraction | The [shifted-sector promotion](../../research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion) applies the bound to transitions between three mutually unbiased bases, then takes a union over every dirty mask input. The native masks, coherent error estimate and complete indicator transfer are local arguments |
 | F59 | [Lagrange's four-square theorem, English translation](https://www.cs.toronto.edu/~yuvalf/Lagrange%20four%20square%20theorem%20%28English%29.pdf) | every positive integer is a sum of four integer squares | [R99](../../research/depth/PROGRAMMED_ROTATION_DEPTH.md) uses the four squares to complete a dyadic unit vector exactly. The anticommuting-Pauli implementation, two-basis rotation selection and resource splice are local arguments |
+| F60 | [Hesse, Allender and Barrington (2002)](https://www.cs.rutgers.edu/~allender/papers/division.pdf) | polynomial-size constant-depth majority circuits for exact iterated binary multiplication and addition | [R102](../../research/depth/COMPACT_PROGRAM_PRECISION.md) uses this arithmetic class for dyadic coefficient programs. Returned dirty lowering, shared row capture and the frame splice are local proofs |
 
 Standard Pauli linear combinations, reversible arithmetic, and oblivious
 amplitude amplification are used with their actual preparations and adjoints.
@@ -324,6 +325,12 @@ full-error guarantees. The local construction keeps an exact half-amplitude
 clean block, broadcasts a single word program to arbitrary slots, and
 uses two nearly complementary dirty-seed failure spaces to apply the
 rotation with complete error control. R79 remains selected Result D.
+
+[R100](../../research/depth/GEOMETRIC_CHUNK_DEPTH.md) chunks fixed geometric sources.
+[R101](../../research/depth/GROUPED_PROGRAMMED_PRECISION.md) programs jointly by dyadic graph correction.
+[R102](../../research/depth/COMPACT_PROGRAM_PRECISION.md) gives additive depth
+$`O((1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$. It uses F60 for
+compact arithmetic and clean-key reuse for longer geometric sources.
 
 For R79, the selected all-precision envelope is
 
