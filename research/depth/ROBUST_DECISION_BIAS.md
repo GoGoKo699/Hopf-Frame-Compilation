@@ -10,6 +10,8 @@ The statement allows arbitrary Clifford walls, including physical address
 motion, and places no bound on either width or gate count. It already holds
 when the dirty bank is averaged in the computational basis. The complete
 one-clean decision condition implies this weaker bias requirement.
+The [four-band result below](#four-band-complementary-spans)
+covers complementary axis spans even at large middle crossing rank.
 
 ## 1. Statement and normalization
 
@@ -707,7 +709,276 @@ is to rule out a rank-localization argument based only on the
 absolute cubic ranks in the actual native representation.
 
 The remaining question is whether relative cancellation between
-the two decorations gives a short description when the joint
-middle-axis rank is large. Any generalization must measure that
-relative structure or use a different invariant. The results
-above leave the unrestricted asymptotic depth gap open.
+the two decorations gives a short description at large joint
+middle-axis rank. The next section resolves a class in which
+each side's Pauli paths at the midpoint have distinct labels.
+
+<a id="four-band-complementary-spans"></a>
+
+## 8. A four-band bound for complementary axis spans
+
+Absorb the Clifford walls as in the
+[axis trajectory formulation](AXIS_TRAJECTORY_BIAS.md).
+Let $`L_1,L_2,L_3,L_4`$ be the four native band axis spans in
+chronological order, with their actual independent axis bases.
+Suppose
+
+```math
+ L_2\cap(L_1+L_3)=0,\qquad L_3\cap(L_2+L_4)=0,
+```
+
+and the two symplectic pairing maps
+$`L_1\longrightarrow L_2^*`$ and
+$`L_4\longrightarrow L_3^*`$ are injective. For example, these
+hypotheses hold for alternating full bases of two complementary
+isotropic spans with a perfect pairing, including different bases
+on each revisit. Middle crossing, temporal span overlap, and
+total axis nullity can all scale with the full axis count in
+that example.
+
+For $`0\lt\delta\lt1/2`$ the Fourier coefficient arrays in
+Section 1 have a uniform coefficient net at tolerance delta
+whose logarithmic cardinality is $`O(n^2\log(n+2))`$, where
+$`n=(m+1)(1+\log_2(1/\delta))`$. The bound is independent of
+physical width and gate count. In particular, with one clean
+bit and $`m=a+1`$, a uniform random sign table has, with
+probability at least $`1-e^{-a}`$, absolute signed margin at
+most $`O((a+1)^2\sqrt{\log(a+2)}\,2^{-a/2})`$ simultaneously
+over this class. An entire initialized-code signed gap implies
+at least as large an averaged signed margin. The
+[complete-frame measurement](#a-direct-complete-frame-error-floor)
+also applies to this class.
+
+### Midpoint marginals penalize active exterior axes
+
+For a fixed input Fourier label z, transport its Pauli through
+bands one and two, and transport the output Pauli backward
+through bands four and three. Their normalized Pauli coefficient
+vectors have inner product $`\beta_z`$. Each half has distinct
+Pauli labels for distinct turn words, because $`L_1\cap L_2=0`$
+and $`L_3\cap L_4=0`$. A turn at an anticommuting axis uses
+one of two terms of equal squared modulus. The squared
+coefficient arrays are thus probability distributions on the
+Pauli labels, sampled by independent uniform turns at the
+active axes of each successive band.
+
+Let $`h_1(z)`$ be the number of active axes in band one.
+The second band's activation vector is an affine function
+of those $`h_1(z)`$ independent turn bits. Its linear part has
+rank $`h_1(z)`$ by the injective pairing. Choose that many
+axis coordinates in band two with independent activation bits.
+The matching linear coordinate functionals on $`L_2`$ extend
+by zero on $`L_1+L_3`$, by the disjointness assumption.
+Project both probability distributions onto these functionals.
+In the forward half each resulting bit, up to translation by
+the input Pauli label, is one exactly when its uniform
+activation bit and its independent uniform turn coin are both
+one. The projected law is a product of Bernoulli $`1/4`$ bits,
+up to those translations. In the backward half the projection
+annihilates every turn in band three, so its law is uniform
+on an affine subspace from the band four turns.
+
+For probabilities P and Q their affinity is
+$`\sum_v\sqrt{P(v)Q(v)}`$. Taking absolute values in the
+Pauli inner product and then grouping by the projected
+coordinates bounds $`|\beta_z|`$ by the projected affinity.
+For a uniform affine law of dimension d on h coordinates,
+choose d coordinate pivots giving a bijection from its support
+to $`\mathbb F_2^d`$. In the affinity with the biased product
+law, sum over these pivots and bound each remaining coordinate
+factor by $`\sqrt{3}/2`$. This gives
+
+```math
+ \left(\frac{\sqrt{3}}2\right)^{h-d}
+ \left(\frac{\sqrt{3}+1}{2\sqrt{2}}\right)^d
+ \le \cos(\pi/12)^h.
+```
+
+Reversing the argument uses $`L_3\cap(L_2+L_4)=0`$ and the
+other injective pairing. Thus a coefficient at least delta
+in modulus requires both exterior activation counts at most
+$`K=\lceil\log_{1/\cos(\pi/12)}(1/\delta)\rceil`$.
+
+### A sparse description of the retained paths
+
+Only consider addresses z with both exterior counts at most K.
+For fixed z and exterior turn words, the two midpoint label
+constraints are affine cosets of $`L_2`$ and $`L_3`$.
+Their intersection has at most one label because
+$`L_2\cap L_3=0`$. Thus there are at most $`2^{2K}`$ matched
+path pairs per z. On the affine domain of feasible exterior
+turn words the two interior turn words are uniquely determined
+affine functions. Exclude any path whose sum of interior
+activation counts exceeds $`k=\lceil4K+2\log_2(1/\delta)\rceil`$.
+Each excluded contribution has magnitude at most $`2^{-k/2}`$,
+so omitting them costs at most delta per coefficient.
+
+Take the affine hull of all valid retained tuples consisting
+of z and the two exterior turn words. Its dimension is
+$`O((m+1)K)`$. Indeed the hull of the tested z values has an
+affine basis of at most m+1 such values. Each exterior mask
+is affine in z, so only the union of their at most
+$`2(m+1)K`$ active indices on that basis can be used by
+exterior turns. If the retained tuple hull is empty, use the
+zero array. Otherwise all four turn and activation vectors
+are affine on that hull. At each basis point, selected from
+the retained tuples, their supports have total size
+$`O(K+k)`$. Relabel their union and store the sparse index
+lists as in the
+[trajectory code](AXIS_TRAJECTORY_BIAS.md#total-axis-nullity-net).
+The ordered Pauli phases on both halves combine into one
+quadratic exponent modulo four on the hull. The sparse lists,
+address values and phase polynomial use $`O(n^2\log(n+2))`$ bits.
+
+The decoder interpolates these data and sums matched paths
+with valid turns and both exterior counts at most K. Its
+additional valid hull paths, if any, belong to the discarded
+large interior-count class, so the omitted-term bound still
+applies. Addresses with either exterior count above K have
+exact coefficient magnitude below delta by the affinity
+bound. Taking real parts, applying Parseval and restricting
+the clean coordinate to zero gives normalized $`L^2`$ error
+at most $`2^{-a/2}/2`$ at $`\delta=2^{-a-2}`$.
+Clip each profile to $`[-1,1]`$ and apply the random-sign
+tail bound and union count as in Section 5.
+
+The argument uses a projection that keeps one interior band's
+axis coordinates and erases the opposite interior band and
+the earlier exterior band. It also uses injectivity of the
+two exterior pairings. The large-crossing cancellation example
+in Section 7 falls outside these conditions. The unrestricted
+asymptotic depth gap remains open.
+
+<a id="four-band-first-pair-rank"></a>
+
+## 9. A four-band bound for small first-pair rank
+
+In a common Clifford frame let r be the rank of the cross-commutation
+matrix between the first two native T-band axis spans. The averaged
+bias functions of these four-band words have an epsilon net with
+logarithmic cardinality $`\mathrm{poly}(m+r+\log(1/\epsilon))`$,
+independent of physical width. Here m counts the fixed computational
+input coordinates, as in Section 1. At one clean input, almost every
+a-bit sign table therefore has signed margin at most
+$`P_{\rm ext}(a+r)2^{-a/2}`$ for an absolute polynomial, with failure
+probability at most $`e^{-a}`$ simultaneously across all r. A fixed
+positive margin requires exponential first-pair rank for typical tables.
+This complements the middle-pair bound of Section 7.
+
+### The early Choi vector has a uniform stabilizer expansion
+
+Modulo the radical of their sum, the two isotropic axis spans are
+complementary r-dimensional Lagrangians. Lift bases from the original
+spans. A fixed Clifford makes their respective bases Z and X on r
+active wires, and makes the radical diagonal on spectators. Track each
+physical axis sign as an affine offset in its T exponent. At spectator
+word y the first two bands become
+$`U(y)=H^{\otimes r}D_B(y)H^{\otimes r}D_A(y)`$, with diagonal
+modulo-eight exponents $`p_B(e,y),p_A(d,y)`$. Each exponent is a
+sum of signed affine parity bits. With $`\omega=e^{i\pi/4}`$,
+the active matrix entry is
+
+```math
+ U(y)_{a,d}=2^{-r}\sum_e (-1)^{e\cdot(a+d)}
+                    \omega^{p_B(e,y)+p_A(d,y)} .
+```
+
+In these coordinates let the Fourier input Pauli have X and Z masks
+$`u=(u_A,u_Y)`$ and $`v=(v_A,v_Y)`$, and ordered-product scalar
+$`i^{s(z)}`$. Its masks are linear in z and its scalar is the
+bounded-degree modulo-four Pauli cocycle. Expanding both active
+matrix entries of $`UP_zU^\dagger`$ gives its normalized Choi vector
+on W physical wires as
+
+```math
+ \begin{aligned}
+ |UP_zU^\dagger\rangle
+   &=2^{-5r/2}\sum_{h=(a,b,d,e,f)} |B(z,h)\rangle,\\
+ |B(z,h)\rangle
+   &=2^{-(W-r)/2}\sum_y\omega^{q(y;z,h)}
+         |a,y+u_Y\rangle\,|b,y\rangle ,
+ \end{aligned}
+```
+
+where all five history indices are r-bit words and
+
+```math
+ \begin{aligned}
+ q(y;z,h)
+   ={}&p_B(e,y+u_Y)-p_B(f,y)\\
+      &+p_A(d+u_A,y+u_Y)-p_A(d,y)\\
+      &+4\big[e\cdot(a+d+u_A)+f\cdot(b+d)
+                   +v_A\cdot d+v_Y\cdot y\big]+2s(z).
+ \end{aligned}
+```
+
+The coefficient uses the Choi normalization $`2^{-W/2}`$,
+two matrix-entry factors $`2^{-r}`$, and the norm
+$`2^{(W-r)/2}`$ of each unnormalized spectator sum.
+
+In either band's paired exponent, each spectator parity
+$`\ell_Y(y)`$ occurs with the same signed weight. Its difference is
+
+```math
+ (\ell_Y(y)\oplus\alpha)-(\ell_Y(y)\oplus\beta)
+                 =(\alpha-\beta)(1-2\ell_Y(y)),
+```
+
+where alpha and beta are affine bits of $`(z,h)`$. This literal
+integer identity removes every degree-three spectator term. After
+extracting $`\omega^{q(0;z,h)}`$, the relative phase is a single
+diagonal Clifford wall on fixed spectator parities, with affine
+S or S-dagger occurrence bits and a linear Z mask. The scalar has
+bounded-degree modulo-eight digits by the phase arithmetic in
+Section 4, including the active quadratic Hadamard signs. A fixed
+spectator Bell preparation, this diagonal wall, and affine Pauli
+shifts on the active labels and first spectator leg prepare every
+$`|B(z,h)\rangle`$ uniformly. Realifying the parity S gates uses
+the same pairwise carries and fixed rebit Hadamards as in Sections
+4 and 7. Those carries are quadratic in spectator data and have
+bounded-degree parameter coefficients. The histories and Bell
+registers are mathematical descriptions of overlaps.
+
+### One description for all histories
+
+Absorb the fourth band into the measured Pauli. Its Choi vector is
+stabilizer, and the third band contributes one fixed T decoration
+after a fixed change of Clifford frame. Denote the resulting
+fixed decorated vector by $`|\psi\rangle`$. The Fourier coefficients
+are $`2^{-5r/2}\sum_h\langle B(z,h)|\psi\rangle`$.
+Sections 2–4 apply to the bounded-round Clifford preparation
+family above. A significant overlap gives one common cubic
+restriction on the support of the fixed decorated vector. After
+the coset split, lift by all monomials up to the absolute degree
+bound of the relative symplectic entries. The active support,
+signed Pauli descriptions, and literal scalar reconstruction then
+use a polynomial number of bits across all $`(z,h)`$.
+
+The history coefficients have one-norm $`2^{5r/2}`$. Set the
+term tolerance proportional to $`\epsilon 2^{-(m+5r)/2}`$ before
+the coset split. The summed coefficient error and Parseval give
+normalized $`L^2`$ error at most epsilon for the physical bias.
+The increased log inverse tolerance is $`O(m+r+\log(1/\epsilon))`$.
+The decoded bias has $`L^2`$ norm at most $`1+\epsilon`$.
+Thus the random-sign comparison in Section 5 pays no history
+factor in the final margin. Sum the failure probabilities
+$`e^{-a-r-1}`$ over r to give the simultaneous bound.
+
+### The actual adjoint also screens the last pair for complete corners
+
+For the [complete deepest-corner frames](#a-direct-complete-frame-error-floor),
+the actual adjoint of an initialized-isometry approximation has the
+same error against the ideal adjoint, by the
+[initialized-isometry inverse identity](BOOLEAN_QUERY_FRAME_REDUCTION.md#approximation-leakage-and-the-actual-inverse).
+It reverses native T bands and preserves their cross-commutation
+ranks under the corresponding change of Clifford frame. On target
+input zero, the ideal adjoint has the same computational decision
+outcome f(x) as the ideal forward frame. Apply the same error floor
+and first-pair bound to the reverse to screen the original last pair.
+At fixed error below $`\sqrt{2-\sqrt2}`$ and polynomial clean count,
+typical complete corners thus require exponential rank at all three
+adjacent pairs if achieved in four bands. The forward and reverse
+probability estimates can use half of the same failure budget.
+This inference uses the complete initialized action of the frame and
+its adjoint. An arbitrary moving raw decision can rotate its sign
+subspaces into different addresses under reversal.
