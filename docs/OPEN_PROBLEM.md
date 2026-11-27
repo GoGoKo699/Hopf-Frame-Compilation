@@ -34,7 +34,7 @@ evaluation, without an efficient-preprocessing claim.
 | Question | Strongest established statement or remaining obligation |
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
-| General depth upper | R96 at all precisions. R99 and R100 improve the precision term in overlapping ranges with the same simultaneous budgets. |
+| General depth upper | R96 at all precisions. R99–R102 improve the precision term in overlapping ranges at the same simultaneous budgets. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus constant unrestricted lower depth remains open |
 | Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
@@ -116,9 +116,9 @@ $`n^{1/4}\le L\le2^{c'n}`$ with $`a=\log_2(L+2)`$ and depth
 D_T=O\!\left(NL/b^2+\min\{(1+L/n)a^2,\ (1+L/n)a+L^{1/8}\ell\}\right).
 ```
 
-At $`b=\Theta(\sqrt{NL})`$, R100 gives $`O(\log^2 n)`$ for
-$`L=\Theta(n)`$ and $`o(L)`$ for $`\log_2 L=o(n)`$ in its range.
-Both bounds match worst-case depth where $`NL/b^2`$ dominates.
+At $`b=\Theta(\sqrt{NL})`$, R100 gives $`o(L)`$ for $`\log_2 L=o(n)`$.
+[R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\ell)`$ for $`6\le L\le2^{c''n}`$.
+The bounds match worst-case depth where $`NL/b^2`$ dominates.
 
 **Selected Result D: [R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md).**
 Use the same simultaneous guarantees and write the width threshold as $`17B_D`$. Define

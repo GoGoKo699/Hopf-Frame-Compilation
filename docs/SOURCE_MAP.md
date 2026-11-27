@@ -85,7 +85,7 @@ and [matched-program consequence](QBP_CONSEQUENCE.md).
 The [publication scope](../manuscript/PUBLICATION_SCOPE.md) owns the
 selected formulas, precision ranges and literal reservations. The
 [resource frontier](OPEN_PROBLEM.md) gives the research upper bounds
-R96 and R99, and the remaining depth question. R79 remains selected
+R96 and R99–R102, and the remaining depth question. R79 remains selected
 Result D.
 
 | Claim | Local construction | Imported premises and boundary |
@@ -97,6 +97,7 @@ Result D.
 | All-precision research upper, R96 | [Linear precision depth](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | Existing source, recovery and query premises, with the original widths and full operator contract |
 | Growing-precision improvement, R99 | [Programmed rotation depth](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) | Lagrange completion and retained native queries support the new zero-clean rotation; the full-frame splice preserves the R96 budgets through $`L\le cn`$ |
 | Higher-precision improvement, R100 | [Geometric source chunks](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) | Exact local Clifford combinations, returned dirty conjunctions and tensor failure projectors accelerate fixed sources while keeping full mask volumes |
+| Grouped and compact arithmetic schedules, R101–R102 | [Grouped correction](../research/depth/GROUPED_PROGRAMMED_PRECISION.md), [compact programme](../research/depth/COMPACT_PROGRAM_PRECISION.md) | Exact dyadic graph correction and shared selector work in R101. R102 uses F60 for integer arithmetic, with native returned threshold evaluation and field phase synthesis proved locally |
 
 The [stable R register](reference/SOURCE_CATALOGUE.md#4-results-established-in-this-repository)
 retains the full statements, separate state-based QBP results and earlier

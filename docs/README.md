@@ -96,7 +96,7 @@ the full-isometry composition includes earlier leakage and literal phases.
 | [Uniform baseline](UNIFORM_PRECISION_DEPTH.md) | Rectangular allocation, cutoff, weighted sums and literal-width fallback |
 | [Retained real R70](../research/depth/ALL_PRECISION_DEPTH.md) and [complex R71](../research/depth/COMPLEX_FRAME_DEPTH.md) | Separate two-clean proofs and their original allocations |
 
-**R96 covers all precisions. R99 and R100 reduce depth in overlapping
+**R96 covers all precisions. R99–R102 reduce depth in overlapping
 precision ranges.** Their statements and open optimality gap are in the
 [resource frontier](OPEN_PROBLEM.md). R79 remains selected Result D.
 
@@ -105,6 +105,8 @@ precision ranges.** Their statements and open optimality gap are in the
 | [All-precision linear depth, R96](../research/depth/ALL_PRECISION_LINEAR_DEPTH.md) | General all-precision theorem with original-width resource and error closure |
 | [Programmed rotations, R99](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) | Full-space shallow rotations and improved growing-precision frame depth |
 | [Geometric source chunks, R100](../research/depth/GEOMETRIC_CHUNK_DEPTH.md) | Short zero-clean loader chunks with tensor-sector accuracy, and unchanged mask-query volume |
+| [Grouped programmed precision, R101](../research/depth/GROUPED_PROGRAMMED_PRECISION.md) | A shared coarse and residual programme per group lowers near-linear precision depth |
+| [Compact programme precision, R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) | Coarse field phases and returned threshold arithmetic use one compact angle row per outer prefix |
 | [Global borrowed-precision stage](../research/depth/GLOBAL_BORROWED_PRECISION_STAGE.md) and [fast capped reference](../research/depth/FAST_CAPPED_GEOMETRIC_REFERENCE.md) | Separate initialized precision scratch from coarse geometry; compare on the full space |
 | [Polynomial-precision bridge](../research/depth/POLYNOMIAL_PRECISION_DEPTH.md) | Three charged coarse contractions |
 | [Direct-prefix terminal](../research/depth/DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md) | Fixed fine-mask sequence and explicitly programmed shorter native coarse word |
