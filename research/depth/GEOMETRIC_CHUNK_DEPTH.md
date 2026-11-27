@@ -4,6 +4,10 @@
 [All-precision bound R96](ALL_PRECISION_LINEAR_DEPTH.md) ·
 [Direct prefix terminal](DIRECT_PREFIX_HIGH_PRECISION_TERMINAL.md)
 
+[R104](EXACT_KEY_COVER_PRECISION.md) uses an exact nonlinear permutation of
+the keys and reuses short payloads across both key frames. It removes the
+precision-driven slot replication of the recovery below.
+
 **Theorem R100.** There is an absolute $`c\gt 0`$ such that, for integers
 $`n\ge1`$ and $`L\ge6`$ with $`n^{1/4}\le L\le 2^{cn}`$, every prescribed
 complete real Hopf frame and prescribed phase-dressed complex magnitude

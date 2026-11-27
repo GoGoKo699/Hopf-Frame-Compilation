@@ -34,7 +34,7 @@ evaluation, without an efficient-preprocessing claim.
 | Question | Strongest established statement or remaining obligation |
 |---|---|
 | Selected count frontier | Results B–C are settled at their stated clean/dirty allocations; the exact-base and banked ranges below remain distinct |
-| General depth upper | R96 at all precisions. R99–R102 improve the precision term in overlapping ranges at the same simultaneous budgets. |
+| General depth upper | R96 at all precisions. R99–R102 and [R104](../research/depth/EXACT_KEY_COVER_PRECISION.md) improve the precision term at the same budgets. R104 gives sublinear additive depth through $`L=o(N)`$ in its high-precision range. |
 | Precision-dominated depth | [R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean input and $`T=O(L)`$. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus a five-band unrestricted lower bound remains open |

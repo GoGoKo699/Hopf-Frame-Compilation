@@ -312,8 +312,10 @@ Old precision-envelope and local-compiler next steps are superseded by
 precision ranges, with [R96](depth/ALL_PRECISION_LINEAR_DEPTH.md) globally.
 R100 spends exponential volume only on a short fixed core. Its two seed
 bases improve the operator error without increasing the number of long
-table queries. Improving the intermediate precision range needs a cheaper
-chunk or fewer sequential chunks. R103 settles the regime $`L\ge N`$ at
+table queries. [R104](depth/EXACT_KEY_COVER_PRECISION.md) gives exact disjoint
+failure sectors using a paid key-only permutation. Reusing short payloads
+gives sublinear additive depth for $`2^{cn}\le L=o(N)`$ at the original
+widths. A cheaper selector or payload chunk would extend the gain. R103 settles $`L\ge N`$ at
 the simultaneous one-clean linear T-count budget. The [literal two-basis recovery](depth/GEOMETRIC_CHUNK_DEPTH.md#9-slot-lower-bounds-for-the-two-basis-recovery)
 also needs at least quadratic width in L for disjoint linear-size precision payloads.
 Applying the promotion to arbitrary-table

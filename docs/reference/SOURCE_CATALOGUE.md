@@ -337,6 +337,13 @@ precision count–depth tradeoff using native-band Smith exponents and the
 algebraic norm of a determinant on the complete initialized channel. At
 $`L\ge N`$, it matches R96 at one clean input and linear T-count.
 
+[R104](../../research/depth/EXACT_KEY_COVER_PRECISION.md) combines R100's
+exact short geometric menus with two complementary computational key
+frames. A paid basis permutation acts only on the keys, and each frame
+reuses short payloads across the long source. It gives additive depth
+$`O(L\log_2(t+2)/t)`$ for $`2^{cn}\le L\le N`$ at the original simultaneous
+R96 budgets, with t set by count slack and key permutation cost.
+
 For R79, the selected all-precision envelope is
 
 ```math
