@@ -384,6 +384,151 @@ class NativeLayerCountDistributionTests(unittest.TestCase):
         expected[2][2] = CO
         self.assertEqual(projector, expected)
 
+    def test_deficient_crossing_nonaffine_terminal_quotient(self):
+        # Clean 0, dirty 1 and 3, logical 2. The clean projector has
+        # non-affine support, and the middle phase is periodic only there.
+        width, size = 4, 16
+        root_half = Q2(0, Fraction(1, 2))
+        kappa = (Q2(1) - root_half) / 2
+        omega = CQ2(root_half, root_half)
+        eighth_roots = [CO]
+        for _ in range(7):
+            eighth_roots.append(eighth_roots[-1] * omega)
+        i_power = (CO, CI, -CO, -CI)
+
+        def pauli(x, z, phase=CO):
+            result = [[CZ for _ in range(size)] for _ in range(size)]
+            for column in range(size):
+                result[column ^ x][column] = phase * (-1) ** (z & column).bit_count()
+            return result
+
+        def conjugate(unitary, operator):
+            return multiply(multiply(unitary, operator), adjoint(unitary))
+
+        def trace(matrix):
+            return sum((row[j] for j, row in enumerate(matrix)), CZ)
+
+        def diagonal(phase):
+            return [[eighth_roots[phase(row) % 8] if row == col else CZ
+                     for col in range(size)] for row in range(size)]
+
+        # These are the two actual independent native axes, not a
+        # replacement basis of their span. Their crossing rank is one.
+        axes = [1 << width, 3 << width]  # Z_0, Z_0 Z_1
+        middle_basis = [1, 2 << width, 4 << width, 8 << width]
+        self.assertEqual(_rank(axes), 2)
+        self.assertEqual(_rank(sum(_pair(axis, other, width) << j
+                                   for j, other in enumerate(middle_basis))
+                               for axis in axes), 1)
+        a_word = [('CX', 0, 1), ('T', 0), ('T', 1), ('CX', 0, 1)]
+        self.assertEqual(native_columns(width, a_word), diagonal(
+            lambda y: (y & 1) + ((y ^ (y >> 1)) & 1)))
+        c_word = [('H', 0), ('S', 2)]
+        outer = a_word + [('H', 0)]
+        b_word = c_word + outer
+
+        # Seven literal parity-T words emit 4*y_0*y_1*y_3 modulo eight.
+        # The first dirty T_3 is canceled only by the final actual inverse.
+        phase_terms = [(8, 1), (4, 1)]
+        for degree in (1, 2, 3):
+            for subset in combinations((0, 1, 3), degree):
+                phase_terms.append((sum(1 << j for j in subset),
+                                    1 if degree % 2 else -1))
+        phase_terms.append((8, -1))
+        middle = []
+        section_phase = [0] * 8
+        for mask, orientation in phase_terms:
+            pivot = (mask & -mask).bit_length() - 1
+            parity = [('CX', j, pivot) for j in range(width)
+                      if j != pivot and mask >> j & 1]
+            middle += parity + [('T' if orientation == 1 else 'TDG', pivot)]
+            middle += _adjoint(parity)
+            for t in range(8):  # fixed global section y_3=0
+                section_phase[t] += orientation * ((mask & t).bit_count() % 2)
+        def phase(y):
+            return (((y >> 2) & 1)
+                    + 4 * (y & 1) * ((y >> 1) & 1) * ((y >> 3) & 1))
+
+        actual_phase = native_columns(width, middle)
+        self.assertEqual(actual_phase, diagonal(phase))
+        self.assertEqual([value % 8 for value in section_phase],
+                         [(t >> 2) & 1 for t in range(8)])
+        quotient_phase = diagonal(lambda y: (y >> 2) & 1)
+
+        code_indices = list(range(0, size, 2))
+        b_matrix = native_columns(width, b_word)
+        b_code = native_columns(width, b_word, columns=code_indices)
+        projector = multiply(b_code, adjoint(b_code))
+        expected = [[CZ for _ in range(size)] for _ in range(size)]
+        for offset in range(0, size, 4):
+            expected[offset][offset] = expected[offset + 1][offset + 1] = CO / 2
+            expected[offset][offset + 1] = CI / 2
+            expected[offset + 1][offset] = -CI / 2
+            expected[offset + 2][offset + 2] = CO
+        self.assertEqual(projector, expected)
+        support = {y for y in range(size) if projector[y][y] != CZ}
+        self.assertEqual(support, {y for y in range(size) if y & 3 != 3})
+        self.assertEqual(len(support), 12)  # not the size of an affine space
+        for y in support:
+            self.assertEqual(projector[y][y].imag, Q2())
+            self.assertGreaterEqual(projector[y][y].real, kappa)
+
+        # The clean image is a Hermitian Clifford with uniform modulus on
+        # nonzero entries; its clean-projector support is still non-affine.
+        clean_image = add(scale(projector, 2), scale(eye(size), -1))
+        self.assertEqual({entry.abs2() for row in clean_image for entry in row
+                          if entry != CZ}, {Q2(1)})
+        for axis, image in ((pauli(1, 0), pauli(1, 0, -CO)),
+                            (pauli(0, 1), pauli(0, 3, -CO)),
+                            (pauli(2, 0), pauli(3, 2, CI)),
+                            (pauli(0, 2), pauli(0, 2))):
+            self.assertEqual(conjugate(clean_image, axis), image)
+        shift = pauli(8, 0)
+        self.assertEqual(conjugate(shift, projector), projector)
+        self.assertEqual({y ^ 8 for y in support}, support)
+        self.assertTrue(all(phase(y) % 8 == phase(y ^ 8) % 8 for y in support))
+        commutator = add(multiply(actual_phase, shift),
+                         scale(multiply(shift, actual_phase), -1))
+        self.assertNotEqual(commutator, scale(eye(size), 0))
+        self.assertEqual(multiply(commutator, b_code),
+                         [[CZ] * 8 for _ in range(size)])
+
+        native = native_columns(width, b_word + middle + _adjoint(b_word))
+        logical = native_columns(width, [('T', 2)])
+        code = [[row[j] for j in code_indices] for row in native]
+        self.assertEqual(code, [[row[j] for j in code_indices] for row in logical])
+        self.assertNotEqual(native, logical)
+        self.assertEqual(multiply(adjoint(b_matrix),
+                                  multiply(quotient_phase, b_code)), code)
+        self.assertEqual(native_columns(width, b_word + [('T', 3)] + _adjoint(b_word)),
+                         native_columns(width, [('T', 3)]))
+
+        observable = pauli(6, 2, CI)  # Y_dirty1 X_logical2
+        c_matrix = native_columns(width, c_word)
+        outer_matrix = native_columns(width, outer)
+        recorded_observable = pauli(6, 6, -CO)
+        self.assertEqual(conjugate(c_matrix, observable), recorded_observable)
+        decoded_middle = multiply(multiply(adjoint(quotient_phase), conjugate(
+            outer_matrix, recorded_observable)), quotient_phase)
+        direct_observable = multiply(multiply(adjoint(code), observable), code)
+        values, high_bits = [], []
+        for a, b, c in product((0, 1), repeat=3):
+            probe = pauli((a << 1) | (b << 2), c << 1, i_power[a * c])
+            recorded = pauli((a << 1) | (b << 2), (c << 1) | (b << 2),
+                             i_power[(a * c + b) % 4])
+            self.assertEqual(conjugate(c_matrix, probe), recorded)
+            probe_code = [[probe[i][j] for j in code_indices] for i in code_indices]
+            direct = trace(multiply(probe_code, direct_observable)) / 8
+            decoded = trace(multiply(multiply(projector, conjugate(
+                outer_matrix, recorded)), decoded_middle)) / 8
+            self.assertEqual(direct, decoded)
+            values.append(direct)
+            high_bits.append((a * c + b) // 2)
+        self.assertEqual(values, [CZ] * 7 + [CQ2(root_half)])
+        # Original phase ac and Clifford cocycle b are separate records;
+        # adding them creates the cubic high bit abc.
+        self.assertEqual(sum(high_bits) % 2, 1)
+
     def test_isotropic_layers_and_augmented_rank(self):
         rng = Random(773)
         for width in range(1, 8):

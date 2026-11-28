@@ -13,14 +13,14 @@ This checkpoint owns the current question and next action. Use the proof homes f
 
 ## Current checkpoint
 
-The verified starting point is the [full-bank and inserted-band cycle](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/290) at [e4001e6](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/e4001e668b72f9016304ce8b29ec7a7fa1b5cbda).
-The polar source now has an all-size wrong-sign input. Comparing full and
-single-hole banks also stops affordable centered or single-threshold recovery
-for every signal-wall choice in its fixed three-stage work family.
-Complete return also gives an exactly updatable profile description for a transverse
-commuting middle. The general depth frontier is unchanged. Next, handle deficient
-crossing rank; constructive progress needs a changed complete work response or a
-proved different spectral recovery at its actual cost.
+The verified starting point is the [single-hole and transverse-profile cycle](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/291) at [f875c51](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/f875c515e60caabf9dc0b4b7fcaa12c16ca3e531).
+Complete return now gives an exactly updatable profile description at arbitrary
+crossing defect, including non-affine one-clean support. Retaining the actual
+middle T-count forces typical returned tables to have defect of square-root order
+at the project's simultaneous count and width budgets. The general depth frontier
+is unchanged. Next, compress that extensive-defect case. The screened three-stage
+source remains stopped for its threshold recovery; a constructive advance needs
+a changed complete work response or a proved different recovery at its actual cost.
 
 <a id="current-depth-frontier"></a>
 
@@ -119,24 +119,24 @@ belongs to W; do not impose it on L or on an intermediate stripped word.
 
 The [inserted-band controls](research/depth/TEMPORAL_AXIS_BIAS.md#actual-band-relative-contraction)
 show that one actual band can repair a full-rank mismatch inside exact return.
-The [terminal quotient](research/depth/TEMPORAL_AXIS_BIAS.md#terminal-quotient-shared-span)
-now covers an entire transverse commuting middle with a common outer Clifford.
-At fixed complete error below the stated threshold and at most one clean input,
-its initialized profile has a description of
-$`O(w(a+r+1)+(a+1)^3+r^2)`$ bits: w is physical width, a logical width and r
-the probe parameter count. The fixed quotient section updates under each actual
-commuting band without requiring intermediate return. At square-root width and
-logarithmic a,r, the description is too small for typical prescribed tables.
+The [defect-dependent terminal quotient](research/depth/TEMPORAL_AXIS_BIAS.md#terminal-quotient-crossing-defect)
+now covers any commuting middle around one actual outer native T band with a
+common outer Clifford. At most one clean input and the stated fixed complete-error
+threshold suffice even when the clean support is non-affine. Cancel individually
+commuting outer factors against a fixed allowed middle span before measuring its
+intersection defect delta. A global quotient section updates under every actual
+allowed band without intermediate return; it records only supported phase periods.
+At $`w,T_F=O(\sqrt N)`$ and $`a,r=O(\log N)`$, typical returned tables need
+$`\delta=\Omega(\sqrt N)`$. Dense cubic storage also gives the separate
+cube-root defect requirement when middle T-count is unrestricted.
 
-**Next unpaid operation:** handle deficient crossing rank between the actual
-outer T axes and the middle commuting span. A two-qubit native example already
-breaks the clean-projector support dichotomy used in the transverse proof.
-Derive a replacement terminal-conditioned description or a decisive obstruction,
-with quantitative depth, count and error dependence that remains useful when
-the defect grows. Do not silently change the individual native axes when changing
-basis. Unmatched exterior Cliffords and noncommuting middle insertions also remain
-open. Reusable prefix summaries and their online packing obstruction do not decide
-this offline problem; sum coherent collisions with the actual suffix first.
+**Next unpaid operation:** compress the extensive-intersection case
+$`\delta=\Theta(\sqrt N)`$ at the paid count and width, using complete return
+beyond the retained monomial dirty subgroup. The current axis and phase records
+can still cost linear-in-N information. Compress the actual whole profile with
+an update and explicit error/count dependence. Large defect supplies no source.
+Preserve each actual native axis; unmatched exterior Cliffords and noncommuting
+middle insertions also remain open. Online prefix packing does not settle this terminal-conditioned problem; sum coherent collisions with the actual suffix.
 
 Keep [large-rank exact cancellation](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
 and [constant-depth Gauss basis bias](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
