@@ -931,9 +931,10 @@ but have crossing rank one. Then
 The transformed clean-zero projector is non-diagonal but has a zero
 diagonal entry; its support is not an affine hyperplane. Thus the
 uniform kappa-versus-affine-slice argument cannot simply be reused.
-Handling this geometry, independent unmatched exterior Cliffords, or
-an arbitrary noncommuting next band remains unpaid. This example does
-not disprove a different compression rule for those cases.
+[Section 8](#terminal-quotient-crossing-defect) handles this geometry
+using a pointwise Clifford gap and support-invariant cosets. Independent
+unmatched exterior Cliffords and an arbitrary noncommuting next band
+remain outside that extension.
 
 The [exact native fixture](../../tests/test_native_layer_count_distribution.py)
 uses three wires to compare every coefficient of an eight-member affine
@@ -944,3 +945,377 @@ nonreturning intermediate dirty phase, its actual cancellation, and a
 Clifford phase carry with cubic high bit. A two-wire native band checks
 the deficient-crossing projector above. The all-size rank bound,
 error threshold and description count are analytic.
+
+<a id="terminal-quotient-crossing-defect"></a>
+
+## 8. Terminal profiles at growing crossing defect
+
+The affine-support dichotomy in Section 7 is unnecessary for one clean
+input. A pointwise gap survives for every clean image of an actual
+native T band. It permits a quotient description with explicit cost
+for deficient crossing, including non-affine clean support.
+
+Retain the logical, dirty and clean allocation, the completed
+initialized-isometry error below kappa, and the affine probe family
+of Section 7. Consider a completed word
+
+```math
+ V=C_0^\dagger A_0^\dagger F_0 A_0 C_0,
+```
+
+where $`C_0`$ is a common exterior Clifford, $`A_0`$ is one actual
+native band of independent commuting signed Pauli T rotations, and
+all actual middle axes belong to one isotropic binary Pauli span M.
+The middle may contain arbitrarily many native bands in that span.
+It may also retain an actual diagonal Clifford phase in the same
+commuting Pauli algebra. Write $`T_F`$ for the number of actual
+emitted middle T or inverse-T gates; Clifford factors are not charged
+to that count.
+For one completed word, M may be the span of all its actual middle
+axes, including those generating a retained Clifford phase. For an
+insertion sequence, fix the allowed M in advance.
+
+First cancel every individual outer T factor whose axis lies in
+$`M^\perp`$. It commutes with every middle gate and all other outer
+factors, so its actual inverse and forward occurrence cancel across
+$`F_0`$. This leaves the complete word exactly unchanged. For an
+insertion sequence, cancel only factors commuting with all of the
+fixed allowed M. Such a cancellation then remains valid after every
+allowed insertion. This removes harmless outer-axis padding before
+measuring the defect.
+
+Let $`L_A`$ be the span of the retained actual outer axes and define
+
+```math
+ q=\dim L_A,\qquad
+ \delta=\dim(L_A\cap M),\qquad s=q-\delta .
+```
+
+Under the same complete-return promise
+$`\eta\lt\kappa=(1-1/\sqrt2)/2`$, the entire initialized profile has
+an exact description using
+
+```math
+ \begin{aligned}
+ u&=a+\delta+1,\\
+ L_{\rm prof}&=O\bigl(w(a+r+1)+s\delta+r^2+
+                  \min\{u^3,T_Fu+u^2\}\bigr)
+ \end{aligned}
+```
+
+bits. The cubic choice is independent of the number of middle bands;
+the sparse choice retains their actual emitted T count. The
+description has a fixed-section update for every actual added band
+in M, without a prefix-return assumption. Its decoder may take
+exponential time. For a pure product of T bands, the sparse phase
+term can be sharpened from $`T_Fu+u^2`$ to $`T_Fu+1`$.
+
+### Choose the completion and retain each actual outer gate
+
+The defect above is intrinsic to the retained outer axes and the
+specified middle span; it need not depend on an arbitrary Lagrangian
+completion. In the symplectic quotient $`M^\perp/M`$, the image
+
+```math
+ \overline E=\bigl((L_A\cap M^\perp)+M\bigr)/M
+```
+
+is isotropic. Extend it to a Lagrangian and choose a complementary
+Lagrangian. The lift of this complement is a Lagrangian $`L_F`$
+containing M, with
+
+```math
+ L_A\cap L_F=L_A\cap M.
+```
+
+Indeed any vector in $`L_A\cap L_F`$ lies in $`M^\perp`$ and
+projects into both complementary spaces, so its image is zero and
+the vector lies in M. Thus the crossing rank against $`L_F`$ is s.
+
+Select s actual outer axes whose crossing functionals on $`L_F`$
+are independent. Label these pivots $`P_1,\ldots,P_s`$, and label
+the remaining actual axes $`P_{s+1},\ldots,P_q`$. There is a binary
+matrix $`\Gamma\in\mathbb F_2^{\delta\times s}`$ for which the
+literal commuting products
+
+```math
+ E_j=P_{s+j}\prod_{i=1}^sP_i^{\Gamma_{ji}},
+ \qquad 1\le j\le\delta,
+```
+
+form an independent basis of $`L_A\cap L_F`$. Their Pauli signs
+are included in these actual products. Choose $`f_i\in L_F`$ dual
+to the pivot axes, complete them by the $`E_j`$ and the rest of
+$`L_F\cap L_A^\perp`$, and extend to a symplectic basis. A Clifford
+sends the pivots to $`Z_i`$, the $`f_i`$ to $`X_i`$, the $`E_j`$
+to $`Z_{s+j}`$, and the remaining Lagrangian basis to the remaining
+Z coordinates. Each nonpivot actual axis then becomes
+$`Z_{s+j}\prod_iZ_i^{\Gamma_{ji}}`$.
+
+Consequently, after absorbing this coordinate change into the common
+Clifford C, the actual outer word is
+
+```math
+ A_\Gamma=\prod_{i=1}^sT(Z_i)^{\epsilon_i}
+ \prod_{j=1}^{\delta}
+ T\!\left(Z_{s+j}\prod_{i=1}^sZ_i^{\Gamma_{ji}}\right)^{\epsilon_{s+j}}.
+```
+
+No actual T factor has been replaced by rotations about a different
+basis of its span. Axis signs are recorded in the orientations;
+any resulting common outer scalar cancels between the actual inverse
+and forward word. With $`H_s=\prod_{i=1}^sH_i`$, the middle and
+complete word become
+
+```math
+ F=H_sD_pH_s,\qquad B=H_sA_\Gamma C,\qquad V=B^\dagger D_pB.
+```
+
+The signed parity polynomial p retains the literal middle scalar and
+has the same weighted cubic form modulo eight as in Section 7.
+The normal-form data $`s,\delta,\Gamma`$ and the orientations cost
+$`O(s\delta+w)`$ bits.
+
+### Every supported clean row has a uniform weight
+
+For c=1, write
+$`\Pi=BJJ^\dagger B^\dagger=(I+Q_c)/2`$, where
+$`Q_c=BZ_cB^\dagger`$. A physical T band sends a Pauli to a literal
+Hermitian Clifford, as in the
+[native normal form](FOUR_LAYER_SCALAR_GAP.md#two-band-signed-gap-sources).
+The conjugated band $`A_\Gamma`$ retains this property, and the
+surrounding Cliffords preserve it. Thus $`Q_c`$ is a Hermitian Clifford.
+
+For any fixed Clifford, all nonzero computational matrix entries have
+one modulus $`2^{-h/2}`$ for an integer h. To see this, its zero
+column is a stabilizer state, uniform in modulus on an affine support;
+every other column is a Pauli translate of that state. Hermiticity
+makes each diagonal entry of $`Q_c`$ real. If h=0, the projector
+diagonal lies in $`\{0,1/2,1\}`$. If h is positive, every diagonal
+entry of $`Q_c`$ has magnitude at most $`1/\sqrt2`$. Therefore
+
+```math
+ \Pi_{yy}\in\{0\}\cup[\kappa,1],
+ \qquad \kappa=\frac{1-1/\sqrt2}{2}.
+```
+
+For c=0 the same assertion holds with $`\Pi=I`$. This is a
+pointwise statement; the nonzero support may be non-affine, as in
+the two-qubit example of Section 7.
+
+### Dirty translations preserve that support
+
+Keep the dirty-Pauli subspace $`\mathcal D_0`$ whose C-conjugates
+commute with all q retained actual outer axes. It has dimension at
+least $`2b-q`$. In the displayed coordinates their X masks vanish
+on the first q wires, since those actual axes still span the first
+q Z labels. Hence
+
+```math
+ Q_D=BDB^\dagger=H_sCDC^\dagger H_s
+```
+
+is a monomial Pauli. Its translation kernel has dimension at most
+$`w-s`$: after imposing zero translation, only the Z labels after
+the first s positions remain. Its translation image H satisfies
+
+```math
+ \dim H\ge(2b-q)-(w-s)=w-2(a+c)-\delta,
+ \qquad k:=\mathrm{codim}\,H\le2(a+c)+\delta.
+```
+
+Every such $`Q_D`$ commutes with Pi because a dirty Pauli preserves
+the initialized input code. Thus $`\Pi_{y+h,y+h}=\Pi_{yy}`$ for
+every h in H. The set
+$`\mathcal S=\{y:\Pi_{yy}\ne0\}`$ is a union of whole H cosets.
+Its shape need not be affine.
+
+Applying the completed return estimate twice, exactly as in Section 7,
+gives
+
+```math
+ \|[D_p,Q_D]BJ\|_{\rm op}\le2\eta,
+ \qquad
+ |d_y-d_{y+h}|\sqrt{\Pi_{yy}}\le2\eta,
+ \qquad d_y=\omega_8^{p(y)}.
+```
+
+On every supported row, distinct eighth roots would make the left
+side at least $`2\sqrt\kappa\sqrt\kappa=2\kappa`$.
+The strict error bound therefore forces exact equality
+$`p(y+h)=p(y)\pmod8`$ on every supported H coset. Every h is the
+translation of an actual dirty Pauli, so errors are not accumulated
+along a chosen generating path. No initialized estimate is applied
+after an unreturned prefix.
+
+### Use one ambient quotient section
+
+The translations in H have zero entries on the delta defect
+coordinates $`s+1,\ldots,q`$: the first-q X masks were zero, and
+$`H_s`$ leaves those defect positions unchanged. Thus H lies in
+the coordinate space $`\mathcal E=\{h:h_{s+1}=\cdots=h_q=0\}`$.
+Write
+
+```math
+ k_0=\mathrm{codim}_{\mathcal E}H=k-\delta\le2(a+c).
+```
+
+With the defect and remaining coordinates in their fixed order,
+choose a rank-$`k_0`$ map $`R_0`$ on the remaining $`w-\delta`$
+coordinates with kernel H, and its fixed Gaussian-elimination right
+inverse $`L_0`$. The ambient quotient and section are
+
+```math
+ R(y)=(y_{\rm def},R_0y_{\rm rem}),\qquad
+ L(t_{\rm def},t_0)=(t_{\rm def},L_0t_0).
+```
+
+All delta defect coordinates remain in the quotient; only their
+identity embedding is implicit. R has rank k and kernel H. Define
+
+```math
+ \bar p(t)=p(Lt),\qquad p'(y)=\bar p(Ry),\qquad RL=I_k.
+```
+
+If y is supported, $`LRy`$ lies in its H coset and is also supported.
+Exact phase constancy then gives $`p'(y)=p(y)\pmod8`$. Unsupported
+rows of BJ are zero. Consequently
+
+```math
+ D_{p'}BJ=D_pBJ
+```
+
+exactly, even when p has different values off the initialized support.
+A global linear section is sufficient; no list of the supported cosets
+or separate support embedding is stored.
+
+Record $`\Gamma`$, the outer orientations, the affine Pauli labels
+of $`C\widetilde P_zC^\dagger`$, the fixed output image $`CSC^\dagger`$,
+and the clean image $`CZ_cC^\dagger`$ when present. As in Section 7,
+keep the original input phase digits separately from the Clifford
+cocycle and add them modulo four during decoding; their carry need
+not have quadratic digits. These probe data cost
+$`O(w(r+1)+r^2)`$ bits. Record only $`R_0`$, using
+$`O((w-\delta)k_0)=O(w(a+1))`$ bits, and the weighted cubic
+$`\bar p`$ using $`O((k+1)^3)`$ bits. L follows from $`R_0`$ by
+the fixed rule. This dense phase representation gives
+
+```math
+ \begin{aligned}
+ O\bigl(s\delta+w(r+k_0+1)+r^2+(k+1)^3\bigr)
+ =O\bigl(w(a+r+1)+s\delta+r^2+u^3\bigr).
+ \end{aligned}
+```
+
+There is also a sparse phase representation at the actual count.
+Each emitted middle T or inverse-T gate contributes one signed affine
+parity to p, including the constant bit from its signed Pauli axis.
+Restriction to $`y=Lt`$ leaves one signed affine parity in k variables,
+which costs $`O(k+1)`$ bits. Thus the actual list costs
+$`O(T_F(k+1))`$ bits. A separately retained diagonal Clifford phase
+has even linear coefficients and quadratic coefficients divisible by
+four modulo eight. Affine restriction preserves this form, so its
+record costs $`O((k+1)^2)`$ bits. That term can be omitted for a pure
+product of T bands, apart from a constant-size literal scalar record.
+No arbitrary phase coefficient or uncharged T factor is supplied.
+
+One mode bit selects the shorter phase representation. Its cost is
+
+```math
+ O\!\left(\min\{(k+1)^3,
+                   T_F(k+1)+(k+1)^2\}\right).
+```
+
+Together with the embedding and probe data, this proves the stated
+bound for $`L_{\rm prof}`$. The sparse list refers to the actual
+emitted rotations; cancellation of their restricted functions does
+not reduce the physical $`T_F`$ used in the resource comparison.
+
+The decoder obtains Pi and the transported probes directly by
+conjugating the recorded Pauli images through the known
+$`H_sA_\Gamma`$, then uses the initialized trace formula in Section 7
+with $`D_{p'}`$. It records neither a full Clifford tableau nor a
+quadratic-size dirty-Pauli basis. The equality needed by that trace
+holds on every initialized column. Arbitrary rejected-clean-sector
+action is not part of this profile claim.
+
+For a fixed allowed M, the cancelled factors, normal form, H, R and L
+depend only on the outer word and allocation. An actual commuting band
+with signed parity phase e updates
+
+```math
+ \bar p(t)\longmapsto\bar p(t)+e(Lt)\pmod8.
+```
+
+This updates the same constant, linear, quadratic and cubic coefficient
+list in dense mode, or appends the actual restricted signed parities
+in sparse mode. A fixed count cap can choose the mode in advance.
+Alternatively, begin with the sparse list and convert to cubic
+coefficients once that representation becomes shorter. The emitted
+T count is nondecreasing under append, so no reverse conversion is
+needed. A retained diagonal Clifford phase updates its quadratic
+coefficient record. Intermediate words may fail return and differ
+off the section. Only the final complete-return promise licenses
+reconstructing their completed initialized profile. An insertion
+outside M is outside this update rule.
+
+### A quantitative obstruction when the defect grows
+
+For the same Walsh-table reduction as in Section 7, take
+$`N=2^r`$, $`w=O(\sqrt N)`$ and $`a=O(\log N)`$, with fixed
+constants in those caps. With unrestricted middle count, the dense
+record is $`o(N)`$ whenever $`\delta=o(N^{1/3})`$. With the paid
+count $`T_F=O(\sqrt N)`$ and $`s\le w`$, the sparse record instead gives
+
+```math
+ L_{\rm prof}
+   =O\bigl(\sqrt N(\log N+\delta+1)
+            +(\log N+\delta+1)^2\bigr).
+```
+
+It is $`o(N)`$ whenever $`\delta=o(\sqrt N)`$. In either regime,
+only $`2^{o(N)}`$ initialized profiles are possible, including a
+fixed number of the mathematical input slices used in Section 7.
+They cannot realize the robust signs of typical prescribed N-entry
+tables under the complete-return promise.
+
+The constants in these description bounds are uniform. For the paid
+count, take $`w\le C_w\sqrt N`$, $`T_F\le C_T\sqrt N`$ and cap
+the defect by $`\varepsilon\sqrt N`$. The leading code length is
+bounded by a constant times
+$`((C_w+C_T)\varepsilon+\varepsilon^2)N`$, plus $`o(N)`$.
+A sufficiently small fixed epsilon makes this a fixed fraction of N.
+Only an exponentially small fraction of all sign tables can then
+occur. The dense count gives the same conclusion with a sufficiently
+small constant multiple of $`N^{1/3}`$. Thus a typical qualifying
+table requires, after cancellation of individually commuting outer
+factors,
+
+```math
+ \begin{aligned}
+ \delta&=\Omega(N^{1/3})
+       &&\text{with unrestricted middle count},\\
+ \delta&=\Omega(\sqrt N)
+       &&\text{when }T_F=O(\sqrt N).
+ \end{aligned}
+```
+
+These are necessary intersection sizes in every admissible
+outer/middle representation. The defect is not a unitary invariant
+under arbitrary resynthesis, and increasing it by harmless middle
+padding does not establish a construction. The paid result is not a
+growing native-depth lower bound: a wide outer band can already have
+extensive defect. That remaining regime at square-root count,
+unmatched exterior Cliffords, and noncommuting middle insertions
+still require further arguments. The theorem also does not count
+raw decisions that leave arbitrary garbage or supply an efficient
+native compiler.
+
+The [four-wire exact fixture](../../tests/test_native_layer_count_distribution.py)
+retains a one-clean projector with non-affine support, a middle phase
+periodic only on that support, and a quotient agreeing on every
+initialized column while differing on the rejected sector. It compares
+the entire eight-member affine probe profile with the decoder and
+retains the literal phase carry. The pointwise Clifford gap,
+completion lemma, growing-defect count and actual-band update are
+analytic.
