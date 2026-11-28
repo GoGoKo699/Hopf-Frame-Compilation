@@ -119,8 +119,8 @@ Exact [two-visit row readouts](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#t
 need exponential width for sublinear clean count. Fixed-error dense-row fusion still needs simultaneous error control.
 
 The [feedback-edge pencil](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
-still needs a changed signal support or baseline. The lower route has to
-handle substantial total dependence within the halves of a native cut.
+still needs a changed signal support or baseline. The [spectral-volume test](research/depth/ROBUST_DECISION_BIAS.md#native-interaction-spectral-volume)
+forces a large connected interaction component at sublogarithmic depth.
 
 ### Other retained results and alternatives
 
