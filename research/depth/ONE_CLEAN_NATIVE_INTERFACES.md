@@ -8,7 +8,7 @@ $`2^{-L}`$ satisfies
 \min(r_{12},r_{23},r_{34},s_{23})=\Omega(L).
 ```
 The bound holds for every native four-layer presentation and arbitrary dirty width. It concerns
-increasing precision. The unrestricted one-clean depth lower bound remains open.
+increasing precision. Whether this rotation witness requires five layers with one clean input remains open.
 
 Take a native word $`V=V_2V_1`$ with two T bands in each half, one external clean bit and
 arbitrarily many dirty bits. Let $`P`$ be a Hermitian data Pauli, and put

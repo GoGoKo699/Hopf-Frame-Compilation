@@ -73,9 +73,7 @@ over native representations, in addition to the growing crossing rank
 and both growing inner spreads required by R74 and R77. The radical of
 a shared clean bilinear form must also grow, as proved in Section 9.
 These necessary conditions do not exclude a sequence in which all those
-quantities grow. The unrestricted one-clean five-layer obstruction and optimal general depth
-remain open. The compiler bounds and selected manuscript claims are
-unchanged.
+quantities grow. Whether this rotation witness requires five layers with one clean input remains open.
 
 ## 1. Correlated native images
 

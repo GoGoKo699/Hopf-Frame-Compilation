@@ -35,6 +35,8 @@ $`b=\Theta(\sqrt{NL})`$ and $`L=(\log n)^A`$ for fixed $`A>1`$, the bound
 is $`O(\log n)`$. At $`L=\Theta(n)`$ within the stated range and the same allocation,
 it is $`O(\log^2 n)`$. The fixed-accuracy logarithmic upper remains.
 
+<a id="an-exact-invariant-clean-source-with-a-short-program"></a>
+
 ## 1. An exact invariant clean source with a short program
 
 Write $`R_P(\theta)=\exp(i\theta P)`$ for a fixed one-qubit Pauli axis.

@@ -585,8 +585,7 @@ Section 4's limiting-probability theorem. Bounding that factor, or
 replacing the scalar invariant, is an additional problem. R74 controls
 the middle crossing rank and gives a quantitative initialized-sector
 gap. R75 replaces the scalar invariant by operator norm, proving the
-unrestricted zero-clean five-layer obstruction. The corresponding
-positive-clean five-layer question remains open.
+unrestricted zero-clean five-layer obstruction. Whether this rotation witness requires five layers with one clean input remains open.
 
 A fixed lower bound of four implies no growth with dimension or precision,
 nor an additive cost per frame layer or source call. Measurements,

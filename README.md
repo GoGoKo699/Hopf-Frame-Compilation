@@ -159,20 +159,13 @@ T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL).
 
 It retains one clean qubit, $`b\ge17B`$, every integer $`n\ge1,L\ge6`$,
 and full initialized-isometry error at most $`2^{-L}`$.
-[R99](research/depth/PROGRAMMED_ROTATION_DEPTH.md) improves the depth
-to $`O(NL/b^2+\ell+\log_2^2(L+2))`$ through $`L\le cn`$ for an absolute c,
-with the same simultaneous budgets. [R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md)
-extends the improvement to subexponentially growing L, using short
-geometric source chunks and the same table-query budgets.
-[R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives logarithmic depth
-through linear precision and sublinear precision depth through $`L\le2^{cn}`$.
-Selected Result D remains R79.
-At fixed accuracy and square-root dirty width, the open general
-T-depth gap is $`\Omega(1)`$ versus $`O(\log n)`$.
+At fixed accuracy and square-root dirty width, the worst-case native T-depth
+lies between five bands and $`O(\log n)`$. R79 remains selected Result D.
 
-The [resource frontier](docs/OPEN_PROBLEM.md) owns the complete bounds and
-scoped lower results; [WORKSPACE](WORKSPACE.md) identifies the first unpaid
-operation. The [publication scope](manuscript/PUBLICATION_SCOPE.md) retains
+The [resource frontier](docs/OPEN_PROBLEM.md#large-width-t-depth) gives the
+sharper precision bounds, the regime of matching depth, and the effect of allowing
+more clean qubits. [WORKSPACE](WORKSPACE.md) identifies the next research question.
+The [publication scope](manuscript/PUBLICATION_SCOPE.md) retains
 the distinct [two-clean endpoint](research/endpoint/GROWING_SOURCE_COMPILER.md#9-complex-magnitude-endpoint),
 [diagonal and multiplexor corollaries](docs/ONE_CLEAN_COMPILER.md#7-literal-diagonals-and-complete-one-target-multiplexors),
 and smaller-workspace allocations. Earlier constructions and useful components

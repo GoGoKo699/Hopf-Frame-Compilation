@@ -5,7 +5,9 @@
 [Paid affine phase batches](PARALLEL_AFFINE_DETUNING.md) ·
 [Distributed counter and common shift](#distributed-cyclic-counter) ·
 [Monomial clock repair](#monomial-clock-repair-bank) ·
-[Summable approximate repair](#distance-weighted-clock-repair)
+[Summable approximate repair](#distance-weighted-clock-repair) ·
+[Local companion bound](#local-companion-depth-count) ·
+[MOD3 row and finite-angle target](#private-gauge-mod3)
 
 A counter gives an exact complete indicator identity with logarithmically
 many clean wires. A precise phase-gradient state is unnecessary: one
@@ -1212,8 +1214,8 @@ from Section 11 is a separate sufficient route.
 ### 13.4 A linear code permits a constant weight
 
 Fix a binary linear map $`L:\mathbb F_2^p\to\mathbb F_2^m`$ with
-$`m=O(p)`$ and minimum nonzero weight at least $`\vartheta m`$
-for a fixed $`\vartheta\gt0`$. Such a family follows by choosing
+$`m=O(p)`$ and $`|L(e)|\ge\vartheta m`$ for every nonzero input e,
+for a fixed $`0\lt\vartheta\lt1/2`$. Such a family follows by choosing
 independent random linear forms. For each nonzero mismatch its image
 has the binomial weight law, and increasing the fixed ratio m/p
 makes the union bound over $`2^p-1`$ nonzero inputs strictly less
@@ -1256,7 +1258,7 @@ condition still requires suppression at distances of order Q.
 
 Let $`Q=2^k\ge16`$. For a single companion D with t T gates
 and d physical T bands, assume the weighted condition of Section 13
-on its entire clock and arbitrary private work. Then
+with $`s\gt B\ge1`$ on its entire clock and arbitrary private work. Then
 
 ```math
 \sqrt{dt\,k\ln4}+4k
@@ -1291,9 +1293,10 @@ v(\det M)\ge-r\bigl(\sqrt{dt\,k\ln4}+4k\bigr).
 ```
 
 Every field embedding $`\sigma_u:\zeta_Q\mapsto\zeta_Q^u`$,
-for u odd, commutes with the adjoint operation. The conjugated
-matrix is a transfer matrix for the compression of
-$`\sigma_u(D)`$ between the Fourier keys zero and u. The conjugate
+for u odd, commutes with the adjoint operation. In the conjugated
+Pauli basis, each Y acquires at most a sign. The transfer matrix
+$`\sigma_u(M)`$ represents the compression of $`\sigma_u(D)`$
+between the Fourier keys zero and u in that basis. The conjugate
 of D is unitary, so each such determinant has absolute value at
 most one. For $`u\equiv1\pmod8`$ the embedding fixes the native
 matrix of D. Its compression then has norm at most
@@ -1390,21 +1393,42 @@ b zero with its actual inverse. The T, Clifford and dirty costs
 are $`2^{O(r+1)}`$. The whole word preserves the public controls
 and returns dirty work to the stated tolerance.
 
-Let G be the three-cycle on three computational labels of a
-two-qubit target, fixing the fourth. Choose a fixed two-qubit
-unitary F so that
-$`F^\dagger G F=\mathrm{diag}(1,1,\omega,\omega^{-1})`$
-with $`\omega=e^{2\pi i/3}`$, in a fixed label order.
-At accuracy delta, synthesize the fixed-size F by a constant
-number of elementary controlled rotations, using the same
-zero-clean rotation compiler and charging its actual inverse.
+Let G cycle the two-qubit labels $`0\to1\to2\to0`$ and fix 3.
+Write $`H_{12}`$ for the usual Hadamard on labels 1 and 2, and
+$`R_{01}(\theta)`$ for the real rotation sending label 0 to
+$`\cos\theta\,|0\rangle+\sin\theta\,|1\rangle`$, each fixing the
+other labels. Set $`\theta=\arccos(1/\sqrt3)`$ and $`\omega=e^{2\pi i/3}`$. Then
+
+```math
+\begin{aligned}
+ F&=H_{12}R_{01}(\theta)\,\mathrm{diag}(1,-1,i,1)H_{12},\\
+ F^\dagger G F&=\mathrm{diag}(1,\omega^{-1},\omega,1).
+\end{aligned}
+```
+
+Indeed, the first three columns on the cycle are
+$`(1,1,1)/\sqrt3`$, $`(1,\omega,\omega^2)/\sqrt3`$ and its conjugate.
+The fourth column is the fixed label. An affine relabeling reduces
+$`H_{12}`$ to a [native controlled Hadamard](../../docs/CONDITIONAL_GEOMETRIC_SOURCE.md).
+The two label phases use CZ and controlled S with complemented controls
+as needed. Controlled S is exact since $`2xy=x+y-(x\mathbin\oplus y)`$.
+For the rotation let a indicate high bit zero. A Clifford on the low
+bit exposes its Y eigenvalue $`(-1)^b`$. The required phase exponent in
+units of theta is $`a(2b-1)=b-(a\mathbin\oplus b)`$. Apply
+$`U_\theta=\mathrm{diag}(1,e^{i\theta})`$ on b, XOR a into b, apply
+the word's actual adjoint and undo the XOR and basis change. This
+costs two visits to a private word. A common phase cancels, and full
+word error epsilon contributes at most $`2\epsilon`$ even with private
+work or intermediate label motion.
+
 For each mismatch literal $`e_i`$ and each of the two
 nontrivial target eigenlabels, use a private gauge phase of
-angle $`+2\pi/3`$ or $`-2\pi/3`$. Its predicate is the
+angle $`-2\pi/3`$ on label 1 or $`+2\pi/3`$ on label 2. Its predicate is the
 conjunction of $`e_i`$ and the two computational label bits.
 In that phase stage all target eigenlabel and address bits
 are read-only. The $`2p`$ gauge words share no non-Clifford
-targets. Request their individual errors $`O(\delta/p)`$.
+targets. Request individual errors $`O(\delta/p)`$ here and
+$`O(\delta)`$ for the private basis word and its actual inverse.
 The basis changes and the aligned phase stage consequently
 approximate $`G^{\sum_i e_i}`$ on the entire target and dirty
 space at error delta. For
@@ -1480,16 +1504,28 @@ condition. A comparison only on a leaking initialized
 code, or a different joint gate word, need not satisfy
 these product estimates.
 
-A sufficient replacement is a zero-clean compiler for just
-a fixed finite angle list: the two third-root phases and
-the fixed controlled rotations of F. It must synthesize a
-conditional scalar phase at error $`2^{-L}`$ with actual
-inverses, $`2^{O(L)}`$ counts and dirty width, and
-$`o(\log(L+2))`$ native depth. The predicate controls
-have fixed arity and must support native read-only sharing.
-The rotations of F can be implemented from conditional
-scalar phases by exposing their Pauli eigenlabels on the
-fixed-size target. Using this list in the same row
+A sufficient replacement uses just two one-qubit phase words.
+For the third-root word Q, require
+$`Q\approx e^{i\phi}\mathrm{diag}(1,\omega)\otimes I`$ on the public
+bit c and its arbitrary private work. A sufficient gatewise convention
+uses c only as a CNOT control. In target label $`2u+v`$, the eigenphase
+for mismatch bit e is $`\omega^{e(u-v)}`$. The bit identity
+
+```math
+ e(u-v)\equiv(e\mathbin\oplus u)-(e\mathbin\oplus v)-u+v\pmod 3
+```
+
+implements it with Q, its actual adjoint, its actual adjoint and Q
+on the four indicated parities, respectively. To substitute an
+affine parity for c, replace each CNOT from c by CNOTs from its
+constituents to the same private target and an X there for a
+constant term. No parity bit is initialized, all T targets stay
+private, and the four common phases cancel. The private basis word
+$`U_\theta`$ at $`\theta=\arccos(1/\sqrt3)`$ may carry a common phase
+and may move its private qubit. Each word needs zero clean inputs,
+full operator error at most $`2^{-L}`$ up to its common phase,
+$`2^{O(L)}`$ counts and dirty width, and $`o(\log(L+2))`$ native depth.
+Using this pair in the same row
 construction at $`L=\Theta(p)`$ gives a full indicator
 with a common singly exponential cost exponent.
 [Shared-layer fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)

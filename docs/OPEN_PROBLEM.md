@@ -38,7 +38,7 @@ evaluation, without an efficient-preprocessing claim.
 | Precision-dominated depth | [R103](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean input and $`T=O(L)`$. [R105](../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix) reaches polylogarithmic depth using nearly linear clean space, with the same count and dirty width. It comes within a logarithmic factor of R103 up to $`t=L/P(n)`$ for a fixed polynomial. |
 | Selected Result D | R79 remains the selected all-precision count/depth theorem |
 | Optimal large-width depth | At fixed accuracy and square-root dirty width, logarithmic general upper depth versus a five-band unrestricted lower bound remains open |
-| Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md) gives a weaker per-row target. |
+| Main constructive question | A sublogarithmic complete indicator or coherent signed-gap source at fixed accuracy. The [work checkpoint](../WORKSPACE.md#main-unfinished-route-and-exact-missing-operation) gives a sufficient fixed-angle synthesis target. |
 | General lower question | A growing native T-depth bound on the prescribed Boolean-table frame family, allowing table-specific compilation, arbitrary Clifford interlayers and the admitted dirty width |
 
 The [working checkpoint](../WORKSPACE.md#current-checkpoint-native-source-scope-and-complete-readout)
@@ -105,7 +105,7 @@ T=O(\sqrt{NL}+L+NL/b),\qquad G=O(NL),\qquad
 D_T=O(NL/b^2+L+\ell),\qquad \ell=\log_2(n+2).
 ```
 
-The T-count is optimal at eligible allocations. At fixed accuracy and square-root dirty width, the general depth gap is constant lower versus logarithmic upper.
+The T-count is optimal at eligible allocations.
 **Precision lower bound R103.** With k clean inputs and unrestricted dirty width, a uniform deepest rotation forces $`D_T T\ge (L-\log_2 25)^2/((k+1)\ln 4)`$ in the complete initialized-isometry norm. At $`L\ge N`$ and the R96 width thresholds, $`D_T=\Theta(L)`$ is worst-case optimal at the simultaneous one-clean $`T=O(L)`$, $`G=O(NL)`$ budgets. [Proof](../research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md)
 
 [R99](../research/depth/PROGRAMMED_ROTATION_DEPTH.md) gives the same budgets
@@ -119,6 +119,13 @@ D_T=O\!\left(NL/b^2+\min\{(1+L/n)a^2,\ (1+L/n)a+L^{1/8}\ell\}\right).
 
 At $`b=\Theta(\sqrt{NL})`$, R100 gives $`o(L)`$ for $`\log_2 L=o(n)`$. [R102](../research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\ell)`$ for $`6\le L\le2^{c''n}`$.
 The bounds match worst-case depth where $`NL/b^2`$ dominates.
+
+At the same one-clean widths, [R104](../research/depth/EXACT_KEY_COVER_PRECISION.md)
+covers $`2^{cn}\le L\le N`$. For $`t=\Theta(1+\log(2+\sqrt{N/L}))`$,
+its additive depth is $`O(L\log(t+2)/t)`$, hence $`o(L)`$ if $`L=o(N)`$.
+When $`L\ge N`$, [R105](../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md)
+uses $`O(L/\log^u(L+2))`$ clean inputs to reach $`O(\log^{u+1}(L+2))`$ depth
+for any sufficiently large fixed u. Both retain the R96 T-count, Clifford count and dirty thresholds.
 
 **Selected Result D: [R79](../research/depth/UNIFORM_SUBTREE_DEPTH.md).**
 Use the same simultaneous guarantees and write the width threshold as $`17B_D`$. Define
@@ -249,7 +256,7 @@ allows fixed singly exponential source costs on a constant fraction
 of the address. One source and its inverse serve every parent in a
 layer, and the full error is at most eight times the sum of the
 stage-source tolerances. A common cost exponent suffices over fixed
-tolerances. Exact address preservation permits one fixed source error.
+tolerances. One fixed source error below $`1/\sqrt2`$ suffices under exact completed address preservation or [summable address motion](../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-tolerance-summable-address-source).
 
 ## Paid source interfaces and their limits
 
@@ -376,23 +383,13 @@ grammars do not become unrestricted bounds by that transfer.
 
 The [original physical-pair scout](../research/depth/FOUR_BAND_ORIGINAL_PAIR_SCOUT.md)
 retains actual independent signed lists and the physical clean code.
-Fixed-endpoint/orbit closure, literal pair removal and
-[center transport](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md)
-are scoped components. The affected-silent reduction leaves at most
-$`\lfloor4k/3\rfloor`$ original axes per band at pairing nullity k;
-it adds no depth or workspace and is entirely Clifford for $`k\le2`$.
-The [coupled six-wire trial](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
-now has a structural endpoint obstruction: its ten-T, two-band middle
-transports a probe to four Paulis of magnitude one half, forcing complete
-clean-isometry error at least $`1/4`$ for every one-band output endpoint,
-even with spectator mixing and arbitrary logical action, for all $`2^{10}`$
-T/T-dagger orientations of the fixed middle axes. This candidate
-is paused before Boolean return. A changed actual middle or a paid
-non-Clifford endpoint is required to reopen it. The coefficient argument
-can inspect longer words, but extra non-Clifford layers can repair its
-witness. No general four-band theorem or fixed-accuracy growing-depth
-bound follows; the scalar zero-test construction rules out conjunction
-alone as such a witness.
+The [center-transport analysis](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md)
+bounds the surviving original axes by $`\lfloor4k/3\rfloor`$ per band at
+pairing nullity k. The [coupled six-wire trial](../research/depth/FOUR_BAND_CENTER_TRANSPORT.md#coupled-six-wire-endpoint-obstruction)
+has complete error at least one quarter for every one-band output endpoint and every
+T orientation of its fixed ten-T middle. A changed middle or additional non-Clifford
+endpoint can alter this probe. [Route decisions](../research/ROUTE_DECISIONS.md#lower-scouts-and-settled-earlier-questions)
+record the reopening conditions for these restricted models.
 
 ## Earlier endpoint constructions
 

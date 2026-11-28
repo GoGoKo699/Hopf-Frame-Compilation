@@ -270,6 +270,26 @@ class RepositoryNavigationTests(unittest.TestCase):
         missing = sorted(str(path.relative_to(ROOT)) for path in expected - targets)
         self.assertEqual(missing, [], msg="Uncatalogued test modules")
 
+    def test_route_tables_show_every_decision_cell(self):
+        register = ROOT / "research/ROUTE_DECISIONS.md"
+        columns = None
+        for number, line in enumerate(register.read_text().splitlines(), 1):
+            row = line.strip()
+            if re.fullmatch(r"\|(?: *:?-+:? *\|)+", row):
+                columns = row.count("|") - 1
+            elif columns is not None and row.startswith("|"):
+                # GFM splits even code spans at an unescaped pipe. Its table
+                # renderer silently discards any cells beyond the header.
+                cells = re.split(r"(?<!\\)\|", row)[1:]
+                if cells[-1] == "":
+                    cells.pop()
+                self.assertLessEqual(
+                    len(cells), columns,
+                    msg=f"Route decision text is hidden at {register.name}:{number}",
+                )
+            else:
+                columns = None
+
     def test_entry_pages_route_instead_of_accumulating_history(self):
         for relative, limit in PAGE_LINE_BUDGETS.items():
             with self.subTest(page=relative):

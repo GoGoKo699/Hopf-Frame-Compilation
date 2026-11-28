@@ -7,173 +7,65 @@ are authorized. The destination is optimal general native T-depth for complete
 Hopf frames, with simultaneous count, width, precision and work return.
 Manuscript drafting and the changed-decoder supplement are separate tasks.
 
-This checkpoint owns the current question and next action. Proofs and route assessments stay in their linked homes.
+This checkpoint owns the current question and next action. Use the proof homes for derivations and the route register for reopening conditions.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
 ## Current checkpoint
 
-The current continuation started from the verified [R104/R105 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/285)
-at [2226ce7](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/2226ce7120b139c02fdb900ff540dd2016bb2cc0).
-The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor) raises the one-clean floor to five bands. The [rare cycle](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) gives six with zero clean work at small fixed error.
+The verified scientific baseline is the [shared-layer indicator merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
+at [789ef94](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/789ef9451acefb6d71fd3a30de42bb68244d52f7).
+It reduces the indicator problem to a high-precision phase-synthesis question.
+This revision specifies two sufficient one-qubit phase operations and their different control requirements.
 
 <a id="current-depth-frontier"></a>
 
 ## Destination and strongest established statements
 
-[R99](research/depth/PROGRAMMED_ROTATION_DEPTH.md) gives
-$`O(NL/b^2+\log(n+2)+\log^2(L+2))`$ depth through $`L\le cn`$
-with the same simultaneous budgets as [all-precision R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md).
-[R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md) gives sublinear precision depth
-for $`\log_2 L=o(n)`$. [R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$.
-[R104](research/depth/EXACT_KEY_COVER_PRECISION.md) makes the additive precision term sublinear for $`2^{cn}\le L=o(N)`$ at the original widths. The fixed-accuracy gap stays five bands to logarithmic at square-root width.
-[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean and $`O(L)`$ T gates. [R105](research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix) attains polylogarithmic depth with nearly linear returned clean space at the same counts and dirty width.
-[R79 remains selected Result D](manuscript/PUBLICATION_SCOPE.md).
+At fixed precision $`L\ge6`$, with one clean input and $`b=\Theta(\sqrt N)`$ dirty qubits,
+general complete frames have a [five-band lower bound](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor)
+and an $`O(\log n)`$ native T-depth upper bound, where $`N=2^n`$.
+[R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md) gives the all-precision upper with optimal-order T-count and
+$`G=O(NL)`$ at its stated widths. [R79](manuscript/PUBLICATION_SCOPE.md) remains selected Result D.
+The [resource frontier](docs/OPEN_PROBLEM.md#large-width-t-depth) gives the one-clean precision refinements,
+the matching precision-dominated lower bound and the separate larger-clean tradeoff.
 
 ## Main unfinished route and exact missing operation
 
-[Prescribed XOR embeds in a complete real frame](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md).
-The [strictly positive version](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#near-uniform-positive-frames)
-retains lookup in an arbitrarily narrow fixed near-uniform density window.
-Lookup also suffices for that subclass with one paid balanced frame.
+**Can the two fixed phase operations below be synthesized to error $`2^{-s}`$ in $`o(\log(s+2))`$ native T-depth?**
+The angles are $`2\pi/3`$ and $`\arccos(1/\sqrt3)`$, with their negatives obtained by actual reversal.
+Allow $`2^{O(s)}`$ T gates, elementary Cliffords and dirty workspace, and zero clean inputs.
+The third-root word uses its public bit only as a CNOT control, so address and eigenlabel parities can drive simultaneous calls.
+The second operation is an ordinary phase rotation on a private qubit.
+Each primitive may carry one common phase. The row cancels it with actual inverses. Bound the full operator error on arbitrary dirty inputs. [Phase word and eigenlabels](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
 
-In the constructive direction, [R98](research/depth/QUERY_DEPTH_FRAME_TRANSFER.md)
-accepts a complete **word** query. A separate [scalar transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md)
-uses prescribed sign tables across widths with an iterated-logarithm cost.
-A sufficiently sublogarithmic scalar source improves full-frame depth
-at fixed precision. The proof charges its terminal, inverse and work.
-The [word-query accuracy result](research/depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
-and the [scalar precision wrapper](research/depth/PRESCRIBED_SCALAR_TABLES.md#pair-reflection-scalar-amplification)
-have different source hypotheses. A fixed-error scalar source with exact
-physical address preservation is one sufficient premise. More generally,
-a [full-space signed gap](research/depth/PRESCRIBED_SCALAR_TABLES.md#full-space-signed-gap-source)
-permits nonflat spectra and completed address motion, with logarithmic
-amplification cost and no additional clean qubits. A
-[one-clean coherent decision](research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
-weakens the source requirement further: amplify on its initialized code
-before promoting it to complete return. The raw source may leave garbage,
-and its rejected clean sector need not carry the table's prescribed sign.
+| Step toward complete frames | What the proof pays |
+| --- | --- |
+| Phases to one MOD3 row | The existing [dirty gauge](research/depth/COHERENT_COUNTER_SOURCE.md#private-gauge-mod3) returns the whole register to the requested tolerance and costs $`O(\log(s+2))`$ depth. Independent rows need a joint bank error bound. For a fixed bank tolerance $`\tau`$, row error $`O(\tau 2^{-p})`$ suffices on a p-bit address, so individual phase precision has $`s=p+O(\log(p+2)+\log(1/\tau))`$. |
+| Rows to a complete indicator | An [odd MOD3 residue kernel](research/depth/COHERENT_COUNTER_SOURCE.md#odd-parity-row-kernel) is its own inverse under binary convolution. A paid CNOT basis change, the parallel row phases and their recovery toggle the selected bit of an arbitrary bank. |
+| Indicator to general frames | [Shared-layer fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead) absorbs singly exponential source costs with a common exponent across fixed tolerances. The [complete word-query transfer](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#7-conditional-complete-frame-consequence-with-its-source-tolerance) then gives $`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$ and $`D_T=O_L(N/b^2)+o_L(\log n)`$ with one clean input at the original real and complex width thresholds. |
 
-**Resumption question.** Can a zero-clean complete indicator on a bits
-reach $`o(\log a)`$ native depth with $`2^{O(a)}`$ counts and dirty width?
-[Shared-layer fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)
-absorbs fixed singly exponential costs with a common exponent across fixed
-tolerances. A small fixed error suffices if the completed source preserves address.
-[MOD3 gauges](research/depth/COHERENT_COUNTER_SOURCE.md#private-gauge-mod3)
-pay inverse-polynomial row error in doubly logarithmic depth. A finite list
-of conditional phases at error $`2^{-L}`$ and depth $`o(\log L)`$ would finish the bank.
-
-A separate sufficient route gives the correct signed gap on diagonal blocks of
-$`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum
-in each preserved work sector? The labels may include the address
-and any dirty inputs. The paid
-[quantum records](research/depth/PRESCRIBED_SCALAR_TABLES.md#expander-quantum-address-tags)
-then complete the sign with no final clean-width penalty. The
-[linear-tag route](research/depth/PRESCRIBED_SCALAR_TABLES.md#summable-address-motion)
-uses CNOTs alone if the sum over all address differences is bounded.
-Both charge angular error separately from clean leakage.
-Pay V and its actual reverse with one clean input, T-count and dirty
-width $`O(2^{a/2})`$, and Clifford count $`O(2^a)`$.
-Depth $`O(\log a/\log\log a)`$ still suffices at
-$`b=K_L\sqrt N`$. A source that proves the full compressed sign directly
-can use the [smaller original amplification factor](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer).
-Plain diagonal success cannot support a general short-tag repair.
-The [native adversary](research/depth/PRESCRIBED_SCALAR_TABLES.md#adaptive-classical-tag-limit)
-defeats short deterministic classical tags even when chosen from its
-description. Its sectorwise row sum permits quantum recovery.
-
-The [four-call shear reduction](research/depth/PRESCRIBED_SCALAR_TABLES.md#self-inverse-shear-tables)
-still gives a concrete entry readout target for known self-inverse CNOT
-shears. Amplify each decision before applying that reduction.
-
-The [separated-block margin bound](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin)
-excludes endpoint repairs of the affine Gauss phase. The
-[source route register](research/ROUTE_DECISIONS.md#complete-sources-and-promotion)
-retains the boundary, additive-visit and paired-Pauli scopes.
-
-The [unrestricted three-band bias theorem](research/depth/ROBUST_DECISION_BIAS.md)
-forces exponentially small average signed bias for typical tables. Complete
-return and the actual inverse let a sparse Pauli probe extend its sharp
-error floor to four bands for a fixed clean count. At five bands a one-clean
-compiler needs [large axis intersections](research/depth/ROBUST_DECISION_BIAS.md#complete-return-five-band-intersection)
-at both ends. Remove that intersection hypothesis or strengthen the
-[prefix and suffix spreading test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-pauli-spreading).
-The [four-band decision screens](research/depth/ROBUST_DECISION_BIAS.md#four-band-complementary-spans)
-still concern raw decision bias. For
-arbitrary depth at square-root T-count, [temporal cut and Gram
-codes](research/depth/TEMPORAL_AXIS_BIAS.md) require square-root-scale cut
-ranks and dense anticommutation under the stated sign promises. One
-[orthogonal component](research/depth/AXIS_TRAJECTORY_BIAS.md#same-component-symplectic-strengthening)
-must carry the dependence, shared span and noncommuting rank. For complete
-return, [linear traces](research/depth/AXIS_TRAJECTORY_BIAS.md#linear-trace-cut-dependence)
-also require dependence within the halves of every chronological cut.
-The [raw-decision count bound](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
-is now tight for strict computational-basis bias: a [paid controlled Gauss word](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
-represents every table with square-root T-count/width and constant native depth.
-Every computational dirty input has the correct exponentially small bias.
-Two product superpositions give opposite deterministic answers at every
-address, so strict basis signs alone cannot prove growing depth.
-An isolated marked address cannot force growing fixed-error depth:
-[expander zero reflections](research/depth/EXPANDER_ZERO_REFLECTION.md) already have constant depth.
-Exact [two-visit row readouts](research/depth/SCALAR_REPRESENTATION_PRODUCT.md#two-visit-marked-width)
-need exponential width for sublinear clean count. Fixed-error dense-row fusion still needs simultaneous error control.
-
-The [feedback-edge pencil](research/depth/PRESCRIBED_SCALAR_TABLES.md#thin-kernel-rank-obstruction)
-still needs a changed signal support or baseline. The [spectral-volume test](research/depth/ROBUST_DECISION_BIAS.md#native-interaction-spectral-volume)
-forces a large connected interaction component at sublogarithmic depth.
-
-### Other retained results and alternatives
-
-At $`b=\Theta(\sqrt N)`$, [prefix-shared rotations](research/depth/PREFIX_ROTATION_PROFILES.md)
-give sublogarithmic depth on complete real frames with $`q=n^{o(1)}`$
-arbitrary top levels and one rotation per lower depth within each resulting
-subtree. [Bounded relative density](research/depth/BOUNDED_DENSITY_DEPTH.md#bounded-density-scalar-transfer)
-needs only constant scalar-query multiplicity against a paid reference.
-The [four-layer scalar gap](research/depth/FOUR_LAYER_SCALAR_GAP.md)
-closes the zero-clean exactly silent single-mark route at seven or more
-address bits. It concerns a different allocation from the general one-clean gap.
-
-The [augmented field recoupler](research/depth/AUGMENTED_FIELD_RECOUPLER.md#7-a-logarithmic-depth-decoder-for-the-full-augmented-query)
-uses the established logarithmic-depth indicator within the discovery budgets.
-Substituting it back into the indicator still pays those query calls.
-
-The complete indicator remains sufficient: on a p-bit address and arbitrary
-$`m=2^p`$ bank, toggle the selected bit and return every helper with
-zero clean inputs, fixed full-operator error, $`O(m)`$ T gates and dirty
-qubits, $`O(m^2)`$ Cliffords and $`o(\log(p+2))`$ native T-depth.
-[Sparse-bank preprocessing](research/depth/GATEWISE_READ_ONLY_EQUALITY.md#sparse-code-preprocessing)
-cannot upgrade the sparse source: weight $`o(m)`$ needs at least $`m-o(m)`$
-clean inputs under any uniform intermediate leakage below one.
-[Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead) · [Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
+A new phase word should identify how it pays the non-Clifford controls in parallel and bound the full-space error. A cyclic gauge must also account for wraparound. The [component bound](research/depth/ROBUST_DECISION_BIAS.md#the-same-components-constrain-literal-phase-precision) applies to the native product of the public word specialized at one and its adjoint specialized at zero. Their common phase cancels, giving a zero-clean approximation to $`e^{2\pi i/3}I`$. For that product, $`d(r+1)=\Omega(s)`$ for depth d and maximum interaction-component half-rank r. A joint bank construction can instead target the complete indicator norm directly.
 
 <a id="the-two-useful-source-interfaces"></a>
+<a id="other-retained-results-and-alternatives"></a>
 
 ### Choose a complete source interface
 
-The [interface register](research/ROUTE_DECISIONS.md#complete-interfaces)
-retains [complete Pauli derivatives](research/depth/BANK_MIXING_AND_LOOKUP_PHASE.md#rank-one-indicator-equivalence)
-and [encoded dirty copies](research/depth/ENCODED_DIRTY_COPY_INTERFACE.md).
-The latter needs a jointly paid transition and physical copy, but no physical
-implementation of the abstract decoder. The [Gram interface](research/ROUTE_DECISIONS.md#gram-interfaces)
-needs a normalized complete-input source; use its actual-accuracy
-[one-clean](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#four-call-gram-readout)
-or [joint two-clean](research/depth/NILPOTENT_PENCIL_OBSERVABLE_SOURCE.md#two-clean-joint-gram-readout)
-recovery ledger. Paid wrappers do not construct their source.
-
-Retained alternatives: [four-band front end](research/depth/CLIFFORD_INVOLUTION_SOURCE.md),
-[weighted outer phases](research/depth/JOINT_ADDRESS_HELPER_SOURCE.md),
-[reduced central gauge](research/depth/COHERENT_CENTRAL_TRANSPORT.md#reduced-carrier-gauge),
-[minimal-tree probe](research/depth/ORDERED_MATCHING_PROBE_SOURCE.md#minimal-tree-source),
-and [joint precision recovery](research/ROUTE_DECISIONS.md#joint-precision-route)
-beyond the separately paid two-path pilots. Consult their route screens before resuming.
+| Alternative entry point | First operation to establish |
+| --- | --- |
+| [Complete indicator](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion) | Toggle the addressed bank bit with zero clean inputs at every fixed full-space tolerance in sublogarithmic native depth and fixed singly exponential resources. One fixed error below $`1/\sqrt2`$ also suffices under [exact completed address preservation](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-tolerance-shared-layer-source) or [summable address motion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-tolerance-summable-address-source). |
+| [One-clean scalar decision](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer) | On the entire initialized code, $`M=J^\dagger V^\dagger Z_c VJ`$ needs sign $`D_f\otimes I`$ and a uniform positive gap for any prescribed table f on a bits. Raw garbage is allowed. With $`T,b_{\rm dirty}=O(2^{a/2})`$ and $`G=O(2^a)`$, depth $`O(\log a/\log\log a)`$ suffices at $`b=\lceil K_L\sqrt N\rceil`$. The transfer pays for amplification, promotion and reversal. |
+| [Direct positive-frame construction](research/depth/BOUNDED_DENSITY_DEPTH.md#bounded-density-scalar-transfer) | A paid reference and target-to-reference density in a fixed positive interval give constant scalar-call multiplicity. Extending to general frames must accommodate the [embedded Boolean table](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#near-uniform-positive-frames), already present for strictly positive near-uniform targets. |
+| [Lower bound from complete return](research/depth/ROBUST_DECISION_BIAS.md#native-interaction-spectral-volume) | On the one-clean rare cycle, $`(d+1)(r+1)=\Omega(\log(p+2))`$. To prove a growing unrestricted lower bound, handle large connected components. The [zero-clean six-band floor](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) uses a different allocation. |
 
 ## Stopped routes, reopening conditions and superseded instructions
 
-[Route decisions](research/ROUTE_DECISIONS.md) own the exact excluded class
-and reopening condition for each mechanism. Proofs, counterexamples and unique
-unfinished attempts remain in their linked homes. Historical prompts are
-records, not current work orders. A scoped failure does not retire the
-unrestricted destination; a finite pilot is not an all-size construction.
+Look up the proposed operation in [route decisions](research/ROUTE_DECISIONS.md#find-the-decision-for-the-proposed-operation) before revisiting it.
+In particular, check the [separated-block margin](research/depth/PRESCRIBED_SCALAR_TABLES.md#two-address-block-margin) for split-address sources,
+the [Gauss example](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions) for basis-only decisions and
+the [sparse-bank dimension bound](research/depth/GATEWISE_READ_ONLY_EQUALITY.md#sparse-code-preprocessing) for preprocessing.
+The register records the excluded class and what would reopen it. Historical session prompts describe earlier work.
 
 <a id="research-decision-and-stopping-rules"></a>
 <a id="continuing-toward-the-general-answer"></a>
@@ -207,10 +99,8 @@ and receipt hashes; change mechanisms when complete synthesis restores the old c
 
 ## Restore and verify
 
-Check worktree status and remote, fetch main, and inspect changes since the
-scientific baseline. Preserve unrelated work. Read the checkpoint and the
-dependency branch needed for the next action; use catalogues for targeted
-lookup rather than replaying session history.
+Check worktree status and remote, fetch main, and compare it to the scientific baseline above.
+Preserve unrelated work. Follow the proof links for the chosen operation.
 
 [Research validation](scripts/README.md#research-validation) owns focused
 iteration checks and the complete ten-command final gate. Complete focused
