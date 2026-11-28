@@ -504,3 +504,182 @@ unproved. The [bounded native fixture](../../tests/test_native_layer_count_distr
 compares the literal expansion and relative formula with all full-space
 native words for $`\mathrm{GL}(2,2)`$ and their actual reverses. The
 packing and all-size resource statements above are analytic.
+
+<a id="actual-band-relative-contraction"></a>
+
+## 6. Contract an inserted band with its actual suffix
+
+The preceding relative matrix describes one completed scalar contraction.
+It is not a state that can answer arbitrary later insertions. For a word
+$`W=REL`$, retain the actual suffix and write
+$`L_z=LP_zL^\dagger`$ and $`R_S=R^\dagger SR`$. If their literal Pauli
+histories are $`c_L(z,u),\ell(z,u)`$ and $`c_R(v),r(v)`$, an inserted
+band E with independent commuting axes $`a_i`$ gives the exact coefficient
+
+```math
+ \begin{aligned}
+ \widehat b_W(z)&=\sum_{u,v,t}
+ \overline{c_R(v)}c_L(z,u)\,
+ 2^{-|\alpha(z,u)|/2}i^{\Phi(z,u,t)}\\
+ &\qquad\cdot\mathbf1_{t\le\alpha(z,u)}
+ \mathbf1_{r(v)=\ell(z,u)+At},\\
+ \alpha_i(z,u)&=\omega(a_i,\ell(z,u)),\qquad
+ At=\sum_i t_i a_i .
+ \end{aligned}
+```
+
+Here Phi is the literal band cocycle of Section 1. The formula follows
+by applying that band entry to each left history and matching its final
+label with the right history. It retains all collisions coherently.
+Arbitrary Clifford walls act on both the labels and their literal phases;
+no prefix-return premise or bound on physical dirty width is used.
+For a normalized L2 profile error epsilon, a sufficient uniform coefficient
+error is $`\epsilon 2^{-m/2}`$, by Parseval. Testing significance before
+including E and its actual suffix does not have this guarantee.
+
+### A matched pair does not determine later insertions
+
+Use the packets $`O_M`$ of Section 5 and put
+$`A_w=Z^w\otimes I`$ and $`E_w=e^{-i\pi A_w/8}`$. A literal native
+T on this axis has the same conjugation. With $`\gamma=1/\sqrt2`$,
+
+```math
+ g_M(w):=\tau(O_M E_wO_ME_w^\dagger)
+ =\frac{1+\gamma}{2}
+  +\frac{1-\gamma}{2}(-1)^{w\cdot\boldsymbol1}
+       2^{-|M^{\mathsf T}w|} .
+```
+
+Indeed, $`O_M^2=I`$ makes the commutator term in the conjugation have
+zero trace. The remaining terms are
+$`\cos^2(\pi/8)+\sin^2(\pi/8)\tau(O_MA_wO_MA_w)`$.
+The Pauli marginal from Section 5 evaluates the last trace as
+$`(-1)^{w\cdot\boldsymbol1}2^{-|M^{\mathsf T}w|}`$.
+Thus pairs with old $`K=0`$ and overlap one can respond differently
+to the same next band.
+
+More precisely, any one stored description that answers every such
+insertion to error below $`(1-\gamma)/16`$ needs
+$`\Omega(q^2)`$ bits. Matrices related by a column permutation have
+the same response. Otherwise
+$`N=(M')^{\mathsf T}M^{-\mathsf T}`$ sends some unit vector to a
+vector of weight at least two. Taking $`w=M^{-\mathsf T}e_i`$
+separates the responses by at least $`(1-\gamma)/8`$.
+There are $`|\mathrm{GL}(q,2)|/q!\ge2^{q^2-2-q\log_2q}`$ classes.
+The original matched words extend to identity, but the hypothetical
+insertions in this query family need not return work. This excludes
+that reusable description requirement, not a description recomputed
+from the actual complete word under its terminal promise.
+
+### One actual band can remove a full-rank relative defect
+
+Choose invertible M and $`M'`$ with $`M-M'`$ invertible. All axes in
+the combined lists $`B(M),B(M')`$ commute. A dependence with turn
+vectors u,v has second-bank label $`u+v=0`$ and first-bank label
+$`Mu+M'v=0`$, so u=v=0. Thus the signed product
+
+```math
+ E=E_B(M')E_B(M)^\dagger
+```
+
+is one actual native band on 2q independent axes, with 2q T gates
+and $`O(q^2)`$ Clifford cost. A CNOT change of basis in the common
+commuting span, with first-bank Hadamards, realizes that band.
+Its literal action replaces the left packet:
+
+```math
+ E E_B(M)E_A=E_B(M')E_A,\qquad
+ E_A^\dagger E_B(M')^\dagger E E_B(M)E_A=I .
+```
+
+The completed five-band word therefore returns every input exactly,
+including arbitrary dirty and reference inputs. It has 6q T gates,
+2q physical wires and $`O(q^2)`$ elementary Cliffords. A fixed fanout
+exposes the single logical probe as in Section 5; unused logical wires
+and one clean spectator may be added. The old relative K has rank q,
+and the old overlap is at most $`(3/4)^q`$, but the completed overlap
+is one. This is an actual full-return obstruction to retaining the
+old low-rank-K conclusion after insertion unchanged.
+
+Such pairs exist for every $`q\ge2`$. Take $`M'=MC`$, where C is a
+direct sum of companion blocks for $`t^2+t+1`$ and $`t^3+t+1`$.
+Every $`q\ge2`$ is a sum of twos and threes, and neither block has
+eigenvalue zero or one. M itself can be any invertible matrix.
+
+This replacement is a positive control uniformly for all input probes:
+it is an operator identity, not just the displayed overlap. Successive
+replacements telescope to the final two-band packet. Against a fixed
+right matrix $`M_R`$, the new relative matrix is simply
+$`M_R^{\mathsf T}M_{\rm new}^{-\mathsf T}-I`$.
+The existing [paired-half profile theorem](RELATIVE_FOUR_BAND_BIAS.md)
+then applies with its original endpoint hypotheses and no accumulated
+approximation error. This closed subclass always reduces back to a
+four-band comparison; it does not establish closure for arbitrary bands.
+
+Even the simpler inverse insertion revives a small contraction. For
+$`Q=E_APE_A^\dagger`$, the unique matching turns give
+
+```math
+ \tau\bigl(QE_B(M)QE_B(M)^\dagger\bigr)
+   =\left(\frac{1+1/\sqrt2}{2}\right)^q,
+ \qquad
+ E_B(M)^\dagger O_M E_B(M)=Q .
+```
+
+The first equality averages $`2^{-|M^{\mathsf T}u|/2}`$ over uniform u.
+The second turns that contraction into one and completes the literal
+four-band identity. Small partial contractions cannot be discarded
+without accounting for the actual remaining inverse.
+
+### A scalar calculation in the common commuting span
+
+There is a further exact reduction when the inserted band's axes lie in
+$`\mathcal H=\{X^a\otimes Z^b\}`$. Put
+$`F=E_B(M')^\dagger E E_B(M)`$ and $`\omega_8=e^{i\pi/4}`$.
+In the simultaneous X basis on the first bank and Z basis on the second,
+F is diagonal with eigenphase $`\omega_8^{p(x,z)}`$, where the actual
+signed parity polynomial is
+
+```math
+ \begin{aligned}
+ p(x,z)&=c+|M^{\mathsf T}x+z|-|(M')^{\mathsf T}x+z|\\
+ &\quad+\sum_{\ell=1}^h\varepsilon_\ell
+ [a_\ell\cdot x+b_\ell\cdot z]_2\pmod8 .
+ \end{aligned}
+```
+
+Here $`\varepsilon_\ell\in\{1,-1\}`$ records the actual orientation;
+any constant from a signed axis is included in c. Both exterior B
+words are part of p. For the fixed probe $`P=X^{\boldsymbol1}\otimes I`$,
+
+```math
+ \tau(O_{M'} E O_M E^\dagger)
+   =\mathbb E_z\left|\mathbb E_x\omega_8^{p(x,z)}\right|^2 .
+```
+
+To prove this, write the contraction as $`\tau(QFQF^\dagger)`$.
+After the first-bank Hadamards, Q is
+$`((Z-Y)/\sqrt2)^{\otimes q}\otimes I`$. It preserves z, and
+every first-bank entry has squared magnitude $`2^{-q}`$.
+Expanding the trace therefore gives
+$`2^{-3q}\sum_{z,x,x'}\omega_8^{p(x',z)-p(x,z)}`$, which is the
+displayed formula. An arbitrary affine input probe need not have these
+flat entries, so this calculation does not give a uniform whole-profile
+formula without additional weights.
+
+The replacement band above makes p identically zero even when the old
+K has full rank. More generally, scalar value one only forces p to be
+independent of x for each z. A nonconstant remaining dirty phase in z
+is invisible to this scalar and need not satisfy terminal work return.
+Recording the whole polynomial does not yet give a short description.
+Thus the exact kernel, replacement identities and this controlled
+calculation leave the required closure question open: compress the
+actual completed contraction uniformly over the full affine probe
+family, using its terminal return promise, with useful dependence on
+depth and T rather than on the large physical dirty width.
+
+The [bounded native fixture](../../tests/test_native_layer_count_distribution.py)
+checks the single-axis response, a nonzero shared-span phase polynomial,
+inverse revival and an odd-size replacement with $`q=3`$. Its common
+Clifford frame emits the replacement as one signed band, and exact
+native arithmetic verifies every column of the completed identity.

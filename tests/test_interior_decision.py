@@ -12,7 +12,7 @@ import unittest
 
 import numpy as np
 
-from tests.exact_matrices import CO, CQ2, CZ, adjoint, eye, multiply, native_columns
+from tests.exact_matrices import CO, CQ2, CZ, Q2, adjoint, eye, multiply, native_columns
 from tests.test_operator_source_compiler import (
     ATOL, X, Y, Z, _adjoint, _pauli, _word_matrix,
 )
@@ -63,19 +63,36 @@ def _boundary_word(interior):
     return pulse_b + interior + pulse_a
 
 
-def _source_word(table, interior, u=0, v=0):
+def _middle_word(table, u=0, v=0):
     pulse_a, pulse_b = _pulses()
     gauge_a = _z_word(2) if u else []
     gauge_b = _z_word(4) if v else []
     addressed_a = gauge_a + pulse_a + _adjoint(gauge_a)
     addressed_b = gauge_b + pulse_b + _adjoint(gauge_b)
     graph = _graph_word(table)
-    boundary = _boundary_word(interior)
     k0 = (addressed_b + addressed_a
           + _adjoint(addressed_b) + _adjoint(addressed_a))
     kc = (graph + addressed_b + graph + addressed_a
           + graph + _adjoint(addressed_b) + graph + _adjoint(addressed_a))
-    return boundary + _adjoint(k0) + kc + _adjoint(boundary)
+    return _adjoint(k0) + kc
+
+
+def _source_word(table, interior, u=0, v=0):
+    boundary = _boundary_word(interior)
+    return boundary + _middle_word(table, u, v) + _adjoint(boundary)
+
+
+def _asymmetric_source_word(table, u=0, v=0):
+    """Literal calibrated word with independent interior code boundaries.
+
+    Operator order is A0† E B0† (KC K0†) A0 E A0† B0 A0.
+    The cancelling B0 B0† pair in Fin,C Fin,0† has been removed.
+    """
+    pulse_a, pulse_b = _pulses()
+    graph = _graph_word(table)
+    return (pulse_a + pulse_b + _adjoint(pulse_a) + graph + pulse_a
+            + _middle_word(table, u, v) + _adjoint(pulse_b)
+            + graph + _adjoint(pulse_a))
 
 
 def _singlet_subspace(pair):
@@ -91,6 +108,72 @@ def _singlet_subspace(pair):
 
 
 class InteriorDecisionTests(unittest.TestCase):
+    def test_asymmetric_boundaries_have_complete_repeated_row_response(self):
+        # The zero-table calibration is literal on all physical inputs.
+        zero_word = _asymmetric_source_word(((0, 0), (0, 0)))
+        self.assertEqual(native_columns(WIDTH, zero_word), eye(1 << WIDTH))
+
+        root_half = CQ2(Q2(Fraction(0), Fraction(1, 2)))
+        selected = sorted(signal | (bank << 3) | a_bit
+                          for signal in (0, 1) for bank in range(4)
+                          for a_bit in (2, 4))
+        position = {basis: index for index, basis in enumerate(selected)}
+
+        def exact_response(signal, bank, mask, inverse):
+            # Independent closed form: product_j (I - i Y_c X_Bj)/sqrt(2)
+            # on the unnormalized A-pair singlet, with actual inverse signs.
+            base = signal | (bank << 3)
+            vector = {base | 2: CO, base | 4: -CO}
+            for j in range(2):
+                if not (mask >> j) & 1:
+                    continue
+                following = {}
+                for basis, value in vector.items():
+                    following[basis] = following.get(basis, CZ) + value * root_half
+                    changed = basis ^ 1 ^ (1 << (3+j))
+                    sign = (-1 if basis & 1 else 1) * (-1 if inverse else 1)
+                    following[changed] = (following.get(changed, CZ)
+                                          + value * root_half * CQ2(sign))
+                vector = following
+            return [vector.get(row, CZ) for row in range(1 << WIDTH)]
+
+        # Odd z gives zero bias; even z gives a nontrivial signed Pauli.
+        # Both address values and every signal/B input are retained.
+        for row in ((1, 0), (1, 1)):
+            table = (row, row)
+            mask = row[0] + 2*row[1]
+            for v in (0, 1):
+                word = _asymmetric_source_word(table, v=v)
+                self.assertEqual(sum(gate[0] in ('T', 'TDG') for gate in word), 28)
+                for inverse in (False, True):
+                    with self.subTest(row=row, v=v, inverse=inverse):
+                        actual_word = _adjoint(word) if inverse else word
+                        columns = native_columns(WIDTH, actual_word, columns=selected)
+                        outputs = {}
+                        for signal in (0, 1):
+                            for bank in range(4):
+                                base = signal | (bank << 3)
+                                output = [values[position[base | 2]]
+                                          - values[position[base | 4]]
+                                          for values in columns]
+                                self.assertEqual(output,
+                                                 exact_response(signal, bank, mask, inverse))
+                                outputs[signal, bank] = output
+                        if inverse:
+                            continue
+                        for left in range(4):
+                            for right in range(4):
+                                bias = sum((outputs[0, left][basis].conj()
+                                            * CQ2(-1 if basis & 1 else 1)
+                                            * outputs[0, right][basis]
+                                            for basis in range(1 << WIDTH)), CZ)
+                                # The unnormalized singlet has squared norm two.
+                                bias *= CQ2(Fraction(1, 2))
+                                expected = (CZ if mask.bit_count() % 2
+                                            else CQ2((-1)**(mask.bit_count()//2)
+                                                     * (left == (right ^ mask))))
+                                self.assertEqual(bias, expected)
+
     def test_native_decoder_retains_selected_row_and_omits_row_zero(self):
         pulse_a, pulse_b = _pulses()
         signal = _pauli(WIDTH, {0: Z})

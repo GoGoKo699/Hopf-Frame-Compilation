@@ -13,13 +13,15 @@ This checkpoint owns the current question and next action. Use the proof homes f
 
 ## Current checkpoint
 
-The verified base is the [joint-construction plan](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/288)
-at [9a8703a](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/9a8703aedc4eb26791aa9147126b0c28bcb42469).
+The verified starting point is the [joint-error and relative-cut cycle](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/289)
+at [e32a3d5](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/e32a3d53505b4d9f419019b9c7153c70662a9fb5).
 The [shared-layer construction](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
-enlarges the allowed source budget. The two-angle reduction supplies one sufficient route.
-The continuation prioritizes a joint fixed-error construction, retains the phase route
-under its new reopening condition, and investigates joint relative lower-bound descriptions.
-The general depth frontier is unchanged.
+enlarges the allowed source budget. This cycle tested the specified bank-H word
+against a coherent signed gap, without requiring its old flat accepted Gram.
+Its all-size full-bank margin bound stops that centered recovery route.
+An actual inserted band also changes the relative packet comparison, even inside
+an exact returned word. The general depth frontier is unchanged; no qualifying
+new source or unrestricted one-band compression rule has been established.
 
 <a id="current-depth-frontier"></a>
 
@@ -35,7 +37,7 @@ the matching precision-dominated lower bound and the separate larger-clean trade
 
 <a id="main-unfinished-route-and-exact-missing-operation"></a>
 
-## Research plan: joint fixed-error construction first
+## Research plan: prove a complete decision mechanism before extending a word
 
 The first constructive milestone is general fixed-accuracy depth $`o_L(\log n)`$
 at one clean input and square-root dirty width, retaining $`T=O_L(\sqrt N)`$,
@@ -43,86 +45,104 @@ $`G=O_L(N)`$ and the complete return contract. Optimal depth remains the destina
 a growing lower bound is an independent way to narrow that gap.
 The precision and larger-clean results retain their separate parameter regimes.
 
-### 1. Main construction: control the whole bank error
+### 1. Main construction: a uniform decision at its recovered cost
 
-Start with one joint complete-indicator candidate at fixed operator tolerance.
-Use the [source contract](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead):
-zero clean inputs, sublogarithmic depth, and fixed singly exponential resources
-with a common cost exponent across fixed tolerances. One suitable fixed tolerance
-also suffices under the completed-address hypotheses in the interface table below.
+The [one-clean decision interface](research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
+allows raw garbage, nonflat accepted spectra and nonzero marked acceptance.
+For a programmable bank, its sufficient premise is
+$`[M_p,\Omega]=0`$ and $`\Omega M_p\succeq\gamma(p)I`$, where
+$`M_p=J^\dagger V_p^\dagger Z_cV_pJ`$ and $`\Omega=(-1)^{Y_x}`$.
+The sign and margin must hold on the entire initialized code, with arbitrary
+principal work and references. Computational-basis bias is insufficient.
 
-**Next unpaid operation:** derive a native word whose completed Boolean-row
-errors have a uniform bank bound. The [localization identity](research/depth/COHERENT_COUNTER_SOURCE.md#orthogonal-completed-row-errors)
-allows orthogonal error supports with summable residual tails; coherent cancellation
-or a different joint factorization remain alternatives. Test the actual inverses on
-arbitrary dense banks and superpositions. Sector selection, transport and return
-must have explicit native costs. A bound on the fraction of bad dirty inputs
-does not establish a small operator error.
+Same-signal sharpening, bank Hadamards and the paid one-clean vector promotion
+give a complete indicator. At fixed tolerance, the sufficient recovered-depth
+criterion is
 
-Within preserved address sectors, apply both the [trace bound](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
-and the [transported operator budget](research/depth/COHERENT_COUNTER_SOURCE.md#shared-row-operator-budget).
-They concern exactly inactive ordered row factors; the latter retains each work direction.
-These are necessary tests; the literal worst-case bank bound still has to be proved.
-Merely sharing a register or allocating nonuniform row precision does not establish an escape.
-Stop a candidate when its complete synthesis restores the old logarithmic
-lookup, carry or conjunction cost. If the complete-indicator requirement is the
-obstacle, evaluate the [one-clean coherent decision](research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
-instead: prove its sign and uniform gap on the entire initialized code before recovery.
+```math
+\gamma(p)^{-1}\bigl[d_V(p)+1+\log(1/\gamma(p))\bigr]=o(\log p).
+```
 
-### 2. Bounded construction: test the public third-root phase
+Counts and width must obey the [fixed singly exponential source contract](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead)
+with a common exponent across fixed tolerances. A mildly shrinking gap can
+qualify; a constant gap, exact marked cancellation and constant raw depth are
+not all independent prerequisites. Charge native signal accuracy before recovery.
 
-**Can the two fixed phase operations below be synthesized to error $`2^{-s}`$ in $`o(\log(s+2))`$ native T-depth?**
-The angles are $`2\pi/3`$ and $`\arccos(1/\sqrt3)`$, with their negatives obtained by actual reversal.
-Allow $`2^{O(s)}`$ T gates, elementary Cliffords and dirty workspace, and zero clean inputs.
-The third-root word uses its public bit only as a CNOT control, so address and eigenlabel parities can drive simultaneous calls.
-The second operation is an ordinary phase rotation on a private qubit.
-Each primitive may carry one common phase. The row cancels it with actual inverses. Bound the full operator error on arbitrary dirty inputs. [Phase word and eigenlabels](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
+**Decision on the tested word:** the [three-stage bank-H family](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#full-bank-signed-gap)
+has only one effective signal angle. On the invariant full-bank, address-zero
+sector, all eight path operators become almost orthogonal as the bank grows.
+Any centered signed margin is at most $`2^{-\Omega(2^p)}`$ for every angle.
+The specified odd recovery then needs exponentially many visits in the bank size.
+Stop varying its two Z-phase parameters or patching finitely many arities. This does not prove
+that every possible spectral recovery or general bank-dependent word fails.
 
-| Step toward complete frames | What the proof pays |
-| --- | --- |
-| Phases to one MOD3 row | The existing [dirty gauge](research/depth/COHERENT_COUNTER_SOURCE.md#private-gauge-mod3) returns the whole register to the requested tolerance and costs $`O(\log(s+2))`$ depth. Independent rows need a joint bank error bound. For a fixed bank tolerance $`\tau`$, row error $`O(\tau 2^{-p})`$ suffices on a p-bit address, so individual phase precision has $`s=p+O(\log(p+2)+\log(1/\tau))`$. |
-| Rows to a complete indicator | An [odd MOD3 residue kernel](research/depth/COHERENT_COUNTER_SOURCE.md#odd-parity-row-kernel) is its own inverse under binary convolution. A paid CNOT basis change, the parallel row phases and their recovery toggle the selected bit of an arbitrary bank. |
-| Indicator to general frames | [Shared-layer fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead) absorbs singly exponential source costs with a common exponent across fixed tolerances. The [complete word-query transfer](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#7-conditional-complete-frame-consequence-with-its-source-tolerance) then gives $`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$ and $`D_T=O_L(N/b^2)+o_L(\log n)`$ with one clean input at the original real and complex width thresholds. |
+**Next bounded calculation:** keep the paid branches and use the exact native
+polar word $`W=SHTHS^\dagger`$ for each of the first three signal walls, with
+the actual $`W^{-3}`$ last. Its full-bank mean approaches minus one quarter;
+this is a proved calibration effect, not a uniform gap. Test its complete full-bank
+spectrum first, then every required bank if it passes. An all-size or embedded
+wrong-sign witness stops centered sharpening; a common-response witness also stops
+signal-only recovery. Continue only with a separation of the entire
+marked/unmarked spectra whose recovery meets the stated budgets.
+An added stage needs an improvement recurrence before finite search. If a source is factored into
+exactly inactive rows, the [transported error budget](research/depth/COHERENT_COUNTER_SOURCE.md#shared-row-operator-budget)
+and [localization identity](research/depth/COHERENT_COUNTER_SOURCE.md#orthogonal-completed-row-errors)
+remain necessary tools; they are not premises for an arbitrary joint word.
 
-A new phase word should identify how it pays the non-Clifford controls in parallel and bound the full-space error. A cyclic gauge must also account for wraparound. The [component bound](research/depth/ROBUST_DECISION_BIAS.md#the-same-components-constrain-literal-phase-precision) applies to the native product of the public word specialized at one and its adjoint specialized at zero. Their common phase cancels, giving a zero-clean approximation to $`e^{2\pi i/3}I`$. For that product, $`d(r+1)=\Omega(s)`$ for depth d and maximum interaction-component half-rank r. A joint bank construction can instead target the complete indicator norm directly.
+The bounded alternative is one **prescribed-table** decision with table dependence
+inside its non-Clifford computation. It must retain $`T,w=O(2^{a/2})`$ and
+$`G=O(2^a)`$ after recovery. The [square-root transfer](research/depth/PRESCRIBED_SCALAR_TABLES.md#square-root-width-signed-gap-transfer)
+can use depth $`O(\log a/\log\log a)`$ at a constant gap. This tighter count
+budget cannot automatically absorb growing amplification multiplicity.
+Compiling the table does not supply a clean quantum truth-table bank.
+The tested [asymmetric boundary repair](research/depth/PRESCRIBED_SCALAR_TABLES.md#calibrated-asymmetric-decision-source)
+still has identical responses on opposite required signs for a dense repeated-row
+family. Further work must change that complete interior action, not merely its boundary order.
 
-The [paid broad-cycle gauge](research/depth/COHERENT_COUNTER_SOURCE.md#public-phase-gauge-screens)
-has a fixed error floor despite constant depth, a non-Clifford mixer and irrational eigenangles.
-Reopen that family only by leaving its entry-phase grid or monomial-mixer premise.
-Keep the next attempt on the public word, which has the tighter control convention. Require
-an all-size native family, a full spectral or operator-error bound, and a
-precision-depth recurrence that beats $`O(\log s)`$. Its coupled components must
-satisfy the rank requirement above. Stop a family that only reconstructs the
-existing increment-and-gradient gauge or imports an initialized precision state.
-The private-angle word is the next obligation only after the public mechanism
-passes this feasibility test. Failure here closes that candidate, not the frame problem.
+### 2. Phase synthesis stays paused under its specific reopening condition
 
-### 3. Independent lower bound: iterate complete-return constraints
+The [two fixed angles](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
+remain a sufficient route: third-root phase on a public CNOT-only control and
+$`\arccos(1/\sqrt3)`$ on a private bit, with actual inverses and zero clean inputs.
+The target is full operator error $`2^{-s}`$, depth $`o(\log(s+2))`$ and
+$`2^{O(s)}`$ resources. The [paid broad-cycle gauge](research/depth/COHERENT_COUNTER_SOURCE.md#public-phase-gauge-screens)
+fails at a fixed error despite its irrational eigenangles.
+Reopen only with an explicit family leaving the entry-phase grid or monomial-mixer
+premise, a complete spectral estimate and a paid precision recurrence. Its actual
+public relative word must meet the [component-rank requirement](research/depth/ROBUST_DECISION_BIAS.md#the-same-components-constrain-literal-phase-precision).
+Do not start the private-angle obligation before the public mechanism passes.
+
+### 3. Independent lower bound: include the actual inserted band before compressing
 
 Start from the [returned-query probe identity](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#4-what-a-growing-lower-bound-would-now-need).
-Try a one-band extension rule for significant **joint relative contractions**,
-with quantitative dependence on depth, fixed error and the simultaneous count budget.
-This is a proposed induction task, not an established invariant.
-It must allow arbitrary Clifford walls and large connected interaction components.
-Complete return holds for the finished circuit. Keep both the forward prefix and
-actual-adjoint suffix at each cut; do not assume that an intermediate prefix returns work.
+For a completed word $`W=REL`$, the object is the whole probe profile
+$`\langle R^\dagger SR,E(LP_zL^\dagger)E^\dagger\rangle_{\rm HS}`$.
+Its description may use the actual band E and actual suffix R. Complete return
+belongs to W; do not impose it on L or on an intermediate stripped word.
 
-[Separate prefix packet nets](research/depth/TEMPORAL_AXIS_BIAS.md#correlated-packet-prefix-obstruction)
-already need $`\Omega(T^2)`$ bits in a fixed physical frame within the allowed budgets.
-In the explicit paired family, significant overlap instead has a short relative-matrix description.
-The next obligation is closure of such a joint description under another arbitrary native band,
-uniformly over the input probes and without discarding coherently colliding histories.
+The [inserted-band controls](research/depth/TEMPORAL_AXIS_BIAS.md#actual-band-relative-contraction)
+show why the old relative matrix alone does not close. One actual native band
+can turn a full-rank relative mismatch into exact identity inside a returned
+five-band word. A replacement subclass telescopes to the existing paired form;
+this is a useful control, not a new arbitrary-band induction. Separate reusable
+prefix summaries already need $`\Omega(T^2)`$ bits, and a small partial overlap
+can revive under the actual suffix. Sum coherent collisions before judging significance.
 
-Before extending the rule, test it against [exact cancellation at large crossing rank](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
-including the [single dense connected identity](research/depth/TEMPORAL_AXIS_BIAS.md#the-anticommutation-graph-and-its-temporal-cuts),
-and [constant-depth Gauss basis bias](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions).
-Raw rank, basis-only bias or a fixed source grammar cannot supply the needed bound.
-An $`O(T^2)`$ description bound alone is insufficient at the allowed square-root
-T-count; a bounded cut or component rank would restrict the circuit model.
-Retain a new constant-band exclusion as a scaling route only if it exposes an
-iterable argument; otherwise record its scoped use in screening a live candidate.
-The [precision tradeoff](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) alone gives
-no depth lower bound growing with n at fixed L and the allowed square-root T-count.
+**Next unpaid operation:** describe the completed profiles uniformly over all
+probes after a band outside the exact replacement subclass, with a quantitative
+next-band update. The shared-commuting scalar phase average is a first control;
+it is not yet a uniform profile net or an arbitrary-band rule. Preserve near-linear
+dependence on T at fixed band count, with controlled depth and error factors.
+Recording all $`hT`$ new pairings or all $`T^2`$ data
+does not give the required scaling. Neither the new controls nor the online
+packing obstruction excludes such an offline, terminal-conditioned description.
+
+Keep [large-rank exact cancellation](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
+and [constant-depth Gauss basis bias](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)
+as controls. Arbitrary Clifford walls and large connected components remain allowed.
+Retain a constant-band calculation as a scaling mechanism only when it exposes
+an iterable argument. The [precision tradeoff](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md)
+alone gives no growing depth bound at fixed L and square-root T-count.
 
 ### Work cycle and decision points
 

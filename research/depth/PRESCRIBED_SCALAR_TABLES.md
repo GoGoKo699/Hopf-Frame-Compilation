@@ -2000,6 +2000,77 @@ changed middle word. Other asymmetric boundaries for the remaining
 nonconstant tables remain open. No unrestricted query-width or
 growing T-depth lower bound follows.
 
+<a id="calibrated-asymmetric-decision-source"></a>
+
+### Independent code boundaries still have a repeated-row response
+
+A concrete asymmetric alternative keeps the paid middle
+$`Q_C=K_CK_0^\dagger`$ but uses different input and output preparations:
+
+```math
+ F_{\mathrm{in},C}=A_0E_CB_0,\qquad
+ F_{\mathrm{out},C}=B_0E_CA_0,\qquad
+ U_C=F_{\mathrm{out},C}^\dagger Q_C F_{\mathrm{in},C}
+         F_{\mathrm{in},0}^\dagger F_{\mathrm{out},0} .
+```
+
+The rightmost calibration makes the zero-table source exactly identity.
+It does not make the two table-dependent boundaries actual inverses, so
+the preceding conjugation-only spectral-arc argument does not apply.
+Cancelling the adjacent B0 and its actual inverse gives
+
+```math
+ U_C=A_0^\dagger E_CB_0^\dagger Q_C
+          A_0E_CA_0^\dagger B_0A_0 .
+```
+
+Both native directions have at most $`14m`$ T gates and fourteen T bands,
+$`O(m^2)`$ elementary Cliffords, two m-bit dirty banks and one clean
+signal, outside the address. The native pulse scalars cancel. This pays
+the proposed source, not its coherent decision gap.
+
+It has a common response on a large nonconstant-table family. Suppose
+each pair of A rows is identical,
+$`C_{2i,j}=C_{2i+1,j}=c_{ij}`$, and put
+$`z_j=\bigoplus_i c_{ij}`$. Choose every A pair in its singlet and
+leave the **entire B bank arbitrary**. At u=0 the completed pulse A0 is
+identity on this subspace, since each paired X sum vanishes. The graph
+word preserves the subspace and restricts to $`Z_B^z`$: each A pair has
+odd computational parity. Every Bv pulse also preserves it. Hence
+$`Q_C=I`$ there for every v, and the complete source restricts to
+
+```math
+ U_C\big|_{\rm singlets}
+ =Z_B^zB_0^\dagger Z_B^zB_0
+ =\exp\!\left(-\frac{i\pi}{4}Y_c
+                    \sum_{j:z_j=1}X_{B_j}\right),
+```
+
+independently of v. These are permissible dirty test inputs, not
+initialized source resources. The exact clean-zero compression on that
+subspace is
+
+```math
+ M_C(0,v)\big|_{\rm singlets}
+ =\begin{cases}
+ 0,&|z|\text{ odd},\\
+ (-1)^{|z|/2}\displaystyle\prod_{j:z_j=1}X_{B_j},&|z|\text{ even}.
+ \end{cases}
+```
+
+Whenever row zero of C is nonconstant, two addresses v require opposite
+decision signs but have the same complete source action on this subspace.
+No positive uniform coherent gap is possible. The family includes dense
+tables at every larger size; it is not only a sparse embedded exception.
+Signal-only processing of the source and its actual inverse retains the
+common response. New address-dependent work operations, other independent
+boundaries or a changed middle word require their own analysis. The
+[interior-decision fixtures](../../tests/test_interior_decision.py) check
+the literal asymmetric word and its inverse on the full small singlet
+sector, with arbitrary signal and B inputs, including zero and nonzero
+compressed responses. This failure supplies no unrestricted native-depth
+lower bound.
+
 ### Substitution in the frame recurrence
 
 For each early stage of remaining height m, request

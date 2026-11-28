@@ -6,6 +6,9 @@ legal counterexample input, never a promised initialization.  Implementation
 helpers of each literal stage do return.  The crossing-code witness survives
 the asymmetric branch V^dagger B_Y R_C V, despite failure of an older witness.
 A separate full-column Gram certificate rejects the specified bank-H extension.
+The full-bank fixtures check cell bounds, complete small tensor-swap paths,
+and cancellation of the redundant signal angle. The all-size trace bound
+and its centered-recovery consequence are analytic, not a numerical search.
 """
 from itertools import product
 from fractions import Fraction
@@ -134,7 +137,204 @@ def _complete_bank_h_gram():
     return real, radical, 512*(1 << (2*scale))
 
 
+def _literal_full_bank_origin_stage(matching, inverse=False):
+    """All selector columns, including the actual quarter phases and inverse."""
+    dimension = 1 << matching.m
+    matrix = np.zeros((dimension, dimension), dtype=complex)
+    for selectors, borrowed in product(range(dimension), (0, 1)):
+        state = (0, matching.mask, selectors, borrowed, 0)
+        output = matching.stage_literal(state, inverse=inverse)
+        assert output[:2] == state[:2] and output[3] == borrowed
+        assert matching.stage_literal(output, inverse=not inverse) == state
+        matrix[output[2], selectors] = 1j ** output[4]
+    return matrix
+
+
+def _full_bank_small_components():
+    """One-cell calibration of the all-size tensor identity, on all s,t inputs.
+
+    These three p=2 stages are a bounded algebra check, not the p>=3
+    all-coordinate matching family. Native frame phases are checked in the
+    retained cell fixtures; the stages use their literal complete action.
+    """
+    dimension = 16
+    frames, stages, reverses = [], [], []
+    for spec, pair in zip(_FRAMES, (((0, 1),), ((1, 0),), ((0, 1),))):
+        frame, exponent = _wrapped_frame(2, spec)
+        frames.append(frame / (1 << exponent))
+        matching = _Matching(2, pair)
+        stages.append(_literal_full_bank_origin_stage(matching))
+        reverses.append(_literal_full_bank_origin_stage(matching, inverse=True))
+    hadamard = np.array([[(-1) ** ((row & col).bit_count()) / 4
+                         for col in range(dimension)] for row in range(dimension)])
+    swap = np.array([value // dimension + dimension * (value % dimension)
+                     for value in range(dimension ** 2)])
+
+    def on_s(operator, columns):
+        return np.einsum('ab,tbc->tac', operator,
+                         columns.reshape(dimension, dimension, -1)).reshape(
+                             dimension ** 2, -1)
+
+    def branch(j, enabled, columns, inverse=False):
+        if not enabled:
+            return on_s(reverses[j] if inverse else stages[j], columns)
+        columns = on_s(frames[j], columns)
+        if inverse:
+            columns = on_s(hadamard, columns)[swap]
+            columns = on_s(reverses[j], columns)
+        else:
+            columns = on_s(stages[j], columns)[swap]
+            columns = on_s(hadamard, columns)
+        return on_s(frames[j].conj().T, columns)
+
+    return dimension, frames, stages, reverses, hadamard, swap, branch
+
+
 class BankCoupledSelectorFrameTests(unittest.TestCase):
+    def test_full_bank_cell_projectors_and_exact_tensor_statistics(self):
+        cells = [_cell_frame(*spec) for spec in _FRAMES]
+        identity = np.eye(16, dtype=np.int64)
+
+        def pauli(wire, z=False):
+            result = np.zeros((16, 16), dtype=np.int64)
+            for column in range(16):
+                row = column if z else column ^ (1 << wire)
+                result[row, column] = (-1) ** ((column >> wire) & 1) if z else 1
+            return result
+
+        x0, x1, x3 = [pauli(wire) for wire in (0, 1, 3)]
+        z2, z3 = [pauli(wire, z=True) for wire in (2, 3)]
+        formulas = [
+            4 * identity - (identity+x0) @ (identity-z2) @ (identity-z3),
+            4 * identity - (identity+x0) @ (identity-x1) @ (identity-x3),
+            4 * identity - (identity+x0) @ (identity-x1) @ (identity+z2),
+        ]
+        for (matrix, exponent), numerator in zip(cells, formulas):
+            self.assertTrue(np.array_equal(4 * matrix, (1 << exponent) * numerator))
+
+        def word(indices):
+            matrix, exponent = identity.copy(), 0
+            for index in indices:
+                matrix = matrix @ cells[index][0]
+                exponent += cells[index][1]
+                matrix, exponent = _remove_twos(matrix, exponent)
+            return matrix, 1 << exponent
+
+        for i, j in product(range(3), repeat=2):
+            if i == j:
+                continue
+            matrix, denominator = word((i, j))
+            absolute = np.abs(matrix)
+            for axis in (0, 1):
+                self.assertEqual(Fraction(int(absolute.max(axis=axis).sum()),
+                                          16 * denominator), Fraction(3, 4))
+                expected = Fraction(2) if {i, j} == {0, 2} else Fraction(5, 2)
+                self.assertEqual(Fraction(int(absolute.sum(axis=axis).max()),
+                                          denominator), expected)
+
+        j212, denominator = word((1, 0, 1))
+        formula = 4 * identity - (identity+x0) @ (identity-z2) @ (identity-x1 @ z3)
+        self.assertTrue(np.array_equal(4 * j212, denominator * formula))
+        for matrix, scale in ((j212, denominator),
+                              (cells[2][0], 1 << cells[2][1])):
+            for axis in (0, 1):
+                sums = np.abs(matrix).sum(axis=axis)
+                self.assertEqual(sorted(sums.tolist()), [scale] * 8 + [2 * scale] * 8)
+                self.assertEqual(Fraction(int(sums @ sums), 16 * scale ** 2),
+                                 Fraction(5, 2))
+        matrix, denominator = word((1, 0, 1, 2))
+        for axis in (0, 1):
+            self.assertTrue(np.all(2 * np.abs(matrix).max(axis=axis) == denominator))
+            self.assertTrue(np.all(np.abs(matrix).sum(axis=axis) == 2 * denominator))
+
+    def test_full_bank_tensor_paths_actual_reverses_and_signal_cancellation(self):
+        dimension, frames, stages, reverses, hadamard, swap, branch = (
+            _full_bank_small_components())
+        size = dimension ** 2
+        identity = np.eye(size, dtype=complex)
+        for stage, reverse in zip(stages, reverses):
+            self.assertTrue(np.array_equal(reverse, stage.conj().T))
+        paths, factors = {}, {}
+        for bits in product((0, 1), repeat=3):
+            actual = identity.copy()
+            left = right = np.eye(dimension, dtype=complex)
+            for j, enabled in enumerate(bits):
+                actual = branch(j, enabled, actual)
+                if enabled:
+                    left, right = (frames[j] @ hadamard @ right,
+                                   stages[j] @ frames[j] @ left)
+                else:
+                    left = stages[j] @ left
+            expected = np.kron(right, left)
+            if sum(bits) % 2:
+                expected = expected[:, swap]
+            # Entries here are Gaussian dyadics with exactly representable
+            # numerators; no floating-point tolerance hides a path phase.
+            self.assertTrue(np.array_equal(actual, expected))
+            returned = actual
+            for j in range(2, -1, -1):
+                returned = branch(j, bits[j], returned, inverse=True)
+            self.assertTrue(np.array_equal(returned, identity))
+            paths[bits], factors[bits] = actual, (left, right)
+
+        for left_bits, right_bits in product(paths, repeat=2):
+            a = factors[left_bits][0].conj().T @ factors[right_bits][0]
+            b = factors[left_bits][1].conj().T @ factors[right_bits][1]
+            actual = np.vdot(paths[left_bits], paths[right_bits]) / size
+            if sum(left_bits) % 2 == sum(right_bits) % 2:
+                expected = np.trace(a) * np.trace(b) / size
+                if left_bits != right_bits:
+                    self.assertLessEqual(abs(actual), Fraction(3, 4))
+            else:
+                expected = np.trace(a @ b) / size
+                self.assertLessEqual(abs(actual), Fraction(1, dimension))
+            self.assertEqual(actual, expected)
+
+        signal_h = np.array([[1, 1], [1, -1]], dtype=complex) / np.sqrt(2)
+
+        def rz(angle):
+            return np.diag([np.exp(-0.5j * angle), np.exp(0.5j * angle)])
+
+        def source(alpha, beta):
+            signal = [signal_h, rz(alpha) @ signal_h, rz(beta) @ signal_h]
+            signal.append((signal[2] @ signal[1] @ signal[0]).conj().T)
+            columns = np.eye(2 * size, dtype=complex).reshape(2, size, 2 * size)
+            columns = np.einsum('ab,bcd->acd', signal[0], columns)
+            for j in range(3):
+                columns = np.stack([branch(j, enabled, columns[enabled])
+                                    for enabled in (0, 1)])
+                columns = np.einsum('ab,bcd->acd', signal[j+1], columns)
+            return columns.reshape(2 * size, 2 * size)
+
+        # Fixed phase choices test the complete signal identity; this is not
+        # an angle optimization or a claim of successful decision bias.
+        for alpha in (0, np.pi / 2):
+            actual = source(alpha, np.pi / 4)
+            np.testing.assert_allclose(actual, source(alpha, 0), atol=2e-13, rtol=0)
+            coefficients = {bits: np.exp(1j * alpha * bits[1])
+                             * (-1) ** (bits[1] * (bits[0] + bits[2])) / 4
+                             for bits in paths}
+            expected = sum(coefficients[bits] * paths[bits] for bits in paths)
+            np.testing.assert_allclose(actual[:size, :size], expected,
+                                       atol=2e-13, rtol=0)
+            self.assertAlmostEqual(abs(sum(coefficients.values()) - 1), 0, places=13)
+            self.assertAlmostEqual(sum(abs(c) ** 2 for c in coefficients.values()),
+                                   0.5, places=13)
+
+        # A fixed, exact native polar-angle change escapes only the balanced
+        # path-norm argument. This checks its calibration, not a signed gap.
+        forward = [('S', 0)] * 3 + [('H', 0), ('T', 0), ('H', 0), ('S', 0)]
+        reverse = [('S', 0)] * 3 + [('H', 0), ('TDG', 0), ('H', 0), ('S', 0)]
+        w = native_columns(1, forward)
+        last = native_columns(1, reverse * 3)
+        coefficients = [last[0][b3] * w[b3][b2] * w[b2][b1] * w[b1][0]
+                        for b1, b2, b3 in product((0, 1), repeat=3)]
+        self.assertEqual(sum(coefficients, CZ), CO)
+        self.assertEqual(sum((c.conj() * c for c in coefficients), CZ),
+                         CQ2(Q2(Fraction(3, 8))))
+        self.assertEqual(native_columns(1, forward * 3 + reverse * 3),
+                         [[CO, CZ], [CZ, CO]])
+
     def test_bank_hadamard_normalization_and_actual_branch_inverse(self):
         root_half = CQ2(Q2(Fraction(0), Fraction(1, 2)))
         self.assertEqual(native_columns(1, [('H', 0)]),
