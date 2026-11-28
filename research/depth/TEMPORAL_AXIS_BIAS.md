@@ -683,3 +683,264 @@ checks the single-axis response, a nonzero shared-span phase polynomial,
 inverse revival and an odd-size replacement with $`q=3`$. Its common
 Clifford frame emits the replacement as one signed band, and exact
 native arithmetic verifies every column of the completed identity.
+
+<a id="terminal-quotient-shared-span"></a>
+
+## 7. Terminal return compresses a transverse commuting middle
+
+The whole commuting family of Section 6 has a stronger conclusion than
+its fixed-probe phase average. The relative geometry matters. Fix w
+physical wires, with a logical wires, b arbitrary dirty wires and
+$`c\in\{0,1\}`$ clean wires, so $`w=a+b+c`$. Let
+
+```math
+ \begin{aligned}
+ A&=\prod_{j=1}^q T_j^{\epsilon_j},\qquad
+ H_Q=\prod_{j=1}^q H_j,\qquad B=H_QAC,\\
+ V&=B^\dagger D_pB
+   =C^\dagger A^\dagger F A C,\qquad
+ F=H_QD_pH_Q,\\
+ D_p|y\rangle&=\omega_8^{p(y)}|y\rangle,\qquad
+ \omega_8=e^{i\pi/4}.
+ \end{aligned}
+```
+
+Here C is any common Clifford embedding, the q outer T axes are
+distinct, and $`\epsilon_j\in\{1,-1\}`$. The actual middle F is a
+product of any number of native bands whose axes lie in the fixed
+transverse span $`\{X^u\otimes Z^v\}`$, with u on the first q wires
+and v on the remaining wires. Its signed parity polynomial p includes
+all those bands, orientations and literal scalar phases. Every such p
+has degree at most three modulo eight: linear coefficients are arbitrary,
+quadratic coefficients are even, and cubic coefficients are multiples
+of four. Restriction along an affine binary map preserves this form.
+
+This geometry includes all the shared-commuting insertions of Section 6
+and arbitrary common Clifford conjugates. Intrinsically, let the actual
+independent outer axes span $`L_A`$ and let a diagonal Lagrangian
+$`L_F`$ contain the middle axes. Full crossing rank q, equivalently
+$`L_A\cap L_F=0`$, supplies these coordinates without replacing the
+individual outer axes. Choose $`f_i\in L_F`$ dual to the actual
+$`A_i`$, so $`\omega(A_j,f_i)=\delta_{ij}`$. Complete them by a
+basis of $`L_F\cap L_A^\perp`$ and extend to a symplectic basis.
+A Clifford sends each actual $`A_i`$ to $`Z_i`$, its dual to $`X_i`$,
+and the remaining diagonal basis to the remaining Z coordinates.
+Axis signs are absorbed into the recorded orientations.
+
+Dependent crossing does not justify this reduction while keeping the
+same individual native T axes. Independent unmatched exterior
+Cliffords and noncommuting middle insertions are also outside the
+following result.
+
+Let J initialize the c clean wires. Suppose that the actual completed
+word satisfies, for some logical unitary U,
+
+```math
+ \|VJ-J(U\otimes I_b)\|_{\rm op}\le\eta
+ \lt\kappa:=\frac{1-1/\sqrt2}{2}.
+```
+
+A common scalar may be absorbed into U. No prefix is assumed to return
+work. For any affine Pauli probe family $`P_z`$ on the logical and dirty
+input, with $`z\in\mathbb F_2^r`$ and literal phase digits of degree at
+most two, and any fixed output Pauli S, the entire initialized profile
+
+```math
+ \beta(z)=2^{-(w-c)}\mathrm{Tr}
+ \left(JP_zJ^\dagger V^\dagger S V\right)
+```
+
+has an exact description using
+
+```math
+ O\bigl(w(a+r+1)+(a+1)^3+r^2\bigr)
+```
+
+bits. The r parameters label the whole probe family; they are not the
+physical width. A mathematical input slice, such as target input zero
+or a dirty Pauli eigenspace, is handled by the corresponding constant
+number of Pauli-probe sums. The decoder may take exponential time.
+
+### A large monomial dirty subgroup supplies translations
+
+Represent the dirty Pauli space modulo scalar phases as a binary space
+of dimension 2b. Keep its subspace $`\mathcal D_0`$ whose conjugate
+under C has zero X mask on the first q wires. Its dimension is at least
+$`2b-q`$. These Paulis commute with A, so for every $`D\in\mathcal D_0`$,
+
+```math
+ Q_D:=BDB^\dagger=H_QCDC^\dagger H_Q
+```
+
+is a monomial Pauli in the y basis. Its translation vector consists of
+the first-q Z mask and the remaining X mask of $`CDC^\dagger`$.
+The kernel of this translation map on $`\mathcal D_0`$ has dimension
+at most $`w-q`$: only the remaining Z coordinates can survive there.
+The image H consequently satisfies
+
+```math
+ \dim H\ge2b-w=w-2(a+c),\qquad
+ \mathrm{codim}\,H\le2(a+c).
+```
+
+This permits dense Clifford embeddings, large connected components and
+large dirty width. Only the eventual small quotient will be recorded;
+the full dirty-Pauli basis and C's quadratic-size tableau are not.
+
+### Initialized return forces exact phase periods
+
+Put $`\Pi=BJJ^\dagger B^\dagger`$. Every dirty D preserves the
+initialized code and commutes with the ideal logical action. Applying
+the complete error bound twice therefore gives
+
+```math
+ \|[D_p,Q_D]BJ\|_{\rm op}\le2\eta .
+```
+
+This does not apply a clean-code bound after a leaked prefix. It is a
+commutator estimate for the completed word on its initialized input.
+Also $`[Q_D,\Pi]=0`$. Write
+$`Q_D|y\rangle=\zeta_D(y)|y+s_D\rangle`$ and
+$`d_y=\omega_8^{p(y)}`$. The norm of row y of the preceding commutator
+on the code is exactly
+
+```math
+ \left\|\langle y|[D_p,Q_D]BJ\right\|
+   =|d_y-d_{y+s_D}|\sqrt{\Pi_{yy}}
+   \le2\eta .
+```
+
+For c=0, every $`\Pi_{yy}=1`$. For c=1, conjugate the clean Z Pauli
+through C, A and $`H_Q`$. Each first-q X or Y factor contributes a
+diagonal coefficient of magnitude $`1/\sqrt2`$; a mandatory flip
+makes the whole diagonal zero. Thus the transformed clean Pauli either
+is a diagonal Pauli, or its diagonal entries have magnitude at most
+$`1/\sqrt2`$. In the second case every $`\Pi_{yy}\ge\kappa`$.
+In the first case Pi is exactly the projector onto one affine
+hyperplane $`\mathcal S`$ in the y coordinates. Dirty translations
+preserve this hyperplane, and $`\Pi_{yy}=1`$ on it. Use
+$`\mathcal S=\mathbb F_2^w`$ in the full-support cases.
+
+Unequal eighth roots have distance at least
+$`2\sin(\pi/8)=2\sqrt\kappa`$. The strict error threshold therefore
+forces $`d_y=d_{y+s_D}`$ for every y in the relevant support and every
+$`D\in\mathcal D_0`$. Equivalently, p is exactly constant modulo eight
+on the H cosets in $`\mathcal S`$. The conclusion is exact even though
+the completed initialized return was approximate. There is no sum of
+errors over generators: every translation in H comes from a dirty Pauli
+to which the same two-error bound applies.
+
+### A fixed quotient section gives a uniform decoder and update
+
+Let $`k=\dim(\mathcal S/H)`$. Then $`k\le2(a+c)`$; in the diagonal
+one-clean case the stronger bound is $`k\le2a+1`$. Choose a linear
+quotient map R and a section $`y=y_0+Lt`$ such that
+$`RL=I_k`$ and the section meets every H coset in $`\mathcal S`$ once.
+On an affine clean slice, extend R to the ambient space and choose
+$`y_0\in\mathcal S`$ and L within its direction space. Define
+
+```math
+ \bar p(t)=p(y_0+Lt),\qquad
+ p'(y)=\bar p\bigl(R(y-y_0)\bigr).
+```
+
+The quotient polynomial has $`O((k+1)^3)`$ bits: its constant and linear
+coefficients are modulo eight, its quadratic coefficients modulo four
+after factoring out two, and its cubic coefficients modulo two after
+factoring out four. Phase constancy gives $`D_{p'}BJ=D_pBJ`$ exactly.
+In the full-support case it gives equality on every physical input.
+In the diagonal clean-slice case it makes no assertion about clean-one
+action, which is absent from the initialized profile.
+
+Here is a constructive description, including the embedding costs.
+Lift $`P_z`$ by identity on the clean wires, writing the result as
+$`\widetilde P_z`$. Record q and its orientations, the affine labels of
+$`C\widetilde P_zC^\dagger`$, the fixed Pauli $`CSC^\dagger`$, and
+the clean Pauli $`CZ_cC^\dagger`$ when present. For the input phase,
+record its original two degree-two binary digits and the Clifford
+cocycle separately, and add their values modulo four when decoding.
+The Clifford cocycle has affine low bit and quadratic high bit on the
+affine labels, by ordered Pauli multiplication. Their sum need not
+retain quadratic digits because of
+the binary carry, but these separate records still cost $`O(r^2)`$.
+The labels and phases together cost $`O(w(r+1)+r^2)`$ bits.
+Record R using $`O(wk)`$ bits and the
+small polynomial $`\bar p`$. The clean-slice equation, if any, is
+known from the recorded clean Pauli. A fixed Gaussian-elimination rule
+can choose $`y_0,L`$ from R and that equation, so a second large
+embedding is unnecessary. The encoder uses this same section when
+forming $`\bar p`$.
+
+The decoder conjugates the recorded Paulis by the known $`H_QA`$,
+reconstructs Pi, and evaluates the exact trace with $`D_{p'}`$.
+Writing $`\mathcal P_z=B\widetilde P_zB^\dagger`$
+and $`\mathcal S_0=BSB^\dagger`$, the trace is
+
+```math
+ \beta(z)=2^c\,2^{-w}\mathrm{Tr}
+ \left(\Pi\mathcal P_zD_{p'}^\dagger\mathcal S_0D_{p'}\right).
+```
+
+This evaluates every z with the same recorded data and keeps the actual
+probe-dependent matrix entries. No flat-entry assumption from the
+single-probe average is used. It proves the asserted description bound
+without recording a full Clifford tableau. If the clean projector has
+full support, the same record also describes the unconditional affine
+Pauli profile. For a diagonal clean slice, only the initialized profile
+is claimed; arbitrary action on the rejected clean sector is not encoded.
+
+The quotient section depends on the fixed outer embedding and register
+allocation, not on the middle phase polynomial. An additional commuting
+native band with signed parity phase e updates the record by
+
+```math
+ \bar p(t)\longmapsto\bar p(t)+e(y_0+Lt)\pmod8 .
+```
+
+Each axis restricts to one affine parity in k variables, so this is an
+explicit update of the constant, linear, quadratic and cubic coefficients.
+It needs no collection of new pairings with all earlier axes. The section
+record is defined and updates exactly even when intermediate words fail
+return and have different off-section actions. Only the actual final
+return promise licenses reconstructing its completed profile from the
+record. It is not a summary answering arbitrary hypothetical future
+insertions without that promise.
+
+For the counting consequence, take Walsh probes on r tested input bits
+and write $`N=2^r`$ for the number of entries in their inverse Walsh
+profile. At $`w=O(\sqrt N)`$ and $`a=O(\log N)`$, the description
+length is $`o(N)`$. Under the displayed complete-return promise, this
+gives only $`2^{o(N)}`$ initialized bias profiles, including a fixed
+number of the input slices above. Thus this entire transverse family
+cannot realize the robust signs of typical prescribed tables with
+$`\Theta(N)`$ entries. This holds even with arbitrarily many commuting
+middle bands. It does not count raw decisions that leave arbitrary
+garbage. Adding more commuting bands in the same geometry does not
+escape the returned-profile count.
+
+The dependent-crossing case has a concrete missing premise. On two
+wires take a diagonal basis generated by $`Z_1,Z_2`$ and the one native
+band $`A=T(X_1)T(X_1Z_2)`$. Its two axes are independent and commute,
+but have crossing rank one. Then
+
+```math
+ AZ_1A^\dagger
+   =-Y_1\frac{I+Z_2}{2}+Z_1\frac{I-Z_2}{2}.
+```
+
+The transformed clean-zero projector is non-diagonal but has a zero
+diagonal entry; its support is not an affine hyperplane. Thus the
+uniform kappa-versus-affine-slice argument cannot simply be reused.
+Handling this geometry, independent unmatched exterior Cliffords, or
+an arbitrary noncommuting next band remains unpaid. This example does
+not disprove a different compression rule for those cases.
+
+The [exact native fixture](../../tests/test_native_layer_count_distribution.py)
+uses three wires to compare every coefficient of an eight-member affine
+probe family with the quotient decoder. It covers both a full-support
+clean projector with diagonal weights $`(1\pm1/\sqrt2)/2`$ and an
+affine clean slice whose rejected-sector action differs. It retains a
+nonreturning intermediate dirty phase, its actual cancellation, and a
+Clifford phase carry with cubic high bit. A two-wire native band checks
+the deficient-crossing projector above. The all-size rank bound,
+error threshold and description count are analytic.

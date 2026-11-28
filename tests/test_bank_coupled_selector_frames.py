@@ -9,6 +9,8 @@ A separate full-column Gram certificate rejects the specified bank-H extension.
 The full-bank fixtures check cell bounds, complete small tensor-swap paths,
 and cancellation of the redundant signal angle. The all-size trace bound
 and its centered-recovery consequence are analytic, not a numerical search.
+The single-hole fixture checks the signed zeta restriction and all reduced
+path traces, including the exact wrong-sign mean of the native polar word.
 """
 from itertools import product
 from fractions import Fraction
@@ -334,6 +336,112 @@ class BankCoupledSelectorFrameTests(unittest.TestCase):
                          CQ2(Q2(Fraction(3, 8))))
         self.assertEqual(native_columns(1, forward * 3 + reverse * 3),
                          [[CO, CZ], [CZ, CO]])
+
+    def test_single_hole_signed_restriction_and_exact_polar_mean(self):
+        # x=0, Y=1-e0 and X_s0=-1 form an invariant unmarked sector.
+        # t0 remains an arbitrary spectator; all other s,t inputs enter
+        # the normalized trace through the complete tensor-swap factors.
+        p, dimension, bank = 3, 128, 254
+        signed_zeta = np.zeros((dimension, dimension), dtype=np.int64)
+        zeta = _zeta_word(p, transpose=True)
+        for tail in range(dimension):
+            image = _binary_image(zeta, tail << 1)
+            self.assertEqual(image & 1, tail.bit_count() % 2)
+            signed_zeta[image >> 1, tail] = (-1) ** tail.bit_count()
+        self.assertTrue(np.array_equal(
+            signed_zeta @ signed_zeta, np.eye(dimension, dtype=np.int64)))
+
+        frames, stages, exponents = [], [], []
+        pairs = (((0, 1),), ((1, 2),), ((2, 0),))
+        for spec, pair in zip(_FRAMES, pairs):
+            physical, exponent = _wrapped_frame(p, spec)
+            self.assertTrue(np.array_equal(physical[0::2, 0::2],
+                                           physical[1::2, 1::2]))
+            self.assertTrue(np.array_equal(physical[0::2, 1::2],
+                                           physical[1::2, 0::2]))
+            reduced = physical[0::2, 0::2] - physical[0::2, 1::2]
+            cell, cell_exponent = _cell_frame(*spec)
+            expected = signed_zeta @ np.kron(
+                cell, np.eye(8, dtype=np.int64)) @ signed_zeta.T
+            self.assertTrue(np.array_equal(
+                reduced, expected * (1 << (exponent - cell_exponent))))
+            frames.append(expected)
+            exponents.append(cell_exponent)
+
+            matching = _Matching(p, pair)
+            stage = np.zeros((dimension, dimension), dtype=complex)
+            for tail, s0, borrowed in product(range(dimension), (0, 1), (0, 1)):
+                state = (0, bank, (tail << 1) | s0, borrowed, 0)
+                output = matching.stage_literal(state)
+                self.assertEqual(output[:2], (0, bank))
+                self.assertEqual(output[2] & 1, s0)
+                self.assertEqual(output[3], borrowed)
+                self.assertEqual(matching.stage_literal(output, inverse=True), state)
+                entry = 1j ** output[4]
+                previous = stage[output[2] >> 1, tail]
+                self.assertTrue(previous == 0 or previous == entry)
+                stage[output[2] >> 1, tail] = entry
+            self.assertTrue(np.array_equal(stage.conj().T @ stage,
+                                           np.eye(dimension)))
+            stages.append(stage)
+
+        # H^(m-1) has numerator H_num, scalar sqrt(2)/16. Keep every
+        # radical and denominator outside the Gaussian-integer matrices.
+        hadamard = np.array([[(-1) ** ((row & col).bit_count())
+                              for col in range(dimension)]
+                             for row in range(dimension)], dtype=np.int64)
+        paths = {}
+        for bits in product((0, 1), repeat=3):
+            left = right = np.eye(dimension, dtype=complex)
+            for j, enabled in enumerate(bits):
+                if enabled:
+                    left, right = (frames[j] @ hadamard @ right,
+                                   stages[j] @ frames[j] @ left)
+                else:
+                    left = stages[j] @ left
+            count = sum(bits)
+            exponent = (2 * sum(e * b for e, b in zip(exponents, bits))
+                        + 4 * count - count // 2)
+            paths[bits] = left, right, exponent, count % 2
+
+        # Unitarity bounds all absolute dot-product accumulations below
+        # 2^50, so these Gaussian-integer complex128 operations are exact.
+        maximum = max(item[2] for item in paths.values())
+        self.assertLessEqual(4 * dimension ** 2 * (1 << (2 * maximum)), 1 << 50)
+        gram = []
+        for left, right, exponent, parity in paths.values():
+            row = []
+            for other_left, other_right, other_exponent, other_parity in paths.values():
+                a = left.conj().T @ other_left
+                b = right.conj().T @ other_right
+                numerator = (np.trace(a) * np.trace(b) if parity == other_parity
+                             else np.trace(a @ b))
+                self.assertEqual(numerator.real, round(numerator.real))
+                self.assertEqual(numerator.imag, round(numerator.imag))
+                factor = 2 if parity and other_parity else 1
+                denominator = dimension ** 2 * (1 << (exponent + other_exponent))
+                real = Fraction(factor * int(numerator.real), denominator)
+                imag = Fraction(factor * int(numerator.imag), denominator)
+                row.append(CQ2(Q2(0, real), Q2(0, imag))
+                           if parity != other_parity else CQ2(real, imag))
+            gram.append(row)
+        for i, j in product(range(8), repeat=2):
+            self.assertEqual(gram[i][j], gram[j][i].conj())
+            if i == j:
+                self.assertEqual(gram[i][j], CO)
+
+        forward = [('S', 0)] * 3 + [('H', 0), ('T', 0), ('H', 0), ('S', 0)]
+        reverse = [('S', 0)] * 3 + [('H', 0), ('TDG', 0), ('H', 0), ('S', 0)]
+        wall, last = native_columns(1, forward), native_columns(1, reverse * 3)
+        coefficients = [last[0][b3] * wall[b3][b2] * wall[b2][b1] * wall[b1][0]
+                        for b1, b2, b3 in paths]
+        mean = 2 * sum((coefficients[i].conj() * gram[i][j] * coefficients[j]
+                        for i, j in product(range(8), repeat=2)), CZ) - CO
+        self.assertEqual(mean, CQ2(Q2(Fraction(-260847, 1048576),
+                                      Fraction(-5139, 4194304))))
+        self.assertLess(mean.real, 0)
+        # This exact p=3 mean is a finite corroboration. The all-size
+        # wrong-sign mean and arbitrary-wall query bounds are analytic.
 
     def test_bank_hadamard_normalization_and_actual_branch_inverse(self):
         root_half = CQ2(Q2(Fraction(0), Fraction(1, 2)))
