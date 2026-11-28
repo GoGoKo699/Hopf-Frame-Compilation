@@ -1504,6 +1504,88 @@ condition. A comparison only on a leaking initialized
 code, or a different joint gate word, need not satisfy
 these product estimates.
 
+<a id="shared-row-operator-budget"></a>
+
+**A transported operator budget.** Fix an address sector as above.
+In the same exactly inactive, independently selectable row setting, allow
+$`0\lt\tau\lt\sqrt2`$ and require every ordered subset product to be
+within tau of literal identity. Put
+
+```math
+ D_j=V_j-I,\qquad A_j=(I+V_j)/2,\qquad
+ P_j=A_j\cdots A_1,\quad P_0=I,\qquad c=1-\tau^2/2>0.
+```
+
+Every prefix average has $`\mathrm{Re}\,P_j\succeq cI`$, since
+later occupations may be set to zero. Thus
+$`P_j^\dagger P_j\succeq c^2I`$: for each unit vector v,
+$`\|P_jv\|\ge\mathrm{Re}\langle v,P_jv\rangle\ge c`$. The identity
+$`I-A_j^\dagger A_j=D_j^\dagger D_j/4`$ gives the exact telescope
+
+```math
+ \sum_{j=1}^m P_{j-1}^\dagger D_j^\dagger D_jP_{j-1}
+   =4(I-P_m^\dagger P_m)
+   \preceq(4\tau^2-\tau^4)I .
+```
+
+This necessary condition retains each work direction and its transport
+through earlier averaged factors. The averages are mathematical probes;
+no averaging circuit or initialized selector is supplied. Keep the
+prefix factors: a minimum singular-value bound on P does not permit
+replacing $`P^\dagger D^\dagger DP`$ by
+$`c^2D^\dagger D`$. In particular, a defect floor on a clean code
+cannot be applied after a prefix has left that code.
+
+The directional test can reject a family that passes the normalized
+trace bound. On two arbitrary work bits a,t let
+$`\Pi=|1\rangle\langle1|_a\otimes I_t`$ and let $`V_Z,V_X`$
+be identity on a=0 and respectively
+$`e^{-i\pi Z_t/4},e^{-i\pi X_t/4}`$ on a=1. A literal chronological
+word for $`V_Z`$ is $`T_t,\mathrm{CX}_{a,t},T_t^\dagger,\mathrm{CX}_{a,t}`$;
+target Hadamards give $`V_X`$. A public occupation bit controls the
+two CNOTs through exact native Toffolis, giving exact inactive identity.
+For the five rows Z,X,Z,X,Z, take
+$`\tau=\sqrt{2-\sqrt2}`$, so $`c=1/\sqrt2`$. Every singleton meets
+this tolerance. The normalized trace defect sum is
+$`5(2-\sqrt2)/2\lt4\log2=-8\log c`$, but the operator sum is
+$`4[1-\cos^{10}(\pi/8)]\Pi`$, with
+
+```math
+ 4[1-\cos^{10}(\pi/8)]>2,
+```
+
+exceeding its allowed bound $`(4\tau^2-\tau^4)I=2I`$ on that
+sector. Indeed, selecting the three Z rows gives error
+$`2\sin(3\pi/8)>\tau`$. The rows need not commute for the exact
+energy formula: every active average is $`\cos(\pi/8)`$ times a
+unitary. The [native fixture](../../tests/test_mod3_native_batch.py)
+checks the literal words, public inactive block and transported identity.
+
+<a id="orthogonal-completed-row-errors"></a>
+
+**A sufficient localization identity.** Suppose the actual completed
+defects have pairwise orthogonal invariant supports,
+$`D_j=F_jD_jF_j`$ with orthogonal projections $`F_j`$.
+Every ordered subset word is then
+$`I+\sum_j y_jD_j`$, whose error is at most
+$`\max_j\|D_j\|`$. This meets the operator budget without a sum
+over row errors. With approximate supports, define the contractions
+$`W_j=I+F_jD_jF_j`$ and residuals $`\eta_j=\|V_j-W_j\|`$.
+Telescoping through unitary V factors and contraction W factors gives
+
+```math
+ \left\|V_m^{y_m}\cdots V_1^{y_1}-I\right\|
+ \le \max_j\|F_jD_jF_j\|+\sum_j\eta_j .
+```
+
+The conditions must hold uniformly in the address. A native candidate
+must derive these supports and residuals from its emitted word and pay
+selection, transport and return. Merely postulating the projectors is
+not a construction. The operator and trace budgets are necessary, not
+sufficient; coherent phase drift still needs the literal worst-case
+subset bound. A jointly synthesized word without this row factorization
+requires its own full-operator analysis.
+
 A sufficient replacement uses just two one-qubit phase words.
 For the third-root word Q, require
 $`Q\approx e^{i\phi}\mathrm{diag}(1,\omega)\otimes I`$ on the public
@@ -1533,3 +1615,131 @@ would normalize it and improve general fixed-accuracy
 frame depth. A joint bank readout that avoids exponentially
 small independent row error is an alternative to this
 fixed-angle precision improvement.
+
+<a id="public-phase-gauge-screens"></a>
+
+### Complete phase gauges: a broad-cycle candidate and its error floor
+
+Consider a public-controlled gauge
+$`Q(c)=(A^c)^\dagger B A^c B^\dagger`$ on arbitrary private work.
+Its zero block is identity and its relative one block is
+$`K=A^\dagger B A B^\dagger`$. More generally, if a public word has
+full error epsilon from $`e^{i\phi}\mathrm{diag}(1,\omega)\otimes I`$,
+then its actual blocks satisfy
+$`\|Q_1Q_0^\dagger-\omega I\|\le2\epsilon`$.
+The common phase cancels. The following bounds concern this literal
+relative operator, not a phase chosen separately in each public sector.
+
+An exact order-three private clock cannot supply this gauge, even with
+an arbitrary mixer A. If $`B_0^3=I`$ on a power-of-two dimension, its
+three eigenvalue multiplicities are not all equal. Thus some eigenvalue
+lambda has a larger eigenspace in $`A^\dagger B_0A`$ than in
+$`\omega B_0`$. A unit vector in the former space orthogonal to the
+latter has error exactly square root three: the other two cube roots
+are both that far from lambda. Consequently
+
+```math
+ \|A^\dagger B_0A B_0^\dagger-\omega I\|\ge\sqrt3.
+```
+
+If $`\|B-e^{i\psi}B_0\|\le\delta`$, the same bound becomes
+$`\sqrt3-2\delta`$. Tensoring arbitrary dirty identity factors does
+not repair the multiplicity mismatch. This stops the coarse ternary
+clock, but does not exclude clocks with other spectra.
+
+**Coefficient-phase screen.** Let $`\{F_j\}`$ be an orthonormal
+operator basis in normalized Hilbert--Schmidt inner product. Suppose
+conjugation by A permutes this basis with phases in
+$`\mu_q=\{e^{2\pi i k/q}:0\le k\lt q\}`$, where $`q=4`$ or 8.
+Suppose also that, after removing one common phase, the coefficients of
+B have the form $`b_j=r_j\zeta_j`$, with $`r_j\ge0`$ and
+$`\zeta_j\in\mu_q`$. There is no flat-magnitude or rank assumption.
+Since B is unitary, $`\sum_jr_j^2=1`$. Its overlap with its conjugate is
+a sum of q-th roots with nonnegative weights whose sum is at most one,
+by Cauchy--Schwarz. Hence, with $`\tau(M)=D^{-1}\mathrm{Tr}M`$,
+
+```math
+ \begin{aligned}
+ \mathrm{Re}\bigl(\overline\omega\,\tau(K)\bigr)
+   &\le\max_{\zeta\in\mu_q}\mathrm{Re}(\overline\omega\zeta),\\
+ \|K-\omega I\|_{\mathrm{op}}
+   &\ge\|K-\omega I\|_{2,\mathrm{tr}}
+    \ge\min_{\zeta\in\mu_q}|\zeta-\omega|.
+ \end{aligned}
+```
+
+The floors are $`2\sin(\pi/12)`$ for q=4 and
+$`2\sin(\pi/24)`$ for q=8. The corresponding public-word error,
+allowing its common phase, is at least half the displayed floor.
+For a Hermitian Pauli basis, every product of one-qubit unitaries has
+four-ray coefficients up to a common phase; an arbitrary Clifford
+mixer therefore falls under q=4. In computational matrix units, a
+monomial mixer with q-th-root phases preserves the same grid.
+In particular, a word $`B=D_2 C_0D_1`$ with a Clifford $`C_0`$ and
+diagonal eighth-root words $`D_1,D_2`$ falls under q=8 for such a mixer,
+even when the diagonal words and the mixer are non-Clifford.
+
+Here is an explicitly paid candidate outside the order-three spectrum
+and four-ray Pauli-coefficient restrictions. Set $`m=2^{s-1}`$ for
+$`s\ge3`$ and let the affine Clifford C act on m private bits by
+
+```math
+ C(x_0,\ldots,x_{m-1})=(1\mathbin\oplus x_{m-1},x_0,\ldots,x_{m-2}).
+```
+
+Its m-th power complements every bit and its order is 2m. Since 2m is
+a power of two, every orbit has length 2m. Let R be the private Toffoli
+with controls 0,1 and target 2, and set $`A=RCR`$.
+This retains all orbit lengths but is genuinely non-Clifford: its
+third output bit is $`x_1\mathbin\oplus x_0\mathbin\oplus x_0x_{m-1}`$.
+Choose
+
+```math
+ B=B_0^{\otimes m/2},\qquad
+ B_0=(H\otimes H)\mathrm{diag}(1,1,1,i).
+```
+
+The II and XX Pauli coefficients of $`B_0`$ are
+$`(-1+i)/8`$ and $`(3+i)/8`$; their ratio is $`-1-2i`$.
+Thus no common phase puts them both on the four rays.
+The eigenvalues of $`B_0`$ are 1, minus one, and
+$`e^{-i\pi/4}e^{\pm i\alpha}`$, where
+$`2\cos\alpha=-1/\sqrt2`$. The angle alpha is not a rational multiple
+of pi: otherwise twice its cosine would be an algebraic integer,
+whereas its square is the noninteger rational 1/2.
+The spectrum therefore is not a fixed ternary clock spectrum.
+
+Every operation has a zero-clean native schedule. Controlled C uses
+two matchings of controlled SWAPs, followed by one CNOT from c.
+A controlled SWAP is two exterior CNOTs and one CCX. To keep c only
+as a CNOT control, implement that CCX by the returned dirty-mask
+echo: toggle a private bit by c around two copies of the same
+private controlled-toggle word. Expanded, this uses four private
+Toffolis, two arbitrary helper bits, 28 T gates, 54 elementary
+Cliffords and at most 16 T bands per controlled SWAP. The helpers
+are distinct within a matching and reused between the two matchings.
+The private R and its actual inverse surround controlled C.
+Each $`B_0`$ uses the literal two-band controlled-S word
+$`x+y-(x\mathbin\oplus y)=2xy`$, followed by two Hadamards.
+The resulting public Q and its actual inverse have the bounds
+
+```math
+ T=59m-28,\qquad G=112m-58,\qquad
+ D_T\le84,\qquad w_{\mathrm{private}}=2m.
+```
+
+All helpers return on every input; the public c is never a T target.
+The candidate has the allowed singly exponential resources and constant
+native depth. Nevertheless B has only fourth-root entry phases and A
+is a permutation, so its relative error is at least
+$`2\sin(\pi/12)`$ for every m. Broad clock orbits, irrational
+eigenangles and a non-Clifford mixer have not supplied the desired phase.
+The [bounded native fixtures](../../tests/test_mod3_native_batch.py)
+retain the literal private word, actual inverse and public-control echo.
+
+This closes this completed gauge family. A changed word must leave its
+entry-phase grid or monomial-mixer premise, for example through further
+interference or a nonmonomial mixer, and still establish its full error
+and native recurrence. Such changes are possible directions, not supplied
+compilers. These screens neither bound unrestricted phase depth nor rule
+out jointly accurate Boolean rows on orthogonal error sectors.

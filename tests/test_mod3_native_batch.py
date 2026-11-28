@@ -7,17 +7,23 @@ concerns reversible-classical multiplicative depth only, not native T-depth
 when Hadamards and interference are permitted. These are components, not a
 complete accepted source or a new asymptotic depth upper bound.
 The four-label eigenbasis fixture separately checks the two-angle identity
-in floating-point arithmetic.
+in floating-point arithmetic. The broad-cycle fixtures retain a different
+fully paid gauge, its arbitrary-helper return, and the phase data used in
+the analytic coefficient-grid obstruction.
 """
 from itertools import product
 import unittest
 
 import numpy as np
 
-from tests.exact_matrices import CO, adjoint, native_columns, zeros
+from tests.exact_matrices import (CI, CO, add, adjoint, eye, multiply,
+                                 native_columns, scale, zeros)
+from tests.test_counter_dirty_indicator import _parallel
 from tests.test_fixed_row_transport_readout import _positive_s_schedule
+from tests.test_operator_source_compiler import _word_matrix
 from tests.test_phase_signal_query_limits import _counts
-from tests.test_t_depth import _ccz_batch, _fredkin_batch, _inverse, _word
+from tests.test_t_depth import (_ccz_batch, _fredkin_batch, _inverse,
+                               _native_schedule, _word)
 
 
 def _ccx_batch(control, pairs):
@@ -84,7 +90,231 @@ def _anf(values):
     return coefficients
 
 
+def _public_controlled_swap(control, left, right, helpers):
+    """A returned two-dirty-bit echo; the public bit is CNOT-only."""
+    h0, h1 = helpers
+    corner = _ccx_batch(h0, [(right, h1)])
+    root = [('C', [('CX', control, h0)])]
+    copy = [('C', [('CX', h1, left)])]
+    outer = [('C', [('CX', left, right)])]
+    return (outer + root + corner + copy + _inverse(corner) + root
+            + corner + copy + _inverse(corner) + outer)
+
+
+def _clock_bank_schedule(wires):
+    """Tensor copies of (H tensor H) CS, retaining the literal CS phase."""
+    pairs = list(zip(wires[::2], wires[1::2]))
+    parity = [('CX', left, right) for left, right in pairs]
+    return [('T', [('T', wire) for wire in wires]),
+            ('C', parity),
+            ('T', [('TDG', right) for _, right in pairs]),
+            ('C', list(reversed(parity)) + [('H', wire) for wire in wires])]
+
+
+def _broad_clock_public_schedule(bits):
+    """Emit Q(c)=(A^c)^dagger B A^c B^dagger with no initialized inputs."""
+    assert bits >= 4 and bits & (bits - 1) == 0
+    clock = list(range(1, bits + 1))
+    helper_start = bits + 1
+    private_corner = _ccx_batch(clock[0], [(clock[1], clock[2])])
+    controlled_cycle = []
+    for reflection in (0, 1):
+        pairs = [(index, (reflection - index) % bits) for index in range(bits)
+                 if index < (reflection - index) % bits]
+        pieces = []
+        for index, (left, right) in enumerate(pairs):
+            schedule = _public_controlled_swap(
+                0, clock[left], clock[right],
+                [helper_start + 2*index, helper_start + 2*index + 1])
+            pieces.append((_word(schedule), schedule))
+        controlled_cycle += _parallel(pieces)[1]
+    controlled_cycle += [('C', [('CX', 0, clock[0])])]
+    controlled_a = _inverse(private_corner) + controlled_cycle + private_corner
+    bank = _clock_bank_schedule(clock)
+    return (2*bits + 1,
+            _inverse(bank) + controlled_a + bank + _inverse(controlled_a))
+
+
+def _broad_clock_image(bits, value):
+    """Closed Boolean action of R C R; no gate-word evaluator is used."""
+    value ^= ((value & 1) & ((value >> 1) & 1)) << 2
+    value = ((value << 1) & ((1 << bits) - 1)) | (1 ^ (value >> (bits - 1)))
+    value ^= ((value & 1) & ((value >> 1) & 1)) << 2
+    return value
+
+
+def _clock_bank_matrix(bits):
+    phases = (CO, CI, -CO, -CI)
+    denominator = 1 << (bits // 2)
+    return [[((-1)**((row & column).bit_count())
+              * phases[sum(((column >> bit) & 1) * ((column >> (bit+1)) & 1)
+                           for bit in range(0, bits, 2)) % 4]) / denominator
+             for column in range(1 << bits)] for row in range(1 << bits)]
+
+
 class Mod3NativeBatchTests(unittest.TestCase):
+    def test_shared_work_transported_error_and_directional_budget(self):
+        # Arbitrary work bits a=0,t=1; a third, public bit selects each
+        # complete echo. The native matrices retain every occupied column.
+        identity = np.eye(4, dtype=complex)
+        z_word = [('T', 1), ('CX', 0, 1), ('TDG', 1), ('CX', 0, 1)]
+        x_word = [('H', 1)] + z_word + [('H', 1)]
+        vz, vx = [_word_matrix(2, word) for word in (z_word, x_word)]
+        projector = np.diag([0, 1, 0, 1])
+        tau = np.sqrt(2 - np.sqrt(2))
+        c = 1 - tau**2 / 2
+        operator_cap, trace_cap = 4 * (1 - c**2), -8 * np.log(c)
+        self.assertAlmostEqual(operator_cap, 2, places=13)
+        self.assertAlmostEqual(trace_cap, 4 * np.log(2), places=13)
+        for value in (vz, vx):
+            defect = value - identity
+            np.testing.assert_allclose(defect.conj().T @ defect,
+                                       tau**2 * projector, atol=2e-14, rtol=0)
+            self.assertAlmostEqual(np.linalg.norm(defect, 2), tau, places=13)
+        self.assertAlmostEqual(np.linalg.norm(vz @ vx - vx @ vz, 2), 1, places=13)
+
+        toggle = _word(_ccx_batch(2, [(0, 1)]))
+        selected_z = [('T', 1)] + toggle + [('TDG', 1)] + toggle
+        for walls, active_word in (([], z_word), ([('H', 1)], x_word)):
+            active = native_columns(2, active_word)
+            expected = zeros(8)
+            for row in range(4):
+                expected[row][row] = CO
+                for column in range(4):
+                    expected[4 + row][4 + column] = active[row][column]
+            selected_word = walls + selected_z + walls
+            self.assertTrue(all(gate[0] in ('H', 'S', 'CX', 'T', 'TDG')
+                                for gate in selected_word))
+            self.assertEqual(native_columns(3, selected_word), expected)
+
+        def transported_energy(factors):
+            prefix = identity.copy()
+            energy = np.zeros_like(identity)
+            for value in factors:
+                defect = value - identity
+                energy += prefix.conj().T @ defect.conj().T @ defect @ prefix
+                prefix = (identity + value) @ prefix / 2
+            np.testing.assert_allclose(energy, 4 * (identity - prefix.conj().T @ prefix),
+                                       atol=2e-14, rtol=0)
+            return prefix, energy
+
+        def subset_words(factors):
+            words = []
+            for bits in product((0, 1), repeat=len(factors)):
+                value = identity.copy()
+                for enabled, factor in zip(bits, factors):
+                    if enabled:
+                        value = factor @ value
+                words.append(value)
+            return words
+
+        factors = [vz, vx, vz, vx, vz]
+        prefix, energy = transported_energy(factors)
+        words = subset_words(factors)
+        np.testing.assert_allclose(prefix, sum(words) / len(words), atol=2e-14, rtol=0)
+        np.testing.assert_allclose(
+            energy, 4 * (1 - np.cos(np.pi / 8)**10) * projector,
+            atol=2e-14, rtol=0)
+        trace_error = sum(np.trace((value - identity).conj().T
+                                  @ (value - identity)).real / 4 for value in factors)
+        self.assertAlmostEqual(trace_error, 5 * tau**2 / 2, places=13)
+        self.assertLess(trace_error, trace_cap)
+        self.assertGreater(np.linalg.norm(energy, 2), operator_cap)
+        self.assertGreater(max(np.linalg.norm(word - identity, 2) for word in words), tau)
+
+        # Orthogonal invariant error supports meet the whole subset premise.
+        flip_a = [('H', 0), ('S', 0), ('S', 0), ('H', 0)]
+        other_sector = _word_matrix(2, flip_a + z_word + flip_a)
+        prefix, energy = transported_energy([vz, other_sector])
+        words = subset_words([vz, other_sector])
+        np.testing.assert_allclose(prefix, sum(words) / len(words), atol=2e-14, rtol=0)
+        np.testing.assert_allclose(energy, tau**2 * identity, atol=2e-14, rtol=0)
+        self.assertLessEqual(max(np.linalg.norm(word - identity, 2) for word in words),
+                             tau + 2e-14)
+        self.assertGreaterEqual(np.linalg.eigvalsh((prefix + prefix.conj().T) / 2)[0], c)
+        self.assertLess(np.linalg.norm(energy, 2), operator_cap)
+
+    def test_public_controlled_swap_native_all_dirty_columns(self):
+        schedule = _public_controlled_swap(0, 1, 2, [3, 4])
+        expected = zeros(32)
+        for column in range(32):
+            image = column
+            if column & 1 and ((column >> 1) ^ (column >> 2)) & 1:
+                image ^= (1 << 1) | (1 << 2)
+            expected[image][column] = CO
+        self.assertEqual(native_columns(5, _word(schedule)), expected)
+        self.assertEqual(native_columns(5, _word(_inverse(schedule))), adjoint(expected))
+        self.assertEqual(_counts(_word(schedule)), (28, 54))
+        for gate in _word(schedule):
+            if 0 in gate[1:]:
+                self.assertEqual(gate[:2], ('CX', 0))
+
+    def test_broad_clock_native_relative_phase_and_actual_inverse(self):
+        b0 = native_columns(2, _word(_clock_bank_schedule([0, 1])))
+        self.assertEqual(b0, _clock_bank_matrix(2))
+        identity_coefficient = sum(b0[index][index] for index in range(4)) / 4
+        xx_coefficient = sum(b0[index ^ 3][index] for index in range(4)) / 4
+        self.assertEqual(identity_coefficient, (-CO + CI) / 8)
+        self.assertEqual(xx_coefficient / identity_coefficient, -CO - 2*CI)
+        square = multiply(b0, b0)
+        first = add(square, scale(eye(4), -CO))
+        second = add(add(square, scale(b0, (CO - CI) / 2)), scale(eye(4), -CI))
+        self.assertEqual(multiply(first, second), zeros(4))
+
+        bits = 4
+        logical_a = [('CCX', 0, 1, 2)]
+        for reflection in (0, 1):
+            for left in range(bits):
+                right = (reflection - left) % bits
+                if left < right:
+                    logical_a += [('CX', left, right), ('CX', right, left),
+                                  ('CX', left, right)]
+        logical_a += [('H', 0), ('S', 0), ('S', 0), ('H', 0), ('CCX', 0, 1, 2)]
+        a = _native_schedule(logical_a)
+        expected_a = zeros(1 << bits)
+        for column in range(1 << bits):
+            expected_a[_broad_clock_image(bits, column)][column] = CO
+        self.assertEqual(native_columns(bits, _word(a)), expected_a)
+
+        b = _clock_bank_schedule(list(range(bits)))
+        gauge = _positive_s_schedule(_inverse(b) + a + b + _inverse(a))
+        expected_b = _clock_bank_matrix(bits)
+        conjugated = [[expected_b[_broad_clock_image(bits, row)]
+                                 [_broad_clock_image(bits, column)]
+                       for column in range(1 << bits)] for row in range(1 << bits)]
+        expected = multiply(conjugated, adjoint(expected_b))
+        self.assertEqual(native_columns(bits, _word(gauge)), expected)
+        inverse = _positive_s_schedule(_inverse(gauge))
+        self.assertEqual(native_columns(bits, _word(inverse)), adjoint(expected))
+        self.assertNotEqual(expected, eye(1 << bits))
+
+    def test_broad_clock_free_cycles_and_shared_public_ledger(self):
+        for bits in (4, 8):
+            unseen = set(range(1 << bits))
+            while unseen:
+                initial = min(unseen)
+                value, orbit = initial, []
+                while not orbit or value != initial:
+                    self.assertNotIn(value, orbit)
+                    orbit.append(value)
+                    value = _broad_clock_image(bits, value)
+                self.assertEqual(len(orbit), 2*bits)
+                unseen.difference_update(orbit)
+        for bits in (4, 8, 16):
+            width, schedule = _broad_clock_public_schedule(bits)
+            self.assertEqual(width, 2*bits + 1)
+            for orientation in (schedule, _inverse(schedule)):
+                self.assertEqual(_counts(_word(orientation)), (59*bits - 28, 112*bits - 58))
+                self.assertEqual(sum(kind == 'T' for kind, _ in orientation), 84)
+                for kind, gates in orientation:
+                    if kind == 'T':
+                        targets = [gate[1] for gate in gates]
+                        self.assertNotIn(0, targets)
+                        self.assertEqual(len(targets), len(set(targets)))
+                    for gate in gates:
+                        if 0 in gate[1:]:
+                            self.assertEqual(gate[:2], ('CX', 0))
+
     def test_two_angle_eigenbasis_and_signed_cycle_powers(self):
         hadamard_pair = np.eye(4, dtype=complex)
         hadamard_pair[1:3, 1:3] = np.array([[1, 1], [1, -1]]) / np.sqrt(2)

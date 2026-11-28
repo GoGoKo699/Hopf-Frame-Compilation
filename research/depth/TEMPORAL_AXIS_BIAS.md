@@ -363,3 +363,144 @@ address motion and work return in that conversion. The remaining
 depth question is how to control relative interference across
 large shared spans and dense noncommuting couplings without
 counting exactly reversed operations as useful bias.
+
+<a id="correlated-packet-prefix-obstruction"></a>
+
+## 5. Correlated packets cannot be compressed separately at a cut
+
+A native band has an exact packet update, but a net for each side of
+a cut in a fixed physical Pauli frame can already require
+quadratic-in-T description size.
+The obstruction below holds for two-band prefixes that extend to exact
+full return. It does not exclude a joint description conditioned on the
+completed word, or prove a growing frame-depth lower bound.
+
+### The exact one-band update retains shared histories
+
+Write a Pauli packet as a sum with labels $`\ell(x,z)`$ affine in the
+probe parameters x and its retained history z. For a new physical band
+with independent commuting axes $`a_1,\ldots,a_h`$, put
+$`\alpha_i=\omega(a_i,\ell(x,z))`$. Each old term branches over
+$`v\in\mathbb F_2^h`$ with $`v_i\le\alpha_i`$, receiving magnitude
+$`2^{-|\alpha|/2}`$ and label
+
+```math
+ \ell(x,z)+\sum_i v_i a_i .
+```
+
+The literal phase is the quadratic modulo-four Pauli cocycle from
+Section 1, including the actual T orientations. Equal final labels
+must be summed coherently before any significance test. The activation
+map contains every cross pairing of the new axes with the old history
+directions. Section 2, with $`b_*\le T`$, already gives an exact
+description of the completed probe contraction of size
+$`O(T^2+mT+m^2)`$, independently of physical dirty width. This joint
+description in common Pauli coordinates does not identify that width
+with the number m of configured input bits. The following packing
+shows why a uniformly accurate prefix-operator net in the fixed
+physical frame cannot generally remove the quadratic term.
+
+### A two-band packing within the simultaneous budgets
+
+Use two q-qubit banks, $`q\ge1`$. For each
+$`M\in\mathrm{GL}(q,2)`$ take the native axes
+
+```math
+ A_i=Z_i,\qquad B_j=X^{Me_j}\otimes Z_j,\qquad
+ P=X^{\boldsymbol1}\otimes I .
+```
+
+The first-bank axes A and the axes B each form an independent commuting
+list. Let $`E_A`$ and $`E_B(M)`$ be their literal native T bands, and
+put $`U_M=E_B(M)E_A`$ and $`O_M=U_MPU_M^\dagger`$.
+Conjugating the second-bank T targets by first-to-second CNOTs specified
+by M, then first-bank Hadamards, realizes B. Thus $`U_M`$ has 2q T gates,
+two native bands and $`O(q^2)`$ elementary Cliffords on 2q wires.
+
+In the literal section $`\sigma(x,z)=X^xZ^z`$, its full Pauli expansion is
+
+```math
+ O_M=\sum_{u,v\in\mathbb F_2^q}
+  2^{-(q+|M^{\mathsf T}u|)/2}\,
+  i^{|u|-|v|}\,\mathbf1_{v\le M^{\mathsf T}u}\,
+  \sigma(\boldsymbol1+Mv,u)\otimes Z^v .
+```
+
+The inequality in the indicator is coordinatewise. The first band
+contributes $`i^{|u|}2^{-q/2}`$. The second band has activation
+$`M^{\mathsf T}u`$ and contributes $`(-i)^{|v|}`$; its X-only
+first-bank factors introduce no additional section phase. Every label
+in this expansion has a unique pair (u,v).
+
+Even the first band alone gives $`2^q`$ coefficients of magnitude
+$`2^{-q/2}`$, although its overlap with the identical backward packet
+is one. Thus coefficientwise significance can discard all of an
+order-one cut contraction.
+
+The squared coefficient distribution has u uniform and, conditional on
+u, v uniform on the coordinates where $`M^{\mathsf T}u`$ is one.
+Since M is invertible, the marginal bits of v are independent Bernoulli
+$`1/4`$. The supports for M and $`M'`$ can coincide only where
+$`(M-M')v=0`$. A rank-r binary system accepts an independent Bernoulli
+$`1/4`$ vector with probability at most $`(3/4)^r`$: condition on
+nonpivot coordinates and use the largest single-bit probability at
+each pivot. Cauchy--Schwarz on the shared support gives
+
+```math
+ |\tau(O_M O_{M'})|\le(3/4)^{\mathrm{rank}(M-M')}.
+```
+
+Here $`\tau=2^{-2q}\mathrm{Tr}`$ and every $`O_M`$ has normalized
+Hilbert--Schmidt norm one. Distinct matrices therefore give distance
+at least $`1/\sqrt2`$. For $`\epsilon\lt1/(2\sqrt2)`$, any epsilon-net of
+these prefix packets needs at least
+$`|\mathrm{GL}(q,2)|=2^{q^2}\prod_{j=1}^q(1-2^{-j})\ge2^{q^2-2}`$
+centers. The last bound follows by keeping the first factor and using
+$`\prod_{j=2}^q(1-2^{-j})\ge1-\sum_{j=2}^q2^{-j}\ge1/2`$.
+Likewise, a prefix synopsis
+that predicts its contraction with every two-band packet to error below
+$`1/8`$ must distinguish all M: the test against $`O_M`$ gives one for
+M and at most $`3/4`$ for any other matrix.
+
+A fixed CNOT fanout F satisfies $`FX_1F^\dagger=P`$, so the prefixes
+$`U_MF`$ transport one logical X to these same packets. Their actual
+reverses $`F^\dagger U_M^\dagger`$ complete identity on every logical,
+dirty and reference input; one clean spectator may be included. With
+$`q=\Theta(\sqrt N)`$, this four-band completed word has
+$`T,b_{\rm dirty}=O(\sqrt N)`$ and $`G=O(N)`$. The prefixes are not
+required to return work. Thus the packing applies even to prefixes
+extendable to a circuit in the full permitted resource class. It
+concerns a separately reusable prefix or suffix description, not a
+description allowed to use its matched partner and terminal return.
+
+### A relative matrix removes the common large description
+
+For this same family define
+$`K=(M')^{\mathsf T}M^{-\mathsf T}-I`$. At a matched label the literal
+phases cancel. Changing variables to $`\alpha=M^{\mathsf T}u`$ gives
+the exact positive overlap
+
+```math
+ \tau(O_M O_{M'})=2^{-q}\sum_{\alpha\in\mathbb F_2^q}
+  2^{-(|\alpha|+|(I+K)\alpha|)/2}
+  \left|\ker K^{\mathsf T}\cap
+  \mathbb F_2^{\mathrm{supp}\alpha\cap
+    \mathrm{supp}((I+K)\alpha)}\right| .
+```
+
+The coordinate space in this expression consists of vectors supported
+on the indicated intersection. The formula depends on K alone. If the
+overlap is at least $`\delta>0`$, the preceding bound forces
+$`\mathrm{rank}K\le\log(1/\delta)/\log(4/3)`$. A rank
+factorization then describes K in $`O(q(1+\log(1/\delta)))`$ bits,
+instead of recording M and $`M'`$ separately.
+
+This is a transparent special case of the relative-comparison strategy
+in [the paired-half analysis](RELATIVE_FOUR_BAND_BIAS.md), not an
+extension of its general inverse theorem. It describes this scalar
+contraction. Closure of a comparably short joint description after an
+additional arbitrary band, including coherent label collisions, remains
+unproved. The [bounded native fixture](../../tests/test_native_layer_count_distribution.py)
+compares the literal expansion and relative formula with all full-space
+native words for $`\mathrm{GL}(2,2)`$ and their actual reverses. The
+packing and all-size resource statements above are analytic.

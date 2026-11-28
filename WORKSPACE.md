@@ -13,12 +13,13 @@ This checkpoint owns the current question and next action. Use the proof homes f
 
 ## Current checkpoint
 
-The verified scientific baseline is the [two-angle checkpoint](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/287)
-at [4d018bd](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/4d018bd34c262fc43f7e14d270f68e64e882d193).
+The verified base is the [joint-construction plan](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/288)
+at [9a8703a](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/9a8703aedc4eb26791aa9147126b0c28bcb42469).
 The [shared-layer construction](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
 enlarges the allowed source budget. The two-angle reduction supplies one sufficient route.
-The continuation prioritizes a joint fixed-error construction, keeps a bounded phase attempt,
-and investigates growing lower bounds independently. This plan changes no proved frontier.
+The continuation prioritizes a joint fixed-error construction, retains the phase route
+under its new reopening condition, and investigates joint relative lower-bound descriptions.
+The general depth frontier is unchanged.
 
 <a id="current-depth-frontier"></a>
 
@@ -50,17 +51,18 @@ zero clean inputs, sublogarithmic depth, and fixed singly exponential resources
 with a common cost exponent across fixed tolerances. One suitable fixed tolerance
 also suffices under the completed-address hypotheses in the interface table below.
 
-**First feasibility question:** can the errors of completed Boolean rows occupy
-orthogonal work sectors, or cancel coherently, while their joint native word has
-a uniform bank-error bound? Test completed rows and their actual inverses on
+**Next unpaid operation:** derive a native word whose completed Boolean-row
+errors have a uniform bank bound. The [localization identity](research/depth/COHERENT_COUNTER_SOURCE.md#orthogonal-completed-row-errors)
+allows orthogonal error supports with summable residual tails; coherent cancellation
+or a different joint factorization remain alternatives. Test the actual inverses on
 arbitrary dense banks and superpositions. Sector selection, transport and return
 must have explicit native costs. A bound on the fraction of bad dirty inputs
 does not establish a small operator error.
 
-The [row-product bounds](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
-already constrain independent rows and ordered subset products on shared work.
-Identify which restrictive premise changes, or prove that the shared-work
-necessary condition is compatible with a uniform operator-norm bound.
+Within preserved address sectors, apply both the [trace bound](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
+and the [transported operator budget](research/depth/COHERENT_COUNTER_SOURCE.md#shared-row-operator-budget).
+They concern exactly inactive ordered row factors; the latter retains each work direction.
+These are necessary tests; the literal worst-case bank bound still has to be proved.
 Merely sharing a register or allocating nonuniform row precision does not establish an escape.
 Stop a candidate when its complete synthesis restores the old logarithmic
 lookup, carry or conjunction cost. If the complete-indicator requirement is the
@@ -84,7 +86,10 @@ Each primitive may carry one common phase. The row cancels it with actual invers
 
 A new phase word should identify how it pays the non-Clifford controls in parallel and bound the full-space error. A cyclic gauge must also account for wraparound. The [component bound](research/depth/ROBUST_DECISION_BIAS.md#the-same-components-constrain-literal-phase-precision) applies to the native product of the public word specialized at one and its adjoint specialized at zero. Their common phase cancels, giving a zero-clean approximation to $`e^{2\pi i/3}I`$. For that product, $`d(r+1)=\Omega(s)`$ for depth d and maximum interaction-component half-rank r. A joint bank construction can instead target the complete indicator norm directly.
 
-Begin with the public word, which has the tighter control convention. Require
+The [paid broad-cycle gauge](research/depth/COHERENT_COUNTER_SOURCE.md#public-phase-gauge-screens)
+has a fixed error floor despite constant depth, a non-Clifford mixer and irrational eigenangles.
+Reopen that family only by leaving its entry-phase grid or monomial-mixer premise.
+Keep the next attempt on the public word, which has the tighter control convention. Require
 an all-size native family, a full spectral or operator-error bound, and a
 precision-depth recurrence that beats $`O(\log s)`$. Its coupled components must
 satisfy the rank requirement above. Stop a family that only reconstructs the
@@ -95,12 +100,18 @@ passes this feasibility test. Failure here closes that candidate, not the frame 
 ### 3. Independent lower bound: iterate complete-return constraints
 
 Start from the [returned-query probe identity](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#4-what-a-growing-lower-bound-would-now-need).
-Try a one-band extension rule for significant complete-return probe descriptions,
+Try a one-band extension rule for significant **joint relative contractions**,
 with quantitative dependence on depth, fixed error and the simultaneous count budget.
 This is a proposed induction task, not an established invariant.
 It must allow arbitrary Clifford walls and large connected interaction components.
 Complete return holds for the finished circuit. Keep both the forward prefix and
 actual-adjoint suffix at each cut; do not assume that an intermediate prefix returns work.
+
+[Separate prefix packet nets](research/depth/TEMPORAL_AXIS_BIAS.md#correlated-packet-prefix-obstruction)
+already need $`\Omega(T^2)`$ bits in a fixed physical frame within the allowed budgets.
+In the explicit paired family, significant overlap instead has a short relative-matrix description.
+The next obligation is closure of such a joint description under another arbitrary native band,
+uniformly over the input probes and without discarding coherently colliding histories.
 
 Before extending the rule, test it against [exact cancellation at large crossing rank](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
 including the [single dense connected identity](research/depth/TEMPORAL_AXIS_BIAS.md#the-anticommutation-graph-and-its-temporal-cuts),
