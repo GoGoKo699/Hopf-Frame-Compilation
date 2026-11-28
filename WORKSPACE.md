@@ -13,10 +13,12 @@ This checkpoint owns the current question and next action. Use the proof homes f
 
 ## Current checkpoint
 
-The verified scientific baseline is the [shared-layer indicator merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
-at [789ef94](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/789ef9451acefb6d71fd3a30de42bb68244d52f7).
-It reduces the indicator problem to a high-precision phase-synthesis question.
-This revision specifies two sufficient one-qubit phase operations and their different control requirements.
+The verified scientific baseline is the [two-angle checkpoint](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/287)
+at [4d018bd](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/4d018bd34c262fc43f7e14d270f68e64e882d193).
+The [shared-layer construction](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
+enlarges the allowed source budget. The two-angle reduction supplies one sufficient route.
+The continuation prioritizes a joint fixed-error construction, keeps a bounded phase attempt,
+and investigates growing lower bounds independently. This plan changes no proved frontier.
 
 <a id="current-depth-frontier"></a>
 
@@ -30,7 +32,42 @@ $`G=O(NL)`$ at its stated widths. [R79](manuscript/PUBLICATION_SCOPE.md) remains
 The [resource frontier](docs/OPEN_PROBLEM.md#large-width-t-depth) gives the one-clean precision refinements,
 the matching precision-dominated lower bound and the separate larger-clean tradeoff.
 
-## Main unfinished route and exact missing operation
+<a id="main-unfinished-route-and-exact-missing-operation"></a>
+
+## Research plan: joint fixed-error construction first
+
+The first constructive milestone is general fixed-accuracy depth $`o_L(\log n)`$
+at one clean input and square-root dirty width, retaining $`T=O_L(\sqrt N)`$,
+$`G=O_L(N)`$ and the complete return contract. Optimal depth remains the destination;
+a growing lower bound is an independent way to narrow that gap.
+The precision and larger-clean results retain their separate parameter regimes.
+
+### 1. Main construction: control the whole bank error
+
+Start with one joint complete-indicator candidate at fixed operator tolerance.
+Use the [source contract](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead):
+zero clean inputs, sublogarithmic depth, and fixed singly exponential resources
+with a common cost exponent across fixed tolerances. One suitable fixed tolerance
+also suffices under the completed-address hypotheses in the interface table below.
+
+**First feasibility question:** can the errors of completed Boolean rows occupy
+orthogonal work sectors, or cancel coherently, while their joint native word has
+a uniform bank-error bound? Test completed rows and their actual inverses on
+arbitrary dense banks and superpositions. Sector selection, transport and return
+must have explicit native costs. A bound on the fraction of bad dirty inputs
+does not establish a small operator error.
+
+The [row-product bounds](research/depth/COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices)
+already constrain independent rows and ordered subset products on shared work.
+Identify which restrictive premise changes, or prove that the shared-work
+necessary condition is compatible with a uniform operator-norm bound.
+Merely sharing a register or allocating nonuniform row precision does not establish an escape.
+Stop a candidate when its complete synthesis restores the old logarithmic
+lookup, carry or conjunction cost. If the complete-indicator requirement is the
+obstacle, evaluate the [one-clean coherent decision](research/depth/PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
+instead: prove its sign and uniform gap on the entire initialized code before recovery.
+
+### 2. Bounded construction: test the public third-root phase
 
 **Can the two fixed phase operations below be synthesized to error $`2^{-s}`$ in $`o(\log(s+2))`$ native T-depth?**
 The angles are $`2\pi/3`$ and $`\arccos(1/\sqrt3)`$, with their negatives obtained by actual reversal.
@@ -46,6 +83,47 @@ Each primitive may carry one common phase. The row cancels it with actual invers
 | Indicator to general frames | [Shared-layer fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead) absorbs singly exponential source costs with a common exponent across fixed tolerances. The [complete word-query transfer](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#7-conditional-complete-frame-consequence-with-its-source-tolerance) then gives $`T=O_L(\sqrt N+N/b)`$, $`G=O_L(N)`$ and $`D_T=O_L(N/b^2)+o_L(\log n)`$ with one clean input at the original real and complex width thresholds. |
 
 A new phase word should identify how it pays the non-Clifford controls in parallel and bound the full-space error. A cyclic gauge must also account for wraparound. The [component bound](research/depth/ROBUST_DECISION_BIAS.md#the-same-components-constrain-literal-phase-precision) applies to the native product of the public word specialized at one and its adjoint specialized at zero. Their common phase cancels, giving a zero-clean approximation to $`e^{2\pi i/3}I`$. For that product, $`d(r+1)=\Omega(s)`$ for depth d and maximum interaction-component half-rank r. A joint bank construction can instead target the complete indicator norm directly.
+
+Begin with the public word, which has the tighter control convention. Require
+an all-size native family, a full spectral or operator-error bound, and a
+precision-depth recurrence that beats $`O(\log s)`$. Its coupled components must
+satisfy the rank requirement above. Stop a family that only reconstructs the
+existing increment-and-gradient gauge or imports an initialized precision state.
+The private-angle word is the next obligation only after the public mechanism
+passes this feasibility test. Failure here closes that candidate, not the frame problem.
+
+### 3. Independent lower bound: iterate complete-return constraints
+
+Start from the [returned-query probe identity](research/depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#4-what-a-growing-lower-bound-would-now-need).
+Try a one-band extension rule for significant complete-return probe descriptions,
+with quantitative dependence on depth, fixed error and the simultaneous count budget.
+This is a proposed induction task, not an established invariant.
+It must allow arbitrary Clifford walls and large connected interaction components.
+Complete return holds for the finished circuit. Keep both the forward prefix and
+actual-adjoint suffix at each cut; do not assume that an intermediate prefix returns work.
+
+Before extending the rule, test it against [exact cancellation at large crossing rank](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
+including the [single dense connected identity](research/depth/TEMPORAL_AXIS_BIAS.md#the-anticommutation-graph-and-its-temporal-cuts),
+and [constant-depth Gauss basis bias](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions).
+Raw rank, basis-only bias or a fixed source grammar cannot supply the needed bound.
+An $`O(T^2)`$ description bound alone is insufficient at the allowed square-root
+T-count; a bounded cut or component rank would restrict the circuit model.
+Retain a new constant-band exclusion as a scaling route only if it exposes an
+iterable argument; otherwise record its scoped use in screening a live candidate.
+The [precision tradeoff](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) alone gives
+no depth lower bound growing with n at fixed L and the allowed square-root T-count.
+
+### Work cycle and decision points
+
+1. Write one candidate's full operator, register allocation and proposed scaling mechanism. Check its reopening condition in the route register.
+2. Derive an all-size identity or resource/error recurrence. For a recursive proposal, inspect two symbolic levels before assuming it iterates. Use small exact fixtures to test specific identities or counterexamples.
+3. Audit the complete native costs, actual inverse and arbitrary dirty/reference action. A successful component must pass the existing full-frame transfer at its actual requested tolerance.
+4. Choose explicitly: continue a qualifying mechanism, revise a concrete failed premise, or retire the candidate. Keep the joint construction and lower-bound investigations independent of the phase outcome.
+5. Integrate only established results and decision-relevant failures in their existing homes, run the required checks, and replace this checkpoint with the next unpaid operation.
+
+Judge progress by an improved unconditional bound, a qualifying scalable native
+source, an iterable lower-bound mechanism, or a decisive test of a live candidate.
+Another sufficient interface alone does not establish that the final gap has narrowed.
 
 <a id="the-two-useful-source-interfaces"></a>
 <a id="other-retained-results-and-alternatives"></a>
