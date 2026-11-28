@@ -7,7 +7,9 @@ import unittest
 
 import numpy as np
 
-from tests.exact_matrices import eye, native_columns
+from tests.exact_matrices import (
+    CI, CO, CQ2, CZ, Q2, add, adjoint, eye, multiply, native_columns, scale,
+)
 from tests.test_clifford_orbit_query_rank import _rank
 from tests.test_operator_source_compiler import _adjoint, _word_matrix
 
@@ -246,6 +248,141 @@ class NativeLayerCountDistributionTests(unittest.TestCase):
             phase_average += abs(mean) ** 2 / (1 << q)
         actual = trace(packets[1] @ b_old @ packets[0] @ b_old.conj().T)
         self.assertAlmostEqual(actual, phase_average, places=13)
+
+    def test_terminal_quotient_initialized_profiles_and_clean_support(self):
+        # Three physical wires: dirty 0, logical 1, clean 2. Exact native
+        # columns are compared with a quotient-phase decoder on all eight
+        # members of an affine Pauli family, including its phase carry.
+        width, size = 3, 8
+        i_power = (CO, CI, -CO, -CI)
+        root_half = Q2(0, Fraction(1, 2))
+        omega = CQ2(root_half, root_half)
+        eighth_roots = [CO]
+        for _ in range(7):
+            eighth_roots.append(eighth_roots[-1] * omega)
+
+        def pauli(w, x, z, phase=CO):
+            result = [[CZ for _ in range(1 << w)] for _ in range(1 << w)]
+            for column in range(1 << w):
+                result[column ^ x][column] = phase * (-1) ** (z & column).bit_count()
+            return result
+
+        def conjugate(unitary, operator):
+            return multiply(multiply(unitary, operator), adjoint(unitary))
+
+        def trace(matrix):
+            return sum((row[j] for j, row in enumerate(matrix)), CZ)
+
+        observable = pauli(width, 3, 1, CI)  # Y_dirty X_logical
+        quotient_phase = [[eighth_roots[(row >> 1) & 1] if row == col else CZ
+                           for col in range(size)] for row in range(size)]
+        swap = [('CX', 0, 2), ('CX', 2, 0), ('CX', 0, 2)]
+
+        for full_support in (True, False):
+            with self.subTest(full_support=full_support):
+                if full_support:
+                    q = 2
+                    c_word = swap + [('H', 0), ('S', 1)]
+                    # Prefix T_2 changes the actual dirty input. Its later
+                    # inverse cancels; the fixed section y_2=0 saw neither.
+                    middle = [('T', 2), ('T', 1), ('TDG', 2)]
+                    logical = [('S', 1), ('T', 1), ('H', 1), ('T', 1),
+                               ('H', 1), ('TDG', 1), ('SDG', 1)]
+                    dirty_image = 2
+                else:
+                    q = 1
+                    c_word = [('S', 1)]
+                    # p(y)=y_1+2*y_0*y_2. The clean slice is y_2=0,
+                    # so p'=y_1 agrees on the code and differs off it.
+                    middle = [('T', 1), ('T', 0), ('T', 2),
+                              ('CX', 2, 0), ('TDG', 0), ('CX', 2, 0)]
+                    logical = [('T', 1)]
+                    dirty_image = 0
+                outer = [('T', j) for j in range(q)] + [('H', j) for j in range(q)]
+                b_word = c_word + outer
+                word = b_word + middle + _adjoint(b_word)
+                native = native_columns(width, word)
+                expected = native_columns(width, logical)
+                code = [row[:4] for row in native]
+                self.assertEqual(code, [row[:4] for row in expected])
+                if full_support:
+                    self.assertEqual(native, expected)
+                    self.assertEqual(
+                        native_columns(width, b_word + [('T', 2)] + _adjoint(b_word)),
+                        native_columns(width, [('T', 0)]))
+                    for t in range(4):
+                        y = t  # fixed quotient section y_2=0
+                        restricted_bands = [(y >> 2) & 1, (y >> 1) & 1,
+                                            -((y >> 2) & 1)]
+                        self.assertEqual(restricted_bands, [0, (t >> 1) & 1, 0])
+                else:
+                    self.assertNotEqual(native, expected)
+                    self.assertNotEqual(quotient_phase,
+                                        native_columns(width, middle))
+
+                c_matrix = native_columns(width, c_word)
+                outer_matrix = native_columns(width, outer)
+                b_code = native_columns(width, b_word, columns=range(4))
+                projector = multiply(b_code, adjoint(b_code))
+                clean_image = pauli(width, 1, 0) if full_support else pauli(width, 0, 4)
+                self.assertEqual(projector, scale(add(eye(size), conjugate(
+                    outer_matrix, clean_image)), Fraction(1, 2)))
+                if full_support:
+                    self.assertEqual([projector[y][y] for y in range(size)],
+                                     [CQ2(Q2(Fraction(1, 2),
+                                              Fraction(-1 if y & 1 else 1, 4)))
+                                      for y in range(size)])
+                    self.assertNotEqual(projector[0][1], CZ)
+                else:
+                    self.assertEqual(projector,
+                                     [[CO if row == col and row < 4 else CZ
+                                       for col in range(size)] for row in range(size)])
+                reconstructed_code = multiply(
+                    adjoint(native_columns(width, b_word)),
+                    multiply(quotient_phase, b_code))
+                self.assertEqual(reconstructed_code, code)
+
+                # Store the original phase bc and Clifford cocycle a
+                # separately. Their sum has cubic high bit abc, so assuming
+                # quadratic phase digits after conjugation would be wrong.
+                recorded_observable = pauli(
+                    width, (1 << dirty_image) | 2, (1 << dirty_image) | 2, -CO)
+                self.assertEqual(conjugate(c_matrix, observable), recorded_observable)
+                decoded_observable = conjugate(outer_matrix, recorded_observable)
+                decoded_middle = multiply(multiply(adjoint(quotient_phase),
+                                                    decoded_observable), quotient_phase)
+                direct_observable = multiply(multiply(adjoint(code), observable), code)
+                high_bits = []
+                for a, b, c in product((0, 1), repeat=3):
+                    original = pauli(width, b | (a << 1), c, i_power[b * c])
+                    recorded = pauli(width, (b << dirty_image) | (a << 1),
+                                     (c << dirty_image) | (a << 1),
+                                     i_power[(b * c + a) % 4])
+                    self.assertEqual(conjugate(c_matrix, original), recorded)
+                    high_bits.append((b * c + a) // 2)
+                    probe_code = [row[:4] for row in original[:4]]
+                    direct = trace(multiply(probe_code, direct_observable)) / 4
+                    transported = conjugate(outer_matrix, recorded)
+                    decoded = trace(multiply(multiply(projector, transported),
+                                             decoded_middle)) / 4
+                    self.assertEqual(direct, decoded)
+                    if a == b == c == 1:
+                        expected_bias = (Q2(1) + root_half) / 2 if full_support else root_half
+                        self.assertEqual(direct, CQ2(expected_bias))
+                self.assertEqual(sum(high_bits) % 2, 1)
+
+        # A single independent-axis native band with deficient crossing
+        # invalidates the clean-projector support dichotomy outside the
+        # stated transverse grammar: T(X_0)T(X_0 Z_1).
+        frame = [('CX', 0, 1), ('H', 0)]
+        band = _adjoint(frame) + [('T', 0), ('T', 1)] + frame
+        columns = native_columns(2, band, columns=(0, 2))
+        projector = multiply(columns, adjoint(columns))
+        expected = [[CZ for _ in range(4)] for _ in range(4)]
+        expected[0][0] = expected[1][1] = CQ2(Fraction(1, 2))
+        expected[0][1], expected[1][0] = CI / 2, -CI / 2
+        expected[2][2] = CO
+        self.assertEqual(projector, expected)
 
     def test_isotropic_layers_and_augmented_rank(self):
         rng = Random(773)

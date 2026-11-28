@@ -13,15 +13,14 @@ This checkpoint owns the current question and next action. Use the proof homes f
 
 ## Current checkpoint
 
-The verified starting point is the [joint-error and relative-cut cycle](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/289)
-at [e32a3d5](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/e32a3d53505b4d9f419019b9c7153c70662a9fb5).
-The [shared-layer construction](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/286)
-enlarges the allowed source budget. This cycle tested the specified bank-H word
-against a coherent signed gap, without requiring its old flat accepted Gram.
-Its all-size full-bank margin bound stops that centered recovery route.
-An actual inserted band also changes the relative packet comparison, even inside
-an exact returned word. The general depth frontier is unchanged; no qualifying
-new source or unrestricted one-band compression rule has been established.
+The verified starting point is the [full-bank and inserted-band cycle](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/290) at [e4001e6](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/e4001e668b72f9016304ce8b29ec7a7fa1b5cbda).
+The polar source now has an all-size wrong-sign input. Comparing full and
+single-hole banks also stops affordable centered or single-threshold recovery
+for every signal-wall choice in its fixed three-stage work family.
+Complete return also gives an exactly updatable profile description for a transverse
+commuting middle. The general depth frontier is unchanged. Next, handle deficient
+crossing rank; constructive progress needs a changed complete work response or a
+proved different spectral recovery at its actual cost.
 
 <a id="current-depth-frontier"></a>
 
@@ -68,24 +67,22 @@ with a common exponent across fixed tolerances. A mildly shrinking gap can
 qualify; a constant gap, exact marked cancellation and constant raw depth are
 not all independent prerequisites. Charge native signal accuracy before recovery.
 
-**Decision on the tested word:** the [three-stage bank-H family](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#full-bank-signed-gap)
-has only one effective signal angle. On the invariant full-bank, address-zero
-sector, all eight path operators become almost orthogonal as the bank grows.
-Any centered signed margin is at most $`2^{-\Omega(2^p)}`$ for every angle.
-The specified odd recovery then needs exponentially many visits in the bank size.
-Stop varying its two Z-phase parameters or patching finitely many arities. This does not prove
-that every possible spectral recovery or general bank-dependent word fails.
+**Decision on the tested work family:** the [full-bank and single-hole comparison](research/depth/BANK_COUPLED_SELECTOR_DYNAMICS.md#single-hole-signed-gap)
+has opposite lookup charges and exponentially close mean observables for every
+bank-independent physical signal-wall choice. The exact polar word has a constant
+wrong sign on the unmarked sector for every $`p\ge6`$. The retained same-signal
+two-reflection recovery at a centered or single ordered threshold needs
+$`2^{\Omega(2^p)}`$ emitted visits, outside the
+[shared-layer discovery budget](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead).
+Stop retuning those signal walls, including native-angle variants.
 
-**Next bounded calculation:** keep the paid branches and use the exact native
-polar word $`W=SHTHS^\dagger`$ for each of the first three signal walls, with
-the actual $`W^{-3}`$ last. Its full-bank mean approaches minus one quarter;
-this is a proved calibration effect, not a uniform gap. Test its complete full-bank
-spectrum first, then every required bank if it passes. An all-size or embedded
-wrong-sign witness stops centered sharpening; a common-response witness also stops
-signal-only recovery. Continue only with a separation of the entire
-marked/unmarked spectra whose recovery meets the stated budgets.
-An added stage needs an improvement recurrence before finite search. If a source is factored into
-exactly inactive rows, the [transported error budget](research/depth/COHERENT_COUNTER_SOURCE.md#shared-row-operator-budget)
+**Next constructive obligation:** change the complete work interaction and
+first prove separation on the full and single-hole sectors, then every required
+bank and arbitrary work input. Retaining the fixed stages instead requires a
+specified nonmonotone spectral or raw-source recovery with complete separation
+and paid costs. Equal means do not exclude those mechanisms; no such recovery
+has been established. An added stage needs an analytic improvement recurrence
+before finite search. For exactly inactive rows, the [transported error budget](research/depth/COHERENT_COUNTER_SOURCE.md#shared-row-operator-budget)
 and [localization identity](research/depth/COHERENT_COUNTER_SOURCE.md#orthogonal-completed-row-errors)
 remain necessary tools; they are not premises for an arbitrary joint word.
 
@@ -121,21 +118,25 @@ Its description may use the actual band E and actual suffix R. Complete return
 belongs to W; do not impose it on L or on an intermediate stripped word.
 
 The [inserted-band controls](research/depth/TEMPORAL_AXIS_BIAS.md#actual-band-relative-contraction)
-show why the old relative matrix alone does not close. One actual native band
-can turn a full-rank relative mismatch into exact identity inside a returned
-five-band word. A replacement subclass telescopes to the existing paired form;
-this is a useful control, not a new arbitrary-band induction. Separate reusable
-prefix summaries already need $`\Omega(T^2)`$ bits, and a small partial overlap
-can revive under the actual suffix. Sum coherent collisions before judging significance.
+show that one actual band can repair a full-rank mismatch inside exact return.
+The [terminal quotient](research/depth/TEMPORAL_AXIS_BIAS.md#terminal-quotient-shared-span)
+now covers an entire transverse commuting middle with a common outer Clifford.
+At fixed complete error below the stated threshold and at most one clean input,
+its initialized profile has a description of
+$`O(w(a+r+1)+(a+1)^3+r^2)`$ bits: w is physical width, a logical width and r
+the probe parameter count. The fixed quotient section updates under each actual
+commuting band without requiring intermediate return. At square-root width and
+logarithmic a,r, the description is too small for typical prescribed tables.
 
-**Next unpaid operation:** describe the completed profiles uniformly over all
-probes after a band outside the exact replacement subclass, with a quantitative
-next-band update. The shared-commuting scalar phase average is a first control;
-it is not yet a uniform profile net or an arbitrary-band rule. Preserve near-linear
-dependence on T at fixed band count, with controlled depth and error factors.
-Recording all $`hT`$ new pairings or all $`T^2`$ data
-does not give the required scaling. Neither the new controls nor the online
-packing obstruction excludes such an offline, terminal-conditioned description.
+**Next unpaid operation:** handle deficient crossing rank between the actual
+outer T axes and the middle commuting span. A two-qubit native example already
+breaks the clean-projector support dichotomy used in the transverse proof.
+Derive a replacement terminal-conditioned description or a decisive obstruction,
+with quantitative depth, count and error dependence that remains useful when
+the defect grows. Do not silently change the individual native axes when changing
+basis. Unmatched exterior Cliffords and noncommuting middle insertions also remain
+open. Reusable prefix summaries and their online packing obstruction do not decide
+this offline problem; sum coherent collisions with the actual suffix first.
 
 Keep [large-rank exact cancellation](research/depth/ROBUST_DECISION_BIAS.md#exact-cancellation-at-large-crossing-rank)
 and [constant-depth Gauss basis bias](research/depth/GAUSS_SUM_QUERY_ENCODING.md#constant-depth-raw-decisions)

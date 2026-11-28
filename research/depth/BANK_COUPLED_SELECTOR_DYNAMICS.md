@@ -16,6 +16,9 @@ bank-controlled swaps. The general native-depth question remains open.
 The signed-decision test in Section 8 uses an alternative nonflat acceptance
 condition. Its full-bank trace bound excludes the proposed centered
 recovery schedule for the specified three-stage family at every angle.
+Section 9 adds an unmarked single-hole sector: the exact polar replacement
+has a constant wrong-sign mean there, and arbitrary signal-only walls
+cannot give this three-stage architecture a usable single-threshold gap.
 
 ## 1. Registers and the exact obligation
 
@@ -484,7 +487,7 @@ uniform quantitative near-relation remains necessary. The
 has an alternative sufficient premise: marked acceptance may be nonzero, provided
 the complete marked and unmarked spectra lie on opposite sides of one half
 with a usable gap. The finite floor above does not exclude that premise.
-Section 8 tests it for a specified scalable word. Both routes retain
+Sections 8 and 9 test it for a specified scalable word. Both routes retain
 arbitrary principal t inputs, literal phases and actual inverses.
 Empty-versus-singleton distinction alone is weaker than addressed lookup.
 No improvement to R96 or unrestricted native-depth lower bound is supplied.
@@ -748,13 +751,14 @@ $`|f(\lambda)|\ge1/2`$, and hence, for all sufficiently large p,
 This violates the allowed $`2^{O(p)}`$ emitted-call ledger, as well as the
 sublogarithmic depth target, for this recovery schedule. It is not a
 native lower bound after arbitrary joint resynthesis of those calls.
-A shifted or nonodd recovery is also outside the conclusion: for example,
+This full-bank estimate alone leaves shifted or nonodd recovery outside
+its conclusion: for example,
 the abstract two-point spectrum $`+1,-\eta`$ is separated to fixed accuracy
 by $`2x^2-1`$. Such a replacement here would need a new complete separation
 argument for every bank, including all unmarked spectra and dirty inputs.
 The general frame frontier and unrestricted joint construction remain open.
 
-There is a concrete next boundary test with the same eight work paths:
+The next retained boundary test uses the same eight work paths:
 take the exact native word $`W=SHTHS^\dagger`$ and set
 $`S_0=S_1=S_2=W,\ S_3=W^{-3}`$. Up to its common phase, W is
 $`R_y(\pi/4)`$; all common phases cancel in the complete source.
@@ -773,11 +777,235 @@ gives $`\|\widetilde c\|_2^2=3/8`$, and the same path Gram bound yields
 ```
 
 This fixed choice leaves the balanced-coefficient obstruction. It supplies
-only a negative full-bank mean, not a signed operator gap. Its full-bank
-extreme eigenvalues and complete dense-bank decision remain unpaid;
-no new selector mixer or recovery interface is assumed.
+only a negative full-bank mean, not a signed operator gap.
+[Section 9](#single-hole-signed-gap) resolves its complete decision test
+with an unmarked dense-bank obstruction. No new selector mixer or recovery
+interface is assumed.
 
 The bounded fixtures check the exact cell identities and statistics,
 complete small tensor-swap paths and actual inverses, and signal-angle
 cancellation, including the exact one-qubit coefficient calibration above.
 The tensorization, all-size trace bound and recovery obstruction are analytic.
+
+<a id="single-hole-signed-gap"></a>
+
+## 9. A single hole obstructs the polar source and arbitrary signal-wall tuning
+
+Keep exactly the three matchings, frames and completed branches of
+Section 8. The signal walls may now be any four bank-independent
+single-qubit unitaries, including actual native words. Two invariant
+sectors have opposite lookup charges but nearly the same mean compressed
+observable. This restricts one ordered spectral threshold; it does not
+assert identical spectra or identical complete source action.
+
+### An invariant unmarked sector with every remaining work input retained
+
+Set $`x=0,Y=\boldsymbol1-e_0`$ and restrict the physical selector bit
+to $`X_{s_0}=-1`$. The lookup charge is plus one. Every matching fixes
+row zero and permutes the other rows. Moreover, $`h_Y`$ omits $`s_0`$ and
+$`d_C(0,0)=0`$. Thus each completed stage is
+$`I_{s_0}\otimes r'_j`$, with $`r'_j`$ a literal monomial unitary on
+the other selector bits. Both $`B_Y`$ and $`D_Y`$ ignore $`s_0,t_0`$.
+
+The frames also preserve this sector. The transpose-zeta action is
+
+```math
+ (N_ps)_u=\bigoplus_{v\supseteq u}s_v,\qquad
+ N_p(s_0,z)=(s_0\oplus\ell(z),N_{\rm tail}z),\qquad
+ \ell(z)=\bigoplus_{v\ne0}z_v .
+```
+
+Here z comprises all nonzero-row selector coordinates. The tail matrix
+is invertible, and the restriction to the negative X sector is the
+real signed permutation
+
+```math
+ N_-|z\rangle=(-1)^{\ell(z)}|N_{\rm tail}z\rangle .
+```
+
+In particular $`N_p`$ commutes with physical $`X_{s_0}`$. Each local frame in
+Section 8 commutes with its corner-zero X, and all its nonidentity terms
+contain $`P_{0,+}^X`$. On the origin cell, restriction to $`X_{s_0}=-1`$
+therefore leaves identity on the other three cell qubits. With
+$`k=m/4`$, the restricted frame is exactly
+
+```math
+ v'_j=N_-\left(I_8\otimes J_j^{\otimes(k-1)}\right)N_-^\dagger .
+```
+
+Every $`t_0`$ input is an identity factor throughout the source. Remove that
+spectator only from the notation, and write s',t' for the remaining
+$`m-1`$ qubits in each bank. With
+
+```math
+ D'=2^{m-1}=8\,16^{k-1},\qquad
+ h'=H^{\otimes(m-1)},
+```
+
+the partial bank swap is the full swap F' of s' and t'. Consequently
+the complete restricted branches are
+
+```math
+ a'_{j,0}=r'_j\otimes I,\qquad
+ a'_{j,1}=(v'_jh'\otimes r'_jv'_j)F' .
+```
+
+These are the same tensor-swap paths as in Section 8, with $`k-1`$ active
+cells and an $`I_8`$ factor. No selector or work promise has been added to
+the source contract: this is an invariant family of legal inputs on
+which a complete decision source must also be correct.
+
+### The single-hole Gram bound
+
+The signed permutation $`N_-`$ preserves every entrywise bound used above.
+The $`I_8`$ factor changes the mean row-maximum estimate to
+$`\rho'=(3/4)^{k-1}`$. In a trace against the flat h', its dimension
+contributes the additional factor $`1/\sqrt8`$, giving
+
+```math
+ \kappa'=\frac1{\sqrt8}(5/8)^{k-1}\le\rho' .
+```
+
+For the exceptional 010,111 pair, the squared row- and column-sum
+totals are now $`D'(5/2)^{k-1}`$; the same Cauchy--Schwarz proof gives
+$`\kappa'`$. The $`J_{212}J_3`$ bound becomes $`(1/2)^{k-1}\le\rho'`$.
+All other equal-parity estimates follow from the same pair products.
+Opposite-parity entries are at most $`1/D'`$. Hence the complete
+single-hole path Gram, normalized over all s',t' columns, obeys
+
+```math
+ \|G_{\rm hole}^- -I\|
+ \le 3(3/4)^{k-1}+4/D'
+ =:\eta'_p .
+```
+
+The arbitrary spectator $`t_0`$ does not change this bound or any mean below.
+The full-bank result of Section 8 remains
+$`\|G_{\rm full}-I\|\le\eta_p`$ with
+$`\eta_p=3(3/4)^k+4/2^m`$.
+
+### A constant wrong sign for the exact polar word
+
+For $`S_0=S_1=S_2=SHTHS^\dagger`$ and the actual inverse
+$`S_3=(S_2S_1S_0)^\dagger`$, the squared coefficient norm is 3/8.
+Let $`M_{\rm hole}^-`$ be the compressed observable on the preceding
+unmarked sector. The new Gram estimate gives
+
+```math
+ \left|\tau_{D'^2}(M_{\rm hole}^-)+\tfrac14\right|
+ \le\tfrac34\eta'_p .
+```
+
+For $`p\ge6`$, we have $`k-1\ge15`$,
+$`(3/4)^{15}\lt1/64`$ and $`4/D'\lt1/64`$. Therefore
+
+```math
+ \eta'_p\lt1/16,\qquad
+ \tau_{D'^2}(M_{\rm hole}^-)\lt-\frac{13}{64}.
+```
+
+This legal unmarked sector requires a positive observable. Its mean is
+instead negative by a constant, so the polar source fails the
+signed-decision premise at every p at least six. A witness density
+operator uses $`|-\rangle\langle-|_{s_0}`$, maximally mixed s',t',
+and any $`t_0`$ state; it can also be purified into an external reference.
+This use of a particular input proves failure on the complete contract,
+without giving the construction any initialized work.
+
+### Arbitrary physical signal walls and one ordered threshold
+
+For any four signal-only unitaries, let c be their factored coefficients
+in (15) and put $`\nu=\sum_b|c_b|^2`$. Inserting computational dephasing
+after each of the first three signal walls makes this sum exactly the
+final signal-zero probability. Thus $`0\le\nu\le1`$; no empty-bank
+calibration or ideal-angle assumption is needed. Since the walls are
+bank-independent, the same c applies to both sectors. Write their
+normalized observable means as $`\mu_{\rm full}`$ and
+$`\mu_{\rm hole}`$. Then
+
+```math
+ \begin{aligned}
+ |\mu_{\rm full}-(2\nu-1)|&\le2\nu\eta_p,\\
+ |\mu_{\rm hole}-(2\nu-1)|&\le2\nu\eta'_p,\\
+ |\mu_{\rm hole}-\mu_{\rm full}|
+ &\le2\nu(\eta_p+\eta'_p).
+ \end{aligned}
+```
+
+In particular, any centered decision margin must satisfy
+$`\gamma\le\nu(\eta_p+\eta'_p)\le\eta_p+\eta'_p`$.
+The same bound holds if all unmarked spectra lie at least gamma above
+one scalar threshold shared across banks and all marked spectra lie at
+least gamma below it. Reversing the ordering gives the same conclusion.
+
+There is also an emitted-query obstruction for recovery through such an
+ordered separation. In the displayed ordering choose
+
+```math
+ \lambda_+=\min\sigma(M_{\rm hole}^-),\qquad
+ \lambda_-=\max\sigma(M_{\rm full}).
+```
+
+If the ordered separation holds, these opposite-charge eigenvalues obey
+
+```math
+ 0\lt\delta:=\lambda_+-\lambda_-
+ \le\mu_{\rm hole}-\mu_{\rm full}
+ \le2\nu(\eta_p+\eta'_p).
+```
+
+On the two-reflection Jordan blocks, choose the common physical phase
+axis Z and write
+$`\mathcal W_\lambda=\lambda I+i\sqrt{1-\lambda^2}X`$.
+The upper-semicircle chord estimate, including the endpoint limits, is
+
+```math
+ \|\mathcal W_\lambda-\mathcal W_\mu\|^2
+ =2\left(1-\lambda\mu-\sqrt{1-\lambda^2}\sqrt{1-\mu^2}\right)
+ \le2|\lambda-\mu|.
+```
+
+A fixed list of physical Z phases with q queries to this step or its
+actual inverse therefore differs between the two eigenvalues by at most
+$`q\sqrt{2\delta}`$. Initialized error at most one half from the
+required opposite signs forces its two initialized matrix elements to
+differ by at least one, even allowing one common global phase.
+Consequently, whenever the ordered separation exists,
+
+```math
+ q\ge\frac1{2\sqrt{\nu(\eta_p+\eta'_p)}}
+ \ge\frac1{2\sqrt{\eta_p+\eta'_p}}
+ =2^{\Omega(m)} .
+```
+
+If $`\nu=0`$, both observables are already minus identity and the
+ordered separation fails. This query bound does not assume an odd
+polynomial or a threshold at zero. It concerns one phase list shared
+across banks in the same-signal two-reflection recovery. Its emitted
+source-call count exceeds the allowed $`2^{O(p)}`$ discovery budget.
+
+### Native and scope consequences
+
+No new gate or state preparation is assumed in this obstruction. The
+original branch ledger (16) is unchanged, and the polar word uses the
+already charged six extra T gates and actual signal inverses. Arbitrary
+native single-qubit signal words satisfy the arbitrary-wall result
+directly, including their literal phases; they need not approximate the
+balanced or polar choices. If a further implementation is within
+initialized-isometry error epsilon of a source considered here, each
+compressed mean changes by at most $`2\epsilon`$. Returned implementation
+helpers remain identity factors throughout this calculation.
+
+The result stops signal-wall tuning of these specified three work stages
+as a source for centered or single ordered-threshold recovery. It does
+not prove coincident opposite-charge spectra, rule out a nonmonotone
+spectral classification, or constrain arbitrary processing of the raw U.
+Nor is it a native lower bound after arbitrary joint resynthesis of
+recovery calls. Different work interlayers, frames, stage counts or
+bank-dependent signal controls require a new complete calculation.
+
+The [single-hole fixture](../../tests/test_bank_coupled_selector_frames.py)
+checks the signed zeta restriction, all reduced three-bit stage columns and
+actual inverses, and the complete tensor path traces with exact native polar
+coefficients. Its unmarked mean is exactly negative. The all-size Gram bounds,
+constant polar failure and arbitrary-wall recovery cost are analytic.
