@@ -337,6 +337,24 @@ precision count–depth tradeoff using native-band Smith exponents and the
 algebraic norm of a determinant on the complete initialized channel. At
 $`L\ge N`$, it matches R96 at one clean input and linear T-count.
 
+[R104](../../research/depth/EXACT_KEY_COVER_PRECISION.md) combines R100's
+exact short geometric menus with two complementary computational key
+frames. A paid basis permutation acts only on the keys, and each frame
+reuses short payloads across the long source. It gives additive depth
+$`O(L\log_2(t+2)/t)`$ for $`2^{cn}\le L\le N`$ at the original simultaneous
+R96 budgets, with t set by count slack and key permutation cost.
+
+[R105](../../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md) gives
+an explicit larger-clean allocation for $`L\ge2^{cn}`$. A weighted
+comb and native one-hot Pauli extraction give linear-cost short
+geometric sources. Rolling Clifford coordinate changes keep the
+complete cost linear in total source width. The
+[structured coarse schedule](../../research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix)
+uses exact prefixed matchings and Boolean phases. With $`O(t)`$ clean
+inputs for $`t\le L`$, the additive precision depth is
+$`O((L/t+P(n))\log(t+2))`$ at the R96 dirty thresholds and counts.
+The extra clean inputs return exactly.
+
 For R79, the selected all-precision envelope is
 
 ```math

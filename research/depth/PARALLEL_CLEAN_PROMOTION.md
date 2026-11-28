@@ -1163,3 +1163,66 @@ matching row and approximate on all false rows. That precision
 profile does not meet the false-row hypothesis here. The retained
 [odd-key counter](COHERENT_COUNTER_SOURCE.md) provides the exact
 row contract but still owes shallow native joint modular arithmetic.
+
+<a id="summable-row-error-promotion"></a>
+
+### 8.6 One selected copy per row preserves summable error
+
+Keep the read-only native sharing and exact clean-code invariance of
+Section 8.5. Allow the complete row XOR at address x to have full
+clean-code error $`\eta_v(x)`$ from toggling its arbitrary output by
+$`[v=x]`$. A probe whose compressed measured Pauli has that error
+also suffices, using the observable convention of Section 8.5.
+For every fixed final tolerance, it is sufficient that
+
+```math
+ \mathcal E=\sup_x \sum_v \eta_v(x)
+```
+
+be a sufficiently small constant. Use $`h=2^k`$ copies per row. For the
+shifted key registers in a trial, set $`a_i=[A_i=0^k]`$ and
+
+```math
+ j=\bigoplus_i i a_i,\qquad g_i=[i=j]a_i.
+```
+
+Replace each mask toggle $`C_i`$ by the returned XOR of $`u g_i`$. The
+[read-only parity-index predicates](GEOMETRIC_CHUNK_DEPTH.md#1-exact-priority-on-arbitrary-occupied-keys)
+pay every toggle in parallel using private phase work, at
+$`O(\log(k+2))`$ native depth and $`2^{O(k+1)}`$ total cost and
+width per row. For k zero use the source rows directly.
+
+The actual source, center and reverse of copy i preserve that copy's
+zero-key projector. A completed center $`D_i=V_i^\dagger K_i V_i`$
+therefore commutes with the key predicates of the other copies in
+the row. The combined mask toggles and combined centers can be
+scheduled in separate batches. Within a source batch the only shared
+controls are the original read-only ones. At complete boundaries
+each unselected copy's two echoes cancel on its whole sector. The
+selected copy has key zero and returns that key exactly, irrespective
+of its old target and work. At most one copy per row is selected on
+every mask input. The complete trial preserves all raw key labels
+after reversing its offset. Its error from the ideal trial is at most
+$`2\mathcal E`$ by summing over rows and taking the maximum over
+address and mask sectors. The bound includes arbitrary correlations
+among the rows and the actual reverse.
+
+For the ideal trial only the matching row can contribute a toggle.
+At any fixed matching-row mask, a uniform shift has exactly one zero
+key with probability at least $`e^{-1}`$, which suffices for selection.
+With a constant number of independent trials per label, a good label
+has a successful matching-row trial with probability arbitrarily
+close to one. The hardwired offset search of Section 8.2 uses only
+the possible matching-row masks, so the same offset lists are valid
+for every row with any joint assignment of its private masks.
+Section 8.3 then applies with $`\xi=2L_t\mathcal E`$. The three
+recordings, their actual inverses and the bounded-clean promotion
+all have the same constant occurrence counts as before.
+
+For per-row polynomial counts and width and $`k=O(\log(p+2))`$,
+the total $`2^{O_\tau(k+1)}`$ factor per row still fits the
+[normalized indicator transfer](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md).
+The promoted depth is $`O_\tau(d_V+\log(k+2))`$ before the
+exact suffix. This argument charges the sum of false-row errors
+without a further $`2^k`$ accuracy multiplier. Leaking clean
+codes require a separate analysis.

@@ -4,7 +4,8 @@
 [Clean-source promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) ·
 [Paid affine phase batches](PARALLEL_AFFINE_DETUNING.md) ·
 [Distributed counter and common shift](#distributed-cyclic-counter) ·
-[Monomial clock repair](#monomial-clock-repair-bank)
+[Monomial clock repair](#monomial-clock-repair-bank) ·
+[Summable approximate repair](#distance-weighted-clock-repair)
 
 A counter gives an exact complete indicator identity with logarithmically
 many clean wires. A precise phase-gradient state is unnecessary: one
@@ -1087,3 +1088,123 @@ native word may resynthesize its monomial action through
 nonmonomial intermediate operations. Shared row clocks, a
 different extraction word, and nonmonomial repairs also fall
 outside the bank obstruction.
+
+<a id="distance-weighted-clock-repair"></a>
+
+## 13. A distance-weighted approximate repair suffices
+
+Use the distributed clocks of Section 11 with dyadic order
+$`2p\le Q=2^k\lt4(p+1)`$. Give each clock i an arbitrary local
+work space and a native companion $`D_i`$ acting only on that
+clock and its work. Its Fourier grade $`D_{i,r}`$ is the complete
+operator block that changes the clock Fourier key by r modulo Q,
+with no restriction on transitions of its private work. Write
+$`d_Q`$ for shortest distance on the cyclic group. Consider the
+weighted operator condition
+
+```math
+ D_i=\sum_r D_{i,r},\qquad
+ \sum_r \|D_{i,r}\|s^{d_Q(r,1)}\le B .
+```
+
+B is a fixed constant. No input of the companion is initialized.
+It suffices to have this condition at $`s=C\sqrt p`$ for a
+sufficiently large C depending on B and the desired fixed indicator
+tolerance. If each companion and its actual reverse have polynomial
+counts and width and $`o(\log(p+2))`$ native T-depth, this gives
+the normalized complete indicator and improves fixed-accuracy frame
+depth through the
+[complete approximate transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md).
+The weighted norm is a premise, with no native construction here.
+
+### 13.1 Grade compression decays with Hamming distance
+
+Put $`D=\bigotimes_i D_i`$ on the distributed clocks inside one
+row. For a weight-w mismatch e, only grade choices on the active
+coordinates S satisfying $`\sum_{i\in S}r_i=0`$ can connect the
+two $`P_e`$ spaces. Since $`w\le Q/2`$, the cyclic triangle
+inequality gives
+
+```math
+ \sum_{i\in S}d_Q(r_i,1)\ge
+ d_Q\left(\sum_{i\in S}r_i,w\right)=w .
+```
+
+The inactive companions remain unitaries of norm one. On the
+active factors expand the weighted grade sums. The entire false
+compression therefore satisfies
+$`\nu_e=\|P_eDP_e\|\le (B/s)^w`$. This bound uses all private
+work and coherent Fourier inputs.
+
+### 13.2 Three visits cancel the linear false error
+
+Let $`P=P_e`$, $`Q'=D^\dagger PD`$ and let $`U(P,Q')`$ be the
+actual four-corner XOR using the two completed flags of Section 11.2.
+The clean counter returns exactly at each flag boundary and the
+word is the exact matching XOR at e zero. At a false row
+$`\|PQ'\|=\nu_e`$. For $`\nu_e\le1/2`$, let $`Q_0`$ be the
+orthogonal projector onto the range of $`(I-P)Q'`$.
+The projector difference $`E=Q'-Q_0`$ has norm at most $`\nu_e`$,
+and its two diagonal blocks relative to P have norm at most
+$`\nu_e^2`$. Indeed the map $`(I-P)|_{\mathrm{ran}\,Q'}`$ has
+squared singular values in $`[1-\nu_e^2,1]`$ and
+$`\|P Q'P\|\le\nu_e^2`$.
+
+Each $`Q'`$-flag is affine in its projector. Expand the
+fixed-length four-corner word around the proof-only $`Q_0`$.
+The constant term is I because $`PQ_0=0`$. The linear term
+from the off-diagonal blocks of E is off-diagonal relative to P
+because every other factor commutes with P. The remaining linear
+term and all higher terms have norm $`O(\nu_e^2)`$.
+
+On one additional arbitrary qubit use the native order-three
+Clifford $`G=i(SH)^2`$ with eigenphases $`\pm2\pi/3`$.
+Its literal scalar i matters when controlled. A controlled
+$`i`$ is S on the control, controlled S has a fixed native
+phase word, and controlled H is a Clifford-conjugated
+controlled Z between native target rotations. These gates pay
+controlled G at constant cost and depth. Compute the P flag
+into a new arbitrary bit, apply G controlled by that bit,
+reverse the flag and subtract G controlled by the original bit.
+This gives a relative conditional phase $`\exp(\pm 2\pi iP/3)`$
+in each fixed sector of the bit and the G eigenkey. Call its
+emitted word V. The four-corner word ignores both new wires.
+
+Run the three conjugates $`V^j U(P,Q') V^{-j}`$ for
+$`j=0,1,2`$ using actual inverses. Their linear off-diagonal
+terms cancel since the three third roots sum to zero. All
+other error has norm $`O(\nu_e^2)`$ at each false row. At the
+match the exact XOR commutes with V and its cube is the same
+XOR. The same fixed number of flags, companion visits and their
+actual reverses pays the new word. The only initialized bits
+are the returned k-bit counter. On superpositions of addresses,
+dirty work and reference inputs all estimates are operator bounds.
+
+### 13.3 Pay the bank and the borrowed-code promotion
+
+At each address the total row error is bounded by
+
+```math
+ C_1\sum_{w=1}^{p}\binom pw(B/s)^{2w}
+   = C_1[(1+B^2/s^2)^p-1].
+```
+
+For any fixed target error this can be made sufficiently small
+by choosing C large. The
+[one-selected-copy promotion](PARALLEL_CLEAN_PROMOTION.md#summable-row-error-promotion)
+preserves this sum with a constant factor and returns all dirty
+work within the same full-operator budget. Within a row the p
+companions have disjoint supports. Across rows the original
+address is used only at the read-only counter boundaries, so
+both counter and companion T layers align. The promotion uses
+$`k=O(\log(p+2))`$ and adds $`O(\log\log(p+4))`$ depth
+and polynomial address overhead. The
+[indicator fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+absorbs this overhead at fixed error, and brings the complete
+source to the original count and width orders.
+
+The weighted condition concerns the actual full operator of a
+native companion. Independent binary angle synthesis with a
+uniform operator-error estimate gives no comparable suppression
+of the distant grades. An exactly false-silent joint companion
+from Section 11 is a separate sufficient route.

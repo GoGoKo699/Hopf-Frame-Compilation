@@ -5,10 +5,13 @@ fixtures check literal phases, all payload/helper columns, occupied keys and
 a noncommuting pair of seed bases. The proof handles the all-size statements.
 """
 from fractions import Fraction
+from itertools import combinations, product
 import math
 import unittest
 
 import numpy as np
+
+from tests.test_operator_source_compiler import _adjoint, _pauli, _word_matrix
 
 
 IDENTITY = np.eye(2, dtype=complex)
@@ -215,6 +218,156 @@ class TensorSectorGeometricChunkTests(unittest.TestCase):
                 np.testing.assert_allclose(delta, restored, atol=1e-14)
                 self.assertLessEqual(np.linalg.norm(compressed, ord=2), 4 * overlap + 1e-14)
                 np.testing.assert_allclose(word.conj().T + target, delta.conj().T, atol=1e-14)
+
+    def test_exact_key_cover_with_reused_chunk_payload_and_literal_guard(self):
+        # Each subgroup has two one-bit slots. Both subgroups use the
+        # same banks for every chunk. Sort the suffix intervals by the
+        # final candidate and its already-read validity, prepending one
+        # raw key at a time.
+        key_count = 16
+        occupied_keys = [tuple((label >> bit) & 1 for bit in reversed(range(4)))
+                         for label in range(key_count)]
+        good = [int(_exact_priority((key[:2], key[2:])) is not None)
+                for key in occupied_keys]
+        self.assertEqual(good.count(0), 1)
+
+        def suffix_descriptor(label, start):
+            key = occupied_keys[label]
+            descriptor = []
+            for subgroup in range(2):
+                base = 2 * subgroup
+                candidate = int(key[base + 1] == 0)
+                position = base + candidate
+                validity = int(key[position] == 0) if position >= start else -1
+                descriptor.extend((candidate, validity))
+            return tuple(descriptor)
+
+        packed = list(range(key_count))
+        for start in reversed(range(4)):
+            stride = 1 << (4 - start)
+            for offset in range(0, key_count, stride):
+                row = packed[offset:offset + stride]
+                packed[offset:offset + stride] = sorted(
+                    row, key=lambda label: (good[label] if start == 0 else 0,
+                                            suffix_descriptor(label, start)),
+                )
+        self.assertEqual([good[label] for label in packed], [0] + [1] * (key_count - 1))
+        packing = np.eye(key_count, dtype=complex)[packed]
+        interval_swap = np.eye(key_count, dtype=complex)
+        interval_swap[[0, 1]] = interval_swap[[1, 0]]
+        key_permutation = packing.conj().T @ interval_swap @ packing
+
+        first, second, third, _, spare, auxiliary = _majoranas(3)
+        identity = np.eye(len(first), dtype=complex)
+        whole_identity = np.eye(key_count * len(first), dtype=complex)
+        cover = np.kron(key_permutation, identity)
+        success = np.diag(good)
+        failure = np.eye(key_count) - success
+        transport = whole_identity.copy()
+        for active in ([first, second], [second, third]):
+            geometric = _weighted_geometric([auxiliary, spare] + active)
+            partial = _conjugate(-geometric, 1j * auxiliary)
+            plane = (identity + spare @ active[0]) / math.sqrt(2)
+            chunk = (-1j * partial) @ spare @ plane
+            transport = (np.kron(failure, identity) + np.kron(success, chunk)) @ transport
+
+        target = np.kron(np.eye(key_count), _weighted_geometric([first, second, third]))
+        mirror = np.kron(failure, identity) + np.kron(success, auxiliary)
+        for guard in (0, 1):
+            def selected_rotation(angle):
+                center = math.cos(angle * guard) * identity + 1j * math.sin(angle * guard) * first
+                return _conjugate(transport, np.kron(failure, identity) + np.kron(success, center))
+
+            first_frame = selected_rotation(math.pi / 2)
+            second_frame = _conjugate(cover.conj().T, selected_rotation(math.pi / 4))
+            word = first_frame @ second_frame @ mirror @ second_frame @ mirror.conj().T
+            literal = ((-1j) ** guard) * word
+            expected = target if guard else whole_identity
+            np.testing.assert_allclose(literal, expected, atol=5e-15, rtol=0)
+            np.testing.assert_allclose(literal.conj().T, expected, atol=5e-15, rtol=0)
+
+    def test_guarded_interval_exchange_returns_the_occupied_flag(self):
+        size = 8
+
+        def reverse_interval(word, flag, enabled, left, right):
+            def toggle(value, dirty):
+                return dirty ^ int(enabled and left <= value < right)
+
+            def reflect(value, dirty):
+                return (left + right - 1 - value) % size if dirty else value
+
+            flag = toggle(word, flag)
+            word = reflect(word, flag)
+            flag = toggle(word, flag)
+            return reflect(word, flag), flag
+
+        for left, middle, right in combinations(range(size + 1), 3):
+            intervals = ((left, middle), (middle, right), (left, right))
+            for word, flag, enabled in product(range(size), (0, 1), (False, True)):
+                value, dirty = word, flag
+                for start, stop in intervals:
+                    value, dirty = reverse_interval(value, dirty, enabled, start, stop)
+                expected = word
+                if enabled and left <= word < middle:
+                    expected += right - middle
+                elif enabled and middle <= word < right:
+                    expected -= middle - left
+                self.assertEqual((value, dirty), (expected, flag))
+
+    def test_native_one_hot_axis_extraction_returns_clean_scratch(self):
+        def controlled_h(control, target):
+            basis = [('SDG', target), ('H', target), ('T', target),
+                     ('H', target), ('S', target)]
+            controlled_z = [('H', target), ('CX', control, target), ('H', target)]
+            return _adjoint(basis) + controlled_z + basis
+
+        first_flag, second_flag = 1, 2
+        first_scratch, second_scratch = 3, 4
+        toggles = (controlled_h(first_flag, first_scratch)
+                   + controlled_h(second_flag, second_scratch))
+        controlled_axes = [('CX', first_scratch, 0), ('H', 0),
+                           ('CX', second_scratch, 0), ('H', 0)]
+        extraction = toggles + controlled_axes + toggles
+        rotation = (extraction + [('T', first_scratch), ('TDG', second_scratch)]
+                    + _adjoint(extraction))
+        center = [('SDG', 0), ('CX', first_flag, 0),
+                  ('CX', second_flag, 0), ('S', 0)]
+        select = rotation + center + _adjoint(rotation)
+        actual = _word_matrix(5, select)
+        expected = np.zeros_like(actual)
+        expected[:2, :2] = IDENTITY
+        for flag, axis, sign in ((first_flag, X, 1), (second_flag, Z, -1)):
+            projector = (IDENTITY - axis) / 2
+            phase = IDENTITY + (np.exp(1j * sign * math.pi / 4) - 1) * projector
+            start = 1 << flag
+            expected[start:start + 2, start:start + 2] = _conjugate(phase.conj().T, Y)
+        np.testing.assert_allclose(actual[:, :6], expected[:, :6], atol=4e-14, rtol=0)
+        np.testing.assert_allclose(_word_matrix(5, _adjoint(select))[:, :6],
+                                   expected.conj().T[:, :6], atol=4e-14, rtol=0)
+
+    def test_one_hot_clifford_sweep_pays_signed_suffix_axes(self):
+        controls = (3, 4, 5)
+        parity = 6
+        toggles = [('CX', control, parity) for control in controls]
+        endpoints = [('Z', 3), ('SDG', 0), ('CX', 3, 0), ('S', 0),
+                     ('CX', 4, 0), ('Z', 5), ('SDG', 1), ('CX', 5, 1), ('S', 1)]
+        common = toggles + [('CX', parity, 2)] + _adjoint(toggles)
+        strict_suffix = toggles[:2] + [('H', 1), ('CX', parity, 1), ('H', 1)]
+        word = endpoints + common + strict_suffix + toggles[2:] + _adjoint(toggles)
+        actual = _word_matrix(7, word)
+        actual_reverse = _word_matrix(7, _adjoint(word))
+        expected = np.zeros_like(actual)
+        axes = (-_pauli(3, {0: Y, 1: Z, 2: X}), _pauli(3, {0: X, 1: Z, 2: X}),
+                -_pauli(3, {1: Y, 2: X}))
+        expected[:8, :8] = np.eye(8)
+        columns = list(range(8))
+        for control, axis in zip(controls, axes):
+            start = 1 << control
+            expected[start:start + 8, start:start + 8] = axis
+            columns.extend(range(start, start + 8))
+        np.testing.assert_allclose(actual[:, columns], expected[:, columns], atol=2e-15, rtol=0)
+        np.testing.assert_allclose(actual_reverse[:, columns], expected.conj().T[:, columns],
+                                   atol=2e-15, rtol=0)
 
     def test_capped_reference_ray_returns_the_arbitrary_dirty_port(self):
         for levels in (1, 2, 3):

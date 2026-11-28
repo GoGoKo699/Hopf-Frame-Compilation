@@ -14,8 +14,8 @@ the question changes; proofs and route assessments stay in their linked homes.
 
 ## Current checkpoint
 
-The current continuation started from the verified [R102 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/283)
-at [0733f51](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/0733f51447f24bfe80cc293d02a678093fb791ab).
+The current continuation started from the verified [R103 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/284)
+at [23cfd8b](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/23cfd8bfdeefb05a31f87e56d17f3663aa205e5e).
 The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor) raises the one-clean floor to five bands. The [rare cycle](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) gives six with zero clean work at small fixed error.
 
 <a id="current-depth-frontier"></a>
@@ -27,8 +27,8 @@ $`O(NL/b^2+\log(n+2)+\log^2(L+2))`$ depth through $`L\le cn`$
 with the same simultaneous budgets as [all-precision R96](research/depth/ALL_PRECISION_LINEAR_DEPTH.md).
 [R100](research/depth/GEOMETRIC_CHUNK_DEPTH.md) gives sublinear precision depth
 for $`\log_2 L=o(n)`$. [R102](research/depth/COMPACT_PROGRAM_PRECISION.md) gives $`O(NL/b^2+(1+L/n)\log_2(n+2))`$ through $`L\le2^{cn}`$.
-The fixed-accuracy gap at square-root dirty width is constant to logarithmic.
-[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$: every one-clean $`O(L)`$-T compiler has worst-case depth $`\Omega(L)`$ even with unrestricted dirty width and approximate return.
+[R104](research/depth/EXACT_KEY_COVER_PRECISION.md) makes the additive precision term sublinear for $`2^{cn}\le L=o(N)`$ at the original widths. The fixed-accuracy gap stays five bands to logarithmic at square-root width.
+[R103](research/depth/PRECISION_COUNT_DEPTH_TRADEOFF.md) matches R96 at $`L\ge N`$ with one clean and $`O(L)`$ T gates. [R105](research/depth/CLEAN_SPACE_PRECISION_DEPTH.md#structured-coarse-prefix) attains polylogarithmic depth with nearly linear returned clean space at the same counts and dirty width.
 [R79 remains selected Result D](manuscript/PUBLICATION_SCOPE.md).
 
 ## Main unfinished route and exact missing operation
@@ -55,13 +55,13 @@ weakens the source requirement further: amplify on its initialized code
 before promoting it to complete return. The raw source may leave garbage,
 and its rejected clean sector need not carry the table's prescribed sign.
 
-**Resumption question.** Can distributed counters enforce a common odd
-Fourier-key shift in $`o(\log p)`$ native T-depth on arbitrary dirty inputs,
-or can a joint word enforce the same orthogonality without that shift?
-The [shifted-sector promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
-pays complete return for a shareable exactly false-silent probe with
-$`p^{o(1)}`$ cleans. The [distributed counter](research/depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
-pays local visits in $`O((\log\log(p+4))^3)`$ T-depth. Its common shift costs logarithmic depth.
+**Resumption question.** Can distributed counters get a native repair in
+$`o(\log p)`$ depth with false-row errors summable on the entire dirty bank?
+The [weighted Fourier-grade condition](research/depth/COHERENT_COUNTER_SOURCE.md#distance-weighted-clock-repair)
+suffices through [one-selected-copy promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#summable-row-error-promotion).
+The [distributed counter](research/depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
+pays local visits in $`O((\log\log(p+4))^3)`$ T-depth and its exact
+common shift in logarithmic depth. A shallow weighted or joint repair is open.
 [Low-degree monomial repairs](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-clock-repair-bank) fail in the literal bank at fixed error.
 
 A separate sufficient route gives the correct signed gap on diagonal blocks of
