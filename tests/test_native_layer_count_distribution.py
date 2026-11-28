@@ -1,11 +1,14 @@
-"""Finite checks of the two-wide-layer and layer-profile counting bounds."""
+"""Finite layer-count bounds and correlated native Pauli-packet checks."""
 
 from fractions import Fraction
-from itertools import combinations
+from itertools import combinations, product
 from random import Random
 import unittest
 
+import numpy as np
+
 from tests.test_clifford_orbit_query_rank import _rank
+from tests.test_operator_source_compiler import _adjoint, _word_matrix
 
 
 def _pair(left, right, width):
@@ -28,6 +31,96 @@ def _profiles(total, maximum):
 
 
 class NativeLayerCountDistributionTests(unittest.TestCase):
+    def test_native_prefix_packet_packing_and_relative_overlap(self):
+        # A 2-by-2 binary matrix, four physical wires. Native gate
+        # matrices are compared with the independently derived Pauli expansion
+        # and relative-matrix contraction, including every physical column.
+        q = 2
+        size = 1 << (2 * q)
+        matrices = [cols for cols in product(range(1 << q), repeat=q)
+                    if _rank(cols) == q]
+
+        def apply(cols, word):
+            value = 0
+            for j, col in enumerate(cols):
+                if word >> j & 1:
+                    value ^= col
+            return value
+
+        def transpose(cols):
+            return tuple(sum(((cols[j] >> i) & 1) << j for j in range(q))
+                         for i in range(q))
+
+        def inverse(cols):
+            return tuple(next(x for x in range(1 << q)
+                              if apply(cols, x) == 1 << j) for j in range(q))
+
+        def section(x, z):
+            matrix = np.zeros((size, size), dtype=complex)
+            for column in range(size):
+                matrix[column ^ x, column] = (-1) ** ((z & column).bit_count())
+            return matrix
+
+        probe = section((1 << q) - 1, 0)
+        packets = {}
+        for cols in matrices:
+            frame = [('CX', i, q + j) for j, col in enumerate(cols)
+                     for i in range(q) if col >> i & 1]
+            frame += [('H', i) for i in range(q)]
+            word = ([('T', i) for i in range(q)] + _adjoint(frame)
+                    + [('T', q + j) for j in range(q)] + frame)
+            native = _word_matrix(2 * q, word)
+            packet = native @ probe @ native.conj().T
+            expected = np.zeros_like(packet)
+            marginal = np.zeros(1 << q)
+            for u, v in product(range(1 << q), repeat=2):
+                alpha = apply(transpose(cols), u)
+                pauli = section(((1 << q) - 1) ^ apply(cols, v), u | (v << q))
+                coefficient = (0 if v & ~alpha else
+                               2 ** (-(q + alpha.bit_count()) / 2)
+                               * 1j ** (u.bit_count() - v.bit_count()))
+                expected += coefficient * pauli
+                actual_coefficient = np.trace(pauli.conj().T @ packet) / size
+                marginal[v] += abs(actual_coefficient) ** 2
+            np.testing.assert_allclose(packet, expected, atol=2e-14, rtol=0)
+            np.testing.assert_allclose(
+                marginal,
+                [0.25 ** v.bit_count() * 0.75 ** (q - v.bit_count())
+                 for v in range(1 << q)], atol=2e-14, rtol=0)
+            np.testing.assert_allclose(
+                _word_matrix(2 * q, word + _adjoint(word)), np.eye(size),
+                atol=2e-14, rtol=0)
+            self.assertEqual(sum(g[0] in ('T', 'TDG') for g in word), 2 * q)
+            packets[cols] = packet
+
+        relative_values = {}
+        for left, right in product(matrices, repeat=2):
+            relative = tuple(apply(transpose(right), col)
+                             for col in transpose(inverse(left)))
+            defect = tuple(col ^ (1 << j) for j, col in enumerate(relative))
+            kernel_test = transpose(defect)
+            expected_overlap = 0.0
+            for alpha in range(1 << q):
+                beta = apply(relative, alpha)
+                common = sum(1 for v in range(1 << q)
+                             if not v & ~(alpha & beta)
+                             and apply(kernel_test, v) == 0)
+                expected_overlap += common * 2 ** (
+                    -q - (alpha.bit_count() + beta.bit_count()) / 2)
+            overlap = np.trace(packets[left] @ packets[right]) / size
+            self.assertAlmostEqual(overlap.real, expected_overlap, places=13)
+            self.assertAlmostEqual(overlap.imag, 0, places=13)
+            self.assertLessEqual(abs(overlap),
+                                 0.75 ** _rank([a ^ b for a, b in zip(left, right)])
+                                 + 2e-14)
+            if defect in relative_values:
+                self.assertAlmostEqual(overlap.real, relative_values[defect], places=13)
+            relative_values[defect] = overlap.real
+            if left != right:
+                distance_squared = np.linalg.norm(
+                    packets[left] - packets[right], 'fro') ** 2 / size
+                self.assertGreaterEqual(distance_squared, 0.5 - 2e-14)
+
     def test_isotropic_layers_and_augmented_rank(self):
         rng = Random(773)
         for width in range(1, 8):
