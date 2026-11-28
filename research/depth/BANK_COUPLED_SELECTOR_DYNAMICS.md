@@ -13,6 +13,9 @@ identifies the fixed spaces that survive paired and unpaired use.
 A Bell-cell witness strengthens the earlier finite transpose-zeta failure
 to an all-size obstruction for those specified frames, even with added
 bank-controlled swaps. The general native-depth question remains open.
+The signed-decision test in Section 8 uses an alternative nonflat acceptance
+condition. Its full-bank trace bound excludes the proposed centered
+recovery schedule for the specified three-stage family at every angle.
 
 ## 1. Registers and the exact obligation
 
@@ -475,15 +478,16 @@ candidate, the marked path operators instead become linearly independent:
 there is no nonzero coefficient choice that cancels their complete action.
 Tuning signal angles cannot repair that failure.
 
-The next useful construction should start with an exact marked-sector
-operator relation, or a uniform quantitative near-relation within the
-recovery budget. It must then give normalized coverage of every unmarked
-bank/address sector. Empty-versus-singleton distinction alone is weaker
-than addressed lookup, as the Clifford parity calibration shows. Any new
-relation must retain arbitrary principal t inputs, literal phases and
-actual inverses; the existing recovery and promotion interfaces remain
-available once the complete Gram is proved. No improvement to R96 or
-unrestricted native-depth lower bound is supplied here.
+For the flat Gram target, an exact marked-sector operator relation or a
+uniform quantitative near-relation remains necessary. The
+[one-clean signed-decision interface](PRESCRIBED_SCALAR_TABLES.md#one-clean-decision-source)
+has an alternative sufficient premise: marked acceptance may be nonzero, provided
+the complete marked and unmarked spectra lie on opposite sides of one half
+with a usable gap. The finite floor above does not exclude that premise.
+Section 8 tests it for a specified scalable word. Both routes retain
+arbitrary principal t inputs, literal phases and actual inverses.
+Empty-versus-singleton distinction alone is weaker than addressed lookup.
+No improvement to R96 or unrestricted native-depth lower bound is supplied.
 
 Exact fixtures: [native bank controls](../../tests/test_bank_coupled_selector_controls.py)
 check columns, dirty-helper return, actual positive-S reverses and layers;
@@ -494,3 +498,286 @@ check the code transport, local literal phases, surviving all-size-witness
 structure, and the complete three-bit matrix certificate. Finite fixtures
 corroborate the analytic statements and establish the explicitly finite
 certificate; they do not assert a general successful source.
+
+<a id="full-bank-signed-gap"></a>
+
+## 8. A calibrated signed-decision word has exponentially small possible margin
+
+### The explicit family and its alternative target
+
+For $`p\ge3`$, use three address matchings, each with disjoint pairs,
+
+```math
+ C_0=\prod_{\substack{0\le j\le p-2\\j\ {\rm even}}}\mathrm{CX}(j,j+1),
+ \qquad
+ C_1=\prod_{\substack{0\le j\le p-2\\j\ {\rm odd}}}\mathrm{CX}(j,j+1),
+ \qquad C_2=\mathrm{CX}(p-1,0).
+```
+
+Every address coordinate is a control in one of them. Use the specified
+frames of Section 5 and the paid multiplexors of (14), with
+$`A_{j,0}=R_{C_{j-1}}`$ for $`j=1,2,3`$. For one clean signal a, define
+
+```math
+ \begin{aligned}
+ S_0&=H,&S_1&=R_z(\alpha)H,&S_2&=R_z(\beta)H,
+ &S_3&=(S_2S_1S_0)^\dagger,\\
+ \mathcal M_j&=\mathrm{diag}(A_{j,0},A_{j,1}),&
+ U_{\alpha,\beta}&=S_3\mathcal M_3S_2\mathcal M_2S_1\mathcal M_1S_0 .
+ \end{aligned}
+```
+
+The last signal word is the actual inverse of the first three signal
+words. The empty-bank unitary is therefore exactly identity. All branch
+operators commute with Omega: the completed stage relabels x,Y together,
+and the frames and bank-controlled couplings leave x,Y unchanged.
+For J inserting a=0, put
+
+```math
+ K=J^\dagger U_{\alpha,\beta}J,\qquad
+ M=J^\dagger U_{\alpha,\beta}^\dagger Z_aU_{\alpha,\beta}J
+   =2K^\dagger K-I .
+```
+
+The sufficient decision condition is $`[M,\Omega]=0`$ and
+$`\Omega M\succeq\gamma I`$. It permits every marked Gram eigenvalue
+below $`(1-\gamma)/2`$, rather than requiring marked cancellation.
+At fixed margin and fixed requested error, the existing same-signal
+sharpening, bank Hadamards and
+[one-clean vector promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#3-covering-all-sectors-and-paying-the-complete-recurrence)
+would give the complete zero-clean indicator.
+
+Before signal synthesis the source has the ledger (16):
+$`D_T\le510`$, $`T,b=O(pm)`$, $`G=O(m^2+pm)`$, one clean signal,
+and two principal arbitrary work banks. These singly exponential costs
+fit the shared-layer discovery budget. They are not the square-root
+source bounds for an independently prescribed classical table.
+For a shrinking margin, the charged centered recovery has fixed-tolerance
+depth $`O(\gamma^{-1}[d_U+1+\log(1/\gamma)])`$.
+
+There is only one effective angle. Since a signal Z rotation commutes
+with each multiplexor,
+
+```math
+ U_{\alpha,\beta}
+ =R_z(-\alpha)H\mathcal M_3H\mathcal M_2R_z(\alpha)H\mathcal M_1H .
+```
+
+In the eight-path notation (15), with chronological bits $`b_1,b_2,b_3`$,
+
+```math
+ c_b=\tfrac14e^{i\alpha b_2}(-1)^{b_2(b_1+b_3)},\qquad
+ \sum_b c_b=1,\qquad \sum_b|c_b|^2=\tfrac12 .
+```
+
+This is an exact cancellation of beta for these ideal Z-axis rotations.
+The half-norm identity is specific to this signal family, not arbitrary
+calibrated single-qubit walls.
+
+### Complete tensor-swap action on a full bank
+
+Set $`x=0,Y=\boldsymbol1`$. This entire sector is invariant under every
+completed factor and has lookup charge minus one. Both s and t remain
+arbitrary. Put $`D=2^m`$, $`k=m/4=2^{p-2}`$, let
+$`r_j=R_{C_{j-1}}|_{x=0,Y=\boldsymbol1}`$, $`v_j=V_j`$,
+$`h=H^{\otimes m}`$, and let F swap the two work banks.
+Each $`r_j`$ is a literal monomial unitary, including its quarter phases.
+The frames are real Hermitian involutions. Define
+$`\ell_j=v_jh`$ and $`k_j=r_jv_j`$. In tensor order s,t,
+
+```math
+ a_{j,0}=r_j\otimes I,\qquad
+ a_{j,1}=(\ell_j\otimes k_j)F .
+```
+
+Thus every complete path is $`W_b=(X_b\otimes Y_b)F^{|b|}`$:
+
+| b | $`X_b`$ | $`Y_b`$ |
+| --- | --- | --- |
+| 000 | $`r_3r_2r_1`$ | I |
+| 001 | $`\ell_3`$ | $`k_3r_2r_1`$ |
+| 010 | $`r_3\ell_2`$ | $`k_2r_1`$ |
+| 011 | $`\ell_3k_2r_1`$ | $`k_3\ell_2`$ |
+| 100 | $`r_3r_2\ell_1`$ | $`k_1`$ |
+| 101 | $`\ell_3k_1`$ | $`k_3r_2\ell_1`$ |
+| 110 | $`r_3\ell_2k_1`$ | $`k_2\ell_1`$ |
+| 111 | $`\ell_3k_2\ell_1`$ | $`k_3\ell_2k_1`$ |
+
+Write $`\tau_D=D^{-1}\mathrm{Tr}`$ and
+$`G_{bc}=D^{-2}\mathrm{Tr}(W_b^\dagger W_c)`$. Equal-parity paths obey
+
+```math
+ G_{bc}=\tau_D(X_b^\dagger X_c)\tau_D(Y_b^\dagger Y_c).
+```
+
+For opposite parity, $`\mathrm{Tr}((A\otimes B)F)=\mathrm{Tr}(AB)`$
+and unitarity give $`|G_{bc}|\le D^{-1}`$. This retains every work column,
+not an average over a promised subset of t inputs.
+
+### Cell bounds for every equal-parity pair
+
+The remaining estimates use the explicit frames, not arbitrary mixers.
+Let $`P_{j,\pm}^{X,Z}`$ denote the indicated one-qubit Pauli projectors.
+Direct conjugation of each literal cell CCZ gives
+
+```math
+ \begin{aligned}
+ J_1&=I-2P_{0,+}^X P_{2,-}^Z P_{3,-}^Z,\\
+ J_2&=I-2P_{0,+}^X P_{1,-}^X P_{3,-}^X,\\
+ J_3&=I-2P_{0,+}^X P_{1,-}^X P_{2,+}^Z .
+ \end{aligned}
+```
+
+In particular J1 is monomial. J2 has largest entry magnitude 3/4 and
+entrywise row and column sum 5/2 on every row and column.
+J3 has row sums 1 on eight rows and 2 on eight rows, with row maxima
+respectively 1 and 1/2. Its column data are the same.
+The products J1J2 and J1J3 retain these data because J1 is monomial.
+Also
+
+```math
+ J_2J_3=I-2P_{0,+}^X P_{1,-}^X(I+X_3Z_2)/2,
+```
+
+so J2J3 has the same row and column bounds as J2. Consequently each
+distinct pair product $`J_iJ_j`$ has average row maximum and average
+column maximum 3/4, and maximum row and column sum at most 5/2.
+For the pair 1,3 the latter bound improves to 2.
+
+One further product is needed. Conjugating the first cell projector by
+J2 gives
+
+```math
+ J_{212}:=J_2J_1J_2
+ =I-2P_{0,+}^X P_{2,-}^Z(I-X_1Z_3)/2 .
+```
+
+It is identity on $`Z_2=+1`$. On $`Z_2=-1,Z_3=z`$ its other factor is
+$`(I-X_0+zX_1+zX_0X_1)/2`$, with four entries of magnitude one half
+per row. Hence J212 has the same squared-row-sum mean 5/2 as J3.
+Their active Z2 sectors are disjoint, so J212J3 has four entries of
+magnitude one half on every row and column.
+
+These cell statements tensorize through
+$`v_j=N_pJ_j^{\otimes k}N_p^\dagger`$; the zeta matrix is monomial.
+For any monomial r, a normalized trace of $`rA`$ is bounded by the
+average column maximum of A. A normalized trace against the flat h is
+bounded by $`D^{-3/2}`$ times the entrywise sum of its other factor.
+Thus distinct frame pairs give, respectively, bounds
+$`(3/4)^k`$ and $`(5/8)^k`$; J1J3 or a monomial-surrounded J3 gives
+$`(1/2)^k`$ in the latter estimate.
+
+For completeness, put $`\rho=(3/4)^k`$ and $`\kappa=(5/8)^k`$.
+Substitution in the path table, cyclicity of trace and the preceding
+cell estimates give all twelve equal-parity off-diagonal bounds:
+
+| Pairs b,c | Bound on $`\lvert G_{bc}\rvert`$ |
+| --- | --- |
+| 001,010; 001,100; 010,100; 011,101; 101,110 | $`\rho`$ |
+| 000,011; 000,110; 001,111; 100,111 | $`\kappa`$ |
+| 000,101; 011,110 | $`(1/2)^k`$ |
+| 010,111 | $`\kappa`$ |
+
+The last pair needs more than a maximum row-sum estimate. One of its
+trace factors cycles to
+
+```math
+ \tau_D\!\left(h r_2(v_2v_1v_2)r_3^\dagger v_3\right).
+```
+
+The column sums of $`v_2v_1v_2`$ and row sums of v3 both have squared
+sum $`D(5/2)^k`$. Monomial factors only permute these sums.
+Cauchy--Schwarz bounds the entrywise sum of their product by
+$`D(5/2)^k`$; flatness of h then gives $`\kappa`$.
+For 011,110, one factor is, up to complex conjugation,
+$`\tau_D(r_3^\dagger r_2v_2v_1v_2v_3)`$; the J212J3 row maxima give
+the stated $`(1/2)^k`$ bound.
+
+### Consequence for the possible margin and the paid recovery
+
+Every row of $`G-I`$ has three equal-parity entries of magnitude at most
+rho and four opposite-parity entries of magnitude at most $`D^{-1}`$.
+Therefore, for every real alpha and beta in the specified signal family,
+
+```math
+ \begin{aligned}
+ |\tau_{D^2}(M)|
+ &=|2c^\dagger(G-I)c|
+ \le 3(3/4)^k+4/D
+ =:\eta_p
+ \le7(3/4)^{2^{p-2}} .
+ \end{aligned}
+```
+
+If the decision premise holds, M is negative definite on this full-bank
+sector. It follows that $`\gamma\le-\tau_{D^2}(M)\le\eta_p`$.
+The estimate does not assert that every angle has a wrong-sign eigenvalue:
+an exponentially small negative margin is not excluded by a small trace.
+For an emitted source within initialized-isometry error epsilon of this
+ideal word, the compressed observable changes by at most $`2\epsilon`$,
+giving $`\gamma\le\eta_p+2\epsilon`$. In particular a certified margin
+with $`\epsilon\le\gamma/4`$ still satisfies $`\gamma\le2\eta_p`$.
+A larger gap from a changed emitted signal word would need its own proof.
+An actual final inverse still calibrates the empty bank, but beta cancels
+exactly only for the stated Z-axis words.
+
+Even a bespoke phase list cannot repair the ideal family through the
+retained **centered odd-polynomial** recovery at singly exponential source
+costs. Either M has a nonnegative eigenvalue and violates the sign premise,
+or its negative spectrum contains $`\lambda\in[-\eta_p,0)`$.
+On the corresponding two-reflection Jordan block choose coordinates
+with physical signal phase axis Z and
+
+```math
+ W_\lambda=\lambda I+i\sqrt{1-\lambda^2}X,\qquad
+ \|W_\lambda-W_0\|
+ =2\sin\!\left(\tfrac12\arcsin|\lambda|\right)
+ \le2|\lambda| \quad (|\lambda|\le1/2).
+```
+
+A fixed phase-list word with q occurrences of W or its actual inverse
+differs between lambda and zero by at most $`2q|\lambda|`$, by telescoping.
+The real polynomial of the centered odd filter satisfies $`f(0)=0`$.
+Fixed-error approximation to the required minus sign needs
+$`|f(\lambda)|\ge1/2`$, and hence, for all sufficiently large p,
+
+```math
+ q\ge(4\eta_p)^{-1}=2^{\Omega(m)} .
+```
+
+This violates the allowed $`2^{O(p)}`$ emitted-call ledger, as well as the
+sublogarithmic depth target, for this recovery schedule. It is not a
+native lower bound after arbitrary joint resynthesis of those calls.
+A shifted or nonodd recovery is also outside the conclusion: for example,
+the abstract two-point spectrum $`+1,-\eta`$ is separated to fixed accuracy
+by $`2x^2-1`$. Such a replacement here would need a new complete separation
+argument for every bank, including all unmarked spectra and dirty inputs.
+The general frame frontier and unrestricted joint construction remain open.
+
+There is a concrete next boundary test with the same eight work paths:
+take the exact native word $`W=SHTHS^\dagger`$ and set
+$`S_0=S_1=S_2=W,\ S_3=W^{-3}`$. Up to its common phase, W is
+$`R_y(\pi/4)`$; all common phases cancel in the complete source.
+The actual three forward and three reversed W words add six T gates,
+constant Clifford cost and no work. Empty-bank action is still exactly I.
+For identical $`R_y(\theta)`$ walls and the actual inverse calibration,
+the squared path-coefficient sum obeys
+$`2\|\widetilde c\|_2^2-1=\cos^3\theta\cos(3\theta)`$:
+insert a computational dephasing after each of the first three signal
+walls and propagate the signal's Z component. At $`\theta=\pi/4`$ this
+gives $`\|\widetilde c\|_2^2=3/8`$, and the same path Gram bound yields
+
+```math
+ \left|\tau_{D^2}(\widetilde M)+\tfrac14\right|
+ \le\tfrac34\eta_p .
+```
+
+This fixed choice leaves the balanced-coefficient obstruction. It supplies
+only a negative full-bank mean, not a signed operator gap. Its full-bank
+extreme eigenvalues and complete dense-bank decision remain unpaid;
+no new selector mixer or recovery interface is assumed.
+
+The bounded fixtures check the exact cell identities and statistics,
+complete small tensor-swap paths and actual inverses, and signal-angle
+cancellation, including the exact one-qubit coefficient calibration above.
+The tensorization, all-size trace bound and recovery obstruction are analytic.

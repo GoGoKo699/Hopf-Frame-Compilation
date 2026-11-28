@@ -7,6 +7,7 @@ import unittest
 
 import numpy as np
 
+from tests.exact_matrices import eye, native_columns
 from tests.test_clifford_orbit_query_rank import _rank
 from tests.test_operator_source_compiler import _adjoint, _word_matrix
 
@@ -120,6 +121,131 @@ class NativeLayerCountDistributionTests(unittest.TestCase):
                 distance_squared = np.linalg.norm(
                     packets[left] - packets[right], 'fro') ** 2 / size
                 self.assertGreaterEqual(distance_squared, 0.5 - 2e-14)
+
+    def test_actual_band_insertion_response_and_return(self):
+        # The odd-size companion of t^3+t+1 and its difference from I
+        # are invertible. Emit their replacement in one common native
+        # frame, independently of the two B words it must connect.
+        q = 3
+        width = 2 * q
+        size = 1 << width
+        old = (1, 2, 4)
+        new = (2, 4, 3)
+        self.assertEqual(_rank(new), q)
+        self.assertEqual(_rank([a ^ b for a, b in zip(old, new)]), q)
+
+        def apply(cols, word):
+            value = 0
+            for j, col in enumerate(cols):
+                if word >> j & 1:
+                    value ^= col
+            return value
+
+        def transpose(cols):
+            n = len(cols)
+            return tuple(sum(((cols[j] >> i) & 1) << j for j in range(n))
+                         for i in range(n))
+
+        def inverse(cols):
+            return tuple(next(x for x in range(1 << len(cols))
+                              if apply(cols, x) == 1 << j)
+                         for j in range(len(cols)))
+
+        def b_word(cols):
+            frame = [('CX', i, q + j) for j, col in enumerate(cols)
+                     for i in range(q) if col >> i & 1]
+            frame += [('H', i) for i in range(q)]
+            return (_adjoint(frame) + [('T', q + j) for j in range(q)]
+                    + frame)
+
+        def trace(matrix):
+            return np.trace(matrix) / size
+
+        # C=H_first U_{D^{-T}} maps the 2q distinct Z axes to the
+        # combined new/old lists. Gaussian elimination only synthesizes
+        # this Clifford frame; it does not use either response formula.
+        axis_cols = tuple(col | (1 << (q + j))
+                          for cols in (new, old) for j, col in enumerate(cols))
+        self.assertEqual(_rank(axis_cols), width)
+        rows = list(inverse(axis_cols))  # rows of D^{-T}
+        elimination = []
+
+        def add_row(control, target):
+            rows[target] ^= rows[control]
+            elimination.append(('CX', control, target))
+
+        for pivot in range(width):
+            source = next(i for i in range(pivot, width) if rows[i] >> pivot & 1)
+            if source != pivot:
+                add_row(source, pivot)
+                add_row(pivot, source)
+                add_row(source, pivot)
+            for target in range(width):
+                if target != pivot and rows[target] >> pivot & 1:
+                    add_row(pivot, target)
+        self.assertEqual(rows, [1 << j for j in range(width)])
+        frame = list(reversed(elimination)) + [('H', i) for i in range(q)]
+        layer = [('T', i) for i in range(q)] + [('TDG', q + i) for i in range(q)]
+        bridge_word = _adjoint(frame) + layer + frame
+        self.assertEqual(len({gate[1] for gate in layer}), width)
+        self.assertEqual(sum(g[0] in ('T', 'TDG') for g in bridge_word), 2 * q)
+
+        a_word = [('T', i) for i in range(q)]
+        a = _word_matrix(width, a_word)
+        b_old, b_new = (_word_matrix(width, b_word(cols)) for cols in (old, new))
+        bridge = _word_matrix(width, bridge_word)
+        np.testing.assert_allclose(bridge, b_new @ b_old.conj().T, atol=4e-14, rtol=0)
+        np.testing.assert_allclose(bridge @ b_old @ a, b_new @ a, atol=4e-14, rtol=0)
+        return_word = (a_word + b_word(old) + bridge_word
+                       + _adjoint(b_word(new)) + _adjoint(a_word))
+        self.assertEqual(sum(g[0] in ('T', 'TDG') for g in return_word), 6 * q)
+        # Exact Q(sqrt(2), i), every physical input column, including
+        # arbitrary dirty superpositions: no prefix return is assumed.
+        self.assertEqual(native_columns(width, return_word), eye(size))
+
+        probe = _word_matrix(width, [('X', i) for i in range(q)])
+        first_packet = a @ probe @ a.conj().T
+        packets = [b @ first_packet @ b.conj().T for b in (b_old, b_new)]
+        self.assertLessEqual(abs(trace(packets[1] @ packets[0])), 0.75 ** q + 4e-14)
+        self.assertAlmostEqual(trace(packets[1] @ bridge @ packets[0]
+                                     @ bridge.conj().T), 1, places=13)
+
+        gamma = 2 ** -0.5
+        responses = []
+        for cols, packet in zip((old, new), packets):
+            values = {}
+            for w in range(1, 1 << q):
+                pivot = (w & -w).bit_length() - 1
+                parity = [('CX', i, pivot) for i in range(q)
+                          if i != pivot and w >> i & 1]
+                insertion = _word_matrix(
+                    width, parity + [('T', pivot)] + _adjoint(parity))
+                actual = trace(packet @ insertion @ packet @ insertion.conj().T)
+                expected = ((1 + gamma) / 2 + (1 - gamma) / 2
+                            * (-1) ** w.bit_count()
+                            * 2 ** -apply(transpose(cols), w).bit_count())
+                self.assertAlmostEqual(actual, expected, places=13)
+                values[w] = actual
+            responses.append(values)
+        self.assertAlmostEqual(abs(responses[0][2] - responses[1][2]),
+                               (1 - gamma) / 8, places=13)
+
+        self.assertAlmostEqual(trace(first_packet @ packets[0]),
+                               ((1 + gamma) / 2) ** q, places=13)
+        np.testing.assert_allclose(b_old.conj().T @ packets[0] @ b_old,
+                                   first_packet, atol=4e-14, rtol=0)
+
+        # A nonzero parity polynomial with E=B_old keeps BOTH exterior
+        # B words. Compare its scalar phase average with native gates.
+        phase_average = 0.0
+        omega = np.exp(1j * np.pi / 4)
+        for z in range(1 << q):
+            mean = sum(omega ** (2 * (apply(transpose(old), x) ^ z).bit_count()
+                                - (apply(transpose(new), x) ^ z).bit_count())
+                       for x in range(1 << q)) / (1 << q)
+            phase_average += abs(mean) ** 2 / (1 << q)
+        actual = trace(packets[1] @ b_old @ packets[0] @ b_old.conj().T)
+        self.assertAlmostEqual(actual, phase_average, places=13)
 
     def test_isotropic_layers_and_augmented_rank(self):
         rng = Random(773)
