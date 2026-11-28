@@ -403,3 +403,162 @@ separate factor normalizations is therefore at least order
 $`1/\varepsilon`$.
 The separate-factor normalization therefore does not supply the
 constant-cost unitary coverage required in Section 1.
+
+<a id="positive-conditional-root-stability"></a>
+
+## 6. Stability from every conditional root state
+
+Let $`W_\mu,W_\nu`$ be two prescribed positive real frames on
+the same ordered binary tree, including endpoint angles in
+$`[0,\pi/2]`$. For each interval I, let $`p_I,q_I`$ be their
+normalized local root vectors. Their definition uses only subtree
+angles. Put
+
+```math
+c=\min_I\langle p_I,q_I\rangle,\qquad
+\delta=\sqrt{1-c^2}
+       =\max_I\|p_Ip_I^{\mathsf T}-q_Iq_I^{\mathsf T}\|.
+```
+
+Then the literal frame distance satisfies
+
+```math
+\delta\le\|W_\mu-W_\nu\|\le\min\{2,4\delta+\delta^2\}.
+```
+
+For the lower bound, the two conjugations of the common subtree
+marker projection differ by the corresponding root-projector
+difference. The norm of a difference of two orthogonal
+projections is the larger of the two cross-range norms.
+Each cross-range norm is at most $`\|W_\mu-W_\nu\|`$ by
+inserting the other frame.
+
+For the upper bound first assume positive branch masses, with
+global leaf probability measures $`\mu,\nu`$. Write
+$`h_i^\mu,h_i^\nu`$ for the corresponding marker vectors
+at internal interval i, and set $`a_i=\langle h_i^\nu,p_i\rangle`$.
+The restriction of $`p_I`$ to $`i\subseteq I`$ is
+$`\sqrt{\mu(i)/\mu(I)}p_i`$. Subtree Parseval, including its
+root vector, gives
+
+```math
+\sum_{i\subseteq I}\mu(i)|a_i|^2
+  =\mu(I)\bigl(1-|\langle p_I,q_I\rangle|^2\bigr)
+  \le\delta^2\mu(I).
+```
+
+In $`U=W_\nu^{\mathsf T}W_\mu`$, disjoint marker intervals
+have zero overlap. Treat the global root column as an ancestor
+of every marker. For the part with row i a strict descendant of
+column j, the ancestor vector restricts on i to a scalar multiple
+of $`p_i`$. All other columns have zero inner product with $`p_i`$.
+Thus this part acts by
+$`(U_{\rm desc}z)_i=a_i\langle p_i,W_\mu z\rangle`$.
+
+For a physical vector x, put $`f(j)=x_j/\sqrt{\mu(j)}`$.
+Then $`\langle p_i,x\rangle=\sqrt{\mu(i)}\,\mathbb E_{\mu|i}f`$.
+At a level t, cover the intervals with conditional average
+larger than t in modulus by their maximal disjoint members.
+Their total weight $`\mu(i)|a_i|^2`$ is at most $`\delta^2`$
+times the measure of their union. Integrating the levels gives
+
+```math
+\sum_i \mu(i)|a_i|^2|\mathbb E_{\mu|i}f|^2
+ \le \delta^2\|Mf\|_{L^2(\mu)}^2
+ \le 4\delta^2\|f\|_{L^2(\mu)}^2 ,
+```
+
+where $`Mf`$ is the dyadic maximal conditional average of
+$`|f|`$. For the last inequality, maximal disjoint intervals
+give $`t\mu\{Mf\gt t\}\le\int_{\{Mf\gt t\}}|f|\,d\mu`$.
+Integration and Cauchy–Schwarz yield $`\|Mf\|_2\le2\|f\|_2`$.
+The two strict triangular parts of U each have norm at most
+$`2\delta`$, by exchanging the frames for the other part.
+
+For a node i with children L and R put
+$`r_J=\langle p_J,q_J\rangle`$ and
+$`b_J=\sqrt{\mu(J)\nu(J)/(\mu(i)\nu(i))}`$. The prescribed
+positive rotations give
+$`r_i=b_Lr_L+b_Rr_R`$ and
+$`\langle h_i^\mu,h_i^\nu\rangle=b_Rr_L+b_Lr_R`$.
+Since $`b_L+b_R\ge r_i\ge c`$ and both child overlaps are
+at least c, the marker overlap is at least $`c^2`$. The root
+overlap is at least c. Hence $`\|\mathrm{diag}(U)-I\|\le\delta^2`$.
+Endpoint angles follow by continuity of every subtree vector in
+its own angles. This includes subtrees of zero incoming mass.
+
+### A weighted angle certificate
+
+Let $`\theta_v,\phi_v`$ denote the two positive angle tuples
+and $`\mu(v|I),\nu(v|I)`$ the conditional branch masses
+computed from I. The root affinities obey
+
+```math
+1-\langle p_I,q_I\rangle
+ =\sum_{v\subseteq I}\sqrt{\mu(v|I)\nu(v|I)}
+     \bigl(1-\cos(\theta_v-\phi_v)\bigr),
+```
+
+where v ranges over internal nodes including I. At one split the
+two child overlap coefficients sum to the cosine of the local angle
+difference. Repeated substitution with terminal affinities one proves
+the identity. In particular, a uniform bound
+
+```math
+\sup_I\sum_{v\subseteq I}
+   \frac{\mu(v|I)+\nu(v|I)}{2}|\theta_v-\phi_v|^2\le A
+```
+
+gives complete error at most $`4\sqrt A+A`$. The supremum includes
+rare subtrees regardless of their incoming mass. Any paid reference
+frame within this certificate can be used at its own native costs,
+with its implementation error added in operator norm.
+
+For example, fix $`L\ge6`$ and use the positive balanced
+reference. Allow deviations of magnitude at most $`2^{-L}/64`$
+on the leftmost internal spines of mutually disjoint subtrees,
+with arbitrary spine lengths. Each path enters at most one such
+subtree. Once on a spine, both frames continue along it with
+probability at most 3/4 per split, so the expected number of
+perturbed nodes from any starting interval is at most four.
+The exact balanced reference then has complete error less than
+$`2^{-(L+1)}`$, even if the angle deviations accumulate to a
+large sum on some individual path. Compiling balance at precision
+L+1 by the
+[prefix-shared construction](../depth/PREFIX_ROTATION_PROFILES.md)
+adds at most $`2^{-(L+1)}`$ and supplies its one-clean,
+square-root-dirty, $`O_L(\log\log(n+4))`$ depth bound for
+this promised family. The comparison includes every column
+and tensors with the identity on work and references.
+
+### Arbitrary orthogonal candidates can incur height loss
+
+The two-frame bound uses the exact conditional marker structure.
+For the general projector test of Section 4, take the prescribed
+comparison frame to be the identity. On $`m=n-1\ge1`$ address
+bits let $`S_j`$ exchange the normalized uniform vectors of the
+two children of every dyadic interval at depth j, with zero action
+on the orthogonal complement. Put $`K=\sum_{j=0}^{m-1}S_j`$.
+Then $`K|+^m\rangle=m|+^m\rangle`$. Each crossing block of K
+for an address interval has norm at most $`\sqrt2`$: only
+ancestor levels contribute and the outputs occupy disjoint sibling
+intervals, with squared coefficients bounded by $`1,1/2,1/4,\ldots`$.
+The same estimate holds for each single column of K.
+
+For $`0\lt\xi\le\pi/2`$ use the real orthogonal candidate
+
+```math
+F=\exp[(\xi/m)K\otimes XZ].
+```
+
+A dyadic projection of size at least two is an address-interval
+projection tensored with identity on the last bit. Its commutator
+with the generator is bounded by the crossing estimate. Removing
+the anchor coordinate costs at most the single-column bound.
+Integrating the commutator gives
+$`\max_I\|FE_IF^{\mathsf T}-E_I\|\le2\sqrt2\,\xi/m`$.
+For singleton intervals $`E_I=0`$. Yet
+$`F|+^m\rangle|0\rangle`$ has last-bit-one component of norm
+$`\sin\xi`$. A computational diagonal preserves that last-bit
+sector on the same input, so the distance from every such
+diagonal is at least $`\sin\xi`$.

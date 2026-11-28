@@ -161,6 +161,67 @@ class DirtyCubicPhaseCompilerTests(unittest.TestCase):
         self._check_complete_diagonal((0, 0, 0, 0), [],
                                       [(0, 1, 2), (0, 1, 3)])
 
+    def test_tree_layer_shares_both_parent_and_source_controls(self):
+        """Check the phase batch and the two-stage leaf echo on all columns."""
+        parents, old_bank = (0, 1), (2, 3)
+        triples = [(parent, old, 4 + 2 * a + v)
+                   for a, parent in enumerate(parents)
+                   for v, old in enumerate(old_bank)]
+        phase, width = _dirty_cubic_phase([0] * 8, [], triples)
+        for word in (phase, _inverse(phase)):
+            bands = _bands(word)
+            self.assertEqual(len(bands), 8)
+            for band in bands:
+                self.assertEqual({gate[1] for gate in band}, set(range(8, width)))
+            for column in range(1 << width):
+                basis, exponent = column, 0
+                for gate, *wires in word:
+                    if gate == 'CX':
+                        control, target = wires
+                        basis ^= ((basis >> control) & 1) << target
+                    else:
+                        sign = 1 if gate == 'T' else -1
+                        exponent += sign * ((basis >> wires[0]) & 1)
+                self.assertEqual(basis, column)
+                self.assertEqual(exponent % 8, _phase_exponent(column, [], [], triples))
+
+        # Hadamards turn each exact phase batch into the mapped XOR
+        # batch below. Reuse the old bank across both address stages.
+        address = (0, 1)
+        root, old, middle, leaves, output = 2, 3, 5, 7, 11
+
+        def batch(basis, parent_wires, child_start):
+            for a, parent in enumerate(parent_wires):
+                for v in range(2):
+                    pair = ((basis >> parent) & (basis >> (old + v))) & 1
+                    basis ^= pair << (child_start + 2 * a + v)
+            return basis
+
+        def stage(basis, addr, parent_wires, child_start, reverse):
+            source_flip = 1 << (old + ((basis >> addr) & 1))
+            if reverse:
+                basis = batch(basis ^ source_flip, parent_wires, child_start)
+                return batch(basis ^ source_flip, parent_wires, child_start)
+            basis = batch(basis, parent_wires, child_start)
+            return batch(basis ^ source_flip, parent_wires, child_start) ^ source_flip
+
+        def path_flip(basis):
+            basis = stage(basis, address[1], (middle, middle + 1), leaves, True)
+            basis = stage(basis, address[0], (root,), middle, True)
+            basis = stage(basis ^ (1 << root), address[0], (root,), middle, False)
+            return stage(basis, address[1], (middle, middle + 1), leaves, False)
+
+        def copy_leaves(basis):
+            return basis ^ (((basis >> leaves) & 15) << output)
+
+        for column in range(1 << (output + 4)):
+            selected = 2 * (column & 1) + ((column >> 1) & 1)
+            expected = column ^ (1 << (output + selected))
+            forward = path_flip(copy_leaves(path_flip(copy_leaves(column))))
+            reverse = copy_leaves(path_flip(copy_leaves(path_flip(column))))
+            self.assertEqual(forward, expected)
+            self.assertEqual(reverse, expected)
+
     def test_uniform_native_ledgers_and_private_band_targets(self):
         for n in (3, 4, 9):
             linear = [7] * n

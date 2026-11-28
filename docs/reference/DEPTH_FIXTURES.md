@@ -377,7 +377,7 @@ guard the scope of the analytic restrictions; the dense encoder is not a
 supplied native primitive. No general depth claim or receipt is added.
 
 The [bounded-density theorem R82](../../research/depth/BOUNDED_DENSITY_DEPTH.md)
-has six [finite fixtures](../../tests/test_weighted_haar_depth.py):
+has seven [finite fixtures](../../tests/test_weighted_haar_depth.py):
 
 1. Independently normalized weighted-frame columns agree with the retained
    Haar gauge, including uniform weights and zero correction columns.
@@ -397,6 +397,9 @@ has six [finite fixtures](../../tests/test_weighted_haar_depth.py):
 6. A perturbed source is paired with its actual inverse. The complete
    initialized-isometry error obeys the finite hybrid bound, while
    nonzero final leakage is retained and column normalization is checked.
+7. A biased reference checks the relative correction matrix, periodic
+   mask direction on nearby offsets and the bound by the same-bin and
+   far-offset blocks. The uniform tail and one-clean recovery are analytic.
 
 The variance tests use exact rational arithmetic; frame, source-overlap,
 and recovery comparisons are bounded floating-point checks. Source

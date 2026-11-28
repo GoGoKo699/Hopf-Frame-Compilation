@@ -1519,3 +1519,446 @@ distance $`2\sin(\pi/24)`$, contradicting the assumed
 error. The comparison to the identity uses the full physical
 operator. Initialization of even one extra clean qubit would
 leave its other input sector outside that norm guarantee.
+
+<a id="five-band-third-level-clean-boundary"></a>
+
+## 14. The rare cycle constrains one-clean exterior images
+
+At sufficiently small fixed complete error and large p, a five-band
+one-clean compiler for Section 13 must have **both** exterior
+two-band images of clean Z outside the third Clifford hierarchy
+level $`\mathcal C_3`$. These are the forward image through the
+first two bands and the backward image through the last two,
+using the actual Clifford walls. A member of $`\mathcal C_3`$
+conjugates every Pauli to a Clifford. Arbitrary dirty width and
+physical address motion are allowed.
+
+### A third-level exterior image forces exact clean return
+
+Let J append one clean zero. An approximation $`\|VJ-cJW\|\le\eta`$
+with $`|c|=1`$ gives leakage from zero at most eta. Unitarity
+gives the same norm for the other off-diagonal block: their
+squared singular spectra are the deficiencies of the occupied
+square block in its two multiplication orders. Thus
+$`\|VZV^\dagger-Z\|\le2\eta`$ on the entire physical space.
+
+Use the actual reverse if necessary to place the known third-level
+image L at the forward two-band prefix. At the cut after the
+third band E compare $`A=E L E^\dagger`$ and the backward
+two-band clean image $`B=E_B K_B E_B^\dagger`$, where E and
+$`E_B`$ are conjugated physical bands and $`K_B`$ is a
+Hermitian Clifford. Their operator distance is at most $`2\eta`$.
+For every Pauli R commuting with the axes of E, the conjugation
+$`ARA=E(LRL)E^\dagger`$ has one band decoration of a Hermitian
+Clifford. So does BRB, since $`E_B^\dagger R E_B`$ is Clifford.
+The distance of these probe images in normalized Hilbert–Schmidt
+norm is at most $`4\eta`$. The
+[four-band mean gap](FOUR_LAYER_SCALAR_GAP.md#mean-error-exceptional-rank-and-complete-operators)
+$`g_4=\sin(\pi/24)`$ forces equality below that threshold.
+
+Thus BA commutes with the entire Pauli centralizer of the axis
+span of E. Its Pauli support lies in that isotropic span, so a
+Clifford diagonalizes BA over the native ring. The
+[unit-circle classification](FOUR_LAYER_OPERATOR_RIGIDITY.md#4-discrete-phases-in-the-common-commutant)
+gives eighth-root eigenvalues. Since $`\|BA-I\|\le2\eta`$,
+at sufficiently small eta it is identity. Consequently
+$`[V,Z]=0`$ exactly. Reorient by actual reversal as needed
+to put the known third-level image S on the backward suffix.
+
+### A common phase frame for S
+
+Write $`S=E_B J_B E_B^\dagger`$ with $`J_B`$ Hermitian
+Clifford. For each actual axis $`P_i`$ of $`E_B`$, there
+is a Pauli R activating only that axis, by independence.
+In $`S R S`$, factor out the Clifford
+$`E_B(J_B R J_B^\dagger)E_B^\dagger`$.
+The remaining factor has form $`(I\pm iK)/\sqrt2`$,
+where $`K=E_B(J_B P_i J_B^\dagger)E_B^\dagger`$ is traceless.
+Since S is third-level this factor is Clifford. A Clifford
+has flat Pauli coefficient magnitudes on its support.
+The identity coefficient $`1/\sqrt2`$ forces support
+of size two, hence K is Pauli. Conjugating a Pauli by
+an independent-axis band gives $`2^s`$ distinct Pauli
+terms if s axes activate, so $`J_B P_i J_B^\dagger`$
+commutes with every axis of $`E_B`$.
+
+The union of these two axis lists is isotropic. Thus
+$`S=D_S J_B`$, with $`D_S=E_B(J_BE_B^\dagger J_B^\dagger)`$
+a diagonal weighted-cubic phase in a fixed Clifford frame
+shared with $`E_B`$. Conversely, that commutation condition
+implies S is third-level. If it fails, some K in the test
+above has all nonidentity coefficients of modulus at most
+$`1/\sqrt2`$. In $`(I\pm iK)/\sqrt2`$, the identity
+coefficient is $`1/\sqrt2`$ and all the others at most 1/2.
+A flat Clifford Pauli vector either differs at the identity
+by at least $`1/\sqrt2-1/2`$, or has support of size two
+containing the identity and differs by at least that amount
+at its other entry. The Pauli-image telescope shows that
+a non-third-level two-band image is at normalized
+Hilbert–Schmidt distance at least
+$`(1/\sqrt2-1/2)/2`$ from the third level, even up to phase.
+
+### Occupied Pauli comparisons with this phase frame
+
+At a two-plus-two cut, write the forward and backward
+Hermitian Pauli images $`A=E_A K_A E_A^\dagger`$ and
+$`B=E_B K_B E_B^\dagger`$. Let $`Q=(I+S)/2`$ and
+assume A and B commute with Q. This commutation will follow
+from exact terminal return in the application. Put
+$`\varepsilon=\|(A-B)Q\|_{2,\tau}`$ with the full physical
+trace normalization.
+
+For a Hermitian Pauli R activating at most five axes of
+$`E_A`$, its $`s`$ activated axes give $`2^s`$ terms
+in $`E_A^\dagger R E_A`$. Hence ARA is a sum of
+$`2^s`$ Hermitian Cliffords with coefficient modulus
+$`2^{-s/2}`$. For each such Clifford G, the terms
+G, SG, GS and SGS of its compression are flat affine
+Choi states with weighted-cubic phases in the common
+diagonal frame. Indeed $`SG=D_S J_B G`$, $`GS=(SG)^\dagger`$,
+and $`SGS=D_S J_B G J_B^\dagger D_S^\dagger`$.
+The four terms from compressing BRB remain $`E_B`$
+decorations of Cliffords because
+$`Q=E_B(I+J_B)E_B^\dagger/2`$.
+After absorbing literal eighth-root phases and duplicating
+terms using $`\sqrt2=\omega+\omega^{-1}`$ with
+$`\omega=e^{i\pi/4}`$, all coefficients have modulus
+$`2^{-(s+4)/2}`$, with at most 160 terms and $`s+4\le9`$.
+
+The [finite-boundary gap](FOUR_LAYER_CROSSING_RANK.md#finite-boundary-form)
+at zero active doubled coordinates gives an absolute
+$`g_{\rm pal}\gt0`$ for a nonzero such palette. The telescope
+$`\|Q(ARA-BRB)Q\|_{2,\tau}\le2\varepsilon`$ freezes the
+compressed probes below half that gap. Zero-activation
+Paulis span the full operator blocks on the axis fibers z.
+Their compression includes all rank-one maps on each
+occupied fiber image in Q, so BA is scalar there.
+A fixed activation mask e similarly spans every block
+$`z\to z+e`$. Nonzero compression between two occupied
+fibers identifies their scalars when $`|e|\le5`$.
+
+To see connectivity, in the $`E_A`$ axis coordinates
+an unoccupied z satisfies $`S|z,v\rangle=-|z,v\rangle`$
+for every spectator v. Let F implement the fixed diagonal
+frame of $`D_S`$. The states $`F|z,v\rangle`$ and
+$`FJ_B|z,v\rangle`$ are Pauli translates of fixed stabilizer
+states. Their support directions are fixed and their
+origins affine in $`(z,v)`$. If the directions differ,
+every fiber is occupied. Otherwise requiring equal supports
+for every v gives an affine locus $`H_0`$ in z. In that
+locus use the first affine origin as the shared origin
+and a fixed linear inverse on the common support direction
+to lift the other coordinates. The ratio of the two
+phases, including $`D_S`$ on the second state, has a
+modulo-eight weighted-cubic exponent in $`(z,v,u)`$,
+where u runs over the shared support coordinates:
+stabilizer phases are weighted quadratic and variable
+Pauli translations add only affine and quadratic terms.
+
+For each fixed $`(v,u)`$, a phase differing from minus
+one is witnessed by a nonzero digit of the exponent minus
+four. The three digit degrees are at most 1, 2 and 4 by
+the [carry bound](FOUR_LAYER_SCALAR_GAP.md#a-gap-for-the-choi-vectors).
+Extend these witnesses by a fixed affine retraction onto
+$`H_0`$, and include the affine violations of $`H_0`$.
+Their supports have union exactly the occupied set.
+In a union of degree-at-most-four supports, a closest
+pair in separate radius-five components would have
+distance at least six. The connecting subcube has no
+occupied interior by minimality. A witness at one
+endpoint would restrict to one vertex or two opposite
+vertices, of degree at least five. Thus the occupied
+set is connected.
+
+The scalars of BA therefore coincide on Q. The Hermitian
+involutions imply ratio plus or minus one, and the
+negative case has $`\varepsilon=\sqrt2`$. For
+$`\varepsilon\lt\varepsilon_{\rm occ}=\min\{g_{\rm pal}/2,1\}`$
+this proves exact occupied agreement.
+
+### Apply the comparison to the rare cycle
+
+Let $`A_1`$ be the first native band's isotropic axis span.
+For each Hermitian P in $`A_1^\perp\cap Z^\perp`$, the first
+band drops from the Pauli conjugation. At the cut after the
+third band the compared images are two-band images as above.
+Both commute with S: this is immediate for the backward
+image, and exact clean return identifies S with the forward
+clean image through the original three bands. The actual
+reverse isometry and a commutator telescope yield
+
+```math
+ \|(VPV^\dagger-P)(I+Z)/2\|_{2,\tau}
+ \le\sqrt2\bigl(\eta+\sqrt{3/2}\,2^{-p/2}\bigr).
+```
+
+The occupied normalization gives two isometry errors eta
+and twice the rare-cycle distance from identity. Conversion
+to physical trace normalization contributes $`1/\sqrt2`$.
+For $`\eta\lt\min\{g_4/4,\varepsilon_{\rm occ}/(2\sqrt2)\}`$
+and sufficiently large p, every such probe freezes.
+Empty bands can be inserted for a shorter word.
+
+The occupied unitary $`V_0=J^\dagger VJ`$ now has Pauli
+support in the projection of $`A_1\cap Z^\perp`$ in the
+quotient $`Z^\perp/\langle Z\rangle`$. Indeed the physical
+orthogonal complement of the probe span before restriction
+is $`A_1+\langle Z\rangle`$. Its projected span is isotropic.
+So a logical-dirty Clifford diagonalizes $`V_0`$ over the
+native ring, giving eighth-root eigenvalues. Their ratios
+cannot approximate the order-three eigenvalue in the rare
+cycle at the same error, by the spectral comparison of
+Section 13. Actual reversal conjugates that eigenvalue and
+preserves the conclusion, excluding either third-level
+exterior image. The case with two non-third-level images
+remains open.
+
+<a id="native-interaction-spectral-volume"></a>
+
+## 15. A spectral-volume bound for native interaction components
+
+Collect the Cliffords in a d-band native word as
+$`V=C E_d\cdots E_1`$. Each $`E_j`$ is the actual
+transported band of independent commuting Pauli rotations.
+Write $`\omega=e^{i\pi/4}`$ for the native phase root.
+Connect two labels among these axes and the input clean
+Pauli $`S=Z_c`$ when they anticommute. For each connected
+component let $`r_i`$ be half the symplectic rank of its
+span, and put $`r=\max_i r_i`$. This graph may have many
+components and arbitrarily large total rank. Its labels
+come from the actual native word.
+
+At complete initialized-isometry error $`\eta\le1/64`$,
+the rare cycle of Section 13 on p prefix bits satisfies
+
+```math
+p\le 2^{O((d+1)(r+1))}.
+```
+
+Thus bounded component rank requires logarithmically growing
+native depth. With total symplectic half-rank R, a separate
+bound is $`p+1\le 7+3R+d(3R+\binom R2)`$. Both bounds
+allow arbitrary dirty width and Clifford interlayers.
+Large components, even at small d, leave the general
+depth gap open.
+
+### Reduce to component programs
+
+Let M span the labels, including S, and let
+$`U=E_d\cdots E_1`$. For a Pauli P with label in
+$`M^\perp`$, $`VPV^\dagger=CPC^\dagger`$ is Pauli.
+On the code, $`\|VJ-cJ\|_{2,\mathrm{occ}}\le\eta+\sqrt{3/2}\,2^{-p/2}`$, where the norm uses
+normalized trace on the initialized input. Comparing the
+two Pauli actions first on VJ and then on cJ gives
+$`\|(CPC^\dagger-P)J\|_{2,\mathrm{occ}}\le4(\eta+\sqrt{3/2}\,2^{-p/2})`$.
+Two Pauli code columns are orthogonal in this inner
+product or coincide up to sign, by tracing against
+$`(I+S)/2`$. At large p this bound forces equality, so
+$`CPC^\dagger=P S^{f(P)}`$. The bit f is linear on
+$`M^\perp`$ by multiplication and vanishes at S if S
+belongs to that space. Extend f with $`f(S)=0`$, and
+represent it by the symplectic pairing with a Pauli
+label Q that commutes with S. The Clifford
+
+```math
+D=(I+S)/2+(I-S)Q/2
+```
+
+uses a signed Hermitian representative Q. It fixes J
+pointwise and conjugates $`P S^{f(P)}`$ back to P.
+Thus $`C'=DC`$ belongs to the Pauli algebra of M,
+and $`J^\dagger DVJ=J^\dagger VJ`$. The finitely small
+p omitted by this step satisfy both stated bounds.
+
+In a fixed Clifford frame, the radical of M consists of
+computational Z coordinates z. The nondegenerate quotient
+splits as a symplectic direct sum of the component spaces,
+because their spans are pairwise orthogonal. The kernel
+of each component's map to the quotient is exactly its
+own radical. Choose $`r_i`$ active qubits in component i,
+and ignore the remaining spectator factor on which the
+algebra is identity. A radical S restricts z to an affine
+hyperplane. Otherwise choose S itself as an active Z of
+its component. The clean condition then fixes that
+one active bit. The occupied z sectors have equal weight.
+
+At fixed z each component band is diagonal in a fixed
+active Clifford chart. Its phase on at most $`r_i`$ active
+eigenbits t is an exponent modulo eight, a sum of signed
+affine parity bits of $`(z,t)`$. Expanding a parity
+$`a(z)\oplus b\cdot t`$ in t gives coefficient
+$`(1-2a(z))(-2)^{|I|-1}`$ on each nonempty squarefree
+monomial supported on $`I\subseteq\mathrm{supp}(b)`$.
+Thus cubic coefficients are constant, each quadratic
+coefficient has one varying affine bit, and each linear
+coefficient has varying bits of degrees at most one
+and two. The three digits of the scalar coefficient have
+degrees at most one, two and four by the parity-sum
+carry bound. These bounds do not count the number of
+transported axes.
+
+The Clifford $`C'`$ fixes every radical Z. On an active Pauli
+its conditional symplectic action is independent of z,
+and the signs on its generators are affine in z. Hence
+$`C'_z=\omega^{q_0(z)}C'_0 P(z)`$, where P is an ordered
+product of active Pauli generators with affine controls.
+Indeed those controls are Clifford gates. Removing them
+and the fixed active Clifford leaves a diagonal Clifford
+on the radical, whose exponent $`q_0`$ is weighted quadratic.
+Choose the order of P by component. The purely radical band
+phases and this scalar may be added, with the same degree
+bounds one, two and four for the total scalar digits.
+
+A tuple determining one component's exact active matrix
+therefore contains bits with sum of degree bounds at most
+
+```math
+A_i=2r_i+d\bigl(7+3r_i+\binom{r_i}{2}\bigr).
+```
+
+It includes P's affine activations and the varying phase
+digits of every band. Any fixed attained tuple recurs on
+at least $`2^{-A_i}`$ of the occupied radical sectors.
+Multiply the appropriate bits or complements to obtain
+its nonzero Boolean indicator, and apply the minimum
+weight $`2^{-a}`$ of a nonzero degree-a Boolean polynomial.
+The same argument for several attained tuples adds
+their degree bounds. It still holds on the clean affine
+hyperplane, when present.
+
+### Factor the compression at each radical sector
+
+The normalized Choi vector of $`U_z J_z`$ is a product
+across components. Here $`J_z`$ is identity except in the
+possible active clean component. The normalized Choi
+vector of $`(C'_z)^\dagger J_z`$ is a stabilizer vector,
+and all its z versions differ by products of local
+Paulis and a scalar. Since the full initialized comparison
+to cI in normalized Hilbert–Schmidt norm is small,
+there is some occupied z for which these two Choi
+vectors have overlap greater than $`1/\sqrt2`$.
+A stabilizer Choi vector entangled across a component
+cut has largest Schmidt coefficient at most $`1/\sqrt2`$:
+the reduction of its stabilizer projector is a scalar
+times a projector. It would have at most that overlap
+with a product vector. Thus the Choi vector factors
+across every cut, for all z.
+
+The factors are stabilizer isometries, as their reference
+marginals are maximally mixed. On a full component this
+is a Clifford up to phase, since the maximally entangled
+stabilizer pairs each input Pauli with an output Pauli.
+Choose literal stabilizer phases in the factors. Their
+product differs from the original by an eighth-root scalar,
+by comparing a nonzero computational amplitude. Absorb
+that scalar in the radical phase. The compression now
+has the form
+
+```math
+B(z)=\omega^{q(z)}B_*(z)\otimes\bigotimes_{i\ne *} G_i(z).
+```
+
+Here $`B_*`$ is the contraction of dimension at most $`2^r`$
+on the active clean component, or scalar one if absent.
+Each full factor $`G_i`$ is unitary, a literal fixed
+Clifford and affine Pauli followed by its local bands.
+Their determinants are eighth roots. The factor matrices
+are determined by the respective program tuples.
+
+### A spectral outlier must recur
+
+For $`B=J^\dagger VJ`$, the bound $`\|B-cW\|\le\eta`$
+implies that at most a $`2^{-p-1}`$ fraction of singular
+values of $`B-cI`$ exceed eta, since that is the rank
+fraction of $`W-I`$. At least one is at least
+$`\sqrt3-\eta`$ by the rare cycle's spectrum.
+
+Each full factor that is nonscalar has spectral chord
+diameter at least $`\Delta=2^{-(2d+1)r}/4`$.
+In fact its matrix entries use denominator at most
+$`(\sqrt2)^{(2d+1)r}`$ in $`\mathbb Z[\omega]`$:
+each band is a diagonal eighth-root phase between
+two fixed active Clifford charts. This ledger holds
+even for dependent projected axes. The remaining
+Clifford costs one such denominator. The nontrivial
+field embedding fixing i sends the matrix to another
+unitary. For a nonzero off-diagonal entry or a nonzero
+difference of diagonal entries, the algebraic norm
+bounds its absolute value below by
+$`2^{-(2d+1)r}/2`$, using absolute value at most two
+under the embedding. Distance to a scalar is at least
+half that amount, and distance to one of its eigenvalues
+is at most the spectral diameter.
+
+If some full factor has diameter at least 1/8 at a
+sector z, select it. Otherwise lift each spectrum to
+a short angular interval of width $`w_i\lt1/3`$.
+Each positive width is at least Delta. If their sum is
+at least 1/8, select nonscalar factors up to the first
+partial sum that reaches 1/8. Their product has two
+eigenvalues separated by at least $`2\sin(1/16)\gt2\eta`$,
+from the angular endpoints. In either case at most
+$`m=1+1/(8\Delta)`$ factors are needed. Force their
+program tuples to recur. For every choice of the
+remaining eigenvalues, the two selected products
+give two multiples of the same clean block. If both
+were within eta of cI, their scalar ratio would be
+within $`2\eta`$ of one by subtraction. Thus at least
+one gives a singular outlier. In each recurring
+z sector the fraction above eta is at least
+$`2^{-mr-r}`$. Multiplying by the recurrence
+fraction proves $`p+1\le m(\max_i A_i+r)+r`$.
+
+In the remaining case $`\sum_i w_i\lt1/8`$ throughout
+the occupied sectors. Replace each full factor by
+the scalar with its mean angle in the chosen interval.
+The scalar raised to $`2^{r_i}`$ is the determinant,
+so the product center, including the radical phase,
+is in $`\mu_{8\cdot2^r}`$. The product is within 1/8
+of its center in every z sector. Each center digit of
+one factor is a Boolean function of its program bits
+and has degree at most $`A_i`$. When adding all center
+exponents, bit j has degree at most
+$`2^j\max\{4,\max_i A_i\}`$ by the same carry bound,
+regardless of component count. Force the total center
+and clean program from the sector of the largest outlier
+to recur. This costs degree
+$`O(2^r(1+\max_i A_i))`$. Each recurring sector has at
+least one singular outlier per full-factor eigenvalue
+choice, since replacing the product center changes
+each such clean block by less than 1/8. The resulting
+volume gives $`p\le2^{O((d+1)(r+1))}`$ in both cases.
+
+For the total-rank estimate use a single R-qubit active
+block and leave its Clifford unfactored. Force its
+whole program at an outlier to recur. Only the
+varying linear and quadratic coefficients, the active
+Pauli controls and a single total scalar need be fixed.
+Their degree cost is $`7+2R+d(3R+\binom R2)`$.
+The recurring block has outlier fraction at least
+$`2^{-R}`$, giving the asserted estimate.
+
+### The same components constrain literal phase precision
+
+The component argument has a simpler zero-clean consequence
+for a full-space approximation $`\|V-\omega_3 I\|\le2^{-L}`$,
+where $`\omega_3=e^{2\pi i/3}`$ is literal. Use the same
+interaction graph without the clean Pauli. At sufficiently
+small error each Pauli in $`M^\perp`$ is exactly fixed by
+C, because the distinct Pauli operator-norm gap exceeds
+the conjugation error. Hence C already lies in the
+algebra of M. In every radical sector its Choi overlap
+with the product of local native bands exceeds
+$`1/\sqrt2`$, so the same factorization applies on the
+full space. Fix all other eigenvalues to see that each
+local factor has diameter at most $`2^{1-L}`$.
+If $`(2d+1)r\lt L-3`$, the arithmetic diameter bound
+forces each to be scalar. Then every radical block is a
+scalar native unitary, hence an eighth root, a contradiction.
+Thus $`d(r+1)=\Omega(L)`$ for d at least one.
+This applies to a literal active control sector if its
+read-only specialization gives an actual zero-clean
+native word. It constrains the
+[finite phase target](COHERENT_COUNTER_SOURCE.md#private-gauge-mod3)
+when all interaction components are small. A large
+coupled component lies within the allowed discovery budget.

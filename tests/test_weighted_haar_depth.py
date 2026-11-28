@@ -357,6 +357,54 @@ class WeightedHaarDepthTests(unittest.TestCase):
             self.assertEqual(energy, variance)
             self.assertLessEqual(carleson, variance / min(density) ** 3)
 
+    def test_adaptive_masks_keep_near_offsets_with_biased_reference(self):
+        size = 32
+        reference = np.exp(np.linspace(-2, 2, size))
+        reference /= reference.sum()
+        density = 1 + 0.6 * np.sin(np.arange(size))
+        density /= reference @ density
+        core, scaling, coefficient, correction = _reference_gauge(reference, density)
+        target = _weighted_frame(reference * density)
+        multiplication = core.T @ (density[:, None] * core)
+        averages = scaling.T @ core
+        slopes = np.diag(core.T @ (density[:, None] * scaling))
+        lower = slopes[:, None] * averages
+        np.testing.assert_allclose(multiplication,
+                                   np.diag(np.diag(multiplication)) + lower + lower.T,
+                                   atol=ATOL)
+
+        labels, energy, multipliers = np.zeros(size, dtype=int), {}, np.zeros(size)
+        bin_width, modulus = 0.003, 8
+        for marker, depth, start, length in _nodes(size):
+            parent_energy = energy.get((depth - 1, start // (2 * length)), 0)
+            energy[depth, start // length] = parent_energy + slopes[marker] ** 2
+            labels[marker] = int((energy[depth, start // length] + bin_width / 3)
+                                 // bin_width)
+            middle, stop = start + length // 2, start + length
+            left, right = reference[start:middle], reference[middle:stop]
+            left_mean = left @ density[start:middle] / left.sum()
+            right_mean = right @ density[middle:stop] / right.sum()
+            mean = reference[start:stop] @ density[start:stop] / (left.sum() + right.sum())
+            multipliers[marker] = 1 / np.sqrt(mean * left_mean * right_mean)
+        np.testing.assert_allclose(slopes * multipliers, correction, atol=ATOL)
+        relative = np.sqrt(density)[:, None] * (
+            core @ (np.diag(coefficient) - lower.T * multipliers) @ core.T)
+        np.testing.assert_allclose(relative, target @ core.T, atol=ATOL)
+
+        offsets = labels[:, None] - labels[None, :]
+        near = (offsets > 0) & (offsets < modulus // 2)
+        self.assertTrue(np.any(near & (np.abs(lower) > ATOL)))
+        self.assertTrue(np.any((offsets >= modulus // 2) & (np.abs(lower) > ATOL)))
+        kept = offsets % modulus
+        masked = multiplication * ((kept > 0) & (kept < modulus // 2))
+        np.testing.assert_allclose(masked[near], lower[near], atol=ATOL)
+        np.testing.assert_allclose(masked[near.T], 0, atol=ATOL)
+        np.testing.assert_allclose(masked[offsets == 0], 0, atol=ATOL)
+        error_budget = np.linalg.norm(lower * (offsets == 0), 2)
+        for offset in range(modulus // 2, offsets.max() + 1):
+            error_budget += 2 * np.linalg.norm(lower * (offsets == offset), 2)
+        self.assertLessEqual(np.linalg.norm(masked - lower, 2), error_budget + ATOL)
+
     def test_complete_lcu_amplification_literal_frame_and_all_work_return(self):
         for weights in ([1, 1, 1, 1], [0.94, 1.02, 1.07, 0.97]):
             fixture = _lcu_fixture(weights)

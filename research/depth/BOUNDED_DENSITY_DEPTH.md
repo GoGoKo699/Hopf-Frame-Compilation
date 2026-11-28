@@ -28,6 +28,10 @@ at $`O_L(N/b^2+\ell\log(\ell+2))`$. This chapter retains its
 own promised-family construction and bound.
 [R79](UNIFORM_SUBTREE_DEPTH.md) remains the absolute all-precision theorem.
 
+The [constant scalar-query transfer](#bounded-density-scalar-transfer)
+below uses a different relative correction, with an arbitrary paid positive
+reference and a conditional scalar source at square-root work.
+
 All logarithms below are binary except in elementary trigonometric
 expressions.
 
@@ -1155,3 +1159,309 @@ promise or an efficient search for the reference is made. The later
 fixed-accuracy depth without this density promise. Optimal general
 depth and a dimension-growing unrestricted lower bound remain open;
 the theorem proved here retains its own promise and resource statement.
+
+<a id="bounded-density-scalar-transfer"></a>
+
+## 15. A constant scalar-query transfer at bounded relative density
+
+Let $`H=W_\nu`$ be a paid positive reference frame with strictly
+positive leaf probabilities $`\nu`$. Let the positive target
+$`W_\mu`$ have relative leaf density $`w(x)=\mu(x)/\nu(x)`$ in
+a fixed interval $`[c,C]`$ with $`0\lt c\le1\le C`$.
+At each fixed tolerance, suppose H can be compiled with one clean
+qubit, $`T,b_{\rm dirty}=O(\sqrt N)`$, $`G=O(N)`$ and native
+depth $`d_H(n)`$. The resource bounds cover its actual reverse.
+Suppose also that at every fixed tolerance every a-bit Boolean
+sign table has a complete initialized-isometry compiler with
+a bounded number of clean bits, $`T,b_{\rm dirty}=O(2^{a/2})`$,
+$`G=O(2^a)`$ and native depth $`O(d(a))`$, including its actual
+inverse. The depth envelope d is nondecreasing and at least one.
+Completed address motion is allowed in the scalar word.
+
+For fixed $`L\ge6`$, there is a one-clean compiler for
+$`W_\mu`$ to complete error $`2^{-L}`$ with simultaneously
+
+```math
+ T,b_{\rm dirty}=O_{L,c,C}(\sqrt N),\qquad
+ G=O_{L,c,C}(N),\qquad
+ D_T=O_{L,c,C}\!\bigl(d_H(n)+d(n+O_{L,c,C}(1))\bigr).
+```
+
+Here $`d_H`$ can be a common depth envelope at the finitely many
+fixed reference tolerances used below. The statement includes
+literal phases, arbitrary work and reference inputs, and actual
+inverses. For the positive balanced reference, the
+[Haar compiler](POSITIVE_HAAR_FINGERPRINT.md)
+gives $`d_H(n)=O_L(\log\log(n+4))`$ with polynomial counts
+and dirty width. The bounded-density family therefore admits
+any scalar depth $`o(\log n)`$ as a sufficient first improvement
+at square-root dirty width. Only constantly many scalar calls
+at arity $`n+O_{L,c,C}(1)`$ are required.
+
+### Reference multiplication and its lower tree part
+
+In the reference measure $`\nu`$, write $`q_i`$ for the
+normalized local root on interval i and $`h_i`$ for its marker.
+Write $`A_i=\mu(i)/\nu(i)`$, so all $`A_i`$ lie in $`[c,C]`$.
+At children L and R, put $`\ell=\nu(L)/\nu(i)`$ and
+$`r=\nu(R)/\nu(i)`$. Let $`D_w`$ multiply by w on leaf
+coordinates and put $`B_w=H^\dagger D_w H`$. Let P retain the
+entries of $`B_w`$ whose row i is a strict descendant of its
+column j, treating the global root column as an ancestor of
+every marker. Then
+
+```math
+P_{ij}=a_i\langle q_i,h_j\rangle,\qquad
+a_i=\langle h_i,D_w q_i\rangle=\sqrt{\ell r}(A_R-A_L),
+```
+
+with the same restriction formula for the root column.
+The averaging form is $`(Pz)_i=a_i\langle q_i,Hz\rangle`$.
+For any I, reference subtree Parseval gives
+
+```math
+ \sum_{i\subseteq I}\nu(i)|a_i|^2
+  =\nu(I)\mathrm{Var}_{\nu|I}(w)\le B\nu(I),
+ \qquad B=(C-c)^2 .
+```
+
+The reference transformation identifies a leaf vector with its
+coordinate function divided by $`\sqrt{\nu(x)}`$, preserving its
+norm in $`L^2(\nu)`$. This is the same conditional averaging
+bound as the
+[conditional root estimate](../endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md#positive-conditional-root-stability). It also gives $`|a_i|^2\le B`$.
+
+For the target marker, divide its left and right reference
+root-vector coefficients by $`\sqrt{A_L}`$ and $`\sqrt{A_R}`$
+before multiplying by $`D_{\sqrt w}`$. In the basis $`h_i,q_i`$
+the resulting coefficients are $`C_i`$ and $`-a_i R_i`$ with
+
+```math
+ C_i=\frac{\sqrt{A_i}}{\sqrt{A_L A_R}},
+ \qquad
+ R_i=\frac{1}{\sqrt{A_i A_L A_R}}.
+```
+
+Indeed the target's left and right probabilities are
+$`\ell A_L/A_i`$ and $`r A_R/A_i`$, and
+$`\ell A_L+rA_R=A_i`$. On the extra root set $`C_0=1`$
+and $`R_0=0`$. The averaging form of P gives the literal
+complete identity
+
+```math
+ W_\mu=D_{\sqrt w}H(D_C-P^\dagger D_R).
+```
+
+The normalizations are bounded independently of the individual
+reference branch probabilities. If B is zero, P vanishes and
+the following approximation is unnecessary.
+
+### A constant number of masks approximate the lower tree part
+
+For an internal node i, let $`S_i`$ sum $`|a_v|^2`$ through
+its ancestors including i. Give the extra root column energy zero.
+For bin width $`\lambda\gt0`$ set
+$`g_i=\lfloor(S_i+s_0)/\lambda\rfloor`$ with
+$`0\lt s_0\lt\lambda/2`$. These labels are nondecreasing on
+paths. For finite certified preprocessing, search rational offsets
+until all the finitely many comparisons to bin boundaries are strict.
+The diagonal labels reside in the programmed tables.
+
+Write $`P_s`$ for the part retaining $`g_i-g_j=s`$.
+For fixed s its input bins have distinct output bins. Within
+one input bin its connected packets have disjoint top intervals.
+For $`s=0`$, the top row of each packet has no prior input
+column in that packet. The remaining rows have total weight
+less than lambda along every packet path, by subtraction of
+the top cumulative energy. Conditional expectation bounds the
+local Carleson constant by lambda. If the packet includes the
+extra root, its assigned weight is zero. The maximal-average
+bound just cited gives $`\|P_0\|\le2\sqrt\lambda`$.
+
+For $`s\ge1`$, fix an input packet in bin q. Its input
+wavelets give a constant $`c_v`$ on each first-exit subtree v
+whose label exceeds q. Those subtrees are disjoint, so
+$`\sum_v\nu(v)|c_v|^2\le\|z\|^2`$ for an input z in the
+packet. Each output row in bin q+s below v needs cumulative
+energy at least $`(s-1)\lambda-B`$ strictly after v. This
+uses the overshoot bound $`S_v+s_0\lt(q+1)\lambda+B`$.
+
+From a starting subtree, stop when accumulated weight strictly
+after its root first reaches $`4B`$. The disjoint stopping
+subtrees have total measure at most one quarter of the starting
+mass, by the Carleson estimate and Markov's inequality. Each
+stop overshoots by at most B. Repeating from the stopped roots
+shows that every such output row passes at least
+$`k_s=\max\{0,\lfloor((s-1)\lambda-B)/(5B)\rfloor\}`$
+stops, occupying subtrees of total measure at most
+$`4^{-k_s}\nu(v)`$. Another Carleson estimate bounds the
+squared output from v by $`B4^{-k_s}\nu(v)|c_v|^2`$.
+Summing over exit subtrees and using the disjoint input-packet
+and output-bin blocks gives $`\|P_s\|\le\sqrt B\,2^{-k_s}`$.
+
+For even M let $`\Pi_r`$ denote the diagonal mask for
+$`g_i=r\bmod M`$, on marker coordinates and the extra root.
+Form
+
+```math
+ \widetilde P
+ =\sum_{(r-t)\bmod M\in\{1,\ldots,M/2-1\}}
+   \Pi_r B_w\Pi_t.
+```
+
+The mask keeps the lower and rejects the upper entry at each
+positive offset below M/2. It rejects offset zero, including
+the diagonal. Other entries are entire offset blocks or their
+adjoints according to their residue. Consequently
+
+```math
+ \|\widetilde P-P\|\le 2\sqrt\lambda
+                          +2\sum_{s\ge M/2}\sqrt B\,2^{-k_s}.
+```
+
+For any fixed tolerance, first choose lambda and then M so
+that this bound lies within the allocated error. Neither
+parameter depends on n.
+
+### Relative correction and the native ledger
+
+Compile the relative unitary $`W_\mu H^\dagger`$. After
+the mask substitution its approximation has the form
+
+```math
+ D_{\sqrt w}\left[(H D_C H^\dagger)
+       -\sum_{(r-t)\bmod M\in\{1,\ldots,M/2-1\}}
+       (H\Pi_t H^\dagger)\,D_w\,(H\Pi_r D_R H^\dagger)
+             \right].
+```
+
+Round the bounded diagonal tables to a fixed finite grid,
+using sufficiently small table errors once M is fixed. This
+gives a matrix K within any prescribed fixed
+$`\kappa\lt1/4`$ of $`W_\mu H^\dagger`$. The polar factor
+of K is within $`2\kappa`$ of this relative unitary:
+the singular values of K differ from one by at most kappa.
+
+A bounded real diagonal entry can be the cosine of a programmed
+rotation on a fixed block-encoding flag. To select each grid
+angle, promote the lifted scalar sign $`(-1)^{zg(x)}`$ by
+[bounded-clean XOR promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#4-approximate-clean-return-still-gives-a-full-operator-query)
+to a full XOR Q of g into an arbitrary bit z. Here g includes
+both its value class and any fixed-arity enables. For
+$`B_\theta=C_z R_y(\theta)`$ on the flag, use the operator
+word
+
+```math
+ \mathrm{CZ}\,Q B_\theta Q^\dagger B_\theta^\dagger\,\mathrm{CZ},
+```
+
+with CZ between z and the flag. The middle rotates by
+$`\theta[(z\oplus g)-z]`$. The two CZ gates remove the
+z-dependent sign, giving $`R_y(\theta g)`$ on the flag for
+every z. The constant-angle controlled rotation uses two
+half-angle rotations and two CNOTs. Each actual inverse is paid.
+These macros have ideal identity action on disabled branches
+even when their flags are occupied.
+
+Separate flags encode products of the diagonal blocks. A
+fixed-size selector, prepared and reversed around a signed
+SELECT of terms, block-encodes the sum with a known positive
+normalization alpha equal to the sum of term normalizations.
+The term count and alpha depend only on fixed parameters.
+In each conjugated block $`H D H^\dagger`$, the enables
+are applied to the diagonal macro alone. When disabled the
+two actual reference words cancel with ideal D, on every
+work and flag input. When enabled an ideal comparison uses H
+on its dedicated initialized reference bit, which the
+diagonal macros and other block flags do not touch.
+The actual H and its inverse have their initialized-isometry
+errors there. This supplies a controlled relative correction
+without controlling the native reference word or its pool.
+
+Use
+[Gilyén–Su–Low–Wiebe, v1, Theorem 26](https://arxiv.org/pdf/1806.01838v1#page=26)
+on the block encoding of $`K/\alpha`$, whose singular values
+are at least $`(1-\kappa)/\alpha`$. Its accepted compression
+approximates the polar factor to any fixed sigma, using one
+additional signal, constantly many block-word and inverse calls,
+and controlled acceptance-projector gates and one-qubit rotations.
+A compression within sigma of a unitary implies whole initialized
+error at most $`\sqrt{2\sigma}`$ by unitarity. Use the physical
+outer guard on every ideal primitive of the circuit, including
+these bounded-register projector phases and selector preparation.
+A literal diagonal phase generator on this fixed register can
+be expanded in tensor Z operators after tensoring it with Z on
+one extra initialized tag. On tag zero this leaves the desired
+literal phase, and on the disabled guard both tag sectors give
+identity. Each nonidentity term uses parity exposure and one
+one-qubit SU(2) rotation. This also prices any constant scalar
+phase. The emitted rotations use the retained literal
+synthesis to fixed precision.
+
+Let k be the fixed number of temporary initialized bits for this
+guarded word, including the reference bit. Compare in the
+enabled sector with the polar factor on all k zeros and in the
+disabled sector with identity on the entire physical space.
+The above hybrid makes both errors at most any fixed theta.
+On the disabled sector use cancellation of each reference
+pair after first replacing its disabled diagonal macro by identity.
+On the enabled code the dedicated reference bit is always zero
+in the ideal trajectories, even when the other SELECT and
+recovery flags are occupied. This justifies the initialized
+reference estimates through the whole word.
+
+Borrow those k bits as arbitrary dirty work. Visit all
+computational labels, shifting each to zero, XORing its zero
+test into the single external clean guard, applying the guarded
+word and actually reversing the test and shift. The ideal product
+applies the polar factor in every label with all work and guard
+returned. Per-visit error is at most $`\sqrt2\,\theta`$ on the
+ideal external code by splitting the enabled and disabled input
+parts. Native leakage sums to at most $`2^k\sqrt2\,\theta`$.
+The matrix approximation $`2\kappa`$ is incurred once. Choose
+theta after k is fixed, and use fixed slack in both tolerances.
+Prepend the reference H on the same external clean bit after
+allocating its own fixed error. This yields the claimed norm
+and ledger, with both the scalar and reference pools reused
+sequentially. All added controls enlarge scalar arity by a
+constant. Actual inverses satisfy the same full comparison
+and resource orders.
+
+For signed real frames the retained
+[sign gauges](POSITIVE_HAAR_FINGERPRINT.md#dense-succinct-sign-tables)
+are two scalar signs on this positive reference correction.
+Prescribed complex leaf phases can likewise be rounded on a
+fixed grid and applied by the same dirty control echo on the
+external clean bit, using Z rotations and X conjugators.
+The ideal clean-zero column acquires the literal phase and
+returns the bit. Allocate separate fixed error to these factors.
+The density comparison is on the magnitude distribution.
+
+The relative density premise provides a paid route for frames
+comparable to any inexpensive positive reference, including a
+reference with large variation relative to uniform. The proofs
+do not supply such a reference for arbitrary input frames.
+
+### A universal comparable reference already supplies scalar lookup
+
+For an arbitrary Boolean f on a bits, give leaf $`(x,t)`$ mass
+$`2^{-a}(1-\epsilon)`$ when $`t=f(x)`$ and
+$`2^{-a}\epsilon`$ otherwise. Any fixed comparable reference
+with $`c\le\mu/\nu\le C`$ has minority conditional mass
+at most $`(C/c)\epsilon`$ at each deepest pair. On inputs with
+old logical bit $`t=1`$, all earlier frame levels act trivially,
+and H gives the deepest marker. In pair x, this column is
+within squared minority weight $`(C/c)\epsilon`$ of the
+eigenspace of $`Z_t`$ of sign $`-(-1)^{f(x)}`$.
+Thus $`H^\dagger Z_t H Z_t`$ gives the scalar sign on the
+initialized marker code to error at most
+$`2\sqrt{(C/c)\epsilon}`$. If V is a paid reference word
+of complete isometry error eta, replacing H and its inverse
+by V and its actual inverse adds at most $`2\eta`$.
+Both input bits used as clean signals have bounded total width,
+and the standard lifted-scalar promotion applies.
+
+Taking fixed sufficiently small epsilon and eta shows that
+a universal shallow comparable-reference compiler at the frame
+budgets would already give the scalar source for every table.
+Relative correction pays the target once a reference is available.
