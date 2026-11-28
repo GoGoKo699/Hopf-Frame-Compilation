@@ -1519,3 +1519,196 @@ distance $`2\sin(\pi/24)`$, contradicting the assumed
 error. The comparison to the identity uses the full physical
 operator. Initialization of even one extra clean qubit would
 leave its other input sector outside that norm guarantee.
+
+<a id="five-band-third-level-clean-boundary"></a>
+
+## 14. The rare cycle constrains one-clean exterior images
+
+At sufficiently small fixed complete error and large p, a five-band
+one-clean compiler for Section 13 must have **both** exterior
+two-band images of clean Z outside the third Clifford hierarchy
+level $`\mathcal C_3`$. These are the forward image through the
+first two bands and the backward image through the last two,
+using the actual Clifford walls. A member of $`\mathcal C_3`$
+conjugates every Pauli to a Clifford. Arbitrary dirty width and
+physical address motion are allowed.
+
+### A third-level exterior image forces exact clean return
+
+Let J append one clean zero. An approximation $`\|VJ-cJW\|\le\eta`$
+with $`|c|=1`$ gives leakage from zero at most eta. Unitarity
+gives the same norm for the other off-diagonal block: their
+squared singular spectra are the deficiencies of the occupied
+square block in its two multiplication orders. Thus
+$`\|VZV^\dagger-Z\|\le2\eta`$ on the entire physical space.
+
+Use the actual reverse if necessary to place the known third-level
+image L at the forward two-band prefix. At the cut after the
+third band E compare $`A=E L E^\dagger`$ and the backward
+two-band clean image $`B=E_B K_B E_B^\dagger`$, where E and
+$`E_B`$ are conjugated physical bands and $`K_B`$ is a
+Hermitian Clifford. Their operator distance is at most $`2\eta`$.
+For every Pauli R commuting with the axes of E, the conjugation
+$`ARA=E(LRL)E^\dagger`$ has one band decoration of a Hermitian
+Clifford. So does BRB, since $`E_B^\dagger R E_B`$ is Clifford.
+The distance of these probe images in normalized Hilbert–Schmidt
+norm is at most $`4\eta`$. The
+[four-band mean gap](FOUR_LAYER_SCALAR_GAP.md#mean-error-exceptional-rank-and-complete-operators)
+$`g_4=\sin(\pi/24)`$ forces equality below that threshold.
+
+Thus BA commutes with the entire Pauli centralizer of the axis
+span of E. Its Pauli support lies in that isotropic span, so a
+Clifford diagonalizes BA over the native ring. The
+[unit-circle classification](FOUR_LAYER_OPERATOR_RIGIDITY.md#4-discrete-phases-in-the-common-commutant)
+gives eighth-root eigenvalues. Since $`\|BA-I\|\le2\eta`$,
+at sufficiently small eta it is identity. Consequently
+$`[V,Z]=0`$ exactly. Reorient by actual reversal as needed
+to put the known third-level image S on the backward suffix.
+
+### A common phase frame for S
+
+Write $`S=E_B J_B E_B^\dagger`$ with $`J_B`$ Hermitian
+Clifford. For each actual axis $`P_i`$ of $`E_B`$, there
+is a Pauli R activating only that axis, by independence.
+In $`S R S`$, factor out the Clifford
+$`E_B(J_B R J_B^\dagger)E_B^\dagger`$.
+The remaining factor has form $`(I\pm iK)/\sqrt2`$,
+where $`K=E_B(J_B P_i J_B^\dagger)E_B^\dagger`$ is traceless.
+Since S is third-level this factor is Clifford. A Clifford
+has flat Pauli coefficient magnitudes on its support.
+The identity coefficient $`1/\sqrt2`$ forces support
+of size two, hence K is Pauli. Conjugating a Pauli by
+an independent-axis band gives $`2^s`$ distinct Pauli
+terms if s axes activate, so $`J_B P_i J_B^\dagger`$
+commutes with every axis of $`E_B`$.
+
+The union of these two axis lists is isotropic. Thus
+$`S=D_S J_B`$, with $`D_S=E_B(J_BE_B^\dagger J_B^\dagger)`$
+a diagonal weighted-cubic phase in a fixed Clifford frame
+shared with $`E_B`$. Conversely, that commutation condition
+implies S is third-level. If it fails, some K in the test
+above has all nonidentity coefficients of modulus at most
+$`1/\sqrt2`$. In $`(I\pm iK)/\sqrt2`$, the identity
+coefficient is $`1/\sqrt2`$ and all the others at most 1/2.
+A flat Clifford Pauli vector either differs at the identity
+by at least $`1/\sqrt2-1/2`$, or has support of size two
+containing the identity and differs by at least that amount
+at its other entry. The Pauli-image telescope shows that
+a non-third-level two-band image is at normalized
+Hilbert–Schmidt distance at least
+$`(1/\sqrt2-1/2)/2`$ from the third level, even up to phase.
+
+### Occupied Pauli comparisons with this phase frame
+
+At a two-plus-two cut, write the forward and backward
+Hermitian Pauli images $`A=E_A K_A E_A^\dagger`$ and
+$`B=E_B K_B E_B^\dagger`$. Let $`Q=(I+S)/2`$ and
+assume A and B commute with Q. This commutation will follow
+from exact terminal return in the application. Put
+$`\varepsilon=\|(A-B)Q\|_{2,\tau}`$ with the full physical
+trace normalization.
+
+For a Hermitian Pauli R activating at most five axes of
+$`E_A`$, its $`s`$ activated axes give $`2^s`$ terms
+in $`E_A^\dagger R E_A`$. Hence ARA is a sum of
+$`2^s`$ Hermitian Cliffords with coefficient modulus
+$`2^{-s/2}`$. For each such Clifford G, the terms
+G, SG, GS and SGS of its compression are flat affine
+Choi states with weighted-cubic phases in the common
+diagonal frame. Indeed $`SG=D_S J_B G`$, $`GS=(SG)^\dagger`$,
+and $`SGS=D_S J_B G J_B^\dagger D_S^\dagger`$.
+The four terms from compressing BRB remain $`E_B`$
+decorations of Cliffords because
+$`Q=E_B(I+J_B)E_B^\dagger/2`$.
+After absorbing literal eighth-root phases and duplicating
+terms using $`\sqrt2=\omega+\omega^{-1}`$ with
+$`\omega=e^{i\pi/4}`$, all coefficients have modulus
+$`2^{-(s+4)/2}`$, with at most 160 terms and $`s+4\le9`$.
+
+The [finite-boundary gap](FOUR_LAYER_CROSSING_RANK.md#finite-boundary-form)
+at zero active doubled coordinates gives an absolute
+$`g_{\rm pal}\gt0`$ for a nonzero such palette. The telescope
+$`\|Q(ARA-BRB)Q\|_{2,\tau}\le2\varepsilon`$ freezes the
+compressed probes below half that gap. Zero-activation
+Paulis span the full operator blocks on the axis fibers z.
+Their compression includes all rank-one maps on each
+occupied fiber image in Q, so BA is scalar there.
+A fixed activation mask e similarly spans every block
+$`z\to z+e`$. Nonzero compression between two occupied
+fibers identifies their scalars when $`|e|\le5`$.
+
+To see connectivity, in the $`E_A`$ axis coordinates
+an unoccupied z satisfies $`S|z,v\rangle=-|z,v\rangle`$
+for every spectator v. Let F implement the fixed diagonal
+frame of $`D_S`$. The states $`F|z,v\rangle`$ and
+$`FJ_B|z,v\rangle`$ are Pauli translates of fixed stabilizer
+states. Their support directions are fixed and their
+origins affine in $`(z,v)`$. If the directions differ,
+every fiber is occupied. Otherwise requiring equal supports
+for every v gives an affine locus $`H_0`$ in z. In that
+locus use the first affine origin as the shared origin
+and a fixed linear inverse on the common support direction
+to lift the other coordinates. The ratio of the two
+phases, including $`D_S`$ on the second state, has a
+modulo-eight weighted-cubic exponent in $`(z,v,u)`$,
+where u runs over the shared support coordinates:
+stabilizer phases are weighted quadratic and variable
+Pauli translations add only affine and quadratic terms.
+
+For each fixed $`(v,u)`$, a phase differing from minus
+one is witnessed by a nonzero digit of the exponent minus
+four. The three digit degrees are at most 1, 2 and 4 by
+the [carry bound](FOUR_LAYER_SCALAR_GAP.md#a-gap-for-the-choi-vectors).
+Extend these witnesses by a fixed affine retraction onto
+$`H_0`$, and include the affine violations of $`H_0`$.
+Their supports have union exactly the occupied set.
+In a union of degree-at-most-four supports, a closest
+pair in separate radius-five components would have
+distance at least six. The connecting subcube has no
+occupied interior by minimality. A witness at one
+endpoint would restrict to one vertex or two opposite
+vertices, of degree at least five. Thus the occupied
+set is connected.
+
+The scalars of BA therefore coincide on Q. The Hermitian
+involutions imply ratio plus or minus one, and the
+negative case has $`\varepsilon=\sqrt2`$. For
+$`\varepsilon\lt\varepsilon_{\rm occ}=\min\{g_{\rm pal}/2,1\}`$
+this proves exact occupied agreement.
+
+### Apply the comparison to the rare cycle
+
+Let $`A_1`$ be the first native band's isotropic axis span.
+For each Hermitian P in $`A_1^\perp\cap Z^\perp`$, the first
+band drops from the Pauli conjugation. At the cut after the
+third band the compared images are two-band images as above.
+Both commute with S: this is immediate for the backward
+image, and exact clean return identifies S with the forward
+clean image through the original three bands. The actual
+reverse isometry and a commutator telescope yield
+
+```math
+ \|(VPV^\dagger-P)(I+Z)/2\|_{2,\tau}
+ \le\sqrt2\bigl(\eta+\sqrt{3/2}\,2^{-p/2}\bigr).
+```
+
+The occupied normalization gives two isometry errors eta
+and twice the rare-cycle distance from identity. Conversion
+to physical trace normalization contributes $`1/\sqrt2`$.
+For $`\eta\lt\min\{g_4/4,\varepsilon_{\rm occ}/(2\sqrt2)\}`$
+and sufficiently large p, every such probe freezes.
+Empty bands can be inserted for a shorter word.
+
+The occupied unitary $`V_0=J^\dagger VJ`$ now has Pauli
+support in the projection of $`A_1\cap Z^\perp`$ in the
+quotient $`Z^\perp/\langle Z\rangle`$. Indeed the physical
+orthogonal complement of the probe span before restriction
+is $`A_1+\langle Z\rangle`$. Its projected span is isotropic.
+So a logical-dirty Clifford diagonalizes $`V_0`$ over the
+native ring, giving eighth-root eigenvalues. Their ratios
+cannot approximate the order-three eigenvalue in the rare
+cycle at the same error, by the spectral comparison of
+Section 13. Actual reversal conjugates that eigenvalue and
+preserves the conclusion, excluding either third-level
+exterior image. The case with two non-third-level images
+remains open.

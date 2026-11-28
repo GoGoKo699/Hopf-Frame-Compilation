@@ -106,7 +106,7 @@ proved growing-source theorem.
 
 | Proof home | Role and scope |
 |---|---|
-| [Bounded diagonal factorization](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) | Certified factor search and explicit nonflat realization; bounded eligible-mixer coverage remains a premise. |
+| [Bounded diagonal factorization](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md) | Certified factor search, [conditional root stability](endpoint/BOUNDED_DIAGONAL_FACTORIZATION.md#positive-conditional-root-stability) and a [constant scalar-query transfer](depth/BOUNDED_DENSITY_DEPTH.md#bounded-density-scalar-transfer) at bounded relative density. |
 | [Structural compilation limits](endpoint/STRUCTURAL_COMPILATION_LIMITS.md) | Differentiable Clifford-centered architectures; approximate bounds need a physical Lipschitz assumption. |
 | [Center-phase reflections](endpoint/CENTERED_PHASE_REFLECTIONS.md) | One table/inverse pair with fixed centers; multiple-center words remain outside. |
 | [Programmed reflections](endpoint/PROGRAMMED_REFLECTIONS.md) | Phase-orbit tests and fixed offsets; factor selection and native synthesis are separate. |
@@ -172,7 +172,7 @@ These promised-family or retained-interface results keep their own hypotheses. R
 
 - [R80 — Logarithmic depth for homogeneous magnitudes](depth/HOMOGENEOUS_MAGNITUDE_DEPTH.md)
 - [R81 — Recursive compilation of prefix-selected terminal frames](depth/RECURSIVE_TERMINAL_DEPTH.md)
-- [R82 — Bounded-density compilation against a positive structured reference](depth/BOUNDED_DENSITY_DEPTH.md) — [R82 reference extension](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension)
+- [R82 — Bounded-density compilation against a positive structured reference](depth/BOUNDED_DENSITY_DEPTH.md) · [Affine-oriented reference](depth/BOUNDED_DENSITY_DEPTH.md#affine-oriented-reference-extension) · [Constant scalar-query transfer](depth/BOUNDED_DENSITY_DEPTH.md#bounded-density-scalar-transfer)
 - [R83 — Logarithmic depth for affine branch orientations](depth/AFFINE_ORIENTATION_DEPTH.md)
 - [R84 — Exact depth for deterministic Hopf frames](depth/DETERMINISTIC_FRAME_DEPTH.md)
 - [R85 — Geometric-band recovery for arbitrary branch orientations](depth/GEOMETRIC_BAND_ORIENTATION_DEPTH.md)
@@ -234,7 +234,7 @@ These are complete interfaces and conditional transfers, not constructions of th
 - [Constant-accuracy readouts and the complete frame transfer](depth/APPROXIMATE_QUERY_FRAME_TRANSFER.md)
 - [Boolean XOR queries inside the complete real frame](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md), including [near-uniform positive frames](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#near-uniform-positive-frames) and the [width-independent raw-decision T-count bound](depth/BOOLEAN_QUERY_FRAME_REDUCTION.md#raw-decision-count)
 - [Short-label permutation wrappers with paired dirty arrays](depth/PAIRED_PERMUTATION_ROUTING.md)
-- [Polynomial source overhead can be absorbed by a paid indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
+- [Indicator fusion](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) · [Shared-layer fusion for fixed singly exponential source costs](depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)
 - [Removing a bounded clean bank from a complete XOR query](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md) — [general-k extension](depth/DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#63-recovering-a-general-clean-bank-compression-with-one-extra-flag)
 - [Parallel clean-source promotion: packing and spectral alternatives](depth/PARALLEL_CLEAN_PROMOTION.md) — [shifted-sector votes](depth/PARALLEL_CLEAN_PROMOTION.md#random-shift-clean-promotion)
 - [Spectral clean-source promotion with paid paving frames](depth/MSS_SPECTRAL_PROMOTION.md) — [seven-selector alternative](depth/MSS_SPECTRAL_PROMOTION.md#8-a-lazy-seven-selector-filter-improves-uniform-precision)

@@ -1208,3 +1208,292 @@ native companion. Independent binary angle synthesis with a
 uniform operator-error estimate gives no comparable suppression
 of the distant grades. An exactly false-silent joint companion
 from Section 11 is a separate sufficient route.
+
+### 13.4 A linear code permits a constant weight
+
+Fix a binary linear map $`L:\mathbb F_2^p\to\mathbb F_2^m`$ with
+$`m=O(p)`$ and minimum nonzero weight at least $`\vartheta m`$
+for a fixed $`\vartheta\gt0`$. Such a family follows by choosing
+independent random linear forms. For each nonzero mismatch its image
+has the binomial weight law, and increasing the fixed ratio m/p
+makes the union bound over $`2^p-1`$ nonzero inputs strictly less
+than one. Exhaustive verification and selection give a terminating
+uniform compiler. Repeating the code a fixed number of times
+increases m without changing the relative distance.
+
+Use the coordinate forms of $`L(x\oplus u)`$ as the mismatch
+controls and choose a power of two $`2m\le Q\lt4m`$. The
+comparison is still gatewise read-only on the address. To add the
+product of one selector digit with a coordinate form into a local
+target, XOR that form into an arbitrary private bit by CNOTs and X,
+apply a Toffoli from that bit and the digit, reverse the parity
+calculation, and repeat the Toffoli. The two occurrences cancel the
+unknown private bit. Distinct private helpers and the shared-control
+cubic schedule keep the substituted Toffoli batches at constant
+depth, with $`O(mp\log(m+2))`$ extra Cliffords per row and
+polynomial T-count and returned dirty width. The counter retains
+$`O(\log(p+2))`$ initialized bits and
+$`O((\log\log(p+4))^3)`$ T-depth.
+
+The grade-compression and quadratic-echo arguments now apply with
+encoded weight $`|L(x\oplus u)|`$. For any fixed $`s\gt B`$, their
+total false-row error is at most
+
+```math
+C_1(2^p-1)(B/s)^{2\vartheta m}.
+```
+
+Choose the constant repetition factor to make this decay
+exponentially in p. Bounded smaller arities use the exact dirty tree.
+The same one-selected-copy promotion and normalization therefore
+suffice at **any fixed $`s\gt B`$**. This removes a growing weight
+parameter from the companion contract. The weighted spectral
+condition still requires suppression at distances of order Q.
+
+<a id="local-companion-depth-count"></a>
+
+## 14. A depth–count constraint for a local weighted companion
+
+Let $`Q=2^k\ge16`$. For a single companion D with t T gates
+and d physical T bands, assume the weighted condition of Section 13
+on its entire clock and arbitrary private work. Then
+
+```math
+\sqrt{dt\,k\ln4}+4k
+\ \ge\ \frac{Q}{4}\log_2 s-\log_2 B .
+```
+
+Set $`B_r=\langle\chi_r|D|\chi_0\rangle`$ on the private work.
+The replacement of D by its grade-one component has norm error at
+most $`B/s\lt1`$. Since D is unitary, the minimum singular value
+of $`B_1`$ is at least $`1-B/s`$. Let M be the Pauli transfer
+matrix of the map $`H\mapsto B_1 H B_1^\dagger`$. If the work
+has w wires, M is invertible of dimension $`r=4^w`$.
+
+Work in $`K=\mathbb Q(\zeta_Q)`$ with the valuation at its
+unique dyadic prime normalized by $`v(\sqrt2)=1`$.
+M factors into the input injection with $`|\chi_0\rangle`$,
+the full native Pauli transfer matrix, and the output compression
+with $`|\chi_1\rangle`$. The Pauli coordinates of the injection
+are normalized coefficients of the stabilizer projector and have
+denominator at most Q. Extraction is by clock Pauli expectations
+in $`|\chi_1\rangle`$, sums of Q roots-of-unity terms divided by Q.
+Thus every coefficient of either boundary has valuation at least
+$`-2k`$. The
+[R103 band-minor bound](PRECISION_COUNT_DEPTH_TRADEOFF.md#2-valuations-of-minors-of-a-physical-t-band)
+applies over this local ring, since its one-band elimination still
+uses powers of $`\sqrt2`$ and units. The full Pauli space has
+dimension $`r4^k`$. Cauchy–Binet with the two rectangular
+boundaries gives
+
+```math
+v(\det M)\ge-r\bigl(\sqrt{dt\,k\ln4}+4k\bigr).
+```
+
+Every field embedding $`\sigma_u:\zeta_Q\mapsto\zeta_Q^u`$,
+for u odd, commutes with the adjoint operation. The conjugated
+matrix is a transfer matrix for the compression of
+$`\sigma_u(D)`$ between the Fourier keys zero and u. The conjugate
+of D is unitary, so each such determinant has absolute value at
+most one. For $`u\equiv1\pmod8`$ the embedding fixes the native
+matrix of D. Its compression then has norm at most
+$`\|D_u\|\le B s^{-d_Q(u,1)}`$, so
+$`|\det\sigma_u(M)|\le B^{2r}s^{-2r d_Q(u,1)}`$.
+There are Q/8 such embeddings, with summed cyclic distance
+$`Q^2/32`$. The product of the determinants therefore has magnitude
+at most $`B^{rQ/4}s^{-rQ^2/16}`$.
+
+The norm of $`\det M`$ is a nonzero rational with only dyadic
+denominators. Total ramification and degree Q/2 give its dyadic
+valuation as $`(Q/4)v(\det M)`$. Its magnitude is at least two
+to that power. Comparing both bounds proves the inequality.
+
+In the constant-weight coded regime $`Q=\Theta(p)`$ with fixed
+$`s\gt B`$, it requires $`dt=\Omega(p^2/\log(p+2))`$.
+Sublogarithmic d therefore requires
+$`t=\omega(p^2/\log^2(p+2))`$ per companion. At
+$`s=\Theta(\sqrt p)`$ it instead requires
+$`dt=\Omega(p^2\log(p+2))`$ and sublogarithmic depth needs
+$`t=\omega(p^2)`$. The estimate permits larger polynomial
+and singly exponential budgets. It does not constrain a joint
+repair unless that repair supplies the local weighted companion.
+
+**Monomial companions.** At fixed $`s\gt B`$, let X denote the
+cyclic translation of the clock. The weighted assumption gives
+
+```math
+\|XDX^\dagger-D\|
+\le \frac{2\pi B}{Q}
+     \sup_{\ell\ge0}(1+\ell)s^{-\ell}.
+```
+
+Any computational-basis monomial native unitary has eighth roots
+as its nonzero entries. Indeed each field embedding of the native
+ring extends to a unitary of the same monomial support, so all
+conjugates of each nonzero entry have modulus one. Its field norm
+is one. The only possible denominator lies at the unique dyadic
+prime, where the norm gives valuation zero. The entry is thus an
+algebraic integer. All its powers have bounded conjugates and hence
+bounded integer coefficients in a fixed integral basis, so two
+powers coincide. The finite roots of unity in $`\mathbb Q(\zeta_8)`$
+form a cyclic group containing the eighth roots, and the field
+degree four excludes a larger order divisible by eight. Thus two
+distinct such monomials have distance at least
+$`2\sin(\pi/8)`$: a differing permutation gives distance at
+least $`\sqrt2`$ on some column, and a differing phase gives the
+eighth-root spacing. Conjugation by the cyclic permutation X
+preserves this class of monomial matrices. For large Q the bound
+forces equality $`XDX^\dagger=D`$, so D has only grade zero,
+with weighted norm s. This contradicts $`s\gt B`$ at any native
+depth. Nonmonomial companions and joint repairs remain possible.
+
+<a id="private-gauge-mod3"></a>
+
+## 15. Private phase gauges pay a complete approximate MOD3 row
+
+Sublogarithmic MOD3 rows would make the
+[odd-parity row kernel](#115-an-odd-parity-row-kernel-suffices-for-the-complete-indicator)
+a complete bank construction if their errors were summable across rows.
+The following zero-clean row uses no ternary-valid dirty promise.
+Its worst-case accuracy bill identifies a smaller sufficient precision
+problem.
+
+Let b be a stable conjunction of a fixed number of read-only literals.
+On an arbitrary r-bit register, let X increment modulo $`q=2^r`$ and
+$`D|j\rangle=e^{2\pi i m j/q}|j\rangle`$ for a compiled integer m.
+The exact lifted word satisfies
+
+```math
+  (X^b)^\dagger D X^b D^\dagger
+       =e^{2\pi i m b/q} I .
+```
+
+This uses integer wraparound, and returns the whole gauge for every
+input. Choose q and m so that $`2\pi m/q`$ approximates the desired
+angle to error epsilon, with $`r=O(1+\log(1/\epsilon))`$. The
+[read-only increment](../../docs/PARALLEL_DIRTY_LOOKUP.md#a-logarithmic-depth-increment-using-two-dirty-bits)
+uses $`O(\log(r+2))`$ native depth with its paid private controls.
+Replace its literal toggle by a returned fixed-arity predicate toggle
+on the same private target. To complement the gauge conditionally,
+fan out an arbitrary private bit by CNOT, toggle that bit by b,
+repeat fanout and actually reverse the toggle. The old bit cancels
+and returns. All non-Clifford supports remain private.
+
+The operator D is a product of r single-qubit Z rotations up to
+one common phase, which cancels in the actual inverse. Approximate
+each rotation to $`O(\epsilon/r)`$ using the
+[zero-clean rotation word](PROGRAMMED_ROTATION_DEPTH.md#4-cover-both-failure-subspaces-without-initialized-work).
+Allocate disjoint dirty pools, so all rotations align in native depth
+$`O(\log(r+2))`$. The actual commutator approximates the literal
+scalar phase with full error $`O(\epsilon)`$, and is identity on
+b zero with its actual inverse. The T, Clifford and dirty costs
+are $`2^{O(r+1)}`$. The whole word preserves the public controls
+and returns dirty work to the stated tolerance.
+
+Let G be the three-cycle on three computational labels of a
+two-qubit target, fixing the fourth. Choose a fixed two-qubit
+unitary F so that
+$`F^\dagger G F=\mathrm{diag}(1,1,\omega,\omega^{-1})`$
+with $`\omega=e^{2\pi i/3}`$, in a fixed label order.
+At accuracy delta, synthesize the fixed-size F by a constant
+number of elementary controlled rotations, using the same
+zero-clean rotation compiler and charging its actual inverse.
+For each mismatch literal $`e_i`$ and each of the two
+nontrivial target eigenlabels, use a private gauge phase of
+angle $`+2\pi/3`$ or $`-2\pi/3`$. Its predicate is the
+conjunction of $`e_i`$ and the two computational label bits.
+In that phase stage all target eigenlabel and address bits
+are read-only. The $`2p`$ gauge words share no non-Clifford
+targets. Request their individual errors $`O(\delta/p)`$.
+The basis changes and the aligned phase stage consequently
+approximate $`G^{\sum_i e_i}`$ on the entire target and dirty
+space at error delta. For
+$`L_\delta=\Theta(1+\log(p/\delta))`$, they use
+$`p\,2^{O(L_\delta)}`$ gates and dirty work, with
+$`O(\log(L_\delta+2))`$ native depth.
+
+Initialize the two target bits to the label zero, run the power,
+toggle an arbitrary output on the desired residue label and
+actually reverse the power. The ideal comparison returns the two
+bits and all work. The full isometry error is at most twice the
+power error. The [bounded-clean promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md)
+makes a zero-clean full XOR row with constant factors.
+Use the promotion with all original address bits read-only.
+An extra Fourier-output control yields the row phase, with
+the same resource orders. Thus inverse-polynomial full row
+error already has doubly logarithmic native depth.
+
+### A finite-angle precision target suffices
+
+The literal odd-kernel convolution still sums errors over
+$`2^p`$ independent rows. Uniform row error
+$`\delta=O(2^{-p})`$ suffices for fixed bank error.
+Then $`L_\delta=\Theta(p)`$, recovering logarithmic depth
+by the gauge word above.
+
+For a complete word of independent row phases this error
+sum is intrinsic up to constants. Fix the computational
+address and suppose each row u acts on disjoint private
+work, is exactly inactive at zero Fourier control, and
+has active block $`U_u`$ with target scalar $`\sigma_u`$.
+Every subset of Fourier controls is available. If the
+bank error is $`\tau\lt1`$, then every subset product of
+$`\sigma_u U_u`$ is within tau of identity. Each row's
+relative eigenangles lie in
+$`[-\alpha,\alpha]`$ with $`\alpha=2\arcsin(\tau/2)`$.
+Choose the largest positive angle in each row having one
+and omit the others. Every partial sum lies in that
+interval modulo $`2\pi`$. The increments are at most
+alpha, so these partial sums cannot jump to a different
+translate of the interval. Hence the positive maxima
+sum to at most alpha, and the negative extrema obey the
+same bound. Thus $`\sum_u\|\sigma_u U_u-I\|\le2\alpha`$.
+This necessity uses exactly inactive row factors and
+separate work. It allows nonuniform precision and leaves
+joint native readout outside its premise.
+
+There is a weaker necessary condition with shared work and
+arbitrary noncommutation between active rows. Keep exact
+control sectors and fixed address, and write
+$`V_u=\sigma_u U_u`$ on the common work space.
+Average the ordered active words over all subsets. The result
+is the ordered product A of $`(I+V_u)/2`$. Each subset word
+is unitary and within tau of I, so its Hermitian part is at
+least $`(1-\tau^2/2)I`$. Thus the minimum singular value
+of A is at least $`1-\tau^2/2`$. If the work dimension is D,
+multiplicativity of the determinant gives
+
+```math
+ \sum_u\|V_u-I\|_{2,\mathrm{tr}}^2
+     \le -8\log(1-\tau^2/2),
+ \qquad \|M\|_{2,\mathrm{tr}}^2=D^{-1}\mathrm{Tr}(M^\dagger M).
+```
+
+Indeed, an eigenvalue $`e^{i\theta}`$ contributes
+$`|\cos(\theta/2)|`$ to the determinant modulus of its
+row average, and minus its logarithm is at least
+$`|e^{i\theta}-1|^2/8`$. For translated copies the mean
+squared row error in normalized trace is exponentially
+small even in this shared model. Large operator errors
+on mutually disjoint small subspaces can meet this
+condition. A comparison only on a leaking initialized
+code, or a different joint gate word, need not satisfy
+these product estimates.
+
+A sufficient replacement is a zero-clean compiler for just
+a fixed finite angle list: the two third-root phases and
+the fixed controlled rotations of F. It must synthesize a
+conditional scalar phase at error $`2^{-L}`$ with actual
+inverses, $`2^{O(L)}`$ counts and dirty width, and
+$`o(\log(L+2))`$ native depth. The predicate controls
+have fixed arity and must support native read-only sharing.
+The rotations of F can be implemented from conditional
+scalar phases by exposing their Pauli eigenlabels on the
+fixed-size target. Using this list in the same row
+construction at $`L=\Theta(p)`$ gives a full indicator
+with a common singly exponential cost exponent.
+[Shared-layer fusion](POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)
+would normalize it and improve general fixed-accuracy
+frame depth. A joint bank readout that avoids exponentially
+small independent row error is an alternative to this
+fixed-angle precision improvement.

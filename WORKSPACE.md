@@ -7,15 +7,14 @@ are authorized. The destination is optimal general native T-depth for complete
 Hopf frames, with simultaneous count, width, precision and work return.
 Manuscript drafting and the changed-decoder supplement are separate tasks.
 
-This checkpoint owns the current question and next action. Replace it when
-the question changes; proofs and route assessments stay in their linked homes.
+This checkpoint owns the current question and next action. Proofs and route assessments stay in their linked homes.
 
 <a id="current-checkpoint-native-source-scope-and-complete-readout"></a>
 
 ## Current checkpoint
 
-The current continuation started from the verified [R103 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/284)
-at [23cfd8b](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/23cfd8bfdeefb05a31f87e56d17f3663aa205e5e).
+The current continuation started from the verified [R104/R105 merge](https://github.com/GoGoKo699/Hopf-Frame-Compilation/pull/285)
+at [2226ce7](https://github.com/GoGoKo699/Hopf-Frame-Compilation/commit/2226ce7120b139c02fdb900ff540dd2016bb2cc0).
 The [returned-frame test](research/depth/ROBUST_DECISION_BIAS.md#complete-return-four-band-floor) raises the one-clean floor to five bands. The [rare cycle](research/depth/ROBUST_DECISION_BIAS.md#zero-clean-six-band-floor) gives six with zero clean work at small fixed error.
 
 <a id="current-depth-frontier"></a>
@@ -55,14 +54,14 @@ weakens the source requirement further: amplify on its initialized code
 before promoting it to complete return. The raw source may leave garbage,
 and its rejected clean sector need not carry the table's prescribed sign.
 
-**Resumption question.** Can distributed counters get a native repair in
-$`o(\log p)`$ depth with false-row errors summable on the entire dirty bank?
-The [weighted Fourier-grade condition](research/depth/COHERENT_COUNTER_SOURCE.md#distance-weighted-clock-repair)
-suffices through [one-selected-copy promotion](research/depth/PARALLEL_CLEAN_PROMOTION.md#summable-row-error-promotion).
-The [distributed counter](research/depth/COHERENT_COUNTER_SOURCE.md#distributed-cyclic-counter)
-pays local visits in $`O((\log\log(p+4))^3)`$ T-depth and its exact
-common shift in logarithmic depth. A shallow weighted or joint repair is open.
-[Low-degree monomial repairs](research/depth/COHERENT_COUNTER_SOURCE.md#monomial-clock-repair-bank) fail in the literal bank at fixed error.
+**Resumption question.** Can a zero-clean complete indicator on a bits
+reach $`o(\log a)`$ native depth with $`2^{O(a)}`$ counts and dirty width?
+[Shared-layer fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)
+absorbs fixed singly exponential costs with a common exponent across fixed
+tolerances. A small fixed error suffices if the completed source preserves address.
+[MOD3 gauges](research/depth/COHERENT_COUNTER_SOURCE.md#private-gauge-mod3)
+pay inverse-polynomial row error in doubly logarithmic depth. A finite list
+of conditional phases at error $`2^{-L}`$ and depth $`o(\log L)`$ would finish the bank.
 
 A separate sufficient route gives the correct signed gap on diagonal blocks of
 $`M=J^\dagger V^\dagger Z_cVJ`$, with bounded off-diagonal row sum
@@ -128,7 +127,8 @@ handle substantial total dependence within the halves of a native cut.
 At $`b=\Theta(\sqrt N)`$, [prefix-shared rotations](research/depth/PREFIX_ROTATION_PROFILES.md)
 give sublogarithmic depth on complete real frames with $`q=n^{o(1)}`$
 arbitrary top levels and one rotation per lower depth within each resulting
-subtree. Independent deepest-layer entries still include every Boolean table.
+subtree. [Bounded relative density](research/depth/BOUNDED_DENSITY_DEPTH.md#bounded-density-scalar-transfer)
+needs only constant scalar-query multiplicity against a paid reference.
 The [four-layer scalar gap](research/depth/FOUR_LAYER_SCALAR_GAP.md)
 closes the zero-clean exactly silent single-mark route at seven or more
 address bits. It concerns a different allocation from the general one-clean gap.
@@ -144,7 +144,7 @@ qubits, $`O(m^2)`$ Cliffords and $`o(\log(p+2))`$ native T-depth.
 [Sparse-bank preprocessing](research/depth/GATEWISE_READ_ONLY_EQUALITY.md#sparse-code-preprocessing)
 cannot upgrade the sparse source: weight $`o(m)`$ needs at least $`m-o(m)`$
 clean inputs under any uniform intermediate leakage below one.
-[Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md) · [Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
+[Indicator fusion](research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#fixed-singly-exponential-source-overhead) · [Field decisions](research/ROUTE_DECISIONS.md#field-recoupling)
 
 <a id="the-two-useful-source-interfaces"></a>
 

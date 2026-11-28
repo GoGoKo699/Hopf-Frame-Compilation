@@ -244,12 +244,12 @@ $`T,b_{\rm dirty}=O_\tau(m)`$, $`G=O_\tau(m^2)`$ and
 $`D_T=o(\log(p+2))`$. Accuracy is in full operator norm on arbitrary
 coherent address, output, dirty and reference inputs.
 
-[Polynomial-overhead fusion](../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md)
-allows discovery at fixed polynomial overhead on
-$`p-O_\tau(\log(p+2))`$ address bits. Eight source/actual-inverse
-calls incur at most eight times source error and add
-$`O_\tau(\log\log(p+4))`$ depth. A complete sublogarithmic source,
-not count normalization or its controlled use, remains unpaid.
+[Shared-layer fusion](../research/depth/POLYNOMIAL_OVERHEAD_INDICATOR_FUSION.md#shared-layer-indicator-fusion)
+allows fixed singly exponential source costs on a constant fraction
+of the address. One source and its inverse serve every parent in a
+layer, and the full error is at most eight times the sum of the
+stage-source tolerances. A common cost exponent suffices over fixed
+tolerances. Exact address preservation permits one fixed source error.
 
 ## Paid source interfaces and their limits
 
