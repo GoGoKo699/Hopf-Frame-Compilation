@@ -1,4 +1,6 @@
-# Polynomial source overhead can be absorbed by a paid indicator fusion
+# Complete indicator fusion with one source per tree layer
+
+<a id="polynomial-source-overhead-can-be-absorbed-by-a-paid-indicator-fusion"></a>
 
 [Retained exact dirty tree](NONUNIFORM_DIRTY_INDICATOR.md) ·
 [Branch-difference recurrence](DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md) ·
@@ -6,19 +8,18 @@
 [Complete approximate frame transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md) ·
 [Two-band source obstruction](FIXED_CLIFFORD_SUM_SOURCE_GAP.md)
 
-The complete approximate indicator need not first be discovered with
-linear T-count and dirty width. Polynomial overhead in its address size
-can be removed by using that indicator once near the root of a dirty
-tree, then completing only a logarithmically sized address suffix with
-the retained exact construction. A native controlled bilinear batch
-pays for the root-controlled use of the source. The complete echo has
-eight source/actual-inverse appearances and error at most eight times
-the source's full-operator error.
+In [shared-layer fusion](#shared-layer-indicator-fusion), each tree layer
+applies one complete zero-clean indicator and its actual inverse,
+regardless of the number of parents. A constant number of balanced layers
+absorbs fixed singly exponential source counts and dirty width when the
+exponent is common across fixed tolerances. A sublogarithmic source depth then improves the
+general fixed-accuracy frame bound through the [R98 transfer](#7-conditional-complete-frame-consequence-with-its-source-tolerance).
 
-The [shared-layer construction](#shared-layer-indicator-fusion) applies
-one source to each entire layer of a multi-chunk tree. It absorbs any
-fixed singly exponential absolute count and width bounds in the source
-arity. Both reductions require a sublogarithmic-depth complete source.
+Sections 1–5 give the one-prefix construction. A large approximate
+indicator and an exact short suffix absorb polynomial overhead even
+when its exponent depends on tolerance. The completed echo has eight
+source or actual-inverse occurrences. Section 6 also covers clean
+sources after charging promotion.
 
 ## 1. The relaxed complete source contract
 
@@ -350,14 +351,13 @@ q-fold approximation error and require no exponentially small
 per-copy source tolerance. In contrast, proposing q approximate rows
 as the source E still requires a proof of E's joint full-bank error.
 
-This absorbs polynomial overhead in b, not arbitrary count growth.
-An emitted source T-count proportional to $`4^b`$ times a polynomial
-cannot fit $`O(2^p)`$ with $`r=O(\log p)`$. Paying that cost by
-shrinking b would require $`r=\Theta(p)`$, returning the exact tail
-to logarithmic-in-p depth. Likewise substituting the retained exact
-$`d_E(b)=O(\log(b+2))`$ indicator into this reduction leaves that
-depth order unchanged. The reduction does not turn an existing
-logarithmic-depth or exponentially over-budget source into a faster one.
+The short exact suffix limits the one-prefix construction. A source
+with T-count proportional to $`4^b`$ already needs $`r=\Theta(p)`$ to fit
+$`O(2^p)`$ gates, bringing the retained exact suffix back to a
+logarithmic depth bound. [Section 9](#shared-layer-indicator-fusion)
+uses approximate sources on balanced blocks to absorb this larger count.
+In both constructions a logarithmic source depth still gives a
+logarithmic bound.
 
 ## 6. Optional clean-source windows and the remaining operation
 
@@ -440,25 +440,19 @@ the present standalone approximate whole-bank reduction: its new
 interface consists of the paid root splitter, a fixed-accuracy large
 bank, and an exact small-address tail.
 
-The first unpaid operation is therefore a complete shallow source E
-with the relaxed polynomial overhead of Section 1, or an explicitly
-paid clean source satisfying one of the windows above. Requiring
-exactly three physical T bands is unnecessary; any source depth that
-is little-o of logarithmic address depth suffices. Independent-row
-polynomial count overhead alone is no longer a terminal objection to
-this relaxed source interface, but rowwise approximation, arbitrary
-output action and complete work return still need a joint operator
-proof. The existing filter and clean-history failures are not repaired
-by declaring the source or its nonlinear bank action available.
-The [branch-difference recurrence](DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md#2-error-and-complete-return)
-gives a different possible source contract when internal errors cancel
-in selected-parent differences; it does not remove the complete-bank
-premise used in this reduction.
+For the one-prefix construction the missing operation is the complete
+sublogarithmic source in Section 1, possibly obtained from a clean
+source within the windows above. An implementation assembled from
+approximate rows needs a joint operator bound on the arbitrary output
+bank and every borrowed input. The
+[branch-difference recurrence](DIRTY_TREE_DIFFERENTIAL_RECURRENCE.md#2-error-and-complete-return)
+offers another source contract when internal errors cancel in selected
+parent differences.
 
 ## 7. Conditional complete-frame consequence with its source tolerance
 
 Apply the [approximate R98 transfer](APPROXIMATE_QUERY_FRAME_TRANSFER.md#3-the-bounded-r98-call-count-and-final-error)
-to the normalized indicator from this chapter. A completed word query
+to the one-prefix indicator of Sections 1–5. A completed word query
 uses at most four complete indicator occurrences, including actual
 inverses, so its added error is at most $`32\delta`$. The retained
 complete frame has at most $`K_*`$ such word-query occurrences,
@@ -590,13 +584,11 @@ the error is at least $`\alpha-o(1)`$, even granting exact free
 phase calls. This stops this compressed weight-only fingerprint from
 supplying the inverse-polylogarithmic source precision in Section 6.
 
-Here h counts logical phase accesses, **not native T-depth**; relating
-it to d_V needs a separate native ledger. This test does not exclude
-all sources in the growing-clean window. Additional usable frequency
-directions in the full dirty-register action, more phase accesses, or
-address/bank motion outside the weight-only form can leave its premise.
-Such a changed mechanism must still supply complete bank accuracy and
-work return; polynomial count overhead is now permitted by the fusion.
+Here h counts logical phase accesses. A native ledger is needed to
+relate it to $`d_V`$. Additional frequency directions on dirty registers,
+more phase accesses, or address and bank motion outside the weight-only
+form can escape this test. The resulting source still needs a complete
+bank and work-return bound.
 
 <a id="shared-layer-indicator-fusion"></a>
 

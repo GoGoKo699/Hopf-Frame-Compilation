@@ -6,9 +6,13 @@ literal phases and actual positive-S inverses. The algebraic-degree screen
 concerns reversible-classical multiplicative depth only, not native T-depth
 when Hadamards and interference are permitted. These are components, not a
 complete accepted source or a new asymptotic depth upper bound.
+The four-label eigenbasis fixture separately checks the two-angle identity
+in floating-point arithmetic.
 """
 from itertools import product
 import unittest
+
+import numpy as np
 
 from tests.exact_matrices import CO, adjoint, native_columns, zeros
 from tests.test_fixed_row_transport_readout import _positive_s_schedule
@@ -81,6 +85,45 @@ def _anf(values):
 
 
 class Mod3NativeBatchTests(unittest.TestCase):
+    def test_two_angle_eigenbasis_and_signed_cycle_powers(self):
+        hadamard_pair = np.eye(4, dtype=complex)
+        hadamard_pair[1:3, 1:3] = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+
+        theta = np.arccos(1 / np.sqrt(3))
+        private_phase = np.kron(np.eye(2), np.diag([1, np.exp(1j * theta)]))
+        private_phase *= np.exp(0.37j)
+        parity = np.eye(4)[:, [1, 0, 2, 3]]  # Flip the low bit when the high bit is zero.
+        signed_phase = parity @ private_phase.conj().T @ parity @ private_phase
+        y_basis = np.kron(np.eye(2), np.array([[1, 1], [1j, -1j]]) / np.sqrt(2))
+        rotation = y_basis @ signed_phase @ y_basis.conj().T
+        basis = hadamard_pair @ rotation @ np.diag([1, -1, 1j, 1]) @ hadamard_pair
+
+        omega = (-1 + 1j * np.sqrt(3)) / 2
+        expected = np.eye(4, dtype=complex)
+        expected[:3, :3] = np.array([[1, 1, 1], [1, omega, omega.conjugate()],
+                                     [1, omega.conjugate(), omega]]) / np.sqrt(3)
+        np.testing.assert_allclose(basis, expected, atol=1e-14, rtol=0)
+
+        cycle = np.eye(4)[:, [1, 2, 0, 3]]
+        public_phase = np.exp(-0.23j) * np.array([1, omega])
+        for mismatch in (0, 1):
+            row_phases = []
+            for high, low in product((0, 1), repeat=2):
+                exponent = (mismatch ^ high) - (mismatch ^ low) - high + low
+                self.assertEqual(exponent % 3, mismatch * (high - low) % 3)
+                row_phases.append(public_phase[mismatch ^ high]
+                                  * public_phase[mismatch ^ low].conjugate()
+                                  * public_phase[high].conjugate() * public_phase[low])
+            np.testing.assert_allclose(basis @ np.diag(row_phases) @ basis.conj().T,
+                                       np.linalg.matrix_power(cycle, mismatch),
+                                       atol=1e-14, rtol=0)
+
+        for power in (-1, 0, 1, 2):
+            phases = np.diag([1, omega**(-power), omega**power, 1])
+            np.testing.assert_allclose(basis @ phases @ basis.conj().T,
+                                       np.linalg.matrix_power(cycle, power),
+                                       atol=1e-14, rtol=0)
+
     def test_one_block_all_columns_signs_and_actual_inverse(self):
         for p in (1, 2):
             for row, controlled in product(product((-1, 1), repeat=p),

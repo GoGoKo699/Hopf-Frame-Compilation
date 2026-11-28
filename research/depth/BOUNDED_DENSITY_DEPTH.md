@@ -1171,11 +1171,15 @@ a fixed interval $`[c,C]`$ with $`0\lt c\le1\le C`$.
 At each fixed tolerance, suppose H can be compiled with one clean
 qubit, $`T,b_{\rm dirty}=O(\sqrt N)`$, $`G=O(N)`$ and native
 depth $`d_H(n)`$. The resource bounds cover its actual reverse.
-Suppose also that at every fixed tolerance every a-bit Boolean
-sign table has a complete initialized-isometry compiler with
-a bounded number of clean bits, $`T,b_{\rm dirty}=O(2^{a/2})`$,
-$`G=O(2^a)`$ and native depth $`O(d(a))`$, including its actual
-inverse. The depth envelope d is nondecreasing and at least one.
+Preprocessing uses the prescribed target data and certified reference
+probabilities. The latter can also be recovered by simulating the
+reference compiler's root column at successively tighter tolerances.
+Suppose there is a constant $`k_0`$ such that every a-bit Boolean sign
+table at every requested tolerance has a complete initialized-isometry
+compiler using at most $`k_0`$ clean bits. At each fixed tolerance,
+require $`T,b_{\rm dirty}=O(2^{a/2})`$, $`G=O(2^a)`$ and native depth
+$`O(d(a))`$, including the actual inverse, uniformly over tables and a.
+The depth envelope d is nondecreasing and at least one.
 Completed address motion is allowed in the scalar word.
 
 For fixed $`L\ge6`$, there is a one-clean compiler for
@@ -1263,9 +1267,10 @@ its ancestors including i. Give the extra root column energy zero.
 For bin width $`\lambda\gt0`$ set
 $`g_i=\lfloor(S_i+s_0)/\lambda\rfloor`$ with
 $`0\lt s_0\lt\lambda/2`$. These labels are nondecreasing on
-paths. For finite certified preprocessing, search rational offsets
-until all the finitely many comparisons to bin boundaries are strict.
-The diagonal labels reside in the programmed tables.
+paths. Choose rational lambda and test $`N+1`$ distinct rational offsets
+in this interval concurrently by certified refinement. Each of the N
+energies excludes at most one offset, so some trial certifies all its
+labels strictly inside their bins. Store those labels in the programmed tables.
 
 Write $`P_s`$ for the part retaining $`g_i-g_j=s`$.
 For fixed s its input bins have distinct output bins. Within
@@ -1335,8 +1340,9 @@ the mask substitution its approximation has the form
              \right].
 ```
 
-Round the bounded diagonal tables to a fixed finite grid,
-using sufficiently small table errors once M is fixed. This
+Once M is fixed, choose a finite grid with spacing smaller than the
+allowed entry error. For each entry select any grid value certified
+strictly within that error. This
 gives a matrix K within any prescribed fixed
 $`\kappa\lt1/4`$ of $`W_\mu H^\dagger`$. The polar factor
 of K is within $`2\kappa`$ of this relative unitary:
@@ -1346,7 +1352,9 @@ A bounded real diagonal entry can be the cosine of a programmed
 rotation on a fixed block-encoding flag. To select each grid
 angle, promote the lifted scalar sign $`(-1)^{zg(x)}`$ by
 [bounded-clean XOR promotion](DIRTY_PROMOTION_OF_CLEAN_QUERIES.md#4-approximate-clean-return-still-gives-a-full-operator-query)
-to a full XOR Q of g into an arbitrary bit z. Here g includes
+to a full XOR Q of g into an arbitrary bit z. For promoted error
+$`\tau`$, request scalar error $`\tau/(8\cdot2^{k_0})`$.
+Here g includes
 both its value class and any fixed-arity enables. For
 $`B_\theta=C_z R_y(\theta)`$ on the flag, use the operator
 word

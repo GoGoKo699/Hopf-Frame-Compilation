@@ -42,8 +42,8 @@ four-layer sequence would need unbounded inner clean spread at both
 ends, as well as the growing middle crossing rank required by R74.
 R76's Pauli and Clifford midpoint floors remain independently applicable,
 without bounding this spread.
-The unrestricted one-clean case and optimal depth remain open. The
-compiler and its count/depth upper bounds are unchanged.
+Whether four layers can approximate this rotation to arbitrary accuracy
+with one clean qubit remains open.
 
 ## 1. Inner clean spread
 
@@ -399,7 +399,7 @@ rank at most the number of clean-active axes. Together with the
 | Fourth | $`\Omega(L)`$ clean-active axes |
 
 These necessary conditions hold for every four-layer presentation of the
-one-clean rotation witness. Unrestricted one-clean depth remains open.
+one-clean rotation witness.
 
 The theorem includes genuinely non-Clifford midpoints. For example,
 on one qubit $`U=THT`$ sends X to
@@ -617,6 +617,4 @@ checks do not infer an asymptotic theorem from finite examples.
 The proof uses R74's existing equal-coefficient finite-boundary gap,
 R75's terminal clean-return rigidity, and R76's compressed commutant
 lift and entry-ring argument. It uses no scalar polynomial-limit
-premise. Unbounded inner spread remains allowed by the unrestricted
-four-layer model, so the general one-clean five-layer obstruction
-remains open.
+premise. The unrestricted four-layer model allows unbounded inner spread.

@@ -179,6 +179,7 @@ For the restricted self-inverse matrices in §5, a direct four-call reduction
 replaces this density criterion. It works for every table, including singular
 crossing matrices, and also has a complete approximate-source guarantee.
 
+<a id="3-precision-and-completed-address-return"></a>
 <a id="precision-and-completed-address-return"></a>
 
 ## 3. Precision and full-space sign return

@@ -372,6 +372,8 @@ echo costs twenty-four T gates, at most six T layers and 172
 Cliffords, counting $`X=HS^2H`$. This ledger uses the actual
 inverse and makes no unimplemented central-folding saving.
 
+<a id="two-coordinate-lift"></a>
+
 ### 4.4. A parameterized joint two-coordinate source
 
 The construction also pays a partial joint operation for every p at

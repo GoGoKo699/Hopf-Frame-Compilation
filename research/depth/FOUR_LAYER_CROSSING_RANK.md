@@ -8,8 +8,10 @@ T layers grows at least linearly in the accuracy exponent for
 the complete-frame witness below. This result, R74, gives an explicit
 initialized-sector gap at each rank. The separate [operator-rigidity
 theorem](FOUR_LAYER_OPERATOR_RIGIDITY.md), R75, excludes four layers
-altogether in the zero-clean model at integer precision L at least three;
-a five-layer lower bound with positive clean work remains open.
+for this rotation in the zero-clean model at integer precision L at least three.
+The five-layer floor for this rotation with one clean qubit remains open.
+[Typical deepest-corner frames](ROBUST_DECISION_BIAS.md#complete-return-four-band-floor)
+require at least five layers at small fixed error for every fixed clean count.
 
 ## 1. Circuit class and theorem
 
@@ -622,4 +624,4 @@ The [sparse-probe theorem](FOUR_LAYER_SCALAR_GAP.md) isolates the
 full-space scalar value one uniformly even as crossing rank grows. The
 abstract example above concerns possible limits near one third.
 Closure of unrestricted native scalar coefficients at those intermediate
-values, and unrestricted positive-clean five-layer rigidity, remain open.
+values remains open, as does a five-layer floor for this rotation at one clean input.

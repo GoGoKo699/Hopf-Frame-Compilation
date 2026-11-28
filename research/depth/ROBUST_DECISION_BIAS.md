@@ -1751,14 +1751,18 @@ On the code, $`\|VJ-cJ\|_{2,\mathrm{occ}}\le\eta+\sqrt{3/2}\,2^{-p/2}`$, where t
 normalized trace on the initialized input. Comparing the
 two Pauli actions first on VJ and then on cJ gives
 $`\|(CPC^\dagger-P)J\|_{2,\mathrm{occ}}\le4(\eta+\sqrt{3/2}\,2^{-p/2})`$.
-Two Pauli code columns are orthogonal in this inner
-product or coincide up to sign, by tracing against
-$`(I+S)/2`$. At large p this bound forces equality, so
-$`CPC^\dagger=P S^{f(P)}`$. The bit f is linear on
-$`M^\perp`$ by multiplication and vanishes at S if S
-belongs to that space. Extend f with $`f(S)=0`$, and
-represent it by the symplectic pairing with a Pauli
-label Q that commutes with S. The Clifford
+Here P commutes with S since $`S\in M`$. Tracing against
+$`(I+S)/2`$ gives orthogonal code columns unless the
+labels of P and $`CPC^\dagger`$ differ by zero or S.
+In those cases Hermiticity gives equal or opposite columns,
+since P and S commute. For $`p\ge4`$ the displayed bound
+is below $`\sqrt2`$, so the columns agree and
+$`CPC^\dagger=P S^{f(P)}`$. Multiplication makes f linear
+on $`M^\perp`$. If $`S\in M^\perp`$, then $`f(S)=1`$
+would give $`CSC^\dagger=I`$ for a nonidentity Pauli.
+Thus f extends to $`M^\perp+\langle S\rangle`$ with
+$`f(S)=0`$. Represent it by the symplectic pairing with
+a Pauli label Q that commutes with S. The Clifford
 
 ```math
 D=(I+S)/2+(I-S)Q/2
@@ -1767,8 +1771,8 @@ D=(I+S)/2+(I-S)Q/2
 uses a signed Hermitian representative Q. It fixes J
 pointwise and conjugates $`P S^{f(P)}`$ back to P.
 Thus $`C'=DC`$ belongs to the Pauli algebra of M,
-and $`J^\dagger DVJ=J^\dagger VJ`$. The finitely small
-p omitted by this step satisfy both stated bounds.
+and $`J^\dagger DVJ=J^\dagger VJ`$. For $`p\le3`$ both
+stated bounds hold directly.
 
 In a fixed Clifford frame, the radical of M consists of
 computational Z coordinates z. The nondegenerate quotient
@@ -1956,9 +1960,10 @@ If $`(2d+1)r\lt L-3`$, the arithmetic diameter bound
 forces each to be scalar. Then every radical block is a
 scalar native unitary, hence an eighth root, a contradiction.
 Thus $`d(r+1)=\Omega(L)`$ for d at least one.
-This applies to a literal active control sector if its
-read-only specialization gives an actual zero-clean
-native word. It constrains the
-[finite phase target](COHERENT_COUNTER_SOURCE.md#private-gauge-mod3)
-when all interaction components are small. A large
-coupled component lies within the allowed discovery budget.
+For the [public one-bit phase word](COHERENT_COUNTER_SOURCE.md#a-finite-angle-precision-target-suffices),
+the public bit enters only as a CNOT control. Fixing its value gives
+native zero-clean words $`Q_0,Q_1`$ on the private wires. If Q has
+full error epsilon up to a common phase, then
+$`\|Q_1Q_0^\dagger-\omega_3 I\|\le2\epsilon`$. The component
+bound applies to this actual product even though the common phase
+of Q is unspecified. Large coupled components remain admissible.
